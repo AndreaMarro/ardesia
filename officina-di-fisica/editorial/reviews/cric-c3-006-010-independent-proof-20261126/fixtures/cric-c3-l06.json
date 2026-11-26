@@ -1,0 +1,715 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C3-Q051",
+      "kind": "question",
+      "course": "C3",
+      "section": "Fare i conti con il primo principio",
+      "order": 51,
+      "title": "Espandersi può ridurre l’energia interna",
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L03"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima determino il lavoro di volume, poi applico il bilancio. L’aumento è 1/2 L; moltiplicato per 120 kPa dà 60 J, perché kPa·L=J. Il gas riceve 35 J come calore ma ne trasferisce 60 J all’esterno come lavoro: la sua energia interna diminuisce di 25 J. L’espansione non implica da sola un aumento di U."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f01a7ffefbbe2113bf4f788651145016cbf43f6a1b12477641441cacbac0a8be",
+          "text": "Nel primo pannello le barre del bilancio hanno una scala comune di energia: 35 J entrano come calore e 60 J escono come lavoro. La differenza orientata è ΔU=−25 J."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta V=\\frac12\\,\\mathrm L"
+        },
+        {
+          "type": "formula",
+          "text": " W=p_{\\rm est}\\Delta V"
+        },
+        {
+          "type": "formula",
+          "text": " W=60\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U=Q-W"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U=-25\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "95 J sommerebbe i due trasferimenti come entranti, mentre il lavoro è uscente. 35 J ignorerebbe il pistone e −60 J ignorerebbe il calore ricevuto. Per controllare l’inversa, Q=ΔU+W=−25 J+60 J=35 J."
+        }
+      ],
+      "prompt": "Un gas chiuso si espande contro una pressione esterna costante di 120 kPa, da 1,5 L a 2,0 L, e riceve 35 J come calore. Le variazioni di energia cinetica e potenziale macroscopiche sono trascurabili e l’unico lavoro è quello del pistone. Con Q positivo entrante e W positivo compiuto dal gas, trova ΔU in joule.",
+      "difficulty": 2,
+      "family": "espansione-con-apporto-limitato",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": -25,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "hints": [
+        "Fissa il segno dei trasferimenti prima di combinarli; il lavoro usa la pressione esterna.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "95 J sommerebbe i due trasferimenti come entranti, mentre il lavoro è uscente. 35 J ignorerebbe il pistone e −60 J ignorerebbe il calore ricevuto. Per controllare l’inversa, Q=ΔU+W=−25 J+60 J=35 J.",
+        "target": "C3-L06"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Confine e convenzioni dei trasferimenti",
+        "Lavoro esterno e area p–V",
+        "Energia interna e moto macroscopico"
+      ]
+    },
+    {
+      "id": "C3-Q052",
+      "kind": "question",
+      "course": "C3",
+      "section": "Fare i conti con il primo principio",
+      "order": 52,
+      "title": "L’agitatore attraversa il confine energetico",
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L03"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La parete adiabatica impone Q=0, ma l’albero dell’agitatore trasferisce energia come lavoro. Con W definito uscente, un lavoro fatto sul liquido ha W<0 e ΔU=−W>0. La rigidità annulla il lavoro di variazione del volume, non il lavoro dell’albero. Confrontando stati fermi si evita di confondere l’energia interna con un moto macroscopico residuo."
+        },
+        {
+          "type": "formula",
+          "text": "Q=0"
+        },
+        {
+          "type": "formula",
+          "text": " W_{\\rm sul\\ liquido}>0"
+        },
+        {
+          "type": "formula",
+          "text": " W=-W_{\\rm sul\\ liquido}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U=W_{\\rm sul\\ liquido}>0"
+        },
+        {
+          "type": "text",
+          "text": "Chiuso significa conservare materia, non impedire energia. Adiabatico impedisce il calore e non ogni lavoro. L’energia cinetica del recipiente come un tutto non è la sua energia interna."
+        }
+      ],
+      "prompt": "Un agitatore compie lavoro positivo sul liquido in un recipiente rigido e termicamente isolato. Il liquido è chiuso alla materia; confronta stati iniziale e finale fermi alla stessa quota. Come può variare la sua energia interna?",
+      "difficulty": 2,
+      "family": "scambiare-energia-con-un-agitatore",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Aumenta per il lavoro ricevuto dall’agitatore",
+          "Resta necessariamente uguale perché non entra calore",
+          "Diminuisce perché il recipiente è rigido",
+          "È uguale alla sola energia cinetica di traslazione del recipiente",
+          "Non può variare in un sistema chiuso"
+        ],
+        "value": "Aumenta per il lavoro ricevuto dall’agitatore"
+      },
+      "hints": [
+        "Distingui il lavoro del pistone dal lavoro trasmesso da un albero.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Chiuso significa conservare materia, non impedire energia. Adiabatico impedisce il calore e non ogni lavoro. L’energia cinetica del recipiente come un tutto non è la sua energia interna.",
+        "target": "C3-L06"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Confine e convenzioni dei trasferimenti",
+        "Lavoro esterno e area p–V",
+        "Energia interna e moto macroscopico"
+      ]
+    },
+    {
+      "id": "C3-Q053",
+      "kind": "question",
+      "course": "C3",
+      "section": "Fare i conti con il primo principio",
+      "order": 53,
+      "title": "Una compressione con lavoro uscente positivo",
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L03"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La pressione esterna è positiva, mentre dV è negativo in compressione. Ogni contributo p_est dV al lavoro uscente è quindi negativo. È l’ambiente a fornire lavoro al gas; chiamarlo negativo non significa che l’energia trasferita abbia un modulo negativo."
+        },
+        {
+          "type": "formula",
+          "text": "p_{\\rm est}>0"
+        },
+        {
+          "type": "formula",
+          "text": " dV<0"
+        },
+        {
+          "type": "formula",
+          "text": " W=\\int p_{\\rm est}\\,dV<0"
+        },
+        {
+          "type": "text",
+          "text": "Positivo userebbe la convenzione opposta, lavoro fatto sul gas. Nullo richiederebbe assenza di lavoro, incompatibile con pressione positiva e diminuzione di volume. Il segno di Q non è stabilito dal solo segno del lavoro."
+        }
+      ],
+      "prompt": "Adotta W positivo se il gas compie lavoro sull’ambiente. Una pressione esterna positiva comprime il gas, riducendone il volume, e l’unico lavoro è quello di volume. Qual è il segno di W?",
+      "difficulty": 1,
+      "family": "convenzione-per-una-compressione",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Negativo",
+          "Positivo",
+          "Nullo per qualunque compressione",
+          "Sempre uguale al segno del calore",
+          "Non definibile neppure conoscendo il verso del volume"
+        ],
+        "value": "Negativo"
+      },
+      "hints": [
+        "Applica la convenzione dichiarata al prodotto pressione per variazione di volume.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Positivo userebbe la convenzione opposta, lavoro fatto sul gas. Nullo richiederebbe assenza di lavoro, incompatibile con pressione positiva e diminuzione di volume. Il segno di Q non è stabilito dal solo segno del lavoro.",
+        "target": "C3-L06"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Confine e convenzioni dei trasferimenti",
+        "Lavoro esterno e area p–V",
+        "Energia interna e moto macroscopico"
+      ]
+    },
+    {
+      "id": "C3-Q054",
+      "kind": "question",
+      "course": "C3",
+      "section": "Fare i conti con il primo principio",
+      "order": 54,
+      "title": "Ricostruire il calore dal bilancio",
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L03"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo principio è ΔU=Q−W. Per isolare il calore porto il lavoro dall’altro lato: Q=ΔU+W. La somma algebrica −75+120 dà +45 J, quindi il gas assorbe calore pur diminuendo la propria energia interna: il lavoro uscente è maggiore del calore ricevuto."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U=Q-W"
+        },
+        {
+          "type": "formula",
+          "text": " Q=\\Delta U+W"
+        },
+        {
+          "type": "formula",
+          "text": " Q=(-75+120)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q=45\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "−195 J sottrarrebbe di nuovo il lavoro invece di isolarlo. 195 J sommerebbe i moduli perdendo il segno di ΔU; −75 J confonderebbe trasferimento di calore e variazione di energia interna. Sostituendo 45−120 si ritrovano −75 J."
+        }
+      ],
+      "prompt": "Per un gas chiuso si misura ΔU=−75 J mentre il gas compie 120 J di lavoro sull’ambiente. Non cambiano energia cinetica o potenziale macroscopiche. Q è positivo se entra e W se esce. Ricava Q in joule con il suo segno.",
+      "difficulty": 1,
+      "family": "recuperare-il-calore-da-due-misure",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 45,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "hints": [
+        "Sposta un termine nell’equazione prima di inserire i numeri con segno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−195 J sottrarrebbe di nuovo il lavoro invece di isolarlo. 195 J sommerebbe i moduli perdendo il segno di ΔU; −75 J confonderebbe trasferimento di calore e variazione di energia interna. Sostituendo 45−120 si ritrovano −75 J.",
+        "target": "C3-L06"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Confine e convenzioni dei trasferimenti",
+        "Lavoro esterno e area p–V",
+        "Energia interna e moto macroscopico"
+      ]
+    },
+    {
+      "id": "C3-Q055",
+      "kind": "question",
+      "course": "C3",
+      "section": "Fare i conti con il primo principio",
+      "order": 55,
+      "title": "L’area sotto una pressione lineare",
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L03"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il lavoro è l’area orientata sotto il cammino p–V. La linearità rende la pressione media la semisomma degli estremi: 150 kPa. L’intervallo di volume è 3 L, perciò l’area del trapezio vale 150·3=450 J. La media degli estremi è giustificata dalla retta, non da una regola generale per ogni curva."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f01a7ffefbbe2113bf4f788651145016cbf43f6a1b12477641441cacbac0a8be",
+          "text": "Il pannello centrale è un diagramma p–V con origine comune. Il trapezio sotto la retta vale un rettangolo da 300 J più un triangolo da 150 J. Il verso è quello dell’espansione."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta V=3\\,\\mathrm L"
+        },
+        {
+          "type": "formula",
+          "text": " \\bar p=\\frac{200+100}{2}\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\bar p=150\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " W=\\bar p\\Delta V"
+        },
+        {
+          "type": "formula",
+          "text": " W=450\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "600 J userebbe solo la pressione iniziale e 300 J solo la finale. 150 J è soltanto il contributo triangolare sopra la pressione finale; manca il rettangolo da 300 J. −450 J invertirebbe il verso del cammino."
+        }
+      ],
+      "prompt": "Un gas si espande quasi staticamente da 1 L a 4 L. La pressione, uguale nel limite a quella esterna, scende linearmente da 200 kPa a 100 kPa. Non vi sono altri lavori. Calcola il lavoro compiuto dal gas in joule.",
+      "difficulty": 2,
+      "family": "area-di-un-percorso-inclinato",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 450,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "hints": [
+        "Scomponi il trapezio in un rettangolo e un triangolo per una seconda verifica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "600 J userebbe solo la pressione iniziale e 300 J solo la finale. 150 J è soltanto il contributo triangolare sopra la pressione finale; manca il rettangolo da 300 J. −450 J invertirebbe il verso del cammino.",
+        "target": "C3-L06"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Confine e convenzioni dei trasferimenti",
+        "Lavoro esterno e area p–V",
+        "Energia interna e moto macroscopico"
+      ]
+    },
+    {
+      "id": "C3-Q056",
+      "kind": "question",
+      "course": "C3",
+      "section": "Fare i conti con il primo principio",
+      "order": 56,
+      "title": "Gli estremi di pressione non danno l’area",
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L03"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il lavoro somma contributi p dV, quindi misura un’area con segno nel piano p–V. Conoscere due pressioni non determina né gli intervalli di volume né la forma della curva. Persino fissando gli stessi stati estremi si possono scegliere cammini diversi con aree differenti."
+        },
+        {
+          "type": "formula",
+          "text": "W=\\int_{V_i}^{V_f}p(V)\\,dV"
+        },
+        {
+          "type": "text",
+          "text": "Una differenza di pressione ha unità Pa e non è un lavoro. Il lavoro non è funzione di stato e la lentezza non impone dV=0. Si può misurare o calcolare il lavoro quando il percorso e le grandezze necessarie sono noti."
+        }
+      ],
+      "prompt": "Due trasformazioni quasi statiche di un gas hanno uguali pressioni iniziale e finale. È sufficiente questa informazione per concludere che il lavoro di volume compiuto dal gas sia uguale?",
+      "difficulty": 2,
+      "family": "stessa-pressione-lavoro-diverso",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "No: servono il percorso p–V e gli estremi di volume",
+          "Sì: basta sottrarre la pressione iniziale dalla finale",
+          "Sì: il lavoro è una funzione di stato",
+          "Sì: in ogni processo lento il lavoro è nullo",
+          "No: il lavoro non è mai misurabile"
+        ],
+        "value": "No: servono il percorso p–V e gli estremi di volume"
+      },
+      "hints": [
+        "Cerca l’informazione che permette di misurare l’area, non soltanto l’altezza degli estremi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una differenza di pressione ha unità Pa e non è un lavoro. Il lavoro non è funzione di stato e la lentezza non impone dV=0. Si può misurare o calcolare il lavoro quando il percorso e le grandezze necessarie sono noti.",
+        "target": "C3-L06"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Confine e convenzioni dei trasferimenti",
+        "Lavoro esterno e area p–V",
+        "Energia interna e moto macroscopico"
+      ]
+    },
+    {
+      "id": "C3-Q057",
+      "kind": "question",
+      "course": "C3",
+      "section": "Fare i conti con il primo principio",
+      "order": 57,
+      "title": "Dare un nome all’energia microscopica",
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L03"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "U è l’energia interna. Include i contributi microscopici compatibili con il modello del sistema. Calore e lavoro indicano modi con cui energia attraversa un confine durante un processo; non sono quantità contenute nel corpo con quel nome. La traslazione del recipiente appartiene invece all’energia cinetica macroscopica."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U=U_f-U_i"
+        },
+        {
+          "type": "text",
+          "text": "La pressione non ha unità di energia. La sola energia cinetica del centro di massa esclude proprio i contributi microscopici richiesti. Tornare allo stesso stato ripristina U, senza imporre che ogni trasferimento sia stato nullo."
+        }
+      ],
+      "prompt": "Nel primo principio, quale nome ha U, la funzione di stato che raccoglie le energie microscopiche del sistema e non il moto del recipiente come un tutto?",
+      "difficulty": 1,
+      "family": "il-nome-del-contenuto-energetico-microscopico",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Energia interna",
+          "Calore immagazzinato",
+          "Lavoro interno necessariamente nullo",
+          "Energia cinetica del centro di massa soltanto",
+          "Pressione assoluta"
+        ],
+        "value": "Energia interna"
+      },
+      "hints": [
+        "Separa una proprietà dello stato dai due modi di trasferire energia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La pressione non ha unità di energia. La sola energia cinetica del centro di massa esclude proprio i contributi microscopici richiesti. Tornare allo stesso stato ripristina U, senza imporre che ogni trasferimento sia stato nullo.",
+        "target": "C3-L06"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Confine e convenzioni dei trasferimenti",
+        "Lavoro esterno e area p–V",
+        "Energia interna e moto macroscopico"
+      ]
+    },
+    {
+      "id": "C3-Q058",
+      "kind": "question",
+      "course": "C3",
+      "section": "Fare i conti con il primo principio",
+      "order": 58,
+      "title": "Dal movimento del pistone al volume",
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L03"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La variazione di volume è area per avanzamento: 25·4=100 cm³, cioè 1/10 L. Moltiplico per 100 kPa e ottengo 10 J. In alternativa converto area e spostamento in SI: A=1/400 m² e s=1/25 m danno ΔV=1/10000 m³; la pressione è 100000 Pa."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f01a7ffefbbe2113bf4f788651145016cbf43f6a1b12477641441cacbac0a8be",
+          "text": "L’ultimo pannello rappresenta schematicamente un pistone e distingue area di sezione da avanzamento. Il volume spazzato è 25 cm² per 4 cm, cioè 100 cm³; il disegno non assegna una scala comune ad area e lunghezza."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta V=A s"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta V=100\\,\\mathrm{cm^3}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta V=\\frac1{10}\\,\\mathrm L"
+        },
+        {
+          "type": "formula",
+          "text": " W=p_{\\rm est}\\Delta V"
+        },
+        {
+          "type": "formula",
+          "text": " W=10\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "100 J richiederebbe un litro invece di 1/10 L. 10000 J tratterebbe il numero 100 del volume in cm³ come litri. Il segno negativo descriverebbe invece un pistone che rientra. Il prodotto ha dimensione Pa·m³=J."
+        }
+      ],
+      "prompt": "Un pistone di area 25 cm² avanza verso l’esterno di 4 cm contro una pressione esterna costante di 100 kPa. La pressione agisce normalmente e non vi sono altri lavori. Trova il lavoro compiuto dal gas in joule.",
+      "difficulty": 2,
+      "family": "dal-pistone-al-lavoro",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "hints": [
+        "Area per lunghezza dà un volume: completa questa conversione prima del lavoro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "100 J richiederebbe un litro invece di 1/10 L. 10000 J tratterebbe il numero 100 del volume in cm³ come litri. Il segno negativo descriverebbe invece un pistone che rientra. Il prodotto ha dimensione Pa·m³=J.",
+        "target": "C3-L06"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Confine e convenzioni dei trasferimenti",
+        "Lavoro esterno e area p–V",
+        "Energia interna e moto macroscopico"
+      ]
+    },
+    {
+      "id": "C3-Q059",
+      "kind": "question",
+      "course": "C3",
+      "section": "Fare i conti con il primo principio",
+      "order": 59,
+      "title": "Cambiare osservatore non riscalda il recipiente",
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L03"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità del recipiente come un tutto dipende dal riferimento, quindi cambia il contributo cinetico del centro di massa. L’energia interna classica si riferisce ai moti e alle interazioni microscopiche rispetto al centro di massa; lo stesso stato non viene riscaldato passando a un altro osservatore. Non si sta accelerando fisicamente il recipiente."
+        },
+        {
+          "type": "formula",
+          "text": "E_{\\rm cin,CM}=\\frac12 M V_{\\rm CM}^{2}"
+        },
+        {
+          "type": "text",
+          "text": "Il cambio di descrizione non aggiunge materia né forza un flusso di calore nella parete. Nel riferimento del centro di massa la sua energia cinetica macroscopica è zero, ma U può restare non nulla. L’isolamento termico non rende nulla ogni forma di energia."
+        }
+      ],
+      "prompt": "Un recipiente termicamente isolato trasla a velocità costante. Nel modello classico, due osservatori inerziali descrivono il medesimo stato fisico da riferimenti in moto relativo uniforme. Che cosa può cambiare per il solo cambio di riferimento?",
+      "difficulty": 2,
+      "family": "energia-interna-e-traslazione",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "L’energia cinetica macroscopica, non l’energia interna dello stesso stato",
+          "L’energia interna perché cambia ogni lettura del termometro",
+          "Il calore attraversato dalla parete per il solo cambio di osservatore",
+          "La quantità di materia del recipiente",
+          "L’energia interna deve diventare nulla nel riferimento del recipiente"
+        ],
+        "value": "L’energia cinetica macroscopica, non l’energia interna dello stesso stato"
+      },
+      "hints": [
+        "Distingui una trasformazione fisica da una descrizione dello stesso evento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il cambio di descrizione non aggiunge materia né forza un flusso di calore nella parete. Nel riferimento del centro di massa la sua energia cinetica macroscopica è zero, ma U può restare non nulla. L’isolamento termico non rende nulla ogni forma di energia.",
+        "target": "C3-L06"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Confine e convenzioni dei trasferimenti",
+        "Lavoro esterno e area p–V",
+        "Energia interna e moto macroscopico"
+      ]
+    },
+    {
+      "id": "C3-Q060",
+      "kind": "question",
+      "course": "C3",
+      "section": "Fare i conti con il primo principio",
+      "order": 60,
+      "title": "Aumentare U senza calore",
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L03"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’assenza di calore dà Q=0. Il bilancio diventa ΔU=−W, quindi W=−ΔU=−180 J. Occorre un lavoro di modulo 180 J fatto sul gas; il valore negativo esprime il verso rispetto alla convenzione uscente."
+        },
+        {
+          "type": "formula",
+          "text": "Q=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U=-W"
+        },
+        {
+          "type": "formula",
+          "text": " W=-\\Delta U"
+        },
+        {
+          "type": "formula",
+          "text": " W=-180\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "+180 J sarebbe lavoro uscente e ridurrebbe U di 180 J. Zero renderebbe nullo anche ΔU nel modello; 360 J introdurrebbe un fattore privo di origine nel bilancio. Il termine lavoro non va confuso con calore solo perché entrambi si misurano in joule."
+        }
+      ],
+      "prompt": "Un gas chiuso deve aumentare la propria energia interna di 180 J senza scambiare calore. Le energie macroscopiche non cambiano e l’unico trasferimento possibile è il lavoro. Con W positivo compiuto dal gas, quanto deve valere W in joule?",
+      "difficulty": 1,
+      "family": "lavoro-ricevuto-in-una-trasformazione-adiabatica",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": -180,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "hints": [
+        "Prima azzera il trasferimento escluso dal testo, poi isola il lavoro con il suo segno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "+180 J sarebbe lavoro uscente e ridurrebbe U di 180 J. Zero renderebbe nullo anche ΔU nel modello; 360 J introdurrebbe un fattore privo di origine nel bilancio. Il termine lavoro non va confuso con calore solo perché entrambi si misurano in joule.",
+        "target": "C3-L06"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Confine e convenzioni dei trasferimenti",
+        "Lavoro esterno e area p–V",
+        "Energia interna e moto macroscopico"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "f01a7ffefbbe2113bf4f788651145016cbf43f6a1b12477641441cacbac0a8be",
+      "name": "cric-c3-l06-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTU3MCIgdmlld0JveD0iMCAwIDY0MCAxNTcwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIj48dGl0bGUgaWQ9InRpdGxlIj5VbiBiaWxhbmNpbyBlbmVyZ2V0aWNvIGUgZHVlIGNhbGNvbGkgZGkgbGF2b3JvPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+QmFycmUgZGVpIG1vZHVsaSBkaSBjYWxvcmUgMzUgam91bGUgZSBsYXZvcm8gNjAgam91bGU7IHRyYXBlemlvIHByZXNzaW9uZSB2b2x1bWUgZnJhIDEgZSA0IGxpdHJpIGUgMjAwIGUgMTAwIGtpbG9wYXNjYWw7IHZvbHVtZSBzcGF6emF0byBkYSB1biBwaXN0b25lIGRpIGFyZWEgMjUgY2VudGltZXRyaSBxdWFkcmF0aSBjaGUgYXZhbnphIDQgY2VudGltZXRyaS48L2Rlc2M+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTcwIiBmaWxsPSJ3aGl0ZSIvPjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5UcmFzZmVyaW1lbnRpLCBhcmVhIGUgcGlzdG9uZTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTEwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjEgwrcgRHVlIHRyYXNmZXJpbWVudGksIHVuIHNvbG8gYmlsYW5jaW88L3RleHQ+PHRleHQgeD0iMzUiIHk9IjE5MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5RIGVudHJhbnRlPC90ZXh0PjxyZWN0IHg9IjIwMCIgeT0iMTY1IiB3aWR0aD0iMTc1IiBoZWlnaHQ9IjMyIiBmaWxsPSIjM2Q3NzkxIi8+PHRleHQgeD0iNDAwIiB5PSIxOTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+KzM1IEo8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjI3MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5XIHVzY2VudGU8L3RleHQ+PHJlY3QgeD0iMjAwIiB5PSIyNDUiIHdpZHRoPSIzMDAiIGhlaWdodD0iMzIiIGZpbGw9IiM5ODZjMzUiLz48dGV4dCB4PSI1MjUiIHk9IjI3MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij42MCBKPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIzNTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+zpRVID0gMzUgSiDiiJIgNjAgSiA9IOKIkjI1IEo8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjQwMiIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5MZSBiYXJyZSBjb25mcm9udGFubyBpIG1vZHVsaSBkZWkgdHJhc2ZlcmltZW50aS48L3RleHQ+PHRleHQgeD0iMzUiIHk9IjUwNSIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4yIMK3IExhdm9ybyBjb21lIGFyZWEgc290dG8gaWwgcGVyY29yc288L3RleHQ+PGxpbmUgeDE9IjE0MCIgeTE9Ijg1MCIgeDI9IjUyMCIgeTI9Ijg1MCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMTQwIiB5MT0iODUwIiB4Mj0iMTQwIiB5Mj0iNTcwIiBzdHJva2U9IiM2MDczODMiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjEzMCIgeT0iODgwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj4wPC90ZXh0Pjx0ZXh0IHg9IjUzMCIgeT0iODg1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj5WIFtMXTwvdGV4dD48dGV4dCB4PSI4NSIgeT0iNTYwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnAgW2tQYV08L3RleHQ+PHBvbHlnb24gcG9pbnRzPSIyMjAsODUwIDIyMCw2MTAgNDYwLDczMCA0NjAsODUwIiBmaWxsPSIjZDllY2YxIi8+PGxpbmUgeDE9IjIyMCIgeTE9IjYxMCIgeDI9IjQ2MCIgeTI9IjczMCIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjMiLz48bGluZSB4MT0iMzEwIiB5MT0iNjU1IiB4Mj0iMzcwIiB5Mj0iNjg1IiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5Z29uIHBvaW50cz0iMzcwLDY4NSAzNjEuMDU1NzI4MDkwMDAwODUsNjg1LjAgMzY0LjYzMzQzNjg1NDAwMDU0LDY3Ny44NDQ1ODI0NzIwMDA2IiBmaWxsPSIjMzA2ZjhjIi8+PGxpbmUgeDE9IjIyMCIgeTE9IjczMCIgeDI9IjQ2MCIgeTI9IjczMCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxMjgiIHk9IjYxOCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+MjAwPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iNzM4IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj4xMDA8L3RleHQ+PHRleHQgeD0iMjIwIiB5PSI4ODUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjE8L3RleHQ+PHRleHQgeD0iNDYwIiB5PSI4ODUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjQ8L3RleHQ+PHRleHQgeD0iMzIwIiB5PSI3MTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjE1MCBKPC90ZXh0Pjx0ZXh0IHg9IjM0MCIgeT0iNzk1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4zMDAgSjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iOTQ1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlByZXNzaW9uZSBsaW5lYXJlOiBXID0gMTUwIGtQYSDDlyAzIEwgPSA0NTAgSjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTA1MCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4zIMK3IElsIHZvbHVtZSBzcGF6emF0byBub24gw6ggdW7igJlhcmVhPC90ZXh0PjxyZWN0IHg9IjE0MCIgeT0iMTE1MCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSIxNTAiIGZpbGw9IiNkOWVjZjEiLz48cmVjdCB4PSIzODAiIHk9IjExNTAiIHdpZHRoPSIxMDAiIGhlaWdodD0iMTUwIiBmaWxsPSIjZWZlMWNlIi8+PGxpbmUgeDE9IjM4MCIgeTE9IjExNDAiIHgyPSIzODAiIHkyPSIxMzEwIiBzdHJva2U9IiM2MDczODMiIHN0cm9rZS13aWR0aD0iNSIvPjxsaW5lIHgxPSI0ODAiIHkxPSIxMTQwIiB4Mj0iNDgwIiB5Mj0iMTMxMCIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjUiLz48bGluZSB4MT0iMzg1IiB5MT0iMTM1MCIgeDI9IjQ4MCIgeTI9IjEzNTAiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlnb24gcG9pbnRzPSI0ODAsMTM1MCA0NzIuMCwxMzU0LjAgNDcyLjAsMTM0Ni4wIiBmaWxsPSIjMzA2ZjhjIi8+PHRleHQgeD0iNDMyIiB5PSIxMzkwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj40IGNtPC90ZXh0Pjx0ZXh0IHg9IjE2MCIgeT0iMTIzMiIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5BID0gMjUgY23CsjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTQ2MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij7OlFYgPSBBIHMgPSAxMDAgY23CsyA9IDEvMTAgTDwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTUyMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5wIGVzdGVybmEgPSAxMDAga1BhOyBXID0gMTAgSjwvdGV4dD48L3N2Zz4K"
+    }
+  ]
+}

@@ -1,0 +1,380 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "C3-Q051",
+      "sourceSha256": "46f204fad9579d9ce5d2e7da00ab7999b98002353c46485fe691b8d051b035a9",
+      "candidateSha256": "7ea24661db9a6d998414ef66f499894aeafd7d0fd8d57f50d997f44066c1e161",
+      "reviewedSignature": "a8d39fb389f7c7e5b5a936ff62bf6547c75dab7088263168707618a5b6c59592",
+      "assetChecksums": {
+        "cric-c3-l06-progressive.svg": "f01a7ffefbbe2113bf4f788651145016cbf43f6a1b12477641441cacbac0a8be"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "-25",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Uso Q entrante positivo e W uscente positivo. Il lavoro contro la pressione esterna costante è W=p_ext(V_f−V_i)=120 kPa·0,5 L=60 J, perché kPa·L=J. Per sistema chiuso con solo questo lavoro e variazioni macroscopiche trascurabili, ΔU=Q−W=35−60=−25 J. Non serve attribuire al gas la pressione interna uniforme durante un’espansione irreversibile.",
+      "physicalAssumptions": "Sistema chiuso, soli lavori del pistone contro pressione esterna costante; energie macroscopiche senza variazione.",
+      "distractors": "95 J somma impropriamente i trasferimenti; 35 J omette il lavoro e −60 J omette il calore. La verifica è ΔU+W=Q.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Uso Q entrante positivo e W uscente positivo. Il lavoro contro la pressione esterna costante è W=p_ext(V_f−V_i)=120 kPa·0,5 L=60 J, perché kPa·L=J. Per sistema chiuso con solo questo lavoro e variazioni macroscopiche trascurabili, ΔU=Q−W=35−60=−25 J. Non serve attribuire al gas la pressione interna uniforme durante un’espansione irreversibile.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Nove SVG originali fonte letti integralmente XML. Tre fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q052",
+      "sourceSha256": "0b2b36d07ebe17f28d965f9aa8850a7f25c7acfa87fa767fc753d079ff186c1f",
+      "candidateSha256": "db9e151a2cc05d08e724e34d28df60f35c44f01c954b9fda39d841b2e810bfcf",
+      "reviewedSignature": "30bd21f0d81f02c56be2886af35bed2a1f902d110d1f64286f23cd276c59aa77",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Aumenta per il lavoro ricevuto dall’agitatore",
+      "dimension": {},
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Il contenitore rigido annulla il lavoro di volume ma non quello dell’albero dell’agitatore. L’isolamento termico dà Q=0; il lavoro fatto sul liquido può aumentare U. Con W uscente, l’albero compie W<0 e ΔU=−W>0, trascurate altre variazioni energetiche. Adiabatico non significa energia interna costante quando c’è lavoro.",
+      "physicalAssumptions": "Liquido chiuso in recipiente rigido adiabatico; albero capace di lavoro entrante; stati finali fermi alla stessa quota.",
+      "distractors": "Calore nullo non esclude lavoro. La rigidità elimina soltanto il lavoro di volume e la chiusura soltanto lo scambio di materia.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Il contenitore rigido annulla il lavoro di volume ma non quello dell’albero dell’agitatore. L’isolamento termico dà Q=0; il lavoro fatto sul liquido può aumentare U. Con W uscente, l’albero compie W<0 e ΔU=−W>0, trascurate altre variazioni energetiche. Adiabatico non significa energia interna costante quando c’è lavoro.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q053",
+      "sourceSha256": "5a68b8dea7f372e3b759fa37d25d1b86951004be5cf95099c9c9100cc2d44200",
+      "candidateSha256": "c11563097121c75062be9c97faf367a13b7c264edc90530e1f7305eae2b8b781",
+      "reviewedSignature": "e4aebde203fab58f79be3c0f745f0967a3051c40978514c32990cc5952c84bcf",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Negativo",
+      "dimension": {},
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: La pressione esterna è positiva e la compressione ha dV<0. Il lavoro del gas W=∫p_ext dV è negativo. Il lavoro fatto sul gas è invece positivo: non si scambiano le due convenzioni.",
+      "physicalAssumptions": "Compressione contro pressione positiva, convenzione del lavoro compiuto dal gas.",
+      "distractors": "Il lavoro fatto sul gas ha modulo positivo, ma il lavoro uscente W è negativo. Il segno del calore resta da determinare.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: La pressione esterna è positiva e la compressione ha dV<0. Il lavoro del gas W=∫p_ext dV è negativo. Il lavoro fatto sul gas è invece positivo: non si scambiano le due convenzioni.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q054",
+      "sourceSha256": "2136b9fde907b1c6b5f80b525753099d7967722dc77cd4c8c41879cccdec8d35",
+      "candidateSha256": "06bbaa33ac46593806811f51313b89c3fedacc0b5fda61f7a59d81de22ee1b78",
+      "reviewedSignature": "72c882fa29eddad9a0ebe7bc922e0d2531fb295351b8ea9e3d08c634aac76b8e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "45",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Da ΔU=Q−W ricavo Q=ΔU+W=−75+120=45 J. Il gas riceve calore positivo pur diminuendo U, perché il lavoro uscente è maggiore del calore entrante.",
+      "physicalAssumptions": "Sistema chiuso, lavoro uscente positivo e calore entrante positivo; nessuna variazione macroscopica.",
+      "distractors": "Sottrarre ancora il lavoro dà −195 J; sommare i moduli dà 195 J. Nessuno ricostruisce ΔU=Q−W=−75 J.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Da ΔU=Q−W ricavo Q=ΔU+W=−75+120=45 J. Il gas riceve calore positivo pur diminuendo U, perché il lavoro uscente è maggiore del calore entrante.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q055",
+      "sourceSha256": "c160cef8ff1e787891ac3e4653a76eb42908f312dbfde534e7efde49550a35a2",
+      "candidateSha256": "37a0e9d5d96600575d434ad1dc4d9d2e4bc84ed9441a2425167e63cbb2b73190",
+      "reviewedSignature": "67091814364cf2721213b8ba540f31f7b090bd350ad386769e96e4d750c66cbf",
+      "assetChecksums": {
+        "cric-c3-l06-progressive.svg": "f01a7ffefbbe2113bf4f788651145016cbf43f6a1b12477641441cacbac0a8be"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "450",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Con pressione lineare la media fra gli estremi è (200+100)/2=150 kPa. L’incremento di volume è 3 L. Il lavoro quasi statico è l’area del trapezio: W=150·3=450 J, positivo per espansione. Si assumono pressione utile al lavoro di confine e attriti/altre forme di lavoro controllati.",
+      "physicalAssumptions": "Cammino quasi statico lineare in p(V), equilibrio meccanico al limite; solo lavoro pV.",
+      "distractors": "300 e 600 J sono i rettangoli limite; 150 J è soltanto il triangolo. Il verso opposto dà−450 J.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Con pressione lineare la media fra gli estremi è (200+100)/2=150 kPa. L’incremento di volume è 3 L. Il lavoro quasi statico è l’area del trapezio: W=150·3=450 J, positivo per espansione. Si assumono pressione utile al lavoro di confine e attriti/altre forme di lavoro controllati.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Nove SVG originali fonte letti integralmente XML. Tre fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q056",
+      "sourceSha256": "43ff8829721bd8268da39698709aac6257da29b9edb26b9654f794cb4d2fd5dc",
+      "candidateSha256": "3acefe9ebf17dca7bd648fe2fa7aa4db4ed1f5349a8c13ee4dfffde53960a565",
+      "reviewedSignature": "20312963891ba5f323f7d042bdde9f79e4e68678e2f1efa18b7fa103358a2085",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "No: servono il percorso p–V e gli estremi di volume",
+      "dimension": {},
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Non basta. W dipende dall’intero percorso p(V), non solo dalle pressioni agli estremi. Perfino con stessi stati finali una via a 100 kPa da 1 a 2 L dà 100 J; una via che sale isocoricamente a 200 kPa, si espande fra gli stessi volumi e poi scende isocoricamente dà 200 J. I tratti a volume fisso non aggiungono lavoro.",
+      "physicalAssumptions": "I soli estremi di pressione non fissano volumi o integrale di percorso.",
+      "distractors": "Una differenza di pressione non è un lavoro. Il lavoro non è funzione di stato e non è necessariamente nullo nei processi lenti.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Non basta. W dipende dall’intero percorso p(V), non solo dalle pressioni agli estremi. Perfino con stessi stati finali una via a 100 kPa da 1 a 2 L dà 100 J; una via che sale isocoricamente a 200 kPa, si espande fra gli stessi volumi e poi scende isocoricamente dà 200 J. I tratti a volume fisso non aggiungono lavoro.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q057",
+      "sourceSha256": "316f3e5a345820193c04521753355fdffe8b81ad715b990095627fd8a2972e4d",
+      "candidateSha256": "84cf704a61257b931e6ee1f654f2cabd45f965b9c615880d67e4d838de1ac049",
+      "reviewedSignature": "7e32fdf5808833fc1034b57b20d7a437dbce46852226347a60f8dcb72bda1380",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Energia interna",
+      "dimension": {},
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: La funzione di stato richiesta è l’energia interna. Comprende le energie microscopiche, distinte dalla traslazione o dall’energia potenziale macroscopica dell’intero corpo. Non è il calore, che descrive un trasferimento.",
+      "physicalAssumptions": "Energia interna come funzione di stato microscopica, distinta dal trasporto macroscopico.",
+      "distractors": "Calore e lavoro sono trasferimenti. La pressione non è un’energia e la sola energia del centro di massa non descrive i contributi microscopici.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: La funzione di stato richiesta è l’energia interna. Comprende le energie microscopiche, distinte dalla traslazione o dall’energia potenziale macroscopica dell’intero corpo. Non è il calore, che descrive un trasferimento.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q058",
+      "sourceSha256": "7719f1f09083d2b4a8f2f06ac438e671a8ad9ae344ce1b8a56bb35186e5c6ac1",
+      "candidateSha256": "3cc75f25926d8a56ca1cf35abcec075f9221883df62c6bc9962c28cb090c59e7",
+      "reviewedSignature": "f56689a5460e18e6af649aa2807ee39a45dd657688fdb1dde61740091819b561",
+      "assetChecksums": {
+        "cric-c3-l06-progressive.svg": "f01a7ffefbbe2113bf4f788651145016cbf43f6a1b12477641441cacbac0a8be"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: A=25·10⁻⁴ m² e s=4·10⁻² m, dunque ΔV=A s=10⁻⁴ m³=0,1 L. Contro 100 kPa il lavoro del gas è 10 J. Il verso verso l’esterno determina il segno positivo. L’area non va convertita come una lunghezza.",
+      "physicalAssumptions": "Pressione esterna costante normale sul pistone; sezione e corsa in SI; avanzamento uscente.",
+      "distractors": "Un litro darebbe 100 J; 100 litri darebbero 10000 J. Un pistone che rientra cambia il segno del lavoro.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: A=25·10⁻⁴ m² e s=4·10⁻² m, dunque ΔV=A s=10⁻⁴ m³=0,1 L. Contro 100 kPa il lavoro del gas è 10 J. Il verso verso l’esterno determina il segno positivo. L’area non va convertita come una lunghezza.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Nove SVG originali fonte letti integralmente XML. Tre fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q059",
+      "sourceSha256": "c91a8658e75d0f8cc22a61ca18aca3a738a9bbae2653dfe46de1a319470c8bb0",
+      "candidateSha256": "b058f2b2191a355eb15aa55ab149371b16cfd0a21d1952edeb6c4935489412f9",
+      "reviewedSignature": "db5998c3ca54471aae8901262bfcc291d7c3de39489c12f2f31555acd795b4c5",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "L’energia cinetica macroscopica, non l’energia interna dello stesso stato",
+      "dimension": {},
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Il solo cambio di riferimento modifica l’energia cinetica macroscopica della traslazione, non U nel modello non relativistico. Sotto una trasformazione galileiana v_i→v_i−u e V_CM→V_CM−u, le differenze v_i−V_CM che entrano nelle energie interne restano identiche. Non si è realmente riscaldato il recipiente o eseguita un’accelerazione.",
+      "physicalAssumptions": "Stesso stato fisico, osservatori inerziali galileiani; nessuna accelerazione fisica o riscaldamento.",
+      "distractors": "Cambiare osservatore non cambia materia, temperatura o energia interna dello stesso stato; può cambiare l’energia cinetica del centro di massa.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Il solo cambio di riferimento modifica l’energia cinetica macroscopica della traslazione, non U nel modello non relativistico. Sotto una trasformazione galileiana v_i→v_i−u e V_CM→V_CM−u, le differenze v_i−V_CM che entrano nelle energie interne restano identiche. Non si è realmente riscaldato il recipiente o eseguita un’accelerazione.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q060",
+      "sourceSha256": "62a23d2344c343f07bbb22929ef6ce6e827f1b6eb9ff325b3026ab6c57412a32",
+      "candidateSha256": "ed3072295f15cb0ddb210c4ebebeebdd9df8fa61d4834b254b9354934b8007fe",
+      "reviewedSignature": "07b73fd09f8fc028c5a56943b09fcb0dc010c329e3659596f19a4d768586b2e1",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "-180",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Q=0 e ΔU=180 J. Dalla convenzione ΔU=Q−W risulta W=−180 J: occorrono 180 J di lavoro entrante. Un valore +180 J farebbe invece diminuire U.",
+      "physicalAssumptions": "Sistema chiuso adiabatico, solo lavoro energeticamente rilevante; aumento U positivo.",
+      "distractors": "Un lavoro uscente di 180 J porterebbe ΔU=−180 J. Il lavoro nullo darebbe ΔU=0 e 360 J non ricostruirebbero il dato.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Q=0 e ΔU=180 J. Dalla convenzione ΔU=Q−W risulta W=−180 J: occorrono 180 J di lavoro entrante. Un valore +180 J farebbe invece diminuire U.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "226fa140e3db32f2cacde1012a03616f949ff2d558882a925edf7ed3a2c40b33",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "c74364b6b0b6630c548b1ed726603193982cd7c4",
+  "packageSha256": "3794c8188a0016da1dbfd4534bec214080b5e9437a69134ab9e95733114edd6a",
+  "bindingsSha256": "0d040f74ee63d12dd1cc4b0fdd1463ac801f0a6438a10224a43a8a58416d3ea5",
+  "sourceFirstPrimarySha256": "13a65d52b70957d49eec44e4e1b9ce6d4e99c7cb3cc5d1e1418f9f4967aade8f",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C3.json",
+    "reference": "Tutti50 enunciati derivati nella primaria93ea8d3c e modello92090ea0/b374cab4 prima delle candidate C3B. Dopo la primaria: tutti50 originali completi, tutti50 candidati e5SVG XML/native interi letti.9SVG fonte letti integralmente XML. Q081 riparametrizzato ricalcolato con lo stesso modello Carnot, preservando il risultato originale. Fix59/64/74 riletti integralmente prima delle firme. Nessun modulo autore B o primaria B aperti; nessuna esposizione pre-key nota. UI prodotto e human NOT_RUN."
+  }
+}

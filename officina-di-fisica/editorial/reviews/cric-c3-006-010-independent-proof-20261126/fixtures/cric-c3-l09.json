@@ -1,0 +1,690 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C3-Q081",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal calore al lavoro utile",
+      "order": 81,
+      "title": "Il limite usa temperature assolute",
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L07",
+        "C3-L08"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima converto entrambi i valori usando l’offset 273,15: le temperature assolute sono 450 K e 300 K. Il limite reversibile è η_C=1−T_c/T_h=1−2/3=1/3. Per esprimerlo in percentuale moltiplico per 100 e lascio la frazione esatta 100/3 %, senza trasformarla in un decimale periodico approssimato."
+        },
+        {
+          "type": "formula",
+          "text": "T_h=450\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_c=300\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_C=1-\\frac{T_c}{T_h}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_C=\\frac13"
+        },
+        {
+          "type": "formula",
+          "text": " 100\\eta_C=\\frac{100}{3}"
+        },
+        {
+          "type": "text",
+          "text": "50 % dividerebbe il salto di 150 K per la temperatura fredda anziché per la calda. 200/3 % è il complemento, cioè la frazione minima del calore da scaricare moltiplicata per 100. 75 % supera il limite trovato; zero sarebbe il limite con sorgenti alla stessa temperatura. I rapporti delle letture Celsius non danno un rendimento fisico."
+        }
+      ],
+      "prompt": "Due sorgenti ideali restano a 176,85 °C e 26,85 °C. Una macchina ciclica scambia calore solo con queste sorgenti. Qual è il massimo rendimento teorico, espresso esattamente come percentuale?",
+      "difficulty": 2,
+      "family": "un-limite-fra-due-sorgenti",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "100/3 %",
+          "50 %",
+          "75 %",
+          "200/3 %",
+          "0 %"
+        ],
+        "value": "100/3 %"
+      },
+      "hints": [
+        "Converti le due letture separatamente, poi costruisci il rapporto delle temperature assolute.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "50 % dividerebbe il salto di 150 K per la temperatura fredda anziché per la calda. 200/3 % è il complemento, cioè la frazione minima del calore da scaricare moltiplicata per 100. 75 % supera il limite trovato; zero sarebbe il limite con sorgenti alla stessa temperatura. I rapporti delle letture Celsius non danno un rendimento fisico.",
+        "target": "C3-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Secondo principio e sorgenti",
+        "Limite di Carnot e temperature assolute",
+        "Potenza media e COP"
+      ]
+    },
+    {
+      "id": "C3-Q082",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal calore al lavoro utile",
+      "order": 82,
+      "title": "L’unico effetto vietato al motore",
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L07",
+        "C3-L08"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Kelvin–Planck esclude una macchina ciclica il cui unico effetto sia estrarre calore da una sola sorgente e produrre una quantità uguale di lavoro. Il primo principio da solo permetterebbe il bilancio energetico, ma il secondo principio nega quel processo ciclico senza ulteriori effetti. La precisazione sul ciclo esclude l’uso di una risorsa interna che venga consumata."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U_{\\rm ciclo}=0"
+        },
+        {
+          "type": "formula",
+          "text": " Q_h=W>0"
+        },
+        {
+          "type": "text",
+          "text": "Le altre proposte non descrivono l’unico effetto vietato: un motore può scaricare calore a una seconda sorgente, un frigorifero può ricevere lavoro e l’attrito può dissipare lavoro. Lo scambio spontaneo caldo-freddo ha il verso termodinamicamente consentito."
+        }
+      ],
+      "prompt": "Quale proposta contrasta con Kelvin–Planck, quando il dispositivo torna ciclicamente al proprio stato iniziale e non produce alcun altro cambiamento oltre a quelli dichiarati?",
+      "difficulty": 1,
+      "family": "un-solo-serbatoio-termico",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Prelevare calore da una sola sorgente e convertirlo integralmente in lavoro",
+          "Ricevere calore da una sorgente calda e cederne una parte a una fredda fornendo lavoro",
+          "Usare lavoro esterno per trasferire calore dal freddo al caldo",
+          "Trasformare lavoro meccanico in energia interna per attrito",
+          "Trasferire spontaneamente calore dal caldo al freddo"
+        ],
+        "value": "Prelevare calore da una sola sorgente e convertirlo integralmente in lavoro"
+      },
+      "hints": [
+        "Controlla simultaneamente ritorno ciclico, numero di sorgenti e assenza di altri effetti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Le altre proposte non descrivono l’unico effetto vietato: un motore può scaricare calore a una seconda sorgente, un frigorifero può ricevere lavoro e l’attrito può dissipare lavoro. Lo scambio spontaneo caldo-freddo ha il verso termodinamicamente consentito.",
+        "target": "C3-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Secondo principio e sorgenti",
+        "Limite di Carnot e temperature assolute",
+        "Potenza media e COP"
+      ]
+    },
+    {
+      "id": "C3-Q083",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal calore al lavoro utile",
+      "order": 83,
+      "title": "Trovare la sorgente calda",
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L07",
+        "C3-L08"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per il motore reversibile η=1−T_c/T_h. Isolo il rapporto T_c/T_h=1−0,40=3/5, quindi T_h=T_c/(3/5)=300·5/3=500 K. La temperatura calda risulta maggiore di quella fredda, come deve essere per lavoro uscente positivo."
+        },
+        {
+          "type": "formula",
+          "text": "1-\\eta=\\frac35"
+        },
+        {
+          "type": "formula",
+          "text": " T_h=\\frac{T_c}{1-\\eta}"
+        },
+        {
+          "type": "formula",
+          "text": " T_h=500\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "750 K dividerebbe per il rendimento 0,40 anziché per il complemento. 180 K moltiplicherebbe per 0,60 e renderebbe la sorgente dichiarata calda più fredda dell’altra. 300 K darebbe rendimento nullo."
+        }
+      ],
+      "prompt": "Un motore reversibile opera fra due sorgenti ideali a temperatura assoluta costante. Il rendimento è 0,40 e la sorgente fredda è a 300 K. Trova T_h in kelvin.",
+      "difficulty": 2,
+      "family": "ricostruire-la-temperatura-calda",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 500,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "hints": [
+        "Ricava prima il complemento del rendimento: è il rapporto fredda/calda.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "750 K dividerebbe per il rendimento 0,40 anziché per il complemento. 180 K moltiplicherebbe per 0,60 e renderebbe la sorgente dichiarata calda più fredda dell’altra. 300 K darebbe rendimento nullo.",
+        "target": "C3-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Secondo principio e sorgenti",
+        "Limite di Carnot e temperature assolute",
+        "Potenza media e COP"
+      ]
+    },
+    {
+      "id": "C3-Q084",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal calore al lavoro utile",
+      "order": 84,
+      "title": "I raccordi del ciclo di Carnot",
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L07",
+        "C3-L08"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I raccordi sono le due adiabatiche reversibili. Non scambiano calore e portano il fluido dalla temperatura di una sorgente a quella dell’altra. Le due isoterme sono invece i tratti sui quali avvengono gli scambi con le sorgenti."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{\\rm raccordo}=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\text{adiabatiche reversibili}"
+        },
+        {
+          "type": "text",
+          "text": "Pressione costante o volume costante non impongono da soli Q=0. Una isoterma non collega due temperature diverse. Attrito dissipativo non nullo contraddirebbe la reversibilità del ciclo di Carnot."
+        }
+      ],
+      "prompt": "Nel ciclo di Carnot, quali trasformazioni reversibili senza scambio di calore raccordano le due isoterme? Scegli il plurale corretto.",
+      "difficulty": 1,
+      "family": "percorsi-di-raccordo-nel-ciclo-ideale",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Adiabatiche",
+          "Isobare",
+          "Isocore",
+          "Isoterme aggiuntive alla stessa temperatura",
+          "Trasformazioni con attrito non nullo"
+        ],
+        "value": "Adiabatiche"
+      },
+      "hints": [
+        "Associa Q=0 alla parete adiabatica e mantieni distinto il requisito di reversibilità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Pressione costante o volume costante non impongono da soli Q=0. Una isoterma non collega due temperature diverse. Attrito dissipativo non nullo contraddirebbe la reversibilità del ciclo di Carnot.",
+        "target": "C3-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Secondo principio e sorgenti",
+        "Limite di Carnot e temperature assolute",
+        "Potenza media e COP"
+      ]
+    },
+    {
+      "id": "C3-Q085",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal calore al lavoro utile",
+      "order": 85,
+      "title": "Il frigorifero non agisce da solo",
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L07",
+        "C3-L08"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il secondo principio vieta che il solo effetto ciclico sia trasferire calore dal freddo al caldo. Il frigorifero riceve invece lavoro dall’esterno: al calore sottratto al vano si aggiunge l’energia fornita come lavoro. La cessione alla stanza può così essere maggiore del calore prelevato dal vano senza creare energia."
+        },
+        {
+          "type": "formula",
+          "text": "W_{\\rm in}>0"
+        },
+        {
+          "type": "formula",
+          "text": " Q_h=Q_c+W_{\\rm in}"
+        },
+        {
+          "type": "text",
+          "text": "La conservazione dell’energia non determina da sola il verso spontaneo di un trasferimento. L’alimentazione di lavoro è un altro effetto, non una violazione automatica. Le lettere Q_h e Q_c rappresentano qui moduli positivi dei calori ceduto e prelevato."
+        }
+      ],
+      "prompt": "Un frigorifero ciclico trasferisce energia come calore da un vano freddo a una stanza più calda. Quale descrizione spiega perché questo può rispettare il secondo principio?",
+      "difficulty": 1,
+      "family": "frigorifero-e-legge-di-clausius",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Riceve lavoro dall’esterno: il trasferimento freddo-caldo non è l’unico effetto",
+          "Non richiede alcun altro trasferimento perché l’energia si conserva",
+          "Viola sempre il secondo principio anche con lavoro entrante",
+          "Funziona soltanto se la stanza è più fredda del vano",
+          "Crea il calore ceduto senza una fonte di energia"
+        ],
+        "value": "Riceve lavoro dall’esterno: il trasferimento freddo-caldo non è l’unico effetto"
+      },
+      "hints": [
+        "Individua il trasferimento esterno che manca nel processo vietato da Clausius.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La conservazione dell’energia non determina da sola il verso spontaneo di un trasferimento. L’alimentazione di lavoro è un altro effetto, non una violazione automatica. Le lettere Q_h e Q_c rappresentano qui moduli positivi dei calori ceduto e prelevato.",
+        "target": "C3-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Secondo principio e sorgenti",
+        "Limite di Carnot e temperature assolute",
+        "Potenza media e COP"
+      ]
+    },
+    {
+      "id": "C3-Q086",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal calore al lavoro utile",
+      "order": 86,
+      "title": "Dai kilowatt termici ai watt meccanici",
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L07",
+        "C3-L08"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rendimento è il rapporto fra lavoro utile e calore assorbito sugli stessi cicli; dividendo entrambi per la stessa durata vale anche per le potenze medie. Converto 1,50 kW in 1500 W e calcolo 22/100·1500=330 W. La parte restante della potenza ricevuta, 1170 W nel modello a due trasferimenti di calore, deve essere ceduta come calore."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6f6eba803b307bf72e9e1f1128237a2fde0cecf9ff267c365e931e1fdcfb7450",
+          "text": "Nel pannello centrale le barre rappresentano potenze medie con scala comune: 1500 W ricevuti, 330 W utili e 1170 W ceduti. Il rendimento è il rapporto 330/1500."
+        },
+        {
+          "type": "formula",
+          "text": "\\bar P_h=1500\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\bar P_{\\rm utile}=\\eta\\bar P_h"
+        },
+        {
+          "type": "formula",
+          "text": " \\bar P_{\\rm utile}=330\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "0,33 W dimenticherebbe la conversione da kW; 1500 W darebbe rendimento unitario. 1170 W è la potenza termica da cedere nel modello, non quella utile. Dividere per 0,22 produrrebbe una potenza utile maggiore di quella in ingresso."
+        }
+      ],
+      "prompt": "Un motore ciclico ha rendimento effettivo 0,22 e riceve dalla sorgente calda una potenza termica media di 1,50 kW. A regime periodico, quanti watt di potenza meccanica media fornisce?",
+      "difficulty": 1,
+      "family": "lavoro-utile-da-un-flusso-di-calore",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 330,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "hints": [
+        "Applica il rendimento alla potenza termica dopo aver fissato la stessa unità e la stessa durata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "0,33 W dimenticherebbe la conversione da kW; 1500 W darebbe rendimento unitario. 1170 W è la potenza termica da cedere nel modello, non quella utile. Dividere per 0,22 produrrebbe una potenza utile maggiore di quella in ingresso.",
+        "target": "C3-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Secondo principio e sorgenti",
+        "Limite di Carnot e temperature assolute",
+        "Potenza media e COP"
+      ]
+    },
+    {
+      "id": "C3-Q087",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal calore al lavoro utile",
+      "order": 87,
+      "title": "Confrontare due motori fra le stesse sorgenti",
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L07",
+        "C3-L08"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il motore reversibile fra queste sorgenti raggiunge η_C=1−T_c/T_h. Una dissipazione interna netta rende positiva la produzione di entropia e impedisce a B di raggiungere lo stesso limite, con i due soli scambi termici dichiarati. Il riscaldamento da attrito non aumenta il lavoro utile ricavabile dagli stessi serbatoi."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta_A=1-\\frac{T_c}{T_h}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B<\\eta_A"
+        },
+        {
+          "type": "text",
+          "text": "La chiusura del ciclo annulla ΔU del fluido ma non elimina il vincolo del secondo principio. Reversibile non significa rendimento nullo quando le temperature differiscono. Il tempo modifica la potenza, non sostituisce il rapporto energetico che definisce il rendimento."
+        }
+      ],
+      "prompt": "Due motori ciclici A e B scambiano calore soltanto con le stesse due sorgenti ideali a T_h>T_c>0 e forniscono lavoro positivo. A è reversibile, mentre B presenta dissipazione interna netta per attrito. Quale confronto è corretto?",
+      "difficulty": 2,
+      "family": "macchine-reali-e-sorgenti-uguali",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "B ha rendimento minore di A, che raggiunge il limite di Carnot",
+          "B deve avere rendimento maggiore perché l’attrito riscalda",
+          "Entrambi hanno rendimento unitario perché sono ciclici",
+          "A ha rendimento nullo perché è reversibile",
+          "Il rendimento dipende soltanto dalla durata del ciclo e non dalle dissipazioni"
+        ],
+        "value": "B ha rendimento minore di A, che raggiunge il limite di Carnot"
+      },
+      "hints": [
+        "Mantieni fisse le sorgenti e confronta la produzione di entropia, non soltanto il calore da attrito.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La chiusura del ciclo annulla ΔU del fluido ma non elimina il vincolo del secondo principio. Reversibile non significa rendimento nullo quando le temperature differiscono. Il tempo modifica la potenza, non sostituisce il rapporto energetico che definisce il rendimento.",
+        "target": "C3-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Secondo principio e sorgenti",
+        "Limite di Carnot e temperature assolute",
+        "Potenza media e COP"
+      ]
+    },
+    {
+      "id": "C3-Q088",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal calore al lavoro utile",
+      "order": 88,
+      "title": "Il minimo calore da scaricare",
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L07",
+        "C3-L08"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il limite di Carnot vale η_C=1−300/600=1/2. Il lavoro può essere al massimo 450 J per ciclo; dal bilancio Q_c=Q_h−W segue Q_c≥900−450=450 J. Il minimo è raggiunto nel limite reversibile. Una macchina dissipativa deve scaricare di più a parità di calore ricevuto."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6f6eba803b307bf72e9e1f1128237a2fde0cecf9ff267c365e931e1fdcfb7450",
+          "text": "Il primo pannello mostra il limite reversibile fra 600 K e 300 K: su 900 J ricevuti, almeno 450 J sono ceduti e al massimo 450 J diventano lavoro. Le barre delle tre energie usano la stessa scala."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta\\leq\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " W\\leq450\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_c=Q_h-W"
+        },
+        {
+          "type": "formula",
+          "text": " Q_c\\geq450\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Zero richiederebbe convertire in lavoro tutti i 900 J, oltre il limite. 300 J sarebbe soltanto il numero della temperatura fredda usato impropriamente come energia. 900 J corrisponderebbe a lavoro nullo, non al minimo scarico possibile per questa domanda."
+        }
+      ],
+      "prompt": "Una macchina ciclica opera soltanto fra sorgenti ideali a 600 K e 300 K e riceve 900 J dalla sorgente calda per ciclo. Qual è il minimo modulo del calore da cedere alla sorgente fredda, in joule?",
+      "difficulty": 2,
+      "family": "limite-inferiore-al-calore-scaricato",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 450,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "hints": [
+        "Il minimo scarico si ottiene dal massimo lavoro consentito, non dal primo principio da solo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Zero richiederebbe convertire in lavoro tutti i 900 J, oltre il limite. 300 J sarebbe soltanto il numero della temperatura fredda usato impropriamente come energia. 900 J corrisponderebbe a lavoro nullo, non al minimo scarico possibile per questa domanda.",
+        "target": "C3-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Secondo principio e sorgenti",
+        "Limite di Carnot e temperature assolute",
+        "Potenza media e COP"
+      ]
+    },
+    {
+      "id": "C3-Q089",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal calore al lavoro utile",
+      "order": 89,
+      "title": "Il numeratore del rendimento",
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L07",
+        "C3-L08"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rendimento confronta il lavoro netto utile W con il modulo Q_h del calore ricevuto. Entrambi sono energie, quindi il rapporto è adimensionale. Lavoro per ciclo e calore per ciclo devono riferirsi alla stessa sequenza periodica."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta=\\frac{W_{\\rm netto}}{Q_h}"
+        },
+        {
+          "type": "text",
+          "text": "Il calore ceduto diviso per quello assorbito è il complemento del rendimento nel modello a due sorgenti. Un salto di temperatura o un volume non ha unità di energia. L’entropia del fluido non aumenta dopo un ciclo completo che torna allo stesso stato."
+        }
+      ],
+      "prompt": "Completa la definizione di rendimento di un motore termico: rapporto fra il … netto fornito per ciclo e il calore assorbito dalla sorgente calda.",
+      "difficulty": 1,
+      "family": "grandezza-utile-al-numeratore",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Lavoro",
+          "Calore ceduto",
+          "Salto di temperatura",
+          "Volume",
+          "Aumento di entropia del fluido"
+        ],
+        "value": "Lavoro"
+      },
+      "hints": [
+        "Controlla prima le unità del numeratore e del denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il calore ceduto diviso per quello assorbito è il complemento del rendimento nel modello a due sorgenti. Un salto di temperatura o un volume non ha unità di energia. L’entropia del fluido non aumenta dopo un ciclo completo che torna allo stesso stato.",
+        "target": "C3-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Secondo principio e sorgenti",
+        "Limite di Carnot e temperature assolute",
+        "Potenza media e COP"
+      ]
+    },
+    {
+      "id": "C3-Q090",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal calore al lavoro utile",
+      "order": 90,
+      "title": "Una prestazione frigorifera maggiore di uno",
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L07",
+        "C3-L08"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel ciclo l’energia interna torna al valore iniziale e il bilancio dà Q_c=Q_h−W_in=200−50=150 J. La prestazione richiesta è quindi 150/50=3. Un COP maggiore di uno non è un rendimento di conversione in lavoro: conta anche l’energia sottratta al vano freddo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6f6eba803b307bf72e9e1f1128237a2fde0cecf9ff267c365e931e1fdcfb7450",
+          "text": "L’ultimo pannello distingue 50 J di lavoro ricevuto, 150 J sottratti al vano e 200 J ceduti alla stanza; le tre barre condividono una scala. Il COP frigorifero usa soltanto 150/50."
+        },
+        {
+          "type": "formula",
+          "text": "Q_c=Q_h-W_{\\rm in}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_c=150\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " {\\rm COP}=\\frac{Q_c}{W_{\\rm in}}"
+        },
+        {
+          "type": "formula",
+          "text": " {\\rm COP}=3"
+        },
+        {
+          "type": "text",
+          "text": "Quattro userebbe Q_h/W_in, il coefficiente per una pompa di calore, non quello frigorifero. 1/3 invertirebbe il rapporto richiesto. Uno confonderebbe lavoro ricevuto e calore prelevato; non si crea energia perché 150+50=200 J."
+        }
+      ],
+      "prompt": "In ogni ciclo un frigorifero riceve 50 J di lavoro e cede 200 J alla stanza. Indica i calori come moduli: Q_c prelevato dal vano, Q_h ceduto alla stanza. Trova il coefficiente di prestazione frigorifero COP=Q_c/W_in.",
+      "difficulty": 2,
+      "family": "approfondimento-prestazione-di-una-macchina-frigorifera",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "hints": [
+        "Ricava prima il calore prelevato e distinguilo da quello ceduto alla stanza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro userebbe Q_h/W_in, il coefficiente per una pompa di calore, non quello frigorifero. 1/3 invertirebbe il rapporto richiesto. Uno confonderebbe lavoro ricevuto e calore prelevato; non si crea energia perché 150+50=200 J.",
+        "target": "C3-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Secondo principio e sorgenti",
+        "Limite di Carnot e temperature assolute",
+        "Potenza media e COP"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "6f6eba803b307bf72e9e1f1128237a2fde0cecf9ff267c365e931e1fdcfb7450",
+      "name": "cric-c3-l09-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQxMCIgdmlld0JveD0iMCAwIDY0MCAxNDEwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIj48dGl0bGUgaWQ9InRpdGxlIj5FbmVyZ2llIGUgcG90ZW56ZSBkaSB1biBtb3RvcmUgZSB1biBmcmlnb3JpZmVybzwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlRyZSBwYW5uZWxsaSBjb24gc2NhbGUgaW5kaXBlbmRlbnRpLCBjb211bmkgYWxsZSB0cmUgYmFycmUgZW50cm8gY2lhc2N1biBwYW5uZWxsbzogZW5lcmdpZSBhbCBsaW1pdGUgZGkgQ2Fybm90OyBwb3RlbnplIHJpY2V2dXRhIHV0aWxlIGUgY2VkdXRhOyBlbmVyZ2llIGRlbCBmcmlnb3JpZmVybyBjb24gbGF2b3JvIGVudHJhbnRlIGNpbnF1YW50YSBqb3VsZS48L2Rlc2M+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNDEwIiBmaWxsPSJ3aGl0ZSIvPjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5Nb3RvcmUgZSBmcmlnb3JpZmVybzogdHJlIGJpbGFuY2k8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjExMCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xIMK3IExpbWl0ZSBmcmEgNjAwIEsgZSAzMDAgSzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTkwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlEgY2FsZG88L3RleHQ+PHJlY3QgeD0iMjIwIiB5PSIxNjUiIHdpZHRoPSIzMDAiIGhlaWdodD0iMjgiIGZpbGw9IiM5ODZjMzUiLz48dGV4dCB4PSI1NDAiIHk9IjE5MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij45MDAgSjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMjY1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlcgbWFzc2ltbzwvdGV4dD48cmVjdCB4PSIyMjAiIHk9IjI0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIyOCIgZmlsbD0iIzYzN2U1NSIvPjx0ZXh0IHg9IjM5NSIgeT0iMjY1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjQ1MCBKPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIzNDAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+USBmcmVkZG8gbWluaW1vPC90ZXh0PjxyZWN0IHg9IjIyMCIgeT0iMzE1IiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjI4IiBmaWxsPSIjM2Q3NzkxIi8+PHRleHQgeD0iMzk1IiB5PSIzNDAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+NDUwIEo8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjQxMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5CaWxhbmNpbyByZXZlcnNpYmlsZTogOTAwIEogPSA0NTAgSiArIDQ1MCBKPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI1MjAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MiDCtyBQb3RlbnplIG1lZGllOiByZW5kaW1lbnRvIDAsMjI8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjYwMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5QIHJpY2V2dXRhPC90ZXh0PjxyZWN0IHg9IjIyMCIgeT0iNTc1IiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI4IiBmaWxsPSIjOTg2YzM1Ii8+PHRleHQgeD0iNTQwIiB5PSI2MDAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MTUwMCBXPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI2ODAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+UCB1dGlsZTwvdGV4dD48cmVjdCB4PSIyMjAiIHk9IjY1NSIgd2lkdGg9IjY2IiBoZWlnaHQ9IjI4IiBmaWxsPSIjNjM3ZTU1Ii8+PHRleHQgeD0iMzEwIiB5PSI2ODAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MzMwIFc8L3RleHQ+PHRleHQgeD0iMzUiIHk9Ijc2MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5QIGNlZHV0YTwvdGV4dD48cmVjdCB4PSIyMjAiIHk9IjczNSIgd2lkdGg9IjIzNCIgaGVpZ2h0PSIyOCIgZmlsbD0iIzNkNzc5MSIvPjx0ZXh0IHg9IjQ4MCIgeT0iNzYwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjExNzAgVzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iODQwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjMzMCAvIDE1MDAgPSAyMiAvIDEwMDwvdGV4dD48dGV4dCB4PSIzNSIgeT0iOTUwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjMgwrcgRnJpZ29yaWZlcm86IHF1YWxlIGNhbG9yZSBhbCBudW1lcmF0b3JlPzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTAzMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5XIGVudHJhbnRlPC90ZXh0PjxyZWN0IHg9IjIyMCIgeT0iMTAwNSIgd2lkdGg9IjYwIiBoZWlnaHQ9IjI4IiBmaWxsPSIjNjM3ZTU1Ii8+PHRleHQgeD0iMzA1IiB5PSIxMDMwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjUwIEo8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjExMTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+USBkYWwgdmFubzwvdGV4dD48cmVjdCB4PSIyMjAiIHk9IjEwODUiIHdpZHRoPSIxODAiIGhlaWdodD0iMjgiIGZpbGw9IiMzZDc3OTEiLz48dGV4dCB4PSI0MjUiIHk9IjExMTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MTUwIEo8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjExOTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+USBhbGxhIHN0YW56YTwvdGV4dD48cmVjdCB4PSIyMjAiIHk9IjExNjUiIHdpZHRoPSIyNDAiIGhlaWdodD0iMjgiIGZpbGw9IiM5ODZjMzUiLz48dGV4dCB4PSI0ODUiIHk9IjExOTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MjAwIEo8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEyODAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MjAwIEogPSAxNTAgSiArIDUwIEo8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEzNTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+Q09QIGZyaWdvcmlmZXJvID0gMTUwIEogLyA1MCBKID0gMzwvdGV4dD48L3N2Zz4K"
+    }
+  ]
+}

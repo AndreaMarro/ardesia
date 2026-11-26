@@ -1,0 +1,16 @@
+from pathlib import Path
+import subprocess,json,hashlib,shutil
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/cric-c3-006-010-independent-proof-20261126';F=D/'fixtures';sha=lambda x:hashlib.sha256(x).hexdigest();refs=json.loads((D/'candidate-refs.json').read_text());todo=[]
+for n in range(6,11):
+ batch=f'cric-c3-l{n:02}';ref=refs[str(n)]['ref']
+ todo +=[(ref,f'officina-di-fisica/editorial/batches/{batch}.json',f'git-input-{n:02}-package.json'),(ref,f'officina-di-fisica/editorial/batches/{batch}-bindings.json',f'git-input-{n:02}-bindings.json'),(ref,f'officina-di-fisica/editorial/assets/{batch}-progressive.svg',f'git-input-{n:02}-asset.svg')]
+todo +=[('92090ea0d2011c79dda93181542f7a09746396ff','officina-di-fisica/tools/corpus_engineering/cric_c3_051_100_review_models.py','pre-key-model-verbatim.py'),('93ea8d3c1ba874bfbf74d4734ce136b319a9ca72','officina-di-fisica/editorial/reviews/primary-cric-c3-051-100-before-candidates-20261126.md','pre-key-primary-verbatim.md'),('5d1dc8dc7b601aef959d10d564c75462be74708d','officina-di-fisica/content/C3.json','original-source-C3.json')]
+for n,short in[(6,'9515ad86'),(7,'8d629121'),(8,'0351cc60')]:
+ ref=subprocess.check_output(['git','rev-parse',short],cwd=A,text=True).strip();batch=f'cric-c3-l{n:02}'
+ for suffix,kind in[('.json','package'),('-bindings.json','bindings')]:todo.append((ref,f'officina-di-fisica/editorial/batches/{batch}{suffix}',f'pre-fix-{n:02}-{kind}.json'))
+inputs=[]
+for ref,path,snapshot in todo:
+ assert len(ref)==40;raw=subprocess.check_output(['git','show',ref+':'+path],cwd=A);assert len(raw)<=4*1024**2;(D/snapshot).write_bytes(raw);inputs.append({'commit':ref,'path':path,'snapshot':snapshot,'sha256':sha(raw)})
+(D/'git-inputs.json').write_text(json.dumps({'schemaVersion':'1.0.0','inputs':inputs},indent=2)+'\n');assert (D/'pre-key-model-verbatim.py').read_bytes()==(A/'tools/corpus_engineering/cric_c3_051_100_review_models.py').read_bytes()
+shutil.copy2('/private/tmp/generate_cric_c3_review_reports_a.py',D/'actual-report-generator.py.txt');shutil.copy2('/private/tmp/cric-c3-peer-oracle-a-actual.txt',D/'actual-oracle-terminal.txt');shutil.copy2(__file__,D/'prepare-git-inputs.py.txt')
+print('declared full40 Git inputs',len(inputs))

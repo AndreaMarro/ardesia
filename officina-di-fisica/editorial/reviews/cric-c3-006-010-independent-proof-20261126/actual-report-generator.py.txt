@@ -1,0 +1,17 @@
+from pathlib import Path
+import json,subprocess,pprint,hashlib,importlib
+from tools.corpus_engineering.pipeline import digest,sha
+from tools.corpus_engineering.batches import assert_record_identity
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/cric-c3-006-010-independent-proof-20261126';F=D/'fixtures';src=json.loads(subprocess.check_output(['git','show','5d1dc8dc7b601aef959d10d564c75462be74708d:officina-di-fisica/content/C3.json'],cwd=A));src={r['id']:r for r in src if r.get('kind')=='question'}
+refs=json.loads((D/'candidate-refs.json').read_text());dep={name:sha((A/'tools/corpus_engineering'/name).read_bytes())for name in['electric_exact_literals.py','cric_c3_051_100_review_models.py','cric_c3_thermodynamics_review_common.py','cric_c3_thermodynamics_review_evidence.py']}
+for n in range(6,11):
+ c=refs[str(n)]['ref'];batch=f'cric-c3-l{n:02}';p=json.loads((F/(batch+'.json')).read_text());b=json.loads((F/(batch+'-bindings.json')).read_text());by={x['id']:x for x in b};pins={}
+ assert subprocess.check_output(['git','show',c+':officina-di-fisica/editorial/batches/'+batch+'.json'],cwd=A)==(F/(batch+'.json')).read_bytes()
+ for row in p['records']:
+  x=by[row['id']];pins[row['id']]=digest({'record':row,'assets':x['assetChecksums'],'source':{'id':x['sourceId'],'ref':x['sourceRef'],'sha256':x['sourceSha256']}})
+ metadata={r['id']:{k:src[r['id']][k]for k in['id','kind','course','skill','family','difficulty','order','version','exam','prerequisites']if k in src[r['id']]}for r in p['records']}
+ cfg={'CANDIDATE_REF':c,'EXPECTED_IDS':set(pins),'REVIEWED_CANDIDATES':pins,'REVIEWED_PACKAGE_SHA256':digest(p),'REVIEWED_BINDINGS_SHA256':digest(b),'READ_SOURCE_SHA256':{r['id']:digest(src[r['id']])for r in p['records']},'SOURCE_METADATA':metadata,'REVIEWED_ERROR_CATEGORIES':{r['id']:r['error']['category']for r in p['records']},'DEPENDENCY_SHA256':dep,'SCIENTIFIC_ASSET_REVIEW':'Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Nove SVG originali fonte letti integralmente XML. Tre fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.'}
+ modpath=A/'tools/corpus_engineering'/f'cric_c3_l{n:02}_verifier.py';code='"""Separate independent reviewer for ten distinct Cric thermodynamics questions."""\nfrom pathlib import Path\nfrom . import cric_c3_thermodynamics_review_common as independent\n'+''.join(k+'='+pprint.pformat(v,sort_dicts=True,width=110)+'\n'for k,v in cfg.items())+'\ndef verify(package,bindings,asset_root=None):\n    return independent.verify(package,bindings,globals(),asset_root)\ndef report(package,bindings,asset_root=None):\n    return independent.report(package,bindings,globals(),Path(__file__),asset_root)\n';modpath.write_text(code)
+ m=importlib.import_module('tools.corpus_engineering.'+modpath.stem);r=m.report(p,b,F/'assets');assert_record_identity(r['records'],m.EXPECTED_IDS,p,b)
+ if not all(row['ok']for row in r['records']):raise AssertionError([(row['id'],row['errors'])for row in r['records']if not row['ok']])
+ (A/'editorial/reviews'/(batch+'.json')).write_text(json.dumps(r,ensure_ascii=False,indent=2)+'\n');print(batch,len(r['records']),'ACTUAL_INDEPENDENT_ORACLE_OK',flush=True)

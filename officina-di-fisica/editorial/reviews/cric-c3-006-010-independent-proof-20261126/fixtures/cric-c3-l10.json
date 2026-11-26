@@ -1,0 +1,696 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C3-Q091",
+      "kind": "question",
+      "course": "C3",
+      "section": "Seguire il verso dei processi",
+      "order": 91,
+      "title": "Il serbatoio perde energia ed entropia",
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L09"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il serbatoio conserva la temperatura durante lo scambio, e il calore che riceve è Q_serb=−640 J. Fra i suoi stati si usa ΔS=Q_serb/T, quindi ΔS=−640/320=−2 J/K. Una singola parte può perdere entropia: il secondo principio riguarda il bilancio complessivo quando si include il resto del processo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ae2e0055b17d75fa481b16139a8f289592f78a8204b75f0a3ad71b9d5a4e3460",
+          "text": "Il primo pannello rappresenta la variazione negativa di entropia del serbatoio che cede 640 J a 320 K. Lo zero è indicato: la barra si estende verso i valori negativi e termina a −2 J/K."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{\\rm serb}=-640\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_{\\rm serb}=\\frac{Q_{\\rm serb}}{T}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_{\\rm serb}=-2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "+2 J/K userebbe il modulo del calore senza il verso. Zero confonderebbe temperatura costante con entropia costante. −640 J è un’energia e non la variazione di entropia; non si moltiplica per la temperatura."
+        }
+      ],
+      "prompt": "Un serbatoio ideale mantiene la temperatura di 320 K mentre cede 640 J come calore. Calcola la variazione della sua entropia in J/K, riferendo il segno al serbatoio.",
+      "difficulty": 1,
+      "family": "entropia-persa-da-un-serbatoio",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": -2,
+        "unit": "J/K",
+        "tolerance": 0
+      },
+      "hints": [
+        "Scegli il serbatoio come sistema prima di assegnare il segno del calore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "+2 J/K userebbe il modulo del calore senza il verso. Zero confonderebbe temperatura costante con entropia costante. −640 J è un’energia e non la variazione di entropia; non si moltiplica per la temperatura.",
+        "target": "C3-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Entropia funzione di stato e confini",
+        "Cammini reversibili di riferimento",
+        "Molteplicità e produzione di entropia"
+      ]
+    },
+    {
+      "id": "C3-Q092",
+      "kind": "question",
+      "course": "C3",
+      "section": "Seguire il verso dei processi",
+      "order": 92,
+      "title": "Il fluido torna; la produzione non scompare",
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L09"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’entropia è funzione di stato, quindi ΔS_fluido=0 dopo il ritorno allo stato iniziale. L’irreversibilità produce però entropia positiva nell’insieme complessivamente isolato. Il fluido può trasferire all’ambiente l’entropia prodotta durante il ciclo, senza accumularla nel proprio stato finale."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S_{\\rm fluido}=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_{\\rm insieme}>0"
+        },
+        {
+          "type": "text",
+          "text": "Non si può dedurre il bilancio dell’insieme dalla sola variazione del fluido. Una diminuzione dell’entropia totale isolata contrasterebbe con il secondo principio macroscopico; entrambi nulli descriverebbe il limite reversibile, non l’irreversibilità dichiarata."
+        }
+      ],
+      "prompt": "In un ciclo reale irreversibile il fluido ritorna esattamente allo stato iniziale. Includendo nel bilancio tutti gli scambi e l’ambiente necessario a chiudere un insieme isolato, quale descrizione è compatibile con il secondo principio?",
+      "difficulty": 2,
+      "family": "entropia-del-fluido-e-dellambiente",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "ΔS del fluido è zero, mentre l’entropia dell’insieme aumenta",
+          "L’entropia del fluido deve aumentare dopo ogni ciclo completo",
+          "L’entropia dell’insieme deve diminuire perché il fluido torna allo stato iniziale",
+          "Fluido e ambiente hanno entrambi necessariamente ΔS=0",
+          "La produzione di entropia è negativa per definizione nei cicli"
+        ],
+        "value": "ΔS del fluido è zero, mentre l’entropia dell’insieme aumenta"
+      },
+      "hints": [
+        "Separa la variazione di stato del fluido dalla produzione complessiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Non si può dedurre il bilancio dell’insieme dalla sola variazione del fluido. Una diminuzione dell’entropia totale isolata contrasterebbe con il secondo principio macroscopico; entrambi nulli descriverebbe il limite reversibile, non l’irreversibilità dichiarata.",
+        "target": "C3-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Entropia funzione di stato e confini",
+        "Cammini reversibili di riferimento",
+        "Molteplicità e produzione di entropia"
+      ]
+    },
+    {
+      "id": "C3-Q093",
+      "kind": "question",
+      "course": "C3",
+      "section": "Seguire il verso dei processi",
+      "order": 93,
+      "title": "L’unità dell’entropia",
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L09"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel trasferimento reversibile isotermo ΔS=Q_rev/T. Un’energia in joule divisa per una temperatura assoluta in kelvin dà J/K. Non è un’energia e non è una potenza; il tempo non compare nell’unità di S."
+        },
+        {
+          "type": "formula",
+          "text": "[S]=\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "K/J è il reciproco dell’unità. J è l’unità dell’energia e W/K includerebbe un fattore tempo al denominatore. N/K dividerebbe una forza, anziché un’energia, per la temperatura."
+        }
+      ],
+      "prompt": "Qual è l’unità SI dell’entropia, scritta con i simboli del joule e del kelvin?",
+      "difficulty": 1,
+      "family": "unita-si-dellentropia",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J/K",
+          "K/J",
+          "J",
+          "W/K",
+          "N/K"
+        ],
+        "value": "J/K"
+      },
+      "hints": [
+        "Ricava l’unità da una relazione fisica senza scambiare temperatura e intervallo temporale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "K/J è il reciproco dell’unità. J è l’unità dell’energia e W/K includerebbe un fattore tempo al denominatore. N/K dividerebbe una forza, anziché un’energia, per la temperatura.",
+        "target": "C3-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Entropia funzione di stato e confini",
+        "Cammini reversibili di riferimento",
+        "Molteplicità e produzione di entropia"
+      ]
+    },
+    {
+      "id": "C3-Q094",
+      "kind": "question",
+      "course": "C3",
+      "section": "Seguire il verso dei processi",
+      "order": 94,
+      "title": "Entropia nel plateau di fusione",
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L09"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Converto 10 g in 1/100 kg e 100 kJ/kg in 100000 J/kg. La fusione assorbe Q_rev=mL=1000 J. Poiché il passaggio è reversibile e isotermo, ΔS=1000/250=4 J/K. La temperatura costante non rende nullo il calore latente."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ae2e0055b17d75fa481b16139a8f289592f78a8204b75f0a3ad71b9d5a4e3460",
+          "text": "Nel secondo pannello 1000 J assorbiti reversibilmente a 250 K producono +4 J/K. Le prime due barre di entropia usano la stessa scala, con origini indicate in ciascun pannello."
+        },
+        {
+          "type": "formula",
+          "text": "m=\\frac1{100}\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{\\rm rev}=mL"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{\\rm rev}=1000\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S=\\frac{Q_{\\rm rev}}{T}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S=4\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "1000 J è soltanto l’energia assorbita. Zero ignora il cambiamento di fase e 4000 J/K ometterebbe la conversione dai grammi ai chilogrammi nella massa. Il segno negativo sarebbe quello di una solidificazione reversibile fra gli stessi stati di fase invertiti."
+        }
+      ],
+      "prompt": "Dieci grammi di materiale fondono reversibilmente a temperatura costante di 250 K. Il calore latente specifico di fusione assegnato è 100 kJ/kg. Quanto aumenta l’entropia del materiale in J/K?",
+      "difficulty": 2,
+      "family": "un-passaggio-di-fase-reversibile",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "J/K",
+        "tolerance": 0
+      },
+      "hints": [
+        "Calcola prima il calore effettivamente assorbito dalla massa che fonde.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1000 J è soltanto l’energia assorbita. Zero ignora il cambiamento di fase e 4000 J/K ometterebbe la conversione dai grammi ai chilogrammi nella massa. Il segno negativo sarebbe quello di una solidificazione reversibile fra gli stessi stati di fase invertiti.",
+        "target": "C3-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Entropia funzione di stato e confini",
+        "Cammini reversibili di riferimento",
+        "Molteplicità e produzione di entropia"
+      ]
+    },
+    {
+      "id": "C3-Q095",
+      "kind": "question",
+      "course": "C3",
+      "section": "Seguire il verso dei processi",
+      "order": 95,
+      "title": "Un percorso di riferimento reversibile",
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L09"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "S è funzione di stato: la sua differenza dipende dagli estremi, non dal cammino realmente percorso. Si può quindi scegliere un cammino reversibile di riferimento che colleghi gli stessi stati e integrare δQ_rev/T. Il calore di quel cammino non deve coincidere con quello del processo reale irreversibile."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S=S_f-S_i"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S=\\int_i^f\\frac{\\delta Q_{\\rm rev}}{T}"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto Q_reale/T_i non sostituisce in generale l’integrale, né include automaticamente la produzione irreversibile. Rapidità o calore reale nullo non impongono entropia costante. Cambiare gli estremi significherebbe risolvere un altro problema."
+        }
+      ],
+      "prompt": "Due stati di equilibrio dello stesso sistema sono collegati nella realtà da un processo rapido irreversibile. Si conoscono i modelli necessari. Quale strategia permette di ricavare la variazione di entropia del sistema?",
+      "difficulty": 2,
+      "family": "quanto-conta-il-cammino-reale",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Integrare δQ_rev/T lungo un cammino reversibile immaginario fra gli stessi stati",
+          "Dividere sempre il calore reale per la sola temperatura iniziale",
+          "Porre sempre ΔS=0 perché il processo è rapido",
+          "Cambiare lo stato finale finché il calore reale diventa nullo",
+          "Usare soltanto la durata senza conoscere gli stati"
+        ],
+        "value": "Integrare δQ_rev/T lungo un cammino reversibile immaginario fra gli stessi stati"
+      },
+      "hints": [
+        "Tieni fermi gli stati iniziale e finale quando cambi il percorso di calcolo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il rapporto Q_reale/T_i non sostituisce in generale l’integrale, né include automaticamente la produzione irreversibile. Rapidità o calore reale nullo non impongono entropia costante. Cambiare gli estremi significherebbe risolvere un altro problema.",
+        "target": "C3-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Entropia funzione di stato e confini",
+        "Cammini reversibili di riferimento",
+        "Molteplicità e produzione di entropia"
+      ]
+    },
+    {
+      "id": "C3-Q096",
+      "kind": "question",
+      "course": "C3",
+      "section": "Seguire il verso dei processi",
+      "order": 96,
+      "title": "Dal conteggio al logaritmo esatto",
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L09"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sottraggo le entropie e uso la differenza dei logaritmi: ΔS/k_B=ln(Ω_f/Ω_i)=ln(48/12)=ln 4. È anche 2 ln 2. Il rapporto è puro e i due conteggi sono interi positivi."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\Delta S}{k_B}=\\ln\\frac{\\Omega_f}{\\Omega_i}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Omega_f}{\\Omega_i}=4"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta S}{k_B}=\\ln4"
+        },
+        {
+          "type": "text",
+          "text": "ln 36 userebbe la differenza dei conteggi dentro il logaritmo; ln 60 la somma. Quattro è il rapporto delle molteplicità prima di applicare il logaritmo. Il valore negativo corrisponderebbe invece allo scambio degli stati iniziale e finale."
+        }
+      ],
+      "prompt": "Le configurazioni microscopiche equiprobabili accessibili passano da Ω_i=12 a Ω_f=48. Usa S=k_B lnΩ e scegli il valore esatto di ΔS/k_B, con logaritmo naturale.",
+      "difficulty": 2,
+      "family": "dal-numero-di-microstati-al-rapporto-di-entropia",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "ln 4",
+          "ln 36",
+          "ln 60",
+          "4",
+          "−ln 4"
+        ],
+        "value": "ln 4"
+      },
+      "hints": [
+        "Semplifica il rapporto intero prima del logaritmo, senza approssimarlo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "ln 36 userebbe la differenza dei conteggi dentro il logaritmo; ln 60 la somma. Quattro è il rapporto delle molteplicità prima di applicare il logaritmo. Il valore negativo corrisponderebbe invece allo scambio degli stati iniziale e finale.",
+        "target": "C3-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Entropia funzione di stato e confini",
+        "Cammini reversibili di riferimento",
+        "Molteplicità e produzione di entropia"
+      ]
+    },
+    {
+      "id": "C3-Q097",
+      "kind": "question",
+      "course": "C3",
+      "section": "Seguire il verso dei processi",
+      "order": 97,
+      "title": "Una configurazione, non un intero insieme",
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L09"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "È un microstato. Il macrostato descrive grandezze macroscopiche e può essere compatibile con molti microstati. La molteplicità Ω conta questi ultimi nel modello statistico; non è il nome di una singola configurazione."
+        },
+        {
+          "type": "formula",
+          "text": "\\text{microstato}"
+        },
+        {
+          "type": "text",
+          "text": "Calore è un trasferimento energetico e non una configurazione. Temperatura e rendimento non specificano da soli tutte le variabili microscopiche. Identificare microstato e macrostato cancellerebbe proprio la molteplicità su cui si basa il conteggio."
+        }
+      ],
+      "prompt": "In meccanica statistica, come si chiama una singola configurazione microscopica compatibile con un dato macrostato?",
+      "difficulty": 1,
+      "family": "configurazione-microscopica-individuale",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Microstato",
+          "Macrostato aggiuntivo per definizione",
+          "Calore",
+          "Temperatura assoluta",
+          "Rendimento"
+        ],
+        "value": "Microstato"
+      },
+      "hints": [
+        "Distingui un elemento dell’insieme dal numero degli elementi e dalla descrizione macroscopica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Calore è un trasferimento energetico e non una configurazione. Temperatura e rendimento non specificano da soli tutte le variabili microscopiche. Identificare microstato e macrostato cancellerebbe proprio la molteplicità su cui si basa il conteggio.",
+        "target": "C3-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Entropia funzione di stato e confini",
+        "Cammini reversibili di riferimento",
+        "Molteplicità e produzione di entropia"
+      ]
+    },
+    {
+      "id": "C3-Q098",
+      "kind": "question",
+      "course": "C3",
+      "section": "Seguire il verso dei processi",
+      "order": 98,
+      "title": "Il saldo dei due serbatoi",
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L09"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il caldo perde entropia: ΔS_h=−90/360=−1/4 J/K. Il freddo la acquista: ΔS_c=90/300=3/10 J/K. Il totale è 3/10−1/4=(6−5)/20=1/20 J/K, positivo come previsto per questo scambio spontaneo con differenza finita di temperatura."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ae2e0055b17d75fa481b16139a8f289592f78a8204b75f0a3ad71b9d5a4e3460",
+          "text": "Le ultime tre barre usano una seconda scala comune e mostrano variazioni orientate rispetto allo zero: −1/4 J/K per il caldo, +3/10 J/K per il freddo, +1/20 J/K per l’insieme. Le temperature dei due serbatoi restano costanti."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S_h=-\\frac14\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_c=\\frac3{10}\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_{\\rm tot}=\\Delta S_h+\\Delta S_c"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_{\\rm tot}=\\frac1{20}\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "Il valore negativo invertirebbe il verso caldo-freddo. 11/20 J/K sommerebbe i moduli e perderebbe il segno del serbatoio caldo. 1/4 e 3/10 J/K considererebbero soltanto uno dei due serbatoi. Per l’insieme isolato questa variazione coincide con l’entropia prodotta."
+        }
+      ],
+      "prompt": "Una quantità di energia di 90 J passa come calore da un serbatoio ideale a 360 K a uno a 300 K. Considera l’insieme dei due serbatoi isolato dall’esterno e nessun altro effetto. Qual è la produzione totale di entropia?",
+      "difficulty": 2,
+      "family": "firma-del-verso-spontaneo",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/20 J/K",
+          "−1/20 J/K",
+          "11/20 J/K",
+          "1/4 J/K",
+          "3/10 J/K"
+        ],
+        "value": "1/20 J/K"
+      },
+      "hints": [
+        "Usa per ciascun serbatoio il proprio calore con segno e la propria temperatura.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il valore negativo invertirebbe il verso caldo-freddo. 11/20 J/K sommerebbe i moduli e perderebbe il segno del serbatoio caldo. 1/4 e 3/10 J/K considererebbero soltanto uno dei due serbatoi. Per l’insieme isolato questa variazione coincide con l’entropia prodotta.",
+        "target": "C3-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Entropia funzione di stato e confini",
+        "Cammini reversibili di riferimento",
+        "Molteplicità e produzione di entropia"
+      ]
+    },
+    {
+      "id": "C3-Q099",
+      "kind": "question",
+      "course": "C3",
+      "section": "Seguire il verso dei processi",
+      "order": 99,
+      "title": "Un risultato macroscopico incompatibile",
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L09"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per un intero sistema isolato il secondo principio macroscopico richiede ΔS_tot≥0. Una previsione spontanea di −4 J/K viola questa condizione nel dominio dichiarato. Occorre controllare il confine, le ipotesi e il calcolo; la sola conservazione dell’energia non basta a rendere ammissibile un processo."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S_{\\rm isolato}\\geq0"
+        },
+        {
+          "type": "formula",
+          "text": " -4\\,\\mathrm{J/K}<0"
+        },
+        {
+          "type": "text",
+          "text": "La lentezza non autorizza un’entropia totale negativa e non trasforma un processo vietato in uno reversibile. Una parte può perdere entropia soltanto con un bilancio appropriato delle altre parti; qui il confine include già tutto il sistema isolato."
+        }
+      ],
+      "prompt": "Un modello termodinamico di un intero sistema isolato prevede una diminuzione macroscopica spontanea di entropia di 4 J/K. Non sono previsti scambi con l’esterno né altri sistemi esclusi dal confine. Come va giudicato il risultato?",
+      "difficulty": 1,
+      "family": "un-candidato-processo-isolato",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "È incompatibile con il secondo principio macroscopico: vanno riesaminati modello o calcolo",
+          "È sempre corretto perché l’energia può conservarsi",
+          "È corretto se il processo è abbastanza lento, anche se isolato",
+          "Dimostra che ogni parte del sistema deve perdere entropia",
+          "È richiesto per qualunque processo spontaneo"
+        ],
+        "value": "È incompatibile con il secondo principio macroscopico: vanno riesaminati modello o calcolo"
+      },
+      "hints": [
+        "Applica il vincolo al sistema completo dichiarato, non a una sua porzione scelta dopo il risultato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La lentezza non autorizza un’entropia totale negativa e non trasforma un processo vietato in uno reversibile. Una parte può perdere entropia soltanto con un bilancio appropriato delle altre parti; qui il confine include già tutto il sistema isolato.",
+        "target": "C3-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Entropia funzione di stato e confini",
+        "Cammini reversibili di riferimento",
+        "Molteplicità e produzione di entropia"
+      ]
+    },
+    {
+      "id": "C3-Q100",
+      "kind": "question",
+      "course": "C3",
+      "section": "Seguire il verso dei processi",
+      "order": 100,
+      "title": "Scaldare mentre la temperatura cambia",
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L09"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La temperatura varia, quindi non divido tutto il calore per un unico valore arbitrario di T. Su un tratto reversibile dQ_rev=C dT e ΔS=∫C dT/T=C ln(T_f/T_i)=30 ln(6/5) J/K. Il calore totale è 30·50=1500 J, ma non coincide con l’entropia. Per un controllo manuale, il risultato è strettamente fra 1500/300=5 J/K e 1500/250=6 J/K."
+        },
+        {
+          "type": "formula",
+          "text": "\\delta Q_{\\rm rev}=C\\,dT"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S=C\\int_{250\\,\\mathrm K}^{300\\,\\mathrm K}\\frac{dT}{T}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{T_f}{T_i}=\\frac65"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S=30\\ln\\frac65\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "Il logaritmo del rapporto inverso darebbe una variazione negativa durante il riscaldamento. 6 J/K userebbe soltanto la temperatura iniziale e 5 J/K soltanto la finale: sono limiti, non l’integrale. 1500 J/K copierebbe il numero del calore in unità non corrette per quel trasferimento."
+        }
+      ],
+      "prompt": "Un corpo con capacità termica totale costante C=30 J/K viene portato reversibilmente da 250 K a 300 K, senza cambiamenti di fase e con solo riscaldamento a volume fisso. Qual è la variazione esatta di entropia in J/K?",
+      "difficulty": 3,
+      "family": "approfondimento-riscaldamento-a-temperatura-variabile",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "30 ln(6/5) J/K",
+          "30 ln(5/6) J/K",
+          "6 J/K",
+          "5 J/K",
+          "1500 J/K"
+        ],
+        "value": "30 ln(6/5) J/K"
+      },
+      "hints": [
+        "Integra prima il reciproco della temperatura; il rapporto dentro il logaritmo deve essere adimensionale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il logaritmo del rapporto inverso darebbe una variazione negativa durante il riscaldamento. 6 J/K userebbe soltanto la temperatura iniziale e 5 J/K soltanto la finale: sono limiti, non l’integrale. 1500 J/K copierebbe il numero del calore in unità non corrette per quel trasferimento.",
+        "target": "C3-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Entropia funzione di stato e confini",
+        "Cammini reversibili di riferimento",
+        "Molteplicità e produzione di entropia"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "ae2e0055b17d75fa481b16139a8f289592f78a8204b75f0a3ad71b9d5a4e3460",
+      "name": "cric-c3-l10-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTUwMCIgdmlld0JveD0iMCAwIDY0MCAxNTAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIj48dGl0bGUgaWQ9InRpdGxlIj5UcmUgdmFyaWF6aW9uaSBkaSBlbnRyb3BpYTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlByaW1pIGR1ZSBwYW5uZWxsaSBjb24gbGEgc3Rlc3NhIHNjYWxhIGRpIGVudHJvcGlhIGUgb3JpZ2luaSBpbmRpY2F0ZTogbWVubyBkdWUgZSBwacO5IHF1YXR0cm8gam91bGUgcGVyIGtlbHZpbi4gVGVyem8gcGFubmVsbG8gYSBzY2FsYSBkaXZlcnNhIGNvbXVuZSBhbGxlIHN1ZSB0cmUgYmFycmUgb3JpZW50YXRlOiBtZW5vIHVuIHF1YXJ0bywgcGnDuSB0cmUgZGVjaW1pIGUgcGnDuSB1biB2ZW50ZXNpbW8gZGkgam91bGUgcGVyIGtlbHZpbi48L2Rlc2M+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTAwIiBmaWxsPSJ3aGl0ZSIvPjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5M4oCZZW50cm9waWEgaGEgdW4gY29uZmluZSBlIHVuIHZlcnNvPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMTAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MSDCtyBJbCBzZXJiYXRvaW8gY2VkZSBjYWxvcmU8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjE4NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5UID0gMzIwIEs7IFEgcmljZXZ1dG8gPSDiiJI2NDAgSjwvdGV4dD48bGluZSB4MT0iMTAwIiB5MT0iMzMwIiB4Mj0iNTMwIiB5Mj0iMzMwIiBzdHJva2U9IiM2MDczODMiIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9IjE0MCIgeT0iMjk1IiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjOTg2YzM1Ii8+PGxpbmUgeDE9IjMwMCIgeTE9IjI3NSIgeDI9IjE0MCIgeTI9IjI3NSIgc3Ryb2tlPSIjOTg2YzM1IiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjE0MCwyNzUgMTQ4LjAsMjcxLjAgMTQ4LjAsMjc5LjAiIGZpbGw9IiM5ODZjMzUiLz48dGV4dCB4PSIxNDAiIHk9IjM3MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+4oiSMiBKL0s8L3RleHQ+PHRleHQgeD0iMzAwIiB5PSIzNzAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjA8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjQ0MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij7OlFMgPSBRIHJpY2V2dXRvIC8gVCA9IOKIkjIgSi9LPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI1NTAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MiDCtyBGdXNpb25lIHJldmVyc2liaWxlPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI2MjUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+VCA9IDI1MCBLOyBRIHJpY2V2dXRvID0gKzEwMDAgSjwvdGV4dD48bGluZSB4MT0iMTAwIiB5MT0iNzUwIiB4Mj0iNTMwIiB5Mj0iNzUwIiBzdHJva2U9IiM2MDczODMiIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9IjE0MCIgeT0iNzE1IiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNjM3ZTU1Ii8+PGxpbmUgeDE9IjE0MCIgeTE9IjY5NSIgeDI9IjQ2MCIgeTI9IjY5NSIgc3Ryb2tlPSIjNjM3ZTU1IiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjQ2MCw2OTUgNDUyLjAsNjk5LjAgNDUyLjAsNjkxLjAiIGZpbGw9IiM2MzdlNTUiLz48dGV4dCB4PSIxNDAiIHk9Ijc5MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MDwvdGV4dD48dGV4dCB4PSI0NjAiIHk9Ijc5MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+KzQgSi9LPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI4NTUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+TGEgc3Rlc3NhIHNjYWxhIGRpIGVudHJvcGlhIGRlbCBwcmltbyBwYW5uZWxsby48L3RleHQ+PHRleHQgeD0iMzUiIHk9Ijk3MCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4zIMK3IFVuIHNvbG8gdHJhc2ZlcmltZW50bzogY2FsZG8gZSBmcmVkZG88L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEwMzUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+OTAgSiBkYSAzNjAgSyBhIDMwMCBLPC90ZXh0PjxsaW5lIHgxPSIzNDAiIHkxPSIxMTAwIiB4Mj0iMzQwIiB5Mj0iMTMyMCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIzNSIgeT0iMTE0MiIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5jYWxkbzwvdGV4dD48cmVjdCB4PSIxNDAiIHk9IjExMjAiIHdpZHRoPSIyMDAiIGhlaWdodD0iMjgiIGZpbGw9IiM5ODZjMzUiLz48dGV4dCB4PSIzMDAiIHk9IjExODAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPuKIkjEvNCBKL0s8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEyMjIiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+ZnJlZGRvPC90ZXh0PjxyZWN0IHg9IjM0MCIgeT0iMTIwMCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSIyOCIgZmlsbD0iIzNkNzc5MSIvPjx0ZXh0IHg9IjU4MCIgeT0iMTI2MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+KzMvMTAgSi9LPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMzAyIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnRvdGFsZTwvdGV4dD48cmVjdCB4PSIzNDAiIHk9IjEyODAiIHdpZHRoPSI0MCIgaGVpZ2h0PSIyOCIgZmlsbD0iIzYzN2U1NSIvPjx0ZXh0IHg9IjM4MCIgeT0iMTM0MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+KzEvMjAgSi9LPC90ZXh0Pjx0ZXh0IHg9IjM0MCIgeT0iMTM4MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MDwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTQ1MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5Tb21tYSBvcmllbnRhdGEgcG9zaXRpdmE6IDEvMjAgSi9LPC90ZXh0Pjwvc3ZnPgo="
+    }
+  ]
+}
