@@ -39,6 +39,7 @@ export async function esperienza(record) {
     : param('x', a.label, a.unit === '1' ? '' : a.unit, a.min, a.max, a.step, x0);
   const calc = (x) => stabile(law.measure(x));
   const clock = record.engine ? null : orologioVoce(record, law);
+  const workAxes = !record.engine && record.id === 'SIM-C1-L007-01' && record.apparatus === 'vettori';
   function elements(x, stage, time) {
     if (clock?.input && time !== undefined) x = time;
     const board = tavolo(Math.max(stage, 0));
@@ -75,7 +76,9 @@ export async function esperienza(record) {
         board.label([dx, 1.7, 0], series ? 'In serie' : 'In parallelo');
       }
     } else instrument(board, state);
-    return board.elementi;
+    // In Side view the y sprite projects onto the common vector tails. Keep
+    // the complete axis line and identify it in this activity’s HTML legend.
+    return workAxes ? board.elementi.filter((e) => !(e.kind === 'label' && e.text === 'y')) : board.elementi;
   }
   const levels = ['Diminuisce', 'Resta uguale', 'Aumenta'];
   const sign = Math.abs(y1 - y0) < 1e-8 ? 0 : Math.sign(y1 - y0);
@@ -321,6 +324,9 @@ export async function esperienza(record) {
     measurement,
     clock,
     observe: law.observe,
-    legend: () => legend ?? legende[record.apparatus],
+    legend: () => legend ?? (workAxes
+      ? legende.vettori.replace('Gli assi x e y sono indicati sulla tavola.',
+        'L’asse x è etichettato sulla tavola. L’asse y è la retta grigia che passa per la coda comune, perpendicolare a x nel piano dei vettori: usa la vista Alto per distinguere i due assi.')
+      : legende[record.apparatus]),
   };
 }
