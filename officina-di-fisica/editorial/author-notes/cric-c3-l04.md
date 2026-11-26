@@ -56,7 +56,7 @@ Procedimento: Converto 40 g in 0,040 kg e 334 kJ/kg in 334000 J/kg. L’energia 
 
 Passaggi esatti: `Q=mL_f\qquad Q=13360\,\mathrm J\qquad t=Q/P\qquad t=167\,\mathrm s`.
 
-Distrattori: 13,36 è l’energia in kJ, non un tempo in secondi. Dimenticare la conversione da grammi darebbe una durata mille volte maggiore. Riscaldare l’acqua dopo la fusione sarebbe un processo ulteriore non richiesto.
+Distrattori: 13,36 copia il valore numerico dell’energia richiesta espressa in kJ, senza costruire il rapporto energia/potenza necessario per il tempo. Dimenticare la conversione da grammi darebbe una durata mille volte maggiore. Riscaldare l’acqua dopo la fusione sarebbe un processo ulteriore non richiesto.
 
 Aiuto: Trova prima l’energia latente e dividila per la potenza effettiva.
 
