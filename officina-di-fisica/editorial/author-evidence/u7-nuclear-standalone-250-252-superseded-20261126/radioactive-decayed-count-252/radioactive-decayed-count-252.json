@@ -1,0 +1,1146 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u7-radioactive-decayed-count-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Conteggio cumulativo delle trasformazioni dei genitori",
+      "order": 25201,
+      "title": "Quanti genitori si sono già trasformati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-decayed-count",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso ha un solo radionuclide genitore di emivita T½=1 h, senza nuovi apporti o produzione di genitori. Si conta N_dec(t), numero medio cumulativo dei genitori iniziali già trasformati: eventuali decadimenti successivi dei figli non si contano. Definiamo u=t/(1 h)>0, n₀=N₀/(10⁶ nuclei) e c=N_dec/(10⁶ nuclei). Allora c=n₀(1−2^(−u)); non è né il residuo né il tasso di attività. Le prove sono preparazioni distinte con dati finiti. Con n₀=64 e t=1 h, quanto vale N_dec nelle unità 10⁶ nuclei? Inserisci c.",
+      "answer": {
+        "type": "numeric",
+        "value": 32,
+        "unit": "10⁶ nuclei",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dopo un’emivita sopravvive metà dei genitori: 32 milioni. Il cumulativo dei trasformati è il complemento, 64−32=32 milioni. La coincidenza fra residui e trasformati è particolare di una sola emivita."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/7dcb356ca10cec616a8107112c02d522cbc87e72d15e6dd4f0695c4bb5858842",
+          "text": "Le barre distinguono genitori rimasti e già trasformati nello stesso campione iniziale. A un’emivita le due metà coincidono, ma a due emivite il cumulativo è tre quarti."
+        },
+        {
+          "type": "formula",
+          "text": "c=n_0(1-2^{-u})"
+        },
+        {
+          "type": "formula",
+          "text": " c=64(1-1/2)"
+        },
+        {
+          "type": "formula",
+          "text": " c=32"
+        },
+        {
+          "type": "text",
+          "text": "64 milioni conterebbe tutti i genitori come già trasformati. Sedici milioni non è il cumulativo a un’ora; zero ignora le trasformazioni. Moltiplicare sempre per 2^(−u) darebbe il residuo, che coincide con c solo in questo dato."
+        }
+      ],
+      "hints": [
+        "Calcola prima i genitori rimasti, poi sottrai dall’inizio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "64 milioni conterebbe tutti i genitori come già trasformati. Sedici milioni non è il cumulativo a un’ora; zero ignora le trasformazioni. Moltiplicare sempre per 2^(−u) darebbe il residuo, che coincide con c solo in questo dato.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Cumulativo, residuo e attività distinti",
+        "Complementi e inverse con dominio",
+        "Medie e tarature",
+        "Due tempi e popolazione iniziale ignota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Conteggio cumulativo delle trasformazioni dei genitori",
+      "order": 25202,
+      "title": "Una popolazione trasformata, non una attività",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-decayed-count",
+      "difficulty": 1,
+      "prompt": "Quale indicazione di unità è adatta al numero medio cumulativo N_dec di nuclei genitori già trasformati?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "nuclei, conteggio adimensionale",
+          "Bq",
+          "s",
+          "J",
+          "nuclei/s"
+        ],
+        "value": "nuclei, conteggio adimensionale"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Si sommano trasformazioni avvenute dall’inizio, senza dividere per la durata. Il numero medio è un conteggio puro, esprimibile anche in milioni di nuclei. È distinto dal tasso istantaneo di trasformazioni in Bq."
+        },
+        {
+          "type": "formula",
+          "text": "[N_{\\rm dec}]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [\\mathcal A]=\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "text",
+          "text": "Bq e nuclei/s sono tassi; s è tempo e J energia. Non si può chiamare attività un conteggio cumulativo solo perché riguarda un processo radioattivo."
+        }
+      ],
+      "hints": [
+        "Chiediti se si domanda quanti eventi in totale oppure quanti al secondo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Bq e nuclei/s sono tassi; s è tempo e J energia. Non si può chiamare attività un conteggio cumulativo solo perché riguarda un processo radioattivo.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Cumulativo, residuo e attività distinti",
+        "Complementi e inverse con dominio",
+        "Medie e tarature",
+        "Due tempi e popolazione iniziale ignota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Conteggio cumulativo delle trasformazioni dei genitori",
+      "order": 25203,
+      "title": "Il cumulativo è un complemento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-decayed-count",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso ha un solo radionuclide genitore di emivita T½=1 h, senza nuovi apporti o produzione di genitori. Si conta N_dec(t), numero medio cumulativo dei genitori iniziali già trasformati: eventuali decadimenti successivi dei figli non si contano. Definiamo u=t/(1 h)>0, n₀=N₀/(10⁶ nuclei) e c=N_dec/(10⁶ nuclei). Allora c=n₀(1−2^(−u)); non è né il residuo né il tasso di attività. Le prove sono preparazioni distinte con dati finiti. Quale relazione fornisce il conteggio normalizzato c?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "c = n₀ (1 − 2^(−u))",
+          "c = n₀ 2^(−u)",
+          "c = n₀ (1 + 2^(−u))",
+          "c = n₀ / (1 − 2^(−u))",
+          "c = n₀ u"
+        ],
+        "value": "c = n₀ (1 − 2^(−u))"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni genitore iniziale o è ancora presente o ha già subito la sua trasformazione. Il residuo medio è n₀2^(−u); sottraendolo da n₀ ottengo c. Per u>0 finito, 0<c<n₀: il conteggio cresce ma non supera gli iniziali."
+        },
+        {
+          "type": "formula",
+          "text": "c=n_0-n_0 2^{-u}"
+        },
+        {
+          "type": "formula",
+          "text": " c=n_0(1-2^{-u})"
+        },
+        {
+          "type": "formula",
+          "text": " 0<c<n_0"
+        },
+        {
+          "type": "text",
+          "text": "Il termine senza complemento è il residuo. Il segno più e la divisione per la frazione trasformata superano n₀. La legge lineare n₀u non descrive il decadimento esponenziale e può contare lo stesso genitore più volte."
+        }
+      ],
+      "hints": [
+        "Sottrai i sopravvissuti, senza aggiungere i decadimenti dei figli.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il termine senza complemento è il residuo. Il segno più e la divisione per la frazione trasformata superano n₀. La legge lineare n₀u non descrive il decadimento esponenziale e può contare lo stesso genitore più volte.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Cumulativo, residuo e attività distinti",
+        "Complementi e inverse con dominio",
+        "Medie e tarature",
+        "Due tempi e popolazione iniziale ignota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Conteggio cumulativo delle trasformazioni dei genitori",
+      "order": 25204,
+      "title": "La metà dei genitori iniziali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-decayed-count",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso ha un solo radionuclide genitore di emivita T½=1 h, senza nuovi apporti o produzione di genitori. Si conta N_dec(t), numero medio cumulativo dei genitori iniziali già trasformati: eventuali decadimenti successivi dei figli non si contano. Definiamo u=t/(1 h)>0, n₀=N₀/(10⁶ nuclei) e c=N_dec/(10⁶ nuclei). Allora c=n₀(1−2^(−u)); non è né il residuo né il tasso di attività. Le prove sono preparazioni distinte con dati finiti. A ha n₀=64 e t=1 h; B ha n₀=32 allo stesso tempo. Come cambia N_dec?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 32 a 16 milioni di nuclei",
+          "Da 32 a 64 milioni di nuclei",
+          "Da 32 a 8 milioni di nuclei",
+          "Resta 32 milioni di nuclei",
+          "Diventa zero"
+        ],
+        "value": "Da 32 a 16 milioni di nuclei"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La frazione trasformata resta un mezzo. Il conteggio cumulativo è lineare nella popolazione iniziale: passa da 32 a 16 milioni. Cambia il numero di genitori disponibili, non l’emivita."
+        },
+        {
+          "type": "formula",
+          "text": "c_A=32"
+        },
+        {
+          "type": "formula",
+          "text": " c_B=32(1-1/2)"
+        },
+        {
+          "type": "formula",
+          "text": " c_B=16"
+        },
+        {
+          "type": "text",
+          "text": "64 inverte la proporzione, otto introduce un altro dimezzamento e 32 ignora la nuova popolazione. Zero non segue da una popolazione positiva osservata dopo un tempo positivo."
+        }
+      ],
+      "hints": [
+        "Mantieni fissa la frazione trasformata nelle due prove.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "64 inverte la proporzione, otto introduce un altro dimezzamento e 32 ignora la nuova popolazione. Zero non segue da una popolazione positiva osservata dopo un tempo positivo.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Cumulativo, residuo e attività distinti",
+        "Complementi e inverse con dominio",
+        "Medie e tarature",
+        "Due tempi e popolazione iniziale ignota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Conteggio cumulativo delle trasformazioni dei genitori",
+      "order": 25205,
+      "title": "Risalire alla popolazione iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-decayed-count",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso ha un solo radionuclide genitore di emivita T½=1 h, senza nuovi apporti o produzione di genitori. Si conta N_dec(t), numero medio cumulativo dei genitori iniziali già trasformati: eventuali decadimenti successivi dei figli non si contano. Definiamo u=t/(1 h)>0, n₀=N₀/(10⁶ nuclei) e c=N_dec/(10⁶ nuclei). Allora c=n₀(1−2^(−u)); non è né il residuo né il tasso di attività. Le prove sono preparazioni distinte con dati finiti. Si hanno c=32 dopo t=1 h. Quanto vale N₀ nelle unità 10⁶ nuclei?",
+      "answer": {
+        "type": "numeric",
+        "value": 64,
+        "unit": "10⁶ nuclei",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A un’ora si è trasformata metà della popolazione iniziale. Isolo n₀=c/(1−2^(−u)) e divido 32 per un mezzo: 64. Il denominatore è positivo per u>0; al tempo zero questa inversa non sarebbe definita."
+        },
+        {
+          "type": "formula",
+          "text": "n_0=\\frac{c}{1-2^{-u}}"
+        },
+        {
+          "type": "formula",
+          "text": " n_0=\\frac{32}{1/2}"
+        },
+        {
+          "type": "formula",
+          "text": " n_0=64"
+        },
+        {
+          "type": "text",
+          "text": "Sedici moltiplica ancora per la frazione; 32 presume che tutti i genitori siano già decaduti. 128 milioni darebbe c=64, non 32. Il risultato deve superare il cumulativo misurato."
+        }
+      ],
+      "hints": [
+        "La frazione da invertire è quella trasformata, non quella sopravvissuta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sedici moltiplica ancora per la frazione; 32 presume che tutti i genitori siano già decaduti. 128 milioni darebbe c=64, non 32. Il risultato deve superare il cumulativo misurato.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Cumulativo, residuo e attività distinti",
+        "Complementi e inverse con dominio",
+        "Medie e tarature",
+        "Due tempi e popolazione iniziale ignota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Conteggio cumulativo delle trasformazioni dei genitori",
+      "order": 25206,
+      "title": "Il tempo da genitori trasformati e iniziali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-decayed-count",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso ha un solo radionuclide genitore di emivita T½=1 h, senza nuovi apporti o produzione di genitori. Si conta N_dec(t), numero medio cumulativo dei genitori iniziali già trasformati: eventuali decadimenti successivi dei figli non si contano. Definiamo u=t/(1 h)>0, n₀=N₀/(10⁶ nuclei) e c=N_dec/(10⁶ nuclei). Allora c=n₀(1−2^(−u)); non è né il residuo né il tasso di attività. Le prove sono preparazioni distinte con dati finiti. c=32 e n₀=64. Quanto vale t in ore?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "h",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La frazione trasformata è 1/2. La sopravvivenza complementare vale anch’essa 1/2, perciò 2^(−u)=1/2 e u=1. Prima del logaritmo occorre 0<c<n₀, altrimenti non esiste questo tempo positivo finito."
+        },
+        {
+          "type": "formula",
+          "text": "2^{-u}=1-\\frac{32}{64}"
+        },
+        {
+          "type": "formula",
+          "text": " 2^{-u}=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " u=1"
+        },
+        {
+          "type": "formula",
+          "text": " t=1\\,\\mathrm h"
+        },
+        {
+          "type": "text",
+          "text": "Due ore darebbero c=48 milioni e tempo zero c=0. Mezz’ora darebbe 64−32√2 milioni, non 32. Non si usa c/n₀ direttamente come frazione residua in un dato generale."
+        }
+      ],
+      "hints": [
+        "Torna dal cumulativo alla frazione ancora presente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due ore darebbero c=48 milioni e tempo zero c=0. Mezz’ora darebbe 64−32√2 milioni, non 32. Non si usa c/n₀ direttamente come frazione residua in un dato generale.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Cumulativo, residuo e attività distinti",
+        "Complementi e inverse con dominio",
+        "Medie e tarature",
+        "Due tempi e popolazione iniziale ignota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Conteggio cumulativo delle trasformazioni dei genitori",
+      "order": 25207,
+      "title": "Più tempo aumenta il cumulativo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-decayed-count",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso ha un solo radionuclide genitore di emivita T½=1 h, senza nuovi apporti o produzione di genitori. Si conta N_dec(t), numero medio cumulativo dei genitori iniziali già trasformati: eventuali decadimenti successivi dei figli non si contano. Definiamo u=t/(1 h)>0, n₀=N₀/(10⁶ nuclei) e c=N_dec/(10⁶ nuclei). Allora c=n₀(1−2^(−u)); non è né il residuo né il tasso di attività. Le prove sono preparazioni distinte con dati finiti. A ha n₀=64,t=1 h. B mantiene n₀=64 e usa t=2 h. Quanto vale N_dec,B/N_dec,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "1/2",
+          "2",
+          "1"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha trasformato metà, cioè 32 milioni. B ha trasformato tre quarti, cioè 48 milioni. Il rapporto è 48/32=3/2: il cumulativo aumenta mentre il residuo diminuisce."
+        },
+        {
+          "type": "formula",
+          "text": "c_A=32"
+        },
+        {
+          "type": "formula",
+          "text": " c_B=64(1-1/4)"
+        },
+        {
+          "type": "formula",
+          "text": " c_B=48"
+        },
+        {
+          "type": "formula",
+          "text": " N_{{\\rm dec},B}/N_{{\\rm dec},A}=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "2/3 inverte il confronto; un mezzo è il rapporto dei residui, non dei cumulativi. Due assume un conteggio lineare nel tempo e uno ignora l’ulteriore intervallo."
+        }
+      ],
+      "hints": [
+        "A due emivite è trasformato tre quarti, non un quarto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2/3 inverte il confronto; un mezzo è il rapporto dei residui, non dei cumulativi. Due assume un conteggio lineare nel tempo e uno ignora l’ulteriore intervallo.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Cumulativo, residuo e attività distinti",
+        "Complementi e inverse con dominio",
+        "Medie e tarature",
+        "Due tempi e popolazione iniziale ignota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Conteggio cumulativo delle trasformazioni dei genitori",
+      "order": 25208,
+      "title": "Lo scarto del cumulativo proposto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-decayed-count",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso ha un solo radionuclide genitore di emivita T½=1 h, senza nuovi apporti o produzione di genitori. Si conta N_dec(t), numero medio cumulativo dei genitori iniziali già trasformati: eventuali decadimenti successivi dei figli non si contano. Definiamo u=t/(1 h)>0, n₀=N₀/(10⁶ nuclei) e c=N_dec/(10⁶ nuclei). Allora c=n₀(1−2^(−u)); non è né il residuo né il tasso di attività. Le prove sono preparazioni distinte con dati finiti. Con n₀=64,t=1 h viene proposto N_dec=64 milioni. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "32 milioni di nuclei",
+          "−32 milioni di nuclei",
+          "2",
+          "64 milioni di nuclei",
+          "0 milioni di nuclei"
+        ],
+        "value": "32 milioni di nuclei"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il cumulativo corretto è 32 milioni. La proposta conta anche i genitori ancora presenti e lo supera di 32 milioni. Si mantiene l’ordine proposto meno corretto."
+        },
+        {
+          "type": "formula",
+          "text": "\\delta c=64-32"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta c=32"
+        },
+        {
+          "type": "text",
+          "text": "Il segno meno scambia l’ordine, due è un rapporto puro, 64 è la proposta e zero la accetta senza il bilancio dei genitori."
+        }
+      ],
+      "hints": [
+        "Confronta due conteggi nella stessa scala, non un conteggio e una frazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno meno scambia l’ordine, due è un rapporto puro, 64 è la proposta e zero la accetta senza il bilancio dei genitori.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Cumulativo, residuo e attività distinti",
+        "Complementi e inverse con dominio",
+        "Medie e tarature",
+        "Due tempi e popolazione iniziale ignota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Conteggio cumulativo delle trasformazioni dei genitori",
+      "order": 25209,
+      "title": "L’inversa del complemento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-decayed-count",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso ha un solo radionuclide genitore di emivita T½=1 h, senza nuovi apporti o produzione di genitori. Si conta N_dec(t), numero medio cumulativo dei genitori iniziali già trasformati: eventuali decadimenti successivi dei figli non si contano. Definiamo u=t/(1 h)>0, n₀=N₀/(10⁶ nuclei) e c=N_dec/(10⁶ nuclei). Allora c=n₀(1−2^(−u)); non è né il residuo né il tasso di attività. Le prove sono preparazioni distinte con dati finiti. N_dec e t sono noti. Quale formula isola N₀ con u=t/(1 h)?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N₀ = N_dec / (1 − 2^(−u))",
+          "N₀ = N_dec (1 − 2^(−u))",
+          "N₀ = N_dec 2^u",
+          "N₀ = (1 − 2^(−u)) / N_dec",
+          "N₀ = N_dec / u"
+        ],
+        "value": "N₀ = N_dec / (1 − 2^(−u))"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Divido per la frazione trasformata, strettamente compresa fra zero e uno. L’inversa restituisce N₀>N_dec. La formula N_dec2^u sarebbe l’inversa del residuo, non del cumulativo, e coincide nel solo caso u=1."
+        },
+        {
+          "type": "formula",
+          "text": "N_0=\\frac{N_{\\rm dec}}{1-2^{-u}}"
+        },
+        {
+          "type": "formula",
+          "text": " N_0>N_{\\rm dec}"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare per il complemento riduce ancora il conteggio. Il reciproco non è l’inversa richiesta, mentre u non sostituisce una frazione esponenziale. La divisione per zero a u=0 è esclusa."
+        }
+      ],
+      "hints": [
+        "Isola l’ingresso nella legge del cumulativo e controlla il denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare per il complemento riduce ancora il conteggio. Il reciproco non è l’inversa richiesta, mentre u non sostituisce una frazione esponenziale. La divisione per zero a u=0 è esclusa.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Cumulativo, residuo e attività distinti",
+        "Complementi e inverse con dominio",
+        "Medie e tarature",
+        "Due tempi e popolazione iniziale ignota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Conteggio cumulativo delle trasformazioni dei genitori",
+      "order": 25210,
+      "title": "Due modifiche del conteggio cumulativo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-decayed-count",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso ha un solo radionuclide genitore di emivita T½=1 h, senza nuovi apporti o produzione di genitori. Si conta N_dec(t), numero medio cumulativo dei genitori iniziali già trasformati: eventuali decadimenti successivi dei figli non si contano. Definiamo u=t/(1 h)>0, n₀=N₀/(10⁶ nuclei) e c=N_dec/(10⁶ nuclei). Allora c=n₀(1−2^(−u)); non è né il residuo né il tasso di attività. Le prove sono preparazioni distinte con dati finiti. Fra prove N₀,B=κ₁N₀,A e t_B=κ₂t_A, con fattori positivi. Definiamo q=2^(−u_A), frazione sopravvissuta in A, e R=N_dec,B/N_dec,A. Quanto vale R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ (1 − q^κ₂) / (1 − q)",
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₁ q^(κ₂−1)",
+          "(1 − q) / [κ₁ (1 − q^κ₂)]"
+        ],
+        "value": "κ₁ (1 − q^κ₂) / (1 − q)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In A la frazione trasformata è 1−q. In B sopravvive q^κ₂, dunque si è trasformata la frazione 1−q^κ₂. Il rapporto dei campioni iniziali dà κ₁. Con 0<q<1 e κ₂>0 entrambi i complementi sono positivi."
+        },
+        {
+          "type": "formula",
+          "text": "R=\\kappa_1\\frac{1-q^{\\kappa_2}}{1-q}"
+        },
+        {
+          "type": "text",
+          "text": "Prodotto o quoziente dei soli fattori non conserva il complemento. κ₁q^(κ₂−1) è il rapporto dei residui, non dei trasformati; il reciproco scambia le preparazioni."
+        }
+      ],
+      "hints": [
+        "Usa un complemento in ciascuno stato prima di formare il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Prodotto o quoziente dei soli fattori non conserva il complemento. κ₁q^(κ₂−1) è il rapporto dei residui, non dei trasformati; il reciproco scambia le preparazioni.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Cumulativo, residuo e attività distinti",
+        "Complementi e inverse con dominio",
+        "Medie e tarature",
+        "Due tempi e popolazione iniziale ignota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Conteggio cumulativo delle trasformazioni dei genitori",
+      "order": 25211,
+      "title": "Meno iniziali ma più tempo per trasformarsi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-decayed-count",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso ha un solo radionuclide genitore di emivita T½=1 h, senza nuovi apporti o produzione di genitori. Si conta N_dec(t), numero medio cumulativo dei genitori iniziali già trasformati: eventuali decadimenti successivi dei figli non si contano. Definiamo u=t/(1 h)>0, n₀=N₀/(10⁶ nuclei) e c=N_dec/(10⁶ nuclei). Allora c=n₀(1−2^(−u)); non è né il residuo né il tasso di attività. Le prove sono preparazioni distinte con dati finiti. A: n₀=64,t=1 h. B: n₀=32,t=2 h. Quanto vale N_dec,B/N_dec,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/4",
+          "4/3",
+          "1/2",
+          "3/2",
+          "1"
+        ],
+        "value": "3/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A conta 32 milioni trasformati. B conta tre quarti di 32, cioè 24 milioni. Il rapporto è 24/32=3/4: la popolazione iniziale minore prevale qui sull’aumento della frazione trasformata."
+        },
+        {
+          "type": "formula",
+          "text": "c_A=32"
+        },
+        {
+          "type": "formula",
+          "text": " c_B=32\\cdot\\frac34"
+        },
+        {
+          "type": "formula",
+          "text": " c_B=24"
+        },
+        {
+          "type": "formula",
+          "text": " N_{{\\rm dec},B}/N_{{\\rm dec},A}=\\frac34"
+        },
+        {
+          "type": "text",
+          "text": "4/3 è il reciproco; un mezzo considera soltanto l’inizio e 3/2 soltanto il cambiamento della frazione. Uno presume una compensazione che i numeri non danno."
+        }
+      ],
+      "hints": [
+        "Distinguere le due frazioni evita di usare il rapporto dei residui.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4/3 è il reciproco; un mezzo considera soltanto l’inizio e 3/2 soltanto il cambiamento della frazione. Uno presume una compensazione che i numeri non danno.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Cumulativo, residuo e attività distinti",
+        "Complementi e inverse con dominio",
+        "Medie e tarature",
+        "Due tempi e popolazione iniziale ignota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Conteggio cumulativo delle trasformazioni dei genitori",
+      "order": 25212,
+      "title": "La media dei genitori trasformati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-decayed-count",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso ha un solo radionuclide genitore di emivita T½=1 h, senza nuovi apporti o produzione di genitori. Si conta N_dec(t), numero medio cumulativo dei genitori iniziali già trasformati: eventuali decadimenti successivi dei figli non si contano. Definiamo u=t/(1 h)>0, n₀=N₀/(10⁶ nuclei) e c=N_dec/(10⁶ nuclei). Allora c=n₀(1−2^(−u)); non è né il residuo né il tasso di attività. Le prove sono preparazioni distinte con dati finiti. A: n₀=64,t=1 h. B: n₀=32,t=2 h. Qual è la media aritmetica dei due N_dec con pesi uguali?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "28 milioni di nuclei",
+          "48−12√2 milioni di nuclei",
+          "56 milioni di nuclei",
+          "4 milioni di nuclei",
+          "24 milioni di nuclei"
+        ],
+        "value": "28 milioni di nuclei"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I cumulativi sono 32 e 24 milioni: media 28 milioni. Indico con c_m il modello agli ingressi medi n₀=48 e u=3/2: darebbe 48−12√2, che non è 28. La differenza è riconoscibile senza calcolatrice perché 20² è maggiore di (12√2)²."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/7dcb356ca10cec616a8107112c02d522cbc87e72d15e6dd4f0695c4bb5858842",
+          "text": "I primi pannelli fissano N₀=64 milioni e non rappresentano la seconda preparazione del quesito, che parte da 32 milioni. Per la media si calcolano 32 e 24 milioni separatamente."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline c=\\frac{32+24}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline c=28"
+        },
+        {
+          "type": "formula",
+          "text": " c_m=48-12\\sqrt2"
+        },
+        {
+          "type": "text",
+          "text": "56 è la somma, quattro la semidifferenza e 24 ripete B. L’espressione radicale riguarda una terza preparazione con dati medi, non la media delle due uscite."
+        }
+      ],
+      "hints": [
+        "Forma due cumulativi completi prima della media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "56 è la somma, quattro la semidifferenza e 24 ripete B. L’espressione radicale riguarda una terza preparazione con dati medi, non la media delle due uscite.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Cumulativo, residuo e attività distinti",
+        "Complementi e inverse con dominio",
+        "Medie e tarature",
+        "Due tempi e popolazione iniziale ignota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Conteggio cumulativo delle trasformazioni dei genitori",
+      "order": 25213,
+      "title": "Il tempo che realizza il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-decayed-count",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso ha un solo radionuclide genitore di emivita T½=1 h, senza nuovi apporti o produzione di genitori. Si conta N_dec(t), numero medio cumulativo dei genitori iniziali già trasformati: eventuali decadimenti successivi dei figli non si contano. Definiamo u=t/(1 h)>0, n₀=N₀/(10⁶ nuclei) e c=N_dec/(10⁶ nuclei). Allora c=n₀(1−2^(−u)); non è né il residuo né il tasso di attività. Le prove sono preparazioni distinte con dati finiti. A: n₀=64,t_A=1 h. B usa n₀=32 e deve avere N_dec,B=(3/4)N_dec,A. Quanto vale t_B/t_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "3/4",
+          "3/2",
+          "1"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 24 milioni. Nel nuovo campione iniziale di 32 milioni la frazione trasformata deve essere 3/4: resta 1/4, cioè due emivite. Quindi t_B=2 h e il rapporto delle durate è due."
+        },
+        {
+          "type": "formula",
+          "text": "c_B=24"
+        },
+        {
+          "type": "formula",
+          "text": " 2^{-u_B}=1-24/32"
+        },
+        {
+          "type": "formula",
+          "text": " 2^{-u_B}=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " u_B=2"
+        },
+        {
+          "type": "formula",
+          "text": " t_B/t_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un’ora darebbe soltanto 16 milioni. Un mezzo inverte le durate; 3/4 copia il target delle uscite e 3/2 il rapporto delle frazioni trasformate."
+        }
+      ],
+      "hints": [
+        "Ricava la frazione residua nel nuovo campione, poi conta i dimezzamenti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un’ora darebbe soltanto 16 milioni. Un mezzo inverte le durate; 3/4 copia il target delle uscite e 3/2 il rapporto delle frazioni trasformate.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Cumulativo, residuo e attività distinti",
+        "Complementi e inverse con dominio",
+        "Medie e tarature",
+        "Due tempi e popolazione iniziale ignota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Conteggio cumulativo delle trasformazioni dei genitori",
+      "order": 25214,
+      "title": "Un display del cumulativo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-decayed-count",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso ha un solo radionuclide genitore di emivita T½=1 h, senza nuovi apporti o produzione di genitori. Si conta N_dec(t), numero medio cumulativo dei genitori iniziali già trasformati: eventuali decadimenti successivi dei figli non si contano. Definiamo u=t/(1 h)>0, n₀=N₀/(10⁶ nuclei) e c=N_dec/(10⁶ nuclei). Allora c=n₀(1−2^(−u)); non è né il residuo né il tasso di attività. Le prove sono preparazioni distinte con dati finiti. D=g c senza offset. A ha n₀=64,t=1 h,D=96. In B si legge D=72 dopo 2 h. Quanto vale N₀,B nelle unità 10⁶ nuclei?",
+      "answer": {
+        "type": "numeric",
+        "value": 32,
+        "unit": "10⁶ nuclei",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha c=32, dunque g=3. D=72 decodifica c_B=24. A due ore la frazione trasformata è 3/4: n₀,B=24/(3/4)=32. Non va usata qui la frazione residua 1/4."
+        },
+        {
+          "type": "formula",
+          "text": "g=3"
+        },
+        {
+          "type": "formula",
+          "text": " c_B=24"
+        },
+        {
+          "type": "formula",
+          "text": " n_{0,B}=\\frac{24}{3/4}"
+        },
+        {
+          "type": "formula",
+          "text": " n_{0,B}=32"
+        },
+        {
+          "type": "text",
+          "text": "96 milioni tratterebbe la lettura come c e predirebbe D=216. Novantasei si otterrebbe anche dividendo il corretto c=24 per il residuo 1/4. Ventiquattro copia il cumulativo senza l’inversa."
+        }
+      ],
+      "hints": [
+        "Decodifica prima, poi dividi per la frazione trasformata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "96 milioni tratterebbe la lettura come c e predirebbe D=216. Novantasei si otterrebbe anche dividendo il corretto c=24 per il residuo 1/4. Ventiquattro copia il cumulativo senza l’inversa.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Cumulativo, residuo e attività distinti",
+        "Complementi e inverse con dominio",
+        "Medie e tarature",
+        "Due tempi e popolazione iniziale ignota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Conteggio cumulativo delle trasformazioni dei genitori",
+      "order": 25215,
+      "title": "L’offset prima della legge di decadimento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-decayed-count",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso ha un solo radionuclide genitore di emivita T½=1 h, senza nuovi apporti o produzione di genitori. Si conta N_dec(t), numero medio cumulativo dei genitori iniziali già trasformati: eventuali decadimenti successivi dei figli non si contano. Definiamo u=t/(1 h)>0, n₀=N₀/(10⁶ nuclei) e c=N_dec/(10⁶ nuclei). Allora c=n₀(1−2^(−u)); non è né il residuo né il tasso di attività. Le prove sono preparazioni distinte con dati finiti. D=g c+b. A: n₀=64,t=1 h,D=65. B: n₀=32,t=2 h,D=49. C: t=1 h,D=33. Quanto vale N₀,C nelle unità 10⁶ nuclei?",
+      "answer": {
+        "type": "numeric",
+        "value": 32,
+        "unit": "10⁶ nuclei",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I cumulativi di riferimento sono 32 e 24. Le differenze danno g=(65−49)/(32−24)=2, poi b=1. La lettura 33 indica c_C=16. Dopo un’ora è trasformata metà: n₀,C=32."
+        },
+        {
+          "type": "formula",
+          "text": "g=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " c_C=\\frac{33-1}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " c_C=16"
+        },
+        {
+          "type": "formula",
+          "text": " n_{0,C}=32"
+        },
+        {
+          "type": "text",
+          "text": "33 milioni omette l’offset e predirebbe D=34. Sessantaquattro omette il guadagno dopo aver sottratto b; sedici lascia il risultato come cumulativo invece di ricostruire l’inizio."
+        }
+      ],
+      "hints": [
+        "L’offset del display non è una popolazione di genitori.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "33 milioni omette l’offset e predirebbe D=34. Sessantaquattro omette il guadagno dopo aver sottratto b; sedici lascia il risultato come cumulativo invece di ricostruire l’inizio.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Cumulativo, residuo e attività distinti",
+        "Complementi e inverse con dominio",
+        "Medie e tarature",
+        "Due tempi e popolazione iniziale ignota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Conteggio cumulativo delle trasformazioni dei genitori",
+      "order": 25216,
+      "title": "Due cumulativi a distanza di un’ora",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-decayed-count",
+      "difficulty": 3,
+      "prompt": "Caso autonomo: campione chiuso di un solo genitore, T½=1 h, senza produzione. A un tempo t>0 si sono trasformati in media 12 milioni di genitori iniziali; a t+1 h il cumulativo è 14 milioni. N₀ è ignoto. Quanto vale t in ore?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "h",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nell’ora aggiuntiva si trasformano 2 milioni, metà dei genitori ancora presenti a t. Definisco r il numero residuo a t, in milioni: r=4. L’inizio era perciò 12+4=16 milioni. La frazione residua a t è 4/16=1/4: sono trascorse due emivite, quindi t=2 h."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/7dcb356ca10cec616a8107112c02d522cbc87e72d15e6dd4f0695c4bb5858842",
+          "text": "Il pannello finale usa un altro campione, con N₀ ricostruito pari a 16 milioni. I cumulativi osservati 12 e 14 milioni lasciano residui 4 e 2 milioni; le due barre complete rappresentano la stessa popolazione iniziale."
+        },
+        {
+          "type": "formula",
+          "text": "r/2=14-12"
+        },
+        {
+          "type": "formula",
+          "text": " r=4"
+        },
+        {
+          "type": "formula",
+          "text": " n_0=12+r"
+        },
+        {
+          "type": "formula",
+          "text": " n_0=16"
+        },
+        {
+          "type": "formula",
+          "text": " 2^{-u}=\\frac4{16}"
+        },
+        {
+          "type": "formula",
+          "text": " u=2"
+        },
+        {
+          "type": "formula",
+          "text": " t=2\\,\\mathrm h"
+        },
+        {
+          "type": "text",
+          "text": "Un’ora con n₀=16 darebbe cumulativo 8 milioni, non 12. Quattro ore ne darebbero 15 milioni. Il rapporto diretto 14/12 non è una sopravvivenza esponenziale: va prima separato il residuo dal cumulativo."
+        }
+      ],
+      "hints": [
+        "Usa la differenza dei cumulativi per conoscere i genitori presenti al primo tempo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un’ora con n₀=16 darebbe cumulativo 8 milioni, non 12. Quattro ore ne darebbero 15 milioni. Il rapporto diretto 14/12 non è una sopravvivenza esponenziale: va prima separato il residuo dal cumulativo.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Cumulativo, residuo e attività distinti",
+        "Complementi e inverse con dominio",
+        "Medie e tarature",
+        "Due tempi e popolazione iniziale ignota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "7dcb356ca10cec616a8107112c02d522cbc87e72d15e6dd4f0695c4bb5858842",
+      "name": "radioactive-decayed-count-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTYwMCIgdmlld0JveD0iMCAwIDY0MCAxNjAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+R2VuaXRvcmkgcmltYXN0aSBlIGdpw6AgdHJhc2Zvcm1hdGk8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgdGFwcGU6IHJlc2lkdWkgZSB0cmFzZm9ybWF0aSBuZWxsbyBzdGVzc28gY2FtcGlvbmU7IGN1cnZhIGRlbCBjdW11bGF0aXZvIG1lZGlvIGNvbiBzZXNzYW50YXF1YXR0cm8gbWlsaW9uaSBpbml6aWFsaTsgYWx0cm8gY2FtcGlvbmUgaW4gY3VpIGkgY3VtdWxhdGl2aSBkb2RpY2kgZSBxdWF0dG9yZGljaSBtaWxpb25pIGxhc2NpYW5vIHJlc2lkdWkgcXVhdHRybyBlIGR1ZSBtaWxpb25pLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDggNEwwIDhaIiBmaWxsPSIjNTI2NjdhIi8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTYwMCIgZmlsbD0iI2Y3ZmFmYyIvPjxnIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZmlsbD0iIzIwMzU0ZCI+PHRleHQgeD0iMzIiIHk9IjQyIiBmb250LXNpemU9IjI0IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkdlbml0b3JpIHJpbWFzdGkgZSBnacOgIHRyYXNmb3JtYXRpPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI5NiIgZm9udC1zaXplPSIyMiIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xIMK3IFN0ZXNzaSA2NCBtaWxpb25pLCBkdWUgY29tcGxlbWVudGk8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE0MiIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5CbHU6IHJlc2lkdWkgwrcgT2NyYTogZ2VuaXRvcmkgdHJhc2Zvcm1hdGk8L3RleHQ+PHRleHQgeD0iMTI4IiB5PSIyMjMiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJlbmQiPjEgaDwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjIwMCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIzMCIgZmlsbD0iIzMxNmI5YiIvPjxyZWN0IHg9IjMxMCIgeT0iMjAwIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjYTc2ZDIwIi8+PHRleHQgeD0iMjMwLjAiIHk9IjI3MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MzI8L3RleHQ+PHRleHQgeD0iMzkwLjAiIHk9IjI3MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MzI8L3RleHQ+PHRleHQgeD0iMTI4IiB5PSIzNDMiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJlbmQiPjIgaDwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjMyMCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjMzE2YjliIi8+PHJlY3QgeD0iMjMwIiB5PSIzMjAiIHdpZHRoPSIyNDAiIGhlaWdodD0iMzAiIGZpbGw9IiNhNzZkMjAiLz48dGV4dCB4PSIxOTAuMCIgeT0iMzkwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4xNjwvdGV4dD48dGV4dCB4PSIzNTAuMCIgeT0iMzkwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj40ODwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNDU1IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPk9nbmkgYmFycmEgaW50ZXJhIHZhbGUgNjQgbWlsaW9uaSBkaSBnZW5pdG9yaS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjUyNSIgZm9udC1zaXplPSIyMiIgdGV4dC1hbmNob3I9InN0YXJ0Ij4yIMK3IEN1bXVsYXRpdm8gY29uIE7igoAgPSA2NCBtaWxpb25pPC90ZXh0PjxsaW5lIHgxPSIxNDUiIHkxPSIxMDAwIiB4Mj0iNTUwIiB5Mj0iMTAwMCIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PGxpbmUgeDE9IjE1MCIgeTE9IjEwMDUiIHgyPSIxNTAiIHkyPSI2MzAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjE3MCIgeT0iNjEwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPk5fZGVjIChtaWxpb25pKTwvdGV4dD48dGV4dCB4PSI0ODUiIHk9IjEwNzAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+dCAoaCk8L3RleHQ+PHBhdGggZD0iTTE1MC4wMDAwIDEwMDAuMDAwMCBMMTUyLjc1MDAgOTk0LjUwMjYgTDE1NS41MDAwIDk4OS4wOTk2IEwxNTguMjUwMCA5ODMuNzg5NSBMMTYxLjAwMDAgOTc4LjU3MDYgTDE2My43NTAwIDk3My40NDEzIEwxNjYuNTAwMCA5NjguNDAwMSBMMTY5LjI1MDAgOTYzLjQ0NTYgTDE3Mi4wMDAwIDk1OC41NzYyIEwxNzQuNzUwMCA5NTMuNzkwNCBMMTc3LjUwMDAgOTQ5LjA4NjkgTDE4MC4yNTAwIDk0NC40NjQxIEwxODMuMDAwMCA5MzkuOTIwOCBMMTg1Ljc1MDAgOTM1LjQ1NTUgTDE4OC41MDAwIDkzMS4wNjY5IEwxOTEuMjUwMCA5MjYuNzUzNyBMMTk0LjAwMDAgOTIyLjUxNDcgTDE5Ni43NTAwIDkxOC4zNDg0IEwxOTkuNTAwMCA5MTQuMjUzNyBMMjAyLjI1MDAgOTEwLjIyOTQgTDIwNS4wMDAwIDkwNi4yNzQyIEwyMDcuNzUwMCA5MDIuMzg2OSBMMjEwLjUwMDAgODk4LjU2NjQgTDIxMy4yNTAwIDg5NC44MTE2IEwyMTYuMDAwMCA4OTEuMTIxMyBMMjE4Ljc1MDAgODg3LjQ5NDMgTDIyMS41MDAwIDg4My45Mjk3IEwyMjQuMjUwMCA4ODAuNDI2MyBMMjI3LjAwMDAgODc2Ljk4MzEgTDIyOS43NTAwIDg3My41OTkxIEwyMzIuNTAwMCA4NzAuMjczMSBMMjM1LjI1MDAgODY3LjAwNDQgTDIzOC4wMDAwIDg2My43OTE3IEwyNDAuNzUwMCA4NjAuNjM0MyBMMjQzLjUwMDAgODU3LjUzMTEgTDI0Ni4yNTAwIDg1NC40ODEyIEwyNDkuMDAwMCA4NTEuNDgzOCBMMjUxLjc1MDAgODQ4LjUzNzggTDI1NC41MDAwIDg0NS42NDI0IEwyNTcuMjUwMCA4NDIuNzk2OCBMMjYwLjAwMDAgODQwLjAwMDAgTDI2Mi43NTAwIDgzNy4yNTEzIEwyNjUuNTAwMCA4MzQuNTQ5OCBMMjY4LjI1MDAgODMxLjg5NDcgTDI3MS4wMDAwIDgyOS4yODUzIEwyNzMuNzUwMCA4MjYuNzIwNiBMMjc2LjUwMDAgODI0LjIwMDEgTDI3OS4yNTAwIDgyMS43MjI4IEwyODIuMDAwMCA4MTkuMjg4MSBMMjg0Ljc1MDAgODE2Ljg5NTIgTDI4Ny41MDAwIDgxNC41NDM0IEwyOTAuMjUwMCA4MTIuMjMyMSBMMjkzLjAwMDAgODA5Ljk2MDQgTDI5NS43NTAwIDgwNy43Mjc3IEwyOTguNTAwMCA4MDUuNTMzNSBMMzAxLjI1MDAgODAzLjM3NjkgTDMwNC4wMDAwIDgwMS4yNTczIEwzMDYuNzUwMCA3OTkuMTc0MiBMMzA5LjUwMDAgNzk3LjEyNjkgTDMxMi4yNTAwIDc5NS4xMTQ3IEwzMTUuMDAwMCA3OTMuMTM3MSBMMzE3Ljc1MDAgNzkxLjE5MzUgTDMyMC41MDAwIDc4OS4yODMyIEwzMjMuMjUwMCA3ODcuNDA1OCBMMzI2LjAwMDAgNzg1LjU2MDYgTDMyOC43NTAwIDc4My43NDcyIEwzMzEuNTAwMCA3ODEuOTY0OSBMMzM0LjI1MDAgNzgwLjIxMzIgTDMzNy4wMDAwIDc3OC40OTE2IEwzMzkuNzUwMCA3NzYuNzk5NSBMMzQyLjUwMDAgNzc1LjEzNjYgTDM0NS4yNTAwIDc3My41MDIyIEwzNDguMDAwMCA3NzEuODk1OSBMMzUwLjc1MDAgNzcwLjMxNzIgTDM1My41MDAwIDc2OC43NjU2IEwzNTYuMjUwMCA3NjcuMjQwNiBMMzU5LjAwMDAgNzY1Ljc0MTkgTDM2MS43NTAwIDc2NC4yNjg5IEwzNjQuNTAwMCA3NjIuODIxMiBMMzY3LjI1MDAgNzYxLjM5ODQgTDM3MC4wMDAwIDc2MC4wMDAwIEwzNzIuNzUwMCA3NTguNjI1NiBMMzc1LjUwMDAgNzU3LjI3NDkgTDM3OC4yNTAwIDc1NS45NDc0IEwzODEuMDAwMCA3NTQuNjQyNiBMMzgzLjc1MDAgNzUzLjM2MDMgTDM4Ni41MDAwIDc1Mi4xMDAwIEwzODkuMjUwMCA3NTAuODYxNCBMMzkyLjAwMDAgNzQ5LjY0NDAgTDM5NC43NTAwIDc0OC40NDc2IEwzOTcuNTAwMCA3NDcuMjcxNyBMNDAwLjI1MDAgNzQ2LjExNjAgTDQwMy4wMDAwIDc0NC45ODAyIEw0MDUuNzUwMCA3NDMuODYzOSBMNDA4LjUwMDAgNzQyLjc2NjcgTDQxMS4yNTAwIDc0MS42ODg0IEw0MTQuMDAwMCA3NDAuNjI4NyBMNDE2Ljc1MDAgNzM5LjU4NzEgTDQxOS41MDAwIDczOC41NjM0IEw0MjIuMjUwMCA3MzcuNTU3MyBMNDI1LjAwMDAgNzM2LjU2ODUgTDQyNy43NTAwIDczNS41OTY3IEw0MzAuNTAwMCA3MzQuNjQxNiBMNDMzLjI1MDAgNzMzLjcwMjkgTDQzNi4wMDAwIDczMi43ODAzIEw0MzguNzUwMCA3MzEuODczNiBMNDQxLjUwMDAgNzMwLjk4MjQgTDQ0NC4yNTAwIDczMC4xMDY2IEw0NDcuMDAwMCA3MjkuMjQ1OCBMNDQ5Ljc1MDAgNzI4LjM5OTggTDQ1Mi41MDAwIDcyNy41NjgzIEw0NTUuMjUwMCA3MjYuNzUxMSBMNDU4LjAwMDAgNzI1Ljk0NzkgTDQ2MC43NTAwIDcyNS4xNTg2IEw0NjMuNTAwMCA3MjQuMzgyOCBMNDY2LjI1MDAgNzIzLjYyMDMgTDQ2OS4wMDAwIDcyMi44NzA5IEw0NzEuNzUwMCA3MjIuMTM0NCBMNDc0LjUwMDAgNzIxLjQxMDYgTDQ3Ny4yNTAwIDcyMC42OTkyIEw0ODAuMDAwMCA3MjAuMDAwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTc2ZDIwIiBzdHJva2Utd2lkdGg9IjMiLz48Y2lyY2xlIGN4PSIyNjAiIGN5PSI4NDAiIHI9IjUiIGZpbGw9IiNhNzZkMjAiLz48bGluZSB4MT0iMjYwIiB5MT0iOTk0IiB4Mj0iMjYwIiB5Mj0iMTAwNiIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIyNjAiIHk9IjEwNDAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjE8L3RleHQ+PGxpbmUgeDE9IjE0NCIgeTE9Ijg0MCIgeDI9IjE1NiIgeTI9Ijg0MCIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxMzAiIHk9Ijg0NiIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9ImVuZCI+MzI8L3RleHQ+PGNpcmNsZSBjeD0iMzcwIiBjeT0iNzYwIiByPSI1IiBmaWxsPSIjYTc2ZDIwIi8+PGxpbmUgeDE9IjM3MCIgeTE9Ijk5NCIgeDI9IjM3MCIgeTI9IjEwMDYiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMzcwIiB5PSIxMDQwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4yPC90ZXh0PjxsaW5lIHgxPSIxNDQiIHkxPSI3NjAiIHgyPSIxNTYiIHkyPSI3NjAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTMwIiB5PSI3NjYiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJlbmQiPjQ4PC90ZXh0PjxjaXJjbGUgY3g9IjQ4MCIgY3k9IjcyMCIgcj0iNSIgZmlsbD0iI2E3NmQyMCIvPjxsaW5lIHgxPSI0ODAiIHkxPSI5OTQiIHgyPSI0ODAiIHkyPSIxMDA2IiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjQ4MCIgeT0iMTA0MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MzwvdGV4dD48bGluZSB4MT0iMTQ0IiB5MT0iNzIwIiB4Mj0iMTU2IiB5Mj0iNzIwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjEzMCIgeT0iNzI2IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj41NjwvdGV4dD48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAwIiByPSI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNhNzZkMjAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjEyOCIgeT0iMTA0MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9ImVuZCI+MDwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTEzMCIgZm9udC1zaXplPSIyMiIgdGV4dC1hbmNob3I9InN0YXJ0Ij4zIMK3IEFsdHJvIGNhbXBpb25lOiBjdW11bGF0aXZpIDEyIGUgMTQ8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjExNzIiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+VG90YWxlIGluaXppYWxlIHJpY29zdHJ1aXRvOiAxNiBtaWxpb25pPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iMTI1MyIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9ImVuZCI+dDwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjEyMzAiIHdpZHRoPSI4MCIgaGVpZ2h0PSIzMCIgZmlsbD0iIzMxNmI5YiIvPjxyZWN0IHg9IjIzMCIgeT0iMTIzMCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSIzMCIgZmlsbD0iI2E3NmQyMCIvPjx0ZXh0IHg9IjE5MC4wIiB5PSIxMzAwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj40PC90ZXh0Pjx0ZXh0IHg9IjM1MC4wIiB5PSIxMzAwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4xMjwvdGV4dD48dGV4dCB4PSIxMjgiIHk9IjEzNzMiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJlbmQiPnQgKyAxIGg8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIxMzUwIiB3aWR0aD0iNDAiIGhlaWdodD0iMzAiIGZpbGw9IiMzMTZiOWIiLz48cmVjdCB4PSIxOTAiIHk9IjEzNTAiIHdpZHRoPSIyODAiIGhlaWdodD0iMzAiIGZpbGw9IiNhNzZkMjAiLz48dGV4dCB4PSIxNzAuMCIgeT0iMTQyMCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MjwvdGV4dD48dGV4dCB4PSIzMzAuMCIgeT0iMTQyMCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTQ8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE1MDAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+TGUgYmFycmUgY29tcGxldGUgaGFubm8gb3JpZ2luZSBlIHNjYWxhIGNvbXVuaS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE1NDAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+TOKAmW9yYSBhZ2dpdW50aXZhIHRyYXNmb3JtYSBtZXTDoCBkZWkgNCBtaWxpb25pPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxNTc1IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPmFuY29yYSBwcmVzZW50aSBhbCBwcmltbyB0ZW1wby48L3RleHQ+PC9nPjwvc3ZnPgo="
+    }
+  ]
+}

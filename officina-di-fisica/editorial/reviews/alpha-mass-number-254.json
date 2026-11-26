@@ -1,0 +1,501 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C5.json",
+    "sourceSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+    "primarySkill": "C5-L08",
+    "actualLessonPrerequisites": {
+      "C5-L08": []
+    },
+    "title": "Una popolazione di nuclei che cambia nel tempo"
+  },
+  "records": [
+    {
+      "id": "AR-u7-alpha-mass-number-01",
+      "sourceSha256": "2bcef111ef50c5484325930d326ed38668e06e350282ddcae679262d204813c4",
+      "candidateSha256": "a74d8dec8436fe70951cac688c5dd8369f55b4fd9bd9b0c57c3e4c7b725a2cb8",
+      "reviewedSignature": "f9dd41a4b8e55dfd16ce2574cae7fc1087868adde134671869d525848140c080",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "alpha-mass-number-progressive.svg": "b095efae7ac87676c6a5ed1a60430b61c2e4d5702b2950ae4caaefad11d8661e"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "216",
+      "dimension": {},
+      "manualArithmetic": "Ogni α porta via quattro nucleoni. Nel bilancio idealizzato A_f=A₀−4 n=220−4=216, numero puro intero positivo. Il solo bilancio non garantisce che una specifica catena isotopica esista o sia energeticamente consentita.",
+      "physicalAssumptions": "Catena α assegnata; compatibilità energetica e dei numeri atomici assunta, non dedotta da A₀>4 n. Conteggi interi positivi e figlio A_f=A₀−4 n>0. Nuovo genitore B 228 nei 11–15 dichiarato e ricalcolato; numero di massa distinto da massa fisica.",
+      "distractors": "219 sottrae un solo nucleone, 218 soltanto i protoni, 224 aggiunge i quattro emessi e 55 divide A₀ per quattro. Il corretto è il conteggio 216.",
+      "pedagogicalReview": "Legge motivata e valore medio distinto da singolo esito.",
+      "assetReview": "XML e PNG indipendente 640×1600 letti per intero. Schema con due protoni e due neutroni, esplicitamente non una scala di dimensioni nucleari. Punti discreti di perdita4n: origine(150,1000),110 coordinate/evento e25/nucleone, punti(1,4),(2,8),(3,12); bordo0 aperto. Barre finali a zero comune,scala3/2 per unità A:324/330/327 per216/220/218. Nessuna base troncata o falsa amplificazione della differenza.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-02",
+      "sourceSha256": "1ad0adad9773080a509e915a87a3800cf6edfaf21eabe24facd86ee491331f07",
+      "candidateSha256": "ff48f738de150916aab747e2dc3df0547d8289fac3abc93c4e58ad9cb67101ac",
+      "reviewedSignature": "bcccf65ffdbcf041c58da8a980c59720011159fcf0d4664fabf266f8352e807f",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1, conteggio di nucleoni",
+      "dimension": {},
+      "manualArithmetic": "Il numero di massa è il conteggio dei nucleoni e ha unità 1, non kg né unità di massa atomica. Non coincide con la massa fisica comprensiva dell’energia di legame.",
+      "physicalAssumptions": "Catena α assegnata; compatibilità energetica e dei numeri atomici assunta, non dedotta da A₀>4 n. Conteggi interi positivi e figlio A_f=A₀−4 n>0. Nuovo genitore B 228 nei 11–15 dichiarato e ricalcolato; numero di massa distinto da massa fisica.",
+      "distractors": "kg misura massa fisica, C carica, Bq attività e J energia. Il numero di nucleoni resta puro e distinto dalla massa comprensiva del legame.",
+      "pedagogicalReview": "Unità ricostruita e conteggio distinto dal tasso.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-03",
+      "sourceSha256": "08125d953e4aa1fc70c310dded0e6e5f592a066dc03c30469d028320b8bbdf76",
+      "candidateSha256": "d0f1fc4d9843c1cfcd1467270a884045cbe7a485b7f98986a33dde9ddec5f292",
+      "reviewedSignature": "6e55019ffb30eb1a26ecc5a239be09fc7870b595dada2fb52b7f0feefaa3b9a3",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "alpha-mass-number-progressive.svg": "b095efae7ac87676c6a5ed1a60430b61c2e4d5702b2950ae4caaefad11d8661e"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "A diminuisce di 4 e Z diminuisce di 2",
+      "dimension": {},
+      "manualArithmetic": "La particella α è un nucleo di elio con 4 nucleoni e 2 protoni: il figlio haA−4 eZ−2. Conservazione di carica e numero di nucleoni fissa entrambi i decrementi.",
+      "physicalAssumptions": "Catena α assegnata; compatibilità energetica e dei numeri atomici assunta, non dedotta da A₀>4 n. Conteggi interi positivi e figlio A_f=A₀−4 n>0. Nuovo genitore B 228 nei 11–15 dichiarato e ricalcolato; numero di massa distinto da massa fisica.",
+      "distractors": "Scambiare quattro e due confonde nucleoni e protoni. Conservare A o aumentare Z viola il bilancio del figlio; γ lascerebbe entrambi invariati.",
+      "pedagogicalReview": "Caso autonomo o legge riconosciuta senza risposta già anticipata.",
+      "assetReview": "XML e PNG indipendente 640×1600 letti per intero. Schema con due protoni e due neutroni, esplicitamente non una scala di dimensioni nucleari. Punti discreti di perdita4n: origine(150,1000),110 coordinate/evento e25/nucleone, punti(1,4),(2,8),(3,12); bordo0 aperto. Barre finali a zero comune,scala3/2 per unità A:324/330/327 per216/220/218. Nessuna base troncata o falsa amplificazione della differenza.",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-04",
+      "sourceSha256": "9b45d5fc15eb7209d85bf2589f38da401c9813a2dd9720bacc8308be16ce6976",
+      "candidateSha256": "5679450d1d99d1cf9270073b6a615910f07cffca32bcd6372b59e76f4d82ce39",
+      "reviewedSignature": "22d8a1d354605000cf01c58783f0aa9ec7a383db38de70db31b0f318aee940eb",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 216 a 220",
+      "dimension": {},
+      "manualArithmetic": "A n=1 fisso il decremento resta 4. Da A₀ 220 a 224, A_f passa da 216 a 220: aumenta di 4, non viene moltiplicato per 224/220 senza considerare l’offset.",
+      "physicalAssumptions": "Catena α assegnata; compatibilità energetica e dei numeri atomici assunta, non dedotta da A₀>4 n. Conteggi interi positivi e figlio A_f=A₀−4 n>0. Nuovo genitore B 228 nei 11–15 dichiarato e ricalcolato; numero di massa distinto da massa fisica.",
+      "distractors": "212 diminuisce anziché aumentare; 224 omette l’α, 216 ignora il nuovo A₀ e 432 raddoppia senza motivo.",
+      "pedagogicalReview": "Confronto controllato a un parametro fissato.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-05",
+      "sourceSha256": "72aae3033b04f560cd12c3c36ae88978af94594338222945d5368a8b189ece9b",
+      "candidateSha256": "64c76ff6be31ab4d3758cfa8e8aec45cfaa389fc56c511c1194dacbd39200535",
+      "reviewedSignature": "7fb5d38cc9538520d7d4214dfec92ac0210cba438a883e9e06bf976590a2d83b",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "220",
+      "dimension": {},
+      "manualArithmetic": "Riporto a sinistra i quattro nucleoni per decadimento: A₀=A_f+4 n=216+4=220. Il risultato è intero e soddisfa A₀>4 n.",
+      "physicalAssumptions": "Catena α assegnata; compatibilità energetica e dei numeri atomici assunta, non dedotta da A₀>4 n. Conteggi interi positivi e figlio A_f=A₀−4 n>0. Nuovo genitore B 228 nei 11–15 dichiarato e ricalcolato; numero di massa distinto da massa fisica.",
+      "distractors": "212 ripete la perdita, 217 riaggiunge un solo nucleone e 864 moltiplica per quattro. L’inversa deve sommare i nucleoni emessi.",
+      "pedagogicalReview": "Prima inversa reinserita nella relazione diretta.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-06",
+      "sourceSha256": "67423815b9e150f476b35f73760998c67b4bd69daad897ecd58f4a1ce3fe83ba",
+      "candidateSha256": "79e20a25d73b9b0426e7cb0e36f07133761335e4611489f2042c354e09c0f2d5",
+      "reviewedSignature": "a70eca4d19a68c1b33b94a6c3226dfa560f5c6f56bb69fdc3837b5d570c5d9a3",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {},
+      "manualArithmetic": "Isolo n=(A₀−A_f)/4=(220−216)/4=1. Un valore positivo non intero non sarebbe un conteggio di decadimenti ammissibile.",
+      "physicalAssumptions": "Catena α assegnata; compatibilità energetica e dei numeri atomici assunta, non dedotta da A₀>4 n. Conteggi interi positivi e figlio A_f=A₀−4 n>0. Nuovo genitore B 228 nei 11–15 dichiarato e ricalcolato; numero di massa distinto da massa fisica.",
+      "distractors": "Quattro conta nucleoni anziché eventi; 55 usa soltanto A₀/4 e 16 moltiplica la perdita per quattro. Non si arrotondano conteggi frazionari.",
+      "pedagogicalReview": "Seconda inversa con denominatori e domini verificati.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-07",
+      "sourceSha256": "6c398df62fb22d78f53d4c2b3e09af3226a62749e9712e64495f03e0d9723936",
+      "candidateSha256": "b585f87339794c86577565d8a59063e1d010d44e1d507017c2f11e3fe7193b17",
+      "reviewedSignature": "e085b42ebe5bdbd7ed7025da016cc4c249f8928f08743046af233e01a3b4b107",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "53/54",
+      "dimension": {},
+      "manualArithmetic": "Con n_B 2, A_f, B=220−8=212. Il rapporto 212/216 si riduce dividendo per 4 a 53/54.",
+      "physicalAssumptions": "Catena α assegnata; compatibilità energetica e dei numeri atomici assunta, non dedotta da A₀>4 n. Conteggi interi positivi e figlio A_f=A₀−4 n>0. Nuovo genitore B 228 nei 11–15 dichiarato e ricalcolato; numero di massa distinto da massa fisica.",
+      "distractors": "54/53 inverte B/A; 1/2 scambia il doppio degli eventi per un’inversa del figlio. Uno ignora la perdita ulteriore e due fa crescere il residuo.",
+      "pedagogicalReview": "Due uscite calcolate prima del rapporto.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-08",
+      "sourceSha256": "6743df156a0616ef0f8ca88713bd0a2bbdf2595c4e19a584f1fd2ac44e7985bd",
+      "candidateSha256": "bdb2895769fa7c8e8aedc74b7e5c28ca28380fe5b9b1025749b545a669cc7765",
+      "reviewedSignature": "fa474281cd3cf0f9400b70ae61a1c4855f88a8d855c146cf8f6c68ba33ef91f0",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "216",
+      "dimension": {},
+      "manualArithmetic": "Il corretto è 216, quindi 432−216=+216. È una sovrastima del numero finale di nucleoni nel bilancio.",
+      "physicalAssumptions": "Catena α assegnata; compatibilità energetica e dei numeri atomici assunta, non dedotta da A₀>4 n. Conteggi interi positivi e figlio A_f=A₀−4 n>0. Nuovo genitore B 228 nei 11–15 dichiarato e ricalcolato; numero di massa distinto da massa fisica.",
+      "distractors": "−216 inverte lo scarto, due è rapporto, 432 la proposta e zero non la verifica. La proposta supera il genitore pur dichiarando sole perdite α.",
+      "pedagogicalReview": "Differenza ordinata distinta dal rapporto puro.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-09",
+      "sourceSha256": "142ad3ed32336ec4120a4adcdd5a7b9386ff45a353e527a29fd5801a42b40e6a",
+      "candidateSha256": "4a5c2e7937bcfe9b0a84b890c76debbd526dadb4d112652642fe45c4a31acfb3",
+      "reviewedSignature": "24fef95add0d2912f2737aac70a94f5fe794166ed665b5d90e44c1c3d3b582cb",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "A₀ = A_f + 4n",
+      "dimension": {},
+      "manualArithmetic": "La forma inversa èA₀=A_f+4 n. Sommare il numero di α senza il fattore 4 non ricostruisce il numero di nucleoni portati via.",
+      "physicalAssumptions": "Catena α assegnata; compatibilità energetica e dei numeri atomici assunta, non dedotta da A₀>4 n. Conteggi interi positivi e figlio A_f=A₀−4 n>0. Nuovo genitore B 228 nei 11–15 dichiarato e ricalcolato; numero di massa distinto da massa fisica.",
+      "distractors": "Il segno meno ripete la perdita; i quozienti non riaggiungono nucleoni e A_f+n confonde numero di eventi e nucleoni per evento.",
+      "pedagogicalReview": "Inversa simbolica e dimensioni esplicite.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-10",
+      "sourceSha256": "f9ffee2d3986e5e3b61146632fb5c5d212f4208153f2e062668f878dc7219f80",
+      "candidateSha256": "ac03bbf01b3b2761ce1e762466666e475b78e91f22bb15d387a83fec08ac2e1b",
+      "reviewedSignature": "50ff64a2468c009a4a6cf243148e3e4501ac50fb9e28fe9411222afe9343dca4",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "(κ₁A₀ − 4κ₂n) / (A₀ − 4n)",
+      "dimension": {},
+      "manualArithmetic": "Il rapporto è(κ₁A₀−4κ₂n)/(A₀−4 n). Occorre che κ₁A₀ eκ₂n restino interi positivi e che il nuovo numeratore siapositivo; i soli fattori reali positivi non bastano.",
+      "physicalAssumptions": "Catena α assegnata; compatibilità energetica e dei numeri atomici assunta, non dedotta da A₀>4 n. Conteggi interi positivi e figlio A_f=A₀−4 n>0. Nuovo genitore B 228 nei 11–15 dichiarato e ricalcolato; numero di massa distinto da massa fisica.",
+      "distractors": "Prodotti e quozienti dei soli κ perdono la differenza. Il segno più aggiunge gli emessi al figlio; la somma dei fattori dà due per prove identiche.",
+      "pedagogicalReview": "Fattori nella legge effettiva, non in un’analogia impropria.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-11",
+      "sourceSha256": "a71ebb54023a69e23d1fbb4ea192d833951285cccbb2518dfaeacae2de8a6704",
+      "candidateSha256": "e33d0919fa185e2d0be348ed341a9057a73764584b16154fb68ac2ff6fb3b83f",
+      "reviewedSignature": "ba44094c22b2e38158626de4d0944d4095d3dab3d16dc54871ffcde9414f24c6",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "55/54",
+      "dimension": {},
+      "manualArithmetic": "Nuova parametrizzazione finale: A dà 216; B ha A₀=228, n=2 e dà 220. Il rapporto 220/216 è 55/54. La primaria originale conserva A₀=10, n=2 e 1/108: nessun suo risultato è stato ritaggato.",
+      "physicalAssumptions": "Catena α assegnata; compatibilità energetica e dei numeri atomici assunta, non dedotta da A₀>4 n. Conteggi interi positivi e figlio A_f=A₀−4 n>0. Nuovo genitore B 228 nei 11–15 dichiarato e ricalcolato; numero di massa distinto da massa fisica.",
+      "distractors": "54/55 inverte il rapporto; 57/55 confronta i genitori 228/220, due confronta gli eventi e uno presume una compensazione non esatta.",
+      "pedagogicalReview": "Entrambi i nuovi ingressi considerati.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-12",
+      "sourceSha256": "eaf088adc1ffb4fa50a2e4cddb425a81cadd61cc2cecd8e5bda99b7978ddcd5d",
+      "candidateSha256": "67f956d8e80c6346c3c7cfc03736a0a15a1fc6806ffaa07e871530463df8337c",
+      "reviewedSignature": "a2693437a774feb0c90d3e1f94bf5f69e6c695637b23c8207e4c6fc41ff11a94",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "alpha-mass-number-progressive.svg": "b095efae7ac87676c6a5ed1a60430b61c2e4d5702b2950ae4caaefad11d8661e"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "218",
+      "dimension": {},
+      "manualArithmetic": "Dai risultati finali 216 e 220 la media è 218. Gli ingressi medi A₀=224, n=3/2 darebbero formalmente 218 per affinità della legge, ma n=3/2 non descrive una catena. La primaria originale resta immutata sul diverso genitore B con A₀=10.",
+      "physicalAssumptions": "Catena α assegnata; compatibilità energetica e dei numeri atomici assunta, non dedotta da A₀>4 n. Conteggi interi positivi e figlio A_f=A₀−4 n>0. Nuovo genitore B 228 nei 11–15 dichiarato e ricalcolato; numero di massa distinto da massa fisica.",
+      "distractors": "436 somma, due prende la semidifferenza e 216 o 220 ripete un solo figlio. La coincidenza affine agli ingressi medi non rende fisico n=3/2.",
+      "pedagogicalReview": "Media delle uscite e ammissibilità degli ingressi medi distinte.",
+      "assetReview": "XML e PNG indipendente 640×1600 letti per intero. Schema con due protoni e due neutroni, esplicitamente non una scala di dimensioni nucleari. Punti discreti di perdita4n: origine(150,1000),110 coordinate/evento e25/nucleone, punti(1,4),(2,8),(3,12); bordo0 aperto. Barre finali a zero comune,scala3/2 per unità A:324/330/327 per216/220/218. Nessuna base troncata o falsa amplificazione della differenza.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-13",
+      "sourceSha256": "0340704e4f9e4a0d588264838328cc26a899ad2ff52e94cac25edbdbfdf7f5d3",
+      "candidateSha256": "5bbb46c95395b81120f0dff8a15039e559b7c0aa5ad6a7ffcbf209618b556c8a",
+      "reviewedSignature": "43efb3fa9bcf5e53a24629abb07e107d7c480a757eee75ef490f88cc8122b8b5",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Il bersaglio finale è (55/54)·216=220. Con B iniziale a 228 occorre perdere otto nucleoni, cioè n_B=2; il rapporto degli eventi è due. La nuova parametrizzazione è derivata nuovamente dai dati finali, non ricavata dalla chiave.",
+      "physicalAssumptions": "Catena α assegnata; compatibilità energetica e dei numeri atomici assunta, non dedotta da A₀>4 n. Conteggi interi positivi e figlio A_f=A₀−4 n>0. Nuovo genitore B 228 nei 11–15 dichiarato e ricalcolato; numero di massa distinto da massa fisica.",
+      "distractors": "Un evento darebbe figlio 224; un mezzo inverte il rapporto. 55/54 e 54/55 sono confronti fra numeri di massa, non fra eventi.",
+      "pedagogicalReview": "Bersaglio ricostruito prima dell’inversa.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-14",
+      "sourceSha256": "f1d0e6c098029216bfa7a589f7904ee7049054becbf36c8f8ebf17ba4b600897",
+      "candidateSha256": "91a2ba7eba87c1068fb395eb94df5552407729cce63d7c156f3cbc2ff369034a",
+      "reviewedSignature": "5c1e6caf29031072da5a41170d566ecda0173789a3f5bffaf4273158bbd3d8b8",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "228",
+      "dimension": {},
+      "manualArithmetic": "Il riferimento 216→648 dà g=3. La nuova lettura 660 indica A_f=220; con n=2 ricostruisco A₀=228. La primaria conserva il diverso display 6 della fonte originale.",
+      "physicalAssumptions": "Catena α assegnata; compatibilità energetica e dei numeri atomici assunta, non dedotta da A₀>4 n. Conteggi interi positivi e figlio A_f=A₀−4 n>0. Nuovo genitore B 228 nei 11–15 dichiarato e ricalcolato; numero di massa distinto da massa fisica.",
+      "distractors": "668 tratta D come A_f e predice D=1980; 220 copia il figlio e 212 sottrae ancora gli otto emessi.",
+      "pedagogicalReview": "Guadagno rimosso prima del bilancio fisico.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-15",
+      "sourceSha256": "44fcf0244b5e69bef91646b873e540bf226d500d7695b8282eca27916e9c58ee",
+      "candidateSha256": "4f62150df002b45aae2975dd345560acbbf3aa463aa7987298e82903065afcd2",
+      "reviewedSignature": "c178ae17f6f87e93ddf8853343cb92f31574a7c4a88dc3b9a6086aae0824d8ac",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "224",
+      "dimension": {},
+      "manualArithmetic": "I riferimenti finali 216→433 e 220→441 danno g=2 e b=1. In C la lettura 441 indica A_f=220; con n=1 il genitore è 224. La stessa lettura di B non impone lo stesso A₀, perché cambia n.",
+      "physicalAssumptions": "Catena α assegnata; compatibilità energetica e dei numeri atomici assunta, non dedotta da A₀>4 n. Conteggi interi positivi e figlio A_f=A₀−4 n>0. Nuovo genitore B 228 nei 11–15 dichiarato e ricalcolato; numero di massa distinto da massa fisica.",
+      "distractors": "449/2 omette l’offset ed è non intero; 444 omette g dopo b e 220 copia il figlio. Con n diverso la stessa lettura finale non impone lo stesso genitore.",
+      "pedagogicalReview": "Due riferimenti distinti identificano guadagno e offset.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-16",
+      "sourceSha256": "e53a3b4f8221d5efa2f368954b2c62ee7022b2f0ead0968c6ec117c86c34ea19",
+      "candidateSha256": "81a01e6185c21399edfb2787c8f46cdc5b0bc4e8925e5d4e3702028fa4b43a17",
+      "reviewedSignature": "ed36a5ed1acb29f0a4023705c7860ccf24adc821631d8ca2b7bc03840da231c4",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {},
+      "manualArithmetic": "Il vincolo A₀=220 n trasforma il bilancio in A_f=216 n. La misura 216 impone n 1 e A₀ 220, soluzione intera positiva unica, con A₀>4 n.",
+      "physicalAssumptions": "Catena α assegnata; compatibilità energetica e dei numeri atomici assunta, non dedotta da A₀>4 n. Conteggi interi positivi e figlio A_f=A₀−4 n>0. Nuovo genitore B 228 nei 11–15 dichiarato e ricalcolato; numero di massa distinto da massa fisica.",
+      "distractors": "Due eventi darebbero 432; 216 copia A_f e un mezzo viola l’interezza. Il vincolo non rende ridondante la misura assoluta.",
+      "pedagogicalReview": "Vincolo o caso autonomo risolto prima di decidere unicità e dominio.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "54de8d7dd4fb38f884fe39a12d2c00e02221e7566c40eac2cedb8c31dd6903c9",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "6dfc55df252c3e2123f764e39420da423f65789d",
+  "packageSha256": "06485db4f43a9fef1fc9f67c58f9fdb3b36d7410443ee149f0e3bad97eb05e1e",
+  "bindingsSha256": "99221c29d83fabf471be714181212089c6d636464053372360fdd61cdbb48802",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U7-02.json",
+    "title": "alpha-mass-number",
+    "reference": "Catena α assegnata; compatibilità energetica e dei numeri atomici assunta, non dedotta da A₀>4 n. Conteggi interi positivi e figlio A_f=A₀−4 n>0. Nuovo genitore B 228 nei 11–15 dichiarato e ricalcolato; numero di massa distinto da massa fisica."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/u7-nuclear-250-254-independent-models.py",
+    "sha256": "58e478edc733fb198a7711e2a5fdfa8c7f46d3537f331562cf531737f04ed4bc",
+    "commit": "aca104f3"
+  },
+  "postReadNumericGuardHardening": "Only sympify strict=True added after candidate reading to reject strings without evaluation; all constitutive/inverse/calibration function AST bodies remain identical to pre-key snapshot. Snapshot preserved unchanged.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/u7-nuclei-250-254-primary-source-only-20261126.md",
+    "sha256": "51439933fe3974da7552b58de5f9929aecd44ed758e84ab1e1a0c379c47515d2"
+  }
+}

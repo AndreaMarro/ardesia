@@ -1,0 +1,1189 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u7-critical-angle-sine-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Soglia radente e riflessione totale interna",
+      "order": 25801,
+      "title": "Al limite il raggio è radente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "critical-angle-sine",
+      "difficulty": 1,
+      "prompt": "Si considera un’interfaccia piana fra due mezzi trasparenti omogenei nell’ottica geometrica. Il raggio arriva dal mezzo di indice n_i e può uscire verso quello di indice n_e, con n_i>n_e>0. Tutti gli angoli sono misurati dalla normale. Al limite θ_c il raggio trasmesso è radente: θ_t=90°. Si cerca s_c=sinθ_c, non un’approssimazione decimale dell’angolo. Con n_e=1 e n_i=2, quanto vale s_c?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1",
+          "1/4",
+          "−1/2"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Applico Snell proprio al limite: n_i sinθ_c=n_e sin 90°. Poiché il seno di novanta gradi è uno, divido l’indice esterno per quello interno e ottengo un mezzo. In questo caso notevole θ_c=30°, ma il quesito richiede il suo seno."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b6eecbd97d8cd01fceccb1bb9d2350ab39137254ea843a9cb81b196c85199e6e",
+          "text": "Nel primo pannello il passaggio è da n_i=2 a n_e=1: θ_c=30° dalla normale e il raggio al limite è radente, a 90° dalla normale nel mezzo esterno. È una soglia, non il caso di incidenza maggiore."
+        },
+        {
+          "type": "formula",
+          "text": "n_i\\sin\\theta_c=n_e"
+        },
+        {
+          "type": "formula",
+          "text": " s_c=\\frac{n_e}{n_i}"
+        },
+        {
+          "type": "formula",
+          "text": " s_c=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_c=30^\\circ"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il rapporto e non è un seno reale. Uno descriverebbe un limite a 90°, assente con questi indici distinti; un quarto introduce un quadrato e il segno negativo esce dal ramo 0<θ_c<90°."
+        }
+      ],
+      "hints": [
+        "Usa sin 90°=1 solo per il raggio trasmesso al limite.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il rapporto e non è un seno reale. Uno descriverebbe un limite a 90°, assente con questi indici distinti; un quarto introduce un quadrato e il segno negativo esce dal ramo 0<θ_c<90°.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Indici ordinati e angoli dalla normale",
+        "Seni esatti e soglia stretta",
+        "Inverse, tarature e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Soglia radente e riflessione totale interna",
+      "order": 25802,
+      "title": "Un rapporto di indici",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "critical-angle-sine",
+      "difficulty": 1,
+      "prompt": "Quale indicazione di unità è appropriata per s_c=sinθ_c?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1, adimensionale",
+          "gradi",
+          "m",
+          "s",
+          "m⁻¹"
+        ],
+        "value": "1, adimensionale"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il seno è un numero puro e gli indici ottici sono anch’essi rapporti di velocità. Il rapporto n_e/n_i conserva quindi la dimensione uno. I gradi possono esprimere θ_c, che è una grandezza diversa da s_c."
+        },
+        {
+          "type": "formula",
+          "text": "[n_i]=[n_e]"
+        },
+        {
+          "type": "formula",
+          "text": "[n_e]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [s_c]=1"
+        },
+        {
+          "type": "text",
+          "text": "Gradi si riferisce all’angolo stesso; metri, secondi e inversi di metro non sono unità di questo rapporto. Una risposta numerica del seno non va corredata di gradi."
+        }
+      ],
+      "hints": [
+        "Separa la funzione seno dal suo argomento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Gradi si riferisce all’angolo stesso; metri, secondi e inversi di metro non sono unità di questo rapporto. Una risposta numerica del seno non va corredata di gradi.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Indici ordinati e angoli dalla normale",
+        "Seni esatti e soglia stretta",
+        "Inverse, tarature e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Soglia radente e riflessione totale interna",
+      "order": 25803,
+      "title": "Quando si ha riflessione totale?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "critical-angle-sine",
+      "difficulty": 1,
+      "prompt": "Per due mezzi trasparenti ideali separati da un piano, quale condizione produce riflessione totale interna del raggio geometrico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Arrivo dal mezzo di indice maggiore con θ_i maggiore dell’angolo limite",
+          "Arrivo dal mezzo di indice minore con qualsiasi angolo",
+          "Arrivo dal mezzo di indice maggiore con θ_i minore dell’angolo limite",
+          "Incidenza normale, qualunque siano gli indici",
+          "Basta che i due indici siano differenti"
+        ],
+        "value": "Arrivo dal mezzo di indice maggiore con θ_i maggiore dell’angolo limite"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Occorre prima il verso dal maggiore al minore indice. La soglia si trova con sinθ_c=n_e/n_i. Soltanto per θ_i>θ_c Snell richiederebbe un seno trasmesso maggiore di uno, quindi manca un raggio trasmesso propagante nel secondo mezzo; θ_i=θ_c è il limite radente. Può esistere un campo evanescente: assenza di raggio propagante non significa assenza di ogni campo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b6eecbd97d8cd01fceccb1bb9d2350ab39137254ea843a9cb81b196c85199e6e",
+          "text": "Il pannello centrale mostra un’incidenza di 45° dal mezzo di indice 2 verso indice 1. Il limite è 30°; il raggio riflesso forma 45° dalla normale e non esiste un raggio trasmesso propagante. Il campo evanescente non è rappresentato."
+        },
+        {
+          "type": "formula",
+          "text": "n_i>n_e"
+        },
+        {
+          "type": "formula",
+          "text": " \\sin\\theta_c=\\frac{n_e}{n_i}"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_i>\\theta_c"
+        },
+        {
+          "type": "text",
+          "text": "Dal minore al maggiore indice esiste sempre una direzione trasmessa per un’incidenza ammessa. Sotto soglia si rifrange e all’incidenza normale non si supera un angolo limite positivo. Indici diversi da soli non bastano."
+        }
+      ],
+      "hints": [
+        "Servono sia il verso del passaggio sia la disuguaglianza sull’incidenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dal minore al maggiore indice esiste sempre una direzione trasmessa per un’incidenza ammessa. Sotto soglia si rifrange e all’incidenza normale non si supera un angolo limite positivo. Indici diversi da soli non bastano.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Indici ordinati e angoli dalla normale",
+        "Seni esatti e soglia stretta",
+        "Inverse, tarature e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Soglia radente e riflessione totale interna",
+      "order": 25804,
+      "title": "Aumenta l’indice esterno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "critical-angle-sine",
+      "difficulty": 1,
+      "prompt": "Si considera un’interfaccia piana fra due mezzi trasparenti omogenei nell’ottica geometrica. Il raggio arriva dal mezzo di indice n_i e può uscire verso quello di indice n_e, con n_i>n_e>0. Tutti gli angoli sono misurati dalla normale. Al limite θ_c il raggio trasmesso è radente: θ_t=90°. Si cerca s_c=sinθ_c, non un’approssimazione decimale dell’angolo. A ha n_e=1,n_i=2; B ha n_e=3/2 e lo stesso n_i. Come cambia s_c?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1/2 a 3/4",
+          "Da 1/2 a 1/3",
+          "Da 1/2 a 3/2",
+          "Resta 1/2",
+          "Da 1/2 a 9/16"
+        ],
+        "value": "Da 1/2 a 3/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Divido entrambi gli indici esterni per due. Il seno limite passa da un mezzo a tre quarti, ancora minore di uno perché l’indice esterno resta inferiore a quello interno. L’angolo limite cresce, ma il suo rapporto non coincide in generale col rapporto dei seni."
+        },
+        {
+          "type": "formula",
+          "text": "s_{c,A}=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " s_{c,B}=\\frac{3/2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " s_{c,B}=\\frac34"
+        },
+        {
+          "type": "text",
+          "text": "Un terzo darebbe un andamento inverso rispetto a n_e. Tre mezzi non è un seno reale, il valore invariato trascura il secondo mezzo e 9/16 sostituisce un quadrato alla legge."
+        }
+      ],
+      "hints": [
+        "Controlla n_e<n_i anche nella nuova prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un terzo darebbe un andamento inverso rispetto a n_e. Tre mezzi non è un seno reale, il valore invariato trascura il secondo mezzo e 9/16 sostituisce un quadrato alla legge.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Indici ordinati e angoli dalla normale",
+        "Seni esatti e soglia stretta",
+        "Inverse, tarature e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Soglia radente e riflessione totale interna",
+      "order": 25805,
+      "title": "Ricostruire l’indice esterno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "critical-angle-sine",
+      "difficulty": 2,
+      "prompt": "Si considera un’interfaccia piana fra due mezzi trasparenti omogenei nell’ottica geometrica. Il raggio arriva dal mezzo di indice n_i e può uscire verso quello di indice n_e, con n_i>n_e>0. Tutti gli angoli sono misurati dalla normale. Al limite θ_c il raggio trasmesso è radente: θ_t=90°. Si cerca s_c=sinθ_c, non un’approssimazione decimale dell’angolo. Si misurano s_c=1/2 e n_i=2. Quanto vale n_e?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Riordino la legge come n_e=n_i s_c. Il prodotto di due per un mezzo vale uno, positivo e inferiore a due. Questa verifica di ordine distingue il mezzo esterno meno rifrangente da quello di partenza."
+        },
+        {
+          "type": "formula",
+          "text": "n_e=n_i s_c"
+        },
+        {
+          "type": "formula",
+          "text": " n_e=2\\cdot\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " n_e=1"
+        },
+        {
+          "type": "text",
+          "text": "Quattro dividerebbe n_i per s_c e invertirebbe l’ordine dei mezzi. Due eliminerebbe il contrasto d’indice; un mezzo ricopia il seno anziché applicare il prodotto."
+        }
+      ],
+      "hints": [
+        "L’indice esterno ricostruito deve restare inferiore a quello interno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro dividerebbe n_i per s_c e invertirebbe l’ordine dei mezzi. Due eliminerebbe il contrasto d’indice; un mezzo ricopia il seno anziché applicare il prodotto.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Indici ordinati e angoli dalla normale",
+        "Seni esatti e soglia stretta",
+        "Inverse, tarature e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Soglia radente e riflessione totale interna",
+      "order": 25806,
+      "title": "L’indice del mezzo di partenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "critical-angle-sine",
+      "difficulty": 2,
+      "prompt": "Si considera un’interfaccia piana fra due mezzi trasparenti omogenei nell’ottica geometrica. Il raggio arriva dal mezzo di indice n_i e può uscire verso quello di indice n_e, con n_i>n_e>0. Tutti gli angoli sono misurati dalla normale. Al limite θ_c il raggio trasmesso è radente: θ_t=90°. Si cerca s_c=sinθ_c, non un’approssimazione decimale dell’angolo. Si conoscono s_c=1/2 e n_e=1. Quanto vale n_i?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplicando s_c=n_e/n_i per n_i e dividendo per s_c positivo ottengo n_i=n_e/s_c. Un intero diviso per un mezzo vale due. L’indice ottenuto è maggiore di quello esterno e quindi mantiene la possibilità di un limite interno."
+        },
+        {
+          "type": "formula",
+          "text": "n_i=\\frac{n_e}{s_c}"
+        },
+        {
+          "type": "formula",
+          "text": " n_i=\\frac1{1/2}"
+        },
+        {
+          "type": "formula",
+          "text": " n_i=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo moltiplica invece di dividere e farebbe partire il raggio dal mezzo meno rifrangente. Uno non consentirebbe un limite strettamente minore di 90°; quattro predirebbe seno limite 1/4."
+        }
+      ],
+      "hints": [
+        "Dividere per un seno minore di uno aumenta l’indice esterno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo moltiplica invece di dividere e farebbe partire il raggio dal mezzo meno rifrangente. Uno non consentirebbe un limite strettamente minore di 90°; quattro predirebbe seno limite 1/4.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Indici ordinati e angoli dalla normale",
+        "Seni esatti e soglia stretta",
+        "Inverse, tarature e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Soglia radente e riflessione totale interna",
+      "order": 25807,
+      "title": "Cambiare il mezzo interno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "critical-angle-sine",
+      "difficulty": 2,
+      "prompt": "Si considera un’interfaccia piana fra due mezzi trasparenti omogenei nell’ottica geometrica. Il raggio arriva dal mezzo di indice n_i e può uscire verso quello di indice n_e, con n_i>n_e>0. Tutti gli angoli sono misurati dalla normale. Al limite θ_c il raggio trasmesso è radente: θ_t=90°. Si cerca s_c=sinθ_c, non un’approssimazione decimale dell’angolo. A usa n_e=1,n_i=2; B mantiene n_e e usa n_i=3. Quanto vale s_c,B/s_c,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "1/3",
+          "1/2",
+          "1"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I seni limite sono un mezzo e un terzo. Il loro rapporto è(1/3)/(1/2)=due terzi. A indice esterno fissato, un indice interno maggiore riduce il seno e l’angolo della soglia."
+        },
+        {
+          "type": "formula",
+          "text": "s_{c,A}=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " s_{c,B}=\\frac13"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "3/2 inverte il confronto. Un terzo e un mezzo sono le singole uscite, uno ignora il nuovo mezzo interno."
+        }
+      ],
+      "hints": [
+        "Confronta le soglie attraverso la legge, senza linearizzare gli angoli.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/2 inverte il confronto. Un terzo e un mezzo sono le singole uscite, uno ignora il nuovo mezzo interno.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Indici ordinati e angoli dalla normale",
+        "Seni esatti e soglia stretta",
+        "Inverse, tarature e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Soglia radente e riflessione totale interna",
+      "order": 25808,
+      "title": "Scarto con segno al limite",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "critical-angle-sine",
+      "difficulty": 2,
+      "prompt": "Si considera un’interfaccia piana fra due mezzi trasparenti omogenei nell’ottica geometrica. Il raggio arriva dal mezzo di indice n_i e può uscire verso quello di indice n_e, con n_i>n_e>0. Tutti gli angoli sono misurati dalla normale. Al limite θ_c il raggio trasmesso è radente: θ_t=90°. Si cerca s_c=sinθ_c, non un’approssimazione decimale dell’angolo. Per n_e=1,n_i=2 viene proposto s_c=1. Quanto vale proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "−1/2",
+          "1",
+          "2",
+          "0"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto corretto vale un mezzo. La proposta uno lo supera di un mezzo: lo scarto richiesto è positivo e adimensionale. Non è la differenza fra 90° e 30°, perché il compito riguarda i seni."
+        },
+        {
+          "type": "formula",
+          "text": "s_c=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta s=1-\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta s=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "−1/2 inverte la sottrazione, uno copia la proposta e due è il rapporto. Zero accetterebbe un limite incompatibile con indici distinti uno e due."
+        }
+      ],
+      "hints": [
+        "Mantieni la grandezza richiesta fino al termine della sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−1/2 inverte la sottrazione, uno copia la proposta e due è il rapporto. Zero accetterebbe un limite incompatibile con indici distinti uno e due.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Indici ordinati e angoli dalla normale",
+        "Seni esatti e soglia stretta",
+        "Inverse, tarature e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Soglia radente e riflessione totale interna",
+      "order": 25809,
+      "title": "L’inversa del rapporto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "critical-angle-sine",
+      "difficulty": 2,
+      "prompt": "Si considera un’interfaccia piana fra due mezzi trasparenti omogenei nell’ottica geometrica. Il raggio arriva dal mezzo di indice n_i e può uscire verso quello di indice n_e, con n_i>n_e>0. Tutti gli angoli sono misurati dalla normale. Al limite θ_c il raggio trasmesso è radente: θ_t=90°. Si cerca s_c=sinθ_c, non un’approssimazione decimale dell’angolo. Con s_c e n_i noti, quale formula isola n_e?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "n_e = n_i s_c",
+          "n_e = n_i / s_c",
+          "n_e = s_c / n_i",
+          "n_e = n_i − s_c",
+          "n_e = n_i s_c²"
+        ],
+        "value": "n_e = n_i s_c"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplico il rapporto s_c=n_e/n_i per il denominatore n_i. L’inversa n_e=n_i s_c conserva l’ordine n_e<n_i se 0<s_c<1. Non si deve confondere il seno incidente limite con il seno trasmesso, che al limite vale uno."
+        },
+        {
+          "type": "formula",
+          "text": "s_c=\\frac{n_e}{n_i}"
+        },
+        {
+          "type": "formula",
+          "text": " n_e=n_i s_c"
+        },
+        {
+          "type": "formula",
+          "text": " 0<s_c<1"
+        },
+        {
+          "type": "text",
+          "text": "Dividere per s_c produrrebbe n_e>n_i; il secondo quoziente, la differenza e il quadrato non ricostruiscono Snell. Tutti gli indici sono puri: qui l’analisi delle unità da sola non seleziona la legge."
+        }
+      ],
+      "hints": [
+        "La verifica per sostituzione distingue formule tutte adimensionali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dividere per s_c produrrebbe n_e>n_i; il secondo quoziente, la differenza e il quadrato non ricostruiscono Snell. Tutti gli indici sono puri: qui l’analisi delle unità da sola non seleziona la legge.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Indici ordinati e angoli dalla normale",
+        "Seni esatti e soglia stretta",
+        "Inverse, tarature e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Soglia radente e riflessione totale interna",
+      "order": 25810,
+      "title": "Due mezzi modificati insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "critical-angle-sine",
+      "difficulty": 2,
+      "prompt": "Si considera un’interfaccia piana fra due mezzi trasparenti omogenei nell’ottica geometrica. Il raggio arriva dal mezzo di indice n_i e può uscire verso quello di indice n_e, con n_i>n_e>0. Tutti gli angoli sono misurati dalla normale. Al limite θ_c il raggio trasmesso è radente: θ_t=90°. Si cerca s_c=sinθ_c, non un’approssimazione decimale dell’angolo. Fra due prove n_e,B=κ₁n_e,A e n_i,B=κ₂n_i,A. In entrambe n_i>n_e>0. Qual è s_c,B/s_c,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁² / κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituisco i fattori nel rapporto degli indici e cancello quello iniziale. Il risultato è κ₁/κ₂, purché il nuovo ordineκ₂n_i>κ₁n_e rimanga valido. Un fattore positivo non autorizza a superare il confine fra i due ordini di rifrazione."
+        },
+        {
+          "type": "formula",
+          "text": "s_{c,B}=\\frac{\\kappa_1n_e}{\\kappa_2n_i}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\kappa_2n_i>\\kappa_1n_e"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto tratta l’indice interno come diretto; il rapporto inverso scambia i ruoli. Il quadrato introduce una legge diversa e la somma non restituisce uno a fattori entrambi unitari."
+        }
+      ],
+      "hints": [
+        "Verifica il verso del passaggio dopo aver variato gli indici.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto tratta l’indice interno come diretto; il rapporto inverso scambia i ruoli. Il quadrato introduce una legge diversa e la somma non restituisce uno a fattori entrambi unitari.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Indici ordinati e angoli dalla normale",
+        "Seni esatti e soglia stretta",
+        "Inverse, tarature e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Soglia radente e riflessione totale interna",
+      "order": 25811,
+      "title": "Due coppie di indici",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "critical-angle-sine",
+      "difficulty": 2,
+      "prompt": "Si considera un’interfaccia piana fra due mezzi trasparenti omogenei nell’ottica geometrica. Il raggio arriva dal mezzo di indice n_i e può uscire verso quello di indice n_e, con n_i>n_e>0. Tutti gli angoli sono misurati dalla normale. Al limite θ_c il raggio trasmesso è radente: θ_t=90°. Si cerca s_c=sinθ_c, non un’approssimazione decimale dell’angolo. A ha n_e=1,n_i=2; B ha n_e=2,n_i=3. Quanto vale s_c,B/s_c,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "2",
+          "2/3",
+          "1/2"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I rapporti degli indici sono un mezzo e due terzi. Divido due terzi per un mezzo e ottengo quattro terzi. Gli indici di B mantengono l’ordine tre maggiore di due, quindi il seno limite resta minore di uno anche se supera quello di A."
+        },
+        {
+          "type": "formula",
+          "text": "s_{c,A}=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " s_{c,B}=\\frac23"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{2/3}{1/2}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "Tre quarti inverte B/A; due segue soltanto n_e. Due terzi e un mezzo sono le uscite singole, non il loro confronto."
+        }
+      ],
+      "hints": [
+        "Controlla separatamente l’ammissibilità di ogni coppia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quarti inverte B/A; due segue soltanto n_e. Due terzi e un mezzo sono le uscite singole, non il loro confronto.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Indici ordinati e angoli dalla normale",
+        "Seni esatti e soglia stretta",
+        "Inverse, tarature e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Soglia radente e riflessione totale interna",
+      "order": 25812,
+      "title": "La media delle due soglie in seno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "critical-angle-sine",
+      "difficulty": 2,
+      "prompt": "Si considera un’interfaccia piana fra due mezzi trasparenti omogenei nell’ottica geometrica. Il raggio arriva dal mezzo di indice n_i e può uscire verso quello di indice n_e, con n_i>n_e>0. Tutti gli angoli sono misurati dalla normale. Al limite θ_c il raggio trasmesso è radente: θ_t=90°. Si cerca s_c=sinθ_c, non un’approssimazione decimale dell’angolo. Si mediano con uguali pesi le letture A:n_e=1,n_i=2 e B:n_e=2,n_i=3. Quanto vale la media di s_c?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7/12",
+          "3/5",
+          "7/6",
+          "1/2",
+          "2/3"
+        ],
+        "value": "7/12"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un mezzo più due terzi vale sette sesti; dividendo per due ottengo sette dodicesimi. Gli indici medi 3/2 e 5/2 darebbero invece 3/5, maggiore di 7/12 di 1/60. Non si chiede una media degli angoli né l’angolo il cui seno è questa media."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b6eecbd97d8cd01fceccb1bb9d2350ab39137254ea843a9cb81b196c85199e6e",
+          "text": "Le barre finali dei seni limite hanno origine e scala comuni:1/2,2/3 e media 7/12. Sono numeri puri, non angoli disegnati con quella lunghezza."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline s_c=\\frac{1/2+2/3}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline s_c=\\frac7{12}"
+        },
+        {
+          "type": "formula",
+          "text": " s_{c,\\rm dati\\ medi}=\\frac{3/2}{5/2}"
+        },
+        {
+          "type": "formula",
+          "text": " s_{c,\\rm dati\\ medi}=\\frac35"
+        },
+        {
+          "type": "text",
+          "text": "Tre quinti applica la legge agli ingressi medi. Sette sesti omette la divisione per due ed è anche maggiore di uno; le altre risposte ripetono una sola lettura."
+        }
+      ],
+      "hints": [
+        "La media delle uscite è un’operazione definita prima di ogni inversione trigonometrica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quinti applica la legge agli ingressi medi. Sette sesti omette la divisione per due ed è anche maggiore di uno; le altre risposte ripetono una sola lettura.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Indici ordinati e angoli dalla normale",
+        "Seni esatti e soglia stretta",
+        "Inverse, tarature e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Soglia radente e riflessione totale interna",
+      "order": 25813,
+      "title": "Il nuovo indice interno richiesto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "critical-angle-sine",
+      "difficulty": 3,
+      "prompt": "Si considera un’interfaccia piana fra due mezzi trasparenti omogenei nell’ottica geometrica. Il raggio arriva dal mezzo di indice n_i e può uscire verso quello di indice n_e, con n_i>n_e>0. Tutti gli angoli sono misurati dalla normale. Al limite θ_c il raggio trasmesso è radente: θ_t=90°. Si cerca s_c=sinθ_c, non un’approssimazione decimale dell’angolo. A usa n_e=1,n_i=2. In B n_e=2 e si vuole s_c,B=(4/3)s_c,A. Quanto vale n_i,B/n_i,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "4/3",
+          "2",
+          "1"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La soglia B deve avere seno due terzi. Dall’inversa n_i,B=n_e,B/s_c,B ottengo 2/(2/3)=3. Divido per l’indice interno iniziale due e ricavo 3/2; il nuovo ordine 3>2 è rispettato."
+        },
+        {
+          "type": "formula",
+          "text": "s_{c,B}=\\frac23"
+        },
+        {
+          "type": "formula",
+          "text": " n_{i,B}=\\frac2{2/3}"
+        },
+        {
+          "type": "formula",
+          "text": " n_{i,B}=3"
+        },
+        {
+          "type": "formula",
+          "text": " n_{i,B}/n_{i,A}=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Due terzi inverte il rapporto.4/3 copia il fattore delle uscite, due il fattore del solo indice esterno; uno darebbe indici B uguali e uscirebbe dal dominio di limite interno."
+        }
+      ],
+      "hints": [
+        "La soluzione deve rispettare anche n_i,B>n_e,B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due terzi inverte il rapporto.4/3 copia il fattore delle uscite, due il fattore del solo indice esterno; uno darebbe indici B uguali e uscirebbe dal dominio di limite interno.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Indici ordinati e angoli dalla normale",
+        "Seni esatti e soglia stretta",
+        "Inverse, tarature e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Soglia radente e riflessione totale interna",
+      "order": 25814,
+      "title": "Taratura senza offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "critical-angle-sine",
+      "difficulty": 3,
+      "prompt": "Si considera un’interfaccia piana fra due mezzi trasparenti omogenei nell’ottica geometrica. Il raggio arriva dal mezzo di indice n_i e può uscire verso quello di indice n_e, con n_i>n_e>0. Tutti gli angoli sono misurati dalla normale. Al limite θ_c il raggio trasmesso è radente: θ_t=90°. Si cerca s_c=sinθ_c, non un’approssimazione decimale dell’angolo. D=gs_c legge 3/2 per n_e=1,n_i=2. In una nuova prova legge 2 con n_i=3. Quanto vale n_e?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo seno vale un mezzo e quindi g=3. Il display due indica s_c=2/3; moltiplicando per n_i=3 ottengo n_e=2. Il mezzo esterno resta meno rifrangente di quello interno."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{3/2}{1/2}"
+        },
+        {
+          "type": "formula",
+          "text": " g=3"
+        },
+        {
+          "type": "formula",
+          "text": " s_c=\\frac23"
+        },
+        {
+          "type": "formula",
+          "text": " n_e=3\\cdot\\frac23"
+        },
+        {
+          "type": "formula",
+          "text": " n_e=2"
+        },
+        {
+          "type": "text",
+          "text": "Sei userebbe il display come seno e violerebbe l’ordine. Due terzi sarebbe il seno, tre porterebbe alla parità degli indici e uno non riprodurrebbe il display nuovo."
+        }
+      ],
+      "hints": [
+        "Rimuovi la taratura prima di applicare Snell al limite.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei userebbe il display come seno e violerebbe l’ordine. Due terzi sarebbe il seno, tre porterebbe alla parità degli indici e uno non riprodurrebbe il display nuovo.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Indici ordinati e angoli dalla normale",
+        "Seni esatti e soglia stretta",
+        "Inverse, tarature e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Soglia radente e riflessione totale interna",
+      "order": 25815,
+      "title": "Una taratura affine",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "critical-angle-sine",
+      "difficulty": 3,
+      "prompt": "Si considera un’interfaccia piana fra due mezzi trasparenti omogenei nell’ottica geometrica. Il raggio arriva dal mezzo di indice n_i e può uscire verso quello di indice n_e, con n_i>n_e>0. Tutti gli angoli sono misurati dalla normale. Al limite θ_c il raggio trasmesso è radente: θ_t=90°. Si cerca s_c=sinθ_c, non un’approssimazione decimale dell’angolo. D=gs_c+b. A:n_e=1,n_i=2,D=2. B:n_e=2,n_i=3,D=7/3. C:n_i=2,D=5/2. Quanto vale n_e,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "5/2",
+          "3/4",
+          "1",
+          "2"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I seni di riferimento sono 1/2 e 2/3. La differenza del display 1/3 divisa per quella fisica 1/6 dàg=2; segueb=1. La lettura 5/2 dà s_c=(5/2−1)/2=3/4; moltiplico per l’indice interno due e ottengo n_e=3/2."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{7/3-2}{2/3-1/2}"
+        },
+        {
+          "type": "formula",
+          "text": " g=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " s_{c,C}=\\frac{5/2-1}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " s_{c,C}=\\frac34"
+        },
+        {
+          "type": "formula",
+          "text": " n_{e,C}=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "5/2 omette l’offset e produrrebbe un indice esterno maggiore di quello interno.3/4 si ferma al seno; uno ripete il primo riferimento e due eliminerebbe il contrasto d’indice."
+        }
+      ],
+      "hints": [
+        "Distingui la differenza di display dalla differenza dei seni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "5/2 omette l’offset e produrrebbe un indice esterno maggiore di quello interno.3/4 si ferma al seno; uno ripete il primo riferimento e due eliminerebbe il contrasto d’indice.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Indici ordinati e angoli dalla normale",
+        "Seni esatti e soglia stretta",
+        "Inverse, tarature e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Soglia radente e riflessione totale interna",
+      "order": 25816,
+      "title": "Un rapporto non determina due indici",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "critical-angle-sine",
+      "difficulty": 3,
+      "prompt": "Si considera un’interfaccia piana fra due mezzi trasparenti omogenei nell’ottica geometrica. Il raggio arriva dal mezzo di indice n_i e può uscire verso quello di indice n_e, con n_i>n_e>0. Tutti gli angoli sono misurati dalla normale. Al limite θ_c il raggio trasmesso è radente: θ_t=90°. Si cerca s_c=sinθ_c, non un’approssimazione decimale dell’angolo. Il vincolo è n_e=n_i/2 e la misura s_c=1/2. Quante coppie(n_e,n_i) sono compatibili?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie positive con n_e = n_i/2",
+          "Una sola coppia",
+          "Nessuna coppia",
+          "Due coppie",
+          "Solo la coppia n_e = 1, n_i = 2"
+        ],
+        "value": "Infinite coppie positive con n_e = n_i/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo il vincolo ottengo sempre s_c=(n_i/2)/n_i=1/2. Non esiste un dato che fissi la scala comune: per esempio(1,2) e(3/2,3) sono entrambe ammesse, come ogni loro comune riscalamento positivo nel dominio assegnato. La conclusione riguarda indici ideali del modello, non la disponibilità illimitata di materiali reali."
+        },
+        {
+          "type": "formula",
+          "text": "s_c=\\frac{n_i/2}{n_i}"
+        },
+        {
+          "type": "formula",
+          "text": " s_c=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " n_i>0"
+        },
+        {
+          "type": "formula",
+          "text": " n_e=n_i/2"
+        },
+        {
+          "type": "text",
+          "text": "Una o due coppie non esauriscono la libertà continua. La risposta «Nessuna coppia» è smentita dagli esempi; fissare l’aria a indice uno imporrebbe un dato aggiuntivo che qui non è assegnato."
+        }
+      ],
+      "hints": [
+        "La misura di un rapporto lascia libera una scala comune.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una o due coppie non esauriscono la libertà continua. La risposta «Nessuna coppia» è smentita dagli esempi; fissare l’aria a indice uno imporrebbe un dato aggiuntivo che qui non è assegnato.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Indici ordinati e angoli dalla normale",
+        "Seni esatti e soglia stretta",
+        "Inverse, tarature e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "b6eecbd97d8cd01fceccb1bb9d2350ab39137254ea843a9cb81b196c85199e6e",
+      "name": "critical-angle-sine-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTYxMCIgdmlld0JveD0iMCAwIDY0MCAxNjEwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiI+PHRpdGxlIGlkPSJ0aXRsZSI+U29nbGlhIHJhZGVudGUgZSByaWZsZXNzaW9uZSB0b3RhbGU8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5BbCBsaW1pdGUgY29uIGluZGljZSBpbnRlcm5vIGR1ZSBlZCBlc3Rlcm5vIHVubyBpbCByYWdnaW8gdHJhc21lc3NvIMOoIHJhZGVudGUuIFNvcHJhIGlsIGxpbWl0ZSBzaSBkaXNlZ25hIHNvbHRhbnRvIGlsIHJpZmxlc3NvIHByb3BhZ2FudGUuIFNlZ3Vvbm8gYmFycmUgZGVpIHNlbmkgbGltaXRlLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhcnIiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjUiIG1hcmtlckhlaWdodD0iNSIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iIzMwNmY4YyIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE2MTAiIGZpbGw9IndoaXRlIi8+PHRleHQgeD0iMzUiIHk9IjQ4IiBmb250LXNpemU9IjI0IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPklsIGxpbWl0ZSBub24gw6ggYW5jb3JhIHVuIGFuZ29sbyBzdXBlcmlvcmU8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEwOCIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xIMK3IG5faSA9IDIg4oaSIG5fZSA9IDE7IM64X2MgPSAzMMKwPC90ZXh0PjxyZWN0IHg9IjYwIiB5PSIzMzAiIHdpZHRoPSI1MjAiIGhlaWdodD0iMjEwIiBmaWxsPSIjZTRlZWYzIi8+PGxpbmUgeDE9IjYwIiB5MT0iMzMwIiB4Mj0iNTgwIiB5Mj0iMzMwIiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIzMjAiIHkxPSIxNjUiIHgyPSIzMjAiIHkyPSI1MjUiIHN0cm9rZT0iIzcyODE4YyIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI3IDYiLz48cGF0aCBkPSJNMjQwIDQ2OC41NjQwNjQ2MDU1MTAxN0wzMjAgMzMwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnIpIi8+PHBhdGggZD0iTTMyMCAzMzBMNTUwIDMzMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyKSIvPjx0ZXh0IHg9Ijc1IiB5PSIyNDUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+bl9lID0gMTwvdGV4dD48dGV4dCB4PSI3NSIgeT0iNTEwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPm5faSA9IDI8L3RleHQ+PHRleHQgeD0iMzU1IiB5PSIyODUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+zrhfdCA9IDkwwrA8L3RleHQ+PHRleHQgeD0iMjgwIiB5PSI0MzAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MzDCsDwvdGV4dD48dGV4dCB4PSIzNDAiIHk9IjUxNSIgZm9udC1zaXplPSIxNyIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5ub3JtYWxlPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI1ODUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+SWwgcmFnZ2lvIHRyYXNtZXNzbyDDqCByYWRlbnRlIGFsbGEgc3VwZXJmaWNpZS48L3RleHQ+PHRleHQgeD0iMzUiIHk9IjY2NSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4yIMK3IFN0ZXNzaSBtZXp6aTsgzrhfaSA9IDQ1wrAgJmd0OyDOuF9jPC90ZXh0PjxyZWN0IHg9IjYwIiB5PSI4MzAiIHdpZHRoPSI1MjAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZTRlZWYzIi8+PGxpbmUgeDE9IjYwIiB5MT0iODMwIiB4Mj0iNTgwIiB5Mj0iODMwIiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIzMjAiIHkxPSI3MTAiIHgyPSIzMjAiIHkyPSIxMDIwIiBzdHJva2U9IiM3MjgxOGMiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNyA2Ii8+PHBhdGggZD0iTTIwMCA5NTBMMzIwIDgzMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyKSIvPjxwYXRoIGQ9Ik0zMjAgODMwTDQ0MCA5NTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2FycikiLz48dGV4dCB4PSI3NSIgeT0iNzU1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPm5fZSA9IDE8L3RleHQ+PHRleHQgeD0iNzUiIHk9IjEwMjAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+bl9pID0gMjwvdGV4dD48dGV4dCB4PSIyNTkiIHk9IjkxOCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij40NcKwPC90ZXh0Pjx0ZXh0IHg9IjM0MiIgeT0iOTE4IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjQ1wrA8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEwODAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+U29sbyByYWdnaW8gcmlmbGVzc28gcHJvcGFnYW50ZTsgY2FtcG8gZXZhbmVzY2VudGU8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjExMTIiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+bm9uIHJhcHByZXNlbnRhdG8gbmVsIGRpc2Vnbm8gZ2VvbWV0cmljby48L3RleHQ+PHRleHQgeD0iMzUiIHk9IjExOTAiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MyDCtyBDb25mcm9udG8gZGVpIHNlbmkgbGltaXRlPC90ZXh0Pjx0ZXh0IHg9IjEzMCIgeT0iMTI4MiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+QTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjEyNjAiIHdpZHRoPSIyNDAuMCIgaGVpZ2h0PSIzMCIgZmlsbD0iIzNkNzc5MSIvPjx0ZXh0IHg9IjQwMC4wIiB5PSIxMjg0IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjEvMjwvdGV4dD48dGV4dCB4PSIxMzAiIHk9IjEzODIiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPkI8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIxMzYwIiB3aWR0aD0iMzIwLjAiIGhlaWdodD0iMzAiIGZpbGw9IiM5ODZjMzUiLz48dGV4dCB4PSI0ODAuMCIgeT0iMTM4NCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4yLzM8L3RleHQ+PHRleHQgeD0iMTMwIiB5PSIxNDgyIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj5tZWRpYTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjE0NjAiIHdpZHRoPSIyODAuMCIgaGVpZ2h0PSIzMCIgZmlsbD0iIzYzN2U1NSIvPjx0ZXh0IHg9IjQ0MC4wIiB5PSIxNDg0IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjcvMTI8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjE1NjUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+QTogKG5fZSxuX2kpID0gKDEsMikgwrcgQjogKDIsMyk8L3RleHQ+PC9zdmc+Cg=="
+    }
+  ]
+}

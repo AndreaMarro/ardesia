@@ -1,0 +1,525 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C5.json",
+    "sourceSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+    "primarySkill": "C5-L08",
+    "actualLessonPrerequisites": {
+      "C5-L08": []
+    },
+    "title": "Una popolazione di nuclei che cambia nel tempo"
+  },
+  "records": [
+    {
+      "id": "AR-u7-radioisotope-mixture-01",
+      "sourceSha256": "6f5122ae64e304dfc99341bc19721cda84457cc7c521b4f6b82a1c837dc0ff30",
+      "candidateSha256": "70b6669e5fd364642a5bc1193eea9c47e51ea2999d5ed3a2c00f21401bbdfe59",
+      "reviewedSignature": "ae884c4712f00d96c778e57d86aa09d03b09892b95b8e41ab2d746e0e459ba84",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "radioisotope-mixture-progressive.svg": "2bc82387241bde4df9c0857e1e16ec01ecb0b3cade4ed8537ce3f3bb6cab214a"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "In 1 h il primo compie una emivita e il secondo due. Le attività residue sono 8/2=4 e 8/4=2 Bq, che sommo perché indipendenti e senza contributi dei figli: 6 Bq.",
+      "physicalAssumptions": "Due genitori indipendenti con emivite 1 h e 30 min; uscite dopo 1 h. Nessun contributo dei figli o nuova produzione. Attività iniziali finite positive e uscita continua, inverse con residuo positivo, display e preparazioni distinti; nessuna emivita media inventata.",
+      "distractors": "Otto dimezza entrambi una volta, 16 omette il decadimento e quattro o due conserva una sola specie. Le emivite non si sommano.",
+      "pedagogicalReview": "Legge motivata e valore medio distinto da singolo esito.",
+      "assetReview": "XML e PNG indipendente 640×1600 letti per intero. Primo pannello scala20 coordinate/Bq:8+8 iniziali,4+2 finali. Grafico a A₂8Bq: x150+20A₁,y1000−30A_tot, retta A_tot=A₁/2+2, punti(8,6),(16,10), intercetta2 aperta al bordo A₁0. Barre finali scala25 per Bq:150/300/225 per6/12/9. Pesi e legende corretti.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-02",
+      "sourceSha256": "fdf3c03d58db78d874f8d922902bceea3a3891c8c0d1ee5e148e4234dd867ac0",
+      "candidateSha256": "1fff613a82646c476ae3d26e863ccac25142b51eafbc2f46c1b09cdda23932b2",
+      "reviewedSignature": "c8bbc7550ae63259709778c55ae3e76be6537a84deb49138b27e7d4b5a765a26",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Bq",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "La somma di attività ha unità Bq=s⁻¹; non si sommano emivite né si interpreta la somma come numero di nuclei.",
+      "physicalAssumptions": "Due genitori indipendenti con emivite 1 h e 30 min; uscite dopo 1 h. Nessun contributo dei figli o nuova produzione. Attività iniziali finite positive e uscita continua, inverse con residuo positivo, display e preparazioni distinti; nessuna emivita media inventata.",
+      "distractors": "J, s, C e m misurano altre grandezze. La somma di attività conserva Bq e non rivela da sola energia o popolazione totale.",
+      "pedagogicalReview": "Unità ricostruita e conteggio distinto dal tasso.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-03",
+      "sourceSha256": "5d4157cf99b862f3580cc24fed2106c2b7f3e8c7ca37227ec14f24c8ce559a09",
+      "candidateSha256": "1f2c48e64c4b52220bb0daa3d4a28cce60f60a02f514dcc94bc0397d5284d65e",
+      "reviewedSignature": "bf37c468a0dfb3cf29f796d589c4651296be6b0be4d614a992489946930c2e14",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "A_tot = A₁/2 + A₂/4",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "La legge a 1 h èA_tot=A₁/2+A₂/4. I fattori diversi appartengono alle due emivite; un’unica emivita efficace costante non descrive in generale tutta la miscela.",
+      "physicalAssumptions": "Due genitori indipendenti con emivite 1 h e 30 min; uscite dopo 1 h. Nessun contributo dei figli o nuova produzione. Attività iniziali finite positive e uscita continua, inverse con residuo positivo, display e preparazioni distinti; nessuna emivita media inventata.",
+      "distractors": "Un denominatore comune imporrebbe uguali emivite. Il prodotto ha dimensione Bq²; scambiare due e quattro assegna le frazioni alla specie sbagliata.",
+      "pedagogicalReview": "Caso autonomo o legge riconosciuta senza risposta già anticipata.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-04",
+      "sourceSha256": "5c3410abd4d008c2f74be1969cdddb2a06bac8db311c70ff8140cb0e46cab36a",
+      "candidateSha256": "2d0cfd56685585e62cb788cc711e66a4d116a691a098a1d8f5c48dc636337d11",
+      "reviewedSignature": "bbb1f1b6beee35444ced093e82f7c89e28e893459cbf0f90262eab3c50c4571a",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 6 Bq a 10 Bq",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "A₁ passa da 8 a 16 Bq iniziali: la sua parte finale passa da 4 a 8, mentre la seconda resta 2. A_tot passa da 6 a 10 Bq, aumenta di 4 Bq e non raddoppia.",
+      "physicalAssumptions": "Due genitori indipendenti con emivite 1 h e 30 min; uscite dopo 1 h. Nessun contributo dei figli o nuova produzione. Attività iniziali finite positive e uscita continua, inverse con residuo positivo, display e preparazioni distinti; nessuna emivita media inventata.",
+      "distractors": "12 raddoppia anche il secondo contributo, tre dimezza il totale, sei ignora il nuovo ingresso e venti raddoppia ancora l’uscita nuova.",
+      "pedagogicalReview": "Confronto controllato a un parametro fissato.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-05",
+      "sourceSha256": "4d8b3fb3233b072f31b6309726d8f035dd50cfa97aed2be71dc999cb90a37c85",
+      "candidateSha256": "4328695a42e4bf07883c1b7abed1de4d99d27079f204e2ffb90c9f2badd4f2aa",
+      "reviewedSignature": "59a46d2a46b0bb5981df7508eec5224920d6e3d240915c7fc64ef3ed6735d3c3",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "8",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Sottraggo il contributo noto A₂/4=2 Bq dalla misura 6: A₁/2=4, quindi A₁=8 Bq. La positività richiede A_tot>A₂/4.",
+      "physicalAssumptions": "Due genitori indipendenti con emivite 1 h e 30 min; uscite dopo 1 h. Nessun contributo dei figli o nuova produzione. Attività iniziali finite positive e uscita continua, inverse con residuo positivo, display e preparazioni distinti; nessuna emivita media inventata.",
+      "distractors": "Quattro è la parte finale del primo; 12 gli attribuisce tutto il totale e 16 duplica l’inversa. Il residuo noto va sottratto prima della ricostruzione.",
+      "pedagogicalReview": "Prima inversa reinserita nella relazione diretta.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-06",
+      "sourceSha256": "f86adfc45eef117c48fcaf93328e99c2d5f2fe1eafdcef760360b19599a37e2c",
+      "candidateSha256": "2c66610450e42935d35da2642d46a0edb555dd09cf3823414f2a385c42536254",
+      "reviewedSignature": "7104ad456156b49f4aeee2d3f86d33af200aa9492b9ffee99124e3dd8705b15f",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "8",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Sottraggo A₁/2=4 Bq: A₂/4=2, quindi A₂=8 Bq. La positività richiede A_tot>A₁/2.",
+      "physicalAssumptions": "Due genitori indipendenti con emivite 1 h e 30 min; uscite dopo 1 h. Nessun contributo dei figli o nuova produzione. Attività iniziali finite positive e uscita continua, inverse con residuo positivo, display e preparazioni distinti; nessuna emivita media inventata.",
+      "distractors": "Due è la parte finale del secondo, quattro usa una sola emivita e 24 ignora il primo. Occorre totale>A₁/2, non soltanto totale positivo.",
+      "pedagogicalReview": "Seconda inversa con denominatori e domini verificati.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-07",
+      "sourceSha256": "d62dd47319070e6e8662592273fa48f072dcf8f7561ab41895880d9ee8df1cbf",
+      "candidateSha256": "471c16451e77def1a7784e0ac8d39254c82e4be756dbb77fb5983481ae696861",
+      "reviewedSignature": "7a665fd12e4df0b4a7bb5631f4c419b5f9e34273191cb27b8b5aa669dd8055ca",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4/3",
+      "dimension": {},
+      "manualArithmetic": "A_tot, A=6; con A₂, B 16 la seconda parte vale 4 e la prima 4, dunque B 8 Bq. Rapporto 8/6=4/3.",
+      "physicalAssumptions": "Due genitori indipendenti con emivite 1 h e 30 min; uscite dopo 1 h. Nessun contributo dei figli o nuova produzione. Attività iniziali finite positive e uscita continua, inverse con residuo positivo, display e preparazioni distinti; nessuna emivita media inventata.",
+      "distractors": "3/4 inverte il confronto; due raddoppia anche il primo, 1/2 fa calare una somma con ingresso crescente e uno ignora la modifica.",
+      "pedagogicalReview": "Due uscite calcolate prima del rapporto.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-08",
+      "sourceSha256": "1a7ce822305c81c5040e04c7e10397e62b794c528c25b67ffac7bf9a8e4d94d3",
+      "candidateSha256": "b5aa85d9e57c0cf42a938cf49e9f64fef7cd1986b241277997cb835776932570",
+      "reviewedSignature": "7493dd0bc376f4f8d437750056da9961dfec99fe83c5be49d15529769cf59a9a",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Il proposto 12 meno il corretto 6 vale+6 Bq. Raddoppiare il risultato non è giustificato dalla somma delle attività iniziali.",
+      "physicalAssumptions": "Due genitori indipendenti con emivite 1 h e 30 min; uscite dopo 1 h. Nessun contributo dei figli o nuova produzione. Attività iniziali finite positive e uscita continua, inverse con residuo positivo, display e preparazioni distinti; nessuna emivita media inventata.",
+      "distractors": "−6 inverte lo scarto, due è rapporto, 12 la proposta e zero non la verifica. Il totale iniziale 16 Bq è diverso da quello a un’ora.",
+      "pedagogicalReview": "Differenza ordinata distinta dal rapporto puro.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-09",
+      "sourceSha256": "61077f524e73845f6d861665bcd11cbd39eae5d2e55ed72081b5dc2b0f2ab8cc",
+      "candidateSha256": "68b19ef72bc274ae8b2e1657e17e39f79c02617d212e4df22da82f281fed5d32",
+      "reviewedSignature": "e9df2808f6dfa3415573b9ff15c4fd0343a9791605bcc24ac3c18567d5c010e3",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "A₁ = 2 (A_tot − A₂/4)",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Isolo A₁=2(A_tot−A₂/4)=2 A_tot−A₂/2. Non distribuisco il fattore 2 in modo asimmetrico e impongo la differenza positiva.",
+      "physicalAssumptions": "Due genitori indipendenti con emivite 1 h e 30 min; uscite dopo 1 h. Nessun contributo dei figli o nuova produzione. Attività iniziali finite positive e uscita continua, inverse con residuo positivo, display e preparazioni distinti; nessuna emivita media inventata.",
+      "distractors": "Il segno più riaggiunge il contributo noto; dividere per due ripete la perdita. 4 A_tot−A₂ usa il peso sbagliato e 2 A_tot omette la seconda specie.",
+      "pedagogicalReview": "Inversa simbolica e dimensioni esplicite.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-10",
+      "sourceSha256": "9b090af5b6ab3c4aef3ff1f75f8c6de9ac49aba1bf21c60a97a2244b9165e9a5",
+      "candidateSha256": "61c0f963062d28cb32fd1d43662a7d3ea2555f76b43120b1768d3f7ff4c2d41b",
+      "reviewedSignature": "cd0d116126c7060395110889b3e757ba66385bdd2b4ae96ced2017610195820c",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "(2κ₁A₁ + κ₂A₂) / (2A₁ + A₂)",
+      "dimension": {},
+      "manualArithmetic": "Il quoziente è(κ₁A₁/2+κ₂A₂/4)/(A₁/2+A₂/4), equivalente a(2κ₁A₁+κ₂A₂)/(2 A₁+A₂). Nessuna cancellazione autorizza κ₁+κ₂.",
+      "physicalAssumptions": "Due genitori indipendenti con emivite 1 h e 30 min; uscite dopo 1 h. Nessun contributo dei figli o nuova produzione. Attività iniziali finite positive e uscita continua, inverse con residuo positivo, display e preparazioni distinti; nessuna emivita media inventata.",
+      "distractors": "Prodotti e quozienti dei soli κ non sono somme. La loro media semplice e il rapporto senza peso due ignorano i contributi al tempo finale.",
+      "pedagogicalReview": "Fattori nella legge effettiva, non in un’analogia impropria.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-11",
+      "sourceSha256": "8486a973cc9c82575c450b5cbbde428184ec755be21c8fc85c7f3ab6b4813853",
+      "candidateSha256": "ab92ea96e281ae5d4fc1e5807b5a61ebf3fb6c2797695d3e79b685403984a8ef",
+      "reviewedSignature": "24eef1b8b9ee9a37eb3d47917a39db4c8cc2652f3dcd4fb74f215a621ac9d0fe",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Raddoppiano entrambe le attività iniziali. Per linearità la somma finale passa da 6 a 12 Bq e il rapporto è 2.",
+      "physicalAssumptions": "Due genitori indipendenti con emivite 1 h e 30 min; uscite dopo 1 h. Nessun contributo dei figli o nuova produzione. Attività iniziali finite positive e uscita continua, inverse con residuo positivo, display e preparazioni distinti; nessuna emivita media inventata.",
+      "distractors": "Un mezzo è reciproco, quattro moltiplica i due raddoppi come contributi moltiplicativi. Uno ignora la modifica e 3/2 non ricostruisce 12/6.",
+      "pedagogicalReview": "Entrambi i nuovi ingressi considerati.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-12",
+      "sourceSha256": "66f106830372770646686324e7d835949333d466bbe8f0c22905524a0fd1df3b",
+      "candidateSha256": "836d127d625509c54b0dc168c0468e465f49ab9213eec41623c38e83deddb274",
+      "reviewedSignature": "d7705e3d6f38c71a4b4bf58487ca0680dd533e0e1742b1b2e40bf1ea4cd0ff65",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "radioisotope-mixture-progressive.svg": "2bc82387241bde4df9c0857e1e16ec01ecb0b3cade4ed8537ce3f3bb6cab214a"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "9",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Medio le due letture 6 e 12: 9 Bq. Qui la legge è lineare in entrambi gli ingressi, quindi coincide anche con la lettura agli ingressi medi 12 e 12 Bq; questa coincidenza ha una ragione strutturale, non vale per ogni modello.",
+      "physicalAssumptions": "Due genitori indipendenti con emivite 1 h e 30 min; uscite dopo 1 h. Nessun contributo dei figli o nuova produzione. Attività iniziali finite positive e uscita continua, inverse con residuo positivo, display e preparazioni distinti; nessuna emivita media inventata.",
+      "distractors": "18 somma, tre prende la semidifferenza e sei o dodici ripete una sola prova. Qui la linearità giustifica la coincidenza con gli ingressi medi.",
+      "pedagogicalReview": "Media delle uscite e ammissibilità degli ingressi medi distinte.",
+      "assetReview": "XML e PNG indipendente 640×1600 letti per intero. Primo pannello scala20 coordinate/Bq:8+8 iniziali,4+2 finali. Grafico a A₂8Bq: x150+20A₁,y1000−30A_tot, retta A_tot=A₁/2+2, punti(8,6),(16,10), intercetta2 aperta al bordo A₁0. Barre finali scala25 per Bq:150/300/225 per6/12/9. Pesi e legende corretti.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-13",
+      "sourceSha256": "9e828c04ec8492ff1cda47b46f810b59c10e9fc21d800610f486943d58016ee8",
+      "candidateSha256": "be261d7077999365511ea92fe669799cab827db6ccdde26195181c5418724d5f",
+      "reviewedSignature": "107486517becd34d8813d69e9cae01d6330b13587452f805279515ad28d4c3c7",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Il target è 12 Bq. Il nuovo primo contributo è 16/2=8, perciò il secondo deve essere 4 e A₂, B=16 Bq. Rispetto agli 8 iniziali il rapporto richiesto è 2.",
+      "physicalAssumptions": "Due genitori indipendenti con emivite 1 h e 30 min; uscite dopo 1 h. Nessun contributo dei figli o nuova produzione. Attività iniziali finite positive e uscita continua, inverse con residuo positivo, display e preparazioni distinti; nessuna emivita media inventata.",
+      "distractors": "Rapporto uno darebbe 10 Bq, quattro ne darebbe 16 e 3/2 ne darebbe 11. Un mezzo inverte il rapporto richiesto.",
+      "pedagogicalReview": "Bersaglio ricostruito prima dell’inversa.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-14",
+      "sourceSha256": "c9ef3abcd6cccc27408aff0eda125b7c72075c0c8f3a04095989c266c92166c5",
+      "candidateSha256": "b6fbe71f2757b06369520929b7c64fd824cfc668d3a53536dcd895395c42bf7b",
+      "reviewedSignature": "bb9639cbbed86f43b9863792a5e7d82b4e7b77b56c6105766b73669f34c8c384",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "16",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Dal riferimento 6 Bq→18 ricavo a=3. La lettura 36 dà 12 Bq; noto A₂ 16, sottraggo 4 e moltiplico per 2: A₁=16 Bq.",
+      "physicalAssumptions": "Due genitori indipendenti con emivite 1 h e 30 min; uscite dopo 1 h. Nessun contributo dei figli o nuova produzione. Attività iniziali finite positive e uscita continua, inverse con residuo positivo, display e preparazioni distinti; nessuna emivita media inventata.",
+      "distractors": "64 usa D come totale e predice D=108; otto copia la parte finale e 24 omette il secondo contributo, predicendo D=48.",
+      "pedagogicalReview": "Guadagno rimosso prima del bilancio fisico.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-15",
+      "sourceSha256": "18e2420a08fb0166ae9f67255e6d257aea638d63db9e273132721ca94af0ffde",
+      "candidateSha256": "28dd6b3aec5fd9fccad68c0237ec83e5de2ab3aea9a51e1a0fb7dd43244cc866",
+      "reviewedSignature": "64a76c3de957c07b195192755cce8ee28c52f010bef93687dd93bb2fd6008b20",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "16",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Riferimenti 6 e 12 Bq: a=(25−13)/(12−6)=2 e b=1. La lettura 21 dà 10 Bq; con A₂ 8, A₁=2(10−2)=16 Bq.",
+      "physicalAssumptions": "Due genitori indipendenti con emivite 1 h e 30 min; uscite dopo 1 h. Nessun contributo dei figli o nuova produzione. Attività iniziali finite positive e uscita continua, inverse con residuo positivo, display e preparazioni distinti; nessuna emivita media inventata.",
+      "distractors": "17 omette b e predice D=22; 36 omette g dopo b e predice D=41. Otto lascia il primo contributo al tempo finale.",
+      "pedagogicalReview": "Due riferimenti distinti identificano guadagno e offset.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-16",
+      "sourceSha256": "8f7493ce8527e8d4a64830fe7fce239a996e03b1549161bf39bc3087025c911d",
+      "candidateSha256": "4c4fe9ea960006eab58ec5a57fa8ceb79bd378842398d3e1a24a9eeec9c905d5",
+      "reviewedSignature": "b34f86f713a9749f58e4872eecb67c210b4b3327029b91823fc340bdb0db2c3d",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "radioisotope-mixture-progressive.svg": "2bc82387241bde4df9c0857e1e16ec01ecb0b3cade4ed8537ce3f3bb6cab214a"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "8",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Il vincolo A₁=A₂=x dàA_tot=3 x/4. Da 6 Bq ricavo x=8 Bq, soluzione positiva unica. Le attività sono medie continue, non conteggi interi di nuclei.",
+      "physicalAssumptions": "Due genitori indipendenti con emivite 1 h e 30 min; uscite dopo 1 h. Nessun contributo dei figli o nuova produzione. Attività iniziali finite positive e uscita continua, inverse con residuo positivo, display e preparazioni distinti; nessuna emivita media inventata.",
+      "distractors": "Sei darebbe totale 9/2, quattro darebbe tre e 12 darebbe nove Bq. L’uguaglianza iniziale non implica contributi finali uguali.",
+      "pedagogicalReview": "Vincolo o caso autonomo risolto prima di decidere unicità e dominio.",
+      "assetReview": "XML e PNG indipendente 640×1600 letti per intero. Primo pannello scala20 coordinate/Bq:8+8 iniziali,4+2 finali. Grafico a A₂8Bq: x150+20A₁,y1000−30A_tot, retta A_tot=A₁/2+2, punti(8,6),(16,10), intercetta2 aperta al bordo A₁0. Barre finali scala25 per Bq:150/300/225 per6/12/9. Pesi e legende corretti.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "a86d25c074067a65a0bfc3bf3367575249f6b9ce63d9e3fda837fe5703fdc803",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "29f65ee547627d10b0cca687b3fe19d3f05b4a32",
+  "packageSha256": "ddf3ea2e824d69f773ef995c32545bfb7093e0139802e1b5cdb2e07b34b192c8",
+  "bindingsSha256": "29f26b0f1e0922ba5b4edf7f381b3b9b82aa193b06ffa7c0ba6a5ba3492657ff",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U7-02.json",
+    "title": "radioisotope-mixture",
+    "reference": "Due genitori indipendenti con emivite 1 h e 30 min; uscite dopo 1 h. Nessun contributo dei figli o nuova produzione. Attività iniziali finite positive e uscita continua, inverse con residuo positivo, display e preparazioni distinti; nessuna emivita media inventata."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/u7-nuclear-250-254-independent-models.py",
+    "sha256": "58e478edc733fb198a7711e2a5fdfa8c7f46d3537f331562cf531737f04ed4bc",
+    "commit": "aca104f3"
+  },
+  "postReadNumericGuardHardening": "Only sympify strict=True added after candidate reading to reject strings without evaluation; all constitutive/inverse/calibration function AST bodies remain identical to pre-key snapshot. Snapshot preserved unchanged.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/u7-nuclei-250-254-primary-source-only-20261126.md",
+    "sha256": "51439933fe3974da7552b58de5f9929aecd44ed758e84ab1e1a0c379c47515d2"
+  }
+}

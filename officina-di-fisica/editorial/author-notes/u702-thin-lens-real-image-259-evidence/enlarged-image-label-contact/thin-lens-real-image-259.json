@@ -1,0 +1,1187 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u7-thin-lens-real-image-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Coniugati reali e caso virtuale autonomo",
+      "order": 25901,
+      "title": "Dove si può collocare lo schermo?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "thin-lens-real-image",
+      "difficulty": 1,
+      "prompt": "Una lente sottile convergente è descritta nel modello parassiale, con lo stesso mezzo sui due lati. La focale f è positiva; l’oggetto reale dista p>f dalla lente. Si pone q>0 sul lato d’uscita per un’immagine reale. Tutte le distanze sono nella stessa unità. Se f=1 cm e p=4 cm, quanto vale q in cm?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "4",
+          "5",
+          "−4/3"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Uso la legge dei punti coniugati: il reciproco di q è 1/f−1/p. Qui vale 1−1/4=3/4 cm⁻¹; invertendolo trovo q=4/3 cm. Il risultato positivo colloca l’immagine reale oltre la lente, fra f e 2 f, coerentemente con un oggetto oltre 2 f."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/c51f859e3cefeb571f70e80675dfaca37f9a63e2fe5836f6c23e684c424110d3",
+          "text": "Il primo pannello costruisce l’immagine reale per f=1 cm,p=4 cm. Il raggio parallelo emerge verso F′; quello centrale non devia. Si incontrano a q=4/3 cm sotto l’asse: l’immagine è capovolta. Le altezze di oggetto e immagine sono amplificate rispetto alle distanze orizzontali per leggibilità, con lo stesso fattore per entrambe: il rapporto h′/h resta −1/3. Gli angoli disegnati non sono misure d’incidenza."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac1q=\\frac1f-\\frac1p"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac1q=\\frac34\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " q=\\frac43\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Tre quarti è il numero che esprime 1/q in cm⁻¹, non q in cm. Quattro ripete la distanza dell’oggetto, cinque somma p e f; il valore negativo descriverebbe un’immagine virtuale fuori da p>f."
+        }
+      ],
+      "hints": [
+        "Sottrai i reciproci prima di invertire, oppure usa q=fp/(p−f).",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quarti è il numero che esprime 1/q in cm⁻¹, non q in cm. Quattro ripete la distanza dell’oggetto, cinque somma p e f; il valore negativo descriverebbe un’immagine virtuale fuori da p>f.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Convenzioni di segno della lente sottile",
+        "Inverse e limiti del ramo reale",
+        "Medie e taratura di distanze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Coniugati reali e caso virtuale autonomo",
+      "order": 25902,
+      "title": "La distanza ha dimensione di lunghezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "thin-lens-real-image",
+      "difficulty": 1,
+      "prompt": "Quale unità può esprimere la distanza q di un’immagine dalla lente?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "cm",
+          "cm⁻¹",
+          "1",
+          "gradi",
+          "s"
+        ],
+        "value": "cm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "q è una lunghezza. Nella legge dei punti coniugati compaiono i reciproci delle lunghezze, ma l’uscita richiesta rimane q. Si può usare qualunque unità di lunghezza coerente, come centimetri o metri."
+        },
+        {
+          "type": "formula",
+          "text": "[q]=L"
+        },
+        {
+          "type": "formula",
+          "text": " [1/q]=L^{-1}"
+        },
+        {
+          "type": "text",
+          "text": "cm⁻¹ misura 1/q, il numero puro può descrivere l’ingrandimento, i gradi un angolo e i secondi un tempo. La forma reciproca della legge non cambia la dimensione della distanza."
+        }
+      ],
+      "hints": [
+        "Distingui la grandezza cercata dal reciproco che compare nell’equazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "cm⁻¹ misura 1/q, il numero puro può descrivere l’ingrandimento, i gradi un angolo e i secondi un tempo. La forma reciproca della legge non cambia la dimensione della distanza.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Convenzioni di segno della lente sottile",
+        "Inverse e limiti del ramo reale",
+        "Medie e taratura di distanze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Coniugati reali e caso virtuale autonomo",
+      "order": 25903,
+      "title": "Oggetto dentro il fuoco: caso autonomo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "thin-lens-real-image",
+      "difficulty": 1,
+      "prompt": "Un oggetto reale è fra una lente sottile convergente e il suo fuoco:0<p<f. Il mezzo è lo stesso sui due lati e vale il modello parassiale. Quale immagine si forma?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Virtuale, diritta e ingrandita, sul lato dell’oggetto",
+          "Reale, capovolta e ingrandita, sul lato d’uscita",
+          "Reale, diritta e rimpicciolita",
+          "Virtuale, capovolta e rimpicciolita",
+          "Nessuna immagine, perché ogni lente richiede p maggiore di f"
+        ],
+        "value": "Virtuale, diritta e ingrandita, sul lato dell’oggetto"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Qui il denominatore p−f è negativo, quindi q<0: i raggi emergenti divergono e soltanto i loro prolungamenti si incontrano sul lato dell’oggetto. L’ingrandimento m=−q/p=f/(f−p) èpositivo e maggiore di uno. L’immagine è dunque diritta e ingrandita, ma non si raccoglie su uno schermo sul lato d’uscita."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{fp}{p-f}<0"
+        },
+        {
+          "type": "formula",
+          "text": " m=-\\frac qp"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac f{f-p}>1"
+        },
+        {
+          "type": "text",
+          "text": "Reale richiederebbe raggi che si incontrano davvero sul lato d’uscita. Un ingrandimento negativo descriverebbe inversione, mentre qui m>0. L’ultima opzione confonde l’assenza di immagine reale con l’assenza di immagine nel modello."
+        }
+      ],
+      "hints": [
+        "Nel caso autonomo non importare l’ipotesi p>f degli altri quesiti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Reale richiederebbe raggi che si incontrano davvero sul lato d’uscita. Un ingrandimento negativo descriverebbe inversione, mentre qui m>0. L’ultima opzione confonde l’assenza di immagine reale con l’assenza di immagine nel modello.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Convenzioni di segno della lente sottile",
+        "Inverse e limiti del ramo reale",
+        "Medie e taratura di distanze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Coniugati reali e caso virtuale autonomo",
+      "order": 25904,
+      "title": "Una focale diversa alla stessa distanza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "thin-lens-real-image",
+      "difficulty": 1,
+      "prompt": "Una lente sottile convergente è descritta nel modello parassiale, con lo stesso mezzo sui due lati. La focale f è positiva; l’oggetto reale dista p>f dalla lente. Si pone q>0 sul lato d’uscita per un’immagine reale. Tutte le distanze sono nella stessa unità. A ha f=1 cm,p=4 cm; B ha f=2 cm e lo stesso p. Come cambia q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 4/3 a 4 cm",
+          "Da 4/3 a 8/3 cm",
+          "Da 4/3 a 2/3 cm",
+          "Resta 4/3 cm",
+          "Diventa infinita"
+        ],
+        "value": "Da 4/3 a 4 cm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ricalcolo il denominatore, che cambia insieme alla focale: in B q=2·4/(4−2)=4 cm. L’immagine passa da 4/3 a 4 cm. In B oggetto e immagine sono a 2 f, non al fuoco; quindi non c’è alcuna divergenza della distanza."
+        },
+        {
+          "type": "formula",
+          "text": "q_A=\\frac43\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " q_B=\\frac{2\\cdot4}{4-2}\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " q_B=4\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "8/3 raddoppia soltanto il numeratore del vecchio risultato, lasciando erroneamente fisso p−f.2/3 dimezza l’uscita; l’infinito si avrebbe a p=f, che qui non accade."
+        }
+      ],
+      "hints": [
+        "Quando varia f cambia anche p−f, non soltanto il prodotto fp.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "8/3 raddoppia soltanto il numeratore del vecchio risultato, lasciando erroneamente fisso p−f.2/3 dimezza l’uscita; l’infinito si avrebbe a p=f, che qui non accade.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Convenzioni di segno della lente sottile",
+        "Inverse e limiti del ramo reale",
+        "Medie e taratura di distanze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Coniugati reali e caso virtuale autonomo",
+      "order": 25905,
+      "title": "Ricavare la focale dai coniugati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "thin-lens-real-image",
+      "difficulty": 2,
+      "prompt": "Una lente sottile convergente è descritta nel modello parassiale, con lo stesso mezzo sui due lati. La focale f è positiva; l’oggetto reale dista p>f dalla lente. Si pone q>0 sul lato d’uscita per un’immagine reale. Tutte le distanze sono nella stessa unità. Sono noti p=4 cm e q=4/3 cm. Quanto vale f in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sommo i reciproci delle due distanze:1/f=1/4+3/4=1 cm⁻¹, così f=1 cm. Equivalentemente f=pq/(p+q); la somma al denominatore garantisce che f sia minore di entrambe le distanze positive."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac1f=\\left(\\frac14+\\frac34\\right)\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac1f=1\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " f=1\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "16/3 cm sommerebbe direttamente p e q. Tre cm non riprodurrebbe i reciproci; quattro cm porrebbe l’oggetto al fuoco e non darebbe l’immagine reale finita osservata."
+        }
+      ],
+      "hints": [
+        "La somma riguarda i reciproci, non le distanze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "16/3 cm sommerebbe direttamente p e q. Tre cm non riprodurrebbe i reciproci; quattro cm porrebbe l’oggetto al fuoco e non darebbe l’immagine reale finita osservata.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Convenzioni di segno della lente sottile",
+        "Inverse e limiti del ramo reale",
+        "Medie e taratura di distanze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Coniugati reali e caso virtuale autonomo",
+      "order": 25906,
+      "title": "Ricavare la posizione dell’oggetto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "thin-lens-real-image",
+      "difficulty": 2,
+      "prompt": "Una lente sottile convergente è descritta nel modello parassiale, con lo stesso mezzo sui due lati. La focale f è positiva; l’oggetto reale dista p>f dalla lente. Si pone q>0 sul lato d’uscita per un’immagine reale. Tutte le distanze sono nella stessa unità. Sono noti f=1 cm e q=4/3 cm. Quanto vale p in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Porto 1/q a destra:1/p=1/f−1/q=1−3/4=1/4 cm⁻¹, da cui p=4 cm. Per quest’inversa nel ramo reale serve q>f: il denominatore q−f è qui 1/3 cm, positivo."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac1p=\\frac1f-\\frac1q"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac1p=\\frac14\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " p=4\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto copia il reciproco in cm⁻¹;7/3 cm sommerebbe f e q, non i reciproci. Un p minore di f sarebbe incompatibile con il ramo reale dichiarato."
+        }
+      ],
+      "hints": [
+        "Controlla il segno di q−f prima di applicare p=fq/(q−f).",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quarto copia il reciproco in cm⁻¹;7/3 cm sommerebbe f e q, non i reciproci. Un p minore di f sarebbe incompatibile con il ramo reale dichiarato.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Convenzioni di segno della lente sottile",
+        "Inverse e limiti del ramo reale",
+        "Medie e taratura di distanze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Coniugati reali e caso virtuale autonomo",
+      "order": 25907,
+      "title": "Allontanare l’oggetto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "thin-lens-real-image",
+      "difficulty": 2,
+      "prompt": "Una lente sottile convergente è descritta nel modello parassiale, con lo stesso mezzo sui due lati. La focale f è positiva; l’oggetto reale dista p>f dalla lente. Si pone q>0 sul lato d’uscita per un’immagine reale. Tutte le distanze sono nella stessa unità. A usa f=1 cm,p=4 cm; B mantiene f e usa p=6 cm. Quanto vale q_B/q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/10",
+          "10/9",
+          "3/2",
+          "6/5",
+          "1"
+        ],
+        "value": "9/10"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le distanze d’immagine sono 4/3 cm e 6/5 cm. Dividendo la seconda per la prima ottengo(6/5)(3/4)=9/10: l’immagine si avvicina al fuoco quando l’oggetto si allontana. Non cresce in proporzione a p."
+        },
+        {
+          "type": "formula",
+          "text": "q_A=\\frac43\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " q_B=\\frac65\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{6/5}{4/3}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac9{10}"
+        },
+        {
+          "type": "text",
+          "text": "10/9 inverte il rapporto;3/2 confronta soltanto p.6/5 è il valore numerico di q_B in centimetri, non il rapporto; uno trascura il cambiamento di oggetto."
+        }
+      ],
+      "hints": [
+        "A focale fissa q tende a f quando p cresce.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "10/9 inverte il rapporto;3/2 confronta soltanto p.6/5 è il valore numerico di q_B in centimetri, non il rapporto; uno trascura il cambiamento di oggetto.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Convenzioni di segno della lente sottile",
+        "Inverse e limiti del ramo reale",
+        "Medie e taratura di distanze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Coniugati reali e caso virtuale autonomo",
+      "order": 25908,
+      "title": "Scarto fra due posizioni proposte",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "thin-lens-real-image",
+      "difficulty": 2,
+      "prompt": "Una lente sottile convergente è descritta nel modello parassiale, con lo stesso mezzo sui due lati. La focale f è positiva; l’oggetto reale dista p>f dalla lente. Si pone q>0 sul lato d’uscita per un’immagine reale. Tutte le distanze sono nella stessa unità. Con f=1 cm,p=4 cm viene proposto q=8/3 cm. Quanto vale proposto meno corretto, in cm?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "−4/3",
+          "8/3",
+          "2",
+          "0"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il corretto è 4/3 cm. La proposta 8/3 cm lo supera di 4/3 cm: la differenza ordinata è positiva. Due sarebbe il rapporto della proposta al corretto e non una distanza."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac43\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta q=\\left(\\frac83-\\frac43\\right)\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta q=\\frac43\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "−4/3 sottrae nel verso opposto;8/3 ripete la proposta. Due copia il valore del rapporto:2 cm non è lo scarto corretto; zero accetta una posizione che non soddisfa la legge."
+        }
+      ],
+      "hints": [
+        "Conserva l’unità nella differenza delle due distanze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−4/3 sottrae nel verso opposto;8/3 ripete la proposta. Due copia il valore del rapporto:2 cm non è lo scarto corretto; zero accetta una posizione che non soddisfa la legge.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Convenzioni di segno della lente sottile",
+        "Inverse e limiti del ramo reale",
+        "Medie e taratura di distanze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Coniugati reali e caso virtuale autonomo",
+      "order": 25909,
+      "title": "L’inversa simbolica per f",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "thin-lens-real-image",
+      "difficulty": 2,
+      "prompt": "Una lente sottile convergente è descritta nel modello parassiale, con lo stesso mezzo sui due lati. La focale f è positiva; l’oggetto reale dista p>f dalla lente. Si pone q>0 sul lato d’uscita per un’immagine reale. Tutte le distanze sono nella stessa unità. Con p e q noti e positivi, quale formula fornisce f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "f = p q / (p + q)",
+          "f = p q / (p − q)",
+          "f = p + q",
+          "f = (p + q) / (p q)",
+          "f = p q"
+        ],
+        "value": "f = p q / (p + q)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La somma 1/p+1/q si porta al denominatore comune pq:1/f=(p+q)/(pq). Invertendo ottengo f=pq/(p+q). L’unità è lunghezza perché il prodotto L² è diviso per una lunghezza positiva."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac1f=\\frac{p+q}{pq}"
+        },
+        {
+          "type": "formula",
+          "text": " f=\\frac{pq}{p+q}"
+        },
+        {
+          "type": "formula",
+          "text": " [f]=L"
+        },
+        {
+          "type": "text",
+          "text": "Il segno meno non deriva dalla somma dei reciproci. p+q somma direttamente distanze, il rapporto inverso ha dimensione L⁻¹ e pq ha dimensione L². La sola dimensione non scarta la prima alternativa sbagliata: serve anche l’algebra."
+        }
+      ],
+      "hints": [
+        "Metti a denominatore comune prima di prendere il reciproco.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno meno non deriva dalla somma dei reciproci. p+q somma direttamente distanze, il rapporto inverso ha dimensione L⁻¹ e pq ha dimensione L². La sola dimensione non scarta la prima alternativa sbagliata: serve anche l’algebra.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Convenzioni di segno della lente sottile",
+        "Inverse e limiti del ramo reale",
+        "Medie e taratura di distanze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Coniugati reali e caso virtuale autonomo",
+      "order": 25910,
+      "title": "Focale e oggetto cambiano insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "thin-lens-real-image",
+      "difficulty": 2,
+      "prompt": "Una lente sottile convergente è descritta nel modello parassiale, con lo stesso mezzo sui due lati. La focale f è positiva; l’oggetto reale dista p>f dalla lente. Si pone q>0 sul lato d’uscita per un’immagine reale. Tutte le distanze sono nella stessa unità. Fra A e B:f_B=κ₁f_A,p_B=κ₂p_A; in entrambe p>f>0. Qual è q_B/q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂ (p − f) / (κ₂ p − κ₁ f)",
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "(κ₂ p − κ₁ f) / (p − f)",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ κ₂ (p − f) / (κ₂ p − κ₁ f)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Inserisco entrambi i fattori nel prodotto e nella differenza. Dividendo per q_A=fp/(p−f), il prodotto fp si cancella, mentre restano i due denominatori distinti. La nuova differenzaκ₂p−κ₁f deve essere strettamente positiva; la formula non si estende al fuoco o al ramo virtuale senza cambiare il dominio."
+        },
+        {
+          "type": "formula",
+          "text": "q_B=\\frac{\\kappa_1\\kappa_2fp}{\\kappa_2p-\\kappa_1f}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{\\kappa_1\\kappa_2(p-f)}{\\kappa_2p-\\kappa_1f}"
+        },
+        {
+          "type": "text",
+          "text": "Il solo prodotto dei fattori dimentica il denominatore nuovo. Il quoziente dei fattori dà una legge inversa impropria; l’altro rapporto inverte il contributo dei denominatori e perde il prodotto. La somma non dà uno a fattori entrambi unitari."
+        }
+      ],
+      "hints": [
+        "Imponi p_B>f_B prima di semplificare il confronto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il solo prodotto dei fattori dimentica il denominatore nuovo. Il quoziente dei fattori dà una legge inversa impropria; l’altro rapporto inverte il contributo dei denominatori e perde il prodotto. La somma non dà uno a fattori entrambi unitari.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Convenzioni di segno della lente sottile",
+        "Inverse e limiti del ramo reale",
+        "Medie e taratura di distanze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Coniugati reali e caso virtuale autonomo",
+      "order": 25911,
+      "title": "Due coniugati nuovi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "thin-lens-real-image",
+      "difficulty": 2,
+      "prompt": "Una lente sottile convergente è descritta nel modello parassiale, con lo stesso mezzo sui due lati. La focale f è positiva; l’oggetto reale dista p>f dalla lente. Si pone q>0 sul lato d’uscita per un’immagine reale. Tutte le distanze sono nella stessa unità. A ha f=1 cm,p=4 cm; B ha f=2 cm,p=6 cm. Quanto vale q_B/q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/4",
+          "4/9",
+          "2",
+          "3/2",
+          "3"
+        ],
+        "value": "9/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In A q=4/3 cm; in B q=12/(6−2)=3 cm. Il rapporto 3/(4/3)=9/4 tiene conto di entrambi i cambiamenti. Tre è la distanza numerica in centimetri di B, non il rapporto richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "q_A=\\frac43\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " q_B=3\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac3{4/3}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac94"
+        },
+        {
+          "type": "text",
+          "text": "4/9 inverte il confronto; due segue soltanto f e 3/2 soltanto p. Tre non è stato diviso per il valore A."
+        }
+      ],
+      "hints": [
+        "Calcola le due distanze prima del rapporto adimensionale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4/9 inverte il confronto; due segue soltanto f e 3/2 soltanto p. Tre non è stato diviso per il valore A.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Convenzioni di segno della lente sottile",
+        "Inverse e limiti del ramo reale",
+        "Medie e taratura di distanze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Coniugati reali e caso virtuale autonomo",
+      "order": 25912,
+      "title": "Media di due piani d’immagine",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "thin-lens-real-image",
+      "difficulty": 2,
+      "prompt": "Una lente sottile convergente è descritta nel modello parassiale, con lo stesso mezzo sui due lati. La focale f è positiva; l’oggetto reale dista p>f dalla lente. Si pone q>0 sul lato d’uscita per un’immagine reale. Tutte le distanze sono nella stessa unità. Si mediano con uguali pesi A:f=1 cm,p=4 cm e B:f=2 cm,p=6 cm. Quanto vale la media di q, in cm?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "13/6",
+          "15/7",
+          "13/3",
+          "4/3",
+          "3"
+        ],
+        "value": "13/6"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le distanze sono 4/3 e 3 cm. La media vale(4/3+3)/2=13/6 cm. Con i dati medi f=3/2 cm,p=5 cm si avrebbe invece 15/7 cm, inferiore di 1/42 cm: la funzione razionale non commuta con questa media."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/c51f859e3cefeb571f70e80675dfaca37f9a63e2fe5836f6c23e684c424110d3",
+          "text": "Le barre centrali condividono origine e scala di lunghezza: q_A=4/3 cm,q_B=3 cm e media 13/6 cm. Le barre descrivono distanze, non altezze delle immagini."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline q=\\frac{4/3+3}{2}\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline q=\\frac{13}{6}\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " q_{\\rm dati\\ medi}=\\frac{15}{7}\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "15/7 applica il modello ai parametri medi,13/3 somma senza dimezzare.4/3 e 3 ripetono una sola lettura. La media descrive due piani distinti, non impone che un unico schermo sia a entrambi."
+        }
+      ],
+      "hints": [
+        "Tratta prima ogni configurazione ottica completa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "15/7 applica il modello ai parametri medi,13/3 somma senza dimezzare.4/3 e 3 ripetono una sola lettura. La media descrive due piani distinti, non impone che un unico schermo sia a entrambi.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Convenzioni di segno della lente sottile",
+        "Inverse e limiti del ramo reale",
+        "Medie e taratura di distanze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Coniugati reali e caso virtuale autonomo",
+      "order": 25913,
+      "title": "Il nuovo oggetto dal target",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "thin-lens-real-image",
+      "difficulty": 3,
+      "prompt": "Una lente sottile convergente è descritta nel modello parassiale, con lo stesso mezzo sui due lati. La focale f è positiva; l’oggetto reale dista p>f dalla lente. Si pone q>0 sul lato d’uscita per un’immagine reale. Tutte le distanze sono nella stessa unità. A usa f=1 cm,p=4 cm. In B f=2 cm e si vuole q_B=(9/4)q_A. Quanto vale p_B/p_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "9/4",
+          "2",
+          "1"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio d’immagine vale 3 cm. Dall’inversa p=fq/(q−f) ricavo p_B=2·3/(3−2)=6 cm, maggiore di f_B. Dividendo per p_A=4 cm ottengo 3/2."
+        },
+        {
+          "type": "formula",
+          "text": "q_B=3\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=\\frac{2\\cdot3}{3-2}\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=6\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B/p_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Due terzi inverte il confronto;9/4 è il fattore delle uscite e due quello della focale. Uno lascerebbe p_B=4 cm e darebbe q_B=4 cm, diverso dal bersaglio."
+        }
+      ],
+      "hints": [
+        "Il q richiesto va confrontato con la nuova focale prima dell’inversa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due terzi inverte il confronto;9/4 è il fattore delle uscite e due quello della focale. Uno lascerebbe p_B=4 cm e darebbe q_B=4 cm, diverso dal bersaglio.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Convenzioni di segno della lente sottile",
+        "Inverse e limiti del ramo reale",
+        "Medie e taratura di distanze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Coniugati reali e caso virtuale autonomo",
+      "order": 25914,
+      "title": "Una misura ottica amplificata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "thin-lens-real-image",
+      "difficulty": 3,
+      "prompt": "Una lente sottile convergente è descritta nel modello parassiale, con lo stesso mezzo sui due lati. La focale f è positiva; l’oggetto reale dista p>f dalla lente. Si pone q>0 sul lato d’uscita per un’immagine reale. Tutte le distanze sono nella stessa unità. D=gq senza offset legge 4 per f=1 cm,p=4 cm. Poi legge 9 con p=6 cm. Quanto vale la nuova f in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha q=4/3 cm, quindi il guadagno è 3 unità strumentali per centimetro. La lettura nove rappresenta q=3 cm. L’inversa f=pq/(p+q) fornisce 18/9=2 cm, coerente con un oggetto oltre il fuoco."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac4{4/3}"
+        },
+        {
+          "type": "formula",
+          "text": " g=3"
+        },
+        {
+          "type": "formula",
+          "text": " q=3\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " f=\\frac{6\\cdot3}{6+3}\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " f=2\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "18/5 cm userebbe nove come distanza:6·9/(6+9). Tre copierebbe q, sei copierebbe p; nessuna di queste ricostruisce il display e i coniugati insieme."
+        }
+      ],
+      "hints": [
+        "Il display deve tornare una distanza prima di usarlo nella legge.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "18/5 cm userebbe nove come distanza:6·9/(6+9). Tre copierebbe q, sei copierebbe p; nessuna di queste ricostruisce il display e i coniugati insieme.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Convenzioni di segno della lente sottile",
+        "Inverse e limiti del ramo reale",
+        "Medie e taratura di distanze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Coniugati reali e caso virtuale autonomo",
+      "order": 25915,
+      "title": "Lo zero del display",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "thin-lens-real-image",
+      "difficulty": 3,
+      "prompt": "Una lente sottile convergente è descritta nel modello parassiale, con lo stesso mezzo sui due lati. La focale f è positiva; l’oggetto reale dista p>f dalla lente. Si pone q>0 sul lato d’uscita per un’immagine reale. Tutte le distanze sono nella stessa unità. D=gq+b. A:f=1 cm,p=4 cm,D=11/3. B:f=2 cm,p=6 cm,D=7. C:p=4 cm,D=9. Quanto vale f_C in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le distanze di riferimento sono 4/3 e 3 cm. Il guadagno è(7−11/3)/(3−4/3)=2 e l’offset è 1. La prova nove indica q=4 cm. Con p=4 cm si ha f=16/8=2 cm: oggetto e immagine sono entrambi a 2 f."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{7-11/3}{3-4/3}"
+        },
+        {
+          "type": "formula",
+          "text": " g=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " q_C=4\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " f_C=\\frac{4\\cdot4}{4+4}\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " f_C=2\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "36/17 cm ometterebbe l’offset e userebbe q=9/2 cm. Quattro si fermerebbe alla distanza d’immagine e uno ripeterebbe la focale del primo riferimento senza giustificazione."
+        }
+      ],
+      "hints": [
+        "Le differenze fra due riferimenti rimuovono l’offset.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "36/17 cm ometterebbe l’offset e userebbe q=9/2 cm. Quattro si fermerebbe alla distanza d’immagine e uno ripeterebbe la focale del primo riferimento senza giustificazione.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Convenzioni di segno della lente sottile",
+        "Inverse e limiti del ramo reale",
+        "Medie e taratura di distanze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Coniugati reali e caso virtuale autonomo",
+      "order": 25916,
+      "title": "Un vincolo seleziona una distanza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "thin-lens-real-image",
+      "difficulty": 3,
+      "prompt": "Una lente sottile convergente è descritta nel modello parassiale, con lo stesso mezzo sui due lati. La focale f è positiva; l’oggetto reale dista p>f dalla lente. Si pone q>0 sul lato d’uscita per un’immagine reale. Tutte le distanze sono nella stessa unità. È imposto f=p/4 e si osserva q=4/3 cm. Quanto vale p in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituisco f=p/4 nella legge dei coniugati. Il numeratore è p²/4 e il denominatore 3 p/4: per p>0 il rapporto èp/3. La misura 4/3 cm impone p=4 cm e dunque f=1 cm. Non rimane una scala libera dopo la distanza assoluta osservata."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/c51f859e3cefeb571f70e80675dfaca37f9a63e2fe5836f6c23e684c424110d3",
+          "text": "Il grafico inferiore riguarda soltanto f=1 cm e p>1 cm: q diminuisce verso 1 cm allontanando l’oggetto. La retta tratteggiata verticale p=f e quella orizzontale q=f sono limiti esclusi, non ulteriori immagini reali finite."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{p^2/4}{3p/4}"
+        },
+        {
+          "type": "formula",
+          "text": " q=\\frac p3"
+        },
+        {
+          "type": "formula",
+          "text": " p=3q"
+        },
+        {
+          "type": "formula",
+          "text": " p=4\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " f=1\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Un centimetro copia la focale cercata solo in seguito;4/9 cm userebbe q/3 invece di 3 q e non ricostruirebbe la misura. Una famiglia infinita sarebbe possibile senza q assoluto, non con il dato assegnato."
+        }
+      ],
+      "hints": [
+        "Il vincolo tra lunghezze non elimina l’informazione di una misura in centimetri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un centimetro copia la focale cercata solo in seguito;4/9 cm userebbe q/3 invece di 3 q e non ricostruirebbe la misura. Una famiglia infinita sarebbe possibile senza q assoluto, non con il dato assegnato.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Convenzioni di segno della lente sottile",
+        "Inverse e limiti del ramo reale",
+        "Medie e taratura di distanze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "c51f859e3cefeb571f70e80675dfaca37f9a63e2fe5836f6c23e684c424110d3",
+      "name": "thin-lens-real-image-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTc0MCIgdmlld0JveD0iMCAwIDY0MCAxNzQwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiI+PHRpdGxlIGlkPSJ0aXRsZSI+SW1tYWdpbmUgcmVhbGUgZSBkaXN0YW56YSBjb25pdWdhdGE8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5EdWUgcmFnZ2kgZGVsbGEgbGVudGUgc290dGlsZSBpbmRpdmlkdWFubyBs4oCZaW1tYWdpbmUgY2Fwb3ZvbHRhOyBhbHRlenplIGFtcGxpZmljYXRlIHJpc3BldHRvIGFsbGUgZGlzdGFuemUgb3JpenpvbnRhbGkuIEJhcnJlIGRpIGRpc3RhbnplIGUgY3VydmEgcGVyIGZvY2FsZSB1bm8gY29tcGxldGFubyBpIHRyZSBwYW5uZWxsaS48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYXJyIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI1IiBtYXJrZXJIZWlnaHQ9IjUiIG9yaWVudD0iYXV0by1zdGFydC1yZXZlcnNlIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiMzMDZmOGMiLz48L21hcmtlcj48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNzQwIiBmaWxsPSJ3aGl0ZSIvPjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5VbmEgbGVudGUsIGR1ZSByYWdnaSBlIHVubyBzY2hlcm1vPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMDUiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MSDCtyBmID0gMSBjbSwgcCA9IDQgY208L3RleHQ+PGxpbmUgeDE9IjQwIiB5MT0iMzIwIiB4Mj0iNTgwIiB5Mj0iMzIwIiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIzNjAiIHkxPSIxODAiIHgyPSIzNjAiIHkyPSI0MjUiIHN0cm9rZT0iIzg3OTQ5YyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBhdGggZD0iTTYwIDMyMEw2MCAyNDgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlnb24gcG9pbnRzPSI2MCwyNDggNTcsMjU0IDYzLDI1NCIgZmlsbD0iIzMwNmY4YyIvPjxwYXRoIGQ9Ik00NjAgMzIwTDQ2MCAzNDQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlnb24gcG9pbnRzPSI0NjAsMzQ0IDQ1NywzMzggNDYzLDMzOCIgZmlsbD0iIzMwNmY4YyIvPjxwYXRoIGQ9Ik02MCAyNDhMMzYwIDI0OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyKSIvPjxwYXRoIGQ9Ik0zNjAgMjQ4TDU1MCA0MzAuNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyKSIvPjxwYXRoIGQ9Ik02MCAyNDhMNTUwIDM2NS42IiBmaWxsPSJub25lIiBzdHJva2U9IiM4YjVkMzUiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnIpIi8+PGNpcmNsZSBjeD0iMjg1IiBjeT0iMzIwIiByPSIzIiBmaWxsPSIjMjY2Yjg5Ii8+PHRleHQgeD0iMjg1IiB5PSIzNzAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPkY8L3RleHQ+PGNpcmNsZSBjeD0iMzYwIiBjeT0iMzIwIiByPSIzIiBmaWxsPSIjMjY2Yjg5Ii8+PHRleHQgeD0iMzYwIiB5PSIzNzAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPk88L3RleHQ+PGNpcmNsZSBjeD0iNDM1IiBjeT0iMzIwIiByPSIzIiBmaWxsPSIjMjY2Yjg5Ii8+PHRleHQgeD0iNDM1IiB5PSIzNzAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPkbigLI8L3RleHQ+PHRleHQgeD0iNDUiIHk9IjIxNSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5vZ2dldHRvPC90ZXh0Pjx0ZXh0IHg9IjQ1NSIgeT0iNDA1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPmltbWFnaW5lPC90ZXh0PjxsaW5lIHgxPSI2MCIgeTE9IjQ2MCIgeDI9IjM2MCIgeTI9IjQ2MCIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIyMTAiIHk9IjQ5NSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+cCA9IDQgY208L3RleHQ+PGxpbmUgeDE9IjM2MCIgeTE9IjUzMCIgeDI9IjQ2MCIgeTI9IjUzMCIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI0MTAiIHk9IjU2NSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+cSA9ICg0LzMpIGNtPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxNTUiIGZvbnQtc2l6ZT0iMTciIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+QWx0ZXp6ZSBhbXBsaWZpY2F0ZTsgZGlzdGFuemUgc3VsbOKAmWFzc2UgaW4gY20uPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI2MzAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+bSA9IOKIknEvcCA9IOKIkjEvMyDCtyBpbW1hZ2luZSBjYXBvdm9sdGE8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjcxNSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4yIMK3IERpc3RhbnplIHEgZGkgZHVlIGNvbmZpZ3VyYXppb25pPC90ZXh0Pjx0ZXh0IHg9IjEzMCIgeT0iODA3IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj5BPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iNzg1IiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjM2Q3NzkxIi8+PHRleHQgeD0iMjgwIiB5PSI4MDkiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+KDQvMykgY208L3RleHQ+PHRleHQgeD0iMTMwIiB5PSI5MDciIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPkI8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI4ODUiIHdpZHRoPSIyNzAiIGhlaWdodD0iMzAiIGZpbGw9IiM5ODZjMzUiLz48dGV4dCB4PSI0MzAiIHk9IjkwOSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4zIGNtPC90ZXh0Pjx0ZXh0IHg9IjEzMCIgeT0iMTAwNyIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+bWVkaWE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI5ODUiIHdpZHRoPSIxOTUiIGhlaWdodD0iMzAiIGZpbGw9IiM2MzdlNTUiLz48dGV4dCB4PSIzNTUiIHk9IjEwMDkiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+KDEzLzYpIGNtPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMDgwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkE6IGYgPSAxIGNtLHAgPSA0IGNtIMK3IEI6IGYgPSAyIGNtLHAgPSA2IGNtPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMTYwIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjMgwrcgU29sbyBmID0gMSBjbTsgZG9taW5pbyBwICZndDsgMSBjbTwvdGV4dD48bGluZSB4MT0iMTUwIiB5MT0iMTU3MCIgeDI9IjU3MCIgeTI9IjE1NzAiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjE1MCIgeTE9IjE1NzAiIHgyPSIxNTAiIHkyPSIxMjIwIiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIyMTUiIHkxPSIxMjMwIiB4Mj0iMjE1IiB5Mj0iMTU3MCIgc3Ryb2tlPSIjNzI4MThjIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjcgNiIvPjxsaW5lIHgxPSIxNTAiIHkxPSIxNDgwIiB4Mj0iNTY1IiB5Mj0iMTQ4MCIgc3Ryb2tlPSIjNzI4MThjIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjcgNiIvPjxwYXRoIGQ9Ik0yNDcuNTAwMDAgMTMwMC4wMDAwMCBMMjUwLjQyNTAwIDEzMTQuODYyMzkgTDI1My4zNTAwMCAxMzI3LjQ1NzYzIEwyNTYuMjc1MDAgMTMzOC4yNjc3MiBMMjU5LjIwMDAwIDEzNDcuNjQ3MDYgTDI2Mi4xMjUwMCAxMzU1Ljg2MjA3IEwyNjUuMDUwMDAgMTM2My4xMTY4OCBMMjY3Ljk3NTAwIDEzNjkuNTcwNTUgTDI3MC45MDAwMCAxMzc1LjM0ODg0IEwyNzMuODI1MDAgMTM4MC41NTI0OSBMMjc2Ljc1MDAwIDEzODUuMjYzMTYgTDI3OS42NzUwMCAxMzg5LjU0Nzc0IEwyODIuNjAwMDAgMTM5My40NjE1NCBMMjg1LjUyNTAwIDEzOTcuMDUwNjkgTDI4OC40NTAwMCAxNDAwLjM1Mzk4IEwyOTEuMzc1MDAgMTQwMy40MDQyNiBMMjk0LjMwMDAwIDE0MDYuMjI5NTEgTDI5Ny4yMjUwMCAxNDA4Ljg1Mzc1IEwzMDAuMTUwMDAgMTQxMS4yOTc3MSBMMzAzLjA3NTAwIDE0MTMuNTc5MzQgTDMwNi4wMDAwMCAxNDE1LjcxNDI5IEwzMDguOTI1MDAgMTQxNy43MTYyNiBMMzExLjg1MDAwIDE0MTkuNTk3MzIgTDMxNC43NzUwMCAxNDIxLjM2ODA4IEwzMTcuNzAwMDAgMTQyMy4wMzc5NyBMMzIwLjYyNTAwIDE0MjQuNjE1MzggTDMyMy41NTAwMCAxNDI2LjEwNzc4IEwzMjYuNDc1MDAgMTQyNy41MjE4NyBMMzI5LjQwMDAwIDE0MjguODYzNjQgTDMzMi4zMjUwMCAxNDMwLjEzODUwIEwzMzUuMjUwMDAgMTQzMS4zNTEzNSBMMzM4LjE3NTAwIDE0MzIuNTA2NjAgTDM0MS4xMDAwMCAxNDMzLjYwODI1IEwzNDQuMDI1MDAgMTQzNC42NTk5NSBMMzQ2Ljk1MDAwIDE0MzUuNjY1MDIgTDM0OS44NzUwMCAxNDM2LjYyNjUxIEwzNTIuODAwMDAgMTQzNy41NDcxNyBMMzU1LjcyNTAwIDE0MzguNDI5NTYgTDM1OC42NTAwMCAxNDM5LjI3NjAyIEwzNjEuNTc1MDAgMTQ0MC4wODg2OSBMMzY0LjUwMDAwIDE0NDAuODY5NTcgTDM2Ny40MjUwMCAxNDQxLjYyMDQ3IEwzNzAuMzUwMDAgMTQ0Mi4zNDMxMCBMMzczLjI3NTAwIDE0NDMuMDM5MDEgTDM3Ni4yMDAwMCAxNDQzLjcwOTY4IEwzNzkuMTI1MDAgMTQ0NC4zNTY0NCBMMzgyLjA1MDAwIDE0NDQuOTgwNTQgTDM4NC45NzUwMCAxNDQ1LjU4MzE3IEwzODcuOTAwMDAgMTQ0Ni4xNjU0MSBMMzkwLjgyNTAwIDE0NDYuNzI4MjggTDM5My43NTAwMCAxNDQ3LjI3MjczIEwzOTYuNjc1MDAgMTQ0Ny43OTk2NCBMMzk5LjYwMDAwIDE0NDguMzA5ODYgTDQwMi41MjUwMCAxNDQ4LjgwNDE2IEw0MDUuNDUwMDAgMTQ0OS4yODMyOCBMNDA4LjM3NTAwIDE0NDkuNzQ3OTAgTDQxMS4zMDAwMCAxNDUwLjE5ODY4IEw0MTQuMjI1MDAgMTQ1MC42MzYyMiBMNDE3LjE1MDAwIDE0NTEuMDYxMDkgTDQyMC4wNzUwMCAxNDUxLjQ3Mzg1IEw0MjMuMDAwMDAgMTQ1MS44NzUwMCBMNDI1LjkyNTAwIDE0NTIuMjY1MDIgTDQyOC44NTAwMCAxNDUyLjY0NDM4IEw0MzEuNzc1MDAgMTQ1My4wMTM0OSBMNDM0LjcwMDAwIDE0NTMuMzcyNzggTDQzNy42MjUwMCAxNDUzLjcyMjYzIEw0NDAuNTUwMDAgMTQ1NC4wNjM0MCBMNDQzLjQ3NTAwIDE0NTQuMzk1NDUgTDQ0Ni40MDAwMCAxNDU0LjcxOTEwIEw0NDkuMzI1MDAgMTQ1NS4wMzQ2NyBMNDUyLjI1MDAwIDE0NTUuMzQyNDcgTDQ1NS4xNzUwMCAxNDU1LjY0Mjc2IEw0NTguMTAwMDAgMTQ1NS45MzU4MyBMNDYxLjAyNTAwIDE0NTYuMjIxOTMgTDQ2My45NTAwMCAxNDU2LjUwMTMxIEw0NjYuODc1MDAgMTQ1Ni43NzQxOSBMNDY5LjgwMDAwIDE0NTcuMDQwODIgTDQ3Mi43MjUwMCAxNDU3LjMwMTM5IEw0NzUuNjUwMDAgMTQ1Ny41NTYxMSBMNDc4LjU3NTAwIDE0NTcuODA1MTggTDQ4MS41MDAwMCAxNDU4LjA0ODc4IEw0ODQuNDI1MDAgMTQ1OC4yODcwOSBMNDg3LjM1MDAwIDE0NTguNTIwMjkgTDQ5MC4yNzUwMCAxNDU4Ljc0ODUyIEw0OTMuMjAwMDAgMTQ1OC45NzE5NiBMNDk2LjEyNTAwIDE0NTkuMTkwNzUgTDQ5OS4wNTAwMCAxNDU5LjQwNTAzIEw1MDEuOTc1MDAgMTQ1OS42MTQ5NSBMNTA0LjkwMDAwIDE0NTkuODIwNjMgTDUwNy44MjUwMCAxNDYwLjAyMjIwIEw1MTAuNzUwMDAgMTQ2MC4yMTk3OCBMNTEzLjY3NTAwIDE0NjAuNDEzNDkgTDUxNi42MDAwMCAxNDYwLjYwMzQ1IEw1MTkuNTI1MDAgMTQ2MC43ODk3NSBMNTIyLjQ1MDAwIDE0NjAuOTcyNTIgTDUyNS4zNzUwMCAxNDYxLjE1MTgzIEw1MjguMzAwMDAgMTQ2MS4zMjc4MCBMNTMxLjIyNTAwIDE0NjEuNTAwNTEgTDUzNC4xNTAwMCAxNDYxLjY3MDA2IEw1MzcuMDc1MDAgMTQ2MS44MzY1MyBMNTQwLjAwMDAwIDE0NjIuMDAwMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIzIi8+PGxpbmUgeDE9IjIxNSIgeTE9IjE1NjQiIHgyPSIyMTUiIHkyPSIxNTc2IiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjIxNSIgeT0iMTYxMCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTwvdGV4dD48bGluZSB4MT0iMjgwIiB5MT0iMTU2NCIgeDI9IjI4MCIgeTI9IjE1NzYiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMjgwIiB5PSIxNjEwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4yPC90ZXh0PjxsaW5lIHgxPSI0MTAiIHkxPSIxNTY0IiB4Mj0iNDEwIiB5Mj0iMTU3NiIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI0MTAiIHk9IjE2MTAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjQ8L3RleHQ+PGxpbmUgeDE9IjU0MCIgeTE9IjE1NjQiIHgyPSI1NDAiIHkyPSIxNTc2IiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjU0MCIgeT0iMTYxMCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NjwvdGV4dD48bGluZSB4MT0iMTQ0IiB5MT0iMTQ4MCIgeDI9IjE1NiIgeTI9IjE0ODAiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTMyIiB5PSIxNDg2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj4xPC90ZXh0PjxsaW5lIHgxPSIxNDQiIHkxPSIxMzkwIiB4Mj0iMTU2IiB5Mj0iMTM5MCIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxMzIiIHk9IjEzOTYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPjI8L3RleHQ+PGxpbmUgeDE9IjE0NCIgeTE9IjEzMDAiIHgyPSIxNTYiIHkyPSIxMzAwIiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjEzMiIgeT0iMTMwNiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+MzwvdGV4dD48Y2lyY2xlIGN4PSI0MTAiIGN5PSIxNDUwIiByPSI1IiBmaWxsPSIjMjY2Yjg5Ii8+PHRleHQgeD0iNDIwIiB5PSIxNDEwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPig0IGNtLDQvMyBjbSk8L3RleHQ+PHRleHQgeD0iMTY1IiB5PSIxMjE4IiBmb250LXNpemU9IjIwIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnEgKGNtKTwvdGV4dD48dGV4dCB4PSI1MTAiIHk9IjE2NTAiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+cCAoY20pPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxNzAwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkxlIGR1ZSByZXR0ZSB0cmF0dGVnZ2lhdGUgc29ubyBsaW1pdGkgZXNjbHVzaS48L3RleHQ+PC9zdmc+Cg=="
+    }
+  ]
+}

@@ -1,0 +1,503 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C5.json",
+    "sourceSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+    "primarySkill": "C5-L08",
+    "actualLessonPrerequisites": {
+      "C5-L08": []
+    },
+    "title": "Una popolazione di nuclei che cambia nel tempo"
+  },
+  "records": [
+    {
+      "id": "AR-u7-radioactive-survivors-01",
+      "sourceSha256": "3d4a9982b87d2f5d88c303bd43fd6b8fcb74792b0d5d5cfacbcb35033245cf23",
+      "candidateSha256": "0517fb903908b419d69824e591faed380da3e99cd2ab2d074450261f8b05706c",
+      "reviewedSignature": "487d3e4db069f8e1ab3bfce73556fa5554ec22e7c33fd008d6814c170ac1230a",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "radioactive-survivors-progressive.svg": "17d4e56567224fc449f9afb792efc2aa02061fa5cf3f99ee160e1f7c7b5e1239"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "32",
+      "dimension": {},
+      "manualArithmetic": "Per un solo genitore senza apporto, ciascuna emivita dimezza il valore medio. Pongo x=t/(1 h): N=N₀ 2^(−x). Con x=1, 64/2=32 milioni. Il valore medio non è la garanzia che ogni singolo campione dia esattamente quel conteggio.",
+      "physicalAssumptions": "Un solo radionuclide genitore chiuso, senza apporti. Numero medio residuo distinto da un singolo conteggio. Tempi positivi finiti normalizzati a 1 h, salvo caso 03 con 2 h e caso 16 a emivita ignota. Display continui e preparazioni distinte; non si scambia residuo e cumulativo.",
+      "distractors": "64 omette il dimezzamento; 128 richiederebbe apporti; 16 appartiene a due emivite. Il valore atteso non è un conteggio deterministico.",
+      "pedagogicalReview": "Legge motivata e valore medio distinto da singolo esito.",
+      "assetReview": "XML e PNG indipendente 640×1600 letti per intero. Prime barre da x150 a scala5 coordinate per milione:320/160/80/40 per64/32/16/8. Curva origine(150,1000),110 coordinate/h e5 per milione, N=64·2^(−t/h), punti t0/1/2/3 a y680/840/920/960. Pannello finale di altro campione a scala3 per milione:288/144/36 per96/48/12. Nessuna etichetta attraversata, assi/legende completi.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-survivors-02",
+      "sourceSha256": "8cd76dbdae067859d21e9acdab99fedd145e1e2c123c75082c6eedd908284bea",
+      "candidateSha256": "86cc49732b3a2c71f911ce207ed9054f31ad1f27bf9e823edd8e3cad41c90f4d",
+      "reviewedSignature": "1f43b26ca09a6a589b71882fed2f7f8c5f2160c284671f13f056f2201c084625",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "nuclei, conteggio adimensionale",
+      "dimension": {},
+      "manualArithmetic": "N è un conteggio di nuclei: dimensionalmente è un numero puro, con etichetta nuclei o multipli come 10⁶ nuclei. Bq invece misura trasformazioni per secondo e non una popolazione.",
+      "physicalAssumptions": "Un solo radionuclide genitore chiuso, senza apporti. Numero medio residuo distinto da un singolo conteggio. Tempi positivi finiti normalizzati a 1 h, salvo caso 03 con 2 h e caso 16 a emivita ignota. Display continui e preparazioni distinte; non si scambia residuo e cumulativo.",
+      "distractors": "Bq e nuclei/s sono tassi, s tempo e J energia. Nuclei o milioni di nuclei etichettano un conteggio adimensionale.",
+      "pedagogicalReview": "Unità ricostruita e conteggio distinto dal tasso.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-survivors-03",
+      "sourceSha256": "b99b8bb4de89b653a523eeed77cbb6bdfab4a24dce071a61d564d56a5269aee0",
+      "candidateSha256": "6d049c112d6ca93cf77ac777e40998ec3f8d6b3506dbdeda01ed0030f1bb65e7",
+      "reviewedSignature": "da38914dd03a70b887de5ee89cf88481140d5a54e0b50d4a8afbd86f02977b0c",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Dopo 2 h resta in media metà dei genitori iniziali",
+      "dimension": {},
+      "manualArithmetic": "Dopo due ore il numero medio di nuclei genitori non decaduti è metà del valore iniziale. Non significa che tutti decadano dopo due ore, né che un singolo nucleo abbia una scadenza deterministica.",
+      "physicalAssumptions": "Caso autonomo: un solo genitore con emivita 2 h, senza nuova produzione. Metà residuo medio ogni 2 h; non una scadenza deterministica di ogni nucleo.",
+      "distractors": "Una scadenza uguale per ogni nucleo è falsa; dopo quattro ore resta un quarto in media. Attività e popolazione si dimezzano senza nuova produzione.",
+      "pedagogicalReview": "Caso autonomo o legge riconosciuta senza risposta già anticipata.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-survivors-04",
+      "sourceSha256": "4bd965d363c87d9687341d6fac113685f2dafa8f1f4fdba73561e8fdecb6e4be",
+      "candidateSha256": "20b2a17576356c58fa744aa09b1bdaf3b24d738afe9ee9254c30a1e1ce9e19b4",
+      "reviewedSignature": "3e5bbadb7c3682936ef4e1ec600f147d632e527bfdb5d0af640dcedbc7f5ea0a",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 32 a 16 milioni di nuclei",
+      "dimension": {},
+      "manualArithmetic": "A tempo identico il fattore esponenziale è identico. Portare N₀ da 64 a 32 milioni moltiplica N per 1/2: da 32 a 16 milioni.",
+      "physicalAssumptions": "Un solo radionuclide genitore chiuso, senza apporti. Numero medio residuo distinto da un singolo conteggio. Tempi positivi finiti normalizzati a 1 h, salvo caso 03 con 2 h e caso 16 a emivita ignota. Display continui e preparazioni distinte; non si scambia residuo e cumulativo.",
+      "distractors": "64 inverte la dipendenza dall’inizio; 8 aggiunge una perdita; 32 ignora il nuovo ingresso. Il modello non dà zero a tempo finito.",
+      "pedagogicalReview": "Confronto controllato a un parametro fissato.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-survivors-05",
+      "sourceSha256": "5a5f8870f2f2281840c813b66a6f743df0fccea29997f03ce38802c0db9ae360",
+      "candidateSha256": "5f29cf02c763f8eef13ac4c885be1d02eafed1ef58e3b9858df950bb9b7c9a12",
+      "reviewedSignature": "3e5b9f3d6a357a579f8923bdc9a1302a546a37b197723b832c8abba098050b81",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "64",
+      "dimension": {},
+      "manualArithmetic": "Da N=N₀/2 con t=1 h moltiplico entrambi i membri per 2: N₀=2 N=64 milioni. Popolazione iniziale maggiore del residuo, come richiesto da t>0.",
+      "physicalAssumptions": "Un solo radionuclide genitore chiuso, senza apporti. Numero medio residuo distinto da un singolo conteggio. Tempi positivi finiti normalizzati a 1 h, salvo caso 03 con 2 h e caso 16 a emivita ignota. Display continui e preparazioni distinte; non si scambia residuo e cumulativo.",
+      "distractors": "16 ripete il dimezzamento anziché invertirlo; 32 come inizio richiederebbe tempo nullo; 128 darebbe 64 milioni dopo un’ora.",
+      "pedagogicalReview": "Prima inversa reinserita nella relazione diretta.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-survivors-06",
+      "sourceSha256": "790d1bcd28a8098a2e2c1aafd9ed839d8ff75ca47a181a4823bd66f08c1813d8",
+      "candidateSha256": "12cd9e49e2fc7bc8d3796fecd42d30fccdf63a38c16a8d44b5b8df24b1113e37",
+      "reviewedSignature": "dda5941e499df483cf99e1977bcb32a9d26d7962aa03a764b53f13143470e519",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[time]": "1"
+      },
+      "manualArithmetic": "32/64=1/2=2^(−x), dunque x=1 e t=1 h. Più in generale t=T½ log₂(N₀/N), positivo soltanto per 0<N<N₀.",
+      "physicalAssumptions": "Un solo radionuclide genitore chiuso, senza apporti. Numero medio residuo distinto da un singolo conteggio. Tempi positivi finiti normalizzati a 1 h, salvo caso 03 con 2 h e caso 16 a emivita ignota. Display continui e preparazioni distinte; non si scambia residuo e cumulativo.",
+      "distractors": "Due ore danno 16 milioni; mezz’ora dà 32√2 milioni. Un tempo positivo richiede un residuo strettamente fra zero e inizio.",
+      "pedagogicalReview": "Seconda inversa con denominatori e domini verificati.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-survivors-07",
+      "sourceSha256": "aeb60473393624d3092c1358c7ea0c5ee621a81dafe595532e27d47bc356f528",
+      "candidateSha256": "7094176d0760d29292aa378740b5e5cb2d405724ab50a7e9ebcfbde6cb8224bf",
+      "reviewedSignature": "f8fad40cc80fad6df52a4d4d4c6833fcc9f2dde7ccc1708db6a328c374ddd1c5",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {},
+      "manualArithmetic": "A pari N₀ il rapporto è 2^(−2)/2^(−1)=1/2. Le letture sono 16 e 32 milioni: il tempo raddoppiato non dimezza sempre N per una legge inversa, qui aggiunge una sola emivita.",
+      "physicalAssumptions": "Un solo radionuclide genitore chiuso, senza apporti. Numero medio residuo distinto da un singolo conteggio. Tempi positivi finiti normalizzati a 1 h, salvo caso 03 con 2 h e caso 16 a emivita ignota. Display continui e preparazioni distinte; non si scambia residuo e cumulativo.",
+      "distractors": "Due inverte B/A; 1/4 confronta B con N₀; uno ignora l’ora aggiuntiva e zero confonde media esponenziale e scomparsa completa.",
+      "pedagogicalReview": "Due uscite calcolate prima del rapporto.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-survivors-08",
+      "sourceSha256": "cdb0bc1c609e89913664c5c6597ae9757beafd06ce4fc1e2127afbb5c26ec9ed",
+      "candidateSha256": "90fc3d8e3c6e55f0f37414594bb038f83d8c92bcbc98283780ddf100367f1010",
+      "reviewedSignature": "605175debe8d21c31f261ed9fe66dc2295f6876473aea97d921658a111149f58",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "32",
+      "dimension": {},
+      "manualArithmetic": "Il proposto 64 meno il corretto 32 vale+32 milioni. Il segno positivo indica una sovrastima; non si prende il valore assoluto senza richiesta.",
+      "physicalAssumptions": "Un solo radionuclide genitore chiuso, senza apporti. Numero medio residuo distinto da un singolo conteggio. Tempi positivi finiti normalizzati a 1 h, salvo caso 03 con 2 h e caso 16 a emivita ignota. Display continui e preparazioni distinte; non si scambia residuo e cumulativo.",
+      "distractors": "−32 inverte la sottrazione; due è un rapporto; 64 ripete la proposta e zero non la confronta col modello.",
+      "pedagogicalReview": "Differenza ordinata distinta dal rapporto puro.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-survivors-09",
+      "sourceSha256": "ef3da607972f21c7f4ee293cfdd1fac94a5588f7e29b1c31ab4a3014524190b8",
+      "candidateSha256": "c9e3b9874a6009c0736e01f945a57d4b2e9aeeff21991b2444c0c82d62c4c2c9",
+      "reviewedSignature": "8fdff3c1bbf38a08d2f955fd238f150bdfebc3f548ed422fd2a2ccc7e7cc7316",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "N₀ = N 2^u",
+      "dimension": {},
+      "manualArithmetic": "Moltiplico N=N₀ 2^(−t/T½) per 2^(t/T½): N₀=N 2^(t/T½). L’esponente è adimensionale; con t numerico in ore e T½=1 h si abbrevia N 2^t.",
+      "physicalAssumptions": "Un solo radionuclide genitore chiuso, senza apporti. Numero medio residuo distinto da un singolo conteggio. Tempi positivi finiti normalizzati a 1 h, salvo caso 03 con 2 h e caso 16 a emivita ignota. Display continui e preparazioni distinte; non si scambia residuo e cumulativo.",
+      "distractors": "Il segno negativo riapplica il decadimento. Il reciproco del conteggio e le espressioni lineari nel tempo non ricostruiscono N₀.",
+      "pedagogicalReview": "Inversa simbolica e dimensioni esplicite.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-survivors-10",
+      "sourceSha256": "d3a101f78d5bf819962f5020a5e2f90f339793599289b634fe1fc9a7c6c058ff",
+      "candidateSha256": "4e3a401156d2362849182826468de1c477ab87cdfb5b985c4a2b3688ced9dbec",
+      "reviewedSignature": "a715ca617745edfcf475e5442f9e56acc4bd669b71c3529b43dde8158878b5fd",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ 2^(−δ)",
+      "dimension": {},
+      "manualArithmetic": "Il quoziente completo è κ₁ 2^(−(κ₂−1)t/T½). Non diventa κ₁/κ₂: il tempo entra in un esponente. Entrambe le preparazioni devono conservare t>0 e popolazione positiva.",
+      "physicalAssumptions": "Un solo radionuclide genitore chiuso, senza apporti. Numero medio residuo distinto da un singolo conteggio. Tempi positivi finiti normalizzati a 1 h, salvo caso 03 con 2 h e caso 16 a emivita ignota. Display continui e preparazioni distinte; non si scambia residuo e cumulativo.",
+      "distractors": "Prodotti e quozienti dei soli fattori non conservano l’esponenziale. κ₁ scala l’inizio e non l’emivita; la somma fallisce per prove identiche.",
+      "pedagogicalReview": "Fattori nella legge effettiva, non in un’analogia impropria.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-survivors-11",
+      "sourceSha256": "e41adcc260e7a9405ac95cca38031de30d735787f274dfa9e22d23d4aacedcba",
+      "candidateSha256": "8b82ca1bb99e3607c1c40a55f1bdb76bc63b229c7bbe44d14d1aa27cdb684c2f",
+      "reviewedSignature": "41d3e30b8d0252daf474531e1e8196f4c9da0bde20a0f1bcd0c5d5cf71c7a687",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/4",
+      "dimension": {},
+      "manualArithmetic": "A dà 32 milioni; B dà 32/4=8 milioni. Quindi N_B/N_A=8/32=1/4: si compongono dimezzamento della popolazione e un’ulteriore emivita.",
+      "physicalAssumptions": "Un solo radionuclide genitore chiuso, senza apporti. Numero medio residuo distinto da un singolo conteggio. Tempi positivi finiti normalizzati a 1 h, salvo caso 03 con 2 h e caso 16 a emivita ignota. Display continui e preparazioni distinte; non si scambia residuo e cumulativo.",
+      "distractors": "Un mezzo trascura una delle due modifiche; quattro inverte il rapporto; un ottavo usa N₀, A al denominatore. Le uscite sono 8 e 32.",
+      "pedagogicalReview": "Entrambi i nuovi ingressi considerati.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-survivors-12",
+      "sourceSha256": "553810f763631d514493e19d3f9b41aca2eee044d0d8c36797c6e19b227fae24",
+      "candidateSha256": "653fc39845536e8fcd6215454590bd883617e15ffc0d8d8cbd68265c5882d7ed",
+      "reviewedSignature": "bdd6f4d8bb2153b1fb631f11237956b10f0ef0cf5cd9edd3825558f608ecb5f7",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "radioactive-survivors-progressive.svg": "17d4e56567224fc449f9afb792efc2aa02061fa5cf3f99ee160e1f7c7b5e1239"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "20",
+      "dimension": {},
+      "manualArithmetic": "Le uscite indipendenti sono 32 e 8 milioni; media 20. Agli ingressi medi 48 milioni e 3/2 h si ottiene 12√2, diverso da 20. La legge è lineare in N₀ ma esponenziale nel tempo: la parola bilineare nella primaria congelata era impropria, qui corretta senza cambiare alcun conto o modificare la primaria.",
+      "physicalAssumptions": "Un solo radionuclide genitore chiuso, senza apporti. Numero medio residuo distinto da un singolo conteggio. Tempi positivi finiti normalizzati a 1 h, salvo caso 03 con 2 h e caso 16 a emivita ignota. Display continui e preparazioni distinte; non si scambia residuo e cumulativo.",
+      "distractors": "40 somma, 12 prende la semidifferenza e 8 ripete B. 12√2 è il modello agli ingressi medi, distinto dalla media 20.",
+      "pedagogicalReview": "Media delle uscite e ammissibilità degli ingressi medi distinte.",
+      "assetReview": "XML e PNG indipendente 640×1600 letti per intero. Prime barre da x150 a scala5 coordinate per milione:320/160/80/40 per64/32/16/8. Curva origine(150,1000),110 coordinate/h e5 per milione, N=64·2^(−t/h), punti t0/1/2/3 a y680/840/920/960. Pannello finale di altro campione a scala3 per milione:288/144/36 per96/48/12. Nessuna etichetta attraversata, assi/legende completi.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-survivors-13",
+      "sourceSha256": "9e3434c49df8717022724d5da646ad0dacb0948bc9a9dab14270c70aaca68076",
+      "candidateSha256": "518092b282e61342b27c9b9c3f2c0ecedcc68c67dbe20fc8783b4be8a32ef53f",
+      "reviewedSignature": "9750f056a42f89dde2f6d38cd8523b8b9cbfc4b4b844e5994298acf8d015f408",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Il target è 32/4=8 milioni. Con N₀, B=32 occorre 2^(−x_B)=1/4, dunque t_B=2 h e t_B/t_A=2.",
+      "physicalAssumptions": "Un solo radionuclide genitore chiuso, senza apporti. Numero medio residuo distinto da un singolo conteggio. Tempi positivi finiti normalizzati a 1 h, salvo caso 03 con 2 h e caso 16 a emivita ignota. Display continui e preparazioni distinte; non si scambia residuo e cumulativo.",
+      "distractors": "Un’ora dà 16 milioni e quattro ore ne danno 2. Un mezzo inverte le durate; un quarto copia il fattore delle uscite.",
+      "pedagogicalReview": "Bersaglio ricostruito prima dell’inversa.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-survivors-14",
+      "sourceSha256": "d998204d688d7d69b15f96fe65cf227aabe1c20e196b6806fabcf3edcee0b8f0",
+      "candidateSha256": "d54ea392d0794a61c5490769564a1acbba978f188cff929b10d0acde424c8f95",
+      "reviewedSignature": "c89f4b5bc83dc55765dc2edd7c943f818065e9e0d9764dc925e0a39ca0bf6133",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "32",
+      "dimension": {},
+      "manualArithmetic": "Il riferimento fisico è 32 milioni: il guadagno è 96/32=3 unità strumentali per milione. La nuova lettura 24 corrisponde a 8 milioni residui; a 2 h N₀=4·8=32 milioni.",
+      "physicalAssumptions": "Un solo radionuclide genitore chiuso, senza apporti. Numero medio residuo distinto da un singolo conteggio. Tempi positivi finiti normalizzati a 1 h, salvo caso 03 con 2 h e caso 16 a emivita ignota. Display continui e preparazioni distinte; non si scambia residuo e cumulativo.",
+      "distractors": "96 milioni da display non decodificato darebbe D=72. Otto è il residuo, non l’inizio; 128 darebbe D=96.",
+      "pedagogicalReview": "Guadagno rimosso prima del bilancio fisico.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-survivors-15",
+      "sourceSha256": "8fdf041f056cd31a901dea2791239ed4d105599df34d749770a84609899d9e48",
+      "candidateSha256": "726bd06f5a72b1389f089e75662eced23c0258d0ef77b1cd8a7591b2ec621563",
+      "reviewedSignature": "db237e7b46dd94ecfd25ecdf2728746e18db399a5d7c1ec2c0439db861bba8ce",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "32",
+      "dimension": {},
+      "manualArithmetic": "Le uscite fisiche dei riferimenti sono 32 e 8 milioni. Sottraggo: a=(65−17)/(32−8)=2, poi b=65−2·32=1. La prova 33 dàN=(33−1)/2=16 milioni e a 1 h N₀=32 milioni.",
+      "physicalAssumptions": "Un solo radionuclide genitore chiuso, senza apporti. Numero medio residuo distinto da un singolo conteggio. Tempi positivi finiti normalizzati a 1 h, salvo caso 03 con 2 h e caso 16 a emivita ignota. Display continui e preparazioni distinte; non si scambia residuo e cumulativo.",
+      "distractors": "33 milioni omette l’offset e predice D=34; 64 omette il guadagno dopo b; 16 si ferma al residuo.",
+      "pedagogicalReview": "Due riferimenti distinti identificano guadagno e offset.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-survivors-16",
+      "sourceSha256": "efd00b80149da7ffe53f07bc544c50bfc005b65df3fad4a8483fcf05fcbac963",
+      "candidateSha256": "2f3e358d7b012c9fd13ca8f42f8af3e7f3d7e418b6d535835693b123979f3a76",
+      "reviewedSignature": "6c44658239d41fdb1e1914d0d73ebac03ee120876d45f535af7e32189d06a269",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "radioactive-survivors-progressive.svg": "17d4e56567224fc449f9afb792efc2aa02061fa5cf3f99ee160e1f7c7b5e1239"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "96",
+      "dimension": {},
+      "manualArithmetic": "Fra 1 e 3 h il rapporto residuo è 12/48=1/4: due ore sono due emivite, dunque T½=1 h. Retrocedendo dall’ora 1 all’origine moltiplico 48 per 2: N₀=96 milioni. È una ricostruzione di medie esponenziali, non una misura certa di singole vite. Riletto 5 a 55 fce 6: sola definizione n₀ nel primo testo; altre 15, chiavi, formule eSVG identici.",
+      "physicalAssumptions": "Caso autonomo con emivita ignota costante e misure medie a 1 h e 3 h. q è la frazione oraria positiva minore di uno. n₀=N₀/(10⁶ nuclei) è definito nel finale 5a55fce6; non si importa l’emivita di un’ora dal prefisso degli altri quesiti.",
+      "distractors": "48 copia la prima misura; 192 darebbe 96 milioni all’ora uno. Il ramo q negativo non è una frazione di sopravvivenza.",
+      "pedagogicalReview": "Vincolo o caso autonomo risolto prima di decidere unicità e dominio.",
+      "assetReview": "XML e PNG indipendente 640×1600 letti per intero. Prime barre da x150 a scala5 coordinate per milione:320/160/80/40 per64/32/16/8. Curva origine(150,1000),110 coordinate/h e5 per milione, N=64·2^(−t/h), punti t0/1/2/3 a y680/840/920/960. Pannello finale di altro campione a scala3 per milione:288/144/36 per96/48/12. Nessuna etichetta attraversata, assi/legende completi.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "1a70138a2424613e96a3f7d76434ff397754dad6aff795fe5b94817c50371042",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "5a55fce680ea1b430045fd56a3f27a313924f250",
+  "packageSha256": "04a1fcb02bc28d7bd3d7ab89515b4801eeaf4d124cd6144642c84be846b76da6",
+  "bindingsSha256": "2fb8a0a76ad976d8e060c6b4ae3a6f19420e57e006bce4cad184acebc17e2a1d",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U7-02.json",
+    "title": "radioactive-survivors",
+    "reference": "Un solo radionuclide genitore chiuso, senza apporti. Numero medio residuo distinto da un singolo conteggio. Tempi positivi finiti normalizzati a 1 h, salvo caso 03 con 2 h e caso 16 a emivita ignota. Display continui e preparazioni distinte; non si scambia residuo e cumulativo."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/u7-nuclear-250-254-independent-models.py",
+    "sha256": "58e478edc733fb198a7711e2a5fdfa8c7f46d3537f331562cf531737f04ed4bc",
+    "commit": "aca104f3"
+  },
+  "postReadNumericGuardHardening": "Only sympify strict=True added after candidate reading to reject strings without evaluation; all constitutive/inverse/calibration function AST bodies remain identical to pre-key snapshot. Snapshot preserved unchanged.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/u7-nuclei-250-254-primary-source-only-20261126.md",
+    "sha256": "51439933fe3974da7552b58de5f9929aecd44ed758e84ab1e1a0c379c47515d2"
+  }
+}

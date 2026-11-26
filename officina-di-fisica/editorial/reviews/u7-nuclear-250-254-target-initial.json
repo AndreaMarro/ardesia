@@ -1,0 +1,24 @@
+{
+  "scope": "actual targeted independent review tests only_not_full_suite_or_product_UI",
+  "command": [
+    "/private/tmp/cric-recovery-venv/bin/python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests/corpus",
+    "-p",
+    "test_u7_nuclear_250_254_independent.py",
+    "-v"
+  ],
+  "candidateApp": "/private/tmp/cric-author-a-resident/officina-di-fisica",
+  "exitCode": 1,
+  "signal": null,
+  "startedAt": "2026-11-26T17:56:05.823872+00:00",
+  "finishedAt": "2026-11-26T17:56:32.213653+00:00",
+  "elapsedSeconds": 26.39015154200024,
+  "rawSha256": "5c5b51f58c6e6f647b5c4276d9e1a75e5b33ab43bacb9f8ade80f4874022fbbd",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT"
+}

@@ -1,0 +1,513 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C5.json",
+    "sourceSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+    "primarySkill": "C5-L08",
+    "actualLessonPrerequisites": {
+      "C5-L08": []
+    },
+    "title": "Una popolazione di nuclei che cambia nel tempo"
+  },
+  "records": [
+    {
+      "id": "AR-u7-radioactive-activity-01",
+      "sourceSha256": "f628730e585285fc1d2da07f23c36dfa3bbdd8cd4aa159e7dff91aa36d2e3e45",
+      "candidateSha256": "5fc92a4e6ad73879b623affd03473f078ec3f07335340d0cc70a51412dcc377b",
+      "reviewedSignature": "c0775baff6ea8407ed9d1d1a46ca2cb40c32a99f0c8d1b4b86580b48e504b884",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "radioactive-activity-progressive.svg": "9eadf800b2225c5392da7e003d7e79ec003bdc2f761586ba44bc835437dd747d"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "7",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "La relazione fisica èA=(ln 2)N/T½. Soltanto nella convenzione numerica assegnata sostituisco ln 2≈7/10: A≈(7/10)·20/2=7 Bq. Il razionale è esatto nel modello di calcolo approssimato, non un’identità ln 2=7/10.",
+      "physicalAssumptions": "Legge fisica con ln 2 distinta dalla valutazione numerica prescritta η=7/10. Conteggi N interi positivi, emivite finite positive costanti entro ogni prova. Attività media istantanea in Bq; β⁺03 autonomo consentito energeticamente e famiglia 16 discreta.",
+      "distractors": "14 omette la divisione per T; 10 omette η e 20 copia il conteggio. Sette Bq è un tasso medio istantaneo, non sette eventi certi in un secondo.",
+      "pedagogicalReview": "Legge motivata e valore medio distinto da singolo esito.",
+      "assetReview": "XML e PNG indipendente 640×1600 letti per intero. Venti cerchi nel primo pannello. Grafico discreto a T2s: x150+8N,y1000−20A_m, punti N5,10,…,40 con A_m=7N/20; origine aperta per N>0. Barre a scala40 per Bq:280/28/154 per7,7/10,77/20. La distinzione tra legge fisica e coefficiente numerico è visibile.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-02",
+      "sourceSha256": "b80149442cd2d13a8f172eb07afb76d09e53983ac0e0cd1c2b7ffbf77135de70",
+      "candidateSha256": "46676f28085a3d1a2822d8d32ed4befb2d7697f1b14e89e48a42e8ba7f6b815c",
+      "reviewedSignature": "60194985fad5cff9f8f032461e8d7e47772aac7bcd1bd3a32b3529d2e921cf4b",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Bq",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "L’attività ha dimensione tempo⁻¹ e unità Bq=s⁻¹, accompagnata dal significato trasformazioni medie per secondo. Non è il numero di nuclei e non è energia.",
+      "physicalAssumptions": "Legge fisica con ln 2 distinta dalla valutazione numerica prescritta η=7/10. Conteggi N interi positivi, emivite finite positive costanti entro ogni prova. Attività media istantanea in Bq; β⁺03 autonomo consentito energeticamente e famiglia 16 discreta.",
+      "distractors": "Bq ha dimensione s⁻¹. s, J, C e m indicano tempo, energia, carica e lunghezza; nessuna è un’unità di attività.",
+      "pedagogicalReview": "Unità ricostruita e conteggio distinto dal tasso.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-03",
+      "sourceSha256": "92bd844e5a3c08e016f1169d8cc3c838ed76997e5ec927849dd8027d26d28048",
+      "candidateSha256": "5de05defebbfccb7e964195de3b30dc3f19f4658ffab7a00db0c7a16654a76d7",
+      "reviewedSignature": "4aecb7309bc7e64788aca006f7ed55d45c2091498afe0fa05cfa807086253069",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Un protone diventa neutrone, emettendo positrone e neutrino elettronico",
+      "dimension": {},
+      "manualArithmetic": "Nel β⁺ un protone nucleare si trasforma in neutrone emettendo un positrone e un neutrino elettronico: p→n+e⁺+ν_e. A resta invariato e Z diminuisce di 1. Per nuclei isolati la possibilità energetica richiede una transizione consentita, non segue dal solo bilancio.",
+      "physicalAssumptions": "Caso autonomo β⁺ energeticamente consentito nel nucleo. Un protone diventa neutrone con emissione di positrone e neutrino elettronico: A invariato, Z diminuito di uno. Non si afferma il decadimento di un protone libero e non si usa il modello numerico η=7/10.",
+      "distractors": "Il β⁻ converte un neutrone, α espelle quattro nucleoni e γ non cambia Z. Un elettrone orbitale espulso non descrive il β⁺ nucleare consentito.",
+      "pedagogicalReview": "Caso autonomo o legge riconosciuta senza risposta già anticipata.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-04",
+      "sourceSha256": "fe19fc205ad0c75d30ae035ce50cb9146121f77d0719c9bcb431da819c990998",
+      "candidateSha256": "05cdcbc163a2adf59f79ed791e59e4eb59f6f0e57c1d5a679a01b093cadda353",
+      "reviewedSignature": "88536cef72af76b101f407bdcd30112fef1c2dfa76112a89fabebc851bf1f4ec",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 7 Bq a 14 Bq",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "A emivita fissata A è proporzionale a N. Da 20 a 40 nuclei l’attività raddoppia da 7 a 14 Bq nella convenzione 7/10.",
+      "physicalAssumptions": "Legge fisica con ln 2 distinta dalla valutazione numerica prescritta η=7/10. Conteggi N interi positivi, emivite finite positive costanti entro ogni prova. Attività media istantanea in Bq; β⁺03 autonomo consentito energeticamente e famiglia 16 discreta.",
+      "distractors": "7/2 inverte la dipendenza da N; 28 introduce il quadrato; 7 ignora la nuova popolazione e 40 copia N senza il fattore temporale.",
+      "pedagogicalReview": "Confronto controllato a un parametro fissato.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-05",
+      "sourceSha256": "7df7d8939a926ad634599f5eefa629b113652a6e92a83ef4ad8ad69ef3949f48",
+      "candidateSha256": "dda48a1e6fafc88b8348c1bb7e4e81adb452cb2186b3c26a93521ed5044e5c94",
+      "reviewedSignature": "e4d6047fd69b31d28fb7233dbf6563827d7480840bcebacb4243e7c60c85617b",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "20",
+      "dimension": {},
+      "manualArithmetic": "Isolo N=AT½/(7/10). Sostituendo 7 Bq e 2 s ottengo 14·10/7=20 nuclei, conteggio intero positivo.",
+      "physicalAssumptions": "Legge fisica con ln 2 distinta dalla valutazione numerica prescritta η=7/10. Conteggi N interi positivi, emivite finite positive costanti entro ogni prova. Attività media istantanea in Bq; β⁺03 autonomo consentito energeticamente e famiglia 16 discreta.",
+      "distractors": "10 omette T; 14 omette la divisione per η e darebbe 49/10 Bq; 49/5 moltiplica invece di dividere per η.",
+      "pedagogicalReview": "Prima inversa reinserita nella relazione diretta.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-06",
+      "sourceSha256": "c982fb8cf5464eb23a55ff7c7520cc4a0b5f985f81e4446a72abaf51dc930e1a",
+      "candidateSha256": "807e122f700cc10ac495be6f296c27b13aa762a8f8fec35f2f0ad8d2a88ad090",
+      "reviewedSignature": "402fa418231093472da64af6be6e7f56d044fd8c2c2644fd554e98e44134c60e",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[time]": "1"
+      },
+      "manualArithmetic": "Isolo T½=(7/10)N/A. Con 20 nuclei e 7 Bq ottengo 14/7=2 s, positivo e con unità s.",
+      "physicalAssumptions": "Legge fisica con ln 2 distinta dalla valutazione numerica prescritta η=7/10. Conteggi N interi positivi, emivite finite positive costanti entro ogni prova. Attività media istantanea in Bq; β⁺03 autonomo consentito energeticamente e famiglia 16 discreta.",
+      "distractors": "Mezzo secondo darebbe 28 Bq; quattro secondi darebbero 7/2 Bq. Venti copia N come se fosse una durata.",
+      "pedagogicalReview": "Seconda inversa con denominatori e domini verificati.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-07",
+      "sourceSha256": "0dd4b6faafef2624db9cf04db701d26e004b5d5c917f873c32c4bc513a0a67c8",
+      "candidateSha256": "0695bfea833ab3c607a82044a9656774d9327b6669ba98f589bbc3469e929fb1",
+      "reviewedSignature": "b8992da4a9b77ed90ad4c1c94febba910a5b866284f51b8e048bd28eb94eef0b",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {},
+      "manualArithmetic": "N resta 20 ma l’emivita passa da 2 a 4 s. Il rapporto A_B/A_A è 2/4=1/2; B ha 7/2 Bq nel modello numerico.",
+      "physicalAssumptions": "Legge fisica con ln 2 distinta dalla valutazione numerica prescritta η=7/10. Conteggi N interi positivi, emivite finite positive costanti entro ogni prova. Attività media istantanea in Bq; β⁺03 autonomo consentito energeticamente e famiglia 16 discreta.",
+      "distractors": "Due rende diretta la dipendenza da T; un quarto quadra il fattore, quattro ne inverte il quadrato e uno ignora il parametro.",
+      "pedagogicalReview": "Due uscite calcolate prima del rapporto.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-08",
+      "sourceSha256": "f3cc9c2b815ba827a1d9d241812a12405aaccc0dd687151b7c23658ccac280e1",
+      "candidateSha256": "b0ae92e3cad6951b69ce06945266e1a0ef45a633308665c9058b37938a1f46ca",
+      "reviewedSignature": "2b862c0bf043dff7eb3e1b1a7f85330824ed94cd3cf4c5a798a67463261f1ec1",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "7",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "A corretto 7 Bq, proposto 14 Bq: lo scarto proposto−corretto è+7 Bq. Il proposto ha omesso il dimezzamento dovuto a 2 s.",
+      "physicalAssumptions": "Legge fisica con ln 2 distinta dalla valutazione numerica prescritta η=7/10. Conteggi N interi positivi, emivite finite positive costanti entro ogni prova. Attività media istantanea in Bq; β⁺03 autonomo consentito energeticamente e famiglia 16 discreta.",
+      "distractors": "−7 Bq inverte lo scarto; due è il rapporto; 14 Bq ripete la proposta e zero la accetta senza verifica.",
+      "pedagogicalReview": "Differenza ordinata distinta dal rapporto puro.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-09",
+      "sourceSha256": "7277e75dfca571e50a93473187e9f2aaaae38f6cc077e36835bc08a22525cc47",
+      "candidateSha256": "c5b9fd7335301ca89616fb607474b8379ba3fc8b43c1114dcd3765f5bd97812c",
+      "reviewedSignature": "3f94edddee85b712607250755ed5de7ce7cde1c725f662328a03a7652cd4a828",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "N = 𝒜_m T / η",
+      "dimension": {},
+      "manualArithmetic": "La forma fisica inversa èN=AT½/ln 2; usando la sola approssimazione prescritta diventa N≈10 AT½/7. Il prodotto A T½ è un conteggio e deve produrre un intero positivo se N è trattato come conteggio esatto.",
+      "physicalAssumptions": "Legge fisica con ln 2 distinta dalla valutazione numerica prescritta η=7/10. Conteggi N interi positivi, emivite finite positive costanti entro ogni prova. Attività media istantanea in Bq; β⁺03 autonomo consentito energeticamente e famiglia 16 discreta.",
+      "distractors": "Moltiplicare per η ripete la riduzione. Dividere ancora per T dà dimensione s⁻²; introdurre T² lascia una durata non richiesta.",
+      "pedagogicalReview": "Inversa simbolica e dimensioni esplicite.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-10",
+      "sourceSha256": "752e5995cff672597faf558a559fe6f1bbcc199d1b717b18d3ef7ee9392c754f",
+      "candidateSha256": "86eb257f5a7158852395766ccec74a0318536e9c07531b7dfae8b30ba3a79059",
+      "reviewedSignature": "697d001ef0f874d656d33f00c1c8abb91401ce97a3a2b56fb848d27d261ff08f",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ / κ₂",
+      "dimension": {},
+      "manualArithmetic": "Sostituzione e cancellazione danno A_B/A_A=κ₁/κ₂. Il fattore comune ln 2 cancella anche senza approssimarlo. κ₁N deve restare intero positivo; il solo κ₁>0 non autorizza nuclei frazionari.",
+      "physicalAssumptions": "Legge fisica con ln 2 distinta dalla valutazione numerica prescritta η=7/10. Conteggi N interi positivi, emivite finite positive costanti entro ogni prova. Attività media istantanea in Bq; β⁺03 autonomo consentito energeticamente e famiglia 16 discreta.",
+      "distractors": "Il prodotto rende T diretto e il reciproco scambia gli stati. Il quadrato di κ₁ altera la legge; la somma dà due per prove identiche.",
+      "pedagogicalReview": "Fattori nella legge effettiva, non in un’analogia impropria.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-11",
+      "sourceSha256": "d59972d3c3b672af26809ac9f52be6614fa9f32efcdbed1519796fe33bc1639d",
+      "candidateSha256": "d49989e4e258f0c65b55c5aae1e12738125d66bedafb5893a0871d74f0ce259a",
+      "reviewedSignature": "cb7569860544a2e619d86bf887f7d3c2e1cb724162db6b64be14832f2bd4e555",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/10",
+      "dimension": {},
+      "manualArithmetic": "A=7 Bq, B=(7/10)·1/1=7/10 Bq. Il rapporto è 1/10: il conteggio diminuisce di 20 volte mentre dimezzare l’emivita raddoppia la costante di decadimento.",
+      "physicalAssumptions": "Legge fisica con ln 2 distinta dalla valutazione numerica prescritta η=7/10. Conteggi N interi positivi, emivite finite positive costanti entro ogni prova. Attività media istantanea in Bq; β⁺03 autonomo consentito energeticamente e famiglia 16 discreta.",
+      "distractors": "Dieci inverte il rapporto; 1/20 segue soltanto N; 1/2 segue T nel verso diretto sbagliato. Uno confonde un evento con un tasso unitario.",
+      "pedagogicalReview": "Entrambi i nuovi ingressi considerati.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-12",
+      "sourceSha256": "4d4fdaaf5e6ab43ee857fb0ae475397563c353da2da4e778545b8e6fb2aa74b7",
+      "candidateSha256": "750c23e2bdd36c6935ea214e034824e98ef46b35ae942aa1dee455a84bdaad4b",
+      "reviewedSignature": "c2795030cc0b8969902549cd79bd45201179960d49e1c6c575d749e166375be3",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "radioactive-activity-progressive.svg": "9eadf800b2225c5392da7e003d7e79ec003bdc2f761586ba44bc835437dd747d"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "77/20",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "La media delle letture è(7+7/10)/2=77/20 Bq. Non sostituisco medie degli ingressi: darebbero 49/10 Bq e N=21/2 non è neppure un conteggio intero ammissibile.",
+      "physicalAssumptions": "Legge fisica con ln 2 distinta dalla valutazione numerica prescritta η=7/10. Conteggi N interi positivi, emivite finite positive costanti entro ogni prova. Attività media istantanea in Bq; β⁺03 autonomo consentito energeticamente e famiglia 16 discreta.",
+      "distractors": "77/10 somma, 63/20 prende la semidifferenza e 7/10 ripete B. 49/10 è soltanto l’estensione formale agli ingressi medi non interi.",
+      "pedagogicalReview": "Media delle uscite e ammissibilità degli ingressi medi distinte.",
+      "assetReview": "XML e PNG indipendente 640×1600 letti per intero. Venti cerchi nel primo pannello. Grafico discreto a T2s: x150+8N,y1000−20A_m, punti N5,10,…,40 con A_m=7N/20; origine aperta per N>0. Barre a scala40 per Bq:280/28/154 per7,7/10,77/20. La distinzione tra legge fisica e coefficiente numerico è visibile.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-13",
+      "sourceSha256": "ce188cf3890a103d47a5198333b450088e8c8acf6c546e4afec01bf2efaea58a",
+      "candidateSha256": "ed18b9530d6610707b0f00c60ab33110711fe3307bbfa2a3ac3979ff54e70419",
+      "reviewedSignature": "6b445de19d863355053512a45bd5e6ac03ba8dabe05c622ee9f98a6a1dddffce",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {},
+      "manualArithmetic": "Il rapporto richiesto è 1/10; con N_B/N_A=1/20, l’identità 1/10=(1/20)/(T_B/T_A) impone T_B/T_A=1/2.",
+      "physicalAssumptions": "Legge fisica con ln 2 distinta dalla valutazione numerica prescritta η=7/10. Conteggi N interi positivi, emivite finite positive costanti entro ogni prova. Attività media istantanea in Bq; β⁺03 autonomo consentito energeticamente e famiglia 16 discreta.",
+      "distractors": "Due inverte le durate; 1/10 copia il target del tasso e 1/20 il rapporto dei conteggi. Durate uguali darebbero 7/20 Bq in B.",
+      "pedagogicalReview": "Bersaglio ricostruito prima dell’inversa.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-14",
+      "sourceSha256": "ea19a155b4017e7e136a1401d7f528259ed451e194262285f43f1fc53b9b4dd7",
+      "candidateSha256": "2060a9e0f9f3d319eff34e1c9a6993e9264119cd58d5ca7c9d36dd26d4e3048e",
+      "reviewedSignature": "b3dde364c199958e72b9661b2b3596cd8263c335da99302e2fc679e3efa72230",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {},
+      "manualArithmetic": "Il riferimento 7 Bq corrisponde a 21, quindi a=3 unità strumentali/Bq. La lettura 21/10 dàA=7/10 Bq; con T½=1 s, N=(7/10)/(7/10)=1 nucleo.",
+      "physicalAssumptions": "Legge fisica con ln 2 distinta dalla valutazione numerica prescritta η=7/10. Conteggi N interi positivi, emivite finite positive costanti entro ogni prova. Attività media istantanea in Bq; β⁺03 autonomo consentito energeticamente e famiglia 16 discreta.",
+      "distractors": "Tre nuclei omette g e predice D=63/10; due predice D=21/5. Il numero strumentale 21/10 non è un conteggio già decodificato.",
+      "pedagogicalReview": "Guadagno rimosso prima del bilancio fisico.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-15",
+      "sourceSha256": "4021a0d908e401107468f79f3ebd45a3341275db304102660fdb3b9235873b41",
+      "candidateSha256": "a6820df4b87c67d85a271f761ec6aa06a893bb069454d754d3b080e32c813c5c",
+      "reviewedSignature": "382640fa3fa45828435cdfbcb212d437db856a095d50e9eb868b08d623b7b02d",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "40",
+      "dimension": {},
+      "manualArithmetic": "Le uscite fisiche 7 e 7/10 Bq producono 15 e 12/5. a=(15−12/5)/(7−7/10)=2, b=1. Dalla lettura 29 ricavoA 14 Bq; con 2 s N=14·2·10/7=40 nuclei.",
+      "physicalAssumptions": "Legge fisica con ln 2 distinta dalla valutazione numerica prescritta η=7/10. Conteggi N interi positivi, emivite finite positive costanti entro ogni prova. Attività media istantanea in Bq; β⁺03 autonomo consentito energeticamente e famiglia 16 discreta.",
+      "distractors": "580/7 omette entrambe le correzioni del display. Ottanta omette g dopo b e predice D=57; venti ripete il riferimento D=15.",
+      "pedagogicalReview": "Due riferimenti distinti identificano guadagno e offset.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-16",
+      "sourceSha256": "9783e2c92352e11fcc9e9d60bbc8fed23f01b8d6bc14f189c3d97b7de28046d3",
+      "candidateSha256": "4f4764d5521d3fba680e652369e769bd06a358a926881722137c78ca6f8a65af",
+      "reviewedSignature": "a959573c72b2c6b729660af922ba373d321d79a0d47cb1deb5e74e342547be85",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "radioactive-activity-progressive.svg": "9eadf800b2225c5392da7e003d7e79ec003bdc2f761586ba44bc835437dd747d"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Infinite coppie discrete, con N intero positivo",
+      "dimension": {},
+      "manualArithmetic": "Il vincolo dimensionato èN=(10 s⁻¹)T½. Nel modello 7/10 l’attività diventa 7 Bq indipendente da N: tutte le coppie (N, T½)=(k, k/10 s), k intero positivo, soddisfano i dati. Infinite numerabili, non un continuo di conteggi; con ln 2 esatto non sarebbe esattamente 7 Bq.",
+      "physicalAssumptions": "Legge fisica con ln 2 distinta dalla valutazione numerica prescritta η=7/10. Conteggi N interi positivi, emivite finite positive costanti entro ogni prova. Attività media istantanea in Bq; β⁺03 autonomo consentito energeticamente e famiglia 16 discreta.",
+      "distractors": "Una o due coppie non esauriscono le scelte intere. L’opzione «Nessuna coppia» è confutata dagli esempi; un continuo includerebbe N frazionario, escluso.",
+      "pedagogicalReview": "Vincolo o caso autonomo risolto prima di decidere unicità e dominio.",
+      "assetReview": "XML e PNG indipendente 640×1600 letti per intero. Venti cerchi nel primo pannello. Grafico discreto a T2s: x150+8N,y1000−20A_m, punti N5,10,…,40 con A_m=7N/20; origine aperta per N>0. Barre a scala40 per Bq:280/28/154 per7,7/10,77/20. La distinzione tra legge fisica e coefficiente numerico è visibile.",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "ff33fbb77ddbdc15a237f041705ede0879ef5b809bc74666b6dd7a78e5365091",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "65fb52b17dca66e9e5afd2dbae94e5c486eef242",
+  "packageSha256": "844c90d4f89ad63fa48ce4549cbea7562a6d923c0e0d9ea72f44d84cc12455c1",
+  "bindingsSha256": "08d2f515d3baee10c8a48e80f0345771c824014ec354d6c3f3d6e9ec05020206",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U7-02.json",
+    "title": "radioactive-activity",
+    "reference": "Legge fisica con ln 2 distinta dalla valutazione numerica prescritta η=7/10. Conteggi N interi positivi, emivite finite positive costanti entro ogni prova. Attività media istantanea in Bq; β⁺03 autonomo consentito energeticamente e famiglia 16 discreta."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/u7-nuclear-250-254-independent-models.py",
+    "sha256": "58e478edc733fb198a7711e2a5fdfa8c7f46d3537f331562cf531737f04ed4bc",
+    "commit": "aca104f3"
+  },
+  "postReadNumericGuardHardening": "Only sympify strict=True added after candidate reading to reject strings without evaluation; all constitutive/inverse/calibration function AST bodies remain identical to pre-key snapshot. Snapshot preserved unchanged.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/u7-nuclei-250-254-primary-source-only-20261126.md",
+    "sha256": "51439933fe3974da7552b58de5f9929aecd44ed758e84ab1e1a0c379c47515d2"
+  }
+}

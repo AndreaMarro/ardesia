@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "Superseding actual successful independent80 source-only derivations before any B255\u2013259 candidate exposure",
+  "supersedesInvalidPositiveReceiptCommit": "5c3af5ea",
+  "invalidReceiptPreserved": "premature-invalid-positive-receipt.json",
+  "firstActualExecution": {
+    "session": 14553,
+    "childExit": 1,
+    "originalRawFileCaptured": false,
+    "failure": "Structural SymPy equality of equivalent rational forms, documented in failed-first-run.json"
+  },
+  "sameOldBytesActualNegativeReproduction": {
+    "session": 97048,
+    "childExit": 1,
+    "outputFileSha256": "2cfae28043ed257ac02462ce7e074ffd82ace531c57912bb0704f2728823a0f4"
+  },
+  "actualSuccessfulExecution": {
+    "session": 27769,
+    "wrapperExit": 0,
+    "childExit": 0,
+    "outputFileSha256": "56ef46ea44f78d6cdcbb113772ee85134084ce40cd78ee29cdc232c5197696a7"
+  },
+  "primarySha256": "5b685efd1f9081ea829990d63cf50291ffc298c922b8aac2b169b8de5cdaa3e4",
+  "modelSha256": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7",
+  "sourceOnlyCasesExecuted": 80,
+  "candidateExposureAtFreeze": "NONE",
+  "candidateVerdict": "NOT_RUN",
+  "change": "Only symbolic assertion compares cancelled difference to exact zero; no tolerance or physical-domain changes",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

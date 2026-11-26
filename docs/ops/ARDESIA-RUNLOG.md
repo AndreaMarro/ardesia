@@ -2132,3 +2132,21 @@ RuntimeRoot/canone1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8b
 Repository PUBLIC con tutti i contenuti editoriali autorizzati; nell’appDRAFT/default-deny e93esami invariati. Pro100NOT_IDENTIFIED;199controlli tecnici non sono revisioni complete. Mutex unico, almeno2GiB, nessun processo utente terminato.
 
 Prossime azioni: concludere retry3632/adottare soltanto prove riuscite; attivare160U701 e replay3792; continuare208Ardesia e606Cric; chiudere NodoA e altri consumer con autore/reviewer distinti e veri testUI; aggiornare checkpoint/coda umana separata dalla pubblicazione.
+
+## Stato verificato del26novembre:3.952 revisioni; checkpoint3.632 adottato
+
+Mandato INCOMPLETO:3.952/4.606 quesiti con review indipendente e collaudo Root (85,8%); restano654=48Ardesia+606Cric. Registry3792,160U702 accettati ma da registrare dopo adozione3792; checkpoint3632/246. Attività246/385, residue139. Human0 e pubblicazioni nuove0. Gli stati sono distinti; nessuna revisione va rifatta perché attende la registrazione.
+
+U702:318file recuperati esattamente da5a55fce6/6b073e2c/3d5a153b/9a38e5ef, quattro handoff conSHA; Root20testPASS19,721s +17PASS24,092s,160reportfresh/saved identici, dieci import16→0/16 e991pubblicati/versioni storiche identici. Ricevuta u7-02-root-integration-20261126/receipt.json e script riproducibile. La ricevuta pre-key errata5c3af5ea è conservata ma INVALID; il positivo correttoa114caa9 è antecedente alle chiavi e usa equivalenza simbolica esatta, nessuna tolleranza. Tre chiarimenti d’autore riletti dopo finding; nessun altro residuo. ProssimoID AR-u7-lens-magnification-01 (U70348); poi i54cohort Cric606 assegnati con baseVersion individuale e93exam preservati.
+
+Preparazione3632 effettivamente SUCCESS:45865245464/source4e403a89,239pacchetti/10947casi UI,1015test532,456s, ETLfresh/incrementale identici, coesistenza/releasePASS. Artefatto15143421272/148545732byte/SHA42d000e748c4240fc294f4247be9954fd1311a77bef91152c1df6bb8937f17e2 archiviato integralmente in4parti. Adozione2f2e2d51, checkpoint generations/c0b84b2576606de5b6edbfb7cab7ea74ed5c6f90656d2c22b93f60db1d6421c8, manifest61ae9fa1b0bec26a70f942871ebb181251392fc05992cbc5250968044e9d4f58. Il precedente FAIL45859734058 resta storico, non è stato convertito inPASS.
+
+U701160 registrati42049bf1:registrySHA62c195d8b6ab1f4ddbac1af2ada5ad834656943db19c85bb195f8742d0dcdb2c. Nuovo run3792=45873357486/source42049bf1 è IN_PROGRESS, faseETL dopo browser osservata, nessun SUCCESS/release/adottamento ancora. Previewrequest mantenuto temporaneamente al pinprecedente per evitare un secondo producer completo; sincronizzarlo DOPO3792adozione e PRprima, senza toccare gate/protocollo. Dopo adozione3792 attivareU702160→3952 e successiviU703 secondo prova reale.
+
+Canone invariato7c29ccc18ad3b42ceecfca509ef57f786bd2c496, PR364MERGED e14/14postmergeSUCCESS sullaSHAesatta;3312quesiti/246attività. RuntimeRoot1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba invariato. Preparazione feature non sostituisce futuraCI sullaSHAeffettiva dellaPR/merge.
+
+Consumer isolato finale4a6f56bc/d94b19e02f9bbe74c75080dd8df74082bc80bc2ab2fa4c1508be6692b38b58f3, non integrato né approvato. Tre finding b2 reali e immutabili: NodoA copre punta ingresso; E×10 copre punte inTOP;22tip-mask Lorentz in10statiTOP (non22occlusioni uniche/intericone). Autore sposta nomi inlegendeHTML associate e separa rappresentazioneE×10 anche inz. Prove fisiche positive, UI distinta sul nuovo runtime PENDING;139attività non acquisiscono credito. Protocollo/YAML parametrico UI139 in preparazione indipendente, non secondoETL. Non ritaggare prove d9/b2 sui runtime nuovi; originaliFAIL e73/80vecchi test rimangono delimitati all’epoca effettiva.
+
+GitHubPUBLIC con tutti i materiali editoriali autorizzati; appDRAFT/default-deny/93exam e gate umano invariati. Pro100NOT_IDENTIFIED;199prove tecniche non revisioni complete. Mutex locale unico, almeno2GiB, nessun processo utente eliminato.
+
+Priorità:concludere/adottare3792 reale; attivareU702 e proseguire48+606; ottenere nuovaUI139 e chiudere difetti con ruoli distinti; normalePR+CIpostmerge; mantenere manifest/handoff e coda umana separata.

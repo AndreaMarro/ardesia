@@ -1,0 +1,1095 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u7-radioactive-activity-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività media e numero di genitori",
+      "order": 25101,
+      "title": "Un tasso medio dai genitori presenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-activity",
+      "difficulty": 1,
+      "prompt": "Si considera un solo radionuclide, senza nuova produzione. N è il numero intero positivo di genitori presenti al momento considerato e T>0 la sua emivita. L’attività media istantanea esatta è 𝒜=(ln 2)N/T. Per tutti i calcoli numerici si prescrive η=7/10 al posto di ln 2 e si usa 𝒜_m=ηN/T: è un’approssimazione dell’attività fisica, con risultati esatti nel modello numerico assegnato. T si esprime in secondi e 𝒜_m in Bq. Ogni preparazione ha T costante; cambiare T fra prove significa preparare sistemi diversi. Con N=20 e T=2 s, quanto vale 𝒜_m in Bq?",
+      "answer": {
+        "type": "numeric",
+        "value": 7,
+        "unit": "Bq",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’attività è il tasso medio di trasformazioni in quell’istante, non il numero di nuclei. Il coefficiente numerico assegnato dà (7/10)·20=14; dividendo per 2 s ottengo 7 s⁻¹, cioè 7 Bq. Non affermo che ln 2 sia esattamente 7/10."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/9eadf800b2225c5392da7e003d7e79ec003bdc2f761586ba44bc835437dd747d",
+          "text": "Il primo pannello separa il conteggio N=20 dall’attività numerica 7 Bq: non sono la stessa grandezza. Il grafico vale a T=2 s e mostra soltanto alcuni N interi positivi."
+        },
+        {
+          "type": "formula",
+          "text": "\\mathcal A_m=\\frac{\\eta N}{T}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathcal A_m=\\frac{(7/10)20}{2\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathcal A_m=7\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "text",
+          "text": "14 Bq omette la divisione per T e 10 Bq omette η. Il numero 20 è il conteggio presente, non un tasso. Una misura casuale in un singolo secondo non è obbligata a essere sette."
+        }
+      ],
+      "hints": [
+        "Applica prima il coefficiente assegnato, poi dividi per il tempo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "14 Bq omette la divisione per T e 10 Bq omette η. Il numero 20 è il conteggio presente, non un tasso. Una misura casuale in un singolo secondo non è obbligata a essere sette.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Legge fisica e modello numerico assegnato",
+        "Becquerel distinto da conteggio",
+        "Inverse, taratura e integralità",
+        "Caso autonomo beta più"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività media e numero di genitori",
+      "order": 25102,
+      "title": "L’unità dell’attività",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-activity",
+      "difficulty": 1,
+      "prompt": "Quale unità SI indica l’attività di una sorgente radioattiva, cioè il tasso medio di decadimenti?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Bq",
+          "s",
+          "J",
+          "C",
+          "m"
+        ],
+        "value": "Bq"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un becquerel corrisponde a un decadimento medio al secondo. Il conteggio delle trasformazioni è puro, dunque la dimensione è tempo inverso. Non è una dose assorbita né un’energia per emissione."
+        },
+        {
+          "type": "formula",
+          "text": "1\\,\\mathrm{Bq}=1\\,\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\mathcal A]=T^{-1}"
+        },
+        {
+          "type": "text",
+          "text": "Il secondo è un tempo, J energia, C carica e m lunghezza. Il solo valore dell’attività non determina l’energia o gli effetti di ciascuna emissione."
+        }
+      ],
+      "hints": [
+        "Distingui conteggio cumulativo e conteggio per unità di tempo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Il secondo è un tempo, J energia, C carica e m lunghezza. Il solo valore dell’attività non determina l’energia o gli effetti di ciascuna emissione.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Legge fisica e modello numerico assegnato",
+        "Becquerel distinto da conteggio",
+        "Inverse, taratura e integralità",
+        "Caso autonomo beta più"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività media e numero di genitori",
+      "order": 25103,
+      "title": "Il beta più è un caso distinto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-activity",
+      "difficulty": 1,
+      "prompt": "Caso autonomo: in un nucleo in cui il processo β⁺ è energeticamente consentito, quale trasformazione nucleare avviene?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Un protone diventa neutrone, emettendo positrone e neutrino elettronico",
+          "Un neutrone diventa protone, emettendo elettrone e antineutrino",
+          "Il nucleo perde due protoni e due neutroni",
+          "Il nucleo emette soltanto un fotone e cambia Z",
+          "Un elettrone orbitale viene espulso senza trasformazioni nucleari"
+        ],
+        "value": "Un protone diventa neutrone, emettendo positrone e neutrino elettronico"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel β⁺ nucleare un protone si trasforma in neutrone con positrone e neutrino elettronico. Il numero di massa resta A, mentre Z diminuisce di uno. La condizione energetica è del nucleo: non si sta affermando il decadimento β⁺ di un protone libero."
+        },
+        {
+          "type": "formula",
+          "text": "{}^A_ZX\\longrightarrow{}^A_{Z-1}Y+e^++\\nu_e"
+        },
+        {
+          "type": "formula",
+          "text": " A_f=A_i"
+        },
+        {
+          "type": "formula",
+          "text": " Z_f=Z_i-1"
+        },
+        {
+          "type": "text",
+          "text": "La trasformazione neutrone→protone è β⁻ e aumenta Z. Perdere quattro nucleoni è α; una semplice γ non cambia Z. Espellere un elettrone atomico non converte un protone del nucleo."
+        }
+      ],
+      "hints": [
+        "Identifica il nucleone che cambia e conserva carica e numero di nucleoni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La trasformazione neutrone→protone è β⁻ e aumenta Z. Perdere quattro nucleoni è α; una semplice γ non cambia Z. Espellere un elettrone atomico non converte un protone del nucleo.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Legge fisica e modello numerico assegnato",
+        "Becquerel distinto da conteggio",
+        "Inverse, taratura e integralità",
+        "Caso autonomo beta più"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività media e numero di genitori",
+      "order": 25104,
+      "title": "Il doppio dei genitori presenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-activity",
+      "difficulty": 1,
+      "prompt": "Si considera un solo radionuclide, senza nuova produzione. N è il numero intero positivo di genitori presenti al momento considerato e T>0 la sua emivita. L’attività media istantanea esatta è 𝒜=(ln 2)N/T. Per tutti i calcoli numerici si prescrive η=7/10 al posto di ln 2 e si usa 𝒜_m=ηN/T: è un’approssimazione dell’attività fisica, con risultati esatti nel modello numerico assegnato. T si esprime in secondi e 𝒜_m in Bq. Ogni preparazione ha T costante; cambiare T fra prove significa preparare sistemi diversi. A ha N=20,T=2 s; B ha N=40 allo stesso T. Come cambia 𝒜_m?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 7 Bq a 14 Bq",
+          "Da 7 Bq a 7/2 Bq",
+          "Da 7 Bq a 28 Bq",
+          "Resta 7 Bq",
+          "Diventa 40 Bq"
+        ],
+        "value": "Da 7 Bq a 14 Bq"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A emivita e coefficiente numerico fissati il tasso è lineare in N. Il doppio dei genitori fornisce il doppio dell’attività media: 14 Bq. Non si cambia la probabilità di trasformazione del singolo genitore."
+        },
+        {
+          "type": "formula",
+          "text": "\\mathcal A_{m,A}=7\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathcal A_{m,B}=14\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathcal A_{m,B}/\\mathcal A_{m,A}=2"
+        },
+        {
+          "type": "text",
+          "text": "7/2 Bq renderebbe il tasso inverso a N e 28 Bq applicherebbe il quadrato. Sette ignora la nuova quantità; quaranta copia N senza coefficienti e unità di tempo."
+        }
+      ],
+      "hints": [
+        "Mantieni costante il tasso per singolo genitore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "7/2 Bq renderebbe il tasso inverso a N e 28 Bq applicherebbe il quadrato. Sette ignora la nuova quantità; quaranta copia N senza coefficienti e unità di tempo.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Legge fisica e modello numerico assegnato",
+        "Becquerel distinto da conteggio",
+        "Inverse, taratura e integralità",
+        "Caso autonomo beta più"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività media e numero di genitori",
+      "order": 25105,
+      "title": "Ricavare un conteggio intero",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-activity",
+      "difficulty": 2,
+      "prompt": "Si considera un solo radionuclide, senza nuova produzione. N è il numero intero positivo di genitori presenti al momento considerato e T>0 la sua emivita. L’attività media istantanea esatta è 𝒜=(ln 2)N/T. Per tutti i calcoli numerici si prescrive η=7/10 al posto di ln 2 e si usa 𝒜_m=ηN/T: è un’approssimazione dell’attività fisica, con risultati esatti nel modello numerico assegnato. T si esprime in secondi e 𝒜_m in Bq. Ogni preparazione ha T costante; cambiare T fra prove significa preparare sistemi diversi. 𝒜_m=7 Bq e T=2 s. Quanto vale N in nuclei?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "nuclei",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplico il tasso per l’emivita e divido per η: 7·2/(7/10)=20. Il risultato è puro ed è anche intero positivo. Con un dato che producesse un valore non intero non potrei descrivere quel singolo conteggio N senza precisare una media statistica diversa."
+        },
+        {
+          "type": "formula",
+          "text": "N=\\frac{\\mathcal A_mT}{\\eta}"
+        },
+        {
+          "type": "formula",
+          "text": " N=\\frac{7\\cdot2}{7/10}"
+        },
+        {
+          "type": "formula",
+          "text": " N=20"
+        },
+        {
+          "type": "text",
+          "text": "Dieci omette il fattore due della durata e darebbe 7/2 Bq. Quattordici omette la divisione per η e darebbe 49/10 Bq. Il valore 49/5 moltiplicherebbe ancora per η anziché dividerlo."
+        }
+      ],
+      "hints": [
+        "L’inversa deve recuperare sia l’unità di conteggio sia la sua integralità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci omette il fattore due della durata e darebbe 7/2 Bq. Quattordici omette la divisione per η e darebbe 49/10 Bq. Il valore 49/5 moltiplicherebbe ancora per η anziché dividerlo.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Legge fisica e modello numerico assegnato",
+        "Becquerel distinto da conteggio",
+        "Inverse, taratura e integralità",
+        "Caso autonomo beta più"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività media e numero di genitori",
+      "order": 25106,
+      "title": "L’emivita dal tasso assegnato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-activity",
+      "difficulty": 2,
+      "prompt": "Si considera un solo radionuclide, senza nuova produzione. N è il numero intero positivo di genitori presenti al momento considerato e T>0 la sua emivita. L’attività media istantanea esatta è 𝒜=(ln 2)N/T. Per tutti i calcoli numerici si prescrive η=7/10 al posto di ln 2 e si usa 𝒜_m=ηN/T: è un’approssimazione dell’attività fisica, con risultati esatti nel modello numerico assegnato. T si esprime in secondi e 𝒜_m in Bq. Ogni preparazione ha T costante; cambiare T fra prove significa preparare sistemi diversi. 𝒜_m=7 Bq e N=20. Quanto vale T in secondi?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da 𝒜_mT=ηN ricavo T=ηN/𝒜_m. Il numeratore è 14; diviso 7 s⁻¹ dà 2 s. Il risultato riguarda l’emivita nel modello numerico con η prescritto."
+        },
+        {
+          "type": "formula",
+          "text": "T=\\frac{\\eta N}{\\mathcal A_m}"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac{14}{7\\,\\mathrm{s^{-1}}}"
+        },
+        {
+          "type": "formula",
+          "text": " T=2\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Mezzo secondo darebbe 28 Bq. Quattro secondi darebbero 7/2 Bq; venti copia il conteggio come se fosse una durata. Non si elimina η dalla relazione inversa."
+        }
+      ],
+      "hints": [
+        "Controlla che dividere per un tasso dia un tempo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Mezzo secondo darebbe 28 Bq. Quattro secondi darebbero 7/2 Bq; venti copia il conteggio come se fosse una durata. Non si elimina η dalla relazione inversa.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Legge fisica e modello numerico assegnato",
+        "Becquerel distinto da conteggio",
+        "Inverse, taratura e integralità",
+        "Caso autonomo beta più"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività media e numero di genitori",
+      "order": 25107,
+      "title": "Stesso numero, emivita doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-activity",
+      "difficulty": 2,
+      "prompt": "Si considera un solo radionuclide, senza nuova produzione. N è il numero intero positivo di genitori presenti al momento considerato e T>0 la sua emivita. L’attività media istantanea esatta è 𝒜=(ln 2)N/T. Per tutti i calcoli numerici si prescrive η=7/10 al posto di ln 2 e si usa 𝒜_m=ηN/T: è un’approssimazione dell’attività fisica, con risultati esatti nel modello numerico assegnato. T si esprime in secondi e 𝒜_m in Bq. Ogni preparazione ha T costante; cambiare T fra prove significa preparare sistemi diversi. A ha N=20,T=2 s; B ha N=20,T=4 s. Quanto vale 𝒜_m,B/𝒜_m,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/4",
+          "1",
+          "4"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con gli stessi genitori il tempo doppio al denominatore dimezza il tasso. A dà 7 Bq e B dà 7/2 Bq: rapporto un mezzo. Sono due preparazioni con emivite diverse, non una emivita che cambia durante la stessa prova."
+        },
+        {
+          "type": "formula",
+          "text": "\\mathcal A_{m,B}=\\frac72\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathcal A_{m,B}/\\mathcal A_{m,A}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due segue T direttamente; un quarto quadra il fattore e quattro inverte quel quadrato. Uno ignora il parametro che cambia."
+        }
+      ],
+      "hints": [
+        "L’emivita è al denominatore della costante di decadimento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due segue T direttamente; un quarto quadra il fattore e quattro inverte quel quadrato. Uno ignora il parametro che cambia.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Legge fisica e modello numerico assegnato",
+        "Becquerel distinto da conteggio",
+        "Inverse, taratura e integralità",
+        "Caso autonomo beta più"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività media e numero di genitori",
+      "order": 25108,
+      "title": "Lo scarto del tasso proposto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-activity",
+      "difficulty": 2,
+      "prompt": "Si considera un solo radionuclide, senza nuova produzione. N è il numero intero positivo di genitori presenti al momento considerato e T>0 la sua emivita. L’attività media istantanea esatta è 𝒜=(ln 2)N/T. Per tutti i calcoli numerici si prescrive η=7/10 al posto di ln 2 e si usa 𝒜_m=ηN/T: è un’approssimazione dell’attività fisica, con risultati esatti nel modello numerico assegnato. T si esprime in secondi e 𝒜_m in Bq. Ogni preparazione ha T costante; cambiare T fra prove significa preparare sistemi diversi. Con N=20,T=2 s viene proposta 𝒜_m=14 Bq. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7 Bq",
+          "−7 Bq",
+          "2",
+          "14 Bq",
+          "0 Bq"
+        ],
+        "value": "7 Bq"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il tasso numerico corretto è 7 Bq. La proposta è maggiore di 14−7=7 Bq. Il quoziente delle due attività è due e non ha l’unità dello scarto richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "\\delta\\mathcal A_m=(14-7)\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta\\mathcal A_m=7\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "text",
+          "text": "−7 Bq scambia l’ordine della sottrazione; due è il rapporto. Quattordici ripete la proposta e zero non la verifica."
+        }
+      ],
+      "hints": [
+        "Scrivi entrambe le attività nella stessa unità prima della differenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−7 Bq scambia l’ordine della sottrazione; due è il rapporto. Quattordici ripete la proposta e zero non la verifica.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Legge fisica e modello numerico assegnato",
+        "Becquerel distinto da conteggio",
+        "Inverse, taratura e integralità",
+        "Caso autonomo beta più"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività media e numero di genitori",
+      "order": 25109,
+      "title": "Isolare N nel modello dichiarato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-activity",
+      "difficulty": 2,
+      "prompt": "Si considera un solo radionuclide, senza nuova produzione. N è il numero intero positivo di genitori presenti al momento considerato e T>0 la sua emivita. L’attività media istantanea esatta è 𝒜=(ln 2)N/T. Per tutti i calcoli numerici si prescrive η=7/10 al posto di ln 2 e si usa 𝒜_m=ηN/T: è un’approssimazione dell’attività fisica, con risultati esatti nel modello numerico assegnato. T si esprime in secondi e 𝒜_m in Bq. Ogni preparazione ha T costante; cambiare T fra prove significa preparare sistemi diversi. 𝒜_m e T sono noti. Quale formula ricava N?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N = 𝒜_m T / η",
+          "N = η 𝒜_m T",
+          "N = η / (𝒜_m T)",
+          "N = 𝒜_m / (η T)",
+          "N = 𝒜_m T² / η"
+        ],
+        "value": "N = 𝒜_m T / η"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplico per T e divido per η>0. Il prodotto attività·tempo è puro e restituisce un conteggio. Nella legge fisica esatta il medesimo passaggio userebbe ln 2 al posto del coefficiente numerico η."
+        },
+        {
+          "type": "formula",
+          "text": "N=\\frac{\\mathcal A_mT}{\\eta}"
+        },
+        {
+          "type": "formula",
+          "text": " N_{\\rm legge\\ esatta}=\\frac{\\mathcal AT}{\\ln2}"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare per η applica di nuovo la riduzione invece dell’inversa. Il reciproco non ricostruisce N; dividere ancora per T ha dimensione s⁻² e introdurre T² conserva una durata non richiesta."
+        }
+      ],
+      "hints": [
+        "Distingui la legge fisica esatta dalla sua valutazione numerica prescritta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare per η applica di nuovo la riduzione invece dell’inversa. Il reciproco non ricostruisce N; dividere ancora per T ha dimensione s⁻² e introdurre T² conserva una durata non richiesta.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Legge fisica e modello numerico assegnato",
+        "Becquerel distinto da conteggio",
+        "Inverse, taratura e integralità",
+        "Caso autonomo beta più"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività media e numero di genitori",
+      "order": 25110,
+      "title": "Scalare numero ed emivita",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-activity",
+      "difficulty": 2,
+      "prompt": "Si considera un solo radionuclide, senza nuova produzione. N è il numero intero positivo di genitori presenti al momento considerato e T>0 la sua emivita. L’attività media istantanea esatta è 𝒜=(ln 2)N/T. Per tutti i calcoli numerici si prescrive η=7/10 al posto di ln 2 e si usa 𝒜_m=ηN/T: è un’approssimazione dell’attività fisica, con risultati esatti nel modello numerico assegnato. T si esprime in secondi e 𝒜_m in Bq. Ogni preparazione ha T costante; cambiare T fra prove significa preparare sistemi diversi. Fra prove N_B=κ₁N_A e T_B=κ₂T_A. I fattori sono positivi e N_A,N_B interi. Quanto vale 𝒜_m,B/𝒜_m,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁² / κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fattore η è comune e si cancella. Resta il numero iniziale scalato da κ₁ e il denominatore scalato da κ₂: rapporto κ₁/κ₂. Serve anche che κ₁N_A sia un intero, non solo un numero positivo."
+        },
+        {
+          "type": "formula",
+          "text": "\\mathcal A_{m,B}/\\mathcal A_{m,A}=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto rende diretta la dipendenza dall’emivita. Il reciproco scambia i due stati, κ₁² aggiunge un quadrato assente e la somma dà due per prove identiche."
+        }
+      ],
+      "hints": [
+        "Semplifica il coefficiente comune e controlla il dominio dei conteggi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto rende diretta la dipendenza dall’emivita. Il reciproco scambia i due stati, κ₁² aggiunge un quadrato assente e la somma dà due per prove identiche.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Legge fisica e modello numerico assegnato",
+        "Becquerel distinto da conteggio",
+        "Inverse, taratura e integralità",
+        "Caso autonomo beta più"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività media e numero di genitori",
+      "order": 25111,
+      "title": "Da venti genitori a uno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-activity",
+      "difficulty": 2,
+      "prompt": "Si considera un solo radionuclide, senza nuova produzione. N è il numero intero positivo di genitori presenti al momento considerato e T>0 la sua emivita. L’attività media istantanea esatta è 𝒜=(ln 2)N/T. Per tutti i calcoli numerici si prescrive η=7/10 al posto di ln 2 e si usa 𝒜_m=ηN/T: è un’approssimazione dell’attività fisica, con risultati esatti nel modello numerico assegnato. T si esprime in secondi e 𝒜_m in Bq. Ogni preparazione ha T costante; cambiare T fra prove significa preparare sistemi diversi. A: N=20,T=2 s. B: N=1,T=1 s. Quanto vale 𝒜_m,B/𝒜_m,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/10",
+          "10",
+          "1/20",
+          "1/2",
+          "1"
+        ],
+        "value": "1/10"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 7 Bq. B dà 7/10 Bq: un tasso medio non deve essere intero anche se N=1 lo è. Il rapporto è (7/10)/7=1/10. Il singolo decadimento resta un evento casuale."
+        },
+        {
+          "type": "formula",
+          "text": "\\mathcal A_{m,B}=\\frac7{10}\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathcal A_{m,B}/\\mathcal A_{m,A}=\\frac1{10}"
+        },
+        {
+          "type": "text",
+          "text": "Dieci inverte il rapporto, 1/20 considera soltanto N e 1/2 soltanto il fattore di durata col verso sbagliato. Uno confonde un evento con un tasso fissato a uno."
+        }
+      ],
+      "hints": [
+        "Un tasso di un evento ogni più secondi può essere minore di un becquerel.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci inverte il rapporto, 1/20 considera soltanto N e 1/2 soltanto il fattore di durata col verso sbagliato. Uno confonde un evento con un tasso fissato a uno.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Legge fisica e modello numerico assegnato",
+        "Becquerel distinto da conteggio",
+        "Inverse, taratura e integralità",
+        "Caso autonomo beta più"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività media e numero di genitori",
+      "order": 25112,
+      "title": "Media di tassi, non di numeri di genitori",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-activity",
+      "difficulty": 2,
+      "prompt": "Si considera un solo radionuclide, senza nuova produzione. N è il numero intero positivo di genitori presenti al momento considerato e T>0 la sua emivita. L’attività media istantanea esatta è 𝒜=(ln 2)N/T. Per tutti i calcoli numerici si prescrive η=7/10 al posto di ln 2 e si usa 𝒜_m=ηN/T: è un’approssimazione dell’attività fisica, con risultati esatti nel modello numerico assegnato. T si esprime in secondi e 𝒜_m in Bq. Ogni preparazione ha T costante; cambiare T fra prove significa preparare sistemi diversi. A: N=20,T=2 s. B: N=1,T=1 s. Qual è la media aritmetica delle due 𝒜_m con pesi uguali?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "77/20 Bq",
+          "49/10 Bq",
+          "77/10 Bq",
+          "63/20 Bq",
+          "7/10 Bq"
+        ],
+        "value": "77/20 Bq"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le attività numeriche sono 7 e 7/10 Bq. La loro media è 77/20 Bq. Gli ingressi medi avrebbero N=21/2, che non è un singolo conteggio fisico. Inserirli formalmente con T=3/2 s darebbe 49/10 Bq, comunque diverso dalla statistica richiesta."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/9eadf800b2225c5392da7e003d7e79ec003bdc2f761586ba44bc835437dd747d",
+          "text": "Le barre finali confrontano due preparazioni diverse, N=20,T=2 s e N=1,T=1 s. Origine e scala sono comuni soltanto fra le tre attività, con media 77/20 Bq; non fra attività e numero di nuclei."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline{\\mathcal A_m}=\\frac{7+7/10}{2}\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline{\\mathcal A_m}=\\frac{77}{20}\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "text",
+          "text": "77/10 Bq è la somma, 63/20 Bq la semidifferenza e 7/10 Bq copia B. Il valore 49/10 Bq appartiene soltanto all’estensione formale ai dati medi, con conteggio non intero."
+        }
+      ],
+      "hints": [
+        "Calcola due attività prima di usare i pesi statistici.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "77/10 Bq è la somma, 63/20 Bq la semidifferenza e 7/10 Bq copia B. Il valore 49/10 Bq appartiene soltanto all’estensione formale ai dati medi, con conteggio non intero.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Legge fisica e modello numerico assegnato",
+        "Becquerel distinto da conteggio",
+        "Inverse, taratura e integralità",
+        "Caso autonomo beta più"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività media e numero di genitori",
+      "order": 25113,
+      "title": "L’emivita richiesta dal bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-activity",
+      "difficulty": 3,
+      "prompt": "Si considera un solo radionuclide, senza nuova produzione. N è il numero intero positivo di genitori presenti al momento considerato e T>0 la sua emivita. L’attività media istantanea esatta è 𝒜=(ln 2)N/T. Per tutti i calcoli numerici si prescrive η=7/10 al posto di ln 2 e si usa 𝒜_m=ηN/T: è un’approssimazione dell’attività fisica, con risultati esatti nel modello numerico assegnato. T si esprime in secondi e 𝒜_m in Bq. Ogni preparazione ha T costante; cambiare T fra prove significa preparare sistemi diversi. A ha N=20,T_A=2 s. B deve avere N=1 e 𝒜_m,B=𝒜_m,A/10. Quanto vale T_B/T_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/10",
+          "1/20",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 7/10 Bq. Per N=1 l’inversa T=ηN/𝒜_m dà T_B=1 s. Rispetto ai 2 s iniziali il rapporto è un mezzo. Non si trasferisce direttamente il rapporto delle attività a quello dei tempi."
+        },
+        {
+          "type": "formula",
+          "text": "T_B=\\frac{7/10}{(7/10)\\,\\mathrm{s^{-1}}}"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=1\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T_B/T_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il rapporto; 1/10 copia il bersaglio del tasso e 1/20 il rapporto dei conteggi. Uno darebbe 7/20 Bq, non 7/10 Bq."
+        }
+      ],
+      "hints": [
+        "Ricava la nuova emivita dal nuovo conteggio e dal tasso bersaglio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il rapporto; 1/10 copia il bersaglio del tasso e 1/20 il rapporto dei conteggi. Uno darebbe 7/20 Bq, non 7/10 Bq.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Legge fisica e modello numerico assegnato",
+        "Becquerel distinto da conteggio",
+        "Inverse, taratura e integralità",
+        "Caso autonomo beta più"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività media e numero di genitori",
+      "order": 25114,
+      "title": "Decodificare il display di attività",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-activity",
+      "difficulty": 3,
+      "prompt": "Si considera un solo radionuclide, senza nuova produzione. N è il numero intero positivo di genitori presenti al momento considerato e T>0 la sua emivita. L’attività media istantanea esatta è 𝒜=(ln 2)N/T. Per tutti i calcoli numerici si prescrive η=7/10 al posto di ln 2 e si usa 𝒜_m=ηN/T: è un’approssimazione dell’attività fisica, con risultati esatti nel modello numerico assegnato. T si esprime in secondi e 𝒜_m in Bq. Ogni preparazione ha T costante; cambiare T fra prove significa preparare sistemi diversi. Un display continuo D=g 𝒜_m legge 21 per N=20,T=2 s. In B legge 21/10 e T=1 s. Quanto vale N_B in nuclei?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "nuclei",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha 𝒜_m=7 Bq e fissa g=3 Bq⁻¹. La lettura 21/10 indica 7/10 Bq. Con emivita 1 s, N=(7/10)·1/(7/10)=1, un conteggio intero."
+        },
+        {
+          "type": "formula",
+          "text": "g=3\\,\\mathrm{Bq^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathcal A_{m,B}=\\frac7{10}\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " N_B=1"
+        },
+        {
+          "type": "text",
+          "text": "Tre nuclei ometterebbe il guadagno e predirebbe D=63/10. Due darebbe D=21/5; il numero 21/10 è una lettura continua, non già un numero di nuclei."
+        }
+      ],
+      "hints": [
+        "Rimuovi g prima dell’inversa che restituisce il conteggio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre nuclei ometterebbe il guadagno e predirebbe D=63/10. Due darebbe D=21/5; il numero 21/10 è una lettura continua, non già un numero di nuclei.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Legge fisica e modello numerico assegnato",
+        "Becquerel distinto da conteggio",
+        "Inverse, taratura e integralità",
+        "Caso autonomo beta più"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività media e numero di genitori",
+      "order": 25115,
+      "title": "Due riferimenti per l’attività",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-activity",
+      "difficulty": 3,
+      "prompt": "Si considera un solo radionuclide, senza nuova produzione. N è il numero intero positivo di genitori presenti al momento considerato e T>0 la sua emivita. L’attività media istantanea esatta è 𝒜=(ln 2)N/T. Per tutti i calcoli numerici si prescrive η=7/10 al posto di ln 2 e si usa 𝒜_m=ηN/T: è un’approssimazione dell’attività fisica, con risultati esatti nel modello numerico assegnato. T si esprime in secondi e 𝒜_m in Bq. Ogni preparazione ha T costante; cambiare T fra prove significa preparare sistemi diversi. D=g 𝒜_m+b. A: N=20,T=2 s,D=15. B: N=1,T=1 s,D=12/5. C: T=2 s,D=29. Quanto vale N_C in nuclei?",
+      "answer": {
+        "type": "numeric",
+        "value": 40,
+        "unit": "nuclei",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le attività di riferimento sono 7 e 7/10 Bq. Dalle differenze si ottiene g=2 Bq⁻¹ e poi b=1. La lettura 29 dà 𝒜_m,C=14 Bq. Con T=2 s, N_C=14·2/(7/10)=40."
+        },
+        {
+          "type": "formula",
+          "text": "g=2\\,\\mathrm{Bq^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathcal A_{m,C}=14\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " N_C=40"
+        },
+        {
+          "type": "text",
+          "text": "580/7 ometterebbe sia offset sia guadagno; 80 ometterebbe il guadagno dopo aver tolto b e predirebbe D=57. Venti darebbe D=15. Non si accetta un conteggio non intero come singolo campione."
+        }
+      ],
+      "hints": [
+        "Sottrai prima l’offset, dividi per il guadagno e poi usa η.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "580/7 ometterebbe sia offset sia guadagno; 80 ometterebbe il guadagno dopo aver tolto b e predirebbe D=57. Venti darebbe D=15. Non si accetta un conteggio non intero come singolo campione.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Legge fisica e modello numerico assegnato",
+        "Becquerel distinto da conteggio",
+        "Inverse, taratura e integralità",
+        "Caso autonomo beta più"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioactive-activity-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività media e numero di genitori",
+      "order": 25116,
+      "title": "Una ridondanza su una scala discreta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioactive-activity",
+      "difficulty": 3,
+      "prompt": "Si considera un solo radionuclide, senza nuova produzione. N è il numero intero positivo di genitori presenti al momento considerato e T>0 la sua emivita. L’attività media istantanea esatta è 𝒜=(ln 2)N/T. Per tutti i calcoli numerici si prescrive η=7/10 al posto di ln 2 e si usa 𝒜_m=ηN/T: è un’approssimazione dell’attività fisica, con risultati esatti nel modello numerico assegnato. T si esprime in secondi e 𝒜_m in Bq. Ogni preparazione ha T costante; cambiare T fra prove significa preparare sistemi diversi. Fra preparazioni si impone N=(10 s⁻¹)T. Si misura inoltre 𝒜_m=7 Bq. Quante coppie (N,T) sono ammesse?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie discrete, con N intero positivo",
+          "Una sola coppia",
+          "Due coppie",
+          "Nessuna coppia",
+          "Tutte le coppie reali positive"
+        ],
+        "value": "Infinite coppie discrete, con N intero positivo"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo rende 𝒜_m=(7/10)·10 s⁻¹=7 Bq, indipendente dalla scala. Però N resta intero: per ogni N=1,2,3,… si può scegliere T=(N/10) s. Esempi (1,1/10 s) e (20,2 s). L’infinità è discreta e riguarda parametri del modello, non una lista di radionuclidi reali identificati."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/9eadf800b2225c5392da7e003d7e79ec003bdc2f761586ba44bc835437dd747d",
+          "text": "Il grafico centrale fissa T=2 s; non rappresenta la famiglia vincolata N=(10 s⁻¹)T dell’ultimo quesito. In tutti i pannelli 𝒜_m usa il coefficiente numerico assegnato η=7/10."
+        },
+        {
+          "type": "formula",
+          "text": "T=\\frac{N}{10}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathcal A_m=7\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " N\\in\\{1,2,3,\\ldots\\}"
+        },
+        {
+          "type": "text",
+          "text": "Una o due coppie sono confutate dalle scelte N=1,2,3. La risposta “Nessuna coppia” è smentita dagli esempi. Un continuo reale includerebbe numeri frazionari di genitori, esclusi dal conteggio assegnato."
+        }
+      ],
+      "hints": [
+        "La misura ridondante non cancella il dominio intero di N.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una o due coppie sono confutate dalle scelte N=1,2,3. La risposta “Nessuna coppia” è smentita dagli esempi. Un continuo reale includerebbe numeri frazionari di genitori, esclusi dal conteggio assegnato.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Legge fisica e modello numerico assegnato",
+        "Becquerel distinto da conteggio",
+        "Inverse, taratura e integralità",
+        "Caso autonomo beta più"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "9eadf800b2225c5392da7e003d7e79ec003bdc2f761586ba44bc835437dd747d",
+      "name": "radioactive-activity-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTYwMCIgdmlld0JveD0iMCAwIDY0MCAxNjAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+RGFpIGdlbml0b3JpIHByZXNlbnRpIGFsbOKAmWF0dGl2aXTDoDwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlRyZSB0YXBwZTogdmVudGkgbnVjbGVpIGRpc3RpbnRpIGRhbCB0YXNzbyBkaSBhdHRpdml0w6A7IGFsY3VuaSBjb250ZWdnaSBpbnRlcmkgZSBjb3JyaXNwb25kZW50aSBhdHRpdml0w6AgYSBlbWl2aXRhIGR1ZSBzZWNvbmRpIG5lbCBtb2RlbGxvIG51bWVyaWNvIGFzc2VnbmF0bzsgbWVkaWEgZGkgc2V0dGUgZSBzZXR0ZSBkZWNpbWkgYmVjcXVlcmVsLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDggNEwwIDhaIiBmaWxsPSIjNTI2NjdhIi8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTYwMCIgZmlsbD0iI2Y3ZmFmYyIvPjxnIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZmlsbD0iIzIwMzU0ZCI+PHRleHQgeD0iMzIiIHk9IjQyIiBmb250LXNpemU9IjI0IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkRhaSBnZW5pdG9yaSBwcmVzZW50aSBhbGzigJlhdHRpdml0w6A8L3RleHQ+PHRleHQgeD0iMzIiIHk9Ijk2IiBmb250LXNpemU9IjIyIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjEgwrcgQ29udGVnZ2lvIHByZXNlbnRlIGUgdGFzc28gbWVkaW88L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE0NSIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5OID0gMjAgbnVjbGVpIMK3IFQgPSAyIHM8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE5MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5MZWdnZSBmaXNpY2E6IPCdkpwgPSAobG4gMikgTi9UPC90ZXh0PjxjaXJjbGUgY3g9IjE3MCIgY3k9IjI0NSIgcj0iOCIgZmlsbD0iIzMxNmI5YiIvPjxjaXJjbGUgY3g9IjIxNSIgY3k9IjI0NSIgcj0iOCIgZmlsbD0iIzMxNmI5YiIvPjxjaXJjbGUgY3g9IjI2MCIgY3k9IjI0NSIgcj0iOCIgZmlsbD0iIzMxNmI5YiIvPjxjaXJjbGUgY3g9IjMwNSIgY3k9IjI0NSIgcj0iOCIgZmlsbD0iIzMxNmI5YiIvPjxjaXJjbGUgY3g9IjM1MCIgY3k9IjI0NSIgcj0iOCIgZmlsbD0iIzMxNmI5YiIvPjxjaXJjbGUgY3g9IjE3MCIgY3k9IjI4MSIgcj0iOCIgZmlsbD0iIzMxNmI5YiIvPjxjaXJjbGUgY3g9IjIxNSIgY3k9IjI4MSIgcj0iOCIgZmlsbD0iIzMxNmI5YiIvPjxjaXJjbGUgY3g9IjI2MCIgY3k9IjI4MSIgcj0iOCIgZmlsbD0iIzMxNmI5YiIvPjxjaXJjbGUgY3g9IjMwNSIgY3k9IjI4MSIgcj0iOCIgZmlsbD0iIzMxNmI5YiIvPjxjaXJjbGUgY3g9IjM1MCIgY3k9IjI4MSIgcj0iOCIgZmlsbD0iIzMxNmI5YiIvPjxjaXJjbGUgY3g9IjE3MCIgY3k9IjMxNyIgcj0iOCIgZmlsbD0iIzMxNmI5YiIvPjxjaXJjbGUgY3g9IjIxNSIgY3k9IjMxNyIgcj0iOCIgZmlsbD0iIzMxNmI5YiIvPjxjaXJjbGUgY3g9IjI2MCIgY3k9IjMxNyIgcj0iOCIgZmlsbD0iIzMxNmI5YiIvPjxjaXJjbGUgY3g9IjMwNSIgY3k9IjMxNyIgcj0iOCIgZmlsbD0iIzMxNmI5YiIvPjxjaXJjbGUgY3g9IjM1MCIgY3k9IjMxNyIgcj0iOCIgZmlsbD0iIzMxNmI5YiIvPjxjaXJjbGUgY3g9IjE3MCIgY3k9IjM1MyIgcj0iOCIgZmlsbD0iIzMxNmI5YiIvPjxjaXJjbGUgY3g9IjIxNSIgY3k9IjM1MyIgcj0iOCIgZmlsbD0iIzMxNmI5YiIvPjxjaXJjbGUgY3g9IjI2MCIgY3k9IjM1MyIgcj0iOCIgZmlsbD0iIzMxNmI5YiIvPjxjaXJjbGUgY3g9IjMwNSIgY3k9IjM1MyIgcj0iOCIgZmlsbD0iIzMxNmI5YiIvPjxjaXJjbGUgY3g9IjM1MCIgY3k9IjM1MyIgcj0iOCIgZmlsbD0iIzMxNmI5YiIvPjx0ZXh0IHg9IjMyIiB5PSI0MjAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+TW9kZWxsbyBudW1lcmljbzogzrcgPSA3LzEwLCDwnZKc4oKYID0gNyBCcTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNDYwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPklsIGNvZWZmaWNpZW50ZSBhc3NlZ25hdG8gYXBwcm9zc2ltYSBsbiAyLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNTMwIiBmb250LXNpemU9IjIyIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjIgwrcgU29sbyBhbGN1bmkgTiBpbnRlcmksIGEgVCA9IDIgczwvdGV4dD48bGluZSB4MT0iMTQ1IiB5MT0iMTAwMCIgeDI9IjU1MCIgeTI9IjEwMDAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxsaW5lIHgxPSIxNTAiIHkxPSIxMDA1IiB4Mj0iMTUwIiB5Mj0iNjMwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIxNzAiIHk9IjYxMCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij7wnZKc4oKYIChCcSk8L3RleHQ+PHRleHQgeD0iNDYwIiB5PSIxMDcwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPk4gKG51Y2xlaSk8L3RleHQ+PGNpcmNsZSBjeD0iMTkwIiBjeT0iOTY1IiByPSI1IiBmaWxsPSIjMzE2YjliIi8+PGNpcmNsZSBjeD0iMjMwIiBjeT0iOTMwIiByPSI1IiBmaWxsPSIjMzE2YjliIi8+PGNpcmNsZSBjeD0iMjcwIiBjeT0iODk1IiByPSI1IiBmaWxsPSIjMzE2YjliIi8+PGNpcmNsZSBjeD0iMzEwIiBjeT0iODYwIiByPSI1IiBmaWxsPSIjMzE2YjliIi8+PGNpcmNsZSBjeD0iMzUwIiBjeT0iODI1IiByPSI1IiBmaWxsPSIjMzE2YjliIi8+PGNpcmNsZSBjeD0iMzkwIiBjeT0iNzkwIiByPSI1IiBmaWxsPSIjMzE2YjliIi8+PGNpcmNsZSBjeD0iNDMwIiBjeT0iNzU1IiByPSI1IiBmaWxsPSIjMzE2YjliIi8+PGNpcmNsZSBjeD0iNDcwIiBjeT0iNzIwIiByPSI1IiBmaWxsPSIjMzE2YjliIi8+PGxpbmUgeDE9IjMxMCIgeTE9Ijk5NCIgeDI9IjMxMCIgeTI9IjEwMDYiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMzEwIiB5PSIxMDQwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4yMDwvdGV4dD48bGluZSB4MT0iMTQ0IiB5MT0iODYwIiB4Mj0iMTU2IiB5Mj0iODYwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjEzMCIgeT0iODY2IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj43PC90ZXh0PjxsaW5lIHgxPSI0NzAiIHkxPSI5OTQiIHgyPSI0NzAiIHkyPSIxMDA2IiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjQ3MCIgeT0iMTA0MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NDA8L3RleHQ+PGxpbmUgeDE9IjE0NCIgeTE9IjcyMCIgeDI9IjE1NiIgeTI9IjcyMCIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxMzAiIHk9IjcyNiIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9ImVuZCI+MTQ8L3RleHQ+PGNpcmNsZSBjeD0iMTUwIiBjeT0iMTAwMCIgcj0iNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzE2YjliIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxMzAiIHk9IjEwNDAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJlbmQiPjA8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjExMzAiIGZvbnQtc2l6ZT0iMjIiIHRleHQtYW5jaG9yPSJzdGFydCI+MyDCtyBEdWUgcHJlcGFyYXppb25pIGUgbGEgbWVkaWEgZGVpIHRhc3NpPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMTcwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkE6IE4gPSAyMCwgVCA9IDIgcyDCtyBCOiBOID0gMSwgVCA9IDEgczwvdGV4dD48dGV4dCB4PSIxMjgiIHk9IjEyNDMiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJlbmQiPkE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIxMjIwIiB3aWR0aD0iMjgwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjMzE2YjliIi8+PHRleHQgeD0iNDQyIiB5PSIxMjQzIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjcgQnE8L3RleHQ+PHRleHQgeD0iMTI4IiB5PSIxMzQzIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj5CPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iMTMyMCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjMwIiBmaWxsPSIjMzE2YjliIi8+PHRleHQgeD0iMTkwIiB5PSIxMzQzIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjcvMTAgQnE8L3RleHQ+PHRleHQgeD0iMTI4IiB5PSIxNDQzIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj5NZWRpYTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjE0MjAiIHdpZHRoPSIxNTQiIGhlaWdodD0iMzAiIGZpbGw9IiMzMTZiOWIiLz48dGV4dCB4PSIzMTYiIHk9IjE0NDMiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+NzcvMjAgQnE8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE1MTUiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+TGUgdHJlIGF0dGl2aXTDoCBoYW5ubyBvcmlnaW5lIGUgc2NhbGEgY29tdW5pLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTU2MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5VbiB2YWxvcmUgbWVkaW8gaW4gQnEgbm9uIMOoIHVuIGNvbnRlZ2dpbyBpbnRlcm8uPC90ZXh0PjwvZz48L3N2Zz4K"
+    }
+  ]
+}
