@@ -1,0 +1,1158 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u7-gamma-transition-energy-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di una transizione gamma assegnata",
+      "order": 25601,
+      "title": "Il fotone porta la differenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L07",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gamma-transition-energy",
+      "difficulty": 1,
+      "prompt": "Un nucleo compie una transizione radiativa γ fra due livelli assegnati E_i>E_f>0, espressi in keV rispetto allo stesso zero. Si trascura l’energia cinetica di rinculo, così l’energia del fotone è il salto E_γ=E_i−E_f. I livelli numerici sono dati di esercizio, non uno spettro universale disponibile a piacere in uno stesso isotopo. Con E_i=100 keV ed E_f=20 keV, quanto vale E_γ in keV?",
+      "answer": {
+        "type": "numeric",
+        "value": 80,
+        "unit": "keV",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il nucleo perde energia scendendo dal livello iniziale a quello finale. Senza rinculo tutta la perdita assegnata va nel fotone: cento meno venti vale ottanta keV. La somma dei livelli non misura la perdita e lo zero comune si cancella nella differenza."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0bf7cfd42d7bec46ffa5a9f5e76cd7de76eceeaae635b293b54374d43cbfa7bf",
+          "text": "Nel primo pannello i livelli 100 e 20 keV condividono uno zero e una scala. La freccia del salto indica 80 keV ceduti al fotone, trascurando il rinculo; non descrive un percorso nello spazio."
+        },
+        {
+          "type": "formula",
+          "text": "E_\\gamma=E_i-E_f"
+        },
+        {
+          "type": "formula",
+          "text": " E_\\gamma=(100-20)\\,\\mathrm{keV}"
+        },
+        {
+          "type": "formula",
+          "text": " E_\\gamma=80\\,\\mathrm{keV}"
+        },
+        {
+          "type": "text",
+          "text": "Centoventi somma i livelli; meno ottanta cambia il verso dell’emissione e darebbe energia del fotone negativa. Cento omette l’energia che il nucleo conserva e centosessanta raddoppia il salto senza motivo."
+        }
+      ],
+      "hints": [
+        "Conserva l’energia fra stato nucleare iniziale, finale e fotone.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Centoventi somma i livelli; meno ottanta cambia il verso dell’emissione e darebbe energia del fotone negativa. Cento omette l’energia che il nucleo conserva e centosessanta raddoppia il salto senza motivo.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Salto fra livelli e conservazione dell’energia",
+        "A e Z invariati",
+        "Inverse, medie e display tarato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-gamma-transition-energy-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di una transizione gamma assegnata",
+      "order": 25602,
+      "title": "Energia non significa frequenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L07",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gamma-transition-energy",
+      "difficulty": 1,
+      "prompt": "Quale unità può esprimere l’energia E_γ di un fotone emesso in una transizione nucleare?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "keV",
+          "Hz",
+          "Bq",
+          "s",
+          "m⁻¹"
+        ],
+        "value": "keV"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’elettronvolt è un’unità di energia, e il prefisso kilo moltiplica il valore dell’unità per mille. La frequenza è una grandezza distinta legata all’energia dalla costante di Planck, E_γ=hf; non si possono sostituire keV e Hz senza quel fattore dimensionato."
+        },
+        {
+          "type": "formula",
+          "text": "1\\,\\mathrm{keV}=10^3\\,\\mathrm{eV}"
+        },
+        {
+          "type": "formula",
+          "text": " E_\\gamma=hf"
+        },
+        {
+          "type": "formula",
+          "text": " [E_\\gamma]=ML^2T^{-2}"
+        },
+        {
+          "type": "text",
+          "text": "Hz misura frequenza, Bq attività, s tempo e m⁻¹ un inverso di lunghezza. Il tipo di radiazione non cambia la dimensione fisica dell’energia."
+        }
+      ],
+      "hints": [
+        "Distingui il valore energetico del fotone dal numero di emissioni al secondo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Hz misura frequenza, Bq attività, s tempo e m⁻¹ un inverso di lunghezza. Il tipo di radiazione non cambia la dimensione fisica dell’energia.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Salto fra livelli e conservazione dell’energia",
+        "A e Z invariati",
+        "Inverse, medie e display tarato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-gamma-transition-energy-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di una transizione gamma assegnata",
+      "order": 25603,
+      "title": "Dopo una semplice emissione gamma",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L07",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gamma-transition-energy",
+      "difficulty": 1,
+      "prompt": "In una transizione γ di un nucleo eccitato, senza altre trasformazioni, che cosa accade al numero di massa A e al numero atomico Z?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "A e Z restano invariati; diminuisce l’energia di eccitazione",
+          "A diminuisce di 4 e Z di 2",
+          "A resta invariato e Z aumenta di 1",
+          "A resta invariato e Z diminuisce di 1",
+          "Il nucleo perde un protone e un neutrone"
+        ],
+        "value": "A e Z restano invariati; diminuisce l’energia di eccitazione"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fotone non porta via nucleoni né carica elettrica. Cambia lo stato energetico del nucleo, mentre i conteggi di protoni e neutroni restano quelli iniziali. La massa del sistema nucleare cambia per la perdita di energia, ma questo non cambia il numero di massa A, che è un conteggio."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0bf7cfd42d7bec46ffa5a9f5e76cd7de76eceeaae635b293b54374d43cbfa7bf",
+          "text": "Il secondo pannello confronta i conteggi nucleari prima e dopo il γ: A e Z restano uguali. Gli schemi non attribuiscono al fotone una carica o dei nucleoni."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta A=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta Z=0"
+        },
+        {
+          "type": "formula",
+          "text": " E_i-E_f>0"
+        },
+        {
+          "type": "text",
+          "text": "I decrementi quattro e due descrivono un α. Gli incrementi o decrementi unitari di Z appartengono ai processi β; l’espulsione di nucleoni non è la semplice emissione γ dichiarata."
+        }
+      ],
+      "hints": [
+        "Numero di massa e massa fisica sono concetti diversi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "I decrementi quattro e due descrivono un α. Gli incrementi o decrementi unitari di Z appartengono ai processi β; l’espulsione di nucleoni non è la semplice emissione γ dichiarata.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Salto fra livelli e conservazione dell’energia",
+        "A e Z invariati",
+        "Inverse, medie e display tarato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-gamma-transition-energy-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di una transizione gamma assegnata",
+      "order": 25604,
+      "title": "Alzare soltanto il livello iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L07",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gamma-transition-energy",
+      "difficulty": 1,
+      "prompt": "Un nucleo compie una transizione radiativa γ fra due livelli assegnati E_i>E_f>0, espressi in keV rispetto allo stesso zero. Si trascura l’energia cinetica di rinculo, così l’energia del fotone è il salto E_γ=E_i−E_f. I livelli numerici sono dati di esercizio, non uno spettro universale disponibile a piacere in uno stesso isotopo. Da E_i=100 keV si passa a E_i=120 keV, lasciando E_f=20 keV. Come cambia E_γ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 80 a 100 keV",
+          "Da 80 a 96 keV",
+          "Da 80 a 120 keV",
+          "Resta 80 keV",
+          "Da 80 a 140 keV"
+        ],
+        "value": "Da 80 a 100 keV"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il livello finale resta venti. Aumentare quello iniziale di venti aumenta dello stesso valore la differenza: il fotone passa da ottanta a cento keV. Non è una proporzione diretta con E_i quando il termine E_f resta non nullo."
+        },
+        {
+          "type": "formula",
+          "text": "E_{\\gamma,A}=(100-20)\\,\\mathrm{keV}"
+        },
+        {
+          "type": "formula",
+          "text": " E_{\\gamma,A}=80\\,\\mathrm{keV}"
+        },
+        {
+          "type": "formula",
+          "text": " E_{\\gamma,B}=(120-20)\\,\\mathrm{keV}"
+        },
+        {
+          "type": "formula",
+          "text": " E_{\\gamma,B}=100\\,\\mathrm{keV}"
+        },
+        {
+          "type": "text",
+          "text": "Novantasei applica il rapporto 120/100 alla vecchia uscita, dimenticando il livello finale fisso. Centoventi omette la sottrazione, centoquaranta somma e ottanta ignora il cambiamento."
+        }
+      ],
+      "hints": [
+        "Il nuovo salto va calcolato fra entrambi i livelli.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Novantasei applica il rapporto 120/100 alla vecchia uscita, dimenticando il livello finale fisso. Centoventi omette la sottrazione, centoquaranta somma e ottanta ignora il cambiamento.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Salto fra livelli e conservazione dell’energia",
+        "A e Z invariati",
+        "Inverse, medie e display tarato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-gamma-transition-energy-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di una transizione gamma assegnata",
+      "order": 25605,
+      "title": "Il livello iniziale dal salto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L07",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gamma-transition-energy",
+      "difficulty": 2,
+      "prompt": "Un nucleo compie una transizione radiativa γ fra due livelli assegnati E_i>E_f>0, espressi in keV rispetto allo stesso zero. Si trascura l’energia cinetica di rinculo, così l’energia del fotone è il salto E_γ=E_i−E_f. I livelli numerici sono dati di esercizio, non uno spettro universale disponibile a piacere in uno stesso isotopo. Si misurano E_γ=80 keV ed E_f=20 keV. Quanto vale E_i in keV?",
+      "answer": {
+        "type": "numeric",
+        "value": 100,
+        "unit": "keV",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il nucleo iniziale deve contenere sia l’energia lasciata al livello finale sia quella ceduta al fotone. Riordino il bilancio come E_i=E_f+E_γ e ottengo cento keV, maggiore del livello finale."
+        },
+        {
+          "type": "formula",
+          "text": "E_i=E_\\gamma+E_f"
+        },
+        {
+          "type": "formula",
+          "text": " E_i=(80+20)\\,\\mathrm{keV}"
+        },
+        {
+          "type": "formula",
+          "text": " E_i=100\\,\\mathrm{keV}"
+        },
+        {
+          "type": "text",
+          "text": "Sessanta sottrarrebbe ancora il livello finale e darebbe un salto di quaranta. Ottanta confonderebbe il salto con il livello iniziale; centosessanta darebbe un salto di centoquaranta."
+        }
+      ],
+      "hints": [
+        "Il livello iniziale si ricostruisce sommando ciò che resta e ciò che esce.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sessanta sottrarrebbe ancora il livello finale e darebbe un salto di quaranta. Ottanta confonderebbe il salto con il livello iniziale; centosessanta darebbe un salto di centoquaranta.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Salto fra livelli e conservazione dell’energia",
+        "A e Z invariati",
+        "Inverse, medie e display tarato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-gamma-transition-energy-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di una transizione gamma assegnata",
+      "order": 25606,
+      "title": "Il livello che rimane",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L07",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gamma-transition-energy",
+      "difficulty": 2,
+      "prompt": "Un nucleo compie una transizione radiativa γ fra due livelli assegnati E_i>E_f>0, espressi in keV rispetto allo stesso zero. Si trascura l’energia cinetica di rinculo, così l’energia del fotone è il salto E_γ=E_i−E_f. I livelli numerici sono dati di esercizio, non uno spettro universale disponibile a piacere in uno stesso isotopo. E_γ=80 keV ed E_i=100 keV. Quanto vale E_f in keV?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "keV",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Tolgo dall’energia nucleare iniziale quella portata dal fotone. Restano venti keV: il risultato è positivo e inferiore a cento come richiesto dal dominio. Il controllo inverso cento meno venti recupera ottanta."
+        },
+        {
+          "type": "formula",
+          "text": "E_f=E_i-E_\\gamma"
+        },
+        {
+          "type": "formula",
+          "text": " E_f=(100-80)\\,\\mathrm{keV}"
+        },
+        {
+          "type": "formula",
+          "text": " E_f=20\\,\\mathrm{keV}"
+        },
+        {
+          "type": "text",
+          "text": "Centottanta sommerebbe l’energia emessa allo stato residuo. Meno venti inverte la differenza e ottanta copia l’energia del fotone invece del livello finale."
+        }
+      ],
+      "hints": [
+        "Il fotone sottrae energia di eccitazione al nucleo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Centottanta sommerebbe l’energia emessa allo stato residuo. Meno venti inverte la differenza e ottanta copia l’energia del fotone invece del livello finale.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Salto fra livelli e conservazione dell’energia",
+        "A e Z invariati",
+        "Inverse, medie e display tarato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-gamma-transition-energy-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di una transizione gamma assegnata",
+      "order": 25607,
+      "title": "Un livello finale più alto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L07",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gamma-transition-energy",
+      "difficulty": 2,
+      "prompt": "Un nucleo compie una transizione radiativa γ fra due livelli assegnati E_i>E_f>0, espressi in keV rispetto allo stesso zero. Si trascura l’energia cinetica di rinculo, così l’energia del fotone è il salto E_γ=E_i−E_f. I livelli numerici sono dati di esercizio, non uno spettro universale disponibile a piacere in uno stesso isotopo. A ha E_i=100 keV,E_f=20 keV; B mantiene E_i e porta E_f a 40 keV. Quanto vale E_γ,B/E_γ,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/4",
+          "4/3",
+          "2",
+          "1/2",
+          "1"
+        ],
+        "value": "3/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I salti sono ottanta e sessanta keV. Se il nucleo conserva più energia nel livello finale, ne cede meno al fotone: il rapporto B/A vale sessanta ottantesimi, cioè tre quarti. Il raddoppio di E_f non implica un semplice dimezzamento di E_γ."
+        },
+        {
+          "type": "formula",
+          "text": "E_{\\gamma,A}=80\\,\\mathrm{keV}"
+        },
+        {
+          "type": "formula",
+          "text": " E_{\\gamma,B}=60\\,\\mathrm{keV}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{60}{80}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac34"
+        },
+        {
+          "type": "text",
+          "text": "4/3 inverte il rapporto. Due segue il solo livello finale, un mezzo gli attribuisce una falsa proporzione inversa e uno ignora il nuovo salto."
+        }
+      ],
+      "hints": [
+        "L’uscita è una differenza di livelli, non uno dei livelli.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4/3 inverte il rapporto. Due segue il solo livello finale, un mezzo gli attribuisce una falsa proporzione inversa e uno ignora il nuovo salto.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Salto fra livelli e conservazione dell’energia",
+        "A e Z invariati",
+        "Inverse, medie e display tarato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-gamma-transition-energy-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di una transizione gamma assegnata",
+      "order": 25608,
+      "title": "Sovrastima dell’energia emessa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L07",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gamma-transition-energy",
+      "difficulty": 2,
+      "prompt": "Un nucleo compie una transizione radiativa γ fra due livelli assegnati E_i>E_f>0, espressi in keV rispetto allo stesso zero. Si trascura l’energia cinetica di rinculo, così l’energia del fotone è il salto E_γ=E_i−E_f. I livelli numerici sono dati di esercizio, non uno spettro universale disponibile a piacere in uno stesso isotopo. Per E_i=100 keV,E_f=20 keV viene proposto E_γ=160 keV. Quanto vale proposto meno corretto, in keV?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "80",
+          "−80",
+          "160",
+          "2",
+          "0"
+        ],
+        "value": "80"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La conservazione dà ottanta keV al fotone. La proposta centosessanta supera quel valore di ottanta keV: lo scarto con l’ordine richiesto è positivo. In questo modello non si dispone di centosessanta keV da cedere fra i due livelli assegnati."
+        },
+        {
+          "type": "formula",
+          "text": "E_\\gamma=80\\,\\mathrm{keV}"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta E=(160-80)\\,\\mathrm{keV}"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta E=80\\,\\mathrm{keV}"
+        },
+        {
+          "type": "text",
+          "text": "Meno ottanta sottrae nel verso opposto, centosessanta ripete la proposta e due è il rapporto, che non ha unità di energia. Zero accetterebbe una violazione del bilancio."
+        }
+      ],
+      "hints": [
+        "Lo scarto conserva l’unità delle due energie sottratte.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno ottanta sottrae nel verso opposto, centosessanta ripete la proposta e due è il rapporto, che non ha unità di energia. Zero accetterebbe una violazione del bilancio.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Salto fra livelli e conservazione dell’energia",
+        "A e Z invariati",
+        "Inverse, medie e display tarato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-gamma-transition-energy-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di una transizione gamma assegnata",
+      "order": 25609,
+      "title": "L’inversa simbolica del bilancio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L07",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gamma-transition-energy",
+      "difficulty": 2,
+      "prompt": "Un nucleo compie una transizione radiativa γ fra due livelli assegnati E_i>E_f>0, espressi in keV rispetto allo stesso zero. Si trascura l’energia cinetica di rinculo, così l’energia del fotone è il salto E_γ=E_i−E_f. I livelli numerici sono dati di esercizio, non uno spettro universale disponibile a piacere in uno stesso isotopo. Quale formula isola E_i da E_γ ed E_f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "E_i = E_γ + E_f",
+          "E_i = E_γ − E_f",
+          "E_i = E_f − E_γ",
+          "E_i = E_γ E_f",
+          "E_i = E_γ / E_f"
+        ],
+        "value": "E_i = E_γ + E_f"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Aggiungo E_f a entrambi i membri della relazione del salto. La somma E_γ+E_f ha la dimensione di energia e garantisce E_i>E_f quando il fotone ha energia positiva. La stessa origine energetica dei livelli è necessaria per interpretare la differenza."
+        },
+        {
+          "type": "formula",
+          "text": "E_\\gamma=E_i-E_f"
+        },
+        {
+          "type": "formula",
+          "text": " E_i=E_\\gamma+E_f"
+        },
+        {
+          "type": "text",
+          "text": "Le differenze non ricostruiscono il livello iniziale. Il prodotto avrebbe dimensione energia al quadrato e il quoziente sarebbe puro: le unità scartano queste ultime due proposte già prima dei numeri."
+        }
+      ],
+      "hints": [
+        "Isola il livello cercato prima di sostituire i dati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Le differenze non ricostruiscono il livello iniziale. Il prodotto avrebbe dimensione energia al quadrato e il quoziente sarebbe puro: le unità scartano queste ultime due proposte già prima dei numeri.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Salto fra livelli e conservazione dell’energia",
+        "A e Z invariati",
+        "Inverse, medie e display tarato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-gamma-transition-energy-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di una transizione gamma assegnata",
+      "order": 25610,
+      "title": "Due livelli moltiplicati fra prove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L07",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gamma-transition-energy",
+      "difficulty": 2,
+      "prompt": "Un nucleo compie una transizione radiativa γ fra due livelli assegnati E_i>E_f>0, espressi in keV rispetto allo stesso zero. Si trascura l’energia cinetica di rinculo, così l’energia del fotone è il salto E_γ=E_i−E_f. I livelli numerici sono dati di esercizio, non uno spettro universale disponibile a piacere in uno stesso isotopo. E_i,B=κ₁E_i,A ed E_f,B=κ₂E_f,A, con E_i,B>E_f,B>0. Qual è E_γ,B/E_γ,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁ E_i − κ₂ E_f) / (E_i − E_f)",
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "(κ₁ E_i + κ₂ E_f) / (E_i − E_f)",
+          "κ₁ − κ₂"
+        ],
+        "value": "(κ₁ E_i − κ₂ E_f) / (E_i − E_f)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Inserisco i fattori nei due termini del salto prima di formare il rapporto. Il denominatore iniziale è positivo e anche il nuovo salto deve esserlo: non bastano fattori singolarmente positivi per garantire una transizione emittente. Se entrambi i fattori sono uguali, solo allora l’intero salto scala di quel fattore."
+        },
+        {
+          "type": "formula",
+          "text": "E_{\\gamma,B}=\\kappa_1E_i-\\kappa_2E_f"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{\\kappa_1E_i-\\kappa_2E_f}{E_i-E_f}"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto o prodotto dei soli fattori perde i pesi dei livelli. Il segno più somma energie che il nucleo conserva e cede; κ₁−κ₂ darebbe zero se entrambi fossero uno, mentre il rapporto corretto sarebbe uno."
+        }
+      ],
+      "hints": [
+        "Controlla il dominio del nuovo salto, non soltanto la positività dei livelli.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto o prodotto dei soli fattori perde i pesi dei livelli. Il segno più somma energie che il nucleo conserva e cede; κ₁−κ₂ darebbe zero se entrambi fossero uno, mentre il rapporto corretto sarebbe uno.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Salto fra livelli e conservazione dell’energia",
+        "A e Z invariati",
+        "Inverse, medie e display tarato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-gamma-transition-energy-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di una transizione gamma assegnata",
+      "order": 25611,
+      "title": "Salti molto diversi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L07",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gamma-transition-energy",
+      "difficulty": 2,
+      "prompt": "Un nucleo compie una transizione radiativa γ fra due livelli assegnati E_i>E_f>0, espressi in keV rispetto allo stesso zero. Si trascura l’energia cinetica di rinculo, così l’energia del fotone è il salto E_γ=E_i−E_f. I livelli numerici sono dati di esercizio, non uno spettro universale disponibile a piacere in uno stesso isotopo. A usa E_i=100 keV,E_f=20 keV; B usa E_i=2 keV,E_f=1 keV. Quanto vale E_γ,B/E_γ,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/80",
+          "80",
+          "1/50",
+          "1/20",
+          "1"
+        ],
+        "value": "1/80"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il salto A vale ottanta keV e il salto B un keV. Il rapporto delle energie dei fotoni è quindi uno su ottanta. Usare soltanto il rapporto degli stati iniziali o finali perderebbe la sottrazione che determina l’emissione."
+        },
+        {
+          "type": "formula",
+          "text": "E_{\\gamma,A}=80\\,\\mathrm{keV}"
+        },
+        {
+          "type": "formula",
+          "text": " E_{\\gamma,B}=1\\,\\mathrm{keV}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac1{80}"
+        },
+        {
+          "type": "text",
+          "text": "Ottanta inverte il confronto. 1/50 confronta soltanto E_i e 1/20 soltanto E_f; uno suppone uguali due salti assegnati diversi."
+        }
+      ],
+      "hints": [
+        "Due livelli vicini possono dare un fotone molto meno energetico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ottanta inverte il confronto. 1/50 confronta soltanto E_i e 1/20 soltanto E_f; uno suppone uguali due salti assegnati diversi.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Salto fra livelli e conservazione dell’energia",
+        "A e Z invariati",
+        "Inverse, medie e display tarato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-gamma-transition-energy-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di una transizione gamma assegnata",
+      "order": 25612,
+      "title": "Media di due energie di fotone",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L07",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gamma-transition-energy",
+      "difficulty": 2,
+      "prompt": "Un nucleo compie una transizione radiativa γ fra due livelli assegnati E_i>E_f>0, espressi in keV rispetto allo stesso zero. Si trascura l’energia cinetica di rinculo, così l’energia del fotone è il salto E_γ=E_i−E_f. I livelli numerici sono dati di esercizio, non uno spettro universale disponibile a piacere in uno stesso isotopo. A usa E_i=100 keV,E_f=20 keV; B usa E_i=2 keV,E_f=1 keV. Qual è la media aritmetica delle due E_γ, in keV?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "81/2",
+          "81",
+          "80",
+          "1",
+          "51"
+        ],
+        "value": "81/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Calcolo i salti ottanta e uno, poi divido la somma per due: la media è 81/2 keV. Qui la legge è lineare nei livelli e la media coincide con il salto fra i livelli medi 51 e 21/2 keV. Quei livelli medi sono una costruzione matematica, non la previsione di livelli realmente disponibili in un terzo nucleo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0bf7cfd42d7bec46ffa5a9f5e76cd7de76eceeaae635b293b54374d43cbfa7bf",
+          "text": "Le barre inferiori dei salti hanno origine e scala comuni:80 keV,1 keV e media 81/2 keV. La media di due fotoni non definisce un nuovo livello nucleare disponibile."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline E_\\gamma=\\frac{80+1}{2}\\,\\mathrm{keV}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline E_\\gamma=\\frac{81}{2}\\,\\mathrm{keV}"
+        },
+        {
+          "type": "formula",
+          "text": " 51-\\frac{21}{2}=\\frac{81}{2}"
+        },
+        {
+          "type": "text",
+          "text": "Ottantuno somma senza mediare. Ottanta e uno ignorano una delle letture; cinquantuno media solo i livelli iniziali. La media energetica non rende continui gli spettri nucleari reali."
+        }
+      ],
+      "hints": [
+        "Media le uscite; poi spiega l’eventuale coincidenza per linearità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ottantuno somma senza mediare. Ottanta e uno ignorano una delle letture; cinquantuno media solo i livelli iniziali. La media energetica non rende continui gli spettri nucleari reali.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Salto fra livelli e conservazione dell’energia",
+        "A e Z invariati",
+        "Inverse, medie e display tarato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-gamma-transition-energy-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di una transizione gamma assegnata",
+      "order": 25613,
+      "title": "Il livello finale richiesto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L07",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gamma-transition-energy",
+      "difficulty": 3,
+      "prompt": "Un nucleo compie una transizione radiativa γ fra due livelli assegnati E_i>E_f>0, espressi in keV rispetto allo stesso zero. Si trascura l’energia cinetica di rinculo, così l’energia del fotone è il salto E_γ=E_i−E_f. I livelli numerici sono dati di esercizio, non uno spettro universale disponibile a piacere in uno stesso isotopo. A usa E_i=100 keV,E_f=20 keV. In B si fissa E_i=2 keV e si vuole un salto pari a 1/80 di quello A. Quanto vale E_f,B/E_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/20",
+          "20",
+          "1/80",
+          "1/50",
+          "1"
+        ],
+        "value": "1/20"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il nuovo salto deve essere un keV. Perciò il livello finale di B è due meno uno, cioè un keV. Rispetto ai venti keV iniziali richiesti nel denominatore il rapporto è uno su venti, non il rapporto dei salti."
+        },
+        {
+          "type": "formula",
+          "text": "E_{\\gamma,B}=1\\,\\mathrm{keV}"
+        },
+        {
+          "type": "formula",
+          "text": " E_{f,B}=(2-1)\\,\\mathrm{keV}"
+        },
+        {
+          "type": "formula",
+          "text": " E_{f,B}=1\\,\\mathrm{keV}"
+        },
+        {
+          "type": "formula",
+          "text": " E_{f,B}/E_{f,A}=\\frac1{20}"
+        },
+        {
+          "type": "text",
+          "text": "Venti inverte il rapporto. 1/80 confronta i fotoni, 1/50 i livelli iniziali; uno lascerebbe E_f,B a 20 keV, sopra il livello iniziale di 2 keV e fuori dal dominio emittente."
+        }
+      ],
+      "hints": [
+        "Il livello finale deve restare sotto quello iniziale della nuova prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Venti inverte il rapporto. 1/80 confronta i fotoni, 1/50 i livelli iniziali; uno lascerebbe E_f,B a 20 keV, sopra il livello iniziale di 2 keV e fuori dal dominio emittente.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Salto fra livelli e conservazione dell’energia",
+        "A e Z invariati",
+        "Inverse, medie e display tarato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-gamma-transition-energy-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di una transizione gamma assegnata",
+      "order": 25614,
+      "title": "Guadagno prima del bilancio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L07",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gamma-transition-energy",
+      "difficulty": 3,
+      "prompt": "Un nucleo compie una transizione radiativa γ fra due livelli assegnati E_i>E_f>0, espressi in keV rispetto allo stesso zero. Si trascura l’energia cinetica di rinculo, così l’energia del fotone è il salto E_γ=E_i−E_f. I livelli numerici sono dati di esercizio, non uno spettro universale disponibile a piacere in uno stesso isotopo. D=gE_γ senza offset legge 240 per il salto da 100 a 20 keV. In una nuova prova legge 3 ed E_f=1 keV. Quanto vale E_i in keV?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "keV",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha salto ottanta, così g=3 unità strumentali per keV. La lettura tre corrisponde a un keV emesso. Aggiungendo il keV del livello finale ricostruisco E_i=2 keV."
+        },
+        {
+          "type": "formula",
+          "text": "g=240/80"
+        },
+        {
+          "type": "formula",
+          "text": " g=3"
+        },
+        {
+          "type": "formula",
+          "text": " E_\\gamma=1\\,\\mathrm{keV}"
+        },
+        {
+          "type": "formula",
+          "text": " E_i=(1+1)\\,\\mathrm{keV}"
+        },
+        {
+          "type": "formula",
+          "text": " E_i=2\\,\\mathrm{keV}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro sommerebbe direttamente il display tre al livello finale uno, senza togliere il guadagno. Uno sarebbe il solo salto e zero invertirebbe il bilancio."
+        }
+      ],
+      "hints": [
+        "Il display e il livello nucleare non sono la stessa grandezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro sommerebbe direttamente il display tre al livello finale uno, senza togliere il guadagno. Uno sarebbe il solo salto e zero invertirebbe il bilancio.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Salto fra livelli e conservazione dell’energia",
+        "A e Z invariati",
+        "Inverse, medie e display tarato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-gamma-transition-energy-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di una transizione gamma assegnata",
+      "order": 25615,
+      "title": "Due riferimenti e uno zero strumentale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L07",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gamma-transition-energy",
+      "difficulty": 3,
+      "prompt": "Un nucleo compie una transizione radiativa γ fra due livelli assegnati E_i>E_f>0, espressi in keV rispetto allo stesso zero. Si trascura l’energia cinetica di rinculo, così l’energia del fotone è il salto E_γ=E_i−E_f. I livelli numerici sono dati di esercizio, non uno spettro universale disponibile a piacere in uno stesso isotopo. D=gE_γ+b. A: E_i=100 keV,E_f=20 keV,D=161. B: E_i=2 keV,E_f=1 keV,D=3. C: E_f=20 keV,D=201. Quanto vale E_i,C in keV?",
+      "answer": {
+        "type": "numeric",
+        "value": 120,
+        "unit": "keV",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I salti di riferimento sono ottanta e uno. Dalle differenze ricavo g=158/79=2 e poi b=1. La lettura 201 indica un salto di cento keV; al livello finale venti sommo quel salto e ottengo centoventi."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{161-3}{80-1}"
+        },
+        {
+          "type": "formula",
+          "text": " g=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " E_{\\gamma,C}=100\\,\\mathrm{keV}"
+        },
+        {
+          "type": "formula",
+          "text": " E_{i,C}=120\\,\\mathrm{keV}"
+        },
+        {
+          "type": "text",
+          "text": "241/2 keV ometterebbe l’offset: 201/2+20. Cento sarebbe il solo salto, duecentoventuno sommerebbe direttamente la lettura al livello finale."
+        }
+      ],
+      "hints": [
+        "Elimina l’offset con le differenze prima di invertire il display.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "241/2 keV ometterebbe l’offset: 201/2+20. Cento sarebbe il solo salto, duecentoventuno sommerebbe direttamente la lettura al livello finale.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Salto fra livelli e conservazione dell’energia",
+        "A e Z invariati",
+        "Inverse, medie e display tarato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-gamma-transition-energy-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di una transizione gamma assegnata",
+      "order": 25616,
+      "title": "Livelli legati da un vincolo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L07",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gamma-transition-energy",
+      "difficulty": 3,
+      "prompt": "Un nucleo compie una transizione radiativa γ fra due livelli assegnati E_i>E_f>0, espressi in keV rispetto allo stesso zero. Si trascura l’energia cinetica di rinculo, così l’energia del fotone è il salto E_γ=E_i−E_f. I livelli numerici sono dati di esercizio, non uno spettro universale disponibile a piacere in uno stesso isotopo. È assegnato E_i=5 E_f e si misura E_γ=80 keV. Quanto vale E_f in keV?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "keV",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il livello iniziale contiene cinque volte l’energia del livello finale, perciò il salto ne contiene quattro. Da 4 E_f=80 keV ricavo E_f=20 keV e quindi E_i=100 keV. Entrambi i livelli sono positivi e nell’ordine richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "E_\\gamma=5E_f-E_f"
+        },
+        {
+          "type": "formula",
+          "text": " E_\\gamma=4E_f"
+        },
+        {
+          "type": "formula",
+          "text": " E_f=80/4\\,\\mathrm{keV}"
+        },
+        {
+          "type": "formula",
+          "text": " E_f=20\\,\\mathrm{keV}"
+        },
+        {
+          "type": "text",
+          "text": "Sedici userebbe cinque al posto della differenza quattro e darebbe un salto di 64 keV. Ottanta identifica il salto col livello finale; valori negativi violano il dominio e non c’è una libertà di scala dopo la misura assoluta."
+        }
+      ],
+      "hints": [
+        "Il vincolo va sostituito nella differenza, non nel solo livello iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Sedici userebbe cinque al posto della differenza quattro e darebbe un salto di 64 keV. Ottanta identifica il salto col livello finale; valori negativi violano il dominio e non c’è una libertà di scala dopo la misura assoluta.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Salto fra livelli e conservazione dell’energia",
+        "A e Z invariati",
+        "Inverse, medie e display tarato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "0bf7cfd42d7bec46ffa5a9f5e76cd7de76eceeaae635b293b54374d43cbfa7bf",
+      "name": "gamma-transition-energy-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTUwMCIgdmlld0JveD0iMCAwIDY0MCAxNTAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiI+PHRpdGxlIGlkPSJ0aXRsZSI+RW5lcmdpYSBkaSBlY2NpdGF6aW9uZSBlIGZvdG9uZSBnYW1tYTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPkR1ZSBsaXZlbGxpIGNvbiB6ZXJvIGNvbXVuZSwgY29udGVnZ2kgbnVjbGVhcmkgY29uc2VydmF0aSBlIGJhcnJlIGRlbGxlIGVuZXJnaWUgZGkgZHVlIGZvdG9uaSBlIGRlbGxhIGxvcm8gbWVkaWEuPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImFyciIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNSIgbWFya2VySGVpZ2h0PSI1IiBvcmllbnQ9ImF1dG8tc3RhcnQtcmV2ZXJzZSI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjMzA2ZjhjIi8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI2NDAiIGhlaWdodD0iMTUwMCIgZmlsbD0id2hpdGUiLz48dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+VW4gc2FsdG8gZW5lcmdldGljbywgbm9uIHVuYSB0cmFpZXR0b3JpYTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTEwIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjEgwrcgU3Rlc3NvIHplcm8gcGVyIEVfaSBlZCBFX2Y8L3RleHQ+PGxpbmUgeDE9IjE0MCIgeTE9IjQ5MCIgeDI9IjUzMCIgeTI9IjQ5MCIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMTQwIiB5MT0iNDkwIiB4Mj0iMTQwIiB5Mj0iMTU1IiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIxMzQiIHkxPSI0OTAiIHgyPSIxNDYiIHkyPSI0OTAiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTI0IiB5PSI0OTYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPjA8L3RleHQ+PGxpbmUgeDE9IjEzNCIgeTE9IjQzMCIgeDI9IjE0NiIgeTI9IjQzMCIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxMjQiIHk9IjQzNiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+MjA8L3RleHQ+PGxpbmUgeDE9IjEzNCIgeTE9IjE5MCIgeDI9IjE0NiIgeTI9IjE5MCIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxMjQiIHk9IjE5NiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+MTAwPC90ZXh0PjxsaW5lIHgxPSIxNzAiIHkxPSI0MzAiIHgyPSI0MjAiIHkyPSI0MzAiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjE3MCIgeTE9IjE5MCIgeDI9IjQyMCIgeTI9IjE5MCIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNNDU1IDE5MEw0NTUgNDMwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnIpIi8+PHRleHQgeD0iNDcwIiB5PSIzMTAiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+zrM8L3RleHQ+PHRleHQgeD0iMTgwIiB5PSIxNzQiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+RV9pID0gMTAwIGtlVjwvdGV4dD48dGV4dCB4PSIxODAiIHk9IjQ2MyIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5FX2YgPSAyMCBrZVY8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjU1MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5FX86zID0gODAga2VWIMK3IHJpbmN1bG8gdHJhc2N1cmF0bzwvdGV4dD48dGV4dCB4PSIxNTAiIHk9IjE1MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5FIChrZVYpPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI2MzAiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MiDCtyBDYW1iaWEgbG8gc3RhdG8sIG5vbiBBIGUgWjwvdGV4dD48cmVjdCB4PSI2NSIgeT0iNjkwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjkwIiBmaWxsPSIjZTFlZGYxIi8+PHRleHQgeD0iODUiIHk9IjcyOCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5BLCBaIMK3IGVjY2l0YXRvPC90ZXh0Pjx0ZXh0IHg9Ijg1IiB5PSI3NjMiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+cHJpbWEgZGVsIM6zPC90ZXh0PjxwYXRoIGQ9Ik0yNjAgNzM1TDM3MCA3MzUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2FycikiLz48cmVjdCB4PSIzOTAiIHk9IjY5MCIgd2lkdGg9IjE4MCIgaGVpZ2h0PSI5MCIgZmlsbD0iI2UxZWRmMSIvPjx0ZXh0IHg9IjQxMCIgeT0iNzI4IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnN0ZXNzaSBBIGUgWjwvdGV4dD48dGV4dCB4PSI0MTAiIHk9Ijc2MyIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5kb3BvIGlsIM6zPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI4NDAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+SWwgZm90b25lIHBvcnRhIGVuZXJnaWEsIG5vbiBudWNsZW9uaS48L3RleHQ+PHRleHQgeD0iMzUiIHk9Ijk0MCIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4zIMK3IER1ZSBzYWx0aSBlIGxhIGxvcm8gbWVkaWE8L3RleHQ+PHRleHQgeD0iMTMwIiB5PSIxMDQzIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj5BPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iMTAyMCIgd2lkdGg9IjMyMCIgaGVpZ2h0PSIzMCIgZmlsbD0iIzNkNzc5MSIvPjx0ZXh0IHg9IjQ4MCIgeT0iMTA0NCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij44MCBrZVY8L3RleHQ+PHRleHQgeD0iMTMwIiB5PSIxMTUzIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj5CPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iMTEzMCIgd2lkdGg9IjQiIGhlaWdodD0iMzAiIGZpbGw9IiM5ODZjMzUiLz48dGV4dCB4PSIxNjQiIHk9IjExNTQiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MSBrZVY8L3RleHQ+PHRleHQgeD0iMTMwIiB5PSIxMjYzIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj5tZWRpYTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjEyNDAiIHdpZHRoPSIxNjIuMCIgaGVpZ2h0PSIzMCIgZmlsbD0iIzYzN2U1NSIvPjx0ZXh0IHg9IjMyMi4wIiB5PSIxMjY0IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjgxLzIga2VWPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMzU1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkE6IDEwMCDihpIgMjAga2VWIMK3IEI6IDIg4oaSIDEga2VWPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxNDAwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkVuZXJnaWUgZGVsIGZvdG9uZTogb3JpZ2luZSBjb211bmUgYWxsZSBiYXJyZS48L3RleHQ+PHRleHQgeD0iMzUiIHk9IjE0NDUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+TGEgbWVkaWEgbm9uIGltcGxpY2EgdW4gbnVvdm8gbGl2ZWxsbyBkaXNwb25pYmlsZS48L3RleHQ+PC9zdmc+Cg=="
+    }
+  ]
+}
