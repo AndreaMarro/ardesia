@@ -172,4 +172,8 @@ Passaggi: \frac vR=2\,\mathrm{m/(s\,\Omega)};  I=4\,\mathrm A;  (v,R)=(2\,\mathr
 
 Risposta proposta d’autore: Infinite coppie continue.
 
-Distrattori e controllo manuale: Una o due coppie richiederebbero un altro vincolo indipendente. Nessuna è confutata dagli esempi; quattro è il numero della corrente in ampere, non il conteggio delle preparazioni.
+Distrattori e controllo manuale: Una o due coppie richiederebbero un altro vincolo indipendente. La risposta “Nessuna coppia” è confutata dagli esempi; quattro è il numero della corrente in ampere, non il conteggio delle preparazioni.
+
+## Chiarimento dopo revisione distinta
+
+Il revisore A ha segnalato l’ambiguità della parola isolata Nessuna nel feedback16. La frase ora cita espressamente la risposta «Nessuna coppia» e la confuta con gli esempi già dati. Il confronto esatto conserva gli altri15 record, tutte le risposte/opzioni/formule/prompt e gli SVG; cambia soltanto l’ultimo testo/error.message16 e il suo binding. Vecchia edizione, note e ricevute preservate con checksum prima della modifica. Due nuove assembly e importazioni temporanee sono terminate realmente0; nessuna nuova resa nativa è necessaria per gli asset byte-identici. La precedente prova asset-only conserva il proprio terminale autentico e non è trasformata in UI prodotto. Nuova revisione scientifica distinta del testo finale e approvazione umana NOT_RUN da parte dell’autore.

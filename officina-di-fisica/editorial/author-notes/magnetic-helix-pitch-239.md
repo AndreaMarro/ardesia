@@ -172,4 +172,8 @@ Passaggi: H=\frac{m}{|q|}\frac{v_{\parallel}}B;  H=2\,\mathrm m;  (v_{\parallel}
 
 Risposta proposta d’autore: Infinite coppie continue.
 
-Distrattori e controllo manuale: Una o due coppie richiederebbero un secondo vincolo indipendente. Nessuna è smentita dagli esempi. 2π è il fattore fra p e H, non un conteggio di soluzioni.
+Distrattori e controllo manuale: Una o due coppie richiederebbero un secondo vincolo indipendente. La risposta “Nessuna coppia” è smentita dagli esempi. 2π è il fattore fra p e H, non un conteggio di soluzioni.
+
+## Chiarimento dopo revisione distinta
+
+Il revisore A ha segnalato l’ambiguità della parola isolata Nessuna nel feedback16. La frase ora cita espressamente la risposta «Nessuna coppia» e la confuta con gli esempi già dati. Il confronto esatto conserva gli altri15 record, tutte le risposte/opzioni/formule/prompt e gli SVG; cambia soltanto l’ultimo testo/error.message16 e il suo binding. Vecchia edizione, note e ricevute preservate con checksum prima della modifica. Due nuove assembly e importazioni temporanee sono terminate realmente0; nessuna nuova resa nativa è necessaria per gli asset byte-identici. La precedente prova asset-only conserva il proprio terminale autentico e non è trasformata in UI prodotto. Nuova revisione scientifica distinta del testo finale e approvazione umana NOT_RUN da parte dell’autore.
