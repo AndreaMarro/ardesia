@@ -1,0 +1,718 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C1-Q061",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia cinetica e potenza",
+      "order": 61,
+      "title": "La componente che trasferisce energia",
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L007"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il lavoro dipende dalla componente della forza lungo lo spostamento. La proiezione vale 16 cos60°=8 N, concorde al moto; moltiplico per 5 m e ottengo +40 J. La componente perpendicolare non contribuisce al prodotto scalare, anche se il modulo della forza è maggiore di 8 N."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/9a304ba5ca2bf6bdc7bc0aab4a877f88f79d36cb55987ba595b1ddf248cf90e3",
+          "text": "Il primo pannello separa la forza obliqua dalla sua componente lungo lo spostamento. L’angolo è 60° e le due frecce di forza hanno scala comune; il segmento d=5 m ha una scala di lunghezze indipendente."
+        },
+        {
+          "type": "formula",
+          "text": "W=Fd\\cos\\alpha"
+        },
+        {
+          "type": "formula",
+          "text": " W=16\\cdot5\\cdot\\frac12\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W=40\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "80 J omette il coseno; −40 J attribuirebbe un angolo ottuso o il verso opposto. Otto newton è la componente parallela, non il lavoro: manca ancora lo spostamento."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una forza costante di 16 N agisce durante uno spostamento orizzontale di 5 m del suo punto di applicazione. L’angolo fra forza e spostamento è 60°. Quanto lavoro compie la forza, in joule?",
+      "family": "forza-obliqua-e-lavoro",
+      "answer": {
+        "type": "numeric",
+        "value": 40,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "hints": [
+        "Proietta la forza nella direzione dello spostamento prima di moltiplicare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "80 J omette il coseno; −40 J attribuirebbe un angolo ottuso o il verso opposto. Otto newton è la componente parallela, non il lavoro: manca ancora lo spostamento.",
+        "target": "C1-L007"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Lavoro orientato e area sotto la forza",
+        "Variazione di energia cinetica",
+        "Potenza media e istantanea"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q062",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia cinetica e potenza",
+      "order": 62,
+      "title": "Una tensione che cambia la direzione",
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L007"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In ogni punto la tensione è radiale e la velocità tangente al cerchio. Il piccolo spostamento lungo la traiettoria è perpendicolare alla forza, quindi ogni contributo T·dr è nullo e lo è anche la loro somma. Una forza può così cambiare la direzione della velocità senza cambiare l’energia cinetica."
+        },
+        {
+          "type": "formula",
+          "text": "\\vec T\\perp d\\vec r"
+        },
+        {
+          "type": "formula",
+          "text": " dW=\\vec T\\cdot d\\vec r"
+        },
+        {
+          "type": "formula",
+          "text": " dW=0"
+        },
+        {
+          "type": "formula",
+          "text": " W_T=0"
+        },
+        {
+          "type": "text",
+          "text": "La tensione non deve essere nulla: fornisce l’accelerazione centripeta. La pallina cambia posizione e il solo modulo costante di una forza non basta a rendere nullo il lavoro. Se fosse parallela alla velocità, il prodotto scalare non sarebbe nullo."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una pallina si muove su un cerchio a rapidità costante, trattenuta da un filo ideale teso con centro fisso. Perché il lavoro della tensione è nullo?",
+      "family": "traiettoria-circolare-e-lavoro",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La tensione è perpendicolare allo spostamento istantaneo",
+          "La tensione è sempre nulla",
+          "La pallina non si sposta nello spazio",
+          "Qualsiasi forza a modulo costante ha lavoro nullo",
+          "La tensione è parallela alla velocità"
+        ],
+        "value": "La tensione è perpendicolare allo spostamento istantaneo"
+      },
+      "hints": [
+        "Disegna raggio e tangente nello stesso punto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La tensione non deve essere nulla: fornisce l’accelerazione centripeta. La pallina cambia posizione e il solo modulo costante di una forza non basta a rendere nullo il lavoro. Se fosse parallela alla velocità, il prodotto scalare non sarebbe nullo.",
+        "target": "C1-L007"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Lavoro orientato e area sotto la forza",
+        "Variazione di energia cinetica",
+        "Potenza media e istantanea"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q063",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia cinetica e potenza",
+      "order": 63,
+      "title": "Il freno compie lavoro resistente",
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L007"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza resistente è opposta allo spostamento locale del punto su cui agisce. Ogni contributo ha segno negativo; con modulo costante basta moltiplicare −8 N per i 6 m percorsi. Il lavoro è −48 J: riguarda il trasferimento dovuto al freno, non una misura positiva della distanza."
+        },
+        {
+          "type": "formula",
+          "text": "\\cos180^\\circ=-1"
+        },
+        {
+          "type": "formula",
+          "text": " W=-Fs"
+        },
+        {
+          "type": "formula",
+          "text": " W=-8\\cdot6\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W=-48\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "+48 J conserverebbe soltanto il modulo e perderebbe il verso resistente. Zero confonderebbe questa forza tangenziale con una forza centripeta; 4/3 o 3/4 derivano da divisioni fra i dati e non hanno la dimensione del lavoro."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una ruota riceve da un freno una forza tangenziale resistente di modulo costante 8 N. Il punto sul bordo percorre complessivamente 6 m nel verso opposto alla forza. Quanto lavoro compie questa forza sulla ruota, in joule?",
+      "family": "un-freno-sottrae-energia",
+      "answer": {
+        "type": "numeric",
+        "value": -48,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "hints": [
+        "Scegli il segno dal verso della forza rispetto al moto del punto di contatto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "+48 J conserverebbe soltanto il modulo e perderebbe il verso resistente. Zero confonderebbe questa forza tangenziale con una forza centripeta; 4/3 o 3/4 derivano da divisioni fra i dati e non hanno la dimensione del lavoro.",
+        "target": "C1-L007"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Lavoro orientato e area sotto la forza",
+        "Variazione di energia cinetica",
+        "Potenza media e istantanea"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q064",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia cinetica e potenza",
+      "order": 64,
+      "title": "Un’area trapezoidale",
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L007"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza varia, quindi non uso soltanto uno dei due estremi. Nel grafico forza–posizione il lavoro è l’area del trapezio: la forza media spaziale è (2+10)/2=6 N. Moltiplico per 0,40=2/5 m e ottengo 12/5 J. Il fattore un mezzo deriva dalla variazione lineare, non da una formula valida per qualunque profilo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/9a304ba5ca2bf6bdc7bc0aab4a877f88f79d36cb55987ba595b1ddf248cf90e3",
+          "text": "Nel grafico centrale il lavoro è l’area sotto F_x(x): un rettangolo di 4/5 J e un triangolo di 8/5 J, per un totale 12/5 J. Gli assi mostrano unità fisiche e l’origine comune."
+        },
+        {
+          "type": "formula",
+          "text": "F_{\\rm media\\ spaziale}=\\frac{2+10}{2}\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{\\rm media\\ spaziale}=6\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " W=6\\cdot\\frac25\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W=\\frac{12}{5}\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "4 J usa soltanto la forza finale e 4/5 J quella iniziale. 16/5 J considera la sola variazione di forza senza la corretta area; 12 J somma i valori numerici estremi senza la distanza e la media."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Lungo uno spostamento rettilineo di 0,40 m una forza parallela e concorde cresce linearmente da 2 N a 10 N. Qual è il suo lavoro?",
+      "family": "area-sotto-una-forza-variabile",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "12/5 J",
+          "4 J",
+          "4/5 J",
+          "16/5 J",
+          "12 J"
+        ],
+        "value": "12/5 J"
+      },
+      "hints": [
+        "Dividi il trapezio in rettangolo e triangolo, oppure trova la media dei due estremi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "4 J usa soltanto la forza finale e 4/5 J quella iniziale. 16/5 J considera la sola variazione di forza senza la corretta area; 12 J somma i valori numerici estremi senza la distanza e la media.",
+        "target": "C1-L007"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Lavoro orientato e area sotto la forza",
+        "Variazione di energia cinetica",
+        "Potenza media e istantanea"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q065",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia cinetica e potenza",
+      "order": 65,
+      "title": "Aumento di energia e valore finale",
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L007"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nell’energia cinetica la rapidità è elevata al quadrato: raddoppiarla porta K_f a quattro volte K_i. La domanda chiede però l’aumento, non il nuovo valore. Sottraggo K_i dal valore finale 4K_i e ottengo ΔK=3K_i, cioè un aumento del 300% del valore iniziale."
+        },
+        {
+          "type": "formula",
+          "text": "K_i=\\frac12mv_i^2"
+        },
+        {
+          "type": "formula",
+          "text": " K_f=\\frac12m(2v_i)^2"
+        },
+        {
+          "type": "formula",
+          "text": " K_f=4K_i"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta K=K_f-K_i"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta K=3K_i"
+        },
+        {
+          "type": "text",
+          "text": "Quattro K_i è il valore finale, non l’aumento. Un aumento di K_i tratterebbe la dipendenza dalla rapidità come lineare; zero ignorerebbe il raddoppio e K_i/2 non segue dal quadrato."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "La massa di un corpo resta costante e la sua rapidità raddoppia, nel regime classico. Di quanto aumenta l’energia cinetica rispetto al valore iniziale K_i>0?",
+      "family": "doppia-velocita-e-stessa-massa",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Di 3 K_i; il valore finale è 4 K_i",
+          "Di 4 K_i; il valore finale è 5 K_i",
+          "Di K_i; il valore finale è 2 K_i",
+          "Non cambia",
+          "Di K_i/2"
+        ],
+        "value": "Di 3 K_i; il valore finale è 4 K_i"
+      },
+      "hints": [
+        "Calcola prima K_f/K_i, poi distingui K_f dalla differenza K_f−K_i.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro K_i è il valore finale, non l’aumento. Un aumento di K_i tratterebbe la dipendenza dalla rapidità come lineare; zero ignorerebbe il raddoppio e K_i/2 non segue dal quadrato.",
+        "target": "C1-L007"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Lavoro orientato e area sotto la forza",
+        "Variazione di energia cinetica",
+        "Potenza media e istantanea"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q066",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia cinetica e potenza",
+      "order": 66,
+      "title": "I lavori si sommano con il segno",
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L007"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il teorema dell’energia cinetica usa la somma algebrica dei lavori di tutte le forze. Il lavoro totale è 18−6=12 J, quindi l’energia cinetica cresce di 12 J. Al valore iniziale 5 J aggiungo questa variazione: K_f=17 J. Il lavoro resistente non si somma come modulo positivo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/9a304ba5ca2bf6bdc7bc0aab4a877f88f79d36cb55987ba595b1ddf248cf90e3",
+          "text": "Le barre finali mostrano 5 J iniziali e 17 J finali; la differenza di 12 J è il lavoro totale, ottenuto da +18 J e −6 J. Le due energie hanno origine e scala comuni."
+        },
+        {
+          "type": "formula",
+          "text": "W_{\\rm tot}=18\\,\\mathrm J-6\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_{\\rm tot}=12\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " K_f=K_i+W_{\\rm tot}"
+        },
+        {
+          "type": "formula",
+          "text": " K_f=5\\,\\mathrm J+12\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " K_f=17\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "12 J è la variazione, non l’energia finale. 29 J sommerebbe i moduli dei due lavori; 23 J ignorerebbe il contributo resistente. Cinque joule presupporrebbe un lavoro totale nullo, che qui non c’è."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Due forze compiono sullo stesso corpo lavori +18 J e −6 J. Le altre forze hanno lavoro nullo. Se l’energia cinetica iniziale è 5 J, quanto vale quella finale in joule?",
+      "family": "due-trazioni-in-competizione",
+      "answer": {
+        "type": "numeric",
+        "value": 17,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "hints": [
+        "Scrivi il bilancio K_f−K_i prima di sostituire i lavori.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "12 J è la variazione, non l’energia finale. 29 J sommerebbe i moduli dei due lavori; 23 J ignorerebbe il contributo resistente. Cinque joule presupporrebbe un lavoro totale nullo, che qui non c’è.",
+        "target": "C1-L007"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Lavoro orientato e area sotto la forza",
+        "Variazione di energia cinetica",
+        "Potenza media e istantanea"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q067",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia cinetica e potenza",
+      "order": 67,
+      "title": "La potenza in quell’istante",
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L007"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza istantanea di una forza è il prodotto scalare fra forza e velocità del punto di applicazione. Qui i vettori sono concordi e il coseno vale uno: 25·0,80=25·4/5=20 W. Non occorre conoscere un intervallo di tempo o lo spostamento totale per trovare questo valore istantaneo."
+        },
+        {
+          "type": "formula",
+          "text": "P=\\vec F\\cdot\\vec v"
+        },
+        {
+          "type": "formula",
+          "text": " P=Fv"
+        },
+        {
+          "type": "formula",
+          "text": " P=25\\cdot\\frac45\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P=20\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "125/4 dividerebbe la forza per la rapidità, con dimensione diversa dalla potenza. 25 copia una forza, 4/5 copia una rapidità e −20 W darebbe il verso resistente anziché quello concorde dichiarato."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una cinghia esercita una trazione di 25 N. In un certo istante il punto di applicazione si muove a 0,80 m/s nella stessa direzione e nello stesso verso della forza. Qual è la potenza meccanica fornita, in watt?",
+      "family": "potenza-istantanea-dalla-trazione",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "hints": [
+        "Usa la velocità del punto sul quale la cinghia applica la forza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "125/4 dividerebbe la forza per la rapidità, con dimensione diversa dalla potenza. 25 copia una forza, 4/5 copia una rapidità e −20 W darebbe il verso resistente anziché quello concorde dichiarato.",
+        "target": "C1-L007"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Lavoro orientato e area sotto la forza",
+        "Variazione di energia cinetica",
+        "Potenza media e istantanea"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q068",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia cinetica e potenza",
+      "order": 68,
+      "title": "Dare un nome a N·m nel lavoro",
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L007"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il lavoro trasferisce energia e si misura in joule. Una forza di un newton che agisce concordemente per un metro compie un joule: 1 J=1 N·m. L’equivalenza dimensionale non elimina la distinzione fisica fra lavoro e momento di una forza, per il quale si mantiene la scrittura N·m."
+        },
+        {
+          "type": "formula",
+          "text": "1\\,\\mathrm J=1\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm J=1\\,\\mathrm{kg\\,m^2/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Il watt è un joule al secondo, quindi misura potenza. Il pascal misura pressione, il newton forza e il coulomb carica elettrica: non sono nomi dell’unità di lavoro."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "Qual è il nome dell’unità SI del lavoro, equivalente al prodotto di un newton per un metro?",
+      "family": "unita-del-trasferimento-energetico",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "joule",
+          "watt",
+          "pascal",
+          "newton",
+          "coulomb"
+        ],
+        "value": "joule"
+      },
+      "hints": [
+        "Ricostruisci le dimensioni da forza per spostamento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Il watt è un joule al secondo, quindi misura potenza. Il pascal misura pressione, il newton forza e il coulomb carica elettrica: non sono nomi dell’unità di lavoro.",
+        "target": "C1-L007"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Lavoro orientato e area sotto la forza",
+        "Variazione di energia cinetica",
+        "Potenza media e istantanea"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q069",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia cinetica e potenza",
+      "order": 69,
+      "title": "Stessa energia, durata più breve",
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L007"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le potenze medie sono W/t_A e W/t_B. Nel rapporto si cancella la stessa energia: rimane t_B/t_A. Poiché t_A=t_B/3, il rapporto vale tre. Il confronto riguarda le medie sull’intero trasferimento e non impone una legge per le potenze istantanee."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{P_A}{P_B}=\\frac{W/t_A}{W/t_B}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{P_A}{P_B}=\\frac{t_B}{t_A}"
+        },
+        {
+          "type": "formula",
+          "text": " t_A=\\frac{t_B}{3}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{P_A}{P_B}=3"
+        },
+        {
+          "type": "text",
+          "text": "Un terzo usa il rapporto delle durate nel verso diretto anziché inverso. Uno considera soltanto l’energia uguale e nove quadra un fattore che nella durata compare una sola volta. Il risultato è puro, non una potenza in watt."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Due dispositivi trasferiscono la stessa energia meccanica positiva W. Il dispositivo A impiega un terzo del tempo di B. Quanto vale il rapporto delle potenze medie P_A/P_B?",
+      "family": "stesso-lavoro-tempi-differenti",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "hints": [
+        "Il medesimo lavoro trasferito in meno tempo richiede una potenza media maggiore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un terzo usa il rapporto delle durate nel verso diretto anziché inverso. Uno considera soltanto l’energia uguale e nove quadra un fattore che nella durata compare una sola volta. Il risultato è puro, non una potenza in watt.",
+        "target": "C1-L007"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Lavoro orientato e area sotto la forza",
+        "Variazione di energia cinetica",
+        "Potenza media e istantanea"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q070",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia cinetica e potenza",
+      "order": 70,
+      "title": "La distanza fino al primo arresto",
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L007"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’energia cinetica iniziale è (1/2)·4·3²=18 J. All’arresto K_f=0; il lavoro resistente vale −6s e deve essere −18 J. Ricavo s=18/6=3 m. La distanza è positiva benché il lavoro sia negativo, e il bilancio termina al primo arresto."
+        },
+        {
+          "type": "formula",
+          "text": "K_i=\\frac12\\cdot4\\cdot3^2\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " K_i=18\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " -Fs=-K_i"
+        },
+        {
+          "type": "formula",
+          "text": " s=\\frac{18\\,\\mathrm J}{6\\,\\mathrm N}"
+        },
+        {
+          "type": "formula",
+          "text": " s=3\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Sei metri ometterebbe il fattore un mezzo nell’energia iniziale. Meno tre confonderebbe il segno del lavoro con quello della distanza; diciotto è il valore numerico dell’energia, da dividere ancora per la forza."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "Un carrello di massa 4 kg procede a 3 m/s. Una forza resistente costante di modulo 6 N è l’unica a compiere lavoro. Dopo quale distanza si ferma, in metri?",
+      "family": "distanza-minima-per-arrestarsi",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "hints": [
+        "Il lavoro totale deve eliminare tutta l’energia cinetica iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei metri ometterebbe il fattore un mezzo nell’energia iniziale. Meno tre confonderebbe il segno del lavoro con quello della distanza; diciotto è il valore numerico dell’energia, da dividere ancora per la forza.",
+        "target": "C1-L007"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Lavoro orientato e area sotto la forza",
+        "Variazione di energia cinetica",
+        "Potenza media e istantanea"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "9a304ba5ca2bf6bdc7bc0aab4a877f88f79d36cb55987ba595b1ddf248cf90e3",
+      "name": "cric-c1-l007-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTU1MCIgdmlld0JveD0iMCAwIDY0MCAxNTUwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIj48dGl0bGUgaWQ9InRpdGxlIj5MYXZvcm8gb2JsaXF1bywgYXJlYSBlIGJpbGFuY2lvIGNpbmV0aWNvPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+UHJvaWV6aW9uZSBkaSB1bmEgZm9yemEgYSBzZXNzYW50YSBncmFkaSwgYXJlYSB0cmFwZXpvaWRhbGUgc290dG8gbGEgZm9yemEgZSBkdWUgZW5lcmdpZSBjaW5ldGljaGUuPC9kZXNjPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI2NDAiIGhlaWdodD0iMTU1MCIgZmlsbD0id2hpdGUiLz48dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+SWwgbGF2b3JvIHNlZ3VlIGxvIHNwb3N0YW1lbnRvPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMTAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MSDCtyBVbmEgZm9yemEgb2JsaXF1YSwgdW5hIHByb2llemlvbmU8L3RleHQ+PGxpbmUgeDE9IjEwMCIgeTE9IjM2MCIgeDI9IjU1MCIgeTI9IjM2MCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMTUwIiB5MT0iMzYwIiB4Mj0iMjUwIiB5Mj0iMzYwIiBzdHJva2U9IiM2MzdlNTUiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5Z29uIHBvaW50cz0iMjUwLDM2MCAyNDIuMCwzNjQuMCAyNDIuMCwzNTYuMCIgZmlsbD0iIzYzN2U1NSIvPjxsaW5lIHgxPSIxNTAiIHkxPSIzNjAiIHgyPSIyNTAiIHkyPSIxODYuNzk0OTE5MjQzMTEyMjgiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlnb24gcG9pbnRzPSIyNTAsMTg2Ljc5NDkxOTI0MzExMjI4IDI0OS40NjQxMDE2MTUxMzc3NiwxOTUuNzIzMTIyNDczMzg3NzggMjQyLjUzNTg5ODM4NDg2MjI0LDE5MS43MjMxMjI0NzMzODc3OCIgZmlsbD0iIzMwNmY4YyIvPjx0ZXh0IHg9IjI3MCIgeT0iMTk1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkYgPSAxNiBOPC90ZXh0Pjx0ZXh0IHg9IjI3MCIgeT0iMzUwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkZfeCA9IDggTjwvdGV4dD48dGV4dCB4PSIxODUiIHk9IjMyNSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij42MMKwPC90ZXh0PjxsaW5lIHgxPSIxNTAiIHkxPSI0NDAiIHgyPSI1MDAiIHkyPSI0NDAiIHN0cm9rZT0iIzk4NmMzNSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlnb24gcG9pbnRzPSI1MDAsNDQwIDQ5Mi4wLDQ0NC4wIDQ5Mi4wLDQzNi4wIiBmaWxsPSIjOTg2YzM1Ii8+PHRleHQgeD0iMzI1IiB5PSI0ODUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPmQgPSA1IG08L3RleHQ+PHRleHQgeD0iMzUiIHk9IjU0NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5MZSBmb3J6ZSBjb25kaXZpZG9ubyB1bmEgc2NhbGE7IGQgbmUgdXNhIHVu4oCZYWx0cmEuPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI2MzUiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MiDCtyBJbCBsYXZvcm8gw6ggdW7igJlhcmVhIGNvbiBzZWdubzwvdGV4dD48bGluZSB4MT0iMTUwIiB5MT0iMTAzMCIgeDI9IjU1MCIgeTI9IjEwMzAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjE1MCIgeTE9IjEwMzAiIHgyPSIxNTAiIHkyPSI3MDAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlnb24gcG9pbnRzPSIxNTAsMTAzMCAxNTAsOTcwIDQ3MCw3MzAgNDcwLDEwMzAiIGZpbGw9IiNlNWVkZjIiLz48bGluZSB4MT0iMTUwIiB5MT0iOTcwIiB4Mj0iNDcwIiB5Mj0iNzMwIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMyIvPjxsaW5lIHgxPSIxNTAiIHkxPSI5NzAiIHgyPSI0NzAiIHkyPSI5NzAiIHN0cm9rZT0iIzk4NmMzNSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTY1IiB5PSI3MjAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+Rl94IChOKTwvdGV4dD48dGV4dCB4PSI0ODAiIHk9IjEwODAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+eCAobSk8L3RleHQ+PHRleHQgeD0iMTM1IiB5PSIxMDM1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj4wPC90ZXh0Pjx0ZXh0IHg9IjEzNSIgeT0iOTc1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj4yPC90ZXh0Pjx0ZXh0IHg9IjEzNSIgeT0iNzM1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj4xMDwvdGV4dD48dGV4dCB4PSI0NzAiIHk9IjEwNjUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjIvNTwvdGV4dD48dGV4dCB4PSIyMjAiIHk9IjEwMDgiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+NC81IEo8L3RleHQ+PHRleHQgeD0iMzAwIiB5PSI5MDUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+OC81IEo8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjExMzAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+QXJlYSB0b3RhbGU6IDQvNSBKICsgOC81IEogPSAxMi81IEouPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMjEwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjMgwrcgVW4gYmlsYW5jaW8gZnJhIGR1ZSBlbmVyZ2llIGNpbmV0aWNoZTwvdGV4dD48dGV4dCB4PSIxMjUiIHk9IjEyOTIiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPktfaTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjEyNzAiIHdpZHRoPSIxMDAiIGhlaWdodD0iMjUiIGZpbGw9IiM2MzdlNTUiLz48dGV4dCB4PSIyNjUiIHk9IjEyOTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+NSBKPC90ZXh0Pjx0ZXh0IHg9IjEyNSIgeT0iMTM5MiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+S19mPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iMTM3MCIgd2lkdGg9IjM0MCIgaGVpZ2h0PSIyNSIgZmlsbD0iIzNkNzc5MSIvPjx0ZXh0IHg9IjUwNSIgeT0iMTM5MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xNyBKPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxNDc1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPldfdG90ID0gKzE4IEog4oiSIDYgSiA9ICsxMiBKLjwvdGV4dD48L3N2Zz4K"
+    }
+  ]
+}

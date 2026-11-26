@@ -1,0 +1,396 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "C1-Q071",
+      "sourceSha256": "cff836fe184cccf1ef132a16012242ab5781d2612309faf7e884065e31cecc35",
+      "candidateSha256": "af2df418b49e2979619a6f54d8d9aaddc7d4780c4db5ba5d4072fd94718b9888",
+      "reviewedSignature": "ec3afc9e0ab63fdbacf307a70d2735471aa8a36f2d7b52e872f4cd3433b3b22e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "È nullo",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Per una forza conservativa posizionale il lavoro fra due punti dipende solo dagli estremi e vale−ΔU. Su percorso chiuso gli estremi coincidono: ΔU 0 e W 0. Questo non afferma forza nulla lungo il percorso, solo integrale nullo.",
+      "physicalAssumptions": "Forza conservativa con potenziale definito sul dominio del percorso chiuso; stesso stato finale e iniziale.",
+      "distractors": "Sul giro il lavoro conservativo non è strettamente positivo o negativo. La lunghezza non è energia; la durata non cambia ΔU.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Per una forza conservativa posizionale il lavoro fra due punti dipende solo dagli estremi e vale−ΔU. Su percorso chiuso gli estremi coincidono: ΔU 0 e W 0. Questo non afferma forza nulla lungo il percorso, solo integrale nullo.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c1_051_100_review_models.py": "6216ca8c9b4a2652b10fcbcc22d09e9298df0c8768ce040c4238155f6709b365",
+        "cric_c1_mechanics_review_common.py": "b4e7a6e16e35cf7b0bad0ecc064b90106322a39daee055fbf436dec41026e91b",
+        "cric_c1_mechanics_review_evidence.py": "60aff82f8711da4f44a0a6e6f4f4ac61807735927d16a8148fcfd7c50eee37d2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-Q072",
+      "sourceSha256": "96d3e3bcaa426a89fffa1350ffeda24425b78ae80e6617a1959c3c5f9c86d392",
+      "candidateSha256": "43bd4e1fab312797a300add1f2f29cdd647485e848cd592a14483f640a60b86e",
+      "reviewedSignature": "80771b004431e61fd63aeafd7af2acd3debee664c239bfcf9efaf12bfdcc8c22",
+      "assetChecksums": {
+        "cric-c1-l008-progressive.svg": "b1560acf6aaeb89a813151715bb0d2f690125c4f33362e909139a73a6b965994"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "In gravità uniforme ΔU=mgΔz. mg=(1/5)kg·10 m/s²=2 N; Δz=3 J/(2 N)=3/2 m=1,5 m, verso l’alto perché ΔU positivo. Il valore dello zero dell’energia potenziale non entra.",
+      "physicalAssumptions": "Gravità uniforme positiva, massa 1/5 kg, incremento potenziale+3 J; aumento di quota, zero energetico comune arbitrario.",
+      "distractors": "3 m omette il peso di 2 N; 6 m moltiplica invece di dividere. 3/5 m non ricostruisce 3 J; −3/2 m darebbe ΔU negativo.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. In gravità uniforme ΔU=mgΔz. mg=(1/5)kg·10 m/s²=2 N; Δz=3 J/(2 N)=3/2 m=1,5 m, verso l’alto perché ΔU positivo. Il valore dello zero dell’energia potenziale non entra.",
+      "scientificAssetReview": "XML e nuovo PNG nativo indipendente640×1600 interi letti. Aumento di quota150 per3/2 m, freccia del peso separata e in altra scala perché esprimeN. Deformazioni100/250 per2/5 cm, con energie indicate4/5 e5 J: barre di lunghezze, non energie. Bilancio isolato:360=126+234 coordinate per20=7+13 J con origine e scala18 coordinate/J comuni.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c1_051_100_review_models.py": "6216ca8c9b4a2652b10fcbcc22d09e9298df0c8768ce040c4238155f6709b365",
+        "cric_c1_mechanics_review_common.py": "b4e7a6e16e35cf7b0bad0ecc064b90106322a39daee055fbf436dec41026e91b",
+        "cric_c1_mechanics_review_evidence.py": "60aff82f8711da4f44a0a6e6f4f4ac61807735927d16a8148fcfd7c50eee37d2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-Q073",
+      "sourceSha256": "bb684887cbbe3bd9e0e8b331aeb398b074fc49c5c76837e2b23ef926067ac602",
+      "candidateSha256": "9832c3f920011dbf10322e76622c71ab945dbd3a3710e387202fc5a90407641b",
+      "reviewedSignature": "5762a30a8ed752f2d0311d08ee224f18b721580905929af39f3c464a99e81078",
+      "assetChecksums": {
+        "cric-c1-l008-progressive.svg": "b1560acf6aaeb89a813151715bb0d2f690125c4f33362e909139a73a6b965994"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Nel medesimo tratto lineare U=kx²/2. Il rapporto delle deformazioni è 5/2 con i cm che si cancellano: U_B=(4/5)J·25/4=5 J. Non scala linearmente con x; non serve ricavare k per risolvere il rapporto.",
+      "physicalAssumptions": "Stessa k e medesimo campo elastico lineare; moduli delle deformazioni 2 e 5 cm, unità comuni nel rapporto.",
+      "distractors": "2 J segue una dipendenza lineare da x; un’energia negativa non deriva da x negativo perché compare x². 4/5 J ignora la nuova deformazione.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Nel medesimo tratto lineare U=kx²/2. Il rapporto delle deformazioni è 5/2 con i cm che si cancellano: U_B=(4/5)J·25/4=5 J. Non scala linearmente con x; non serve ricavare k per risolvere il rapporto.",
+      "scientificAssetReview": "XML e nuovo PNG nativo indipendente640×1600 interi letti. Aumento di quota150 per3/2 m, freccia del peso separata e in altra scala perché esprimeN. Deformazioni100/250 per2/5 cm, con energie indicate4/5 e5 J: barre di lunghezze, non energie. Bilancio isolato:360=126+234 coordinate per20=7+13 J con origine e scala18 coordinate/J comuni.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c1_051_100_review_models.py": "6216ca8c9b4a2652b10fcbcc22d09e9298df0c8768ce040c4238155f6709b365",
+        "cric_c1_mechanics_review_common.py": "b4e7a6e16e35cf7b0bad0ecc064b90106322a39daee055fbf436dec41026e91b",
+        "cric_c1_mechanics_review_evidence.py": "60aff82f8711da4f44a0a6e6f4f4ac61807735927d16a8148fcfd7c50eee37d2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-Q074",
+      "sourceSha256": "7bbb38b0a23c188c9c03153e6d795614f9c7337f49bc220e726b65732d69b181",
+      "candidateSha256": "43377164f6b1c76052313eae0c7558f5e41d4075766505e056b133334d77f575",
+      "reviewedSignature": "e81dec29b54808d53ceaf796db538fc392f66c94898a7b1a944ac4589449f84a",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Non cambia",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Abbassare lo zero delle quote di 2 m aumenta di 2 m il valore di ciascuna z per lo stesso punto fisico; le differenze z_f−z_i restano uguali. Quindi ΔU=mgΔz per la stessa discesa non cambia ed è negativa. Cambiano entrambi i valori assoluti di U dello stesso termine costante 2 mg, non il lavoro gravitazionale.",
+      "physicalAssumptions": "Traslazione costante dello zero spaziale, stesso verso/unità e stessa discesa fisica; entrambi gli estremi trasformati insieme.",
+      "distractors": "±2 J assegnano energia a un mero cambiamento dello zero. Annullamento e inversione cambiano indebitamente il dislivello fisico.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Abbassare lo zero delle quote di 2 m aumenta di 2 m il valore di ciascuna z per lo stesso punto fisico; le differenze z_f−z_i restano uguali. Quindi ΔU=mgΔz per la stessa discesa non cambia ed è negativa. Cambiano entrambi i valori assoluti di U dello stesso termine costante 2 mg, non il lavoro gravitazionale.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c1_051_100_review_models.py": "6216ca8c9b4a2652b10fcbcc22d09e9298df0c8768ce040c4238155f6709b365",
+        "cric_c1_mechanics_review_common.py": "b4e7a6e16e35cf7b0bad0ecc064b90106322a39daee055fbf436dec41026e91b",
+        "cric_c1_mechanics_review_evidence.py": "60aff82f8711da4f44a0a6e6f4f4ac61807735927d16a8148fcfd7c50eee37d2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-Q075",
+      "sourceSha256": "8deee8064b4fb2796c79b70a300eeacc46661d7e3562a6ba86c2ab51fc4cc55d",
+      "candidateSha256": "19f8cc2c9854355592274dff8cb85080591814def29148ba9c0a756c8f73807f",
+      "reviewedSignature": "7e2bbb8215860e5ab702e2a52b3cedd4888c0fa670092cba4c04283bed79b290",
+      "assetChecksums": {
+        "cric-c1-l008-progressive.svg": "b1560acf6aaeb89a813151715bb0d2f690125c4f33362e909139a73a6b965994"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "13",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "La diminuzione della K del blocco è 20−7=13 J. Se il piano resta fermo e non cambia altra energia meccanica del sistema, l’isolamento dà ΔU_int=+13 J. Il solo testo non specifica esplicitamente che il piano sia fermo: se può acquistare energia cinetica, il bilancio generale è ΔU_int=13 J−ΔK_piano−ΔU_meccanica_altra. Prima di giudicare una nuova candidata bisognerà verificare che escluda quei trasferimenti; non si ricava il riscaldamento 13 J dal solo aggettivo isolato senza il bilancio completo. Nella nuova candidata è stata letta esplicitamente l’assenza di altre variazioni macroscopiche: la condizione della primaria è dunque soddisfatta.",
+      "physicalAssumptions": "Sistema blocco–piano isolato; la candidata esclude esplicitamente altre variazioni macroscopiche: il solo calo della K del blocco coincide col calo meccanico totale.",
+      "distractors": "−13 J è ΔK; 7 J è il valore cinetico finale, 20 J quello iniziale. 27 J somma stati; non si può attribuire tutto il riscaldamento al solo blocco.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. La diminuzione della K del blocco è 20−7=13 J. Se il piano resta fermo e non cambia altra energia meccanica del sistema, l’isolamento dà ΔU_int=+13 J. Il solo testo non specifica esplicitamente che il piano sia fermo: se può acquistare energia cinetica, il bilancio generale è ΔU_int=13 J−ΔK_piano−ΔU_meccanica_altra. Prima di giudicare una nuova candidata bisognerà verificare che escluda quei trasferimenti; non si ricava il riscaldamento 13 J dal solo aggettivo isolato senza il bilancio completo. Nella nuova candidata è stata letta esplicitamente l’assenza di altre variazioni macroscopiche: la condizione della primaria è dunque soddisfatta.",
+      "scientificAssetReview": "XML e nuovo PNG nativo indipendente640×1600 interi letti. Aumento di quota150 per3/2 m, freccia del peso separata e in altra scala perché esprimeN. Deformazioni100/250 per2/5 cm, con energie indicate4/5 e5 J: barre di lunghezze, non energie. Bilancio isolato:360=126+234 coordinate per20=7+13 J con origine e scala18 coordinate/J comuni.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c1_051_100_review_models.py": "6216ca8c9b4a2652b10fcbcc22d09e9298df0c8768ce040c4238155f6709b365",
+        "cric_c1_mechanics_review_common.py": "b4e7a6e16e35cf7b0bad0ecc064b90106322a39daee055fbf436dec41026e91b",
+        "cric_c1_mechanics_review_evidence.py": "60aff82f8711da4f44a0a6e6f4f4ac61807735927d16a8148fcfd7c50eee37d2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-Q076",
+      "sourceSha256": "5c4d4eb328db23e7d3366878dda4380ea8adc633d1bb7c93072b5b3f5e98e8b4",
+      "candidateSha256": "03ec92d7df5d6e56b9475a891341288a65af8cdebd059bbb65a06c32cf91f835",
+      "reviewedSignature": "f0b2cb73da0c74516f650b299e0a02151949209cfebb955e5cbd140bf7535266",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Il modulo della velocità al fondo",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Parte da ferma e raggiunge entrambi i fondi alla stessa quota su piste lisce fisse: conservazione K+mgz dà v_f²=2 g(z_i−z_f). È uguale la rapidità finale, non necessariamente direzione della velocità,tempo o accelerazione lungo piste di forma diversa. Le reazioni normali non fanno lavoro sul vincolo fermo.",
+      "physicalAssumptions": "Piste fisse lisce, stessa quota iniziale/finale, partenza da fermo e fondo raggiunto in entrambi i casi; vincoli senza lavoro.",
+      "distractors": "Tempo, direzione, normale e accelerazione possono dipendere dalla forma. La conservazione dell’energia non li rende invarianti.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Parte da ferma e raggiunge entrambi i fondi alla stessa quota su piste lisce fisse: conservazione K+mgz dà v_f²=2 g(z_i−z_f). È uguale la rapidità finale, non necessariamente direzione della velocità,tempo o accelerazione lungo piste di forma diversa. Le reazioni normali non fanno lavoro sul vincolo fermo.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c1_051_100_review_models.py": "6216ca8c9b4a2652b10fcbcc22d09e9298df0c8768ce040c4238155f6709b365",
+        "cric_c1_mechanics_review_common.py": "b4e7a6e16e35cf7b0bad0ecc064b90106322a39daee055fbf436dec41026e91b",
+        "cric_c1_mechanics_review_evidence.py": "60aff82f8711da4f44a0a6e6f4f4ac61807735927d16a8148fcfd7c50eee37d2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-Q077",
+      "sourceSha256": "901c1b1ac346f60dc5a383c72074be1b33f36aca4d0efa09375d2d59a8921d8c",
+      "candidateSha256": "f3f3b0be955eda79695bff9ef6f38a678816268f42f52bf83f26da5279dd4834",
+      "reviewedSignature": "07e0ad66b4c4894f6ecea57cb11e4d9bb60937af00637ecd8d8297579ecfd794",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Conservazione meccanica: v_f²=v_i²−2 gΔz=25−2·10·4/5=9 m²/s². La rapidità è la radice positiva 3 m/s. Il radicando è positivo, quindi la quota è raggiungibile; non si sottrae direttamente una lunghezza da una velocità.",
+      "physicalAssumptions": "Soli lavoro gravitazionale e vincoli senza lavoro, g 10, salita 4/5 m; radicando 9 positivo e radice della rapidità non negativa.",
+      "distractors": "Nove è il valore numerico di v²; −3 non è una rapidità. Cinque ignora la salita; 25+16 inverte il trasferimento energetico.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Conservazione meccanica: v_f²=v_i²−2 gΔz=25−2·10·4/5=9 m²/s². La rapidità è la radice positiva 3 m/s. Il radicando è positivo, quindi la quota è raggiungibile; non si sottrae direttamente una lunghezza da una velocità.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c1_051_100_review_models.py": "6216ca8c9b4a2652b10fcbcc22d09e9298df0c8768ce040c4238155f6709b365",
+        "cric_c1_mechanics_review_common.py": "b4e7a6e16e35cf7b0bad0ecc064b90106322a39daee055fbf436dec41026e91b",
+        "cric_c1_mechanics_review_evidence.py": "60aff82f8711da4f44a0a6e6f4f4ac61807735927d16a8148fcfd7c50eee37d2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-Q078",
+      "sourceSha256": "1da9223767c3e0ccf71b9feb3ef4324ccb059572031bef20a8e26db7b12a9d40",
+      "candidateSha256": "66bf47834a0b682ebb427720749e19ac496e238cafac11532d260538d1f5497f",
+      "reviewedSignature": "696c61ad7d145cd77b4fa249a169f5c91927d1f970204b64a7ca17161acbdf9f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Non conservativo: compie lavoro negativo su entrambi i tratti",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "L’attrito dinamico sul piano fermo è non conservativo. In entrambi i tratti lo scorrimento trova una forza opposta alla velocità relativa: il lavoro totale su andata e ritorno è negativo,non zero. Non esiste un’unica U della posizione che riproduca quei lavori chiusi.",
+      "physicalAssumptions": "Piano ruvido fermo e scorrimento non nullo andata/ritorno; forza opposta al moto del blocco nel laboratorio, nessun nastro in moto.",
+      "distractors": "La stessa posizione finale non rende conservativo qualunque lavoro. L’attrito resta resistente in entrambi i versi e non ammette un potenziale della sola posizione.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. L’attrito dinamico sul piano fermo è non conservativo. In entrambi i tratti lo scorrimento trova una forza opposta alla velocità relativa: il lavoro totale su andata e ritorno è negativo,non zero. Non esiste un’unica U della posizione che riproduca quei lavori chiusi.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c1_051_100_review_models.py": "6216ca8c9b4a2652b10fcbcc22d09e9298df0c8768ce040c4238155f6709b365",
+        "cric_c1_mechanics_review_common.py": "b4e7a6e16e35cf7b0bad0ecc064b90106322a39daee055fbf436dec41026e91b",
+        "cric_c1_mechanics_review_evidence.py": "60aff82f8711da4f44a0a6e6f4f4ac61807735927d16a8148fcfd7c50eee37d2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-Q079",
+      "sourceSha256": "e32b80d73a84af4e85f77cac2b61d915bb92ebb5847ad04532d371f15a26d97a",
+      "candidateSha256": "ecab119ffbaacf0859e86368ebc5b8030cf8ebbd870e81760f69d6da289a810b",
+      "reviewedSignature": "1114eca99a7d8c29762c092f50e937f53c6a566e6337791d5647bf58c2a6fc21",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "65",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "La rapidità invariata dà ΔK 0. Gravità compie−mgh=−3·10·2=−60 J e attrito−5 J; allora 0=W_mot−60−5→W_mot=65 J. Equivalentemente il motore fornisce 60 J di potenziale e 5 J di dissipazione.",
+      "physicalAssumptions": "Massa 3 kg, salita 2 m, stessa rapidità agli estremi; attrito con lavoro−5 J e g 10 uniforme.",
+      "distractors": "60 J ignora l’attrito; 55 J ne sottrae il costo. 5 J ignora la quota; zero confonde ΔK nullo e lavori individuali nulli.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. La rapidità invariata dà ΔK 0. Gravità compie−mgh=−3·10·2=−60 J e attrito−5 J; allora 0=W_mot−60−5→W_mot=65 J. Equivalentemente il motore fornisce 60 J di potenziale e 5 J di dissipazione.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c1_051_100_review_models.py": "6216ca8c9b4a2652b10fcbcc22d09e9298df0c8768ce040c4238155f6709b365",
+        "cric_c1_mechanics_review_common.py": "b4e7a6e16e35cf7b0bad0ecc064b90106322a39daee055fbf436dec41026e91b",
+        "cric_c1_mechanics_review_evidence.py": "60aff82f8711da4f44a0a6e6f4f4ac61807735927d16a8148fcfd7c50eee37d2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-Q080",
+      "sourceSha256": "27a6b777c1c94aade72aca82099496f3727d20fae3de90c041ff172d0ce34d33",
+      "candidateSha256": "c2b961057b7a8bf1b71de62072276c8c0914b04a8c72804cda65c4dd1eb613e7",
+      "reviewedSignature": "5e797944f8f9a9fd70297fc71c640ac7a67867267f90a67bb018843557205154",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Ricavare v²=2gh con l’energia, poi usare T−mg=mv²/ℓ",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Prima ricavo la rapidità al fondo con energia: mg h=(1/2)mv², quindi v²=2 gh. Poi scrivo la risultante radiale verso il centro nel punto basso: T−mg=mv²/L, dunque T=mg+mv²/L=mg(1+2 h/L). La tensione non è il solo peso perché il corpo accelera radialmente. Il procedimento richiede filo teso durante il percorso; per rilascio da fermo con pendolo semplice senza altri sostegni il dislivello deve essere compatibile con quel vincolo (0≤h≤L,caso limite tensione iniziale nulla). Non applicare la formula a un arco inizialmente lasco. La nuova edizione delimita il ramo aperto 0<h<ℓ e dopo il rilascio ammette solo peso e tensione: non è presente lavoro della preparazione.",
+      "physicalAssumptions": "Pendolo semplice con m,ℓ,g positivi, rilascio da fermo nel ramo 0<h<ℓ; solo peso e tensione dopo il rilascio, filo teso, nessuna forza della preparazione durante il moto.",
+      "distractors": "mg ignora mv²/ℓ; mv²/ℓ ignora il peso. mgh ha unità J, non N. Lavoro della tensione nullo non implica tensione nulla.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Prima ricavo la rapidità al fondo con energia: mg h=(1/2)mv², quindi v²=2 gh. Poi scrivo la risultante radiale verso il centro nel punto basso: T−mg=mv²/L, dunque T=mg+mv²/L=mg(1+2 h/L). La tensione non è il solo peso perché il corpo accelera radialmente. Il procedimento richiede filo teso durante il percorso; per rilascio da fermo con pendolo semplice senza altri sostegni il dislivello deve essere compatibile con quel vincolo (0≤h≤L,caso limite tensione iniziale nulla). Non applicare la formula a un arco inizialmente lasco. La nuova edizione delimita il ramo aperto 0<h<ℓ e dopo il rilascio ammette solo peso e tensione: non è presente lavoro della preparazione.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c1_051_100_review_models.py": "6216ca8c9b4a2652b10fcbcc22d09e9298df0c8768ce040c4238155f6709b365",
+        "cric_c1_mechanics_review_common.py": "b4e7a6e16e35cf7b0bad0ecc064b90106322a39daee055fbf436dec41026e91b",
+        "cric_c1_mechanics_review_evidence.py": "60aff82f8711da4f44a0a6e6f4f4ac61807735927d16a8148fcfd7c50eee37d2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "f9236e31f73e95d8bebe4bd33e06a6151fea3191f8e96b72fe9c8553dc14ff92",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "b2321dab71379e6b5ddab48d701bacadb8196b31",
+  "packageSha256": "f861d57ce92854a319d206304a56559085bed58a36e078b0109b44ae98743b08",
+  "bindingsSha256": "520b3e57406212a6bf47ab7c9625c8294ca72a23dea287098290654c50dba346",
+  "sourceFirstPrimarySha256": "1abe1f80465386a32abc613e31dc2d6c8fc41d4a8f24a2e77aea025e2773b3d1",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C1.json",
+    "reference": "Tutti50 prompt derivati nella primaria227d4a08 e modelli0a430e35 prima di qualsiasi candidato Cric B. Successivamente tutti50 originali completi, candidati e figure letti; nessun modulo autore o primaria B aperti. Nessuna esposizione pre-key nota. Prodotto UI e human NOT_RUN."
+  }
+}
