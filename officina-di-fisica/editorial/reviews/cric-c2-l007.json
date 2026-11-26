@@ -1,0 +1,369 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "C2-Q061",
+      "sourceSha256": "4df0f7c2e060eed0a3b23cda61cc0bab18f9107dfb2db17a928a05f2e9522a61",
+      "candidateSha256": "e9a5040447fede75637813a52f867e8d2b0b628a62509cf284ad439655bbfb7d",
+      "reviewedSignature": "d6e381846569d66c3b9216ba4cd391d13a06eb86eb768405794832260415293e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Laminare",
+      "dimension": {},
+      "manualArithmetic": "Un filamento ordinato e strati che scorrono affiancati suggeriscono regime laminare nel tratto osservato. Non è una certificazione universale di ogni sezione o istante: la formulazione suggerito è locale. Una corrente stazionaria non è per definizione laminare e una grande velocità non basta da sola a diagnosticare turbolenza.",
+      "physicalAssumptions": "Osservazione locale di filamento ordinato: suggerisce regime laminare senza dedurre viscosità nulla, globalità o stazionarietà.",
+      "distractors": "Viscosità positiva è compatibile con strati ordinati; non si conclude quiete o non stazionarietà da questa sola osservazione.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Un filamento ordinato e strati che scorrono affiancati suggeriscono regime laminare nel tratto osservato. Non è una certificazione universale di ogni sezione o istante: la formulazione suggerito è locale. Una corrente stazionaria non è per definizione laminare e una grande velocità non basta da sola a diagnosticare turbolenza.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q062",
+      "sourceSha256": "6b91da7938d60278778426f25d98a2d74634dcf488e6b52dfa545e57c49e7d07",
+      "candidateSha256": "d282a2751dd3815960afcc3c752cd56d650387eb5f787632bd0a6e217c461aeb",
+      "reviewedSignature": "4d6087baa3eece8e191803d7a2dd455e3ead318db2dee44246f9655e8cd0d06e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "7/25",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Per Poiseuille in tubo circolare, laminare newtoniano stazionario sviluppato e con aderenza, v(r)=v_max[1−(r/R)²]. La media sulla sezione è (2/R²)∫₀ᴿv(r)r dr=v_max/2. Con v_max=0,56=14/25 m/s, la media è 7/25=0,28 m/s. Non è la media temporale del valore sull’asse.",
+      "physicalAssumptions": "Tubo circolare, fluido newtoniano incomprimibile, regime laminare sviluppato, parete aderente; lettura assiale 14/25 m/s è massimo e media pesata per area.",
+      "distractors": "0,56 è il massimo,1,12 il suo doppio,0,14 un quarto. Il valore di parete zero non è la media d’area 7/25.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Per Poiseuille in tubo circolare, laminare newtoniano stazionario sviluppato e con aderenza, v(r)=v_max[1−(r/R)²]. La media sulla sezione è (2/R²)∫₀ᴿv(r)r dr=v_max/2. Con v_max=0,56=14/25 m/s, la media è 7/25=0,28 m/s. Non è la media temporale del valore sull’asse.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q063",
+      "sourceSha256": "9e3889f6e7c07faa82577026b0e4c0cf84cbe389651d3def64e6745a5dcc1378",
+      "candidateSha256": "c0b6aad03340ba5e8377c76a17cd7f77458d60142cb07c5f83f6f734372b7869",
+      "reviewedSignature": "e19f551c5d081f944f5997fbfa619e136780cac611d2ae98ab39dc4d8c56dee3",
+      "assetChecksums": {
+        "cric-c2-l007-progressive.svg": "d8f38cb88126fb70aa26630abe375f8b09d296aecb77e58a35bb1d3dd0edce3e"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "40",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Il gradiente medio trasversale in modulo è Δv/Δy. Converto 0,50 mm in 1/2000 m e 0,020 m/s in 1/50 m/s: (1/50)/(1/2000)=40 s⁻¹. Non è un’accelerazione, perché il denominatore è una distanza e non un intervallo di tempo. Non serve assumere che il gradiente locale sia uniforme oltre i due punti.",
+      "physicalAssumptions": "Velocità longitudinale confrontata in punti trasversalmente distinti allo stesso istante; distanza 1/2000 m, non un tempo.",
+      "distractors": "Usare 0,50 come m anziché mm dà 0,04 s⁻¹; invertire il quoziente dà secondi. Un gradiente spaziale non è un’accelerazione.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Il gradiente medio trasversale in modulo è Δv/Δy. Converto 0,50 mm in 1/2000 m e 0,020 m/s in 1/50 m/s: (1/50)/(1/2000)=40 s⁻¹. Non è un’accelerazione, perché il denominatore è una distanza e non un intervallo di tempo. Non serve assumere che il gradiente locale sia uniforme oltre i due punti.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in un nuovo native indipendente completo 640×altezza, processo reale 0; proporzioni, versi, unità e separazione delle scale controllati. Nove SVG storici di fonte letti dal pin e conservati. Non è UI prodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q064",
+      "sourceSha256": "6fb91078d33dd0ffc30d42d7265cac725088809b0d140afd5a1f2e50726e73f1",
+      "candidateSha256": "a7e9e175d0ed91f9d307a89024e84bf26cc28164c4ff3a86ae12c52e4d2f4350",
+      "reviewedSignature": "b48cecb255bb98a9d533a8ffc9ca3ae3ad8dc8598a7ee7ac71b805f36c4df372",
+      "assetChecksums": {
+        "cric-c2-l007-progressive.svg": "d8f38cb88126fb70aa26630abe375f8b09d296aecb77e58a35bb1d3dd0edce3e"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/10",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Nel modello newtoniano τ=η γ̇. L’inversa è η=τ/γ̇: (18/5 Pa)/(12 s⁻¹)=3/10 Pa·s. Si tratta di viscosità dinamica; la viscosità cinematica avrebbe unità m²/s e richiederebbe anche la densità. La divisione manuale 3,6/12 è esatta.",
+      "physicalAssumptions": "Moduli positivi di sforzo 18/5 Pa e gradiente 12 s⁻¹; temperatura/composizione fissate e viscosità dinamica newtoniana.",
+      "distractors": "43,2 è il prodotto numerico 3,6·12 e 10/3 il reciproco.0,30 Pa ha dimensione di sforzo, non viscosità.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Nel modello newtoniano τ=η γ̇. L’inversa è η=τ/γ̇: (18/5 Pa)/(12 s⁻¹)=3/10 Pa·s. Si tratta di viscosità dinamica; la viscosità cinematica avrebbe unità m²/s e richiederebbe anche la densità. La divisione manuale 3,6/12 è esatta.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in un nuovo native indipendente completo 640×altezza, processo reale 0; proporzioni, versi, unità e separazione delle scale controllati. Nove SVG storici di fonte letti dal pin e conservati. Non è UI prodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q065",
+      "sourceSha256": "1aa2ddeb71d093ef656e4949f34f6d94ef9ae58f469e3242f3d8420db6c73271",
+      "candidateSha256": "6fb50efc697218c993de22982f6dd971a68dafaf139d5d0321e8799ba2e17003",
+      "reviewedSignature": "7ac24435b97754885e43d8f3c8ee92d9ab97fae9417b976404cde1d58c4e7bcf",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Zero",
+      "dimension": {},
+      "manualArithmetic": "Nel tratto di velocità uniforme il gradiente trasversale è zero. Lo sforzo viscoso di taglio dovuto a quel gradiente è dunque τ=η·0=0, anche con η non nulla. Non segue che la pressione o ogni componente del tensore degli sforzi sia nulla; la conclusione riguarda solo il contributo di taglio assegnato.",
+      "physicalAssumptions": "Campo uniforme e assenza degli altri gradienti di deformazione: taglio viscoso nullo, senza inferire pressione nulla o viscosità nulla.",
+      "distractors": "Un gradiente zero annulla il prodotto senza annullare η. La pressione normale non determina il taglio.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Nel tratto di velocità uniforme il gradiente trasversale è zero. Lo sforzo viscoso di taglio dovuto a quel gradiente è dunque τ=η·0=0, anche con η non nulla. Non segue che la pressione o ogni componente del tensore degli sforzi sia nulla; la conclusione riguarda solo il contributo di taglio assegnato.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q066",
+      "sourceSha256": "e22038dc5cf0932c4e90b644a74c1b3081fcb1ef54f5028a4c5fc73b155e164c",
+      "candidateSha256": "e01a89c84423a368a95626761edd4b32ac0c7af886bc333c17b75f88d4e31929",
+      "reviewedSignature": "d7fa40f51dc9c6f1e4604d18e2cb7238df6c4606cce2d5604d9a82a64927ef84",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Nulla",
+      "dimension": {},
+      "manualArithmetic": "L’aderenza impone uguaglianza fra velocità del fluido a contatto e della parete. Poiché la parete è ferma, il valore locale è zero nel suo riferimento. Non si deduce che tutto il liquido sia fermo o che il gradiente alla parete sia nullo. Con una parete mobile cambierebbe il valore di velocità di contatto.",
+      "physicalAssumptions": "Parete ferma e aderenza nel riferimento della parete; conclusione locale all’interfaccia, non sulla media o sul gradiente.",
+      "distractors": "La condizione impone la velocità della parete al contatto; massimo o media altrove non sostituiscono quel valore.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. L’aderenza impone uguaglianza fra velocità del fluido a contatto e della parete. Poiché la parete è ferma, il valore locale è zero nel suo riferimento. Non si deduce che tutto il liquido sia fermo o che il gradiente alla parete sia nullo. Con una parete mobile cambierebbe il valore di velocità di contatto.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q067",
+      "sourceSha256": "383b94f642fd54e2b2397b7a139e3a3e921ceb6e77017869757c73168a08fd3e",
+      "candidateSha256": "f9523a23fa98ef95f34f9f316a2c7e9116d1d9f17eceba718c44143fc8149877",
+      "reviewedSignature": "80c9b537a6a41cd4fa0bc173be14e43e00bd699d229f9b272df7969a4956f21d",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Alla parete, r=R",
+      "dimension": {},
+      "manualArithmetic": "Derivo il profilo v(r)=v_max(1−r²/R²): dv/dr=−2 v_max r/R². Il modulo cresce linearmente da zero sull’asse al massimo sulla parete r=R. Non confondere il massimo della velocità, sull’asse, con quello del suo gradiente. La velocità nulla alla parete non elimina lo sforzo di taglio.",
+      "physicalAssumptions": "v_max>0, r∈[0, R] e R>0: derivata radiale in modulo cresce fino al bordo; r non esteso fuori dal tubo.",
+      "distractors": "Sull’asse la pendenza è zero pur essendo massima v. Il modulo 2 v_max r/R² non è uniforme e non va esteso oltreR.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivo il profilo v(r)=v_max(1−r²/R²): dv/dr=−2 v_max r/R². Il modulo cresce linearmente da zero sull’asse al massimo sulla parete r=R. Non confondere il massimo della velocità, sull’asse, con quello del suo gradiente. La velocità nulla alla parete non elimina lo sforzo di taglio.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q068",
+      "sourceSha256": "5ba65388ebb588a1a834e3df2f2bafbb8fe0465b23c59da338b8b569cef66baa",
+      "candidateSha256": "b77cd5938c3d70d209534a886ff014041a7df47498a4391b9170dccc21171a83",
+      "reviewedSignature": "6923f334e945889f5dc06832a2a6b8608d66d1ab497c97844761f504a31562d8",
+      "assetChecksums": {
+        "cric-c2-l007-progressive.svg": "d8f38cb88126fb70aa26630abe375f8b09d296aecb77e58a35bb1d3dd0edce3e"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "9/25",
+      "dimension": {},
+      "manualArithmetic": "La frazione locale è v/v_max=1−(r/R)². Con r/R=0,80=4/5: 1−16/25=9/25=0,36. Le unità si cancellano e non serve conoscere R. Il quadrato del rapporto non è direttamente la frazione di velocità, ma il termine che va sottratto da uno.",
+      "physicalAssumptions": "Dominio autonomo v_max>0 ora esplicito nella candidata finale riletta; r/R 4/5 e rapporto locale non media areale.",
+      "distractors": "4/5 è la coordinata,1/5 omette il quadrato,16/25 è il termine da sottrarre;1/2 è media d’area.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. La frazione locale è v/v_max=1−(r/R)². Con r/R=0,80=4/5: 1−16/25=9/25=0,36. Le unità si cancellano e non serve conoscere R. Il quadrato del rapporto non è direttamente la frazione di velocità, ma il termine che va sottratto da uno.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in un nuovo native indipendente completo 640×altezza, processo reale 0; proporzioni, versi, unità e separazione delle scale controllati. Nove SVG storici di fonte letti dal pin e conservati. Non è UI prodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q069",
+      "sourceSha256": "73711dc6b020b64f303ac6f3584aa58abc61d71a8fed535e6996830a8abf5299",
+      "candidateSha256": "d1112aa69eb19bcd92da563ab2e61a36741d70ac6ea1558ccb2389768fdea145",
+      "reviewedSignature": "2a5497d1e02046e2ec927740e90e4c9358e3719de12a3abd198692a4e0e93cc3",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Viscosità newtoniana costante nel campo di prova",
+      "dimension": {},
+      "manualArithmetic": "Con η newtoniana costante, raddoppiare γ̇ dovrebbe raddoppiare τ. Il fattore osservato 1,3 contraddice quella proporzionalità nelle condizioni controllate. La viscosità apparente nel secondo punto sarebbe η_2/η_1=1,3/2=13/20, minore: è messa in dubbio l’ipotesi di viscosità indipendente dal gradiente, non l’esistenza stessa della viscosità. Non si deduce da soli due punti un’intera legge reologica.",
+      "physicalAssumptions": "Gradiente raddoppiato e sforzo cresciuto 13/10, prove controllate; si dubita solo del coefficiente costante nel campo misurato, non si identifica una reologia completa.",
+      "distractors": "η apparente cambia di 13/20, quindi non può essere lo stesso coefficiente costante. Massa, pascal e velocità restano definiti.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Con η newtoniana costante, raddoppiare γ̇ dovrebbe raddoppiare τ. Il fattore osservato 1,3 contraddice quella proporzionalità nelle condizioni controllate. La viscosità apparente nel secondo punto sarebbe η_2/η_1=1,3/2=13/20, minore: è messa in dubbio l’ipotesi di viscosità indipendente dal gradiente, non l’esistenza stessa della viscosità. Non si deduce da soli due punti un’intera legge reologica.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q070",
+      "sourceSha256": "8cc8b67d66d5253f75470f1db263695fce1a6827e36b4e2e673b3563c1d9f2cc",
+      "candidateSha256": "43835308c79b2bd4165fbf5a24941390bebfe9c62d37a77a2d1db98ed0dd493a",
+      "reviewedSignature": "65c95455604b5acbd2ea93eab4237b70012486e008f43411646a4aec7580f1fd",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2/5",
+      "dimension": {},
+      "manualArithmetic": "Nel Couette lineare ideale, F=η A V_rel/h. A η, area e velocità relativa non nulla fissate, F_2/F_1=h_1/h_2=1/(5/2)=2/5. Se V_rel fosse zero il rapporto fra due forze nulle non sarebbe definito: la futura candidata deve restare nel ramo di scorrimento. Si confrontano preparazioni con distanze costanti entro ciascuna prova.",
+      "physicalAssumptions": "La candidata finale esplicita A>0 e moduloU>0; η positiva e distanze positive, Couette sviluppato aderente senza gradiente di pressione; rapporto fra forze non nullo.",
+      "distractors": "5/2 inverte la dipendenza dalla distanza;25/4 ne fa un quadrato non previsto,1 ignora il cambio e 1/5 non ricostruisce le due distanze.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Nel Couette lineare ideale, F=η A V_rel/h. A η, area e velocità relativa non nulla fissate, F_2/F_1=h_1/h_2=1/(5/2)=2/5. Se V_rel fosse zero il rapporto fra due forze nulle non sarebbe definito: la futura candidata deve restare nel ramo di scorrimento. Si confrontano preparazioni con distanze costanti entro ciascuna prova.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "30f18cadb60c783fd9b3d362eb05336f93e1ac9aec352fd2a33d305d3b7b454b",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "b49cad883c92eb32d1ab2d944a84b8f6d3405144",
+  "packageSha256": "710ba7d97ee6499ff9cfbe17e6b44691a90f7344035eb0512e6101137ca8b802",
+  "bindingsSha256": "8143d6cd470cb8e4d82df555156f75ea82de9c66889dbcf2eb0694399179fb83",
+  "sourceFirstPrimarySha256": "a51ecd2856370b38a67fd59f09b4dbce23eda319c27e5d379428b9fd67b1dc92",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C2.json",
+    "reference": "Tutti i 50 enunciati derivati nella primaria 02612746 e modelli 95659bb4/b6e15c32 prima di qualsiasi candidata C2B. Successivamente tutti i 50 originali completi, candidate e cinque figure XML/native letti. Tre domini trovati e finali riletti prima del freeze. Nessun modulo autore B o primaria B aperti. Nessuna esposizione pre-key nota. UI prodotto e human NOT_RUN."
+  }
+}

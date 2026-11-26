@@ -1,0 +1,384 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "C2-Q091",
+      "sourceSha256": "09f9abd131de3a86e0922551072a0acf6e1013e2fd0ca40674d2b989aabca6a9",
+      "candidateSha256": "9f2710d703b9c2172219b75f29908fd5e973c3a584c60671260f610a2232dae1",
+      "reviewedSignature": "272ae574a474726757ea83e2f874fddf911b3164b4cd6237628c3207e48d25c7",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La sfera minimizza l’area e quindi l’energia superficiale a volume fissato",
+      "dimension": {},
+      "manualArithmetic": "Per una goccia libera di volume fissato, tensione superficiale isotropa positiva e gravità trascurabile, la forma sferica minimizza l’area e quindi l’energia libera superficiale γA nel modello assegnato. Non è la minimizzazione del volume: quello è vincolato dalla quantità di liquido. Un supporto o campi esterni potrebbero cambiare la forma, qui esclusi dall’idealizzazione.",
+      "physicalAssumptions": "Volume fissato, γ positiva isotropa uniforme e forzanti esterne trascurabili; superficie libera ideale e costo superficiale, non densità nulla.",
+      "distractors": "Aumentare area costa più energia, non serve γ zero; perdere volume o invocare gravità contraddice le ipotesi.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Per una goccia libera di volume fissato, tensione superficiale isotropa positiva e gravità trascurabile, la forma sferica minimizza l’area e quindi l’energia libera superficiale γA nel modello assegnato. Non è la minimizzazione del volume: quello è vincolato dalla quantità di liquido. Un supporto o campi esterni potrebbero cambiare la forma, qui esclusi dall’idealizzazione.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q092",
+      "sourceSha256": "afa9e59cc36c89399fde74fdab76da9cf73051a4c9bbe2f6155321ae91b31f5a",
+      "candidateSha256": "e3ee8611129d20d108bef8d3a9acb3b0ed8d386eeb74cdc4c87c1160ba1fdc75",
+      "reviewedSignature": "c3915b50d0ab36491290d55a02dd9d0f546d85194c43f4e2b51b2fe9d5337f99",
+      "assetChecksums": {
+        "cric-c2-l010-progressive.svg": "a0300d17e88f9f31fa8a3e8bfb61bba31409102e3945e31f81b4cc05e56e10be"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "15",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Una sola interfaccia: ΔA=3·10⁻⁴ m² e γ=1/20 N/m. Il prodotto γΔA=(3/20)·10⁻⁴ J=15·10⁻⁶ J=15 μJ. A temperatura fissata questo è l’incremento dell’energia libera superficiale e il lavoro minimo quasistatico nel modello γ costante. Non si raddoppia l’area come in un film con due facce né si identifica automaticamente tutto ciò con un calore o l’energia interna del liquido.",
+      "physicalAssumptions": "Modello assegnato ΔEγΔA a temperatura e γ fisse: costo superficiale/free energy del lavoro minimo, non calore o energia interna generale. Una sola nuova interfaccia.",
+      "distractors": "30 µJ conterebbe due aree fisiche. cm² richiede 10⁻⁴m²;γ/area non è energia e nessun fattore 2 va aggiunto alla singola interfaccia.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Una sola interfaccia: ΔA=3·10⁻⁴ m² e γ=1/20 N/m. Il prodotto γΔA=(3/20)·10⁻⁴ J=15·10⁻⁶ J=15 μJ. A temperatura fissata questo è l’incremento dell’energia libera superficiale e il lavoro minimo quasistatico nel modello γ costante. Non si raddoppia l’area come in un film con due facce né si identifica automaticamente tutto ciò con un calore o l’energia interna del liquido.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in un nuovo native indipendente completo 640×altezza, processo reale 0; proporzioni, versi, unità e separazione delle scale controllati. Nove SVG storici di fonte letti dal pin e conservati. Non è UI prodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q093",
+      "sourceSha256": "b9ddbb1223707fe05b146633271b40a2db765abffd4b4cace320d9b8a889dd01",
+      "candidateSha256": "93c9f7bfaf8f63060324a8c8f644a76c3b0dd597dda291f9b97aa68166214505",
+      "reviewedSignature": "18ffe97cd20fc2ebc6ecf309c2cad8168926a301f7707ad933edee20db7503af",
+      "assetChecksums": {
+        "cric-c2-l010-progressive.svg": "a0300d17e88f9f31fa8a3e8bfb61bba31409102e3945e31f81b4cc05e56e10be"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/500",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Il film ha due interfacce: ciascuna tira il bordo con γℓ. Con γ=1/40 N/m e ℓ=1/25 m, F_tot=2/(40·25) N=1/500 N=2 mN. Il fattore 2 conta le due facce dichiarate; non si aggiunge un altro fattore per i due estremi del bordo. Le due trazioni sono concordi sul bordo mobile. La candidata chiede mN: 1/500 N corrisponde esattamente a 2 mN.",
+      "physicalAssumptions": "Film sottile a due interfacce fisiche;γ 1/40 N/m e bordo 1/25 m, contributi concordi e modulo totale richiesto in mN.",
+      "distractors": "Una faccia darebbe 1 mN;4 m anziché 4 cm dà forza cento volte maggiore. γ in N/m non è la forza finale.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Il film ha due interfacce: ciascuna tira il bordo con γℓ. Con γ=1/40 N/m e ℓ=1/25 m, F_tot=2/(40·25) N=1/500 N=2 mN. Il fattore 2 conta le due facce dichiarate; non si aggiunge un altro fattore per i due estremi del bordo. Le due trazioni sono concordi sul bordo mobile. La candidata chiede mN: 1/500 N corrisponde esattamente a 2 mN.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in un nuovo native indipendente completo 640×altezza, processo reale 0; proporzioni, versi, unità e separazione delle scale controllati. Nove SVG storici di fonte letti dal pin e conservati. Non è UI prodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q094",
+      "sourceSha256": "e18ebb588682f842697f56446a4760af6dcdd414ffdc8af38fa0519150b9266d",
+      "candidateSha256": "9a367984be931fca7258d80163b0b37bd79e5058eb968bf419b8be3945d25d62",
+      "reviewedSignature": "dbf37e621645afed4e0a1fbf612e2cab14e0539ded366be4324393de92ec5e2a",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Più basso: si ha depressione capillare",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Nel modello capillare statico h=2 γ cos θ/(ρgr), con h positivo sopra il livello esterno. L’angolo attraverso il liquido è 120°, quindi cos θ=−1/2 e h<0: depressione, livello interno inferiore. Non è una risalita positiva; il segno deriva dall’angolo di contatto, non da una tensione superficiale negativa.",
+      "physicalAssumptions": "Angolo attraverso il liquido 120°, atmosfera comune e gas trascurabile; quota positiva verso l’alto rispetto alla superficie esterna e modello capillare statico.",
+      "distractors": "cos 120−1/2 implica h negativa; zero appartiene a 90° e non si perde liquido per la depressione.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Nel modello capillare statico h=2 γ cos θ/(ρgr), con h positivo sopra il livello esterno. L’angolo attraverso il liquido è 120°, quindi cos θ=−1/2 e h<0: depressione, livello interno inferiore. Non è una risalita positiva; il segno deriva dall’angolo di contatto, non da una tensione superficiale negativa.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q095",
+      "sourceSha256": "851cd2d752931787a0b89968cc61e5e5b28a0ff788e678000e33a378602f8348",
+      "candidateSha256": "b08161df3c11b6d20cb8aed427b0fb7cb854b5c74a52b7e54c2522dc8cd85977",
+      "reviewedSignature": "c806717956d90b258321f0af95192dc9b12dab3092e14afa99f0022f7e8dafc0",
+      "assetChecksums": {
+        "cric-c2-l010-progressive.svg": "a0300d17e88f9f31fa8a3e8bfb61bba31409102e3945e31f81b4cc05e56e10be"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "120",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Per due gocce sferiche a singola interfaccia e medesima γ, Δp=2 γ/r. Il raggio piccolo è un quarto di quello grande, perciò la sua sovrapressione è quattro volte 30 Pa:120 Pa. La γ comune è una condizione da verificare nella futura candidata, non conseguenza universale della sola composizione se cambiasse la temperatura. Non usare il fattore 4 di una bolla di sapone a due facce.",
+      "physicalAssumptions": "Una interfaccia per goccia, stessa γ esplicitamente assegnata, raggi 1/4 mm e deformazioni gravitazionali trascurabili; confronto di sovrapressioni, non assolute.",
+      "distractors": "7,5 Pa usa il rapporto diretto dei raggi;30 ignora il rapporto 4;480 impone un quadrato non presente in Laplace.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Per due gocce sferiche a singola interfaccia e medesima γ, Δp=2 γ/r. Il raggio piccolo è un quarto di quello grande, perciò la sua sovrapressione è quattro volte 30 Pa:120 Pa. La γ comune è una condizione da verificare nella futura candidata, non conseguenza universale della sola composizione se cambiasse la temperatura. Non usare il fattore 4 di una bolla di sapone a due facce.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in un nuovo native indipendente completo 640×altezza, processo reale 0; proporzioni, versi, unità e separazione delle scale controllati. Nove SVG storici di fonte letti dal pin e conservati. Non è UI prodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q096",
+      "sourceSha256": "fe86216d6c9f755440d8c66d8d1301adc87bd240e2b6f643e85e588c7f0a207e",
+      "candidateSha256": "58bc9c5734f6b1ebd75842869086578d78b51a8e630345358c4d4757f4d7679c",
+      "reviewedSignature": "b0879fb07abbadb623b8eb88101950d29de595731c004ba7569b25627298a093",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La seconda è metà della prima",
+      "dimension": {},
+      "manualArithmetic": "Con r, ρ, g, γ comuni, h∝cos θ. Si ha cos 0°=1 e cos 60°=1/2, quindi h_60=h_0/2: il primo tubo sale il doppio del secondo. Entrambe le risalite sono positive; non si sommano o sottraggono gli angoli per confrontare le altezze.",
+      "physicalAssumptions": "Stesso liquido e condizioni, r/g comuni, angoli attraverso il liquido 0°/60°; entrambe le risalite positive.",
+      "distractors": "Il solo liquido comune non fissa la bagnabilità. Due è il reciproco, zero richiede 90° e un livello negativo richiede un coseno negativo.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Con r, ρ, g, γ comuni, h∝cos θ. Si ha cos 0°=1 e cos 60°=1/2, quindi h_60=h_0/2: il primo tubo sale il doppio del secondo. Entrambe le risalite sono positive; non si sommano o sottraggono gli angoli per confrontare le altezze.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q097",
+      "sourceSha256": "cf9bd3c75228ce3ec8924b8af77eb1b344ed67e6456caa75fd866496d3d8541f",
+      "candidateSha256": "0f68c323c05a7d0c11302773cd7e854592ac8f8ea6ae32f2425cfdce6579708d",
+      "reviewedSignature": "52215cfb90a1f7e86a2547ab6a6834102bccc475f5f9e4b6084a2e166c50aa5e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Nulla",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Young–Laplace per una sola interfaccia ideale: Δp_curv=γ(1/R_1+1/R_2). Per superficie piana entrambe le curvature sono nulle e il salto di pressione di curvatura è zero. Non implica pressione assoluta nulla o tensione superficiale nulla. Altre trazioni interfaciali sono esplicitamente escluse.",
+      "physicalAssumptions": "Interfaccia piana e nessuna altra sollecitazione interfaciale: curvature zero, non pressione assoluta zero né γ zero.",
+      "distractors": "Raggio infinito corrisponde a curvatura zero.2 γ senza lunghezza non è pressione e l’atmosfera non misura curvatura.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Young–Laplace per una sola interfaccia ideale: Δp_curv=γ(1/R_1+1/R_2). Per superficie piana entrambe le curvature sono nulle e il salto di pressione di curvatura è zero. Non implica pressione assoluta nulla o tensione superficiale nulla. Altre trazioni interfaciali sono esplicitamente escluse.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q098",
+      "sourceSha256": "b20c93c6a9763bcde1bc9b0931d4bd228f8327faf45455206ba793ef34a6b917",
+      "candidateSha256": "7f0cff9584b0d2be6db1cf6924e3598844bb96df51fd2f2947db7a2696a6716b",
+      "reviewedSignature": "1cdf0382cf53009cd879309dbc2ead76365fe27818e51b96b967566b12bac8f7",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "14",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Nella stessa geometria, con uguali densità, gravità e angolo di contatto, h è proporzionale a γ. Quindi h_2/h_1=7/10 e h_2=20·7/10=14 mm. A bagnamento completo il coseno è 1; non si inverte la dipendenza dalla tensione superficiale.",
+      "physicalAssumptions": "Stesso capillare, bagnamento completo e ρ/g comuni;γ_B 7/10 γ_A e riferimento dell’altezza uguale.",
+      "distractors": "6 mm è la diminuzione, non l’altezza finale.200/7 inverte 7/10;20 e 10 mm ignorano il dato 70%.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Nella stessa geometria, con uguali densità, gravità e angolo di contatto, h è proporzionale a γ. Quindi h_2/h_1=7/10 e h_2=20·7/10=14 mm. A bagnamento completo il coseno è 1; non si inverte la dipendenza dalla tensione superficiale.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q099",
+      "sourceSha256": "8090bf5042e52f71b463b9db1c34bded7b4e3059ce0c2f31bacd3da59b8ea242",
+      "candidateSha256": "ed9e5497c4e0606bfe1306c0342733226faeea52de29f704cf36ca6a276b4871",
+      "reviewedSignature": "071a994f230a69406a93ca5a1642bb5d9ea387ab15df3c59da3099531729bcf0",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {},
+      "manualArithmetic": "Conservazione del volume:8·(4 πr³/3)=4 πR³/3, quindi R³=8 r³ e R=2 r. Area finale 4 π(2 r)²=16 πr²; area iniziale complessiva 8·4 πr²=32 πr². Il rapporto è 1/2. Non si confronta l’area finale con quella di una sola goccia né si fa crescere il raggio linearmente con il numero delle gocce.",
+      "physicalAssumptions": "Otto sfere identiche positive senza perdita di volume diventano una sfera; area iniziale complessiva, non area di una sola figlia.",
+      "distractors": "2 è rapporto di raggi;1/8 usa solo il numero. ConR 2 r l’area finale 16 πr² non è 8 πr², quindi non 1/4.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Conservazione del volume:8·(4 πr³/3)=4 πR³/3, quindi R³=8 r³ e R=2 r. Area finale 4 π(2 r)²=16 πr²; area iniziale complessiva 8·4 πr²=32 πr². Il rapporto è 1/2. Non si confronta l’area finale con quella di una sola goccia né si fa crescere il raggio linearmente con il numero delle gocce.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q100",
+      "sourceSha256": "460a9d52fea50f239645c64bedb1d1d97d91f0420eef09846d6de0830e076b66",
+      "candidateSha256": "b60d1bc730d8ee8cdd5c261774254ac8b2f39fdda810d49d289d9692e03c6b30",
+      "reviewedSignature": "32cee05145a909e75b10e7abe475df30634cbdc7c8eac5991e6f1928f4ed6a42",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Una sola interfaccia curva dà Δp=2γ/R",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Una bolla di gas immersa in un liquido ha una sola interfaccia gas–liquido. Per una sfera le due curvature principali sono entrambe 1/R: Δp=2 γ/R. Il 2 viene dalle due curvature, non da due superfici. Una bolla di sapone con film sottile e due interfacce darebbe invece circa 4 γ/R; non è il sistema descritto. Pressione interna maggiore nell’ideale, senza ulteriori membrane o sollecitazioni.",
+      "physicalAssumptions": "Bolla gas nel liquido con una sola interfaccia materiale sferica, γ uniforme; due curvature della stessa interfaccia, non due facce di film.",
+      "distractors": "Due curvature non sono due interfacce.γR è forza; il gas non elimina superficie o tensione e la dipendenza inversa dal raggio resta.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Una bolla di gas immersa in un liquido ha una sola interfaccia gas–liquido. Per una sfera le due curvature principali sono entrambe 1/R: Δp=2 γ/R. Il 2 viene dalle due curvature, non da due superfici. Una bolla di sapone con film sottile e due interfacce darebbe invece circa 4 γ/R; non è il sistema descritto. Pressione interna maggiore nell’ideale, senza ulteriori membrane o sollecitazioni.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "6ea076c9aaa865c745be5f8f2745e57ff914eaedba7f9893ab0e2d9145be4457",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "0ca31362b8c06d631a425fb3f76343e035b1ad02",
+  "packageSha256": "7fad1789c3b432058b6cfdd561f540232ca80b30296411ba3cdb8e9432d993e7",
+  "bindingsSha256": "7de243a5b88aa30363926b2ca2f39e6279bad00f434cf89b521770b74531e155",
+  "sourceFirstPrimarySha256": "a51ecd2856370b38a67fd59f09b4dbce23eda319c27e5d379428b9fd67b1dc92",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C2.json",
+    "reference": "Tutti i 50 enunciati derivati nella primaria 02612746 e modelli 95659bb4/b6e15c32 prima di qualsiasi candidata C2B. Successivamente tutti i 50 originali completi, candidate e cinque figure XML/native letti. Tre domini trovati e finali riletti prima del freeze. Nessun modulo autore B o primaria B aperti. Nessuna esposizione pre-key nota. UI prodotto e human NOT_RUN."
+  }
+}

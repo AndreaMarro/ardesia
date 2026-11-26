@@ -1,0 +1,378 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "C2-Q051",
+      "sourceSha256": "066a4b14bad18e68e7707ebc697b4f799dab7795c7cc268a0276253989e95fd5",
+      "candidateSha256": "d7f93f93b878d8c5658ca982f33b27f40aa2c6907f7dd8c7e85add0f4da46787",
+      "reviewedSignature": "98179fff27b8821f69e9548da87ff5bedf84c3b62d9e4c2e6d0e56b753eb3e9f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La velocità aumenta e la pressione statica diminuisce",
+      "dimension": {},
+      "manualArithmetic": "Continuità stazionaria incomprimibile senza rami: Q=A v è comune. Per portata non nulla, una sezione minore richiede rapidità maggiore. Bernoulli lungo la stessa linea di corrente orizzontale, senza perdite o macchine, dà p+ρv²/2 costante: alla maggiore rapidità corrisponde pressione statica minore. Non è una perdita di portata; pressione e rapidità sono grandezze diverse.",
+      "physicalAssumptions": "Liquido ideale incomprimibile, corrente non nulla stazionaria orizzontale senza rami; stessa linea, niente macchine/perdite e pressione sufficiente a non cambiare fase.",
+      "distractors": "Q comune e area minore impongono velocità maggiore. Una pressione crescente richiederebbe energia aggiunta; stazionario non significa campo uniforme.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Continuità stazionaria incomprimibile senza rami: Q=A v è comune. Per portata non nulla, una sezione minore richiede rapidità maggiore. Bernoulli lungo la stessa linea di corrente orizzontale, senza perdite o macchine, dà p+ρv²/2 costante: alla maggiore rapidità corrisponde pressione statica minore. Non è una perdita di portata; pressione e rapidità sono grandezze diverse.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q052",
+      "sourceSha256": "8e604931542d35a6048eca59432bb11d3f21a33ca702d1213a9602fa52a1077f",
+      "candidateSha256": "94e5fa2d56115f921358b225a2e4b1fd3fedeeb36c077013d50b288d3b243204",
+      "reviewedSignature": "53d79cf56cb409d0cb2d5039fbf073dbcd73207908639c608b59659757075c05",
+      "assetChecksums": {
+        "cric-c2-l006-progressive.svg": "9f0ecd68785ac773be0a2e132aada50da322a8397d20021b8ac1e125c86cfb46"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1500",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Bernoulli orizzontale: p_f−p_i=(ρ/2)(v_i²−v_f²). Inserisco 1000/2=500 kg/m³ e 2²−1²=3 m²/s²: incremento +1500 Pa. La decelerazione recupera pressione nel modello ideale. Un valore negativo scambierebbe finale e iniziale; non si usa il quadrato della differenza 2−1.",
+      "physicalAssumptions": "Stessa quota, densità 1000 kg/m³, velocità 2 → 1 m/s; profili uniformi, bilancio ideale e differenza finale meno iniziale.",
+      "distractors": "−1500 inverte i punti;500 nasce da 500·(2−1)², mentre 3000 omette il mezzo. 4−1 e(2−1)² sono diversi.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Bernoulli orizzontale: p_f−p_i=(ρ/2)(v_i²−v_f²). Inserisco 1000/2=500 kg/m³ e 2²−1²=3 m²/s²: incremento +1500 Pa. La decelerazione recupera pressione nel modello ideale. Un valore negativo scambierebbe finale e iniziale; non si usa il quadrato della differenza 2−1.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in un nuovo native indipendente completo 640×altezza, processo reale 0; proporzioni, versi, unità e separazione delle scale controllati. Nove SVG storici di fonte letti dal pin e conservati. Non è UI prodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q053",
+      "sourceSha256": "b4089e510f0e4f7afb0f3e19a366d7042d8f3308eb77ed1148c20d79a81e4cb9",
+      "candidateSha256": "17c9712f629cce24399783850caf651817b49e3cf11a1c2416a50c4b719dcd76",
+      "reviewedSignature": "d5e8e1ac65bde19049fe9fbec4a8ff57fc0801a8fc40ab125d80225a61a708dc",
+      "assetChecksums": {
+        "cric-c2-l006-progressive.svg": "9f0ecd68785ac773be0a2e132aada50da322a8397d20021b8ac1e125c86cfb46"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6000",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Sezione costante e incomprimibilità mantengono la stessa rapidità nei due stati. Rimangono p+ρgz costanti: p_f−p_i=−ρg Δz=−800·10·(3/4)=−6000 Pa. Si chiede di quanto diminuisca, quindi il modulo della caduta è 6000 Pa. Il dislivello è verticale, non la lunghezza del tubo.",
+      "physicalAssumptions": "Salita verticale 3/4 m, densità 800 kg/m³ e g 10; velocità uguali, niente lavoro d’albero/perdite, si chiede il modulo della diminuzione.",
+      "distractors": "Velocità uguali non eliminano ρg Δz. Senza g si ottengono 600, con Δz 1 si ottengono 8000; il modulo richiesto è 6000 e Δp orientata è−6000.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Sezione costante e incomprimibilità mantengono la stessa rapidità nei due stati. Rimangono p+ρgz costanti: p_f−p_i=−ρg Δz=−800·10·(3/4)=−6000 Pa. Si chiede di quanto diminuisca, quindi il modulo della caduta è 6000 Pa. Il dislivello è verticale, non la lunghezza del tubo.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in un nuovo native indipendente completo 640×altezza, processo reale 0; proporzioni, versi, unità e separazione delle scale controllati. Nove SVG storici di fonte letti dal pin e conservati. Non è UI prodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q054",
+      "sourceSha256": "99af1dd3070f99be7a1b6ad861516354ded0cd18335b7af3875626b81e95bede",
+      "candidateSha256": "0837745b084f4d22287d9492d6ef00ec1249064a21c6859318347f2f908e999f",
+      "reviewedSignature": "33db2bd6cb903e98c1eba738a2c64e7d98612dff6d1635f0db409c85847d20ca",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Nel punto di ristagno v=0 e la differenza rispetto alla pressione statica è ρv²/2. Quindi v²=2·60/(6/5)=100 m²/s² e la rapidità è la radice positiva 10 m/s. Si usa il modello di aria incomprimibile prescritto; non serve una radice decimale né si identifica la pressione totale con quella statica.",
+      "physicalAssumptions": "Ristagno nel riferimento dell’ostacolo, stessa quota e linea di corrente, aria nel modello incomprimibile con ρ 6/5; differenza positiva 60 Pa e radice di rapidità positiva.",
+      "distractors": "100 ha dimensione di rapidità al quadrato. Omettere 2 produce√50, non 10. Il ramo negativo non rappresenta una rapidità.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Nel punto di ristagno v=0 e la differenza rispetto alla pressione statica è ρv²/2. Quindi v²=2·60/(6/5)=100 m²/s² e la rapidità è la radice positiva 10 m/s. Si usa il modello di aria incomprimibile prescritto; non serve una radice decimale né si identifica la pressione totale con quella statica.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q055",
+      "sourceSha256": "157e2266a3e809dbeeeb25bde0bc7df0d81c45412cab05734d88428be2966908",
+      "candidateSha256": "c1d6a19e43685381b839f10ff101e19b6e38f4ec29f6d724266b6796d7f77717",
+      "reviewedSignature": "da3b10364cf07bfd48312f631bee8aaf51e93a4549d3908cc66e4af086f0008d",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Dissipazione viscosa di energia meccanica",
+      "dimension": {},
+      "manualArithmetic": "Con uguali quota e velocità media, il calo di pressione non si spiega col Bernoulli ideale senza perdite. Occorre la dissipazione viscosa dell’energia meccanica, che alimenta energia interna e scambi termici. In un tubo uniforme stazionario la portata può restare costante benché la pressione diminuisca. Il calo positivo pertinente entra come perdita di carico o potenza dissipata Δp·Q.",
+      "physicalAssumptions": "Tubo orizzontale uniforme a pareti ferme, fluido viscoso e stato stazionario; stessa velocità media e pressione decrescente richiedono dissipazione.",
+      "distractors": "Non cambiano quota o velocità media; un calo di pressione non è creazione di energia né assenza di lavoro delle pressioni.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Con uguali quota e velocità media, il calo di pressione non si spiega col Bernoulli ideale senza perdite. Occorre la dissipazione viscosa dell’energia meccanica, che alimenta energia interna e scambi termici. In un tubo uniforme stazionario la portata può restare costante benché la pressione diminuisca. Il calo positivo pertinente entra come perdita di carico o potenza dissipata Δp·Q.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q056",
+      "sourceSha256": "84af026387a9996531baec1559ebae3fff2284bddd0bc36b4388471b49da8b6e",
+      "candidateSha256": "1cc50cd0f555e909274c04f5017bcec4a0dd6813ee41f2649c92b55eac01a40b",
+      "reviewedSignature": "11c74ad0e96bb5867fbca18f5eb07fc9502f76bfb18755014ee85604205753c3",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Da p_1−p_2=(ρ/2)(v_2²−v_1²), 1500=500(v_2²−1) con le unità SI coerenti. Risulta v_2²=4 m²/s² e, nello stesso verso di flusso, v_2=2 m/s. Continuità dà A_1/A_2=v_2/v_1=2. Il rapporto delle aree è inverso a quello delle rapidità nelle sezioni corrispondenti.",
+      "physicalAssumptions": "Profili uniformi, liquido ideale e pressione a valle inferiore 1500 Pa, v₁ 1 m/s e ρ 1000; prima Bernoulli, poi continuità.",
+      "distractors": "Quattro è v₂²/v₁²;1/2 è A₂/A₁. Con v₂ 2 e v₁ 1, il rapporto delle aree è 2 e non 4.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Da p_1−p_2=(ρ/2)(v_2²−v_1²), 1500=500(v_2²−1) con le unità SI coerenti. Risulta v_2²=4 m²/s² e, nello stesso verso di flusso, v_2=2 m/s. Continuità dà A_1/A_2=v_2/v_1=2. Il rapporto delle aree è inverso a quello delle rapidità nelle sezioni corrispondenti.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q057",
+      "sourceSha256": "18c68104e5a930d4a055e59cd2e566bff169f6189fe83625882d2e2845e4f983",
+      "candidateSha256": "f83f54bacf0a859f483f7f1de9ad36769cd2760cf48b37594a70b7edc7c5f4ec",
+      "reviewedSignature": "65ecc9f5902e97680ed5be932b872ed0f86bd2e5cab9931eae240b29933f3d40",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Punto di ristagno",
+      "dimension": {},
+      "manualArithmetic": "Il sostantivo richiesto è ristagno. Il punto di ristagno ha velocità locale nulla rispetto all’ostacolo fermo e permette il confronto fra pressione totale e statica nel modello ideale. Non significa che tutta la corrente sia ferma. Nessuna opzione o alias originale è stato aperto.",
+      "physicalAssumptions": "Arresto locale rispetto a ostacolo fermo; non si assume fermo il campo intero. Nome del punto distinto da fase o densità.",
+      "distractors": "Il nome non descrive ebollizione o densità nulla. La pressione di ristagno non è il minimo della corrente ideale alla stessa quota.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Il sostantivo richiesto è ristagno. Il punto di ristagno ha velocità locale nulla rispetto all’ostacolo fermo e permette il confronto fra pressione totale e statica nel modello ideale. Non significa che tutta la corrente sia ferma. Nessuna opzione o alias originale è stato aperto.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q058",
+      "sourceSha256": "2ee8d1b014be1b5930e254d1bb6b064a78adabba3ea1b713a48127c18c0df74b",
+      "candidateSha256": "dec697ef674bd9ae1ffff2f7bef5cbe1e7eafd8e9cf01aa86d08eaf0b53a4d67",
+      "reviewedSignature": "4b20152e12af586539cb55a62dabbcc648cdfd448ba0efcf8f04409631b8b6db",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Una parte dell’energia meccanica si dissipa nei moti reali",
+      "dimension": {},
+      "manualArithmetic": "Un allargamento brusco reale può separare la corrente e creare ricircolo, mescolamento e dissipazione viscosa. La pressione recuperata è la diminuzione del termine cinetico meno la perdita meccanica positiva: p_2−p_1=ρ(v_1²−v_2²)/2−Δp_perdita. Non è necessario dichiarare ogni ricircolo automaticamente turbolento; è la perdita non nulla a rendere insufficiente la stima ideale.",
+      "physicalAssumptions": "Confronto reale/ideale alla stessa situazione geometrica; separazione e mescolamento dissipano energia meccanica senza violare energia totale e senza diagnosi clinica.",
+      "distractors": "Perdita meccanica non significa perdita di energia totale; non implica gravità invertita, densità nulla o pressione sempre costante.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Un allargamento brusco reale può separare la corrente e creare ricircolo, mescolamento e dissipazione viscosa. La pressione recuperata è la diminuzione del termine cinetico meno la perdita meccanica positiva: p_2−p_1=ρ(v_1²−v_2²)/2−Δp_perdita. Non è necessario dichiarare ogni ricircolo automaticamente turbolento; è la perdita non nulla a rendere insufficiente la stima ideale.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q059",
+      "sourceSha256": "5adee7c8576894431c62d72e0d8e996e42b12c97df071650efef3b38db43e3d7",
+      "candidateSha256": "029affe28df3dad52f336b315060df4b9a58690c6c965393331e21f365e0fba0",
+      "reviewedSignature": "8e56bf50ee19eb3bf4b57a149634e580b9c1626963db383c7e39e40cfc9b8399",
+      "assetChecksums": {
+        "cric-c2-l006-progressive.svg": "9f0ecd68785ac773be0a2e132aada50da322a8397d20021b8ac1e125c86cfb46"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Nel modello di Torricelli istantaneo, serbatoio grande, superficie e getto alla stessa pressione esterna e perdite assenti, v=√(2 gh). Quadruplicare h moltiplica v per √4=2: da 2 a 4 m/s. Non quadruplica la rapidità; il confronto è fra due battenti preparati, senza bisogno di integrare lo svuotamento.",
+      "physicalAssumptions": "Due stati istantanei distinti di grande serbatoio aperto, piccolo foro, velocità superficiale trascurabile e stessa atmosfera ai due estremi; nessuna previsione di livello costante nel tempo.",
+      "distractors": "h×4 implica v×2;8 m/s userebbe una legge lineare.2 ignorerebbe il battente e 1 invertirebbe il fattore 2.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Nel modello di Torricelli istantaneo, serbatoio grande, superficie e getto alla stessa pressione esterna e perdite assenti, v=√(2 gh). Quadruplicare h moltiplica v per √4=2: da 2 a 4 m/s. Non quadruplica la rapidità; il confronto è fra due battenti preparati, senza bisogno di integrare lo svuotamento.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in un nuovo native indipendente completo 640×altezza, processo reale 0; proporzioni, versi, unità e separazione delle scale controllati. Nove SVG storici di fonte letti dal pin e conservati. Non è UI prodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q060",
+      "sourceSha256": "fa363def7987339c150c498d4731dc2ed2d696e11fc6e2b44605b613acdec099",
+      "candidateSha256": "13f3779bcb0a21a399c7db52d84dc38aa7d098edd73cbb873d920464c606394e",
+      "reviewedSignature": "340c7afa8ccb9b5165469b23f77737aca994a80851b825212569ab8466c6a123",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "rho*(vf**2 - vi**2)/2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Il bilancio corretto è p_1−p_2=ρ(v_2²−v_1²)/2, cioè differenza dei quadrati, non quadrato della differenza. L’espressione proposta aggiunge un termine incrociato e non può dare una differenza negativa durante una dilatazione. Per esempio v_1=1 e v_2=2 darebbero rispettivamente 3 e 1 come fattori cinematici; è una controprova indipendente, non un’opzione vista.",
+      "physicalAssumptions": "Bernoulli ideale stazionario incomprimibile alla stessa quota; orientazione p₁−p₂ fissata. Differenza delle energie, non energia della variazione.",
+      "distractors": "Lo scambio dei punti cambia il segno della differenza corretta. Il quadrato della somma non si annulla per velocità uguali; quello della differenza perde il cambio di segno.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Il bilancio corretto è p_1−p_2=ρ(v_2²−v_1²)/2, cioè differenza dei quadrati, non quadrato della differenza. L’espressione proposta aggiunge un termine incrociato e non può dare una differenza negativa durante una dilatazione. Per esempio v_1=1 e v_2=2 darebbero rispettivamente 3 e 1 come fattori cinematici; è una controprova indipendente, non un’opzione vista.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "3d24cfec321af326b4efef6909e1898ab7cdcef8dfa423763dd52e94fa5ac85b",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "98cf45d623e00bb28b9b3e9b8f18df6cfdde9b8d",
+  "packageSha256": "dafd95d22cee1449f0db927dfc29e7e538e15f7cae68bdac2d21a102018b9ba1",
+  "bindingsSha256": "813908e0313515193d1094915b7595c599d72347c4610fc26a6617a1a0cdf4ec",
+  "sourceFirstPrimarySha256": "a51ecd2856370b38a67fd59f09b4dbce23eda319c27e5d379428b9fd67b1dc92",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C2.json",
+    "reference": "Tutti i 50 enunciati derivati nella primaria 02612746 e modelli 95659bb4/b6e15c32 prima di qualsiasi candidata C2B. Successivamente tutti i 50 originali completi, candidate e cinque figure XML/native letti. Tre domini trovati e finali riletti prima del freeze. Nessun modulo autore B o primaria B aperti. Nessuna esposizione pre-key nota. UI prodotto e human NOT_RUN."
+  }
+}

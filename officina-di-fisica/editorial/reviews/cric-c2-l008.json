@@ -1,0 +1,382 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "C2-Q071",
+      "sourceSha256": "7cc4759f49a6c0a43976d32ef6bce6a57e5a0f53edae961073a791a926f23ee4",
+      "candidateSha256": "07f35438869faab72845643dd48c0d617f917462fda33d496cd46a0653c787da",
+      "reviewedSignature": "6235b53e81f185aacf4bf4d199eaeca2bd36cfc942ba440b9f9e192728aad86e",
+      "assetChecksums": {
+        "cric-c2-l008-progressive.svg": "07e24f1d9f14e280584501d470bdf7b9d360d7882f8d9b190075f3e8438ce1cd"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "81/16",
+      "dimension": {},
+      "manualArithmetic": "Poiseuille dà Δp=8 ηLQ/(πr⁴). Con Q imposto e stessa η, L, il rapporto è Δp_2/Δp_1=(r_1/r_2)⁴=(3/2)⁴=81/16. I millimetri si cancellano nel rapporto. Il regime laminare sviluppato deve restare valido in entrambe le prove: non si estende la legge dopo una transizione non specificata.",
+      "physicalAssumptions": "Q positiva imposta uguale, viscosità e lunghezza comuni; due raggi 3 e 2 mm nel regime di Poiseuille, cadute entrambe positive.",
+      "distractors": "16/81 scambia le prove;9/4 e 3/2 cambiano l’esponente.16 corrisponde a raggio dimezzato, non al passaggio 3 → 2.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Poiseuille dà Δp=8 ηLQ/(πr⁴). Con Q imposto e stessa η, L, il rapporto è Δp_2/Δp_1=(r_1/r_2)⁴=(3/2)⁴=81/16. I millimetri si cancellano nel rapporto. Il regime laminare sviluppato deve restare valido in entrambe le prove: non si estende la legge dopo una transizione non specificata.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in un nuovo native indipendente completo 640×altezza, processo reale 0; proporzioni, versi, unità e separazione delle scale controllati. Nove SVG storici di fonte letti dal pin e conservati. Non è UI prodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q072",
+      "sourceSha256": "08dd8a5c500b272556f039b1860176d5d2a300edfa6aab982c575cfb26da3229",
+      "candidateSha256": "a702e3c1a14ebeb26ba3d5c92edc375e3f3169724b6895d0288c4665ba90dacf",
+      "reviewedSignature": "1357fd30b322cb685d339c4f4d6513aeedbee0ae26a272153d9661eb8e343992",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {
+        "[length]": "3",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "A raggio e Δp fissati, Q è inversamente proporzionale a ηL. La seconda preparazione ha prodotto (η_1/2)(3 L_1)=(3/2)η_1 L_1: Q_2/Q_1=2/3. Quindi 9·2/3=6 mL/s. Il dimezzamento della viscosità e l’allungamento triplo non si sommano come cambiamenti additivi.",
+      "physicalAssumptions": "Stesso r e stessa Δp, Q_A 9 mL/s; confronto fra preparazioni con η_B/η_A 1/2 eL_B/L_A 3, entrambi nel regime del modello.",
+      "distractors": "18 considera solo η e 3 soloL;27/2 moltiplica per 3/2 invece che dividerlo. Nove ignora entrambi.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. A raggio e Δp fissati, Q è inversamente proporzionale a ηL. La seconda preparazione ha prodotto (η_1/2)(3 L_1)=(3/2)η_1 L_1: Q_2/Q_1=2/3. Quindi 9·2/3=6 mL/s. Il dimezzamento della viscosità e l’allungamento triplo non si sommano come cambiamenti additivi.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q073",
+      "sourceSha256": "dbf4f208dc6134c628d98ee9299528a9695b3cdeb5a1c49c280d09702094456c",
+      "candidateSha256": "9b8bfb96a4e6b8ed2bfdad25dfcacfd7d25e9974d83a0cf5d79dbeb7d1f46c21",
+      "reviewedSignature": "f6d82dc74856e564aa122330b17239667e23bcbe27550ea03b60714e6bf73ac3",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La resistenza idraulica R_h=Δp/Q",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-4",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Nel grafico con Δp verticale e Q orizzontale la pendenza è Δp/Q=R_h=8 ηL/(πr⁴), in Pa·s/m³. La conduttanza 1/R_h sarebbe la pendenza con gli assi scambiati. Il modello è lineare passivo con R_h positiva, non una curva generica che autorizzi ogni regime.",
+      "physicalAssumptions": "Grafico Δp verticale eQ orizzontale, geometria e η fissate; coefficiente angolare della legge lineare, definito anche tramite incrementi.",
+      "distractors": "Scambiare assi dà conduttanza, non resistenza; il prodotto ΔpQ è potenza e la sola η non include la geometria.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Nel grafico con Δp verticale e Q orizzontale la pendenza è Δp/Q=R_h=8 ηL/(πr⁴), in Pa·s/m³. La conduttanza 1/R_h sarebbe la pendenza con gli assi scambiati. Il modello è lineare passivo con R_h positiva, non una curva generica che autorizzi ogni regime.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q074",
+      "sourceSha256": "b1513e41b01e4e67ed585c6d3f0a1f1136f24558fd60679b37ba457f788cd65f",
+      "candidateSha256": "67b641b7e5999cb1bd61c7877de1e1d3731cd1f14500b3dfae2af10263797ba7",
+      "reviewedSignature": "a1e1e4921445ed8f2ca0e4caec254c199d9f294ae227c259370c9f2e1c53cd55",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3**(1/4)",
+      "dimension": {},
+      "manualArithmetic": "A η, L, Δp fissati, Q_2/Q_1=(r_2/r_1)⁴. Per ottenere tre pongo il rapporto dei raggi alla quarta uguale a tre: r_2/r_1=⁴√3, radice reale positiva. È un risultato esatto e manualmente definito; non occorre un’approssimazione decimale. Usare il fattore tre direttamente sul raggio moltiplicherebbe Q per 81.",
+      "physicalAssumptions": "Raggi positivi e Δp>0, η eL fissi; rapporto α positivo con α⁴3 e richiesta esatta, senza decimali non manuali.",
+      "distractors": "3⁴81 e(√3)⁴9 non sono 3.1/3 e 1/⁴√3 riducono Q; la radice quarta positiva è unica.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. A η, L, Δp fissati, Q_2/Q_1=(r_2/r_1)⁴. Per ottenere tre pongo il rapporto dei raggi alla quarta uguale a tre: r_2/r_1=⁴√3, radice reale positiva. È un risultato esatto e manualmente definito; non occorre un’approssimazione decimale. Usare il fattore tre direttamente sul raggio moltiplicherebbe Q per 81.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q075",
+      "sourceSha256": "9610eae7cea0732c756a985bda8eeaf4aac212102942a2b4fb79b46731711327",
+      "candidateSha256": "a813f97238fcc4350d7f3adc324991dcdba6f544f15eb2d7d08337ed7d40de79",
+      "reviewedSignature": "7e5cdb9f7baf714dd85d19bab2454030b51a78b9ac46b3fa8388ade740b3e6f2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Viene sovrastimata di un fattore 16",
+      "dimension": {},
+      "manualArithmetic": "Il diametro è d=2 r. Inserirlo nel posto del raggio cambia il quarto grado da r⁴ a(2 r)⁴=16 r⁴: il calcolo sovrastima Q di un fattore 16, a dati fisici invariati. Il flusso reale non cambia perché si è commesso un errore di sostituzione; il risultato errato non è un aumento del 16 per cento.",
+      "physicalAssumptions": "La candidata finale esplicita Δp>0; due lunghezze d 2 r e r non nulle e regime di Poiseuille, rapporto di portate definito.",
+      "distractors": "L’uguaglianza delle unità non elimina il rapporto d/r 2. Prima e seconda potenza danno 2/4, la quarta dà 16 e non 1/16.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Il diametro è d=2 r. Inserirlo nel posto del raggio cambia il quarto grado da r⁴ a(2 r)⁴=16 r⁴: il calcolo sovrastima Q di un fattore 16, a dati fisici invariati. Il flusso reale non cambia perché si è commesso un errore di sostituzione; il risultato errato non è un aumento del 16 per cento.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q076",
+      "sourceSha256": "03ac9b9fa20464cfd8d886a88ce2836bf12d45a6460e05baf5dfc71faab53760",
+      "candidateSha256": "8d2e0b5a093d8d3c76517ab2309baabbf122c9c3e71a5c202ed8fdcb89745bff",
+      "reviewedSignature": "f3f690015a725ebac2e9771a9dedb0f01e2e11ac200203a25dc8cb1cc3c157dd",
+      "assetChecksums": {
+        "cric-c2-l008-progressive.svg": "07e24f1d9f14e280584501d470bdf7b9d360d7882f8d9b190075f3e8438ce1cd"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Uso Δp=R_hQ e converto 2,5 mL/s in (5/2)·10⁻⁶ m³/s. Il prodotto (8·10⁸)(5/2·10⁻⁶)=20·10²=2000 Pa, cioè 2 kPa. Le unità Pa·s/m³ per m³/s danno Pa; trascurare il prefisso milli e il volume in metri cubi introdurrebbe un fattore enorme.",
+      "physicalAssumptions": "Resistenza assegnata in Pa·s/m³ e portata positiva in mL/s; prefisso di volume convertito prima del prodotto, risposta in kPa.",
+      "distractors": "2000 è il numero in Pa; omettere 10⁻⁶ m³/mL moltiplica per un milione. Q/R non ha dimensione di pressione.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Uso Δp=R_hQ e converto 2,5 mL/s in (5/2)·10⁻⁶ m³/s. Il prodotto (8·10⁸)(5/2·10⁻⁶)=20·10²=2000 Pa, cioè 2 kPa. Le unità Pa·s/m³ per m³/s danno Pa; trascurare il prefisso milli e il volume in metri cubi introdurrebbe un fattore enorme.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in un nuovo native indipendente completo 640×altezza, processo reale 0; proporzioni, versi, unità e separazione delle scale controllati. Nove SVG storici di fonte letti dal pin e conservati. Non è UI prodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q077",
+      "sourceSha256": "77e8e2490bff5be8d389c79e9ee6285b91f733da8b3b1ce75c1207a188e61990",
+      "candidateSha256": "3ad35f7fde3b117e4f739bfa0da34460581fba54d460d50930da6bc99938bfdb",
+      "reviewedSignature": "ed952b596c978e530c6f6fba5703cb6696074bed850867b0773ee6dce420fe04",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La viscosità dinamica η",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "La proprietà è la viscosità dinamica η, espressa in Pa·s. A geometria fissata R_h=8 ηL/(πr⁴) è direttamente proporzionale a η. La viscosità cinematica ν ha altre unità e non è identificabile dal solo nome generico viscosità senza distinguere il simbolo e l’unità.",
+      "physicalAssumptions": "Geometria fissa, fluido newtoniano nelle ipotesi di Poiseuille; la proprietà in Pa·s è dinamica, distinta da η/ρ.",
+      "distractors": "ρ non compare nel coefficiente di Poiseuille, γ ha N/m e il raggio è geometria; la cinematica η/ρ ha m²/s.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. La proprietà è la viscosità dinamica η, espressa in Pa·s. A geometria fissata R_h=8 ηL/(πr⁴) è direttamente proporzionale a η. La viscosità cinematica ν ha altre unità e non è identificabile dal solo nome generico viscosità senza distinguere il simbolo e l’unità.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q078",
+      "sourceSha256": "77780cd73164bd7dd8c6e271f83a67e63a188ec55657fbc34808f26c6016ff61",
+      "candidateSha256": "bb99e7a4eddae52823050159494530c8303b45bb13b17649aa72fbac09d9e3ae",
+      "reviewedSignature": "6d575cc89b7c921f43465473101d417320d01a9fd1c6f112dde07fb4ef8e99b5",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Che il profilo sia pienamente sviluppato nel tratto di misura",
+      "dimension": {},
+      "manualArithmetic": "All’ingresso brusco il profilo può essere ancora in sviluppo: prima di usare la parabola occorre verificare il pieno sviluppo idrodinamico del tratto. Laminarità, Newtonianità, stazionarietà e aderenza restano necessarie ma non sostituiscono quella verifica. Deducendo η da una velocità locale con una parabola non ancora raggiunta si confonderebbe la struttura del profilo con il coefficiente del liquido.",
+      "physicalAssumptions": "Regione d’ingresso distinta da tratto sviluppato; laminare da solo non implica parabola assestata, nessuna conclusione clinica.",
+      "distractors": "Il tratto d’ingresso può essere laminare senza profilo sviluppato. Pressione nulla e densità nulla non sono criteri; la parabola non è un profilo uniforme.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. All’ingresso brusco il profilo può essere ancora in sviluppo: prima di usare la parabola occorre verificare il pieno sviluppo idrodinamico del tratto. Laminarità, Newtonianità, stazionarietà e aderenza restano necessarie ma non sostituiscono quella verifica. Deducendo η da una velocità locale con una parabola non ancora raggiunta si confonderebbe la struttura del profilo con il coefficiente del liquido.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q079",
+      "sourceSha256": "7af9c10055bd79b50539c42f9d152aa855fbeff24a0ea031d254a1000bef58f3",
+      "candidateSha256": "0c73f4b8ce7b7149ab8295859661ca85f148859bd3ea6db25e10ffb0cf5eb60f",
+      "reviewedSignature": "5270ccf6a64ab24f71634ec12cafb3919241c38c71e8edfba7a2c12750fd99a9",
+      "assetChecksums": {
+        "cric-c2-l008-progressive.svg": "07e24f1d9f14e280584501d470bdf7b9d360d7882f8d9b190075f3e8438ce1cd"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/250",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "La potenza idraulica fornita dalla caduta di pressione è Δp Q. Converto 3,0 kPa in 3000 Pa: 3000·4·10⁻⁶=12·10⁻³ W=3/250 W, cioè 12 mW. Le sezioni uguali e il tubo orizzontale eliminano differenze dei termini cinetici e di quota nel bilancio fra estremi; questa non è automaticamente la potenza elettrica della pompa senza rendimento. La candidata chiede mW: 3/250 W moltiplicati per 1000 danno 12 mW, senza approssimazione.",
+      "physicalAssumptions": "Pareti ferme, stesso contributo cinetico e quota ai due estremi, stato stazionario; lavoro netto di pressione per volume trasportato, risposta 12 mW.",
+      "distractors": "0,012 W è 12 mW;Δp/Q è resistenza, non potenza. Pressione e portata non si sommano come energie.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. La potenza idraulica fornita dalla caduta di pressione è Δp Q. Converto 3,0 kPa in 3000 Pa: 3000·4·10⁻⁶=12·10⁻³ W=3/250 W, cioè 12 mW. Le sezioni uguali e il tubo orizzontale eliminano differenze dei termini cinetici e di quota nel bilancio fra estremi; questa non è automaticamente la potenza elettrica della pompa senza rendimento. La candidata chiede mW: 3/250 W moltiplicati per 1000 danno 12 mW, senza approssimazione.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in un nuovo native indipendente completo 640×altezza, processo reale 0; proporzioni, versi, unità e separazione delle scale controllati. Nove SVG storici di fonte letti dal pin e conservati. Non è UI prodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q080",
+      "sourceSha256": "fd636d4bfe96bbe5edbb3870e3bb8dee83df8fc35ceee0208e11dc0aa2f222e1",
+      "candidateSha256": "b69e95868c1387c2d5e28c6b376184172d1c64a41acabc3e4190a48066a71a85",
+      "reviewedSignature": "8994af4309c5d60b73ec7b4c1575b6659a5672246dd1cc3c4acc9cd2f7ed45c9",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Q=0",
+      "dimension": {
+        "[length]": "3",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Con resistenza finita positiva nel modello passivo di Poiseuille, Δp=R_hQ. Identica pressione statica ai due estremi orizzontali impone Δp=0 e quindi Q=0. Non si può mantenere un profilo di Poiseuille non nullo senza gradiente di pressione o altra sorgente di moto. La conclusione non va trasferita al diverso modello inviscido o a pareti in movimento.",
+      "physicalAssumptions": "Resistenza finita positiva, tubo orizzontale passivo a pareti ferme, limite stazionario e nessun’altra forzante; ammette Δp 0 eQ 0.",
+      "distractors": "Con resistenza finita positiva, zero differenza dàzero flusso stazionario. Non si inferiscono transitori, pareti mobili o pressioni assolute nulle.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Con resistenza finita positiva nel modello passivo di Poiseuille, Δp=R_hQ. Identica pressione statica ai due estremi orizzontali impone Δp=0 e quindi Q=0. Non si può mantenere un profilo di Poiseuille non nullo senza gradiente di pressione o altra sorgente di moto. La conclusione non va trasferita al diverso modello inviscido o a pareti in movimento.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "6dad1881a8cb33365dff399c3a39e5ea57fb0d90078f7b5e8894ab8692bc9f9f",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75",
+  "packageSha256": "d28ccbc66b7e119d6d210d45d71298325c7d044104e5b19863021862f36cc872",
+  "bindingsSha256": "a4c3198302d88211a56f66ae7e92b8ce44f89b53797ec6656d4028c699c9066e",
+  "sourceFirstPrimarySha256": "a51ecd2856370b38a67fd59f09b4dbce23eda319c27e5d379428b9fd67b1dc92",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C2.json",
+    "reference": "Tutti i 50 enunciati derivati nella primaria 02612746 e modelli 95659bb4/b6e15c32 prima di qualsiasi candidata C2B. Successivamente tutti i 50 originali completi, candidate e cinque figure XML/native letti. Tre domini trovati e finali riletti prima del freeze. Nessun modulo autore B o primaria B aperti. Nessuna esposizione pre-key nota. UI prodotto e human NOT_RUN."
+  }
+}
