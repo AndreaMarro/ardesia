@@ -1,0 +1,350 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C4.json",
+    "sourceSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+    "primarySkill": "C4-L01",
+    "title": "Cariche che si attraggono e si respingono",
+    "actualLessonPrerequisites": []
+  },
+  "records": [
+    {
+      "id": "C4-Q001",
+      "sourceSha256": "fe7f426a05e337fc82d1f2659ded36259dfcad62c8aa41d530c5f65b949022ab",
+      "candidateSha256": "5eaf9b8fc5fa67ed91b9ad1b6502ef8bb8d02e2795fa0743e829941ebfb9bfdb",
+      "reviewedSignature": "5086c3ec3d32b3c9b25df301adb0883dcbf7d6c26935256d8f94656469d3dd30",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c4-l01-progressive.svg": "d43bf72511b251e235ab2ff403b318fb08b25f0b5b309f3a5a4eabcd63da221a"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "30000",
+      "dimension": {},
+      "manualArithmetic": "La carica negativa indica elettroni acquistati. Il numero è |Q|/e=(4,80×10⁻¹⁵)/(1,60×10⁻¹⁹)=3×10⁴=30000, conteggio intero positivo. Il segno della carica non rende negativo il numero di elettroni.",
+      "physicalAssumptions": "Initially neutral droplet, ordinary electron transfer, assigned elementary charge 1.60 e-19 C; final net negative charge−4.80 fC.",
+      "distractors": "Negative particle count rejected;3000 gives−0.480 fC,300000 gives−48 fC; powers of ten checked.",
+      "pedagogicalReview": "Integer count and sign of a charge are different quantities.",
+      "assetReview": "Complete native 640 by 1540 and XML read. Three symbolic electron groups each denote 10000, not single particles. Point separations 80 and 240 represent 4 and 12 cm at common scale; reciprocal-force arrows have coordinate lengths 90 and 10, ratio nine, and are drawn after the small point markers so the full paths remain visible. Four separate arrow paths carry their own tips. All labels, signs and isolation boundary are readable. The two final charge labels sum to -2.5 nC.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_charge_conservation_and_Coulomb_scaling",
+        "Pint_charge_force_distance_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q002",
+      "sourceSha256": "0f0e3f69426360d1af098890f108cd5aa7e4912445604c8154c1396688bd6c5c",
+      "candidateSha256": "a115ce5b3150cc6574ab6fa250f960b567fe226cdf814a975d541a2dff537dd0",
+      "reviewedSignature": "6619752fafe935fa6590c08a63733fb83c32a7953c444b0a02a081521e3b5df3",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Le due forze hanno uguale modulo e versi opposti",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Le forze reciproche hanno lo stesso modulo e versi opposti, agendo su oggetti diversi. La diversa carica non produce un diverso modulo dell’interazione reciproca; masse differenti potrebbero invece dare accelerazioni differenti.",
+      "physicalAssumptions": "Fixed nonzero point sources+q,+3 q, isolated from other sources; reciprocal forces act on different objects.",
+      "distractors": "Charge ratio does not set reciprocal-force ratio; equal geometric direction is not equal sense; masses needed for accelerations.",
+      "pedagogicalReview": "Action and reaction cannot cancel within one body force diagram.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_charge_conservation_and_Coulomb_scaling",
+        "Pint_charge_force_distance_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q003",
+      "sourceSha256": "009b454ce98736dc24c02a9c90097e3b1e626101b02c84c56269f41d470a82b2",
+      "candidateSha256": "f2b85a8f68fe159af0e8ff1a7f2f23c1c132f999844b75df7dfed4b7748a0f90",
+      "reviewedSignature": "9bc9d1c0f676ee5828a2334627450235a20f1d1f89ed7737e5ff3a1d605d8b9f",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "nano",
+      "dimension": {},
+      "manualArithmetic": "Il prefisso è nano. La conversione è 1 nC=10⁻⁹ C; un prefisso non cambia il segno della carica.",
+      "physicalAssumptions": "SI prefix is a dimensionless scale factor 10⁻⁹, independent of charge sign.",
+      "distractors": "micro,pico,femto,milli correspond to different exact powers, not another spelling of nano.",
+      "pedagogicalReview": "Prefix knowledge separated from sign and base unit.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_charge_conservation_and_Coulomb_scaling",
+        "Pint_charge_force_distance_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q004",
+      "sourceSha256": "6bf1ab35b5eb6dc5eccbaaa91f8d9ba2a85ad4b65a5303bb6520eeeae72563a3",
+      "candidateSha256": "5ba44d4e26877a0de7236eb370754b47c621c1003f8f6ace7ded96a7a9adc37d",
+      "reviewedSignature": "d149cc8a16749ed5abddc6a2eb28cde776cfa453da04a2fcf145cbb5d37eb3ef",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c4-l01-progressive.svg": "d43bf72511b251e235ab2ff403b318fb08b25f0b5b309f3a5a4eabcd63da221a"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "12",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Con cariche invariate F è proporzionale a 1/r². Per F_f/F_i=1/9 la distanza deve triplicare: r_f=3·4=12 cm. Il rapporto richiede cariche non nulle, come implicato dalla repulsione assegnata.",
+      "physicalAssumptions": "Same nonzero point charges in vacuum, positive distances, force magnitude targetF/9.",
+      "distractors": "36 cm givesF/81; decreasing distance increases magnitude; negative root is not a positive separation.",
+      "pedagogicalReview": "Square-root inverse with a physical positive branch.",
+      "assetReview": "Complete native 640 by 1540 and XML read. Three symbolic electron groups each denote 10000, not single particles. Point separations 80 and 240 represent 4 and 12 cm at common scale; reciprocal-force arrows have coordinate lengths 90 and 10, ratio nine, and are drawn after the small point markers so the full paths remain visible. Four separate arrow paths carry their own tips. All labels, signs and isolation boundary are readable. The two final charge labels sum to -2.5 nC.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_charge_conservation_and_Coulomb_scaling",
+        "Pint_charge_force_distance_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q005",
+      "sourceSha256": "8dc928941c9ee78ced9e9fab5f7ca5aa04f7929b8d4d36e2f69417219344dfcc",
+      "candidateSha256": "a07b4bf8c20af2542298014908620eff9096906a66c9f2350a8f7f425391b9d0",
+      "reviewedSignature": "45894e9ebd68b1e7b78ce95ec40142f6ab6c72b7dcf9121c4be6fec096d22bf1",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c4-l01-progressive.svg": "d43bf72511b251e235ab2ff403b318fb08b25f0b5b309f3a5a4eabcd63da221a"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "-37/10",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "La conservazione della carica dà Q₂=Q_tot−Q₁=−2,5−1,2=−3,7 nC. Le cariche vanno sommate con segno, non come moduli.",
+      "physicalAssumptions": "Electrically isolated two-object system, total−2.5 nC, one object+1.2 nC; signed charge conservation.",
+      "distractors": "−1.3 nC sums with+1.2 to−0.1 nC; positive alternatives give positive totals; total copied to second omits first charge.",
+      "pedagogicalReview": "Signed conservation before numerical subtraction.",
+      "assetReview": "Complete native 640 by 1540 and XML read. Three symbolic electron groups each denote 10000, not single particles. Point separations 80 and 240 represent 4 and 12 cm at common scale; reciprocal-force arrows have coordinate lengths 90 and 10, ratio nine, and are drawn after the small point markers so the full paths remain visible. Four separate arrow paths carry their own tips. All labels, signs and isolation boundary are readable. The two final charge labels sum to -2.5 nC.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_charge_conservation_and_Coulomb_scaling",
+        "Pint_charge_force_distance_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q006",
+      "sourceSha256": "2daa9ab278d965b00f52ac2c043ba959e70c0e11cd186d23824fd3a94dca1a98",
+      "candidateSha256": "8dc816a57cfdebf81eeaff3d8c59394ae13e811158debedc133ec08a5a557153",
+      "reviewedSignature": "67736fa4c520263f179a63f89ca8188f78f6b8904e8192c5d4a6b0f606d41c8b",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Le dimensioni del corpo sono molto minori della distanza dal punto di osservazione",
+      "dimension": {},
+      "manualArithmetic": "Il punto di osservazione deve essere molto più lontano dell’estensione del corpo, r molto maggiore della dimensione caratteristica. Con carica netta non nulla domina il termine monopolare lontano; non basta essere appena fuori dalla superficie.",
+      "physicalAssumptions": "Far observation, nonzero net charge and explicitly dominant monopole contribution; size small relative to distance.",
+      "distractors": "Inside/near sources is not the far regime; net zero removes monopole; spherical boundary alone does not impose symmetric charge distribution.",
+      "pedagogicalReview": "Conditions of a point approximation separated from shape alone.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_charge_conservation_and_Coulomb_scaling",
+        "Pint_charge_force_distance_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q007",
+      "sourceSha256": "34db467ee679f93c37a86badbcdd069519fbda20445d6e95df4402dd036d4c7c",
+      "candidateSha256": "5fbe954444accf867770cd9ba3b430f3f3795ff71453f6a5975efb09d3d622ef",
+      "reviewedSignature": "4047dbe02aec5261b713c4ef0e8581ab1df9fa3482fe53269dc4411b2bdb81e5",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Attrattiva",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "La forza è attrattiva. La legge di Coulomb fra cariche ferme di segno opposto dirige ciascuna forza verso l’altra carica.",
+      "physicalAssumptions": "Opposite-sign stationary point charges in the electrostatic model.",
+      "distractors": "Like-sign sources repel; opposite signs do not cancel both bodies; electrostatic force follows the joining line.",
+      "pedagogicalReview": "Interaction sign separated from force magnitude.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_charge_conservation_and_Coulomb_scaling",
+        "Pint_charge_force_distance_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q008",
+      "sourceSha256": "377d46e8f03c6f4f73303b29cb5c10746db637bb117d2a34a17e9197c7253e3f",
+      "candidateSha256": "e4d0bd3a7d2e12223be440b6d2e010c9b479fbd5596f05adfec3ab110f88ee3e",
+      "reviewedSignature": "9e7db4cd0278c2775b8941d46d964224c1ec534d0159be3b390e09975a532f88",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/4",
+      "dimension": {},
+      "manualArithmetic": "Il prodotto delle cariche acquista fattore 3 e il quadrato della distanza fattore 4. F_f/F_i=3/4, assumendo cariche puntiformi ferme e mezzo invariato.",
+      "physicalAssumptions": "Same medium, nonzero initial charges; one charge tripled and positive separation doubled.",
+      "distractors": "3/2 uses a first power of distance;3 omits distance;4/3 reverses ratio;12 multiplies rather than divides by four.",
+      "pedagogicalReview": "Independent numerator and squared-denominator scalings.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_charge_conservation_and_Coulomb_scaling",
+        "Pint_charge_force_distance_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q009",
+      "sourceSha256": "3ee3fb4558097d89d0954c357e5b48617aa0ae15287f69243b5e44ad2ba30bef",
+      "candidateSha256": "c60f31840dbe5eedb10f54ff29a70d52694ab578abf36157187abe9c73e4a798",
+      "reviewedSignature": "3e57141fb950f77c6b9a9ef4ea583a17c8a0a6fcb2afae8c2e73a748ba031e10",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "L’oggetto perde alcuni elettroni",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "È coerente una perdita netta di elettroni da parte dell’oggetto. In questo modello ordinario lo strofinio trasferisce elettroni e la positività non richiede creazione di protoni.",
+      "physicalAssumptions": "Ordinary rubbing of initially neutral material, no nuclear transformations; electron transfer.",
+      "distractors": "Gaining electrons gives negative charge; nuclei/neutrons do not change in the ordinary rubbing preparation.",
+      "pedagogicalReview": "Microscopic carrier transfer distinguished from nuclear change.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_charge_conservation_and_Coulomb_scaling",
+        "Pint_charge_force_distance_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q010",
+      "sourceSha256": "fec9515063a33e02477491012a30066871e66356914b69a435bf17ecbb0be1d7",
+      "candidateSha256": "46d2cbcc98cf3518d2fc9fe704c8b2d7739ae2c713284e571a33d6ed5695d6d6",
+      "reviewedSignature": "7a4f9dca9013565939b7632cb3b27bf3d62b076cbb1f0d3e8a735777aea2b3a5",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "-20",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "Essendo attrattiva con prima carica positiva, q₂ è negativa. Il modulo è Fr²/(kq₁)=(9×10⁻⁶)(1/25)/[(9×10⁹)(2×10⁻⁹)]=2×10⁻⁸ C=20 nC. Dunque q₂=−20 nC. Il k assegnato è parametro del calcolo, non una costante arrotondata da reinterpretare.",
+      "physicalAssumptions": "Vacuum point charges, positive known source 2 nC, attractive force 9μN at 0.20 m, assignedk 9 e 9 SI; sign determined separately.",
+      "distractors": "+20 nC repels;−2 nC gives 0.9μN and−200 nC gives 90μN; inverse uses radius squared and SI prefixes.",
+      "pedagogicalReview": "Sign and magnitude solved in different steps and checked inversely.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_charge_conservation_and_Coulomb_scaling",
+        "Pint_charge_force_distance_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "588de3f095134a40ad2b0656f1d640f6c872f4938d32634bf67d2a91f69b5e3c",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "ae71218fa00fd87106584987dcf55d3330e07c7b",
+  "packageSha256": "030e28f03a626acbf697e278b5debdd6c854166799aa9db61f1a934035aa4788",
+  "bindingsSha256": "c62f46171ecaf451232b91ad7fae0e97e01be6e7805d255ecc77ca44b580fc85",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C4.json",
+    "title": "cric-c4-l01",
+    "reference": "Ten distinct original Cric C4 electric charge and Coulomb questions read completely after source-only primary and computations; no candidate authoring imported."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/cric-c4-001-020-partial-models.py",
+    "sha256": "5162581bc4dc366e2a1fe26c00966661f1eae97cba671a8081a1a938cd00bc3a",
+    "commit": "719bbd0fbc114937438b80a74d787297c5249336"
+  },
+  "modelFunctionBodies": "All functions in the frozen source-only C4 partial model retain identical AST. Generic finite/exact literal guards are reused unchanged from the earlier independent C2 verifier.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/primary-cric-c4-001-020-partial-before-candidates-20261126.md",
+    "sha256": "34337ec50e90ae61e6a447c62a98c698bf14a4bc47b24f92586a6e4bcd27f6ea"
+  }
+}
