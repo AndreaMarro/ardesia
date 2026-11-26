@@ -1,0 +1,526 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-01",
+      "sourceSha256": "afc116ba11f31aff4874a8fe2933d023e050ec88e494cad1d3d2a754d3879044",
+      "candidateSha256": "5cf053333342021f39bee25f63e65868200bb089e0da3e0902076e63ceb7e533",
+      "reviewedSignature": "5feb502f4f2c72f20e4f4bf6ed961532c7f8e467a7b1e625c54a086d14845463",
+      "assetChecksums": {
+        "plane-mirror-ray-direction-progressive.svg": "474c16123535da4e99a492eedc57d3da960c0d303d4e7df9db51d41bb87ca7ab"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "60",
+      "dimension": {},
+      "manualArithmetic": "Le direzioni α e β sono quelle dei vettori di propagazione rispetto allo stesso asse, non gli angoli dalla normale. Riflettere il vettore (cosα,sinα) rispetto alla retta di direzione φ dà (cos(2φ−α),sin(2φ−α)); con φ45° e α30° risulta β90°−30°=60°. I raggi fisici incidente e riflesso rimangono dallo stesso lato dello specchio: il segmento incidente prima del punto ha verso opposto al suo vettore di propagazione. L’angolo d’incidenza dalla normale è75°, non15°.",
+      "physicalAssumptions": "Specchio piano statico nel piano del disegno; direzioni di propagazione antiorarie dal medesimo asse, non angoli dalla normale. Settore0<α<φ<90° e0<β<180° srotolato, nessun modulo360. La riflessione conserva la componente tangenziale e inverte la normale; i due segmenti fisici dei raggi stanno nello stesso semipiano rispetto allo specchio. Preparazioni statiche distinte, riferimenti angolari comuni e guadagno positivo.",
+      "distractors": "60°=90°−30°.30 confonde azimut e angolo normale,15 èφ−α,75 angolo normale,120 falsa simmetria.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Le direzioni α e β sono quelle dei vettori di propagazione rispetto allo stesso asse, non gli angoli dalla normale. Riflettere il vettore (cosα,sinα) rispetto alla retta di direzione φ dà (cos(2φ−α),sin(2φ−α)); con φ45° e α30° risulta β90°−30°=60°. I raggi fisici incidente e riflesso rimangono dallo stesso lato dello specchio: il segmento incidente prima del punto ha verso opposto al suo vettore di propagazione. L’angolo d’incidenza dalla normale è75°, non15°.",
+      "scientificAssetReview": "XML letto integralmente e nuovo native completo640×1740 effettivamente letto dopo child0. Incidente delta(90√3,−90) e riflesso(90,−90√3) in coordinate schermo,lunghezze180:direzioni30° e60° da+x. Specchio slope−1 schermo/45° cartesiano,normale ortogonale slope+1; i raggi fisici stanno nello stesso semipiano,incidenza/riflessione75°. Label finale beta60 letta interamente,non assunta dal frammento argv. Barre180/315/247.5 per60°,105°,165/2° alla scala3 comune. Grafico soloα30°:x150+4φ,y1530−2β; punti(45,60),(60,90),bordi(30,30),(90,150) aperti. Non attribuisce105° diα15° alla curva diα30°.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "reflection_image_height_review_models.py": "4094cbd8c203f98ee7efa3e0ba4599f741ce7aa7cd351133a9d2125b81a2624e"
+      },
+      "methods": [
+        "SymPy_independent_reflection_matrix_conjugates_and_height_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-02",
+      "sourceSha256": "981cbc35e7c01981939e09888e68e9529ddb06274b1aae03f541d58a79065389",
+      "candidateSha256": "8714256ac31b54c3c98b40334a2cbd6286dc5cc635bf376f3afc860ff6d8ce42",
+      "reviewedSignature": "22c701769fbcc7664cf0f5d35e1ab631d2c282032db1571b184f4da3f622e555",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "gradi",
+      "dimension": {},
+      "manualArithmetic": "β è un angolo direzionale: si può esprimere in gradi, o in radianti con conversione coerente. È distinto da un seno, che è puro. Nessuna alternativa è stata aperta in questa primaria; il confronto con le cinque opzioni sarà successivo. Dopo la freeze tutte le cinque opzioni sono state effettivamente lette; la prima derivazione rimane immutata.",
+      "physicalAssumptions": "Specchio piano statico nel piano del disegno; direzioni di propagazione antiorarie dal medesimo asse, non angoli dalla normale. Settore0<α<φ<90° e0<β<180° srotolato, nessun modulo360. La riflessione conserva la componente tangenziale e inverte la normale; i due segmenti fisici dei raggi stanno nello stesso semipiano rispetto allo specchio. Preparazioni statiche distinte, riferimenti angolari comuni e guadagno positivo.",
+      "distractors": "Gradi è scala angolare; cm lunghezza,s tempo,J energia,Bq attività. Radiani sarebbero compatibili ma non offerti come alternativa.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. β è un angolo direzionale: si può esprimere in gradi, o in radianti con conversione coerente. È distinto da un seno, che è puro. Nessuna alternativa è stata aperta in questa primaria; il confronto con le cinque opzioni sarà successivo. Dopo la freeze tutte le cinque opzioni sono state effettivamente lette; la prima derivazione rimane immutata.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "reflection_image_height_review_models.py": "4094cbd8c203f98ee7efa3e0ba4599f741ce7aa7cd351133a9d2125b81a2624e"
+      },
+      "methods": [
+        "SymPy_independent_reflection_matrix_conjugates_and_height_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-03",
+      "sourceSha256": "26e64a89d399d341b2f519cf017b93ad848c0b5bf1a630c427c3b328efdfe7a0",
+      "candidateSha256": "9743a595648298a3990c098d0c424f5bc6b2e1ef31b1f84f7781a09cdb788970",
+      "reviewedSignature": "7b31465fde338104262c9efb2f12e0c9014b486a26893fe972b9636f2f489e69",
+      "assetChecksums": {
+        "plane-mirror-ray-direction-progressive.svg": "474c16123535da4e99a492eedc57d3da960c0d303d4e7df9db51d41bb87ca7ab"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "θ_r = θ_i",
+      "dimension": {},
+      "manualArithmetic": "Gli angoli di incidenza e riflessione sono uguali se entrambi misurati dalla stessa normale al piano nel punto di contatto. Il raggio incidente va verso il piano e quello riflesso se ne allontana. Uguaglianza degli angoli dalla normale non equivale a uguaglianza delle direzioni orientate rispetto a un asse esterno.",
+      "physicalAssumptions": "Specchio piano statico nel piano del disegno; direzioni di propagazione antiorarie dal medesimo asse, non angoli dalla normale. Settore0<α<φ<90° e0<β<180° srotolato, nessun modulo360. La riflessione conserva la componente tangenziale e inverte la normale; i due segmenti fisici dei raggi stanno nello stesso semipiano rispetto allo specchio. Preparazioni statiche distinte, riferimenti angolari comuni e guadagno positivo.",
+      "distractors": "θ_r=θ_i dalla stessa normale. Raddoppio e metà non leggi generali; somma90° solo se entrambi45°; superficie non normale richiesta.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Gli angoli di incidenza e riflessione sono uguali se entrambi misurati dalla stessa normale al piano nel punto di contatto. Il raggio incidente va verso il piano e quello riflesso se ne allontana. Uguaglianza degli angoli dalla normale non equivale a uguaglianza delle direzioni orientate rispetto a un asse esterno.",
+      "scientificAssetReview": "XML letto integralmente e nuovo native completo640×1740 effettivamente letto dopo child0. Incidente delta(90√3,−90) e riflesso(90,−90√3) in coordinate schermo,lunghezze180:direzioni30° e60° da+x. Specchio slope−1 schermo/45° cartesiano,normale ortogonale slope+1; i raggi fisici stanno nello stesso semipiano,incidenza/riflessione75°. Label finale beta60 letta interamente,non assunta dal frammento argv. Barre180/315/247.5 per60°,105°,165/2° alla scala3 comune. Grafico soloα30°:x150+4φ,y1530−2β; punti(45,60),(60,90),bordi(30,30),(90,150) aperti. Non attribuisce105° diα15° alla curva diα30°.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "reflection_image_height_review_models.py": "4094cbd8c203f98ee7efa3e0ba4599f741ce7aa7cd351133a9d2125b81a2624e"
+      },
+      "methods": [
+        "SymPy_independent_reflection_matrix_conjugates_and_height_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-04",
+      "sourceSha256": "df52fbe7e1e2027de3e1fe029913e976e32feb9a86401de39c6db11272c387a2",
+      "candidateSha256": "561f74c9d2762f51ff42073fe02a06fa1139adca9bc33eea8049cba4bd0ae12c",
+      "reviewedSignature": "1cba9c0fb07d96d6d69e023120bc67c9460b45b73e40987ac404fc384ad1e30a",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 60° a 90°",
+      "dimension": {},
+      "manualArithmetic": "A:2·45°−30°=60°. B:2·60°−30°=90°. Ruotare la retta dello specchio di15° a α fisso ruota il raggio riflesso di30°; non si moltiplica automaticamente β per il rapporto60/45.",
+      "physicalAssumptions": "Specchio piano statico nel piano del disegno; direzioni di propagazione antiorarie dal medesimo asse, non angoli dalla normale. Settore0<α<φ<90° e0<β<180° srotolato, nessun modulo360. La riflessione conserva la componente tangenziale e inverte la normale; i due segmenti fisici dei raggi stanno nello stesso semipiano rispetto allo specchio. Preparazioni statiche distinte, riferimenti angolari comuni e guadagno positivo.",
+      "distractors": "60→90°.75 aggiunge solo15°,120 ometteα,60 ignora rotazione,45 verso opposto.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A:2·45°−30°=60°. B:2·60°−30°=90°. Ruotare la retta dello specchio di15° a α fisso ruota il raggio riflesso di30°; non si moltiplica automaticamente β per il rapporto60/45.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "reflection_image_height_review_models.py": "4094cbd8c203f98ee7efa3e0ba4599f741ce7aa7cd351133a9d2125b81a2624e"
+      },
+      "methods": [
+        "SymPy_independent_reflection_matrix_conjugates_and_height_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-05",
+      "sourceSha256": "2cbf37283cf9ab31d86b827a0d4f2ad74f9f76a18e817aac6e8987bf44788623",
+      "candidateSha256": "788527f27374a7a757bb1d84e92b0345036238826d7a06d81630fa970327c35a",
+      "reviewedSignature": "251100486d9deaa0e41180246b195d390f23298eb6fd9da668cd2f7e569f97e8",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "45",
+      "dimension": {},
+      "manualArithmetic": "β+α=2φ, dunque φ=(60°+30°)/2=45°. Controllo0<30°<45°<90° e2·45°−30°=60°.",
+      "physicalAssumptions": "Specchio piano statico nel piano del disegno; direzioni di propagazione antiorarie dal medesimo asse, non angoli dalla normale. Settore0<α<φ<90° e0<β<180° srotolato, nessun modulo360. La riflessione conserva la componente tangenziale e inverte la normale; i due segmenti fisici dei raggi stanno nello stesso semipiano rispetto allo specchio. Preparazioni statiche distinte, riferimenti angolari comuni e guadagno positivo.",
+      "distractors": "φ(60+30)/2=45°.15 semidifferenza,90 somma non dimezzata/bordo escluso,30 copialettura radente.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. β+α=2φ, dunque φ=(60°+30°)/2=45°. Controllo0<30°<45°<90° e2·45°−30°=60°.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "reflection_image_height_review_models.py": "4094cbd8c203f98ee7efa3e0ba4599f741ce7aa7cd351133a9d2125b81a2624e"
+      },
+      "methods": [
+        "SymPy_independent_reflection_matrix_conjugates_and_height_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-06",
+      "sourceSha256": "a43ed37d24fe3bec417561328dc317764ee7dc203358b0c92704d7918d22fe18",
+      "candidateSha256": "8305325a7d9a7f4a2cd11abb9c6527edcb92b31085ebd0c3782812dc31119224",
+      "reviewedSignature": "9292589f6d2bfe31913dc1c7811eda2b80148b1351eb18d70e68bd054b98ba62",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "30",
+      "dimension": {},
+      "manualArithmetic": "α=2φ−β=2·45°−60°=30°. Il risultato rispetta0<α<φ; invertire l’ordine delle sottrazioni produrrebbe il ramo errato.",
+      "physicalAssumptions": "Specchio piano statico nel piano del disegno; direzioni di propagazione antiorarie dal medesimo asse, non angoli dalla normale. Settore0<α<φ<90° e0<β<180° srotolato, nessun modulo360. La riflessione conserva la componente tangenziale e inverte la normale; i due segmenti fisici dei raggi stanno nello stesso semipiano rispetto allo specchio. Preparazioni statiche distinte, riferimenti angolari comuni e guadagno positivo.",
+      "distractors": "α90−60=30°.150 somma,−30 ordine,15 dimezzamento extra,210 vettore di propagazione invertito.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. α=2φ−β=2·45°−60°=30°. Il risultato rispetta0<α<φ; invertire l’ordine delle sottrazioni produrrebbe il ramo errato.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "reflection_image_height_review_models.py": "4094cbd8c203f98ee7efa3e0ba4599f741ce7aa7cd351133a9d2125b81a2624e"
+      },
+      "methods": [
+        "SymPy_independent_reflection_matrix_conjugates_and_height_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-07",
+      "sourceSha256": "aa9fe0045a2ae29b21fabc0382924da2d4a4cbe954686092a0954477d11c1591",
+      "candidateSha256": "33032f1ff309d7ac90cb3ba43d54e7511e06f38260b9ad7872355fd2a6ae6219",
+      "reviewedSignature": "0c4328112873258df4cd11228f1f01441a77a5b8ced88edab50624fb2b9568eb",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5/4",
+      "dimension": {},
+      "manualArithmetic": "A:β60°. B:β2·45°−15°=75°. Rapporto75/60=5/4, puro. Dimezzare α non dimezza β perché2φ resta un contributo additivo.",
+      "physicalAssumptions": "Specchio piano statico nel piano del disegno; direzioni di propagazione antiorarie dal medesimo asse, non angoli dalla normale. Settore0<α<φ<90° e0<β<180° srotolato, nessun modulo360. La riflessione conserva la componente tangenziale e inverte la normale; i due segmenti fisici dei raggi stanno nello stesso semipiano rispetto allo specchio. Preparazioni statiche distinte, riferimenti angolari comuni e guadagno positivo.",
+      "distractors": "75/60=5/4.4/5 reciproco,1/2 soloα,2 inverso fattore diα,1 ignora.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A:β60°. B:β2·45°−15°=75°. Rapporto75/60=5/4, puro. Dimezzare α non dimezza β perché2φ resta un contributo additivo.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "reflection_image_height_review_models.py": "4094cbd8c203f98ee7efa3e0ba4599f741ce7aa7cd351133a9d2125b81a2624e"
+      },
+      "methods": [
+        "SymPy_independent_reflection_matrix_conjugates_and_height_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-08",
+      "sourceSha256": "eab573621acd94a1b398ebb9e44bc05e6524511838dd76cdc0861426413a5bdc",
+      "candidateSha256": "fef7411d97a844952e0fece24274df3fa3eae0c9da5d69ad4c2005b7cf51fac9",
+      "reviewedSignature": "c64998c260d7f869baa582b035286cef147f1a65803be43db2820f2791a16dd0",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "60",
+      "dimension": {},
+      "manualArithmetic": "β corretto60°, proposta120°: proposta meno corretto+60°. Il rapporto2 non risponde alla domanda sullo scarto angolare.",
+      "physicalAssumptions": "Specchio piano statico nel piano del disegno; direzioni di propagazione antiorarie dal medesimo asse, non angoli dalla normale. Settore0<α<φ<90° e0<β<180° srotolato, nessun modulo360. La riflessione conserva la componente tangenziale e inverte la normale; i due segmenti fisici dei raggi stanno nello stesso semipiano rispetto allo specchio. Preparazioni statiche distinte, riferimenti angolari comuni e guadagno positivo.",
+      "distractors": "120−60=60°.−60 ordine,120 proposta,2 rapporto puro,0 simmetria non controllata.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. β corretto60°, proposta120°: proposta meno corretto+60°. Il rapporto2 non risponde alla domanda sullo scarto angolare.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "reflection_image_height_review_models.py": "4094cbd8c203f98ee7efa3e0ba4599f741ce7aa7cd351133a9d2125b81a2624e"
+      },
+      "methods": [
+        "SymPy_independent_reflection_matrix_conjugates_and_height_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-09",
+      "sourceSha256": "ced5af2e6df38c04c75bca945df914e5517fb942d3080116f1845623a6a7aec2",
+      "candidateSha256": "bef5c7e3da37454169664c227ff3238ea54051273f138fcb337cba910931f65a",
+      "reviewedSignature": "11c70694d6e41f7fef6a12965a9a89f9e5eb23648b81838d9f704897ac6f3cfb",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "φ = (β + α) / 2",
+      "dimension": {},
+      "manualArithmetic": "β=2φ−α→β+α=2φ→φ=(β+α)/2. Inversa fisica:0<α<(β+α)/2<90°, equivalente nel ramo a β>α e β+α<180°. La positività da sola non basta.",
+      "physicalAssumptions": "Specchio piano statico nel piano del disegno; direzioni di propagazione antiorarie dal medesimo asse, non angoli dalla normale. Settore0<α<φ<90° e0<β<180° srotolato, nessun modulo360. La riflessione conserva la componente tangenziale e inverte la normale; i due segmenti fisici dei raggi stanno nello stesso semipiano rispetto allo specchio. Preparazioni statiche distinte, riferimenti angolari comuni e guadagno positivo.",
+      "distractors": "(β+α)/2 conβ>α eβ+α<180°. Differenza non inversa,somma non dimezzata,2β−α altra legge,α/β puro.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. β=2φ−α→β+α=2φ→φ=(β+α)/2. Inversa fisica:0<α<(β+α)/2<90°, equivalente nel ramo a β>α e β+α<180°. La positività da sola non basta.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "reflection_image_height_review_models.py": "4094cbd8c203f98ee7efa3e0ba4599f741ce7aa7cd351133a9d2125b81a2624e"
+      },
+      "methods": [
+        "SymPy_independent_reflection_matrix_conjugates_and_height_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-10",
+      "sourceSha256": "c9efe7980912d90e116cefefab8d06174cd1b15b74ab7a46a2cda62a7ab84a88",
+      "candidateSha256": "e52956d373f7a116e8265b993617d63bc5b4678cc1403d0ec4d67b4c7e6b169e",
+      "reviewedSignature": "edad3ce22a492260f84b4ecffb76a4b42fda16541683dab497495297b0c3cd18",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "(2κ₁φ − κ₂α) / (2φ − α)",
+      "dimension": {},
+      "manualArithmetic": "β_A=2φ−α e β_B=2κ₁φ−κ₂α. Rapporto(2κ₁φ−κ₂α)/(2φ−α), denominatore positivo. Occorre ancora0<κ₂α<κ₁φ<90°; una trasformazione dei dati non cambia φ durante una singola prova.",
+      "physicalAssumptions": "Specchio piano statico nel piano del disegno; direzioni di propagazione antiorarie dal medesimo asse, non angoli dalla normale. Settore0<α<φ<90° e0<β<180° srotolato, nessun modulo360. La riflessione conserva la componente tangenziale e inverte la normale; i due segmenti fisici dei raggi stanno nello stesso semipiano rispetto allo specchio. Preparazioni statiche distinte, riferimenti angolari comuni e guadagno positivo.",
+      "distractors": "(2κ₁φ−κ₂α)/(2φ−α). Rapporti/prodotti soli fattori perdono pesi; segni più cambiano legge,somma fattori2 per prove identiche.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. β_A=2φ−α e β_B=2κ₁φ−κ₂α. Rapporto(2κ₁φ−κ₂α)/(2φ−α), denominatore positivo. Occorre ancora0<κ₂α<κ₁φ<90°; una trasformazione dei dati non cambia φ durante una singola prova.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "reflection_image_height_review_models.py": "4094cbd8c203f98ee7efa3e0ba4599f741ce7aa7cd351133a9d2125b81a2624e"
+      },
+      "methods": [
+        "SymPy_independent_reflection_matrix_conjugates_and_height_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-11",
+      "sourceSha256": "decba823b3e464cd62a838b0a959712f91d89318756bd1bf63477a2608aec3e9",
+      "candidateSha256": "18f0b43edb5a1963cea5f4b768cef7e8a5519f4102fff1766f7f84ef16233fe4",
+      "reviewedSignature": "f60ac9effc1da7e8da544e4e198c2dee7151ee0f22ccfafa6215aa1e867f8292",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "7/4",
+      "dimension": {},
+      "manualArithmetic": "A:β60°. B:β120°−15°=105°. Rapporto105/60=7/4. Non è né il rapporto degli specchi60/45 né quello delle incidenze15/30.",
+      "physicalAssumptions": "Specchio piano statico nel piano del disegno; direzioni di propagazione antiorarie dal medesimo asse, non angoli dalla normale. Settore0<α<φ<90° e0<β<180° srotolato, nessun modulo360. La riflessione conserva la componente tangenziale e inverte la normale; i due segmenti fisici dei raggi stanno nello stesso semipiano rispetto allo specchio. Preparazioni statiche distinte, riferimenti angolari comuni e guadagno positivo.",
+      "distractors": "105/60=7/4.4/7 reciproco,4/3 soloφ,1/2 soloα,2 non dà105°.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A:β60°. B:β120°−15°=105°. Rapporto105/60=7/4. Non è né il rapporto degli specchi60/45 né quello delle incidenze15/30.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "reflection_image_height_review_models.py": "4094cbd8c203f98ee7efa3e0ba4599f741ce7aa7cd351133a9d2125b81a2624e"
+      },
+      "methods": [
+        "SymPy_independent_reflection_matrix_conjugates_and_height_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-12",
+      "sourceSha256": "c48b97775454954ba617897446582e250ba7acb21706daf0b4cc2c52e721c9c2",
+      "candidateSha256": "d6c3a3fd006c2941956a74266381669882d22c9eddf1b15516214e559e044e3d",
+      "reviewedSignature": "78a7d3fcb736481fb803effda82da643e6dd5167b11414657862b1cea505e37c",
+      "assetChecksums": {
+        "plane-mirror-ray-direction-progressive.svg": "474c16123535da4e99a492eedc57d3da960c0d303d4e7df9db51d41bb87ca7ab"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "165/2",
+      "dimension": {},
+      "manualArithmetic": "Media delle letture(60°+105°)/2=165°/2. Qui coincide con la risposta agli ingressi mediφ105°/2,α45°/2:2·105°/2−45°/2=165°/2. La coincidenza dipende dall’affinità della legge nelle direzioni srotolate. Non si applica senza convenzioni a una media circolare che attraversi360°.",
+      "physicalAssumptions": "Specchio piano statico nel piano del disegno; direzioni di propagazione antiorarie dal medesimo asse, non angoli dalla normale. Settore0<α<φ<90° e0<β<180° srotolato, nessun modulo360. La riflessione conserva la componente tangenziale e inverte la normale; i due segmenti fisici dei raggi stanno nello stesso semipiano rispetto allo specchio. Preparazioni statiche distinte, riferimenti angolari comuni e guadagno positivo.",
+      "distractors": "165/2°;165 somma,45/2 semidifferenza,60 e105 singole letture. Affinità spiega coincidenza con medie degli ingressi.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media delle letture(60°+105°)/2=165°/2. Qui coincide con la risposta agli ingressi mediφ105°/2,α45°/2:2·105°/2−45°/2=165°/2. La coincidenza dipende dall’affinità della legge nelle direzioni srotolate. Non si applica senza convenzioni a una media circolare che attraversi360°.",
+      "scientificAssetReview": "XML letto integralmente e nuovo native completo640×1740 effettivamente letto dopo child0. Incidente delta(90√3,−90) e riflesso(90,−90√3) in coordinate schermo,lunghezze180:direzioni30° e60° da+x. Specchio slope−1 schermo/45° cartesiano,normale ortogonale slope+1; i raggi fisici stanno nello stesso semipiano,incidenza/riflessione75°. Label finale beta60 letta interamente,non assunta dal frammento argv. Barre180/315/247.5 per60°,105°,165/2° alla scala3 comune. Grafico soloα30°:x150+4φ,y1530−2β; punti(45,60),(60,90),bordi(30,30),(90,150) aperti. Non attribuisce105° diα15° alla curva diα30°.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "reflection_image_height_review_models.py": "4094cbd8c203f98ee7efa3e0ba4599f741ce7aa7cd351133a9d2125b81a2624e"
+      },
+      "methods": [
+        "SymPy_independent_reflection_matrix_conjugates_and_height_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-13",
+      "sourceSha256": "2073eb74b864da637144a405ab7db79f75f7a575c9e50b252fa4240e01f845a5",
+      "candidateSha256": "f02e9d7ff8881b93580b4ab5ac4e89b6cbfaa97e12358f0eab9f80c409e316e3",
+      "reviewedSignature": "6d318f1c1c861022b75141e8bde02694134eb68b1e30158fe1f148bc4d89c0e5",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {},
+      "manualArithmetic": "Targetβ_B=(7/4)60°=105°. Fissatoφ_B60°, α_B120°−105°=15°. Rapportoα_B/α_A15/30=1/2; α_B resta tra zero eφ_B.",
+      "physicalAssumptions": "Specchio piano statico nel piano del disegno; direzioni di propagazione antiorarie dal medesimo asse, non angoli dalla normale. Settore0<α<φ<90° e0<β<180° srotolato, nessun modulo360. La riflessione conserva la componente tangenziale e inverte la normale; i due segmenti fisici dei raggi stanno nello stesso semipiano rispetto allo specchio. Preparazioni statiche distinte, riferimenti angolari comuni e guadagno positivo.",
+      "distractors": "Target105°,α_B120−105=15°,rapporto1/2.2 reciproco,7/4 e4/7 uscite,1 darebbeβ90°.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Targetβ_B=(7/4)60°=105°. Fissatoφ_B60°, α_B120°−105°=15°. Rapportoα_B/α_A15/30=1/2; α_B resta tra zero eφ_B.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "reflection_image_height_review_models.py": "4094cbd8c203f98ee7efa3e0ba4599f741ce7aa7cd351133a9d2125b81a2624e"
+      },
+      "methods": [
+        "SymPy_independent_reflection_matrix_conjugates_and_height_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-14",
+      "sourceSha256": "4edf87ec458dd2a92f7f07320f23eba44f96b9e2ca59e570f1de3730cc949f94",
+      "candidateSha256": "6122aa76d29f0fbe3574f0197c5944755ae2404d2f07fed8d5684488a44f589f",
+      "reviewedSignature": "a8e4e882fdaba9ee7fa1ffb39b5a6005e8ba0f0f2c2b7dab00dd3ce292015035",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "60",
+      "dimension": {},
+      "manualArithmetic": "Riferimentoβ60° e display180 danno guadagno3 per grado. Nuovo display315→β105°; conα15° ottengoφ=(105°+15°)/2=60°. La taratura va tolta prima dell’inversa ottica.",
+      "physicalAssumptions": "Specchio piano statico nel piano del disegno; direzioni di propagazione antiorarie dal medesimo asse, non angoli dalla normale. Settore0<α<φ<90° e0<β<180° srotolato, nessun modulo360. La riflessione conserva la componente tangenziale e inverte la normale; i due segmenti fisici dei raggi stanno nello stesso semipiano rispetto allo specchio. Preparazioni statiche distinte, riferimenti angolari comuni e guadagno positivo.",
+      "distractors": "g3grado⁻¹,D315→β105°,φ60°.165° usa display comeβ e viola settore,45 vecchia retta,105 solaβ.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Riferimentoβ60° e display180 danno guadagno3 per grado. Nuovo display315→β105°; conα15° ottengoφ=(105°+15°)/2=60°. La taratura va tolta prima dell’inversa ottica.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "reflection_image_height_review_models.py": "4094cbd8c203f98ee7efa3e0ba4599f741ce7aa7cd351133a9d2125b81a2624e"
+      },
+      "methods": [
+        "SymPy_independent_reflection_matrix_conjugates_and_height_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-15",
+      "sourceSha256": "784757988a954f9048253370f1ea3c9271f4799677a94f2996bf837f0b75f796",
+      "candidateSha256": "2e68012ca176a5a2382bddee335ac39a4eac8ee3a79264974003b42cbfa978c7",
+      "reviewedSignature": "18cc2f0364d4f07f911b714ca35559459cc4d0273e4324a99399dda6380a5cef",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "60",
+      "dimension": {},
+      "manualArithmetic": "Riferimentiβ_A60°,β_B105°: g=(211−121)/(105−60)=90/45=2 per grado; b121−2·60=1. C:β=(181−1)/2=90°;φ=(90°+30°)/2=60°. I due riferimenti hanno uscite distinte, il guadagno è positivo.",
+      "physicalAssumptions": "Specchio piano statico nel piano del disegno; direzioni di propagazione antiorarie dal medesimo asse, non angoli dalla normale. Settore0<α<φ<90° e0<β<180° srotolato, nessun modulo360. La riflessione conserva la componente tangenziale e inverte la normale; i due segmenti fisici dei raggi stanno nello stesso semipiano rispetto allo specchio. Preparazioni statiche distinte, riferimenti angolari comuni e guadagno positivo.",
+      "distractors": "g2grado⁻¹,b1,D181→β90°,φ60°.241/4° omette b;105° omette g dopo b e violaφ<90°;90 copiaβ.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Riferimentiβ_A60°,β_B105°: g=(211−121)/(105−60)=90/45=2 per grado; b121−2·60=1. C:β=(181−1)/2=90°;φ=(90°+30°)/2=60°. I due riferimenti hanno uscite distinte, il guadagno è positivo.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "reflection_image_height_review_models.py": "4094cbd8c203f98ee7efa3e0ba4599f741ce7aa7cd351133a9d2125b81a2624e"
+      },
+      "methods": [
+        "SymPy_independent_reflection_matrix_conjugates_and_height_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-16",
+      "sourceSha256": "ef2d92e8eb548e9188ff310ceeab3ad2358822f41a6b6a18fae22e01936e87b6",
+      "candidateSha256": "c36b21641fc439ebb586a56196a77fa18692c0b3165c2686ef8832bcef7d77be",
+      "reviewedSignature": "328da9e69391b8f9c608dd34bae30a3be5eae8864ad181b1353712d79e1feba1",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "30",
+      "dimension": {},
+      "manualArithmetic": "Vincoloφ=(3/2)α tra angoli nella stessa unità, fattore puro. β=3α−α=2α=60°→α30° eφ45°. Questa coppia è unica nel ramo0<α<φ<90°; non esiste libertà di scala dopo il dato assolutoβ.",
+      "physicalAssumptions": "Specchio piano statico nel piano del disegno; direzioni di propagazione antiorarie dal medesimo asse, non angoli dalla normale. Settore0<α<φ<90° e0<β<180° srotolato, nessun modulo360. La riflessione conserva la componente tangenziale e inverte la normale; i due segmenti fisici dei raggi stanno nello stesso semipiano rispetto allo specchio. Preparazioni statiche distinte, riferimenti angolari comuni e guadagno positivo.",
+      "distractors": "φ3α/2→β2α60°→α30°.60 dàφ90° escluso,15 dàβ30°,infinite non compatibili con dato assoluto.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Vincoloφ=(3/2)α tra angoli nella stessa unità, fattore puro. β=3α−α=2α=60°→α30° eφ45°. Questa coppia è unica nel ramo0<α<φ<90°; non esiste libertà di scala dopo il dato assolutoβ.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "reflection_image_height_review_models.py": "4094cbd8c203f98ee7efa3e0ba4599f741ce7aa7cd351133a9d2125b81a2624e"
+      },
+      "methods": [
+        "SymPy_independent_reflection_matrix_conjugates_and_height_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "f7cfbfe04d6c20ab7da8c461a4fabc0c5b5fef3c466531281bbef159f2e677b4",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "8415ce2e7e69ade7c4c239ded564c24fdca40897",
+  "packageSha256": "89dd2b49972de3b70076d7604ee985d3f5fb56db3d9afb1877f38d5bb10421d6",
+  "bindingsSha256": "35ccd8dfc717588fb8fc436dbf8be33d6e7e64cbf2a953cfe59cb199bb34654f",
+  "sourceFirstPrimarySha256": "d5f076f221127f55926b8db14609e5903199f8f03b8d2bfb2e752b8df003583d",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U7-03.json",
+    "reference": "Tutti32 originali derivati nella primaria prompt-onlyd5f076f2 congelata46b0e987 prima di candidati. Modelli scritti prima dell’esposizione incidentale di una label beta60 via ps argv,ma eseguiti/congelati bbda8bd4 dopo:disclosure completa nella ricevuta,nessuna falsa dichiarazione NONE. Il60° era già nella primaria. Poi tutti32 campi,opzioni,blocchi,hint,feedback e due XML/native completi letti;262 riparametrizzazione fisica in mm e vincolo p/40 ricalcolati separatamente senza mutare la fonte. Nessun modulo autore o primariaB aperti. ROOT integrazione PENDING,UI prodotto e human NOT_RUN."
+  }
+}
