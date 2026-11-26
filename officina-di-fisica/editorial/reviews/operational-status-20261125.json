@@ -1,19 +1,19 @@
 {
   "schemaVersion": "1.0.0",
-  "observedAt": "2026-11-26T20:03:29.233477+00:00",
-  "snapshotHead": "2b6c504042c942f8b266b2671787b6043bc044d1",
+  "observedAt": "2026-11-26T20:08:59.240608+00:00",
+  "snapshotHead": "be765e05f4d93b15f17ade7db9847c8a8fbc018a",
   "canonicalHead": "7c29ccc18ad3b42ceecfca509ef57f786bd2c496",
   "mandate": "INCOMPLETE",
   "questions": {
     "accounted": 4606,
     "scientificallyReviewed": 4100,
     "scientificallyUnreviewed": 506,
-    "registeredDrafts": 3792,
+    "registeredDrafts": 4100,
     "compiledDraftsLocally": 3632,
     "compiledCandidateFullyLocallyValidated": false,
     "canonicalHistoricalRevisedDrafts": 3312,
     "newRootAcceptanceReceipt": "editorial/reviews/cric-c1-remaining90-root-integration-20261126/receipt.json",
-    "compiledCandidateFullyRemotelyValidated": true,
+    "compiledCandidateFullyRemotelyValidated": false,
     "unreviewedBySource": {
       "Ardesia": 0,
       "Cric": 506
@@ -23,7 +23,7 @@
       "editorial/reviews/u7-03-root-integration-20261126/receipt.json",
       "editorial/reviews/cric-c1-remaining90-root-integration-20261126/receipt.json"
     ],
-    "registrationPendingQuestions": 308,
+    "registrationPendingQuestions": 0,
     "fullArdesiaIdAudit": "editorial/reviews/u7-03-root-integration-20261126/ardesia4000-id-reconciliation.json",
     "fullyAccepted": 4100,
     "pedagogicalReopened": 0,
@@ -124,21 +124,17 @@
     "receipt": "editorial/reviews/preintegration-failed-45873357486-20261126/receipt.json"
   },
   "currentLocalPreparation": {
-    "registeredQuestionDrafts": 3792,
-    "compiledQuestionDrafts": 3632,
-    "new160ProductUI": "PENDING_REMOTE",
-    "runId": 45877605987,
-    "headSha": "5e27eeee4ec5b9ae499f174c633525547d9a423a",
-    "state": "FROZEN3792_RETRY_IN_PROGRESS; CURRENT_PEDAGOGICAL_WITHDRAWAL_PREVENTS_OLD_ADOPTION",
-    "registrySha256": "62c195d8b6ab1f4ddbac1af2ada5ad834656943db19c85bb195f8742d0dcdb2c",
-    "scientificQuestionsPendingRegistryActivation": 218,
-    "previewRequestPin": "DEFERRED_UNTIL3792_ADOPTION_BEFORE_PR_AVOIDS_DUPLICATE_PRODUCER",
-    "currentRegistrySha256": "22e01f2beac0eb49edb9197d01463a94be526b159dbee7848e601e5cbfc0af23",
-    "adoptionPlan": "3792success retained for original5e source, not adopted as current because corrected Q15 and withdrawal ledger changed. Register all currently accepted pending lots and run a new complete exact snapshot, reusing only matching UI cases."
+    "questionRegistry": 4100,
+    "state": "WITHHELD_OPEN_ACTIVITY_WITHDRAWAL",
+    "explicitBlocker": "SIM-C1-L007-01",
+    "officialCheckpointQuestions": 3632,
+    "officialCheckpointActivitiesHistorical": 246,
+    "currentAcceptedActivities": 245,
+    "noGateWeakening": true
   },
   "nextScientificAcceptanceId": "C1-Q011",
   "nextNewAuthoringId": "C2-Q001",
-  "assignments": "All4000 Ardesia independently reviewed and Root tested/imported. Pending registry208=U702160+U70348, do not redo. Cric606 source-only cross-primaries and existing assembler extension active;54 cohorts assigned.",
+  "assignments": "4100 Root accepted and registered; all4000 Ardesia plusC1 Cric100.506 Cric remain. NextC2-Q001; author/peer C2 active. Full snapshot blocked by explicit single activity withdrawal, not human approval.",
   "governance": {
     "publication": "DEFAULT_DENY",
     "humanApproval": "NOT_RUN",
@@ -329,12 +325,12 @@
     }
   },
   "cricProduction": {
-    "scientificallyAccepted": 10,
-    "authoredKnown": 100,
+    "scientificallyAccepted": 100,
+    "authoredKnown": 200,
     "authorAFirst10Commit": "a9e769ae",
     "authorBFirst50Commit": "41f9409d",
-    "sourceOnlyPrimariesAndModels": "C1 reciprocal50 frozen before candidate exposure; C2 A50 primary/models also frozen byB",
-    "nextScientificAcceptanceId": "C1-Q011",
+    "sourceOnlyPrimariesAndModels": "C1 completed andRoot accepted; reciprocalC2 primaries/models frozen;C2authoring200total and distinctC2reviews inprogress;C3 source-only handoff next",
+    "nextScientificAcceptanceId": "C2-Q001",
     "protectedExamCount": 93
   },
   "nativeGoalControl": {
@@ -354,5 +350,34 @@
     "newSourceCredit": 0,
     "productUI": "PENDING_NEW_PACKAGE_RENDER",
     "humanApproval": "NOT_RUN"
+  },
+  "currentWorkStatus": "editorial/reviews/full-corpus-work-status-20261126.json",
+  "historical3792Success": {
+    "runId": 45877605987,
+    "headSha": "5e27eeee4ec5b9ae499f174c633525547d9a423a",
+    "fullTests": 1133,
+    "seconds": 645.861,
+    "uiBatches": 249,
+    "uiCases": 11427,
+    "conclusion": "SUCCESS_HISTORICAL_EXACT_SOURCE_ONLY",
+    "archiveReceipt": "editorial/reviews/preintegration-45877605987-historical-success-20261126/receipt.json",
+    "rootCheckpointAdopted": false,
+    "reason": "Wavelength240 changed and activity explicitly reopened after source5e. Preserve current official3632 pointer."
+  },
+  "experimentVisibility139Current": {
+    "runId": 45888351023,
+    "headSha": "07a2dbf574cc52318814a03fbfd04bb5bcab3125",
+    "candidateSource": "64aef05bef5ca7ebff8491060762dd4cac0cbb34",
+    "runtimeSha256": "4c83e0156b74d5a4cdfad90421f4304e6a7a03bde10d5b125f6635aae7eff907",
+    "requestSha256": "18108b6c67ed31f470b7e1ce75add6b17c900d08195f8da0ebcb986717ac06bf",
+    "state": "ACTUAL_UI_RUNNING_FOUR_COURSES_C6_QUEUED_LAST_OBSERVED",
+    "plannedObservations": 45576,
+    "activityCredit": 0,
+    "failedBootstrapRuns": [
+      45885414909,
+      45887711139
+    ],
+    "failedBootstrapObservedUICases": 0,
+    "bootstrapFixProof": "Real empty partial clone strict128/hydrate0/strict0 plus exact three archives and fresh C6 preparation0; current9+7 tests0"
   }
 }
