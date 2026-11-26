@@ -177,7 +177,7 @@
         },
         {
           "type": "text",
-          "text": "Usare 270/315 descriverebbe la variazione inversa e ridurrebbe il volume mentre il gas si scalda. Sommare 45 al numero di litri mescola un intervallo termico con un volume. Il vincolo è la pressione, non il volume."
+          "text": "54/35 L usa il rapporto inverso delle temperature e ridurrebbe il volume durante il riscaldamento. 1,80 L ignora la variazione. 46,80 L somma il numero45 dell’intervallo termico al numero dei litri, mescolando grandezze diverse. 0,30 L esegue la divisione per6 ma omette la successiva moltiplicazione per7. Il vincolo è la pressione, non il volume."
         }
       ],
       "prompt": "Un palloncino ideale chiuso contiene gas perfetto. Il volume è 1,80 L a 270 K; alla stessa pressione assoluta il gas raggiunge 315 K. Qual è il nuovo volume in litri?",
@@ -185,10 +185,15 @@
       "family": "un-pistone-sotto-carico-costante",
       "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
       "answer": {
-        "type": "numeric",
-        "value": 2.1,
-        "unit": "L",
-        "tolerance": 0
+        "type": "choice",
+        "options": [
+          "2,10 L",
+          "54/35 L",
+          "1,80 L",
+          "46,80 L",
+          "0,30 L"
+        ],
+        "value": "2,10 L"
       },
       "hints": [
         "Riduci prima il rapporto 315/270 a 7/6.",
@@ -196,7 +201,7 @@
       ],
       "error": {
         "category": "algebra",
-        "message": "Usare 270/315 descriverebbe la variazione inversa e ridurrebbe il volume mentre il gas si scalda. Sommare 45 al numero di litri mescola un intervallo termico con un volume. Il vincolo è la pressione, non il volume.",
+        "message": "54/35 L usa il rapporto inverso delle temperature e ridurrebbe il volume durante il riscaldamento. 1,80 L ignora la variazione. 46,80 L somma il numero45 dell’intervallo termico al numero dei litri, mescolando grandezze diverse. 0,30 L esegue la divisione per6 ma omette la successiva moltiplicazione per7. Il vincolo è la pressione, non il volume.",
         "target": "C3-L02"
       },
       "baseVersion": 1,
@@ -354,7 +359,7 @@
         },
         {
           "type": "formula",
-          "text": "pV=nRT\\quad\\text{nel modello di gas perfetto}"
+          "text": "pV=nRT"
         },
         {
           "type": "text",

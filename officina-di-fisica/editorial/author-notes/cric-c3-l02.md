@@ -42,7 +42,7 @@ Procedimento: Per la stessa quantità di gas a pressione costante V/T=nR/p. Il r
 
 Passaggi esatti: `\frac{V_f}{V_i}=\frac{T_f}{T_i}\qquad V_f=1{,}80\frac76\,\mathrm L\qquad V_f=2{,}10\,\mathrm L`.
 
-Distrattori: Usare 270/315 descriverebbe la variazione inversa e ridurrebbe il volume mentre il gas si scalda. Sommare 45 al numero di litri mescola un intervallo termico con un volume. Il vincolo è la pressione, non il volume.
+Distrattori: 54/35 L usa il rapporto inverso delle temperature e ridurrebbe il volume durante il riscaldamento. 1,80 L ignora la variazione. 46,80 L somma il numero45 dell’intervallo termico al numero dei litri, mescolando grandezze diverse. 0,30 L esegue la divisione per6 ma omette la successiva moltiplicazione per7. Il vincolo è la pressione, non il volume.
 
 Aiuto: Riduci prima il rapporto 315/270 a 7/6.
 
@@ -82,7 +82,7 @@ Compito: Quale situazione richiede maggiore cautela nell’applicare pV=nRT a un
 
 Procedimento: Il modello ideale trascura il volume proprio delle molecole e le interazioni che non siano urti. In un gas denso vicino alla condensazione tali effetti possono diventare importanti: occorre valutare un’equazione di stato più adeguata. L’uso di unità corrette non basta a rendere ideale ogni gas.
 
-Passaggi esatti: `pV=nRT\quad\text{nel modello di gas perfetto}`.
+Passaggi esatti: `pV=nRT`.
 
 Distrattori: Diluizione e distanza dalla condensazione favoriscono il modello. Pascal, kelvin e moli sono le unità coerenti richieste, non cause del suo fallimento fisico. Non basta cambiare unità per correggere interazioni reali.
 
