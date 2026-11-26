@@ -1,0 +1,691 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C2-Q051",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia lungo una corrente",
+      "order": 51,
+      "title": "Restringere senza cambiare la portata",
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L006"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La stazionarietà rende la portata costante nel tempo; l’incomprimibilità la rende uguale nelle due sezioni. Poiché A diminuisce, Q=Av richiede una velocità maggiore. Alla stessa quota Bernoulli conserva p+ρv²/2: l’aumento del contributo cinetico è compensato da una diminuzione della pressione statica. Il ragionamento riguarda questo modello, non una misura in un vaso reale."
+        },
+        {
+          "type": "formula",
+          "text": "A_1v_1=A_2v_2"
+        },
+        {
+          "type": "formula",
+          "text": " A_2<A_1"
+        },
+        {
+          "type": "formula",
+          "text": " v_2>v_1"
+        },
+        {
+          "type": "formula",
+          "text": " p_2-p_1=-\\frac{\\rho}{2}(v_2^2-v_1^2)<0"
+        },
+        {
+          "type": "text",
+          "text": "La stazionarietà non impone uguale velocità in posizioni diverse. Aumentare anche p violerebbe il bilancio senza una macchina che fornisca energia. La pressione che cala non indica da sola una dissipazione: qui il contributo cinetico cresce."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un liquido ideale incomprimibile scorre stazionario in un tubo orizzontale senza diramazioni né macchine. Fra due sezioni sulla stessa linea di corrente si trascurano perdite e variazioni del profilo. Entrando in un restringimento, come cambiano velocità e pressione statica? Le pressioni assolute restano sufficienti a mantenere il liquido nella stessa fase.",
+      "family": "una-stenosi-idealizzata",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La velocità aumenta e la pressione statica diminuisce",
+          "Aumentano entrambe",
+          "Diminuiscono entrambe",
+          "La velocità diminuisce e la pressione aumenta",
+          "La velocità resta uguale perché il moto è stazionario"
+        ],
+        "value": "La velocità aumenta e la pressione statica diminuisce"
+      },
+      "hints": [
+        "Usa prima la continuità, poi confronta i termini di Bernoulli alla stessa quota.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La stazionarietà non impone uguale velocità in posizioni diverse. Aumentare anche p violerebbe il bilancio senza una macchina che fornisca energia. La pressione che cala non indica da sola una dissipazione: qui il contributo cinetico cresce.",
+        "target": "C2-L006"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Continuità prima del bilancio energetico",
+        "Differenza di pressione e quota",
+        "Ristagno e limiti dissipativi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q052",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia lungo una corrente",
+      "order": 52,
+      "title": "Recupero ideale in una dilatazione",
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L006"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La quota comune elimina il termine gravitazionale. Scrivo la pressione finale meno l’iniziale come ρ(v₁²−v₂²)/2: il rallentamento lascia più contributo di pressione statica. La differenza dei quadrati è 4−1=3 m²/s²; metà della densità è 500 kg/m³. Il prodotto dà un aumento di 1500 Pa."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/9f0ecd68785ac773be0a2e132aada50da322a8397d20021b8ac1e125c86cfb46",
+          "text": "Il primo pannello illustra un condotto rettangolare a profondità costante: la sua altezza rappresenta l’area di sezione. Le velocità 2 m/s e 1 m/s usano la stessa scala. La sezione raddoppia, il contributo cinetico scende e la pressione statica aumenta di 1500 Pa nel modello ideale."
+        },
+        {
+          "type": "formula",
+          "text": "p_2-p_1=\\frac{\\rho}{2}(v_1^2-v_2^2)"
+        },
+        {
+          "type": "formula",
+          "text": " v_1^2-v_2^2=3\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " p_2-p_1=1500\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "−1500 Pa scambia pressione finale e iniziale. 500 Pa usa il quadrato della differenza delle velocità, che qui vale 1, invece della differenza dei quadrati. 3000 Pa omette il fattore 1/2."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un liquido ideale di densità 1000 kg/m³ scorre stazionario in una dilatazione orizzontale. Le velocità delle sezioni sono 2 m/s a monte e 1 m/s a valle, con profili uniformi e perdite trascurate. Calcola p₂−p₁ in pascal, lungo la stessa linea di corrente.",
+      "family": "una-dilatazione-ideale",
+      "answer": {
+        "type": "numeric",
+        "value": 1500,
+        "unit": "Pa",
+        "tolerance": 0
+      },
+      "hints": [
+        "Il segno del risultato deve essere coerente con una velocità minore a valle.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−1500 Pa scambia pressione finale e iniziale. 500 Pa usa il quadrato della differenza delle velocità, che qui vale 1, invece della differenza dei quadrati. 3000 Pa omette il fattore 1/2.",
+        "target": "C2-L006"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Continuità prima del bilancio energetico",
+        "Differenza di pressione e quota",
+        "Ristagno e limiti dissipativi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q053",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia lungo una corrente",
+      "order": 53,
+      "title": "Salire mantenendo la velocità",
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L006"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le energie cinetiche per unità di volume si cancellano, ma non il contributo di quota. Salendo, ρgz aumenta e la pressione deve diminuire della stessa quantità. Porto 0,75 a 3/4: 800·10·3/4=6000 Pa. La richiesta è il modulo della diminuzione; la differenza p₂−p₁ sarebbe invece −6000 Pa."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/9f0ecd68785ac773be0a2e132aada50da322a8397d20021b8ac1e125c86cfb46",
+          "text": "Nel pannello centrale la quota aumenta di 3/4 m, a velocità invariata. La crescita di energia gravitazionale per unità di volume è 6000 Pa e richiede una diminuzione della pressione della stessa quantità."
+        },
+        {
+          "type": "formula",
+          "text": "p_1-p_2=\\rho g(z_2-z_1)"
+        },
+        {
+          "type": "formula",
+          "text": " z_2-z_1=\\frac34\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " p_1-p_2=6000\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "Zero considera soltanto l’uguaglianza delle velocità. Un aumento di 6000 Pa invertirebbe il ruolo della quota. 600 Pa omette g; 8000 Pa usa un metro intero anziché 3/4 m."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "In un condotto ideale a sezione costante un liquido incomprimibile di densità 800 kg/m³ sale di 0,75 m. Il moto è stazionario, la velocità è la stessa alle due sezioni e non vi sono pompe né perdite. Con g=10 m/s², di quanti pascal diminuisce la pressione? Le pressioni assolute restano compatibili con la fase liquida.",
+      "family": "una-salita-a-velocita-invariata",
+      "answer": {
+        "type": "numeric",
+        "value": 6000,
+        "unit": "Pa",
+        "tolerance": 0
+      },
+      "hints": [
+        "Separa la variazione di quota dalla variazione di velocità prima di cancellare termini.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Zero considera soltanto l’uguaglianza delle velocità. Un aumento di 6000 Pa invertirebbe il ruolo della quota. 600 Pa omette g; 8000 Pa usa un metro intero anziché 3/4 m.",
+        "target": "C2-L006"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Continuità prima del bilancio energetico",
+        "Differenza di pressione e quota",
+        "Ristagno e limiti dissipativi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q054",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia lungo una corrente",
+      "order": 54,
+      "title": "Dalla pressione di ristagno alla velocità",
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L006"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel punto di ristagno la velocità è zero. La pressione in eccesso corrisponde al contributo cinetico della corrente: Δp=ρv²/2. Isolo prima il quadrato: v²=120/(6/5)=100 m²/s². Prendo la radice positiva perché si chiede una rapidità, ottenendo 10 m/s."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p=\\frac12\\rho v^2"
+        },
+        {
+          "type": "formula",
+          "text": " v^2=\\frac{2\\Delta p}{\\rho}"
+        },
+        {
+          "type": "formula",
+          "text": " v^2=100\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v=10\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "100 è il valore numerico di v², con unità diverse. √50 m/s ometterebbe il fattore 2 nel bilancio; una velocità negativa non è la rapidità richiesta. Non si può dividere 60 Pa per la sola densità e chiamare il risultato velocità."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Aria trattata nel modello come incomprimibile ha densità 1,2 kg/m³. Un punto di ristagno sulla stessa linea di corrente e alla stessa quota ha pressione superiore di 60 Pa alla pressione statica indisturbata. Senza perdite, quanto vale la velocità indisturbata in m/s?",
+      "family": "fermare-una-linea-di-corrente",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "hints": [
+        "Azzerare la velocità al ristagno non azzera la pressione: trasferisce il contributo cinetico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "100 è il valore numerico di v², con unità diverse. √50 m/s ometterebbe il fattore 2 nel bilancio; una velocità negativa non è la rapidità richiesta. Non si può dividere 60 Pa per la sola densità e chiamare il risultato velocità.",
+        "target": "C2-L006"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Continuità prima del bilancio energetico",
+        "Differenza di pressione e quota",
+        "Ristagno e limiti dissipativi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q055",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia lungo una corrente",
+      "order": 55,
+      "title": "Quando la pressione cala senza accelerare",
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L006"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’uguaglianza di velocità e quota non lascia un aumento cinetico o gravitazionale a cui attribuire il calo di pressione. Nel tubo reale le azioni viscose trasformano energia meccanica in energia interna. La differenza di pressione compie il lavoro che sostiene il flusso dissipativo; il Bernoulli ideale senza perdite non descrive da solo questa situazione."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p=p_1-p_2>0"
+        },
+        {
+          "type": "formula",
+          "text": " Q>0"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm diss}=\\Delta p\\,Q>0"
+        },
+        {
+          "type": "text",
+          "text": "La sezione uniforme non accelera la velocità media stazionaria; il tubo orizzontale non cambia quota. L’energia totale non viene creata né distrutta: cambia forma. Le pressioni compiono lavoro, che qui è necessario per compensare le perdite."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un lungo tubo orizzontale uniforme contiene un liquido viscoso in moto stazionario. La velocità media è uguale nelle due sezioni, ma la pressione statica è più bassa a valle. Quale fenomeno deve comparire nel bilancio meccanico?",
+      "family": "dove-la-formula-ideale-fallisce",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Dissipazione viscosa di energia meccanica",
+          "Aumento dell’energia cinetica media dovuto alla sezione",
+          "Diminuzione dell’energia gravitazionale di quota",
+          "Produzione spontanea di energia meccanica",
+          "Assenza di lavoro delle pressioni"
+        ],
+        "value": "Dissipazione viscosa di energia meccanica"
+      },
+      "hints": [
+        "Domanda dove finisce il lavoro delle pressioni se quota e velocità non cambiano.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La sezione uniforme non accelera la velocità media stazionaria; il tubo orizzontale non cambia quota. L’energia totale non viene creata né distrutta: cambia forma. Le pressioni compiono lavoro, che qui è necessario per compensare le perdite.",
+        "target": "C2-L006"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Continuità prima del bilancio energetico",
+        "Differenza di pressione e quota",
+        "Ristagno e limiti dissipativi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q056",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia lungo una corrente",
+      "order": 56,
+      "title": "Ricavare il rapporto delle aree",
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L006"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Bernoulli fornisce prima la nuova velocità: v₂²=v₁²+2(p₁−p₂)/ρ=1+3=4 m²/s². Per il flusso assegnato scelgo v₂=2 m/s. Poi la continuità dà A₁/A₂=v₂/v₁=2. La sezione finale è metà dell’iniziale, non quattro volte più piccola."
+        },
+        {
+          "type": "formula",
+          "text": "v_2^2=v_1^2+\\frac{2(p_1-p_2)}{\\rho}"
+        },
+        {
+          "type": "formula",
+          "text": " v_2^2=4\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v_2=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{A_1}{A_2}=\\frac{v_2}{v_1}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{A_1}{A_2}=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro è il rapporto dei quadrati delle velocità, non quello delle aree. 1/2 inverte A₁/A₂. Uno ignorerebbe la variazione di pressione e di velocità; una sezione maggiore a valle richiederebbe un rallentamento."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "Un liquido ideale di densità 1000 kg/m³ scorre stazionario in un tubo orizzontale senza rami. A monte v₁=1 m/s; a valle la pressione è più bassa di 1500 Pa. Trascurando perdite e usando profili uniformi, trova A₁/A₂. La pressione assoluta resta abbastanza alta da non cambiare fase.",
+      "family": "stimare-il-rapporto-di-sezioni",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "hints": [
+        "Trova una velocità, non solo il suo quadrato, prima di applicare la continuità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro è il rapporto dei quadrati delle velocità, non quello delle aree. 1/2 inverte A₁/A₂. Uno ignorerebbe la variazione di pressione e di velocità; una sezione maggiore a valle richiederebbe un rallentamento.",
+        "target": "C2-L006"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Continuità prima del bilancio energetico",
+        "Differenza di pressione e quota",
+        "Ristagno e limiti dissipativi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q057",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia lungo una corrente",
+      "order": 57,
+      "title": "Dare un nome al punto fermo della corrente",
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L006"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il termine ristagno descrive l’annullamento locale della velocità rispetto all’ostacolo. Non significa che tutto il fluido sia fermo. Alla stessa quota e senza perdite, la pressione di ristagno supera quella statica della corrente del contributo ρv²/2; la densità non deve annullarsi."
+        },
+        {
+          "type": "formula",
+          "text": "v_{\\rm ristagno}=0"
+        },
+        {
+          "type": "formula",
+          "text": " p_0=p+\\frac12\\rho v^2"
+        },
+        {
+          "type": "text",
+          "text": "Ebollizione è un cambiamento di fase e non segue dalla velocità nulla. Il punto non è di pressione minima nel modello considerato. Nodo elettrico e densità zero non definiscono il comportamento cinematico richiesto."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "Nel modello ideale una linea di corrente termina contro un ostacolo fermo in un punto dove la velocità del fluido si annulla. Come si chiama quel punto?",
+      "family": "il-punto-in-cui-la-velocita-si-annulla",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Punto di ristagno",
+          "Punto di ebollizione",
+          "Punto di minima pressione necessariamente",
+          "Nodo elettrico",
+          "Punto di annullamento della densità"
+        ],
+        "value": "Punto di ristagno"
+      },
+      "hints": [
+        "La parola cercata descrive un arresto locale del moto rispetto all’ostacolo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Ebollizione è un cambiamento di fase e non segue dalla velocità nulla. Il punto non è di pressione minima nel modello considerato. Nodo elettrico e densità zero non definiscono il comportamento cinematico richiesto.",
+        "target": "C2-L006"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Continuità prima del bilancio energetico",
+        "Differenza di pressione e quota",
+        "Ristagno e limiti dissipativi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q058",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia lungo una corrente",
+      "order": 58,
+      "title": "Il recupero reale dopo un allargamento",
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L006"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il modello ideale attribuisce tutto il calo del contributo cinetico a un recupero di pressione se la quota non cambia. Separazione, mescolamento e viscosità introducono invece una perdita meccanica positiva. La pressione può ancora recuperare, ma meno della stima ideale a parità dei dati del confronto. Non si deduce un valore clinico dal solo schema."
+        },
+        {
+          "type": "formula",
+          "text": "p_2-p_1=\\frac{\\rho}{2}(v_1^2-v_2^2)-\\Delta p_{\\rm perdita}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_{\\rm perdita}>0"
+        },
+        {
+          "type": "text",
+          "text": "La dissipazione non viola la conservazione dell’energia totale. Non richiede densità nulla né gravità invertita. Pressione costante non segue dal solo rallentamento: occorre il bilancio con le perdite."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "In un allargamento brusco reale di un condotto si osservano separazione del getto e zone di ricircolo. Perché il recupero di pressione statica può essere inferiore a quello del modello ideale senza perdite?",
+      "family": "limite-nel-modello-di-aneurisma",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Una parte dell’energia meccanica si dissipa nei moti reali",
+          "L’energia totale non si conserva più",
+          "La densità deve necessariamente diventare zero",
+          "Ogni rallentamento impone pressione statica costante",
+          "La gravità cambia verso nel raccordo"
+        ],
+        "value": "Una parte dell’energia meccanica si dissipa nei moti reali"
+      },
+      "hints": [
+        "Distingui conservazione dell’energia totale e conservazione della sola energia meccanica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La dissipazione non viola la conservazione dell’energia totale. Non richiede densità nulla né gravità invertita. Pressione costante non segue dal solo rallentamento: occorre il bilancio con le perdite.",
+        "target": "C2-L006"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Continuità prima del bilancio energetico",
+        "Differenza di pressione e quota",
+        "Ristagno e limiti dissipativi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q059",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia lungo una corrente",
+      "order": 59,
+      "title": "Quadruplicare il battente",
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L006"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge di Torricelli è v²=2gh, ottenuta fra superficie e foro con la stessa pressione atmosferica. A battente quadruplicato il quadrato della rapidità quadruplica, quindi la rapidità raddoppia. Partendo da 2 m/s si ottengono 4 m/s. Non si suppone che il livello resti fisso durante lo svuotamento: si confrontano due stati istantanei."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/9f0ecd68785ac773be0a2e132aada50da322a8397d20021b8ac1e125c86cfb46",
+          "text": "I due serbatoi finali sono stati istantanei distinti: battenti h e 4h, rapidità 2 m/s e 4 m/s. I battenti condividono una scala geometrica; le frecce della velocità ne condividono un’altra."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{v_B^2}{v_A^2}=\\frac{h_B}{h_A}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{h_B}{h_A}=4"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{v_B}{v_A}=2"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "8 m/s applicherebbe una dipendenza lineare dal battente. 2 m/s ignorerebbe il nuovo stato; 1 m/s invertirebbe il fattore. I valori negativi non sono moduli di velocità."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un piccolo foro in un grande serbatoio aperto scarica idealmente in atmosfera a 2 m/s. Si confronta un secondo stato istantaneo quasi stazionario in cui il battente sopra il foro è quattro volte il precedente. Con la stessa g, velocità della superficie trascurabile e perdite assenti, quale rapidità ideale si ottiene in m/s?",
+      "family": "cambiare-laltezza-del-serbatoio",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "hints": [
+        "Cerca il fattore della rapidità prendendo la radice positiva del fattore del battente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "8 m/s applicherebbe una dipendenza lineare dal battente. 2 m/s ignorerebbe il nuovo stato; 1 m/s invertirebbe il fattore. I valori negativi non sono moduli di velocità.",
+        "target": "C2-L006"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Continuità prima del bilancio energetico",
+        "Differenza di pressione e quota",
+        "Ristagno e limiti dissipativi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q060",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia lungo una corrente",
+      "order": 60,
+      "title": "Sottrarre due energie cinetiche",
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L006"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Bernoulli contiene il quadrato di ciascuna velocità. Portando i termini di pressione da un lato e quelli cinetici dall’altro si ottiene la differenza v₂²−v₁². Il quadrato di una differenza conterrebbe anche un termine misto e non cambia segno scambiando le sezioni: non può rappresentare questa differenza di pressione."
+        },
+        {
+          "type": "formula",
+          "text": "p_1+\\frac12\\rho v_1^2=p_2+\\frac12\\rho v_2^2"
+        },
+        {
+          "type": "formula",
+          "text": " p_1-p_2=\\frac{\\rho}{2}(v_2^2-v_1^2)"
+        },
+        {
+          "type": "text",
+          "text": "Invertire l’ordine dei quadrati cambia il segno di p₁−p₂. Il quadrato della somma non si annulla per velocità uguali. La sola differenza delle velocità ha dimensione diversa da una pressione dopo la moltiplicazione per ρ."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Per due sezioni alla stessa quota di una corrente ideale stazionaria incomprimibile si vuole esprimere p₁−p₂. Quale relazione, con perdite assenti e velocità positive lungo la stessa corrente, corregge la formula errata ρ(v₂−v₁)²/2?",
+      "family": "differenza-di-quadrati",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "p₁−p₂=ρ(v₂²−v₁²)/2",
+          "p₁−p₂=ρ(v₂−v₁)²/2",
+          "p₁−p₂=ρ(v₁²−v₂²)/2",
+          "p₁−p₂=ρ(v₂+v₁)²/2",
+          "p₁−p₂=ρ(v₂−v₁)/2"
+        ],
+        "value": "p₁−p₂=ρ(v₂²−v₁²)/2"
+      },
+      "hints": [
+        "Parti dalle due energie cinetiche per unità di volume, non dal quadrato della variazione di velocità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Invertire l’ordine dei quadrati cambia il segno di p₁−p₂. Il quadrato della somma non si annulla per velocità uguali. La sola differenza delle velocità ha dimensione diversa da una pressione dopo la moltiplicazione per ρ.",
+        "target": "C2-L006"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Continuità prima del bilancio energetico",
+        "Differenza di pressione e quota",
+        "Ristagno e limiti dissipativi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "9f0ecd68785ac773be0a2e132aada50da322a8397d20021b8ac1e125c86cfb46",
+      "name": "cric-c2-l006-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTkwMCIgdmlld0JveD0iMCAwIDY0MCAxOTAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIj48dGl0bGUgaWQ9InRpdGxlIj5CaWxhbmNpIGlkZWFsaSBkaSBjb3JyZW50ZTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPkRpbGF0YXppb25lIG9yaXp6b250YWxlIGNvbiByZWN1cGVybyBkaSBwcmVzc2lvbmUsIGF1bWVudG8gZGkgcXVvdGEgYSB2ZWxvY2l0w6AgY29zdGFudGUgZSBjb25mcm9udG8gaXN0YW50YW5lbyBkaSBkdWUgYmF0dGVudGkuPC9kZXNjPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI2NDAiIGhlaWdodD0iMTkwMCIgZmlsbD0id2hpdGUiLz48dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+UXVvdGEsIHZlbG9jaXTDoCBlIHByZXNzaW9uZTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTEwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjEgwrcgUmVjdXBlcm8gaWRlYWxlIGluIHVuYSBkaWxhdGF6aW9uZTwvdGV4dD48bGluZSB4MT0iODAiIHkxPSIyNjAiIHgyPSIyODAiIHkyPSIyNjAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjgwIiB5MT0iMzEwIiB4Mj0iMjgwIiB5Mj0iMzEwIiBzdHJva2U9IiM2MDczODMiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIyODAiIHkxPSIyNjAiIHgyPSIzODAiIHkyPSIyMzUiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjI4MCIgeTE9IjMxMCIgeDI9IjM4MCIgeTI9IjMzNSIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMzgwIiB5MT0iMjM1IiB4Mj0iNTcwIiB5Mj0iMjM1IiBzdHJva2U9IiM2MDczODMiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIzODAiIHkxPSIzMzUiIHgyPSI1NzAiIHkyPSIzMzUiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjEzMCIgeTE9IjI4NSIgeDI9IjIzMCIgeTI9IjI4NSIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjIzMCwyODUgMjIyLjAsMjg5LjAgMjIyLjAsMjgxLjAiIGZpbGw9IiMzMDZmOGMiLz48bGluZSB4MT0iNDQwIiB5MT0iMjg1IiB4Mj0iNDkwIiB5Mj0iMjg1IiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5Z29uIHBvaW50cz0iNDkwLDI4NSA0ODIuMCwyODkuMCA0ODIuMCwyODEuMCIgZmlsbD0iIzMwNmY4YyIvPjx0ZXh0IHg9IjE2MCIgeT0iMjIwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5B4oKBPC90ZXh0Pjx0ZXh0IHg9IjQ3MCIgeT0iMTkwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5B4oKCID0gMiBB4oKBPC90ZXh0Pjx0ZXh0IHg9IjExMCIgeT0iMzc1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnbigoEgPSAyIG0vczwvdGV4dD48dGV4dCB4PSI0MDAiIHk9IjM3NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij524oKCID0gMSBtL3M8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjQ0MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5w4oKCIOKIkiBw4oKBID0gMTUwMCBQYTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNDkwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkxhIHF1b3RhIMOoIGxhIHN0ZXNzYTsgbGEgcG9ydGF0YSDDqCBjb211bmUuPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI1OTUiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MiDCtyBTYWxpcmUgc2VuemEgY2FtYmlhcmUgdmVsb2NpdMOgPC90ZXh0PjxsaW5lIHgxPSIxMjAiIHkxPSI5NzAiIHgyPSIxMjAiIHkyPSI2ODAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjEwNSIgeTE9Ijk1MCIgeDI9IjEzNSIgeTI9Ijk1MCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMTA1IiB5MT0iNzEwIiB4Mj0iMTM1IiB5Mj0iNzEwIiBzdHJva2U9IiM2MDczODMiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIxMzUiIHkxPSI5NTAiIHgyPSIyNjAiIHkyPSI5NTAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjEzNSIgeTE9IjcxMCIgeDI9IjI2MCIgeTI9IjcxMCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI3NSIgeT0iOTkwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnrigoEgPSAwPC90ZXh0Pjx0ZXh0IHg9IjE1NSIgeT0iNjkwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnrigoIgPSAzLzQgbTwvdGV4dD48dGV4dCB4PSIzMDAiIHk9Ijc2NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij7PgSA9IDgwMCBrZy9twrM8L3RleHQ+PHRleHQgeD0iMzAwIiB5PSI4MjAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+ZyA9IDEwIG0vc8KyPC90ZXh0Pjx0ZXh0IHg9IjMwMCIgeT0iODgwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnDigoEg4oiSIHDigoIgPSA2MDAwIFBhPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMDUwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPklsIGNvbnRyaWJ1dG8gZGkgcXVvdGEgY3Jlc2NlIGRpIDYwMDAgUGEuPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMTUwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjMgwrcgVG9ycmljZWxsaTogaCBlIDRoPC90ZXh0PjxyZWN0IHg9IjgwIiB5PSIxMzMwIiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjZDllY2YxIi8+PGxpbmUgeDE9IjgwIiB5MT0iMTE2MCIgeDI9IjgwIiB5Mj0iMTM3MCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iODAiIHkxPSIxMzcwIiB4Mj0iMjMwIiB5Mj0iMTM3MCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMjMwIiB5MT0iMTE2MCIgeDI9IjIzMCIgeTI9IjEzNjMiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjIzMCIgeTE9IjEzNzAiIHgyPSIzMzAiIHkyPSIxMzcwIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5Z29uIHBvaW50cz0iMzMwLDEzNzAgMzIyLjAsMTM3NC4wIDMyMi4wLDEzNjYuMCIgZmlsbD0iIzMwNmY4YyIvPjx0ZXh0IHg9IjMwMCIgeT0iMTI0MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5BOiBiYXR0ZW50ZSBoPC90ZXh0Pjx0ZXh0IHg9IjMwMCIgeT0iMTMwMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij52X0EgPSAyIG0vczwvdGV4dD48cmVjdCB4PSI4MCIgeT0iMTUyMCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNjAiIGZpbGw9IiNkOWVjZjEiLz48bGluZSB4MT0iODAiIHkxPSIxNDcwIiB4Mj0iODAiIHkyPSIxNjgwIiBzdHJva2U9IiM2MDczODMiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSI4MCIgeTE9IjE2ODAiIHgyPSIyMzAiIHkyPSIxNjgwIiBzdHJva2U9IiM2MDczODMiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIyMzAiIHkxPSIxNDcwIiB4Mj0iMjMwIiB5Mj0iMTY3MyIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMjMwIiB5MT0iMTY4MCIgeDI9IjQzMCIgeTI9IjE2ODAiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlnb24gcG9pbnRzPSI0MzAsMTY4MCA0MjIuMCwxNjg0LjAgNDIyLjAsMTY3Ni4wIiBmaWxsPSIjMzA2ZjhjIi8+PHRleHQgeD0iMzAwIiB5PSIxNTUwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkI6IGJhdHRlbnRlIDRoPC90ZXh0Pjx0ZXh0IHg9IjMwMCIgeT0iMTYxMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij52X0IgPSA0IG0vczwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTc3NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5CYXR0ZW50ZSDDlzQg4oaSIHJhcGlkaXTDoCDDlzIuPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxODI1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkR1ZSBzdGF0aSBkaXN0aW50aSwgc3Rlc3NhIGdyYXZpdMOgLjwvdGV4dD48L3N2Zz4K"
+    }
+  ]
+}
