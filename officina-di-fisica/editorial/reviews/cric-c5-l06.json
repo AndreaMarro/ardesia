@@ -1,0 +1,374 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "C5-Q051",
+      "sourceSha256": "3785a969fb579551bdbbba76e81bd879748e4e15d5a1140c8664eeea6d53aa0b",
+      "candidateSha256": "6b41e49a6ff29f215ee8c7497acde77a5b1171494962e2d323f11a847bec8bb9",
+      "reviewedSignature": "c9f1864798c6f535c2bb755c039f091d643513a7f74f403c0cff4a6ab2624f18",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Un impulso luminoso",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Fra camere separate da vuoto può viaggiare radiazione\nelettromagnetica. Un'onda sonora richiede un mezzo materiale: le oscillazioni di\npressione non attraversano da sole il vuoto. Anche il trasporto di calore per\nirraggiamento usa onde elettromagnetiche; convezione e conduzione richiedono la\nconnessione materiale esclusa dal testo. La scelta concreta andrà valutata\nsolo quando saranno visibili le alternative della candidata.",
+      "physicalAssumptions": "Vuoto senza connessione materiale; perturbazione elettromagnetica distinta dalle onde meccaniche.",
+      "distractors": "Le quattro alternative meccaniche richiedono esplicitamente materia assente nel tratto.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Fra camere separate da vuoto può viaggiare radiazione\nelettromagnetica. Un'onda sonora richiede un mezzo materiale: le oscillazioni di\npressione non attraversano da sole il vuoto. Anche il trasporto di calore per\nirraggiamento usa onde elettromagnetiche; convezione e conduzione richiedono la\nconnessione materiale esclusa dal testo. La scelta concreta andrà valutata\nsolo quando saranno visibili le alternative della candidata.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "e760c7039314ba8b9ad66c916c47305d0b6da41ab0aee5c276a9509512a4ef9f",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q052",
+      "sourceSha256": "8455e3b19261dc7350a660f5d15b62db7508046ec1ea7dc6f5b0ec96fad14b82",
+      "candidateSha256": "e9dc3d4854ece96d904a33f97ecae46ccdb68e57ded332b570bed547b521dfe5",
+      "reviewedSignature": "a030ffe72fe70e4141182c06451e8ea30f302ec7bfb6726628f494d191227629",
+      "assetChecksums": {
+        "cric-c5-l06-progressive.svg": "3b4be70555b60a04a94488e470d92d586a76616c31f00f401aaf84233b8ec3d7"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Nel vuoto c=fλ. L'inversa richiesta è λ=c/f:\n(3×10⁸)/(150×10⁶) m =300/150 m=2 m. La conversione MHz→Hz moltiplica per10⁶;\nnon si introduce un altro10⁶ dopo aver già usato la frequenza in hertz.\nLa verifica inversa è (150×10⁶ s⁻¹)(2 m)=3×10⁸ m/s.",
+      "physicalAssumptions": "Costante c numerica prescritta, frequenza positiva 150 MHz nel vuoto, lunghezza in metri.",
+      "distractors": "150 Hz darebbe 2000000 m; 0,5 m richiederebbe 600 MHz. f/c ha unità di inverso di lunghezza.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Nel vuoto c=fλ. L'inversa richiesta è λ=c/f:\n(3×10⁸)/(150×10⁶) m =300/150 m=2 m. La conversione MHz→Hz moltiplica per10⁶;\nnon si introduce un altro10⁶ dopo aver già usato la frequenza in hertz.\nLa verifica inversa è (150×10⁶ s⁻¹)(2 m)=3×10⁸ m/s.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in nuovo PNG nativo indipendente completo; proporzioni, segni, origini, assi e geometrie verificati per ogni pannello. Otto SVG originali letti integralmente in XML; nessuna validazione raster degli originali dichiarata. Il solo fix Q094 non cambia asset; nessuna UI prodotto o approvazione umana.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "e760c7039314ba8b9ad66c916c47305d0b6da41ab0aee5c276a9509512a4ef9f",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q053",
+      "sourceSha256": "76249330ee6d599db4665cc99f0a60999abed03decabb1f08fe3d66ec07f194a",
+      "candidateSha256": "8c3e457d8aa5daf97a2b28893d34a1c84ae340e8551cda457e9d181c8f050f76",
+      "reviewedSignature": "0391bf07f49fef22e488fedb59e28b156ba3856bbaf4264fbdba6e2c77885b83",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Inverte anch’esso il verso, mantenendo la relazione di fase",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: In un'onda piana nel vuoto E e B oscillano in fase, con moduli\nlegati da E=cB. Dopo mezzo periodo entrambi cambiano segno nello stesso punto;\nnon cambia soltanto il campo elettrico e non si inverte la direzione di\npropagazione. Il prodotto vettoriale E×B conserva infatti il verso quando\nentrambi i fattori cambiano segno. L'ipotesi di onda piana è necessaria: non è\nuna regola su qualunque campo vicino a una sorgente.",
+      "physicalAssumptions": "Onda piana sinusoidale progressiva, campi inizialmente non nulli e stesso punto dopo T/2.",
+      "distractors": "B invariato invertirebbe E×B; campi paralleli contraddicono la geometria assegnata. Non si ha una scomparsa definitiva.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: In un'onda piana nel vuoto E e B oscillano in fase, con moduli\nlegati da E=cB. Dopo mezzo periodo entrambi cambiano segno nello stesso punto;\nnon cambia soltanto il campo elettrico e non si inverte la direzione di\npropagazione. Il prodotto vettoriale E×B conserva infatti il verso quando\nentrambi i fattori cambiano segno. L'ipotesi di onda piana è necessaria: non è\nuna regola su qualunque campo vicino a una sorgente.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "e760c7039314ba8b9ad66c916c47305d0b6da41ab0aee5c276a9509512a4ef9f",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q054",
+      "sourceSha256": "15ab54753babb6f716a749a2c5306e360403f2d8bf57f1256d2e934999636e05",
+      "candidateSha256": "c3ea9192bf9858d90950597d3813ad16eb8590c2e0087a5ae7da445f69641b2f",
+      "reviewedSignature": "cb6f5e2934cff48ef530f59480b92ba5ac549bf107c1c95a7cec9abe6acf99f9",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Infrarosso",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Oltre il rosso verso λ maggiori si entra nell'infrarosso. Poiché\nf=c/λ, la frequenza diminuisce mentre la lunghezza d'onda aumenta. Ultravioletti\ne raggi X si trovano dalla parte opposta rispetto al visibile.",
+      "physicalAssumptions": "Banda immediatamente contigua al rosso verso lambda maggiore, non qualsiasi banda a frequenza minore.",
+      "distractors": "UV, X e gamma sono dal lato delle frequenze maggiori; il violetto appartiene ancora al visibile.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Oltre il rosso verso λ maggiori si entra nell'infrarosso. Poiché\nf=c/λ, la frequenza diminuisce mentre la lunghezza d'onda aumenta. Ultravioletti\ne raggi X si trovano dalla parte opposta rispetto al visibile.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "e760c7039314ba8b9ad66c916c47305d0b6da41ab0aee5c276a9509512a4ef9f",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q055",
+      "sourceSha256": "68e49d6f6c9eb1379adbd77848bbc2553ef6ae5ffc201d3379eb86b0a4f9f52c",
+      "candidateSha256": "eb1c1f2076c2959d0ae06d69fa594a3000d62cfcbe23ed5ddaa7277523b6a85d",
+      "reviewedSignature": "ab3a09f4b7281e10c639e3f7d5304a077ec3f425b9b51c2245d70b5c511ff49f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Microonde, visibile, raggi X",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: La sequenza convenzionale delle bande tipiche a frequenza crescente è radio, microonde,\ninfrarosso, visibile dal rosso al violetto, ultravioletto, X, gamma. Occorrerà\nconfrontare ogni terna proposta con questo ordine, senza ricavare una lettera\ndi risposta da una chiave precedente. Per f crescente λ decresce nel vuoto.\nLa distinzione X/γ può dipendere dall’origine e i relativi intervalli energetici\nsi sovrappongono: non trasformare la successione didattica delle bande in un\nordine universale fra qualunque fotone X e qualunque fotoneγ. [IARC,\nclassificazione X/γ](https://www.ncbi.nlm.nih.gov/books/NBK304365/?report=printable)\ne [NASA HEASARC, convenzioni delle bande](https://heasarc.gsfc.nasa.gov/docs/heasarc/headates/spectrum.html).",
+      "physicalAssumptions": "Frequenze caratteristiche microonde/visibile/X, nessun ordine universale X/gamma imposto.",
+      "distractors": "Ogni terna alternativa inverte almeno una delle due relazioni fra le bande caratteristiche scelte.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: La sequenza convenzionale delle bande tipiche a frequenza crescente è radio, microonde,\ninfrarosso, visibile dal rosso al violetto, ultravioletto, X, gamma. Occorrerà\nconfrontare ogni terna proposta con questo ordine, senza ricavare una lettera\ndi risposta da una chiave precedente. Per f crescente λ decresce nel vuoto.\nLa distinzione X/γ può dipendere dall’origine e i relativi intervalli energetici\nsi sovrappongono: non trasformare la successione didattica delle bande in un\nordine universale fra qualunque fotone X e qualunque fotoneγ. [IARC,\nclassificazione X/γ](https://www.ncbi.nlm.nih.gov/books/NBK304365/?report=printable)\ne [NASA HEASARC, convenzioni delle bande](https://heasarc.gsfc.nasa.gov/docs/heasarc/headates/spectrum.html).",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "e760c7039314ba8b9ad66c916c47305d0b6da41ab0aee5c276a9509512a4ef9f",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q056",
+      "sourceSha256": "14f99bb19a038313d14215fd8ebfdeb2791adc55eacfca551b23d3c30bfe2cd9",
+      "candidateSha256": "d918a40070488e8a67cc52112ea0f5b4093e870a789798b424ecef733f42cf41",
+      "reviewedSignature": "3a234f70cc2accb574801da370eaf2b7a6202f4940c48a5362fa14ab5438b4a3",
+      "assetChecksums": {
+        "cric-c5-l06-progressive.svg": "3b4be70555b60a04a94488e470d92d586a76616c31f00f401aaf84233b8ec3d7"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "9",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: La media dell'intensità di un'onda piana è proporzionale a E₀²:\nI=kE₀², con k fissato dal mezzo. A E₀ iniziale positivo e non nullo,\nI₂/I₁=k(3E₀)²/(kE₀²)=9. Esplicitare E₀>0 se la candidata richiede il rapporto:\ncon ampiezza iniziale zero sarebbe 0/0. La triplicazione del campo non implica\nla sola triplicazione dell'energia trasportata.",
+      "physicalAssumptions": "E0>0, condizioni di propagazione e frequenza fisse, intensità media proporzionale a E0².",
+      "distractors": "Tre usa una legge lineare; un nono inverte il rapporto; 81 richiederebbe un campo nove volte maggiore.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: La media dell'intensità di un'onda piana è proporzionale a E₀²:\nI=kE₀², con k fissato dal mezzo. A E₀ iniziale positivo e non nullo,\nI₂/I₁=k(3E₀)²/(kE₀²)=9. Esplicitare E₀>0 se la candidata richiede il rapporto:\ncon ampiezza iniziale zero sarebbe 0/0. La triplicazione del campo non implica\nla sola triplicazione dell'energia trasportata.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in nuovo PNG nativo indipendente completo; proporzioni, segni, origini, assi e geometrie verificati per ogni pannello. Otto SVG originali letti integralmente in XML; nessuna validazione raster degli originali dichiarata. Il solo fix Q094 non cambia asset; nessuna UI prodotto o approvazione umana.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "e760c7039314ba8b9ad66c916c47305d0b6da41ab0aee5c276a9509512a4ef9f",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q057",
+      "sourceSha256": "afeb24c960a14b815bb26dc6e571de7aa1ac5bf2919ce657fe7e3833a5f828a1",
+      "candidateSha256": "37f525c79dc1e279e5210a40eb657e80bd13087ee806ce6584dc9333b966ee62",
+      "reviewedSignature": "06ab764691d6b9654be4b86e2b81083416f067a221f2401a0732f73e7db2b6c4",
+      "assetChecksums": {
+        "cric-c5-l06-progressive.svg": "3b4be70555b60a04a94488e470d92d586a76616c31f00f401aaf84233b8ec3d7"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "9/5",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: I12 ns misurano andata e ritorno: 2d=cΔt, quindi d=cΔt/2.\n(3×10⁸)(12×10⁻⁹)/2 m=36×10⁻¹/2 m=18/10 m=9/5 m=1,8 m.\nIl risultato3,6 m è l'intero cammino del segnale, non la distanza dello specchio.\nInversamente Δt=2d/c torna12 ns.",
+      "physicalAssumptions": "Specchio e rivelatore fermi, stesso percorso di andata e ritorno nel vuoto; tempo totale 12 ns.",
+      "distractors": "3,6 m è il cammino totale; 0,9 m divide quel cammino per quattro; 18 m darebbe 120 ns.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: I12 ns misurano andata e ritorno: 2d=cΔt, quindi d=cΔt/2.\n(3×10⁸)(12×10⁻⁹)/2 m=36×10⁻¹/2 m=18/10 m=9/5 m=1,8 m.\nIl risultato3,6 m è l'intero cammino del segnale, non la distanza dello specchio.\nInversamente Δt=2d/c torna12 ns.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in nuovo PNG nativo indipendente completo; proporzioni, segni, origini, assi e geometrie verificati per ogni pannello. Otto SVG originali letti integralmente in XML; nessuna validazione raster degli originali dichiarata. Il solo fix Q094 non cambia asset; nessuna UI prodotto o approvazione umana.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "e760c7039314ba8b9ad66c916c47305d0b6da41ab0aee5c276a9509512a4ef9f",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q058",
+      "sourceSha256": "5a8c580312ff49a3f86ca4ee6bf7aa2e8debb7a582559eed31e421f7bf785568",
+      "candidateSha256": "caa41ecfe72ee73587efa80ba4296a968cc8d4f095d61c16fc8a5472ea039ea9",
+      "reviewedSignature": "2a44d6261631794c546decbaa4786b9b742d45958e4a0fa459e79ece121713d2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Perpendicolari",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: I due campi sono perpendicolari, o ortogonali. Sono inoltre\nentrambi trasversali alla propagazione, ma il testo chiede la relazione fra i\ndue campi: usare un aggettivo che esprima proprio quella relazione. La\nvalutazione della risposta breve deve considerare i sinonimi fisicamente\nequivalenti ammessi, non una differenza di maiuscole o accenti.",
+      "physicalAssumptions": "Onda piana progressiva nel vuoto, E e B entrambi non nulli; relazione locale fra direzioni.",
+      "distractors": "Parallelismo e allineamento alla propagazione contraddicono i due campi trasversali non nulli.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: I due campi sono perpendicolari, o ortogonali. Sono inoltre\nentrambi trasversali alla propagazione, ma il testo chiede la relazione fra i\ndue campi: usare un aggettivo che esprima proprio quella relazione. La\nvalutazione della risposta breve deve considerare i sinonimi fisicamente\nequivalenti ammessi, non una differenza di maiuscole o accenti.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "e760c7039314ba8b9ad66c916c47305d0b6da41ab0aee5c276a9509512a4ef9f",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q059",
+      "sourceSha256": "582e85e095f5af697cd12823a3b1296455827e1f1f2a28b0ac60f2081ec53d60",
+      "candidateSha256": "274c8497a4910506c0641371eea8956ce433314f46c196cef8449380007ec3d9",
+      "reviewedSignature": "fd287393800ef2e3e0f0d7dc1cfd71b3f88ca35b1873e263e1489c6ee879be29",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/2",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: La frequenza non cambia attraversando un'interfaccia statica.\nλ₀=c/f e λ=v/f danno n=c/v=λ₀/λ=660/440=3/2=1,5. Si cancellano i nanometri.\nLa luce nel mezzo ha velocità2c/3; usare440/660 calcolerebbe v/c anziché n.",
+      "physicalAssumptions": "Stessa frequenza attraverso interfaccia ferma; indice di fase da due lunghezze positive.",
+      "distractors": "2/3 è il reciproco; 2 implica 330 nm; 3 implica 220 nm. 4/9 è un quadrato inverso estraneo alla legge.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: La frequenza non cambia attraversando un'interfaccia statica.\nλ₀=c/f e λ=v/f danno n=c/v=λ₀/λ=660/440=3/2=1,5. Si cancellano i nanometri.\nLa luce nel mezzo ha velocità2c/3; usare440/660 calcolerebbe v/c anziché n.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "e760c7039314ba8b9ad66c916c47305d0b6da41ab0aee5c276a9509512a4ef9f",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q060",
+      "sourceSha256": "43f055db258e9dc574b76a6998f0aa200c9092e56f012b76a64a6351c717def7",
+      "candidateSha256": "27305a1393f12788fa73643517f90b8681b5a8554d554f63e2f87ea21d406724",
+      "reviewedSignature": "1c92542a4a115687ba0301a326c1d7d5dfbcf756802e35e2bf71258f9c17c812",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La lunghezza d’onda nel vuoto",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Frequenza fissata implica energia del fotone hf invariata e,\nnel vuoto, λ=c/f, periodo1/f e velocitàc invariati. Aumenta il flusso energetico\ne, a parità di geometria, il flusso di fotoni. La candidata a scelta singola\nnon deve offrire due di queste grandezze invarianti come alternative diverse;\nin alternativa deve chiedere esplicitamente quale proprietà del fotone si\nvuole confrontare. L'intensità non è energia di un singolo fotone.",
+      "physicalAssumptions": "I iniziale positiva, area normale positiva e invariata; unica alternativa invariante tra le cinque.",
+      "distractors": "Le altre quattro grandezze aumentano con I a frequenza e area fissate. Frequenza ed energia del fotone non sono offerte come ulteriori risposte vere.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Frequenza fissata implica energia del fotone hf invariata e,\nnel vuoto, λ=c/f, periodo1/f e velocitàc invariati. Aumenta il flusso energetico\ne, a parità di geometria, il flusso di fotoni. La candidata a scelta singola\nnon deve offrire due di queste grandezze invarianti come alternative diverse;\nin alternativa deve chiedere esplicitamente quale proprietà del fotone si\nvuole confrontare. L'intensità non è energia di un singolo fotone.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "e760c7039314ba8b9ad66c916c47305d0b6da41ab0aee5c276a9509512a4ef9f",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "a479ea8eeb3dd31a03c497a53f6dde6607ac9a016b0e3aea9d17071461cc14ef",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "7f3f2ae4fb8dbe41e9ee1e780a3289055c16777c",
+  "packageSha256": "89859996c9da1483b7e493a04a95f24d65a53c9b7bf24de486f54cee12f4dd43",
+  "bindingsSha256": "a7bd685091ccb18c4e92a363b2bc664dc41312cf082192e41dd09683dd465cac",
+  "sourceFirstPrimarySha256": "4271f78cf4be74ac64013158d017529b63d8953e38ab27e2f6deff7e0f80efa4",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C5.json",
+    "reference": "Root primary/model d664c30a source-only before B candidates. A reread all50 source prompts, derived independent finite/exact models and actually ran120Hyp in2f393a63 before first B candidate opening. Then all50 originals/candidates and lessonsL06–L10 read in full;8sourceSVG wholeXML plus5new independent full nativePNG read. Only Q094 isolated reciprocal-unit formula corrected by author6cd8bd28, reread with strictdiff; no candidate edited by reviewer. UI product and human NOT_RUN."
+  }
+}

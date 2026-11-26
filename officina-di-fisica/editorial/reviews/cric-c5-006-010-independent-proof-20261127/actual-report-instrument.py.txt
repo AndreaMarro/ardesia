@@ -1,0 +1,7 @@
+from pathlib import Path
+import sys,importlib,json
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');sys.path.insert(0,str(A));from tools.corpus_engineering.batches import assert_record_identity
+D=A/'editorial/reviews/cric-c5-006-010-independent-proof-20261127';F=D/'fixtures'
+for n in range(6,11):
+ batch=f'cric-c5-l{n:02}';m=importlib.import_module(f'tools.corpus_engineering.cric_c5_l{n:02}_verifier');p=json.loads((F/(batch+'.json')).read_text());b=json.loads((F/(batch+'-bindings.json')).read_text());fresh=m.report(p,b,F/'assets');print(batch,[(r['id'],r['errors'])for r in fresh['records']if not r['ok']],flush=True);assert all(r['ok']for r in fresh['records']);assert_record_identity(fresh['records'],m.EXPECTED_IDS,p,b);path=A/f'editorial/reviews/{batch}.json';path.write_text(json.dumps(fresh,ensure_ascii=False,indent=2)+'\n');saved=json.loads(path.read_text());assert fresh==saved;assert_record_identity(saved['records'],m.EXPECTED_IDS,p,b)
+print('ALL50_FRESH_SAVED_IDENTITY_ACTUAL_EXIT0')

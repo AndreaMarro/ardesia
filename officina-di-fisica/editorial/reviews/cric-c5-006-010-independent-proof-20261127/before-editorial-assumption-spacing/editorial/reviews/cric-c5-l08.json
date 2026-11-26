@@ -1,0 +1,376 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "C5-Q071",
+      "sourceSha256": "2315c798b073c9a205009b2d419b2da7adb9fd7a64e0b2b29593a014cc78b34a",
+      "candidateSha256": "ee7fe9f75b5442853b5fbba128aee730282de24b298df586a230f30aea0a1f78",
+      "reviewedSignature": "f9815cf832c08563b09744eb60fd60b5244b6e2bdc212c8fdcfb23459cf9d966",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Uguale numero di protoni e diverso numero di neutroni",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Isotopi dello stesso elemento hanno lo stesso numero protonicoZ\nma diverso numero neutronicoN, e quindi diverso A=Z+N. StessoA con Z diverso\nindica isobari; stessoN con Z diverso indica isotoni. Valutare le coppie della\ncandidata contro questa definizione, senza anticipare una lettera di opzione.",
+      "physicalAssumptions": "Stesso elemento implica Z uguale, isotopi differenti implicano N diverso.",
+      "distractors": "Z e N entrambi uguali descrivono lo stesso isotopo. Z diverso cambia elemento; cambiare soltanto gli elettroni produce ioni.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Isotopi dello stesso elemento hanno lo stesso numero protonicoZ\nma diverso numero neutronicoN, e quindi diverso A=Z+N. StessoA con Z diverso\nindica isobari; stessoN con Z diverso indica isotoni. Valutare le coppie della\ncandidata contro questa definizione, senza anticipare una lettera di opzione.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q072",
+      "sourceSha256": "5dce91d72e0d855ccb54b05f24b2f708a3b9410121d6e3d791c490d48074bb56",
+      "candidateSha256": "6fb5dfe12d67ead560153a83e7458be42e6d523b1399436e43f5419f0b259c6e",
+      "reviewedSignature": "bbf49a3a20caf358476a10655e1cc9d9ae95b0f6b4fcfa0741be99c9ed9c9401",
+      "assetChecksums": {
+        "cric-c5-l08-progressive.svg": "8a2e635aed48697d13f54cc9f2f4bcbf1494ce438d1d8f9f286038e16af8c5bf"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "124",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Un'α porta via2 protoni e2 neutroni: A'=210−4=206,\nZ'=84−2=82, N'=206−82=124. Il nucleo iniziale aveva126 neutroni; sottrarne2\ndà la stessa verifica indipendente. Conservare separatamente numero di massa\ne carica evita di sottrarre4 al numero dei soli neutroni.",
+      "physicalAssumptions": "Emissione alfa assegnata, A e Z interi con nucleoni sufficienti, neutroni finali A−Z.",
+      "distractors": "126 conta i neutroni iniziali; 122 ne sottrae quattro; 82 conta i protoni finali. Il controllo è 206=82+124.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Un'α porta via2 protoni e2 neutroni: A'=210−4=206,\nZ'=84−2=82, N'=206−82=124. Il nucleo iniziale aveva126 neutroni; sottrarne2\ndà la stessa verifica indipendente. Conservare separatamente numero di massa\ne carica evita di sottrarre4 al numero dei soli neutroni.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in nuovo PNG nativo indipendente completo; proporzioni, segni, origini, assi e geometrie verificati per ogni pannello. Otto SVG originali letti integralmente in XML; nessuna validazione raster degli originali dichiarata. Il solo fix Q094 non cambia asset; nessuna UI prodotto o approvazione umana.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q073",
+      "sourceSha256": "3b3321f674f3f382fb3a430711a12d6eefe44d5aeaaa29f05538b50e7c618d3e",
+      "candidateSha256": "4c17b076d308d2b9ab9f7999e7dcb1aab68bac11ba3a06794e4f153ff12b5202",
+      "reviewedSignature": "ed8a159769aeb0f5d7cfd0ede9243feca9135a2fedf0f10de383583928a3484e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Nel decadimento β⁺ un protone si trasforma in un neutrone con\nemissione di positrone e neutrino elettronico. Z passa da7 a6, N da6 a7 e\nA=13 rimane invariato. La carica totale si conserva: la carica positiva che\nlascia il nucleo appartiene al positrone. Il numero richiesto è6.",
+      "physicalAssumptions": "Decadimento beta positivo assegnato; bilancio composizione non pretesa universale di fattibilità energetica.",
+      "distractors": "Otto protoni corrisponde alla variazione beta meno; sette lascia Z invariato; tredici conta tutti i nucleoni.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Nel decadimento β⁺ un protone si trasforma in un neutrone con\nemissione di positrone e neutrino elettronico. Z passa da7 a6, N da6 a7 e\nA=13 rimane invariato. La carica totale si conserva: la carica positiva che\nlascia il nucleo appartiene al positrone. Il numero richiesto è6.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q074",
+      "sourceSha256": "5d5b27f75c30f4de57abf9afb68caedeafa6b24d9bf4466b8dffbf8e9bd3fbdb",
+      "candidateSha256": "8796da2ba8243d8c183088b475a61d521a6435026f5eb7e6332e1b7528cf8852",
+      "reviewedSignature": "0717f06e19761bc906751a266505a1c919f42adba89eb02e135f8107cbfd594b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Gamma",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: È una transizione gamma (γ): il nucleo perde energia di\n eccitazione emettendo un fotone, mentre A e Z restano invariati. Non è\nun'emissioneα o β, che cambierebbe la composizione del nucleo. Accettare il\nnome richiesto e l'eventuale simbolo secondo il contratto della risposta breve.",
+      "physicalAssumptions": "Nucleo eccitato emette fotone, A/Z invariati, stato energetico cambia.",
+      "distractors": "Alfa modifica A e Z; beta modifica Z. Un fotone gamma non impone una scissione in frammenti.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: È una transizione gamma (γ): il nucleo perde energia di\n eccitazione emettendo un fotone, mentre A e Z restano invariati. Non è\nun'emissioneα o β, che cambierebbe la composizione del nucleo. Accettare il\nnome richiesto e l'eventuale simbolo secondo il contratto della risposta breve.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q075",
+      "sourceSha256": "485cbd0f20e32d897241befd18a9cfd31530b27f5dd47fccef6429aa6f896019",
+      "candidateSha256": "e81b5d8673db8c3b180a141707b8cecdf37c1738479a1edc60fbe570fb1b4272",
+      "reviewedSignature": "81b65eba2a769e5d1d96f19bc99f4ce260e2ef30bc274adb86ad11b94303e07b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[time]": "1"
+      },
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: N=N₀e^(−λt) e N(T½)=N₀/2 danno λT½=ln2,\nT½=(ln2)/λ. Con il valore assegnato ln2=693/1000 e λ=231/1000 h⁻¹,\nT½=693/231 h=3 h:231×3=693. Questo uso esatto dei dati assegnati non afferma\nche il numero matematico ln2 sia esattamente0,693.",
+      "physicalAssumptions": "λ positiva in h−1 e approssimazione ln 2 prescritta 0,693, non identità matematica universale.",
+      "distractors": "Il prodotto ln2·λ ha dimensione di tempo inverso. 1/λ è una scala diversa, da moltiplicare per ln2.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: N=N₀e^(−λt) e N(T½)=N₀/2 danno λT½=ln2,\nT½=(ln2)/λ. Con il valore assegnato ln2=693/1000 e λ=231/1000 h⁻¹,\nT½=693/231 h=3 h:231×3=693. Questo uso esatto dei dati assegnati non afferma\nche il numero matematico ln2 sia esattamente0,693.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q076",
+      "sourceSha256": "932609a6dabcfcaa6a085d76dc1616511eb0354d76bb5479e4faced8a13e032d",
+      "candidateSha256": "f59978adf5cc60565401695d7ba81ed7aedce5dc5d4a34c5f7796e0e78d3a971",
+      "reviewedSignature": "1923200a9aa5620d6d4fb2bd2ce7d02c1ae5722acecf610695affa9f40c42cc1",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: L'attività istantanea è A=λN=(2×10⁻⁵ s⁻¹)(5×10⁷)\n=10×10² s⁻¹=10³ Bq=1 kBq. L'attività è un tasso medio statistico, non una\npromessa che ogni secondo contenga esattamente quel numero di eventi.",
+      "physicalAssumptions": "Una sola specie, attività media istantanea, λN non conteggio deterministico.",
+      "distractors": "1000 kBq cambia soltanto il nome dell’unità. N non è un tasso; N/λ ha dimensione di tempo.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: L'attività istantanea è A=λN=(2×10⁻⁵ s⁻¹)(5×10⁷)\n=10×10² s⁻¹=10³ Bq=1 kBq. L'attività è un tasso medio statistico, non una\npromessa che ogni secondo contenga esattamente quel numero di eventi.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q077",
+      "sourceSha256": "dd53b88d2b888d8974b1dffd511d248c687595b2efd9f70f9770f2d21082e3df",
+      "candidateSha256": "41afc116940627dc5dd29476f3682c80c7fbe3a2651f0a618d6204a150af18f0",
+      "reviewedSignature": "24419905c69773817b31269bc786dbab4a9bc3ee7300262566b2b81dd6dc0802",
+      "assetChecksums": {
+        "cric-c5-l08-progressive.svg": "8a2e635aed48697d13f54cc9f2f4bcbf1494ce438d1d8f9f286038e16af8c5bf"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "375/4",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Dopo quattro emivite resta (1/2)⁴=1/16 della popolazione\niniziale. È decaduta la frazione15/16, ossia1500/16%=375/4%=93,75%.\nDistinguere sempre ciò che resta da ciò che è già decaduto:6,25% risponde alla\nprima domanda e non a quella posta.",
+      "physicalAssumptions": "Specie isolata senza produzione, quattro emivite e frazione attesa decaduta, non residua.",
+      "distractors": "6,25% è la frazione residua; 75% è il complemento dopo due emivite; 100% non è il valore atteso a tempo finito.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Dopo quattro emivite resta (1/2)⁴=1/16 della popolazione\niniziale. È decaduta la frazione15/16, ossia1500/16%=375/4%=93,75%.\nDistinguere sempre ciò che resta da ciò che è già decaduto:6,25% risponde alla\nprima domanda e non a quella posta.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in nuovo PNG nativo indipendente completo; proporzioni, segni, origini, assi e geometrie verificati per ogni pannello. Otto SVG originali letti integralmente in XML; nessuna validazione raster degli originali dichiarata. Il solo fix Q094 non cambia asset; nessuna UI prodotto o approvazione umana.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q078",
+      "sourceSha256": "bf36ad4932f7fd747226fcf0c932eb8ecb1b98fb98b14614edd6a5bbcf6d8209",
+      "candidateSha256": "5b705aa405f00f36210ebab30da86696c0c142c8fd1c2ca1dee0587e5b48cf25",
+      "reviewedSignature": "0271f9449d5d78763c2a5ebd7f9ff00c1d91a1ff89e144b5e7ee929fc561dbe1",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "L’esito è compatibile con una probabilità di sopravvivenza pari a un mezzo",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Un singolo nucleo può sopravvivere dopo un'emivita: in un\nmodello a λ costante la probabilità di sopravvivenza è1/2. L'emivita descrive\nla statistica di una popolazione, non una scadenza individuale. Condizionando\nalla sopravvivenza, la probabilità di restare per un'altra emivita rimane1/2;\nnon diventa certo il decadimento nella successiva.",
+      "physicalAssumptions": "Legge esponenziale statistica, singolo nucleo può sopravvivere dopoT1/2.",
+      "distractors": "Sopravvivere è possibile: non invalida la legge, non rende stabile il nucleo e non raddoppia l’emivita della specie.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Un singolo nucleo può sopravvivere dopo un'emivita: in un\nmodello a λ costante la probabilità di sopravvivenza è1/2. L'emivita descrive\nla statistica di una popolazione, non una scadenza individuale. Condizionando\nalla sopravvivenza, la probabilità di restare per un'altra emivita rimane1/2;\nnon diventa certo il decadimento nella successiva.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q079",
+      "sourceSha256": "84de01b15f68d5ee4df1dd8b6568374c14ac7fbed0e0df9e488b243523103daf",
+      "candidateSha256": "c14af3069886d48553c79c81f15191fdba8bd5d05f8fabfe0610b64b49fe3c5e",
+      "reviewedSignature": "6eda811916f5c522b8b50af67dfc271f2f71fd8a6197e7ef36c7fe0533d62094",
+      "assetChecksums": {
+        "cric-c5-l08-progressive.svg": "8a2e635aed48697d13f54cc9f2f4bcbf1494ce438d1d8f9f286038e16af8c5bf"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "720",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Il tasso netto osservato è R=εA. Con ε=25%=1/4,\nA=R/ε=180×4=720 Bq. Il tasso è già netto, quindi non si sottrae di nuovo un\nfondo non fornito. Il rivelatore perde tre eventi su quattro in media: l'attività\nvera deve superare il tasso contato.",
+      "physicalAssumptions": "Un segnale per decadimento, efficienza 25%, tasso già netto dopo fondo.",
+      "distractors": "45 Bq predirebbe 11,25 s⁻¹; 180 Bq richiederebbe efficienza uno. Il fondo è già sottratto.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Il tasso netto osservato è R=εA. Con ε=25%=1/4,\nA=R/ε=180×4=720 Bq. Il tasso è già netto, quindi non si sottrae di nuovo un\nfondo non fornito. Il rivelatore perde tre eventi su quattro in media: l'attività\nvera deve superare il tasso contato.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in nuovo PNG nativo indipendente completo; proporzioni, segni, origini, assi e geometrie verificati per ogni pannello. Otto SVG originali letti integralmente in XML; nessuna validazione raster degli originali dichiarata. Il solo fix Q094 non cambia asset; nessuna UI prodotto o approvazione umana.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q080",
+      "sourceSha256": "51a2f13b8edc007b17dd7286964aba7813bff1095c47776a64e8cc1526678137",
+      "candidateSha256": "44be5ba7649e8723147b5548e0e4324557aff99b0b51b3116d92426ae8114c8b",
+      "reviewedSignature": "2fc03d123f398f03f353ad98a746403ccd457fb529344fa0a5d42ef57c2f007c",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Il primo contiene metà dei nuclei del secondo",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: A₁=A₂ significa λ₁N₁=λ₂N₂. Se λ₁=2λ₂ e λ₂>0,\n2N₁=N₂, dunque N₁=N₂/2. La maggiore probabilità di decadimento di ciascun\nnucleo è compensata da un numero minore di nuclei. Per un confronto stretto\nfra campioni attivi occorrono attività positiva e costanti positive.",
+      "physicalAssumptions": "Attività e costanti positive; conteggi interi positivi compatibili con rapporto 1/2.",
+      "distractors": "Numeri uguali darebbero attività doppia nel primo; il doppio dei nuclei darebbe attività quadrupla. Zero contraddice l’attività positiva.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: A₁=A₂ significa λ₁N₁=λ₂N₂. Se λ₁=2λ₂ e λ₂>0,\n2N₁=N₂, dunque N₁=N₂/2. La maggiore probabilità di decadimento di ciascun\nnucleo è compensata da un numero minore di nuclei. Per un confronto stretto\nfra campioni attivi occorrono attività positiva e costanti positive.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "f103f42e8ae108e08000dddc04e62025c5908ff5560d40f35f0b79e40840689d",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "7f3f2ae4fb8dbe41e9ee1e780a3289055c16777c",
+  "packageSha256": "0d0ecbb33983836b3976a23d36540062c1824531c0249033f08c2d3f7859ba0c",
+  "bindingsSha256": "5d7b598cc5ad53a8361fd62eceb06735d3b873d32d42eec28d52556c4a1e4b9e",
+  "sourceFirstPrimarySha256": "4271f78cf4be74ac64013158d017529b63d8953e38ab27e2f6deff7e0f80efa4",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C5.json",
+    "reference": "Root primary/model d664c30a source-only before B candidates. A reread all50 source prompts, derived independent finite/exact models and actually ran120Hyp in2f393a63 before first B candidate opening. Then all50 originals/candidates and lessonsL06–L10 read in full;8sourceSVG wholeXML plus5new independent full nativePNG read. Only Q094 isolated reciprocal-unit formula corrected by author6cd8bd28, reread with strictdiff; no candidate edited by reviewer. UI product and human NOT_RUN."
+  }
+}

@@ -1,0 +1,13 @@
+SHARED_LOCK_ACQUIRED; free bytes 2415525888; one child
+Traceback (most recent call last):
+  File "/private/tmp/run_c5_peer_reports_a.py", line 6, in <module>
+    batch=f'cric-c5-l{n:02}';m=importlib.import_module(f'tools.corpus_engineering.cric_c5_l{n:02}_verifier');p=json.loads((F/(batch+'.json')).read_text());b=json.loads((F/(batch+'-bindings.json')).read_text());fresh=m.report(p,b,F/'assets');print(batch,[(r['id'],r['errors'])for r in fresh['records']if not r['ok']],flush=True);assert all(r['ok']for r in fresh['records']);assert_record_identity(fresh['records'],m.EXPECTED_IDS,p,b);path=A/f'editorial/reviews/{batch}.json';path.write_text(json.dumps(fresh,ensure_ascii=False,indent=2)+'\n');saved=json.loads(path.read_text());assert fresh==saved;assert_record_identity(saved['records'],m.EXPECTED_IDS,p,b)
+                               ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'tools.corpus_engineering.cric_c5_l06_verifier'
+CHILD_EXIT 1; free bytes 2415501312

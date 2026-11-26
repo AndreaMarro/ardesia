@@ -1,0 +1,378 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "C5-Q061",
+      "sourceSha256": "70d96e82fffd5c3cc76178e8387bd2bfcf44b39eba31554093d419be18161340",
+      "candidateSha256": "cf17b08a7e796b7d9daaa906c0704ca44882a1f9f73e5c3a779b95993cab0fb3",
+      "reviewedSignature": "3ab0d7f7d665e4e2b735f7d55c9b90ad4a1db6144b888a577ee6e712f0a745c2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Si dimezza",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: P=Ṅhf. A potenze uguali, raddoppiare f raddoppia l'energia di ogni\nfotone, quindi dimezza Ṅ: Ṅ₂/Ṅ₁=f₁/f₂=1/2. Non si conserva contemporaneamente\nil numero di fotoni al secondo e la potenza. Questa è una proporzione, senza\nnecessità di sostituire h.",
+      "physicalAssumptions": "P e f positive, monocromatica, confronto di tassi medi non conteggio per ogni secondo.",
+      "distractors": "Un tasso doppio con energia doppia implica potenza quadrupla; un tasso invariato implica potenza doppia.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: P=Ṅhf. A potenze uguali, raddoppiare f raddoppia l'energia di ogni\nfotone, quindi dimezza Ṅ: Ṅ₂/Ṅ₁=f₁/f₂=1/2. Non si conserva contemporaneamente\nil numero di fotoni al secondo e la potenza. Questa è una proporzione, senza\nnecessità di sostituire h.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q062",
+      "sourceSha256": "215a8bb8da309c9a536c23c6cd0903033ec1621835be3e8b61153e02972c6f22",
+      "candidateSha256": "9481259d4176413f9a0962fce507be8911b51329ba079c3145ef2527e204fbca",
+      "reviewedSignature": "9565384368320448a9b09e058b3eb687fda3b2c43700ade20e94abae3a820288",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "lambda<155 nm; unique choice evaluated from all exact alternatives",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Nel modello fornito E[eV]=1240/λ[nm]. La frontiera energetica8 eV\ncorrisponde a λ*=1240/8=155 nm. Superare strettamente la soglia richiede λ<155 nm;\nraggiungerla richiede λ≤155 nm nel modello ideale. Prima di scegliere una\nradiazione occorrono le alternative:155 nm è la frontiera, non automaticamente\nla risposta del quesito. Evitare l'ambiguità fra superamento e uguaglianza;\nnon confondere l'energia di un fotone con la potenza del fascio.",
+      "physicalAssumptions": "Modello 1240eVnm assegnato, singolo fotone, confronto STRETTAMENTE maggiore di 8eV.",
+      "distractors": "130 nm è l’unica lunghezza minore di 155 nm. 155 nm dà uguaglianza, esclusa dal confronto stretto; 200 nm dà 6,2 eV.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Nel modello fornito E[eV]=1240/λ[nm]. La frontiera energetica8 eV\ncorrisponde a λ*=1240/8=155 nm. Superare strettamente la soglia richiede λ<155 nm;\nraggiungerla richiede λ≤155 nm nel modello ideale. Prima di scegliere una\nradiazione occorrono le alternative:155 nm è la frontiera, non automaticamente\nla risposta del quesito. Evitare l'ambiguità fra superamento e uguaglianza;\nnon confondere l'energia di un fotone con la potenza del fascio.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q063",
+      "sourceSha256": "cb77d9aa92daece8406c4c7565d35aba71bbc545a62ebb1a2d45ee1d081d257e",
+      "candidateSha256": "f2a91e71ee5d7637463249067b021f92cf94f1eb58f6d65836897aaa712bc2a3",
+      "reviewedSignature": "93455483e437f9318eb654d6eed788bb0e643d97dab1c9990b1a7311b110824d",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Planck",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Il cognome è Planck, nella legge E=hf. h ha unità J·s così che\nmoltiplicarlo per una frequenza in s⁻¹ dia un'energia in joule. Non è la costante\ndi Boltzmann, che mette in relazione temperatura ed energia termica.",
+      "physicalAssumptions": "Relazione quantistica energia-frequenza; dimensione di h J s.",
+      "distractors": "Newton e Pascal danno nomi ad altre unità; Ohm e Faraday non danno il nome alla costante quantistica h.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Il cognome è Planck, nella legge E=hf. h ha unità J·s così che\nmoltiplicarlo per una frequenza in s⁻¹ dia un'energia in joule. Non è la costante\ndi Boltzmann, che mette in relazione temperatura ed energia termica.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q064",
+      "sourceSha256": "bb58510e9041fc518a0ec79d0d4ee6fad16951fcf030d917340f5bb53fb1da57",
+      "candidateSha256": "a4264dd4ef2480e84c4a5c7998588bccf91833553b732d89c20d36b6e0270e5b",
+      "reviewedSignature": "2c715eb9ba0ed0106f155af2be2278ec0911ecc653e982918480ab4a7b87233a",
+      "assetChecksums": {
+        "cric-c5-l07-progressive.svg": "6e0b5e5cf0f934b3bcfa92ebdbf31e8d6bb3bc7dd901e6798e0f3b59a0f3ae23"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "20",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Il secondo filtro trasmette un quarto di ciò che ha superato il\nprimo: T=(80/100)(25/100)=(4/5)(1/4)=1/5=20%. Non si sommano le percentuali,\nperché le due frazioni hanno basi di riferimento successive. Nel modello\nsenza riflessioni rimane assorbito complessivamente l'80% del fascio iniziale.",
+      "physicalAssumptions": "Trasmissioni passive definite sull’ingresso locale, successione, ritorni/riflessioni esclusi.",
+      "distractors": "105% somma percentuali riferite a ingressi diversi; 25% ignora il primo filtro. La seconda perdita usa il proprio ingresso locale.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Il secondo filtro trasmette un quarto di ciò che ha superato il\nprimo: T=(80/100)(25/100)=(4/5)(1/4)=1/5=20%. Non si sommano le percentuali,\nperché le due frazioni hanno basi di riferimento successive. Nel modello\nsenza riflessioni rimane assorbito complessivamente l'80% del fascio iniziale.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in nuovo PNG nativo indipendente completo; proporzioni, segni, origini, assi e geometrie verificati per ogni pannello. Otto SVG originali letti integralmente in XML; nessuna validazione raster degli originali dichiarata. Il solo fix Q094 non cambia asset; nessuna UI prodotto o approvazione umana.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q065",
+      "sourceSha256": "4ce066b9cec92bfde01de7fd1470689b60dbe698d5828cff5277dcb54c73518e",
+      "candidateSha256": "e116ff520bda0820aad92f22f46c26cefa19ae291f5e169d47be97dd4652c706",
+      "reviewedSignature": "cfe44a0f4b6c3e0ae7f175d72c39f617bc0e5994cd05cfaf4e8265ee701d4349",
+      "assetChecksums": {
+        "cric-c5-l07-progressive.svg": "6e0b5e5cf0f934b3bcfa92ebdbf31e8d6bb3bc7dd901e6798e0f3b59a0f3ae23"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "7/10",
+      "dimension": {
+        "[length]": "-1"
+      },
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Lo stimolo SVG ha i punti (0 cm,0) e (3 cm,−2,1), confermati anche\ndai punti intermedi1/−0,7 e2/−1,4. Se I/I₀=exp(−μx), allora\nln(I/I₀)=−μx: la pendenza è −μ. Perciò μ=−[−2,1−0]/[3−0]=0,7 cm⁻¹=70 m⁻¹.\nSi legge un logaritmo già rappresentato, non si deve calcolare ln o exp a mano.\nL'ordinata è adimensionale; l'unità inversa proviene dall'asse degli spessori.",
+      "physicalAssumptions": "Fascio diretto monocromatico, I0>0, coefficiente costante, ordinate logaritmiche adimensionali già fornite.",
+      "distractors": "−0,70 copia la pendenza; 2,1 usa la variazione senza dividerla per 3 cm; 7 cm⁻¹ darebbe ordinata −21.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Lo stimolo SVG ha i punti (0 cm,0) e (3 cm,−2,1), confermati anche\ndai punti intermedi1/−0,7 e2/−1,4. Se I/I₀=exp(−μx), allora\nln(I/I₀)=−μx: la pendenza è −μ. Perciò μ=−[−2,1−0]/[3−0]=0,7 cm⁻¹=70 m⁻¹.\nSi legge un logaritmo già rappresentato, non si deve calcolare ln o exp a mano.\nL'ordinata è adimensionale; l'unità inversa proviene dall'asse degli spessori.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in nuovo PNG nativo indipendente completo; proporzioni, segni, origini, assi e geometrie verificati per ogni pannello. Otto SVG originali letti integralmente in XML; nessuna validazione raster degli originali dichiarata. Il solo fix Q094 non cambia asset; nessuna UI prodotto o approvazione umana.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q066",
+      "sourceSha256": "91dcc77bcf671cd54c7a67cf13c5e7ec856704ffe4ff5df3a963a70e9de114d6",
+      "candidateSha256": "dd38b8b34aa77663e1bfc30aa5978c1cdd863f204c6016306ec221da05b67ac1",
+      "reviewedSignature": "d99cb67fb3c68d87cdb2909af4069a029e95e93b5d3e163957143673a12a941e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "65",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Per un mezzo puramente assorbente la conservazione dell'energia\nimpone T+A=1. Se T=35/100=7/20, A=13/20=65%. La conclusione dipende\nesplicitamente dall'assenza di riflessione e diffusione: non vale assegnare\nsempre ogni perdita di trasmissione all'assorbimento.",
+      "physicalAssumptions": "Due soli canali trasmesso/assorbito, nessuna riflessione o diffusione.",
+      "distractors": "35% copia il trasmesso; 65/35 cambia il riferimento. Gli altri canali di perdita sono esclusi esplicitamente.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Per un mezzo puramente assorbente la conservazione dell'energia\nimpone T+A=1. Se T=35/100=7/20, A=13/20=65%. La conclusione dipende\nesplicitamente dall'assenza di riflessione e diffusione: non vale assegnare\nsempre ogni perdita di trasmissione all'assorbimento.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q067",
+      "sourceSha256": "9b9f0f360651869cafb65092a8148fae467deb62cba22e7f96bb04841240a954",
+      "candidateSha256": "d7861458c60d7e1e6ebe475201056a1d28fff0eb7adda55d71ed658fb3f817ce",
+      "reviewedSignature": "3543039426788677d728bb5d3ef4dfad858046cced954e6137b59b7fcb84a1bc",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/5",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: 3 mm=3/10 cm. Quindi μx=(2 cm⁻¹)(3/10 cm)=3/5=0,6,\nadimensionale. Il prodotto6 nasce dal mescolare centimetri e millimetri senza\nconversione. Usando metri si ottiene lo stesso valore:200 m⁻¹×3/1000 m.",
+      "physicalAssumptions": "Coefficiente cm−1 e spessoremm convertiti prima del prodotto adimensionale.",
+      "distractors": "6 omette la conversione; 60 la applica nel verso opposto. 3/50 introduce un fattore dieci e 1/6 un reciproco non richiesto.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: 3 mm=3/10 cm. Quindi μx=(2 cm⁻¹)(3/10 cm)=3/5=0,6,\nadimensionale. Il prodotto6 nasce dal mescolare centimetri e millimetri senza\nconversione. Usando metri si ottiene lo stesso valore:200 m⁻¹×3/1000 m.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q068",
+      "sourceSha256": "25fccf4deacb71b91e7f7da0e03a577936839fe82c41e9d06bdf87052e345399",
+      "candidateSha256": "288a1b744924f375ae6038abfaa00ae280087183b45e0e7730d18184469b316c",
+      "reviewedSignature": "cbd01b6173796077fbfd92164728581a2eae25ccf9f5bcbb33d17630d2fcf125",
+      "assetChecksums": {
+        "cric-c5-l07-progressive.svg": "6e0b5e5cf0f934b3bcfa92ebdbf31e8d6bb3bc7dd901e6798e0f3b59a0f3ae23"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6/5",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: La potenza è energia per tempo: P=ṄEγ.\n(3×10¹⁵ s⁻¹)(4×10⁻¹⁹ J)=12×10⁻⁴ W=1,2×10⁻³ W=6/5 mW.\nSi moltiplicano mantisse e si sommano gli esponenti; il passaggio W→mW\nmoltiplica per1000. Inversamente Ṅ=P/Eγ ritorna3×10¹⁵ s⁻¹.",
+      "physicalAssumptions": "Tasso medio e energia singolo fotone; prefissi W/mW esatti.",
+      "distractors": "0,0012 mW cambia unità senza cambiare il numero. 12 e 0,12 mW richiederebbero tassi rispettivamente dieci volte maggiori o minori.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: La potenza è energia per tempo: P=ṄEγ.\n(3×10¹⁵ s⁻¹)(4×10⁻¹⁹ J)=12×10⁻⁴ W=1,2×10⁻³ W=6/5 mW.\nSi moltiplicano mantisse e si sommano gli esponenti; il passaggio W→mW\nmoltiplica per1000. Inversamente Ṅ=P/Eγ ritorna3×10¹⁵ s⁻¹.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in nuovo PNG nativo indipendente completo; proporzioni, segni, origini, assi e geometrie verificati per ogni pannello. Otto SVG originali letti integralmente in XML; nessuna validazione raster degli originali dichiarata. Il solo fix Q094 non cambia asset; nessuna UI prodotto o approvazione umana.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q069",
+      "sourceSha256": "5fabcf8cca613484240ac20304173f5b11eca9f5ecc1fc2778f7b1c597ad08cb",
+      "candidateSha256": "061cac4c44c7c777d3038ffa1f1e90e3396c29656907fa4c8fd7bca57eaebafa",
+      "reviewedSignature": "ba52e187c6bf9f50936c364c838ad33629505c95d8c175e208c62065ec11a3ae",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Le due componenti si attenuano in proporzioni diverse e cambia il loro peso relativo",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Due colori producono I(x)=I₁₀e^(−μ₁x)+I₂₀e^(−μ₂x).\nLe componenti si attenuano a velocità diverse, quindi il loro peso relativo\ncambia con x. La pendenza logaritmica efficace è\nμeff=(μ₁I₁+μ₂I₂)/(I₁+I₂), in generale dipendente dallo spessore.\nSe entrambe le componenti sono presenti e μ₁≠μ₂, una sola esponenziale con μ\ncostante non descrive esattamente l'intera curva. Se i due coefficienti\ncoincidono, o una componente è assente, quella semplificazione torna valida.",
+      "physicalAssumptions": "Due componenti con intensità positive e coefficienti positivi diversi; rivelatore somma intensità dirette.",
+      "distractors": "Le intensità sono positive e il logaritmo resta definito. Cambia il peso relativo, non la frequenza di ogni fotone; coefficienti diversi escludono pesi sempre fissi.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Due colori producono I(x)=I₁₀e^(−μ₁x)+I₂₀e^(−μ₂x).\nLe componenti si attenuano a velocità diverse, quindi il loro peso relativo\ncambia con x. La pendenza logaritmica efficace è\nμeff=(μ₁I₁+μ₂I₂)/(I₁+I₂), in generale dipendente dallo spessore.\nSe entrambe le componenti sono presenti e μ₁≠μ₂, una sola esponenziale con μ\ncostante non descrive esattamente l'intera curva. Se i due coefficienti\ncoincidono, o una componente è assente, quella semplificazione torna valida.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q070",
+      "sourceSha256": "1d1e9ef8c161f5c2860ebdd892e851fa40ad71a18d9f5c584a68a9cb18f502a4",
+      "candidateSha256": "023f835e90984bdb4610115b6371766342db85da4640cf8ee910394c14aec3eb",
+      "reviewedSignature": "5d1bba8f572a4834ffd54b2187a543401347bf5790a6e651ef3e259f9f693bd1",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "L’energia di un singolo fotone",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Per un processo a singolo fotone si confronta Eγ=hf con l'energia\ndi ionizzazione dell'atomo. Intensità, area e durata governano il numero di\nfotoni incidenti o l'energia totale, non l'energia individuale. L'esclusione\ndei processi a più fotoni è già nell'enunciato e va mantenuta.",
+      "physicalAssumptions": "Processo a singolo fotone; confronto di energie per lo stesso evento, non processo multifotonico.",
+      "distractors": "Area, durata o intensità da sole non sono l’energia del singolo evento. Il numero di fotoni senza la frequenza non determina hf.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Per un processo a singolo fotone si confronta Eγ=hf con l'energia\ndi ionizzazione dell'atomo. Intensità, area e durata governano il numero di\nfotoni incidenti o l'energia totale, non l'energia individuale. L'esclusione\ndei processi a più fotoni è già nell'enunciato e va mantenuta.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "91eec81f425088ee0e3eeb2e9f2e223c9e99c08c41ef7d0a5653b4f940c6a1cf",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "7f3f2ae4fb8dbe41e9ee1e780a3289055c16777c",
+  "packageSha256": "648f58bf7b0e30252f0f12df3d14b6ac71c3c086334b35c503d8ac8d2f8f98ef",
+  "bindingsSha256": "456933df0bccec92e7a790fb95f99264dc480839999634f5d87a1351161ba146",
+  "sourceFirstPrimarySha256": "4271f78cf4be74ac64013158d017529b63d8953e38ab27e2f6deff7e0f80efa4",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C5.json",
+    "reference": "Root primary/model d664c30a source-only before B candidates. A reread all50 source prompts, derived independent finite/exact models and actually ran120Hyp in2f393a63 before first B candidate opening. Then all50 originals/candidates and lessonsL06–L10 read in full;8sourceSVG wholeXML plus5new independent full nativePNG read. Only Q094 isolated reciprocal-unit formula corrected by author6cd8bd28, reread with strictdiff; no candidate edited by reviewer. UI product and human NOT_RUN."
+  }
+}

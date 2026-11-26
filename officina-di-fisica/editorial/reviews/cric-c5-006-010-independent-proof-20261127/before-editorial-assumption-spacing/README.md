@@ -1,0 +1,1 @@
+Il target iniziale positivo19/19 è conservato sui byte precedenti. La sola prosa delle ipotesi viene resa leggibile con spazi fra parole, dati e unità; nessun modello, condizione fisica, candidato o test cambia. I report e le dipendenze vengono rigenerati realmente e il target sarà rieseguito sui nuovi byte, senza ritag della prova precedente.
