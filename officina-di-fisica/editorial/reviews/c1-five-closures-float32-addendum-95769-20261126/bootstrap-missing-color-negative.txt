@@ -1,0 +1,13 @@
+<anonymous_script>:13
+          roughness: color === metal || color === brass ? 0.32 : 0.68,
+                                                  ^
+
+ReferenceError: brass is not defined
+    at material (eval at <anonymous> (file:///private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/c1-five-closures-float32-addendum-95769-20261126/reconstruct-production-meshes.mjs:8:19), <anonymous>:13:51)
+    at mesh (eval at <anonymous> (file:///private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/c1-five-closures-float32-addendum-95769-20261126/reconstruct-production-meshes.mjs:8:19), <anonymous>:24:41)
+    at box (eval at <anonymous> (file:///private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/c1-five-closures-float32-addendum-95769-20261126/reconstruct-production-meshes.mjs:8:19), <anonymous>:30:12)
+    at Object.base (eval at <anonymous> (file:///private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/c1-five-closures-float32-addendum-95769-20261126/reconstruct-production-meshes.mjs:8:19), <anonymous>:126:5)
+    at scenaMobile (file:///private/tmp/cric-c1-five-95769-review-app/static/js/banchi/voci/geometria.js:88:5)
+    at file:///private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/c1-five-closures-float32-addendum-95769-20261126/reconstruct-production-meshes.mjs:17:25
+
+Node.js v22.14.0
