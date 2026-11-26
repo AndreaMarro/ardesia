@@ -1,0 +1,11 @@
+# Independent proposed-epoch guide review: not accepted
+
+Read commit19fe56cf and runtime e591, using the frozen3a0b eight records and prepatch0bbddf addendum. No author tests were used as physics oracles and no authoring module was imported. ROOT/canonical1a, the263limited text/math review and17historical geometry contracts remain unchanged.
+
+The direct producer now switches correctly at all24eight-record guide samples. All16actual manual Number entries are accepted and all graded objects are unchanged. Across139original records and2144legal controls, actual solve/readings/drawing commands and graded objects remain identical to1a. This is a regression comparison, not fresh scientific or visual acceptance. Decimal0.1+0.2 maps to the declared manual point; a distinct nearby value remains observational. The near90−1e−8case remains physically nonzero and observational. The induction pilot reasoning override and original-activity reference path were read separately, without claiming new pilot UI evidence.
+
+P2 OPEN: three clock-input records retain stale title/instruction during timeline transitions. For oscillator, travelling wave and decay, enter Comprendi at a selected input, then seek outside it; reverse as well. banco.draw assigns the complete guide triplet, but seek→syncTime→frame refreshes only data-equation. Thus the selected-point imperative can remain next to an observational readout, or the observational instruction remains at a selected calculation. Six transitions reproduce the inconsistency.
+
+The trace executes exact draw-selection,seek,syncTime andframe source blocks with actual model and clock duration/unit functions. Minimal private selector objects and paused stop/RAF/button stubs are explicitly declared. This is not a native/fallback browser or DOM product test. The expected and observed triplets, current states and exact source blocks are retained. Five fixture tests pass by preserving this negative evidence; that is not a PASS for the consumer.
+
+A distinct author must repair coherent title/text/equation delivery at text-refresh boundaries and preserve physics, rounding behavior, graded inputs, clock behavior and pilot/reference paths. Actual final-epoch UI replays and existing dependent gates remain required. No new source/scientific/visual acceptance, publication, activity credit or human approval is granted.

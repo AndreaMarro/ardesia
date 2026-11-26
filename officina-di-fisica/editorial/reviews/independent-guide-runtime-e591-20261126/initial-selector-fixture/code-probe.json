@@ -1,0 +1,1032 @@
+{
+  "phase": "INDEPENDENT_RUNTIME_CODE_REVIEW_WITH_OPEN_TIMELINE_DELIVERY_FINDING",
+  "sourceCommit": "19fe56cf0a80f6a8468fb2558528fdb36a450228",
+  "producerSha256": "7a856fda0835d736b46c631e05652e6b2e27f3758abd94d7026158e56b019843",
+  "bancoSha256": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+  "records": [
+    {
+      "id": "SIM-C3-L07-05",
+      "clock": {
+        "clockUnit": "s",
+        "pace": 5,
+        "label": "Pressione nell’istante scelto",
+        "setup": "Il pistone isolato percorre la corsa impostata a velocità costante in 40 s. Il modello assume che il gas attraversi stati di equilibrio senza scambiare calore.",
+        "finalReading": true,
+        "unit": "kPa"
+      },
+      "samples": [
+        {
+          "x": 2.25,
+          "steps": [
+            [
+              "Individua il fenomeno",
+              "Il cilindro è isolato e il movimento reversibile. L’energia per il lavoro viene dall’energia interna, la temperatura cala. L’isoterma di confronto darebbe 100/(V/V₀) kPa.",
+              "p = 100(V₀/V)ᵞ, qui γ = 1,5"
+            ],
+            [
+              "Esegui la misura",
+              "Regola «Rapporto di espansione V/V₀» e confronta la scena con il punto segnato sul grafico. Parti da 1, poi prova 4.",
+              "Rapporto di espansione V/V₀ = 2,25 · Pressione adiabatica = 29,63 kPa"
+            ],
+            [
+              "Controlla il calcolo",
+              "p = 100(V₀/V)ᵞ, qui γ = 1,5. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+              "100 / (2,25^(1,5)) ≈ 29,63 kPa"
+            ],
+            [
+              "Ripeti con un altro dato",
+              "Prevedi la lettura con «Rapporto di espansione V/V₀» a 4. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+              "p = 100(V₀/V)ᵞ, qui γ = 1,5"
+            ]
+          ],
+          "solve": {
+            "x": 2.25,
+            "y": 29.62962962962963
+          }
+        },
+        {
+          "x": 4,
+          "steps": [
+            [
+              "Individua il fenomeno",
+              "Il cilindro è isolato e il movimento reversibile. L’energia per il lavoro viene dall’energia interna, la temperatura cala. L’isoterma di confronto darebbe 100/(V/V₀) kPa.",
+              "p = 100(V₀/V)ᵞ, qui γ = 1,5"
+            ],
+            [
+              "Esegui la misura",
+              "Regola «Rapporto di espansione V/V₀» e confronta la scena con il punto segnato sul grafico. Parti da 1, poi prova 4.",
+              "Rapporto di espansione V/V₀ = 4 · Pressione adiabatica = 12,5 kPa"
+            ],
+            [
+              "Controlla il calcolo",
+              "p = 100(V₀/V)ᵞ, qui γ = 1,5. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+              "100 / (4^(1,5)) = 12,5 kPa"
+            ],
+            [
+              "Ripeti con un altro dato",
+              "Prevedi la lettura con «Rapporto di espansione V/V₀» a 4. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+              "p = 100(V₀/V)ᵞ, qui γ = 1,5"
+            ]
+          ],
+          "solve": {
+            "x": 4,
+            "y": 12.5
+          }
+        },
+        {
+          "x": 1.25,
+          "steps": [
+            [
+              "Individua il fenomeno",
+              "Il cilindro è isolato e il movimento reversibile. L’energia per il lavoro viene dall’energia interna, la temperatura cala. L’isoterma di confronto darebbe 100/(V/V₀) kPa.",
+              "p = 100(V₀/V)ᵞ, qui γ = 1,5"
+            ],
+            [
+              "Esegui la misura",
+              "Regola «Rapporto di espansione V/V₀» e confronta la scena con il punto segnato sul grafico. Parti da 1, poi prova 4.",
+              "Rapporto di espansione V/V₀ = 1,25 · Pressione adiabatica = 71,55 kPa"
+            ],
+            [
+              "Osserva la lettura del modello",
+              "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 2,25 e 4.",
+              "Pressione adiabatica = 71,55 kPa"
+            ],
+            [
+              "Ripeti con un altro dato",
+              "Prevedi la lettura con «Rapporto di espansione V/V₀» a 4. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+              "p = 100(V₀/V)ᵞ, qui γ = 1,5"
+            ]
+          ],
+          "solve": {
+            "x": 1.25,
+            "y": 71.55417527999327
+          }
+        }
+      ],
+      "assessmentUnchanged": true
+    },
+    {
+      "id": "SIM-C4-L09-02",
+      "clock": null,
+      "samples": [
+        {
+          "x": 30,
+          "steps": [
+            [
+              "Individua il fenomeno",
+              "Ruota la vista per distinguere i tre versi. Per q positiva la forza segue v×B. Per un tratto di filo si sostituisce qv con Iℓ: a parità di prodotto e angolo si ottiene la stessa costruzione vettoriale.",
+              "F = qvB sin θ; q = 2 µC, v = 3 m/s, B = 1 T"
+            ],
+            [
+              "Esegui la misura",
+              "Regola «Angolo tra velocità e campo» e confronta la scena con il punto segnato sul grafico. Parti da 30 °, poi prova 90 °.",
+              "Angolo tra velocità e campo = 30 ° · Forza sulla carica = 3 µN"
+            ],
+            [
+              "Controlla il calcolo",
+              "F = qvB sin θ; q = 2 µC, v = 3 m/s, B = 1 T. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+              "6 × sin(30°) ≈ 3 µN"
+            ],
+            [
+              "Ripeti con un altro dato",
+              "Prevedi la lettura con «Angolo tra velocità e campo» a 90 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+              "F = qvB sin θ; q = 2 µC, v = 3 m/s, B = 1 T"
+            ]
+          ],
+          "solve": {
+            "x": 30,
+            "y": 2.9999999999999996
+          }
+        },
+        {
+          "x": 90,
+          "steps": [
+            [
+              "Individua il fenomeno",
+              "Ruota la vista per distinguere i tre versi. Per q positiva la forza segue v×B. Per un tratto di filo si sostituisce qv con Iℓ: a parità di prodotto e angolo si ottiene la stessa costruzione vettoriale.",
+              "F = qvB sin θ; q = 2 µC, v = 3 m/s, B = 1 T"
+            ],
+            [
+              "Esegui la misura",
+              "Regola «Angolo tra velocità e campo» e confronta la scena con il punto segnato sul grafico. Parti da 30 °, poi prova 90 °.",
+              "Angolo tra velocità e campo = 90 ° · Forza sulla carica = 6 µN"
+            ],
+            [
+              "Controlla il calcolo",
+              "F = qvB sin θ; q = 2 µC, v = 3 m/s, B = 1 T. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+              "6 × sin(90°) = 6 µN"
+            ],
+            [
+              "Ripeti con un altro dato",
+              "Prevedi la lettura con «Angolo tra velocità e campo» a 90 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+              "F = qvB sin θ; q = 2 µC, v = 3 m/s, B = 1 T"
+            ]
+          ],
+          "solve": {
+            "x": 90,
+            "y": 6
+          }
+        },
+        {
+          "x": 5,
+          "steps": [
+            [
+              "Individua il fenomeno",
+              "Ruota la vista per distinguere i tre versi. Per q positiva la forza segue v×B. Per un tratto di filo si sostituisce qv con Iℓ: a parità di prodotto e angolo si ottiene la stessa costruzione vettoriale.",
+              "F = qvB sin θ; q = 2 µC, v = 3 m/s, B = 1 T"
+            ],
+            [
+              "Esegui la misura",
+              "Regola «Angolo tra velocità e campo» e confronta la scena con il punto segnato sul grafico. Parti da 30 °, poi prova 90 °.",
+              "Angolo tra velocità e campo = 5 ° · Forza sulla carica = 0,5229 µN"
+            ],
+            [
+              "Osserva la lettura del modello",
+              "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 30 ° e 90 °.",
+              "Forza sulla carica = 0,5229 µN"
+            ],
+            [
+              "Ripeti con un altro dato",
+              "Prevedi la lettura con «Angolo tra velocità e campo» a 90 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+              "F = qvB sin θ; q = 2 µC, v = 3 m/s, B = 1 T"
+            ]
+          ],
+          "solve": {
+            "x": 5,
+            "y": 0.522934456485949
+          }
+        }
+      ],
+      "assessmentUnchanged": true
+    },
+    {
+      "id": "SIM-C5-L01-01",
+      "clock": {
+        "input": true,
+        "clockUnit": "s",
+        "pace": 1
+      },
+      "samples": [
+        {
+          "x": 0.5,
+          "steps": [
+            [
+              "Individua il fenomeno",
+              "La molla ideale non dissipa energia. Segui il cursore tra i due estremi. Il punto passa più rapidamente dall’equilibrio e si arresta per un istante dove cambia verso.",
+              "x = A cos(2πt/T); A = 4 cm, T = 2 s"
+            ],
+            [
+              "Esegui la misura",
+              "Regola «Tempo dall’estremo positivo» e confronta la scena con il punto segnato sul grafico. Parti da 0 s, poi prova 1 s.",
+              "Tempo dall’estremo positivo = 0,5 s · Posizione = 0 cm"
+            ],
+            [
+              "Controlla il calcolo",
+              "x = A cos(2πt/T); A = 4 cm, T = 2 s. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+              "4 × cos(π × 0,5) = 0 cm"
+            ],
+            [
+              "Ripeti con un altro dato",
+              "Prevedi la lettura con «Tempo dall’estremo positivo» a 1 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+              "x = A cos(2πt/T); A = 4 cm, T = 2 s"
+            ]
+          ],
+          "solve": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        {
+          "x": 1,
+          "steps": [
+            [
+              "Individua il fenomeno",
+              "La molla ideale non dissipa energia. Segui il cursore tra i due estremi. Il punto passa più rapidamente dall’equilibrio e si arresta per un istante dove cambia verso.",
+              "x = A cos(2πt/T); A = 4 cm, T = 2 s"
+            ],
+            [
+              "Esegui la misura",
+              "Regola «Tempo dall’estremo positivo» e confronta la scena con il punto segnato sul grafico. Parti da 0 s, poi prova 1 s.",
+              "Tempo dall’estremo positivo = 1 s · Posizione = -4 cm"
+            ],
+            [
+              "Controlla il calcolo",
+              "x = A cos(2πt/T); A = 4 cm, T = 2 s. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+              "4 × cos(π × 1) = -4 cm"
+            ],
+            [
+              "Ripeti con un altro dato",
+              "Prevedi la lettura con «Tempo dall’estremo positivo» a 1 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+              "x = A cos(2πt/T); A = 4 cm, T = 2 s"
+            ]
+          ],
+          "solve": {
+            "x": 1,
+            "y": -4
+          }
+        },
+        {
+          "x": 0.125,
+          "steps": [
+            [
+              "Individua il fenomeno",
+              "La molla ideale non dissipa energia. Segui il cursore tra i due estremi. Il punto passa più rapidamente dall’equilibrio e si arresta per un istante dove cambia verso.",
+              "x = A cos(2πt/T); A = 4 cm, T = 2 s"
+            ],
+            [
+              "Esegui la misura",
+              "Regola «Tempo dall’estremo positivo» e confronta la scena con il punto segnato sul grafico. Parti da 0 s, poi prova 1 s.",
+              "Tempo dall’estremo positivo = 0,125 s · Posizione = 3,696 cm"
+            ],
+            [
+              "Osserva la lettura del modello",
+              "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 0,5 s e 1 s.",
+              "Posizione = 3,696 cm"
+            ],
+            [
+              "Ripeti con un altro dato",
+              "Prevedi la lettura con «Tempo dall’estremo positivo» a 1 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+              "x = A cos(2πt/T); A = 4 cm, T = 2 s"
+            ]
+          ],
+          "solve": {
+            "x": 0.125,
+            "y": 3.695518130045147
+          }
+        }
+      ],
+      "assessmentUnchanged": true
+    },
+    {
+      "id": "SIM-C5-L02-03",
+      "clock": {
+        "input": true,
+        "clockUnit": "s",
+        "pace": 1
+      },
+      "samples": [
+        {
+          "x": 0.25,
+          "steps": [
+            [
+              "Individua il fenomeno",
+              "La sonda è all’origine della corda e la perturbazione si propaga verso destra. A x fisso basta avanzare il tempo per osservare segno, massimi e periodo.",
+              "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0"
+            ],
+            [
+              "Esegui la misura",
+              "Regola «Tempo alla sonda» e confronta la scena con il punto segnato sul grafico. Parti da 0,25 s, poi prova 0,75 s.",
+              "Tempo alla sonda = 0,25 s · Spostamento a x = 0 = 3 cm"
+            ],
+            [
+              "Controlla il calcolo",
+              "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+              "3 × sin(2 × π × 0,25) = 3 cm"
+            ],
+            [
+              "Ripeti con un altro dato",
+              "Prevedi la lettura con «Tempo alla sonda» a 0,75 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+              "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0"
+            ]
+          ],
+          "solve": {
+            "x": 0.25,
+            "y": 3
+          }
+        },
+        {
+          "x": 0.75,
+          "steps": [
+            [
+              "Individua il fenomeno",
+              "La sonda è all’origine della corda e la perturbazione si propaga verso destra. A x fisso basta avanzare il tempo per osservare segno, massimi e periodo.",
+              "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0"
+            ],
+            [
+              "Esegui la misura",
+              "Regola «Tempo alla sonda» e confronta la scena con il punto segnato sul grafico. Parti da 0,25 s, poi prova 0,75 s.",
+              "Tempo alla sonda = 0,75 s · Spostamento a x = 0 = -3 cm"
+            ],
+            [
+              "Controlla il calcolo",
+              "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+              "3 × sin(2 × π × 0,75) = -3 cm"
+            ],
+            [
+              "Ripeti con un altro dato",
+              "Prevedi la lettura con «Tempo alla sonda» a 0,75 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+              "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0"
+            ]
+          ],
+          "solve": {
+            "x": 0.75,
+            "y": -3
+          }
+        },
+        {
+          "x": 0.125,
+          "steps": [
+            [
+              "Individua il fenomeno",
+              "La sonda è all’origine della corda e la perturbazione si propaga verso destra. A x fisso basta avanzare il tempo per osservare segno, massimi e periodo.",
+              "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0"
+            ],
+            [
+              "Esegui la misura",
+              "Regola «Tempo alla sonda» e confronta la scena con il punto segnato sul grafico. Parti da 0,25 s, poi prova 0,75 s.",
+              "Tempo alla sonda = 0,125 s · Spostamento a x = 0 = 2,121 cm"
+            ],
+            [
+              "Osserva la lettura del modello",
+              "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 0,25 s e 0,75 s.",
+              "Spostamento a x = 0 = 2,121 cm"
+            ],
+            [
+              "Ripeti con un altro dato",
+              "Prevedi la lettura con «Tempo alla sonda» a 0,75 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+              "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0"
+            ]
+          ],
+          "solve": {
+            "x": 0.125,
+            "y": 2.1213203435596424
+          }
+        }
+      ],
+      "assessmentUnchanged": true
+    },
+    {
+      "id": "SIM-C5-L03-02",
+      "clock": null,
+      "samples": [
+        {
+          "x": 0.5,
+          "steps": [
+            [
+              "Individua il fenomeno",
+              "Le due sorgenti coerenti partono in fase, con uguale frequenza e ampiezza locale. Uno scarto di mezzo ciclo fa arrivare una cresta contro una valle. Dopo un ciclo completo torna il rinforzo.",
+              "A risultante = 2A × valore assoluto di cos(πΔs/λ), con A = 2 cm"
+            ],
+            [
+              "Esegui la misura",
+              "Regola «Differenza di cammino in lunghezze d’onda» e confronta la scena con il punto segnato sul grafico. Parti da 0, poi prova 0,5.",
+              "Differenza di cammino in lunghezze d’onda = 0,5 · Ampiezza risultante = 0 cm"
+            ],
+            [
+              "Controlla il calcolo",
+              "A risultante = 2A × valore assoluto di cos(πΔs/λ), con A = 2 cm. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+              "4 × abs(cos(π × 0,5)) = 0 cm"
+            ],
+            [
+              "Ripeti con un altro dato",
+              "Prevedi la lettura con «Differenza di cammino in lunghezze d’onda» a 1. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+              "A risultante = 2A × valore assoluto di cos(πΔs/λ), con A = 2 cm"
+            ]
+          ],
+          "solve": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        {
+          "x": 1,
+          "steps": [
+            [
+              "Individua il fenomeno",
+              "Le due sorgenti coerenti partono in fase, con uguale frequenza e ampiezza locale. Uno scarto di mezzo ciclo fa arrivare una cresta contro una valle. Dopo un ciclo completo torna il rinforzo.",
+              "A risultante = 2A × valore assoluto di cos(πΔs/λ), con A = 2 cm"
+            ],
+            [
+              "Esegui la misura",
+              "Regola «Differenza di cammino in lunghezze d’onda» e confronta la scena con il punto segnato sul grafico. Parti da 0, poi prova 0,5.",
+              "Differenza di cammino in lunghezze d’onda = 1 · Ampiezza risultante = 4 cm"
+            ],
+            [
+              "Controlla il calcolo",
+              "A risultante = 2A × valore assoluto di cos(πΔs/λ), con A = 2 cm. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+              "4 × abs(cos(π × 1)) = 4 cm"
+            ],
+            [
+              "Ripeti con un altro dato",
+              "Prevedi la lettura con «Differenza di cammino in lunghezze d’onda» a 1. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+              "A risultante = 2A × valore assoluto di cos(πΔs/λ), con A = 2 cm"
+            ]
+          ],
+          "solve": {
+            "x": 1,
+            "y": 4
+          }
+        },
+        {
+          "x": 0.55,
+          "steps": [
+            [
+              "Individua il fenomeno",
+              "Le due sorgenti coerenti partono in fase, con uguale frequenza e ampiezza locale. Uno scarto di mezzo ciclo fa arrivare una cresta contro una valle. Dopo un ciclo completo torna il rinforzo.",
+              "A risultante = 2A × valore assoluto di cos(πΔs/λ), con A = 2 cm"
+            ],
+            [
+              "Esegui la misura",
+              "Regola «Differenza di cammino in lunghezze d’onda» e confronta la scena con il punto segnato sul grafico. Parti da 0, poi prova 0,5.",
+              "Differenza di cammino in lunghezze d’onda = 0,55 · Ampiezza risultante = 0,6257 cm"
+            ],
+            [
+              "Osserva la lettura del modello",
+              "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 0,5 e 1.",
+              "Ampiezza risultante = 0,6257 cm"
+            ],
+            [
+              "Ripeti con un altro dato",
+              "Prevedi la lettura con «Differenza di cammino in lunghezze d’onda» a 1. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+              "A risultante = 2A × valore assoluto di cos(πΔs/λ), con A = 2 cm"
+            ]
+          ],
+          "solve": {
+            "x": 0.55,
+            "y": 0.6257378601609241
+          }
+        }
+      ],
+      "assessmentUnchanged": true
+    },
+    {
+      "id": "SIM-C5-L07-02",
+      "clock": null,
+      "samples": [
+        {
+          "x": 2,
+          "steps": [
+            [
+              "Individua il fenomeno",
+              "Ogni spessore emivalente trasmette metà di ciò che gli arriva. Dopo tre ne resta un ottavo. Il fascio è monocromatico e il modello esclude la luce diffusa che rientra nel rivelatore.",
+              "I/I₀ = e^(−μx) = (½)ⁿ"
+            ],
+            [
+              "Esegui la misura",
+              "Regola «Spessore in strati emivalenti» e confronta la scena con il punto segnato sul grafico. Parti da 1, poi prova 3.",
+              "Spessore in strati emivalenti = 2 · Intensità trasmessa = 25 %"
+            ],
+            [
+              "Controlla il calcolo",
+              "I/I₀ = e^(−μx) = (½)ⁿ. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+              "100 × 0,5^(2) = 25 %"
+            ],
+            [
+              "Ripeti con un altro dato",
+              "Prevedi la lettura con «Spessore in strati emivalenti» a 3. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+              "I/I₀ = e^(−μx) = (½)ⁿ"
+            ]
+          ],
+          "solve": {
+            "x": 2,
+            "y": 25
+          }
+        },
+        {
+          "x": 3,
+          "steps": [
+            [
+              "Individua il fenomeno",
+              "Ogni spessore emivalente trasmette metà di ciò che gli arriva. Dopo tre ne resta un ottavo. Il fascio è monocromatico e il modello esclude la luce diffusa che rientra nel rivelatore.",
+              "I/I₀ = e^(−μx) = (½)ⁿ"
+            ],
+            [
+              "Esegui la misura",
+              "Regola «Spessore in strati emivalenti» e confronta la scena con il punto segnato sul grafico. Parti da 1, poi prova 3.",
+              "Spessore in strati emivalenti = 3 · Intensità trasmessa = 12,5 %"
+            ],
+            [
+              "Controlla il calcolo",
+              "I/I₀ = e^(−μx) = (½)ⁿ. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+              "100 × 0,5^(3) = 12,5 %"
+            ],
+            [
+              "Ripeti con un altro dato",
+              "Prevedi la lettura con «Spessore in strati emivalenti» a 3. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+              "I/I₀ = e^(−μx) = (½)ⁿ"
+            ]
+          ],
+          "solve": {
+            "x": 3,
+            "y": 12.5
+          }
+        },
+        {
+          "x": 2.5,
+          "steps": [
+            [
+              "Individua il fenomeno",
+              "Ogni spessore emivalente trasmette metà di ciò che gli arriva. Dopo tre ne resta un ottavo. Il fascio è monocromatico e il modello esclude la luce diffusa che rientra nel rivelatore.",
+              "I/I₀ = e^(−μx) = (½)ⁿ"
+            ],
+            [
+              "Esegui la misura",
+              "Regola «Spessore in strati emivalenti» e confronta la scena con il punto segnato sul grafico. Parti da 1, poi prova 3.",
+              "Spessore in strati emivalenti = 2,5 · Intensità trasmessa = 17,68 %"
+            ],
+            [
+              "Osserva la lettura del modello",
+              "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 2 e 3.",
+              "Intensità trasmessa = 17,68 %"
+            ],
+            [
+              "Ripeti con un altro dato",
+              "Prevedi la lettura con «Spessore in strati emivalenti» a 3. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+              "I/I₀ = e^(−μx) = (½)ⁿ"
+            ]
+          ],
+          "solve": {
+            "x": 2.5,
+            "y": 17.677669529663685
+          }
+        }
+      ],
+      "assessmentUnchanged": true
+    },
+    {
+      "id": "SIM-C5-L08-02",
+      "clock": {
+        "input": true,
+        "clockUnit": "T½",
+        "pace": 1
+      },
+      "samples": [
+        {
+          "x": 2,
+          "steps": [
+            [
+              "Individua il fenomeno",
+              "Le luci visualizzano il numero medio previsto, arrotondato solo per il disegno. Non identificano l’istante di decadimento del singolo nucleo. A emivita fissata anche l’attività media si dimezza.",
+              "N = 64 × 2^(−t/T½); attività = (ln 2/T½)N"
+            ],
+            [
+              "Esegui la misura",
+              "Regola «Tempo in emivite» e confronta la scena con il punto segnato sul grafico. Parti da 1, poi prova 3.",
+              "Tempo in emivite = 2 · Numero medio di nuclei rimasti = 16"
+            ],
+            [
+              "Controlla il calcolo",
+              "N = 64 × 2^(−t/T½); attività = (ln 2/T½)N. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+              "64 × 0,5^(2) = 16"
+            ],
+            [
+              "Ripeti con un altro dato",
+              "Prevedi la lettura con «Tempo in emivite» a 4. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+              "N = 64 × 2^(−t/T½); attività = (ln 2/T½)N"
+            ]
+          ],
+          "solve": {
+            "x": 2,
+            "y": 16
+          }
+        },
+        {
+          "x": 4,
+          "steps": [
+            [
+              "Individua il fenomeno",
+              "Le luci visualizzano il numero medio previsto, arrotondato solo per il disegno. Non identificano l’istante di decadimento del singolo nucleo. A emivita fissata anche l’attività media si dimezza.",
+              "N = 64 × 2^(−t/T½); attività = (ln 2/T½)N"
+            ],
+            [
+              "Esegui la misura",
+              "Regola «Tempo in emivite» e confronta la scena con il punto segnato sul grafico. Parti da 1, poi prova 3.",
+              "Tempo in emivite = 4 · Numero medio di nuclei rimasti = 4"
+            ],
+            [
+              "Controlla il calcolo",
+              "N = 64 × 2^(−t/T½); attività = (ln 2/T½)N. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+              "64 × 0,5^(4) = 4"
+            ],
+            [
+              "Ripeti con un altro dato",
+              "Prevedi la lettura con «Tempo in emivite» a 4. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+              "N = 64 × 2^(−t/T½); attività = (ln 2/T½)N"
+            ]
+          ],
+          "solve": {
+            "x": 4,
+            "y": 4
+          }
+        },
+        {
+          "x": 2.5,
+          "steps": [
+            [
+              "Individua il fenomeno",
+              "Le luci visualizzano il numero medio previsto, arrotondato solo per il disegno. Non identificano l’istante di decadimento del singolo nucleo. A emivita fissata anche l’attività media si dimezza.",
+              "N = 64 × 2^(−t/T½); attività = (ln 2/T½)N"
+            ],
+            [
+              "Esegui la misura",
+              "Regola «Tempo in emivite» e confronta la scena con il punto segnato sul grafico. Parti da 1, poi prova 3.",
+              "Tempo in emivite = 2,5 · Numero medio di nuclei rimasti = 11,31"
+            ],
+            [
+              "Osserva la lettura del modello",
+              "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 2 e 4.",
+              "Numero medio di nuclei rimasti = 11,31"
+            ],
+            [
+              "Ripeti con un altro dato",
+              "Prevedi la lettura con «Tempo in emivite» a 4. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+              "N = 64 × 2^(−t/T½); attività = (ln 2/T½)N"
+            ]
+          ],
+          "solve": {
+            "x": 2.5,
+            "y": 11.31370849898476
+          }
+        }
+      ],
+      "assessmentUnchanged": true
+    },
+    {
+      "id": "SIM-C5-L09-02",
+      "clock": null,
+      "samples": [
+        {
+          "x": 30,
+          "steps": [
+            [
+              "Individua il fenomeno",
+              "Gli angoli sono misurati dalla normale alla superficie piana. Nel vetro la luce rallenta. All’incidenza normale cambia velocità ma la direzione rimane la stessa.",
+              "n₁ sin θ₁ = n₂ sin θ₂; n₁ = 1, n₂ = 1,5"
+            ],
+            [
+              "Esegui la misura",
+              "Regola «Angolo incidente in aria» e confronta la scena con il punto segnato sul grafico. Parti da 0 °, poi prova 30 °.",
+              "Angolo incidente in aria = 30 ° · Angolo rifratto nel vetro = 19,47 °"
+            ],
+            [
+              "Controlla il calcolo",
+              "n₁ sin θ₁ = n₂ sin θ₂; n₁ = 1, n₂ = 1,5. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+              "arcsin(sin(30°) / 1,5) × 180 / π ≈ 19,47 °"
+            ],
+            [
+              "Ripeti con un altro dato",
+              "Prevedi la lettura con «Angolo incidente in aria» a 45 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+              "n₁ sin θ₁ = n₂ sin θ₂; n₁ = 1, n₂ = 1,5"
+            ]
+          ],
+          "solve": {
+            "x": 30,
+            "y": 19.47122063449069
+          }
+        },
+        {
+          "x": 45,
+          "steps": [
+            [
+              "Individua il fenomeno",
+              "Gli angoli sono misurati dalla normale alla superficie piana. Nel vetro la luce rallenta. All’incidenza normale cambia velocità ma la direzione rimane la stessa.",
+              "n₁ sin θ₁ = n₂ sin θ₂; n₁ = 1, n₂ = 1,5"
+            ],
+            [
+              "Esegui la misura",
+              "Regola «Angolo incidente in aria» e confronta la scena con il punto segnato sul grafico. Parti da 0 °, poi prova 30 °.",
+              "Angolo incidente in aria = 45 ° · Angolo rifratto nel vetro = 28,13 °"
+            ],
+            [
+              "Controlla il calcolo",
+              "n₁ sin θ₁ = n₂ sin θ₂; n₁ = 1, n₂ = 1,5. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+              "arcsin(sin(45°) / 1,5) × 180 / π ≈ 28,13 °"
+            ],
+            [
+              "Ripeti con un altro dato",
+              "Prevedi la lettura con «Angolo incidente in aria» a 45 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+              "n₁ sin θ₁ = n₂ sin θ₂; n₁ = 1, n₂ = 1,5"
+            ]
+          ],
+          "solve": {
+            "x": 45,
+            "y": 28.1255057020557
+          }
+        },
+        {
+          "x": 5,
+          "steps": [
+            [
+              "Individua il fenomeno",
+              "Gli angoli sono misurati dalla normale alla superficie piana. Nel vetro la luce rallenta. All’incidenza normale cambia velocità ma la direzione rimane la stessa.",
+              "n₁ sin θ₁ = n₂ sin θ₂; n₁ = 1, n₂ = 1,5"
+            ],
+            [
+              "Esegui la misura",
+              "Regola «Angolo incidente in aria» e confronta la scena con il punto segnato sul grafico. Parti da 0 °, poi prova 30 °.",
+              "Angolo incidente in aria = 5 ° · Angolo rifratto nel vetro = 3,331 °"
+            ],
+            [
+              "Osserva la lettura del modello",
+              "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 30 ° e 45 °.",
+              "Angolo rifratto nel vetro = 3,331 °"
+            ],
+            [
+              "Ripeti con un altro dato",
+              "Prevedi la lettura con «Angolo incidente in aria» a 45 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+              "n₁ sin θ₁ = n₂ sin θ₂; n₁ = 1, n₂ = 1,5"
+            ]
+          ],
+          "solve": {
+            "x": 5,
+            "y": 3.3309802044526546
+          }
+        }
+      ],
+      "assessmentUnchanged": true
+    }
+  ],
+  "transitions": [
+    {
+      "id": "SIM-C5-L01-01",
+      "from": 0.5,
+      "to": 0.125,
+      "trace": {
+        "initial": {
+          "title": "Controlla il calcolo",
+          "text": "x = A cos(2πt/T); A = 4 cm, T = 2 s. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+          "equation": "4 × cos(π × 0,5) = 0 cm"
+        },
+        "after": {
+          "title": "Controlla il calcolo",
+          "text": "x = A cos(2πt/T); A = 4 cm, T = 2 s. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+          "equation": "Posizione = 3,696 cm"
+        },
+        "expected": [
+          "Osserva la lettura del modello",
+          "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 0,5 s e 1 s.",
+          "Posizione = 3,696 cm"
+        ],
+        "currentState": {
+          "x": 0.125,
+          "y": 3.695518130045147
+        }
+      },
+      "staleTitleOrInstruction": true,
+      "scope": "Exact draw-selection+seek+syncTime+frame blocks with private selector objects. Not DOM/native/fallback UI."
+    },
+    {
+      "id": "SIM-C5-L01-01",
+      "from": 0.125,
+      "to": 0.5,
+      "trace": {
+        "initial": {
+          "title": "Osserva la lettura del modello",
+          "text": "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 0,5 s e 1 s.",
+          "equation": "Posizione = 3,696 cm"
+        },
+        "after": {
+          "title": "Osserva la lettura del modello",
+          "text": "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 0,5 s e 1 s.",
+          "equation": "4 × cos(π × 0,5) = 0 cm"
+        },
+        "expected": [
+          "Controlla il calcolo",
+          "x = A cos(2πt/T); A = 4 cm, T = 2 s. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+          "4 × cos(π × 0,5) = 0 cm"
+        ],
+        "currentState": {
+          "x": 0.5,
+          "y": 0
+        }
+      },
+      "staleTitleOrInstruction": true,
+      "scope": "Exact draw-selection+seek+syncTime+frame blocks with private selector objects. Not DOM/native/fallback UI."
+    },
+    {
+      "id": "SIM-C5-L02-03",
+      "from": 0.25,
+      "to": 0.125,
+      "trace": {
+        "initial": {
+          "title": "Controlla il calcolo",
+          "text": "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+          "equation": "3 × sin(2 × π × 0,25) = 3 cm"
+        },
+        "after": {
+          "title": "Controlla il calcolo",
+          "text": "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+          "equation": "Spostamento a x = 0 = 2,121 cm"
+        },
+        "expected": [
+          "Osserva la lettura del modello",
+          "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 0,25 s e 0,75 s.",
+          "Spostamento a x = 0 = 2,121 cm"
+        ],
+        "currentState": {
+          "x": 0.125,
+          "y": 2.1213203435596424
+        }
+      },
+      "staleTitleOrInstruction": true,
+      "scope": "Exact draw-selection+seek+syncTime+frame blocks with private selector objects. Not DOM/native/fallback UI."
+    },
+    {
+      "id": "SIM-C5-L02-03",
+      "from": 0.125,
+      "to": 0.25,
+      "trace": {
+        "initial": {
+          "title": "Osserva la lettura del modello",
+          "text": "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 0,25 s e 0,75 s.",
+          "equation": "Spostamento a x = 0 = 2,121 cm"
+        },
+        "after": {
+          "title": "Osserva la lettura del modello",
+          "text": "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 0,25 s e 0,75 s.",
+          "equation": "3 × sin(2 × π × 0,25) = 3 cm"
+        },
+        "expected": [
+          "Controlla il calcolo",
+          "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+          "3 × sin(2 × π × 0,25) = 3 cm"
+        ],
+        "currentState": {
+          "x": 0.25,
+          "y": 3
+        }
+      },
+      "staleTitleOrInstruction": true,
+      "scope": "Exact draw-selection+seek+syncTime+frame blocks with private selector objects. Not DOM/native/fallback UI."
+    },
+    {
+      "id": "SIM-C5-L08-02",
+      "from": 2,
+      "to": 2.5,
+      "trace": {
+        "initial": {
+          "title": "Controlla il calcolo",
+          "text": "N = 64 × 2^(−t/T½); attività = (ln 2/T½)N. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+          "equation": "64 × 0,5^(2) = 16"
+        },
+        "after": {
+          "title": "Controlla il calcolo",
+          "text": "N = 64 × 2^(−t/T½); attività = (ln 2/T½)N. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+          "equation": "Numero medio di nuclei rimasti = 11,31"
+        },
+        "expected": [
+          "Osserva la lettura del modello",
+          "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 2 e 4.",
+          "Numero medio di nuclei rimasti = 11,31"
+        ],
+        "currentState": {
+          "x": 2.5,
+          "y": 11.31370849898476
+        }
+      },
+      "staleTitleOrInstruction": true,
+      "scope": "Exact draw-selection+seek+syncTime+frame blocks with private selector objects. Not DOM/native/fallback UI."
+    },
+    {
+      "id": "SIM-C5-L08-02",
+      "from": 2.5,
+      "to": 2,
+      "trace": {
+        "initial": {
+          "title": "Osserva la lettura del modello",
+          "text": "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 2 e 4.",
+          "equation": "Numero medio di nuclei rimasti = 11,31"
+        },
+        "after": {
+          "title": "Osserva la lettura del modello",
+          "text": "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 2 e 4.",
+          "equation": "64 × 0,5^(2) = 16"
+        },
+        "expected": [
+          "Controlla il calcolo",
+          "N = 64 × 2^(−t/T½); attività = (ln 2/T½)N. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+          "64 × 0,5^(2) = 16"
+        ],
+        "currentState": {
+          "x": 2,
+          "y": 16
+        }
+      },
+      "staleTitleOrInstruction": true,
+      "scope": "Exact draw-selection+seek+syncTime+frame blocks with private selector objects. Not DOM/native/fallback UI."
+    }
+  ],
+  "exactConsumerBlocks": {
+    "frameSource": "  function frame(textToo = true) {\n    if (view === 'diagram') {\n      if (textToo && drawing)\n        diagram.innerHTML = drawing(\n          r.model,\n          p,\n          { ...s, instant: instant() },\n          t,\n          sceneLevel(),\n          r.title,\n          get('[data-projection]').value,\n          model,\n        );\n    } else gpu?.frame(t);\n    if (stage < 0 || !textToo) return;\n    const explanation = reasoning();\n    const html = letture(\n      model.readings(p, s, t).map(([label, v, unit]) => [label, typeof v === 'number' ? n(v) : v, unit]),\n      explanation?.[3],\n    );\n    if (lastReadings !== html) {\n      get('[data-readings]').innerHTML = html;\n      lastReadings = html;\n    }\n    if (explanation) {\n      get('[data-equation]').textContent = explanation[2];\n      get('[data-math-art]').innerHTML = disegnoPasso(pilot, mathStep, p, s, t, instant(), explanation[0], model);\n    }\n    if (isTimed()) {\n      const time = timeline ? s.x : t;\n      get('[data-time]').textContent = n(time) + ' / ' + n(duration()) + ' ' + timeUnit;\n      get('[data-scrub]').value = time;\n      get('[data-scrub]').setAttribute('aria-valuetext', n(time) + ' ' + timeUnit);\n      if (document.activeElement !== get('[data-instant]'))\n        get('[data-instant]').value = Number(time.toFixed(5));\n    }\n    if (timeline) {\n      const row = clockInput.closest('[data-row]');\n      clockInput.value = s.x;\n      clockInput.setAttribute('aria-valuetext', n(s.x) + ' ' + timeUnit);\n      row.querySelector('output').textContent = n(s.x) + ' ' + timeUnit;\n      moveCursor(graphBox, s.x, 'control', s.y);\n      moveCursor(graphBox, s.x, 'area-v');\n      get('[data-equation]').textContent = model.steps(p, s)[stage][2];\n      if (pair && !pairNode.hidden) pair.render(s.x);\n    } else if (clock?.signal) moveCursor(graphBox, t, 'time', clock.signal(s.x, t, s.y));\n    if (['volo', 'onde'].includes(pilot)) moveCursor(graphBox, t);\n    if (['tubo', 'induzione'].includes(pilot)) moveCursor(graphBox, t, 'time');\n    if (pilot === 'gas') {\n      const q = instant();\n      moveCursor(graphBox, q.V, 'volume', q.pressure);\n    }\n  }\n",
+    "syncSource": "  function syncTime(fresh = true) {\n    if (timeline && t !== s.x) {\n      p = { ...p, x: t };\n      s = model.solve(p);\n    }\n    frame(fresh);\n  }\n  function seek(value) {\n    if (!Number.isFinite(value) || !isTimed()) return;\n    stop();\n    t = Math.min(duration(), Math.max(0, value));\n    syncTime();\n    get('[data-instant]').value = Number(t.toFixed(5));\n    get('[data-play]').textContent = t >= duration() ? 'Ripeti' : 'Avvia';\n  }\n",
+    "drawSource": "      const [title, text, equation] =\n        explanation || (pilot ? guidaPilota(pilot, stage) : model.steps(p, s)[stage]);\n      get('[data-count]').textContent = momenti[stage + 1] + ' · ' + (stage + 2) + '/5';\n      get('[data-step-title]').textContent = title;\n      get('[data-explain]').textContent = text;\n      get('[data-equation]').textContent = equation;"
+  },
+  "direct24GuideSamplesCorrect": true,
+  "physicsEquivalent": true,
+  "originalSourcesCompared": 139,
+  "originalGridStatesCompared": 2144,
+  "decimalSamples": [
+    {
+      "x": 0.3,
+      "step": [
+        "Controlla il calcolo",
+        "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+        "3 × sin(2 × π × 0,3) ≈ 2,853 cm"
+      ],
+      "value": 2.853169548885461
+    },
+    {
+      "x": 0.30000000000000004,
+      "step": [
+        "Controlla il calcolo",
+        "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+        "3 × sin(2 × π × 0,3) ≈ 2,853 cm"
+      ],
+      "value": 2.8531695488854605
+    },
+    {
+      "x": 0.30000001,
+      "step": [
+        "Osserva la lettura del modello",
+        "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 0,3 s e 0,7 s.",
+        "Spostamento a x = 0 = 2,853 cm"
+      ],
+      "value": 2.853169490637124
+    },
+    {
+      "x": 0.4,
+      "step": [
+        "Osserva la lettura del modello",
+        "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 0,3 s e 0,7 s.",
+        "Spostamento a x = 0 = 1,763 cm"
+      ],
+      "value": 1.7633557568774196
+    }
+  ],
+  "decimalFixtureScope": "Private controller rounding fixture, not authored learner content",
+  "pilotReference": {
+    "id": "SIM-C4-L10-02",
+    "pilot": "induzione",
+    "referenceSteps": [
+      [
+        "Individua il fenomeno",
+        "Sì, se il campo concatenato cambia. Qui le spire sono fisse e la normale è parallela al campo. Con il circuito aperto puoi misurare una fem senza corrente.",
+        "ε = −NA dB/dt; N = 10, A = 0,05 m²"
+      ],
+      [
+        "Esegui la misura",
+        "Regola «Velocità di variazione del campo» e confronta la scena con il punto segnato sul grafico. Parti da -2 T/s, poi prova 3 T/s.",
+        "Velocità di variazione del campo = -4 T/s · Fem indotta = 2 V"
+      ],
+      [
+        "Osserva la lettura del modello",
+        "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 3 T/s e 0 T/s.",
+        "Fem indotta = 2 V"
+      ],
+      [
+        "Ripeti con un altro dato",
+        "Prevedi la lettura con «Velocità di variazione del campo» a 0 T/s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+        "ε = −NA dB/dt; N = 10, A = 0,05 m²"
+      ]
+    ],
+    "drawUsesReasoningOverride": true,
+    "referenceUsesOriginalActivityModel": true,
+    "limit": "Reference producer+source dispatch read; no fresh pilot/DOM UI acceptance."
+  },
+  "openTimelineTransitions": 6,
+  "newProductUiCases": 0,
+  "newPasses": 0,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

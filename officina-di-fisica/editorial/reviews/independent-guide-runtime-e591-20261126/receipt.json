@@ -1,0 +1,47 @@
+{
+  "activityCredit": 0,
+  "actualGradedManualNumberInputsAccepted": 16,
+  "candidateAccepted": false,
+  "candidateRuntimeSha256": "e591965431bc013d76c8b643cfbfc1e0d81d4caf45bc10af13d5f45948c70913",
+  "comparisonScope": "solve/readings/drawing commands and graded objects unchanged versus1a; not independent acceptance of139science or geometry.",
+  "directGuideSamplesChecked": 24,
+  "finding": {
+    "acceptanceCondition": "Refresh coherent title/text/equation whenever current timeline state is text-refreshed. Retain selected point calculations, observation mode elsewhere, clock state, solve/readings/geometry/graded answers and pilot reasoning/reference behavior.",
+    "actualTransitions": 6,
+    "affectedIds": [
+      "SIM-C5-L01-01",
+      "SIM-C5-L02-03",
+      "SIM-C5-L08-02"
+    ],
+    "causeLines": "banco.js frame timeline branch updates data-equation; draw alone assigns data-step-title and data-explain.",
+    "limits": "Private selector objects run exact source blocks; paused stop/RAF/button side effects are stubbed, no browser/DOM/native/fallback or elapsed wall-clock playback was observed. Actual duration/unit functions are used.",
+    "priority": "P2",
+    "problem": "Direct producer guide switches correctly, but banco timeline delivery updates only the equation. Its title and instruction retain the prior draw mode after seek/syncTime/frame.",
+    "reproduction": "For each affected final3a0b record, at stage2 start at its first selected point and seek to its frozen nonselected probe; reverse. Actual model.steps expected triplet differs in title/text; exact consumer frame updates equation only.",
+    "status": "OPEN"
+  },
+  "fixtureTests": 5,
+  "humanApproval": "NOT_RUN",
+  "newPasses": 0,
+  "newProductUiCases": 0,
+  "old17ContractsUnchanged": true,
+  "old263LimitedReviewRetained": true,
+  "originalLegalStatesCompared": 2144,
+  "originalsDataCompared": 139,
+  "phase": "INDEPENDENT_RUNTIME_REVIEW_OPEN_FINDING_NO_ACCEPTANCE",
+  "pilotReferenceLimit": "Source override dispatch and original-activity reference producer checked; no fresh induction pilot UI or new extra-problem approval.",
+  "publicationAction": "NONE",
+  "readOnlySourcePins": {
+    "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+    "static/js/banchi/quaderno.js": "ecc32226e0fa1781b36cac952fa926a2ac17be6b4eae491ef6ef5744fcd8885a",
+    "static/js/banchi/voci/esperimento.js": "7a856fda0835d736b46c631e05652e6b2e27f3758abd94d7026158e56b019843"
+  },
+  "rootAndCanonicalRemain1a": true,
+  "roundingChecks": {
+    "decimalPoint1PlusPoint2": "correct assigned classification and declared-point worked expression",
+    "distinctNearbyInput": "observation",
+    "near90Minus1eMinus8": "nonzero physical output retained and observation mode"
+  },
+  "sourceCommit": "19fe56cf0a80f6a8468fb2558528fdb36a450228",
+  "testsSeconds": 0.001
+}
