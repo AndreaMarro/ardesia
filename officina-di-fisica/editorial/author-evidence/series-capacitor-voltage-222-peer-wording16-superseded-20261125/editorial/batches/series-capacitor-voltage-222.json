@@ -1,0 +1,1188 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-series-capacitor-voltage-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Ripartire la tensione con carica comune",
+      "order": 22201,
+      "title": "Caduta sul primo condensatore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitor-voltage",
+      "difficulty": 1,
+      "prompt": "Due condensatori lineari ideali, C₁>0 e C₂>0 finiti, sono inizialmente scarichi e collegati in serie fra A e B a un generatore ideale E=12 V. C₁ è fra A e M, C₂ fra M e B. Il nodo M non riceve carica dall’esterno e conserva carica netta zero. A regime le armature dei due condensatori hanno lo stesso modulo Q. Si cerca V₁=V_A−V_M, la caduta positiva sul primo condensatore; la somma delle due cadute è E e 0<V₁<E. Le capacità restano costanti entro ciascuna preparazione. Con C₁=2 μF e C₂=2 μF, quanto vale V₁ in V?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Indico con S la capacità equivalente della serie: con due componenti da 2 μF vale 1 μF. Con E=12 V si accumula un modulo Q=12 μC. Sul primo condensatore V₁=Q/C₁=12 μC/(2 μF)=6 V. Il secondo ha anch’esso 6 V e la somma ricostruisce la tensione del generatore. Non si usa la corrente finale, che in un dielettrico ideale a regime è nulla."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/798a357186e2333050c2f93de86ed8b8c245304253a3cd2dab50859ea50b7adb",
+          "text": "Nel circuito in serie il nodo M è neutro. Con C₁=C₂=2 μF ed E=12 V, la carica comune vale 12 μC e ciascuna caduta 6 V. Le parentesi inferiori indicano differenze di potenziale, non vettori del campo."
+        },
+        {
+          "type": "formula",
+          "text": "S=1\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " Q=12\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " V_1=\\frac Q{C_1}"
+        },
+        {
+          "type": "formula",
+          "text": " V_1=6\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Dodici V assegna tutta la caduta al primo e zero al secondo. Tre V è la caduta che si avrebbe con C₁=3C₂, non con capacità uguali. Quattro e due copiano numeri di capacità senza ricostruire Q/C₁. Il rapporto delle tensioni non si legge come quello diretto delle capacità."
+        }
+      ],
+      "hints": [
+        "Trova la carica comune della serie e dividila per C₁.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici V assegna tutta la caduta al primo e zero al secondo. Tre V è la caduta che si avrebbe con C₁=3C₂, non con capacità uguali. Quattro e due copiano numeri di capacità senza ricostruire Q/C₁. Il rapporto delle tensioni non si legge come quello diretto delle capacità.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Neutralità del nodo e carica comune",
+        "Caduta sul primo condensatore",
+        "Inverse con 0<V₁<E",
+        "Medie e tarature della tensione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitor-voltage-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Ripartire la tensione con carica comune",
+      "order": 22202,
+      "title": "L’unità della caduta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitor-voltage",
+      "difficulty": 1,
+      "prompt": "Due condensatori lineari ideali, C₁>0 e C₂>0 finiti, sono inizialmente scarichi e collegati in serie fra A e B a un generatore ideale E=12 V. C₁ è fra A e M, C₂ fra M e B. Il nodo M non riceve carica dall’esterno e conserva carica netta zero. A regime le armature dei due condensatori hanno lo stesso modulo Q. Si cerca V₁=V_A−V_M, la caduta positiva sul primo condensatore; la somma delle due cadute è E e 0<V₁<E. Le capacità restano costanti entro ciascuna preparazione. Quale unità esprime V₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V",
+          "A",
+          "μF",
+          "W",
+          "1"
+        ],
+        "value": "V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "V₁ è una differenza di potenziale. Da Q/C₁ si ricava l’unità C/F=V. Il rapporto C₂/(C₁+C₂) è puro e moltiplica i 12 V del generatore: non è esso stesso l’uscita dimensionata."
+        },
+        {
+          "type": "formula",
+          "text": "[V_1]=\\mathrm{C/F}"
+        },
+        {
+          "type": "formula",
+          "text": " [V_1]=\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "A misura corrente, μF capacità e W potenza. Il numero 1 è l’unità del rapporto delle capacità, non della caduta. La capacità ha cambiato il riparto, non la dimensione di V₁."
+        }
+      ],
+      "hints": [
+        "Il rapporto delle capacità moltiplica una tensione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "A misura corrente, μF capacità e W potenza. Il numero 1 è l’unità del rapporto delle capacità, non della caduta. La capacità ha cambiato il riparto, non la dimensione di V₁.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Neutralità del nodo e carica comune",
+        "Caduta sul primo condensatore",
+        "Inverse con 0<V₁<E",
+        "Medie e tarature della tensione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitor-voltage-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Ripartire la tensione con carica comune",
+      "order": 22203,
+      "title": "Carica comune, tensioni diverse",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitor-voltage",
+      "difficulty": 1,
+      "prompt": "Due condensatori lineari ideali, C₁>0 e C₂>0 finiti, sono inizialmente scarichi e collegati in serie fra A e B a un generatore ideale E=12 V. C₁ è fra A e M, C₂ fra M e B. Il nodo M non riceve carica dall’esterno e conserva carica netta zero. A regime le armature dei due condensatori hanno lo stesso modulo Q. Si cerca V₁=V_A−V_M, la caduta positiva sul primo condensatore; la somma delle due cadute è E e 0<V₁<E. Le capacità restano costanti entro ciascuna preparazione. Quale relazione dà V₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V₁ = E C₂ / (C₁ + C₂)",
+          "V₁ = E C₁ / (C₁ + C₂)",
+          "V₁ = E (C₁ + C₂) / C₂",
+          "V₁ = E C₂ / C₁",
+          "V₁ = E C₁ C₂"
+        ],
+        "value": "V₁ = E C₂ / (C₁ + C₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La neutralità del nodo intermedio rende comuni i moduli Q, non le tensioni. Sommando Q/C₁ e Q/C₂ si trova Q=E C₁C₂/(C₁+C₂). Dividendo questa carica per C₁ si ottiene V₁=E C₂/(C₁+C₂). Il C₂ al numeratore nasce proprio dalla divisione per C₁ della carica comune."
+        },
+        {
+          "type": "formula",
+          "text": "E=\\frac Q{C_1}+\\frac Q{C_2}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=E\\frac{C_1C_2}{C_1+C_2}"
+        },
+        {
+          "type": "formula",
+          "text": " V_1=E\\frac{C_2}{C_1+C_2}"
+        },
+        {
+          "type": "text",
+          "text": "C₁ al numeratore dà la caduta sul secondo condensatore. Invertire il rapporto produce una caduta maggiore di E; dividere per il solo C₁ omette C₂ nella somma. EC₁C₂ ha unità V·F² e non V."
+        }
+      ],
+      "hints": [
+        "Somma Q/C₁ e Q/C₂ e poi isola Q.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "C₁ al numeratore dà la caduta sul secondo condensatore. Invertire il rapporto produce una caduta maggiore di E; dividere per il solo C₁ omette C₂ nella somma. EC₁C₂ ha unità V·F² e non V.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Neutralità del nodo e carica comune",
+        "Caduta sul primo condensatore",
+        "Inverse con 0<V₁<E",
+        "Medie e tarature della tensione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitor-voltage-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Ripartire la tensione con carica comune",
+      "order": 22204,
+      "title": "Il primo condensatore diminuisce",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitor-voltage",
+      "difficulty": 1,
+      "prompt": "Due condensatori lineari ideali, C₁>0 e C₂>0 finiti, sono inizialmente scarichi e collegati in serie fra A e B a un generatore ideale E=12 V. C₁ è fra A e M, C₂ fra M e B. Il nodo M non riceve carica dall’esterno e conserva carica netta zero. A regime le armature dei due condensatori hanno lo stesso modulo Q. Si cerca V₁=V_A−V_M, la caduta positiva sul primo condensatore; la somma delle due cadute è E e 0<V₁<E. Le capacità restano costanti entro ciascuna preparazione. C₁ passa da 2 a 1 μF, mentre C₂ resta 2 μF. Come cambia V₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 6 a 8 V",
+          "Da 6 a 3 V",
+          "Resta 6 V",
+          "Da 6 a 12 V",
+          "Da 6 a 4 V"
+        ],
+        "value": "Da 6 a 8 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima le due capacità uguali danno V₁,A=6 V. Dopo C₁=1 μF e C₂=2 μF, la carica comune è Q_B=12·(2/3) μC=8 μC. Dividendo per il nuovo C₁ si ottiene V₁,B=8 V; l’altra caduta è 4 V. Una capacità più piccola prende qui la caduta maggiore."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/798a357186e2333050c2f93de86ed8b8c245304253a3cd2dab50859ea50b7adb",
+          "text": "Le barre centrali dividono sempre 12 V: A ha 6 e 6 V, la prova modificata C₁=1 μF,C₂=2 μF ha 8 e 4 V. Aumenta la caduta sul condensatore più piccolo. Scala comune entro quel pannello."
+        },
+        {
+          "type": "formula",
+          "text": "V_{1,A}=6\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=8\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " V_{1,B}=8\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Tre V rende la caduta direttamente proporzionale a C₁, sei la conserva ignorando il cambio, dodici annulla l’altra caduta. Quattro V è la caduta finale sul secondo condensatore, non sul primo."
+        }
+      ],
+      "hints": [
+        "La caduta sul componente più piccolo aumenta a tensione totale fissata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Tre V rende la caduta direttamente proporzionale a C₁, sei la conserva ignorando il cambio, dodici annulla l’altra caduta. Quattro V è la caduta finale sul secondo condensatore, non sul primo.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Neutralità del nodo e carica comune",
+        "Caduta sul primo condensatore",
+        "Inverse con 0<V₁<E",
+        "Medie e tarature della tensione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitor-voltage-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Ripartire la tensione con carica comune",
+      "order": 22205,
+      "title": "Ricostruire C₁",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitor-voltage",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari ideali, C₁>0 e C₂>0 finiti, sono inizialmente scarichi e collegati in serie fra A e B a un generatore ideale E=12 V. C₁ è fra A e M, C₂ fra M e B. Il nodo M non riceve carica dall’esterno e conserva carica netta zero. A regime le armature dei due condensatori hanno lo stesso modulo Q. Si cerca V₁=V_A−V_M, la caduta positiva sul primo condensatore; la somma delle due cadute è E e 0<V₁<E. Le capacità restano costanti entro ciascuna preparazione. Si misura V₁=6 V e si conosce C₂=2 μF. Quanto vale C₁ in μF?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "μF",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da V₁(C₁+C₂)=EC₂ segue V₁C₁=(E−V₁)C₂. Dividendo per V₁>0 si trova C₁=C₂(E−V₁)/V₁. I dati danno 2 μF·6/6=2 μF. Il dominio 0<V₁<E rende la capacità positiva."
+        },
+        {
+          "type": "formula",
+          "text": "V_1C_1=(E-V_1)C_2"
+        },
+        {
+          "type": "formula",
+          "text": " C_1=C_2\\frac{E-V_1}{V_1}"
+        },
+        {
+          "type": "formula",
+          "text": " C_1=2\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "Sei μF darebbe V₁=3 V; quattro μF darebbe V₁=4 V. Sottrarre direttamente una tensione da una capacità mescola unità. Il confine V₁=0 non permette un primo componente positivo finito in questa serie."
+        }
+      ],
+      "hints": [
+        "Porta il termine V₁C₂ a destra prima di dividere per V₁.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei μF darebbe V₁=3 V; quattro μF darebbe V₁=4 V. Sottrarre direttamente una tensione da una capacità mescola unità. Il confine V₁=0 non permette un primo componente positivo finito in questa serie.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Neutralità del nodo e carica comune",
+        "Caduta sul primo condensatore",
+        "Inverse con 0<V₁<E",
+        "Medie e tarature della tensione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitor-voltage-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Ripartire la tensione con carica comune",
+      "order": 22206,
+      "title": "Ricostruire C₂",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitor-voltage",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari ideali, C₁>0 e C₂>0 finiti, sono inizialmente scarichi e collegati in serie fra A e B a un generatore ideale E=12 V. C₁ è fra A e M, C₂ fra M e B. Il nodo M non riceve carica dall’esterno e conserva carica netta zero. A regime le armature dei due condensatori hanno lo stesso modulo Q. Si cerca V₁=V_A−V_M, la caduta positiva sul primo condensatore; la somma delle due cadute è E e 0<V₁<E. Le capacità restano costanti entro ciascuna preparazione. Si misura V₁=6 V e si conosce C₁=2 μF. Quanto vale C₂ in μF?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "μF",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Raccolgo la stessa equazione in C₂: V₁C₁=(E−V₁)C₂. Dunque C₂=V₁C₁/(E−V₁). Con V₁=6 V e C₁=2 μF risulta C₂=2 μF. Il denominatore E−V₁ è una tensione positiva, non una capacità."
+        },
+        {
+          "type": "formula",
+          "text": "V_1C_1=(E-V_1)C_2"
+        },
+        {
+          "type": "formula",
+          "text": " C_2=\\frac{V_1C_1}{E-V_1}"
+        },
+        {
+          "type": "formula",
+          "text": " C_2=2\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "Quattro μF darebbe V₁=8 V; un μF darebbe V₁=4 V. Sostituire E+V₁ al denominatore darebbe 2/3 μF e non ricostruirebbe la caduta. Il confine V₁=E è escluso."
+        }
+      ],
+      "hints": [
+        "Raccogli C₂ e dividi per la tensione positiva E−V₁.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro μF darebbe V₁=8 V; un μF darebbe V₁=4 V. Sostituire E+V₁ al denominatore darebbe 2/3 μF e non ricostruirebbe la caduta. Il confine V₁=E è escluso.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Neutralità del nodo e carica comune",
+        "Caduta sul primo condensatore",
+        "Inverse con 0<V₁<E",
+        "Medie e tarature della tensione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitor-voltage-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Ripartire la tensione con carica comune",
+      "order": 22207,
+      "title": "Il secondo condensatore aumenta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitor-voltage",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari ideali, C₁>0 e C₂>0 finiti, sono inizialmente scarichi e collegati in serie fra A e B a un generatore ideale E=12 V. C₁ è fra A e M, C₂ fra M e B. Il nodo M non riceve carica dall’esterno e conserva carica netta zero. A regime le armature dei due condensatori hanno lo stesso modulo Q. Si cerca V₁=V_A−V_M, la caduta positiva sul primo condensatore; la somma delle due cadute è E e 0<V₁<E. Le capacità restano costanti entro ciascuna preparazione. A ha C₁=2 μF, C₂=2 μF. B mantiene C₁ e ha C₂=4 μF. Quanto vale V₁_B/V₁_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "2",
+          "1/2",
+          "1"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 6 V. B con C₁=2 μF e C₂=4 μF dà V₁,B=12·4/6 V=8 V; il rapporto è 8/6=4/3. Raddoppiare C₂ modifica sia il numeratore sia la somma, perciò non raddoppia la caduta sul primo condensatore."
+        },
+        {
+          "type": "formula",
+          "text": "V_{1,A}=6\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_{1,B}=8\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_{1,B}}{V_{1,A}}=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "3/4 inverte il confronto. Due segue soltanto C₂, mezzo ne inverte l’effetto e uno ignora la modifica. La nuova caduta sul primo deve restare minore di 12 V."
+        }
+      ],
+      "hints": [
+        "Valuta sia il numeratore sia il denominatore della nuova prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/4 inverte il confronto. Due segue soltanto C₂, mezzo ne inverte l’effetto e uno ignora la modifica. La nuova caduta sul primo deve restare minore di 12 V.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Neutralità del nodo e carica comune",
+        "Caduta sul primo condensatore",
+        "Inverse con 0<V₁<E",
+        "Medie e tarature della tensione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitor-voltage-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Ripartire la tensione con carica comune",
+      "order": 22208,
+      "title": "Scarto della tensione proposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitor-voltage",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari ideali, C₁>0 e C₂>0 finiti, sono inizialmente scarichi e collegati in serie fra A e B a un generatore ideale E=12 V. C₁ è fra A e M, C₂ fra M e B. Il nodo M non riceve carica dall’esterno e conserva carica netta zero. A regime le armature dei due condensatori hanno lo stesso modulo Q. Si cerca V₁=V_A−V_M, la caduta positiva sul primo condensatore; la somma delle due cadute è E e 0<V₁<E. Le capacità restano costanti entro ciascuna preparazione. Con C₁=C₂=2 μF si propone V₁=12 V. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6 V",
+          "−6 V",
+          "12 V",
+          "0 V",
+          "2"
+        ],
+        "value": "6 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La corretta caduta è 6 V. La proposta 12 V la supera di 6 V e assegnerebbe zero all’altro condensatore finito positivo. Lo scarto richiesto è proposta meno corretto e conserva l’unità volt."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=6\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " e=(12-6)\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " e=6\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "−6 V scambia l’ordine, dodici copia la proposta e zero la accetta. Due puro è un rapporto e non una differenza di tensione."
+        }
+      ],
+      "hints": [
+        "Dividi prima la tensione fra i due condensatori uguali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−6 V scambia l’ordine, dodici copia la proposta e zero la accetta. Due puro è un rapporto e non una differenza di tensione.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Neutralità del nodo e carica comune",
+        "Caduta sul primo condensatore",
+        "Inverse con 0<V₁<E",
+        "Medie e tarature della tensione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitor-voltage-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Ripartire la tensione con carica comune",
+      "order": 22209,
+      "title": "L’inversa nella prima capacità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitor-voltage",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari ideali, C₁>0 e C₂>0 finiti, sono inizialmente scarichi e collegati in serie fra A e B a un generatore ideale E=12 V. C₁ è fra A e M, C₂ fra M e B. Il nodo M non riceve carica dall’esterno e conserva carica netta zero. A regime le armature dei due condensatori hanno lo stesso modulo Q. Si cerca V₁=V_A−V_M, la caduta positiva sul primo condensatore; la somma delle due cadute è E e 0<V₁<E. Le capacità restano costanti entro ciascuna preparazione. Sono noti V₁, E e C₂. Quale formula isola C₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "C₁ = C₂ (E − V₁) / V₁",
+          "C₁ = C₂ (E + V₁) / V₁",
+          "C₁ = C₂ V₁ / (E − V₁)",
+          "C₁ = V₁ / C₂",
+          "C₁ = C₂ − V₁"
+        ],
+        "value": "C₁ = C₂ (E − V₁) / V₁"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplico per la somma e raccolgo l’incognita: V₁C₁=(E−V₁)C₂. L’inversa C₁=C₂(E−V₁)/V₁ conserva l’unità di capacità perché il rapporto delle tensioni è puro. I confini V₁=0 o V₁=E non appartengono al caso con entrambe le capacità finite positive."
+        },
+        {
+          "type": "formula",
+          "text": "V_1(C_1+C_2)=EC_2"
+        },
+        {
+          "type": "formula",
+          "text": " V_1C_1=(E-V_1)C_2"
+        },
+        {
+          "type": "formula",
+          "text": " C_1=C_2\\frac{E-V_1}{V_1}"
+        },
+        {
+          "type": "text",
+          "text": "Il più non isola il termine. C₂V₁/(E−V₁) inverte il rapporto delle tensioni: con E=12 V,V₁=3 V,C₂=1 μF darebbe 1/3 μF, mentre C₁=3 μF. V₁/C₂ e C₂−V₁ non hanno la dimensione richiesta."
+        }
+      ],
+      "hints": [
+        "Controlla insieme l’algebra e il dominio 0<V₁<E.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il più non isola il termine. C₂V₁/(E−V₁) inverte il rapporto delle tensioni: con E=12 V,V₁=3 V,C₂=1 μF darebbe 1/3 μF, mentre C₁=3 μF. V₁/C₂ e C₂−V₁ non hanno la dimensione richiesta.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Neutralità del nodo e carica comune",
+        "Caduta sul primo condensatore",
+        "Inverse con 0<V₁<E",
+        "Medie e tarature della tensione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitor-voltage-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Ripartire la tensione con carica comune",
+      "order": 22210,
+      "title": "Fattori separati nella somma",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitor-voltage",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari ideali, C₁>0 e C₂>0 finiti, sono inizialmente scarichi e collegati in serie fra A e B a un generatore ideale E=12 V. C₁ è fra A e M, C₂ fra M e B. Il nodo M non riceve carica dall’esterno e conserva carica netta zero. A regime le armature dei due condensatori hanno lo stesso modulo Q. Si cerca V₁=V_A−V_M, la caduta positiva sul primo condensatore; la somma delle due cadute è E e 0<V₁<E. Le capacità restano costanti entro ciascuna preparazione. B usa C₁,B=κ₁C₁ e C₂,B=κ₂C₂, con fattori positivi. Definiamo S=C₁+C₂ e S_B=κ₁C₁+κ₂C₂, somme ausiliarie e non capacità equivalenti della serie. Quanto vale V₁,B/V₁,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₂ S / S_B",
+          "κ₁ S / S_B",
+          "κ₁ κ₂",
+          "S_B / (κ₂ S)",
+          "κ₂ / κ₁"
+        ],
+        "value": "κ₂ S / S_B"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La caduta è E C₂/S, con S=C₁+C₂. Nella nuova prova il numeratore porta κ₂ e la somma diventa S_B. Dividendo le due cadute si ottiene V₁,B/V₁,A=κ₂S/S_B. Scalare entrambe le capacità dello stesso fattore lascia invariate le tensioni, ma cambia Q."
+        },
+        {
+          "type": "formula",
+          "text": "V_{1,A}=E\\frac{C_2}{S}"
+        },
+        {
+          "type": "formula",
+          "text": " V_{1,B}=E\\frac{\\kappa_2C_2}{S_B}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_{1,B}}{V_{1,A}}=\\frac{\\kappa_2S}{S_B}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁ al numeratore scala il componente sbagliato nella formula della caduta. Il prodotto omette la variazione della somma; S_B/(κ₂S) inverte il confronto. κ₂/κ₁ perde i pesi delle capacità nel denominatore."
+        }
+      ],
+      "hints": [
+        "Distingui il fattore dell’elemento inferiore dalla variazione del totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁ al numeratore scala il componente sbagliato nella formula della caduta. Il prodotto omette la variazione della somma; S_B/(κ₂S) inverte il confronto. κ₂/κ₁ perde i pesi delle capacità nel denominatore.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Neutralità del nodo e carica comune",
+        "Caduta sul primo condensatore",
+        "Inverse con 0<V₁<E",
+        "Medie e tarature della tensione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitor-voltage-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Ripartire la tensione con carica comune",
+      "order": 22211,
+      "title": "Nuova ripartizione elettrostatica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitor-voltage",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari ideali, C₁>0 e C₂>0 finiti, sono inizialmente scarichi e collegati in serie fra A e B a un generatore ideale E=12 V. C₁ è fra A e M, C₂ fra M e B. Il nodo M non riceve carica dall’esterno e conserva carica netta zero. A regime le armature dei due condensatori hanno lo stesso modulo Q. Si cerca V₁=V_A−V_M, la caduta positiva sul primo condensatore; la somma delle due cadute è E e 0<V₁<E. Le capacità restano costanti entro ciascuna preparazione. A ha C₁=2 μF e C₂=2 μF. B ha C₁=3 μF e C₂=1 μF. Quanto vale V₁_B/V₁_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "3/2",
+          "1",
+          "1/3"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due somme sono entrambe 4 μF. A ha V₁,A=12·2/4=6 V; B ha V₁,B=12·1/4=3 V. Il rapporto è 1/2. In B la carica comune vale 9 μC: divisa per C₁=3 μF dà proprio 3 V."
+        },
+        {
+          "type": "formula",
+          "text": "V_{1,A}=6\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_{1,B}=3\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_{1,B}}{V_{1,A}}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il rapporto. 3/2 segue soltanto C₁; un terzo usa C₂,B/C₁,B anziché C₂,B/(C₁,B+C₂,B). Uno riconosce la somma uguale ma ignora il cambiamento del riparto."
+        }
+      ],
+      "hints": [
+        "Calcola la frazione inferiore in ciascuna prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il rapporto. 3/2 segue soltanto C₁; un terzo usa C₂,B/C₁,B anziché C₂,B/(C₁,B+C₂,B). Uno riconosce la somma uguale ma ignora il cambiamento del riparto.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Neutralità del nodo e carica comune",
+        "Caduta sul primo condensatore",
+        "Inverse con 0<V₁<E",
+        "Medie e tarature della tensione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitor-voltage-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Ripartire la tensione con carica comune",
+      "order": 22212,
+      "title": "Media con somma comune",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitor-voltage",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari ideali, C₁>0 e C₂>0 finiti, sono inizialmente scarichi e collegati in serie fra A e B a un generatore ideale E=12 V. C₁ è fra A e M, C₂ fra M e B. Il nodo M non riceve carica dall’esterno e conserva carica netta zero. A regime le armature dei due condensatori hanno lo stesso modulo Q. Si cerca V₁=V_A−V_M, la caduta positiva sul primo condensatore; la somma delle due cadute è E e 0<V₁<E. Le capacità restano costanti entro ciascuna preparazione. A usa C₁=2 μF, C₂=2 μF; B usa C₁=3 μF, C₂=1 μF. Qual è la media aritmetica delle due V₁ con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/2 V",
+          "9 V",
+          "3/2 V",
+          "6 V",
+          "3 V"
+        ],
+        "value": "9/2 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La media delle due cadute è (6+3)/2=9/2 V. Ai dati medi C₁=5/2 μF e C₂=3/2 μF, la formula dà lo stesso 12·(3/2)/4=9/2 V. La coincidenza dipende dalla somma comune di 4 μF nei riferimenti, non vale per tutte le coppie di capacità."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/798a357186e2333050c2f93de86ed8b8c245304253a3cd2dab50859ea50b7adb",
+          "text": "L’ultimo pannello usa A: C₁=C₂=2 μF e B: C₁=3 μF,C₂=1 μF. Le cadute sul primo sono 6 e 3 V con media 9/2 V. Queste prove sono distinte dal caso modificato del pannello centrale; origine e scala comuni entro ciascun pannello."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline{V_1}=\\frac{6+3}{2}\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline{V_1}=\\frac92\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_{1,\\rm dati\\ medi}=\\frac92\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Nove V somma; 3/2 V è metà della differenza; sei e tre ripetono una sola prova. La coincidenza con il modello ai dati medi va motivata dalla somma comune."
+        }
+      ],
+      "hints": [
+        "Media le due tensioni già calcolate e controlla il totale comune.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Nove V somma; 3/2 V è metà della differenza; sei e tre ripetono una sola prova. La coincidenza con il modello ai dati medi va motivata dalla somma comune.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Neutralità del nodo e carica comune",
+        "Caduta sul primo condensatore",
+        "Inverse con 0<V₁<E",
+        "Medie e tarature della tensione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitor-voltage-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Ripartire la tensione con carica comune",
+      "order": 22213,
+      "title": "C₂ per la caduta bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitor-voltage",
+      "difficulty": 3,
+      "prompt": "Due condensatori lineari ideali, C₁>0 e C₂>0 finiti, sono inizialmente scarichi e collegati in serie fra A e B a un generatore ideale E=12 V. C₁ è fra A e M, C₂ fra M e B. Il nodo M non riceve carica dall’esterno e conserva carica netta zero. A regime le armature dei due condensatori hanno lo stesso modulo Q. Si cerca V₁=V_A−V_M, la caduta positiva sul primo condensatore; la somma delle due cadute è E e 0<V₁<E. Le capacità restano costanti entro ciascuna preparazione. A ha C₁=C₂=2 μF. B usa C₁=3 μF e deve dare V₁_B=V₁_A/2. Quanto vale C₂,B/C₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/3",
+          "3/2",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è V₁,B=3 V. Con C₁,B=3 μF, l’inversa C₂,B=V₁,BC₁,B/(E−V₁,B) dà 9/9 μF=1 μF. Il rapporto con C₂,A=2 μF è 1/2; la caduta bersaglio è ancora interna al dominio."
+        },
+        {
+          "type": "formula",
+          "text": "V_{1,B}=3\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " C_{2,B}=1\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{C_{2,B}}{C_{2,A}}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il confronto. Un terzo confronta C₂,B con C₁,B anziché con C₂,A; 3/2 segue C₁; uno lascerebbe C₂=2 μF e produrrebbe 24/5 V, non 3 V."
+        }
+      ],
+      "hints": [
+        "Fissa la tensione bersaglio prima di invertire la legge.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il confronto. Un terzo confronta C₂,B con C₁,B anziché con C₂,A; 3/2 segue C₁; uno lascerebbe C₂=2 μF e produrrebbe 24/5 V, non 3 V.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Neutralità del nodo e carica comune",
+        "Caduta sul primo condensatore",
+        "Inverse con 0<V₁<E",
+        "Medie e tarature della tensione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitor-voltage-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Ripartire la tensione con carica comune",
+      "order": 22214,
+      "title": "Display proporzionale della caduta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitor-voltage",
+      "difficulty": 3,
+      "prompt": "Due condensatori lineari ideali, C₁>0 e C₂>0 finiti, sono inizialmente scarichi e collegati in serie fra A e B a un generatore ideale E=12 V. C₁ è fra A e M, C₂ fra M e B. Il nodo M non riceve carica dall’esterno e conserva carica netta zero. A regime le armature dei due condensatori hanno lo stesso modulo Q. Si cerca V₁=V_A−V_M, la caduta positiva sul primo condensatore; la somma delle due cadute è E e 0<V₁<E. Le capacità restano costanti entro ciascuna preparazione. D=a_cal V₁ è continuo e adimensionale, a_cal>0, senza offset. A con C₁=C₂=2 μF dà D=18. C dà D=9 e ha C₂=1 μF. Quanto vale C₁,C in μF?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "μF",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento V₁,A=6 V con lettura 18 fissa a_cal=3 V⁻¹. Lettura 9 indica V₁,C=3 V. Con C₂,C=1 μF, l’inversa superiore dà C₁,C=1·(12−3)/3 μF=3 μF. La lettura è adimensionale, non direttamente una tensione."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,\\mathrm V^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " V_{1,C}=3\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " C_{1,C}=3\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "1/3 μF usa D=9 come volt e produrrebbe 9 V. Un μF dà 6 V; nove μF dà 6/5 V. Solo tre μF restituisce 3 V e lettura 9."
+        }
+      ],
+      "hints": [
+        "Decodifica la tensione prima dell’inversa di C₁.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1/3 μF usa D=9 come volt e produrrebbe 9 V. Un μF dà 6 V; nove μF dà 6/5 V. Solo tre μF restituisce 3 V e lettura 9.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Neutralità del nodo e carica comune",
+        "Caduta sul primo condensatore",
+        "Inverse con 0<V₁<E",
+        "Medie e tarature della tensione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitor-voltage-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Ripartire la tensione con carica comune",
+      "order": 22215,
+      "title": "Taratura prima dell’inversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitor-voltage",
+      "difficulty": 3,
+      "prompt": "Due condensatori lineari ideali, C₁>0 e C₂>0 finiti, sono inizialmente scarichi e collegati in serie fra A e B a un generatore ideale E=12 V. C₁ è fra A e M, C₂ fra M e B. Il nodo M non riceve carica dall’esterno e conserva carica netta zero. A regime le armature dei due condensatori hanno lo stesso modulo Q. Si cerca V₁=V_A−V_M, la caduta positiva sul primo condensatore; la somma delle due cadute è E e 0<V₁<E. Le capacità restano costanti entro ciascuna preparazione. D=a_cal V₁+b è continuo e adimensionale. A: C₁=2 μF, C₂=2 μF, D=13. B: C₁=3 μF, C₂=1 μF, D=7. C: C₂=2 μF, D=17. Quanto vale C₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 μF",
+          "14/17 μF",
+          "2 μF",
+          "4 μF",
+          "8 μF"
+        ],
+        "value": "1 μF"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno cadute 6 e 3 V, letture 13 e 7: guadagno 2 V⁻¹, offset 1. Lettura 17 indica V₁,C=(17−1)/2 V=8 V. Con C₂,C=2 μF, C₁,C=2·(12−8)/8 μF=1 μF. Il controllo di 8<12 precede l’inversa."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,\\mathrm V^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " V_{1,C}=8\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " C_{1,C}=1\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "14/17 μF omette l’offset e usa V₁=17/2 V: ricostruisce D=18. Due μF dà D=13, quattro dà D=9, otto dà D=29/5. La capacità cercata deve restare positiva."
+        }
+      ],
+      "hints": [
+        "Sottrai b prima di dividere per a_cal, poi controlla V₁<E.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "14/17 μF omette l’offset e usa V₁=17/2 V: ricostruisce D=18. Due μF dà D=13, quattro dà D=9, otto dà D=29/5. La capacità cercata deve restare positiva.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Neutralità del nodo e carica comune",
+        "Caduta sul primo condensatore",
+        "Inverse con 0<V₁<E",
+        "Medie e tarature della tensione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitor-voltage-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Ripartire la tensione con carica comune",
+      "order": 22216,
+      "title": "La caduta non fissa la scala",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitor-voltage",
+      "difficulty": 3,
+      "prompt": "Due condensatori lineari ideali, C₁>0 e C₂>0 finiti, sono inizialmente scarichi e collegati in serie fra A e B a un generatore ideale E=12 V. C₁ è fra A e M, C₂ fra M e B. Il nodo M non riceve carica dall’esterno e conserva carica netta zero. A regime le armature dei due condensatori hanno lo stesso modulo Q. Si cerca V₁=V_A−V_M, la caduta positiva sul primo condensatore; la somma delle due cadute è E e 0<V₁<E. Le capacità restano costanti entro ciascuna preparazione. Fra preparazioni vale C₁=C₂. Si misura inoltre V₁=6 V. Quante coppie positive (C₁,C₂) sono determinate?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie positive con C₁ = C₂",
+          "V₁na sola: C₁ = C₂ = 2 μF",
+          "Nessuna coppia",
+          "Solo C₁ = C₂ = 1 μF",
+          "Qualunque coppia positiva, anche con C₁ diverso da C₂"
+        ],
+        "value": "Infinite coppie positive con C₁ = C₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con C₁=C₂=x>0 finito, la frazione C₂/(C₁+C₂) diventa 1/2: V₁=6 V per ogni x. La misura della sola caduta è ridondante e lascia infinite coppie uguali positive. La carica comune cambierebbe con x e fornirebbe una nuova informazione, ma non è misurata."
+        },
+        {
+          "type": "formula",
+          "text": "C_1=C_2"
+        },
+        {
+          "type": "formula",
+          "text": "C_2=x"
+        },
+        {
+          "type": "formula",
+          "text": " V_1=E\\frac{x}{2x}"
+        },
+        {
+          "type": "formula",
+          "text": " V_1=\\frac E2"
+        },
+        {
+          "type": "formula",
+          "text": " V_1=6\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Le coppie singole sono esempi e non soluzioni uniche. Nessuna è smentita da esempi espliciti. Non qualsiasi coppia positiva è ammessa: deve valere C₁=C₂."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo e verifica se resta una capacità libera.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Le coppie singole sono esempi e non soluzioni uniche. Nessuna è smentita da esempi espliciti. Non qualsiasi coppia positiva è ammessa: deve valere C₁=C₂.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Neutralità del nodo e carica comune",
+        "Caduta sul primo condensatore",
+        "Inverse con 0<V₁<E",
+        "Medie e tarature della tensione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "798a357186e2333050c2f93de86ed8b8c245304253a3cd2dab50859ea50b7adb",
+      "name": "series-capacitor-voltage-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTU0MCIgdmlld0JveD0iMCAwIDY0MCAxNTQwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+UmlwYXJ0aXJlIGRvZGljaSB2b2x0IHN1IGR1ZSBjb25kZW5zYXRvcmkgaW4gc2VyaWU8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5Ob2RvIGludGVybWVkaW8gbmV1dHJvIGUgY2FyaWNhIGNvbXVuZS4gUHJpbW8gZSBzZWNvbmRvIGNvbmRlbnNhdG9yZSBoYW5ubyBzZWkgdm9sdCBjaWFzY3VubyBzZSB1Z3VhbGk7IHJpZHVjZW5kbyBpbCBwcmltbyBhIHVuIG1pY3JvZmFyYWQgbGUgY2FkdXRlIGRpdmVudGFubyBvdHRvIGUgcXVhdHRybyB2b2x0LiBNZWRpZSBkZWxsZSBjYWR1dGUgc3VsIHByaW1vIHBlciBhbHRyZSBkdWUgcHJlcGFyYXppb25pLjwvZGVzYz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE1NDAiIHJ4PSIxNiIgZmlsbD0iI2Y3ZjlmYyIvPgo8dGV4dCB4PSIzMiIgeT0iNDQiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI1IiBmaWxsPSIjMTgyYzQ2IiBmb250LXdlaWdodD0iNzAwIj4xIMK3IFN0ZXNzYSBjYXJpY2EsIGNhZHV0ZSBzdWxsZSBwaWFzdHJlPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iODciIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5FID0gMTIgViA7IEPigoEgPSBD4oKCID0gMiDOvEYgOyBRID0gMTIgzrxDPC90ZXh0Pgo8cGF0aCBkPSJNMTAwIDE5NUgyMzVNMjU1IDE5NUgzODVNNDA1IDE5NUg1NDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4MmM0NiIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxwYXRoIGQ9Ik0yMzUgMTcwVjIyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTgyYzQ2IiBzdHJva2Utd2lkdGg9IjQiLz4KPHBhdGggZD0iTTI1NSAxNzBWMjIwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxODJjNDYiIHN0cm9rZS13aWR0aD0iNCIvPgo8cGF0aCBkPSJNMzg1IDE3MFYyMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4MmM0NiIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxwYXRoIGQ9Ik00MDUgMTcwVjIyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTgyYzQ2IiBzdHJva2Utd2lkdGg9IjQiLz4KPGNpcmNsZSBjeD0iMTAwIiBjeT0iMTk1IiByPSI0IiBmaWxsPSIjMTgyYzQ2Ii8+CjxjaXJjbGUgY3g9IjMyMCIgY3k9IjE5NSIgcj0iNCIgZmlsbD0iIzE4MmM0NiIvPgo8Y2lyY2xlIGN4PSI1NDAiIGN5PSIxOTUiIHI9IjQiIGZpbGw9IiMxODJjNDYiLz4KPHRleHQgeD0iODAiIHk9IjE1NyIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPkE8L3RleHQ+Cjx0ZXh0IHg9IjMxMCIgeT0iMTU3IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+TTwvdGV4dD4KPHRleHQgeD0iNTM1IiB5PSIxNTciIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5CPC90ZXh0Pgo8dGV4dCB4PSIxNzgiIHk9IjI2NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPkPigoEgPSAyIM68RjwvdGV4dD4KPHRleHQgeD0iMzc4IiB5PSIyNjUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5D4oKCID0gMiDOvEY8L3RleHQ+CjxwYXRoIGQ9Ik0xMDAgMjk5VjMxMEgzMjBWMjk5TTMyMCAyOTlWMzEwSDU0MFYyOTkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4MmM0NiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjE2NSIgeT0iMzUxIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+VuKCgSA9IDYgVjwvdGV4dD4KPHRleHQgeD0iMzg1IiB5PSIzNTEiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5W4oKCID0gNiBWPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNDEwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+TSDDqCBuZXV0cm8gOyBsZSBkdWUgY2FkdXRlIHNvbW1hbm8gMTIgVi48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA0NjZINjA4IiBmaWxsPSJub25lIiBzdHJva2U9IiNjNGNmZGIiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSIzMiIgeT0iNTE0IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzE4MmM0NiIgZm9udC13ZWlnaHQ9IjcwMCI+MiDCtyBDYW1iaWEgc29sdGFudG8gQ+KCgTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjU1NyIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPkJsdTogY2FkdXRhIHN1IEPigoEgOyBhcmFuY2lvOiBjYWR1dGEgc3UgQ+KCgi48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI2MDciIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5BPC90ZXh0Pgo8dGV4dCB4PSIxOTYiIHk9IjYyNyIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPjYgVjwvdGV4dD4KPHRleHQgeD0iNDAwIiB5PSI2MjciIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij42IFY8L3RleHQ+CjxyZWN0IHg9IjE1MCIgeT0iNjUwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjQyIiBmaWxsPSIjMTg1ZDgzIi8+CjxyZWN0IHg9IjMzMCIgeT0iNjUwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjQyIiBmaWxsPSIjYjg1MzIyIi8+Cjx0ZXh0IHg9IjMyIiB5PSI3MzYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5Nb2RpZmljYXRvOiBD4oKBID0gMSDOvEYsIEPigoIgPSAyIM68RjwvdGV4dD4KPHRleHQgeD0iMTk4IiB5PSI3NzYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij44IFY8L3RleHQ+Cjx0ZXh0IHg9IjQxNSIgeT0iNzc2IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+NCBWPC90ZXh0Pgo8cmVjdCB4PSIxNTAiIHk9IjgwMCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSI0MiIgZmlsbD0iIzE4NWQ4MyIvPgo8cmVjdCB4PSIzOTAiIHk9IjgwMCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSI0MiIgZmlsbD0iI2I4NTMyMiIvPgo8dGV4dCB4PSIzMiIgeT0iOTAwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+U29tbWEgZSBzY2FsYSBjb211bmk6IHNlbXByZSAxMiBWLjwvdGV4dD4KPHBhdGggZD0iTTMyIDk1M0g2MDgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M0Y2ZkYiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjMyIiB5PSIxMDAzIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzE4MmM0NiIgZm9udC13ZWlnaHQ9IjcwMCI+MyDCtyBBbHRyZSBkdWUgcHJlcGFyYXppb25pPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTA0NiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPkE6IDIgZSAyIM68RiA7IEI6IDMgZSAxIM68RjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEwODgiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5TaSBjb25mcm9udGEgc29sbyBsYSBjYWR1dGEgc3VsIHByaW1vLjwvdGV4dD4KPHBhdGggZD0iTTE1MCAxMTIwVjE0MjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4MmM0NiIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjE1MCIgeT0iMTE1MCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSI0MiIgZmlsbD0iIzE4NWQ4MyIvPgo8dGV4dCB4PSIzMiIgeT0iMTE4MCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPkE8L3RleHQ+Cjx0ZXh0IHg9IjQwOCIgeT0iMTE4MCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPjYgVjwvdGV4dD4KPHJlY3QgeD0iMTUwIiB5PSIxMjUwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjQyIiBmaWxsPSIjYjg1MzIyIi8+Cjx0ZXh0IHg9IjMyIiB5PSIxMjgwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+QjwvdGV4dD4KPHRleHQgeD0iMjg4IiB5PSIxMjgwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+MyBWPC90ZXh0Pgo8cmVjdCB4PSIxNTAiIHk9IjEzNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iNDIiIGZpbGw9IiMzNTY1NGUiLz4KPHRleHQgeD0iMzIiIHk9IjEzODAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5NZWRpYTwvdGV4dD4KPHRleHQgeD0iMzQ4IiB5PSIxMzgwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+OS8yIFY8L3RleHQ+Cjx0ZXh0IHg9IjExOCIgeT0iMTQ0NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPjA8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxNDk1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+T3JpZ2luZSBlIHNjYWxhIGNvbXVuaSBlbnRybyBpbCBwYW5uZWxsby48L3RleHQ+Cjwvc3ZnPgo="
+    }
+  ]
+}

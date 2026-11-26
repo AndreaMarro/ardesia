@@ -1,0 +1,172 @@
+{
+  "sourceCommit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/C4.json",
+  "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+  "lessons": [
+    {
+      "id": "C4-L07",
+      "kind": "lesson",
+      "course": "C4",
+      "section": "Immagazzinare carica ed energia",
+      "order": 7,
+      "title": "Immagazzinare carica ed energia",
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C4-L03",
+        "C4-L04"
+      ],
+      "version": 1,
+      "coverage": [
+        "6.5 Capacità elettrica e condensatore piano",
+        "6.5 Effetto del dielettrico",
+        "6.5 Energia immagazzinata"
+      ],
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Due piastre conduttrici separate da un isolante conservano cariche +Q e −Q. La configurazione possiede un campo e una differenza di potenziale fra le piastre. La capacità C misura quanta carica, in modulo su una sola armatura, corrisponde a un volt di differenza fra le armature."
+        },
+        {
+          "type": "formula",
+          "text": "C=\\frac{Q}{|\\Delta V|},\\qquad 1\\ \\mathrm F=1\\ \\mathrm{C/V}"
+        },
+        {
+          "type": "figure",
+          "src": "/figures/C4-condensatore.svg",
+          "text": "Le piastre di area affacciata A distano d. Nel disegno in sezione il campo fra le armature è diretto dalla positiva alla negativa."
+        },
+        {
+          "type": "text",
+          "text": "Per piastre parallele di area affacciata A, separate di distanza d piccola rispetto alle dimensioni laterali e riempite uniformemente di permittività ε, il campo si può approssimare uniforme lontano dai bordi. La capacità cresce con A e con ε, diminuisce all’aumentare della distanza."
+        },
+        {
+          "type": "formula",
+          "text": "C=\\varepsilon\\frac{A}{d},\\quad \\varepsilon=\\varepsilon_0\\varepsilon_r,\\quad \\varepsilon_0\\simeq8{,}85\\cdot10^{-12}\\ \\mathrm{F/m}"
+        },
+        {
+          "type": "text",
+          "text": "Caricare le piastre richiede lavoro per aggiungere ulteriore carica contro una tensione crescente. Sul grafico |ΔV| contro Q la tensione cresce linearmente da zero al valore finale e l’area sottesa è triangolare. Il lavoro immagazzinato nel campo del condensatore ideale è quindi metà di Q|ΔV|."
+        },
+        {
+          "type": "formula",
+          "text": "U=\\tfrac12Q|\\Delta V|=\\tfrac12 C(\\Delta V)^2=\\frac{Q^2}{2C}"
+        },
+        {
+          "type": "text",
+          "text": "Introducendo un dielettrico, determina prima se il generatore rimane collegato. In isolamento Q resta costante e la tensione scende se C cresce. Con generatore ideale collegato V resta costante e cambia la carica sulle piastre. Il bilancio energetico completo include il generatore e l’eventuale lavoro meccanico sul dielettrico."
+        }
+      ],
+      "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+    },
+    {
+      "id": "C4-L08",
+      "kind": "lesson",
+      "course": "C4",
+      "section": "Mettere insieme i condensatori",
+      "order": 8,
+      "title": "Mettere insieme i condensatori",
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C4-L07"
+      ],
+      "version": 1,
+      "coverage": [
+        "6.5 Condensatori in serie e in parallelo",
+        "6.5 Conservazione di carica nei collegamenti"
+      ],
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Più condensatori consentono di controllare la capacità totale. Disegna i nodi. In parallelo ogni condensatore vede la medesima differenza di potenziale, mentre il generatore separa la somma delle cariche sulle piastre collegate allo stesso morsetto."
+        },
+        {
+          "type": "figure",
+          "src": "/figures/C4-reti-c.svg",
+          "text": "In parallelo le armature corrispondenti appartengono agli stessi due nodi. Nella serie il nodo intermedio, inizialmente neutro e isolato, conserva carica totale zero."
+        },
+        {
+          "type": "formula",
+          "text": "C_{\\rm par}=C_1+C_2,\\qquad Q_{\\rm tot}=(C_1+C_2)V"
+        },
+        {
+          "type": "text",
+          "text": "In serie, se il nodo intermedio isolato è inizialmente neutro, le due piastre che vi appartengono mantengono cariche opposte uguali in modulo. Le cadute di potenziale sono Q/C1 e Q/C2 e devono sommarsi alla tensione applicata. Il condensatore più piccolo porta la tensione maggiore."
+        },
+        {
+          "type": "formula",
+          "text": "V=\\frac{Q}{C_1}+\\frac{Q}{C_2}=\\frac{Q}{C_{\\rm serie}},\\qquad \\frac1{C_{\\rm serie}}=\\frac1{C_1}+\\frac1{C_2}"
+        },
+        {
+          "type": "text",
+          "text": "Quando si collegano fra loro due condensatori già carichi e separati dalla sorgente, identifica i nuovi gruppi di piastre. La carica algebrica di ciascun gruppo isolato si conserva. Dopo il transitorio, i condensatori in parallelo assumono la stessa tensione. Una parte dell’energia iniziale può dissiparsi durante il transitorio reale."
+        },
+        {
+          "type": "text",
+          "text": "Confronta le condizioni al contorno prima di scegliere una formula. Per le resistenze si sommano direttamente i valori in serie; per le capacità, l’addizione diretta nasce dalla tensione comune in parallelo."
+        }
+      ],
+      "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+    },
+    {
+      "id": "C4-L09",
+      "kind": "lesson",
+      "course": "C4",
+      "section": "Correnti, bussole e traiettorie curve",
+      "order": 9,
+      "title": "Correnti, bussole e traiettorie curve",
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C4-L02",
+        "C4-L05"
+      ],
+      "version": 1,
+      "coverage": [
+        "6.6 Origine magnetica delle correnti ed esperimento di Oersted",
+        "6.6 Forza di Lorentz su una carica in moto e su un filo",
+        "6.6 Moto circolare in campo magnetico uniforme"
+      ],
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una bussola vicino a un filo rettilineo si orienta diversamente quando passa corrente. Invertendo il verso della corrente si inverte il contributo magnetico del filo. L’esperimento di Oersted lega la corrente al campo magnetico B, misurato in tesla (T). Intorno a un filo rettilineo lungo le linee del campo sono circonferenze centrate sull’asse del filo. Il pollice della mano destra segue la corrente convenzionale, le dita seguono B."
+        },
+        {
+          "type": "figure",
+          "src": "/figures/C4-filo-b.svg",
+          "text": "Un punto nel filo rappresenta corrente uscente dal foglio. La linea del campo la circonda in senso antiorario. La freccia tangente indica B nel punto P."
+        },
+        {
+          "type": "text",
+          "text": "Una particella carica in moto in un campo B subisce una forza perpendicolare sia alla velocità sia a B. Per q positiva la mano destra dà il verso del prodotto vettoriale v × B; una q negativa inverte la freccia. Quando v è parallela a B, la forza magnetica è nulla."
+        },
+        {
+          "type": "formula",
+          "text": "\\vec F_B=q\\vec v\\times\\vec B,\\qquad F_B=|q|vB\\sin\\theta"
+        },
+        {
+          "type": "figure",
+          "src": "/figures/C4-orbita.svg",
+          "text": "Le croci rappresentano B entrante nel foglio. Per q positiva con v iniziale verso destra la forza è verso l’alto e curva la traiettoria."
+        },
+        {
+          "type": "text",
+          "text": "La forza magnetica è perpendicolare alla velocità istante per istante. Il suo lavoro sulla carica puntiforme è nullo. Con velocità iniziale perpendicolare a un campo uniforme e senza altre forze, il modulo della velocità resta costante e l’accelerazione è centripeta. Un’estensione del modello riguarda una velocità iniziale inclinata: con una componente parallela si sovrappongono rotazione e avanzamento lungo il campo."
+        },
+        {
+          "type": "formula",
+          "text": "|q|vB=\\frac{mv^2}{r}\\quad\\Longrightarrow\\quad r=\\frac{mv}{|q|B}\\quad(\\vec v\\perp\\vec B)"
+        },
+        {
+          "type": "text",
+          "text": "Un segmento rettilineo di filo immerso in un campo uniforme subisce la forza magnetica sulle cariche che lo attraversano. Il vettore lunghezza ℓ segue la corrente convenzionale. Il modulo della forza è massimo con filo perpendicolare al campo."
+        },
+        {
+          "type": "formula",
+          "text": "\\vec F=I\\vec\\ell\\times\\vec B,\\qquad F=I\\ell B\\sin\\theta"
+        }
+      ],
+      "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+    }
+  ],
+  "reading": "Complete L07 single capacitor/dielectric, L08 capacitor networks and L09 Lorentz read; 225–228 single capacitor mapped to L07,229 Lorentz mapped to L09."
+}

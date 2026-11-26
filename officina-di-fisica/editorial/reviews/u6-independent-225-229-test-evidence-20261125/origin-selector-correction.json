@@ -1,0 +1,12 @@
+{
+  "observedFirstTargetExitCode": 1,
+  "passedBeforeCorrection": 13,
+  "failedAssertion": "The selector used only cx=150 and picked the B field symbol at cy=300, whose correct fill is none, instead of the independently read open graph origin at (150,1310).",
+  "actualFailure": "AssertionError: 'none' != '#f7fafc'",
+  "correction": "Select both cx=150 and cy=1310; retain open-origin fill assertion and additionally require its blue stroke. No candidate, oracle, SVG, source or domain changed.",
+  "oldTestSha256": "0b584ac427233590f4f7a21f2d188d261fdba9f6fcc3acb4afdf5ae8f174b61c",
+  "newTestSha256": "23a1a6dcbe2fc5c676dd299a5d926e4a06139bada776087c0aef311ce8220eec",
+  "newTarget": "NOT_RUN_AT_CORRECTION_TIME",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

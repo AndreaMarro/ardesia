@@ -1,21 +1,21 @@
 {
   "schemaVersion": "1.0.0",
   "observedAt": "2026-11-25T16:14:35.144444+00:00",
-  "snapshotHead": "4a15046fda85be6904df29031cc2aa89a0c17139",
+  "snapshotHead": "3a0b5960fd75491df58fd9a58ca72a69beb3d708",
   "canonicalHead": "831b73fa71076b2e9b363006ffd94a350f22fe90",
   "mandate": "INCOMPLETE",
   "questions": {
     "accounted": 4606,
-    "scientificallyReviewed": 3312,
-    "scientificallyUnreviewed": 1294,
-    "registeredDrafts": 3312,
-    "compiledDraftsLocally": 3152,
+    "scientificallyReviewed": 3472,
+    "scientificallyUnreviewed": 1134,
+    "registeredDrafts": 3472,
+    "compiledDraftsLocally": 3312,
     "compiledCandidateFullyLocallyValidated": false,
     "canonicalHistoricalRevisedDrafts": 1728,
-    "newRootAcceptanceReceipt": "editorial/reviews/u6-03-B80-root-integration-20261125/receipt.json",
+    "newRootAcceptanceReceipt": "editorial/reviews/u6-04-root-integration-20261126/receipt.json",
     "compiledCandidateFullyRemotelyValidated": true,
     "unreviewedBySource": {
-      "Ardesia": 688,
+      "Ardesia": 528,
       "Cric": 606
     },
     "newRootAcceptanceReceipts": [
@@ -57,7 +57,10 @@
         17.643
       ],
       "receipt": "editorial/reviews/independent-artifact-adoption-456352-20261125/root-clean-clone-receipt.json"
-    }
+    },
+    "newManualDrafts": 8,
+    "newManualDraftCredit": 0,
+    "newManualDraftHandoff": "editorial/author-notes/manual-experiments-eight-20261125/author-handoff.json"
   },
   "protectedExamQuestions": 93,
   "humanApprovals": 0,
@@ -65,28 +68,23 @@
   "Pro100Recovery": "NOT_IDENTIFIED",
   "recovered199TechnicalChecksAreNotFullReviews": true,
   "lastFullyValidatedRemotePreparation": {
-    "runId": 45635225687,
-    "headSha": "6f7553f28b4134941db7c11fdb1d0e7e6a971269",
+    "runId": 45654876359,
+    "headSha": "46042d7e6b625b7029b31c7a3567f48f5a3f9f37",
     "counts": [
       4606,
       385,
-      3152,
+      3312,
       246
     ],
-    "uiCases": 9507,
-    "uiBatches": 209,
-    "ui": "PASS",
-    "etlFreshAndIncremental": "PASS_IDENTICAL_BYTES",
-    "coexistence": "PASS",
+    "uiBatches": 219,
+    "uiCases": 9987,
     "fullSuite": {
-      "tests": 879,
-      "result": "PASS",
-      "seconds": 909.603
+      "tests": 924,
+      "seconds": 926.61,
+      "result": "PASS"
     },
-    "release": "PASS",
     "checkpointDownloadedAndAdopted": true,
-    "artifactSha256": "cafbd2eb618dadc42dbaafadce7a0924b268e9c9414ac6030d32ff0d815c9267",
-    "receipt": "editorial/reviews/preintegration-45635225687-root-adoption-20261125/receipt.json"
+    "receipt": "editorial/reviews/preintegration-45654876359-root-adoption-20261125/receipt.json"
   },
   "lastFailedRemotePreparation": {
     "runId": 45611122114,
@@ -99,16 +97,13 @@
     "fixRereadAndActualLocalUI": "PASS"
   },
   "currentLocalPreparation": {
-    "scientificallyReviewedQuestionDrafts": 3312,
-    "registeredQuestionDrafts": 3312,
-    "compiledQuestionDrafts": 3152,
-    "new210Through219ProductUi": "NOT_RUN",
-    "new210Through219RootIndependentTests": "PASS_17_AND_14",
-    "new210Through219CanonicalImports": "PASS_16_THEN_0_SAVED_AND_16_UNCHANGED_FOR_EACH_BATCH",
-    "fullSuiteOnCurrentHead": "NOT_RUN",
-    "registrySha256": "e83e2ca0ef40f4d02f881d992c3b349d2f771ab00d7b0bdec7c81fad99d7e308"
+    "registeredQuestionDrafts": 3472,
+    "compiledQuestionDrafts": 3312,
+    "new160ProductUI": "NOT_RUN",
+    "request": "SOURCE_PINNED_3472_INCREMENTAL_REPLAY",
+    "registrySha256": "e553ca85b451c375710d91299c6b86abd8a32a6f7ea10769aa6433bd77135ee4"
   },
-  "nextScientificAcceptanceId": "AR-u6-parallel-capacitors-01",
+  "nextScientificAcceptanceId": "AR-u6-force-current-wire-01",
   "nextNewAuthoringId": "See disjoint ownership U6-03 210-219; authoring in progress, no reallocation",
   "assignments": "U6-03 all160 Root independently accepted. U6-04 all160 authored; cross-review still in progress; authoring alone grants no credit.",
   "governance": {
@@ -190,16 +185,13 @@
     "listedHeadsAreActualBundleContents": true
   },
   "currentCheckpoint": {
-    "generation": "generations/201726f6645939c1e18a78d16fab3e79e299f720b6b1015ff211c0e6266becc4",
-    "manifestSha256": "7a6e0f3b0e91019051282111b952512255819c333b15ca1fad4b61ec601b666d",
+    "generation": "generations/69d765df1fc6958667faf8ca408bb8e351d9086db62ded40c091b7133781c798",
+    "manifestSha256": "4b0446801589392ded402bba19ec635a46ba7adbb5a83d55124a5be4c49b7d62",
     "questionCount": 4606,
-    "schemaVersion": "1.0.0",
-    "validationOrigin": "GITHUB_ACTIONS_RUN_45635225687",
-    "questionsReviewed": 3152,
-    "activitiesReviewed": 246,
-    "rootAuthenticTerminalMarkersRevalidated": true
+    "schemaVersion": "1.0.0"
   },
   "lastPublicRootHeadObserved": "4a15046fda85be6904df29031cc2aa89a0c17139",
   "nextRegistrationId": null,
-  "adoptionTransportIndependentReview": "PASS_LIMITED_7_TEMP_ONLY_PROBES_NO_NEW_CREDIT"
+  "adoptionTransportIndependentReview": "PASS_LIMITED_7_TEMP_ONLY_PROBES_NO_NEW_CREDIT",
+  "clientDate": "2026-11-26"
 }

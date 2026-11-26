@@ -1,3 +1,23 @@
+## Stato operativo — 3.472 revisioni, mandato incompleto
+
+Aggiornamento del 26 novembre 2026: **3.472/4.606 quesiti scientificamente revisionati (75,4%); restano 1.134: 528 Ardesia e 606 Cric.** Attività complete: 246/385; restano 139. Approvazioni umane e nuove pubblicazioni nell’app: zero. Repository pubblico e tutti i contenuti editoriali autorizzati su GitHub; default-deny DRAFT e 93 esami invariati nell’app.
+
+Checkpoint effettivo compilato: **3.312/246**, generazione69d765df1fc6958667faf8ca408bb8e351d9086db62ded40c091b7133781c798, manifest4b0446801589392ded402bba19ec635a46ba7adbb5a83d55124a5be4c49b7d62. Run45654876359, source46042d7e:219 pacchetti,9.987casi UI (209riusi autentici+10render), ETL fresh/incrementale identici, coesistenza,924test PASS926,610s e release PASS. Artefatto completo verificato SHAfc359476a908784ba07f96f112dc867a2e502a1878272cde8a667e211fa29cac, conservato integralmente suGitHub in quattro parti; ricevuta preintegration-45654876359-root-adoption-20261125/receipt.json. Il collaudo non approva automaticamente modifiche successive né la pubblicazione.
+
+U6-04:160 finali Root accettati, dopo correzione della mappatura reti condensatori verso C4-L08 con C4-L07 prerequisito. Autori/verificatori distinti, vecchie prove preservate. Root19test PASS13,143s +14PASS12,435s, tutti160report fresh/saved identici e dieci import canonici16→0/16 con991pubblicati invariati, hash prima/dopo. Prove in u6-04-root-integration-20261126/receipt.json; recuperati262file da commit immutabili. Registry3472; compilato/UI globale ancora3312 fino al nuovo replay.
+
+Otto nuove attivitàv2/base1 sono bozze, non attività completate: author-handoff.json SHA91e45ee6d9e9895894b9e551bd9cfdf09a501da6818a0bcd21e65e0ead1feafa, commit3a0b5960. Primaria distinta d8fb5265 prima dell’assembly; autore non ne ha letto le risposte. Corrette con autore distinto le percentuali, la descrizione teorica del coseno e quattro unità duplicate dal producer effettivo. Otto SVG e16valori invariati; import8→0/8 reale. Verifier e avversarial indipendenti in corso; UI prodotto NOT_RUN, geometryFAIL originali Lorentz/Snell ancora aperti. Nessun credito alle139 attività da questo lavoro parziale. Tutti139originali restano nell’inventario, con19ID FAIL acquisiti e4solo lacune di supporto;129UI_NOT_RUN.
+
+U6-05:ownershipu6-05-v1 attiva, fonte383a0881e644ab8d95bde40b9b3b3a748eaf0baaeaab941e895077251fd087fe. Primaria BperA230–234:4fcc49ce/SHA51395bd462210eea741c8535d111ebf94686590467d5821825834e6e8668f91d. Primaria AperB235–239:bc4da66c/SHA c0d2d26dd79ece4c7ad2ff06d8ddd142acf02eb468b971b3e254ed06e16528bc. Entrambe prima dei candidati; autori in worktree disgiunti, Root unico integratore. Prossimo ID scientifico **AR-u6-force-current-wire-01**. Proseguire poi U7 e606Cric; non fermarsi a questo lotto.
+
+Canone remoto ultimo misurato831b73fa71076b2e9b363006ffd94a350f22fe90. Stessa PR364 in aggiornamento alla head congelata3a0b5960 per3312; verificare head effettiva e check obbligatori prima di merge ordinario e CI post-merge. Nessun bypass/force-push, nessuna approvazione umana simulata. Le100revisioniPro restano NOT_IDENTIFIED;199controlli recuperati non sono revisioni complete.
+
+Prossimi passi: seguire il nuovo replay3472 fino a terminale, verificare artefatto e adottare solo prove reali; chiudere CI della stessa PR364 sulla SHA effettiva e integrare; continuare autoria/review U605/U7/Cric606; concludere review8e correggere le restanti attività con autore distinto e UI reale. Runtime1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba invariato. Mutex condiviso e almeno2GiB; nessun processo utente terminato. Pubblicazione rimane un gate umano separato.
+
+Le sezioni seguenti sono snapshot storici.
+
+---
+
 ## Stato operativo — 3.312 quesiti revisionati, mandato incompleto
 
 Aggiornato 2026-11-25T16:14:35.144444+00:00; snapshot `4a15046fda85be6904df29031cc2aa89a0c17139`. **3.312/4.606 quesiti scientificamente revisionati (71,9%). Restano 1.294 quesiti: 688 Ardesia e 606 Cric.** Attività complete nella feature: **246/385; ne restano 139** (C2: 41, C3: 36, C4: 29, C5: 27, C6: 6). Approvazioni umane: 0; nuove pubblicazioni nell’app: 0. Le 93 domande d’esame restano protette nell’app. Le 100 revisioni Pro rimangono NOT_IDENTIFIED; i 199 controlli tecnici recuperati non equivalgono a revisioni complete.

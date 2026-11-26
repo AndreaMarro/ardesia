@@ -1,0 +1,1228 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-capacitor-sharing-energy-loss-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia convertita nella redistribuzione",
+      "order": 22401,
+      "title": "Dove va l’energia del campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07",
+        "C4-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-sharing-energy-loss",
+      "difficulty": 1,
+      "prompt": "Due condensatori lineari identici di capacità C=1 μF hanno tensioni iniziali V₁>V₂>0. Sono scollegati dai generatori e uniti in parallelo con polarità concordi mediante un collegamento con piccola resistenza positiva; si attende che il transitorio si esaurisca. Non entra carica dall’esterno; si trascurano induttanza e radiazione nel modello a parametri concentrati. Indichiamo Δ=V₁−V₂>0. L=U_i−U_f>0 indica la diminuzione dell’energia del campo, convertita qui in calore nel collegamento, non energia totale distrutta. Le capacità restano costanti e si confrontano preparazioni indipendenti. Con V₁=4 V e V₂=2 V, quanto vale L in μJ?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "μJ",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La carica del futuro nodo positivo è C(V₁+V₂)=6 μC. Alla fine la capacità totale è 2 μF e la tensione comune 3 V. Prima U_i=(1/2)C(4²+2²) V²=10 μJ; dopo U_f=(1/2)(2C)(3 V)²=9 μJ. La differenza positiva L è 1 μJ. La carica del nodo si conserva, ma l’energia del solo campo diminuisce."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/28c31b150ffbd077958723c67584c564338a98adac010124b85b8c1d7df64d4e",
+          "text": "Il circuito rappresenta lo stato finale con polarità concordi. Da tensioni iniziali 4 e 2 V su due capacità da 1 μF si ottiene la tensione comune 3 V e carica del nodo A pari a 6 μC. Il pannello energetico distingue energia iniziale, finale e calore prodotto."
+        },
+        {
+          "type": "formula",
+          "text": "V_f=\\frac{V_1+V_2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " V_f=3\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " U_i=10\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_f=9\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " L=1\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Due μJ darebbe il doppio del saldo. Nove μJ è l’energia finale e dieci quella iniziale, non la loro differenza. −1 μJ è l’incremento U_f−U_i del campo: la domanda definisce invece la sua diminuzione positiva."
+        }
+      ],
+      "hints": [
+        "Conserva prima la carica per trovare V_f, poi confronta le due energie.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due μJ darebbe il doppio del saldo. Nove μJ è l’energia finale e dieci quella iniziale, non la loro differenza. −1 μJ è l’incremento U_f−U_i del campo: la domanda definisce invece la sua diminuzione positiva.",
+        "target": "C4-L08"
+      },
+      "coverage": [
+        "Conservazione della carica e diminuzione del campo",
+        "Conversione termica distinta da perdita totale",
+        "Inverse radicali con ordine V₁>V₂>0",
+        "Scalature, medie e display con offset"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-sharing-energy-loss-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia convertita nella redistribuzione",
+      "order": 22402,
+      "title": "Una conversione di energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07",
+        "C4-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-sharing-energy-loss",
+      "difficulty": 1,
+      "prompt": "Due condensatori lineari identici di capacità C=1 μF hanno tensioni iniziali V₁>V₂>0. Sono scollegati dai generatori e uniti in parallelo con polarità concordi mediante un collegamento con piccola resistenza positiva; si attende che il transitorio si esaurisca. Non entra carica dall’esterno; si trascurano induttanza e radiazione nel modello a parametri concentrati. Indichiamo Δ=V₁−V₂>0. L=U_i−U_f>0 indica la diminuzione dell’energia del campo, convertita qui in calore nel collegamento, non energia totale distrutta. Le capacità restano costanti e si confrontano preparazioni indipendenti. Quale unità esprime L?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J",
+          "W",
+          "C",
+          "F",
+          "V"
+        ],
+        "value": "J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L è una differenza di energie e ha unità joule. Dalla relazione C(V₁−V₂)²/4 si ottiene F·V²=Coulomb·V=J. Il prefisso μ corrisponde a un milionesimo e non trasforma la grandezza in una potenza."
+        },
+        {
+          "type": "formula",
+          "text": "[L]=\\mathrm F\\cdot\\mathrm V^2"
+        },
+        {
+          "type": "formula",
+          "text": " [L]=\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "W misura energia per tempo, non energia. C,F,V indicano carica, capacità e tensione. Il transitorio ha una durata, ma qui non si divide L per essa e non si chiede una potenza media."
+        }
+      ],
+      "hints": [
+        "Controlla la dimensione di capacità per tensione al quadrato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "W misura energia per tempo, non energia. C,F,V indicano carica, capacità e tensione. Il transitorio ha una durata, ma qui non si divide L per essa e non si chiede una potenza media.",
+        "target": "C4-L08"
+      },
+      "coverage": [
+        "Conservazione della carica e diminuzione del campo",
+        "Conversione termica distinta da perdita totale",
+        "Inverse radicali con ordine V₁>V₂>0",
+        "Scalature, medie e display con offset"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-sharing-energy-loss-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia convertita nella redistribuzione",
+      "order": 22403,
+      "title": "Il saldo in forma compatta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07",
+        "C4-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-sharing-energy-loss",
+      "difficulty": 1,
+      "prompt": "Due condensatori lineari identici di capacità C=1 μF hanno tensioni iniziali V₁>V₂>0. Sono scollegati dai generatori e uniti in parallelo con polarità concordi mediante un collegamento con piccola resistenza positiva; si attende che il transitorio si esaurisca. Non entra carica dall’esterno; si trascurano induttanza e radiazione nel modello a parametri concentrati. Indichiamo Δ=V₁−V₂>0. L=U_i−U_f>0 indica la diminuzione dell’energia del campo, convertita qui in calore nel collegamento, non energia totale distrutta. Le capacità restano costanti e si confrontano preparazioni indipendenti. Quale legge dà L?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "L = C (V₁ − V₂)² / 4",
+          "L = C (V₁ − V₂)² / 2",
+          "L = C (V₁ + V₂)² / 4",
+          "L = C (V₁² − V₂²) / 4",
+          "L = C (V₁ − V₂) / 4"
+        ],
+        "value": "L = C (V₁ − V₂)² / 4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La tensione comune è (V₁+V₂)/2. L’energia iniziale è C(V₁²+V₂²)/2 e quella finale C(V₁+V₂)²/4. Sottraendole e sviluppando il quadrato rimane C(V₁²−2V₁V₂+V₂²)/4, cioè C(V₁−V₂)²/4. Il coefficiente un quarto deriva dal confronto dei due stati, non dall’energia di un solo condensatore."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/28c31b150ffbd077958723c67584c564338a98adac010124b85b8c1d7df64d4e",
+          "text": "Nel pannello energetico la barra iniziale è 10 μJ; la successiva è divisa in 9 μJ di campo e 1 μJ di calore. La lunghezza totale è uguale: l’energia complessiva non scompare. I segmenti usano scala comune entro il pannello."
+        },
+        {
+          "type": "formula",
+          "text": "V_f=\\frac{V_1+V_2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " U_f=\\frac C4(V_1+V_2)^2"
+        },
+        {
+          "type": "formula",
+          "text": " L=\\frac C4(V_1-V_2)^2"
+        },
+        {
+          "type": "text",
+          "text": "Il denominatore due raddoppia la conversione. Il quadrato della somma dà U_f. La differenza dei quadrati non è il quadrato della differenza: con 4 e 2 V darebbe 3 μJ, non 1 μJ; C(V₁−V₂)/4 ha dimensione di carica e non energia."
+        }
+      ],
+      "hints": [
+        "Sottrai l’energia finale da quella iniziale e raccogli il quadrato della differenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il denominatore due raddoppia la conversione. Il quadrato della somma dà U_f. La differenza dei quadrati non è il quadrato della differenza: con 4 e 2 V darebbe 3 μJ, non 1 μJ; C(V₁−V₂)/4 ha dimensione di carica e non energia.",
+        "target": "C4-L08"
+      },
+      "coverage": [
+        "Conservazione della carica e diminuzione del campo",
+        "Conversione termica distinta da perdita totale",
+        "Inverse radicali con ordine V₁>V₂>0",
+        "Scalature, medie e display con offset"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-sharing-energy-loss-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia convertita nella redistribuzione",
+      "order": 22404,
+      "title": "Raddoppia la differenza di tensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07",
+        "C4-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-sharing-energy-loss",
+      "difficulty": 1,
+      "prompt": "Due condensatori lineari identici di capacità C=1 μF hanno tensioni iniziali V₁>V₂>0. Sono scollegati dai generatori e uniti in parallelo con polarità concordi mediante un collegamento con piccola resistenza positiva; si attende che il transitorio si esaurisca. Non entra carica dall’esterno; si trascurano induttanza e radiazione nel modello a parametri concentrati. Indichiamo Δ=V₁−V₂>0. L=U_i−U_f>0 indica la diminuzione dell’energia del campo, convertita qui in calore nel collegamento, non energia totale distrutta. Le capacità restano costanti e si confrontano preparazioni indipendenti. V₁ passa da 4 a 6 V, mentre V₂ resta 2 V. Come cambia L?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1 a 4 μJ",
+          "Da 1 a 2 μJ",
+          "Da 1 a 3/2 μJ",
+          "Resta 1 μJ",
+          "Da 1 a 9 μJ"
+        ],
+        "value": "Da 1 a 4 μJ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La differenza iniziale è 4−2=2 V e quella nuova 6−2=4 V. Raddoppiare questa differenza quadruplica L: da 1 a 4 μJ. Il fattore 6/4 della sola V₁ non è il fattore dell’argomento elevato al quadrato."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta_A=2\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta_B=4\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " L_B=4\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Due μJ tratta L come lineare nella differenza. 3/2 μJ segue soltanto V₁, uno non aggiorna gli ingressi e nove μJ non è il saldo della prova nuova. La conversione dipende dallo scarto V₁−V₂."
+        }
+      ],
+      "hints": [
+        "Forma la differenza prima di applicare il quadrato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due μJ tratta L come lineare nella differenza. 3/2 μJ segue soltanto V₁, uno non aggiorna gli ingressi e nove μJ non è il saldo della prova nuova. La conversione dipende dallo scarto V₁−V₂.",
+        "target": "C4-L08"
+      },
+      "coverage": [
+        "Conservazione della carica e diminuzione del campo",
+        "Conversione termica distinta da perdita totale",
+        "Inverse radicali con ordine V₁>V₂>0",
+        "Scalature, medie e display con offset"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-sharing-energy-loss-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia convertita nella redistribuzione",
+      "order": 22405,
+      "title": "Ricostruire la tensione maggiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07",
+        "C4-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-sharing-energy-loss",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari identici di capacità C=1 μF hanno tensioni iniziali V₁>V₂>0. Sono scollegati dai generatori e uniti in parallelo con polarità concordi mediante un collegamento con piccola resistenza positiva; si attende che il transitorio si esaurisca. Non entra carica dall’esterno; si trascurano induttanza e radiazione nel modello a parametri concentrati. Indichiamo Δ=V₁−V₂>0. L=U_i−U_f>0 indica la diminuzione dell’energia del campo, convertita qui in calore nel collegamento, non energia totale distrutta. Le capacità restano costanti e si confrontano preparazioni indipendenti. Si misura L=1 μJ e si conosce V₂=2 V. Quanto vale V₁ in V?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Pongo Δ=V₁−V₂>0. La legge dà Δ²=4L/C=4 V², quindi Δ=2 V sul ramo positivo. Si ricostruisce V₁=V₂+Δ=4 V. La radice negativa della differenza produrrebbe V₁=0 e violerebbe V₁>V₂."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta^2=\\frac{4L}{C}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta=2\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_1=V_2+\\Delta"
+        },
+        {
+          "type": "formula",
+          "text": " V_1=4\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Due V copia la differenza Δ, non la tensione V₁. Zero viene dal ramo negativo ed è escluso. Sei V darebbe una differenza di 4 V e L=4 μJ. Il segno si decide dal dominio, non soltanto dalla positività della radice."
+        }
+      ],
+      "hints": [
+        "Trova lo scarto positivo e aggiungilo a V₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due V copia la differenza Δ, non la tensione V₁. Zero viene dal ramo negativo ed è escluso. Sei V darebbe una differenza di 4 V e L=4 μJ. Il segno si decide dal dominio, non soltanto dalla positività della radice.",
+        "target": "C4-L08"
+      },
+      "coverage": [
+        "Conservazione della carica e diminuzione del campo",
+        "Conversione termica distinta da perdita totale",
+        "Inverse radicali con ordine V₁>V₂>0",
+        "Scalature, medie e display con offset"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-sharing-energy-loss-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia convertita nella redistribuzione",
+      "order": 22406,
+      "title": "Ricostruire la tensione minore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07",
+        "C4-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-sharing-energy-loss",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari identici di capacità C=1 μF hanno tensioni iniziali V₁>V₂>0. Sono scollegati dai generatori e uniti in parallelo con polarità concordi mediante un collegamento con piccola resistenza positiva; si attende che il transitorio si esaurisca. Non entra carica dall’esterno; si trascurano induttanza e radiazione nel modello a parametri concentrati. Indichiamo Δ=V₁−V₂>0. L=U_i−U_f>0 indica la diminuzione dell’energia del campo, convertita qui in calore nel collegamento, non energia totale distrutta. Le capacità restano costanti e si confrontano preparazioni indipendenti. Si misura L=1 μJ e si conosce V₁=4 V. Quanto vale V₂ in V?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La stessa differenza positiva vale Δ=√(4L/C)=2 V. Questa volta V₂=V₁−Δ=2 V. L’alternativa V₁+Δ=6 V sarebbe maggiore di V₁ e contraddirebbe l’ordine imposto. In generale serve 0<L<CV₁²/4 per conservare V₂>0."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta=2\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=V_1-\\Delta"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=2\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Sei V conserva la stessa differenza in modulo ma scambia l’ordine delle tensioni iniziali. Quattro V darebbe L=0, escluso dal dominio stretto; zero V darebbe L=4 μJ e non è positivo. La misura e il ramo selezionano una sola V₂."
+        }
+      ],
+      "hints": [
+        "Sottrai lo scarto positivo dalla tensione maggiore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei V conserva la stessa differenza in modulo ma scambia l’ordine delle tensioni iniziali. Quattro V darebbe L=0, escluso dal dominio stretto; zero V darebbe L=4 μJ e non è positivo. La misura e il ramo selezionano una sola V₂.",
+        "target": "C4-L08"
+      },
+      "coverage": [
+        "Conservazione della carica e diminuzione del campo",
+        "Conversione termica distinta da perdita totale",
+        "Inverse radicali con ordine V₁>V₂>0",
+        "Scalature, medie e display con offset"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-sharing-energy-loss-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia convertita nella redistribuzione",
+      "order": 22407,
+      "title": "Una differenza più grande",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07",
+        "C4-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-sharing-energy-loss",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari identici di capacità C=1 μF hanno tensioni iniziali V₁>V₂>0. Sono scollegati dai generatori e uniti in parallelo con polarità concordi mediante un collegamento con piccola resistenza positiva; si attende che il transitorio si esaurisca. Non entra carica dall’esterno; si trascurano induttanza e radiazione nel modello a parametri concentrati. Indichiamo Δ=V₁−V₂>0. L=U_i−U_f>0 indica la diminuzione dell’energia del campo, convertita qui in calore nel collegamento, non energia totale distrutta. Le capacità restano costanti e si confrontano preparazioni indipendenti. A ha V₁=4 V,V₂=2 V. B mantiene V₁ e usa V₂=1 V. Quanto vale L_B/L_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/4",
+          "4/9",
+          "1/2",
+          "2",
+          "1"
+        ],
+        "value": "9/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L_A=(4−2)²/4 μJ=1 μJ. L_B=(4−1)²/4 μJ=9/4 μJ. Il rapporto è 9/4: abbassare V₂ aumenta la differenza, pur mantenendo V₁ invariata. Il rapporto diretto delle V₂ non descrive questa dipendenza."
+        },
+        {
+          "type": "formula",
+          "text": "L_A=1\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " L_B=\\frac94\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " L_B/L_A=\\frac94"
+        },
+        {
+          "type": "text",
+          "text": "4/9 inverte il confronto. Mezzo segue solo V₂, due il suo reciproco e uno ignora il cambiamento. L’argomento del quadrato passa da 2 a 3 V, non da 2 a 1 V."
+        }
+      ],
+      "hints": [
+        "Confronta i due scarti e poi i loro quadrati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4/9 inverte il confronto. Mezzo segue solo V₂, due il suo reciproco e uno ignora il cambiamento. L’argomento del quadrato passa da 2 a 3 V, non da 2 a 1 V.",
+        "target": "C4-L08"
+      },
+      "coverage": [
+        "Conservazione della carica e diminuzione del campo",
+        "Conversione termica distinta da perdita totale",
+        "Inverse radicali con ordine V₁>V₂>0",
+        "Scalature, medie e display con offset"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-sharing-energy-loss-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia convertita nella redistribuzione",
+      "order": 22408,
+      "title": "Scarto e segno del saldo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07",
+        "C4-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-sharing-energy-loss",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari identici di capacità C=1 μF hanno tensioni iniziali V₁>V₂>0. Sono scollegati dai generatori e uniti in parallelo con polarità concordi mediante un collegamento con piccola resistenza positiva; si attende che il transitorio si esaurisca. Non entra carica dall’esterno; si trascurano induttanza e radiazione nel modello a parametri concentrati. Indichiamo Δ=V₁−V₂>0. L=U_i−U_f>0 indica la diminuzione dell’energia del campo, convertita qui in calore nel collegamento, non energia totale distrutta. Le capacità restano costanti e si confrontano preparazioni indipendenti. Con V₁=4 V,V₂=2 V si propone L=2 μJ. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 μJ",
+          "−1 μJ",
+          "2 μJ",
+          "0 μJ",
+          "2"
+        ],
+        "value": "1 μJ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il corretto L è 1 μJ. La proposta lo supera di 2−1=1 μJ. Non si confonde questo scarto con l’incremento negativo dell’energia del campo: sono due definizioni differenti."
+        },
+        {
+          "type": "formula",
+          "text": "L=1\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=(2-1)\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=1\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "−1 scambia l’ordine dello scarto; 2 μJ copia la proposta e zero la accetta. Il numero puro due è il rapporto della proposta col corretto, non una differenza di energie."
+        }
+      ],
+      "hints": [
+        "Usa la definizione proposto meno corretto, dopo aver trovato L.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−1 scambia l’ordine dello scarto; 2 μJ copia la proposta e zero la accetta. Il numero puro due è il rapporto della proposta col corretto, non una differenza di energie.",
+        "target": "C4-L08"
+      },
+      "coverage": [
+        "Conservazione della carica e diminuzione del campo",
+        "Conversione termica distinta da perdita totale",
+        "Inverse radicali con ordine V₁>V₂>0",
+        "Scalature, medie e display con offset"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-sharing-energy-loss-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia convertita nella redistribuzione",
+      "order": 22409,
+      "title": "L’inversa con ordine dichiarato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07",
+        "C4-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-sharing-energy-loss",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari identici di capacità C=1 μF hanno tensioni iniziali V₁>V₂>0. Sono scollegati dai generatori e uniti in parallelo con polarità concordi mediante un collegamento con piccola resistenza positiva; si attende che il transitorio si esaurisca. Non entra carica dall’esterno; si trascurano induttanza e radiazione nel modello a parametri concentrati. Indichiamo Δ=V₁−V₂>0. L=U_i−U_f>0 indica la diminuzione dell’energia del campo, convertita qui in calore nel collegamento, non energia totale distrutta. Le capacità restano costanti e si confrontano preparazioni indipendenti. L e V₂ sono noti. Quale relazione isola V₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V₁ = V₂ + √(4 L / C)",
+          "V₁ = V₂ − √(4 L / C)",
+          "V₁ = √(4 L / C)",
+          "V₁ = V₂ + 4 L / C",
+          "V₁ = (V₂ + √(4 L / C)) / 2"
+        ],
+        "value": "V₁ = V₂ + √(4 L / C)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il quadrato fornisce due segni per V₁−V₂, ma V₁>V₂ sceglie quello positivo. Si trova Δ=√(4L/C), poi V₁=V₂+Δ. La quantità sotto radice ha V²; dopo la radice è possibile sommarla alla tensione V₂."
+        },
+        {
+          "type": "formula",
+          "text": "V_1-V_2=\\sqrt{\\frac{4L}{C}}"
+        },
+        {
+          "type": "formula",
+          "text": " V_1=V_2+\\sqrt{\\frac{4L}{C}}"
+        },
+        {
+          "type": "text",
+          "text": "Il meno viola V₁>V₂. La radice da sola è soltanto la differenza; 4L/C senza radice ha unità V² e non si somma a V₂. La divisione finale per due non deriva dall’equazione del saldo."
+        }
+      ],
+      "hints": [
+        "Applica la condizione d’ordine alla radice dello scarto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il meno viola V₁>V₂. La radice da sola è soltanto la differenza; 4L/C senza radice ha unità V² e non si somma a V₂. La divisione finale per due non deriva dall’equazione del saldo.",
+        "target": "C4-L08"
+      },
+      "coverage": [
+        "Conservazione della carica e diminuzione del campo",
+        "Conversione termica distinta da perdita totale",
+        "Inverse radicali con ordine V₁>V₂>0",
+        "Scalature, medie e display con offset"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-sharing-energy-loss-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia convertita nella redistribuzione",
+      "order": 22410,
+      "title": "Due fattori e un ordine da conservare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07",
+        "C4-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-sharing-energy-loss",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari identici di capacità C=1 μF hanno tensioni iniziali V₁>V₂>0. Sono scollegati dai generatori e uniti in parallelo con polarità concordi mediante un collegamento con piccola resistenza positiva; si attende che il transitorio si esaurisca. Non entra carica dall’esterno; si trascurano induttanza e radiazione nel modello a parametri concentrati. Indichiamo Δ=V₁−V₂>0. L=U_i−U_f>0 indica la diminuzione dell’energia del campo, convertita qui in calore nel collegamento, non energia totale distrutta. Le capacità restano costanti e si confrontano preparazioni indipendenti. B usa V₁,B=κ₁V₁ e V₂,B=κ₂V₂. I fattori sono positivi e κ₁V₁>κ₂V₂. Definiamo Δ=V₁−V₂ e Δ_B=κ₁V₁−κ₂V₂, entrambe tensioni positive. Quanto vale L_B/L_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(Δ_B / Δ)²",
+          "Δ_B / Δ",
+          "κ₁ κ₂",
+          "(κ₁ / κ₂)²",
+          "(Δ / Δ_B)²"
+        ],
+        "value": "(Δ_B / Δ)²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "C è identica nelle due prove, quindi il rapporto dei saldi è il quadrato del rapporto delle differenze: L_B/L_A=(Δ_B/Δ)². Non basta dire che i fattori sono positivi: deve conservarsi anche l’ordine delle due tensioni. Con un fattore comune κ la differenza scala di κ e il saldo di κ²."
+        },
+        {
+          "type": "formula",
+          "text": "L_A=\\frac C4\\Delta^2"
+        },
+        {
+          "type": "formula",
+          "text": " L_B=\\frac C4\\Delta_B^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{L_B}{L_A}=\\left(\\frac{\\Delta_B}{\\Delta}\\right)^2"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto semplice omette il quadrato. Il prodotto dei fattori non sviluppa una differenza; il loro quoziente perde i pesi V₁,V₂. L’ultimo rapporto è il reciproco del corretto. Se l’ordine non fosse conservato non si userebbe lo stesso ramo delle inverse."
+        }
+      ],
+      "hints": [
+        "Forma la nuova differenza orientata prima del rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto semplice omette il quadrato. Il prodotto dei fattori non sviluppa una differenza; il loro quoziente perde i pesi V₁,V₂. L’ultimo rapporto è il reciproco del corretto. Se l’ordine non fosse conservato non si userebbe lo stesso ramo delle inverse.",
+        "target": "C4-L08"
+      },
+      "coverage": [
+        "Conservazione della carica e diminuzione del campo",
+        "Conversione termica distinta da perdita totale",
+        "Inverse radicali con ordine V₁>V₂>0",
+        "Scalature, medie e display con offset"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-sharing-energy-loss-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia convertita nella redistribuzione",
+      "order": 22411,
+      "title": "Una scala comune raddoppiata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07",
+        "C4-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-sharing-energy-loss",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari identici di capacità C=1 μF hanno tensioni iniziali V₁>V₂>0. Sono scollegati dai generatori e uniti in parallelo con polarità concordi mediante un collegamento con piccola resistenza positiva; si attende che il transitorio si esaurisca. Non entra carica dall’esterno; si trascurano induttanza e radiazione nel modello a parametri concentrati. Indichiamo Δ=V₁−V₂>0. L=U_i−U_f>0 indica la diminuzione dell’energia del campo, convertita qui in calore nel collegamento, non energia totale distrutta. Le capacità restano costanti e si confrontano preparazioni indipendenti. A usa V₁=4 V,V₂=2 V. B usa V₁=8 V,V₂=4 V. Quanto vale L_B/L_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "2",
+          "1/4",
+          "1/2",
+          "1"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La differenza passa da 2 a 4 V. Le conversioni sono 1 e 4 μJ, quindi rapporto quattro. Entrambe le tensioni raddoppiano e l’ordine resta vero; questo è il caso di una scalatura comune, non di una compensazione."
+        },
+        {
+          "type": "formula",
+          "text": "L_A=1\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " L_B=4\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " L_B/L_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due segue linearmente la differenza. 1/4 è il reciproco, mezzo rende inversa una sola scala e uno confonde raddoppio comune con invarianza della differenza."
+        }
+      ],
+      "hints": [
+        "Il saldo è quadratico nello scarto, anche con scala comune.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due segue linearmente la differenza. 1/4 è il reciproco, mezzo rende inversa una sola scala e uno confonde raddoppio comune con invarianza della differenza.",
+        "target": "C4-L08"
+      },
+      "coverage": [
+        "Conservazione della carica e diminuzione del campo",
+        "Conversione termica distinta da perdita totale",
+        "Inverse radicali con ordine V₁>V₂>0",
+        "Scalature, medie e display con offset"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-sharing-energy-loss-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia convertita nella redistribuzione",
+      "order": 22412,
+      "title": "Media delle conversioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07",
+        "C4-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-sharing-energy-loss",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari identici di capacità C=1 μF hanno tensioni iniziali V₁>V₂>0. Sono scollegati dai generatori e uniti in parallelo con polarità concordi mediante un collegamento con piccola resistenza positiva; si attende che il transitorio si esaurisca. Non entra carica dall’esterno; si trascurano induttanza e radiazione nel modello a parametri concentrati. Indichiamo Δ=V₁−V₂>0. L=U_i−U_f>0 indica la diminuzione dell’energia del campo, convertita qui in calore nel collegamento, non energia totale distrutta. Le capacità restano costanti e si confrontano preparazioni indipendenti. A usa 4 e 2 V; B usa 8 e 4 V. Qual è la media aritmetica delle due L con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/2 μJ",
+          "9/4 μJ",
+          "5 μJ",
+          "3/2 μJ",
+          "4 μJ"
+        ],
+        "value": "5/2 μJ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite sono 1 e 4 μJ e la media è 5/2 μJ. Ai dati medi V₁=6 V,V₂=3 V, la legge darebbe 9/4 μJ. La differenza fra 10/4 e 9/4 μJ è 1/4 μJ. Mediare prima le tensioni perderebbe il contributo dovuto alla dispersione delle differenze."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/28c31b150ffbd077958723c67584c564338a98adac010124b85b8c1d7df64d4e",
+          "text": "Le barre inferiori mostrano L delle preparazioni A: 4 e 2 V, B: 8 e 4 V. Conversioni 1 μJ e 4 μJ e media 5/2 μJ condividono origine e scala. Non rappresentano energie finali; la loro scala è distinta da quella del bilancio centrale."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline L=\\frac52\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " L_{\\rm dati\\ medi}=\\frac94\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac52-\\frac94=\\frac14"
+        },
+        {
+          "type": "text",
+          "text": "9/4 μJ applica il modello agli ingressi medi. Cinque somma, 3/2 è metà della differenza e quattro ripete soltanto B. Il valore medio non è l’energia finale del sistema."
+        }
+      ],
+      "hints": [
+        "Calcola ogni saldo prima della media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "9/4 μJ applica il modello agli ingressi medi. Cinque somma, 3/2 è metà della differenza e quattro ripete soltanto B. Il valore medio non è l’energia finale del sistema.",
+        "target": "C4-L08"
+      },
+      "coverage": [
+        "Conservazione della carica e diminuzione del campo",
+        "Conversione termica distinta da perdita totale",
+        "Inverse radicali con ordine V₁>V₂>0",
+        "Scalature, medie e display con offset"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-sharing-energy-loss-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia convertita nella redistribuzione",
+      "order": 22413,
+      "title": "V₂ per il saldo bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07",
+        "C4-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-sharing-energy-loss",
+      "difficulty": 3,
+      "prompt": "Due condensatori lineari identici di capacità C=1 μF hanno tensioni iniziali V₁>V₂>0. Sono scollegati dai generatori e uniti in parallelo con polarità concordi mediante un collegamento con piccola resistenza positiva; si attende che il transitorio si esaurisca. Non entra carica dall’esterno; si trascurano induttanza e radiazione nel modello a parametri concentrati. Indichiamo Δ=V₁−V₂>0. L=U_i−U_f>0 indica la diminuzione dell’energia del campo, convertita qui in calore nel collegamento, non energia totale distrutta. Le capacità restano costanti e si confrontano preparazioni indipendenti. A ha V₁=4 V,V₂=2 V. B ha V₁=8 V e deve avere L_B=4L_A. Quanto vale V₂,B/V₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "3/2",
+          "1"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è L_B=4 μJ. La differenza positiva deve valere Δ_B=√(4L_B/C)=4 V. Quindi V₂,B=8−4=4 V e il rapporto con V₂,A=2 V è due. Il ramo alternativo porterebbe V₂,B=12 V, oltre V₁,B, ed è escluso."
+        },
+        {
+          "type": "formula",
+          "text": "L_B=4\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta_B=4\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_{2,B}=4\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_{2,B}}{V_{2,A}}=2"
+        },
+        {
+          "type": "text",
+          "text": "Mezzo inverte il rapporto, quattro copia il fattore dei saldi, 3/2 non produce lo scarto bersaglio. Uno lascerebbe V₂,B=2 V e darebbe L_B=9 μJ anziché 4 μJ."
+        }
+      ],
+      "hints": [
+        "Dalla conversione ricava lo scarto, poi sottrailo da V₁,B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Mezzo inverte il rapporto, quattro copia il fattore dei saldi, 3/2 non produce lo scarto bersaglio. Uno lascerebbe V₂,B=2 V e darebbe L_B=9 μJ anziché 4 μJ.",
+        "target": "C4-L08"
+      },
+      "coverage": [
+        "Conservazione della carica e diminuzione del campo",
+        "Conversione termica distinta da perdita totale",
+        "Inverse radicali con ordine V₁>V₂>0",
+        "Scalature, medie e display con offset"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-sharing-energy-loss-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia convertita nella redistribuzione",
+      "order": 22414,
+      "title": "Guadagno prima della radice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07",
+        "C4-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-sharing-energy-loss",
+      "difficulty": 3,
+      "prompt": "Due condensatori lineari identici di capacità C=1 μF hanno tensioni iniziali V₁>V₂>0. Sono scollegati dai generatori e uniti in parallelo con polarità concordi mediante un collegamento con piccola resistenza positiva; si attende che il transitorio si esaurisca. Non entra carica dall’esterno; si trascurano induttanza e radiazione nel modello a parametri concentrati. Indichiamo Δ=V₁−V₂>0. L=U_i−U_f>0 indica la diminuzione dell’energia del campo, convertita qui in calore nel collegamento, non energia totale distrutta. Le capacità restano costanti e si confrontano preparazioni indipendenti. D=a_cal L è continuo e adimensionale, a_cal>0. A con V₁=4 V,V₂=2 V dà D=3. B legge D=12 e ha V₂=4 V. Quanto vale V₁,B in V?",
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha L_A=1 μJ, quindi a_cal=3 μJ⁻¹. La nuova lettura dà L_B=4 μJ, da cui Δ_B=4 V. Sommando al V₂,B=4 V si trova V₁,B=8 V. La radice riguarda l’energia fisica decodificata, non direttamente il numero del display."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,(\\mu\\mathrm J)^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " L_B=4\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta_B=4\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_{1,B}=8\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Quattro V copia lo scarto o V₂ e darebbe saldo nullo. Dodici V produrrebbe L=16 μJ e D=48. Sei V darebbe L=1 μJ e D=3, tornando al saldo del riferimento e non alla nuova lettura."
+        }
+      ],
+      "hints": [
+        "Decodifica L prima di estrarre la radice e sommare V₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro V copia lo scarto o V₂ e darebbe saldo nullo. Dodici V produrrebbe L=16 μJ e D=48. Sei V darebbe L=1 μJ e D=3, tornando al saldo del riferimento e non alla nuova lettura.",
+        "target": "C4-L08"
+      },
+      "coverage": [
+        "Conservazione della carica e diminuzione del campo",
+        "Conversione termica distinta da perdita totale",
+        "Inverse radicali con ordine V₁>V₂>0",
+        "Scalature, medie e display con offset"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-sharing-energy-loss-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia convertita nella redistribuzione",
+      "order": 22415,
+      "title": "Una piccola lettura sopra l’offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07",
+        "C4-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-sharing-energy-loss",
+      "difficulty": 3,
+      "prompt": "Due condensatori lineari identici di capacità C=1 μF hanno tensioni iniziali V₁>V₂>0. Sono scollegati dai generatori e uniti in parallelo con polarità concordi mediante un collegamento con piccola resistenza positiva; si attende che il transitorio si esaurisca. Non entra carica dall’esterno; si trascurano induttanza e radiazione nel modello a parametri concentrati. Indichiamo Δ=V₁−V₂>0. L=U_i−U_f>0 indica la diminuzione dell’energia del campo, convertita qui in calore nel collegamento, non energia totale distrutta. Le capacità restano costanti e si confrontano preparazioni indipendenti. D=a_cal L+b è continuo. A: V₁=4 V,V₂=2 V,D=3. B: V₁=8 V,V₂=4 V,D=9. C: V₂=1 V,D=3/2. Quanto vale V₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 V",
+          "(1 + √3) V",
+          "1 V",
+          "3 V",
+          "4 V"
+        ],
+        "value": "2 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno L_A=1 e L_B=4 μJ. Guadagno (9−3)/(4−1)=2 μJ⁻¹ e offset 1. Lettura 3/2 dà L_C=(3/2−1)/2 μJ=1/4 μJ. Quindi Δ_C=√(4·1/4) V=1 V e V₁,C=1+1=2 V, maggiore di V₂,C."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,(\\mu\\mathrm J)^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " L_C=\\frac14\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta_C=1\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_{1,C}=2\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "(1+√3) V omette l’offset e usa L=3/4 μJ. Un V dà saldo zero; tre V dà L=1 μJ e D=3; quattro V dà L=9/4 μJ e D=11/2. Tutte le radici restano esatte: non occorre valutarle in decimali."
+        }
+      ],
+      "hints": [
+        "Sottrai prima l’offset; il quarto di microjoule produce una radice notevole.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "(1+√3) V omette l’offset e usa L=3/4 μJ. Un V dà saldo zero; tre V dà L=1 μJ e D=3; quattro V dà L=9/4 μJ e D=11/2. Tutte le radici restano esatte: non occorre valutarle in decimali.",
+        "target": "C4-L08"
+      },
+      "coverage": [
+        "Conservazione della carica e diminuzione del campo",
+        "Conversione termica distinta da perdita totale",
+        "Inverse radicali con ordine V₁>V₂>0",
+        "Scalature, medie e display con offset"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-sharing-energy-loss-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia convertita nella redistribuzione",
+      "order": 22416,
+      "title": "Il vincolo conserva il ramo positivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07",
+        "C4-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-sharing-energy-loss",
+      "difficulty": 3,
+      "prompt": "Due condensatori lineari identici di capacità C=1 μF hanno tensioni iniziali V₁>V₂>0. Sono scollegati dai generatori e uniti in parallelo con polarità concordi mediante un collegamento con piccola resistenza positiva; si attende che il transitorio si esaurisca. Non entra carica dall’esterno; si trascurano induttanza e radiazione nel modello a parametri concentrati. Indichiamo Δ=V₁−V₂>0. L=U_i−U_f>0 indica la diminuzione dell’energia del campo, convertita qui in calore nel collegamento, non energia totale distrutta. Le capacità restano costanti e si confrontano preparazioni indipendenti. Fra preparazioni vale V₁=2V₂. Si misura L=1 μJ. Quanto vale V₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 V",
+          "4 V",
+          "−2 V",
+          "1 V",
+          "Infinite tensioni positive"
+        ],
+        "value": "2 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con il vincolo, lo scarto V₁−V₂ coincide con V₂. Scrivendo v₂=V₂/(1 V), la legge diventa L/(1 μJ)=v₂²/4. La misura implica v₂²=4; soltanto v₂=2 è positivo e mantiene V₁>V₂. Quindi V₂=2 V e V₁=4 V: la misura fissa la scala."
+        },
+        {
+          "type": "formula",
+          "text": "V_1-V_2=V_2"
+        },
+        {
+          "type": "formula",
+          "text": " v_2^2=4"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=2\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Quattro V è il valore della tensione maggiore nella soluzione. −2 viola V₂>0; un V darebbe L=1/4 μJ. Infinite soluzioni ignorerebbe l’informazione assoluta della misura, distinta dal solo rapporto delle tensioni."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo e scegli la radice compatibile con entrambe le disuguaglianze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quattro V è il valore della tensione maggiore nella soluzione. −2 viola V₂>0; un V darebbe L=1/4 μJ. Infinite soluzioni ignorerebbe l’informazione assoluta della misura, distinta dal solo rapporto delle tensioni.",
+        "target": "C4-L08"
+      },
+      "coverage": [
+        "Conservazione della carica e diminuzione del campo",
+        "Conversione termica distinta da perdita totale",
+        "Inverse radicali con ordine V₁>V₂>0",
+        "Scalature, medie e display con offset"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "28c31b150ffbd077958723c67584c564338a98adac010124b85b8c1d7df64d4e",
+      "name": "capacitor-sharing-energy-loss-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTY1MCIgdmlld0JveD0iMCAwIDY0MCAxNjUwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+Q2FyaWNhIGNvbnNlcnZhdGEgZWQgZW5lcmdpYSBjb252ZXJ0aXRhPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+RHVlIGNvbmRlbnNhdG9yaSBkYSB1biBtaWNyb2ZhcmFkIGluaXppYWxtZW50ZSBhIHF1YXR0cm8gZSBkdWUgdm9sdCByYWdnaXVuZ29ubyB0cmUgdm9sdCBjb211bmkuIEzigJllbmVyZ2lhIGluaXppYWxlIGRpZWNpIG1pY3Jvam91bGUgZGl2ZW50YSBub3ZlIG1pY3Jvam91bGUgZGkgY2FtcG8gZSB1bm8gZGkgY2Fsb3JlLCBzZW56YSBwZXJkaXRhIGRpIGVuZXJnaWEgY29tcGxlc3NpdmEuIENvbnZlcnNpb25pIGRpIGFsdHJlIHByb3ZlOiB1bm8sIHF1YXR0cm8gZSBjaW5xdWUgbWV6emkgbWljcm9qb3VsZS48L2Rlc2M+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNjUwIiByeD0iMTYiIGZpbGw9IiNmN2Y5ZmMiLz4KPHRleHQgeD0iMzIiIHk9IjQ0IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzE4MmM0NiIgZm9udC13ZWlnaHQ9IjcwMCI+MSDCtyBQcmltYSA0IGUgMiBWIDsgYWxsYSBmaW5lIDMgVjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijg2IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+QyA9IDEgzrxGIHBlciBjaWFzY3VuIGNvbmRlbnNhdG9yZS48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMjgiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5DaXJjdWl0byBmaW5hbGUgOyBnZW5lcmF0b3JpIHNjb2xsZWdhdGkuPC90ZXh0Pgo8cGF0aCBkPSJNMTEwIDIzMFYzNTBNNTMwIDIzMFYzNTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4MmM0NiIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxwYXRoIGQ9Ik0xMTAgMjMwSDI5ME0zMTAgMjMwSDUzMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTgyYzQ2IiBzdHJva2Utd2lkdGg9IjIiLz4KPHBhdGggZD0iTTI5MCAyMDVWMjU1IiBmaWxsPSJub25lIiBzdHJva2U9IiMxODJjNDYiIHN0cm9rZS13aWR0aD0iNCIvPgo8cGF0aCBkPSJNMzEwIDIwNVYyNTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4MmM0NiIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxjaXJjbGUgY3g9IjExMCIgY3k9IjIzMCIgcj0iNCIgZmlsbD0iIzE4MmM0NiIvPgo8Y2lyY2xlIGN4PSI1MzAiIGN5PSIyMzAiIHI9IjQiIGZpbGw9IiMxODJjNDYiLz4KPHBhdGggZD0iTTExMCAzNTBIMjkwTTMxMCAzNTBINTMwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxODJjNDYiIHN0cm9rZS13aWR0aD0iMiIvPgo8cGF0aCBkPSJNMjkwIDMyNVYzNzUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4MmM0NiIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxwYXRoIGQ9Ik0zMTAgMzI1VjM3NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTgyYzQ2IiBzdHJva2Utd2lkdGg9IjQiLz4KPGNpcmNsZSBjeD0iMTEwIiBjeT0iMzUwIiByPSI0IiBmaWxsPSIjMTgyYzQ2Ii8+CjxjaXJjbGUgY3g9IjUzMCIgY3k9IjM1MCIgcj0iNCIgZmlsbD0iIzE4MmM0NiIvPgo8dGV4dCB4PSI2NyIgeT0iMjIwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+QTwvdGV4dD4KPHRleHQgeD0iNTQ4IiB5PSIyMjAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5CPC90ZXh0Pgo8dGV4dCB4PSIyMzQiIHk9IjE4NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPjMgzrxDIHN1IEE8L3RleHQ+Cjx0ZXh0IHg9IjIzNCIgeT0iMzA1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+MyDOvEMgc3UgQTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjQyMCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPlFfQSA9IDYgzrxDIDsgVl9mID0gMyBWPC90ZXh0Pgo8cGF0aCBkPSJNMzIgNDczSDYwOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzRjZmRiIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMzIiIHk9IjUyMSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMxODJjNDYiIGZvbnQtd2VpZ2h0PSI3MDAiPjIgwrcgQmlsYW5jaW86IGNhbXBvIGUgY2Fsb3JlPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNTY1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+UHJpbWE6IGVuZXJnaWEgZGVsIGNhbXBvIDEwIM68Si48L3RleHQ+CjxyZWN0IHg9IjE1MCIgeT0iNjEwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjMTg1ZDgzIi8+Cjx0ZXh0IHg9IjMyIiB5PSI2NDAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5QcmltYTwvdGV4dD4KPHRleHQgeD0iNDQwIiB5PSI1OTUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij4xMCDOvEo8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI3MTQiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5Eb3BvOiA5IM68SiBkaSBjYW1wbyArIDEgzrxKIGRpIGNhbG9yZS48L3RleHQ+CjxyZWN0IHg9IjE1MCIgeT0iNzY1IiB3aWR0aD0iMzYwIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjMTg1ZDgzIi8+CjxyZWN0IHg9IjUxMCIgeT0iNzY1IiB3aWR0aD0iNDAiIGhlaWdodD0iNDQiIGZpbGw9IiNiODUzMjIiLz4KPHRleHQgeD0iMzIiIHk9Ijc5NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPkRvcG88L3RleHQ+Cjx0ZXh0IHg9IjMyMiIgeT0iNzQ4IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+OSDOvEo8L3RleHQ+Cjx0ZXh0IHg9IjUxNCIgeT0iODUwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+MSDOvEo8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI5MDYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5TY2FsYSBjb211bmUgOyBsYSBzb21tYSByZXN0YSAxMCDOvEouPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iOTQ4IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+TCA9IFVfaSDiiJIgVV9mID0gMSDOvEogJmd0OyAwPC90ZXh0Pgo8cGF0aCBkPSJNMzIgOTk5SDYwOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzRjZmRiIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMzIiIHk9IjEwNDkiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI1IiBmaWxsPSIjMTgyYzQ2IiBmb250LXdlaWdodD0iNzAwIj4zIMK3IENvbnZlcnNpb25pIGRpIGFsdHJlIHByZXBhcmF6aW9uaTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEwOTEiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5BOiA0IGUgMiBWIDsgQjogOCBlIDQgVjwvdGV4dD4KPHBhdGggZD0iTTE1MCAxMTQwVjE0ODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4MmM0NiIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjE1MCIgeT0iMTE3MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjMTg1ZDgzIi8+Cjx0ZXh0IHg9IjMyIiB5PSIxMjAwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+QTwvdGV4dD4KPHRleHQgeD0iMjQ4IiB5PSIxMjAwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+MSDOvEo8L3RleHQ+CjxyZWN0IHg9IjE1MCIgeT0iMTI4MCIgd2lkdGg9IjMyMCIgaGVpZ2h0PSI0NCIgZmlsbD0iI2I4NTMyMiIvPgo8dGV4dCB4PSIzMiIgeT0iMTMxMCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPkI8L3RleHQ+Cjx0ZXh0IHg9IjQ4OCIgeT0iMTMxMCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPjQgzrxKPC90ZXh0Pgo8cmVjdCB4PSIxNTAiIHk9IjEzOTAiIHdpZHRoPSIyMDAiIGhlaWdodD0iNDQiIGZpbGw9IiMzNTY1NGUiLz4KPHRleHQgeD0iMzIiIHk9IjE0MjAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5NZWRpYTwvdGV4dD4KPHRleHQgeD0iMzY4IiB5PSIxNDIwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+NS8yIM68SjwvdGV4dD4KPHRleHQgeD0iMTE4IiB5PSIxNTEwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+MDwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjE1NzAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5MIHBvc2l0aXZhIDsgbm9uIMOoIGzigJllbmVyZ2lhIGZpbmFsZSBkZWwgY2FtcG8uPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTYxMCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPk9yaWdpbmUgZSBzY2FsYSBjb211bmkgZW50cm8gaWwgcGFubmVsbG8uPC90ZXh0Pgo8L3N2Zz4K"
+    }
+  ]
+}

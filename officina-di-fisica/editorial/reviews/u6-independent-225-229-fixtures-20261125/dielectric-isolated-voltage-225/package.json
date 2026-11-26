@@ -1,0 +1,1159 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-dielectric-isolated-voltage-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico e carica libera isolata",
+      "order": 22501,
+      "title": "Prima il vincolo di isolamento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-isolated-voltage",
+      "difficulty": 1,
+      "prompt": "Un condensatore lineare ideale è caricato inizialmente alla tensione positiva V₀ e poi scollegato dal generatore. Un dielettrico ideale, senza conduzione né perdita di carica libera, riempie completamente lo spazio fra le armature; area e distanza restano invariate. La capacità passa da C₀ a κC₀ con κ≥1. Si confrontano gli stati elettrostatici prima e dopo l’inserimento. Con V₀=12 V e κ=2, quanto vale la tensione finale V in V?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’isolamento conserva il modulo Q della carica libera su ciascuna armatura. Prima Q=C₀V₀, dopo Q=κC₀V: uguagliando le due espressioni si ottiene V=V₀/κ. Raddoppiare la capacità a carica fissata dimezza la tensione: dodici diviso due dà sei volt."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/cebcf6063211f1090f58487c9366b3e3c3913a9708ad4f62d6a9cc2b1104d6e7",
+          "text": "L’inserimento è completo e il generatore è scollegato. La sezione delle piastre è schematica; le due preparazioni conservano lo stesso modulo di carica libera. Barre e retta successive rappresentano tensioni con scale proprie dichiarate dagli assi."
+        },
+        {
+          "type": "formula",
+          "text": "Q=C_0V_0"
+        },
+        {
+          "type": "formula",
+          "text": " Q=\\kappa C_0V"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{V_0}{\\kappa}"
+        },
+        {
+          "type": "formula",
+          "text": " V=6\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Ventiquattro V moltiplica invece di dividere per κ. Dodici V imporrebbe il generatore ancora collegato; tre V dividerebbe due volte per κ. La polarizzazione modifica la capacità senza creare nuova carica libera sulle armature."
+        }
+      ],
+      "hints": [
+        "Quale quantità può cambiare se nessuna carica libera entra o esce?",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ventiquattro V moltiplica invece di dividere per κ. Dodici V imporrebbe il generatore ancora collegato; tre V dividerebbe due volte per κ. La polarizzazione modifica la capacità senza creare nuova carica libera sulle armature.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Vincolo di carica e polarizzazione",
+        "Tensione dopo inserimento completo",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-isolated-voltage-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico e carica libera isolata",
+      "order": 22502,
+      "title": "L’unità della tensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-isolated-voltage",
+      "difficulty": 1,
+      "prompt": "V è la differenza di potenziale fra le armature dopo l’inserimento del dielettrico. Quale unità è dimensionalmente corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V",
+          "C",
+          "F",
+          "J",
+          "T"
+        ],
+        "value": "V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una differenza di potenziale è energia per unità di carica, quindi si misura in volt: V=J/C. κ è un rapporto di permittività e non ha unità; dividere V₀ per κ conserva l’unità volt."
+        },
+        {
+          "type": "formula",
+          "text": "[V]=\\mathrm{J/C}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\kappa]=1"
+        },
+        {
+          "type": "text",
+          "text": "C misura carica e F capacità. J misura energia, mentre T è tesla, unità del campo magnetico. Nessuna di queste quattro grandezze coincide con la tensione."
+        }
+      ],
+      "hints": [
+        "Il dielettrico cambia il valore, non la dimensione di V.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "C misura carica e F capacità. J misura energia, mentre T è tesla, unità del campo magnetico. Nessuna di queste quattro grandezze coincide con la tensione.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Vincolo di carica e polarizzazione",
+        "Tensione dopo inserimento completo",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-isolated-voltage-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico e carica libera isolata",
+      "order": 22503,
+      "title": "Che cosa conserva lo scollegamento?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-isolated-voltage",
+      "difficulty": 1,
+      "prompt": "Un condensatore lineare ideale è caricato inizialmente alla tensione positiva V₀ e poi scollegato dal generatore. Un dielettrico ideale, senza conduzione né perdita di carica libera, riempie completamente lo spazio fra le armature; area e distanza restano invariate. La capacità passa da C₀ a κC₀ con κ≥1. Si confrontano gli stati elettrostatici prima e dopo l’inserimento. Quale grandezza è fissata dall’isolamento durante l’inserimento?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La carica libera su ciascuna armatura",
+          "La tensione fra le armature",
+          "La capacità del condensatore",
+          "L’energia del solo campo",
+          "La permittività interna"
+        ],
+        "value": "La carica libera su ciascuna armatura"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Senza un percorso conduttivo esterno non si trasferisce carica libera da o verso ciascuna armatura. Il modulo Q resta quello iniziale. La carica netta delle due armature insieme è nulla prima e dopo, ma questo fatto da solo non determinerebbe Q: il vincolo riguarda ciascuna armatura isolata."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/cebcf6063211f1090f58487c9366b3e3c3913a9708ad4f62d6a9cc2b1104d6e7",
+          "text": "Nelle due sezioni Q è la carica libera su una sola armatura. Il dielettrico può polarizzarsi senza trasferire carica libera fra le piastre isolate."
+        },
+        {
+          "type": "formula",
+          "text": "Q_f=Q_i"
+        },
+        {
+          "type": "formula",
+          "text": " C_f=\\kappa C_0"
+        },
+        {
+          "type": "formula",
+          "text": " V_f=V_0/\\kappa"
+        },
+        {
+          "type": "text",
+          "text": "Tensione e capacità cambiano se κ>1. Anche l’energia del campo diminuisce a Q fissata: il bilancio completo comprende l’interazione meccanica con il dielettrico. L’isolamento elettrico non significa conservazione dell’energia del solo condensatore."
+        }
+      ],
+      "hints": [
+        "Distingui carica libera sulle piastre da cariche legate di polarizzazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Tensione e capacità cambiano se κ>1. Anche l’energia del campo diminuisce a Q fissata: il bilancio completo comprende l’interazione meccanica con il dielettrico. L’isolamento elettrico non significa conservazione dell’energia del solo condensatore.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Vincolo di carica e polarizzazione",
+        "Tensione dopo inserimento completo",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-isolated-voltage-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico e carica libera isolata",
+      "order": 22504,
+      "title": "Una preparazione iniziale meno carica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-isolated-voltage",
+      "difficulty": 1,
+      "prompt": "Un condensatore lineare ideale è caricato inizialmente alla tensione positiva V₀ e poi scollegato dal generatore. Un dielettrico ideale, senza conduzione né perdita di carica libera, riempie completamente lo spazio fra le armature; area e distanza restano invariate. La capacità passa da C₀ a κC₀ con κ≥1. Si confrontano gli stati elettrostatici prima e dopo l’inserimento. A usa V₀=12 V, κ=2. B usa V₀=1 V con lo stesso κ. Come cambia V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 6 V a 1/2 V",
+          "Da 6 V a 12 V",
+          "Resta 6 V",
+          "Da 6 V a 2 V",
+          "Da 6 V a 1 V"
+        ],
+        "value": "Da 6 V a 1/2 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni prova è prima preparata e poi isolata. La tensione finale è metà di quella iniziale in entrambe: A dà 6 V, B dà 1/2 V. Non si sta variando V₀ sul medesimo condensatore già isolato attraverso un generatore nascosto."
+        },
+        {
+          "type": "formula",
+          "text": "V_A=12/2\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=1/2\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Due V moltiplica il nuovo V₀ per κ. Un V ignora l’inserimento; sei V trasferisce a B il risultato di A. Il fattore fra le due uscite è 1/12, come fra le tensioni iniziali."
+        }
+      ],
+      "hints": [
+        "Applica il medesimo divisore alle due preparazioni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due V moltiplica il nuovo V₀ per κ. Un V ignora l’inserimento; sei V trasferisce a B il risultato di A. Il fattore fra le due uscite è 1/12, come fra le tensioni iniziali.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Vincolo di carica e polarizzazione",
+        "Tensione dopo inserimento completo",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-isolated-voltage-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico e carica libera isolata",
+      "order": 22505,
+      "title": "Risalire alla tensione prima dell’inserimento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-isolated-voltage",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale è caricato inizialmente alla tensione positiva V₀ e poi scollegato dal generatore. Un dielettrico ideale, senza conduzione né perdita di carica libera, riempie completamente lo spazio fra le armature; area e distanza restano invariate. La capacità passa da C₀ a κC₀ con κ≥1. Si confrontano gli stati elettrostatici prima e dopo l’inserimento. Si misura V=6 V e si conosce κ=2. Quanto vale V₀ in V?",
+      "answer": {
+        "type": "numeric",
+        "value": 12,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplico V=V₀/κ per κ e ricavo V₀=κV. Due volte sei volt restituisce dodici volt. La tensione prima dell’inserimento deve essere almeno quella finale, perché κ≥1."
+        },
+        {
+          "type": "formula",
+          "text": "V_0=\\kappa V"
+        },
+        {
+          "type": "formula",
+          "text": " V_0=2\\cdot6\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_0=12\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Tre V dividerebbe ancora per κ e non ricostruirebbe lo stato iniziale. Sei V ignorerebbe la capacità aumentata. Trentasei copierebbe V² e non avrebbe l’unità di una tensione senza un coefficiente ulteriore."
+        }
+      ],
+      "hints": [
+        "Inverti il divisore e controlla V₀≥V.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre V dividerebbe ancora per κ e non ricostruirebbe lo stato iniziale. Sei V ignorerebbe la capacità aumentata. Trentasei copierebbe V² e non avrebbe l’unità di una tensione senza un coefficiente ulteriore.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Vincolo di carica e polarizzazione",
+        "Tensione dopo inserimento completo",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-isolated-voltage-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico e carica libera isolata",
+      "order": 22506,
+      "title": "Il rapporto che misura κ",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-isolated-voltage",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale è caricato inizialmente alla tensione positiva V₀ e poi scollegato dal generatore. Un dielettrico ideale, senza conduzione né perdita di carica libera, riempie completamente lo spazio fra le armature; area e distanza restano invariate. La capacità passa da C₀ a κC₀ con κ≥1. Si confrontano gli stati elettrostatici prima e dopo l’inserimento. Prima V₀=12 V; dopo V=6 V. Quanto vale κ?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’inversa è κ=V₀/V. Il rapporto di due tensioni è puro e vale 12/6=2. Il valore è compatibile con il dominio κ≥1; una misura finale maggiore di quella iniziale contraddirebbe questo modello isolato con inserimento completo."
+        },
+        {
+          "type": "formula",
+          "text": "\\kappa=\\frac{V_0}{V}"
+        },
+        {
+          "type": "formula",
+          "text": " \\kappa=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte il rapporto e viola κ≥1. Sei copia la tensione finale senza normalizzarla. Settantadue moltiplica due tensioni e non ricava una costante relativa."
+        }
+      ],
+      "hints": [
+        "Una costante relativa non porta l’unità volt.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte il rapporto e viola κ≥1. Sei copia la tensione finale senza normalizzarla. Settantadue moltiplica due tensioni e non ricava una costante relativa.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Vincolo di carica e polarizzazione",
+        "Tensione dopo inserimento completo",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-isolated-voltage-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico e carica libera isolata",
+      "order": 22507,
+      "title": "Il riferimento senza aumento di permittività",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-isolated-voltage",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale è caricato inizialmente alla tensione positiva V₀ e poi scollegato dal generatore. Un dielettrico ideale, senza conduzione né perdita di carica libera, riempie completamente lo spazio fra le armature; area e distanza restano invariate. La capacità passa da C₀ a κC₀ con κ≥1. Si confrontano gli stati elettrostatici prima e dopo l’inserimento. A ha V₀=12 V e κ=2; B ha lo stesso V₀ e κ=1. Quanto vale V_B/V_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "1",
+          "4",
+          "0"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il caso κ=1 è ammesso: non aumenta la capacità rispetto a C₀. B conserva quindi 12 V, mentre A termina a 6 V. Il rapporto B/A è due; non si annulla la tensione quando manca l’effetto dielettrico."
+        },
+        {
+          "type": "formula",
+          "text": "V_A=6\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=12\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_B/V_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo scambia il confronto. Uno trascura la diversa capacità finale; quattro introduce un quadrato assente nella legge di tensione. Zero non soddisfa Q=C₀V₀ con V₀ positivo."
+        }
+      ],
+      "hints": [
+        "κ=1 è un riferimento fisico, non una capacità nulla.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo scambia il confronto. Uno trascura la diversa capacità finale; quattro introduce un quadrato assente nella legge di tensione. Zero non soddisfa Q=C₀V₀ con V₀ positivo.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Vincolo di carica e polarizzazione",
+        "Tensione dopo inserimento completo",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-isolated-voltage-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico e carica libera isolata",
+      "order": 22508,
+      "title": "Conservare il segno dello scarto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-isolated-voltage",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale è caricato inizialmente alla tensione positiva V₀ e poi scollegato dal generatore. Un dielettrico ideale, senza conduzione né perdita di carica libera, riempie completamente lo spazio fra le armature; area e distanza restano invariate. La capacità passa da C₀ a κC₀ con κ≥1. Si confrontano gli stati elettrostatici prima e dopo l’inserimento. Per V₀=12 V, κ=2, si propone V=12 V. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6 V",
+          "−6 V",
+          "2",
+          "12 V",
+          "0 V"
+        ],
+        "value": "6 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La tensione finale corretta è 6 V. La proposta eccede quel valore di 12−6=6 V. Il rapporto proposta/corretta sarebbe due, ma qui si chiede una differenza con unità volt."
+        },
+        {
+          "type": "formula",
+          "text": "V=6\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta V=(12-6)\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta V=6\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "−6 V inverte l’ordine della sottrazione. Dodici V copia la proposta; zero non riconosce la differenza. Due puro cambia l’operazione da scarto a rapporto."
+        }
+      ],
+      "hints": [
+        "Scrivi prima l’ordine proposta meno soluzione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−6 V inverte l’ordine della sottrazione. Dodici V copia la proposta; zero non riconosce la differenza. Due puro cambia l’operazione da scarto a rapporto.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Vincolo di carica e polarizzazione",
+        "Tensione dopo inserimento completo",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-isolated-voltage-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico e carica libera isolata",
+      "order": 22509,
+      "title": "L’inversa simbolica mantiene le unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-isolated-voltage",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale è caricato inizialmente alla tensione positiva V₀ e poi scollegato dal generatore. Un dielettrico ideale, senza conduzione né perdita di carica libera, riempie completamente lo spazio fra le armature; area e distanza restano invariate. La capacità passa da C₀ a κC₀ con κ≥1. Si confrontano gli stati elettrostatici prima e dopo l’inserimento. V e κ sono noti. Quale formula isola V₀?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V₀ = κ V",
+          "V₀ = V / κ",
+          "V₀ = κ / V",
+          "V₀ = κ V²",
+          "V₀ = V − κ"
+        ],
+        "value": "V₀ = κ V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla conservazione C₀V₀=κC₀V cancello la capacità iniziale, positiva. Rimane V₀=κV. Il fattore κ è adimensionale, perciò il risultato conserva l’unità di V."
+        },
+        {
+          "type": "formula",
+          "text": "C_0V_0=\\kappa C_0V"
+        },
+        {
+          "type": "formula",
+          "text": " V_0=\\kappa V"
+        },
+        {
+          "type": "text",
+          "text": "V/κ ripete la trasformazione diretta. κ/V è una tensione inversa e κV² ha unità V²; V−κ somma quantità di dimensioni diverse."
+        }
+      ],
+      "hints": [
+        "Non serve conoscere numericamente C₀ per eliminarla.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "V/κ ripete la trasformazione diretta. κ/V è una tensione inversa e κV² ha unità V²; V−κ somma quantità di dimensioni diverse.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Vincolo di carica e polarizzazione",
+        "Tensione dopo inserimento completo",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-isolated-voltage-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico e carica libera isolata",
+      "order": 22510,
+      "title": "Due fattori e due domini",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-isolated-voltage",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale è caricato inizialmente alla tensione positiva V₀ e poi scollegato dal generatore. Un dielettrico ideale, senza conduzione né perdita di carica libera, riempie completamente lo spazio fra le armature; area e distanza restano invariate. La capacità passa da C₀ a κC₀ con κ≥1. Si confrontano gli stati elettrostatici prima e dopo l’inserimento. Fra prove V₀,B=κ₁V₀,A e κ_B=κ₂κ_A. κ₁,κ₂>0 ed entrambi i valori di κ sono almeno uno. Quanto vale V_B/V_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁ / κ₂²",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituisco i fattori nella tensione finale: V_B=κ₁V₀,A/(κ₂κ_A). Dividendo per V_A si cancellano le quantità iniziali e resta κ₁/κ₂. I fattori non devono portare κ_B sotto uno; il vincolo vale per entrambe le prove."
+        },
+        {
+          "type": "formula",
+          "text": "V_B=\\frac{\\kappa_1V_{0,A}}{\\kappa_2\\kappa_A}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B/V_A=\\kappa_1/\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto rende diretto anche il fattore della permittività. Il rapporto invertito scambia i ruoli; il quadrato non appartiene alla legge V₀/κ. La somma darebbe due fra prove identiche."
+        }
+      ],
+      "hints": [
+        "Controlla il dominio di κ prima di cancellare i fattori.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto rende diretto anche il fattore della permittività. Il rapporto invertito scambia i ruoli; il quadrato non appartiene alla legge V₀/κ. La somma darebbe due fra prove identiche.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Vincolo di carica e polarizzazione",
+        "Tensione dopo inserimento completo",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-isolated-voltage-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico e carica libera isolata",
+      "order": 22511,
+      "title": "Cambiano anche le tensioni iniziali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-isolated-voltage",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale è caricato inizialmente alla tensione positiva V₀ e poi scollegato dal generatore. Un dielettrico ideale, senza conduzione né perdita di carica libera, riempie completamente lo spazio fra le armature; area e distanza restano invariate. La capacità passa da C₀ a κC₀ con κ≥1. Si confrontano gli stati elettrostatici prima e dopo l’inserimento. A: V₀=12 V, κ=2. B: V₀=9 V, κ=3. Quanto vale V_B/V_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "3/4",
+          "3/2",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 6 V; B dà 3 V. Il rapporto è 1/2. La minore tensione iniziale e il maggiore κ riducono entrambi l’uscita; i loro fattori si combinano come (3/4)/(3/2)."
+        },
+        {
+          "type": "formula",
+          "text": "V_A=6\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=3\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_B/V_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il confronto; 3/4 segue soltanto V₀ e 3/2 copia il fattore di κ senza invertirlo. Uno non rispetta nessuno dei due cambiamenti combinati."
+        }
+      ],
+      "hints": [
+        "Ricava le due tensioni finali, non la sola variazione di un ingresso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il confronto; 3/4 segue soltanto V₀ e 3/2 copia il fattore di κ senza invertirlo. Uno non rispetta nessuno dei due cambiamenti combinati.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Vincolo di carica e polarizzazione",
+        "Tensione dopo inserimento completo",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-isolated-voltage-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico e carica libera isolata",
+      "order": 22512,
+      "title": "La media di due tensioni finali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-isolated-voltage",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale è caricato inizialmente alla tensione positiva V₀ e poi scollegato dal generatore. Un dielettrico ideale, senza conduzione né perdita di carica libera, riempie completamente lo spazio fra le armature; area e distanza restano invariate. La capacità passa da C₀ a κC₀ con κ≥1. Si confrontano gli stati elettrostatici prima e dopo l’inserimento. A usa 12 V e κ=2; B usa 9 V e κ=3. Qual è la media aritmetica delle due V finali?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/2 V",
+          "21/5 V",
+          "9 V",
+          "3/2 V",
+          "0 V"
+        ],
+        "value": "9/2 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La media delle uscite è (6+3)/2=9/2 V. Le medie degli ingressi, V₀=21/2 V e κ=5/2, darebbero invece 21/5 V. La differenza è 3/10 V: dividere per un ingresso variabile impedisce di scambiare in generale media e legge."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/cebcf6063211f1090f58487c9366b3e3c3913a9708ad4f62d6a9cc2b1104d6e7",
+          "text": "Le barre di 6 V, 3 V e 9/2 V hanno origine e scala comuni. La retta in basso riguarda invece κ=2 fissato, non la prova B con κ=3."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline V=\\frac{6+3}{2}\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline V=\\frac92\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_{\\rm dati\\ medi}=\\frac{21}{5}\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "21/5 V usa gli ingressi medi. Nove V somma senza dimezzare, 3/2 V prende la semidifferenza e zero confonde la tensione fra piastre con la carica netta nulla del condensatore."
+        }
+      ],
+      "hints": [
+        "La media è delle uscite, con uguale peso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "21/5 V usa gli ingressi medi. Nove V somma senza dimezzare, 3/2 V prende la semidifferenza e zero confonde la tensione fra piastre con la carica netta nulla del condensatore.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Vincolo di carica e polarizzazione",
+        "Tensione dopo inserimento completo",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-isolated-voltage-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico e carica libera isolata",
+      "order": 22513,
+      "title": "Trovare il dielettrico per il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-isolated-voltage",
+      "difficulty": 3,
+      "prompt": "Un condensatore lineare ideale è caricato inizialmente alla tensione positiva V₀ e poi scollegato dal generatore. Un dielettrico ideale, senza conduzione né perdita di carica libera, riempie completamente lo spazio fra le armature; area e distanza restano invariate. La capacità passa da C₀ a κC₀ con κ≥1. Si confrontano gli stati elettrostatici prima e dopo l’inserimento. A ha V₀=12 V, κ_A=2. B ha V₀=9 V e deve ottenere V_B=V_A/2. Quanto vale κ_B/κ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "1/2",
+          "3/4",
+          "2"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 3 V. Con V₀,B=9 V occorre κ_B=9/3=3. Rispetto a κ_A=2 il rapporto è 3/2. Non si dimezza semplicemente κ: una permittività relativa maggiore riduce la tensione finale."
+        },
+        {
+          "type": "formula",
+          "text": "V_B=3\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " \\kappa_B=3"
+        },
+        {
+          "type": "formula",
+          "text": " \\kappa_B/\\kappa_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "2/3 inverte il rapporto richiesto. Un mezzo copia il bersaglio della tensione; 3/4 segue solo la preparazione iniziale. Due darebbe κ_B=4 e V_B=9/4 V, fuori bersaglio."
+        }
+      ],
+      "hints": [
+        "Traduci il bersaglio in volt prima di isolare κ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2/3 inverte il rapporto richiesto. Un mezzo copia il bersaglio della tensione; 3/4 segue solo la preparazione iniziale. Due darebbe κ_B=4 e V_B=9/4 V, fuori bersaglio.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Vincolo di carica e polarizzazione",
+        "Tensione dopo inserimento completo",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-isolated-voltage-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico e carica libera isolata",
+      "order": 22514,
+      "title": "Uno strumento proporzionale a V",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-isolated-voltage",
+      "difficulty": 3,
+      "prompt": "Un condensatore lineare ideale è caricato inizialmente alla tensione positiva V₀ e poi scollegato dal generatore. Un dielettrico ideale, senza conduzione né perdita di carica libera, riempie completamente lo spazio fra le armature; area e distanza restano invariate. La capacità passa da C₀ a κC₀ con κ≥1. Si confrontano gli stati elettrostatici prima e dopo l’inserimento. D=a_cal V è continuo e adimensionale. A con V₀=12 V, κ=2 dà D=18. B legge D=9 e ha κ=3. Quanto vale V₀,B in V?",
+      "answer": {
+        "type": "numeric",
+        "value": 9,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento vale V_A=6 V, quindi a_cal=3 V⁻¹. D_B=9 indica V_B=3 V. Ricostruisco la tensione prima dell’inserimento: V₀,B=κ_BV_B=9 V."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,\\mathrm V^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=3\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_{0,B}=9\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Ventisette V tratterebbe D=9 come nove volt, saltando il guadagno. Un V dividerebbe 3 V per κ invece di moltiplicare. Tre V copia la tensione dopo l’inserimento."
+        }
+      ],
+      "hints": [
+        "Prima decodifica D, poi ricostruisci V₀.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ventisette V tratterebbe D=9 come nove volt, saltando il guadagno. Un V dividerebbe 3 V per κ invece di moltiplicare. Tre V copia la tensione dopo l’inserimento.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Vincolo di carica e polarizzazione",
+        "Tensione dopo inserimento completo",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-isolated-voltage-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico e carica libera isolata",
+      "order": 22515,
+      "title": "Due riferimenti e un offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-isolated-voltage",
+      "difficulty": 3,
+      "prompt": "Un condensatore lineare ideale è caricato inizialmente alla tensione positiva V₀ e poi scollegato dal generatore. Un dielettrico ideale, senza conduzione né perdita di carica libera, riempie completamente lo spazio fra le armature; area e distanza restano invariate. La capacità passa da C₀ a κC₀ con κ≥1. Si confrontano gli stati elettrostatici prima e dopo l’inserimento. D=a_cal V+b_cal è continuo. A: V₀=12 V, κ=2, D=13. B: V₀=9 V, κ=3, D=7. C: κ=4, D=5. Quanto vale V₀,C in V?",
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno tensioni finali 6 e 3 V. Il guadagno è (13−7)/(6−3)=2 V⁻¹ e l’offset uno. D_C=5 restituisce V_C=(5−1)/2=2 V; prima dell’inserimento servivano V₀,C=4·2=8 V."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,\\mathrm V^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b_{\\rm cal}=1"
+        },
+        {
+          "type": "formula",
+          "text": " V_C=2\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_{0,C}=8\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Dieci V omette l’offset e produrrebbe D=6. Sedici V sottrae l’offset ma non divide per il guadagno. Due V copia l’uscita decodificata senza annullare l’effetto del dielettrico."
+        }
+      ],
+      "hints": [
+        "Sottrai b prima di dividere per a.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci V omette l’offset e produrrebbe D=6. Sedici V sottrae l’offset ma non divide per il guadagno. Due V copia l’uscita decodificata senza annullare l’effetto del dielettrico.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Vincolo di carica e polarizzazione",
+        "Tensione dopo inserimento completo",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-isolated-voltage-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico e carica libera isolata",
+      "order": 22516,
+      "title": "Un dato che ripete il vincolo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-isolated-voltage",
+      "difficulty": 3,
+      "prompt": "Un condensatore lineare ideale è caricato inizialmente alla tensione positiva V₀ e poi scollegato dal generatore. Un dielettrico ideale, senza conduzione né perdita di carica libera, riempie completamente lo spazio fra le armature; area e distanza restano invariate. La capacità passa da C₀ a κC₀ con κ≥1. Si confrontano gli stati elettrostatici prima e dopo l’inserimento. Fra preparazioni V₀=(6 V)κ. Si misura V=6 V. Quante coppie ammissibili (V₀,κ) restano?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie continue con κ≥1",
+          "Una sola coppia",
+          "Due coppie positive",
+          "Nessuna coppia",
+          "Infinite coppie soltanto intere"
+        ],
+        "value": "Infinite coppie continue con κ≥1"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Inserendo il vincolo nella legge, V=(6 V)κ/κ=6 V per ogni κ≥1. La misura ripete dunque un’informazione già contenuta nel vincolo e non fissa la scala. Esempi sono (6 V,1), (12 V,2) e (9 V,3/2)."
+        },
+        {
+          "type": "formula",
+          "text": "V=\\frac{(6\\,\\mathrm V)\\kappa}{\\kappa}"
+        },
+        {
+          "type": "formula",
+          "text": " V=6\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " \\kappa\\ge1"
+        },
+        {
+          "type": "text",
+          "text": "Non nasce un’equazione quadratica con due radici. κ è una costante relativa continua, non un conteggio intero; scegliere κ=2 sarebbe una preparazione possibile, non una conseguenza dei dati."
+        }
+      ],
+      "hints": [
+        "Controlla se la misura aggiunge davvero un’equazione indipendente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Non nasce un’equazione quadratica con due radici. κ è una costante relativa continua, non un conteggio intero; scegliere κ=2 sarebbe una preparazione possibile, non una conseguenza dei dati.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Vincolo di carica e polarizzazione",
+        "Tensione dopo inserimento completo",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "cebcf6063211f1090f58487c9366b3e3c3913a9708ad4f62d6a9cc2b1104d6e7",
+      "name": "dielectric-isolated-voltage-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ4MCIgdmlld0JveD0iMCAwIDY0MCAxNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+Q2FyaWNhIGxpYmVyYSBmaXNzYXRhLCB0ZW5zaW9uZSBkaXZlcnNhPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+VHJlIHRhcHBlOiBkdWUgc2V6aW9uaSBzY2hlbWF0aWNoZSBjb24gZ2VuZXJhdG9yZSBzY29sbGVnYXRvOyBjb25mcm9udG8gZGVsbGUgdGVuc2lvbmkgZmluYWxpOyByZXR0YSB0ZW5zaW9uZSBmaW5hbGUgY29udHJvIGluaXppYWxlIGEgY29zdGFudGUgcmVsYXRpdmEgZHVlLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDggNEwwIDhaIiBmaWxsPSIjNTI2NjdhIi8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ4MCIgZmlsbD0iI2Y3ZmFmYyIvPjxnIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiI+PHRleHQgeD0iMzIiIHk9IjQyIiBmb250LXNpemU9IjI0IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkNhcmljYSBsaWJlcmEgZmlzc2F0YSwgdGVuc2lvbmUgZGl2ZXJzYTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iOTIiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+MSDCtyBQcmltYSBlIGRvcG8sIHNlbnphIGdlbmVyYXRvcmU8L3RleHQ+PHRleHQgeD0iNDIiIHk9IjEzMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5D4oKAID0gMSDOvEYsIFbigoAgPSAxMiBWPC90ZXh0Pjx0ZXh0IHg9IjM0MCIgeT0iMTMwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPs66ID0gMiwgQyA9IDIgzrxGPC90ZXh0PjxyZWN0IHg9IjEwNSIgeT0iMTYwIiB3aWR0aD0iOSIgaGVpZ2h0PSIxODUiIGZpbGw9IiMzMTZiOWIiIHJ4PSIzIi8+PHJlY3QgeD0iMTc3IiB5PSIxNjAiIHdpZHRoPSI5IiBoZWlnaHQ9IjE4NSIgZmlsbD0iIzMxNmI5YiIgcng9IjMiLz48dGV4dCB4PSI5MyIgeT0iMjA1IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0iZW5kIj4rPC90ZXh0Pjx0ZXh0IHg9IjIwMyIgeT0iMjA1IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPuKIkjwvdGV4dD48cmVjdCB4PSI0MjIiIHk9IjE3MiIgd2lkdGg9IjU2IiBoZWlnaHQ9IjE2MCIgZmlsbD0iI2M5ZGZlZCIgcng9IjMiLz48cmVjdCB4PSI0MTAiIHk9IjE2MCIgd2lkdGg9IjkiIGhlaWdodD0iMTg1IiBmaWxsPSIjMzE2YjliIiByeD0iMyIvPjxyZWN0IHg9IjQ4MiIgeT0iMTYwIiB3aWR0aD0iOSIgaGVpZ2h0PSIxODUiIGZpbGw9IiMzMTZiOWIiIHJ4PSIzIi8+PHRleHQgeD0iMzk4IiB5PSIyMDUiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJlbmQiPis8L3RleHQ+PHRleHQgeD0iNTA4IiB5PSIyMDUiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+4oiSPC90ZXh0Pjx0ZXh0IHg9IjY1IiB5PSIzOTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+USA9IDEyIM68QzwvdGV4dD48dGV4dCB4PSIzNzIiIHk9IjM5MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5RID0gMTIgzrxDPC90ZXh0Pjx0ZXh0IHg9IjY1IiB5PSI0MjUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+VuKCgCA9IDEyIFY8L3RleHQ+PHRleHQgeD0iMzcyIiB5PSI0MjUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+ViA9IDYgVjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNDc1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlNlemlvbmkgc2NoZW1hdGljaGU6IHN0ZXNzYSBjYXJpY2EgbGliZXJhLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNTQwIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjIgwrcgVXNjaXRlIGRpIGR1ZSBwcmVwYXJhemlvbmkgZSBsb3JvIG1lZGlhPC90ZXh0PjxsaW5lIHgxPSIxNDUiIHkxPSI1NjAiIHgyPSIxNDUiIHkyPSI4MTUiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTI1IiB5PSI2MDciIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJlbmQiPkE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI1OTAiIHdpZHRoPSIyNDAiIGhlaWdodD0iMjciIGZpbGw9IiMzMTZiOWIiIHJ4PSIzIi8+PHRleHQgeD0iMzk1IiB5PSI2MTEiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+NiBWPC90ZXh0Pjx0ZXh0IHg9IjEyNSIgeT0iNjkyIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0iZW5kIj5CPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iNjc1IiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjI3IiBmaWxsPSIjYTc2ZDIwIiByeD0iMyIvPjx0ZXh0IHg9IjI3NSIgeT0iNjk2IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjMgVjwvdGV4dD48dGV4dCB4PSIxMjUiIHk9Ijc3NyIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9ImVuZCI+bWVkaWE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI3NjAiIHdpZHRoPSIxODAuMCIgaGVpZ2h0PSIyNyIgZmlsbD0iIzQ4ODI2NSIgcng9IjMiLz48dGV4dCB4PSIzMzUuMCIgeT0iNzgxIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjQuNSBWPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI4NzUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+QTogVuKCgCA9IDEyIFYsIM66ID0gMiDCtyBCOiBW4oKAID0gOSBWLCDOuiA9IDM8L3RleHQ+PHRleHQgeD0iMzIiIHk9Ijk1MCIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij4zIMK3IFNvbG8gzrogPSAyOiBWIGNyZXNjZSBjb24gVuKCgDwvdGV4dD48bGluZSB4MT0iMTQ1IiB5MT0iMTMwMCIgeDI9IjUyMCIgeTI9IjEzMDAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxsaW5lIHgxPSIxNTAiIHkxPSIxMzA1IiB4Mj0iMTUwIiB5Mj0iMTA0MCIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PGxpbmUgeDE9IjE1MCIgeTE9IjEzMDAiIHgyPSI0NzAiIHkyPSIxMTQwIiBzdHJva2U9IiMzMTZiOWIiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjEzMiIgeT0iMTMyNCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9ImVuZCI+MDwvdGV4dD48dGV4dCB4PSI0NzAiIHk9IjEzMzAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjEyPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iMTE0NiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9ImVuZCI+NjwvdGV4dD48dGV4dCB4PSI1MzUiIHk9IjEzMTAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+VuKCgCAoVik8L3RleHQ+PHRleHQgeD0iMTE1IiB5PSIxMDI1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlYgKFYpPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMzkwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkxlIGJhcnJlIGUgaWwgZ3JhZmljbyB1c2FubyBzY2FsZSBpbmRpcGVuZGVudGkuPC90ZXh0PjwvZz48L3N2Zz4K"
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "reviewer": "B",
+  "candidateAuthor": "A",
+  "finalCandidateRef": "8e21066b36cb9b4390c0390f26d3295fdbd09ffc",
+  "catalog": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "appPath": "content/C4.json",
+    "gitPath": "officina-di-fisica/content/C4.json",
+    "sourceSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c"
+  },
+  "actualLessonRecordsRead": [
+    {
+      "id": "C4-L07",
+      "kind": "lesson",
+      "course": "C4",
+      "section": "Immagazzinare carica ed energia",
+      "order": 7,
+      "title": "Immagazzinare carica ed energia",
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C4-L03",
+        "C4-L04"
+      ],
+      "version": 1,
+      "coverage": [
+        "6.5 Capacità elettrica e condensatore piano",
+        "6.5 Effetto del dielettrico",
+        "6.5 Energia immagazzinata"
+      ],
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Due piastre conduttrici separate da un isolante conservano cariche +Q e −Q. La configurazione possiede un campo e una differenza di potenziale fra le piastre. La capacità C misura quanta carica, in modulo su una sola armatura, corrisponde a un volt di differenza fra le armature."
+        },
+        {
+          "type": "formula",
+          "text": "C=\\frac{Q}{|\\Delta V|},\\qquad 1\\ \\mathrm F=1\\ \\mathrm{C/V}"
+        },
+        {
+          "type": "figure",
+          "src": "/figures/C4-condensatore.svg",
+          "text": "Le piastre di area affacciata A distano d. Nel disegno in sezione il campo fra le armature è diretto dalla positiva alla negativa."
+        },
+        {
+          "type": "text",
+          "text": "Per piastre parallele di area affacciata A, separate di distanza d piccola rispetto alle dimensioni laterali e riempite uniformemente di permittività ε, il campo si può approssimare uniforme lontano dai bordi. La capacità cresce con A e con ε, diminuisce all’aumentare della distanza."
+        },
+        {
+          "type": "formula",
+          "text": "C=\\varepsilon\\frac{A}{d},\\quad \\varepsilon=\\varepsilon_0\\varepsilon_r,\\quad \\varepsilon_0\\simeq8{,}85\\cdot10^{-12}\\ \\mathrm{F/m}"
+        },
+        {
+          "type": "text",
+          "text": "Caricare le piastre richiede lavoro per aggiungere ulteriore carica contro una tensione crescente. Sul grafico |ΔV| contro Q la tensione cresce linearmente da zero al valore finale e l’area sottesa è triangolare. Il lavoro immagazzinato nel campo del condensatore ideale è quindi metà di Q|ΔV|."
+        },
+        {
+          "type": "formula",
+          "text": "U=\\tfrac12Q|\\Delta V|=\\tfrac12 C(\\Delta V)^2=\\frac{Q^2}{2C}"
+        },
+        {
+          "type": "text",
+          "text": "Introducendo un dielettrico, determina prima se il generatore rimane collegato. In isolamento Q resta costante e la tensione scende se C cresce. Con generatore ideale collegato V resta costante e cambia la carica sulle piastre. Il bilancio energetico completo include il generatore e l’eventuale lavoro meccanico sul dielettrico."
+        }
+      ],
+      "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+    },
+    {
+      "id": "C4-L08",
+      "kind": "lesson",
+      "course": "C4",
+      "section": "Mettere insieme i condensatori",
+      "order": 8,
+      "title": "Mettere insieme i condensatori",
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C4-L07"
+      ],
+      "version": 1,
+      "coverage": [
+        "6.5 Condensatori in serie e in parallelo",
+        "6.5 Conservazione di carica nei collegamenti"
+      ],
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Più condensatori consentono di controllare la capacità totale. Disegna i nodi. In parallelo ogni condensatore vede la medesima differenza di potenziale, mentre il generatore separa la somma delle cariche sulle piastre collegate allo stesso morsetto."
+        },
+        {
+          "type": "figure",
+          "src": "/figures/C4-reti-c.svg",
+          "text": "In parallelo le armature corrispondenti appartengono agli stessi due nodi. Nella serie il nodo intermedio, inizialmente neutro e isolato, conserva carica totale zero."
+        },
+        {
+          "type": "formula",
+          "text": "C_{\\rm par}=C_1+C_2,\\qquad Q_{\\rm tot}=(C_1+C_2)V"
+        },
+        {
+          "type": "text",
+          "text": "In serie, se il nodo intermedio isolato è inizialmente neutro, le due piastre che vi appartengono mantengono cariche opposte uguali in modulo. Le cadute di potenziale sono Q/C1 e Q/C2 e devono sommarsi alla tensione applicata. Il condensatore più piccolo porta la tensione maggiore."
+        },
+        {
+          "type": "formula",
+          "text": "V=\\frac{Q}{C_1}+\\frac{Q}{C_2}=\\frac{Q}{C_{\\rm serie}},\\qquad \\frac1{C_{\\rm serie}}=\\frac1{C_1}+\\frac1{C_2}"
+        },
+        {
+          "type": "text",
+          "text": "Quando si collegano fra loro due condensatori già carichi e separati dalla sorgente, identifica i nuovi gruppi di piastre. La carica algebrica di ciascun gruppo isolato si conserva. Dopo il transitorio, i condensatori in parallelo assumono la stessa tensione. Una parte dell’energia iniziale può dissiparsi durante il transitorio reale."
+        },
+        {
+          "type": "text",
+          "text": "Confronta le condizioni al contorno prima di scegliere una formula. Per le resistenze si sommano direttamente i valori in serie; per le capacità, l’addizione diretta nasce dalla tensione comune in parallelo."
+        }
+      ],
+      "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+    }
+  ],
+  "rereadAll80MetadataIndividually": true,
+  "competenciesFieldAbsent": true,
+  "batches": [
+    {
+      "batch": "parallel-capacitors-220",
+      "previousRef": "831f2c4caa4d4ed054db1f00edd06073b9fcd327",
+      "finalRef": "8e21066b36cb9b4390c0390f26d3295fdbd09ffc",
+      "records": 16,
+      "exactMetadataOnlyTransformation": true,
+      "allNonMetadataContentUnchanged": true,
+      "bindingChangesOnlyCandidateSha256": true,
+      "assetBytesUnchanged": true,
+      "candidateFileSha256": "26b3c0dcb54f85d2815f405dfdfc33f6bd5b2354750c76d0df2bd0512fada9b8",
+      "bindingsFileSha256": "72502761c473fa50694f544da49584fa17355b611af2d4d83380e34be0a37e15",
+      "assetSha256": "02c6619b2df62e021cdeb7b0f5f0f954f1a289a402b6a60c680f6ec5632283f6",
+      "packageCanonicalSha256": "a31307872f8195a5004f77850f8f18d9a79fe39a1b9f78f55662f2b2f7d12b7c",
+      "bindingsCanonicalSha256": "ba09e504bf76aa60121df9aef1de936c16fbf524bd239efb7fc0d9f0dc756153"
+    },
+    {
+      "batch": "series-capacitors-221",
+      "previousRef": "13cdc06845e88aa86bdd9dfeb4f0549411db8ad5",
+      "finalRef": "8e21066b36cb9b4390c0390f26d3295fdbd09ffc",
+      "records": 16,
+      "exactMetadataOnlyTransformation": true,
+      "allNonMetadataContentUnchanged": true,
+      "bindingChangesOnlyCandidateSha256": true,
+      "assetBytesUnchanged": true,
+      "candidateFileSha256": "4771baf9f46b7982f871c4dc5600db1cfee4f603e601df6a1cfcfb591678a72e",
+      "bindingsFileSha256": "06fa0a8a513ed618fa2253dd0a02b911a1a4d7a6b44fb852b27ced85cb8294b0",
+      "assetSha256": "33063149547cd4a33e74926c4d177dbcd3d68ba37fcaa93f089016a9e245f5b6",
+      "packageCanonicalSha256": "42f3dfcd4a3afb795c5c550c8bd6729664836ff47ae0b47166af3ad22bdb2de0",
+      "bindingsCanonicalSha256": "04f23fcb87a54d18a5174c80d60116db027d461bc775e75fbb0fbb12f24f886d"
+    },
+    {
+      "batch": "series-capacitor-voltage-222",
+      "previousRef": "4ca2e18afedb968aa2224a3a9088ba6bb025b5a4",
+      "finalRef": "8e21066b36cb9b4390c0390f26d3295fdbd09ffc",
+      "records": 16,
+      "exactMetadataOnlyTransformation": true,
+      "allNonMetadataContentUnchanged": true,
+      "bindingChangesOnlyCandidateSha256": true,
+      "assetBytesUnchanged": true,
+      "candidateFileSha256": "33cce09aff0b63ed849f5c8e6dfe91301de12763f8ef431e81f82bbb8a395ba8",
+      "bindingsFileSha256": "b755cd7c96e5f2d04ca6f67771795f487e6e49fc8eb2e67942fadd9609a6a1f4",
+      "assetSha256": "798a357186e2333050c2f93de86ed8b8c245304253a3cd2dab50859ea50b7adb",
+      "packageCanonicalSha256": "4add556687f791773f554dcefcdf95f56fde8f0bddfa50a5c8ecfbf430726a9a",
+      "bindingsCanonicalSha256": "6330758a24849a466bbb68e5fe350cca6dcbf333668803447683c9e1d59593c0"
+    },
+    {
+      "batch": "capacitor-charge-sharing-223",
+      "previousRef": "351f28ae64d0a66d79ca010abbd51ef7bfa6ce63",
+      "finalRef": "8e21066b36cb9b4390c0390f26d3295fdbd09ffc",
+      "records": 16,
+      "exactMetadataOnlyTransformation": true,
+      "allNonMetadataContentUnchanged": true,
+      "bindingChangesOnlyCandidateSha256": true,
+      "assetBytesUnchanged": true,
+      "candidateFileSha256": "4d6eda109e86973af45b0e4679b262721bff951949f9e7e8560c3230d0ca77df",
+      "bindingsFileSha256": "f64bd850b6106d5001ff9f1aa0ba6d156706366460948aba7c242b8786136527",
+      "assetSha256": "a61bb0f46b9b9d94297e4baa23111d7afe5f38c95c25191ad80902ba00246dee",
+      "packageCanonicalSha256": "ba7551394b71a8469f8cd883fc7258207ec4c43f34a48727f358e1aa002eb59d",
+      "bindingsCanonicalSha256": "6e37e8114005ae93aa18a40d7a86dbe8625f62b1ba502a1d36b4605d9e083d51"
+    },
+    {
+      "batch": "capacitor-sharing-energy-loss-224",
+      "previousRef": "ff9f3090a3523db3728fc3c398165b24d17921bb",
+      "finalRef": "8e21066b36cb9b4390c0390f26d3295fdbd09ffc",
+      "records": 16,
+      "exactMetadataOnlyTransformation": true,
+      "allNonMetadataContentUnchanged": true,
+      "bindingChangesOnlyCandidateSha256": true,
+      "assetBytesUnchanged": true,
+      "candidateFileSha256": "7881949f791d8ba9f925cdb046cef1ae4ce3158a1d18f6f4b88b4a6b1f640c1d",
+      "bindingsFileSha256": "22dab95e32d3d84a09b02f448f7d7356a0f22cff8824aac5009f0d59f623bf74",
+      "assetSha256": "28c31b150ffbd077958723c67584c564338a98adac010124b85b8c1d7df64d4e",
+      "packageCanonicalSha256": "5d597692d0fcf9ce5029b4c9b69f83676ba8673c31a39d5f0d50c71dc4debe4d",
+      "bindingsCanonicalSha256": "26f451a9ef29dea8d03a173465848730879c3e34d226e16738407dd5b648a941"
+    }
+  ],
+  "oldEvidencePreservedAt": "editorial/reviews/u6-capacitor-networks-220-224-pre-L08-mapping-archive",
+  "newProductUI": "NOT_RUN",
+  "newImport": "PENDING_ROOT_REMOTE",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT"
+}
