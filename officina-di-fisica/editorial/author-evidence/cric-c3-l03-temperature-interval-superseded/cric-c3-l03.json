@@ -1,0 +1,674 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C3-Q021",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 21,
+      "title": "Capacità per chilogrammo",
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa va espressa in chilogrammi: 200 g=0,200 kg. Dalla legge Q=mcΔT ottengo c=Q/(mΔT). Il denominatore vale 0,200·6=1,2 kg·K; 540/1,2=450 J/(kg·K). La capacità del campione intero sarebbe invece 90 J/K."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/39f4239a83ae3862529270c738e19c4f8d4268db824a6c74187ed65828f68959",
+          "text": "Per il campione di 0,200 kg, 540 J producono 6 K: la capacità totale è 90 J/K e il calore specifico 450 J/(kg·K)."
+        },
+        {
+          "type": "formula",
+          "text": "m=0{,}200\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " c=\\frac{Q}{m\\Delta T}"
+        },
+        {
+          "type": "formula",
+          "text": " c=\\frac{540}{1{,}2}\\,\\mathrm{J/(kg\\,K)}"
+        },
+        {
+          "type": "formula",
+          "text": " c=450\\,\\mathrm{J/(kg\\,K)}"
+        },
+        {
+          "type": "text",
+          "text": "90 J/K descrive Q/ΔT, cioè la capacità totale, non quella per chilogrammo. Inserire 200 come massa in kg darebbe 0,45 e perderebbe il fattore mille. Moltiplicare per ΔT anziché dividerlo non isola c."
+        }
+      ],
+      "prompt": "Un blocchetto di 200 g assorbe 540 J e si scalda di 6,0 K senza cambiare fase. Il calore specifico è costante nell’intervallo. Calcolalo in J/(kg·K).",
+      "difficulty": 1,
+      "family": "estrarre-il-calore-specifico",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 450,
+        "unit": "J/(kg·K)",
+        "tolerance": 0
+      },
+      "hints": [
+        "Converti prima i grammi in chilogrammi e distingui C da c.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "90 J/K descrive Q/ΔT, cioè la capacità totale, non quella per chilogrammo. Inserire 200 come massa in kg darebbe 0,45 e perderebbe il fattore mille. Moltiplicare per ΔT anziché dividerlo non isola c.",
+        "target": "C3-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Capacità per chilogrammo"
+      ]
+    },
+    {
+      "id": "C3-Q022",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 22,
+      "title": "La pendenza del riscaldamento",
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In un intervallo Δt entra Q=PΔt, mentre Q=CΔT. La pendenza è quindi ΔT/Δt=P/C. Con la stessa potenza, una pendenza maggiore indica una capacità totale minore. Non si può separare C=mc in massa e calore specifico senza ulteriori dati."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\Delta T}{\\Delta t}=\\frac PC"
+        },
+        {
+          "type": "formula",
+          "text": " \\left(\\frac{\\Delta T}{\\Delta t}\\right)_A>\\left(\\frac{\\Delta T}{\\Delta t}\\right)_B"
+        },
+        {
+          "type": "formula",
+          "text": " C_A<C_B"
+        },
+        {
+          "type": "text",
+          "text": "Una massa minore o un calore specifico minore possono contribuire a C minore, ma nessuno dei due è deducibile da solo. La potenza è già uguale per ipotesi. Una pendenza maggiore non determina l’ordine delle temperature senza conoscere anche i valori iniziali."
+        }
+      ],
+      "prompt": "Due campioni ricevono la stessa potenza termica costante, senza perdite né cambiamenti di fase; ciascuno ha capacità termica costante. Nel grafico T contro t la retta di A sale più rapidamente. Quale grandezza è minore in A?",
+      "difficulty": 2,
+      "family": "confrontare-pendenze-di-riscaldamento",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La capacità termica totale C",
+          "Necessariamente il calore specifico c",
+          "Necessariamente la massa m",
+          "La potenza fornita, che è assegnata uguale",
+          "La temperatura assoluta in ogni istante"
+        ],
+        "value": "La capacità termica totale C"
+      },
+      "hints": [
+        "Esprimi la pendenza con la potenza comune e la capacità del campione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una massa minore o un calore specifico minore possono contribuire a C minore, ma nessuno dei due è deducibile da solo. La potenza è già uguale per ipotesi. Una pendenza maggiore non determina l’ordine delle temperature senza conoscere anche i valori iniziali.",
+        "target": "C3-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "La pendenza del riscaldamento"
+      ]
+    },
+    {
+      "id": "C3-Q023",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 23,
+      "title": "Il nome di C diviso m",
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La capacità termica totale misura il calore necessario per variare di un kelvin la temperatura del campione nel percorso assegnato. Dividendo per la massa si ottiene il calore specifico c, con unità J/(kg·K). Per un gas va anche dichiarato il vincolo, per esempio volume o pressione costante."
+        },
+        {
+          "type": "formula",
+          "text": "c=\\frac Cm"
+        },
+        {
+          "type": "formula",
+          "text": " [c]=\\mathrm{J/(kg\\,K)}"
+        },
+        {
+          "type": "text",
+          "text": "Il calore latente specifico ha unità J/kg e riguarda un cambiamento di fase. La conducibilità ha unità W/(m·K), la densità kg/m³ e la potenza W. Le unità separano queste proprietà."
+        }
+      ],
+      "prompt": "La capacità termica C di un campione, in J/K, viene divisa per la massa m in kg. Quale proprietà del materiale si ottiene?",
+      "difficulty": 1,
+      "family": "come-si-chiama-c-diviso-m",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Il calore specifico",
+          "Il calore latente specifico",
+          "La conducibilità termica",
+          "La densità",
+          "La potenza termica"
+        ],
+        "value": "Il calore specifico"
+      },
+      "hints": [
+        "Dividi anche le unità di C per quelle della massa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il calore latente specifico ha unità J/kg e riguarda un cambiamento di fase. La conducibilità ha unità W/(m·K), la densità kg/m³ e la potenza W. Le unità separano queste proprietà.",
+        "target": "C3-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Il nome di C diviso m"
+      ]
+    },
+    {
+      "id": "C3-Q024",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 24,
+      "title": "Il segno del calore del metallo",
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La variazione finale meno iniziale è 32−48=−16 K. Moltiplicando per C ottengo Q=75·(−16)=−1200 J. Il segno indica calore uscente dal metallo. Il modulo dell’energia ceduta è 1200 J, ma non è il Q con segno richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta T=-16\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " Q=C\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " Q=-1200\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "1200 J cambia la convenzione usando il modulo. 16 è il solo valore numerico dell’intervallo termico, non un calore. Aggiungere 273,15 alle differenze non serve: l’offset si cancella."
+        }
+      ],
+      "prompt": "Un metallo con capacità termica costante C=75 J/K si raffredda da 48 a 32 °C senza cambiare fase. Esprimi in joule il calore Q del metallo, positivo se entra.",
+      "difficulty": 1,
+      "family": "energia-ceduta-da-una-massa-calda",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": -1200,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "hints": [
+        "Mantieni il segno di temperatura finale meno iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "1200 J cambia la convenzione usando il modulo. 16 è il solo valore numerico dell’intervallo termico, non un calore. Aggiungere 273,15 alle differenze non serve: l’offset si cancella.",
+        "target": "C3-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Il segno del calore del metallo"
+      ]
+    },
+    {
+      "id": "C3-Q025",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 25,
+      "title": "Una capacità dal contatto termico",
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’acqua assorbe 300·(30−20)=3000 J. Il campione cede lo stesso modulo, raffreddandosi di 70−30=40 K. La sua capacità è quindi 3000/40=75 J/K. Il risultato riguarda l’intero campione, non il suo calore specifico."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/39f4239a83ae3862529270c738e19c4f8d4268db824a6c74187ed65828f68959",
+          "text": "L’acqua riceve 3000 J mentre il campione ne cede 3000: i loro calori hanno segni opposti, con il sistema complessivo isolato."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{\\rm acqua}=3000\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " C_{\\rm campione}(30-70)\\,\\mathrm K=-3000\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " C_{\\rm campione}=75\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "300 J/K copia la capacità dell’acqua. 30 o 40 da soli sono letture o intervalli, non capacità. Sommare i moduli dei due calori come se entrambi entrassero violerebbe l’isolamento del sistema complessivo."
+        }
+      ],
+      "prompt": "Un campione a 70 °C viene immerso in acqua con capacità totale 300 J/K a 20 °C. In isolamento si raggiungono 30 °C. Non ci sono cambi di fase o lavoro apprezzabile e si trascura il recipiente. Trova la capacità costante del campione in J/K.",
+      "difficulty": 2,
+      "family": "una-capacita-ignota-dal-mescolamento",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 75,
+        "unit": "J/K",
+        "tolerance": 0
+      },
+      "hints": [
+        "Prima trova il calore assorbito dall’acqua, poi il calo termico del campione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "300 J/K copia la capacità dell’acqua. 30 o 40 da soli sono letture o intervalli, non capacità. Sommare i moduli dei due calori come se entrambi entrassero violerebbe l’isolamento del sistema complessivo.",
+        "target": "C3-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Una capacità dal contatto termico"
+      ]
+    },
+    {
+      "id": "C3-Q026",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 26,
+      "title": "Il recipiente inizialmente freddo",
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il recipiente parte freddo e si scalda insieme all’acqua fredda: richiede una parte dell’energia ceduta dall’acqua calda. Nel bilancio si aggiunge un termine C_r(T_f−T_c)>0. A parità degli altri dati la temperatura comune si sposta verso la lettura fredda, senza uscire dall’intervallo delle due letture iniziali. Indico con Q_h, Q_c e Q_r i calori con segno rispettivamente di acqua calda, acqua fredda e recipiente."
+        },
+        {
+          "type": "formula",
+          "text": "Q_h=C_h(T_f-T_h)"
+        },
+        {
+          "type": "formula",
+          "text": " Q_c=C_c(T_f-T_c)"
+        },
+        {
+          "type": "formula",
+          "text": " Q_r=C_r(T_f-T_c)"
+        },
+        {
+          "type": "formula",
+          "text": " Q_h+Q_c+Q_r=0"
+        },
+        {
+          "type": "formula",
+          "text": " C_r>0"
+        },
+        {
+          "type": "text",
+          "text": "Il recipiente non crea energia. Trascurarlo può essere un’approssimazione, ma non rende il risultato esattamente invariato per capacità positiva. Un valore sotto il freddo o sopra il caldo contraddirebbe il bilancio con sole capacità positive e nessun altro scambio."
+        }
+      ],
+      "prompt": "Si mescolano acqua calda e fredda in isolamento, senza cambi di fase e con capacità positive costanti. Un calcolo trascura il recipiente, inizialmente alla temperatura dell’acqua fredda. Includendo la sua capacità positiva, come cambia la temperatura finale reale?",
+      "difficulty": 2,
+      "family": "deviazione-causata-dal-recipiente",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "È più bassa di quella calcolata trascurando il recipiente",
+          "È più alta perché il recipiente crea energia",
+          "Resta necessariamente identica",
+          "Scende sotto la temperatura iniziale dell’acqua fredda",
+          "Sale oltre la temperatura iniziale dell’acqua calda"
+        ],
+        "value": "È più bassa di quella calcolata trascurando il recipiente"
+      },
+      "hints": [
+        "Aggiungi il recipiente al lato che deve assorbire calore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Il recipiente non crea energia. Trascurarlo può essere un’approssimazione, ma non rende il risultato esattamente invariato per capacità positiva. Un valore sotto il freddo o sopra il caldo contraddirebbe il bilancio con sole capacità positive e nessun altro scambio.",
+        "target": "C3-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Il recipiente inizialmente freddo"
+      ]
+    },
+    {
+      "id": "C3-Q027",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 27,
+      "title": "Quanto costa il vincolo di pressione",
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per il gas perfetto C_p−C_V=R per mole. La differenza dei calori per lo stesso incremento termico è quindi nRΔT. Con una mole e 15 K calcolo 8,314·15=8,314·(10+5)=83,14+41,57=124,71 J. È il contributo aggiuntivo legato al lavoro di espansione isobaro."
+        },
+        {
+          "type": "formula",
+          "text": "Q_p-Q_V=nR\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " Q_p-Q_V=124{,}71\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "La differenza non è zero: i due vincoli richiedono calori diversi per lo stesso aumento di energia interna. Il solo 8,314 copia il valore numerico di R senza moltiplicare per n e ΔT. 15 copia l’incremento termico senza costruire un’energia; il valore negativo inverte la differenza richiesta. Il risultato non richiede un gas monoatomico."
+        }
+      ],
+      "prompt": "Una mole dello stesso gas perfetto viene scaldata di 15 K, una volta a pressione costante e una a volume costante. Nei due percorsi agisce solo lavoro di espansione. Di quanti joule il calore isobaro supera quello isocoro? Usa R=8,314 J/(mol·K).",
+      "difficulty": 2,
+      "family": "quanto-conta-il-vincolo-del-pistone",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "124,71 J",
+          "8,314 J",
+          "0 J",
+          "15 J",
+          "−124,71 J"
+        ],
+        "value": "124,71 J"
+      },
+      "hints": [
+        "Sottrai prima le due leggi e usa la differenza delle capacità molari.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "La differenza non è zero: i due vincoli richiedono calori diversi per lo stesso aumento di energia interna. Il solo 8,314 copia il valore numerico di R senza moltiplicare per n e ΔT. 15 copia l’incremento termico senza costruire un’energia; il valore negativo inverte la differenza richiesta. Il risultato non richiede un gas monoatomico.",
+        "target": "C3-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Quanto costa il vincolo di pressione"
+      ]
+    },
+    {
+      "id": "C3-Q028",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 28,
+      "title": "Il vincolo per C_V",
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il pedice V si riferisce al volume costante. Se la parete non si sposta il lavoro pV è nullo e il calore coincide con la variazione di energia interna, nC_VΔT. Sono state escluse altre forme di lavoro: un albero motore potrebbe trasferire energia anche in un recipiente rigido."
+        },
+        {
+          "type": "formula",
+          "text": "V=\\text{costante}"
+        },
+        {
+          "type": "formula",
+          "text": " W_{pV}=0"
+        },
+        {
+          "type": "formula",
+          "text": " Q=nC_V\\Delta T"
+        },
+        {
+          "type": "text",
+          "text": "A pressione costante il calore sarebbe nC_pΔT nelle stesse ipotesi. Temperatura costante rende ΔT nullo ma non definisce la misura di C_V. Il prodotto pV costante descrive invece un’isoterma del gas perfetto chiuso."
+        }
+      ],
+      "prompt": "Un gas perfetto chiuso scambia calore e può compiere soltanto lavoro pV, senza altre forme di lavoro. Quale grandezza deve restare costante per scrivere Q=nC_VΔT, con C_V costante nell’intervallo?",
+      "difficulty": 1,
+      "family": "vincolo-per-misurare-cv",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Il volume",
+          "La pressione",
+          "La temperatura",
+          "Il prodotto pV",
+          "La densità di energia per definizione"
+        ],
+        "value": "Il volume"
+      },
+      "hints": [
+        "Interpreta il pedice V e controlla se il confine può compiere lavoro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "A pressione costante il calore sarebbe nC_pΔT nelle stesse ipotesi. Temperatura costante rende ΔT nullo ma non definisce la misura di C_V. Il prodotto pV costante descrive invece un’isoterma del gas perfetto chiuso.",
+        "target": "C3-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Il vincolo per C_V"
+      ]
+    },
+    {
+      "id": "C3-Q029",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 29,
+      "title": "Una temperatura fuori intervallo",
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con capacità positive la temperatura comune è una media pesata delle temperature iniziali. Può avvicinarsi al valore del corpo con capacità maggiore, ma non superare il massimo né scendere sotto il minimo. Perciò 51 °C è escluso già prima di rifare i conti."
+        },
+        {
+          "type": "formula",
+          "text": "15\\,{}^\\circ\\mathrm C<T_f<45\\,{}^\\circ\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "La massa maggiore può cambiare il peso della media, non spostarla fuori dall’intervallo. Convertire entrambe le letture in kelvin mantiene lo stesso ordinamento. Sommare le temperature non conserva l’energia dei due corpi."
+        }
+      ],
+      "prompt": "Due corpi a 15 e 45 °C sono isolati insieme e scambiano soltanto calore. Non cambiano fase e hanno capacità termiche positive. Un calcolo propone 51 °C come temperatura comune finale. Qual è la verifica più immediata?",
+      "difficulty": 1,
+      "family": "una-temperatura-finale-impossibile",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Il valore è impossibile: deve trovarsi fra 15 e 45 °C",
+          "Il valore è sempre corretto perché è sopra la media",
+          "Il valore deve essere accettato se uno dei corpi è più pesante",
+          "Il valore diventa possibile convertendo in kelvin",
+          "Il valore è imposto dalla somma delle temperature"
+        ],
+        "value": "Il valore è impossibile: deve trovarsi fra 15 e 45 °C"
+      },
+      "hints": [
+        "Controlla prima i limiti fisici della media pesata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "La massa maggiore può cambiare il peso della media, non spostarla fuori dall’intervallo. Convertire entrambe le letture in kelvin mantiene lo stesso ordinamento. Sommare le temperature non conserva l’energia dei due corpi.",
+        "target": "C3-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Una temperatura fuori intervallo"
+      ]
+    },
+    {
+      "id": "C3-Q030",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 30,
+      "title": "L’energia che non resta nel campione",
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’aumento energetico del campione è CΔT=80·5=400 J. Dei 500 J trasferiti dalla resistenza, 400 restano nel campione e 100 passano all’esterno. Il modulo della perdita è 500−400=100 J."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/39f4239a83ae3862529270c738e19c4f8d4268db824a6c74187ed65828f68959",
+          "text": "Il bilancio dell’ingresso è 500 J = 400 J rimasti nel campione + 100 J trasferiti all’esterno; le barre condividono la stessa scala energetica."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U=400\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_{\\rm perdita}=500\\,\\mathrm J-400\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_{\\rm perdita}=100\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "400 J è l’energia rimasta, non la perdita. 500 J è l’intero ingresso. Un valore negativo sarebbe incompatibile con il modulo richiesto e con il bilancio dato. La capacità totale non va moltiplicata ancora per una massa."
+        }
+      ],
+      "prompt": "Una resistenza trasferisce 500 J a un campione con capacità termica costante 80 J/K. Il campione si scalda di 5 K senza cambiare fase né compiere lavoro apprezzabile. Quanta energia è passata all’esterno, come modulo in joule?",
+      "difficulty": 2,
+      "family": "energia-dispersa-durante-la-misura",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 100,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "hints": [
+        "Confronta l’energia fornita con quella necessaria per l’aumento di temperatura misurato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "400 J è l’energia rimasta, non la perdita. 500 J è l’intero ingresso. Un valore negativo sarebbe incompatibile con il modulo richiesto e con il bilancio dato. La capacità totale non va moltiplicata ancora per una massa.",
+        "target": "C3-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "L’energia che non resta nel campione"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "39f4239a83ae3862529270c738e19c4f8d4268db824a6c74187ed65828f68959",
+      "name": "cric-c3-l03-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTUwMCIgdmlld0JveD0iMCAwIDY0MCAxNTAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIj48dGl0bGUgaWQ9InRpdGxlIj5DYXBhY2l0w6AgdGVybWljYSwgY29udGF0dG8gZSBkaXNwZXJzaW9uZTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPkdyYWZpY28gZGkgZW5lcmdpYSBjb250cm8gaW5jcmVtZW50byB0ZXJtaWNvIGRlbCBjYW1waW9uZTsgdHJhc2ZlcmltZW50byBkaSB0cmVtaWxhIGpvdWxlIGZyYSBjYW1waW9uZSBlIGFjcXVhOyBiaWxhbmNpbyBjaW5xdWVjZW50byBqb3VsZSB1Z3VhbGUgcXVhdHRyb2NlbnRvIHJpbWFzdGkgZSBjZW50byBwZXJzaS48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjgiIHJlZlg9IjciIHJlZlk9IjQiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEw4IDRMMCA4WiIgZmlsbD0iIzczNTBiMCIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE1MDAiIGZpbGw9IiNmYWY3ZWUiLz48dGV4dCB4PSIzMCIgeT0iNDAiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMzMDJhM2UiPjEuIENhcGFjaXTDoCB0b3RhbGUgZSBzcGVjaWZpY2E8L3RleHQ+PHRleHQgeD0iMzAiIHk9Ijg1IiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj5DYW1waW9uZTogMCwyMDAga2c7IG5lc3N1biBjYW1iaW8gZGkgZmFzZTwvdGV4dD48cGF0aCBkPSJNMTQwIDQxMFYxMjBNMTQwIDQxMEg1NDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzcyNmQ4MSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBhdGggZD0iTTE0MCA0MTBMNTAwIDE0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTQ3OTc5IiBzdHJva2Utd2lkdGg9IjQiLz48dGV4dCB4PSI1MiIgeT0iMTMwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj5RIChKKTwvdGV4dD48dGV4dCB4PSI3MCIgeT0iMTUwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj41NDA8L3RleHQ+PHRleHQgeD0iMTEwIiB5PSI0NDIiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMzMDJhM2UiPjA8L3RleHQ+PHRleHQgeD0iNDk1IiB5PSI0NDIiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMzMDJhM2UiPjY8L3RleHQ+PHRleHQgeD0iNDcwIiB5PSI0ODAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMzMDJhM2UiPs6UVCAoSyk8L3RleHQ+PHRleHQgeD0iMTg1IiB5PSIyOTAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMzMDJhM2UiPkMgPSA5MCBKL0s8L3RleHQ+PHRleHQgeD0iNDAiIHk9IjUyMCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzMwMmEzZSI+YyA9IEMvbSA9IDQ1MCBKLyhrZ8K3Syk8L3RleHQ+PHRleHQgeD0iMzAiIHk9IjU5MCIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzMwMmEzZSI+Mi4gSWwgY2Fsb3JlIGF0dHJhdmVyc2EgdW4gY29uZmluZTwvdGV4dD48cmVjdCB4PSI3MCIgeT0iNjUwIiB3aWR0aD0iMTcwIiBoZWlnaHQ9IjEwNSIgZmlsbD0iI2Q0OTMzMiIvPjxyZWN0IHg9IjQwMCIgeT0iNjUwIiB3aWR0aD0iMTcwIiBoZWlnaHQ9IjEwNSIgZmlsbD0iIzY4YmRjZiIvPjx0ZXh0IHg9IjkyIiB5PSI2OTUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMzMDJhM2UiPkNhbXBpb25lOiA3MCDCsEM8L3RleHQ+PHRleHQgeD0iNDI1IiB5PSI2OTUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMzMDJhM2UiPkFjcXVhOiAyMCDCsEM8L3RleHQ+PHBhdGggZD0iTTI0NSA3MTBIMzkwIiBmaWxsPSJub25lIiBzdHJva2U9IiM3MzUwYjAiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIyNjUiIHk9IjY2MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzMwMmEzZSI+MzAwMCBKPC90ZXh0Pjx0ZXh0IHg9IjExMCIgeT0iODAwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj7iiJIzMDAwIEo8L3RleHQ+PHRleHQgeD0iNDE1IiB5PSI4MDAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMzMDJhM2UiPiszMDAwIEo8L3RleHQ+PHRleHQgeD0iOTUiIHk9Ijg2MCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzMwMmEzZSI+RXF1aWxpYnJpbyBjb211bmU6IDMwIMKwQzwvdGV4dD48dGV4dCB4PSI0MCIgeT0iOTE1IiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj5JbCBzaXN0ZW1hIGNvbXBsZXNzaXZvIMOoIGlzb2xhdG8uPC90ZXh0Pjx0ZXh0IHg9IjMwIiB5PSIxMDAwIiBmb250LXNpemU9IjI1IiBmaWxsPSIjMzAyYTNlIj4zLiBFbmVyZ2lhIGZvcm5pdGEgZSBwZXJkaXRhPC90ZXh0Pjx0ZXh0IHg9IjMwIiB5PSIxMDQwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj5DYW1waW9uZTogQyA9IDgwIEovSzsgYXVtZW50byBkaSA1IEs8L3RleHQ+PHBhdGggZD0iTTE0MCAxMzUwVjEwODBNMTQwIDEzNTBINTAwIiBmaWxsPSJub25lIiBzdHJva2U9IiM3MjZkODEiIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9IjE0MCIgeT0iMTExMCIgd2lkdGg9IjMwMCIgaGVpZ2h0PSI0NSIgZmlsbD0iIzczNTBiMCIvPjxyZWN0IHg9IjE0MCIgeT0iMTIzMCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSI0NSIgZmlsbD0iIzE0Nzk3OSIvPjxyZWN0IHg9IjM4MCIgeT0iMTIzMCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjQ1IiBmaWxsPSIjZDQ5MzMyIi8+PHRleHQgeD0iMTUwIiB5PSIxMDk1IiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj41MDAgSiBmb3JuaXRpPC90ZXh0Pjx0ZXh0IHg9IjE3MCIgeT0iMTIxMCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzMwMmEzZSI+NDAwIEogcmltYXN0aTwvdGV4dD48dGV4dCB4PSI0NTUiIHk9IjEyNjAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMzMDJhM2UiPjEwMCBKIGZ1b3JpPC90ZXh0Pjx0ZXh0IHg9IjExMCIgeT0iMTM4MCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzMwMmEzZSI+MDwvdGV4dD48dGV4dCB4PSI0MjAiIHk9IjEzODAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMzMDJhM2UiPjUwMDwvdGV4dD48dGV4dCB4PSI1MDAiIHk9IjE0MjAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMzMDJhM2UiPkUgKEopPC90ZXh0Pjx0ZXh0IHg9IjQwIiB5PSIxNDcwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj41MDAgSiA9IDQwMCBKICsgMTAwIEo8L3RleHQ+PC9zdmc+Cg=="
+    }
+  ]
+}

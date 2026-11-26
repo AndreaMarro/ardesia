@@ -92,7 +92,7 @@ Famiglia: `deviazione-causata-dal-recipiente`; difficoltà 2; versione 2/base 1.
 
 ## C3-Q027
 
-Compito: Una mole dello stesso gas perfetto viene scaldata di 15 K, una volta a pressione costante e una a volume costante. Nei due percorsi agisce solo lavoro di espansione. Di quanti joule il calore isobaro supera quello isocoro? Usa R=8,314 J/(mol·K).
+Compito: Una mole dello stesso gas perfetto viene scaldata fra le stesse temperature iniziale e finale, separate da 15 K, una volta a pressione costante e una a volume costante. Nei due percorsi agisce solo lavoro di espansione. Di quanti joule il calore isobaro supera quello isocoro? Usa R=8,314 J/(mol·K).
 
 Procedimento: Per il gas perfetto C_p−C_V=R per mole. La differenza dei calori per lo stesso incremento termico è quindi nRΔT. Con una mole e 15 K calcolo 8,314·15=8,314·(10+5)=83,14+41,57=124,71 J. È il contributo aggiuntivo legato al lavoro di espansione isobaro.
 
