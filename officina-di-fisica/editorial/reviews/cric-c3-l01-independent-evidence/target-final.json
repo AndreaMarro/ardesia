@@ -1,0 +1,21 @@
+{
+  "scope": "actual independent review preparation/target only, not UI or publication",
+  "command": [
+    "/private/tmp/cric-recovery-venv/bin/python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests/corpus",
+    "-p",
+    "test_cric_c3_l01_independent.py",
+    "-v"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "elapsedSeconds": 1.2721704170107841,
+  "rawSha256": "f190cf3e493a21b8eaea7b757cf415172a83a1ecaf6c539bd3b963fb65ea04dd",
+  "humanApproval": "NOT_RUN",
+  "productUI": "NOT_RUN"
+}

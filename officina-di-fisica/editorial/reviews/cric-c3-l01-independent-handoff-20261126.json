@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "independent scientific and pedagogical review of ten distinct Cric C3 original questions; candidate author A, reviewer B",
+  "batch": "cric-c3-l01",
+  "questionCount": 10,
+  "reviewedCandidateCommit": "119fd8a8b73803079ffb50c04e6aa808bd974f3e",
+  "scientificResult": "10/10, no residual finding",
+  "allIndividualFinalFieldsRead": true,
+  "xmlAndActualFullNativeRead": true,
+  "freshSavedIdentity": "PASS",
+  "primaryBeforeKeys": {
+    "path": "editorial/reviews/primary-cric-c3-001-050-before-candidates-20261126.md",
+    "sha256": "34cdd1eb8b9f296a638c2fa1e3874ffbace49c48e907257c063fe1f0f7ad0b80"
+  },
+  "modelBeforeKeys": {
+    "path": "editorial/reviews/cric-c3-001-050-independent-models.py",
+    "sha256": "9b870976c03b6578eeac6f6e4c2e89cebc6c53d2a6a0ef0b806e749b36c88e1f",
+    "commit": "030d4658b17ea6f6fd43be03cb59b21e91030eb0"
+  },
+  "actualTarget": {
+    "scope": "actual independent review preparation/target only, not UI or publication",
+    "command": [
+      "/private/tmp/cric-recovery-venv/bin/python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/corpus",
+      "-p",
+      "test_cric_c3_l01_independent.py",
+      "-v"
+    ],
+    "exitCode": 0,
+    "signal": null,
+    "elapsedSeconds": 1.2721704170107841,
+    "rawSha256": "f190cf3e493a21b8eaea7b757cf415172a83a1ecaf6c539bd3b963fb65ea04dd",
+    "humanApproval": "NOT_RUN",
+    "productUI": "NOT_RUN"
+  },
+  "hypothesisConfigurations": 120,
+  "packetMutations": 29,
+  "wrongKeysReboundRetokenized": 10,
+  "extraPhysicalAndBoundaryTests": "Celsius absolute offsets vs intervals;2SIduplicates after complete rebinding;2accessible-title/desc rebinds;3wrong offset physical models;source/model AST and original-zero-prerequisites attack",
+  "externalFrozenDependency": {
+    "path": "tools/corpus_engineering/exact_arithmetic_literals.py",
+    "commit": "b0651fe",
+    "sha256": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "humanApproval": "NOT_RUN",
+  "productUI": "NOT_RUN",
+  "publication": "DRAFT",
+  "rootIntegratedIdentity": "PENDING_ROOT",
+  "files": {
+    "tools/corpus_engineering/cric_c3_l01_verifier.py": "05cd5eea301e551e4be938d44ef214b6d528ca396147199abadc17fe586448d0",
+    "tests/corpus/test_cric_c3_l01_independent.py": "81b6795bf522adb06d71cc7910745217bc0bed521aaa4f07f98cabc39cf4ca3d",
+    "editorial/reviews/cric-c3-l01-independent-mutations.json": "4fd4d1940e1febf2e0b3533a60662f741ad1b30ed28684917521979014124f74",
+    "editorial/reviews/cric-c3-l01-independent-note.md": "6bce0351cf87e5080a5d0e3bfa935c7f65d23d95146fec8df62d3fccc2ca1f79",
+    "editorial/reviews/cric-c3-l01.json": "2a059a3074f8f44856eadbd3dd3e1e5299a84bf00e0f275d3725e04674eaebdd",
+    "editorial/reviews/cric-c3-l01-independent-evidence/before-prerequisite-mutation-adaptation.py": "f766ff9fe23448e390f996ff1b39b0498a409a82ce736163f209bcfe069b6acc",
+    "editorial/reviews/cric-c3-l01-independent-evidence/persisted-final.json": "c960fbe7ad5487987bff596790bec177395b559a15b2ff960b4c474e4dee36ff",
+    "editorial/reviews/cric-c3-l01-independent-evidence/initial-noop-prerequisite-mutation.json": "4006daf9650283ae5643ad5940dfdc39f9a9fa3f43124ed5aaf6755165f55789",
+    "editorial/reviews/cric-c3-l01-independent-evidence/target-final.log": "f190cf3e493a21b8eaea7b757cf415172a83a1ecaf6c539bd3b963fb65ea04dd",
+    "editorial/reviews/cric-c3-l01-independent-evidence/selective-final-reread.json": "a7448e02c8cc2449d5aceb15626073cd42fc95396d012f949aed1ae3721fbdc2",
+    "editorial/reviews/cric-c3-l01-independent-evidence/persisted-final.log": "39f9080755b8c0e63e506534201016f5d569def7127f3a832c6689670b0a8886",
+    "editorial/reviews/cric-c3-l01-independent-evidence/preparation-correction.json": "7291e0abfc80d92a1dbc76296218c587fc249598aa24edfe298bcc510b21fc44",
+    "editorial/reviews/cric-c3-l01-independent-evidence/target-final.json": "62be0295b7a7829cde13cb3d0fcef0b55508489c74863dfb7fdf06900fd11e30",
+    "editorial/reviews/cric-c3-l01-independent-evidence/initial-noop-prerequisite-mutation.log": "245e3db6f225bc03dd70c4ffe2c799243dd42c425f579ee15bf29683e6e279d8",
+    "editorial/reviews/cric-c3-l01-svg-independent-evidence/native-svg-producer.mjs": "5bc42afd72aa4cb6efccf9968ee5ec93379d7ba481de31a8f32975f1db0d0b57",
+    "editorial/reviews/cric-c3-l01-svg-independent-evidence/cric-c3-l01-terminal.json": "b81a59f609445739f7df646833d7546be9ba036bd110786b31224385e15c73b0",
+    "editorial/reviews/cric-c3-l01-svg-independent-evidence/cric-c3-l01-full.png": "413b775d24bb606d2dc823062e535ad3eb0b3238baf9c8f33a7a169be3be31dd",
+    "editorial/reviews/cric-c3-l01-svg-independent-evidence/cric-c3-l01-render.json": "10cbc9c45f1da91dca0177cc53cab1f27fe039edb667bc9dbd9f22183f4591bc",
+    "editorial/reviews/primary-cric-c3-001-050-before-candidates-20261126.md": "34cdd1eb8b9f296a638c2fa1e3874ffbace49c48e907257c063fe1f0f7ad0b80",
+    "editorial/reviews/cric-c3-001-050-independent-models.py": "9b870976c03b6578eeac6f6e4c2e89cebc6c53d2a6a0ef0b806e749b36c88e1f",
+    "editorial/reviews/cric-c3-001-050-model-before-candidates-20261126.json": "147c9ecefdf7e5e83200fdaa499fbce8a87e219c2a1185f6eec5c0415d2e1d41",
+    "editorial/reviews/cric-c3-001-050-model-before-candidates.log": "29ce45686f1f2533bbd59e497836fd7efd896e2db3a9dbda5e6c1ead337197bc",
+    "editorial/reviews/cric-c3-001-050-git-evidence/cric-c3-001-050-independent-models.py": "9b870976c03b6578eeac6f6e4c2e89cebc6c53d2a6a0ef0b806e749b36c88e1f",
+    "editorial/reviews/cric-c3-001-050-git-evidence/git-inputs.json": "7b73c9c316b4ec3adec594d34d73b4b0a76aef382c52febd23a1802fcd5ca890"
+  }
+}
