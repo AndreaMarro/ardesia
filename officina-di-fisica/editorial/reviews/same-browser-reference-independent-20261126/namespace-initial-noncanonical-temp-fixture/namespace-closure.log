@@ -1,0 +1,29 @@
+canonical baseline modules 80 fa997076b86e689d5f3a4050edc0a87316854235efd9e4c30053d2a6d422dd1a
+node:internal/modules/run_main:122
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Baseline root is a symlink
++ actual - expected
+
++ '/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/cric-139-namespace-independent-8dx2km0m/baseline-static'
+- '/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/cric-139-namespace-independent-8dx2km0m/baseline-static'
+
+    at Module.loadBaselineReference (file:///private/tmp/cric-resident-integrator/officina-di-fisica/tools/corpus_engineering/baseline_browser_reference.mjs:40:9)
+    at async file:///private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/same-browser-reference-independent-20261126/namespace-probes.mjs:25:22 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/cric-139-namespace-independent-8dx2km0m/baseline-static',
+  expected: '/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/cric-139-namespace-independent-8dx2km0m/baseline-static',
+  operator: 'strictEqual'
+}
+
+Node.js v22.14.0
+Traceback (most recent call last):
+  File "/private/tmp/cric-139-namespace-run.py", line 5, in <module>
+    root=Path(tmp);files=v.baseline_manifest();reference={'kind':v.REFERENCE_KIND,'baselineRuntimeRef':v.BASELINE,'files':files,'manifestSha256':v.digest(files),'typescriptSha256':v.sha((APP/'node_modules/typescript/lib/typescript.js').read_bytes()),'scientificAuthority':'NONE_TECHNICAL_REGRESSION_PARITY_ONLY'};bundle=v.prepare_baseline_bundle({'numericalReference':reference},root);request=root/'request.json';request.write_text(json.dumps({'numericalReference':reference}));plan={'numericalReference':reference,'baselineBundleRoot':str(bundle),'requestFile':str(request),'requestSha256':v.sha(request.read_bytes()),'records':[]};p=root/'plan.json';p.write_text(json.dumps(plan));print('canonical baseline modules',len(files),v.digest(files),flush=True);subprocess.run(['node','editorial/reviews/same-browser-reference-independent-20261126/namespace-probes.mjs',str(APP/'tools/corpus_engineering/baseline_browser_reference.mjs'),str(p)],check=True)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py", line 579, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['node', 'editorial/reviews/same-browser-reference-independent-20261126/namespace-probes.mjs', '/private/tmp/cric-resident-integrator/officina-di-fisica/tools/corpus_engineering/baseline_browser_reference.mjs', '/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/cric-139-namespace-independent-8dx2km0m/plan.json']' returned non-zero exit status 1.
