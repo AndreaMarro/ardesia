@@ -38,7 +38,7 @@ TASKS=[('Misurare dal centro a un estremo',
   'dagli estremi. Quale coppia di osservazioni identifica la stessa fase modulo un giro?',
   ['Stesso modulo della velocità, qualunque sia la posizione',
    'Uguale energia totale',
-   'Uguale distanza temporale dallo zero scelto',
+   'Stesso modulo dell’accelerazione',
    'Stessa posizione e stesso verso della velocità',
    'Stessa posizione e verso opposto della velocità'],
   'Una posizione interna si attraversa due volte per ciclo. Sapere se il corpo sta andando verso destra o verso '
