@@ -1,0 +1,616 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C4-Q021",
+      "kind": "question",
+      "course": "C4",
+      "section": "Elettricità e magnetismo",
+      "order": 21,
+      "title": "Sommare potenziali con i segni",
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C4-L01",
+        "C4-L02"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il potenziale è scalare: sommo i contributi con i segni delle cariche. Le distanze sono uguali, quindi V=k(q₁+q₂)/r. La somma delle sorgenti è +1,0 nC e k·(1,0×10⁻⁹)/0,10=90 V. In alternativa i contributi separati sono +180 V e −90 V. La disposizione angolare delle sorgenti non entra in questa somma scalare."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/cfd6d072f4e4393fd8b25a704462c62b00ba83f02ea7b9bc17eda735bcd8ac4d",
+          "text": "Il punto P è equidistante dalle due sorgenti; i contributi al potenziale sono +180 V e −90 V. Si sommano come scalari e danno 90 V."
+        },
+        {
+          "type": "formula",
+          "text": "V(P)=k\\frac{q_1+q_2}{r}"
+        },
+        {
+          "type": "formula",
+          "text": " V(P)=90\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "270 V somma impropriamente i moduli dei contributi. −90 V perde il contributo positivo di +180 V. Un potenziale nullo richiederebbe qui somma delle cariche nulla, che non è il dato assegnato."
+        }
+      ],
+      "prompt": "Due sorgenti puntiformi +2,0 nC e −1,0 nC sono entrambe a 0,10 m da P nel vuoto. Con zero all’infinito e k=9,0×10⁹ N·m²/C², calcola V(P) in volt.",
+      "difficulty": 2,
+      "family": "potenziale-in-un-punto-equidistante",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 90,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "hints": [
+        "Usa i segni algebrici: i due contributi hanno lo stesso denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "270 V somma impropriamente i moduli dei contributi. −90 V perde il contributo positivo di +180 V. Un potenziale nullo richiederebbe qui somma delle cariche nulla, che non è il dato assegnato.",
+        "target": "C4-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Sommare potenziali con i segni"
+      ]
+    },
+    {
+      "id": "C4-Q022",
+      "kind": "question",
+      "course": "C4",
+      "section": "Elettricità e magnetismo",
+      "order": 22,
+      "title": "Seguire una superficie equipotenziale",
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C4-L01",
+        "C4-L02"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due punti hanno lo stesso potenziale, quindi ΔV=V_f−V_i=0. L’energia potenziale della carica varia di qΔV=0 e il lavoro del campo vale −ΔU=0 J. La carica può percorrere uno spazio non nullo: il valore nullo del lavoro non significa necessariamente assenza del campo o assenza di moto."
+        },
+        {
+          "type": "formula",
+          "text": "W_{\\rm campo}=-q\\Delta V"
+        },
+        {
+          "type": "formula",
+          "text": " W_{\\rm campo}=0\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Un lavoro positivo o negativo richiederebbe una differenza di potenziale non nulla fra gli estremi. Non si può dedurre la lunghezza del percorso o il modulo del campo dal solo lavoro nullo."
+        }
+      ],
+      "prompt": "Una carica positiva si sposta lungo una superficie a potenziale costante in un campo elettrostatico. Quanto lavoro compie il solo campo elettrico fra il punto iniziale e quello finale?",
+      "difficulty": 1,
+      "family": "muoversi-su-una-equipotenziale",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 0,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "hints": [
+        "Confronta il potenziale ai due estremi, non la distanza percorsa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un lavoro positivo o negativo richiederebbe una differenza di potenziale non nulla fra gli estremi. Non si può dedurre la lunghezza del percorso o il modulo del campo dal solo lavoro nullo.",
+        "target": "C4-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Seguire una superficie equipotenziale"
+      ]
+    },
+    {
+      "id": "C4-Q023",
+      "kind": "question",
+      "course": "C4",
+      "section": "Elettricità e magnetismo",
+      "order": 23,
+      "title": "Il nome di un joule per coulomb",
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C4-L01",
+        "C4-L02"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La differenza di potenziale descrive energia potenziale per unità di carica. L’unità che equivale a un joule diviso per un coulomb si chiama volt e ha simbolo V. Joule e coulomb restano unità di grandezze differenti: il loro rapporto definisce l’unità richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "1\\,\\mathrm V=1\\,\\mathrm{J/C}"
+        },
+        {
+          "type": "text",
+          "text": "Il coulomb misura la carica, il joule l’energia, il newton la forza e l’ampere la corrente. Sostituire una di queste unità al rapporto J/C confonderebbe la grandezza che si sta misurando."
+        }
+      ],
+      "prompt": "Un joule per coulomb corrisponde a quale unità SI di differenza di potenziale? Scrivine il nome.",
+      "difficulty": 1,
+      "family": "unita-di-potenziale",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Ampere",
+          "Joule",
+          "Volt",
+          "Coulomb",
+          "Newton"
+        ],
+        "value": "Volt"
+      },
+      "hints": [
+        "Riconosci l’unità usata per la tensione fra due punti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Il coulomb misura la carica, il joule l’energia, il newton la forza e l’ampere la corrente. Sostituire una di queste unità al rapporto J/C confonderebbe la grandezza che si sta misurando.",
+        "target": "C4-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Il nome di un joule per coulomb"
+      ]
+    },
+    {
+      "id": "C4-Q024",
+      "kind": "question",
+      "course": "C4",
+      "section": "Elettricità e magnetismo",
+      "order": 24,
+      "title": "Campo dalla variazione del potenziale",
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C4-L01",
+        "C4-L02"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Lungo il campo uniforme vale |ΔV|=E d, con d misurata nella direzione del campo. Converto 3,0 cm in 0,030 m e divido: E=12/0,030=400 V/m. Il verso è dal potenziale maggiore a quello minore; qui si chiede soltanto il modulo. Non serve conoscere una carica di prova."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/cfd6d072f4e4393fd8b25a704462c62b00ba83f02ea7b9bc17eda735bcd8ac4d",
+          "text": "Il potenziale scende di 4 V ogni centimetro lungo il campo uniforme. I piani a 12 V e 0 V sono separati da 3 cm; il campo punta verso il potenziale minore."
+        },
+        {
+          "type": "formula",
+          "text": "E=\\frac{|\\Delta V|}{d}"
+        },
+        {
+          "type": "formula",
+          "text": " E=400\\,\\mathrm{V/m}"
+        },
+        {
+          "type": "text",
+          "text": "4 V/m userebbe 3,0 come se fosse una distanza in metri. Moltiplicare tensione e distanza non darebbe un campo. La stessa differenza distribuita su una distanza minore richiederebbe un modulo maggiore."
+        }
+      ],
+      "prompt": "In una regione di campo elettrico uniforme, due piani equipotenziali distano 3,0 cm lungo il campo e i loro potenziali differiscono di 12 V. Trova il modulo E in V/m.",
+      "difficulty": 1,
+      "family": "campo-dalla-spaziatura-delle-equipotenziali",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 400,
+        "unit": "V/m",
+        "tolerance": 0
+      },
+      "hints": [
+        "Porta la distanza in metri, poi dividi il modulo della differenza di potenziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "4 V/m userebbe 3,0 come se fosse una distanza in metri. Moltiplicare tensione e distanza non darebbe un campo. La stessa differenza distribuita su una distanza minore richiederebbe un modulo maggiore.",
+        "target": "C4-L03"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Campo dalla variazione del potenziale"
+      ]
+    },
+    {
+      "id": "C4-Q025",
+      "kind": "question",
+      "course": "C4",
+      "section": "Elettricità e magnetismo",
+      "order": 25,
+      "title": "Potenziale nullo, campo non nullo",
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C4-L01",
+        "C4-L02"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le distanze dal punto medio sono uguali. I contributi scalari al potenziale hanno stesso modulo e segni opposti, quindi si cancellano. I contributi al campo invece hanno lo stesso verso: quello uscente da +q e quello entrante in −q puntano entrambi da +q verso −q. Si sommano e danno un campo non nullo."
+        },
+        {
+          "type": "formula",
+          "text": "V(P)=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathbf E(P)\\ne\\mathbf0"
+        },
+        {
+          "type": "text",
+          "text": "V=0 non implica E=0: il campo dipende dalla variazione spaziale del potenziale. Sommare algebricamente i valori dei campi ignorandone il verso scambierebbe una cancellazione scalare con una somma vettoriale. Campo e potenziale hanno anche unità diverse."
+        }
+      ],
+      "prompt": "Due cariche puntiformi +q e −q, con q>0, sono distinte e ferme nel vuoto. Nel loro punto medio, con zero del potenziale all’infinito, quale situazione si incontra?",
+      "difficulty": 2,
+      "family": "potenziale-nullo-senza-campo-nullo",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Potenziale e campo sono entrambi nulli",
+          "Il campo è nullo e il potenziale è positivo",
+          "Il potenziale è negativo e il campo punta verso +q",
+          "Campo e potenziale hanno necessariamente lo stesso valore numerico",
+          "Il potenziale è zero e il campo è non nullo, diretto da +q verso −q"
+        ],
+        "value": "Il potenziale è zero e il campo è non nullo, diretto da +q verso −q"
+      },
+      "hints": [
+        "Confronta separatamente la somma scalare dei potenziali e le frecce dei due campi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "V=0 non implica E=0: il campo dipende dalla variazione spaziale del potenziale. Sommare algebricamente i valori dei campi ignorandone il verso scambierebbe una cancellazione scalare con una somma vettoriale. Campo e potenziale hanno anche unità diverse.",
+        "target": "C4-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Potenziale nullo, campo non nullo"
+      ]
+    },
+    {
+      "id": "C4-Q026",
+      "kind": "question",
+      "course": "C4",
+      "section": "Elettricità e magnetismo",
+      "order": 26,
+      "title": "Un elettrone va a potenziale maggiore",
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C4-L01",
+        "C4-L02"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La variazione di potenziale è +15 V. L’elettrone ha q=−e: la sua energia potenziale varia di qΔV=−15 eV. Se agisce soltanto il campo, l’aumento di energia cinetica è l’opposto, +15 eV. Per una carica negativa passare a potenziale maggiore può quindi significare accelerare."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/cfd6d072f4e4393fd8b25a704462c62b00ba83f02ea7b9bc17eda735bcd8ac4d",
+          "text": "L’elettrone passa da 2 a 17 V: ΔU=−15 eV e ΔK=+15 eV. Le barre delle due variazioni condividono origine e scala; non rappresentano energie assolute."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta K=-q\\Delta V"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta K=15\\,\\mathrm{eV}"
+        },
+        {
+          "type": "text",
+          "text": "−15 eV sarebbe la variazione dell’energia potenziale, non l’aumento di K. 19 somma i due potenziali invece di sottrarli. Il simbolo eV è un’unità di energia e non un prodotto da interpretare come la carica con segno dell’elettrone."
+        }
+      ],
+      "prompt": "Un elettrone passa da un punto a 2 V a uno a 17 V per effetto del solo campo elettrostatico. Di quanti eV aumenta la sua energia cinetica?",
+      "difficulty": 2,
+      "family": "quanta-energia-cinetica-in-elettronvolt",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 15,
+        "unit": "eV",
+        "tolerance": 0
+      },
+      "hints": [
+        "Usa il segno negativo della carica e distingui ΔU da ΔK.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "−15 eV sarebbe la variazione dell’energia potenziale, non l’aumento di K. 19 somma i due potenziali invece di sottrarli. Il simbolo eV è un’unità di energia e non un prodotto da interpretare come la carica con segno dell’elettrone.",
+        "target": "C4-L03"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Un elettrone va a potenziale maggiore"
+      ]
+    },
+    {
+      "id": "C4-Q027",
+      "kind": "question",
+      "course": "C4",
+      "section": "Elettricità e magnetismo",
+      "order": 27,
+      "title": "Scegliere l’origine della scala",
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C4-L01",
+        "C4-L02"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il potenziale può essere traslato di una costante senza cambiare le differenze fra due punti. Scegliere V=0 all’infinito fissa il riferimento usato per assegnare i singoli valori. Le differenze di potenziale e il campo della stessa distribuzione sorgente non cambiano per un semplice spostamento dell’origine della scala."
+        },
+        {
+          "type": "formula",
+          "text": "V^{\\prime}=V+C"
+        },
+        {
+          "type": "text",
+          "text": "Il riferimento non impone un percorso alla carica e non trasferisce elettroni. Non annulla il campo ovunque: fissa soltanto il valore convenzionale del potenziale in una posizione limite."
+        }
+      ],
+      "prompt": "Porre V=0 all’infinito per una carica puntiforme fissa un … per il potenziale. Quale parola indica questa origine convenzionale della scala?",
+      "difficulty": 1,
+      "family": "scelta-dello-zero",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Percorso obbligato",
+          "Riferimento",
+          "Campo elettrico",
+          "Trasferimento di materia",
+          "Numero di elettroni"
+        ],
+        "value": "Riferimento"
+      },
+      "hints": [
+        "Cerca il nome della scelta rispetto alla quale vengono espressi i singoli potenziali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il riferimento non impone un percorso alla carica e non trasferisce elettroni. Non annulla il campo ovunque: fissa soltanto il valore convenzionale del potenziale in una posizione limite.",
+        "target": "C4-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Scegliere l’origine della scala"
+      ]
+    },
+    {
+      "id": "C4-Q028",
+      "kind": "question",
+      "course": "C4",
+      "section": "Elettricità e magnetismo",
+      "order": 28,
+      "title": "Rapidità guadagnata in una caduta di potenziale",
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C4-L01",
+        "C4-L02"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La carica è positiva e la caduta di potenziale è 9,0 V, quindi l’energia cinetica guadagnata è q·9,0 V=36 μJ. La massa è 2,0×10⁻⁶ kg. Dalla relazione m v²/2=36×10⁻⁶ J ricavo v²=36 m²/s². La rapidità è la radice positiva: 6 m/s. L’energia determina il modulo, non una direzione della velocità priva di dati geometrici."
+        },
+        {
+          "type": "formula",
+          "text": "\\tfrac12mv^2=q(V_i-V_f)"
+        },
+        {
+          "type": "formula",
+          "text": " v=6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "36 m/s confonde il valore numerico di v² con quello di v. Omettere il fattore due darebbe √18 m/s, non la radice corretta. La massa in milligrammi va convertita in chilogrammi prima del bilancio SI."
+        }
+      ],
+      "prompt": "Una particella di massa 2,0 mg e carica +4,0 μC parte da ferma e scende di 9,0 V di potenziale. Agisce solo il campo elettrostatico, nel regime non relativistico. Calcola la rapidità finale in m/s.",
+      "difficulty": 2,
+      "family": "velocita-guadagnata-fra-due-punti",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "hints": [
+        "Trova prima l’energia cinetica e poi estrai la radice positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "36 m/s confonde il valore numerico di v² con quello di v. Omettere il fattore due darebbe √18 m/s, non la radice corretta. La massa in milligrammi va convertita in chilogrammi prima del bilancio SI.",
+        "target": "C4-L03"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Rapidità guadagnata in una caduta di potenziale"
+      ]
+    },
+    {
+      "id": "C4-Q029",
+      "kind": "question",
+      "course": "C4",
+      "section": "Elettricità e magnetismo",
+      "order": 29,
+      "title": "Confrontare la spaziatura delle equipotenziali",
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C4-L01",
+        "C4-L02"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per lo stesso modulo di differenza di potenziale, una distanza minore lungo il campo richiede un modulo medio maggiore: |ΔV|/d è maggiore. È un confronto della variazione del potenziale con lo spazio, non del singolo valore rispetto allo zero convenzionale. La direzione di confronto è specificata per non usare una distanza obliqua arbitraria."
+        },
+        {
+          "type": "formula",
+          "text": "E_{\\rm medio}=\\frac{|\\Delta V|}{d}"
+        },
+        {
+          "type": "text",
+          "text": "La spaziatura maggiore distribuirebbe lo stesso intervallo su più spazio e ridurrebbe il valore medio. La scelta dello zero non cambia il campo. Qui l’intervallo è esplicitamente non nullo e uguale nelle due regioni."
+        }
+      ],
+      "prompt": "In due piccole regioni regolari, curve equipotenziali adiacenti differiscono dello stesso intervallo non nullo di potenziale. Confronta la loro distanza lungo il campo, perpendicolare localmente alle curve. Dove è mediamente più intenso il campo?",
+      "difficulty": 2,
+      "family": "campi-e-curve-di-livello",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Dove il potenziale è stato chiamato zero",
+          "Necessariamente in entrambe allo stesso modo",
+          "Dove non esiste alcuna differenza di potenziale",
+          "Dove le equipotenziali sono più ravvicinate lungo il campo",
+          "Dove sono più lontane lungo il campo"
+        ],
+        "value": "Dove le equipotenziali sono più ravvicinate lungo il campo"
+      },
+      "hints": [
+        "Confronta lo stesso salto di potenziale distribuito su due diverse distanze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "La spaziatura maggiore distribuirebbe lo stesso intervallo su più spazio e ridurrebbe il valore medio. La scelta dello zero non cambia il campo. Qui l’intervallo è esplicitamente non nullo e uguale nelle due regioni.",
+        "target": "C4-L03"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Confrontare la spaziatura delle equipotenziali"
+      ]
+    },
+    {
+      "id": "C4-Q030",
+      "kind": "question",
+      "course": "C4",
+      "section": "Elettricità e magnetismo",
+      "order": 30,
+      "title": "Contare ogni coppia una volta",
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C4-L01",
+        "C4-L02"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima carica forma tre coppie con le successive; la seconda altre due non ancora contate; la terza una con la quarta. Il totale è 3+2+1=6. In alternativa uso 4·3/2: il divisore due evita di contare due volte la stessa coppia in ordine inverso. Non si aggiungono termini di autoenergia nel modello richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "N_{\\rm coppie}=\\frac{4\\cdot3}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4\\cdot3}{2}=6"
+        },
+        {
+          "type": "text",
+          "text": "12 conta sia (1,2) sia (2,1) come termini differenti, duplicando il contributo della stessa coppia. Quattro confonde il numero delle cariche con quello delle interazioni a coppie. Non c’è una coppia di una carica con sé stessa in questa somma."
+        }
+      ],
+      "prompt": "Per calcolare l’energia elettrostatica di quattro cariche puntiformi non nulle in posizioni distinte, sommando i contributi a coppie, quanti termini distinti devi includere?",
+      "difficulty": 2,
+      "family": "numero-di-coppie-in-una-configurazione",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "hints": [
+        "Elenca prima le coppie con la prima carica, poi soltanto quelle ancora mancanti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "12 conta sia (1,2) sia (2,1) come termini differenti, duplicando il contributo della stessa coppia. Quattro confonde il numero delle cariche con quello delle interazioni a coppie. Non c’è una coppia di una carica con sé stessa in questa somma.",
+        "target": "C4-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Contare ogni coppia una volta"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "cfd6d072f4e4393fd8b25a704462c62b00ba83f02ea7b9bc17eda735bcd8ac4d",
+      "name": "cric-c4-l03-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTU0MCIgdmlld0JveD0iMCAwIDY0MCAxNTQwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMjcyNTM2IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtbGluZWNhcD0icm91bmQiPgo8dGl0bGUgaWQ9InRpdGxlIj5Qb3RlbnppYWxlLCBjYW1wbyBlIHZhcmlhemlvbmkgZGkgZW5lcmdpYTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlRyZSBwcm9ibGVtaSBkaXN0aW50aTogcG90ZW56aWFsZSBpbiBQIGRhIGR1ZSBzb3JnZW50aSBlcXVpZGlzdGFudGk7IHBpYW5pIGVxdWlwb3RlbnppYWxpIGluIGNhbXBvIHVuaWZvcm1lOyB2YXJpYXppb25pIG9wcG9zdGUgZGkgZW5lcmdpYSBwb3RlbnppYWxlIGUgY2luZXRpY2EgZGkgdW4gZWxldHRyb25lLiBMZSBiYXJyZSBkZWxsZSBkdWUgdmFyaWF6aW9uaSBjb25kaXZpZG9ubyBvcmlnaW5lIGUgc2NhbGEsIG5vbiBkZXNjcml2b25vIGVuZXJnaWUgYXNzb2x1dGUuPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImciIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIHJlZlg9IjciIHJlZlk9IjMuNSIgb3JpZW50PSJhdXRvIiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0wIDBMNyAzLjVMMCA3WiIgZmlsbD0iIzE0N2M3NiIvPjwvbWFya2VyPjxtYXJrZXIgaWQ9InYiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIHJlZlg9IjciIHJlZlk9IjMuNSIgb3JpZW50PSJhdXRvIiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0wIDBMNyAzLjVMMCA3WiIgZmlsbD0iIzY4NTJhMyIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE1NDAiIGZpbGw9IiNmZmZkZjciLz4KCjx0ZXh0IHg9IjQwIiB5PSI1NSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgU29tbWFyZSBwb3RlbnppYWxpIGNvbiBpIHNlZ25pPC90ZXh0Pjx0ZXh0IHg9IjQwIiB5PSIxMDgiPk5lbCB2dW90bywgY29uIHplcm8gYWxs4oCZaW5maW5pdG8uPC90ZXh0Pgo8cGF0aCBkPSJNMTQwIDI1MEg1MDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzk5OSIgc3Ryb2tlLWRhc2hhcnJheT0iNiA0Ii8+PGNpcmNsZSBjeD0iMTQwIiBjeT0iMjUwIiByPSI2IiBmaWxsPSIjYWU0NzQwIi8+PGNpcmNsZSBjeD0iNTAwIiBjeT0iMjUwIiByPSI2IiBmaWxsPSIjNjg1MmEzIi8+PGNpcmNsZSBjeD0iMzIwIiBjeT0iMjUwIiByPSI0IiBmaWxsPSIjMjcyNTM2Ii8+Cjx0ZXh0IHg9IjE0MCIgeT0iMTk1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4rMiwwIG5DPC90ZXh0Pjx0ZXh0IHg9IjUwMCIgeT0iMTk1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7iiJIxLDAgbkM8L3RleHQ+PHRleHQgeD0iMzIwIiB5PSIyMjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlA8L3RleHQ+CjxwYXRoIGQ9Ik0xNDAgMjkwVjMxNUgzMjBWMjkwTTMyMCAzMTVINTAwVjI5MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODg4Ii8+PHRleHQgeD0iMjMwIiB5PSIzNTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjAsMTAgbTwvdGV4dD48dGV4dCB4PSI0MTAiIHk9IjM1NSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MCwxMCBtPC90ZXh0Pjx0ZXh0IHg9IjEyNSIgeT0iNDE1Ij4rMTgwIFYg4oiSIDkwIFYgPSA5MCBWPC90ZXh0Pgo8cGF0aCBkPSJNNDAgNDY1SDYwMCIgc3Ryb2tlPSIjY2JjNmJjIi8+Cjx0ZXh0IHg9IjQwIiB5PSI1MjAiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4yIMK3IENhbXBvIHVuaWZvcm1lIGZyYSBlcXVpcG90ZW56aWFsaTwvdGV4dD4KPHRleHQgeD0iMTQwIiB5PSI2MjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjEyIFY8L3RleHQ+PHRleHQgeD0iMjQwIiB5PSI2MjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjggVjwvdGV4dD48dGV4dCB4PSIzNDAiIHk9IjYyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NCBWPC90ZXh0Pjx0ZXh0IHg9IjQ0MCIgeT0iNjIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4wIFY8L3RleHQ+CjxwYXRoIGQ9Ik0xNDAgNjUwVjg0ME0yNDAgNjUwVjg0ME0zNDAgNjUwVjg0ME00NDAgNjUwVjg0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjg1MmEzIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMTgwIDc2MEg0MDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE0N2M3NiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2cpIi8+PHRleHQgeD0iNDcwIiB5PSI3NjciPkU8L3RleHQ+CjxwYXRoIGQ9Ik0xNDAgODY1Vjg4NUg0NDBWODY1IiBmaWxsPSJub25lIiBzdHJva2U9IiM4ODgiLz48dGV4dCB4PSIyOTAiIHk9IjkzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MywwIGNtPC90ZXh0Pjx0ZXh0IHg9IjY1IiB5PSI5ODAiPkUgPSAoMTIgVikgLyAoMCwwMzAgbSkgPSA0MDAgVi9tPC90ZXh0Pgo8cGF0aCBkPSJNNDAgMTAyMEg2MDAiIHN0cm9rZT0iI2NiYzZiYyIvPgo8dGV4dCB4PSI0MCIgeT0iMTA4MCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgRHVlIHZhcmlhemlvbmkgb3Bwb3N0ZTwvdGV4dD48dGV4dCB4PSI0MCIgeT0iMTEzMCI+RWxldHRyb25lOiBxID0g4oiSZSA7IGRhIDIgViBhIDE3IFY8L3RleHQ+CjxwYXRoIGQ9Ik0zMjAgMTE4MFYxNDcwIiBmaWxsPSJub25lIiBzdHJva2U9IiM4ODgiLz4KPHJlY3QgeD0iMTQwIiB5PSIxMjMwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjYjQ1ZDQ4Ii8+PHJlY3QgeD0iMzIwIiB5PSIxMzYwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjMTQ3Yzc2Ii8+Cjx0ZXh0IHg9IjU1IiB5PSIxMjY1Ij7OlFU8L3RleHQ+PHRleHQgeD0iNTUiIHk9IjEzOTUiPs6USzwvdGV4dD48dGV4dCB4PSIyMDUiIHk9IjEyMTAiPuKIkjE1IGVWPC90ZXh0Pjx0ZXh0IHg9IjM4MCIgeT0iMTQ1MCI+KzE1IGVWPC90ZXh0Pjx0ZXh0IHg9IjMyMCIgeT0iMTUxMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MDwvdGV4dD4KCjwvc3ZnPgo="
+    }
+  ]
+}

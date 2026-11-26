@@ -1,0 +1,355 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C4.json",
+    "sourceSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+    "primarySkill": "C4-L03",
+    "title": "Dal potenziale all’energia",
+    "actualLessonPrerequisites": [
+      "C4-L01",
+      "C4-L02"
+    ]
+  },
+  "records": [
+    {
+      "id": "C4-Q021",
+      "sourceSha256": "c996be908f8bf71153c7cb94506eac63b4cd60d7e897e38e01a6d0640d7245b8",
+      "candidateSha256": "46f280e7007dccdeaa69bafe4cc99ec4647dd1da085bd379404472982a179990",
+      "reviewedSignature": "6f4e9cb62dc11286348dcc1d81c30b9895637bfeca1417c6cd9f11d18c5c4d4a",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c4-l03-progressive.svg": "cfd6d072f4e4393fd8b25a704462c62b00ba83f02ea7b9bc17eda735bcd8ac4d"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "90",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Il potenziale è una somma scalare con segni, V=k(q₁/r₁+q₂/r₂). Le due distanze uguali danno V=(9×10⁹)(1×10⁻⁹)/(1/10)=90 V. I contributi non vanno composti come vettori.",
+      "physicalAssumptions": "Vacuum point charges+2 and−1 nC, equal 0.10 m distance, zero potential at infinity and assigned Coulomb constant.",
+      "distractors": "270 V adds magnitudes;−90 V omits positive 180 V; zero would require zero charge sum.",
+      "pedagogicalReview": "Signed scalar sum distinguished from vector superposition.",
+      "assetReview": "Tre pannelli letti integralmente nel nuovo PNG640×1540: P dista180 coordinate da ciascuna sorgente, per due distanze0.10 m; somma scalare180−90=90 V. Quattro piani a12,8,4,0 V hanno passo100, totale300 per3 cm, con campo verso potenziale minore. Barre ΔU e ΔK partono dalla stessa origine320, hanno lunghezza180 e segni opposti per15 eV; non sono energie assolute. Nessun testo attraversato o tagliato.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q022",
+      "sourceSha256": "6dc8870dd9e9f1e947c30884c7ab6c7b37cc19ae4c612f591ca4aeb9b61e5850",
+      "candidateSha256": "8f561a4b59b37bc30e74d72b0a111fdb54b21d90109ae31a5eabec423ecfce76",
+      "reviewedSignature": "b7c9818613b6847736d1e9011d92af20508e1d5b1726889899add272ac7be204",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "0",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Il lavoro elettrostatico è W=q(V_i−V_f). Sulla stessa superficie equipotenziale la differenza è zero, quindi W=0 anche se la carica ha percorso una distanza non nulla.",
+      "physicalAssumptions": "Electrostatic field and equal endpoint potentials on one equipotential surface.",
+      "distractors": "Nonzero work needs a nonzero endpoint difference here; path length alone is insufficient.",
+      "pedagogicalReview": "Work of field distinguished from distance or field magnitude.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q023",
+      "sourceSha256": "af3a69349ee013dc78732d62e24dbea86cfce5bd8a2542810d8ee8868f0e2c6f",
+      "candidateSha256": "6727c71ed9151ec811b21323e89807ceed473d214b8b8be8a0ebd416a92b3ad0",
+      "reviewedSignature": "f7fd1f92255b56f471bddcdc9b5ef4861ce70930e098a440ade95e4e4fd6a431",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Volt",
+      "dimension": {},
+      "manualArithmetic": "È il volt: 1 V=1 J/C. Si distingue l’unità del potenziale da quelle di campo o capacità.",
+      "physicalAssumptions": "Potential difference is energy per charge, with SI units.",
+      "distractors": "Coulomb is charge, joule energy, newton force, ampere current; none equals J/C.",
+      "pedagogicalReview": "Name the derived SI unit.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q024",
+      "sourceSha256": "9a84651485a0e84ab8aebfba82f9be1cf1ae486ea0796fb25e65e34dd3b60db6",
+      "candidateSha256": "4d1cc337e5cded63dc571de2152f537b0bdbdda7134c47a16cc77b1a490ff2ea",
+      "reviewedSignature": "29e99c68dca404980d467a9cb1b7e6afcadf040018597bd7efecbc621dbaed97",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c4-l03-progressive.svg": "cfd6d072f4e4393fd8b25a704462c62b00ba83f02ea7b9bc17eda735bcd8ac4d"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "400",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-3",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Nel campo uniforme la caduta di potenziale lungo il campo ha modulo Ed. Con d=3/100 m, E=12/(3/100)=400 V/m. Il campo punta dal potenziale maggiore al minore.",
+      "physicalAssumptions": "Uniform field, distance 0.030 m measured along field, potential difference magnitude 12 V.",
+      "distractors": "4 V/m treats 3 cm as 3 m; multiplication gives wrong dimension.",
+      "pedagogicalReview": "Convert cm before forming a gradient.",
+      "assetReview": "Tre pannelli letti integralmente nel nuovo PNG640×1540: P dista180 coordinate da ciascuna sorgente, per due distanze0.10 m; somma scalare180−90=90 V. Quattro piani a12,8,4,0 V hanno passo100, totale300 per3 cm, con campo verso potenziale minore. Barre ΔU e ΔK partono dalla stessa origine320, hanno lunghezza180 e segni opposti per15 eV; non sono energie assolute. Nessun testo attraversato o tagliato.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q025",
+      "sourceSha256": "bd659c36401707ec587339ccfd9cad4493c9f2329f7622138ff3771927ec75c9",
+      "candidateSha256": "b6ce2a25a5b76f7ee077fa195f4303dc59cdfe632226af2a68f6bde4c5aad9dd",
+      "reviewedSignature": "2c2e63df60b286f4f00584c9ade6696ae14e6f664910978d2dd884b1fa88a062",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Il potenziale è zero e il campo è non nullo, diretto da +q verso −q",
+      "dimension": {},
+      "manualArithmetic": "Nel punto medio i potenziali di +q e −q si cancellano, ma i campi si sommano nello stesso verso, dalla carica positiva alla negativa. Si ha V=0 e E non nullo per q non nullo e separazione finita; potenziale nullo non equivale a campo nullo.",
+      "physicalAssumptions": "Distinct fixed charges+q and−q with q positive; midpoint equidistant and potential zero at infinity.",
+      "distractors": "Scalar potential cancellation does not cancel the concordant field vectors.",
+      "pedagogicalReview": "Construct a counterexample to V zero implying E zero.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q026",
+      "sourceSha256": "30f779eb3d49796f3fbd5563ccc355a312efde4e06e7d8f1c8f43bf01c286198",
+      "candidateSha256": "adcc9f7bc1330c5aa8b03ea0e12072d65952e0e285b92f88e967ed681fcf9c49",
+      "reviewedSignature": "82c8f76fa4b775cc093e69adcc573faba37ab2e18c7fdfad227875dd633108fd",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c4-l03-progressive.svg": "cfd6d072f4e4393fd8b25a704462c62b00ba83f02ea7b9bc17eda735bcd8ac4d"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "15",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Per l’elettrone q=−e. Il lavoro del campo è −qΔV=e·15 V, perciò l’energia cinetica aumenta di 15 eV. Il segno negativo della carica permette un aumento di K andando a potenziale maggiore.",
+      "physicalAssumptions": "Electron charge−e, potential rises from 2 to 17 V, only electrostatic force.",
+      "distractors": "−15 eV is ΔU;19 adds endpoint potentials rather than subtracting; eV is energy.",
+      "pedagogicalReview": "Charge sign and kinetic/potential changes solved separately.",
+      "assetReview": "Tre pannelli letti integralmente nel nuovo PNG640×1540: P dista180 coordinate da ciascuna sorgente, per due distanze0.10 m; somma scalare180−90=90 V. Quattro piani a12,8,4,0 V hanno passo100, totale300 per3 cm, con campo verso potenziale minore. Barre ΔU e ΔK partono dalla stessa origine320, hanno lunghezza180 e segni opposti per15 eV; non sono energie assolute. Nessun testo attraversato o tagliato.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q027",
+      "sourceSha256": "0aa1c915b9b1bd97b8b10b81b54985d658c2c3702ba421384cfb90698a279012",
+      "candidateSha256": "9d0a1f649bdb4bc6e69eb343333ea97e052c8f84048786c8c9bcf393151eb921",
+      "reviewedSignature": "1a46d1bc5bc370876a4c6484b88477bd9fdbaebda66880b4c2b039f7035dfaf4",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Riferimento",
+      "dimension": {},
+      "manualArithmetic": "La parola è riferimento, o zero convenzionale. Fissare V=0 all’infinito sceglie l’origine della scala senza cambiare differenze di potenziale, campo o lavoro fra due punti finiti.",
+      "physicalAssumptions": "Fixed source distribution; changing additive potential origin changes no differences.",
+      "distractors": "Reference choice is neither a path nor matter transfer and does not null the field.",
+      "pedagogicalReview": "Gauge shift leaves physical differences invariant.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q028",
+      "sourceSha256": "ce1fdcf01e23895ccab04650c99a76a605797354c7fe2ec923c90cb1a4625abe",
+      "candidateSha256": "671d55d9c443033d90f2f1da343aa60b25395d50016f8412f6955fcecb7bd298",
+      "reviewedSignature": "e5cd1f1d4e926413c19729388ee0e8dd5926f78524c4bae44aeee84809c37a29",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "La massa è 2,0 mg=2×10⁻⁶ kg. Il campo cede q(V_i−V_f)=(4×10⁻⁶)·9=36×10⁻⁶ J. Da mv²/2=36×10⁻⁶ J segue v²=36 m²/s²; la rapidità finale è la radice positiva, 6 m/s, nel modello classico assegnato.",
+      "physicalAssumptions": "Nonrelativistic particle at rest, mass 2 mg positive, charge+4 microC and potential drop 9 V; only electric work.",
+      "distractors": "36 copies the square of speed; omitting factor 2 gives sqrt 18, not 6; mg must convert to kg.",
+      "pedagogicalReview": "Positive physical root of energy equation, no direction inferred.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q029",
+      "sourceSha256": "dcdbaefbc947ede01b77e5879133aeba9e16b169862cc504986239d19289efda",
+      "candidateSha256": "6e7eff6dfd334f6f565f6e24ce43ad6732b149cf6e1848d39dec2b05aced22f5",
+      "reviewedSignature": "baad7b71c166e6912cb7d568756482e53b7811dbcd1a2db55ca5be9c6565ec7a",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Dove le equipotenziali sono più ravvicinate lungo il campo",
+      "dimension": {},
+      "manualArithmetic": "A parità del salto di potenziale tra linee adiacenti, il campo medio normale è più intenso dove la loro distanza normale è minore, perché il modulo del gradiente è circa |ΔV|/Δs. Non si confronta soltanto il valore assoluto del potenziale.",
+      "physicalAssumptions": "Same nonzero potential interval and distances along the field in two regular small regions; compare average gradient.",
+      "distractors": "More distant equipotentials reduce the average field at equal nonzero interval; potential origin irrelevant.",
+      "pedagogicalReview": "Average gradient is explicitly an average over a specified separation.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q030",
+      "sourceSha256": "976713eafc1d7b85bcc573b8b057b45182e415893732a16006aa9d45b3b456cd",
+      "candidateSha256": "d4b2119dd95a330f62802b7c3d46e700ee7fe783d2e61b3f07022ca75d7d5084",
+      "reviewedSignature": "fcf57b002741aa155f0dc4f22a627174876097dc9050dbc38c892de7474e410e",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {},
+      "manualArithmetic": "Si includono tutte le coppie non ordinate una sola volta: 4·3/2=6 termini. Sommare coppie ordinate conterebbe due volte ciascuna energia; non si includono energie proprie infinite di cariche puntiformi.",
+      "physicalAssumptions": "Four distinct point charges with nonzero charges; pair energy excludes self-energy and reversed duplicates.",
+      "distractors": "12 double-counts ordered pairs;4 counts particles rather than pairs.",
+      "pedagogicalReview": "Manual enumeration 3+2+1 verifies combinatorial expression.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "8aef6d3397fa23a4c7d9974460e1e2d3a9645db5a61d482484f905df2563fef6",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "493d3132b8bf706e3a861ad2e8899fa512786f7f",
+  "packageSha256": "5d09fde19875f64fed3c3ee3de2890e3bb3ec9a141b27b48cd16068929744504",
+  "bindingsSha256": "1ff4deb46b7d132994b2c19042f95d427cb6e784d5658c3942d1c8ee8c8c75d0",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C4.json",
+    "title": "cric-c4-l03",
+    "reference": "Ten distinct original Cric C4 questions read completely after their frozen prompt-only primary and computations; no authoring module imported."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/cric-c4-021-040-partial-models.py",
+    "sha256": "fce51a4709cd21f6f8519cad68fdd333123fc0cb14e6ae2c74f1112fc9ece962",
+    "commit": "eaf13e0e0c782adb98d767193e39a35ec3970bab"
+  },
+  "modelFunctionBodies": "All functions in the frozen source-only C4 partial model retain identical AST. Generic finite/exact literal guards are reused unchanged from the earlier independent C2 verifier.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/primary-cric-c4-021-040-partial-before-candidates-20261126.md",
+    "sha256": "16fddaa0a20d4180bd14648b2a47700896a9a77490e80b1daaa92efe189b31c5"
+  }
+}

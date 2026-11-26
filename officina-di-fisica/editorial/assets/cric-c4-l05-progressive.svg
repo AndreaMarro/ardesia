@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1540" viewBox="0 0 640 1540" role="img" aria-labelledby="title desc" font-family="Arial, sans-serif" font-size="21" fill="#272536" stroke-linejoin="round" stroke-linecap="round">
+<title id="title">Corrente, filo stirato e rapporti statici</title><desc id="desc">Tre problemi distinti. Grafico a gradini di corrente positiva con aree 12 e 6 millicoulomb. Schema di un filo rettangolare a profondità costante: lunghezza doppia e altezza dimezzata conservano il volume. Due soli punti di corrente e tensione danno rapporti statici diversi, senza interpolare una curva.</desc><defs><marker id="g" markerWidth="7" markerHeight="7" refX="7" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L7 3.5L0 7Z" fill="#147c76"/></marker><marker id="v" markerWidth="7" markerHeight="7" refX="7" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L7 3.5L0 7Z" fill="#6852a3"/></marker></defs><rect width="640" height="1540" fill="#fffdf7"/>
+
+<text x="40" y="55" font-size="25" font-weight="bold">1 · L’area è carica trasferita</text>
+<rect x="100" y="160" width="144" height="210" fill="#eee1c8"/><rect x="244" y="300" width="216" height="70" fill="#dceee9"/>
+<path d="M100 400V130M100 370H520" fill="none" stroke="#888" stroke-width="1.5"/><path d="M100 160H244V300H460" fill="none" stroke="#147c76" stroke-width="3"/>
+<text x="35" y="110">I (mA)</text><text x="540" y="380">t (s)</text><text x="75" y="410">0</text><text x="244" y="410" text-anchor="middle">4</text><text x="460" y="410" text-anchor="middle">10</text><text x="65" y="167">3</text><text x="65" y="307">1</text><text x="135" y="275">12 mC</text><text x="320" y="345">6 mC</text>
+<path d="M40 465H600" stroke="#cbc6bc"/>
+<text x="40" y="520" font-size="25" font-weight="bold">2 · Volume e resistività invariati</text><text x="40" y="565" font-size="18">Schema rettangolare, profondità costante.</text>
+<rect x="120" y="650" width="160" height="80" fill="#e9d7b5" stroke="#94631e" stroke-width="2"/><rect x="120" y="840" width="320" height="40" fill="#e9d7b5" stroke="#94631e" stroke-width="2"/>
+<text x="200" y="620" text-anchor="middle">ℓ</text><text x="315" y="700">A</text><text x="280" y="815" text-anchor="middle">2ℓ</text><text x="475" y="868">A/2</text><text x="40" y="960">R_f / R_i = 2 / (1/2) = 4</text>
+<path d="M40 1010H600" stroke="#cbc6bc"/>
+<text x="40" y="1065" font-size="25" font-weight="bold">3 · Due rapporti V/I differenti</text>
+<path d="M100 1460V1140M100 1420H520" fill="none" stroke="#888" stroke-width="1.5"/><text x="45" y="1120">I (mA)</text><text x="540" y="1430">V (V)</text>
+<path d="M100 1320H220V1420M100 1220H460V1420" fill="none" stroke="#999" stroke-dasharray="6 4"/>
+<circle cx="220" cy="1320" r="6" fill="#6852a3"/><circle cx="460" cy="1220" r="6" fill="#147c76"/>
+<text x="70" y="1327">1</text><text x="70" y="1227">2</text><text x="75" y="1490">0</text><text x="220" y="1470" text-anchor="middle">1</text><text x="460" y="1470" text-anchor="middle">3</text><text x="245" y="1360">V/I = 1 kΩ</text><text x="320" y="1180">V/I = 1,5 kΩ</text>
+
+</svg>
