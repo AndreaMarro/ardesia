@@ -1,0 +1,1195 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u7-optical-depth-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spessore ottico distinto dalla trasmittanza",
+      "order": 24701,
+      "title": "Un esponente non ha unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "optical-depth",
+      "difficulty": 1,
+      "prompt": "Uno strato omogeneo ha coefficiente di attenuazione μ>0 costante per il fascio monocromatico assegnato. Lo spessore geometrico è d>0. Lo spessore ottico τ=μd è l’esponente positivo della legge I/I₀=exp(−τ), per il fascio diretto senza sorgenti interne e con riflessione trascurabile. τ non indica qui la trasmittanza. Con μ=1 cm⁻¹ e d=2 cm, quanto vale τ?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente misura l’attenuazione per unità di lunghezza. Moltiplicandolo per lo spessore percorso nella stessa unità si cancellano i centimetri: τ=2. Questo numero entra nell’esponenziale, mentre la frazione trasmessa è e⁻² e non il numero due."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/a6bcf66cacd73d519f6bebae564b42bb298895672e37c8ad8fca90871b448a86",
+          "text": "Le due lastre schematiche hanno percorsi d di 2 cm e 3 cm disegnati alla stessa scala; il colore non quantifica l’assorbimento. I prodotti μd sono 2 e 6, entrambi senza unità."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau=\\mu d"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau=(1\\,\\mathrm{cm^{-1}})(2\\,\\mathrm{cm})"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau=2"
+        },
+        {
+          "type": "formula",
+          "text": " I/I_0=e^{-2}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro introdurrebbe un quadrato assente e un mezzo invertirebbe il prodotto. Due centimetri sarebbe uno spessore geometrico, non l’esponente adimensionale; e⁻² è invece la trasmittanza."
+        }
+      ],
+      "hints": [
+        "Controlla prima che μ e d siano espressi con la stessa unità di lunghezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro introdurrebbe un quadrato assente e un mezzo invertirebbe il prodotto. Due centimetri sarebbe uno spessore geometrico, non l’esponente adimensionale; e⁻² è invece la trasmittanza.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Esponente adimensionale e unità reciproche",
+        "Prodotti, inverse e medie",
+        "Indice da parametri relativi nel caso autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-optical-depth-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spessore ottico distinto dalla trasmittanza",
+      "order": 24702,
+      "title": "Spessore ottico e dimensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "optical-depth",
+      "difficulty": 1,
+      "prompt": "Quale indicazione di unità è corretta per lo spessore ottico τ=μd, con μ inverso di una lunghezza?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1, adimensionale",
+          "cm",
+          "cm⁻¹",
+          "W/m²",
+          "s"
+        ],
+        "value": "1, adimensionale"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La dimensione inversa di μ si cancella con quella di d. Uno spessore ottico è un numero puro, benché il nome contenga la parola spessore. Anche la trasmittanza è adimensionale, ma è un’altra funzione, exp(−τ)."
+        },
+        {
+          "type": "formula",
+          "text": "[\\mu]=L^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " [d]=L"
+        },
+        {
+          "type": "formula",
+          "text": " [\\tau]=1"
+        },
+        {
+          "type": "text",
+          "text": "cm misura d, cm⁻¹ misura μ, W/m² un’intensità e s un intervallo temporale. Il nome della quantità non basta a deciderne l’unità."
+        }
+      ],
+      "hints": [
+        "Guarda il prodotto delle dimensioni, non soltanto la parola spessore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "cm misura d, cm⁻¹ misura μ, W/m² un’intensità e s un intervallo temporale. Il nome della quantità non basta a deciderne l’unità.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Esponente adimensionale e unità reciproche",
+        "Prodotti, inverse e medie",
+        "Indice da parametri relativi nel caso autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-optical-depth-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spessore ottico distinto dalla trasmittanza",
+      "order": 24703,
+      "title": "Indice da parametri relativi assegnati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "optical-depth",
+      "difficulty": 1,
+      "prompt": "Caso autonomo: un mezzo ideale trasparente ha indice di fase positivo n=√(εᵣ μᵣ). Le grandezze relative εᵣ e μᵣ sono adimensionali. Se εᵣ=9 e μᵣ=1, quanto vale n?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Uso soltanto la relazione fornita per questo mezzo e scelgo l’indice positivo. Il prodotto dei parametri relativi vale nove; la radice positiva è tre. μᵣ è qui la permeabilità relativa e non il coefficiente di attenuazione μ degli altri quesiti: i simboli appartengono a due casi distinti."
+        },
+        {
+          "type": "formula",
+          "text": "\\varepsilon_r\\mu_r=9\\cdot1"
+        },
+        {
+          "type": "formula",
+          "text": " n=\\sqrt9"
+        },
+        {
+          "type": "formula",
+          "text": " n=3"
+        },
+        {
+          "type": "text",
+          "text": "Nove omette la radice e un terzo ne prende il reciproco. −3 non è il ramo di indice positivo dichiarato. Nessuna lunghezza geometrica o intensità è necessaria a questo caso autonomo."
+        }
+      ],
+      "hints": [
+        "Non confondere il pedice r della permeabilità relativa con il coefficiente di attenuazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Nove omette la radice e un terzo ne prende il reciproco. −3 non è il ramo di indice positivo dichiarato. Nessuna lunghezza geometrica o intensità è necessaria a questo caso autonomo.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Esponente adimensionale e unità reciproche",
+        "Prodotti, inverse e medie",
+        "Indice da parametri relativi nel caso autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-optical-depth-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spessore ottico distinto dalla trasmittanza",
+      "order": 24704,
+      "title": "Tre volte il coefficiente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "optical-depth",
+      "difficulty": 1,
+      "prompt": "Uno strato omogeneo ha coefficiente di attenuazione μ>0 costante per il fascio monocromatico assegnato. Lo spessore geometrico è d>0. Lo spessore ottico τ=μd è l’esponente positivo della legge I/I₀=exp(−τ), per il fascio diretto senza sorgenti interne e con riflessione trascurabile. τ non indica qui la trasmittanza. A usa μ=1 cm⁻¹ e d=2 cm; B usa μ=3 cm⁻¹ allo stesso d. Come cambia τ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 2 a 6",
+          "Da 2 a 2/3",
+          "Da 2 a 18",
+          "Resta 2",
+          "Diventa 3"
+        ],
+        "value": "Da 2 a 6"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A spessore fisso τ è direttamente proporzionale a μ. Il prodotto passa da uno per due a tre per due, quindi da due a sei. La trasmittanza diminuirebbe da e⁻² a e⁻⁶: la sua variazione non è lo stesso rapporto lineare dello spessore ottico."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau_A=1\\cdot2"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_A=2"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B=3\\cdot2"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B=6"
+        },
+        {
+          "type": "text",
+          "text": "2/3 seguirebbe una dipendenza inversa e diciotto il quadrato del fattore tre. Tre copia il nuovo coefficiente come se fosse τ; due ignora il cambiamento di materiale."
+        }
+      ],
+      "hints": [
+        "Il coefficiente e lo spessore hanno ruoli distinti, ma entrambi moltiplicano τ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "2/3 seguirebbe una dipendenza inversa e diciotto il quadrato del fattore tre. Tre copia il nuovo coefficiente come se fosse τ; due ignora il cambiamento di materiale.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Esponente adimensionale e unità reciproche",
+        "Prodotti, inverse e medie",
+        "Indice da parametri relativi nel caso autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-optical-depth-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spessore ottico distinto dalla trasmittanza",
+      "order": 24705,
+      "title": "Il coefficiente da τ e d",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "optical-depth",
+      "difficulty": 2,
+      "prompt": "Uno strato omogeneo ha coefficiente di attenuazione μ>0 costante per il fascio monocromatico assegnato. Lo spessore geometrico è d>0. Lo spessore ottico τ=μd è l’esponente positivo della legge I/I₀=exp(−τ), per il fascio diretto senza sorgenti interne e con riflessione trascurabile. τ non indica qui la trasmittanza. Si misurano τ=2 e d=2 cm. Quanto vale μ in cm⁻¹?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "cm⁻¹",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Divido lo spessore ottico per quello geometrico. Il rapporto 2/(2 cm) vale 1 cm⁻¹, positivo. La verifica μd=2 recupera l’esponente misurato e mantiene l’unità inversa di lunghezza."
+        },
+        {
+          "type": "formula",
+          "text": "\\mu=\\frac{\\tau}{d}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu=\\frac{2}{2\\,\\mathrm{cm}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu=1\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro corrisponde al prodotto dei numeri anziché al quoziente e predirebbe τ=8. Due cm⁻¹ darebbe τ=4; un mezzo cm⁻¹ darebbe τ=1."
+        }
+      ],
+      "hints": [
+        "Isola μ prima di inserire il numero dei centimetri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro corrisponde al prodotto dei numeri anziché al quoziente e predirebbe τ=8. Due cm⁻¹ darebbe τ=4; un mezzo cm⁻¹ darebbe τ=1.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Esponente adimensionale e unità reciproche",
+        "Prodotti, inverse e medie",
+        "Indice da parametri relativi nel caso autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-optical-depth-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spessore ottico distinto dalla trasmittanza",
+      "order": 24706,
+      "title": "Lo spessore geometrico dall’esponente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "optical-depth",
+      "difficulty": 2,
+      "prompt": "Uno strato omogeneo ha coefficiente di attenuazione μ>0 costante per il fascio monocromatico assegnato. Lo spessore geometrico è d>0. Lo spessore ottico τ=μd è l’esponente positivo della legge I/I₀=exp(−τ), per il fascio diretto senza sorgenti interne e con riflessione trascurabile. τ non indica qui la trasmittanza. Si hanno τ=2 e μ=1 cm⁻¹. Quanto vale d in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente è per centimetro: per accumulare spessore ottico due occorrono due centimetri. Nell’inversa d=τ/μ, dividere per cm⁻¹ restituisce una lunghezza. Non si deve identificare τ e d per il solo fatto che in questo esempio hanno lo stesso numero."
+        },
+        {
+          "type": "formula",
+          "text": "d=\\frac{\\tau}{\\mu}"
+        },
+        {
+          "type": "formula",
+          "text": " d=\\frac{2}{1\\,\\mathrm{cm^{-1}}}"
+        },
+        {
+          "type": "formula",
+          "text": " d=2\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo cm darebbe τ=1/2, uno darebbe τ=1 e quattro darebbe τ=4. L’uguaglianza numerica τ=2 e d/(cm)=2 dipende dal coefficiente scelto."
+        }
+      ],
+      "hints": [
+        "Dividere per un inverso di lunghezza produce una lunghezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo cm darebbe τ=1/2, uno darebbe τ=1 e quattro darebbe τ=4. L’uguaglianza numerica τ=2 e d/(cm)=2 dipende dal coefficiente scelto.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Esponente adimensionale e unità reciproche",
+        "Prodotti, inverse e medie",
+        "Indice da parametri relativi nel caso autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-optical-depth-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spessore ottico distinto dalla trasmittanza",
+      "order": 24707,
+      "title": "Dimezzare la lunghezza percorsa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "optical-depth",
+      "difficulty": 2,
+      "prompt": "Uno strato omogeneo ha coefficiente di attenuazione μ>0 costante per il fascio monocromatico assegnato. Lo spessore geometrico è d>0. Lo spessore ottico τ=μd è l’esponente positivo della legge I/I₀=exp(−τ), per il fascio diretto senza sorgenti interne e con riflessione trascurabile. τ non indica qui la trasmittanza. A usa μ=1 cm⁻¹, d=2 cm; B mantiene μ e usa d=1 cm. Quanto vale τ_B/τ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/4",
+          "1",
+          "e"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Gli spessori ottici sono due e uno. Il rapporto B/A è un mezzo perché il materiale è lo stesso e τ è lineare in d. Il rapporto delle intensità trasmesse sarebbe invece e: diminuire il percorso riduce le perdite, ma è un confronto su un’altra grandezza."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau_A=2"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B/\\tau_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il rapporto; un quarto applica un quadrato non previsto. Uno ignora il nuovo d ed e confronta le trasmittanze anziché gli esponenti."
+        }
+      ],
+      "hints": [
+        "Verifica quale uscita è richiesta: τ, non exp(−τ).",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il rapporto; un quarto applica un quadrato non previsto. Uno ignora il nuovo d ed e confronta le trasmittanze anziché gli esponenti.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Esponente adimensionale e unità reciproche",
+        "Prodotti, inverse e medie",
+        "Indice da parametri relativi nel caso autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-optical-depth-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spessore ottico distinto dalla trasmittanza",
+      "order": 24708,
+      "title": "Sovrastimare lo spessore ottico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "optical-depth",
+      "difficulty": 2,
+      "prompt": "Uno strato omogeneo ha coefficiente di attenuazione μ>0 costante per il fascio monocromatico assegnato. Lo spessore geometrico è d>0. Lo spessore ottico τ=μd è l’esponente positivo della legge I/I₀=exp(−τ), per il fascio diretto senza sorgenti interne e con riflessione trascurabile. τ non indica qui la trasmittanza. Con μ=1 cm⁻¹ e d=2 cm viene proposto τ=4. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "−2",
+          "4",
+          "1/2",
+          "0"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto corretto vale due. La proposta quattro lo supera di due: lo scarto ordinato è +2 e resta adimensionale. Un eventuale errore sulla trasmittanza sarebbe diverso e avrebbe una dipendenza esponenziale."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau=2"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta\\tau=4-2"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta\\tau=2"
+        },
+        {
+          "type": "text",
+          "text": "−2 cambia l’ordine, quattro ripete la proposta e un mezzo è il rapporto corretto/proposto. Zero accetterebbe una τ non coerente con il prodotto assegnato."
+        }
+      ],
+      "hints": [
+        "Non esponenziare se il problema chiede lo scarto di τ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−2 cambia l’ordine, quattro ripete la proposta e un mezzo è il rapporto corretto/proposto. Zero accetterebbe una τ non coerente con il prodotto assegnato.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Esponente adimensionale e unità reciproche",
+        "Prodotti, inverse e medie",
+        "Indice da parametri relativi nel caso autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-optical-depth-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spessore ottico distinto dalla trasmittanza",
+      "order": 24709,
+      "title": "L’inversa conserva l’unità di μ",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "optical-depth",
+      "difficulty": 2,
+      "prompt": "Uno strato omogeneo ha coefficiente di attenuazione μ>0 costante per il fascio monocromatico assegnato. Lo spessore geometrico è d>0. Lo spessore ottico τ=μd è l’esponente positivo della legge I/I₀=exp(−τ), per il fascio diretto senza sorgenti interne e con riflessione trascurabile. τ non indica qui la trasmittanza. Con τ e d noti, quale formula isola μ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "μ = τ / d",
+          "μ = τ d",
+          "μ = d / τ",
+          "μ = exp(−τ) / d",
+          "μ = −τ / d"
+        ],
+        "value": "μ = τ / d"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Divido τ=μd per d, positivo. L’inversa μ=τ/d restituisce un inverso di lunghezza e la sostituzione ricostruisce il medesimo spessore ottico. Se si dispone invece della trasmittanza T, prima bisogna ricavare τ=−ln T."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau=\\mu d"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu=\\frac{\\tau}{d}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\mu]=L^{-1}"
+        },
+        {
+          "type": "text",
+          "text": "τd e d/τ hanno dimensione di lunghezza. exp(−τ)/d conserva la dimensione richiesta ma non la legge fisica; −τ/d produrrebbe μ<0 nel dominio assegnato. La sola analisi dimensionale non basta."
+        }
+      ],
+      "hints": [
+        "Mantieni τ come esponente positivo, distinto da T.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "τd e d/τ hanno dimensione di lunghezza. exp(−τ)/d conserva la dimensione richiesta ma non la legge fisica; −τ/d produrrebbe μ<0 nel dominio assegnato. La sola analisi dimensionale non basta.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Esponente adimensionale e unità reciproche",
+        "Prodotti, inverse e medie",
+        "Indice da parametri relativi nel caso autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-optical-depth-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spessore ottico distinto dalla trasmittanza",
+      "order": 24710,
+      "title": "Due fattori moltiplicativi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "optical-depth",
+      "difficulty": 2,
+      "prompt": "Uno strato omogeneo ha coefficiente di attenuazione μ>0 costante per il fascio monocromatico assegnato. Lo spessore geometrico è d>0. Lo spessore ottico τ=μd è l’esponente positivo della legge I/I₀=exp(−τ), per il fascio diretto senza sorgenti interne e con riflessione trascurabile. τ non indica qui la trasmittanza. Fra due preparazioni μ_B=κ₁μ_A e d_B=κ₂d_A, con fattori positivi. Qual è τ_B/τ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁² κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituisco entrambi i fattori nel prodotto μd. Dividendo per μ_A d_A, strettamente positivo, si cancellano i dati iniziali e rimane κ₁κ₂. È la legge di scala dello spessore ottico, non quella della trasmittanza, che richiederebbe il rapporto degli esponenziali."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau_B=(\\kappa_1\\mu_A)(\\kappa_2d_A)"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B/\\tau_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti rendono inverso uno dei due fattori diretti. Il quadrato di κ₁ modifica il modello; la somma darebbe due quando nessuna preparazione cambia."
+        }
+      ],
+      "hints": [
+        "Inserisci i fattori nella definizione prima di semplificare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti rendono inverso uno dei due fattori diretti. Il quadrato di κ₁ modifica il modello; la somma darebbe due quando nessuna preparazione cambia.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Esponente adimensionale e unità reciproche",
+        "Prodotti, inverse e medie",
+        "Indice da parametri relativi nel caso autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-optical-depth-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spessore ottico distinto dalla trasmittanza",
+      "order": 24711,
+      "title": "Cambiano materiale e percorso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "optical-depth",
+      "difficulty": 2,
+      "prompt": "Uno strato omogeneo ha coefficiente di attenuazione μ>0 costante per il fascio monocromatico assegnato. Lo spessore geometrico è d>0. Lo spessore ottico τ=μd è l’esponente positivo della legge I/I₀=exp(−τ), per il fascio diretto senza sorgenti interne e con riflessione trascurabile. τ non indica qui la trasmittanza. A usa μ=1 cm⁻¹, d=2 cm; B usa μ=2 cm⁻¹, d=3 cm. Quanto vale τ_B/τ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "1/3",
+          "2",
+          "3/2",
+          "6"
+        ],
+        "value": "3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha τ=2 e B ha τ=6. Il coefficiente raddoppia e lo spessore cresce di un fattore 3/2: il prodotto dei fattori è tre. Sei è il valore finale, non il rapporto col valore iniziale."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau_A=2"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B=2\\cdot3"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B=6"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B/\\tau_A=3"
+        },
+        {
+          "type": "text",
+          "text": "Un terzo inverte il confronto; due segue soltanto μ e 3/2 soltanto d. Copiare sei dimentica di dividere per τ_A."
+        }
+      ],
+      "hints": [
+        "Calcola due prodotti completi, non il rapporto di un solo ingresso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un terzo inverte il confronto; due segue soltanto μ e 3/2 soltanto d. Copiare sei dimentica di dividere per τ_A.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Esponente adimensionale e unità reciproche",
+        "Prodotti, inverse e medie",
+        "Indice da parametri relativi nel caso autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-optical-depth-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spessore ottico distinto dalla trasmittanza",
+      "order": 24712,
+      "title": "Prima i prodotti, poi la media",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "optical-depth",
+      "difficulty": 2,
+      "prompt": "Uno strato omogeneo ha coefficiente di attenuazione μ>0 costante per il fascio monocromatico assegnato. Lo spessore geometrico è d>0. Lo spessore ottico τ=μd è l’esponente positivo della legge I/I₀=exp(−τ), per il fascio diretto senza sorgenti interne e con riflessione trascurabile. τ non indica qui la trasmittanza. A usa μ=1 cm⁻¹ e d=2 cm; B usa μ=2 cm⁻¹ e d=3 cm. Qual è la media aritmetica delle due τ con uguali pesi?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "15/4",
+          "8",
+          "2",
+          "6"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I prodotti sono due e sei: la loro media vale quattro. Il prodotto degli ingressi medi sarebbe (3/2 cm⁻¹)(5/2 cm)=15/4, diverso da quattro. Mediare due esponenti non è neppure la stessa operazione che mediare le intensità trasmesse."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/a6bcf66cacd73d519f6bebae564b42bb298895672e37c8ad8fca90871b448a86",
+          "text": "Le barre centrali mostrano τ_A=2, τ_B=6 e media 4, con origine e scala comuni. Il prodotto dei parametri medi è invece 15/4."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline\\tau=\\frac{2+6}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline\\tau=4"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_{\\rm dati\\ medi}=\\frac{15}{4}"
+        },
+        {
+          "type": "text",
+          "text": "15/4 usa i parametri medi; otto somma senza dimezzare. Due e sei ripetono una sola preparazione, omettendo il peso dell’altra."
+        }
+      ],
+      "hints": [
+        "Mantieni distinto il prodotto dalla media aritmetica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "15/4 usa i parametri medi; otto somma senza dimezzare. Due e sei ripetono una sola preparazione, omettendo il peso dell’altra.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Esponente adimensionale e unità reciproche",
+        "Prodotti, inverse e medie",
+        "Indice da parametri relativi nel caso autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-optical-depth-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spessore ottico distinto dalla trasmittanza",
+      "order": 24713,
+      "title": "Il percorso richiesto da τ tripla",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "optical-depth",
+      "difficulty": 3,
+      "prompt": "Uno strato omogeneo ha coefficiente di attenuazione μ>0 costante per il fascio monocromatico assegnato. Lo spessore geometrico è d>0. Lo spessore ottico τ=μd è l’esponente positivo della legge I/I₀=exp(−τ), per il fascio diretto senza sorgenti interne e con riflessione trascurabile. τ non indica qui la trasmittanza. A usa μ=1 cm⁻¹, d=2 cm. In B il coefficiente è 2 cm⁻¹ e si vuole τ_B=3τ_A. Quanto vale d_B/d_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "3",
+          "2",
+          "1"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è τ_B=6. Con coefficiente 2 cm⁻¹ bastano tre centimetri: d_B=τ_B/μ_B=3 cm. Rispetto ai due centimetri iniziali il rapporto richiesto è 3/2."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau_B=6"
+        },
+        {
+          "type": "formula",
+          "text": " d_B=3\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " d_B/d_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Due terzi inverte il confronto. Tre copia il fattore dell’uscita, due il coefficiente nuovo come semplice numero; uno produrrebbe soltanto τ_B=4."
+        }
+      ],
+      "hints": [
+        "Fissa il nuovo τ prima di ricavare il percorso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due terzi inverte il confronto. Tre copia il fattore dell’uscita, due il coefficiente nuovo come semplice numero; uno produrrebbe soltanto τ_B=4.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Esponente adimensionale e unità reciproche",
+        "Prodotti, inverse e medie",
+        "Indice da parametri relativi nel caso autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-optical-depth-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spessore ottico distinto dalla trasmittanza",
+      "order": 24714,
+      "title": "Tarare una misura adimensionale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "optical-depth",
+      "difficulty": 3,
+      "prompt": "Uno strato omogeneo ha coefficiente di attenuazione μ>0 costante per il fascio monocromatico assegnato. Lo spessore geometrico è d>0. Lo spessore ottico τ=μd è l’esponente positivo della legge I/I₀=exp(−τ), per il fascio diretto senza sorgenti interne e con riflessione trascurabile. τ non indica qui la trasmittanza. Un display continuo D=gτ senza offset legge 6 con μ=1 cm⁻¹ e d=2 cm. Poi legge 18 con d=3 cm. Quanto vale il nuovo μ in cm⁻¹?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "cm⁻¹",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha τ=2, così g=3. La nuova lettura indica τ=6. Dividendo per lo spessore geometrico di tre centimetri ricavo μ=2 cm⁻¹. Il fatto che τ e D siano entrambi adimensionali non autorizza a identificarli."
+        },
+        {
+          "type": "formula",
+          "text": "g=6/2"
+        },
+        {
+          "type": "formula",
+          "text": " g=3"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau=18/3"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau=6"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu=2\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "text",
+          "text": "Sei cm⁻¹ tratterebbe il display 18 come τ e darebbe D=54. Un cm⁻¹ produrrebbe D=9 e tre cm⁻¹ produrrebbe D=27 allo stesso spessore."
+        }
+      ],
+      "hints": [
+        "La taratura va rimossa anche quando non cambia la dimensione fisica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei cm⁻¹ tratterebbe il display 18 come τ e darebbe D=54. Un cm⁻¹ produrrebbe D=9 e tre cm⁻¹ produrrebbe D=27 allo stesso spessore.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Esponente adimensionale e unità reciproche",
+        "Prodotti, inverse e medie",
+        "Indice da parametri relativi nel caso autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-optical-depth-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spessore ottico distinto dalla trasmittanza",
+      "order": 24715,
+      "title": "Separare due numeri strumentali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "optical-depth",
+      "difficulty": 3,
+      "prompt": "Uno strato omogeneo ha coefficiente di attenuazione μ>0 costante per il fascio monocromatico assegnato. Lo spessore geometrico è d>0. Lo spessore ottico τ=μd è l’esponente positivo della legge I/I₀=exp(−τ), per il fascio diretto senza sorgenti interne e con riflessione trascurabile. τ non indica qui la trasmittanza. D=gτ+b. A: μ=1 cm⁻¹, d=2 cm, D=5. B: μ=2 cm⁻¹, d=3 cm, D=13. C: d=1 cm e D=9. Quanto vale μ_C in cm⁻¹?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "cm⁻¹",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due esponenti di riferimento sono due e sei. Le differenze danno g=(13−5)/(6−2)=2, poi b=1. D_C=9 corrisponde a τ_C=4. A uno spessore di un centimetro il coefficiente è quindi 4 cm⁻¹."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{13-5}{6-2}"
+        },
+        {
+          "type": "formula",
+          "text": " g=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_C=\\frac{9-1}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_C=4"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu_C=4\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "text",
+          "text": "9/2 cm⁻¹ omette l’offset e predirebbe D=10. Otto omette il guadagno dopo aver tolto b; nove copia la lettura senza nessuna delle due correzioni."
+        }
+      ],
+      "hints": [
+        "Usa due valori fisici distinti per trovare il guadagno e poi l’offset.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "9/2 cm⁻¹ omette l’offset e predirebbe D=10. Otto omette il guadagno dopo aver tolto b; nove copia la lettura senza nessuna delle due correzioni.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Esponente adimensionale e unità reciproche",
+        "Prodotti, inverse e medie",
+        "Indice da parametri relativi nel caso autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-optical-depth-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spessore ottico distinto dalla trasmittanza",
+      "order": 24716,
+      "title": "Un vincolo fra preparazioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "optical-depth",
+      "difficulty": 3,
+      "prompt": "Uno strato omogeneo ha coefficiente di attenuazione μ>0 costante per il fascio monocromatico assegnato. Lo spessore geometrico è d>0. Lo spessore ottico τ=μd è l’esponente positivo della legge I/I₀=exp(−τ), per il fascio diretto senza sorgenti interne e con riflessione trascurabile. τ non indica qui la trasmittanza. Si impone μ=(1/2 cm⁻²)d e si misura τ=2. Quanto vale d in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo lega il coefficiente al percorso scelto in prove diverse, non alla posizione interna in una stessa lastra. Ogni lastra rimane omogenea. Se x=d/(1 cm), allora μ=(x/2) cm⁻¹ e τ=x²/2. La misura dà x²=4; il dominio d>0 seleziona x=2, senza il ramo negativo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/a6bcf66cacd73d519f6bebae564b42bb298895672e37c8ad8fca90871b448a86",
+          "text": "Il grafico inferiore vale soltanto fra le preparazioni vincolate μ=(1/2 cm⁻²)d. La curva τ=x²/2, con x=d/(1 cm), non rappresenta una variazione di μ dentro una lastra."
+        },
+        {
+          "type": "formula",
+          "text": "x=\\frac{d}{1\\,\\mathrm{cm}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau=\\frac{x^2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " x^2=4"
+        },
+        {
+          "type": "formula",
+          "text": " x=2"
+        },
+        {
+          "type": "formula",
+          "text": " d=2\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "−2 cm viola lo spessore positivo; quattro cm darebbe τ=8 e uno cm darebbe τ=1/2. Il dato assoluto τ non è ridondante con questo vincolo e fissa un’unica scala positiva."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo nella definizione del prodotto prima di risolvere.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "−2 cm viola lo spessore positivo; quattro cm darebbe τ=8 e uno cm darebbe τ=1/2. Il dato assoluto τ non è ridondante con questo vincolo e fissa un’unica scala positiva.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Esponente adimensionale e unità reciproche",
+        "Prodotti, inverse e medie",
+        "Indice da parametri relativi nel caso autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "a6bcf66cacd73d519f6bebae564b42bb298895672e37c8ad8fca90871b448a86",
+      "name": "optical-depth-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTU4MCIgdmlld0JveD0iMCAwIDY0MCAxNTgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiI+PHRpdGxlIGlkPSJ0aXRsZSI+UHJvZG90dG8gbXUgZCBlIHNwZXNzb3JlIG90dGljbzwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPkR1ZSBwZXJjb3JzaSBpbiBsYXN0cmUgZGl2ZXJzZSwgYmFycmUgZGkgc3Blc3NvcmUgb3R0aWNvIGUgY3VydmEgZnJhIHByZXBhcmF6aW9uaSB2aW5jb2xhdGUuPC9kZXNjPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI2NDAiIGhlaWdodD0iMTU4MCIgZmlsbD0iI2ZmZiIvPjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5TcGVzc29yZSBvdHRpY286IHVuIG51bWVybyBwdXJvPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMDMiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MSDCtyBQZXJjb3JzaSBnZW9tZXRyaWNpIGFsbGEgc3Rlc3NhIHNjYWxhPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iMTYwIiB3aWR0aD0iMTYwIiBoZWlnaHQ9Ijc1IiBmaWxsPSIjZGZlYmYwIi8+PGxpbmUgeDE9IjE1MCIgeTE9IjE5OCIgeDI9IjMxMCIgeTI9IjE5OCIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxNTAiIHk9IjE0MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5BOiDOvCA9IDEgY23igbvCuTwvdGV4dD48dGV4dCB4PSIxNTAiIHk9IjI3NCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5kID0gMiBjbSDCtyDPhCA9IDI8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIzNTAiIHdpZHRoPSIyNDAiIGhlaWdodD0iNzUiIGZpbGw9IiNkZmViZjAiLz48bGluZSB4MT0iMTUwIiB5MT0iMzg4IiB4Mj0iMzkwIiB5Mj0iMzg4IiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE1MCIgeT0iMzMwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkI6IM68ID0gMiBjbeKBu8K5PC90ZXh0Pjx0ZXh0IHg9IjE1MCIgeT0iNDY0IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPmQgPSAzIGNtIMK3IM+EID0gNjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNTI1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPklsIGNvbG9yZSDDqCBzY2hlbWF0aWNvLCBub24gdW5hIG1pc3VyYSBkaSBJLjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNTg1IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjIgwrcgSSBwcm9kb3R0aSBlIGxhIGxvcm8gbWVkaWE8L3RleHQ+PHRleHQgeD0iMTMwIiB5PSI2NzIiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPkE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI2NTAiIHdpZHRoPSIxMDAiIGhlaWdodD0iMjgiIGZpbGw9IiMzZDc3OTEiLz48dGV4dCB4PSIyNjAiIHk9IjY3MiIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4yPC90ZXh0Pjx0ZXh0IHg9IjEzMCIgeT0iNzUyIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj5CPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iNzMwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI4IiBmaWxsPSIjOTg2YzM1Ii8+PHRleHQgeD0iNDYwIiB5PSI3NTIiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+NjwvdGV4dD48dGV4dCB4PSIxMzAiIHk9IjgzMiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+bWVkaWE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI4MTAiIHdpZHRoPSIyMDAiIGhlaWdodD0iMjgiIGZpbGw9IiM2MzdlNTUiLz48dGV4dCB4PSIzNjAiIHk9IjgzMiIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij40PC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI5MDAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+z4Qgw6ggYWRpbWVuc2lvbmFsZTsgbm9uIMOoIGxhIHRyYXNtaXR0YW56YS48L3RleHQ+PHRleHQgeD0iMzUiIHk9Ijk3MCIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4zIMK3IFNvbG8gbmVsIHZpbmNvbG8gzrwgPSAoMS8yIGNt4oG7wrIpIGQ8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEwMTIiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+T2duaSBwdW50byBkZXNjcml2ZSB1bmEgbGFzdHJhIG9tb2dlbmVhIGRpdmVyc2EuPC90ZXh0PjxsaW5lIHgxPSIxNTAiIHkxPSIxNDYwIiB4Mj0iNTUwIiB5Mj0iMTQ2MCIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMTUwIiB5MT0iMTQ2MCIgeDI9IjE1MCIgeTI9IjEwODAiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBhdGggZD0iTTE1MC4wMDAwIDE0NjAuMDAwMCBMMTUzLjAwMDAgMTQ1OS45NzgxIEwxNTYuMDAwMCAxNDU5LjkxMjUgTDE1OS4wMDAwIDE0NTkuODAzMSBMMTYyLjAwMDAgMTQ1OS42NTAwIEwxNjUuMDAwMCAxNDU5LjQ1MzEgTDE2OC4wMDAwIDE0NTkuMjEyNSBMMTcxLjAwMDAgMTQ1OC45MjgxIEwxNzQuMDAwMCAxNDU4LjYwMDAgTDE3Ny4wMDAwIDE0NTguMjI4MSBMMTgwLjAwMDAgMTQ1Ny44MTI1IEwxODMuMDAwMCAxNDU3LjM1MzEgTDE4Ni4wMDAwIDE0NTYuODUwMCBMMTg5LjAwMDAgMTQ1Ni4zMDMxIEwxOTIuMDAwMCAxNDU1LjcxMjUgTDE5NS4wMDAwIDE0NTUuMDc4MSBMMTk4LjAwMDAgMTQ1NC40MDAwIEwyMDEuMDAwMCAxNDUzLjY3ODEgTDIwNC4wMDAwIDE0NTIuOTEyNSBMMjA3LjAwMDAgMTQ1Mi4xMDMxIEwyMTAuMDAwMCAxNDUxLjI1MDAgTDIxMy4wMDAwIDE0NTAuMzUzMSBMMjE2LjAwMDAgMTQ0OS40MTI1IEwyMTkuMDAwMCAxNDQ4LjQyODEgTDIyMi4wMDAwIDE0NDcuNDAwMCBMMjI1LjAwMDAgMTQ0Ni4zMjgxIEwyMjguMDAwMCAxNDQ1LjIxMjUgTDIzMS4wMDAwIDE0NDQuMDUzMSBMMjM0LjAwMDAgMTQ0Mi44NTAwIEwyMzcuMDAwMCAxNDQxLjYwMzEgTDI0MC4wMDAwIDE0NDAuMzEyNSBMMjQzLjAwMDAgMTQzOC45NzgxIEwyNDYuMDAwMCAxNDM3LjYwMDAgTDI0OS4wMDAwIDE0MzYuMTc4MSBMMjUyLjAwMDAgMTQzNC43MTI1IEwyNTUuMDAwMCAxNDMzLjIwMzEgTDI1OC4wMDAwIDE0MzEuNjUwMCBMMjYxLjAwMDAgMTQzMC4wNTMxIEwyNjQuMDAwMCAxNDI4LjQxMjUgTDI2Ny4wMDAwIDE0MjYuNzI4MSBMMjcwLjAwMDAgMTQyNS4wMDAwIEwyNzMuMDAwMCAxNDIzLjIyODEgTDI3Ni4wMDAwIDE0MjEuNDEyNSBMMjc5LjAwMDAgMTQxOS41NTMxIEwyODIuMDAwMCAxNDE3LjY1MDAgTDI4NS4wMDAwIDE0MTUuNzAzMSBMMjg4LjAwMDAgMTQxMy43MTI1IEwyOTEuMDAwMCAxNDExLjY3ODEgTDI5NC4wMDAwIDE0MDkuNjAwMCBMMjk3LjAwMDAgMTQwNy40NzgxIEwzMDAuMDAwMCAxNDA1LjMxMjUgTDMwMy4wMDAwIDE0MDMuMTAzMSBMMzA2LjAwMDAgMTQwMC44NTAwIEwzMDkuMDAwMCAxMzk4LjU1MzEgTDMxMi4wMDAwIDEzOTYuMjEyNSBMMzE1LjAwMDAgMTM5My44MjgxIEwzMTguMDAwMCAxMzkxLjQwMDAgTDMyMS4wMDAwIDEzODguOTI4MSBMMzI0LjAwMDAgMTM4Ni40MTI1IEwzMjcuMDAwMCAxMzgzLjg1MzEgTDMzMC4wMDAwIDEzODEuMjUwMCBMMzMzLjAwMDAgMTM3OC42MDMxIEwzMzYuMDAwMCAxMzc1LjkxMjUgTDMzOS4wMDAwIDEzNzMuMTc4MSBMMzQyLjAwMDAgMTM3MC40MDAwIEwzNDUuMDAwMCAxMzY3LjU3ODEgTDM0OC4wMDAwIDEzNjQuNzEyNSBMMzUxLjAwMDAgMTM2MS44MDMxIEwzNTQuMDAwMCAxMzU4Ljg1MDAgTDM1Ny4wMDAwIDEzNTUuODUzMSBMMzYwLjAwMDAgMTM1Mi44MTI1IEwzNjMuMDAwMCAxMzQ5LjcyODEgTDM2Ni4wMDAwIDEzNDYuNjAwMCBMMzY5LjAwMDAgMTM0My40MjgxIEwzNzIuMDAwMCAxMzQwLjIxMjUgTDM3NS4wMDAwIDEzMzYuOTUzMSBMMzc4LjAwMDAgMTMzMy42NTAwIEwzODEuMDAwMCAxMzMwLjMwMzEgTDM4NC4wMDAwIDEzMjYuOTEyNSBMMzg3LjAwMDAgMTMyMy40NzgxIEwzOTAuMDAwMCAxMzIwLjAwMDAgTDM5My4wMDAwIDEzMTYuNDc4MSBMMzk2LjAwMDAgMTMxMi45MTI1IEwzOTkuMDAwMCAxMzA5LjMwMzEgTDQwMi4wMDAwIDEzMDUuNjUwMCBMNDA1LjAwMDAgMTMwMS45NTMxIEw0MDguMDAwMCAxMjk4LjIxMjUgTDQxMS4wMDAwIDEyOTQuNDI4MSBMNDE0LjAwMDAgMTI5MC42MDAwIEw0MTcuMDAwMCAxMjg2LjcyODEgTDQyMC4wMDAwIDEyODIuODEyNSBMNDIzLjAwMDAgMTI3OC44NTMxIEw0MjYuMDAwMCAxMjc0Ljg1MDAgTDQyOS4wMDAwIDEyNzAuODAzMSBMNDMyLjAwMDAgMTI2Ni43MTI1IEw0MzUuMDAwMCAxMjYyLjU3ODEgTDQzOC4wMDAwIDEyNTguNDAwMCBMNDQxLjAwMDAgMTI1NC4xNzgxIEw0NDQuMDAwMCAxMjQ5LjkxMjUgTDQ0Ny4wMDAwIDEyNDUuNjAzMSBMNDUwLjAwMDAgMTI0MS4yNTAwIEw0NTMuMDAwMCAxMjM2Ljg1MzEgTDQ1Ni4wMDAwIDEyMzIuNDEyNSBMNDU5LjAwMDAgMTIyNy45MjgxIEw0NjIuMDAwMCAxMjIzLjQwMDAgTDQ2NS4wMDAwIDEyMTguODI4MSBMNDY4LjAwMDAgMTIxNC4yMTI1IEw0NzEuMDAwMCAxMjA5LjU1MzEgTDQ3NC4wMDAwIDEyMDQuODUwMCBMNDc3LjAwMDAgMTIwMC4xMDMxIEw0ODAuMDAwMCAxMTk1LjMxMjUgTDQ4My4wMDAwIDExOTAuNDc4MSBMNDg2LjAwMDAgMTE4NS42MDAwIEw0ODkuMDAwMCAxMTgwLjY3ODEgTDQ5Mi4wMDAwIDExNzUuNzEyNSBMNDk1LjAwMDAgMTE3MC43MDMxIEw0OTguMDAwMCAxMTY1LjY1MDAgTDUwMS4wMDAwIDExNjAuNTUzMSBMNTA0LjAwMDAgMTE1NS40MTI1IEw1MDcuMDAwMCAxMTUwLjIyODEgTDUxMC4wMDAwIDExNDUuMDAwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjMiLz48bGluZSB4MT0iMjcwIiB5MT0iMTQ1NCIgeDI9IjI3MCIgeTI9IjE0NjYiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMjcwIiB5PSIxNDk4IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4xPC90ZXh0PjxsaW5lIHgxPSIzOTAiIHkxPSIxNDU0IiB4Mj0iMzkwIiB5Mj0iMTQ2NiIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIzOTAiIHk9IjE0OTgiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjI8L3RleHQ+PGxpbmUgeDE9IjUxMCIgeTE9IjE0NTQiIHgyPSI1MTAiIHkyPSIxNDY2IiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjUxMCIgeT0iMTQ5OCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MzwvdGV4dD48bGluZSB4MT0iMTQ0IiB5MT0iMTM5MCIgeDI9IjE1NiIgeTI9IjEzOTAiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTMyIiB5PSIxMzk2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj4xPC90ZXh0PjxsaW5lIHgxPSIxNDQiIHkxPSIxMzIwIiB4Mj0iMTU2IiB5Mj0iMTMyMCIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxMzIiIHk9IjEzMjYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPjI8L3RleHQ+PGxpbmUgeDE9IjE0NCIgeTE9IjExODAiIHgyPSIxNTYiIHkyPSIxMTgwIiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjEzMiIgeT0iMTE4NiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+NDwvdGV4dD48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxNDYwIiByPSI1IiBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSIzOTAiIGN5PSIxMzIwIiByPSI1IiBmaWxsPSIjMjY2Yjg5Ii8+PHRleHQgeD0iNDA0IiB5PSIxMzAwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPigyIGNtLCAyKTwvdGV4dD48dGV4dCB4PSIxMzIiIHk9IjEwNzAiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+z4Q8L3RleHQ+PHRleHQgeD0iNTAwIiB5PSIxNTQ1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPmQgKGNtKTwvdGV4dD48L3N2Zz4K"
+    }
+  ]
+}
