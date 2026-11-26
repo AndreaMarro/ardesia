@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "Fifty individual C2 prompt-only models before B candidate exposure",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/C2.json",
+  "sourceFileSha256": "7f2d3cf84a46d5d0086fd9cd6318b923ee073febc110a52fbc8f682edd995b23",
+  "primaryCommit": "026127465e30476b3e8bdb874d9bd98520a0b8d2",
+  "primarySha256": "a51ecd2856370b38a67fd59f09b4dbce23eda319c27e5d379428b9fd67b1dc92",
+  "modelSha256": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+  "actualExecution": {
+    "observedSession": 76298,
+    "wrapperExit": 0,
+    "childExit": 0,
+    "individualPromptCases": 50,
+    "numericOrSymbolicChecks": 33,
+    "exactPintFractionChecks": 9,
+    "profileIntegratedAndDifferentiated": true,
+    "outputSha256": "573c790d7cd9aa78210c53fd407fc716984a3e66c733fb6ecf549a50dee2a4e5"
+  },
+  "negativePreserved": {
+    "reason": "A symbolic positive radius was passed to the finite numeric API; guard correctly rejected it. Symbolic volume derivation moved outside the numeric API, whose guard is unchanged.",
+    "childExit": 1,
+    "outputSha256": "8ed0be6cde4200488e031cac617e3f0a696670bb433e1cf75e37b274f96cc6db",
+    "modelSha256": "864c9cfcd60d4308d729c06e3e31ae66c45c8158f4cbe9572a88f919e6b7470a"
+  },
+  "candidateExposureAtFreeze": "NONE_FOR_CRIC_C2_Q051_100",
+  "candidateAuthoringImports": false,
+  "oppositePrimaryOpened": false,
+  "candidateScientificVerdict": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

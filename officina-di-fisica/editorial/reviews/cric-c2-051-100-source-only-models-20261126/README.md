@@ -1,0 +1,3 @@
+Modelli indipendenti C2-Q051–100, congelati prima delle candidate B. Tutti i cinquanta enunciati erano già stati letti individualmente nella primaria manuale. Il calcolo finale ha prodotto 50 derivazioni, 33 confronti esatti, 9 controlli dimensionali con Fraction e la derivazione integrale del profilo. Non costituisce un giudizio sulle candidate ancora non aperte.
+
+Il primo calcolo è terminato davvero 1: il controllo numerico ha rifiutato un raggio simbolico. Conserviamo codice e output negativi; la prova simbolica è stata separata dalla API numerica senza indebolirne le guardie. La seconda esecuzione è terminata davvero 0. Nessuna UI, nessuna approvazione umana e nessuna pubblicazione.

@@ -1,0 +1,4 @@
+from tools.corpus_engineering.cric_c2_051_100_review_models import primary_only_derivations
+out,counts=primary_only_derivations()
+for n in sorted(out):print('C2-Q'+f'{n:03}',str(out[n]),flush=True)
+print(counts,flush=True)

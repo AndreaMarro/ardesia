@@ -1,0 +1,18 @@
+SHARED_LOCK_ACQUIRED; free bytes 7412064256; one child
+Traceback (most recent call last):
+  File "/private/tmp/run_cric_c2_prekey_models_a.py", line 2, in <module>
+    out,counts=primary_only_derivations()
+               ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tools/corpus_engineering/cric_c2_051_100_review_models.py", line 119, in primary_only_derivations
+    assert merged_radius(r,8)==2*r
+           ~~~~~~~~~~~~~^^^^^
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tools/corpus_engineering/cric_c2_051_100_review_models.py", line 99, in merged_radius
+    radius,=positive(radius)
+            ~~~~~~~~^^^^^^^^
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tools/corpus_engineering/cric_c2_051_100_review_models.py", line 14, in positive
+    out=exact(*values)
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tools/corpus_engineering/cric_c2_051_100_review_models.py", line 11, in exact
+    if any(v.is_number is not True or v.is_real is not True or v.is_finite is not True or v.has(sp.Float)for v in out):raise ValueError('Finite real exact data required')
+                                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Finite real exact data required
+CHILD_EXIT 1; free bytes 7411961856

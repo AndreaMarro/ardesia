@@ -1,0 +1,124 @@
+"""Fifty individual prompt-only fluid models, frozen before B candidate exposure."""
+from fractions import Fraction
+import sympy as sp
+import pint
+SI=pint.UnitRegistry(non_int_type=Fraction)
+PRIMARY_SHA256='a51ecd2856370b38a67fd59f09b4dbce23eda319c27e5d379428b9fd67b1dc92'
+SOURCE_SHA256='7f2d3cf84a46d5d0086fd9cd6318b923ee073febc110a52fbc8f682edd995b23'
+def exact(*values):
+    if any(type(v)is bool or not isinstance(v,(int,Fraction,sp.Expr))for v in values):raise ValueError('Exact real numeric data required before cast')
+    out=tuple(map(sp.sympify,values))
+    if any(v.is_number is not True or v.is_real is not True or v.is_finite is not True or v.has(sp.Float)for v in out):raise ValueError('Finite real exact data required')
+    return out
+def positive(*values):
+    out=exact(*values)
+    if any(v<=0 for v in out):raise ValueError('Strictly positive data required')
+    return out
+def nonnegative(*values):
+    out=exact(*values)
+    if any(v<0 for v in out):raise ValueError('Nonnegative data required')
+    return out
+def continuity_velocity(flow,area):
+    flow,=exact(flow);area,=positive(area);return flow/area
+def bernoulli_pressure_change(rho,vi,vf,g=10,dz=0):
+    rho,g=positive(rho,g);vi,vf=nonnegative(vi,vf);dz,=exact(dz)
+    return rho*(vi**2-vf**2)/2-rho*g*dz
+def stagnation_speed(dp,rho):
+    dp,=nonnegative(dp);rho,=positive(rho);return sp.sqrt(2*dp/rho)
+def speed_from_pressure_drop(vi,rho,drop):
+    vi,=nonnegative(vi);rho,=positive(rho);drop,=exact(drop);square=vi**2+2*drop/rho
+    if square<0:raise ValueError('Unreachable speed square in the stated ideal model')
+    return sp.sqrt(square)
+def area_ratio(vi,vf):
+    vi,vf=positive(vi,vf);return vf/vi
+def torricelli(g,h):
+    g,=positive(g);h,=nonnegative(h);return sp.sqrt(2*g*h)
+def poiseuille_profile(vmax,r,R):
+    vmax,r=nonnegative(vmax,r);R,=positive(R)
+    if r>R:raise ValueError('Radial point must be inside or on tube wall')
+    return vmax*(1-r**2/R**2)
+def mean_poiseuille(vmax):
+    vmax,=nonnegative(vmax);return vmax/2
+def radial_gradient_magnitude(vmax,r,R):
+    poiseuille_profile(vmax,r,R);vmax,r,R=exact(vmax,r,R);return 2*vmax*r/R**2
+def mean_shear_gradient(delta_v,separation):
+    delta_v,=exact(delta_v);separation,=positive(separation);return abs(delta_v)/separation
+def dynamic_viscosity(shear,rate):
+    shear,rate=exact(shear,rate)
+    if rate==0:raise ValueError('Viscosity is not identifiable from zero shear rate alone')
+    eta=shear/rate
+    if eta<=0:raise ValueError('Positive Newtonian viscosity branch required')
+    return eta
+def shear_stress(eta,rate):
+    eta,=positive(eta);rate,=exact(rate);return eta*rate
+def couette_force(eta,area,relative_speed,gap):
+    eta,area,gap=positive(eta,area,gap);relative_speed,=nonnegative(relative_speed);return eta*area*relative_speed/gap
+def hydraulic_resistance(eta,length,radius):
+    eta,length,radius=positive(eta,length,radius);return 8*eta*length/(sp.pi*radius**4)
+def poiseuille_flow(drop,eta,length,radius):
+    drop,=exact(drop);return drop/hydraulic_resistance(eta,length,radius)
+def pressure_for_flow(flow,eta,length,radius):
+    flow,=exact(flow);return flow*hydraulic_resistance(eta,length,radius)
+def radius_factor_for_flow_ratio(ratio):
+    ratio,=positive(ratio);return ratio**sp.Rational(1,4)
+def passive_hydraulic_power(drop,flow):
+    drop,flow=exact(drop,flow)
+    if drop*flow<0:raise ValueError('Passive pressure-work branch requires nonnegative power')
+    return drop*flow
+def series_resistance(*resistances):
+    if not 1<=len(resistances)<=100:raise ValueError('Bounded nonempty resistance network required')
+    return sum(positive(*resistances),sp.Integer(0))
+def parallel_resistance(*resistances):
+    if not 1<=len(resistances)<=100:raise ValueError('Bounded nonempty resistance network required')
+    return 1/sum((1/v for v in positive(*resistances)),sp.Integer(0))
+def unknown_parallel_resistance(equivalent,known):
+    equivalent,known=positive(equivalent,known)
+    if equivalent>=known:raise ValueError('Positive finite second branch requires equivalent<known')
+    return 1/(1/equivalent-1/known)
+def conductance(resistance):
+    resistance,=positive(resistance);return 1/resistance
+def narrow_flow_fraction(wide_radius_factor):
+    wide_radius_factor,=positive(wide_radius_factor)
+    if wide_radius_factor<1:raise ValueError('Wide radius must not be smaller than narrow radius')
+    return 1/(1+wide_radius_factor**4)
+def surface_work(gamma,new_total_area):
+    gamma,=positive(gamma);new_total_area,=nonnegative(new_total_area);return gamma*new_total_area
+def film_force(gamma,border_length,interfaces=2):
+    gamma,border_length=positive(gamma,border_length)
+    if type(interfaces)is not int or interfaces not in(1,2):raise ValueError('One interface or two film faces required')
+    return interfaces*gamma*border_length
+def capillary_height(gamma,rho,g,radius,contact_cosine):
+    gamma,rho,g,radius=positive(gamma,rho,g,radius);contact_cosine,=exact(contact_cosine)
+    if not -1<=contact_cosine<=1:raise ValueError('Contact-angle cosine must be in[-1,1]')
+    return 2*gamma*contact_cosine/(rho*g*radius)
+def laplace_spherical_pressure(gamma,radius,interfaces=1):
+    gamma,radius=positive(gamma,radius)
+    if type(interfaces)is not int or interfaces not in(1,2):raise ValueError('One spherical interface or thin two-face film required')
+    return 2*interfaces*gamma/radius
+def merged_radius(radius,count):
+    radius,=positive(radius)
+    if type(count)is not int or count<1:raise ValueError('Positive integer droplet count required')
+    return radius*sp.Integer(count)**sp.Rational(1,3)
+def merge_area_ratio(count):
+    if type(count)is not int or count<1:raise ValueError('Positive integer droplet count required')
+    return sp.Integer(count)**(-sp.Rational(1,3))
+def primary_only_derivations():
+    R=sp.Rational
+    rho,vi,vf,g,dz,eta,L,r,dp,Q,gamma,area=sp.symbols('rho vi vf g dz eta L r dp Q gamma area',positive=True)
+    out={51:'At nonzero flow, continuity raises speed in the narrowing; ideal horizontal Bernoulli lowers static pressure',52:bernoulli_pressure_change(1000,2,1),53:-bernoulli_pressure_change(800,2,2,10,R(3,4)),54:stagnation_speed(60,R(6,5)),55:'Viscous mechanical-energy dissipation must enter; unchanged flow does not imply unchanged pressure',56:area_ratio(1,speed_from_pressure_drop(1,1000,1500)),57:'ristagno',58:'Separation, recirculation and viscous mixing losses reduce pressure recovery; recirculation alone is not a universal turbulence test',59:torricelli(10,R(4,5)),60:rho*(vf**2-vi**2)/2,
+61:'laminare locally suggested by ordered layers; not an unconditional global diagnosis',62:mean_poiseuille(R(14,25)),63:mean_shear_gradient(R(1,50),R(1,2000)),64:dynamic_viscosity(R(18,5),12),65:shear_stress(R(3,10),0),66:'No slip at a stationary wall: local fluid velocity0,not necessarily the interior velocity or gradient',67:'Radial gradient magnitude largest at the wall,not at the speed maximum on axis',68:poiseuille_profile(1,R(4,5),1),69:R(13,10)/2,70:couette_force(1,1,1,R(5,2))/couette_force(1,1,1,1),
+71:hydraulic_resistance(1,1,2)/hydraulic_resistance(1,1,3),72:9*poiseuille_flow(1,R(1,2),3,1)/poiseuille_flow(1,1,1,1),73:8*eta*L/(sp.pi*r**4),74:radius_factor_for_flow_ratio(3),75:poiseuille_flow(1,1,1,2)/poiseuille_flow(1,1,1,1),76:sp.Integer(8)*10**8*R(5,2)*sp.Rational(1,10**6)/1000,77:'viscosità dinamica η in Pa·s',78:'Hydrodynamically fully developed profile required,not merely laminar classification at entrance',79:passive_hydraulic_power(3000,R(4,10**6)),80:poiseuille_flow(0,1,1,1),
+81:series_resistance(2,5,1)*R(3,2),82:parallel_resistance(20,20,20,20),83:'Remaining flow unchanged at fixed nodal pressure difference and branch resistance; total flow decreases',84:series_resistance(1)/parallel_resistance(1,1),85:20/series_resistance(2,parallel_resistance(6,6)),86:'parallelo because both endpoints are the same A and B; original figure still unseen',87:unknown_parallel_resistance(3,4),88:'conduttanza idraulica, G=1/R_h, additive in parallel',89:'At nonzero common flow, double resistance gives double pressure drop; at zero flow both are0',90:narrow_flow_fraction(2),
+91:'Sphere minimizes positive isotropic surface free energy at fixed volume with negligible gravity',92:surface_work(R(1,20),R(3,10**4))*10**6,93:film_force(R(1,40),R(1,25),2),94:capillary_height(1,1,1,1,-R(1,2)),95:30*laplace_spherical_pressure(1,1)/laplace_spherical_pressure(1,4),96:capillary_height(1,1,1,1,R(1,2))/capillary_height(1,1,1,1,1),97:sp.Integer(0),98:20*R(7,10),99:merge_area_ratio(8),100:'One gas–liquid interface gives2γ/R from two principal curvatures; thin soap film has two interfaces and about4γ/R'}
+    expected={52:1500,53:6000,54:10,56:2,59:4,62:R(7,25),63:40,64:R(3,10),65:0,68:R(9,25),69:R(13,20),70:R(2,5),71:R(81,16),72:6,74:3**R(1,4),75:16,76:2,79:R(3,250),80:0,81:12,82:5,84:2,85:4,87:12,90:R(1,17),92:15,93:R(1,500),94:-1,95:120,96:R(1,2),97:0,98:14,99:R(1,2)}
+    assert len(out)==50 and set(out)==set(range(51,101))
+    for n,want in expected.items():assert sp.simplify(out[n]-want)==0,n
+    rr,Rtube,vmax=sp.symbols('rr Rtube vmax',positive=True)
+    assert sp.simplify(sp.integrate(2*vmax*(1-rr**2/Rtube**2)*rr/Rtube**2,(rr,0,Rtube))-vmax/2)==0
+    assert sp.diff(vmax*(1-rr**2/Rtube**2),rr)==-2*vmax*rr/Rtube**2
+    assert merged_radius(r,8)==2*r
+    assert sp.simplify(4*sp.pi*merged_radius(r,8)**2/(8*4*sp.pi*r**2)-out[99])==0
+    units=SI.Quantity
+    checks=[(units(1000,'kg/meter**3')*units(3,'meter**2/second**2')/2).to('Pa').magnitude==1500,(units(Fraction(1,50),'meter/second')/units(Fraction(1,2),'mm')).to('1/second').magnitude==40,(units(Fraction(18,5),'Pa')/units(12,'1/second')).to('Pa*second').magnitude==Fraction(3,10),(units(8*10**8,'Pa*second/meter**3')*units(Fraction(5,2),'ml/second')).to('kPa').magnitude==2,(units(3000,'Pa')*units(Fraction(4,10**6),'meter**3/second')).to('watt').magnitude==Fraction(3,250),(units(Fraction(1,20),'N/meter')*units(3,'cm**2')).to('microjoule').magnitude==15,(2*units(Fraction(1,40),'N/meter')*units(4,'cm')).to('millinewton').magnitude==2,(units(20,'kPa')/units(5,'kPa*second/ml')).to('ml/second').magnitude==4,(2*units(Fraction(3,50),'N/meter')/units(1,'mm')).to('Pa').magnitude==120]
+    assert all(checks)
+    return out,{'individualPromptCases':len(out),'numericOrSymbolicChecks':len(expected),'exactPintChecks':len(checks),'profileIntegratedAndDifferentiated':True,'candidateExposure':'NONE_AT_THIS_PREKEY_FREEZE','noCandidateVerdict':True}
