@@ -1,0 +1,25 @@
+"""Exact Git-only acquisition of independently delivered927 evidence, no installation."""
+from pathlib import Path,PurePosixPath
+import subprocess,json,hashlib,zipfile,fcntl
+APP=Path.cwd();OUT=APP/'editorial/reviews/vector927-root-recovery-20261126';OUT.mkdir(exist_ok=True)
+SPECS=[('author-six','27503c36097b196fb7003a6448a9aaf7ee21baf0','editorial/author-notes/native-vector-framing-correction-20261126/delivery.json','d6aaf3b8c5837c41c552ada9f2b4fba4b500f177e80f206ca6dc42c3b368420a'),('peer-six','8e6702c56d0563ae643017bc4ed378ac77fe86cc','editorial/reviews/native-vector-six-independent-27503-20261126/handoff.json','b67cdecdf76068b62f4a680d227f2e73c963b0cbb45d4034dab6afcec779c18a'),('peer-five-renewal','f8fa0d809bdcff5b28c05a8367bff1ff401eb28d','editorial/reviews/c1-five-closures-927-renewal-20261126/delivery.json','1c81b32245af268257888d9d30aaf734d38480d1b57fac9f3e5802a1de6b3883')]
+def sha(b):return hashlib.sha256(b).hexdigest()
+def blob(c,p):return subprocess.check_output(['git','show',c+':officina-di-fisica/'+p])
+receipts=[]
+with open('/private/tmp/cric-bounded-local-work.lock','a')as lock:
+ fcntl.flock(lock,fcntl.LOCK_EX)
+ for label,commit,delivery,pin in SPECS:
+  raw=blob(commit,delivery);assert sha(raw)==pin;document=json.loads(raw);files={**document['files'],delivery:{'sha256':pin,'bytes':len(raw)}};index={};archive=OUT/(label+'-verbatim.zip')
+  with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=3)as z:
+   for name,declared in files.items():
+    p=PurePosixPath(name);assert not p.is_absolute()and'..'not in p.parts and'\\'not in name
+    expected=declared if isinstance(declared,str)else declared['sha256'];data=blob(commit,name);assert sha(data)==expected,name
+    if isinstance(declared,dict)and'bytes'in declared:assert len(data)==declared['bytes'],name
+    z.writestr(name,data);index[name]={'sha256':expected,'bytes':len(data)}
+  with zipfile.ZipFile(archive)as z:
+   assert z.testzip()is None and len(z.namelist())==len(index)
+   for name,v in index.items():assert sha(z.read(name))==v['sha256']
+  (OUT/(label+'-source-manifest.json')).write_bytes(raw)
+  receipt={'scope':'Verified recovery only; no installation or scientific acceptance','sourceCommit':commit,'sourceDeliveryPath':delivery,'sourceDeliverySha256':pin,'declaredAndRecoveredFiles':len(index),'files':index,'archiveSha256':sha(archive.read_bytes()),'archiveBytes':archive.stat().st_size,'sourceDeletedPathsRetainedAsMetadataOnly':document.get('deletedPaths',[]),'runtimeSourceAndActiveTestsInstalled':False,'scientificCredit':0,'humanApproval':'NOT_RUN','publicationAction':'NONE'}
+  (OUT/(label+'-receipt.json')).write_text(json.dumps(receipt,indent=2)+'\n');receipts.append({k:receipt[k]for k in ['sourceCommit','declaredAndRecoveredFiles','archiveSha256','archiveBytes']});print(label,len(index),archive.stat().st_size,flush=True)
+ (OUT/'receipt.json').write_text(json.dumps({'scope':'1022author+57peer+983renewal files and their three original manifests verified independently from Git; all retained in bounded lossless archives','deliveries':receipts,'currentRootRuntimeUnchanged':True,'scientificCredit':0,'humanApproval':'NOT_RUN','publicationAction':'NONE'},indent=2)+'\n')
