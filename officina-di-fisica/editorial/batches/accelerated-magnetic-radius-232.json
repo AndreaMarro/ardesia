@@ -1,0 +1,1227 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-accelerated-magnetic-radius-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Accelerazione elettrica e successiva orbita magnetica",
+      "order": 23201,
+      "title": "Due leggi in due regioni separate",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerated-magnetic-radius",
+      "difficulty": 1,
+      "prompt": "Una particella ideale ha rapporto α=|q|/m=1 C/kg. Parte da ferma e attraversa una regione elettrica con differenza di potenziale favorevole di modulo U>0: il lavoro del campo è |q|U. Poi entra perpendicolarmente in una regione separata con solo campo magnetico uniforme di modulo B>0. Si trascurano altre forze e radiazione; ogni preparazione e ogni inversa resta nel regime non relativistico. Si cerca il raggio positivo r nella seconda regione. Con U=2 V e B=1 T, quanto vale r in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nella prima regione il lavoro elettrico diventa energia cinetica: mv²/2=|q|U, quindi v²=2αU. Con α=1 C/kg e U=2 V, v=2 m/s sul ramo positivo. Nella seconda regione il campo non compie lavoro: il modulo della velocità resta due e la forza centripeta dà r=v/(αB)=2 m."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/bd14886d12e2148abfb99a2cef0c209e4d996733fdd3e9ecb6baab551d6e30cd",
+          "text": "Il primo pannello separa i due calcoli: il lavoro elettrico determina v e il campo magnetico determina r senza cambiare K. Non è una traiettoria tracciata attraverso campi sovrapposti."
+        },
+        {
+          "type": "formula",
+          "text": "v^2=2\\alpha U"
+        },
+        {
+          "type": "formula",
+          "text": " v=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac v{\\alpha B}"
+        },
+        {
+          "type": "formula",
+          "text": " r=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Quattro m tratterebbe v² come v. Un m richiederebbe v=1 m/s e U=1/2 V a B=1 T, non la tensione assegnata di 2 V. Un campo magnetico uniforme da solo non fornisce l’energia acquistata nella prima regione."
+        }
+      ],
+      "hints": [
+        "Calcola la rapidità con il lavoro elettrico prima di usare il raggio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro m tratterebbe v² come v. Un m richiederebbe v=1 m/s e U=1/2 V a B=1 T, non la tensione assegnata di 2 V. Un campo magnetico uniforme da solo non fornisce l’energia acquistata nella prima regione.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Regioni separate e bilancio del lavoro",
+        "Raggio, coefficienti dimensionali e inverse",
+        "Radicali esatti e media delle uscite",
+        "Display continui, offset e vincolo fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-accelerated-magnetic-radius-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Accelerazione elettrica e successiva orbita magnetica",
+      "order": 23202,
+      "title": "L’unità del risultato finale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerated-magnetic-radius",
+      "difficulty": 1,
+      "prompt": "Una particella ideale ha rapporto α=|q|/m=1 C/kg. Parte da ferma e attraversa una regione elettrica con differenza di potenziale favorevole di modulo U>0: il lavoro del campo è |q|U. Poi entra perpendicolarmente in una regione separata con solo campo magnetico uniforme di modulo B>0. Si trascurano altre forze e radiazione; ogni preparazione e ogni inversa resta nel regime non relativistico. Si cerca il raggio positivo r nella seconda regione. Quale unità misura r?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m",
+          "V",
+          "m/s",
+          "T",
+          "J"
+        ],
+        "value": "m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il risultato cercato è una lunghezza. Il prodotto αB ha unità s⁻¹ e v/(αB) ha unità metro. U e v sono passaggi intermedi, non la grandezza richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "[\\alpha B]=\\mathrm s^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " [r]=\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "V misura la differenza di potenziale, m/s la rapidità, T il campo e J l’energia. Il fatto di partire da una tensione non assegna al raggio l’unità volt."
+        }
+      ],
+      "hints": [
+        "Segui le unità fino alla seconda regione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "V misura la differenza di potenziale, m/s la rapidità, T il campo e J l’energia. Il fatto di partire da una tensione non assegna al raggio l’unità volt.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Regioni separate e bilancio del lavoro",
+        "Raggio, coefficienti dimensionali e inverse",
+        "Radicali esatti e media delle uscite",
+        "Display continui, offset e vincolo fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-accelerated-magnetic-radius-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Accelerazione elettrica e successiva orbita magnetica",
+      "order": 23203,
+      "title": "Una formula per il raggio dopo l’accelerazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerated-magnetic-radius",
+      "difficulty": 1,
+      "prompt": "Una particella ideale ha rapporto α=|q|/m=1 C/kg. Parte da ferma e attraversa una regione elettrica con differenza di potenziale favorevole di modulo U>0: il lavoro del campo è |q|U. Poi entra perpendicolarmente in una regione separata con solo campo magnetico uniforme di modulo B>0. Si trascurano altre forze e radiazione; ogni preparazione e ogni inversa resta nel regime non relativistico. Si cerca il raggio positivo r nella seconda regione. Quale espressione fisica fornisce r?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "r = √(2 α U) / (α B)",
+          "r = 2 α U / (α B)",
+          "r = √(α U) / (α B)",
+          "r = √(2 α U) / B",
+          "r = B / √(2 α U)"
+        ],
+        "value": "r = √(2 α U) / (α B)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima legge determina v=√(2αU). La seconda dà r=v/(αB), perciò r=√(2αU)/(αB). α porta unità: il suo valore numerico uno non permette di cancellarlo dalla relazione dimensionale. Le due leggi non descrivono un unico campo elettrico e magnetico sovrapposto."
+        },
+        {
+          "type": "formula",
+          "text": "v=\\sqrt{2\\alpha U}"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac{\\sqrt{2\\alpha U}}{\\alpha B}"
+        },
+        {
+          "type": "text",
+          "text": "2αU al numeratore è una rapidità al quadrato. √(αU) perde il due energetico; dividere solo per B omette α e altera le dimensioni. Il reciproco non ha unità di lunghezza."
+        }
+      ],
+      "hints": [
+        "Conserva il coefficiente α anche se vale numericamente uno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "2αU al numeratore è una rapidità al quadrato. √(αU) perde il due energetico; dividere solo per B omette α e altera le dimensioni. Il reciproco non ha unità di lunghezza.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Regioni separate e bilancio del lavoro",
+        "Raggio, coefficienti dimensionali e inverse",
+        "Radicali esatti e media delle uscite",
+        "Display continui, offset e vincolo fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-accelerated-magnetic-radius-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Accelerazione elettrica e successiva orbita magnetica",
+      "order": 23204,
+      "title": "Tensione quadrupla, non raggio quadruplo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerated-magnetic-radius",
+      "difficulty": 1,
+      "prompt": "Una particella ideale ha rapporto α=|q|/m=1 C/kg. Parte da ferma e attraversa una regione elettrica con differenza di potenziale favorevole di modulo U>0: il lavoro del campo è |q|U. Poi entra perpendicolarmente in una regione separata con solo campo magnetico uniforme di modulo B>0. Si trascurano altre forze e radiazione; ogni preparazione e ogni inversa resta nel regime non relativistico. Si cerca il raggio positivo r nella seconda regione. B resta 1 T e U passa da 2 a 8 V. Come cambia r?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 2 m a 4 m",
+          "Da 2 m a 8 m",
+          "Da 2 m a 1 m",
+          "Resta 2 m",
+          "Da 2 m a 16 m"
+        ],
+        "value": "Da 2 m a 4 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La tensione quadrupla rende v² quattro volte maggiore, dunque raddoppia v. Con lo stesso B raddoppia anche r: si passa da 2 a 4 m. È una dipendenza dalla radice di U, non da U al primo grado."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/bd14886d12e2148abfb99a2cef0c209e4d996733fdd3e9ecb6baab551d6e30cd",
+          "text": "A B=1 T, tensioni 2 V e 8 V danno raggi 2 m e 4 m. I due cerchi hanno la stessa scala: U quadrupla raddoppia r."
+        },
+        {
+          "type": "formula",
+          "text": "v_A=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Otto m segue direttamente il fattore quattro della tensione. Un m inverte il raddoppio; due ignora U e sedici introduce un’altra potenza senza legge fisica."
+        }
+      ],
+      "hints": [
+        "Applica la radice al fattore della tensione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Otto m segue direttamente il fattore quattro della tensione. Un m inverte il raddoppio; due ignora U e sedici introduce un’altra potenza senza legge fisica.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Regioni separate e bilancio del lavoro",
+        "Raggio, coefficienti dimensionali e inverse",
+        "Radicali esatti e media delle uscite",
+        "Display continui, offset e vincolo fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-accelerated-magnetic-radius-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Accelerazione elettrica e successiva orbita magnetica",
+      "order": 23205,
+      "title": "L’inversa torna all’energia elettrica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerated-magnetic-radius",
+      "difficulty": 2,
+      "prompt": "Una particella ideale ha rapporto α=|q|/m=1 C/kg. Parte da ferma e attraversa una regione elettrica con differenza di potenziale favorevole di modulo U>0: il lavoro del campo è |q|U. Poi entra perpendicolarmente in una regione separata con solo campo magnetico uniforme di modulo B>0. Si trascurano altre forze e radiazione; ogni preparazione e ogni inversa resta nel regime non relativistico. Si cerca il raggio positivo r nella seconda regione. Si misurano r=2 m e B=1 T. Quanto vale U in V?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla regione magnetica ricavo v=αBr. Inserisco nell’energia v²=2αU e ottengo U=αB²r²/2. Con i dati, la rapidità è 2 m/s e la tensione è 2 V. Il quadrato riguarda sia B sia r."
+        },
+        {
+          "type": "formula",
+          "text": "v=\\alpha Br"
+        },
+        {
+          "type": "formula",
+          "text": " U=\\frac{\\alpha B^2r^2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " U=2\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Quattro V omette il fattore 1/2. Un V omette numericamente il quadrato di r e darebbe r=√2 m; otto V darebbe r=4 m. Nessuna inversa autorizza a uscire dal regime non relativistico."
+        }
+      ],
+      "hints": [
+        "Risolvi prima v=αBr, poi ricava la tensione dall’energia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro V omette il fattore 1/2. Un V omette numericamente il quadrato di r e darebbe r=√2 m; otto V darebbe r=4 m. Nessuna inversa autorizza a uscire dal regime non relativistico.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Regioni separate e bilancio del lavoro",
+        "Raggio, coefficienti dimensionali e inverse",
+        "Radicali esatti e media delle uscite",
+        "Display continui, offset e vincolo fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-accelerated-magnetic-radius-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Accelerazione elettrica e successiva orbita magnetica",
+      "order": 23206,
+      "title": "Il modulo del campo della seconda regione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerated-magnetic-radius",
+      "difficulty": 2,
+      "prompt": "Una particella ideale ha rapporto α=|q|/m=1 C/kg. Parte da ferma e attraversa una regione elettrica con differenza di potenziale favorevole di modulo U>0: il lavoro del campo è |q|U. Poi entra perpendicolarmente in una regione separata con solo campo magnetico uniforme di modulo B>0. Si trascurano altre forze e radiazione; ogni preparazione e ogni inversa resta nel regime non relativistico. Si cerca il raggio positivo r nella seconda regione. Si misurano U=2 V e r=2 m. Quanto vale B in T?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "T",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La tensione dà v=2 m/s. L’inversa B=v/(αr) restituisce 1 T. Il ramo B>0 esprime un modulo: il segno della carica stabilirebbe il verso di curvatura e non un campo negativo da questa misura scalare."
+        },
+        {
+          "type": "formula",
+          "text": "v=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " B=\\frac v{\\alpha r}"
+        },
+        {
+          "type": "formula",
+          "text": " B=1\\,\\mathrm T"
+        },
+        {
+          "type": "text",
+          "text": "Due T copia il numero del raggio e darebbe r=1 m. Quattro T moltiplica la rapidità per il raggio invece di dividerla; −1 T non è un secondo modulo ammesso."
+        }
+      ],
+      "hints": [
+        "Decodifica la rapidità dalla tensione prima dell’inversa magnetica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due T copia il numero del raggio e darebbe r=1 m. Quattro T moltiplica la rapidità per il raggio invece di dividerla; −1 T non è un secondo modulo ammesso.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Regioni separate e bilancio del lavoro",
+        "Raggio, coefficienti dimensionali e inverse",
+        "Radicali esatti e media delle uscite",
+        "Display continui, offset e vincolo fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-accelerated-magnetic-radius-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Accelerazione elettrica e successiva orbita magnetica",
+      "order": 23207,
+      "title": "La stessa energia, campo doppio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerated-magnetic-radius",
+      "difficulty": 2,
+      "prompt": "Una particella ideale ha rapporto α=|q|/m=1 C/kg. Parte da ferma e attraversa una regione elettrica con differenza di potenziale favorevole di modulo U>0: il lavoro del campo è |q|U. Poi entra perpendicolarmente in una regione separata con solo campo magnetico uniforme di modulo B>0. Si trascurano altre forze e radiazione; ogni preparazione e ogni inversa resta nel regime non relativistico. Si cerca il raggio positivo r nella seconda regione. A usa U=2 V,B=1 T. B mantiene U=2 V e usa campo di 2 T. Quanto vale r_B/r_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/4",
+          "1",
+          "0"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La tensione identica dà la stessa rapidità di 2 m/s. Il campo doppio dimezza il raggio, da 2 a 1 m: rapporto 1/2. Il campo magnetico non ha ridotto l’energia cinetica."
+        },
+        {
+          "type": "formula",
+          "text": "r_A=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " r_B/r_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte la dipendenza dal campo. Un quarto introduce un quadrato nel confronto diretto; uno ignora B. Zero non segue da un campo finito e da una rapidità positiva."
+        }
+      ],
+      "hints": [
+        "La radice di U è la stessa e si cancella.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte la dipendenza dal campo. Un quarto introduce un quadrato nel confronto diretto; uno ignora B. Zero non segue da un campo finito e da una rapidità positiva.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Regioni separate e bilancio del lavoro",
+        "Raggio, coefficienti dimensionali e inverse",
+        "Radicali esatti e media delle uscite",
+        "Display continui, offset e vincolo fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-accelerated-magnetic-radius-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Accelerazione elettrica e successiva orbita magnetica",
+      "order": 23208,
+      "title": "Una proposta di raggio troppo grande",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerated-magnetic-radius",
+      "difficulty": 2,
+      "prompt": "Una particella ideale ha rapporto α=|q|/m=1 C/kg. Parte da ferma e attraversa una regione elettrica con differenza di potenziale favorevole di modulo U>0: il lavoro del campo è |q|U. Poi entra perpendicolarmente in una regione separata con solo campo magnetico uniforme di modulo B>0. Si trascurano altre forze e radiazione; ogni preparazione e ogni inversa resta nel regime non relativistico. Si cerca il raggio positivo r nella seconda regione. Con U=2 V,B=1 T si propone r=4 m. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m",
+          "−2 m",
+          "2",
+          "4 m",
+          "0 m"
+        ],
+        "value": "2 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due leggi danno r=2 m. La differenza proposta meno corretto è 4−2=+2 m. Il rapporto puro due e la differenza di energia non sono la grandezza richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "r=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " e=(4-2)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " e=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "−2 cambia l’ordine; quattro copia la proposta e zero l’accetta senza controllo. Due senza unità è il rapporto fra i due raggi, non lo scarto."
+        }
+      ],
+      "hints": [
+        "Conserva il metro dopo la sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−2 cambia l’ordine; quattro copia la proposta e zero l’accetta senza controllo. Due senza unità è il rapporto fra i due raggi, non lo scarto.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Regioni separate e bilancio del lavoro",
+        "Raggio, coefficienti dimensionali e inverse",
+        "Radicali esatti e media delle uscite",
+        "Display continui, offset e vincolo fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-accelerated-magnetic-radius-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Accelerazione elettrica e successiva orbita magnetica",
+      "order": 23209,
+      "title": "L’inversa simbolica con unità coerenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerated-magnetic-radius",
+      "difficulty": 2,
+      "prompt": "Una particella ideale ha rapporto α=|q|/m=1 C/kg. Parte da ferma e attraversa una regione elettrica con differenza di potenziale favorevole di modulo U>0: il lavoro del campo è |q|U. Poi entra perpendicolarmente in una regione separata con solo campo magnetico uniforme di modulo B>0. Si trascurano altre forze e radiazione; ogni preparazione e ogni inversa resta nel regime non relativistico. Si cerca il raggio positivo r nella seconda regione. r e B sono noti. Quale relazione isola U?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "U = α B² r² / 2",
+          "U = α B r / 2",
+          "U = α B² r²",
+          "U = 2 / (α B² r²)",
+          "U = r² / (2 α B²)"
+        ],
+        "value": "U = α B² r² / 2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo magnetico dà v²=α²B²r². U=v²/(2α) cancella una sola α: U=αB²r²/2. Con α in C/kg questa espressione ha unità volt; il fattore due deriva dal lavoro convertito in energia cinetica."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/bd14886d12e2148abfb99a2cef0c209e4d996733fdd3e9ecb6baab551d6e30cd",
+          "text": "Gli ultimi tre punti mantengono U=2 V e α=1 C/kg: a B=1,2,4 T corrispondono r=2,1,1/2 m. L’inversa energetica richiede r² e B²; i punti non vengono interpolati linearmente."
+        },
+        {
+          "type": "formula",
+          "text": "v^2=\\alpha^2B^2r^2"
+        },
+        {
+          "type": "formula",
+          "text": " U=\\frac{\\alpha B^2r^2}{2}"
+        },
+        {
+          "type": "text",
+          "text": "αBr/2 non contiene i quadrati richiesti dall’energia. Omettere il due raddoppia U. Il reciproco ha dimensione di tensione inversa; r²/(2αB²) scambia il ruolo del campo e non isola U."
+        }
+      ],
+      "hints": [
+        "Eleva al quadrato la relazione magnetica prima di sostituire nell’energia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "αBr/2 non contiene i quadrati richiesti dall’energia. Omettere il due raddoppia U. Il reciproco ha dimensione di tensione inversa; r²/(2αB²) scambia il ruolo del campo e non isola U.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Regioni separate e bilancio del lavoro",
+        "Raggio, coefficienti dimensionali e inverse",
+        "Radicali esatti e media delle uscite",
+        "Display continui, offset e vincolo fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-accelerated-magnetic-radius-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Accelerazione elettrica e successiva orbita magnetica",
+      "order": 23210,
+      "title": "Due fattori con una radice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerated-magnetic-radius",
+      "difficulty": 2,
+      "prompt": "Una particella ideale ha rapporto α=|q|/m=1 C/kg. Parte da ferma e attraversa una regione elettrica con differenza di potenziale favorevole di modulo U>0: il lavoro del campo è |q|U. Poi entra perpendicolarmente in una regione separata con solo campo magnetico uniforme di modulo B>0. Si trascurano altre forze e radiazione; ogni preparazione e ogni inversa resta nel regime non relativistico. Si cerca il raggio positivo r nella seconda regione. Fra prove U_B=κ₁U_A e B_B=κ₂B_A. I fattori sono positivi e i moti restano non relativistici. Quanto vale r_B/r_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "√κ₁ / κ₂",
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / √κ₁",
+          "√(κ₁ / κ₂)"
+        ],
+        "value": "√κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La radice della tensione porta √κ₁. Il campo rimane al primo grado al denominatore e porta 1/κ₂. Il rapporto è √κ₁/κ₂. I fattori sono fra preparazioni, non campi variabili nel tempo durante una stessa orbita."
+        },
+        {
+          "type": "formula",
+          "text": "r_B/r_A=\\frac{\\sqrt{\\kappa_1}}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁/κ₂ perde la radice energetica. Il prodotto rende diretto l’effetto di B; il reciproco inverte il confronto. Mettere κ₂ dentro la radice dimezza impropriamente l’esponente del campo."
+        }
+      ],
+      "hints": [
+        "Applica la radice soltanto al fattore della tensione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁/κ₂ perde la radice energetica. Il prodotto rende diretto l’effetto di B; il reciproco inverte il confronto. Mettere κ₂ dentro la radice dimezza impropriamente l’esponente del campo.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Regioni separate e bilancio del lavoro",
+        "Raggio, coefficienti dimensionali e inverse",
+        "Radicali esatti e media delle uscite",
+        "Display continui, offset e vincolo fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-accelerated-magnetic-radius-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Accelerazione elettrica e successiva orbita magnetica",
+      "order": 23211,
+      "title": "Due cambiamenti, risultato esatto con radice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerated-magnetic-radius",
+      "difficulty": 2,
+      "prompt": "Una particella ideale ha rapporto α=|q|/m=1 C/kg. Parte da ferma e attraversa una regione elettrica con differenza di potenziale favorevole di modulo U>0: il lavoro del campo è |q|U. Poi entra perpendicolarmente in una regione separata con solo campo magnetico uniforme di modulo B>0. Si trascurano altre forze e radiazione; ogni preparazione e ogni inversa resta nel regime non relativistico. Si cerca il raggio positivo r nella seconda regione. A ha U=2 V,B=1 T. B ha U=1 V,B=2 T. Quanto vale r_B/r_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "√2/4",
+          "√2/2",
+          "1/4",
+          "2√2",
+          "1"
+        ],
+        "value": "√2/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha r_A=2 m. B ha v_B=√2 m/s e r_B=√2/2 m. Dividendo r_B per i 2 m iniziali si ottiene √2/4. La radice resta esatta: non serve cercarne un valore decimale."
+        },
+        {
+          "type": "formula",
+          "text": "r_A=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=\\frac{\\sqrt2}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " r_B/r_A=\\frac{\\sqrt2}{4}"
+        },
+        {
+          "type": "text",
+          "text": "√2/2 è il solo fattore della rapidità e ignora B doppio. Un quarto segue direttamente la tensione invece della sua radice. 2√2 è il reciproco del rapporto corretto; uno ignora entrambi gli effetti."
+        }
+      ],
+      "hints": [
+        "Mantieni √2 simbolico fino alla fine.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "√2/2 è il solo fattore della rapidità e ignora B doppio. Un quarto segue direttamente la tensione invece della sua radice. 2√2 è il reciproco del rapporto corretto; uno ignora entrambi gli effetti.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Regioni separate e bilancio del lavoro",
+        "Raggio, coefficienti dimensionali e inverse",
+        "Radicali esatti e media delle uscite",
+        "Display continui, offset e vincolo fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-accelerated-magnetic-radius-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Accelerazione elettrica e successiva orbita magnetica",
+      "order": 23212,
+      "title": "Una media con radicali esatti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerated-magnetic-radius",
+      "difficulty": 2,
+      "prompt": "Una particella ideale ha rapporto α=|q|/m=1 C/kg. Parte da ferma e attraversa una regione elettrica con differenza di potenziale favorevole di modulo U>0: il lavoro del campo è |q|U. Poi entra perpendicolarmente in una regione separata con solo campo magnetico uniforme di modulo B>0. Si trascurano altre forze e radiazione; ogni preparazione e ogni inversa resta nel regime non relativistico. Si cerca il raggio positivo r nella seconda regione. A usa U=2 V,B=1 T; B usa U=1 V,B=2 T. Qual è la media aritmetica dei due raggi con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(1+√2/4) m",
+          "(2+√2/2) m",
+          "(1+√2/2) m",
+          "(2√3/3) m",
+          "0 m"
+        ],
+        "value": "(1+√2/4) m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite sono 2 m e √2/2 m. La semisomma è (1+√2/4) m. Ai dati medi U=3/2 V e B=3/2 T si otterrebbe invece (2√3/3) m: non è la media richiesta. Nessuna approssimazione di √2 o √3 è necessaria."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline r=\\frac{2+\\sqrt2/2}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline r=\\left(1+\\frac{\\sqrt2}{4}\\right)\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "(2+√2/2) m è la somma senza dimezzare. (1+√2/2) m dimezza solo il primo addendo. (2√3/3) m usa gli ingressi medi; zero non è la media di due lunghezze positive."
+        }
+      ],
+      "hints": [
+        "Dimezza entrambi gli addendi della somma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "(2+√2/2) m è la somma senza dimezzare. (1+√2/2) m dimezza solo il primo addendo. (2√3/3) m usa gli ingressi medi; zero non è la media di due lunghezze positive.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Regioni separate e bilancio del lavoro",
+        "Raggio, coefficienti dimensionali e inverse",
+        "Radicali esatti e media delle uscite",
+        "Display continui, offset e vincolo fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-accelerated-magnetic-radius-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Accelerazione elettrica e successiva orbita magnetica",
+      "order": 23213,
+      "title": "Il campo per il raggio bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerated-magnetic-radius",
+      "difficulty": 3,
+      "prompt": "Una particella ideale ha rapporto α=|q|/m=1 C/kg. Parte da ferma e attraversa una regione elettrica con differenza di potenziale favorevole di modulo U>0: il lavoro del campo è |q|U. Poi entra perpendicolarmente in una regione separata con solo campo magnetico uniforme di modulo B>0. Si trascurano altre forze e radiazione; ogni preparazione e ogni inversa resta nel regime non relativistico. Si cerca il raggio positivo r nella seconda regione. A ha U_A=2 V,B_A=1 T. B usa U_B=1 V e deve dare r_B=(√2/4)r_A. Quanto vale B_B/B_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "√2/2",
+          "√2/4",
+          "4"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è r_B=√2/2 m e la tensione nuova dà v_B=√2 m/s. Nell’inversa B=v/(αr) le due radici si cancellano: B_B=2 T, rapporto due rispetto a B_A. Non occorre calcolare √2 in decimali."
+        },
+        {
+          "type": "formula",
+          "text": "r_B=\\frac{\\sqrt2}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " B_B=2\\,\\mathrm T"
+        },
+        {
+          "type": "formula",
+          "text": " B_B/B_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Mezzo inverte il confronto. √2/2 copia il rapporto delle rapidità, √2/4 quello dei raggi. Quattro T darebbe r_B=√2/4 m, metà del bersaglio."
+        }
+      ],
+      "hints": [
+        "Usa la stessa radice in numeratore e denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Mezzo inverte il confronto. √2/2 copia il rapporto delle rapidità, √2/4 quello dei raggi. Quattro T darebbe r_B=√2/4 m, metà del bersaglio.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Regioni separate e bilancio del lavoro",
+        "Raggio, coefficienti dimensionali e inverse",
+        "Radicali esatti e media delle uscite",
+        "Display continui, offset e vincolo fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-accelerated-magnetic-radius-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Accelerazione elettrica e successiva orbita magnetica",
+      "order": 23214,
+      "title": "Un display continuo può leggere un radicale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerated-magnetic-radius",
+      "difficulty": 3,
+      "prompt": "Una particella ideale ha rapporto α=|q|/m=1 C/kg. Parte da ferma e attraversa una regione elettrica con differenza di potenziale favorevole di modulo U>0: il lavoro del campo è |q|U. Poi entra perpendicolarmente in una regione separata con solo campo magnetico uniforme di modulo B>0. Si trascurano altre forze e radiazione; ogni preparazione e ogni inversa resta nel regime non relativistico. Si cerca il raggio positivo r nella seconda regione. Il display continuo adimensionale segue D=a_cal r senza offset. A:U=2 V,B=1 T,D=6. B:B=2 T,D=3√2/2. Quanto vale U_B in V?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha r_A=2 m e fissa a_cal=3 m⁻¹. La lettura continua 3√2/2 decodifica r_B=√2/2 m, non un numero di tacche intere. Poiché r_B²=1/2 m², U_B=αB_B²r_B²/2=1 V."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,\\mathrm m^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=\\frac{\\sqrt2}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " r_B^2=\\frac12\\,\\mathrm m^2"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=1\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Nove V userebbe D direttamente come r: il quadrato amplifica il fattore tre. Due V omette il fattore 1/2 nell’energia; mezzo V darebbe r=1/2 m, diverso dal raggio decodificato. Il radicale si elimina con un quadrato esatto."
+        }
+      ],
+      "hints": [
+        "Decodifica il raggio prima di elevarlo al quadrato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Nove V userebbe D direttamente come r: il quadrato amplifica il fattore tre. Due V omette il fattore 1/2 nell’energia; mezzo V darebbe r=1/2 m, diverso dal raggio decodificato. Il radicale si elimina con un quadrato esatto.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Regioni separate e bilancio del lavoro",
+        "Raggio, coefficienti dimensionali e inverse",
+        "Radicali esatti e media delle uscite",
+        "Display continui, offset e vincolo fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-accelerated-magnetic-radius-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Accelerazione elettrica e successiva orbita magnetica",
+      "order": 23215,
+      "title": "Due riferimenti con offset e radicale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerated-magnetic-radius",
+      "difficulty": 3,
+      "prompt": "Una particella ideale ha rapporto α=|q|/m=1 C/kg. Parte da ferma e attraversa una regione elettrica con differenza di potenziale favorevole di modulo U>0: il lavoro del campo è |q|U. Poi entra perpendicolarmente in una regione separata con solo campo magnetico uniforme di modulo B>0. Si trascurano altre forze e radiazione; ogni preparazione e ogni inversa resta nel regime non relativistico. Si cerca il raggio positivo r nella seconda regione. Il display continuo adimensionale segue D=a_cal r+b_cal. A:U=2 V,B=1 T,D=5. B:U=1 V,B=2 T,D=1+√2. C:B=1 T,D=9. Quanto vale U_C in V?",
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I raggi dei riferimenti sono 2 m e √2/2 m. La differenza delle letture è 4−√2, due volte il numero 2−√2/2 della differenza dei raggi in metri: a_cal=2 m⁻¹, b_cal=1. La lettura9 dà r_C=4 m. Quindi U_C=αB_C²r_C²/2=8 V."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,\\mathrm m^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b_{\\rm cal}=1"
+        },
+        {
+          "type": "formula",
+          "text": " r_C=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " U_C=8\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "81/8 V omette l’offset e predice D=10. Trentadue V sottrae b ma non divide per il guadagno prima del quadrato. Sedici V omette il fattore 1/2 energetico."
+        }
+      ],
+      "hints": [
+        "Riconosci il fattore comune due senza dividere numericamente i radicali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "81/8 V omette l’offset e predice D=10. Trentadue V sottrae b ma non divide per il guadagno prima del quadrato. Sedici V omette il fattore 1/2 energetico.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Regioni separate e bilancio del lavoro",
+        "Raggio, coefficienti dimensionali e inverse",
+        "Radicali esatti e media delle uscite",
+        "Display continui, offset e vincolo fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-accelerated-magnetic-radius-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Accelerazione elettrica e successiva orbita magnetica",
+      "order": 23216,
+      "title": "Un vincolo fra tensione e campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerated-magnetic-radius",
+      "difficulty": 3,
+      "prompt": "Una particella ideale ha rapporto α=|q|/m=1 C/kg. Parte da ferma e attraversa una regione elettrica con differenza di potenziale favorevole di modulo U>0: il lavoro del campo è |q|U. Poi entra perpendicolarmente in una regione separata con solo campo magnetico uniforme di modulo B>0. Si trascurano altre forze e radiazione; ogni preparazione e ogni inversa resta nel regime non relativistico. Si cerca il raggio positivo r nella seconda regione. Fra preparazioni U=[2 V/T]B. Si misura r=2 m. Quanto vale B?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 T",
+          "−1 T",
+          "2 T",
+          "4 T",
+          "Infinite intensità positive"
+        ],
+        "value": "1 T"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Pongo u=U/(1 V)>0 e β=B/(1 T)>0. Il vincolo è u=2β; il raggio numerico soddisfa [r/(1 m)]²=2u/β². Con r=2 m ottengo 4=4/β e dunque β=1. Segue B=1 T,U=2 V, compatibili col regime dichiarato."
+        },
+        {
+          "type": "formula",
+          "text": "u=2\\beta"
+        },
+        {
+          "type": "formula",
+          "text": " 4=\\frac4\\beta"
+        },
+        {
+          "type": "formula",
+          "text": " B=1\\,\\mathrm T"
+        },
+        {
+          "type": "formula",
+          "text": " U=2\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "−1 non è un modulo e renderebbe negativa anche U nel vincolo. Due T darebbe r=√2 m; quattro T darebbe r=1 m. La misura fissa il campo e non lascia una scala libera."
+        }
+      ],
+      "hints": [
+        "Usa β>0 per semplificare il quadrato al denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "−1 non è un modulo e renderebbe negativa anche U nel vincolo. Due T darebbe r=√2 m; quattro T darebbe r=1 m. La misura fissa il campo e non lascia una scala libera.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Regioni separate e bilancio del lavoro",
+        "Raggio, coefficienti dimensionali e inverse",
+        "Radicali esatti e media delle uscite",
+        "Display continui, offset e vincolo fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "bd14886d12e2148abfb99a2cef0c209e4d996733fdd3e9ecb6baab551d6e30cd",
+      "name": "accelerated-magnetic-radius-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ4MCIgdmlld0JveD0iMCAwIDY0MCAxNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+RGFsbOKAmWVuZXJnaWEgZWxldHRyaWNhIGFsIHJhZ2dpbzwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlRyZSB0YXBwZSBkaXN0aW50ZTogbGF2b3JvIGVsZXR0cmljbyBlIHJhZ2dpbyBuZWwgY2FtcG8gc2VwYXJhdG87IHRlbnNpb25pIGR1ZSBlIG90dG8gdm9sdCBjb24gcmFnZ2kgZHVlIGUgcXVhdHRybyBtZXRyaSBhbGxhIHN0ZXNzYSBzY2FsYTsgdHJlIHB1bnRpIGVzYXR0aSBkZWwgcmFnZ2lvIGludmVyc2FtZW50ZSBwcm9wb3J6aW9uYWxlIGEgQiwgYSB0ZW5zaW9uZSBmaXNzYXRhLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDggNEwwIDhaIiBmaWxsPSIjNTI2NjdhIi8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ4MCIgZmlsbD0iI2Y3ZmFmYyIvPjxnIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZmlsbD0iIzIwMzU0ZCI+PHRleHQgeD0iMzIiIHk9IjQyIiBmb250LXNpemU9IjI0IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkRhbGzigJllbmVyZ2lhIGVsZXR0cmljYSBhbCByYWdnaW88L3RleHQ+PHRleHQgeD0iMzIiIHk9IjkyIiBmb250LXNpemU9IjIyIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjEgwrcgRHVlIHJlZ2lvbmksIGR1ZSBjYWxjb2xpPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMzIiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+zrEgPSB8cXwvbSA9IDEgQy9rZzwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTc0IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlJlZ2lvbmUgZWxldHRyaWNhOiBkYSBmZXJtbywgbGF2b3JvIHxxfFU8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjIwOCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5Db24gVSA9IDIgVjogdsKyID0gMs6xVSwgcXVpbmRpIHYgPSAyIG0vczwvdGV4dD48bGluZSB4MT0iMzIwIiB5MT0iMjMwIiB4Mj0iMzIwIiB5Mj0iMjgwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIzMiIgeT0iMzIwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlJlZ2lvbmUgbWFnbmV0aWNhIHNlcGFyYXRhOiBCID0gMSBUPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIzNTUiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+SW5ncmVzc28gcGVycGVuZGljb2xhcmU6IHIgPSB2LyjOsUIpID0gMiBtPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI0MDAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+QiBjYW1iaWEgbGEgZGlyZXppb25lLCBzZW56YSBsYXZvcm8gc3UgcS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjQ1MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5TY2hlbWEgZGkgY2FsY29sbywgbm9uIGRpc2Vnbm8gZGVsbGEgdHJhaWV0dG9yaWEuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI1NTAiIGZvbnQtc2l6ZT0iMjIiIHRleHQtYW5jaG9yPSJzdGFydCI+MiDCtyBTdGVzc28gY2FtcG86IEIgPSAxIFQ8L3RleHQ+PHRleHQgeD0iMTYwIiB5PSI2MDAiIGZvbnQtc2l6ZT0iMTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlUgPSAyIFY8L3RleHQ+PHRleHQgeD0iNDQwIiB5PSI2MDAiIGZvbnQtc2l6ZT0iMTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlUgPSA4IFY8L3RleHQ+PGNpcmNsZSBjeD0iMTYwIiBjeT0iNzIwIiByPSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzE2YjliIiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSI0NDAiIGN5PSI3MjAiIHI9IjEwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTc2ZDIwIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMTYwIiB5MT0iNzIwIiB4Mj0iMjEwIiB5Mj0iNzIwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSI0NDAiIHkxPSI3MjAiIHgyPSI1NDAiIHkyPSI3MjAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTYwIiB5PSI4NzAiIGZvbnQtc2l6ZT0iMTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiPnIgPSAyIG08L3RleHQ+PHRleHQgeD0iNDQwIiB5PSI4NzAiIGZvbnQtc2l6ZT0iMTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiPnIgPSA0IG08L3RleHQ+PHRleHQgeD0iMzIiIHk9IjkxMCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5JIHJhZ2dpIGhhbm5vIGxhIHN0ZXNzYSBzY2FsYTsgVSDDqCBxdWFkcnVwbGEuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI5NjAiIGZvbnQtc2l6ZT0iMjIiIHRleHQtYW5jaG9yPSJzdGFydCI+MyDCtyBUcmUgcHVudGkgYSBVID0gMiBWPC90ZXh0PjxsaW5lIHgxPSIxNDUiIHkxPSIxMjgwIiB4Mj0iNTIwIiB5Mj0iMTI4MCIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PGxpbmUgeDE9IjE1MCIgeTE9IjEyODUiIHgyPSIxNTAiIHkyPSIxMDMwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIxMjgiIHk9IjEzMDUiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJlbmQiPjA8L3RleHQ+PHRleHQgeD0iNTM1IiB5PSIxMjkwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkIgKFQpPC90ZXh0Pjx0ZXh0IHg9Ijk1IiB5PSIxMDE1IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnIgKG0pPC90ZXh0PjxjaXJjbGUgY3g9IjIzMCIgY3k9IjExMjAiIHI9IjUiIGZpbGw9IiMzMTZiOWIiLz48dGV4dCB4PSIyMzAiIHk9IjEzMTAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjE8L3RleHQ+PHRleHQgeD0iMTI4IiB5PSIxMTI2IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj4yPC90ZXh0PjxjaXJjbGUgY3g9IjMxMCIgY3k9IjEyMDAiIHI9IjUiIGZpbGw9IiMzMTZiOWIiLz48dGV4dCB4PSIzMTAiIHk9IjEzMTAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjI8L3RleHQ+PHRleHQgeD0iMTI4IiB5PSIxMjA2IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj4xPC90ZXh0PjxjaXJjbGUgY3g9IjQ3MCIgY3k9IjEyNDAiIHI9IjUiIGZpbGw9IiMzMTZiOWIiLz48dGV4dCB4PSI0NzAiIHk9IjEzMTAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjQ8L3RleHQ+PHRleHQgeD0iMTI4IiB5PSIxMjQ2IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj4xLzI8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjEzODAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+UHVudGkgZGlzdGludGksIHNlbnphIGludGVycG9sYXppb25lIGxpbmVhcmUuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxNDIwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkzigJlvcmlnaW5lIMOoIGRlZ2xpIGFzc2k6IEIgPSAwIG5vbiDDqCBhbW1lc3NvLjwvdGV4dD48L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

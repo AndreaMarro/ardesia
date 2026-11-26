@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1560" viewBox="0 0 640 1560" role="img" aria-labelledby="title desc">
+<title id="title">Rotazione trasversa e avanzamento parallelo</title><desc id="desc">Proiezione circolare di un’elica, illustrata per carica positiva e campo uscente: il moto è orario, raggio un metro. Il trasporto parallelo si vede nel grafico quota divisa per due pi greco rispetto ai giri trascorsi. Due rette danno due metri o mezzo metro in un giro nella quota ridotta. Barre delle lunghezze ridotte due, un mezzo e cinque quarti metri.</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#20334a"/></marker></defs>
+<rect width="640" height="1560" fill="#fff"/>
+<g font-family="Arial, sans-serif" fill="#20334a">
+<text x="36" y="42" font-size="24" font-weight="700">1. Vista lungo il campo</text>
+<text x="40" y="82" font-size="17">Solo la proiezione trasversa; il trasporto non è visibile.</text>
+<circle cx="320" cy="230" r="75" fill="none" stroke="#2773ae" stroke-width="3"/>
+<circle cx="320" cy="230" r="5" fill="#20334a"/>
+<path d="M320 155A75 75 0 0 1 395 230" fill="none" stroke="#20334a" stroke-width="3" marker-end="url(#a)"/>
+<path d="M320 230H395" stroke="#6e7d89" stroke-width="2"/>
+<text x="430" y="265" font-size="18">r = 1 m</text><text x="80" y="223" font-size="18">B uscente</text>
+<text x="40" y="350" font-size="18">Esempio: q positiva, B = 1 T, v⊥ = 1 m/s.</text>
+<text x="40" y="390" font-size="17">L’altra componente v∥ resta uniforme lungo B.</text>
+<text x="36" y="455" font-size="24" font-weight="700">2. Avanzamento durante la rotazione</text>
+<text x="40" y="496" font-size="17">n indica i giri trascorsi, anche frazioni di giro.</text>
+<text x="40" y="535" font-size="17">Ordinata: z / (2π), espressa in m.</text>
+<path d="M130 890V600M115 870H535" fill="none" stroke="#20334a" stroke-width="2"/>
+<text x="43" y="600" font-size="17">z / (2π)</text>
+<text x="95" y="638" font-size="17">2</text><text x="95" y="818" font-size="17">1/2</text><text x="96" y="900" font-size="17">0</text>
+<path d="M130 630H120M130 810H120M490 870V882" stroke="#20334a" stroke-width="2"/>
+<path d="M130 870L490 630" fill="none" stroke="#2773ae" stroke-width="4"/><path d="M130 870L490 810" fill="none" stroke="#9b436f" stroke-width="4"/>
+<circle cx="490" cy="630" r="5" fill="#2773ae"/><circle cx="490" cy="810" r="5" fill="#9b436f"/>
+<text x="510" y="637" font-size="18" fill="#2773ae">A</text><text x="510" y="817" font-size="18" fill="#9b436f">B</text>
+<text x="485" y="915" font-size="17">1</text><text x="430" y="952" font-size="17">n (giri trascorsi)</text>
+<text x="40" y="994" font-size="18">A un giro: z = p, quindi z / (2π) = H.</text>
+<text x="36" y="1060" font-size="24" font-weight="700">3. H è il passo diviso per 2π</text>
+<text x="40" y="1101" font-size="17">A: 2 m/s, 1 T; B: 1 m/s, 2 T.</text>
+<text x="55" y="1180" font-size="20">A</text><rect x="150" y="1150" width="320" height="44" fill="#2773ae"/><text x="485" y="1180" font-size="20">2 m</text>
+<text x="55" y="1270" font-size="20">B</text><rect x="150" y="1240" width="80" height="44" fill="#9b436f"/><text x="245" y="1270" font-size="20">1/2 m</text>
+<text x="35" y="1360" font-size="20">media</text><rect x="150" y="1330" width="200" height="44" fill="#377f65"/><text x="365" y="1360" font-size="20">5/4 m</text>
+<path d="M150 1135V1405" stroke="#20334a" stroke-width="2"/><text x="116" y="1435" font-size="17">0</text>
+<text x="40" y="1483" font-size="18">Le barre hanno scala comune di lunghezza ridotta H.</text>
+<text x="40" y="1520" font-size="17">Il passo completo p non va sostituito a H nelle inverse.</text>
+</g></svg>

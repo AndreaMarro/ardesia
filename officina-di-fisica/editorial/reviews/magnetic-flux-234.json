@@ -1,0 +1,562 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C4.json",
+    "sourceSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+    "primarySkills": [
+      "C4-L09",
+      "C4-L10"
+    ],
+    "actualLessonPrerequisites": {
+      "C4-L09": [
+        "C4-L02",
+        "C4-L05"
+      ],
+      "C4-L10": [
+        "C4-L05",
+        "C4-L09"
+      ]
+    },
+    "specialCasePrimarySkill": {
+      "3": "C4-L09"
+    }
+  },
+  "records": [
+    {
+      "id": "AR-u6-magnetic-flux-01",
+      "sourceSha256": "7719defd1f2075938eb5f95e0c0e1b6ca60edfeeb804ba66300fdb3605879981",
+      "candidateSha256": "672e7f2c69f8614fa31380829cdba35f681369c8b37785b660132e5473f17a90",
+      "reviewedSignature": "bc58689247204e0b9ee215aad91c4f706a825e7fbf0bfe64f5e79f377b8371ed",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "magnetic-flux-progressive.svg": "846c8f549db28ecb3703be9587c83092067b533003ce86610c98431d85ca0117"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Il flusso è Φ=∫B·n dA. Campo uniforme e normale concorde rendono cosθ=1, quindi Φ=BA=(2 T)(3 m²)=6 Wb. L’angolo nullo è quello con la normale, mentre il campo è perpendicolare al piano.",
+      "physicalAssumptions": "B uniforme perpendicolare a superficie piana aperta, normale scelta concorde, θ=0 eΦ=BA>0. B e area positivi finiti; non si applica il flusso nullo di una superficie chiusa a questa superficie aperta. Caso 03 sul disegno elementare di un magnete a barra: proseguimento esterno N→S e interno S→N; non si generalizza ogni linea di ogni campo a curva finita chiusa. Medie di preparazioni, display continuo e vincolo B=(2/3 T/m²)A con radice di area positiva.",
+      "distractors": "Dodici aggiunge due superfici non assegnate; −6 Wb cambia la normale e zero scambia campo perpendicolare al piano con campo tangente. Con normale concorde il flusso è positivo 6 Wb.",
+      "pedagogicalReview": "Legge motivata prima della sostituzione, unità e variabile richiesta distinte.",
+      "assetReview": "XML e PNG indipendente completo 640×1800 letti. Superficie aperta in proiezione, B e normale paralleli concordi e frecce schematiche di grandezze diverse. Nel magnete N sinistra, S destra: percorso esterno da(170, 600) sopra al magnete fino(470, 600), freccia interna daS aN. Barre da x 150 lunghe 240/160/200 per 6/4/5 Wb a 40 coordinate/Wb. Grafico finale origine(150, 1600), 120 coordinate/T e 30 coordinate/Wb con punto(390, 1420) perB 2 T, Φ6 Wb, A 3 m² fissa. Origine aperta e dominio positivo espliciti.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_Lorentz_Newton_electric_work_cyclotron_period_flux_inverse_and_exact_algebraic_calibration",
+        "Pint_exact_force_mass_charge_length_field_voltage_flux_time_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-02",
+      "sourceSha256": "6d4981111ffb2763efc2924865d8d3e193853e610638a039e139d7c128ce6fc6",
+      "candidateSha256": "2d8cfb3d0d26c37b460a504b7e9e8d1a82d2445346742e21b7469b27a663c9b4",
+      "reviewedSignature": "d90ec472f3c833b7162fdd617baa983a7a68d41e47a949703eb7e01ccddfdd16",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Wb",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Il flusso magnetico si esprime in weber: Wb=T·m². Tesla misura il campo e m² l’area; il prodotto ha dimensione diversa da ciascuno dei due fattori.",
+      "physicalAssumptions": "B uniforme perpendicolare a superficie piana aperta, normale scelta concorde, θ=0 eΦ=BA>0. B e area positivi finiti; non si applica il flusso nullo di una superficie chiusa a questa superficie aperta. Caso 03 sul disegno elementare di un magnete a barra: proseguimento esterno N→S e interno S→N; non si generalizza ogni linea di ogni campo a curva finita chiusa. Medie di preparazioni, display continuo e vincolo B=(2/3 T/m²)A con radice di area positiva.",
+      "distractors": "T è il campo senza area; T/m² divide invece di moltiplicare. V e N sono tensione e forza. Wb=T·m² ha dimensione di flusso.",
+      "pedagogicalReview": "Dimensione ricavata indipendentemente e prefissi distinti dalla dimensione fisica.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_Lorentz_Newton_electric_work_cyclotron_period_flux_inverse_and_exact_algebraic_calibration",
+        "Pint_exact_force_mass_charge_length_field_voltage_flux_time_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-03",
+      "sourceSha256": "47e370c2523dd057c8aff69619792137d773bc397aa8bd9b8dcc27b87127af2f",
+      "candidateSha256": "03c46c92d78f94543ec7e17d3b3143776b8b1f9d8d930eefb3e34face76c97c2",
+      "reviewedSignature": "93f830306ebf576fe1ba6e793c3a229eacf05636ae1d021f209acf858a99e5b1",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "magnetic-flux-progressive.svg": "846c8f549db28ecb3703be9587c83092067b533003ce86610c98431d85ca0117"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Proseguono fuori da N a S e dentro da S a N, chiudendo il percorso illustrato",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Considerando interno ed esterno di un magnete a barra, le linee del campo si completano in anelli chiusi: all’esterno vanno dal polo nord al sud e all’interno ritornano dal sud al nord. Non iniziano né finiscono realmente sui poli. Il flusso netto su una superficie chiusa è nullo; questo non contraddice un flusso positivo attraverso una superficie aperta orientata. Riletta la qualificazione finale del percorso illustrato, distinta da una pretesa universale di linee finite chiuse.",
+      "physicalAssumptions": "Caso autonomo del magnete a barra illustrato, linee seguite dentro e fuori e nessun monopolo. Il percorso disegnato chiude con versi N→S esterno e S→N interno. Il flusso nullo riguarda una superficie chiusa Σ, non l’area piana aperta degli altri record; non si afferma che ogni linea di ogni campo sia una curva finita chiusa.",
+      "distractors": "Fermare definitivamente le linee ai poli imita un campo con cariche magnetiche isolate. Eliminare l’interno o troncare al centro non completa il percorso; invertire entrambi i versi contraddice N/S. Il vincolo di flusso netto nullo è su superfici chiuse.",
+      "pedagogicalReview": "Legge fisica o caso autonomo riconosciuto dalle sue ipotesi, senza ereditare dati estranei.",
+      "assetReview": "XML e PNG indipendente completo 640×1800 letti. Superficie aperta in proiezione, B e normale paralleli concordi e frecce schematiche di grandezze diverse. Nel magnete N sinistra, S destra: percorso esterno da(170, 600) sopra al magnete fino(470, 600), freccia interna daS aN. Barre da x 150 lunghe 240/160/200 per 6/4/5 Wb a 40 coordinate/Wb. Grafico finale origine(150, 1600), 120 coordinate/T e 30 coordinate/Wb con punto(390, 1420) perB 2 T, Φ6 Wb, A 3 m² fissa. Origine aperta e dominio positivo espliciti.",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_Lorentz_Newton_electric_work_cyclotron_period_flux_inverse_and_exact_algebraic_calibration",
+        "Pint_exact_force_mass_charge_length_field_voltage_flux_time_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-04",
+      "sourceSha256": "d2d036985c5d730ac83bcf4118e15198e13a03d36264d44662de6b059fa5cc22",
+      "candidateSha256": "263decec2ade267ba84f9193eac19fb2a73ed938426c23480d584a53f00418c4",
+      "reviewedSignature": "8459d850540b0af486bcc032a855c020c77d694bd9e3475b344ac640615fdc0b",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 6 Wb a 3 Wb",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Con area e orientazione fisse, Φ è proporzionale a B. Da 2 T a 1 T si passa da 6 a 3 Wb, cioè alla metà. Il segno resta positivo perché il campo resta concorde con la normale.",
+      "physicalAssumptions": "B uniforme perpendicolare a superficie piana aperta, normale scelta concorde, θ=0 eΦ=BA>0. B e area positivi finiti; non si applica il flusso nullo di una superficie chiusa a questa superficie aperta. Caso 03 sul disegno elementare di un magnete a barra: proseguimento esterno N→S e interno S→N; non si generalizza ogni linea di ogni campo a curva finita chiusa. Medie di preparazioni, display continuo e vincolo B=(2/3 T/m²)A con radice di area positiva.",
+      "distractors": "Dodici inverte la dipendenza da B; sei ignora la modifica. Zero richiederebbe B nullo o tangente, −3 un cambio di orientazione. Nessuno è il flusso concorde al nuovo campo 1 T.",
+      "pedagogicalReview": "Confronto controllato a parametro fissato, non evoluzione dinamica inventata.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_Lorentz_Newton_electric_work_cyclotron_period_flux_inverse_and_exact_algebraic_calibration",
+        "Pint_exact_force_mass_charge_length_field_voltage_flux_time_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-05",
+      "sourceSha256": "7a43f8a6f6aa969efd996083b2be65e90bf65c1d5a2551c26aeb9595ac36eb7e",
+      "candidateSha256": "f1e6cd45818381d08ead263f2d914818ef604d11988106168a173c81305e4943",
+      "reviewedSignature": "d31160bd5809bcb511b8395901179102ea1bffca1a19874afe1795f8868956d2",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-2",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Isolo B=Φ/A. Con Φ=6 Wb e A=3 m² risulta B=2 T. L’area positiva evita la divisione per zero e la scelta della normale mantiene il campo concorde.",
+      "physicalAssumptions": "B uniforme perpendicolare a superficie piana aperta, normale scelta concorde, θ=0 eΦ=BA>0. B e area positivi finiti; non si applica il flusso nullo di una superficie chiusa a questa superficie aperta. Caso 03 sul disegno elementare di un magnete a barra: proseguimento esterno N→S e interno S→N; non si generalizza ogni linea di ogni campo a curva finita chiusa. Medie di preparazioni, display continuo e vincolo B=(2/3 T/m²)A con radice di area positiva.",
+      "distractors": "Diciotto moltiplica invece di dividere. Il rapporto A/Φ ha T⁻¹, non T; sei copia il flusso e−2 non è un modulo nel dominio.",
+      "pedagogicalReview": "Prima inversa ricavata e reinserita nella legge diretta.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_Lorentz_Newton_electric_work_cyclotron_period_flux_inverse_and_exact_algebraic_calibration",
+        "Pint_exact_force_mass_charge_length_field_voltage_flux_time_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-06",
+      "sourceSha256": "a28cb7e0b4c096257425d7d5a2d7324c1682c538273962f809e88a003fe43f72",
+      "candidateSha256": "86b07b60764ce642b3cb8b4f15828e8ae07ccf7800fd6e3ee5093fa6ed20b8a7",
+      "reviewedSignature": "0aecb979547b5d70f92f90ae5bcb8d1e9645146d6f9c1f6caee7b476302cc2a8",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[length]": "2"
+      },
+      "manualArithmetic": "Da Φ=BA segue A=Φ/B. La sostituzione 6 Wb/(2 T)=3 m² restituisce l’area richiesta. Il campo assegnato è positivo e non nullo.",
+      "physicalAssumptions": "B uniforme perpendicolare a superficie piana aperta, normale scelta concorde, θ=0 eΦ=BA>0. B e area positivi finiti; non si applica il flusso nullo di una superficie chiusa a questa superficie aperta. Caso 03 sul disegno elementare di un magnete a barra: proseguimento esterno N→S e interno S→N; non si generalizza ogni linea di ogni campo a curva finita chiusa. Medie di preparazioni, display continuo e vincolo B=(2/3 T/m²)A con radice di area positiva.",
+      "distractors": "Dodici moltiplica, 1/3 inverte il rapporto, sei ignora B.√3 m sarebbe il lato di un eventuale quadrato, non l’area richiesta e neppure un dato necessario.",
+      "pedagogicalReview": "Seconda inversa con denominatori positivi e distinzione fra modulo e verso.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_Lorentz_Newton_electric_work_cyclotron_period_flux_inverse_and_exact_algebraic_calibration",
+        "Pint_exact_force_mass_charge_length_field_voltage_flux_time_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-07",
+      "sourceSha256": "3c75a0ff3c35f9be4e24d2433b54ed6c78fad7332d40c94a1a2c1e1214235ab8",
+      "candidateSha256": "6d21db0f3be04e951de00c35ee36740387da1302ceff8e04f161881303d5ec91",
+      "reviewedSignature": "0285d5eee87454bd9b2dd534721c3036c8f71fa58a293ba98258d42e0897bec5",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/3",
+      "dimension": {},
+      "manualArithmetic": "A B costante e normale invariata, il rapporto dei flussi coincide con quello delle aree: Φ_B/Φ_A=1/3. Le uscite sono 2 e 6 Wb. Il rapporto non ha unità e non introduce variazioni dell’angolo.",
+      "physicalAssumptions": "B uniforme perpendicolare a superficie piana aperta, normale scelta concorde, θ=0 eΦ=BA>0. B e area positivi finiti; non si applica il flusso nullo di una superficie chiusa a questa superficie aperta. Caso 03 sul disegno elementare di un magnete a barra: proseguimento esterno N→S e interno S→N; non si generalizza ogni linea di ogni campo a curva finita chiusa. Medie di preparazioni, display continuo e vincolo B=(2/3 T/m²)A con radice di area positiva.",
+      "distractors": "Tre inverte il confronto; 1/9 eleva nuovamente al quadrato un rapporto già di aree. Uno ignora l’area diversa e zero viola A>0.",
+      "pedagogicalReview": "Due uscite ricostruite prima del rapporto adimensionale.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_Lorentz_Newton_electric_work_cyclotron_period_flux_inverse_and_exact_algebraic_calibration",
+        "Pint_exact_force_mass_charge_length_field_voltage_flux_time_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-08",
+      "sourceSha256": "b6fa2a72363a7bc0e673c5fcf9fe2743f1f9708cba6cc980134e01e98f62f041",
+      "candidateSha256": "2a79e50efdb53fb15aed921cc975948f7ba530cf361fc4f1e2875eb476d6e86d",
+      "reviewedSignature": "149b6e31b5cc2c0691c017581fcd0c218831b21eddc859e051bb16274adb4b49",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Il flusso corretto è 6 Wb. Con la convenzione proposto meno corretto, lo scarto è 12−6=+6 Wb. È una sovrastima del valore concorde, non un cambiamento della normale.",
+      "physicalAssumptions": "B uniforme perpendicolare a superficie piana aperta, normale scelta concorde, θ=0 eΦ=BA>0. B e area positivi finiti; non si applica il flusso nullo di una superficie chiusa a questa superficie aperta. Caso 03 sul disegno elementare di un magnete a barra: proseguimento esterno N→S e interno S→N; non si generalizza ogni linea di ogni campo a curva finita chiusa. Medie di preparazioni, display continuo e vincolo B=(2/3 T/m²)A con radice di area positiva.",
+      "distractors": "−6 inverte la sottrazione, due è rapporto puro, dodici ripete proposta e zero la accetta. Lo scarto deve conservare weber.",
+      "pedagogicalReview": "Ordine dello scarto preservato, separato dal rapporto puro.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_Lorentz_Newton_electric_work_cyclotron_period_flux_inverse_and_exact_algebraic_calibration",
+        "Pint_exact_force_mass_charge_length_field_voltage_flux_time_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-09",
+      "sourceSha256": "2e6aad4accef8293e991a4ea978a15e116edcc9ee9aecbf6ff2da577c8f9e5ca",
+      "candidateSha256": "1c2ca8cbe8f1d9db98f5cae6b8317489f994aad8d8ba1c0d2479e5df565d4a98",
+      "reviewedSignature": "0097aecfc40f9e6f49fb518cba3727b704643d01912e987b91675ace44d1e7aa",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "B = Φ / A",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-2",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "La legge generale è Φ=BA cosθ; qui θ=0 rispetto alla normale, perciò Φ=BA e B=Φ/A. Non si applica sinθ né si misura θ dal piano. Il dominio A>0 consente l’inversione.",
+      "physicalAssumptions": "B uniforme perpendicolare a superficie piana aperta, normale scelta concorde, θ=0 eΦ=BA>0. B e area positivi finiti; non si applica il flusso nullo di una superficie chiusa a questa superficie aperta. Caso 03 sul disegno elementare di un magnete a barra: proseguimento esterno N→S e interno S→N; non si generalizza ogni linea di ogni campo a curva finita chiusa. Medie di preparazioni, display continuo e vincolo B=(2/3 T/m²)A con radice di area positiva.",
+      "distractors": "ΦA ha T·m⁴, A/Φ T⁻¹ e la radice T¹ᐟ². La formula con 2 A ricostruirebbe BA=Φ/2, non il flusso misurato; non esiste un fattore due nel modello di questa superficie.",
+      "pedagogicalReview": "Inversa simbolica con coefficienti dimensionali espliciti.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_Lorentz_Newton_electric_work_cyclotron_period_flux_inverse_and_exact_algebraic_calibration",
+        "Pint_exact_force_mass_charge_length_field_voltage_flux_time_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-10",
+      "sourceSha256": "06f504e7347950ac8f0d5121937edcb943e8227619417d1b66071f726fc4b8cf",
+      "candidateSha256": "27844cab547c2f14520ba470f9f46a4df3cbe67086f5b1ec3ec0b00703915efa",
+      "reviewedSignature": "a810e7a0eb54a0fe09116440219146617261b211da2ef8b9d56a95eeb3061a9a",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ κ₂",
+      "dimension": {},
+      "manualArithmetic": "Orientazione e uniformità sono preservate nei due stati. Dividendo (κ₁B)(κ₂A) per BA si ricava Φ_B/Φ_A=κ₁κ₂. La conclusione richiede lo stesso cosθ=1 in entrambe le prove.",
+      "physicalAssumptions": "B uniforme perpendicolare a superficie piana aperta, normale scelta concorde, θ=0 eΦ=BA>0. B e area positivi finiti; non si applica il flusso nullo di una superficie chiusa a questa superficie aperta. Caso 03 sul disegno elementare di un magnete a barra: proseguimento esterno N→S e interno S→N; non si generalizza ogni linea di ogni campo a curva finita chiusa. Medie di preparazioni, display continuo e vincolo B=(2/3 T/m²)A con radice di area positiva.",
+      "distractors": "Le divisioni rendono inverso uno dei due ingressi; κ₁² modifica la dipendenza lineare in B. La somma fallisce per fattori entrambi unitari, dando due invece di uno.",
+      "pedagogicalReview": "Fattori inseriti nella legge effettiva prima di semplificare.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_Lorentz_Newton_electric_work_cyclotron_period_flux_inverse_and_exact_algebraic_calibration",
+        "Pint_exact_force_mass_charge_length_field_voltage_flux_time_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-11",
+      "sourceSha256": "7d73644d1f1cf9ffc9bf2e7ae83195e7a00d51315a4c78e8fbdd844e84fb512a",
+      "candidateSha256": "25c00520b598f37070a77ef261caa8ac20a0e85ee2183ab8afed52626943a462",
+      "reviewedSignature": "195af0608567c3fc1a24ffea2bb82867456840f75c07dbd9d6b5026d6b74474d",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2/3",
+      "dimension": {},
+      "manualArithmetic": "In A il prodotto 2·3 dà 6 Wb; in B 1·4 dà 4 Wb. Il rapporto finale/iniziale è 4/6=2/3. Le due variazioni non si sommano: si moltiplicano nei rispettivi fattori.",
+      "physicalAssumptions": "B uniforme perpendicolare a superficie piana aperta, normale scelta concorde, θ=0 eΦ=BA>0. B e area positivi finiti; non si applica il flusso nullo di una superficie chiusa a questa superficie aperta. Caso 03 sul disegno elementare di un magnete a barra: proseguimento esterno N→S e interno S→N; non si generalizza ogni linea di ogni campo a curva finita chiusa. Medie di preparazioni, display continuo e vincolo B=(2/3 T/m²)A con radice di area positiva.",
+      "distractors": "3/2 inverte il rapporto, 1/2 segue solo B e 4/3 soloA. Una compensazione esatta al campo 1 T richiederebbe 6 m², non 4 m².",
+      "pedagogicalReview": "Entrambi gli ingressi nuovi considerati, senza inferenza da un solo cambiamento.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_Lorentz_Newton_electric_work_cyclotron_period_flux_inverse_and_exact_algebraic_calibration",
+        "Pint_exact_force_mass_charge_length_field_voltage_flux_time_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-12",
+      "sourceSha256": "322bc2601528795ba595ead17a4cde9a78b845ceb7ad3083ec00b795636f9ddd",
+      "candidateSha256": "558dccc82d5afcfedc0cfe393fccf3d436b7ddd9f1724909946d582e707a4ad3",
+      "reviewedSignature": "230bc71f3e1a198e3bda1c2b4ced76abd6902d80bcf7f1f71371792fed3721ce",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "magnetic-flux-progressive.svg": "846c8f549db28ecb3703be9587c83092067b533003ce86610c98431d85ca0117"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Le due letture sono 6 e 4 Wb e la loro media aritmetica è 5 Wb. Usando invece i valori medi B=3/2 T e A=7/2 m², il modello darebbe 21/4 Wb. La differenza fra le due costruzioni è 5−21/4=−1/4 Wb. Il quesito richiede la prima.",
+      "physicalAssumptions": "B uniforme perpendicolare a superficie piana aperta, normale scelta concorde, θ=0 eΦ=BA>0. B e area positivi finiti; non si applica il flusso nullo di una superficie chiusa a questa superficie aperta. Caso 03 sul disegno elementare di un magnete a barra: proseguimento esterno N→S e interno S→N; non si generalizza ogni linea di ogni campo a curva finita chiusa. Medie di preparazioni, display continuo e vincolo B=(2/3 T/m²)A con radice di area positiva.",
+      "distractors": "Dieci Wb somma senza mediare, 21/4 usa gli ingressi medi e uno è semidifferenza. Pesi statistici uguali non sono una divisione per un intervallo temporale.",
+      "pedagogicalReview": "Media delle uscite distinta da modello agli ingressi medi e da media temporale.",
+      "assetReview": "XML e PNG indipendente completo 640×1800 letti. Superficie aperta in proiezione, B e normale paralleli concordi e frecce schematiche di grandezze diverse. Nel magnete N sinistra, S destra: percorso esterno da(170, 600) sopra al magnete fino(470, 600), freccia interna daS aN. Barre da x 150 lunghe 240/160/200 per 6/4/5 Wb a 40 coordinate/Wb. Grafico finale origine(150, 1600), 120 coordinate/T e 30 coordinate/Wb con punto(390, 1420) perB 2 T, Φ6 Wb, A 3 m² fissa. Origine aperta e dominio positivo espliciti.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_Lorentz_Newton_electric_work_cyclotron_period_flux_inverse_and_exact_algebraic_calibration",
+        "Pint_exact_force_mass_charge_length_field_voltage_flux_time_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-13",
+      "sourceSha256": "db0faf0aec7f0b37c5306394c2cb968cd91be60e193bf56a0cbfbe6393a22d8a",
+      "candidateSha256": "82c26dffb1991ca369a1a6863747c5b5778489e784cb4bdd6ff2864db8f847d9",
+      "reviewedSignature": "c77e909ef2cff34e131b4b0add034dff26147de5287a683794baff0229c34bc7",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4/3",
+      "dimension": {},
+      "manualArithmetic": "Il nuovo flusso deve essere (2/3)·6=4 Wb. Con B_B=1 T si richiede A_B=4 m², quindi A_B/A_A=4/3. La normale resta concorde in entrambe le prove.",
+      "physicalAssumptions": "B uniforme perpendicolare a superficie piana aperta, normale scelta concorde, θ=0 eΦ=BA>0. B e area positivi finiti; non si applica il flusso nullo di una superficie chiusa a questa superficie aperta. Caso 03 sul disegno elementare di un magnete a barra: proseguimento esterno N→S e interno S→N; non si generalizza ogni linea di ogni campo a curva finita chiusa. Medie di preparazioni, display continuo e vincolo B=(2/3 T/m²)A con radice di area positiva.",
+      "distractors": "3/4 inverte il rapporto; 2/3 copia il fattore dei flussi. Un terzo implica A_B 1 m² eΦ_B 1 Wb; due implica A_B 6 m² eΦ_B 6 Wb, non 4.",
+      "pedagogicalReview": "Bersaglio quantitativo ricostruito prima dell’inversa e del rapporto richiesto.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_Lorentz_Newton_electric_work_cyclotron_period_flux_inverse_and_exact_algebraic_calibration",
+        "Pint_exact_force_mass_charge_length_field_voltage_flux_time_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-14",
+      "sourceSha256": "414b3da604eaf93c61ece95aacfcc78551e3eeaf15003971305ee4831f2a2384",
+      "candidateSha256": "1fadd55f3a36a35b0f493bd5eec600552d5f329eb97010beb71b45846d1c1760",
+      "reviewedSignature": "08f73f59aea316c317dc30ccd343eca8b8459e771a6734abb0477744fbf7a843",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-2",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Il riferimento Φ=6 Wb con S=18 fissa a=3 unità strumentali/Wb. S=12 implica Φ=4 Wb. Con area 4 m², B=Φ/A=1 T. Non serve conoscere l’unità strumentale assoluta perché è coerente fra le prove.",
+      "physicalAssumptions": "B uniforme perpendicolare a superficie piana aperta, normale scelta concorde, θ=0 eΦ=BA>0. B e area positivi finiti; non si applica il flusso nullo di una superficie chiusa a questa superficie aperta. Caso 03 sul disegno elementare di un magnete a barra: proseguimento esterno N→S e interno S→N; non si generalizza ogni linea di ogni campo a curva finita chiusa. Medie di preparazioni, display continuo e vincolo B=(2/3 T/m²)A con radice di area positiva.",
+      "distractors": "Tre T usa D 12 come 12 Wb, quattro copia il numero del flusso e 2/3 copia il rapporto dei display senza l’area diversa. Un T dàΦ4 Wb eD 12.",
+      "pedagogicalReview": "Guadagno del display rimosso prima dell’inversa fisica.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_Lorentz_Newton_electric_work_cyclotron_period_flux_inverse_and_exact_algebraic_calibration",
+        "Pint_exact_force_mass_charge_length_field_voltage_flux_time_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-15",
+      "sourceSha256": "99d76112a67277100b2067d0e5699bbc909215c28907418530193ce6239abe8c",
+      "candidateSha256": "d252f6b3cc96ac8347eb794766a035ade00cb723e58fb3e4c702e2ffaf64753a",
+      "reviewedSignature": "e2a26d8fbbba3fc4e30465802a28ed56123b66336f612a50ea43d6862eb76a66",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-2",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "I riferimenti Φ_A=6 Wb, S_A=13 e Φ_B=4 Wb, S_B=9 danno a=(13−9)/(6−4)=2 unità strumentali/Wb e b=1. La lettura 41 significa Φ_C=(41−1)/2=20 Wb. Con A_C=5 m² segue B_C=4 T.",
+      "physicalAssumptions": "B uniforme perpendicolare a superficie piana aperta, normale scelta concorde, θ=0 eΦ=BA>0. B e area positivi finiti; non si applica il flusso nullo di una superficie chiusa a questa superficie aperta. Caso 03 sul disegno elementare di un magnete a barra: proseguimento esterno N→S e interno S→N; non si generalizza ogni linea di ogni campo a curva finita chiusa. Medie di preparazioni, display continuo e vincolo B=(2/3 T/m²)A con radice di area positiva.",
+      "distractors": "41/10 T omette b e predice D 42. Otto T sottrae b ma salta a; venti copiaΦ_C senza dividerlo per 5 m². Quattro T ricostruisce l’intera taratura.",
+      "pedagogicalReview": "Due riferimenti distinti ricostruiscono guadagno e offset senza arrotondamenti.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_Lorentz_Newton_electric_work_cyclotron_period_flux_inverse_and_exact_algebraic_calibration",
+        "Pint_exact_force_mass_charge_length_field_voltage_flux_time_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-16",
+      "sourceSha256": "f88b4f831cffb7dde39d97e46f05792c168a9a4e88b77c18506e00f9a6a16993",
+      "candidateSha256": "2f3760f50b1864997b901e0e4b2dc36abc891285f745361f8f393321bdde6c4e",
+      "reviewedSignature": "9a8609fc31eca9af561a6b6a28dab1b0da97158eb25c27e66a6f65156019b2d0",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[length]": "2"
+      },
+      "manualArithmetic": "Pongo a=A/(1 m²)>0. Il vincolo dimensionato B=(2/3 T/m²)A implica B/(T)=2 a/3. La misura Φ=6 Wb dà 6=(2/3)a², quindi a²=9 e a=3 nel dominio positivo. Si ottengono A=3 m² e B=2 T; la radice negativa non rappresenta un’area ammessa.",
+      "physicalAssumptions": "B uniforme perpendicolare a superficie piana aperta, normale scelta concorde, θ=0 eΦ=BA>0. B e area positivi finiti; non si applica il flusso nullo di una superficie chiusa a questa superficie aperta. Caso 03 sul disegno elementare di un magnete a barra: proseguimento esterno N→S e interno S→N; non si generalizza ogni linea di ogni campo a curva finita chiusa. Medie di preparazioni, display continuo e vincolo B=(2/3 T/m²)A con radice di area positiva.",
+      "distractors": "La radice−3 m² è fuori dominio. Nove m² dà 54 Wb dal vincolo, due m²8/3 Wb. La misura e il vincolo fissano la scala e non lasciano infinite aree positive.",
+      "pedagogicalReview": "Vincolo fra preparazioni sostituito prima di decidere unicità o scala continua.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_Lorentz_Newton_electric_work_cyclotron_period_flux_inverse_and_exact_algebraic_calibration",
+        "Pint_exact_force_mass_charge_length_field_voltage_flux_time_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "f41f80fa28c967a026fbf0777639ff6f44df8d49d3aed7a289de4aff62be938f",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "022df919c10dcdf159007018cf0ce0adb089f33e",
+  "packageSha256": "190ae80c9db40b516607382f819775962e7d610ec626f7aeabd20b5a4328ca35",
+  "bindingsSha256": "f3ac740476518a32da1a99c6bcb6f6058f3f2fb5ecc6e9c16ad48f2cb16c29ab",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U6-05.json",
+    "title": "magnetic-flux",
+    "reference": "B uniforme perpendicolare a superficie piana aperta, normale scelta concorde, θ=0 eΦ=BA>0. B e area positivi finiti; non si applica il flusso nullo di una superficie chiusa a questa superficie aperta. Caso 03 sul disegno elementare di un magnete a barra: proseguimento esterno N→S e interno S→N; non si generalizza ogni linea di ogni campo a curva finita chiusa. Medie di preparazioni, display continuo e vincolo B=(2/3 T/m²)A con radice di area positiva."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/u6-magnetism-230-234-independent-models.py",
+    "sha256": "e2acf441bb9b7fc3e67c2bc103e6dce9c9790b571610e6838da30c3debbcba4b",
+    "commit": "6da7f76086995a8297ac10bfe608354c6a77a91b"
+  },
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/u6-magnetism-induction-230-234-primary-source-only.md",
+    "sha256": "51395bd462210eea741c8535d111ebf94686590467d5821825834e6e8668f91d"
+  }
+}

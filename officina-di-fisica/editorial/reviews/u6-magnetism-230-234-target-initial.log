@@ -1,0 +1,42 @@
+test_acceleration_energy_Newton_inverses_and_linear_constraint (tests.corpus.test_u6_magnetism_230_234_independent.MagnetismIndependent.test_acceleration_energy_Newton_inverses_and_linear_constraint) ... ok
+test_actual_catalog_mapping_and_autonomous_bar_magnet_exception (tests.corpus.test_u6_magnetism_230_234_independent.MagnetismIndependent.test_actual_catalog_mapping_and_autonomous_bar_magnet_exception) ... ok
+test_all_eighty_source_hashes_and_no_authoring_imports (tests.corpus.test_u6_magnetism_230_234_independent.MagnetismIndependent.test_all_eighty_source_hashes_and_no_authoring_imports) ... ok
+test_all_hostile_rebinding_retokenized_wrong_math_units_geometry_and_labels (tests.corpus.test_u6_magnetism_230_234_independent.MagnetismIndependent.test_all_hostile_rebinding_retokenized_wrong_math_units_geometry_and_labels) ... FAIL
+test_calibration_exact_algebraic_refs_and_SI_dimensions (tests.corpus.test_u6_magnetism_230_234_independent.MagnetismIndependent.test_calibration_exact_algebraic_refs_and_SI_dimensions) ... ok
+test_calibration_guards_are_explicit_and_reject_invalid_decoding (tests.corpus.test_u6_magnetism_230_234_independent.MagnetismIndependent.test_calibration_guards_are_explicit_and_reject_invalid_decoding) ... ok
+test_circle_Newton_inverses_scaling_and_redundant_constraint (tests.corpus.test_u6_magnetism_230_234_independent.MagnetismIndependent.test_circle_Newton_inverses_scaling_and_redundant_constraint) ... ok
+test_cyclotron_tau_full_period_inverse_and_constraint (tests.corpus.test_u6_magnetism_230_234_independent.MagnetismIndependent.test_cyclotron_tau_full_period_inverse_and_constraint) ... ok
+test_every_public_math_helper_finite_real_exact_and_positive_domain (tests.corpus.test_u6_magnetism_230_234_independent.MagnetismIndependent.test_every_public_math_helper_finite_real_exact_and_positive_domain) ... ok
+test_five_plausible_wrong_constitutive_and_inverse_models_are_caught (tests.corpus.test_u6_magnetism_230_234_independent.MagnetismIndependent.test_five_plausible_wrong_constitutive_and_inverse_models_are_caught) ... ok
+test_fresh_saved_identity_modes_primary_and_exact_dependency (tests.corpus.test_u6_magnetism_230_234_independent.MagnetismIndependent.test_fresh_saved_identity_modes_primary_and_exact_dependency) ... ok
+test_identity_rejects_invalid_claims_and_dependency_drift (tests.corpus.test_u6_magnetism_230_234_independent.MagnetismIndependent.test_identity_rejects_invalid_claims_and_dependency_drift) ... ok
+test_literal_lexemes_do_not_roundtrip_through_binary_float (tests.corpus.test_u6_magnetism_230_234_independent.MagnetismIndependent.test_literal_lexemes_do_not_roundtrip_through_binary_float) ... ok
+test_noncommuting_means_all_five (tests.corpus.test_u6_magnetism_230_234_independent.MagnetismIndependent.test_noncommuting_means_all_five) ... ok
+test_open_plane_flux_inverse_scaling_and_positive_constraint (tests.corpus.test_u6_magnetism_230_234_independent.MagnetismIndependent.test_open_plane_flux_inverse_scaling_and_positive_constraint) ... ok
+test_prekey_models_AST_identity_and_producer_terminal_receipts (tests.corpus.test_u6_magnetism_230_234_independent.MagnetismIndependent.test_prekey_models_AST_identity_and_producer_terminal_receipts) ... ERROR
+test_vector_time_scope_and_parallel_motion_and_closed_surface (tests.corpus.test_u6_magnetism_230_234_independent.MagnetismIndependent.test_vector_time_scope_and_parallel_motion_and_closed_surface) ... ok
+test_wire_cross_product_inverses_scaling_and_constraint (tests.corpus.test_u6_magnetism_230_234_independent.MagnetismIndependent.test_wire_cross_product_inverses_scaling_and_constraint) ... ok
+INDEPENDENT_CONFIGURATIONS {"finiteExactGuardAssertions": 1360, "hypothesis": {"acceleration": 40, "calibration": 40, "circle": 40, "flux": 40, "period": 40, "wire": 40}, "invalidCalibrationAssertions": 30}
+
+======================================================================
+ERROR: test_prekey_models_AST_identity_and_producer_terminal_receipts (tests.corpus.test_u6_magnetism_230_234_independent.MagnetismIndependent.test_prekey_models_AST_identity_and_producer_terminal_receipts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_u6_magnetism_230_234_independent.py", line 163, in test_prekey_models_AST_identity_and_producer_terminal_receipts
+    for fn in ast.parse(models[m.FAMILY]).body:
+                        ~~~~~~^^^^^^^^^^
+KeyError: 'force-current-wire'
+
+======================================================================
+FAIL: test_all_hostile_rebinding_retokenized_wrong_math_units_geometry_and_labels (tests.corpus.test_u6_magnetism_230_234_independent.MagnetismIndependent.test_all_hostile_rebinding_retokenized_wrong_math_units_geometry_and_labels)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_u6_magnetism_230_234_independent.py", line 61, in test_all_hostile_rebinding_retokenized_wrong_math_units_geometry_and_labels
+    self.assertEqual(sum(x['case']==label for x in audit['cases']),1,label)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1 : numeric_binary_float_key_rebound_and_retokenized
+
+----------------------------------------------------------------------
+Ran 18 tests in 2.724s
+
+FAILED (failures=1, errors=1)

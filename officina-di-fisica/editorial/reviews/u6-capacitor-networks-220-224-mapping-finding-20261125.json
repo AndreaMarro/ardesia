@@ -1,0 +1,49 @@
+{
+  "scope": "lesson_mapping_followup_not_new_scientific_acceptance",
+  "status": "PENDING_AUTHOR_METADATA_CORRECTION_AND_INDEPENDENT_REREAD",
+  "reviewer": "B",
+  "candidateAuthor": "A",
+  "affectedBatches": [
+    "parallel-capacitors-220",
+    "series-capacitors-221",
+    "series-capacitor-voltage-222",
+    "capacitor-charge-sharing-223",
+    "capacitor-sharing-energy-loss-224"
+  ],
+  "catalog": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "sourcePath": "content/C4.json",
+    "sourceSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+    "correctPrimary": "C4-L08",
+    "title": "Mettere insieme i condensatori",
+    "actualPrerequisites": [
+      "C4-L07"
+    ]
+  },
+  "finding": "The five network families currently target C4-L07. The actual C4-L08 lesson covers parallel and series equivalence, neutral isolated middle node, voltage division, signed charge conservation after connecting isolated charged capacitors and transient field-energy dissipation. Primary skill and feedback target must align with C4-L08; C4-L07 is the single-capacitor prerequisite. Competency metadata, if present, must align too.",
+  "reviewOmissionDisclosure": "B omitted the relevant C4-L08 comparison in the earlier catalog check. This omission was detected when rereading the canonical catalog for U6-05, reported to A and Root, and confirmed independently by A after reading L07 and L08.",
+  "preservedOldProof": {
+    "commit": "3924cf134256bc5bd402025efdc53b0d7e6f7b53",
+    "handoffPath": "editorial/reviews/u6-capacitor-networks-220-224-independent-handoff-20261125.json",
+    "sha256": "a2b99535792f64af9913e1900312071de3d4d26ea8d49eec34086bbfa78427fd",
+    "actualTests": 17,
+    "interpretation": "Mathematical evidence for the pinned old bytes, not acceptance of corrected future metadata. No report is retagged."
+  },
+  "parentAcceptance": "Root confirms these 80 were not yet accepted or registered; no corpus credit was assigned from the earlier handoff.",
+  "requiredFollowup": [
+    "A corrects only metadata and derived bindings, preserving old editions.",
+    "B rereads all final metadata deltas against the canonical lesson, verifies other contents unchanged and freezes only the final actual signatures.",
+    "B runs fresh and saved identity plus the targeted tests on the corrected payloads; preserves old evidence separately.",
+    "Root integrates and runs canonical import and acceptance separately."
+  ],
+  "limitedRelatedMappingCheck": {
+    "217-219": "Single-capacitor laws and their independent special cases; no concrete defect found from the L08 finding.",
+    "225-228": "Dielectric and single-capacitor plate-separation models belong to actual C4-L07; no concrete defect found.",
+    "229": "Lorentz force belongs to C4-L09; unchanged."
+  },
+  "candidateOrRegistryOrRuntimeEdited": false,
+  "newScientificReport": "NOT_RUN",
+  "newProductUI": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publication": "NOT_RUN"
+}

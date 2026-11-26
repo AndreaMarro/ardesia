@@ -1,3 +1,21 @@
+## Ripresa del 26 novembre 2026: 3.632 revisioni, PR364 integrata
+
+Mandato INCOMPLETO: 3.632/4.606 quesiti revisionati con verifica indipendente e collaudo Root (78,9%); restano 974, di cui 368 Ardesia e 606 Cric. Attività complete 246/385, residue139. Nessuna nuova approvazione umana o pubblicazione nell’app.
+
+U6-05: tutti160 finali accettati, 18 test Root PASS6,017s e16 PASS8,135s, report fresh/saved identici, dieci import canonici16→0/16 con991 pubblicati e versioni storiche invariati. Ricevuta editorial/reviews/u6-05-root-integration-20261126/receipt.json. Recupero da commit immutabili, con raw log aggiunti realmente in2447ad2d; prima mancavano13log nell’albero74dcd219. Due tentativi Root hanno segnalato primaria antecedente assente; recuperata dai commit originali, senza cambiare oracoli, poi ripetuti positivamente tutti i controlli. Negativi conservati.
+
+Checkpoint compilato ufficiale3472/246: generations/246f485b3fd81da8a99f124e033af0481dd270136389e3cf21413ca015c5fbbe, manifest e2cdf877d2d81b6cfb4b9db486f0738cf4b459219d6116c532b1152a3a4e4890. Run45849149030/source68c95531 SUCCESS,229pacchetti/10467casi UI,957test604,148s, ETL fresh/incrementale e coesistenza/release PASS. ZIP completo SHA6208db65c22f07080e5088097e63671c6bb6ceb10e1fcb7cf7e12465192a4606 salvato in quattro parti suGitHub, adozioneaa7577b7. Non equivale a CI sulle modifiche successive. Registry3632, nuovo replay necessario.
+
+PR364 MERGED normalmente il26novembre: headabeb4957, merge7c29ccc18ad3b42ceecfca509ef57f786bd2c496, tutti i check premerge SUCCESS e nessuna conversazione irrisolta. Canone ora3312 quesiti,246 attività; CI postmerge45859292343/45859292127 IN_PROGRESS. Non dichiarare postmerge PASS prima della conclusione. Nessun bypass/force/approvazione umana simulata.
+
+U7-01: ownershipu7-01-v1, fonte SHA609dec0246ff1cd1b89afed2ea7258c0f65ff8e853735ce9196fe24829fc1233 su5cfbdcb0. A240–244/B245–249 con revisori incrociati, primarie congelate8a82a325/b3932757 prima dei candidati. Prossimo ID scientifico AR-u7-wavelength-in-medium-01. Poi U7-02/U7-03 e606Cric, senza fermarsi alla famiglia.
+
+Runtime Root/canone resta1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba. Autoria consumer isolata feat/cric-experiment-consumer-corrections: guide non assegnate ora distinguono osservazione e calcolo, ma review distinta ha trovato sei transizioni temporali con titolo/testo obsoleti. Riprodotto RED Playwright sul consumer vero, fix della triade in collaudo; primo test esteso ha rilevato scrollable-region-focusable nella bozza adiabatica, conservato. Diciassette difetti geometrici ancora aperti. Otto bozze manuali hanno solo source/math/manual/figure review parziale, zero credito attività;139 residue e UI129 NOT_RUN restano espliciti. Ogni cambio runtime richiede nuove prove reali, nessun ritag.
+
+Repository PUBLIC e tutti i materiali editoriali autorizzati pubblicamente; app DRAFT/default-deny e93esami preservati. Pro100 NOT_IDENTIFIED;199controlli tecnici non sono revisioni complete. Mutex condiviso, almeno2GiB, nessun processo utente terminato.
+
+Prossimi passi: verificare CI postmerge sulla SHA7c29; riprodurre e adottare3632 dopo replay terminale; continuare U7 e Cric606 con autori/verificatori distinti; chiudere guide/geometry eUI delle139; mantenere checkpoint e coda umana separata dalla pubblicazione.
+
 ## Stato operativo — 3.472 revisioni, mandato incompleto
 
 Aggiornamento del 26 novembre 2026: **3.472/4.606 quesiti scientificamente revisionati (75,4%); restano 1.134: 528 Ardesia e 606 Cric.** Attività complete: 246/385; restano 139. Approvazioni umane e nuove pubblicazioni nell’app: zero. Repository pubblico e tutti i contenuti editoriali autorizzati su GitHub; default-deny DRAFT e 93 esami invariati nell’app.

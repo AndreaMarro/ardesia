@@ -1,0 +1,253 @@
+{
+  "activityCredit": 0,
+  "actualGradedQuestionsStill16": true,
+  "additionalSupportGaps": 2,
+  "disclosure": "Reuses the independently read8final editions/primary and139prior partial reviews; no blind or fresh fullUI claim. This probes a previously untested guide scope, not a new source correction.",
+  "distinction": "calculation(x,y) is a displayed numerical model reading, which alone need not demand learner computation. The acquired problem is the accompanying imperative Controlla il calcolo/Sostituisci i dati at an arbitrary nonselected cursor value; it is not a new numeric form or a physics/numeric bug.",
+  "explicitScopeConflicts": 6,
+  "humanApproval": "NOT_RUN",
+  "newPasses": 0,
+  "newProductUiCases": 0,
+  "phase": "SEPARATE_CODE_GUIDE_PEDAGOGY_FINDING_NOT_PRODUCT_UI",
+  "previousCompleted246WithdrawnByThisReview": 0,
+  "prior17GeometryContractsUntouched": true,
+  "prior263ReviewUntouched": true,
+  "publicationAction": "NONE",
+  "records": [
+    {
+      "UI": "NOT_RUN",
+      "activityCredit": 0,
+      "actualGuideTitle": "Controlla il calcolo",
+      "actualInstruction": "p = 100(V₀/V)ᵞ, qui γ = 1,5. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+      "actualModelEquationAlreadyDisplayed": "100 / (1,25^(1,5)) ≈ 71,55 kPa",
+      "additionalGradedQuestion": false,
+      "candidateVersion": 2,
+      "classification": "EXPLICIT_OBSERVATION_SCOPE_VS_COMPUTE_INSTRUCTION_CONFLICT",
+      "id": "SIM-C3-L07-05",
+      "independentModel": {
+        "id": "SIM-C3-L07-05",
+        "independentExact": "32*sqrt(5)",
+        "input": "1.25",
+        "installedValue": 71.55417527999327,
+        "manualSourceSupportImplied": false,
+        "numericModelMatchesIndependentLaw": true
+      },
+      "mathematicalImpossibilityClaimed": false,
+      "prior16SelectedInputsReviewRetracted": false,
+      "probeInput": 1.25,
+      "selectedAssessmentInputs": [
+        2.25,
+        4
+      ],
+      "sourceScopeSentences": [
+        "Gli altri valori del cursore servono a osservare la curva. I due conti richiesti sono r=9/4 e r=4, con il procedimento manuale appena descritto. Controlla sempre che nell’espansione r>1 la pressione sia positiva e minore di 100 kPa."
+      ]
+    },
+    {
+      "UI": "NOT_RUN",
+      "activityCredit": 0,
+      "actualGuideTitle": "Controlla il calcolo",
+      "actualInstruction": "F = qvB sin θ; q = 2 µC, v = 3 m/s, B = 1 T. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+      "actualModelEquationAlreadyDisplayed": "6 × sin(5°) ≈ 0,5229 µN",
+      "additionalGradedQuestion": false,
+      "candidateVersion": 2,
+      "classification": "EXPLICIT_OBSERVATION_SCOPE_VS_COMPUTE_INSTRUCTION_CONFLICT",
+      "id": "SIM-C4-L09-02",
+      "independentModel": {
+        "id": "SIM-C4-L09-02",
+        "independentExact": "6*sin(pi/36)",
+        "input": "5",
+        "installedValue": 0.522934456485949,
+        "manualSourceSupportImplied": false,
+        "numericModelMatchesIndependentLaw": true
+      },
+      "mathematicalImpossibilityClaimed": false,
+      "prior16SelectedInputsReviewRetracted": false,
+      "probeInput": 5,
+      "selectedAssessmentInputs": [
+        30,
+        90
+      ],
+      "sourceScopeSentences": [
+        "Usando il primo risultato nell’inversa, 3·10⁻⁶ N diviso [(2·10⁻⁶ C)(3 m/s)(1/2)] restituisce 1 T: i fattori micro si semplificano. A 0° o 180° il denominatore si annulla e la forza nulla non permette di determinare B. Tutti i moduli devono rispettare 0≤F≤6 µN. Gli angoli intermedi del cursore sono osservazioni; le due verifiche numeriche richiedono 30° e 90°."
+      ]
+    },
+    {
+      "UI": "NOT_RUN",
+      "activityCredit": 0,
+      "actualGuideTitle": "Controlla il calcolo",
+      "actualInstruction": "x = A cos(2πt/T); A = 4 cm, T = 2 s. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+      "actualModelEquationAlreadyDisplayed": "4 × cos(π × 0,125) ≈ 3,696 cm",
+      "additionalGradedQuestion": false,
+      "candidateVersion": 2,
+      "classification": "EXPLICIT_OBSERVATION_SCOPE_VS_COMPUTE_INSTRUCTION_CONFLICT",
+      "id": "SIM-C5-L01-01",
+      "independentModel": {
+        "id": "SIM-C5-L01-01",
+        "independentExact": "4*sqrt(sqrt(2)/4 + 1/2)",
+        "input": "0.125",
+        "installedValue": 3.695518130045147,
+        "manualSourceSupportImplied": false,
+        "numericModelMatchesIndependentLaw": true
+      },
+      "mathematicalImpossibilityClaimed": false,
+      "prior16SelectedInputsReviewRetracted": false,
+      "probeInput": 0.125,
+      "selectedAssessmentInputs": [
+        0.5,
+        1
+      ],
+      "sourceScopeSentences": [
+        "Come controllo delle unità, t/T è puro e il coseno non ha unità; x conserva i centimetri di A. Il quarto e il mezzo periodo bastano per le due domande assegnate. Le altre posizioni del cursore permettono di seguire il moto senza richiedere valutazioni numeriche di coseni."
+      ]
+    },
+    {
+      "UI": "NOT_RUN",
+      "activityCredit": 0,
+      "actualGuideTitle": "Controlla il calcolo",
+      "actualInstruction": "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+      "actualModelEquationAlreadyDisplayed": "3 × sin(2 × π × 0,125) ≈ 2,121 cm",
+      "additionalGradedQuestion": false,
+      "candidateVersion": 2,
+      "classification": "UNSELECTED_COMPUTE_INSTRUCTION_WITH_NUMERIC_ROOT_SUPPORT_NOT_DOCUMENTED",
+      "id": "SIM-C5-L02-03",
+      "independentModel": {
+        "id": "SIM-C5-L02-03",
+        "independentExact": "3*sqrt(2)/2",
+        "input": "0.125",
+        "installedValue": 2.1213203435596424,
+        "manualSourceSupportImplied": false,
+        "numericModelMatchesIndependentLaw": true
+      },
+      "mathematicalImpossibilityClaimed": false,
+      "prior16SelectedInputsReviewRetracted": false,
+      "probeInput": 0.125,
+      "selectedAssessmentInputs": [
+        0.25,
+        0.75
+      ],
+      "sourceScopeSentences": []
+    },
+    {
+      "UI": "NOT_RUN",
+      "activityCredit": 0,
+      "actualGuideTitle": "Controlla il calcolo",
+      "actualInstruction": "A risultante = 2A × valore assoluto di cos(πΔs/λ), con A = 2 cm. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+      "actualModelEquationAlreadyDisplayed": "4 × abs(cos(π × 0,55)) ≈ 0,6257 cm",
+      "additionalGradedQuestion": false,
+      "candidateVersion": 2,
+      "classification": "EXPLICIT_OBSERVATION_SCOPE_VS_COMPUTE_INSTRUCTION_CONFLICT",
+      "id": "SIM-C5-L03-02",
+      "independentModel": {
+        "id": "SIM-C5-L03-02",
+        "independentExact": "-2*sqrt(2)*sqrt(5/8 - sqrt(5)/8) + 2*sqrt(2)*(1/4 + sqrt(5)/4)",
+        "input": "0.55",
+        "installedValue": 0.6257378601609241,
+        "manualSourceSupportImplied": false,
+        "numericModelMatchesIndependentLaw": true
+      },
+      "mathematicalImpossibilityClaimed": false,
+      "prior16SelectedInputsReviewRetracted": false,
+      "probeInput": 0.55,
+      "selectedAssessmentInputs": [
+        0.5,
+        1
+      ],
+      "sourceScopeSentences": [
+        "Per invertire il caso di cancellazione nel dominio 0≤r≤1, poniamo cos(πr)=0: πr=π/2 e r=1/2. Il valore massimo 4 cm è invece compatibile sia con r=0 sia con r=1: una sola misura di ampiezza non identifica sempre un unico cammino. Gli altri scarti del cursore restano osservazioni; i conti assegnati riguardano mezza onda e un’onda intera."
+      ]
+    },
+    {
+      "UI": "NOT_RUN",
+      "activityCredit": 0,
+      "actualGuideTitle": "Controlla il calcolo",
+      "actualInstruction": "I/I₀ = e^(−μx) = (½)ⁿ. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+      "actualModelEquationAlreadyDisplayed": "100 × 0,5^(2,5) ≈ 17,68 %",
+      "additionalGradedQuestion": false,
+      "candidateVersion": 2,
+      "classification": "EXPLICIT_OBSERVATION_SCOPE_VS_COMPUTE_INSTRUCTION_CONFLICT",
+      "id": "SIM-C5-L07-02",
+      "independentModel": {
+        "id": "SIM-C5-L07-02",
+        "independentExact": "25*sqrt(2)/2",
+        "input": "2.5",
+        "installedValue": 17.677669529663685,
+        "manualSourceSupportImplied": false,
+        "numericModelMatchesIndependentLaw": true
+      },
+      "mathematicalImpossibilityClaimed": false,
+      "prior16SelectedInputsReviewRetracted": false,
+      "probeInput": 2.5,
+      "selectedAssessmentInputs": [
+        2,
+        3
+      ],
+      "sourceScopeSentences": [
+        "Anche l’inversa può evitare logaritmi: se misuri un quarto dell’intensità iniziale, riconosci 1/4=(1/2)² e ricavi due strati emivalenti. In generale n è un rapporto di lunghezze, mentre μ ha unità inversa di lunghezza, così μd è puro. Senza assorbitore n=0 e I=I₀; aumentando n l’intensità deve restare positiva e diminuire. Le verifiche assegnate usano n=2 e n=3; gli spessori frazionari servono a osservare la curva."
+      ]
+    },
+    {
+      "UI": "NOT_RUN",
+      "activityCredit": 0,
+      "actualGuideTitle": "Controlla il calcolo",
+      "actualInstruction": "N = 64 × 2^(−t/T½); attività = (ln 2/T½)N. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+      "actualModelEquationAlreadyDisplayed": "64 × 0,5^(2,5) ≈ 11,31",
+      "additionalGradedQuestion": false,
+      "candidateVersion": 2,
+      "classification": "UNSELECTED_COMPUTE_INSTRUCTION_WITH_NUMERIC_ROOT_SUPPORT_NOT_DOCUMENTED",
+      "id": "SIM-C5-L08-02",
+      "independentModel": {
+        "id": "SIM-C5-L08-02",
+        "independentExact": "8*sqrt(2)",
+        "input": "2.5",
+        "installedValue": 11.31370849898476,
+        "manualSourceSupportImplied": false,
+        "numericModelMatchesIndependentLaw": true
+      },
+      "mathematicalImpossibilityClaimed": false,
+      "prior16SelectedInputsReviewRetracted": false,
+      "probeInput": 2.5,
+      "selectedAssessmentInputs": [
+        2,
+        4
+      ],
+      "sourceScopeSentences": [
+        "Il cursore misura già il tempo in emivite: n=t/T₁/₂ è un numero puro. Nel primo controllo n=2: 64 diviso 2 è 32, poi 32 diviso 2 è 16. Inserisci 16 come numero medio previsto. Non sottrarre due nuclei: il tempo conta i dimezzamenti della popolazione media, non i singoli decadimenti."
+      ]
+    },
+    {
+      "UI": "NOT_RUN",
+      "activityCredit": 0,
+      "actualGuideTitle": "Controlla il calcolo",
+      "actualInstruction": "n₁ sin θ₁ = n₂ sin θ₂; n₁ = 1, n₂ = 1,5. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+      "actualModelEquationAlreadyDisplayed": "arcsin(sin(5°) / 1,5) × 180 / π ≈ 3,331 °",
+      "additionalGradedQuestion": false,
+      "candidateVersion": 2,
+      "classification": "EXPLICIT_OBSERVATION_SCOPE_VS_COMPUTE_INSTRUCTION_CONFLICT",
+      "id": "SIM-C5-L09-02",
+      "independentModel": {
+        "id": "SIM-C5-L09-02",
+        "independentExact": "180*asin(2*sin(pi/36)/3)/pi",
+        "input": "5",
+        "installedValue": 3.3309802044526546,
+        "manualSourceSupportImplied": false,
+        "numericModelMatchesIndependentLaw": true
+      },
+      "mathematicalImpossibilityClaimed": false,
+      "prior16SelectedInputsReviewRetracted": false,
+      "probeInput": 5,
+      "selectedAssessmentInputs": [
+        30,
+        45
+      ],
+      "sourceScopeSentences": [
+        "I limiti forniti valgono per le due incidenze assegnate, 30° e 45°. Gli altri angoli del cursore servono a osservare la rifrazione. Non sostituire l’angolo al suo seno e non considerare 19,5° o 28,1° risultati esatti: le forme simboliche restano arcsin(1/3) e arcsin(√2/3)."
+      ]
+    }
+  ],
+  "runtimeEpoch": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "sourceCandidateCommit": "3a0b5960fd75491df58fd9a58ca72a69beb3d708",
+  "sourceConsumerChain": "All8IDs lack a piloti override. esperienza.model.steps(p,s)[2] constructs the imperative and current-input equation; banco.draw selects model.steps at stage2 and writes its title/text/equation. This is direct code-path evidence, not observed DOM/UI.",
+  "sourcePackageSha256": "89541bdaa029e64149860cc3dcfab0f293686c738e5d0d4e8dbf07d3d768b0fc",
+  "withdrawalLedgerChanged": false
+}

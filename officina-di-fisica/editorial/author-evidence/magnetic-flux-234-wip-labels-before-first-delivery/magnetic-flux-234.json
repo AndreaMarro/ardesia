@@ -1,0 +1,1170 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-magnetic-flux-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Flusso orientato e linee del campo magnetico",
+      "order": 23401,
+      "title": "Il flusso attraverso una superficie orientata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-flux",
+      "difficulty": 1,
+      "prompt": "Un campo magnetico uniforme di modulo B>0 attraversa perpendicolarmente una superficie piana aperta di area A>0. La normale positiva scelta è concorde con il campo: θ=0 e il flusso orientato è Φ=BA>0. Ogni prova mantiene queste condizioni; confronti e tarature riguardano preparazioni distinte. Con B=2 T e A=3 m², quanto vale Φ in Wb?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "Wb",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La formula generale è Φ=BA cosθ. Il campo è concorde alla normale, non soltanto perpendicolare al piano: cosθ=1 e il segno è positivo. Moltiplico 2 T per 3 m² e ottengo 6 Wb. Si tratta di una superficie aperta, non di una superficie chiusa che racchiude un volume."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f66905425ee1f242297b374a5207f6b18d207bd559a08c3299950131b42862f8",
+          "text": "La superficie è aperta e la normale scelta è concorde al campo. Il flusso è positivo: con B=2 T e A=3 m² si ottiene 6 Wb. Le frecce B e n indicano la stessa direzione, non grandezze confrontabili in modulo."
+        },
+        {
+          "type": "formula",
+          "text": "\\Phi=BA\\cos\\theta"
+        },
+        {
+          "type": "formula",
+          "text": " \\cos\\theta=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\Phi=6\\,\\mathrm{Wb}"
+        },
+        {
+          "type": "text",
+          "text": "Dodici Wb aggiunge un fattore due non presente: non ci sono due superfici da contare. −6 Wb sceglierebbe una normale opposta; zero confonderebbe il campo perpendicolare al piano con quello perpendicolare alla normale."
+        }
+      ],
+      "hints": [
+        "Valuta il coseno rispetto alla normale, poi moltiplica B per A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici Wb aggiunge un fattore due non presente: non ci sono due superfici da contare. −6 Wb sceglierebbe una normale opposta; zero confonderebbe il campo perpendicolare al piano con quello perpendicolare alla normale.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Flusso positivo attraverso superficie aperta",
+        "Linee dentro e fuori un magnete a barra",
+        "Inverse, unità e rapporto dei prodotti",
+        "Medie, display e vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Flusso orientato e linee del campo magnetico",
+      "order": 23402,
+      "title": "L’unità del flusso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-flux",
+      "difficulty": 1,
+      "prompt": "Un campo magnetico uniforme di modulo B>0 attraversa perpendicolarmente una superficie piana aperta di area A>0. La normale positiva scelta è concorde con il campo: θ=0 e il flusso orientato è Φ=BA>0. Ogni prova mantiene queste condizioni; confronti e tarature riguardano preparazioni distinte. Quale unità è adatta a esprimere Φ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Wb",
+          "T",
+          "T/m²",
+          "V",
+          "N"
+        ],
+        "value": "Wb"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto campo per area ha unità T·m², chiamata weber, simbolo Wb. La scelta di orientazione cambia il segno del flusso, non la sua dimensione."
+        },
+        {
+          "type": "formula",
+          "text": "[\\Phi]=\\mathrm{T\\,m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathrm{Wb}=\\mathrm{T\\,m^2}"
+        },
+        {
+          "type": "text",
+          "text": "T è il campo senza area; T/m² divide invece di moltiplicare. V è differenza di potenziale e N forza. Un prefisso sul weber cambierebbe la scala numerica, non la dimensione."
+        }
+      ],
+      "hints": [
+        "Conserva l’area nella verifica delle unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "T è il campo senza area; T/m² divide invece di moltiplicare. V è differenza di potenziale e N forza. Un prefisso sul weber cambierebbe la scala numerica, non la dimensione.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Flusso positivo attraverso superficie aperta",
+        "Linee dentro e fuori un magnete a barra",
+        "Inverse, unità e rapporto dei prodotti",
+        "Medie, display e vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Flusso orientato e linee del campo magnetico",
+      "order": 23403,
+      "title": "Le linee dentro e fuori il magnete",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-flux",
+      "difficulty": 1,
+      "prompt": "Caso autonomo: nel disegno elementare del campo di un magnete a barra, si seguono le linee sia all’esterno sia all’interno del magnete. Come si completano le linee illustrate?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Proseguono fuori da N a S e dentro da S a N, chiudendo il percorso illustrato",
+          "Partono da N e terminano definitivamente su S",
+          "Esistono soltanto nello spazio esterno",
+          "Fuori vanno da S a N e dentro da N a S",
+          "Si interrompono nel centro del magnete"
+        ],
+        "value": "Proseguono fuori da N a S e dentro da S a N, chiudendo il percorso illustrato"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il modello disegnato non contiene sorgenti magnetiche isolate. Il verso esterno convenzionale è da N a S; la continuazione interna va da S a N. Le due parti completano il percorso illustrato senza inizio o fine ai poli. In formula, Σ indica una qualunque superficie chiusa e il suo flusso totale è nullo. È una descrizione del magnete a barra del quesito, non l’affermazione che qualunque linea in ogni possibile campo debba essere una curva finita chiusa."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f66905425ee1f242297b374a5207f6b18d207bd559a08c3299950131b42862f8",
+          "text": "Nel disegno elementare del magnete a barra il tratto esterno va da N a S e quello interno da S a N. I poli non sono punti in cui le linee finiscono."
+        },
+        {
+          "type": "formula",
+          "text": "\\oint_{\\Sigma}\\vec B\\cdot d\\vec A=0"
+        },
+        {
+          "type": "text",
+          "text": "Un termine definitivo sui poli imiterà le linee di un campo elettrico con cariche isolate. Eliminare l’interno o interrompere al centro non completa le linee. Invertire entrambi i versi contraddice la convenzione dei poli N e S."
+        }
+      ],
+      "hints": [
+        "Segui la stessa linea anche attraverso il materiale del magnete.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un termine definitivo sui poli imiterà le linee di un campo elettrico con cariche isolate. Eliminare l’interno o interrompere al centro non completa le linee. Invertire entrambi i versi contraddice la convenzione dei poli N e S.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Flusso positivo attraverso superficie aperta",
+        "Linee dentro e fuori un magnete a barra",
+        "Inverse, unità e rapporto dei prodotti",
+        "Medie, display e vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Flusso orientato e linee del campo magnetico",
+      "order": 23404,
+      "title": "Campo dimezzato, stessa superficie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-flux",
+      "difficulty": 1,
+      "prompt": "Un campo magnetico uniforme di modulo B>0 attraversa perpendicolarmente una superficie piana aperta di area A>0. La normale positiva scelta è concorde con il campo: θ=0 e il flusso orientato è Φ=BA>0. Ogni prova mantiene queste condizioni; confronti e tarature riguardano preparazioni distinte. A resta 3 m² e B passa da 2 a 1 T. Come cambia Φ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 6 Wb a 3 Wb",
+          "Da 6 Wb a 12 Wb",
+          "Resta 6 Wb",
+          "Da 6 Wb a 0 Wb",
+          "Da 6 Wb a −3 Wb"
+        ],
+        "value": "Da 6 Wb a 3 Wb"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A e cosθ restano invariati. Φ è lineare in B: il campo dimezzato dimezza il flusso da 6 a 3 Wb. Entrambi restano positivi perché non si è invertita la normale né il campo."
+        },
+        {
+          "type": "formula",
+          "text": "\\Phi_A=6\\,\\mathrm{Wb}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Phi_B=3\\,\\mathrm{Wb}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Phi_B/\\Phi_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Dodici rende inversa la dipendenza da B. Sei ignora il cambio; zero richiederebbe B nullo o campo tangente al piano. −3 cambierebbe anche l’orientazione, che qui resta concorde."
+        }
+      ],
+      "hints": [
+        "Nel rapporto si cancella l’area.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dodici rende inversa la dipendenza da B. Sei ignora il cambio; zero richiederebbe B nullo o campo tangente al piano. −3 cambierebbe anche l’orientazione, che qui resta concorde.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Flusso positivo attraverso superficie aperta",
+        "Linee dentro e fuori un magnete a barra",
+        "Inverse, unità e rapporto dei prodotti",
+        "Medie, display e vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Flusso orientato e linee del campo magnetico",
+      "order": 23405,
+      "title": "Il campo da una misura di flusso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-flux",
+      "difficulty": 2,
+      "prompt": "Un campo magnetico uniforme di modulo B>0 attraversa perpendicolarmente una superficie piana aperta di area A>0. La normale positiva scelta è concorde con il campo: θ=0 e il flusso orientato è Φ=BA>0. Ogni prova mantiene queste condizioni; confronti e tarature riguardano preparazioni distinte. Φ=6 Wb e A=3 m². Quanto vale B in T?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "T",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Divido Φ=BA per l’area strettamente positiva. B=Φ/A=6 Wb/(3 m²)=2 T. Nessuna radice è necessaria perché B compare al primo grado."
+        },
+        {
+          "type": "formula",
+          "text": "B=\\frac\\Phi A"
+        },
+        {
+          "type": "formula",
+          "text": " B=2\\,\\mathrm T"
+        },
+        {
+          "type": "text",
+          "text": "Diciotto moltiplica i numeri anziché dividerli; 1/2 inverte la divisione e ha anche unità m²/Wb se si usano le grandezze fisiche. Sei copia il flusso senza l’area. −2 non è un modulo ammesso."
+        }
+      ],
+      "hints": [
+        "Per isolare B dividi per l’area, non per il flusso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Diciotto moltiplica i numeri anziché dividerli; 1/2 inverte la divisione e ha anche unità m²/Wb se si usano le grandezze fisiche. Sei copia il flusso senza l’area. −2 non è un modulo ammesso.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Flusso positivo attraverso superficie aperta",
+        "Linee dentro e fuori un magnete a barra",
+        "Inverse, unità e rapporto dei prodotti",
+        "Medie, display e vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Flusso orientato e linee del campo magnetico",
+      "order": 23406,
+      "title": "L’area da campo e flusso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-flux",
+      "difficulty": 2,
+      "prompt": "Un campo magnetico uniforme di modulo B>0 attraversa perpendicolarmente una superficie piana aperta di area A>0. La normale positiva scelta è concorde con il campo: θ=0 e il flusso orientato è Φ=BA>0. Ogni prova mantiene queste condizioni; confronti e tarature riguardano preparazioni distinte. Φ=6 Wb e B=2 T. Quanto vale A in m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Divido la relazione per B>0: A=Φ/B. Sei weber divisi per due tesla danno 3 m². Il risultato è un’area e non il lato di un quadrato: non bisogna estrarre una radice."
+        },
+        {
+          "type": "formula",
+          "text": "A=\\frac\\Phi B"
+        },
+        {
+          "type": "formula",
+          "text": " A=3\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Dodici moltiplica i due numeri; 1/3 inverte la divisione. √3 m sarebbe la lunghezza di un lato se si imponesse un quadrato, informazione che qui non si richiede. Sei ignora B."
+        }
+      ],
+      "hints": [
+        "Controlla che Wb/T dia un’area.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici moltiplica i due numeri; 1/3 inverte la divisione. √3 m sarebbe la lunghezza di un lato se si imponesse un quadrato, informazione che qui non si richiede. Sei ignora B.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Flusso positivo attraverso superficie aperta",
+        "Linee dentro e fuori un magnete a barra",
+        "Inverse, unità e rapporto dei prodotti",
+        "Medie, display e vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Flusso orientato e linee del campo magnetico",
+      "order": 23407,
+      "title": "Un terzo dell’area",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-flux",
+      "difficulty": 2,
+      "prompt": "Un campo magnetico uniforme di modulo B>0 attraversa perpendicolarmente una superficie piana aperta di area A>0. La normale positiva scelta è concorde con il campo: θ=0 e il flusso orientato è Φ=BA>0. Ogni prova mantiene queste condizioni; confronti e tarature riguardano preparazioni distinte. A usa B=2 T,A=3 m². B usa lo stesso campo e area di 1 m². Quanto vale Φ_B/Φ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/3",
+          "3",
+          "1/9",
+          "1",
+          "0"
+        ],
+        "value": "1/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il campo e l’orientazione sono comuni. I flussi sono 6 e 2 Wb: il rapporto è 2/6=1/3, uguale al rapporto delle aree. Non si sta confrontando una lunghezza con un’area."
+        },
+        {
+          "type": "formula",
+          "text": "\\Phi_A=6\\,\\mathrm{Wb}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Phi_B=2\\,\\mathrm{Wb}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Phi_B/\\Phi_A=\\frac13"
+        },
+        {
+          "type": "text",
+          "text": "Tre inverte il confronto, 1/9 eleva di nuovo al quadrato un rapporto che è già di aree. Uno ignora il cambio e zero non segue da area positiva."
+        }
+      ],
+      "hints": [
+        "Semplifica B prima di inserire i numeri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre inverte il confronto, 1/9 eleva di nuovo al quadrato un rapporto che è già di aree. Uno ignora il cambio e zero non segue da area positiva.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Flusso positivo attraverso superficie aperta",
+        "Linee dentro e fuori un magnete a barra",
+        "Inverse, unità e rapporto dei prodotti",
+        "Medie, display e vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Flusso orientato e linee del campo magnetico",
+      "order": 23408,
+      "title": "Uno scarto con segno in weber",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-flux",
+      "difficulty": 2,
+      "prompt": "Un campo magnetico uniforme di modulo B>0 attraversa perpendicolarmente una superficie piana aperta di area A>0. La normale positiva scelta è concorde con il campo: θ=0 e il flusso orientato è Φ=BA>0. Ogni prova mantiene queste condizioni; confronti e tarature riguardano preparazioni distinte. Con B=2 T,A=3 m² si propone Φ=12 Wb. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6 Wb",
+          "−6 Wb",
+          "2",
+          "12 Wb",
+          "0 Wb"
+        ],
+        "value": "6 Wb"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge dà 6 Wb. Lo scarto richiesto è 12−6=+6 Wb, distinto dal rapporto puro 12/6=2. Il segno positivo indica una proposta maggiore del corretto."
+        },
+        {
+          "type": "formula",
+          "text": "\\Phi=6\\,\\mathrm{Wb}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(12-6)\\,\\mathrm{Wb}"
+        },
+        {
+          "type": "formula",
+          "text": " e=6\\,\\mathrm{Wb}"
+        },
+        {
+          "type": "text",
+          "text": "−6 cambia l’ordine della sottrazione; due risponde con un rapporto; dodici copia la proposta. Zero la accetta senza confrontarla con il prodotto BA."
+        }
+      ],
+      "hints": [
+        "Scrivi esplicitamente proposta meno corretto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−6 cambia l’ordine della sottrazione; due risponde con un rapporto; dodici copia la proposta. Zero la accetta senza confrontarla con il prodotto BA.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Flusso positivo attraverso superficie aperta",
+        "Linee dentro e fuori un magnete a barra",
+        "Inverse, unità e rapporto dei prodotti",
+        "Medie, display e vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Flusso orientato e linee del campo magnetico",
+      "order": 23409,
+      "title": "L’inversa simbolica per B",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-flux",
+      "difficulty": 2,
+      "prompt": "Un campo magnetico uniforme di modulo B>0 attraversa perpendicolarmente una superficie piana aperta di area A>0. La normale positiva scelta è concorde con il campo: θ=0 e il flusso orientato è Φ=BA>0. Ogni prova mantiene queste condizioni; confronti e tarature riguardano preparazioni distinte. Si misurano Φ e A. Quale relazione isola B?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "B = Φ / A",
+          "B = Φ A",
+          "B = A / Φ",
+          "B = √(Φ / A)",
+          "B = Φ / (2 A)"
+        ],
+        "value": "B = Φ / A"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’area è positiva e posso dividere entrambi i membri di Φ=BA per A. Ne segue B=Φ/A. Le unità Wb/m² restituiscono T; l’orientazione assegnata assicura Φ>0."
+        },
+        {
+          "type": "formula",
+          "text": "\\Phi=BA"
+        },
+        {
+          "type": "formula",
+          "text": " B=\\frac\\Phi A"
+        },
+        {
+          "type": "formula",
+          "text": " [B]=\\mathrm T"
+        },
+        {
+          "type": "text",
+          "text": "ΦA ha unità T·m⁴ invece di T. A/Φ ha unità T⁻¹; la radice ha unità T¹ᐟ² e non appartiene alla legge lineare. Il fattore due al denominatore dimezzerebbe il campo senza una seconda interfaccia o altro dato che lo richieda."
+        }
+      ],
+      "hints": [
+        "Dividi per l’unico fattore che moltiplica B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "ΦA ha unità T·m⁴ invece di T. A/Φ ha unità T⁻¹; la radice ha unità T¹ᐟ² e non appartiene alla legge lineare. Il fattore due al denominatore dimezzerebbe il campo senza una seconda interfaccia o altro dato che lo richieda.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Flusso positivo attraverso superficie aperta",
+        "Linee dentro e fuori un magnete a barra",
+        "Inverse, unità e rapporto dei prodotti",
+        "Medie, display e vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Flusso orientato e linee del campo magnetico",
+      "order": 23410,
+      "title": "Il prodotto dei due fattori di scala",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-flux",
+      "difficulty": 2,
+      "prompt": "Un campo magnetico uniforme di modulo B>0 attraversa perpendicolarmente una superficie piana aperta di area A>0. La normale positiva scelta è concorde con il campo: θ=0 e il flusso orientato è Φ=BA>0. Ogni prova mantiene queste condizioni; confronti e tarature riguardano preparazioni distinte. Fra preparazioni B_B=κ₁B_A e A_B=κ₂A_A, con κ₁,κ₂>0. Quanto vale Φ_B/Φ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁² κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituisco entrambe le variazioni: Φ_B=(κ₁B_A)(κ₂A_A). Dividendo per il flusso positivo B_AA_A si cancella il riferimento e resta κ₁κ₂. Nessun coseno cambia fra le due preparazioni."
+        },
+        {
+          "type": "formula",
+          "text": "\\Phi_B=\\kappa_1\\kappa_2B_AA_A"
+        },
+        {
+          "type": "formula",
+          "text": " \\Phi_B/\\Phi_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "Le divisioni attribuiscono una dipendenza inversa a uno dei due fattori. Il quadrato di κ₁ non è presente; la somma darebbe due per κ₁=κ₂=1, mentre uno stato immutato deve dare rapporto uno."
+        }
+      ],
+      "hints": [
+        "Entrambi i fattori compaiono al numeratore nella legge.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Le divisioni attribuiscono una dipendenza inversa a uno dei due fattori. Il quadrato di κ₁ non è presente; la somma darebbe due per κ₁=κ₂=1, mentre uno stato immutato deve dare rapporto uno.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Flusso positivo attraverso superficie aperta",
+        "Linee dentro e fuori un magnete a barra",
+        "Inverse, unità e rapporto dei prodotti",
+        "Medie, display e vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Flusso orientato e linee del campo magnetico",
+      "order": 23411,
+      "title": "Campo minore e area maggiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-flux",
+      "difficulty": 2,
+      "prompt": "Un campo magnetico uniforme di modulo B>0 attraversa perpendicolarmente una superficie piana aperta di area A>0. La normale positiva scelta è concorde con il campo: θ=0 e il flusso orientato è Φ=BA>0. Ogni prova mantiene queste condizioni; confronti e tarature riguardano preparazioni distinte. A usa B=2 T,A=3 m²; B usa campo di 1 T e area di 4 m². Quanto vale Φ_B/Φ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "1/2",
+          "4/3",
+          "1"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Calcolo separatamente 2·3=6 Wb e 1·4=4 Wb. Il rapporto è 4/6=2/3. L’aumento d’area non compensa del tutto il campo dimezzato."
+        },
+        {
+          "type": "formula",
+          "text": "\\Phi_A=6\\,\\mathrm{Wb}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Phi_B=4\\,\\mathrm{Wb}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Phi_B/\\Phi_A=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "3/2 inverte il confronto. Un mezzo considera solo il campo e 4/3 solo l’area. Uno presuppone una compensazione esatta, che richiederebbe area finale 6 m², non 4."
+        }
+      ],
+      "hints": [
+        "Confronta i due prodotti interi prima di ridurre la frazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/2 inverte il confronto. Un mezzo considera solo il campo e 4/3 solo l’area. Uno presuppone una compensazione esatta, che richiederebbe area finale 6 m², non 4.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Flusso positivo attraverso superficie aperta",
+        "Linee dentro e fuori un magnete a barra",
+        "Inverse, unità e rapporto dei prodotti",
+        "Medie, display e vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Flusso orientato e linee del campo magnetico",
+      "order": 23412,
+      "title": "Media delle letture, non degli ingressi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-flux",
+      "difficulty": 2,
+      "prompt": "Un campo magnetico uniforme di modulo B>0 attraversa perpendicolarmente una superficie piana aperta di area A>0. La normale positiva scelta è concorde con il campo: θ=0 e il flusso orientato è Φ=BA>0. Ogni prova mantiene queste condizioni; confronti e tarature riguardano preparazioni distinte. Le prove con uguale peso statistico sono A:B=2 T,A=3 m² e B:B=1 T,A=4 m². Qual è la media di Φ in Wb?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "Wb",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le letture sono 6 e 4 Wb. La semisomma è 5 Wb. Ai dati medi B=3/2 T e A=7/2 m² si otterrebbe 21/4 Wb: il prodotto delle medie non coincide con la media dei prodotti. Qui la differenza richiesta meno modello ai dati medi sarebbe −1/4 Wb."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f66905425ee1f242297b374a5207f6b18d207bd559a08c3299950131b42862f8",
+          "text": "Le due letture 6 e 4 Wb hanno media 5 Wb: le tre barre condividono la stessa scala. L’ultimo pannello varia solo B a superficie 3 m², non rappresenta l’uso degli ingressi medi."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline\\Phi=\\frac{6+4}{2}\\,\\mathrm{Wb}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline\\Phi=5\\,\\mathrm{Wb}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Phi_{\\rm dati\\ medi}=\\frac{21}{4}\\,\\mathrm{Wb}"
+        },
+        {
+          "type": "text",
+          "text": "Dieci Wb è la somma senza dimezzare. 21/4 Wb risponde usando gli ingressi medi; un Wb è la semidifferenza. Non c’è alcuna divisione temporale: i pesi sono statistici uguali."
+        }
+      ],
+      "hints": [
+        "Trova prima due letture fisiche, poi fanne la media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci Wb è la somma senza dimezzare. 21/4 Wb risponde usando gli ingressi medi; un Wb è la semidifferenza. Non c’è alcuna divisione temporale: i pesi sono statistici uguali.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Flusso positivo attraverso superficie aperta",
+        "Linee dentro e fuori un magnete a barra",
+        "Inverse, unità e rapporto dei prodotti",
+        "Medie, display e vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Flusso orientato e linee del campo magnetico",
+      "order": 23413,
+      "title": "L’area per il flusso bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-flux",
+      "difficulty": 3,
+      "prompt": "Un campo magnetico uniforme di modulo B>0 attraversa perpendicolarmente una superficie piana aperta di area A>0. La normale positiva scelta è concorde con il campo: θ=0 e il flusso orientato è Φ=BA>0. Ogni prova mantiene queste condizioni; confronti e tarature riguardano preparazioni distinte. A usa B_A=2 T,A_A=3 m². B usa campo di 1 T e deve dare Φ_B=(2/3)Φ_A. Quanto vale A_B/A_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "2/3",
+          "1/3",
+          "2"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il flusso iniziale è 6 Wb e il bersaglio è 4 Wb. Con B_B=1 T serve A_B=4 m². Dividendo per A_A=3 m² ottengo 4/3: il campo minore richiede più area rispetto alla sola riduzione del flusso."
+        },
+        {
+          "type": "formula",
+          "text": "\\Phi_B=4\\,\\mathrm{Wb}"
+        },
+        {
+          "type": "formula",
+          "text": " A_B=4\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_B/A_A=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "3/4 inverte il rapporto. 2/3 copia il fattore del flusso ignorando il campo diverso; 1/3 darebbe A_B=1 m² e Φ_B=1 Wb. Due darebbe 6 Wb, uguale al riferimento anziché due terzi."
+        }
+      ],
+      "hints": [
+        "Decodifica il bersaglio in weber prima dell’inversa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/4 inverte il rapporto. 2/3 copia il fattore del flusso ignorando il campo diverso; 1/3 darebbe A_B=1 m² e Φ_B=1 Wb. Due darebbe 6 Wb, uguale al riferimento anziché due terzi.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Flusso positivo attraverso superficie aperta",
+        "Linee dentro e fuori un magnete a barra",
+        "Inverse, unità e rapporto dei prodotti",
+        "Medie, display e vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Flusso orientato e linee del campo magnetico",
+      "order": 23414,
+      "title": "Taratura proporzionale dello strumento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-flux",
+      "difficulty": 3,
+      "prompt": "Un campo magnetico uniforme di modulo B>0 attraversa perpendicolarmente una superficie piana aperta di area A>0. La normale positiva scelta è concorde con il campo: θ=0 e il flusso orientato è Φ=BA>0. Ogni prova mantiene queste condizioni; confronti e tarature riguardano preparazioni distinte. Il display continuo adimensionale segue D=a_cal Φ, senza offset. Il riferimento B=2 T,A=3 m² dà D=18. Nella nuova prova A=4 m²,D=12. Quanto vale B in T?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "T",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento dà Φ_A=6 Wb e a_cal=18/(6 Wb)=3 Wb⁻¹. La lettura12 corrisponde a Φ_B=4 Wb; divido per i 4 m² della nuova superficie e ottengo B_B=1 T. Il display non è direttamente un valore in weber."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,\\mathrm{Wb^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Phi_B=4\\,\\mathrm{Wb}"
+        },
+        {
+          "type": "formula",
+          "text": " B_B=1\\,\\mathrm T"
+        },
+        {
+          "type": "text",
+          "text": "Tre T usa D=12 come se fosse 12 Wb. Quattro T copia il valore numerico del flusso decodificato ignorando l’area. 2/3 è il rapporto delle letture, non il nuovo campo: anche l’area è diversa."
+        }
+      ],
+      "hints": [
+        "Trova il guadagno con il riferimento prima di usare l’area nuova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre T usa D=12 come se fosse 12 Wb. Quattro T copia il valore numerico del flusso decodificato ignorando l’area. 2/3 è il rapporto delle letture, non il nuovo campo: anche l’area è diversa.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Flusso positivo attraverso superficie aperta",
+        "Linee dentro e fuori un magnete a barra",
+        "Inverse, unità e rapporto dei prodotti",
+        "Medie, display e vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Flusso orientato e linee del campo magnetico",
+      "order": 23415,
+      "title": "Due riferimenti separano guadagno e offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-flux",
+      "difficulty": 3,
+      "prompt": "Un campo magnetico uniforme di modulo B>0 attraversa perpendicolarmente una superficie piana aperta di area A>0. La normale positiva scelta è concorde con il campo: θ=0 e il flusso orientato è Φ=BA>0. Ogni prova mantiene queste condizioni; confronti e tarature riguardano preparazioni distinte. Il display continuo adimensionale segue D=a_cal Φ+b_cal. A:B=2 T,A=3 m²,D=13. B:B=1 T,A=4 m²,D=9. C:A=5 m²,D=41. Quanto vale B_C in T?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "T",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due flussi di riferimento sono 6 e 4 Wb. La differenza delle letture è 4 per una differenza di 2 Wb: a_cal=2 Wb⁻¹. Da 13=2·6+b_cal segue b_cal=1. Sottraggo l’offset a 41 e divido per 2: Φ_C=20 Wb, quindi B_C=20/5=4 T."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,\\mathrm{Wb^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b_{\\rm cal}=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\Phi_C=20\\,\\mathrm{Wb}"
+        },
+        {
+          "type": "formula",
+          "text": " B_C=4\\,\\mathrm T"
+        },
+        {
+          "type": "text",
+          "text": "41/10 T omette la sottrazione dell’offset e predice D=42. Otto T sottrae b ma omette la divisione per il guadagno; venti T copia il flusso invece di dividerlo per l’area."
+        }
+      ],
+      "hints": [
+        "Sottrai le due equazioni di taratura per eliminare b_cal.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "41/10 T omette la sottrazione dell’offset e predice D=42. Otto T sottrae b ma omette la divisione per il guadagno; venti T copia il flusso invece di dividerlo per l’area.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Flusso positivo attraverso superficie aperta",
+        "Linee dentro e fuori un magnete a barra",
+        "Inverse, unità e rapporto dei prodotti",
+        "Medie, display e vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-flux-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Flusso orientato e linee del campo magnetico",
+      "order": 23416,
+      "title": "Un vincolo con coefficiente dimensionato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-flux",
+      "difficulty": 3,
+      "prompt": "Un campo magnetico uniforme di modulo B>0 attraversa perpendicolarmente una superficie piana aperta di area A>0. La normale positiva scelta è concorde con il campo: θ=0 e il flusso orientato è Φ=BA>0. Ogni prova mantiene queste condizioni; confronti e tarature riguardano preparazioni distinte. Fra preparazioni B=[(2/3) T/m²]A e si misura Φ=6 Wb. Quanto vale A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 m²",
+          "−3 m²",
+          "9 m²",
+          "2 m²",
+          "Infinite aree positive"
+        ],
+        "value": "3 m²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Pongo a=A/(1 m²)>0 e β=B/(1 T)>0. Il vincolo dà β=(2/3)a; il flusso numerico sei dà 6=βa=(2/3)a². Moltiplico per 3/2: a²=9. Le due radici algebriche sono alternative, ma solo a=3 rispetta l’area positiva. Ne segue A=3 m² e B=2 T."
+        },
+        {
+          "type": "formula",
+          "text": "6=\\frac23a^2"
+        },
+        {
+          "type": "formula",
+          "text": " a^2=9"
+        },
+        {
+          "type": "formula",
+          "text": " a=3"
+        },
+        {
+          "type": "formula",
+          "text": " a=-3"
+        },
+        {
+          "type": "formula",
+          "text": " A=3\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "text",
+          "text": "−3 è la radice esclusa dal dominio dell’area. Nove confonde a² con a e darebbe Φ=54 Wb. Due m² darebbe Φ=8/3 Wb. La misura e il vincolo fissano un’unica area positiva."
+        }
+      ],
+      "hints": [
+        "Usa variabili numeriche adimensionali prima di risolvere il quadrato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "−3 è la radice esclusa dal dominio dell’area. Nove confonde a² con a e darebbe Φ=54 Wb. Due m² darebbe Φ=8/3 Wb. La misura e il vincolo fissano un’unica area positiva.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Flusso positivo attraverso superficie aperta",
+        "Linee dentro e fuori un magnete a barra",
+        "Inverse, unità e rapporto dei prodotti",
+        "Medie, display e vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "f66905425ee1f242297b374a5207f6b18d207bd559a08c3299950131b42862f8",
+      "name": "magnetic-flux-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTgwMCIgdmlld0JveD0iMCAwIDY0MCAxODAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+U3VwZXJmaWNpZSBvcmllbnRhdGEgZSBmbHVzc288L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5RdWF0dHJvIHRhcHBlOiBub3JtYWxlIGNvbmNvcmRlIGFsIGNhbXBvIGUgc3VwZXJmaWNpZSBhcGVydGE7IGNvbnRpbnVhemlvbmUgZGVsbGUgbGluZWUgZGVsIG1hZ25ldGUgYSBiYXJyYSBhbGzigJllc3Rlcm5vIGUgYWxs4oCZaW50ZXJubzsgYmFycmUgZGVpIGZsdXNzaSBlIGRlbGxhIG1lZGlhIGNvbiBzY2FsYSBjb211bmU7IGdyYWZpY28gbGluZWFyZSBhIHN1cGVyZmljaWUgdHJlIG1ldHJpIHF1YWRyYXRpLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDggNEwwIDhaIiBmaWxsPSIjNTI2NjdhIi8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTgwMCIgZmlsbD0iI2Y3ZmFmYyIvPjxnIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZmlsbD0iIzIwMzU0ZCI+PHRleHQgeD0iMzIiIHk9IjQyIiBmb250LXNpemU9IjI0IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlN1cGVyZmljaWUgb3JpZW50YXRhIGUgZmx1c3NvPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI5MiIgZm9udC1zaXplPSIyMiIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xIMK3IFVuYSBzdXBlcmZpY2llIGFwZXJ0YSBvcmllbnRhdGE8L3RleHQ+PHBhdGggZD0iTTE1MCAzMTBMNDEwIDMxMEw0OTAgMzcwTDIzMCAzNzBaIiBmaWxsPSIjZGJlOWYyIiBzdHJva2U9IiMzMTZiOWIiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIzMDAiIHkxPSIzMTAiIHgyPSIzMDAiIHkyPSIxODAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxsaW5lIHgxPSI0MTAiIHkxPSIzMTAiIHgyPSI0MTAiIHkyPSIyMjAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjI0MCIgeT0iMTY1IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkIgPSAyIFQ8L3RleHQ+PHRleHQgeD0iNDMwIiB5PSIyMTUiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+biBwb3NpdGl2YTwvdGV4dD48dGV4dCB4PSIyNTAiIHk9IjM1NSIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5BID0gMyBtwrI8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjQxNSIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5CIGNvbmNvcmRlIGEgbjogzqYgPSBCQSA9IDYgV2IuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI0ODUiIGZvbnQtc2l6ZT0iMjIiIHRleHQtYW5jaG9yPSJzdGFydCI+MiDCtyBMYSBjb250aW51YXppb25lIGRlbnRybyBpbCBtYWduZXRlPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iNTYwIiB3aWR0aD0iMTcwIiBoZWlnaHQ9IjcwIiBmaWxsPSIjZDlhMmEyIi8+PHJlY3QgeD0iMzIwIiB5PSI1NjAiIHdpZHRoPSIxNzAiIGhlaWdodD0iNzAiIGZpbGw9IiNhMmM1ZDkiLz48dGV4dCB4PSIxOTAiIHk9IjU4NSIgZm9udC1zaXplPSIyMCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5OPC90ZXh0Pjx0ZXh0IHg9IjQzMCIgeT0iNTg1IiBmb250LXNpemU9IjIwIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlM8L3RleHQ+PHBhdGggZD0iTTE3MCA2MDBWNTQwUTMyMCA0MzAgNDcwIDU0MFY2MDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxsaW5lIHgxPSI0NzAiIHkxPSI2MDAiIHgyPSIxNzAiIHkyPSI2MDAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjI1MCIgeT0iNTIwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkVzdGVybm86IE4g4oaSIFM8L3RleHQ+PHRleHQgeD0iMjUwIiB5PSI2ODAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+SW50ZXJubzogUyDihpIgTjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNzQ1IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkxlIGR1ZSBwYXJ0aSBjb21wbGV0YW5vIGxhIGxpbmVhIGlsbHVzdHJhdGEuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI3ODUiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+Tm9uIHNpIGludGVycm9tcGUgc3VpIHBvbGkgbyBuZWwgbWF0ZXJpYWxlLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iODg1IiBmb250LXNpemU9IjIyIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjMgwrcgRHVlIGZsdXNzaSBlIGxhIG1lZGlhPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iOTY0IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj5BPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iOTQwIiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMzE2YjliIi8+PHRleHQgeD0iNDAyIiB5PSI5NjQiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+NiBXYjwvdGV4dD48dGV4dCB4PSIxMjgiIHk9IjEwNTQiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJlbmQiPkI8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIxMDMwIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMzE2YjliIi8+PHRleHQgeD0iMzIyIiB5PSIxMDU0IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjQgV2I8L3RleHQ+PHRleHQgeD0iMTI4IiB5PSIxMTQ0IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj5NZWRpYTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjExMjAiIHdpZHRoPSIyMDAiIGhlaWdodD0iMzIiIGZpbGw9IiMzMTZiOWIiLz48dGV4dCB4PSIzNjIiIHk9IjExNDQiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+NSBXYjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTIyMCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5CYXJyZSBhbGxhIHN0ZXNzYSBzY2FsYTsgbWVkaWEgY29uIHBlc2kgdWd1YWxpLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTMxMCIgZm9udC1zaXplPSIyMiIgdGV4dC1hbmNob3I9InN0YXJ0Ij40IMK3IFNvbG8gQiB2YXJpYTogQSA9IDMgbcKyPC90ZXh0PjxsaW5lIHgxPSIxNDUiIHkxPSIxNjAwIiB4Mj0iNTIwIiB5Mj0iMTYwMCIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PGxpbmUgeDE9IjE1MCIgeTE9IjE2MDUiIHgyPSIxNTAiIHkyPSIxMzcwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48bGluZSB4MT0iMTUwIiB5MT0iMTYwMCIgeDI9IjM5MCIgeTI9IjE0MjAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iMTYwMCIgcj0iNCIgZmlsbD0iI2Y3ZmFmYyIgc3Ryb2tlPSIjMzE2YjliIiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSIzOTAiIGN5PSIxNDIwIiByPSI1IiBmaWxsPSIjMzE2YjliIi8+PHRleHQgeD0iMTI4IiB5PSIxNjI1IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj4wPC90ZXh0Pjx0ZXh0IHg9IjM5MCIgeT0iMTYzMCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MjwvdGV4dD48dGV4dCB4PSIxMjgiIHk9IjE0MjYiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJlbmQiPjY8L3RleHQ+PHRleHQgeD0iNTM1IiB5PSIxNjEwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkIgKFQpPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSIxMzYwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPs6mIChXYik8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE3MDAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+UmVsYXppb25lIGxpbmVhcmU7IHNpIG1vc3RyYSBCIHBvc2l0aXZvIGZpbm8gYSAyIFQuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxNzQwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkzigJlvcmlnaW5lIMOoIGVzY2x1c2EgZGFsIGRvbWluaW8gQiA+IDAuPC90ZXh0PjwvZz48L3N2Zz4K"
+    }
+  ]
+}

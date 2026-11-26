@@ -1,0 +1,227 @@
+{
+  "sourceCommit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/C4.json",
+  "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+  "lessons": [
+    {
+      "id": "C4-L05",
+      "kind": "lesson",
+      "course": "C4",
+      "section": "Quanto vale una corrente",
+      "order": 5,
+      "title": "Quanto vale una corrente",
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C4-L01",
+        "C4-L03"
+      ],
+      "version": 1,
+      "coverage": [
+        "6.4 Corrente continua e intensità",
+        "6.4 Generatore ideale",
+        "6.4 Conduzione ohmica",
+        "6.4 Prima e seconda legge di Ohm",
+        "6.4 Resistività"
+      ],
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Immagina una sezione trasversale di un filo. La corrente media I conta la carica netta che attraversa la sezione nell’unità di tempo nel verso di riferimento. Per una corrente costante, detto Δq il transito algebrico, I = Δq/Δt. L’ampere vale un coulomb al secondo."
+        },
+        {
+          "type": "formula",
+          "text": "I=\\frac{\\Delta q}{\\Delta t},\\qquad 1\\ \\mathrm A=1\\ \\mathrm{C/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il verso convenzionale è quello del moto di cariche positive. In un metallo gli elettroni di conduzione derivano in senso opposto. Un generatore ideale di tensione mantiene la differenza di potenziale ai suoi morsetti. Collegando un carico diverso, cambia la corrente necessaria a mantenere tale tensione."
+        },
+        {
+          "type": "figure",
+          "src": "/figures/C4-ohm.svg",
+          "text": "Nel grafico V in ordinata e I in ascissa, per un conduttore ohmico a temperatura fissata la pendenza V/I misura la resistenza."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta V=RI,\\qquad 1\\ \\Omega=1\\ \\mathrm{V/A},\\qquad R=\\rho\\frac{\\ell}{A}"
+        },
+        {
+          "type": "text",
+          "text": "Per un resistore ohmico R resta costante al variare di I nelle condizioni considerate. Con la convenzione passiva ΔV in questa legge è la caduta di tensione dal morsetto in cui entra la corrente a quello da cui esce. Un filo omogeneo e uniforme di lunghezza ℓ e area trasversale A ha resistenza proporzionale alla lunghezza e inversamente proporzionale all’area. La resistività ρ, in Ω·m, è una proprietà del materiale alla temperatura specificata."
+        },
+        {
+          "type": "text",
+          "text": "Una retta V(I) passante per l’origine indica comportamento ohmico nella misura considerata. Se si scambiano gli assi la pendenza diventa la conduttanza 1/R. Se il filo si scalda abbastanza da modificare la resistività, il rapporto V/I può cambiare durante la misura."
+        }
+      ],
+      "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+    },
+    {
+      "id": "C4-L06",
+      "kind": "lesson",
+      "course": "C4",
+      "section": "Seguire i nodi di un circuito",
+      "order": 6,
+      "title": "Seguire i nodi di un circuito",
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C4-L05"
+      ],
+      "version": 1,
+      "coverage": [
+        "6.4 Resistenze in serie e in parallelo",
+        "6.4 Potenza elettrica ed effetto Joule"
+      ],
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Segui i fili di un circuito prima di sommare resistenze. Due resistori sono in serie se il nodo che li unisce non offre altre diramazioni: la stessa corrente attraversa entrambi. Sono in parallelo se i loro due estremi sono collegati alla stessa coppia di nodi: la differenza di potenziale è identica."
+        },
+        {
+          "type": "figure",
+          "src": "/figures/C4-reti.svg",
+          "text": "Nel ramo in serie I è comune ai due resistori. A destra i due resistori condividono i nodi A e B, e ciascun ramo riceve l’intera tensione fra A e B."
+        },
+        {
+          "type": "formula",
+          "text": "R_{\\rm serie}=R_1+R_2,\\qquad\\frac1{R_{\\rm par}}=\\frac1{R_1}+\\frac1{R_2}"
+        },
+        {
+          "type": "text",
+          "text": "In serie le cadute si sommano: ΔV = I R1 + I R2. In parallelo le correnti si sommano: I = ΔV/R1 + ΔV/R2. La resistenza equivalente in parallelo è minore del più piccolo dei resistori positivi, perché offrire un ulteriore percorso aumenta la corrente totale a tensione fissata."
+        },
+        {
+          "type": "text",
+          "text": "Per una differenza di potenziale V e una corrente I che entra nel morsetto a potenziale maggiore, la potenza assorbita vale VI. Nel resistore l’energia elettrica diventa energia interna per effetto Joule. Le forme I²R e V²/R si ottengono dalla legge di Ohm."
+        },
+        {
+          "type": "formula",
+          "text": "P=VI=I^2R=\\frac{V^2}{R},\\qquad E=P\\Delta t\\quad(P\\ \\text{costante})"
+        },
+        {
+          "type": "text",
+          "text": "Prima di decidere se un resistore maggiore dissipa di più, individua la grandezza mantenuta costante. In serie la corrente è comune e conviene usare I²R. In parallelo è comune la tensione e conviene usare V²/R. Nel laboratorio modifica una resistenza e confronta le cadute con la somma imposta dal generatore."
+        }
+      ],
+      "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+    },
+    {
+      "id": "C4-L09",
+      "kind": "lesson",
+      "course": "C4",
+      "section": "Correnti, bussole e traiettorie curve",
+      "order": 9,
+      "title": "Correnti, bussole e traiettorie curve",
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C4-L02",
+        "C4-L05"
+      ],
+      "version": 1,
+      "coverage": [
+        "6.6 Origine magnetica delle correnti ed esperimento di Oersted",
+        "6.6 Forza di Lorentz su una carica in moto e su un filo",
+        "6.6 Moto circolare in campo magnetico uniforme"
+      ],
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una bussola vicino a un filo rettilineo si orienta diversamente quando passa corrente. Invertendo il verso della corrente si inverte il contributo magnetico del filo. L’esperimento di Oersted lega la corrente al campo magnetico B, misurato in tesla (T). Intorno a un filo rettilineo lungo le linee del campo sono circonferenze centrate sull’asse del filo. Il pollice della mano destra segue la corrente convenzionale, le dita seguono B."
+        },
+        {
+          "type": "figure",
+          "src": "/figures/C4-filo-b.svg",
+          "text": "Un punto nel filo rappresenta corrente uscente dal foglio. La linea del campo la circonda in senso antiorario. La freccia tangente indica B nel punto P."
+        },
+        {
+          "type": "text",
+          "text": "Una particella carica in moto in un campo B subisce una forza perpendicolare sia alla velocità sia a B. Per q positiva la mano destra dà il verso del prodotto vettoriale v × B; una q negativa inverte la freccia. Quando v è parallela a B, la forza magnetica è nulla."
+        },
+        {
+          "type": "formula",
+          "text": "\\vec F_B=q\\vec v\\times\\vec B,\\qquad F_B=|q|vB\\sin\\theta"
+        },
+        {
+          "type": "figure",
+          "src": "/figures/C4-orbita.svg",
+          "text": "Le croci rappresentano B entrante nel foglio. Per q positiva con v iniziale verso destra la forza è verso l’alto e curva la traiettoria."
+        },
+        {
+          "type": "text",
+          "text": "La forza magnetica è perpendicolare alla velocità istante per istante. Il suo lavoro sulla carica puntiforme è nullo. Con velocità iniziale perpendicolare a un campo uniforme e senza altre forze, il modulo della velocità resta costante e l’accelerazione è centripeta. Un’estensione del modello riguarda una velocità iniziale inclinata: con una componente parallela si sovrappongono rotazione e avanzamento lungo il campo."
+        },
+        {
+          "type": "formula",
+          "text": "|q|vB=\\frac{mv^2}{r}\\quad\\Longrightarrow\\quad r=\\frac{mv}{|q|B}\\quad(\\vec v\\perp\\vec B)"
+        },
+        {
+          "type": "text",
+          "text": "Un segmento rettilineo di filo immerso in un campo uniforme subisce la forza magnetica sulle cariche che lo attraversano. Il vettore lunghezza ℓ segue la corrente convenzionale. Il modulo della forza è massimo con filo perpendicolare al campo."
+        },
+        {
+          "type": "formula",
+          "text": "\\vec F=I\\vec\\ell\\times\\vec B,\\qquad F=I\\ell B\\sin\\theta"
+        }
+      ],
+      "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+    },
+    {
+      "id": "C4-L10",
+      "kind": "lesson",
+      "course": "C4",
+      "section": "Indurre una tensione cambiando il flusso",
+      "order": 10,
+      "title": "Indurre una tensione cambiando il flusso",
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C4-L05",
+        "C4-L09"
+      ],
+      "version": 1,
+      "coverage": [
+        "6.7 Flusso magnetico",
+        "6.7 Forza elettromotrice indotta",
+        "6.7 Legge di Faraday–Neumann–Lenz",
+        "6.7 Correnti indotte e loro verso"
+      ],
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una spira ferma può essere attraversata da un campo senza sviluppare corrente. Per generare una forza elettromotrice indotta conta la variazione nel tempo del flusso concatenato. Per una spira piana in campo uniforme il flusso Φ dipende dall’area, dal modulo del campo e dall’angolo tra il campo e la normale scelta alla superficie."
+        },
+        {
+          "type": "figure",
+          "src": "/figures/C4-flusso.svg",
+          "text": "La normale n è perpendicolare al piano della spira. L’angolo θ si misura fra il campo e la normale. Quando B giace nel piano, la sua componente normale è nulla."
+        },
+        {
+          "type": "formula",
+          "text": "\\Phi_B=BA\\cos\\theta,\\qquad [\\Phi_B]=\\mathrm{T\\,m^2}=\\mathrm{Wb}"
+        },
+        {
+          "type": "text",
+          "text": "Cambiando l’intensità del campo, ruotando la spira o modificando l’area attraversata si può cambiare il flusso. Per N spire con lo stesso flusso per spira, la forza elettromotrice media è la variazione del flusso concatenato divisa per il tempo, con segno meno. Un weber al secondo equivale a un volt."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline{\\mathcal E}=-N\\frac{\\Phi_f-\\Phi_i}{\\Delta t}"
+        },
+        {
+          "type": "figure",
+          "src": "/figures/C4-lenz.svg",
+          "text": "Vista frontale della spira. Un campo esterno entrante che aumenta induce una corrente antioraria, il cui campo è uscente."
+        },
+        {
+          "type": "text",
+          "text": "Il verso positivo di percorrenza della spira si abbina alla normale con la regola della mano destra. La legge di Lenz dice che il campo della corrente indotta si oppone alla variazione del flusso esterno. Se un campo entrante diminuisce, l’induzione tende quindi a sostenerlo. Invertire sempre il verso del campo esterno darebbe una previsione errata quando il flusso si riduce."
+        },
+        {
+          "type": "text",
+          "text": "Una forza elettromotrice può esistere anche a circuito aperto. Una corrente persistente richiede un cammino chiuso e dipende dalle proprietà del circuito. In una spira resistiva con autoinduzione trascurabile, il suo modulo si ricava dalla legge di Ohm."
+        }
+      ],
+      "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+    }
+  ],
+  "reading": "All four lessons read in full. L10 directly covers Faraday/Lenz/open emf and closed resistive response; L09 covers Lorentz, perpendicular rotation and parallel transport. L05 supplies current/Ohm and L06 Joule energy; no network primary substituted for these tasks."
+}

@@ -1,0 +1,139 @@
+{
+  "scope": "source_prompt_models_and_dimensions_only_not_candidate_review",
+  "candidateAuthor": "A",
+  "futureReviewer": "B",
+  "candidateFilesOptionsKeysOrSVGOpened": false,
+  "sourcePrimarySha256": "51395bd462210eea741c8535d111ebf94686590467d5821825834e6e8668f91d",
+  "modelImplementationSha256": "e2acf441bb9b7fc3e67c2bc103e6dce9c9790b571610e6838da30c3debbcba4b",
+  "actualSourceDerivedChecks": [
+    {
+      "check": "force-current-wire result",
+      "actual": "60",
+      "expectedFromPromptPrimary": "60"
+    },
+    {
+      "check": "force-current-wire inverseI",
+      "actual": "2",
+      "expectedFromPromptPrimary": "2"
+    },
+    {
+      "check": "force-current-wire inverseL",
+      "actual": "3",
+      "expectedFromPromptPrimary": "3"
+    },
+    {
+      "check": "force-current-wire constrained",
+      "actual": "3",
+      "expectedFromPromptPrimary": "3"
+    },
+    {
+      "check": "magnetic-circle-radius result",
+      "actual": "2",
+      "expectedFromPromptPrimary": "2"
+    },
+    {
+      "check": "magnetic-circle-radius inversev",
+      "actual": "2",
+      "expectedFromPromptPrimary": "2"
+    },
+    {
+      "check": "magnetic-circle-radius inverseB",
+      "actual": "1",
+      "expectedFromPromptPrimary": "1"
+    },
+    {
+      "check": "magnetic-circle-radius redundant constraint",
+      "actual": "2",
+      "expectedFromPromptPrimary": "2"
+    },
+    {
+      "check": "accelerated-magnetic-radius result",
+      "actual": "2",
+      "expectedFromPromptPrimary": "2"
+    },
+    {
+      "check": "accelerated-magnetic-radius inverseU",
+      "actual": "1",
+      "expectedFromPromptPrimary": "1"
+    },
+    {
+      "check": "accelerated-magnetic-radius inverseB",
+      "actual": "2",
+      "expectedFromPromptPrimary": "2"
+    },
+    {
+      "check": "accelerated-magnetic-radius linear constraint",
+      "actual": "1",
+      "expectedFromPromptPrimary": "1"
+    },
+    {
+      "check": "accelerated-magnetic-radius algebraic calibration gain",
+      "actual": "2",
+      "expectedFromPromptPrimary": "2"
+    },
+    {
+      "check": "accelerated-magnetic-radius algebraic calibration offset",
+      "actual": "1",
+      "expectedFromPromptPrimary": "1"
+    },
+    {
+      "check": "accelerated-magnetic-radius Pint gain",
+      "actual": "3",
+      "expectedFromPromptPrimary": "3"
+    },
+    {
+      "check": "accelerated-magnetic-radius Pint algebraic dimensional magnitude",
+      "actual": "sqrt(2)*(1 + sqrt(2))",
+      "expectedFromPromptPrimary": "sqrt(2) + 2"
+    },
+    {
+      "check": "magnetic-orbit-period reduced period",
+      "actual": "1/2",
+      "expectedFromPromptPrimary": "1/2"
+    },
+    {
+      "check": "magnetic-orbit-period inverseMass",
+      "actual": "1",
+      "expectedFromPromptPrimary": "1"
+    },
+    {
+      "check": "magnetic-orbit-period inverseField",
+      "actual": "2",
+      "expectedFromPromptPrimary": "2"
+    },
+    {
+      "check": "magnetic-orbit-period full period",
+      "actual": "pi",
+      "expectedFromPromptPrimary": "pi"
+    },
+    {
+      "check": "magnetic-orbit-period redundant constraint",
+      "actual": "1/2",
+      "expectedFromPromptPrimary": "1/2"
+    },
+    {
+      "check": "magnetic-flux flux",
+      "actual": "6",
+      "expectedFromPromptPrimary": "6"
+    },
+    {
+      "check": "magnetic-flux inverseB",
+      "actual": "2",
+      "expectedFromPromptPrimary": "2"
+    },
+    {
+      "check": "magnetic-flux inverseA",
+      "actual": "3",
+      "expectedFromPromptPrimary": "3"
+    },
+    {
+      "check": "magnetic-flux constrainedArea",
+      "actual": "3",
+      "expectedFromPromptPrimary": "3"
+    }
+  ],
+  "actualInvalidInputRejections": 120,
+  "candidateScientificReview": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT"
+}

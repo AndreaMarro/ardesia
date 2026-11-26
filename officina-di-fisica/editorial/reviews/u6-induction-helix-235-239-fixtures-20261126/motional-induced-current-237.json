@@ -1,0 +1,1203 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-motional-induced-current-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Induzione in un circuito resistivo chiuso",
+      "order": 23701,
+      "title": "La f.e.m. alimenta il circuito chiuso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-induced-current",
+      "difficulty": 1,
+      "prompt": "Una sbarretta conduttrice di lunghezza L=2 m scorre su guide in un campo uniforme B=1 T. Sbarretta, velocità e campo sono mutuamente perpendicolari. Il circuito è chiuso e resistivo, con resistenza totale R>0 costante in ciascuna prova; autoinduzione ed effetti di bordo sono trascurabili. Un agente esterno mantiene la rapidità v>0 assegnata. Si cerca il modulo I>0 della corrente, non il suo verso; questo si determina da Lenz. v=2 m/s e R=1 Ω. Quanto vale I in A?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "A",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il movimento genera una f.e.m. di modulo BLv=4 V. Poiché esiste un percorso chiuso e si trascura l’autoinduzione, la legge di Ohm dà I=E/R=4 A. Il campo magnetico produce anche una forza frenante sulla sbarretta: l’agente esterno fornisce l’energia convertita in calore nel circuito."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/462da865e3b1d10d022795e004b8580c375cbcd8f180a7fe6a37af5267e93892",
+          "text": "Con B entrante e sbarretta verso destra, il circuito chiuso porta corrente in salita nella sbarretta; il verso contrasta l’aumento di flusso entrante. Le frecce sono qualitative. Nel grafico centrale R=1 Ω è fissa e I cresce linearmente con v."
+        },
+        {
+          "type": "formula",
+          "text": "E=BLv"
+        },
+        {
+          "type": "formula",
+          "text": " E=4\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " I=\\frac ER"
+        },
+        {
+          "type": "formula",
+          "text": " I=4\\,\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "Due ampere omette L=2 m nella f.e.m.; otto raddoppia ancora il valore. Zero confonde circuito chiuso con una misura quasi aperta. La corrente non si ricava da v senza conoscere anche B,L e R."
+        }
+      ],
+      "hints": [
+        "Ricava prima la f.e.m., poi applica Ohm alla resistenza totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due ampere omette L=2 m nella f.e.m.; otto raddoppia ancora il valore. Zero confonde circuito chiuso con una misura quasi aperta. La corrente non si ricava da v senza conoscere anche B,L e R.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "F.e.m. di movimento e Ohm",
+        "Lenz, circuito chiuso e resistenza totale",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-induced-current-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Induzione in un circuito resistivo chiuso",
+      "order": 23702,
+      "title": "Unità di una corrente indotta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-induced-current",
+      "difficulty": 1,
+      "prompt": "Quale unità è dimensionalmente adatta al modulo della corrente indotta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "A",
+          "V",
+          "Ω",
+          "C",
+          "W"
+        ],
+        "value": "A"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una corrente, anche se generata da induzione, è carica per intervallo di tempo e si misura in ampere. La relazione I=E/R conferma V/Ω=A. Il meccanismo che genera la tensione non modifica l’unità della corrente."
+        },
+        {
+          "type": "formula",
+          "text": "[I]=\\mathrm{C/s}"
+        },
+        {
+          "type": "formula",
+          "text": " [I]=\\mathrm{V/\\Omega}"
+        },
+        {
+          "type": "formula",
+          "text": " [I]=\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "V misura la f.e.m., Ω la resistenza, C la carica trasferita e W la potenza. Un tempo aggiuntivo servirebbe per trasformare una corrente costante in una carica, non per attribuirle un’unità."
+        }
+      ],
+      "hints": [
+        "Usa il quoziente tensione/resistenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "V misura la f.e.m., Ω la resistenza, C la carica trasferita e W la potenza. Un tempo aggiuntivo servirebbe per trasformare una corrente costante in una carica, non per attribuirle un’unità.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "F.e.m. di movimento e Ohm",
+        "Lenz, circuito chiuso e resistenza totale",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-induced-current-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Induzione in un circuito resistivo chiuso",
+      "order": 23703,
+      "title": "Unire induzione e legge di Ohm",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-induced-current",
+      "difficulty": 1,
+      "prompt": "Una sbarretta conduttrice di lunghezza L=2 m scorre su guide in un campo uniforme B=1 T. Sbarretta, velocità e campo sono mutuamente perpendicolari. Il circuito è chiuso e resistivo, con resistenza totale R>0 costante in ciascuna prova; autoinduzione ed effetti di bordo sono trascurabili. Un agente esterno mantiene la rapidità v>0 assegnata. Si cerca il modulo I>0 della corrente, non il suo verso; questo si determina da Lenz. Quale formula fornisce I con B e L espliciti?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "I = B L v / R",
+          "I = B L v R",
+          "I = R / (B L v)",
+          "I = B v / R",
+          "I = B L / (R v)"
+        ],
+        "value": "I = B L v / R"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Faraday nella geometria di movimento dà E=BLv. Ohm divide questa f.e.m. per la resistenza totale del circuito chiuso. Ne segue I=BLv/R; con i parametri fissati, I/(1 A)=2[v/(1 m/s)]/[R/(1 Ω)]. Il coefficiente due della forma numerica non va confuso con una costante senza dimensioni nella legge fisica."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/462da865e3b1d10d022795e004b8580c375cbcd8f180a7fe6a37af5267e93892",
+          "text": "F.e.m. e resistenza sono passaggi distinti: il moto genera BLv, il circuito chiuso dà I=BLv/R quando l’autoinduzione è trascurabile. Il mantenimento di v richiede l’agente esterno, perché la corrente produce una forza frenante."
+        },
+        {
+          "type": "formula",
+          "text": "E=BLv"
+        },
+        {
+          "type": "formula",
+          "text": " I=\\frac ER"
+        },
+        {
+          "type": "formula",
+          "text": " I=\\frac{BLv}{R}"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare per R renderebbe maggiore la corrente in un circuito più resistente a parità di f.e.m. Il reciproco ha dimensione di corrente inversa. La formula senza L perde una lunghezza e quella con v al denominatore inverte la dipendenza dal moto."
+        }
+      ],
+      "hints": [
+        "Le due leggi vanno applicate in sequenza allo stesso circuito.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Moltiplicare per R renderebbe maggiore la corrente in un circuito più resistente a parità di f.e.m. Il reciproco ha dimensione di corrente inversa. La formula senza L perde una lunghezza e quella con v al denominatore inverte la dipendenza dal moto.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "F.e.m. di movimento e Ohm",
+        "Lenz, circuito chiuso e resistenza totale",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-induced-current-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Induzione in un circuito resistivo chiuso",
+      "order": 23704,
+      "title": "Una sbarretta più rapida",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-induced-current",
+      "difficulty": 1,
+      "prompt": "Una sbarretta conduttrice di lunghezza L=2 m scorre su guide in un campo uniforme B=1 T. Sbarretta, velocità e campo sono mutuamente perpendicolari. Il circuito è chiuso e resistivo, con resistenza totale R>0 costante in ciascuna prova; autoinduzione ed effetti di bordo sono trascurabili. Un agente esterno mantiene la rapidità v>0 assegnata. Si cerca il modulo I>0 della corrente, non il suo verso; questo si determina da Lenz. Si passa da v=2 m/s a v=3 m/s mantenendo R=1 Ω. Come cambia I?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 4 A a 6 A",
+          "Da 4 A a 8/3 A",
+          "Resta 4 A",
+          "Da 4 A a 9 A",
+          "Da 4 A a 3 A"
+        ],
+        "value": "Da 4 A a 6 A"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con B,L,R invariati la corrente è proporzionale a v. La f.e.m. cresce da quattro a sei volt e, con un ohm, la corrente da quattro a sei ampere. A velocità mantenuta l’agente esterno deve adattare la propria azione; non si sta descrivendo una sbarretta lasciata frenare liberamente."
+        },
+        {
+          "type": "formula",
+          "text": "I_A=4\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=6\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " I_B/I_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "8/3 A usa una dipendenza inversa dalla rapidità. Nove introduce un quadrato non presente; tre omette il fattore BL. Quattro ignora la modifica."
+        }
+      ],
+      "hints": [
+        "Tieni distinta la velocità imposta dalla dinamica di una sbarretta libera.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "8/3 A usa una dipendenza inversa dalla rapidità. Nove introduce un quadrato non presente; tre omette il fattore BL. Quattro ignora la modifica.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "F.e.m. di movimento e Ohm",
+        "Lenz, circuito chiuso e resistenza totale",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-induced-current-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Induzione in un circuito resistivo chiuso",
+      "order": 23705,
+      "title": "La velocità dalla corrente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-induced-current",
+      "difficulty": 2,
+      "prompt": "Una sbarretta conduttrice di lunghezza L=2 m scorre su guide in un campo uniforme B=1 T. Sbarretta, velocità e campo sono mutuamente perpendicolari. Il circuito è chiuso e resistivo, con resistenza totale R>0 costante in ciascuna prova; autoinduzione ed effetti di bordo sono trascurabili. Un agente esterno mantiene la rapidità v>0 assegnata. Si cerca il modulo I>0 della corrente, non il suo verso; questo si determina da Lenz. I=4 A e R=1 Ω. Quanto vale v in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La misura della corrente e la resistenza ricostruiscono E=IR=4 V. Dividendo per BL=(1 T)(2 m)=2 T·m si trova v=2 m/s. Tutti i fattori del denominatore sono positivi e noti."
+        },
+        {
+          "type": "formula",
+          "text": "E=IR"
+        },
+        {
+          "type": "formula",
+          "text": " E=4\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " v=\\frac{IR}{BL}"
+        },
+        {
+          "type": "formula",
+          "text": " v=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro m/s omette la lunghezza e produrrebbe otto ampere. Un mezzo inverte il valore ricavato, mentre otto moltiplica per BL invece di dividere."
+        }
+      ],
+      "hints": [
+        "La corrente da sola non è una velocità: ricostruisci prima la tensione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro m/s omette la lunghezza e produrrebbe otto ampere. Un mezzo inverte il valore ricavato, mentre otto moltiplica per BL invece di dividere.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "F.e.m. di movimento e Ohm",
+        "Lenz, circuito chiuso e resistenza totale",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-induced-current-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Induzione in un circuito resistivo chiuso",
+      "order": 23706,
+      "title": "La resistenza del circuito",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-induced-current",
+      "difficulty": 2,
+      "prompt": "Una sbarretta conduttrice di lunghezza L=2 m scorre su guide in un campo uniforme B=1 T. Sbarretta, velocità e campo sono mutuamente perpendicolari. Il circuito è chiuso e resistivo, con resistenza totale R>0 costante in ciascuna prova; autoinduzione ed effetti di bordo sono trascurabili. Un agente esterno mantiene la rapidità v>0 assegnata. Si cerca il modulo I>0 della corrente, non il suo verso; questo si determina da Lenz. I=4 A e v=2 m/s. Quanto vale R in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il movimento genera E=BLv=4 V. Isolo R=E/I e ricavo un ohm. R è la resistenza totale del percorso chiuso, non necessariamente quella della sola sbarretta."
+        },
+        {
+          "type": "formula",
+          "text": "E=4\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{BLv}{I}"
+        },
+        {
+          "type": "formula",
+          "text": " R=1\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Due ohm darebbe I=2 A alla f.e.m. di quattro volt, non i quattro ampere misurati. Quattro copia la tensione o la corrente senza dividerle; sedici ne moltiplica i numeri."
+        }
+      ],
+      "hints": [
+        "Somma eventualmente le resistenze fisiche prima di chiamarle R totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due ohm darebbe I=2 A alla f.e.m. di quattro volt, non i quattro ampere misurati. Quattro copia la tensione o la corrente senza dividerle; sedici ne moltiplica i numeri.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "F.e.m. di movimento e Ohm",
+        "Lenz, circuito chiuso e resistenza totale",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-induced-current-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Induzione in un circuito resistivo chiuso",
+      "order": 23707,
+      "title": "Resistenza doppia, stessa f.e.m.",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-induced-current",
+      "difficulty": 2,
+      "prompt": "Una sbarretta conduttrice di lunghezza L=2 m scorre su guide in un campo uniforme B=1 T. Sbarretta, velocità e campo sono mutuamente perpendicolari. Il circuito è chiuso e resistivo, con resistenza totale R>0 costante in ciascuna prova; autoinduzione ed effetti di bordo sono trascurabili. Un agente esterno mantiene la rapidità v>0 assegnata. Si cerca il modulo I>0 della corrente, non il suo verso; questo si determina da Lenz. A ha v=2 m/s,R=1 Ω. B mantiene v e usa R=2 Ω. Quanto vale I_B/I_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1",
+          "1/4",
+          "4"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due prove hanno la stessa f.e.m. di quattro volt. Le correnti sono quattro e due ampere: il rapporto finale/iniziale è un mezzo. Aumentare la resistenza riduce la corrente e la forza frenante a velocità imposta."
+        },
+        {
+          "type": "formula",
+          "text": "I_A=4\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=2\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " I_B/I_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due segue direttamente R, un quarto usa un quadrato e quattro il suo inverso. Uno trascura la differenza di resistenza."
+        }
+      ],
+      "hints": [
+        "La tensione indotta resta uguale, la corrente no.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due segue direttamente R, un quarto usa un quadrato e quattro il suo inverso. Uno trascura la differenza di resistenza.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "F.e.m. di movimento e Ohm",
+        "Lenz, circuito chiuso e resistenza totale",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-induced-current-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Induzione in un circuito resistivo chiuso",
+      "order": 23708,
+      "title": "Scarto rispetto a una corrente proposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-induced-current",
+      "difficulty": 2,
+      "prompt": "Una sbarretta conduttrice di lunghezza L=2 m scorre su guide in un campo uniforme B=1 T. Sbarretta, velocità e campo sono mutuamente perpendicolari. Il circuito è chiuso e resistivo, con resistenza totale R>0 costante in ciascuna prova; autoinduzione ed effetti di bordo sono trascurabili. Un agente esterno mantiene la rapidità v>0 assegnata. Si cerca il modulo I>0 della corrente, non il suo verso; questo si determina da Lenz. Per v=2 m/s,R=1 Ω si propone I=8 A. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 A",
+          "−4 A",
+          "2",
+          "8 A",
+          "0 A"
+        ],
+        "value": "4 A"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La corrente corretta è quattro ampere. La proposta la supera di otto meno quattro, cioè quattro ampere. Questo scarto di moduli non stabilisce il verso della corrente nel circuito."
+        },
+        {
+          "type": "formula",
+          "text": "I=4\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta I=(8-4)\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta I=4\\,\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "−4 A cambia l’ordine; due è un rapporto puro. Otto ripete la proposta e zero la accetta senza controllare la legge."
+        }
+      ],
+      "hints": [
+        "Rispetta l’ordine proposto meno corretto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−4 A cambia l’ordine; due è un rapporto puro. Otto ripete la proposta e zero la accetta senza controllare la legge.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "F.e.m. di movimento e Ohm",
+        "Lenz, circuito chiuso e resistenza totale",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-induced-current-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Induzione in un circuito resistivo chiuso",
+      "order": 23709,
+      "title": "L’inversa della velocità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-induced-current",
+      "difficulty": 2,
+      "prompt": "Una sbarretta conduttrice di lunghezza L=2 m scorre su guide in un campo uniforme B=1 T. Sbarretta, velocità e campo sono mutuamente perpendicolari. Il circuito è chiuso e resistivo, con resistenza totale R>0 costante in ciascuna prova; autoinduzione ed effetti di bordo sono trascurabili. Un agente esterno mantiene la rapidità v>0 assegnata. Si cerca il modulo I>0 della corrente, non il suo verso; questo si determina da Lenz. I,R,B,L sono noti. Quale formula isola v?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "v = I R / (B L)",
+          "v = I / (B L R)",
+          "v = B L / (I R)",
+          "v = I R B L",
+          "v = I R / B"
+        ],
+        "value": "v = I R / (B L)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplico I=BLv/R per R e divido per BL. Il prodotto IR è una tensione e V/(T·m) è una velocità. La lunghezza fissata non può essere eliminata dalla legge dimensionale."
+        },
+        {
+          "type": "formula",
+          "text": "IR=BLv"
+        },
+        {
+          "type": "formula",
+          "text": " v=\\frac{IR}{BL}"
+        },
+        {
+          "type": "formula",
+          "text": " [v]=\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Dividere ancora per R non inverte la legge data. Il reciproco ha dimensione di velocità inversa. IR/B ha unità m²/s e manca della divisione per L."
+        }
+      ],
+      "hints": [
+        "Isola il prodotto BLv prima di dividere per BL.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dividere ancora per R non inverte la legge data. Il reciproco ha dimensione di velocità inversa. IR/B ha unità m²/s e manca della divisione per L.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "F.e.m. di movimento e Ohm",
+        "Lenz, circuito chiuso e resistenza totale",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-induced-current-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Induzione in un circuito resistivo chiuso",
+      "order": 23710,
+      "title": "Due fattori sulle prove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-induced-current",
+      "difficulty": 2,
+      "prompt": "Una sbarretta conduttrice di lunghezza L=2 m scorre su guide in un campo uniforme B=1 T. Sbarretta, velocità e campo sono mutuamente perpendicolari. Il circuito è chiuso e resistivo, con resistenza totale R>0 costante in ciascuna prova; autoinduzione ed effetti di bordo sono trascurabili. Un agente esterno mantiene la rapidità v>0 assegnata. Si cerca il modulo I>0 della corrente, non il suo verso; questo si determina da Lenz. v_B=κ₁v_A,R_B=κ₂R_A, con κ₁,κ₂>0. Quanto vale I_B/I_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁² / κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La f.e.m. segue direttamente il fattore della rapidità, mentre Ohm introduce l’inverso di quello della resistenza. Il rapporto delle correnti è κ₁/κ₂. B,L e geometria sono comuni e si cancellano."
+        },
+        {
+          "type": "formula",
+          "text": "I_B=\\frac{BL\\kappa_1v_A}{\\kappa_2R_A}"
+        },
+        {
+          "type": "formula",
+          "text": " I_B/I_A=\\kappa_1/\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto renderebbe diretta la dipendenza dalla resistenza. Il rapporto inverso scambia le prove; il quadrato della rapidità non appartiene alla legge. La somma non si riduce a uno con fattori entrambi unitari."
+        }
+      ],
+      "hints": [
+        "Rispetta le posizioni dei due ingressi nella legge.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto renderebbe diretta la dipendenza dalla resistenza. Il rapporto inverso scambia le prove; il quadrato della rapidità non appartiene alla legge. La somma non si riduce a uno con fattori entrambi unitari.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "F.e.m. di movimento e Ohm",
+        "Lenz, circuito chiuso e resistenza totale",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-induced-current-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Induzione in un circuito resistivo chiuso",
+      "order": 23711,
+      "title": "Meno moto e più resistenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-induced-current",
+      "difficulty": 2,
+      "prompt": "Una sbarretta conduttrice di lunghezza L=2 m scorre su guide in un campo uniforme B=1 T. Sbarretta, velocità e campo sono mutuamente perpendicolari. Il circuito è chiuso e resistivo, con resistenza totale R>0 costante in ciascuna prova; autoinduzione ed effetti di bordo sono trascurabili. Un agente esterno mantiene la rapidità v>0 assegnata. Si cerca il modulo I>0 della corrente, non il suo verso; questo si determina da Lenz. A usa v=2 m/s,R=1 Ω; B usa v=1 m/s,R=2 Ω. Quanto vale I_B/I_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/4",
+          "4",
+          "1/2",
+          "2",
+          "1"
+        ],
+        "value": "1/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In A la corrente è quattro ampere. In B la f.e.m. è due volt e la resistenza due ohm, quindi I_B=1 A. Il rapporto è un quarto: il dimezzamento della rapidità e il raddoppio di R riducono entrambi la corrente."
+        },
+        {
+          "type": "formula",
+          "text": "I_A=4\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=1\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " I_B/I_A=\\frac14"
+        },
+        {
+          "type": "text",
+          "text": "Quattro inverte il rapporto. Un mezzo considera una sola variazione, due dà una crescita incompatibile con entrambi i cambiamenti. Uno suppone una compensazione che qui non c’è."
+        }
+      ],
+      "hints": [
+        "Calcola prima anche la nuova f.e.m., non soltanto la nuova resistenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro inverte il rapporto. Un mezzo considera una sola variazione, due dà una crescita incompatibile con entrambi i cambiamenti. Uno suppone una compensazione che qui non c’è.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "F.e.m. di movimento e Ohm",
+        "Lenz, circuito chiuso e resistenza totale",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-induced-current-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Induzione in un circuito resistivo chiuso",
+      "order": 23712,
+      "title": "Media fra due correnti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-induced-current",
+      "difficulty": 2,
+      "prompt": "Una sbarretta conduttrice di lunghezza L=2 m scorre su guide in un campo uniforme B=1 T. Sbarretta, velocità e campo sono mutuamente perpendicolari. Il circuito è chiuso e resistivo, con resistenza totale R>0 costante in ciascuna prova; autoinduzione ed effetti di bordo sono trascurabili. Un agente esterno mantiene la rapidità v>0 assegnata. Si cerca il modulo I>0 della corrente, non il suo verso; questo si determina da Lenz. A usa v=2 m/s,R=1 Ω; B usa v=1 m/s,R=2 Ω. Qual è la media aritmetica dei due I?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/2 A",
+          "2 A",
+          "5 A",
+          "3/2 A",
+          "4 A"
+        ],
+        "value": "5/2 A"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le correnti quattro e un ampere hanno media cinque mezzi ampere. Ai valori medi v=3/2 m/s,R=3/2 Ω il modello darebbe invece due ampere. La differenza è mezzo ampere. Si stanno pesando due prove allo stesso modo, senza attribuire loro durate uguali o concatenarle nel tempo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/462da865e3b1d10d022795e004b8580c375cbcd8f180a7fe6a37af5267e93892",
+          "text": "Le barre finali mostrano 4 A nella prova v=2 m/s,R=1 Ω e 1 A nella prova v=1 m/s,R=2 Ω; la media è 5/2 A. Condividono origine e scala. Il grafico centrale è una famiglia diversa di prove a R=1 Ω fissata."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline I=\\frac{4+1}{2}\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline I=\\frac52\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " I_{\\rm dati\\ medi}=2\\,\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "Due A usa gli ingressi medi. Cinque somma senza mediare; tre mezzi è la semidifferenza. Quattro ripete soltanto la prima prova."
+        }
+      ],
+      "hints": [
+        "La legge contiene un rapporto, quindi non scambiare media e valutazione del modello.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due A usa gli ingressi medi. Cinque somma senza mediare; tre mezzi è la semidifferenza. Quattro ripete soltanto la prima prova.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "F.e.m. di movimento e Ohm",
+        "Lenz, circuito chiuso e resistenza totale",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-induced-current-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Induzione in un circuito resistivo chiuso",
+      "order": 23713,
+      "title": "Quale resistenza per il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-induced-current",
+      "difficulty": 3,
+      "prompt": "Una sbarretta conduttrice di lunghezza L=2 m scorre su guide in un campo uniforme B=1 T. Sbarretta, velocità e campo sono mutuamente perpendicolari. Il circuito è chiuso e resistivo, con resistenza totale R>0 costante in ciascuna prova; autoinduzione ed effetti di bordo sono trascurabili. Un agente esterno mantiene la rapidità v>0 assegnata. Si cerca il modulo I>0 della corrente, non il suo verso; questo si determina da Lenz. A usa v_A=2 m/s,R_A=1 Ω. B ha v_B=1 m/s e deve ottenere I_B=I_A/4. Quanto vale R_B/R_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1/4",
+          "1"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è un ampere. Alla nuova rapidità la f.e.m. vale due volt, dunque R_B=2 Ω. Rispetto a un ohm iniziale il rapporto richiesto è due. Il fattore quattro della corrente non è il fattore di R perché si è ridotta anche la f.e.m."
+        },
+        {
+          "type": "formula",
+          "text": "I_B=1\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=2\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=2\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_B/R_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte il confronto; quattro trascura il dimezzamento della f.e.m. Un quarto copia il rapporto delle correnti. R invariata darebbe due ampere, non uno."
+        }
+      ],
+      "hints": [
+        "Prima fissa il bersaglio e la f.e.m. della seconda prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte il confronto; quattro trascura il dimezzamento della f.e.m. Un quarto copia il rapporto delle correnti. R invariata darebbe due ampere, non uno.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "F.e.m. di movimento e Ohm",
+        "Lenz, circuito chiuso e resistenza totale",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-induced-current-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Induzione in un circuito resistivo chiuso",
+      "order": 23714,
+      "title": "La taratura prima della velocità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-induced-current",
+      "difficulty": 3,
+      "prompt": "Una sbarretta conduttrice di lunghezza L=2 m scorre su guide in un campo uniforme B=1 T. Sbarretta, velocità e campo sono mutuamente perpendicolari. Il circuito è chiuso e resistivo, con resistenza totale R>0 costante in ciascuna prova; autoinduzione ed effetti di bordo sono trascurabili. Un agente esterno mantiene la rapidità v>0 assegnata. Si cerca il modulo I>0 della corrente, non il suo verso; questo si determina da Lenz. D=a_cal I è continuo e adimensionale. A con v=2 m/s,R=1 Ω dà D=12. Nella nuova prova D=3,R=2 Ω. Quanto vale v in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento I_A=4 A dà a_cal=3 A⁻¹. Il display tre indica un ampere. Il circuito ha quindi E=IR=2 V e v=E/(BL)=1 m/s. Il medesimo numero tre non misura direttamente né ampere né velocità."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,\\mathrm A^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " I=1\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " E=2\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " v=1\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Tre m/s usa D come tre ampere e produrrebbe D=9. Due m/s copia la tensione come rapidità omettendo BL. Un mezzo m/s darebbe mezzo ampere e D=3/2."
+        }
+      ],
+      "hints": [
+        "Applica nell’ordine taratura, Ohm e inversa di BLv.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre m/s usa D come tre ampere e produrrebbe D=9. Due m/s copia la tensione come rapidità omettendo BL. Un mezzo m/s darebbe mezzo ampere e D=3/2.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "F.e.m. di movimento e Ohm",
+        "Lenz, circuito chiuso e resistenza totale",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-induced-current-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Induzione in un circuito resistivo chiuso",
+      "order": 23715,
+      "title": "Due riferimenti distinguono l’offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-induced-current",
+      "difficulty": 3,
+      "prompt": "Una sbarretta conduttrice di lunghezza L=2 m scorre su guide in un campo uniforme B=1 T. Sbarretta, velocità e campo sono mutuamente perpendicolari. Il circuito è chiuso e resistivo, con resistenza totale R>0 costante in ciascuna prova; autoinduzione ed effetti di bordo sono trascurabili. Un agente esterno mantiene la rapidità v>0 assegnata. Si cerca il modulo I>0 della corrente, non il suo verso; questo si determina da Lenz. D=a_cal I+b_cal è continuo. A: v=2 m/s,R=1 Ω,D=9. B: v=1 m/s,R=2 Ω,D=3. C: R=1 Ω,D=13. Quanto vale v_C in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti fisici sono quattro e un ampere. Il guadagno vale (9−3)/(4−1)=2 A⁻¹ e l’offset uno. D_C=13 corrisponde a I_C=6 A, quindi E_C=6 V e v_C=3 m/s. La lettura va decodificata prima di usarla come corrente."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,\\mathrm A^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b_{\\rm cal}=1"
+        },
+        {
+          "type": "formula",
+          "text": " I_C=6\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " v_C=3\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "13/4 m/s omette l’offset e predirebbe D=14. Sei m/s toglie l’offset ma salta il guadagno. Un m/s darebbe I=2 A e D=5."
+        }
+      ],
+      "hints": [
+        "Ricava a_cal dalla differenza dei due riferimenti, poi b_cal da uno di essi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "13/4 m/s omette l’offset e predirebbe D=14. Sei m/s toglie l’offset ma salta il guadagno. Un m/s darebbe I=2 A e D=5.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "F.e.m. di movimento e Ohm",
+        "Lenz, circuito chiuso e resistenza totale",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-induced-current-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Induzione in un circuito resistivo chiuso",
+      "order": 23716,
+      "title": "Una proporzione che lascia libera la scala",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-induced-current",
+      "difficulty": 3,
+      "prompt": "Una sbarretta conduttrice di lunghezza L=2 m scorre su guide in un campo uniforme B=1 T. Sbarretta, velocità e campo sono mutuamente perpendicolari. Il circuito è chiuso e resistivo, con resistenza totale R>0 costante in ciascuna prova; autoinduzione ed effetti di bordo sono trascurabili. Un agente esterno mantiene la rapidità v>0 assegnata. Si cerca il modulo I>0 della corrente, non il suo verso; questo si determina da Lenz. Fra preparazioni v=(2 m·s⁻¹·Ω⁻¹)R. Si misura anche I=4 A. Quante coppie positive (v,R) restano possibili?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie continue",
+          "Una sola coppia",
+          "Due sole coppie",
+          "Nessuna coppia",
+          "Quattro coppie"
+        ],
+        "value": "Infinite coppie continue"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo mantiene v/R costante. Sostituendolo in I=BLv/R si ottengono sempre quattro ampere. La misura è ridondante: per esempio v=2 m/s,R=1 Ω e v=4 m/s,R=2 Ω soddisfano entrambe le condizioni. Non è assegnata una scala di v o R separatamente."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac vR=2\\,\\mathrm{m/(s\\,\\Omega)}"
+        },
+        {
+          "type": "formula",
+          "text": " I=4\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " (v,R)=(2\\,\\mathrm{m/s},1\\,\\Omega)"
+        },
+        {
+          "type": "text",
+          "text": "Una o due coppie richiederebbero un altro vincolo indipendente. La risposta “Nessuna coppia” è confutata dagli esempi; quattro è il numero della corrente in ampere, non il conteggio delle preparazioni."
+        }
+      ],
+      "hints": [
+        "Controlla se la corrente aggiunge informazione rispetto al rapporto imposto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una o due coppie richiederebbero un altro vincolo indipendente. La risposta “Nessuna coppia” è confutata dagli esempi; quattro è il numero della corrente in ampere, non il conteggio delle preparazioni.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "F.e.m. di movimento e Ohm",
+        "Lenz, circuito chiuso e resistenza totale",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "462da865e3b1d10d022795e004b8580c375cbcd8f180a7fe6a37af5267e93892",
+      "name": "motional-induced-current-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTUyMCIgdmlld0JveD0iMCAwIDY0MCAxNTIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPlVuYSBmLmUubS4gaW4gdW4gY2lyY3VpdG8gY2hpdXNvPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+VW5hIHNiYXJyZXR0YSBtb2JpbGUgdmVyc28gZGVzdHJhIGluIGNhbXBvIGVudHJhbnRlIGNoaXVkZSBpbCBjaXJjdWl0byByZXNpc3Rpdm8uIExhIGNvcnJlbnRlIHJpc2FsZSBsYSBzYmFycmV0dGEgZSBjaXJjb2xhIGluIHNlbnNvIGFudGlvcmFyaW8uIEdyYWZpY28gY29ycmVudGUgcmlzcGV0dG8gYWxsYSB2ZWxvY2l0w6AgYSByZXNpc3RlbnphIHVuIG9obS4gQmFycmUgcXVhdHRybyBhbXBlcmUsIHVuIGFtcGVyZSBlIG1lZGlhIGNpbnF1ZSBtZXp6aSBhbXBlcmUuPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJhIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjMjAzMzRhIi8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE1MjAiIGZpbGw9IiNmZmYiLz4KPGcgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmaWxsPSIjMjAzMzRhIj4KPHRleHQgeD0iMzYiIHk9IjQyIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iNzAwIj4xLiBDb3JyZW50ZSBzb2xvIG5lbCBwZXJjb3JzbyBjaGl1c288L3RleHQ+Cjx0ZXh0IHg9IjQwIiB5PSI4NCIgZm9udC1zaXplPSIxNyI+QiBlbnRyYW50ZTsgc2JhcnJldHRhIHZlcnNvIGRlc3RyYTsgdmVyc2kgc2NoZW1hdGljaS48L3RleHQ+CjxwYXRoIGQ9Ik0xMTUgMTUwSDQ1MFYzNTBIMTE1VjI5MEwxMDMgMjgwTDEyNyAyNjJMMTAzIDI0NEwxMjcgMjI2TDEwMyAyMDhMMTE1IDE5OFYxNTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzZlN2Q4OSIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxwYXRoIGQ9Ik00NTAgMTUwVjM1MCIgc3Ryb2tlPSIjMjc3M2FlIiBzdHJva2Utd2lkdGg9IjEwIi8+CjxwYXRoIGQ9Ik0yNDUgMjAwTDI2MSAyMTZNMjYxIDIwMEwyNDUgMjE2TTMzNSAyMDBMMzUxIDIxNk0zNTEgMjAwTDMzNSAyMTZNMjQ1IDI4MEwyNjEgMjk2TTI2MSAyODBMMjQ1IDI5Nk0zMzUgMjgwTDM1MSAyOTZNMzUxIDI4MEwzMzUgMjk2IiBzdHJva2U9IiM3MTg0OWEiIHN0cm9rZS13aWR0aD0iMyIvPgo8cGF0aCBkPSJNNDUwIDMwNVYxOTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzIwMzM0YSIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+CjxwYXRoIGQ9Ik0zODAgMTUwSDI0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMjAzMzRhIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz4KPHBhdGggZD0iTTE5MCAzNTBIMzI1IiBmaWxsPSJub25lIiBzdHJva2U9IiMyMDMzNGEiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhKSIvPgo8cGF0aCBkPSJNNDgzIDI1MEg1NzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzIwMzM0YSIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+Cjx0ZXh0IHg9IjUwNSIgeT0iMjI4IiBmb250LXNpemU9IjE5Ij52PC90ZXh0Pjx0ZXh0IHg9IjQyMiIgeT0iMjU3IiBmb250LXNpemU9IjIwIj5JPC90ZXh0Pgo8dGV4dCB4PSI2MSIgeT0iMjUxIiBmb250LXNpemU9IjIwIj5SPC90ZXh0Pjx0ZXh0IHg9IjI4MCIgeT0iMTI1IiBmb250LXNpemU9IjE4Ij5jb3JyZW50ZSBhbnRpb3JhcmlhPC90ZXh0Pgo8dGV4dCB4PSI0MCIgeT0iNDAwIiBmb250LXNpemU9IjE4Ij5CID0gMSBUOyBMID0gMiBtOyBhdXRvaW5kdXppb25lIHRyYXNjdXJhdGEuPC90ZXh0Pgo8dGV4dCB4PSI0MCIgeT0iNDM0IiBmb250LXNpemU9IjE3Ij5M4oCZYWdlbnRlIG1hbnRpZW5lIHY7IGzigJllbmVyZ2lhIGZvcm5pdGEgZGl2ZW50YSBjYWxvcmUuPC90ZXh0Pgo8dGV4dCB4PSIzNiIgeT0iNDk1IiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iNzAwIj4yLiBBIHJlc2lzdGVuemEgZmlzc2F0YTwvdGV4dD4KPHRleHQgeD0iNDAiIHk9IjUzNSIgZm9udC1zaXplPSIxOCI+UiA9IDEgzqk7IEkgPSBCTHYgLyBSLjwvdGV4dD4KPHBhdGggZD0iTTEzMCA5MjBWNTg1TTExNSA5MDBINTM1IiBmaWxsPSJub25lIiBzdHJva2U9IiMyMDMzNGEiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSI0MCIgeT0iNTgwIiBmb250LXNpemU9IjE4Ij5JIChBKTwvdGV4dD48dGV4dCB4PSI1MDAiIHk9Ijk3MCIgZm9udC1zaXplPSIxOCI+diAobS9zKTwvdGV4dD48dGV4dCB4PSI5NiIgeT0iOTI4IiBmb250LXNpemU9IjE3Ij4wPC90ZXh0Pgo8cGF0aCBkPSJNMTMwIDcwMEgxMjBNMTMwIDYwMEgxMjBNMzcwIDkwMFY5MTFNNDkwIDkwMFY5MTEiIHN0cm9rZT0iIzIwMzM0YSIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9Ijk4IiB5PSI3MDYiIGZvbnQtc2l6ZT0iMTciPjQ8L3RleHQ+PHRleHQgeD0iOTgiIHk9IjYwNiIgZm9udC1zaXplPSIxNyI+NjwvdGV4dD48dGV4dCB4PSIzNjUiIHk9IjkzNiIgZm9udC1zaXplPSIxNyI+MjwvdGV4dD48dGV4dCB4PSI0ODUiIHk9IjkzNiIgZm9udC1zaXplPSIxNyI+MzwvdGV4dD4KPHBhdGggZD0iTTEzMCA5MDBMNDkwIDYwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMjc3M2FlIiBzdHJva2Utd2lkdGg9IjQiLz4KPGNpcmNsZSBjeD0iMzcwIiBjeT0iNzAwIiByPSI2IiBmaWxsPSIjMjc3M2FlIi8+PHRleHQgeD0iMzkxIiB5PSI3MDkiIGZvbnQtc2l6ZT0iMTgiPkE8L3RleHQ+Cjx0ZXh0IHg9IjQwIiB5PSIxMDEwIiBmb250LXNpemU9IjE3Ij5PcmlnaW5lIGxpbWl0ZTsgaWwgZG9taW5pbyBkZWkgcXVlc2l0aSBoYSB2ICZndDsgMC48L3RleHQ+Cjx0ZXh0IHg9IjM2IiB5PSIxMDYwIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iNzAwIj4zLiBNZWRpZSBkaSBwcmVwYXJhemlvbmkgZGlzdGludGU8L3RleHQ+Cjx0ZXh0IHg9IjQwIiB5PSIxMTAyIiBmb250LXNpemU9IjE3Ij5BOiAyIG0vcywgMSDOqTsgQjogMSBtL3MsIDIgzqkuPC90ZXh0Pgo8dGV4dCB4PSI1NSIgeT0iMTE3NSIgZm9udC1zaXplPSIyMCI+QTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjExNDUiIHdpZHRoPSIzMjAiIGhlaWdodD0iNDQiIGZpbGw9IiMyNzczYWUiLz48dGV4dCB4PSI0ODUiIHk9IjExNzUiIGZvbnQtc2l6ZT0iMjAiPjQgQTwvdGV4dD4KPHRleHQgeD0iNTUiIHk9IjEyNjUiIGZvbnQtc2l6ZT0iMjAiPkI8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIxMjM1IiB3aWR0aD0iODAiIGhlaWdodD0iNDQiIGZpbGw9IiM5YjQzNmYiLz48dGV4dCB4PSIyNDUiIHk9IjEyNjUiIGZvbnQtc2l6ZT0iMjAiPjEgQTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjEzNTUiIGZvbnQtc2l6ZT0iMjAiPm1lZGlhPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iMTMyNSIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI0NCIgZmlsbD0iIzM3N2Y2NSIvPjx0ZXh0IHg9IjM2NSIgeT0iMTM1NSIgZm9udC1zaXplPSIyMCI+NS8yIEE8L3RleHQ+CjxwYXRoIGQ9Ik0xNTAgMTEzMFYxNDAwIiBzdHJva2U9IiMyMDMzNGEiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjExNiIgeT0iMTQyMCIgZm9udC1zaXplPSIxNyI+MDwvdGV4dD4KPHRleHQgeD0iNDAiIHk9IjE0NzAiIGZvbnQtc2l6ZT0iMTgiPkJhcnJlIGNvbiBzdGVzc2Egb3JpZ2luZSBlIHN0ZXNzYSBzY2FsYSBpbiBhbXBlcmUuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

@@ -1,21 +1,21 @@
 {
   "schemaVersion": "1.0.0",
-  "observedAt": "2026-11-25T16:14:35.144444+00:00",
-  "snapshotHead": "3a0b5960fd75491df58fd9a58ca72a69beb3d708",
-  "canonicalHead": "831b73fa71076b2e9b363006ffd94a350f22fe90",
+  "observedAt": "2026-11-26T16:31:53.316232+00:00",
+  "snapshotHead": "aa7577b74fa275a127194cdbaad93c60aa3a007a",
+  "canonicalHead": "7c29ccc18ad3b42ceecfca509ef57f786bd2c496",
   "mandate": "INCOMPLETE",
   "questions": {
     "accounted": 4606,
-    "scientificallyReviewed": 3472,
-    "scientificallyUnreviewed": 1134,
-    "registeredDrafts": 3472,
-    "compiledDraftsLocally": 3312,
+    "scientificallyReviewed": 3632,
+    "scientificallyUnreviewed": 974,
+    "registeredDrafts": 3632,
+    "compiledDraftsLocally": 3472,
     "compiledCandidateFullyLocallyValidated": false,
-    "canonicalHistoricalRevisedDrafts": 1728,
-    "newRootAcceptanceReceipt": "editorial/reviews/u6-04-root-integration-20261126/receipt.json",
+    "canonicalHistoricalRevisedDrafts": 3312,
+    "newRootAcceptanceReceipt": "editorial/reviews/u6-05-root-integration-20261126/receipt.json",
     "compiledCandidateFullyRemotelyValidated": true,
     "unreviewedBySource": {
-      "Ardesia": 528,
+      "Ardesia": 368,
       "Cric": 606
     },
     "newRootAcceptanceReceipts": [
@@ -77,23 +77,23 @@
   "Pro100Recovery": "NOT_IDENTIFIED",
   "recovered199TechnicalChecksAreNotFullReviews": true,
   "lastFullyValidatedRemotePreparation": {
-    "runId": 45654876359,
-    "headSha": "46042d7e6b625b7029b31c7a3567f48f5a3f9f37",
+    "runId": 45849149030,
+    "headSha": "68c9553132877606f0cb957267ae31c5f3359a08",
     "counts": [
       4606,
       385,
-      3312,
+      3472,
       246
     ],
-    "uiBatches": 219,
-    "uiCases": 9987,
+    "uiBatches": 229,
+    "uiCases": 10467,
     "fullSuite": {
-      "tests": 924,
-      "seconds": 926.61,
+      "tests": 957,
+      "seconds": 604.148,
       "result": "PASS"
     },
     "checkpointDownloadedAndAdopted": true,
-    "receipt": "editorial/reviews/preintegration-45654876359-root-adoption-20261125/receipt.json"
+    "receipt": "editorial/reviews/preintegration-45849149030-root-adoption-20261125/receipt.json"
   },
   "lastFailedRemotePreparation": {
     "runId": 45611122114,
@@ -106,15 +106,15 @@
     "fixRereadAndActualLocalUI": "PASS"
   },
   "currentLocalPreparation": {
-    "registeredQuestionDrafts": 3472,
-    "compiledQuestionDrafts": 3312,
-    "new160ProductUI": "NOT_RUN",
-    "request": "SOURCE_PINNED_3472_INCREMENTAL_REPLAY",
-    "registrySha256": "e553ca85b451c375710d91299c6b86abd8a32a6f7ea10769aa6433bd77135ee4"
+    "registeredQuestionDrafts": 3632,
+    "compiledQuestionDrafts": 3472,
+    "new160ProductUI": "PENDING_REMOTE",
+    "request": "SOURCE_PINNED_3632_INCREMENTAL_REPLAY",
+    "registrySha256": "d8fdd8c1a92ec15430d80596071da0452eb06acdda19d96358809f42f22b51c3"
   },
-  "nextScientificAcceptanceId": "AR-u6-force-current-wire-01",
-  "nextNewAuthoringId": "See disjoint ownership U6-03 210-219; authoring in progress, no reallocation",
-  "assignments": "U6-03 all160 Root independently accepted. U6-04 all160 authored; cross-review still in progress; authoring alone grants no credit.",
+  "nextScientificAcceptanceId": "AR-u7-wavelength-in-medium-01",
+  "nextNewAuthoringId": "AR-u7-wavelength-in-medium-01",
+  "assignments": "U6-05 all160 Root independently accepted; U7-01 disjoint A/B ownership active with source-first primary freezes before candidates. No U7 credit.",
   "governance": {
     "publication": "DEFAULT_DENY",
     "humanApproval": "NOT_RUN",
@@ -215,5 +215,15 @@
     "state": "DRAFT_CI_IN_PROGRESS",
     "requiredChecks": "NOT_YET_ALL_SUCCESS",
     "originalSupplementalFailure": "45848853442 stale preview registry pin; fixed1bbe0600, gate retained"
+  },
+  "canonicalIntegration": {
+    "pr": 364,
+    "state": "MERGED",
+    "headSha": "abeb49570819e59249c866dec75e9345191899b1",
+    "mergeSha": "7c29ccc18ad3b42ceecfca509ef57f786bd2c496",
+    "premergeAllChecks": "SUCCESS",
+    "postMergeCI": "IN_PROGRESS",
+    "humanContentApproval": "NOT_RUN",
+    "newAppPublications": 0
   }
 }

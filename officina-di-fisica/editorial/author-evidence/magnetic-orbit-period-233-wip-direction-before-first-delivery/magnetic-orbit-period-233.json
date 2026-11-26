@@ -1,0 +1,1224 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-magnetic-orbit-period-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Periodo completo e tempo ridotto dell’orbita",
+      "order": 23301,
+      "title": "Un tempo ridotto che mantiene π esatto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-orbit-period",
+      "difficulty": 1,
+      "prompt": "Una particella ideale di massa m>0 e modulo della carica |q|=1 μC si muove con rapidità non nulla perpendicolarmente a un campo magnetico uniforme di modulo B>0. Non ci sono altre forze e si trascura la radiazione. Ogni preparazione resta non relativistica. Si cerca τ=T_orbita/(2π)>0, che ha unità di tempo ma non è il periodo completo. Nei dati numerici m si esprime in mg; masse diverse indicano particelle preparate distintamente, non massa variabile nel tempo di una singola particella. Con m=1 mg e B=2 T, quanto vale τ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2 s",
+          "1 s",
+          "2 s",
+          "1/4 s",
+          "0 s"
+        ],
+        "value": "1/2 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per un giro, T_orbita=2πr/v. Sostituendo r=mv/(|q|B), v>0 si cancella e τ=m/(|q|B). Un mg è 10⁻⁶ kg e un μC è 10⁻⁶ C: i prefissi si compensano, lasciando τ=1/2 s. Il periodo completo è invece π s e resta esatto."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/309e83c2f3a7fd166f557946213817938f86f41dbb615f98e5c2b4696920baa5",
+          "text": "Un giro completo richiede T_orbita=π s; τ=1/2 s è T_orbita diviso per 2π, non un altro giro nel disegno. La velocità tangente è schematica e non occorre conoscerne il valore per ricavare il periodo classico."
+        },
+        {
+          "type": "formula",
+          "text": "T_{\\rm orbita}=\\frac{2\\pi r}{v}"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau=\\frac m{|q|B}"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau=\\frac12\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T_{\\rm orbita}=\\pi\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Un s ignora il campo da 2 T; due s moltiplica per B invece di dividerlo. Un quarto s aggiunge un altro fattore due. Zero non segue da massa e campo finiti positivi. Non bisogna chiamare 1/2 s il periodo completo."
+        }
+      ],
+      "hints": [
+        "Calcola τ e ricostruisci T_orbita solo alla fine.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un s ignora il campo da 2 T; due s moltiplica per B invece di dividerlo. Un quarto s aggiunge un altro fattore due. Zero non segue da massa e campo finiti positivi. Non bisogna chiamare 1/2 s il periodo completo.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Periodo classico e cancellazione della rapidità",
+        "Caso parallelo autonomo senza orbita",
+        "Unità, inverse e rapporti fra preparazioni",
+        "Medie, display continui e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-orbit-period-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Periodo completo e tempo ridotto dell’orbita",
+      "order": 23302,
+      "title": "Dividere per 2π non cambia dimensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-orbit-period",
+      "difficulty": 1,
+      "prompt": "Una particella ideale di massa m>0 e modulo della carica |q|=1 μC si muove con rapidità non nulla perpendicolarmente a un campo magnetico uniforme di modulo B>0. Non ci sono altre forze e si trascura la radiazione. Ogni preparazione resta non relativistica. Si cerca τ=T_orbita/(2π)>0, che ha unità di tempo ma non è il periodo completo. Nei dati numerici m si esprime in mg; masse diverse indicano particelle preparate distintamente, non massa variabile nel tempo di una singola particella. Quale unità esprime τ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "s",
+          "Hz",
+          "m",
+          "T",
+          "1"
+        ],
+        "value": "s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il periodo ha unità secondo e 2π è un numero puro. Anche τ è un tempo. Dal rapporto m/(|q|B), kg diviso kg/s restituisce s."
+        },
+        {
+          "type": "formula",
+          "text": "[|q|B]=\\mathrm{kg/s}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\tau]=\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Hz è frequenza, inversa di un tempo; m è lunghezza e T campo. Il simbolo 1 indica un numero puro, mentre τ conserva la dimensione del periodo."
+        }
+      ],
+      "hints": [
+        "Non scambiare il tempo ridotto con la frequenza angolare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Hz è frequenza, inversa di un tempo; m è lunghezza e T campo. Il simbolo 1 indica un numero puro, mentre τ conserva la dimensione del periodo.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Periodo classico e cancellazione della rapidità",
+        "Caso parallelo autonomo senza orbita",
+        "Unità, inverse e rapporti fra preparazioni",
+        "Medie, display continui e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-orbit-period-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Periodo completo e tempo ridotto dell’orbita",
+      "order": 23303,
+      "title": "Il caso parallelo non ha un’orbita circolare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-orbit-period",
+      "difficulty": 1,
+      "prompt": "Caso autonomo: un elettrone è lanciato con velocità iniziale non nulla esattamente parallela a un campo magnetico uniforme e statico. Non ci sono campo elettrico o altre forze; si trascura la radiazione. Che cosa accade?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Prosegue in moto rettilineo uniforme parallelo al campo",
+          "Descrive un cerchio di raggio non nullo",
+          "Descrive un’elica di raggio non nullo",
+          "Si ferma immediatamente",
+          "La sua rapidità aumenta continuamente"
+        ],
+        "value": "Prosegue in moto rettilineo uniforme parallelo al campo"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto vettoriale v×B è nullo per vettori paralleli. La forza magnetica resta zero anche se la carica dell’elettrone è negativa: non c’è accelerazione e la velocità iniziale si conserva. Qui non si può attribuire al moto un periodo di un’orbita circolare che non esiste."
+        },
+        {
+          "type": "formula",
+          "text": "\\vec v\\times\\vec B=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\vec F_B=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\vec v=\\vec v_0"
+        },
+        {
+          "type": "text",
+          "text": "Un cerchio o un’elica con raggio non nullo richiederebbero una componente perpendicolare. La forza nulla non ferma una particella già lanciata e non ne aumenta la rapidità. Questo caso non soddisfa l’ipotesi perpendicolare degli altri quesiti."
+        }
+      ],
+      "hints": [
+        "Valuta il prodotto vettoriale prima di cercare una formula di periodo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un cerchio o un’elica con raggio non nullo richiederebbero una componente perpendicolare. La forza nulla non ferma una particella già lanciata e non ne aumenta la rapidità. Questo caso non soddisfa l’ipotesi perpendicolare degli altri quesiti.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Periodo classico e cancellazione della rapidità",
+        "Caso parallelo autonomo senza orbita",
+        "Unità, inverse e rapporti fra preparazioni",
+        "Medie, display continui e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-orbit-period-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Periodo completo e tempo ridotto dell’orbita",
+      "order": 23304,
+      "title": "Una massa tripla a parità di campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-orbit-period",
+      "difficulty": 1,
+      "prompt": "Una particella ideale di massa m>0 e modulo della carica |q|=1 μC si muove con rapidità non nulla perpendicolarmente a un campo magnetico uniforme di modulo B>0. Non ci sono altre forze e si trascura la radiazione. Ogni preparazione resta non relativistica. Si cerca τ=T_orbita/(2π)>0, che ha unità di tempo ma non è il periodo completo. Nei dati numerici m si esprime in mg; masse diverse indicano particelle preparate distintamente, non massa variabile nel tempo di una singola particella. Fra prove m passa da 1 a 3 mg mentre B resta 2 T e le altre condizioni restano fissate. Come cambia τ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1/2 s a 3/2 s",
+          "Da 1/2 s a 1/6 s",
+          "Da 1/2 s a 9/2 s",
+          "Resta 1/2 s",
+          "Da 1/2 s a 3 s"
+        ],
+        "value": "Da 1/2 s a 3/2 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "τ è lineare in m a modulo della carica e campo fissati. Il fattore tre porta τ da 1/2 a 3/2 s. Il periodo completo passa da π a 3π s; non si sta aumentando nel tempo la massa della stessa particella."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau_A=\\frac12\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B=\\frac32\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B/\\tau_A=3"
+        },
+        {
+          "type": "text",
+          "text": "1/6 s inverte l’effetto di m, 9/2 s introduce il quadrato del fattore tre. Un mezzo s ignora la massa diversa; tre s omette il divisore B=2 T nella seconda prova."
+        }
+      ],
+      "hints": [
+        "La massa compare al primo grado.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "1/6 s inverte l’effetto di m, 9/2 s introduce il quadrato del fattore tre. Un mezzo s ignora la massa diversa; tre s omette il divisore B=2 T nella seconda prova.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Periodo classico e cancellazione della rapidità",
+        "Caso parallelo autonomo senza orbita",
+        "Unità, inverse e rapporti fra preparazioni",
+        "Medie, display continui e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-orbit-period-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Periodo completo e tempo ridotto dell’orbita",
+      "order": 23305,
+      "title": "La massa dal tempo ridotto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-orbit-period",
+      "difficulty": 2,
+      "prompt": "Una particella ideale di massa m>0 e modulo della carica |q|=1 μC si muove con rapidità non nulla perpendicolarmente a un campo magnetico uniforme di modulo B>0. Non ci sono altre forze e si trascura la radiazione. Ogni preparazione resta non relativistica. Si cerca τ=T_orbita/(2π)>0, che ha unità di tempo ma non è il periodo completo. Nei dati numerici m si esprime in mg; masse diverse indicano particelle preparate distintamente, non massa variabile nel tempo di una singola particella. τ=1/2 s e B=2 T. Quanto vale m in mg?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "mg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isolo m=|q|Bτ. Con 1 μC, 2 T e 1/2 s il prodotto è 10⁻⁶ kg, cioè 1 mg. Non serve una rapidità numerica perché si è cancellata nel rapporto circonferenza/rapidità."
+        },
+        {
+          "type": "formula",
+          "text": "m=|q|B\\tau"
+        },
+        {
+          "type": "formula",
+          "text": " m=10^{-6}\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " m=1\\,\\mathrm{mg}"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo mg copia il valore numerico di τ e darebbe τ=1/4 s. Due mg omette il fattore 1/2 s del dato e darebbe τ=1 s. Dimenticare micro nella carica produce un errore di un milione."
+        }
+      ],
+      "hints": [
+        "Ripristina la carica anche se i numeri in mg e μC si compensano.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo mg copia il valore numerico di τ e darebbe τ=1/4 s. Due mg omette il fattore 1/2 s del dato e darebbe τ=1 s. Dimenticare micro nella carica produce un errore di un milione.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Periodo classico e cancellazione della rapidità",
+        "Caso parallelo autonomo senza orbita",
+        "Unità, inverse e rapporti fra preparazioni",
+        "Medie, display continui e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-orbit-period-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Periodo completo e tempo ridotto dell’orbita",
+      "order": 23306,
+      "title": "Il campo dal tempo ridotto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-orbit-period",
+      "difficulty": 2,
+      "prompt": "Una particella ideale di massa m>0 e modulo della carica |q|=1 μC si muove con rapidità non nulla perpendicolarmente a un campo magnetico uniforme di modulo B>0. Non ci sono altre forze e si trascura la radiazione. Ogni preparazione resta non relativistica. Si cerca τ=T_orbita/(2π)>0, che ha unità di tempo ma non è il periodo completo. Nei dati numerici m si esprime in mg; masse diverse indicano particelle preparate distintamente, non massa variabile nel tempo di una singola particella. τ=1/2 s e m=1 mg. Quanto vale B in T?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "T",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’inversa B=m/(|q|τ) dà 1/(1/2)=2 T nelle unità numeriche assegnate. Il denominatore contiene la carica e τ, non il periodo completo T_orbita."
+        },
+        {
+          "type": "formula",
+          "text": "B=\\frac m{|q|\\tau}"
+        },
+        {
+          "type": "formula",
+          "text": " B=2\\,\\mathrm T"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo T moltiplica il numero della massa per τ invece di dividerlo; un T ignora il dato di tempo. Inserire T_orbita al posto di τ senza 2π cambierebbe la legge."
+        }
+      ],
+      "hints": [
+        "Dividere per un mezzo raddoppia il valore numerico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo T moltiplica il numero della massa per τ invece di dividerlo; un T ignora il dato di tempo. Inserire T_orbita al posto di τ senza 2π cambierebbe la legge.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Periodo classico e cancellazione della rapidità",
+        "Caso parallelo autonomo senza orbita",
+        "Unità, inverse e rapporti fra preparazioni",
+        "Medie, display continui e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-orbit-period-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Periodo completo e tempo ridotto dell’orbita",
+      "order": 23307,
+      "title": "Campo dimezzato e tempo maggiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-orbit-period",
+      "difficulty": 2,
+      "prompt": "Una particella ideale di massa m>0 e modulo della carica |q|=1 μC si muove con rapidità non nulla perpendicolarmente a un campo magnetico uniforme di modulo B>0. Non ci sono altre forze e si trascura la radiazione. Ogni preparazione resta non relativistica. Si cerca τ=T_orbita/(2π)>0, che ha unità di tempo ma non è il periodo completo. Nei dati numerici m si esprime in mg; masse diverse indicano particelle preparate distintamente, non massa variabile nel tempo di una singola particella. A usa m=1 mg,B=2 T. B usa la stessa massa e campo di 1 T. Quanto vale τ_B/τ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "0"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà τ_A=1/2 s; B dà τ_B=1 s. Il rapporto è due. Il campo dimezzato riduce la frequenza angolare e raddoppia sia τ sia il periodo completo."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau_A=\\frac12\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B=1\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B/\\tau_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Mezzo rende diretto il rapporto con B; quattro introduce un quadrato. Uno ignora il cambio e zero confonde un limite assente con un tempo positivo."
+        }
+      ],
+      "hints": [
+        "Confronta i tempi, non le frequenze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Mezzo rende diretto il rapporto con B; quattro introduce un quadrato. Uno ignora il cambio e zero confonde un limite assente con un tempo positivo.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Periodo classico e cancellazione della rapidità",
+        "Caso parallelo autonomo senza orbita",
+        "Unità, inverse e rapporti fra preparazioni",
+        "Medie, display continui e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-orbit-period-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Periodo completo e tempo ridotto dell’orbita",
+      "order": 23308,
+      "title": "La differenza fra proposta e risultato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-orbit-period",
+      "difficulty": 2,
+      "prompt": "Una particella ideale di massa m>0 e modulo della carica |q|=1 μC si muove con rapidità non nulla perpendicolarmente a un campo magnetico uniforme di modulo B>0. Non ci sono altre forze e si trascura la radiazione. Ogni preparazione resta non relativistica. Si cerca τ=T_orbita/(2π)>0, che ha unità di tempo ma non è il periodo completo. Nei dati numerici m si esprime in mg; masse diverse indicano particelle preparate distintamente, non massa variabile nel tempo di una singola particella. Con m=1 mg,B=2 T si propone τ=1 s. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2 s",
+          "−1/2 s",
+          "2",
+          "1 s",
+          "0 s"
+        ],
+        "value": "1/2 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge dà τ=1/2 s. La proposta supera il corretto di 1−1/2=1/2 s. Due è invece il rapporto puro fra proposta e corretto."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau=\\frac12\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " e=\\left(1-\\frac12\\right)\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " e=\\frac12\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "−1/2 inverte l’ordine; un s copia la proposta; zero l’accetta senza verifica. Un numero puro non ha l’unità dello scarto."
+        }
+      ],
+      "hints": [
+        "Mantieni il secondo nella sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−1/2 inverte l’ordine; un s copia la proposta; zero l’accetta senza verifica. Un numero puro non ha l’unità dello scarto.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Periodo classico e cancellazione della rapidità",
+        "Caso parallelo autonomo senza orbita",
+        "Unità, inverse e rapporti fra preparazioni",
+        "Medie, display continui e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-orbit-period-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Periodo completo e tempo ridotto dell’orbita",
+      "order": 23309,
+      "title": "L’inversa della massa senza perdere la carica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-orbit-period",
+      "difficulty": 2,
+      "prompt": "Una particella ideale di massa m>0 e modulo della carica |q|=1 μC si muove con rapidità non nulla perpendicolarmente a un campo magnetico uniforme di modulo B>0. Non ci sono altre forze e si trascura la radiazione. Ogni preparazione resta non relativistica. Si cerca τ=T_orbita/(2π)>0, che ha unità di tempo ma non è il periodo completo. Nei dati numerici m si esprime in mg; masse diverse indicano particelle preparate distintamente, non massa variabile nel tempo di una singola particella. τ e B sono noti. Quale formula isola m?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m = |q| B τ",
+          "m = τ / (|q| B)",
+          "m = |q| B / τ",
+          "m = B τ / |q|",
+          "m = 2π |q| B τ"
+        ],
+        "value": "m = |q| B τ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplico τ=m/(|q|B) per il prodotto positivo |q|B. Ne segue m=|q|Bτ. Il prodotto ha unità kg: il fattore 2π è già stato eliminato nella definizione di τ."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/309e83c2f3a7fd166f557946213817938f86f41dbb615f98e5c2b4696920baa5",
+          "text": "I tre punti a massa 1 mg e carica in modulo 1 μC usano τ=1 s,1/2 s,1/4 s per B=1,2,4 T. Il grafico non rappresenta T_orbita, che è 2π volte ciascuna ordinata."
+        },
+        {
+          "type": "formula",
+          "text": "m=|q|B\\tau"
+        },
+        {
+          "type": "formula",
+          "text": " [m]=\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "τ/(|q|B) ha s²/kg, |q|B/τ ha kg/s² e Bτ/|q| ha kg/C². L’ultima espressione mantiene la massa come dimensione ma aggiunge erroneamente 2π e non restituisce il dato di riferimento."
+        }
+      ],
+      "hints": [
+        "Nell’inversa devi moltiplicare per l’intero denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "τ/(|q|B) ha s²/kg, |q|B/τ ha kg/s² e Bτ/|q| ha kg/C². L’ultima espressione mantiene la massa come dimensione ma aggiunge erroneamente 2π e non restituisce il dato di riferimento.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Periodo classico e cancellazione della rapidità",
+        "Caso parallelo autonomo senza orbita",
+        "Unità, inverse e rapporti fra preparazioni",
+        "Medie, display continui e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-orbit-period-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Periodo completo e tempo ridotto dell’orbita",
+      "order": 23310,
+      "title": "Scalare massa e campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-orbit-period",
+      "difficulty": 2,
+      "prompt": "Una particella ideale di massa m>0 e modulo della carica |q|=1 μC si muove con rapidità non nulla perpendicolarmente a un campo magnetico uniforme di modulo B>0. Non ci sono altre forze e si trascura la radiazione. Ogni preparazione resta non relativistica. Si cerca τ=T_orbita/(2π)>0, che ha unità di tempo ma non è il periodo completo. Nei dati numerici m si esprime in mg; masse diverse indicano particelle preparate distintamente, non massa variabile nel tempo di una singola particella. Fra preparazioni m_B=κ₁m_A e B_B=κ₂B_A. |q| resta uguale e i moti sono non relativistici. Quanto vale τ_B/τ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁² / κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La carica e 2π si cancellano nel confronto: τ_B=κ₁m_A/(|q|κ₂B_A). Il rapporto è κ₁/κ₂. Un eventuale cambiamento di rapidità non entra nel periodo classico, ma deve rispettare le ipotesi del modello."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau_B=\\frac{\\kappa_1m_A}{|q|\\kappa_2B_A}"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B/\\tau_A=\\kappa_1/\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto rende diretto B, il reciproco scambia i ruoli e il quadrato della massa non appartiene alla legge. La somma dà due per fattori unitari."
+        }
+      ],
+      "hints": [
+        "Usa il rapporto m/B a carica invariata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto rende diretto B, il reciproco scambia i ruoli e il quadrato della massa non appartiene alla legge. La somma dà due per fattori unitari.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Periodo classico e cancellazione della rapidità",
+        "Caso parallelo autonomo senza orbita",
+        "Unità, inverse e rapporti fra preparazioni",
+        "Medie, display continui e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-orbit-period-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Periodo completo e tempo ridotto dell’orbita",
+      "order": 23311,
+      "title": "Massa doppia e campo dimezzato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-orbit-period",
+      "difficulty": 2,
+      "prompt": "Una particella ideale di massa m>0 e modulo della carica |q|=1 μC si muove con rapidità non nulla perpendicolarmente a un campo magnetico uniforme di modulo B>0. Non ci sono altre forze e si trascura la radiazione. Ogni preparazione resta non relativistica. Si cerca τ=T_orbita/(2π)>0, che ha unità di tempo ma non è il periodo completo. Nei dati numerici m si esprime in mg; masse diverse indicano particelle preparate distintamente, non massa variabile nel tempo di una singola particella. A ha m=1 mg,B=2 T. B ha m=2 mg,B=1 T. Quanto vale τ_B/τ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "1/4",
+          "2",
+          "1/2",
+          "1"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 1/2 s; B dà 2 s. Il rapporto è quattro: la massa doppia e l’inverso del campo dimezzato forniscono entrambi un fattore due."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau_A=\\frac12\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B/\\tau_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto inverte il confronto. Due segue un solo fattore; un mezzo copia il fattore del campo senza invertirlo. Uno presume una compensazione invece del rinforzo dei due effetti."
+        }
+      ],
+      "hints": [
+        "Non moltiplicare direttamente i rapporti m_B/m_A e B_B/B_A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quarto inverte il confronto. Due segue un solo fattore; un mezzo copia il fattore del campo senza invertirlo. Uno presume una compensazione invece del rinforzo dei due effetti.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Periodo classico e cancellazione della rapidità",
+        "Caso parallelo autonomo senza orbita",
+        "Unità, inverse e rapporti fra preparazioni",
+        "Medie, display continui e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-orbit-period-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Periodo completo e tempo ridotto dell’orbita",
+      "order": 23312,
+      "title": "Media di due tempi ridotti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-orbit-period",
+      "difficulty": 2,
+      "prompt": "Una particella ideale di massa m>0 e modulo della carica |q|=1 μC si muove con rapidità non nulla perpendicolarmente a un campo magnetico uniforme di modulo B>0. Non ci sono altre forze e si trascura la radiazione. Ogni preparazione resta non relativistica. Si cerca τ=T_orbita/(2π)>0, che ha unità di tempo ma non è il periodo completo. Nei dati numerici m si esprime in mg; masse diverse indicano particelle preparate distintamente, non massa variabile nel tempo di una singola particella. Si mediano con uguale peso A:m=1 mg,B=2 T e B:m=2 mg,B=1 T. Qual è la media di τ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/4 s",
+          "1 s",
+          "5/2 s",
+          "3/4 s",
+          "0 s"
+        ],
+        "value": "5/4 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le letture sono 1/2 s e 2 s. La media è (1/2+2)/2=5/4 s. Agli ingressi medi m=3/2 mg e B=3/2 T il modello darebbe 1 s, inferiore di 1/4 s. La media non è un periodo completo: per mediare T_orbita si moltiplicherebbe il risultato per 2π."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/309e83c2f3a7fd166f557946213817938f86f41dbb615f98e5c2b4696920baa5",
+          "text": "Le barre di 1/2 s, 2 s e 5/4 s hanno scala comune. Si mediano tempi ridotti di due preparazioni, non intervalli consecutivi della medesima orbita."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline\\tau=\\frac54\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_{\\rm dati\\ medi}=1\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Un s usa gli ingressi medi; 5/2 s è la somma e 3/4 s la semidifferenza. Zero non è una media di questi tempi positivi."
+        }
+      ],
+      "hints": [
+        "Dimezza la somma delle uscite già ricavate.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un s usa gli ingressi medi; 5/2 s è la somma e 3/4 s la semidifferenza. Zero non è una media di questi tempi positivi.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Periodo classico e cancellazione della rapidità",
+        "Caso parallelo autonomo senza orbita",
+        "Unità, inverse e rapporti fra preparazioni",
+        "Medie, display continui e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-orbit-period-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Periodo completo e tempo ridotto dell’orbita",
+      "order": 23313,
+      "title": "Il campo necessario per quadruplicare τ",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-orbit-period",
+      "difficulty": 3,
+      "prompt": "Una particella ideale di massa m>0 e modulo della carica |q|=1 μC si muove con rapidità non nulla perpendicolarmente a un campo magnetico uniforme di modulo B>0. Non ci sono altre forze e si trascura la radiazione. Ogni preparazione resta non relativistica. Si cerca τ=T_orbita/(2π)>0, che ha unità di tempo ma non è il periodo completo. Nei dati numerici m si esprime in mg; masse diverse indicano particelle preparate distintamente, non massa variabile nel tempo di una singola particella. A ha m_A=1 mg,B_A=2 T. B usa m_B=2 mg e deve dare τ_B=4τ_A. Quanto vale B_B/B_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "4",
+          "1",
+          "1/4"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 2 s. Con m_B=2 mg e |q|=1 μC serve B_B=1 T. Rispetto ai 2 T iniziali, il rapporto è 1/2: la massa doppia da sola darebbe solo un raddoppio del tempo."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau_B=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " B_B=1\\,\\mathrm T"
+        },
+        {
+          "type": "formula",
+          "text": " B_B/B_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il confronto e ridurrebbe il tempo rispetto al bersaglio. Quattro copia il rapporto dei tempi, uno non modifica il campo, un quarto darebbe τ_B=4 s."
+        }
+      ],
+      "hints": [
+        "Usa prima il bersaglio espresso in secondi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il confronto e ridurrebbe il tempo rispetto al bersaglio. Quattro copia il rapporto dei tempi, uno non modifica il campo, un quarto darebbe τ_B=4 s.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Periodo classico e cancellazione della rapidità",
+        "Caso parallelo autonomo senza orbita",
+        "Unità, inverse e rapporti fra preparazioni",
+        "Medie, display continui e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-orbit-period-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Periodo completo e tempo ridotto dell’orbita",
+      "order": 23314,
+      "title": "Taratura proporzionale di un tempo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-orbit-period",
+      "difficulty": 3,
+      "prompt": "Una particella ideale di massa m>0 e modulo della carica |q|=1 μC si muove con rapidità non nulla perpendicolarmente a un campo magnetico uniforme di modulo B>0. Non ci sono altre forze e si trascura la radiazione. Ogni preparazione resta non relativistica. Si cerca τ=T_orbita/(2π)>0, che ha unità di tempo ma non è il periodo completo. Nei dati numerici m si esprime in mg; masse diverse indicano particelle preparate distintamente, non massa variabile nel tempo di una singola particella. Il display continuo adimensionale segue D=a_cal τ senza offset. A:m=1 mg,B=2 T,D=3/2. B:B=1 T,D=6. Quanto vale m_B in mg?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "mg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha τ_A=1/2 s e il guadagno è (3/2)/(1/2)=3 s⁻¹. La lettura sei indica τ_B=2 s. Il prodotto |q|B_Bτ_B dà m_B=2 mg."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,\\mathrm s^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=2\\,\\mathrm{mg}"
+        },
+        {
+          "type": "text",
+          "text": "Sei mg tratterebbe il display come un tempo e predirebbe D=18. Un mezzo mg copia il tempo del riferimento e darebbe D=3/2 con B_B=1 T. Un mg ignora la preparazione nuova."
+        }
+      ],
+      "hints": [
+        "La lettura frazionaria è continua, non un conteggio intero.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei mg tratterebbe il display come un tempo e predirebbe D=18. Un mezzo mg copia il tempo del riferimento e darebbe D=3/2 con B_B=1 T. Un mg ignora la preparazione nuova.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Periodo classico e cancellazione della rapidità",
+        "Caso parallelo autonomo senza orbita",
+        "Unità, inverse e rapporti fra preparazioni",
+        "Medie, display continui e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-orbit-period-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Periodo completo e tempo ridotto dell’orbita",
+      "order": 23315,
+      "title": "Offset prima di ricostruire la massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-orbit-period",
+      "difficulty": 3,
+      "prompt": "Una particella ideale di massa m>0 e modulo della carica |q|=1 μC si muove con rapidità non nulla perpendicolarmente a un campo magnetico uniforme di modulo B>0. Non ci sono altre forze e si trascura la radiazione. Ogni preparazione resta non relativistica. Si cerca τ=T_orbita/(2π)>0, che ha unità di tempo ma non è il periodo completo. Nei dati numerici m si esprime in mg; masse diverse indicano particelle preparate distintamente, non massa variabile nel tempo di una singola particella. Il display continuo adimensionale segue D=a_cal τ+b_cal. A:m=1 mg,B=2 T,D=2. B:m=2 mg,B=1 T,D=5. C:B=2 T,D=4. Quanto vale m_C in mg?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "mg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le letture fisiche di riferimento sono τ_A=1/2 s e τ_B=2 s. Guadagno (5−2)/(2−1/2)=2 s⁻¹, offset uno. D_C=4 decodifica τ_C=3/2 s. Con B_C=2 T si ricava m_C=3 mg."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,\\mathrm s^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b_{\\rm cal}=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_C=\\frac32\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=3\\,\\mathrm{mg}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro mg omette l’offset e predice D=5. Sei mg sottrae b ma salta il guadagno. Un mezzo mg copia il valore numerico di un riferimento invece di usare la lettura C."
+        }
+      ],
+      "hints": [
+        "Il periodo completo non va sostituito a τ nella legge dello strumento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro mg omette l’offset e predice D=5. Sei mg sottrae b ma salta il guadagno. Un mezzo mg copia il valore numerico di un riferimento invece di usare la lettura C.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Periodo classico e cancellazione della rapidità",
+        "Caso parallelo autonomo senza orbita",
+        "Unità, inverse e rapporti fra preparazioni",
+        "Medie, display continui e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-orbit-period-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Periodo completo e tempo ridotto dell’orbita",
+      "order": 23316,
+      "title": "Una misura ridondante del tempo ridotto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-orbit-period",
+      "difficulty": 3,
+      "prompt": "Una particella ideale di massa m>0 e modulo della carica |q|=1 μC si muove con rapidità non nulla perpendicolarmente a un campo magnetico uniforme di modulo B>0. Non ci sono altre forze e si trascura la radiazione. Ogni preparazione resta non relativistica. Si cerca τ=T_orbita/(2π)>0, che ha unità di tempo ma non è il periodo completo. Nei dati numerici m si esprime in mg; masse diverse indicano particelle preparate distintamente, non massa variabile nel tempo di una singola particella. Fra preparazioni m=[(1/2) mg/T]B. Si misura anche τ=1/2 s. Quante coppie positive (m,B) sono determinate?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie positive",
+          "Una sola coppia",
+          "Due coppie positive",
+          "Nessuna coppia",
+          "Solo coppie con B intero"
+        ],
+        "value": "Infinite coppie positive"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo inserito in τ=m/(|q|B), con |q|=1 μC, dà sempre 1/2 s. La misura non aggiunge una scala indipendente. Per esempio m=1 mg,B=2 T e m=1/2 mg,B=1 T soddisfano entrambi il dato e possono essere preparati con rapidità non relativistica."
+        },
+        {
+          "type": "formula",
+          "text": "m=[(1/2)\\,\\mathrm{mg/T}]B"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau=\\frac12\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "B si cancella: non nasce una quadratica con due radici. Nessuna condizione impone campi interi; scegliere una delle coppie di esempio come unica sarebbe arbitrario."
+        }
+      ],
+      "hints": [
+        "Verifica se la lettura indipendente ripete il vincolo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "B si cancella: non nasce una quadratica con due radici. Nessuna condizione impone campi interi; scegliere una delle coppie di esempio come unica sarebbe arbitrario.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Periodo classico e cancellazione della rapidità",
+        "Caso parallelo autonomo senza orbita",
+        "Unità, inverse e rapporti fra preparazioni",
+        "Medie, display continui e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "309e83c2f3a7fd166f557946213817938f86f41dbb615f98e5c2b4696920baa5",
+      "name": "magnetic-orbit-period-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ4MCIgdmlld0JveD0iMCAwIDY0MCAxNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+SWwgdGVtcG8gZGkgdW7igJlvcmJpdGEgbWFnbmV0aWNhPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+VHJlIHRhcHBlOiBpbCBwZXJpb2RvIGNvbXBsZXRvIGRpc3RpbnRvIGRhbCB0ZW1wbyByaWRvdHRvLCBjb25mcm9udG8gZnJhIGR1ZSBwcmVwYXJhemlvbmkgZSBsb3JvIG1lZGlhIGFsbGEgc3Rlc3NhIHNjYWxhLCB0cmUgdmFsb3JpIGVzYXR0aSBkaSB0YXUgYSBtYXNzYSBlIGNhcmljYSBmaXNzYXRlIGNvbiBjYW1wbyB1bm8gZHVlIHF1YXR0cm8gdGVzbGEuPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImFycm93IiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI4IiByZWZYPSI3IiByZWZZPSI0IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMOCA0TDAgOFoiIGZpbGw9IiM1MjY2N2EiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNDgwIiBmaWxsPSIjZjdmYWZjIi8+PGcgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmaWxsPSIjMjAzNTRkIj48dGV4dCB4PSIzMiIgeT0iNDIiIGZvbnQtc2l6ZT0iMjQiIHRleHQtYW5jaG9yPSJzdGFydCI+SWwgdGVtcG8gZGkgdW7igJlvcmJpdGEgbWFnbmV0aWNhPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI5MiIgZm9udC1zaXplPSIyMiIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xIMK3IFBlcmlvZG8gY29tcGxldG8gZSB0ZW1wbyByaWRvdHRvPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMzIiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+bSA9IDEgbWcgwrcgfHF8ID0gMSDOvEMgwrcgQiA9IDIgVDwvdGV4dD48Y2lyY2xlIGN4PSIzMjAiIGN5PSIyODAiIHI9IjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzMTZiOWIiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0zMjAgMjAwQTgwIDgwIDAgMSAxIDI0MCAyODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxsaW5lIHgxPSIzMjAiIHkxPSIzNjAiIHgyPSI0NTAiIHkyPSIzNjAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjQ2NiIgeT0iMzY3IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnY8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjQwOCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5VbiBnaXJvIGNvbXBsZXRvOiBUID0gz4AgczwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNDQ1IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlRlbXBvIHJpZG90dG86IM+EID0gVC8oMs+AKSA9IDEvMiBzPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI0ODAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+SWwgY2VyY2hpbyDDqCBzY2hlbWF0aWNvOiBpbCByYWdnaW8gbm9uIMOoIGRhdG8uPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI1NTAiIGZvbnQtc2l6ZT0iMjIiIHRleHQtYW5jaG9yPSJzdGFydCI+MiDCtyBEdWUgcHJlcGFyYXppb25pIGUgbGEgbWVkaWE8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjU5MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5BOiAxIG1nLCAyIFQgwrcgQjogMiBtZywgMSBUPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iNjc0IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj5BPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iNjUwIiB3aWR0aD0iODAiIGhlaWdodD0iMzIiIGZpbGw9IiMzMTZiOWIiLz48dGV4dCB4PSIyNDIiIHk9IjY3NCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xLzIgczwvdGV4dD48dGV4dCB4PSIxMjgiIHk9Ijc2NCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9ImVuZCI+QjwvdGV4dD48cmVjdCB4PSIxNTAiIHk9Ijc0MCIgd2lkdGg9IjMyMCIgaGVpZ2h0PSIzMiIgZmlsbD0iIzMxNmI5YiIvPjx0ZXh0IHg9IjQ4MiIgeT0iNzY0IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjIgczwvdGV4dD48dGV4dCB4PSIxMjgiIHk9Ijg1NCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9ImVuZCI+TWVkaWE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI4MzAiIHdpZHRoPSIyMDAiIGhlaWdodD0iMzIiIGZpbGw9IiMzMTZiOWIiLz48dGV4dCB4PSIzNjIiIHk9Ijg1NCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij41LzQgczwvdGV4dD48dGV4dCB4PSIzMiIgeT0iOTEwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkJhcnJlIGRpIM+EIGFsbGEgc3Rlc3NhIHNjYWxhOyBUID0gMs+Az4QuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI5NjAiIGZvbnQtc2l6ZT0iMjIiIHRleHQtYW5jaG9yPSJzdGFydCI+MyDCtyBTdGVzc2EgbWFzc2EgZSBjYXJpY2E8L3RleHQ+PGxpbmUgeDE9IjE0NSIgeTE9IjEyODAiIHgyPSI1MjAiIHkyPSIxMjgwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48bGluZSB4MT0iMTUwIiB5MT0iMTI4NSIgeDI9IjE1MCIgeTI9IjEwMzAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjEyOCIgeT0iMTMwNSIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9ImVuZCI+MDwvdGV4dD48dGV4dCB4PSI1MzUiIHk9IjEyOTAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+QiAoVCk8L3RleHQ+PHRleHQgeD0iOTUiIHk9IjEwMTUiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+z4QgKHMpPC90ZXh0PjxjaXJjbGUgY3g9IjIzMCIgY3k9IjExMjAiIHI9IjUiIGZpbGw9IiMzMTZiOWIiLz48dGV4dCB4PSIyMzAiIHk9IjEzMTAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjE8L3RleHQ+PHRleHQgeD0iMTI4IiB5PSIxMTI2IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj4xPC90ZXh0PjxjaXJjbGUgY3g9IjMxMCIgY3k9IjEyMDAiIHI9IjUiIGZpbGw9IiMzMTZiOWIiLz48dGV4dCB4PSIzMTAiIHk9IjEzMTAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjI8L3RleHQ+PHRleHQgeD0iMTI4IiB5PSIxMjA2IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj4xLzI8L3RleHQ+PGNpcmNsZSBjeD0iNDcwIiBjeT0iMTI0MCIgcj0iNSIgZmlsbD0iIzMxNmI5YiIvPjx0ZXh0IHg9IjQ3MCIgeT0iMTMxMCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NDwvdGV4dD48dGV4dCB4PSIxMjgiIHk9IjEyNDYiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJlbmQiPjEvNDwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTM4MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5QdW50aSBkaXN0aW50aSwgc2VuemEgaW50ZXJwb2xhemlvbmUgbGluZWFyZS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE0MjAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+TOKAmW9yaWdpbmUgw6ggZGVnbGkgYXNzaTogQiA9IDAgbm9uIMOoIGFtbWVzc28uPC90ZXh0PjwvZz48L3N2Zz4K"
+    }
+  ]
+}
