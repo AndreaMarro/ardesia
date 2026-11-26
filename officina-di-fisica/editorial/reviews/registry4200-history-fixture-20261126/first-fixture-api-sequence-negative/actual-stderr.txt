@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "<string>", line 22, in <module>
+    _shown=learning.details(db,student,before,_rid,{'action':'answer','idx':0,'value':_q['answer']['value']})
+  File "/private/tmp/cric-resident-integrator/officina-di-fisica/server/learning.py", line 29, in details
+    return study.details(SQLiteStudy(db), user, rows, rid, d)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/cric-resident-integrator/officina-di-fisica/server/application/study.py", line 271, in details
+    require(not item["sent"], "Risposta già registrata.", 409)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/cric-resident-integrator/officina-di-fisica/server/domain/errors.py", line 11, in require
+    raise Problem(message, status)
+server.domain.errors.Problem: Risposta già registrata.

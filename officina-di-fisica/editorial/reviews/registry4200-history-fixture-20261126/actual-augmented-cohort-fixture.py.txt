@@ -1,0 +1,108 @@
+
+import json,sys
+from server import store
+from server.domain import assessment,error_diary
+from tools.corpus_engineering.draft_import import import_drafts,material
+from tools.corpus_engineering.pipeline import canonical,digest
+store.initialize()
+packages=[json.load(open(path)) for path in json.loads(sys.argv[1])]
+rows=[row for package in packages for row in package['records']]
+assert len({row['id'] for row in rows})==len(rows)
+with store.connect() as db:
+ before=store.published(db)
+ versions_before={(r['id'],r['v']):r['payload'] for r in db.execute('SELECT id,v,payload FROM versions')}
+ live_before={row['id']:head[0] if (head:=db.execute('SELECT live FROM heads WHERE id=?',(row['id'],)).fetchone()) else None for row in rows}
+ from server import learning
+ student={'id':'root-private-preservation-fixture','role':'lettore'}
+ _pinned={}
+ for _index,_key in enumerate(('C1-Q001','C2-Q001','C4-Q091')):
+  _q=next(q for q in before if q['id']==_key)
+  _rid=learning.start(db,student,before,{'course':_q['course'],'mode':'practice','item':_key,'requestId':'preserve'+str(_index)})['id']
+  if _index==1:learning.details(db,student,before,_rid,{'action':'hint','idx':0})
+  _answer=_q['answer']['value']
+  if _index==2:
+   assert _q['answer']['type']=='numeric'and _answer!=0
+   _answer=0
+  _shown=learning.details(db,student,before,_rid,{'action':'answer','idx':0,'value':_answer})
+  assert _shown['items'][0]['correct'] is (_index!=2)
+  assert _shown['items'][0]['aided'] is (_index==1)
+  _pinned[_rid]=_shown['items'][0]
+ _attempt_rows_before=[tuple(r)for r in db.execute('SELECT * FROM attempts ORDER BY run,idx')]
+ _run_rows_before=[tuple(r)for r in db.execute('SELECT * FROM runs ORDER BY id')]
+ _old_attempt_payloads={(r['id'],r['v']):store.record(db,r['id'],r['v'])for r in db.execute('SELECT id,v FROM attempts')}
+ assert len(_attempt_rows_before)==len(_run_rows_before)==3
+ attempts_before=db.execute('SELECT count(*) FROM attempts').fetchone()[0]
+ first=[import_drafts(db,{'id':'owner','role':'autore'},package) for package in packages]
+ second=[import_drafts(db,{'id':'owner','role':'autore'},package) for package in packages]
+ assert sum(row['saved'] for row in first)==len(rows)
+ assert all(row['saved']==0 for row in second)
+ assert sum(row['unchanged'] for row in second)==len(rows)
+ after=store.published(db)
+ assert store.encode(before)==store.encode(after)
+ assert all(db.execute('SELECT payload FROM versions WHERE id=? AND v=?',key).fetchone()[0]==payload for key,payload in versions_before.items())
+ for row in rows:
+  head=db.execute('SELECT live,draft FROM heads WHERE id=?',(row['id'],)).fetchone()
+  assert head['live']==live_before[row['id']] and head['draft'] is not None
+  saved=json.loads(db.execute('SELECT payload FROM versions WHERE id=? AND v=?',(row['id'],head['draft'])).fetchone()[0])
+  assert material(saved)==material(row)
+ objects={row['id']:row for row in [*before,*rows]}
+ # A revised lesson must preserve the entry points of every existing experiment,
+ # including experiments that are not themselves part of this import cohort.
+ experiments=[row for row in objects.values() if row.get('kind')=='experiment']
+ for experiment in experiments:
+  lesson=objects[experiment['skill']]
+  assert lesson['course']==experiment['course'] and experiment['topic'] in lesson.get('coverage',[])
+  assert any(block.get('type')=='text' and block['text'].startswith(experiment['anchor'])
+    for block in lesson['blocks']), 'Lost experiment paragraph: '+experiment['id']
+ questions=[row for row in rows if row['kind']=='question']
+ available=[row for row in objects.values() if row.get('kind')=='question' and not row.get('exam')]
+ proofs=[]
+ for row in questions:
+  assert row['skill'] in objects
+  assert all(key in objects for key in [*row.get('prerequisites',[]),*row.get('reuse',[])])
+  assert assessment.matches(row['answer'],row['answer']['value'])
+  if row['answer']['type']=='choice':
+   assert all(not assessment.matches(row['answer'],value) for value in row['answer']['options'] if value!=row['answer']['value'])
+  else:
+   assert all(not assessment.matches(row['answer'],value) for value in ['NaN','Infinity','-Infinity'])
+  pool=[candidate for candidate in available if candidate['skill']==row['skill']]
+  retest=error_diary.choose_retest(row,pool,{row['id']},{row['family']})
+  assert retest is not None and retest['family']!=row['family'] and retest['skill']==row['skill'] and not retest.get('exam')
+  next_retest=error_diary.choose_retest(row,[q for q in pool if q['family']!=retest['family']],{row['id'],retest['id']},{row['family'],retest['family']})
+  assert next_retest is not None and next_retest['family'] not in (row['family'],retest['family'])
+  def attempt(stamp,seq,family,aided=0):return {'stamp':stamp,'seq':seq,'family':family,'aided':aided,'correct':1,'skill':row['skill']}
+  error={'stamp':100,'seq':1,'family':row['family']}
+  repeated=attempt(101,2,row['family'])
+  assert error_diary.follow_up(error,[repeated])['transferAt'] is None
+  assisted=attempt(102,3,retest['family'],1)
+  support=error_diary.follow_up(error,[repeated,assisted])
+  assert support['transferAt'] is None and support['assistedAfter']==1
+  autonomous=attempt(103,4,retest['family'])
+  immediate=error_diary.follow_up(error,[repeated,assisted,autonomous])
+  assert immediate['transferAt']==103 and immediate['delayedAt'] is None
+  delayed=attempt(103+error_diary.TRANSFER_INTERVAL,5,next_retest['family'])
+  observed=error_diary.follow_up(error,[repeated,assisted,autonomous,delayed])
+  assert observed['delayedAt']==delayed['stamp']
+  trace=assessment.trace([repeated,assisted,autonomous,delayed])[row['skill']]
+  assert trace['families']==3 and trace['aided']==1 and trace['state']=='risultati stabili'
+  proofs.append({'id':row['id'],'candidateSha256':digest(row),'skill':row['skill'],'family':row['family'],
+   'retestId':retest['id'],'delayedRetestId':next_retest['id'],'grading':True,'graphReferences':True,
+   'repetitionIsNotTransfer':True,'assistanceIsNotAutonomy':True,'delayedDistinctTransfer':True})
+ attempts_after=db.execute('SELECT count(*) FROM attempts').fetchone()[0]
+ assert attempts_after==attempts_before
+ assert [tuple(r)for r in db.execute('SELECT * FROM attempts ORDER BY run,idx')]==_attempt_rows_before
+ assert [tuple(r)for r in db.execute('SELECT * FROM runs ORDER BY id')]==_run_rows_before
+ for _rid,_item in _pinned.items():assert learning.details(db,student,after,_rid)['items'][0]==_item
+ for (_id,_v),_payload in _old_attempt_payloads.items():assert store.record(db,_id,_v)==_payload
+
+ print(canonical({'schemaVersion':'1.0.0','packageCount':len(packages),'candidateCount':len(rows),
+  'firstImportSaved':sum(row['saved'] for row in first),'repeatedImportSaved':sum(row['saved'] for row in second),
+  'repeatedImportUnchanged':sum(row['unchanged'] for row in second),
+  'beforePublishedCount':len(before),'afterPublishedCount':len(after),
+  'beforePublishedSha256':digest(before),'afterPublishedSha256':digest(after),
+  'preservedHistoricalVersions':len(versions_before),'preservedLiveHeads':sum(v is not None for v in live_before.values()),
+  'nonemptyHistoricalFixture':True,'pinnedRunItemsRetained':len(_pinned),'preexistingAttemptRowsSha256':digest(_attempt_rows_before),'preexistingRunRowsSha256':digest(_run_rows_before),
+  'learnerAttemptsBefore':attempts_before,'learnerAttemptsAfter':attempts_after,'records':proofs,
+  'preservedExperimentEntryPoints':len(experiments),
+  'learningEvidence':'synthetic_private_fixtures_only','humanApproval':'NOT_RUN',
+  'newPublications':0,'database':'disposable_sqlite'}))

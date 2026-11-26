@@ -332,7 +332,7 @@
     "authoredKnown": 200,
     "authorAFirst10Commit": "a9e769ae",
     "authorBFirst50Commit": "41f9409d",
-    "sourceOnlyPrimariesAndModels": "C1 completed andRoot accepted; reciprocalC2 primaries/models frozen;C2authoring200total and distinctC2reviews inprogress;C3 source-only handoff next",
+    "sourceOnlyPrimariesAndModels": "C1/C2 complete200. Reciprocal C3 primaries/models frozen before candidate exposure;B authoringQ051..100, A peer Core then authoringQ001..050. B also froze source-only C4 A50, zero completion credit.",
     "nextScientificAcceptanceId": "C3-Q001",
     "protectedExamCount": 93
   },
@@ -441,5 +441,27 @@
     "rootActual69Tests": "PASS",
     "newCredit": 0,
     "priorFiveFilesArchived": "editorial/reviews/cric-c2-a50-root-recovery-20261126/before"
+  },
+  "registry4200HistoryFixture": {
+    "receipt": "editorial/reviews/registry4200-history-fixture-20261126/receipt.json",
+    "actualExit": 0,
+    "seconds": 15.896728291991167,
+    "questionProofs": 4200,
+    "packageCount": 282,
+    "candidateRecords": 4217,
+    "firstImportSaved": 4217,
+    "repeatSaved": 0,
+    "repeatUnchanged": 4217,
+    "preexistingAttempts": 3,
+    "preexistingRuns": 3,
+    "pinnedRunItemsRetained": 3,
+    "fixtureKinds": [
+      "unassisted correct",
+      "hint-assisted correct",
+      "unassisted incorrect"
+    ],
+    "allPublished991AndOldPayloadsUnchanged": true,
+    "firstFixtureNegative": "API correctly rejected answer after reveal; fixture changed to hint, application unchanged; negative preserved",
+    "scientificCredit": 0
   }
 }
