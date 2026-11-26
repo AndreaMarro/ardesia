@@ -1,0 +1,698 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C1-Q041",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 41,
+      "title": "Muoversi con risultante nulla",
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L005"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Chiamo F_R la risultante e m>0 la massa. Il secondo principio dà F_R=m a: con risultante nulla l’accelerazione èzero. La velocità resta quindi uguale al suo valore iniziale, che per ipotesi non èzero. Non occorre una forza risultante per mantenere un moto uniforme."
+        },
+        {
+          "type": "formula",
+          "text": "\\vec F_R=m\\vec a"
+        },
+        {
+          "type": "formula",
+          "text": " \\vec F_R=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\vec a=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\vec v=\\vec v_0"
+        },
+        {
+          "type": "text",
+          "text": "Rallentare, aumentare la rapidità o cambiare direzione richiederebbero accelerazione e dunque una risultante non nulla. Essere fermo è solo uno dei moti possibili con risultante nulla, escluso qui dall’informazione che il pattino era già in moto."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "Un pattino già in moto lungo una guida orizzontale ha risultante delle forze nulla. Come evolve, osservato in un riferimento inerziale e con massa costante?",
+      "family": "muoversi-senza-risultante",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Mantiene la velocità vettoriale iniziale",
+          "Rallenta fino a fermarsi necessariamente",
+          "Aumenta la rapidità a ogni secondo",
+          "Deve essere già fermo",
+          "Cambia direzione pur mantenendo la rapidità"
+        ],
+        "value": "Mantiene la velocità vettoriale iniziale"
+      },
+      "hints": [
+        "Non confondere la condizione per cambiare velocità con quella per mantenerla.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Rallentare, aumentare la rapidità o cambiare direzione richiederebbero accelerazione e dunque una risultante non nulla. Essere fermo è solo uno dei moti possibili con risultante nulla, escluso qui dall’informazione che il pattino era già in moto.",
+        "target": "C1-L005"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Diagrammi e leggi di Newton",
+        "Muoversi con risultante nulla"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q042",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 42,
+      "title": "La tensione mentre il secchio sale",
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L005"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scelgo positivo verso l’alto. La velocità costante implica accelerazione verticale nulla, anche se il secchio si sta muovendo. La somma T−mg deve allora esserezero. Il peso è 3,2·10=32 N e la tensione ha lo stesso modulo, verso l’alto."
+        },
+        {
+          "type": "formula",
+          "text": "T-mg=0"
+        },
+        {
+          "type": "formula",
+          "text": " T=mg"
+        },
+        {
+          "type": "formula",
+          "text": " T=32\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Zero è la risultante, non la tensione. 64 N somma due moduli uguali invece di trovare la forza del filo. 3,2 N copia il valore numerico della massa senza moltiplicarlo per g. 320 N aggiunge un fattore dieci al prodotto assegnato."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un secchio di massa totale m=3,2 kg sale a velocità costante appeso a un filo verticale ideale. Agiscono solo peso e tensione T. Con g=10 m/s², quanto vale T?",
+      "family": "trazione-verticale-a-velocita-costante",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "32 N",
+          "0 N",
+          "64 N",
+          "3,2 N",
+          "320 N"
+        ],
+        "value": "32 N"
+      },
+      "hints": [
+        "Il verso del moto non determina il segno dell’accelerazione: qui a=0.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Zero è la risultante, non la tensione. 64 N somma due moduli uguali invece di trovare la forza del filo. 3,2 N copia il valore numerico della massa senza moltiplicarlo per g. 320 N aggiunge un fattore dieci al prodotto assegnato.",
+        "target": "C1-L005"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Diagrammi e leggi di Newton",
+        "La tensione mentre il secchio sale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q043",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 43,
+      "title": "La reazione al peso agisce su un altro corpo",
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L005"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una coppia azione–reazione coinvolge la stessa interazione e due destinatari distinti. Chiamo T la Terra e L il libro. Se T attrae L, L attrae T con forza opposta di uguale modulo. Entrambe esistono anche quando il libro è fermo; la massa molto maggiore della Terra rende diversa la sua accelerazione."
+        },
+        {
+          "type": "formula",
+          "text": "\\vec F_{T\\to L}=-\\vec F_{L\\to T}"
+        },
+        {
+          "type": "text",
+          "text": "La normale sul libro può equilibrare il peso, ma ha lo stesso destinatario e nasce da un’altra interazione. La forza del libro sul tavolo è la reazione alla normale del tavolo, non al peso. Peso del tavolo e risultante nulla non completano la coppia gravitazionale richiesta."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un libro è fermo su un tavolo. Qual è la forza di reazione, nel terzo principio, alla forza gravitazionale esercitata dalla Terra sul libro?",
+      "family": "la-coppia-del-terzo-principio",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La forza gravitazionale del libro sulla Terra",
+          "La normale del tavolo sul libro",
+          "Il peso del tavolo",
+          "La forza del libro sul tavolo",
+          "La risultante nulla sul libro"
+        ],
+        "value": "La forza gravitazionale del libro sulla Terra"
+      },
+      "hints": [
+        "Scambia sorgente e destinatario della stessa forza, non il suo nome soltanto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La normale sul libro può equilibrare il peso, ma ha lo stesso destinatario e nasce da un’altra interazione. La forza del libro sul tavolo è la reazione alla normale del tavolo, non al peso. Peso del tavolo e risultante nulla non completano la coppia gravitazionale richiesta.",
+        "target": "C1-L005"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Diagrammi e leggi di Newton",
+        "La reazione al peso agisce su un altro corpo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q044",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 44,
+      "title": "Una parte del peso è sostenuta dalla fune",
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L005"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scelgo verso positivo in alto. Il peso è 50 N e le forze verso l’alto sono N e 12 N. Impongo N+T_y−mg=0: N=50−12=38 N. Il risultato non negativo è compatibile con un piano che spinge il blocco, senza doverlo attrarre."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/56490ef9e1df3a70d83329105511a62013d61f4bce6cf4c3611800ed0e12d37d",
+          "text": "Primo pannello: peso50 N verso il basso, componente verticale della fune12 N e normale38 N verso l’alto, nella stessa scala. Il diagramma isola il bilancio verticale."
+        },
+        {
+          "type": "formula",
+          "text": "N+T_y-mg=0"
+        },
+        {
+          "type": "formula",
+          "text": " N=mg-T_y"
+        },
+        {
+          "type": "formula",
+          "text": " N=(50-12)\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " N=38\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "50 N ignorerebbe la trazione verticale;62 N la sommerebbe al peso invece di sottrarla dal sostegno richiesto. 12 N è la componente della fune. −38 N attribuisce al supporto il verso sbagliato: per questa convenzione N è il modulo positivo della spinta verso l’alto."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un blocco di massa m=5 kg rimane su un piano orizzontale fisso senza accelerazione verticale. Una fune esercita una componente verticale T_y=12 N verso l’alto; la sua componente orizzontale non entra nel bilancio verticale. Agiscono verticalmente solo peso, fune e normale N. Con g=10 m/s², quanto vale N?",
+      "family": "una-trazione-solleva-in-parte-il-peso",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "38 N",
+          "50 N",
+          "62 N",
+          "12 N",
+          "−38 N"
+        ],
+        "value": "38 N"
+      },
+      "hints": [
+        "La fune sostiene già 12 N: il piano deve fornire soltanto il resto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "50 N ignorerebbe la trazione verticale;62 N la sommerebbe al peso invece di sottrarla dal sostegno richiesto. 12 N è la componente della fune. −38 N attribuisce al supporto il verso sbagliato: per questa convenzione N è il modulo positivo della spinta verso l’alto.",
+        "target": "C1-L005"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Diagrammi e leggi di Newton",
+        "Una parte del peso è sostenuta dalla fune"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q045",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 45,
+      "title": "Il riferimento in cui vale l’inerzia",
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L005"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La proprietà descritta definisce un riferimento inerziale: la risultante esterna nulla corrisponde ad accelerazione nulla. Il corpo può essere fermo oppure in moto rettilineo uniforme. Riferimenti che si muovono l’uno rispetto all’altro con velocità costante possono essere entrambi inerziali; non si richiede una quiete assoluta."
+        },
+        {
+          "type": "formula",
+          "text": "\\sum\\vec F=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\vec a=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\vec v=\\mathrm{costante}"
+        },
+        {
+          "type": "text",
+          "text": "Un riferimento rotante richiede in generale termini apparenti per descrivere un corpo libero. La definizione non dice che ogni corpo sia fermo né introduce un’immobilità assoluta. La misura del tempo resta essenziale per distinguere una velocità costante da una variabile."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "Come si chiama un riferimento in cui un corpo isolato mantiene velocità vettoriale costante?",
+      "family": "il-riferimento-adatto",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Inerziale",
+          "Sempre solidale a un corpo che ruota",
+          "Necessariamente immobile in senso assoluto",
+          "Un riferimento nel quale tutti i corpi sono fermi",
+          "Un riferimento nel quale manca il tempo"
+        ],
+        "value": "Inerziale"
+      },
+      "hints": [
+        "La parola cercata riguarda la validità del primo principio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un riferimento rotante richiede in generale termini apparenti per descrivere un corpo libero. La definizione non dice che ogni corpo sia fermo né introduce un’immobilità assoluta. La misura del tempo resta essenziale per distinguere una velocità costante da una variabile.",
+        "target": "C1-L005"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Diagrammi e leggi di Newton",
+        "Il riferimento in cui vale l’inerzia"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q046",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 46,
+      "title": "Due spinte ortogonali",
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L005"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima sommo le forze come vettori. L’ortogonalità permette Pitagora:6²+8²=100, perciò il modulo della risultante è 10 N. Solo dopo divido per la massa positiva:10 N/5 kg=2 m/s². Sommando i moduli 6+8 otterrei una forza troppo grande per questa geometria."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/56490ef9e1df3a70d83329105511a62013d61f4bce6cf4c3611800ed0e12d37d",
+          "text": "Secondo pannello: le spinte6 N e8 N hanno una risultante di10 N. Le tre frecce di forza usano una scala comune; a=2 m/s² è un risultato, non una quarta forza."
+        },
+        {
+          "type": "formula",
+          "text": "F_R=\\sqrt{6^2+8^2}\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_R=10\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac{F_R}{m}"
+        },
+        {
+          "type": "formula",
+          "text": " a=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "14/5 m/s² somma i moduli come se le spinte fossero concordi. 6/5 e 8/5 m/s² sono soltanto le componenti dell’accelerazione. 10 copia il valore numerico della forza risultante in newton senza dividerlo per 5 kg."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Due forze orizzontali ortogonali hanno moduli F_x=6 N e F_y=8 N e agiscono su una piattaforma di massa m=5 kg. Peso e normale si compensano e non ci sono altre resistenze. Quanto vale il modulo dell’accelerazione?",
+      "family": "due-forze-perpendicolari-sul-carrello",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m/s²",
+          "14/5 m/s²",
+          "6/5 m/s²",
+          "8/5 m/s²",
+          "10 m/s²"
+        ],
+        "value": "2 m/s²"
+      },
+      "hints": [
+        "Le forze ortogonali formano un triangolo 6–8–10, non una somma lineare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "14/5 m/s² somma i moduli come se le spinte fossero concordi. 6/5 e 8/5 m/s² sono soltanto le componenti dell’accelerazione. 10 copia il valore numerico della forza risultante in newton senza dividerlo per 5 kg.",
+        "target": "C1-L005"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Diagrammi e leggi di Newton",
+        "Due spinte ortogonali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q047",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 47,
+      "title": "Quali forze attraversano il confine del sistema?",
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L005"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La mano è fuori dal confine e agisce su un blocco interno: la sua spinta è esterna. Chiamo F_H la spinta e m₁,m₂ le masse dei blocchi. Le due forze di contatto fra i blocchi sono interne e opposte, quindi si cancellano nel bilancio dell’insieme. Non si annullano invece nel bilancio del singolo blocco."
+        },
+        {
+          "type": "formula",
+          "text": "F_H=(m_1+m_2)a"
+        },
+        {
+          "type": "formula",
+          "text": " \\vec F_{1\\to2}+\\vec F_{2\\to1}=0"
+        },
+        {
+          "type": "text",
+          "text": "Ciascuna forza fra i blocchi ha sorgente e destinatario dentro il sistema. Contarne la somma ancora una volta duplicherebbe un’interazione già interna. Il peso è esterno perché la Terra è esclusa, ma è verticale e non risponde alla richiesta di una forza orizzontale."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una mano spinge orizzontalmente due blocchi a contatto su un piano liscio. Si sceglie come sistema l’insieme dei due blocchi, escludendo mano, piano e Terra. Quale forza orizzontale è esterna al sistema?",
+      "family": "due-corpi-spinti-insieme",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La forza della mano sul primo blocco",
+          "La forza del primo blocco sul secondo",
+          "La forza del secondo blocco sul primo",
+          "La somma di due forze di contatto interne come forza aggiuntiva",
+          "Il peso dei blocchi come forza orizzontale"
+        ],
+        "value": "La forza della mano sul primo blocco"
+      },
+      "hints": [
+        "Una forza è esterna se attraversa il confine scelto per il sistema.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Ciascuna forza fra i blocchi ha sorgente e destinatario dentro il sistema. Contarne la somma ancora una volta duplicherebbe un’interazione già interna. Il peso è esterno perché la Terra è esclusa, ma è verticale e non risponde alla richiesta di una forza orizzontale.",
+        "target": "C1-L005"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Diagrammi e leggi di Newton",
+        "Quali forze attraversano il confine del sistema?"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q048",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 48,
+      "title": "Cambiare gravità senza cambiare massa",
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L005"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ricavo prima la massa da P_T=m g_T:24/10=2,4 kg. Poi applico la nuova accelerazione di gravità alla stessa massa:2,4·4=9,6 N. In forma di rapporto P_A/P_T=g_A/g_T=2/5: il peso diminuisce, mentre la massa resta 2,4 kg."
+        },
+        {
+          "type": "formula",
+          "text": "m=\\frac{P_T}{g_T}"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{12}{5}\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " P_A=mg_A"
+        },
+        {
+          "type": "formula",
+          "text": " P_A=\\frac{48}{5}\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "24 N manterrebbe il peso anziché la massa. 60 N inverte il rapporto delle gravità. 2,4 è la massa in chilogrammi, non il peso in newton;96 N moltiplica direttamente 24 per 4 senza togliere la gravità già contenuta nel peso iniziale."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un corpo pesa P_T=24 N dove g_T=10 m/s². Viene portato in un luogo con g_A=4,0 m/s². La sua massa non cambia. Quanto vale il nuovo peso P_A?",
+      "family": "massa-su-un-altro-pianeta",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9,6 N",
+          "24 N",
+          "60 N",
+          "2,4 N",
+          "96 N"
+        ],
+        "value": "9,6 N"
+      },
+      "hints": [
+        "Una massa è la stessa nei due luoghi; il suo peso non lo è.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "24 N manterrebbe il peso anziché la massa. 60 N inverte il rapporto delle gravità. 2,4 è la massa in chilogrammi, non il peso in newton;96 N moltiplica direttamente 24 per 4 senza togliere la gravità già contenuta nel peso iniziale.",
+        "target": "C1-L005"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Diagrammi e leggi di Newton",
+        "Cambiare gravità senza cambiare massa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q049",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 49,
+      "title": "Il filo tira lungo se stesso",
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L005"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La tensione è una forza di trazione: il filo teso tira il corpo verso l’altro estremo. Chiamo e_s il versore lungo il filo diretto dal corpo al supporto e T≥0 il modulo della tensione. La forza è T e_s. Un filo ideale non può spingere il corpo nel verso opposto."
+        },
+        {
+          "type": "formula",
+          "text": "\\vec T=T\\hat e_s"
+        },
+        {
+          "type": "formula",
+          "text": " T\\ge0"
+        },
+        {
+          "type": "text",
+          "text": "La direzione verticale è corretta solo se il filo è verticale, non per un filo obliquo. Una forza perpendicolare non è la trazione del filo ideale. Il verso che allontana dal supporto richiederebbe una spinta, esclusa dal modello del filo. Non occorre assumere che il corpo sia in equilibrio sotto il solo peso."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un piccolo corpo è collegato a un filo ideale teso, rettilineo e inclinato. Qual è la direzione e il verso della forza esercitata dal filo sul corpo?",
+      "family": "dove-disegnare-la-tensione",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Lungo il filo, dal corpo verso il supporto",
+          "Verticale verso il basso, sempre",
+          "Verticale verso l’alto, anche se il filo è obliquo",
+          "Perpendicolare al filo",
+          "Lungo il filo, allontanandosi dal supporto"
+        ],
+        "value": "Lungo il filo, dal corpo verso il supporto"
+      },
+      "hints": [
+        "Individua il segmento che collega corpo e supporto: il filo tira, non spinge.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La direzione verticale è corretta solo se il filo è verticale, non per un filo obliquo. Una forza perpendicolare non è la trazione del filo ideale. Il verso che allontana dal supporto richiederebbe una spinta, esclusa dal modello del filo. Non occorre assumere che il corpo sia in equilibrio sotto il solo peso.",
+        "target": "C1-L005"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Diagrammi e leggi di Newton",
+        "Il filo tira lungo se stesso"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q050",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 50,
+      "title": "La normale su una rampa fissa",
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L005"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scelgo l’asse normale uscente dal piano. La componente del peso verso il piano è mg cosθ, mentre N è uscente. L’accelerazione normale èzero, quindi N=mg cos 60°. Il peso è 20 N e cos 60°=1/2: la normale vale 10 N, positiva e compatibile con il contatto."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/56490ef9e1df3a70d83329105511a62013d61f4bce6cf4c3611800ed0e12d37d",
+          "text": "Terzo pannello: su una rampa a60° il peso20 N si proietta in10 N verso il piano. La normale10 N è opposta alla sola componente normale, non a tutto il peso."
+        },
+        {
+          "type": "formula",
+          "text": "N-mg\\cos\\theta=0"
+        },
+        {
+          "type": "formula",
+          "text": " N=mg\\cos60^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " N=10\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "20 N uguaglia la normale a tutto il peso come su un piano orizzontale. 10√3 N usa il seno e calcola la componente parallela. Zero eliminerebbe il sostegno pur con una componente del peso verso il piano. 40 N divide per il coseno anziché proiettare."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "Una scatola di massa m=2 kg rimane a contatto con una rampa rettilinea fissa inclinata di θ=60° sull’orizzontale. Non ha accelerazione perpendicolare al piano; solo peso e normale hanno componenti in quella direzione. Con g=10 m/s², trova il modulo N della normale.",
+      "family": "reazione-di-un-supporto-inclinato",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "10 N",
+          "20 N",
+          "10√3 N",
+          "0 N",
+          "40 N"
+        ],
+        "value": "10 N"
+      },
+      "hints": [
+        "L’asse del bilancio è perpendicolare alla rampa, non verticale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "20 N uguaglia la normale a tutto il peso come su un piano orizzontale. 10√3 N usa il seno e calcola la componente parallela. Zero eliminerebbe il sostegno pur con una componente del peso verso il piano. 40 N divide per il coseno anziché proiettare.",
+        "target": "C1-L005"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Diagrammi e leggi di Newton",
+        "La normale su una rampa fissa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "56490ef9e1df3a70d83329105511a62013d61f4bce6cf4c3611800ed0e12d37d",
+      "name": "cric-c1-l005-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTkwMCI+PHRpdGxlPkJpbGFuY2kgZGkgZm9yemUgZSBwcm9pZXppb25pPC90aXRsZT48ZGVzYz5UcmUgZGlhZ3JhbW1pIGRpc3RpbnRpLiBQZXNvNTAgTiBiaWxhbmNpYXRvIGRhIG5vcm1hbGUzOCBOIGUgdHJhemlvbmUgdmVydGljYWxlMTIgTi4gRHVlIHNwaW50ZSBvcnRvZ29uYWxpNiBlOCBOIGNvbiByaXN1bHRhbnRlMTAgTi4gU3UgcmFtcGEgYTYwIGdyYWRpIHBlc28yMCBOIGUgbm9ybWFsZTEwIE4gb3Bwb3N0YSBhbGxhIGNvbXBvbmVudGUgbm9ybWFsZSBkZWwgcGVzby48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYSIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iIzI4NzM4ZCIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE5MDAiIGZpbGw9IndoaXRlIi8+PGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxODM1NGIiIGZvbnQtc2l6ZT0iMjAiPjx0ZXh0IHg9IjMyIiB5PSI0NCIgZm9udC1zaXplPSIyNiI+SXNvbGFyZSBpbCBjb3JwbywgcG9pIHByb2lldHRhcmU8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjEwNSIgZm9udC1zaXplPSIyMyI+MSDCtyBMYSBmdW5lIHNvc3RpZW5lIHBhcnRlIGRlbCBwZXNvPC90ZXh0PjxyZWN0IHg9IjE4MCIgeT0iMzQ1IiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjZTVlZGYwIiBzdHJva2U9IiM4NzlkYTgiLz48cGF0aCBkPSJNMjAwIDM1NVYyMDMiIHN0cm9rZT0iIzI4NzM4ZCIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHBhdGggZD0iTTQwMCAzNTVWMzA3IiBzdHJva2U9IiMyODczOGQiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjxwYXRoIGQ9Ik0zMDAgMzU1VjU1NSIgc3Ryb2tlPSIjMjg3MzhkIiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48dGV4dCB4PSI3MiIgeT0iMjE1Ij5OID0gMzggTjwvdGV4dD48dGV4dCB4PSI0MjAiIHk9IjMwMCI+VOG1pyA9IDEyIE48L3RleHQ+PHRleHQgeD0iMzIwIiB5PSI1NDUiPlAgPSA1MCBOPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI2MTAiPkJpbGFuY2lvIHZlcnRpY2FsZTogMzggTiArIDEyIE4gPSA1MCBOLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNjUwIj5GcmVjY2Ugc2VwYXJhdGUgc3VsIGNvcnBvIHBlciBsZWdnZXJsZS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjcyNSIgZm9udC1zaXplPSIyMyI+MiDCtyBTb21tYXJlIGR1ZSBzcGludGUgb3J0b2dvbmFsaTwvdGV4dD48cGF0aCBkPSJNMTcwIDEwMTBINDQwTTIwMCAxMDQwVjc1MCIgc3Ryb2tlPSIjODc5ZGE4IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTIwMCA3NzBIMzgwVjEwMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzg3OWRhOCIgc3Ryb2tlLWRhc2hhcnJheT0iNiA1Ii8+PHBhdGggZD0iTTIwMCAxMDEwSDM4MCIgc3Ryb2tlPSIjMjg3MzhkIiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48cGF0aCBkPSJNMjAwIDEwMTBWNzcwIiBzdHJva2U9IiMyODczOGQiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjxwYXRoIGQ9Ik0yMDAgMTAxMEwzODAgNzcwIiBzdHJva2U9IiMyODczOGQiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjx0ZXh0IHg9IjE2NSIgeT0iMTA0NSI+TzwvdGV4dD48dGV4dCB4PSIyNjAiIHk9IjEwNDUiPjYgTjwvdGV4dD48dGV4dCB4PSIxMTUiIHk9Ijg2MCI+OCBOPC90ZXh0Pjx0ZXh0IHg9IjQwMCIgeT0iOTAwIj4xMCBOPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMTIwIj5SaXN1bHRhbnRlOiDiiJooNsKyICsgOMKyKSBOID0gMTAgTi48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjExNjAiPk1hc3NhIDUga2c6IGEgPSAxMCBOIC8gKDUga2cpID0gMiBtL3PCsi48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjEyNTAiIGZvbnQtc2l6ZT0iMjMiPjMgwrcgTm9ybWFsZSBzdSB1bmEgcmFtcGEgYTYwwrA8L3RleHQ+PHBhdGggZD0iTTEzMCAxNzEwTDM1MCAxMzI4Ljk0OU0xMzAgMTcxMEgzOTAiIHN0cm9rZT0iIzg3OWRhOCIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTE3MCAxNzEwQTQwIDQwIDAgMCAwIDE1MCAxNjc1LjM1OSIgc3Ryb2tlPSIjYTY2ZTM2IiBmaWxsPSJub25lIi8+PHRleHQgeD0iMTgwIiB5PSIxNjg1Ij42MMKwPC90ZXh0PjxjaXJjbGUgY3g9IjIyNC4wMTkiIGN5PSIxNDg3LjE1NCIgcj0iNSIgZmlsbD0iIzE4MzU0YiIvPjxwYXRoIGQ9Ik0yMjQuMDE5IDE0ODcuMTU0VjE2MjcuMTU0IiBzdHJva2U9IiMyODczOGQiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjxwYXRoIGQ9Ik0yMjQuMDE5IDE0ODcuMTU0TDE2My4zOTcgMTQ1Mi4xNTQiIHN0cm9rZT0iIzI4NzM4ZCIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHBhdGggZD0iTTIyNC4wMTkgMTQ4Ny4xNTRMMjg0LjY0MSAxNTIyLjE1NCIgc3Ryb2tlPSIjMjg3MzhkIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1kYXNoYXJyYXk9IjYgNSIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjx0ZXh0IHg9IjcwIiB5PSIxNDI1Ij5OID0gMTAgTjwvdGV4dD48dGV4dCB4PSIzMDUiIHk9IjE1NTUiPm1nIGNvczYwwrAgPSAxMCBOPC90ZXh0Pjx0ZXh0IHg9IjI1MCIgeT0iMTYzMCI+UCA9IDIwIE48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE3OTAiPkxhIGZyZWNjaWEgdHJhdHRlZ2dpYXRhIMOoIHVuYSBjb21wb25lbnRlPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxODI1Ij5kZWwgcGVzbywgbm9uIHVuYSBmb3J6YSBhZ2dpdW50aXZhLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTg3MCI+TiBiaWxhbmNpYSBzb2x0YW50byBsYSBjb21wb25lbnRlIG5vcm1hbGUuPC90ZXh0PjwvZz48L3N2Zz4="
+    }
+  ]
+}
