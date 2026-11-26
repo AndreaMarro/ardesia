@@ -1,0 +1,98 @@
+{
+  "scope": "ONLY_THREE_SETUPS_AND_FOUR_PREVIOUSLY_FAILED_GRID_POINTS; NOT_COMPLETE_COURSE",
+  "sourceCommit": "64aef05bef5ca7ebff8491060762dd4cac0cbb34",
+  "runtimeSha256": "4c83e0156b74d5a4cdfad90421f4304e6a7a03bde10d5b125f6635aae7eff907",
+  "browserVersion": "158.0.8127.37",
+  "actualExitCode": 1,
+  "elapsedSeconds": 8.271575291990303,
+  "cases": 7,
+  "gridWitnesses": [
+    {
+      "caseKey": "SIM-C2-L008-04|published|320|orbit|grid|2",
+      "actualDOMControls": [
+        {
+          "name": "x",
+          "value": "-10",
+          "min": "-20",
+          "max": "20",
+          "step": "5",
+          "kind": "INPUT"
+        }
+      ],
+      "sourceReplayedX": -10,
+      "sourceReplayedModel": {
+        "x": -10,
+        "y": 0.6561
+      },
+      "frozenExpectedY": 0.6561000000000001,
+      "technicalOk": false
+    },
+    {
+      "caseKey": "SIM-C2-L008-04|published|320|orbit|grid|6",
+      "actualDOMControls": [
+        {
+          "name": "x",
+          "value": "10",
+          "min": "-20",
+          "max": "20",
+          "step": "5",
+          "kind": "INPUT"
+        }
+      ],
+      "sourceReplayedX": 10,
+      "sourceReplayedModel": {
+        "x": 10,
+        "y": 1.4641000000000004
+      },
+      "frozenExpectedY": 1.4641000000000006,
+      "technicalOk": false
+    },
+    {
+      "caseKey": "SIM-C2-L010-03|published|320|orbit|grid|11",
+      "actualDOMControls": [
+        {
+          "name": "x",
+          "value": "55",
+          "min": "0",
+          "max": "180",
+          "step": "5",
+          "kind": "INPUT"
+        }
+      ],
+      "sourceReplayedX": 55,
+      "sourceReplayedModel": {
+        "x": 55,
+        "y": 5.735764363510461
+      },
+      "frozenExpectedY": 5.7357643635104605,
+      "technicalOk": false
+    },
+    {
+      "caseKey": "SIM-C4-L10-01|published|320|orbit|grid|11",
+      "actualDOMControls": [
+        {
+          "name": "x",
+          "value": "55",
+          "min": "0",
+          "max": "180",
+          "step": "5",
+          "kind": "INPUT"
+        }
+      ],
+      "sourceReplayedX": 55,
+      "sourceReplayedModel": {
+        "x": 55,
+        "y": 3.441458618106277
+      },
+      "frozenExpectedY": 3.4414586181062763,
+      "technicalOk": false
+    }
+  ],
+  "strictNumericalAssertRetained": true,
+  "oldCloudFailuresUnchanged": true,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "browserScope": "Actual local Chrome158.0.8127.37; original cloudChrome158.0.8127.36. Same source/runtime, new observation, not reconstructed cloud failed values.",
+  "diagnosis": "Four same-input Node frozen values fail strict equality in actual browser. Exact planned DOM inputs were observed; old cloud assertion failures are consistent, but their measured values were omitted and remain unknown."
+}

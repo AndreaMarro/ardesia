@@ -1,0 +1,1047 @@
+{
+  "files": {
+    "/private/tmp/cric-root-visibility-bootstrap-final-c6-20261126/candidate-app/editorial/batches/experiments-manual-support-revision-263.json": "ecd99ef570fe1756980243b80e0877cfc58454dbcae562c8837d8390a7ff75b3",
+    "/private/tmp/cric-root-visibility-bootstrap-final-c6-20261126/candidate-app/editorial/batches/experiments-manual-support-revision-263-bindings.json": "a846124d0aa4b160236658f231e8925af3bb283894dd73da60452cb42872acce",
+    "/private/tmp/cric-root-visibility-bootstrap-final-c6-20261126/candidate-app/editorial/batches/experiment-stevino-revision-047.json": "93db02e08192e5774987059ee3cfb07c7baccf975b85d6bb188d12c1bd66b60d",
+    "/private/tmp/cric-root-visibility-bootstrap-final-c6-20261126/candidate-app/editorial/batches/experiment-stevino-revision-047-bindings.json": "9ba5f05bca0e911b48cf52899f9e1897a98bc6dd6eccc18786af3ef7c8b1dbe7"
+  },
+  "normalizedOwnerRecords": {
+    "SIM-C3-L07-05": {
+      "anchor": "Per confrontare i modelli nel laboratorio scegli",
+      "apparatus": "pistone",
+      "assessmentSelection": {
+        "points": [
+          2.25,
+          4
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "blocks": [
+        {
+          "text": "Qui confrontiamo trasformazioni di un gas ideale con capacit\u00e0 termiche costanti e \u03b3=3/2. Le pareti sono isolate: non entra calore. L\u2019espansione \u00e8 reversibile, cos\u00ec il gas attraversa stati di equilibrio e possiamo usare pV^\u03b3 costante. Non applicheremmo questa relazione a una libera espansione irreversibile solo perch\u00e9 il recipiente \u00e8 isolato.",
+          "type": "text"
+        },
+        {
+          "text": "Il gas compie lavoro sull\u2019esterno. Senza calore in ingresso, l\u2019energia necessaria viene dalla sua energia interna: la temperatura scende. In un\u2019isoterma la temperatura resterebbe invece costante grazie a un diverso scambio energetico. Per questo, partendo dallo stesso stato, la pressione adiabatica scende pi\u00f9 di quella isoterma.",
+          "type": "text"
+        },
+        {
+          "src": "/asset/1b74b8071a78ecc314ff6e85ed5556399d3b2084cf29df5dfeaecf37c9ecafef",
+          "text": "Tre stati dello stesso gas ideale: il volume cresce, la pressione e la temperatura diminuiscono. La larghezza rappresenta V/V\u2080 alla stessa scala; la pressione \u00e8 indicata numericamente, non dalla dimensione delle molecole.",
+          "type": "figure"
+        },
+        {
+          "text": "pV^{3/2}=p_0V_0^{3/2}",
+          "type": "formula"
+        },
+        {
+          "text": "r=V/V_0",
+          "type": "formula"
+        },
+        {
+          "text": "p=\\frac{100}{r^{3/2}}\\,\\mathrm{kPa}",
+          "type": "formula"
+        },
+        {
+          "text": "Il rapporto r \u00e8 un numero puro: elevandolo a una potenza non introduciamo nuove unit\u00e0. Nel primo controllo r=2,25=9/4. L\u2019esponente 3/2 dice di prendere la radice quadrata e poi il cubo. La radice di 9/4 \u00e8 3/2; il suo cubo \u00e8 27/8. Dividere per questa frazione equivale a moltiplicare per 8/27.",
+          "type": "text"
+        },
+        {
+          "text": "\\left(\\frac94\\right)^{3/2}=\\left(\\frac32\\right)^3=\\frac{27}{8}",
+          "type": "formula"
+        },
+        {
+          "text": "p=100\\cdot\\frac8{27}\\,\\mathrm{kPa}=\\frac{800}{27}\\,\\mathrm{kPa}",
+          "type": "formula"
+        },
+        {
+          "text": "La frazione 800/27 kPa \u00e8 il risultato esatto. Per il riquadro numerico bastano due decimali, ottenuti per divisione scritta: 27\u00b729=783, resto 17; 170 diviso 27 d\u00e0 6, resto 8; 80 diviso 27 d\u00e0 2, resto 26; la cifra seguente \u00e8 9. Arrotonda quindi 29,629\u2026 a 29,63 e inserisci 29.63. Non devi valutare una potenza decimale con una calcolatrice.",
+          "type": "text"
+        },
+        {
+          "text": "Nel trasferimento il volume \u00e8 quattro volte quello iniziale. La radice di 4 \u00e8 2, il cubo di 2 \u00e8 8 e 100/8=25/2=12,5 kPa. Puoi controllare il risultato dimezzando 100 tre volte: 50, 25, 12,5.",
+          "type": "text"
+        },
+        {
+          "text": "p(4)=\\frac{100}{(\\sqrt4)^3}\\,\\mathrm{kPa}",
+          "type": "formula"
+        },
+        {
+          "text": "p(4)=\\frac{100}{8}\\,\\mathrm{kPa}=12{,}5\\,\\mathrm{kPa}",
+          "type": "formula"
+        },
+        {
+          "text": "Anche l\u2019inversa si risolve esattamente in questo stato: da p/p\u2080=1/8 ricavi r^(3/2)=8; prendi la radice cubica e poi il quadrato, ottenendo r=4. Per il gas ideale T/T\u2080=(p/p\u2080)r=4/8=1/2. La pressione finale di 25 kPa apparterrebbe invece all\u2019isoterma a r=4: non \u00e8 la risposta di questa adiabatica.",
+          "type": "text"
+        },
+        {
+          "text": "r=\\left(\\frac{p_0}{p}\\right)^{2/3},\\qquad p>0",
+          "type": "formula"
+        },
+        {
+          "text": "Gli altri valori del cursore servono a osservare la curva. I due conti richiesti sono r=9/4 e r=4, con il procedimento manuale appena descritto. Controlla sempre che nell\u2019espansione r>1 la pressione sia positiva e minore di 100 kPa.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Rapporto di espansione V/V\u2080",
+        "max": 4.0,
+        "min": 1.0,
+        "step": 0.25,
+        "unit": "1"
+      },
+      "course": "C3",
+      "formula": "p = 100(V\u2080/V)\u1d5e, qui \u03b3 = 1,5",
+      "id": "SIM-C3-L07-05",
+      "interpretation": "Il cilindro \u00e8 isolato e il movimento reversibile. L\u2019energia per il lavoro viene dall\u2019energia interna, la temperatura cala. L\u2019isoterma di confronto darebbe 100/(V/V\u2080) kPa.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Pressione adiabatica",
+        "unit": "kPa"
+      },
+      "order": 5,
+      "prerequisites": [
+        "C3-L07"
+      ],
+      "references": [
+        [
+          1.0,
+          100.0
+        ],
+        [
+          4.0,
+          12.5
+        ]
+      ],
+      "section": "Riconoscere il percorso nel piano p\u2013V",
+      "skill": "C3-L07",
+      "substitution": "100 / ({x}^(1,5))",
+      "summary": "A parit\u00e0 di espansione la pressione scende pi\u00f9 in isoterma o in adiabatica?",
+      "title": "Adiabatica e confronto qualitativo",
+      "topic": "5.4 Adiabatica e confronto qualitativo",
+      "transferPrompt": "Espandi reversibilmente un gas ideale isolato fino a V/V\u2080 = {x}, con \u03b3 = 3/2 e p\u2080 = 100 kPa. Quale pressione finale trovi? Usa la radice quadrata prima del cubo; inserisci il valore in kPa.",
+      "version": 2,
+      "review": "bozza"
+    },
+    "SIM-C4-L09-02": {
+      "anchor": "Una particella carica in moto in un",
+      "apparatus": "lorentz",
+      "assessmentSelection": {
+        "points": [
+          30,
+          90
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "blocks": [
+        {
+          "text": "La forza magnetica dipende dalla parte della velocit\u00e0 perpendicolare al campo. Se la particella procede lungo il campo, questa parte \u00e8 nulla; se procede perpendicolarmente, coincide con tutta la velocit\u00e0. Il seno dell\u2019angolo esprime proprio questa proiezione. La carica assegnata \u00e8 positiva e il campo \u00e8 uniforme.",
+          "type": "text"
+        },
+        {
+          "text": "\\mathbf F=q\\,\\mathbf v\\times\\mathbf B",
+          "type": "formula"
+        },
+        {
+          "src": "/asset/1307a27adb0eb1a17dddeff708c8de3ddd0f025cdf4d0c2fc493e27ec0645ce8",
+          "text": "La stessa velocit\u00e0 e lo stesso campo formano prima 0\u00b0, poi 30\u00b0 e 90\u00b0. Le frecce v e B hanno unit\u00e0 e scale proprie. Per q positiva, il simbolo cerchio con punto indica la forza uscente dal piano; il suo modulo \u00e8 riportato sotto ogni costruzione.",
+          "type": "figure"
+        },
+        {
+          "text": "F=|q|vB\\sin\\theta",
+          "type": "formula"
+        },
+        {
+          "text": "Convertiamo la carica prima di fissare la scala: 2 \u00b5C significa 2\u00b710\u207b\u2076 C. Il prodotto dei tre moduli \u00e8 (2\u00b710\u207b\u2076)\u00b73\u00b71=6\u00b710\u207b\u2076 N, cio\u00e8 6 \u00b5N. Il tesla ha unit\u00e0 N\u00b7s/(C\u00b7m), cos\u00ec C\u00b7(m/s)\u00b7T si riduce a N. Rimane soltanto il fattore geometrico, che \u00e8 un numero puro.",
+          "type": "text"
+        },
+        {
+          "text": "|q|vB=2\\cdot3\\cdot1\\cdot10^{-6}\\,\\mathrm N",
+          "type": "formula"
+        },
+        {
+          "text": "|q|vB=6\\cdot10^{-6}\\,\\mathrm N=6\\,\\mu\\mathrm N",
+          "type": "formula"
+        },
+        {
+          "text": "Per il primo controllo \u03b8=30\u00b0. Il seno vale esattamente 1/2: basta dimezzare 6. Nel trasferimento \u03b8=90\u00b0, il seno vale 1 e la forza raggiunge 6 \u00b5N. Entrambi i risultati sono gi\u00e0 nell\u2019unit\u00e0 del riquadro; non inserire 3\u00b710\u207b\u2076 quando il riquadro chiede micronewton.",
+          "type": "text"
+        },
+        {
+          "text": "F(30^\\circ)=6\\cdot\\frac12\\,\\mu\\mathrm N",
+          "type": "formula"
+        },
+        {
+          "text": "F(30^\\circ)=3\\,\\mu\\mathrm N",
+          "type": "formula"
+        },
+        {
+          "text": "F(90^\\circ)=6\\cdot1\\,\\mu\\mathrm N",
+          "type": "formula"
+        },
+        {
+          "text": "F(90^\\circ)=6\\,\\mu\\mathrm N",
+          "type": "formula"
+        },
+        {
+          "text": "Il verso richiede un controllo distinto dal modulo. Nel disegno v punta a destra e B ha una componente verso l\u2019alto: la mano destra d\u00e0 una forza uscente dal foglio. Cambiando il segno della carica, il verso si inverte, ma il modulo resta positivo. Non attribuiamo un modulo negativo alla forza.",
+          "type": "text"
+        },
+        {
+          "text": "La forza magnetica resta perpendicolare alla velocit\u00e0: pu\u00f2 curvare la traiettoria senza aumentare l\u2019energia cinetica. Infatti F\u00b7v=0. Non bisogna confondere questo risultato con l\u2019assenza di accelerazione: pu\u00f2 cambiare la direzione del moto anche quando la rapidit\u00e0 resta costante.",
+          "type": "text"
+        },
+        {
+          "text": "B=\\frac{F}{|q|v\\sin\\theta}",
+          "type": "formula"
+        },
+        {
+          "text": "Usando il primo risultato nell\u2019inversa, 3\u00b710\u207b\u2076 N diviso [(2\u00b710\u207b\u2076 C)(3 m/s)(1/2)] restituisce 1 T: i fattori micro si semplificano. A 0\u00b0 o 180\u00b0 il denominatore si annulla e la forza nulla non permette di determinare B. Tutti i moduli devono rispettare 0\u2264F\u22646 \u00b5N. Gli angoli intermedi del cursore sono osservazioni; le due verifiche numeriche richiedono 30\u00b0 e 90\u00b0.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Angolo tra velocit\u00e0 e campo",
+        "max": 180.0,
+        "min": 0.0,
+        "step": 5.0,
+        "unit": "\u00b0"
+      },
+      "course": "C4",
+      "formula": "F = qvB sin \u03b8; q = 2 \u00b5C, v = 3 m/s, B = 1 T",
+      "id": "SIM-C4-L09-02",
+      "interpretation": "Ruota la vista per distinguere i tre versi. Per q positiva la forza segue v\u00d7B. Per un tratto di filo si sostituisce qv con I\u2113: a parit\u00e0 di prodotto e angolo si ottiene la stessa costruzione vettoriale.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Forza sulla carica",
+        "unit": "\u00b5N"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C4-L09"
+      ],
+      "references": [
+        [
+          30.0,
+          3.0
+        ],
+        [
+          90.0,
+          6.0
+        ]
+      ],
+      "section": "Correnti, bussole e traiettorie curve",
+      "skill": "C4-L09",
+      "substitution": "6 \u00d7 sin({x}\u00b0)",
+      "summary": "Dove punta la forza rispetto alla velocit\u00e0 e al campo magnetico?",
+      "title": "Forza di Lorentz su una carica in moto e su un filo",
+      "topic": "6.6 Forza di Lorentz su una carica in moto e su un filo",
+      "transferPrompt": "Una carica positiva di 2 \u00b5C si muove a 3 m/s in un campo uniforme di 1 T. L\u2019angolo fra velocit\u00e0 e campo \u00e8 {x}. Qual \u00e8 il modulo della forza in \u00b5N? Usa i valori esatti degli angoli notevoli.",
+      "version": 2,
+      "review": "bozza"
+    },
+    "SIM-C5-L01-01": {
+      "anchor": "Una punta oscillante tocca un foglio che",
+      "apparatus": "oscillatore",
+      "assessmentSelection": {
+        "points": [
+          0.5,
+          1
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "blocks": [
+        {
+          "text": "La massa parte dall\u2019estremo positivo, a +4 cm, e torna nello stesso stato dopo 2 s. L\u2019ampiezza \u00e8 sempre 4 cm; la posizione pu\u00f2 invece essere positiva, nulla o negativa. Il modello assume una molla ideale, senza dissipazione. La fase iniziale \u00e8 fissata dalla partenza dall\u2019estremo, quindi scegliamo il coseno.",
+          "type": "text"
+        },
+        {
+          "text": "x(t)=A\\cos(2\\pi t/T)",
+          "type": "formula"
+        },
+        {
+          "src": "/asset/a297e8dd16ee5c6d2f00fc6cad970815d929af0ef7b685bc1991390461266165",
+          "text": "La stessa massa \u00e8 mostrata all\u2019estremo positivo, dopo un quarto di periodo all\u2019equilibrio e dopo mezzo periodo all\u2019estremo negativo. L\u2019asse della posizione mantiene origine, verso e scala in centimetri nei tre pannelli.",
+          "type": "figure"
+        },
+        {
+          "text": "A=4\\,\\mathrm{cm},\\qquad T=2\\,\\mathrm s",
+          "type": "formula"
+        },
+        {
+          "text": "Prima di sostituire \u03c0, conta le frazioni di un giro: t/T \u00e8 il numero di periodi trascorsi. Dopo 0,5 s hai percorso (1/2)/2=1/4 di periodo. La fase \u00e8 2\u03c0\u00b71/4=\u03c0/2: la proiezione sull\u2019asse della posizione \u00e8 nulla. \u00c8 una propriet\u00e0 del quarto di giro, non una stima decimale del coseno.",
+          "type": "text"
+        },
+        {
+          "text": "\\frac{t}{T}=\\frac{1/2}{2}=\\frac14",
+          "type": "formula"
+        },
+        {
+          "text": "x(0{,}5\\,\\mathrm s)=4\\cos(\\pi/2)\\,\\mathrm{cm}",
+          "type": "formula"
+        },
+        {
+          "text": "x(0{,}5\\,\\mathrm s)=0\\,\\mathrm{cm}",
+          "type": "formula"
+        },
+        {
+          "text": "Nel trasferimento \u00e8 trascorso 1 s, cio\u00e8 mezzo periodo. La fase \u00e8 \u03c0 e il coseno vale \u22121: la massa \u00e8 all\u2019estremo opposto, x=\u22124 cm. Nel riquadro inserisci \u22124; +4 descriverebbe la posizione iniziale o il ritorno dopo un periodo intero.",
+          "type": "text"
+        },
+        {
+          "text": "x(1\\,\\mathrm s)=4\\cos\\pi\\,\\mathrm{cm}=-4\\,\\mathrm{cm}",
+          "type": "formula"
+        },
+        {
+          "text": "Il coseno pu\u00f2 essere costruito come proiezione di una rotazione. La massa reale del banco oscilla lungo l\u2019asse, non compie quel giro. All\u2019equilibrio la posizione \u00e8 zero ma la velocit\u00e0 ha modulo massimo; agli estremi accade il contrario. Una posizione nulla non significa quindi che il moto si sia fermato.",
+          "type": "text"
+        },
+        {
+          "text": "Puoi ricavare il periodo dal tempo del primo arrivo all\u2019estremo opposto: quel tempo vale T/2, quindi T=2t. Con t=1 s ritrovi 2 s. La precisazione \u201cprimo arrivo\u201d conta: una sola posizione pu\u00f2 ripetersi in molti istanti e non determina da sola il periodo.",
+          "type": "text"
+        },
+        {
+          "text": "T=2t_{\\rm primo\\ estremo\\ opposto}",
+          "type": "formula"
+        },
+        {
+          "text": "|x|\\le A",
+          "type": "formula"
+        },
+        {
+          "text": "Come controllo delle unit\u00e0, t/T \u00e8 puro e il coseno non ha unit\u00e0; x conserva i centimetri di A. Il quarto e il mezzo periodo bastano per le due domande assegnate. Le altre posizioni del cursore permettono di seguire il moto senza richiedere valutazioni numeriche di coseni.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Tempo dall\u2019estremo positivo",
+        "max": 4.0,
+        "min": 0.0,
+        "step": 0.125,
+        "unit": "s"
+      },
+      "course": "C5",
+      "formula": "x = A cos(2\u03c0t/T); A = 4 cm, T = 2 s",
+      "id": "SIM-C5-L01-01",
+      "interpretation": "La molla ideale non dissipa energia. Segui il cursore tra i due estremi. Il punto passa pi\u00f9 rapidamente dall\u2019equilibrio e si arresta per un istante dove cambia verso.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Posizione",
+        "unit": "cm"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C5-L01"
+      ],
+      "references": [
+        [
+          0.0,
+          4.0
+        ],
+        [
+          1.0,
+          -4.0
+        ]
+      ],
+      "section": "Il tempo di un\u2019oscillazione",
+      "skill": "C5-L01",
+      "substitution": "4 \u00d7 cos(\u03c0 \u00d7 {x})",
+      "summary": "Quale moto della sorgente produce un\u2019oscillazione sinusoidale?",
+      "title": "Oscillatore armonico come sorgente",
+      "topic": "UD4 \u00b7 oscillatore armonico come sorgente",
+      "transferPrompt": "La massa parte ferma dall\u2019estremo +4 cm e ha periodo 2 s. Quale posizione con segno occupa dopo {x}? Individua prima la frazione di periodo, senza calcolare un coseno generico.",
+      "version": 2,
+      "review": "bozza"
+    },
+    "SIM-C5-L02-03": {
+      "anchor": "Per una sinusoide che avanza verso x",
+      "apparatus": "onda",
+      "assessmentSelection": {
+        "points": [
+          0.25,
+          0.75
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "blocks": [
+        {
+          "text": "Qui x indica dove si trova la sonda lungo la corda, mentre y indica lo spostamento trasversale della corda. Tenere la sonda in x=0 non impone y=0: la corda in quel punto continua a oscillare. L\u2019onda \u00e8 armonica e si propaga verso +x nel mezzo ideale del modello.",
+          "type": "text"
+        },
+        {
+          "text": "y(x,t)=A\\sin(\\omega t-kx)",
+          "type": "formula"
+        },
+        {
+          "src": "/asset/27ce67d30f8ad458bac01840a2330cef9d21abdb4a43a3eb34fcc90fa93584b3",
+          "text": "Tre istanti della stessa onda che avanza verso destra. La sonda resta nella posizione spaziale x=0: registra prima zero, poi +3 cm e poi \u22123 cm. Le coordinate orizzontali sono in metri, gli spostamenti verticali in centimetri.",
+          "type": "figure"
+        },
+        {
+          "text": "A=3\\,\\mathrm{cm}",
+          "type": "formula"
+        },
+        {
+          "text": "\\omega=2\\pi\\,\\mathrm{rad/s}",
+          "type": "formula"
+        },
+        {
+          "text": "k=\\pi\\,\\mathrm{rad/m}",
+          "type": "formula"
+        },
+        {
+          "text": "Il prodotto \u03c9t e il prodotto kx sono fasi: le unit\u00e0 di tempo e lunghezza si semplificano nei rispettivi rapporti. Alla sonda x=0 il termine spaziale si annulla. Poich\u00e9 \u03c9=2\u03c0 rad/s, un giro completo richiede T=1 s. Per le domande basta riconoscere un quarto e tre quarti di questo periodo.",
+          "type": "text"
+        },
+        {
+          "text": "y(0,t)=3\\sin(2\\pi t)\\,\\mathrm{cm}",
+          "type": "formula"
+        },
+        {
+          "text": "T=\\frac{2\\pi}{\\omega}=1\\,\\mathrm s",
+          "type": "formula"
+        },
+        {
+          "text": "A t=0,25 s=1/4 s la fase \u00e8 \u03c0/2. Il seno vale 1 e la sonda registra +3 cm. A t=0,75 s=3/4 s la fase \u00e8 3\u03c0/2: il seno vale \u22121 e la lettura \u00e8 \u22123 cm. Il meno indica il lato opposto rispetto all\u2019equilibrio; non un\u2019ampiezza negativa.",
+          "type": "text"
+        },
+        {
+          "text": "y(0,1/4)=3\\sin(\\pi/2)\\,\\mathrm{cm}",
+          "type": "formula"
+        },
+        {
+          "text": "y(0,1/4)=+3\\,\\mathrm{cm}",
+          "type": "formula"
+        },
+        {
+          "text": "y(0,3/4)=3\\sin(3\\pi/2)\\,\\mathrm{cm}",
+          "type": "formula"
+        },
+        {
+          "text": "y(0,3/4)=-3\\,\\mathrm{cm}",
+          "type": "formula"
+        },
+        {
+          "text": "La cresta avanza lungo la corda, ma il punto osservato sale e scende. Per una fase costante, \u03c9t\u2212kx rimane costante: ricavando x trovi una velocit\u00e0 di propagazione \u03c9/k=2 m/s. \u00c8 la velocit\u00e0 della forma d\u2019onda; non \u00e8 la velocit\u00e0 trasversale della particella della corda.",
+          "type": "text"
+        },
+        {
+          "text": "\\lambda=\\frac{2\\pi}{k}=2\\,\\mathrm m",
+          "type": "formula"
+        },
+        {
+          "text": "u=\\frac{\\omega}{k}=2\\,\\mathrm{m/s}",
+          "type": "formula"
+        },
+        {
+          "text": "Nell\u2019inversa, dal tempo del primo massimo dopo il passaggio crescente per l\u2019equilibrio ricavi T=4t: 4\u00b70,25 s=1 s. Specificare il primo massimo elimina l\u2019ambiguit\u00e0 delle ripetizioni periodiche. Le letture devono rimanere fra \u22123 e +3 cm. Sommare il termine spaziale anche in x=0 oppure ignorare il segno a tre quarti di periodo produrrebbe un altro stato della corda.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Tempo alla sonda",
+        "max": 2.0,
+        "min": 0.0,
+        "step": 0.125,
+        "unit": "s"
+      },
+      "course": "C5",
+      "formula": "y(x,t) = 3 sin(2\u03c0t\u2212\u03c0x) cm; sonda in x = 0",
+      "id": "SIM-C5-L02-03",
+      "interpretation": "La sonda \u00e8 all\u2019origine della corda e la perturbazione si propaga verso destra. A x fisso basta avanzare il tempo per osservare segno, massimi e periodo.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Spostamento a x = 0",
+        "unit": "cm"
+      },
+      "order": 3,
+      "prerequisites": [
+        "C5-L02"
+      ],
+      "references": [
+        [
+          0.25,
+          3.0
+        ],
+        [
+          0.75,
+          -3.0
+        ]
+      ],
+      "section": "Lo spazio di un\u2019onda",
+      "skill": "C5-L02",
+      "substitution": "3 \u00d7 sin(2 \u00d7 \u03c0 \u00d7 {x})",
+      "summary": "Dove leggi la fase di un\u2019onda che passa davanti a una sonda ferma?",
+      "title": "Equazione armonica di propagazione",
+      "topic": "UD4 \u00b7 equazione armonica di propagazione",
+      "transferPrompt": "La sonda \u00e8 fissa in x = 0 per l\u2019onda y = 3 sin(2\u03c0t \u2212 \u03c0x) cm, con t in secondi e x in metri. Quale spostamento con segno misura al tempo {x}? Usa la frazione di periodo.",
+      "version": 2,
+      "review": "bozza"
+    },
+    "SIM-C5-L03-02": {
+      "anchor": "Una differenza di cammino \u0394s di una",
+      "apparatus": "onde2",
+      "assessmentSelection": {
+        "points": [
+          0.5,
+          1
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "blocks": [
+        {
+          "text": "Le sorgenti hanno la stessa frequenza, mantengono una differenza di fase stabile e partono in fase. Alla sonda le due onde hanno entrambe ampiezza 2 cm. La differenza di cammino cambia la fase relativa: mezza lunghezza d\u2019onda corrisponde a mezzo ciclo, una lunghezza d\u2019onda a un ciclo completo.",
+          "type": "text"
+        },
+        {
+          "text": "r=\\Delta s/\\lambda",
+          "type": "formula"
+        },
+        {
+          "src": "/asset/630bcbd41d99ca21ce2a9cd27a9e1bc643645adc961b5a2499885586770e54de",
+          "text": "Confronto nello stesso tipo di istante, quando il primo contributo vale +2 cm: a differenza di cammino nulla o intera onda il secondo vale +2 cm; a mezza onda vale \u22122 cm. Le barre sono spostamenti istantanei con segno; il valore A sotto i pannelli \u00e8 invece l\u2019ampiezza non negativa della somma.",
+          "type": "figure"
+        },
+        {
+          "text": "\\Delta\\phi=2\\pi r",
+          "type": "formula"
+        },
+        {
+          "text": "La somma di due sinusoidi di uguale ampiezza ha un fattore 2A cos(\u0394\u03c6/2). L\u2019ampiezza \u00e8 il modulo di quel fattore: un coseno negativo cambia la fase della sinusoide, non rende negativa la sua ampiezza. Con A=2 cm otteniamo 4|cos(\u03c0r)| cm.",
+          "type": "text"
+        },
+        {
+          "text": "A_{\\rm risultante}=2A|\\cos(\\Delta\\phi/2)|",
+          "type": "formula"
+        },
+        {
+          "text": "A_{\\rm risultante}=4|\\cos(\\pi r)|\\,\\mathrm{cm}",
+          "type": "formula"
+        },
+        {
+          "text": "Il primo controllo usa r=0,5=1/2. Le onde arrivano in opposizione di fase: quando una contribuisce +2 cm, l\u2019altra contribuisce \u22122 cm. La loro somma resta nulla in ogni istante, quindi l\u2019ampiezza risultante \u00e8 zero.",
+          "type": "text"
+        },
+        {
+          "text": "|\\cos(\\pi/2)|=0",
+          "type": "formula"
+        },
+        {
+          "text": "A_{\\rm risultante}(1/2)=4\\cdot0\\,\\mathrm{cm}",
+          "type": "formula"
+        },
+        {
+          "text": "A_{\\rm risultante}(1/2)=0\\,\\mathrm{cm}",
+          "type": "formula"
+        },
+        {
+          "text": "Nel trasferimento r=1. Il ritardo \u00e8 un ciclo intero: una cresta arriva insieme a una cresta. Il coseno di \u03c0 vale \u22121, il suo valore assoluto vale 1 e l\u2019ampiezza risultante torna a 4 cm. Non basta osservare che i cammini sono diversi per concludere che vi sia cancellazione.",
+          "type": "text"
+        },
+        {
+          "text": "|\\cos\\pi|=1",
+          "type": "formula"
+        },
+        {
+          "text": "A_{\\rm risultante}(1)=4\\cdot1\\,\\mathrm{cm}",
+          "type": "formula"
+        },
+        {
+          "text": "A_{\\rm risultante}(1)=4\\,\\mathrm{cm}",
+          "type": "formula"
+        },
+        {
+          "text": "In questo modello 0\u2264A risultante\u22644 cm. Il minimo locale della sonda non significa che l\u2019energia sia scomparsa ovunque: l\u2019interferenza ridistribuisce la risposta nello spazio e il bilancio energetico va fatto sull\u2019intero sistema. L\u2019ipotesi di uguale ampiezza \u00e8 essenziale per ottenere cancellazione completa.",
+          "type": "text"
+        },
+        {
+          "text": "Per invertire il caso di cancellazione nel dominio 0\u2264r\u22641, poniamo cos(\u03c0r)=0: \u03c0r=\u03c0/2 e r=1/2. Il valore massimo 4 cm \u00e8 invece compatibile sia con r=0 sia con r=1: una sola misura di ampiezza non identifica sempre un unico cammino. Gli altri scarti del cursore restano osservazioni; i conti assegnati riguardano mezza onda e un\u2019onda intera.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Differenza di cammino in lunghezze d\u2019onda",
+        "max": 1.0,
+        "min": 0.0,
+        "step": 0.05,
+        "unit": "1"
+      },
+      "course": "C5",
+      "formula": "A risultante = 2A \u00d7 valore assoluto di cos(\u03c0\u0394s/\u03bb), con A = 2 cm",
+      "id": "SIM-C5-L03-02",
+      "interpretation": "Le due sorgenti coerenti partono in fase, con uguale frequenza e ampiezza locale. Uno scarto di mezzo ciclo fa arrivare una cresta contro una valle. Dopo un ciclo completo torna il rinforzo.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Ampiezza risultante",
+        "unit": "cm"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C5-L03"
+      ],
+      "references": [
+        [
+          0.0,
+          4.0
+        ],
+        [
+          0.5,
+          0.0
+        ]
+      ],
+      "section": "Sovrapposizione e interferenza",
+      "skill": "C5-L03",
+      "substitution": "4 \u00d7 abs(cos(\u03c0 \u00d7 {x}))",
+      "summary": "Quanta ampiezza misura la sonda per mezzo periodo spaziale di differenza?",
+      "title": "Interferenza costruttiva e distruttiva",
+      "topic": "UD4 \u00b7 interferenza costruttiva e distruttiva",
+      "transferPrompt": "Due sorgenti coerenti partono in fase e arrivano alla sonda ciascuna con ampiezza 2 cm. I cammini differiscono di {x} lunghezze d\u2019onda. Quale ampiezza risultante ottieni? Confronta il mezzo ciclo con il ciclo intero.",
+      "version": 2,
+      "review": "bozza"
+    },
+    "SIM-C5-L07-02": {
+      "anchor": "Nel modello di Lambert\u2013Beer un fascio monocromatico",
+      "apparatus": "assorbitore",
+      "assessmentSelection": {
+        "points": [
+          2,
+          3
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "blocks": [
+        {
+          "text": "Un fascio monocromatico attraversa un assorbitore omogeneo. Nel modello il coefficiente di attenuazione resta costante e il rivelatore non raccoglie luce diffusa che rientri nel fascio. Uno strato emivalente \u00e8 lo spessore che lascia passare met\u00e0 dell\u2019intensit\u00e0 in ingresso. Il secondo strato riceve gi\u00e0 meno intensit\u00e0 del primo.",
+          "type": "text"
+        },
+        {
+          "text": "\\frac{I}{I_0}=e^{-\\mu d}=2^{-n}",
+          "type": "formula"
+        },
+        {
+          "src": "/asset/ef4afffd6ca45eef21a0d8149239221bf89ed1bcd1d8a8445df00f9369e9323d",
+          "text": "Intensit\u00e0 iniziale e intensit\u00e0 dopo due e tre strati emivalenti. L\u2019altezza delle barre rappresenta l\u2019intensit\u00e0 relativa alla stessa scala, non l\u2019ampiezza del campo elettrico. Ogni strato dimezza ci\u00f2 che riceve dal precedente.",
+          "type": "figure"
+        },
+        {
+          "text": "n=d/d_{1/2}",
+          "type": "formula"
+        },
+        {
+          "text": "Non dobbiamo calcolare un esponenziale generico. Il numero assegnato di strati \u00e8 intero: ogni strato introduce un fattore 1/2. Partendo dal 100%, dopo il primo rimane il 50% e dopo il secondo il 25%. Nel primo controllo inserisci 25, perch\u00e9 il riquadro usa percentuali, non la frazione 1/4.",
+          "type": "text"
+        },
+        {
+          "text": "\\frac{I(2)}{I_0}=\\frac12\\cdot\\frac12=\\frac14",
+          "type": "formula"
+        },
+        {
+          "text": "100\\%\\cdot\\frac14=25\\%",
+          "type": "formula"
+        },
+        {
+          "text": "Per tre strati dimezza ancora 25: met\u00e0 di 20 \u00e8 10 e met\u00e0 di 5 \u00e8 2,5, quindi ottieni 12,5%. In frazione, 1/4 diviso 2 \u00e8 1/8. Per ricavare il valore numerico della percentuale calcola 100/8: semplificando per 4 trovi 25/2=12,5, dunque 12,5%.",
+          "type": "text"
+        },
+        {
+          "text": "\\frac{I(3)}{I_0}=\\frac18",
+          "type": "formula"
+        },
+        {
+          "text": "100\\%\\cdot\\frac18=\\frac{25}{2}\\%=12{,}5\\%",
+          "type": "formula"
+        },
+        {
+          "text": "Gli strati uguali non assorbono la stessa quantit\u00e0 assoluta. Il primo sottrae 50 punti percentuali dell\u2019intensit\u00e0 iniziale, il secondo 25 e il terzo 12,5. La frazione trasmessa di ci\u00f2 che entra in ciascuno \u00e8 invece sempre 1/2. \u00c8 questa distinzione a rendere moltiplicativa, e non lineare, la legge.",
+          "type": "text"
+        },
+        {
+          "text": "Anche l\u2019inversa pu\u00f2 evitare logaritmi: se misuri un quarto dell\u2019intensit\u00e0 iniziale, riconosci 1/4=(1/2)\u00b2 e ricavi due strati emivalenti. In generale n \u00e8 un rapporto di lunghezze, mentre \u03bc ha unit\u00e0 inversa di lunghezza, cos\u00ec \u03bcd \u00e8 puro. Senza assorbitore n=0 e I=I\u2080; aumentando n l\u2019intensit\u00e0 deve restare positiva e diminuire. Le verifiche assegnate usano n=2 e n=3; gli spessori frazionari servono a osservare la curva.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Spessore in strati emivalenti",
+        "max": 5.0,
+        "min": 0.0,
+        "step": 0.25,
+        "unit": "1"
+      },
+      "course": "C5",
+      "formula": "I/I\u2080 = e^(\u2212\u03bcx) = (\u00bd)\u207f",
+      "id": "SIM-C5-L07-02",
+      "interpretation": "Ogni spessore emivalente trasmette met\u00e0 di ci\u00f2 che gli arriva. Dopo tre ne resta un ottavo. Il fascio \u00e8 monocromatico e il modello esclude la luce diffusa che rientra nel rivelatore.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Intensit\u00e0 trasmessa",
+        "unit": "%"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C5-L07"
+      ],
+      "references": [
+        [
+          1.0,
+          50.0
+        ],
+        [
+          3.0,
+          12.5
+        ]
+      ],
+      "section": "Fotoni e attenuazione",
+      "skill": "C5-L07",
+      "substitution": "100 \u00d7 0,5^({x})",
+      "summary": "Due strati identici sottraggono la stessa energia assoluta?",
+      "title": "Assorbimento e legge di Lambert\u2013Beer",
+      "topic": "UD7 \u00b7 assorbimento e legge di Lambert\u2013Beer",
+      "transferPrompt": "Un fascio monocromatico attraversa {x} strati emivalenti uguali. Ciascuno trasmette met\u00e0 dell\u2019intensit\u00e0 che riceve. Quale percentuale dell\u2019intensit\u00e0 iniziale esce dall\u2019ultimo strato? Procedi per dimezzamenti.",
+      "version": 2,
+      "review": "bozza"
+    },
+    "SIM-C5-L08-02": {
+      "anchor": "La costante \u03bbd \u00e8 una probabilit\u00e0 per",
+      "apparatus": "decadimento",
+      "assessmentSelection": {
+        "points": [
+          2,
+          4
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "blocks": [
+        {
+          "text": "Il decadimento del singolo nucleo \u00e8 casuale. La legge esponenziale descrive il numero medio di nuclei rimasti in molti campioni preparati nello stesso modo. Assumiamo nuclei indipendenti e una costante di decadimento invariata. \u201cDopo un\u2019emivita ne resta met\u00e0\u201d \u00e8 una previsione media, non la promessa che un piccolo campione si divida sempre esattamente a met\u00e0.",
+          "type": "text"
+        },
+        {
+          "text": "\\overline N(t)=N_0\\,2^{-t/T_{1/2}}",
+          "type": "formula"
+        },
+        {
+          "src": "/asset/f31dac9a35b675aa3c5366c8a5f927598b151e295c3f14d4e691f5b7ef75d54b",
+          "text": "Rappresentazione del numero medio previsto: 64 nuclei all\u2019inizio, 16 dopo due emivite, 4 dopo quattro. I simboli colorati raffigurano questi valori medi; non identificano quali nuclei decadono n\u00e9 garantiscono quel conteggio in ogni campione reale.",
+          "type": "figure"
+        },
+        {
+          "text": "N_0=64",
+          "type": "formula"
+        },
+        {
+          "text": "Il cursore misura gi\u00e0 il tempo in emivite: n=t/T\u2081/\u2082 \u00e8 un numero puro. Nel primo controllo n=2: 64 diviso 2 \u00e8 32, poi 32 diviso 2 \u00e8 16. Inserisci 16 come numero medio previsto. Non sottrarre due nuclei: il tempo conta i dimezzamenti della popolazione media, non i singoli decadimenti.",
+          "type": "text"
+        },
+        {
+          "text": "\\overline N(2T_{1/2})=64\\cdot\\frac14=16",
+          "type": "formula"
+        },
+        {
+          "text": "Nel trasferimento n=4. Prosegui la stessa catena: 64, 32, 16, 8, 4. Dopo quattro emivite resta in media 1/16 della popolazione iniziale, perci\u00f2 la risposta \u00e8 4. Non \u00e8 necessario calcolare una potenza con esponente decimale.",
+          "type": "text"
+        },
+        {
+          "text": "\\overline N(4T_{1/2})=64\\cdot\\frac1{16}=4",
+          "type": "formula"
+        },
+        {
+          "text": "Per invertire questa situazione, osservare un valore medio 4 a partire da 64 significa riconoscere 64/4=16=2\u2074: sono trascorse quattro emivite. Se conoscessi anche il tempo fisico t, otterresti T\u2081/\u2082=t/4. La sola popolazione di un singolo piccolo campione non consente la stessa conclusione esatta, perch\u00e9 fluttua attorno alla media.",
+          "type": "text"
+        },
+        {
+          "text": "\\overline{\\mathcal A}=\\lambda\\overline N",
+          "type": "formula"
+        },
+        {
+          "text": "\\lambda=\\frac{\\ln2}{T_{1/2}}",
+          "type": "formula"
+        },
+        {
+          "text": "L\u2019attivit\u00e0 media \u00e8 il numero medio di decadimenti per unit\u00e0 di tempo, non il numero di nuclei. Se T\u2081/\u2082 \u00e8 espresso in secondi, \u03bb ha unit\u00e0 s\u207b\u00b9 e l\u2019attivit\u00e0 si misura in becquerel. A \u03bb fissata, anche l\u2019attivit\u00e0 media scende a un quarto e a un sedicesimo dei valori iniziali nei due istanti assegnati: non serve approssimare ln2 per confrontare questi rapporti. Il numero medio deve restare fra 0 e 64 e diminuire nel tempo.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Tempo in emivite",
+        "max": 5.0,
+        "min": 0.0,
+        "step": 0.25,
+        "unit": "1"
+      },
+      "course": "C5",
+      "formula": "N = 64 \u00d7 2^(\u2212t/T\u00bd); attivit\u00e0 = (ln 2/T\u00bd)N",
+      "id": "SIM-C5-L08-02",
+      "interpretation": "Le luci visualizzano il numero medio previsto, arrotondato solo per il disegno. Non identificano l\u2019istante di decadimento del singolo nucleo. A emivita fissata anche l\u2019attivit\u00e0 media si dimezza.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Numero medio di nuclei rimasti",
+        "unit": "1"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C5-L08"
+      ],
+      "references": [
+        [
+          1.0,
+          32.0
+        ],
+        [
+          3.0,
+          8.0
+        ]
+      ],
+      "section": "Decadimenti e attivit\u00e0",
+      "skill": "C5-L08",
+      "substitution": "64 \u00d7 0,5^({x})",
+      "summary": "In un\u2019emivita decade sempre esattamente met\u00e0 di un piccolo campione?",
+      "title": "Attivit\u00e0, legge di decadimento e tempo di dimezzamento",
+      "topic": "UD7 \u00b7 attivit\u00e0, legge di decadimento e tempo di dimezzamento",
+      "transferPrompt": "Un insieme parte con 64 nuclei instabili indipendenti, tutti dello stesso isotopo. Dopo {x} emivite, quale numero medio di nuclei non decaduti prevede il modello? Dimezza il valore medio una volta per ogni emivita.",
+      "version": 2,
+      "review": "bozza"
+    },
+    "SIM-C5-L09-02": {
+      "anchor": "Se n\u2082 \u00e8 maggiore di n\u2081, a",
+      "apparatus": "ottica",
+      "assessmentSelection": {
+        "points": [
+          30,
+          45
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "blocks": [
+        {
+          "text": "Consideriamo una superficie piana fra due mezzi trasparenti, omogenei e isotropi. Gli angoli si misurano dalla normale, non dalla superficie. Il fascio passa dall\u2019aria, n\u2081=1, al vetro del modello, n\u2082=1,5=3/2. La legge di Snell confronta i seni degli angoli e nasce dalla continuit\u00e0 della fase lungo la superficie.",
+          "type": "text"
+        },
+        {
+          "text": "n_1\\sin\\theta_1=n_2\\sin\\theta_2",
+          "type": "formula"
+        },
+        {
+          "src": "/asset/2baf01eb00752263f2381cb10846cfd0d8573333c6304f0b3c8c4336132efa19",
+          "text": "Raggi dall\u2019aria al vetro: incidenza normale, 30\u00b0 e 45\u00b0, sempre misurati dalla normale tratteggiata. Nel vetro l\u2019angolo \u00e8 minore. Le etichette circa 19,5\u00b0 e 28,1\u00b0 sono stime; le costruzioni corrispondono alla legge di Snell.",
+          "type": "figure"
+        },
+        {
+          "text": "\\sin\\theta_2=\\frac23\\sin\\theta_1",
+          "type": "formula"
+        },
+        {
+          "text": "Il primo controllo usa \u03b8\u2081=30\u00b0, con seno esatto 1/2. Il seno rifratto \u00e8 (2/3)(1/2)=1/3. Il risultato simbolico \u00e8 \u03b8\u2082=arcsin(1/3). Il riquadro del banco richiede per\u00f2 un numero in gradi: per ottenerlo a mano usiamo limiti trigonometrici forniti, senza valutare un\u2019arcoseno con una calcolatrice.",
+          "type": "text"
+        },
+        {
+          "text": "\\sin\\theta_2=\\frac13",
+          "type": "formula"
+        },
+        {
+          "text": "\\theta_2=\\arcsin(1/3)",
+          "type": "formula"
+        },
+        {
+          "text": "Dati per il confronto: sin19,45\u00b0<3331/10000 e sin19,5\u00b0>3338/10000. Confrontali con 1/3 moltiplicando per 3: 9993<10000<10014. Poich\u00e9 il seno cresce fra 0\u00b0 e 90\u00b0, segue 19,45\u00b0<\u03b8\u2082<19,5\u00b0. Scegliendo 19,5\u00b0 commetti un errore inferiore a 0,05\u00b0; nel riquadro inserisci 19.5.",
+          "type": "text"
+        },
+        {
+          "text": "\\frac{3331}{10000}<\\frac13<\\frac{3338}{10000}",
+          "type": "formula"
+        },
+        {
+          "text": "19{,}45^\\circ<\\theta_2<19{,}5^\\circ",
+          "type": "formula"
+        },
+        {
+          "text": "Nel trasferimento \u03b8\u2081=45\u00b0, con sin45\u00b0=\u221a2/2. Il fattore 2 si semplifica e rimane sin\u03b8\u2082=\u221a2/3. Per il confronto sono forniti anche 1,4142<\u221a2<1,4143, sin28,1\u00b0<4711/10000 e sin28,15\u00b0>4715/10000. Sono dati di appoggio: non devi ricostruire una tavola trigonometrica.",
+          "type": "text"
+        },
+        {
+          "text": "\\sin\\theta_2=\\frac23\\cdot\\frac{\\sqrt2}{2}=\\frac{\\sqrt2}{3}",
+          "type": "formula"
+        },
+        {
+          "text": "Porta tutte le frazioni al denominatore 30000. I due limiti del seno dell\u2019angolo cercato hanno numeratori 14142 e 14143; i due limiti forniti per i seni di confronto hanno numeratori 14133 e 14145. L\u2019ordine 14133<14142<14143<14145 dimostra 28,1\u00b0<\u03b8\u2082<28,15\u00b0. Puoi quindi inserire 28.1: anche qui l\u2019errore \u00e8 inferiore a 0,05\u00b0. I conti sono moltiplicazioni per 3 e confronti fra interi.",
+          "type": "text"
+        },
+        {
+          "text": "\\frac{14133}{30000}<\\frac{14142}{30000}<\\frac{\\sqrt2}{3}",
+          "type": "formula"
+        },
+        {
+          "text": "\\frac{\\sqrt2}{3}<\\frac{14143}{30000}<\\frac{14145}{30000}",
+          "type": "formula"
+        },
+        {
+          "text": "Entrambe le risposte sono minori dell\u2019incidenza: il raggio si avvicina alla normale entrando nel mezzo con indice maggiore. La frequenza resta invariata; diminuiscono velocit\u00e0 e lunghezza d\u2019onda. L\u2019inversa per l\u2019indice \u00e8 n\u2082=n\u2081 sin\u03b8\u2081/sin\u03b8\u2082, quando sin\u03b8\u2082\u22600: usando il primo seno esatto ritrovi (1/2)/(1/3)=3/2. All\u2019incidenza normale gli angoli nulli non permettono di ricavare l\u2019indice da questa divisione.",
+          "type": "text"
+        },
+        {
+          "text": "I limiti forniti valgono per le due incidenze assegnate, 30\u00b0 e 45\u00b0. Gli altri angoli del cursore servono a osservare la rifrazione. Non sostituire l\u2019angolo al suo seno e non considerare 19,5\u00b0 o 28,1\u00b0 risultati esatti: le forme simboliche restano arcsin(1/3) e arcsin(\u221a2/3).",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Angolo incidente in aria",
+        "max": 80.0,
+        "min": 0.0,
+        "step": 5.0,
+        "unit": "\u00b0"
+      },
+      "course": "C5",
+      "formula": "n\u2081 sin \u03b8\u2081 = n\u2082 sin \u03b8\u2082; n\u2081 = 1, n\u2082 = 1,5",
+      "id": "SIM-C5-L09-02",
+      "interpretation": "Gli angoli sono misurati dalla normale alla superficie piana. Nel vetro la luce rallenta. All\u2019incidenza normale cambia velocit\u00e0 ma la direzione rimane la stessa.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Angolo rifratto nel vetro",
+        "unit": "\u00b0"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C5-L09"
+      ],
+      "references": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          30.0,
+          19.471221
+        ]
+      ],
+      "section": "Riflessione e rifrazione",
+      "skill": "C5-L09",
+      "substitution": "arcsin(sin({x}\u00b0) / 1,5) \u00d7 180 / \u03c0",
+      "summary": "Da aria a vetro il raggio piega verso la normale o se ne allontana?",
+      "title": "Indice di rifrazione e legge di Snell",
+      "topic": "UD7 \u00b7 indice di rifrazione e legge di Snell",
+      "transferPrompt": "Il raggio passa dall\u2019aria (n\u2081=1) al vetro (n\u2082=3/2), con incidenza {x} dalla normale. Trova prima il seno dell\u2019angolo rifratto; poi usa gli intervalli forniti nella spiegazione e inserisci una stima in gradi con errore inferiore a 0,05\u00b0.",
+      "version": 2,
+      "review": "bozza"
+    },
+    "SIM-C2-L002-01": {
+      "anchor": "Pi\u00f9 scendi in acqua, maggiore \u00e8 la",
+      "apparatus": "vasca",
+      "assessmentSelection": {
+        "points": [
+          2,
+          1.5
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "blocks": [
+        {
+          "text": "La vasca contiene acqua ferma e omogenea, di densit\u00e0 \u03c1=1000 kg/m\u00b3. Usiamo in tutta questa esperienza la stessa gravit\u00e0 g=981/100 m/s\u00b2, cio\u00e8 9,81 m/s\u00b2. Il manometro \u00e8 azzerato al pelo libero: misura la pressione in pi\u00f9 rispetto alla superficie, non la pressione assoluta. Immagina di confrontare due quote nella stessa acqua: la differenza nasce dal peso della colonna liquida fra le due quote.",
+          "type": "text"
+        },
+        {
+          "text": "Per capire quale legge scegliere, isola idealmente una colonna verticale di area A e altezza h. Il suo volume \u00e8 Ah, la sua massa \u00e8 \u03c1Ah e il suo peso \u00e8 \u03c1Ahg. In equilibrio, la forza di pressione alla base supera quella alla sommit\u00e0 proprio di questo peso. Dividendo per la medesima area A, questa area si semplifica: conta la profondit\u00e0 verticale, non la larghezza della colonna. Questa costruzione assume acqua in quiete, densit\u00e0 uniforme e gravit\u00e0 costante; non descrive getti o differenze di velocit\u00e0.",
+          "type": "text"
+        },
+        {
+          "text": "(p_{\\rm base}-p_{\\rm superficie})A=\\rho Ahg",
+          "type": "formula"
+        },
+        {
+          "text": "\\Delta p=\\rho gh",
+          "type": "formula"
+        },
+        {
+          "text": "Controlla le unit\u00e0 prima di moltiplicare: (kg/m\u00b3)(m/s\u00b2)m=kg/(m s\u00b2)=Pa. Mille pascal fanno un kilopascal. La densit\u00e0 1000 introduce quindi un fattore 1000 e la conversione da Pa a kPa lo elimina. Per l\u2019acqua del modello, ogni metro di profondit\u00e0 aggiunge esattamente 981/100 kPa. Le letture decimali del banco sono osservazioni; i due calcoli assegnati usano soltanto raddoppio, dimezzamento e frazioni.",
+          "type": "text"
+        },
+        {
+          "text": "\\Delta p=\\frac{981}{100}\\,\\frac{\\mathrm{kPa}}{\\mathrm m}\\,h",
+          "type": "formula"
+        },
+        {
+          "text": "Nel primo controllo porta la sonda a h=2 m. Raddoppia 981: ottieni 1962. Dividi per 100 spostando la virgola di due posizioni: 19,62 kPa. La pressione cresce andando verso il basso. Non devi aggiungere la pressione atmosferica perch\u00e9 lo strumento \u00e8 gi\u00e0 azzerato alla superficie.",
+          "type": "text"
+        },
+        {
+          "text": "\\Delta p(2\\,\\mathrm m)=\\frac{981\\cdot2}{100}\\,\\mathrm{kPa}",
+          "type": "formula"
+        },
+        {
+          "text": "\\Delta p(2\\,\\mathrm m)=\\frac{1962}{100}\\,\\mathrm{kPa}",
+          "type": "formula"
+        },
+        {
+          "text": "\\frac{1962}{100}\\,\\mathrm{kPa}=19{,}62\\,\\mathrm{kPa}",
+          "type": "formula"
+        },
+        {
+          "text": "Per il trasferimento h=1,5 m \u00e8 3/2 m. Moltiplica 981 per 3: 981+981+981=2943. Il denominatore diventa 100\u00b72=200, quindi la risposta esatta \u00e8 2943/200 kPa. Se vuoi inserirla in forma decimale, moltiplica numeratore e denominatore per 5: 14715/1000=14,715 kPa. Un controllo mentale alternativo \u00e8 sommare la lettura a 1 m, 9,81 kPa, e la sua met\u00e0, 4,905 kPa.",
+          "type": "text"
+        },
+        {
+          "text": "\\Delta p\\left(\\frac32\\,\\mathrm m\\right)=\\frac{981}{100}\\cdot\\frac32\\,\\mathrm{kPa}",
+          "type": "formula"
+        },
+        {
+          "text": "\\Delta p\\left(\\frac32\\,\\mathrm m\\right)=\\frac{2943}{200}\\,\\mathrm{kPa}",
+          "type": "formula"
+        },
+        {
+          "text": "\\frac{2943}{200}\\,\\mathrm{kPa}=14{,}715\\,\\mathrm{kPa}",
+          "type": "formula"
+        },
+        {
+          "text": "Puoi invertire la legge per ricavare la profondit\u00e0: prima sottrai la pressione di superficie, poi dividi per \u03c1g. Se usi i pascal, h=\u0394p/(\u03c1g). Con la sovrapressione 19,62 kPa trasformata in 19620 Pa, il denominatore \u00e8 1000\u00b7981/100=9810 Pa/m; 19620/9810=2 m. Dividere la pressione assoluta senza sottrarre quella di superficie aggiungerebbe una colonna d\u2019acqua inesistente.",
+          "type": "text"
+        },
+        {
+          "text": "h=\\frac{\\Delta p}{\\rho g}\\quad(\\rho>0,\\ g>0)",
+          "type": "formula"
+        },
+        {
+          "text": "A h=0 la sovrapressione \u00e8 nulla; raddoppiare h raddoppia \u0394p nella stessa acqua. Due sonde alla stessa quota nello stesso liquido collegato devono dare la medesima pressione anche se la vasca cambia forma. Usare 10 al posto di 9,81 darebbe 20 kPa nel primo controllo e 15 kPa nel trasferimento: sono risultati di un modello con una gravit\u00e0 diversa, non arrotondamenti delle risposte richieste qui. Confrontare 15 con 14,715 aiuta a riconoscere proprio questo scambio di ipotesi.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Profondit\u00e0 della sonda",
+        "max": 3.0,
+        "min": 0.0,
+        "step": 0.25,
+        "unit": "m"
+      },
+      "course": "C2",
+      "formula": "\u0394p = \u03c1gh, con \u03c1 = 1000 kg/m\u00b3 e g = 981/100 m/s\u00b2",
+      "id": "SIM-C2-L002-01",
+      "interpretation": "Abbassa la sonda a partire dal pelo libero. L\u2019altezza verticale determina il peso sovrastante per unit\u00e0 di superficie. Il manometro \u00e8 azzerato alla superficie.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Sovrapressione dell\u2019acqua",
+        "unit": "kPa"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "references": [
+        [
+          1.0,
+          9.81
+        ],
+        [
+          2.0,
+          19.62
+        ]
+      ],
+      "section": "Fluidi in quiete",
+      "skill": "C2-L002",
+      "substitution": "9,81 \u00d7 {x}",
+      "summary": "Quanto vale il peso della colonna per unit\u00e0 di area alla profondit\u00e0 scelta?",
+      "title": "Legge di Stevino",
+      "topic": "Legge di Stevino",
+      "transferPrompt": "Un sensore azzerato in superficie viene immerso a {x} nell\u2019acqua. Di quanti kPa sale la lettura usando g = 981/100 m/s\u00b2? Mantieni esatte le frazioni durante il conto.",
+      "version": 2,
+      "review": "bozza"
+    }
+  },
+  "activityCredit": 0
+}

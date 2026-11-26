@@ -1,0 +1,54 @@
+{
+  "originalArchiveCommit": "2a55fda52a012dc3cc442f763dbfbf5250a08ab2",
+  "sameFinalTree": true,
+  "branch": "feat/cric-visibility-terminal-archive",
+  "steps": [
+    {
+      "course": "C2",
+      "commit": "31ebf98ada2fc16fae616935425066b4f8ece178",
+      "parent": "637253a729e91fba03e53a6f0ecf5ba16d4ce946",
+      "tree": "52d49f04a39086884ef5cd1cdc9e2c1e932c729c",
+      "files": 10,
+      "pushExitCode": 0,
+      "pushOutput": "remote: \nremote: Create a pull request for 'feat/cric-visibility-terminal-archive' on GitHub by visiting:        \nremote:      https://github.com/AndreaMarro/ardesia/pull/new/feat/cric-visibility-terminal-archive        \nremote: \nTo https://github.com/AndreaMarro/ardesia.git\n * [new branch]        31ebf98ada2fc16fae616935425066b4f8ece178 -> feat/cric-visibility-terminal-archive\n"
+    },
+    {
+      "course": "C3",
+      "commit": "b6ad73ceea0c3c45853dfb742f1aabcd84ccab74",
+      "parent": "31ebf98ada2fc16fae616935425066b4f8ece178",
+      "tree": "34c45e35ce5d7f59ae37e852ef506131a2cf5891",
+      "files": 11,
+      "pushExitCode": 0,
+      "pushOutput": "To https://github.com/AndreaMarro/ardesia.git\n   31ebf98a..b6ad73ce  b6ad73ceea0c3c45853dfb742f1aabcd84ccab74 -> feat/cric-visibility-terminal-archive\n"
+    },
+    {
+      "course": "C4",
+      "commit": "f36fb626806e4349cc9325815f5ada506d1cd338",
+      "parent": "b6ad73ceea0c3c45853dfb742f1aabcd84ccab74",
+      "tree": "6ed79982fd2a419207bca5c50264f7888a309b81",
+      "files": 10,
+      "pushExitCode": 0,
+      "pushOutput": "To https://github.com/AndreaMarro/ardesia.git\n   b6ad73ce..f36fb626  f36fb626806e4349cc9325815f5ada506d1cd338 -> feat/cric-visibility-terminal-archive\n"
+    },
+    {
+      "course": "C5",
+      "commit": "ba8884767c338dceb0f4ca20324f3333e0006b66",
+      "parent": "f36fb626806e4349cc9325815f5ada506d1cd338",
+      "tree": "e253a9d0801dabdc032d52e2bdeee0a2fe237ed2",
+      "files": 10,
+      "pushExitCode": 0,
+      "pushOutput": "To https://github.com/AndreaMarro/ardesia.git\n   f36fb626..ba888476  ba8884767c338dceb0f4ca20324f3333e0006b66 -> feat/cric-visibility-terminal-archive\n"
+    },
+    {
+      "course": "C6",
+      "commit": "27f63c177b4ee334f6511718db874c93cb83b8cb",
+      "parent": "ba8884767c338dceb0f4ca20324f3333e0006b66",
+      "tree": "3c104da5ee8718f2413f8e11cf36b87b292d9cca",
+      "files": 14,
+      "pushExitCode": 1,
+      "pushOutput": "remote: error: unable to write file /data/repositories/0/nw/0c/95/32/1137806574/1272331669.git/objects/ghq_XIygIVwXNJc/pack/pack-5248eb7b956a57266d37386d748b4cf1671023fa.pack: No such file or directory        \nremote: fatal: unable to rename temporary '*.pack' file to '/data/repositories/0/nw/0c/95/32/1137806574/1272331669.git/objects/ghq_XIygIVwXNJc/pack/pack-5248eb7b956a57266d37386d748b4cf1671023fa.pack'        \nerror: remote unpack failed: index-pack failed\nTo https://github.com/AndreaMarro/ardesia.git\n ! [remote rejected]   27f63c177b4ee334f6511718db874c93cb83b8cb -> feat/cric-visibility-terminal-archive (failed)\nerror: failed to push some refs to 'https://github.com/AndreaMarro/ardesia.git'\n",
+      "pushExitCodeAfterRetry": 0,
+      "retryScope": "Same immutable commit; Git remote temporary pack rename failed once, second push succeeded"
+    }
+  ]
+}

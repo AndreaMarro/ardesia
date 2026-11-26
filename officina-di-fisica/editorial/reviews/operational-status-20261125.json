@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "observedAt": "2026-11-26T21:48:20.563033+00:00",
+  "observedAt": "2026-11-26T21:54:48.974440+00:00",
   "snapshotHead": "be765e05f4d93b15f17ade7db9847c8a8fbc018a",
   "canonicalHead": "7c29ccc18ad3b42ceecfca509ef57f786bd2c496",
   "mandate": "INCOMPLETE",
@@ -390,7 +390,7 @@
     "candidateSource": "64aef05bef5ca7ebff8491060762dd4cac0cbb34",
     "runtimeSha256": "4c83e0156b74d5a4cdfad90421f4304e6a7a03bde10d5b125f6635aae7eff907",
     "requestSha256": "18108b6c67ed31f470b7e1ce75add6b17c900d08195f8da0ebcb986717ac06bf",
-    "state": "ACTUAL_UI_RUNNING_FOUR_COURSES_C6_QUEUED_LAST_OBSERVED",
+    "state": "TERMINAL_FAILURE_ALL_45576_ATTEMPTED_744_STRICT_NUMERICAL_FAILURES",
     "plannedObservations": 45576,
     "activityCredit": 0,
     "failedBootstrapRuns": [
@@ -398,7 +398,34 @@
       45887711139
     ],
     "failedBootstrapObservedUICases": 0,
-    "bootstrapFixProof": "Real empty partial clone strict128/hydrate0/strict0 plus exact three archives and fresh C6 preparation0; current9+7 tests0"
+    "bootstrapFixProof": "Real empty partial clone strict128/hydrate0/strict0 plus exact three archives and fresh C6 preparation0; current9+7 tests0",
+    "actualCases": 45576,
+    "technicalPassCases": 44832,
+    "technicalFailCases": 744,
+    "courses": {
+      "C2": {
+        "attempted": 7440,
+        "failed": 280
+      },
+      "C3": {
+        "attempted": 11808,
+        "failed": 56
+      },
+      "C4": {
+        "attempted": 7872,
+        "failed": 24
+      },
+      "C5": {
+        "attempted": 14464,
+        "failed": 384
+      },
+      "C6": {
+        "attempted": 3992,
+        "failed": 0
+      }
+    },
+    "archiveReceipt": "editorial/reviews/visibility139-45888351023-terminal-evidence-20261126/receipt.json",
+    "measuredFourSameInputBrowserWitness": "editorial/reviews/visibility139-four-browser-values-4c-20261126/receipt.json"
   },
   "isolatedEchoFixtureCorrection": {
     "commit": "78978e4c4c7c9ea617b6bcc9765499f6735f7c34",
@@ -450,10 +477,10 @@
     },
     {
       "id": "actual139-experiment-ui-evidence-20261126",
-      "state": "RUNNING_NOT_ACCEPTED",
+      "state": "TECHNICAL_FAIL_PENDING_CONTRACT_REPAIR_AND_NEW_EVIDENCE",
       "runId": 45888351023,
       "candidateRuntime": "4c83e0156b74d5a4cdfad90421f4304e6a7a03bde10d5b125f6635aae7eff907",
-      "resolution": "Verify actual terminal evidence and individual scientific/whole-geometry judgments. No automatic credit, no retagging to95769."
+      "resolution": "Retain all five artifacts.34of38 unique C2/C4 references use different legacy x; four remaining local browser values recorded and differ from Node at same x. No tolerance widened. New same-browser immutable baseline technical contract under design, independent science still separate."
     }
   ],
   "c2AccessibleSvgGuardRefresh": {
@@ -498,5 +525,12 @@
     ],
     "currentRuntime": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
     "questionCredit": 0
+  },
+  "unifiedSixVectorCandidate": {
+    "commit": "27503c36097b196fb7003a6448a9aaf7ee21baf0",
+    "runtimeSha256": "9279713a1f2cbb27fbb2014ae68d15b70f71ea3249c4ec33d7430a54a3fdcd0d",
+    "independentPeer": "PENDING_A_FINAL_JUDGMENT; actual264 retry0, original disk failure retained",
+    "installedInRoot": false,
+    "activityCredit": 0
   }
 }
