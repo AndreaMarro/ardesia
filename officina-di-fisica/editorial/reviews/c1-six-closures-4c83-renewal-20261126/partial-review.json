@@ -1,0 +1,106 @@
+{
+  "scope": "Bounded 616 attempted actual UI cases. Twenty-four strict binary harness failures preserved. Separate real visual partial-shaft mask in work/side, not tip or whole cone. No complete activity approval.",
+  "runtimeSha256": "4c83e0156b74d5a4cdfad90421f4304e6a7a03bde10d5b125f6635aae7eff907",
+  "candidateRef": "64aef05bef5ca7ebff8491060762dd4cac0cbb34",
+  "observedExitCode": 1,
+  "attemptedCases": 616,
+  "technicalSucceeded": 592,
+  "technicalFailed": 24,
+  "records": [
+    {
+      "id": "SIM-C1-L004-02",
+      "attemptedCases": 72,
+      "technicalFailureCases": [],
+      "runtimeNumericalPhysics": "Model/source arithmetic independently consistent; failed numerical equality is harness diagnostic where present",
+      "newUIAcceptance": "NOT_GRANTED",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C1-L004-04",
+      "attemptedCases": 120,
+      "technicalFailureCases": [],
+      "runtimeNumericalPhysics": "Model/source arithmetic independently consistent; failed numerical equality is harness diagnostic where present",
+      "newUIAcceptance": "NOT_GRANTED",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C1-L005-05",
+      "attemptedCases": 272,
+      "technicalFailureCases": [
+        "SIM-C1-L005-05|published|320|orbit|grid|11",
+        "SIM-C1-L005-05|draft|320|orbit|grid|11",
+        "SIM-C1-L005-05|published|320|side|grid|11",
+        "SIM-C1-L005-05|draft|320|side|grid|11",
+        "SIM-C1-L005-05|published|320|top|grid|11",
+        "SIM-C1-L005-05|draft|320|top|grid|11",
+        "SIM-C1-L005-05|published|320|fixed_projection|grid|11",
+        "SIM-C1-L005-05|draft|320|fixed_projection|grid|11",
+        "SIM-C1-L005-05|published|1280|orbit|grid|11",
+        "SIM-C1-L005-05|draft|1280|orbit|grid|11",
+        "SIM-C1-L005-05|published|1280|side|grid|11",
+        "SIM-C1-L005-05|draft|1280|side|grid|11",
+        "SIM-C1-L005-05|published|1280|top|grid|11",
+        "SIM-C1-L005-05|draft|1280|top|grid|11",
+        "SIM-C1-L005-05|published|1280|fixed_projection|grid|11",
+        "SIM-C1-L005-05|draft|1280|fixed_projection|grid|11"
+      ],
+      "runtimeNumericalPhysics": "Model/source arithmetic independently consistent; failed numerical equality is harness diagnostic where present",
+      "newUIAcceptance": "NOT_GRANTED",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C1-L006-02",
+      "attemptedCases": 64,
+      "technicalFailureCases": [],
+      "runtimeNumericalPhysics": "Model/source arithmetic independently consistent; failed numerical equality is harness diagnostic where present",
+      "newUIAcceptance": "NOT_GRANTED",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C1-L007-01",
+      "attemptedCases": 40,
+      "technicalFailureCases": [
+        "SIM-C1-L007-01|published|320|orbit|grid|1",
+        "SIM-C1-L007-01|published|320|side|grid|1",
+        "SIM-C1-L007-01|published|320|top|grid|1",
+        "SIM-C1-L007-01|published|320|fixed_projection|grid|1",
+        "SIM-C1-L007-01|published|1280|orbit|grid|1",
+        "SIM-C1-L007-01|published|1280|side|grid|1",
+        "SIM-C1-L007-01|published|1280|top|grid|1",
+        "SIM-C1-L007-01|published|1280|fixed_projection|grid|1"
+      ],
+      "runtimeNumericalPhysics": "Model/source arithmetic independently consistent; failed numerical equality is harness diagnostic where present",
+      "newUIAcceptance": "NOT_GRANTED",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C1-L008-03",
+      "attemptedCases": 48,
+      "technicalFailureCases": [],
+      "runtimeNumericalPhysics": "Model/source arithmetic independently consistent; failed numerical equality is harness diagnostic where present",
+      "newUIAcceptance": "NOT_GRANTED",
+      "activityCredit": 0
+    }
+  ],
+  "sourceManualFailureRetained": [
+    "SIM-C1-L005-05"
+  ],
+  "visualFinding": {
+    "id": "SIM-C1-L007-01",
+    "label": "y",
+    "affectedStates": [
+      "SIM-C1-L007-01|published|1280|side|grid|0",
+      "SIM-C1-L007-01|published|1280|side|grid|2",
+      "SIM-C1-L007-01|published|1280|side|grid|3",
+      "SIM-C1-L007-01|published|320|side|grid|0",
+      "SIM-C1-L007-01|published|320|side|grid|2",
+      "SIM-C1-L007-01|published|320|side|grid|3"
+    ],
+    "shaftPartObservations": 12,
+    "claim": "Opaque y axis label masks the tail and part of both vector shafts in Side view at0/120/180deg and320/1280. No tip/cone or whole-vector occlusion claim. Actual screenshots read at0deg both widths; equivalent layout also source-replayed across other four states.",
+    "publicationAction": "NONE"
+  },
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
