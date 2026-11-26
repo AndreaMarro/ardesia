@@ -1,0 +1,346 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C3.json",
+    "sourceSha256": "44cb7679671a99a5da654133d4f1c12a542acf1a4688987121bcd5a776a262e0",
+    "primarySkill": "C3-L04",
+    "title": "Quando la temperatura si ferma",
+    "actualLessonPrerequisites": [
+      "C3-L03"
+    ]
+  },
+  "records": [
+    {
+      "id": "C3-Q031",
+      "sourceSha256": "2d992b1061e1db16eb4e656ab1fa980bbd126b6518e048f043c7626990f68b35",
+      "candidateSha256": "7cdbb5344fc038ebfaee2101ec22ec24aa140b9f175517d2789e754f4d7d8385",
+      "reviewedSignature": "48799ed3b6cd333543cbb2b07ad2dc09949f8ff2288d617baaa4b0973fee448b",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "20",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "La massa evaporata è m=Q/L. 45,2 kJ/(2260 kJ/kg)=1/50 kg=20 g. Il campione è già al punto di ebollizione e non si aggiunge un tratto di riscaldamento sensibile.",
+      "physicalAssumptions": "Liquido già alla temperatura di ebollizione; Q 45,2 kJ soltanto vaporizzazione,L 2,26 MJ/kg.",
+      "distractors": "0,020 g non converte kg→g; 20000 g omette MJ→kJ; QL ha unità diverse da una massa.",
+      "pedagogicalReview": "Massa trasformata e prefissi energetici coerenti.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q032",
+      "sourceSha256": "0d8345de04b3d674b8206fb0a07fc67e1c70951867e3710ab2772e1cca1a10f4",
+      "candidateSha256": "af7a378577b0c562306ca54cfa3f61d97e571346c3d7b37b22511529ef52604b",
+      "reviewedSignature": "dc5f9b45ef6649438311c8a207588a925e03e468de5aafca51fe8ea0e8545b5a",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c3-l04-progressive.svg": "2f78e36e347fe42a2ff75ebf5894cc09cd294f986e8e581361b3a19325402cdc"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La frazione di massa liquida",
+      "dimension": {},
+      "manualArithmetic": "Aumenta la frazione di fase liquida mentre il solido fonde. L’energia interna cresce nel passaggio assorbente a temperatura costante; non aumenta necessariamente l’energia cinetica media associata alla temperatura.",
+      "physicalAssumptions": "Campione puro chiuso a pressione costante,solido e liquido coesistenti al punto di fusione,energia assorbita.",
+      "distractors": "Nel plateau T non aumenta,massa totale chiusa non cresce,frazione solida cala; potenza non è imposta crescente.",
+      "pedagogicalReview": "Temperatura separata dalla frazione di fase.",
+      "assetReview": "XML e nuovo PNG indipendente 640×1500 letti per intero. Il primo pannello è qualitativo: plateau Tfus fra solido e liquido,in ascissa Q e non tempo. La retta di fase è limitata al punto t 167 s,E 13360 J: origine(140,930),punto(474,662.8),2 coordinate/s e 1/50 coordinata/J,dunqueE/t=80 W. Le barre finali 8360/3340/5020 J hanno lunghezze 418/167/251,scala comune 1/20 coordinata/J e 167+251=418. Nessun taglio o contatto residuo; stessa immagine valida soltanto per gli identici SVG prima/dopo followup testuale 34.",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q033",
+      "sourceSha256": "5976679877e8b3966d95ac01aa3530ac33ca2ba714423dc8a6a622fc27945a56",
+      "candidateSha256": "aadafd3c4c1dc53e8db235e43f0ba62f9facadd95260b1779ccf6d9c967d7e51",
+      "reviewedSignature": "360ef1a5b6fda671ce5eb7d8254a370e8fba0ff2961249139cf34f4aae8014b4",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Condensazione",
+      "dimension": {},
+      "manualArithmetic": "È condensazione. Il vapore passa a liquido cedendo energia latente all’ambiente, a differenza dell’evaporazione.",
+      "physicalAssumptions": "Vapore che diventa gocce liquide; non un passaggio al solido.",
+      "distractors": "Fusione parte dal solido,solidificazione termina nel solido,vaporizzazione opposta,sublimazione senza fase liquida.",
+      "pedagogicalReview": "Nome del passaggio con verso fissato.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q034",
+      "sourceSha256": "eadc4a2f71f74ad9e1e33e3387caaf32701d1820c1bcf6c3dfa9f1b58f229148",
+      "candidateSha256": "30e5f0fa90f668f920347fa112189579eb41d0a80a7edcb78de127507a4f332d",
+      "reviewedSignature": "05db4b1ea4ea5dddd78a7476abc6e5f8855ea694e5f02b952d102fca0fbba160",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c3-l04-progressive.svg": "2f78e36e347fe42a2ff75ebf5894cc09cd294f986e8e581361b3a19325402cdc"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "167",
+      "dimension": {
+        "[time]": "1"
+      },
+      "manualArithmetic": "Per ghiaccio a 0 °C basta il calore latente: Q=(1/25 kg)(334000 J/kg)=13360 J. Alla potenza effettiva 80 J/s, t=13360/80=167 s. Nessuna perdita ulteriore viene sottratta a una potenza già netta.",
+      "physicalAssumptions": "Ghiaccio 40 g già a 0°C,pressione atmosferica,L 334 kJ/kg,potenza netta 80 W costante senza altri scambi.",
+      "distractors": "13,36 copia coefficiente Q in kJ; omissione g→kg porta durata 1000 volte maggiore; scaldare il liquido dopo è un processo aggiuntivo.",
+      "pedagogicalReview": "Energia latente prima del rapporto con la potenza netta.",
+      "assetReview": "XML e nuovo PNG indipendente 640×1500 letti per intero. Il primo pannello è qualitativo: plateau Tfus fra solido e liquido,in ascissa Q e non tempo. La retta di fase è limitata al punto t 167 s,E 13360 J: origine(140,930),punto(474,662.8),2 coordinate/s e 1/50 coordinata/J,dunqueE/t=80 W. Le barre finali 8360/3340/5020 J hanno lunghezze 418/167/251,scala comune 1/20 coordinata/J e 167+251=418. Nessun taglio o contatto residuo; stessa immagine valida soltanto per gli identici SVG prima/dopo followup testuale 34.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q035",
+      "sourceSha256": "ed1f264deb9aea885442fa5f8181d0837bd971b108d024c73f857c2ba5ec952d",
+      "candidateSha256": "7e9304104df876a880adf83d1dca5660ad30ac16d6b34376415263e2f5f819a7",
+      "reviewedSignature": "865ad7660d34ada8859787cae955154a8fd7a564ed934c745fe857ee75335735",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Evaporazione dalla superficie",
+      "dimension": {},
+      "manualArithmetic": "È compatibile l’evaporazione dalla superficie a temperatura inferiore all’ebollizione. Non occorre che tutta l’acqua raggiunga il punto di ebollizione per diminuire la massa liquida.",
+      "physicalAssumptions": "Goccia su piastra 22°C,aria che può ricevere vapore; si chiede un meccanismo compatibile senza ebollizione.",
+      "distractors": "Evaporazione superficiale non richiede bolle; condensazione da sola aggiunge liquido; perdita volume non prova solidificazione.",
+      "pedagogicalReview": "Fenomeno compatibile distinto da inferenza obbligata.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q036",
+      "sourceSha256": "4c891bfc05dd2f0a26438210893d119181ee97450e12babda78ef0afa180cb97",
+      "candidateSha256": "555ef9273768fcff7abbf209ad7752456d25c4c835cdcb4fc5bc454df437e2e5",
+      "reviewedSignature": "6255b07dae14d4613419fc8457393a40ed6cdabafc15a658fd5d113cf6115b77",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "300",
+      "dimension": {
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Nel plateau la potenza netta va alla fusione: Q=60·150=9000 J. L=9000/(3/100 kg)=300000 J/kg=300 kJ/kg. Il termine sensibile è assente durante il plateau ideale.",
+      "physicalAssumptions": "30 g interamente fusi in 150 s,Pnetta 60 W,plateau a pressione fissa.",
+      "distractors": "9000 J è Q totale; 300 J/g e 300 kJ/kg sono equivalenti,non due diversi calori latenti.",
+      "pedagogicalReview": "Energia del plateau divisa per la massa effettivamente fusa.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q037",
+      "sourceSha256": "f9b70bbb5dfd66cd89b4c2a493af3791e2cc94fb2fe65f982d0d818cbcd805d1",
+      "candidateSha256": "9a9a71f180b8eb9a898d365b043a66ec08e6807bb0ced522065819ee56372a8b",
+      "reviewedSignature": "e959a7462cdc88da706dff11cbd6f40420f54ea64f713240ae4f982f831714e6",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Solidificazione",
+      "dimension": {},
+      "manualArithmetic": "È solidificazione, o congelamento per l’acqua. La cessione di calore latente è compatibile con temperatura costante finché coesistono le fasi nel modello a pressione fissa.",
+      "physicalAssumptions": "Passaggio liquido→solido con cessione di calore latente a pressione costante.",
+      "distractors": "Fusione inversa assorbe calore; condensazione parte dal vapore; evaporazione e sublimazione terminano nel vapore.",
+      "pedagogicalReview": "Segno del calore nel cambiamento di fase.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q038",
+      "sourceSha256": "54e99e22c44a7118ad3da2f41d5ab80e4973f0c3f3839dc4b7b5942cad151e05",
+      "candidateSha256": "b6ca0f9837f59704ee6c47767f709b72ab441c68e83f71e9935b2546cb3f6b22",
+      "reviewedSignature": "c5fbc10eb92d3e274560d2ea41cca3d84c476a2003a70d7fcdcd38c523e44ff6",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "125/2",
+      "dimension": {},
+      "manualArithmetic": "Si fondono 120−45=75 g. La frazione iniziale trasformata è 75/120=5/8, cioè 62,5%; non si divide per la massa solida finale.",
+      "physicalAssumptions": "Campione chiuso 120 g inizialmente solido,residuo solido 45 g,percentuale riferita alla massa iniziale.",
+      "distractors": "37,5% è residuo; 75 copia massa fusa in g; 100% ignora residuo; 5/8% perde 100 rispetto a 5/8 come frazione.",
+      "pedagogicalReview": "Percentuale dal residuo e denominatore iniziale.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q039",
+      "sourceSha256": "ccca2a77876cdd2f5c3b91df1de8f1216030602e14d315c6a2f06acbca3ac9af",
+      "candidateSha256": "9f8aec87c7eb1efbee34ea06f33b8f4176883ffb47fb49b462b46ee7058e697a",
+      "reviewedSignature": "6fbf1a7571e7c1ff634d9675ab026a096923669501a15011cbc3195efc7771f5",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Il calore latente di condensazione mL_v",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Per il vapore compare anche la cessione del calore latente di condensazione mL_v a 100 °C. Dopo la condensazione, il raffreddamento dell’acqua da 100 a 40 °C è lo stesso contributo sensibile che avrebbe la massa inizialmente liquida.",
+      "physicalAssumptions": "Masse uguali di vapore saturo e liquido a 100°C,stesso finale liquido 40°C epressione atmosferica.",
+      "distractors": "Fasi diverse hanno energie diverse pur a ugualeT; nessun ghiaccio né getto con K assegnata; condensazione è contributo aggiuntivo.",
+      "pedagogicalReview": "Bilancio a tratti con contributo comune esplicitato.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q040",
+      "sourceSha256": "5eb9090c469815f23a27422f3d05e5ddd6748f59c066c361eaca00babbe1f7d1",
+      "candidateSha256": "7b296dcd9a156d0553c1bf206fa3b6b9b3e797a9643296d0c1ae862654fec563",
+      "reviewedSignature": "c894f4b3385214652e60c7a12181f2c705f9f7a5dc7ff37321a9954d92837a1d",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c3-l04-progressive.svg": "2f78e36e347fe42a2ff75ebf5894cc09cd294f986e8e581361b3a19325402cdc"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "25100/2299",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "L’acqua può cedere fino a 100·4,18·20=8360 J arrivando a 0 °C; fondere il ghiaccio richiede 10·334=3340 J, quindi tutto il ghiaccio fonde. Restano 5020 J che scaldano 110 g di acqua: θ_f=5020/(110·4,18)=25100/2299 °C. È positiva e minore di 20 °C; nessuna temperatura negativa è compatibile col ramo interamente liquido.",
+      "physicalAssumptions": "Acqua 100 g 20°C,ghiaccio 10 g 0°C,isolamento,recipiente trascurabile,L 334 J/g,c 4,18 J/(gK),ramo interamente fuso verificato.",
+      "distractors": "0°C richiederebbe residuo solido escluso da 8360>3340; 20°C ignora fusione; quoziente raddoppiato non bilancia; negativo non compatibile col ramo liquido.",
+      "pedagogicalReview": "Controllo del ramo prima della temperatura, risultato frazionario esatto.",
+      "assetReview": "XML e nuovo PNG indipendente 640×1500 letti per intero. Il primo pannello è qualitativo: plateau Tfus fra solido e liquido,in ascissa Q e non tempo. La retta di fase è limitata al punto t 167 s,E 13360 J: origine(140,930),punto(474,662.8),2 coordinate/s e 1/50 coordinata/J,dunqueE/t=80 W. Le barre finali 8360/3340/5020 J hanno lunghezze 418/167/251,scala comune 1/20 coordinata/J e 167+251=418. Nessun taglio o contatto residuo; stessa immagine valida soltanto per gli identici SVG prima/dopo followup testuale 34.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "3d3400431425aa5a26117f9f7127e3923d9b24241194688bfeef833dd7cf3b25",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "45d53cc0c2443e2aedc5cba3bf163d4dcb7997a8",
+  "packageSha256": "58107c9a38eaacde77a9bcad5b2a32c959bb7abe4bb346b1570cb876c58d2f29",
+  "bindingsSha256": "11f630567f3355f317a56bc30a4308642cad0ca084ec4afda22a5eee9d623d14",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C3.json",
+    "title": "cric-c3-l04",
+    "reference": "Dieci problemi distinti Cric C3 letti integralmente dopo primaria e modelli propri congelati; interpretazione di letture Celsius e intervalli termici distinta per ID."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/cric-c3-001-050-independent-models.py",
+    "sha256": "9b870976c03b6578eeac6f6e4c2e89cebc6c53d2a6a0ef0b806e749b36c88e1f",
+    "commit": "030d4658b17ea6f6fd43be03cb59b21e91030eb0"
+  },
+  "modelFunctionBodies": "All functions in the frozen source-only C3 model retain identical AST. Generic finite/exact literal guards are reused unchanged from the earlier independent C2 verifier.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/primary-cric-c3-001-050-before-candidates-20261126.md",
+    "sha256": "34cdd1eb8b9f296a638c2fa1e3874ffbace49c48e907257c063fe1f0f7ad0b80"
+  }
+}
