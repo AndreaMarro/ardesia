@@ -7,3 +7,5 @@ Q061 isola una pendenza usando due differenze; Q062 esplicita condensatore caric
 Gli altri problemi distinguono capacità, unità farad, vincolo della sorgente, modulo su una sola armatura e radice non negativa dell’energia. Formule in passaggi brevi, spiegazioni e confutazioni individuali. Le risposte numeriche sono interi esatti con tolleranza zero; le scelte restano distinte.
 
 Figura progressiva: primo grafico con 60 coordinate/V e 8 coordinate/μC, origine comune; sezione delle piastre schematica senza scala comune a distanza e dimensione laterale; ultimo grafico con 18 coordinate/μC e 70 coordinate/V. Il triangolo iniziale vale 10 μJ e il trapezio aggiuntivo 30 μJ. SCI indipendente, UI del prodotto e approvazione umana NOT_RUN, pubblicazione DRAFT.
+
+Rilettura distinta: corretta soltanto l’attribuzione del distrattore in C4-Q064, sostituita da una controprova esplicita. Chiave, formule, altre nove schede e SVG sono byte-identici. Vecchi file e ricevute archiviati prima della mutazione. Due nuove assembly identiche e import canonico 10→0/10 reali; il precedente native è pertinente soltanto allo stesso SVG immutato. Nuova SCI e UI prodotto NOT_RUN.

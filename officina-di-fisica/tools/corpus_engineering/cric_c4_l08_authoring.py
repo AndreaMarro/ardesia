@@ -50,7 +50,7 @@ TASKS=[
 ('Confrontare due topologie con gli stessi componenti','Due condensatori da 4 μF e 12 μF possono essere preparati in parallelo oppure in serie con nodo intermedio neutro e isolato. Qual è il rapporto adimensionale C_p/C_s?', ['16/3','3/16','4','16','3'],
  'In parallelo la somma dà C_p=16 μF. In serie il prodotto diviso la somma dà C_s=48/16 μF=3 μF. Nel rapporto le unità si cancellano e resta 16/3. Mantengo la frazione esatta: non occorre una divisione decimale periodica e la risposta è selezionabile senza calcolatrice.',
  r'C_p=16\,\mu\mathrm F\qquad C_s=3\,\mu\mathrm F\qquad \frac{C_p}{C_s}=\frac{16}{3}',
- '3/16 inverte l’ordine richiesto. 4 è il rapporto fra le due capacità individuali, non fra gli equivalenti. 16 e 3 copiano separatamente i valori numerici dei due equivalenti in microfarad senza formarne il quoziente.',
+ '3/16 inverte l’ordine richiesto. Il rapporto 4 richiederebbe C_p=12 μF se C_s=3 μF, mentre qui C_p=16 μF. 16 e 3 copiano separatamente i valori numerici dei due equivalenti in microfarad senza formarne il quoziente.',
  'Calcola separatamente i due equivalenti e mantieni il rapporto come frazione.')]
 CHOICES={n:0 for n,t in enumerate(TASKS,1) if isinstance(t[2],list)}
 UNITS={1:'μC',8:'V'}
