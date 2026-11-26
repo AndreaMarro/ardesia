@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 1740" width="640" height="1740" role="img" aria-labelledby="title desc">
+<title id="title">Spostamento netto, nodi elettrici e impulso</title>
+<desc id="desc">Nel primo pannello il carrello va da zero a dodici metri e ritorna a otto; le due durate sono tre e un secondo. Nel secondo due rami condividono i nodi A e B: sei ohm sopra e due resistori da tre ohm sotto. Nel terzo l’area triangolare sotto la forza di massimo dodici newton in mezzo secondo vale tre newton secondo.</desc>
+<defs><marker id="tip" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="context-stroke"/></marker></defs>
+<rect width="640" height="1740" fill="#fffdf7"/>
+<g font-family="Arial, sans-serif" fill="#202c39">
+<text x="32" y="52" font-size="27" font-weight="bold">1. Conta lo spostamento con segno</text>
+<text x="32" y="95" font-size="23">Le due frecce usano lo stesso asse spaziale.</text>
+<path d="M140 200H500" fill="none" stroke="#26728d" stroke-width="4" marker-end="url(#tip)"/>
+<text x="238" y="167" font-size="23">+12 m in 3 s</text>
+<path d="M500 285H380" fill="none" stroke="#986c35" stroke-width="4" marker-end="url(#tip)"/>
+<text x="355" y="330" font-size="23">−4 m in 1 s</text>
+<path d="M140 380H555M140 365V395M380 365V395M500 365V395" fill="none" stroke="#304d63" stroke-width="3"/>
+<text x="129" y="420" font-size="23">0</text>
+<text x="370" y="420" font-size="23">8</text>
+<text x="486" y="420" font-size="23">12</text>
+<text x="522" y="458" font-size="23">x (m)</text>
+<text x="32" y="500" font-size="23">Totale: +8 m in 4 s, quindi +2 m/s.</text>
+<line x1="32" y1="535" x2="608" y2="535" stroke="#b8c4ca"/>
+<text x="32" y="590" font-size="27" font-weight="bold">2. Gli stessi due nodi, due rami</text>
+<text x="32" y="633" font-size="23">La forma del disegno non cambia i nodi.</text>
+<path d="M100 830H160V730H270M370 730H500V830H550M160 830V940H220M300 940H350M430 940H500V830" fill="none" stroke="#304d63" stroke-width="3"/>
+<rect x="270" y="710" width="100" height="40" fill="#dceaf0" stroke="#304d63" stroke-width="3"/>
+<rect x="220" y="920" width="80" height="40" fill="#e9d9c0" stroke="#304d63" stroke-width="3"/>
+<rect x="350" y="920" width="80" height="40" fill="#e9d9c0" stroke="#304d63" stroke-width="3"/>
+<circle cx="160" cy="830" r="5" fill="#304d63"/><circle cx="500" cy="830" r="5" fill="#304d63"/>
+<text x="75" y="815" font-size="23">A</text><text x="554" y="815" font-size="23">B</text>
+<text x="299" y="695" font-size="23">6 Ω</text>
+<text x="240" y="1000" font-size="23">3 Ω</text><text x="367" y="1000" font-size="23">3 Ω</text>
+<text x="32" y="1050" font-size="23">Ogni ramo: 6 Ω. Il parallelo: 3 Ω.</text>
+<line x1="32" y1="1090" x2="608" y2="1090" stroke="#b8c4ca"/>
+<text x="32" y="1145" font-size="27" font-weight="bold">3. L’impulso è un’area forza-tempo</text>
+<text x="32" y="1188" font-size="23">Il massimo interno è scelto per illustrare.</text>
+<path d="M140 1240V1580H560" fill="none" stroke="#304d63" stroke-width="3"/>
+<path d="M140 1580L320 1280L500 1580Z" fill="#dceaf0" stroke="#26728d" stroke-width="4"/>
+<path d="M140 1280H320V1580" fill="none" stroke="#304d63" stroke-width="2" stroke-dasharray="7 7"/>
+<text x="32" y="1245" font-size="23">F (N)</text>
+<text x="93" y="1289" font-size="23">12</text>
+<text x="108" y="1620" font-size="23">0</text>
+<text x="303" y="1620" font-size="23">0,25</text>
+<text x="479" y="1620" font-size="23">0,50</text>
+<text x="517" y="1660" font-size="23">t (s)</text>
+<text x="32" y="1712" font-size="23">Area: 12 N × 0,50 s / 2 = 3 N·s.</text>
+</g></svg>
