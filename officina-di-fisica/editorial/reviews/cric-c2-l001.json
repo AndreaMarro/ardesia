@@ -1,0 +1,368 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C2.json",
+    "sourceSha256": "7f2d3cf84a46d5d0086fd9cd6318b923ee073febc110a52fbc8f682edd995b23",
+    "primarySkill": "C2-L001",
+    "title": "Distribuire massa e forza",
+    "actualLessonPrerequisites": []
+  },
+  "records": [
+    {
+      "id": "C2-Q001",
+      "sourceSha256": "6bb6a3e1f84a00f0b56f7306aae82aa1c56eea19da51364902f1fb11871c55b7",
+      "candidateSha256": "4dfb1da4325d634f222255a967d41d7270e6ac8505de8899b7d434de16e116a4",
+      "reviewedSignature": "81b81db534a0e0dd2ab01d471274f822150b673584050494c9ab7264989075bb",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Continua a deformarsi e scorrere finché persiste lo sforzo",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Un liquido ordinario non sostiene staticamente un taglio persistente non nullo: continua a deformarsi. Un solido elastico può equilibrarlo con deformazione finita; la proprietà distingue il comportamento reologico, non la sola forma esterna.",
+      "physicalAssumptions": "Liquido ordinario e solido nel campo elastico, piccolo sforzo tangenziale costante e non nullo; confronto fra risposta persistente e statica.",
+      "distractors": "Equilibrio elastico finito descrive il solido; un liquido può esercitare forza normale. Scorrere non mantiene forma fissa e non converte automaticamente taglio in pressione negativa.",
+      "pedagogicalReview": "Confronto reologico legato alla direzione dello sforzo e alla durata.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q002",
+      "sourceSha256": "d20884a10462f857353ac70c9e218cb7dd1c7cc1a38cc91132bb9f20b923c37b",
+      "candidateSha256": "687e576df0aea4b2140f41881c18a26d4757fe19da54fb3c8fa9822b56b0eb19",
+      "reviewedSignature": "92abc2ddc16a1aee789828447ef299ec13d6731d4d3153664fd9eb731becdd1a",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c2-l001-progressive.svg": "895aae9d1568750d197b9c80efab7d2cbbca338652350258611992b7e4628cf6"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "p=F_normale/A=45/(15/1000)=3000 Pa=3 kPa. Il risultato usa la componente normale; la distribuzione uniforme rende uguali pressione locale e media.",
+      "physicalAssumptions": "Forza45 N interamente normale e uniformemente distribuita su area0,015 m²; conversione esatta Pa→kPa.",
+      "distractors": "0,675 copia F·A, che ha dimensione N·m². 3000 kPa non converte Pa;0,003 kPa è mille volte troppo piccolo rispetto a3;45 copia il dato di forza.",
+      "pedagogicalReview": "Frazione decimale e unità trattate prima della divisione.",
+      "assetReview": "XML e nuovo PNG indipendente640×1430 letti integralmente sui byte finali af6a3ade. Primo pannello forza normale45N e area0,015m², quoziente dimensionato corretto e risultato3kPa; nessuna scala condivisa con le prove successive. Secondo:rettangoli con stessa profondità70 e larghezze80/240, aree4/12cm² in rapporto3; vettori della stessa forza entrambi lunghi80 e pressioni18/6kPa inversamente proporzionali. Terzo:asseV9coordinate/mL,assemassa5coordinate/g; punti(20mL,20g) e(40mL,40g) sulla retta dalla stessa origine,ρ=1g/mL. Titoli, unità e zero visibili, nessun contatto o taglio residuo rilevato.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q003",
+      "sourceSha256": "1dbe65ab270bc22bd8e81381225c2e2733cb999bd5db59d96089dc3dcf6bac4f",
+      "candidateSha256": "67938894acf0109dc14733327586d67226a834ad42cc2c5b271e5e95975387c2",
+      "reviewedSignature": "45cce590d1ad6fb083a3d25700ff93cde305600599908810de525402fb817635",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Il valore p resta uguale; la forza di pressione rimane normale alla parete",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "La pressione idrostatica in un punto è isotropa e scalare. Ruotando una piccola superficie con lo stesso centro cambia la normale e quindi la direzione della forza pA, non p.",
+      "physicalAssumptions": "Liquido in quiete, superficie piccola rispetto alle variazioni spaziali di pressione, centro fissato allo stesso punto mentre cambia orientazione.",
+      "distractors": "Cambiare orientazione non assegna due pressioni allo stesso punto; forza non resta verticale se cambia la normale. Parete orizzontale può ricevere pressione e non nasce un taglio statico dalla rotazione.",
+      "pedagogicalReview": "Valore scalare distinto dal verso della forza sulla parete.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q004",
+      "sourceSha256": "f7b82c22aa7e9afe55f32b09d9f14dea3285e25092a60e8eac4dcf134fe696eb",
+      "candidateSha256": "09073a3c3adcdf74ae5682ffc2d717d9e62e72470729388a1fc193268e066a20",
+      "reviewedSignature": "26411770ace1fc03db0a09740ff4e4852d0f268ce2d8c2edf6c3d4c0d3cd8138",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "87",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "p_rel=p_ass−p_atm. Da−12 kPa e99 kPa assoluti ricavo p_ass=99−12=87 kPa>0. Segno relativo negativo non significa assoluta negativa.",
+      "physicalAssumptions": "Atmosfera locale assoluta99 kPa, manometro−12 kPa relativo a essa; camera con pressione assoluta positiva.",
+      "distractors": "111 kPa sottrae un dato già negativo;−12 è manometrica,12 solo modulo della lettura e99 ignora la differenza.",
+      "pedagogicalReview": "Riferimento e segno del manometro espliciti.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q005",
+      "sourceSha256": "9360ddd1354b95f58c8e502c16013d0a591db7919c75f58b2b935be54e1262aa",
+      "candidateSha256": "ef6c34b0dd9e4681d7f268e022718e34742f74698b4f3ccd5394e64ab05145bc",
+      "reviewedSignature": "ef2fd7fac383f7ff8f313f03c617c6d21ebf6306f788f0553a8ccb80ee3ac2ac",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "26/25",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-3"
+      },
+      "manualArithmetic": "Le masse dei due volumi sono16 g e36 g; somma52 g,volume additivo50 mL. La densità media è52/50=26/25 g/mL, tra le densità iniziali e diversa dalla media semplice a volumi disuguali.",
+      "physicalAssumptions": "Due volumi20/30 mL a densità0,8/1,2 g/mL, nessuna perdita di massa e volumi additivi; densità media del campione finale.",
+      "distractors": "1,00 media due densità senza pesare volumi;2,00 le somma;0,96 copia il prodotto dei coefficienti senza bilancio;52 copia i grammi totali senza dividere per50 mL.",
+      "pedagogicalReview": "Masse calcolate separatamente prima della densità media.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q006",
+      "sourceSha256": "30330a7bfe6d56346c494966d2640f81efee1c5fcf32d0b31c0d4bd2bf12fb7f",
+      "candidateSha256": "a87354c8fe5687a14dd3947cbba382a207a03d1bb3f519c8c018caecb1619b3a",
+      "reviewedSignature": "2b0ce2230833bcadf0d5a70483bab75915611228e3ad4843fd20caff35fec18d",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Assoluta",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Una pressione riferita al vuoto è assoluta. Pressione relativa e atmosferica sono collegate alla stessa assoluta da p_ass=p_atm+p_rel; lo zero manometrico non coincide col vuoto.",
+      "physicalAssumptions": "Riferimento al vuoto per pressione assoluta; atmosfera come riferimento per la particolare lettura relativa richiamata.",
+      "distractors": "Relativa e differenziale atmosferica hanno altro riferimento; tangenziale indica direzione dello sforzo e volumetrica non distingue lo zero di pressione.",
+      "pedagogicalReview": "Riferimento di misura distinto dallo stato del fluido.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q007",
+      "sourceSha256": "1573a9ab302c883222256ca0cfa55b1c7de390fa0868966ae225ae3b711768e2",
+      "candidateSha256": "1409d5bac14c76bbabecc84a0ee5dc498908c7748ddf08627a3d4aee92c2989d",
+      "reviewedSignature": "6dfdc227840b63b315430976af8c6abe378717970558c5a27a7367012eca55fd",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c2-l001-progressive.svg": "895aae9d1568750d197b9c80efab7d2cbbca338652350258611992b7e4628cf6"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "A forza normale costante p₁A₁=p₂A₂. L’area cresce3 volte e la pressione scende a18/3=6 kPa. L’opzione erronea54 kPa, insieme all’area tripla, produrrebbe invece una forza9 volte maggiore.",
+      "physicalAssumptions": "Forza normale mantenuta costante, area4→12 cm²; sono confrontate pressioni medie nelle medesime unità.",
+      "distractors": "54 kPa aumenta p eA ciascuno3 volte,quindi F9 volte.18 ignora l’area nuova;2 divide di nuovo senza ragione;72 è coefficiente del prodotto pA prima di dividerlo per12.",
+      "pedagogicalReview": "Grandezza controllata identificata prima dell’inversa;controprova della forza ricalcolata.",
+      "assetReview": "XML e nuovo PNG indipendente640×1430 letti integralmente sui byte finali af6a3ade. Primo pannello forza normale45N e area0,015m², quoziente dimensionato corretto e risultato3kPa; nessuna scala condivisa con le prove successive. Secondo:rettangoli con stessa profondità70 e larghezze80/240, aree4/12cm² in rapporto3; vettori della stessa forza entrambi lunghi80 e pressioni18/6kPa inversamente proporzionali. Terzo:asseV9coordinate/mL,assemassa5coordinate/g; punti(20mL,20g) e(40mL,40g) sulla retta dalla stessa origine,ρ=1g/mL. Titoli, unità e zero visibili, nessun contatto o taglio residuo rilevato.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q008",
+      "sourceSha256": "42cff54a7e301e6fa1dd17f10ef32af80565b3a5b311950b8bdece8820163ccf",
+      "candidateSha256": "56a4978d104119a1bdcf405d1cfbe5a009839558aa2c3eca4aededf622a7a875",
+      "reviewedSignature": "f0597736ad2cf9b4530eda2f24c88d4b3d6688f501fdb80bf2f573a17716d48c",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c2-l001-progressive.svg": "895aae9d1568750d197b9c80efab7d2cbbca338652350258611992b7e4628cf6"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La densità del liquido",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-3"
+      },
+      "manualArithmetic": "Massa del solo liquido omogeneo nello stesso stato:m=ρV. Nel grafico m controV la pendenza Δm/ΔV èρ, con dimensione massa/volume. La tara non deve essere inclusa.",
+      "physicalAssumptions": "Liquido omogeneo nello stesso stato, massa del solo liquido, grafico m verticale eV orizzontale.",
+      "distractors": "Volume e massa sono coordinate,non pendenza;pressione ha dimensione diversa. L’inverso diρ sarebbe la pendenza del grafico ad assi scambiati;tara produrrebbe intercetta.",
+      "pedagogicalReview": "Assi e assenza della tara letti prima della pendenza.",
+      "assetReview": "XML e nuovo PNG indipendente640×1430 letti integralmente sui byte finali af6a3ade. Primo pannello forza normale45N e area0,015m², quoziente dimensionato corretto e risultato3kPa; nessuna scala condivisa con le prove successive. Secondo:rettangoli con stessa profondità70 e larghezze80/240, aree4/12cm² in rapporto3; vettori della stessa forza entrambi lunghi80 e pressioni18/6kPa inversamente proporzionali. Terzo:asseV9coordinate/mL,assemassa5coordinate/g; punti(20mL,20g) e(40mL,40g) sulla retta dalla stessa origine,ρ=1g/mL. Titoli, unità e zero visibili, nessun contatto o taglio residuo rilevato.",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q009",
+      "sourceSha256": "271a759864c2a680263061dfd08041018e7c6727ecc24d4f3238f5af0c99b0f6",
+      "candidateSha256": "cb00e9c299cb184114e29028bd726669a4ea8984b7ae3b572539a3d9c7563742",
+      "reviewedSignature": "99877b6e946e73e1192294099f01147eec875f1fffc86c39ff6f16c86be11287",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "9/5",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-3"
+      },
+      "manualArithmetic": "Chiusura alla materia impone stessa massa:ρ₁V₁=ρ₂V₂. Quindiρ₂=(6/5)(6/4)=9/5 kg/m³. Non occorre imporre isoterma o gas ideale per questo bilancio di massa.",
+      "physicalAssumptions": "Gas chiuso senza scambio di materia, densità iniziale6/5 kg/m³,volume6→4 L; volume e densità possono cambiare.",
+      "distractors": "0,80 usa4/6 anziché6/4 e non conserva massa;1,20 conserva erroneamenteρ;7,20 e0,20 moltiplicano o dividono per6 senza usare il rapporto completo.",
+      "pedagogicalReview": "Conservazione della massa sufficiente senza legge termica aggiuntiva.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q010",
+      "sourceSha256": "60ab4ee9afdb5a377281e8506809165f75b0345d84b751a5b01ded6a3c799326",
+      "candidateSha256": "32d0c5982bb44f83a00fec4626046e79c16dfda8476fe7be95178ea2bc812a97",
+      "reviewedSignature": "b03251a8cc5e7b88a976eb54d3bfcc381e5c1f2328ee44dd4346f103ebbcc7b3",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La componente normale divisa per l’area",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "La forza normale per unità di area definisce pressione media; quella tangenziale per unità di area definisce taglio. Le unità Pa uguali non eliminano la diversa componente geometrica.",
+      "physicalAssumptions": "Stessa faccia con componenti di forza normale e tangenziale, richiesta della pressione media e non dello sforzo risultante totale.",
+      "distractors": "F_tangenziale/A è taglio;somma dei moduli non ridefinisce pressione. Prodotto di forze dàN² eforza perareaN·m²,non Pa.",
+      "pedagogicalReview": "Stessa unità di pressione e taglio distinta dalla componente geometrica.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "a65f74fa28a43c6e578f0045e71e30c4ca53a0223c4960ee254fdeb8ed57b5a3",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "af6a3adeecb2946e79aca6e8509c23b4bd0afe85",
+  "packageSha256": "229d0e9167a8a7729d7c15d4cf2312d7d36bce0a556db30a96583c40ff5d8645",
+  "bindingsSha256": "1c7dd05e0242c43b95d0282b60c36e2cfe226e74777deb0eec9d609201be3c83",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C2.json",
+    "title": "cric-c2-l001",
+    "reference": "Dieci problemi distinti di fluido ordinario, forza normale e pressione, riferimenti di pressione, densità media e conservazione della massa."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/cric-c2-001-050-independent-models.py",
+    "sha256": "02b2341e89122709fcddfb6a48318d3d87ded5385cbbfada9e69edaad05007dc",
+    "commit": "e37686ebab9f1ac50919592f189ab8cf7f37184f"
+  },
+  "postReadNumericGuardHardening": "All constitutive, inverse, calibration and exact finite guard function bodies are identical to the actual pre-key snapshot from first version.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/primary-cric-c2-001-050-before-candidates-20261126.md",
+    "sha256": "34c7a33d1257ffa080cb94d8f36f0ebb753cf03134665b4b440153cc2f3a8237"
+  }
+}

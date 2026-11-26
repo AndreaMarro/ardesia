@@ -1,0 +1,681 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C2-Q001",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 1,
+      "title": "Taglio persistente: fluido e solido",
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Uno sforzo tangenziale agisce parallelamente alla superficie. Un solido elastico può equilibrarlo con una deformazione finita. Il liquido ordinario invece scorre sotto il taglio persistente: non sostiene quello sforzo in un equilibrio statico. La piccolezza dello sforzo non lo trasforma in una sollecitazione soltanto normale."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau=F_{\\parallel}/A"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau\\ne0"
+        },
+        {
+          "type": "formula",
+          "text": " [\\tau]=\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "La deformazione elastica finita descrive il solido nel regime assegnato. Un liquido può esercitare pressione e forza normale; scorrere non significa conservare la forma iniziale. La pressione non è una conversione automatica del taglio, né deve diventare negativa."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "In condizioni ordinarie un liquido e un solido elastico sono sottoposti a un piccolo sforzo tangenziale costante e non nullo. Quale comportamento distingue il liquido?",
+      "family": "uno-sforzo-tangenziale-persistente",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Continua a deformarsi e scorrere finché persiste lo sforzo",
+          "Raggiunge sempre una deformazione elastica finita e resta fermo",
+          "Non può trasmettere alcuna forza normale",
+          "Mantiene necessariamente la forma iniziale",
+          "Trasforma lo sforzo tangenziale in una pressione negativa"
+        ],
+        "value": "Continua a deformarsi e scorrere finché persiste lo sforzo"
+      },
+      "hints": [
+        "Confronta l’equilibrio finale del solido con ciò che accade al liquido mentre il taglio continua.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La deformazione elastica finita descrive il solido nel regime assegnato. Un liquido può esercitare pressione e forza normale; scorrere non significa conservare la forma iniziale. La pressione non è una conversione automatica del taglio, né deve diventare negativa.",
+        "target": "C2-L001"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Taglio persistente: fluido e solido"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q002",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 2,
+      "title": "Forza normale distribuita",
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La pressione media è la forza normale divisa per l’area. Scrivo 0,015=15/1000: dividere 45 per 15/1000 equivale a calcolare 3·1000. Risultano 3000 Pa. Mille pascal formano un kilopascal, perciò il valore richiesto è 3 kPa. L’uniformità fa coincidere il valore medio con quello locale."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6691570048abbe1861b30a7f76ab8e2f6ea8c9c1ec416fb5db4d4dc283d1dfc2",
+          "text": "La forza normale di 45 N agisce sull’area di 0,015 m². La pressione uniforme è 3 kPa: la freccia rappresenta la forza, non un’area."
+        },
+        {
+          "type": "formula",
+          "text": "p=\\frac{F_\\perp}{A}"
+        },
+        {
+          "type": "formula",
+          "text": " p=\\frac{45}{15/1000}\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " p=3000\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " p=3\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "0,675 deriva dal prodotto forza per area e non ha unità di pressione. 3000 kPa conserva il numero in pascal ma cambia l’unità senza convertirlo. 0,003 kPa aggiunge un fattore mille nella direzione sbagliata. 45 kPa copia soltanto il dato della forza."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una superficie di area 0,015 m² riceve una forza complessiva normale di 45 N, distribuita uniformemente. Qual è la pressione media in kPa?",
+      "family": "una-pressione-media-al-contatto",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "hints": [
+        "Prima ottieni N/m², poi converti i pascal in kilopascal.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "0,675 deriva dal prodotto forza per area e non ha unità di pressione. 3000 kPa conserva il numero in pascal ma cambia l’unità senza convertirlo. 0,003 kPa aggiunge un fattore mille nella direzione sbagliata. 45 kPa copia soltanto il dato della forza.",
+        "target": "C2-L001"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Forza normale distribuita"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q003",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 3,
+      "title": "Ruotare una parete di prova",
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La pressione idrostatica in un punto è uno scalare e non seleziona una direzione della parete. Per una piccola area la forza ha modulo pA e direzione normale alla superficie. Ruotando la parete cambia quindi la direzione della forza, mentre p resta lo stesso. L’area di prova è tanto piccola da trascurare la variazione di pressione al suo interno."
+        },
+        {
+          "type": "formula",
+          "text": "F_\\perp=pA"
+        },
+        {
+          "type": "formula",
+          "text": " p_{\\rm dopo}=p_{\\rm prima}"
+        },
+        {
+          "type": "text",
+          "text": "Verticale e orizzontale non definiscono due pressioni diverse nello stesso punto. La forza non resta verticale se cambia la normale alla superficie; il peso del liquido non coincide con ogni singola forza di pressione. Una parete orizzontale riceve pressione e un liquido fermo ideale non presenta taglio statico."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "In un punto di un liquido in quiete la pressione assoluta è p. Una piccola parete di prova viene ruotata mantenendo il suo centro nello stesso punto. Nel modello idrostatico ideale che cosa accade?",
+      "family": "ruotare-una-piccola-parete",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Il valore p resta uguale; la forza di pressione rimane normale alla parete",
+          "Il valore p cresce ogni volta che la parete è verticale",
+          "La forza di pressione resta sempre verticale",
+          "Il valore p diventa nullo quando la parete è orizzontale",
+          "La pressione diventa uno sforzo tangenziale sulla parete"
+        ],
+        "value": "Il valore p resta uguale; la forza di pressione rimane normale alla parete"
+      },
+      "hints": [
+        "Distingui il valore scalare della pressione dalla direzione della forza sulla superficie.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Verticale e orizzontale non definiscono due pressioni diverse nello stesso punto. La forza non resta verticale se cambia la normale alla superficie; il peso del liquido non coincide con ogni singola forza di pressione. Una parete orizzontale riceve pressione e un liquido fermo ideale non presenta taglio statico.",
+        "target": "C2-L001"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Ruotare una parete di prova"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q004",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 4,
+      "title": "Dal manometro al vuoto",
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La lettura relativa è la differenza fra pressione della camera e pressione atmosferica. Per ricostruire la pressione assoluta sommo l’atmosfera alla lettura con il suo segno: 99+(−12)=87 kPa. Il segno negativo del manometro indica una camera sotto la pressione atmosferica, non sotto lo zero assoluto di pressione."
+        },
+        {
+          "type": "formula",
+          "text": "p_{\\rm rel}=p_{\\rm ass}-p_{\\rm atm}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{\\rm ass}=p_{\\rm atm}+p_{\\rm rel}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{\\rm ass}=(99-12)\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{\\rm ass}=87\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "111 kPa sottrae una lettura già negativa e descriverebbe una sovrapressione. −12 kPa è la lettura relativa, non quella assoluta. 12 kPa ne prende soltanto il modulo; 99 kPa ignora il manometro. La pressione assoluta del gas nel modello resta positiva."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un manometro misura −12 kPa rispetto all’atmosfera locale, la cui pressione assoluta è 99 kPa. Qual è la pressione assoluta della camera?",
+      "family": "un-sensore-con-riferimento-atmosferico",
+      "answer": {
+        "type": "numeric",
+        "value": 87,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "hints": [
+        "Scrivi la definizione della pressione relativa prima di sostituire il segno meno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "111 kPa sottrae una lettura già negativa e descriverebbe una sovrapressione. −12 kPa è la lettura relativa, non quella assoluta. 12 kPa ne prende soltanto il modulo; 99 kPa ignora il manometro. La pressione assoluta del gas nel modello resta positiva.",
+        "target": "C2-L001"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Dal manometro al vuoto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q005",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 5,
+      "title": "Miscela con volumi additivi",
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Calcolo prima le masse: 20·0,8=16 g e 30·1,2=36 g. La massa totale è 52 g e, per l’ipotesi dichiarata, il volume finale è 50 mL. La densità media è 52/50=26/25=1,04 g/mL. I due liquidi non contribuiscono con volumi uguali, quindi non basta la media aritmetica delle loro densità."
+        },
+        {
+          "type": "formula",
+          "text": "m_1=16\\,\\mathrm g"
+        },
+        {
+          "type": "formula",
+          "text": " m_2=36\\,\\mathrm g"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=\\frac{m_1+m_2}{V_1+V_2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=\\frac{52}{50}\\,\\mathrm{g/mL}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=\\frac{26}{25}\\,\\mathrm{g/mL}"
+        },
+        {
+          "type": "text",
+          "text": "1,00 è la media semplice delle densità, valida per porzioni di volume uguale, che qui non sono date. 2,00 somma le densità anziché le masse. 0,96 moltiplica le densità e non ricostruisce 52 g in 50 mL. 52 è il valore numerico della massa totale in grammi, non della densità in g/mL."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "Si uniscono 20 mL di liquido con densità 0,8 g/mL e 30 mL con densità 1,2 g/mL. Non si perde massa e i volumi sono additivi. Qual è la densità media finale?",
+      "family": "densita-di-un-composto-di-due-porzioni",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1,04 g/mL",
+          "1,00 g/mL",
+          "2,00 g/mL",
+          "0,96 g/mL",
+          "52 g/mL"
+        ],
+        "value": "1,04 g/mL"
+      },
+      "hints": [
+        "Somma le masse calcolate separatamente e dividi per il volume totale dichiarato additivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "1,00 è la media semplice delle densità, valida per porzioni di volume uguale, che qui non sono date. 2,00 somma le densità anziché le masse. 0,96 moltiplica le densità e non ricostruisce 52 g in 50 mL. 52 è il valore numerico della massa totale in grammi, non della densità in g/mL.",
+        "target": "C2-L001"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Miscela con volumi additivi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q006",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 6,
+      "title": "Il riferimento al vuoto",
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una pressione assoluta ha lo zero nel riferimento al vuoto. La pressione relativa usa invece una pressione di confronto, spesso l’atmosfera locale. Sono due modi di esprimere la pressione dello stesso stato, collegati dalla somma del riferimento atmosferico alla lettura relativa."
+        },
+        {
+          "type": "formula",
+          "text": "p_{\\rm ass}=p_{\\rm atm}+p_{\\rm rel}"
+        },
+        {
+          "type": "text",
+          "text": "Relativa e differenziale richiedono un riferimento diverso dal vuoto indicato. Tangenziale descrive una direzione di sollecitazione, non il riferimento di pressione. Volumetrica non identifica questa distinzione. Una pressione relativa nulla può corrispondere a una pressione assoluta atmosferica non nulla."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "Quale aggettivo identifica una pressione espressa rispetto al vuoto?",
+      "family": "il-riferimento-al-vuoto",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Assoluta",
+          "Relativa",
+          "Differenziale rispetto all’atmosfera",
+          "Tangenziale",
+          "Volumetrica"
+        ],
+        "value": "Assoluta"
+      },
+      "hints": [
+        "Chiediti quale lettura avrebbe il proprio zero nel vuoto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Relativa e differenziale richiedono un riferimento diverso dal vuoto indicato. Tangenziale descrive una direzione di sollecitazione, non il riferimento di pressione. Volumetrica non identifica questa distinzione. Una pressione relativa nulla può corrispondere a una pressione assoluta atmosferica non nulla.",
+        "target": "C2-L001"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Il riferimento al vuoto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q007",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 7,
+      "title": "Stessa forza, area tripla",
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A forza normale fissata il prodotto pA resta uguale. L’area diventa tre volte maggiore: 12/4=3. La pressione quindi si divide per tre, passando da 18 a 6 kPa. Le aree possono restare in cm² nel rapporto, perché la stessa unità si cancella."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6691570048abbe1861b30a7f76ab8e2f6ea8c9c1ec416fb5db4d4dc283d1dfc2",
+          "text": "I due appoggi ricevono la stessa forza normale. Le larghezze rappresentano aree di 4 e 12 cm² con la stessa profondità ideale: l’area triplica, la pressione passa da 18 a 6 kPa."
+        },
+        {
+          "type": "formula",
+          "text": "p_1A_1=p_2A_2"
+        },
+        {
+          "type": "formula",
+          "text": " p_2=p_1\\frac{A_1}{A_2}"
+        },
+        {
+          "type": "formula",
+          "text": " p_2=18\\frac4{12}\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_2=6\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "54 kPa applica il rapporto diretto delle aree e triplicherebbe anche la forza risultante. 18 kPa ignora il cambiamento dell’area. 2 kPa divide ancora per tre senza motivo. 72 copia il prodotto numerico iniziale pA e non lo divide per la nuova area."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una forza normale costante produce inizialmente una pressione media di 18 kPa su 4 cm². La stessa forza viene distribuita su 12 cm². Qual è la nuova pressione media?",
+      "family": "aumentare-la-superficie-di-appoggio",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "hints": [
+        "Mantieni costante la forza, non la pressione: l’area cresce di un fattore tre.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "54 kPa applica il rapporto diretto delle aree e triplicherebbe anche la forza risultante. 18 kPa ignora il cambiamento dell’area. 2 kPa divide ancora per tre senza motivo. 72 copia il prodotto numerico iniziale pA e non lo divide per la nuova area.",
+        "target": "C2-L001"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Stessa forza, area tripla"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q008",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 8,
+      "title": "La pendenza massa-volume",
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il liquido omogeneo nello stesso stato segue m=ρV. Nel grafico con m in ordinata e V in ascissa la pendenza è Δm/ΔV, dunque ρ. La massa del contenitore è esclusa dal dato: la retta ideale passa per l’origine. Le unità della pendenza sono massa per volume."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6691570048abbe1861b30a7f76ab8e2f6ea8c9c1ec416fb5db4d4dc283d1dfc2",
+          "text": "Il grafico d’esempio usa densità 1 g/mL: 20 mL corrispondono a 20 g e 40 mL a 40 g. È una retta massa-volume del solo liquido; la pendenza è la densità."
+        },
+        {
+          "type": "formula",
+          "text": "m=\\rho V"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta m}{\\Delta V}=\\rho"
+        },
+        {
+          "type": "formula",
+          "text": " [\\rho]=\\mathrm{kg/m^3}"
+        },
+        {
+          "type": "text",
+          "text": "Il volume è la coordinata orizzontale, non la pendenza. La pressione non ha unità di massa per volume. L’inverso della densità sarebbe la pendenza del grafico V in funzione di m. La tara produrrebbe un’intercetta se fosse inclusa, ma qui si misura il solo liquido."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Per un liquido omogeneo nello stesso stato si traccia la massa del solo liquido in funzione del volume dosato. Che cosa misura la pendenza della retta?",
+      "family": "il-grafico-massavolume",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La densità del liquido",
+          "Il volume di ogni porzione",
+          "La pressione atmosferica",
+          "L’inverso della densità",
+          "La massa del contenitore"
+        ],
+        "value": "La densità del liquido"
+      },
+      "hints": [
+        "Leggi quali grandezze occupano l’asse verticale e quello orizzontale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il volume è la coordinata orizzontale, non la pendenza. La pressione non ha unità di massa per volume. L’inverso della densità sarebbe la pendenza del grafico V in funzione di m. La tara produrrebbe un’intercetta se fosse inclusa, ma qui si misura il solo liquido.",
+        "target": "C2-L001"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "La pendenza massa-volume"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q009",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 9,
+      "title": "Comprimere senza perdere massa",
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa del gas resta uguale: ρ₁V₁=ρ₂V₂. Isolando ρ₂ ottengo ρ₁V₁/V₂. Il rapporto dei volumi è 6/4=3/2, quindi 1,20·3/2=1,80 kg/m³. Non serve assegnare una trasformazione termica: questa conclusione segue dalla sola conservazione della massa."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_1V_1=\\rho_2V_2"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_2=\\rho_1\\frac{V_1}{V_2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_2=\\frac65\\frac64\\,\\mathrm{kg/m^3}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_2=\\frac95\\,\\mathrm{kg/m^3}"
+        },
+        {
+          "type": "text",
+          "text": "0,80 usa il rapporto inverso dei volumi e farebbe diminuire la massa. 1,20 suppone densità invariata pur riducendo il volume a massa fissata. 7,20 moltiplica per il solo numero 6; 0,20 divide per il solo numero 6. Il gas non è stato assunto incomprimibile."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un gas chiuso ha densità iniziale 1,20 kg/m³ e volume iniziale 6,0 L. Viene compresso fino a 4,0 L senza perdite di materia. Qual è la densità finale?",
+      "family": "conservare-la-massa-comprimendo-un-gas",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1,80 kg/m³",
+          "0,80 kg/m³",
+          "1,20 kg/m³",
+          "7,20 kg/m³",
+          "0,20 kg/m³"
+        ],
+        "value": "1,80 kg/m³"
+      },
+      "hints": [
+        "Scrivi la stessa massa all’inizio e alla fine; nel rapporto le unità L si cancellano.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "0,80 usa il rapporto inverso dei volumi e farebbe diminuire la massa. 1,20 suppone densità invariata pur riducendo il volume a massa fissata. 7,20 moltiplica per il solo numero 6; 0,20 divide per il solo numero 6. Il gas non è stato assunto incomprimibile.",
+        "target": "C2-L001"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Comprimere senza perdere massa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q010",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 10,
+      "title": "Pressione e taglio sulla stessa faccia",
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La pressione media descrive la sollecitazione normale per unità di area. La forza tangenziale dà invece uno sforzo di taglio. Anche se entrambe hanno unità N e i due rapporti hanno unità Pa, le direzioni rispetto alla faccia distinguono le due sollecitazioni. Non si sommano i moduli per ridefinire la pressione."
+        },
+        {
+          "type": "formula",
+          "text": "p_{\\rm media}=F_\\perp/A"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_{\\rm media}=F_\\parallel/A"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto con la componente tangenziale è lo sforzo di taglio. La somma dei moduli confonde due componenti geometricamente diverse. Il prodotto delle forze ha unità N² e il prodotto forza per area ha unità N·m²: nessuno dei due è una pressione."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Sulla faccia di una piastra agiscono contemporaneamente una forza normale e una forza tangenziale. Quale componente entra nella definizione della pressione media sulla faccia?",
+      "family": "una-forza-parallela-alla-faccia",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La componente normale divisa per l’area",
+          "La componente tangenziale divisa per l’area",
+          "La somma dei moduli delle due componenti divisa per l’area",
+          "Il prodotto delle due componenti",
+          "La componente normale moltiplicata per l’area"
+        ],
+        "value": "La componente normale divisa per l’area"
+      },
+      "hints": [
+        "Scomponi la forza rispetto alla faccia e individua la componente perpendicolare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il rapporto con la componente tangenziale è lo sforzo di taglio. La somma dei moduli confonde due componenti geometricamente diverse. Il prodotto delle forze ha unità N² e il prodotto forza per area ha unità N·m²: nessuno dei due è una pressione.",
+        "target": "C2-L001"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Pressione e taglio sulla stessa faccia"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "6691570048abbe1861b30a7f76ab8e2f6ea8c9c1ec416fb5db4d4dc283d1dfc2",
+      "name": "cric-c2-l001-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTQzMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5EaXN0cmlidWlyZSB1bmEgZm9yemEgZSBsZWdnZXJlIHVuYSBkZW5zaXTDoDwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlRyZSBwYW5uZWxsaSBkaXN0aW50aTogZm9yemEgbm9ybWFsZSA0NSBuZXd0b24gc3UgMCwwMTUgbWV0cmkgcXVhZHJhdGk7IHN0ZXNzYSBmb3J6YSBzdSBhcmVlIG5lbCByYXBwb3J0byB1bm8gYSB0cmUgZSBwcmVzc2lvbmkgMTggZSA2IGtpbG9wYXNjYWw7IHJldHRhIG1hc3NhIHZvbHVtZSBjb24gZGVuc2l0w6AgZOKAmWVzZW1waW8gdW4gZ3JhbW1vIHBlciBtaWxsaWxpdHJvLjwvZGVzYz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNDMwIiBmaWxsPSIjZmFmN2VmIi8+PGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMyNTI0MzgiIGZvbnQtc2l6ZT0iMjIiPgo8dGV4dCB4PSIzMiIgeT0iNDgiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj5Gb3J6YSwgYXJlYSBlIGRlbnNpdMOgPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI5MiI+MS4gVW5hIGZvcnphIG5vcm1hbGUgZGlzdHJpYnVpdGE8L3RleHQ+CjxyZWN0IHg9IjE1NSIgeT0iMjc1IiB3aWR0aD0iMzMwIiBoZWlnaHQ9IjcyIiBmaWxsPSIjZGNkN2YzIiBzdHJva2U9IiM0MTM2NmIiIHN0cm9rZS13aWR0aD0iMyIvPgo8cGF0aCBkPSJNMzIwIDE2MFYyNjAiIHN0cm9rZT0iIzViMzZiMSIgc3Ryb2tlLXdpZHRoPSI2Ii8+PHBhdGggZD0ibTMwOCAyNDIgMTIgMTggMTItMTgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzViMzZiMSIgc3Ryb2tlLXdpZHRoPSI2Ii8+Cjx0ZXh0IHg9IjM1NSIgeT0iMjEzIj5GID0gNDUgTjwvdGV4dD48dGV4dCB4PSIxOTAiIHk9IjMyMSI+QSA9IDAsMDE1IG3CsjwvdGV4dD48dGV4dCB4PSIxNTAiIHk9IjM5OCI+cCA9IDQ1IC8gMCwwMTUgPSAzMDAwIFBhPC90ZXh0Pjx0ZXh0IHg9IjI0OCIgeT0iNDQwIj5wID0gMyBrUGE8L3RleHQ+CjxwYXRoIGQ9Ik0zMiA0ODBINjA4IiBzdHJva2U9IiNiM2FiYmYiLz48dGV4dCB4PSIzMiIgeT0iNTI1Ij4yLiBMYSBzdGVzc2EgZm9yemEsIGFyZWEgdHJpcGxhPC90ZXh0Pgo8cGF0aCBkPSJNMTQwIDU3MFY2NTAiIHN0cm9rZT0iIzViMzZiMSIgc3Ryb2tlLXdpZHRoPSI1Ii8+PHBhdGggZD0ibTEzMCA2MzQgMTAgMTYgMTAtMTYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzViMzZiMSIgc3Ryb2tlLXdpZHRoPSI1Ii8+CjxwYXRoIGQ9Ik00MjAgNTcwVjY1MCIgc3Ryb2tlPSIjNWIzNmIxIiBzdHJva2Utd2lkdGg9IjUiLz48cGF0aCBkPSJtNDEwIDYzNCAxMCAxNiAxMC0xNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNWIzNmIxIiBzdHJva2Utd2lkdGg9IjUiLz4KPHRleHQgeD0iMTY4IiB5PSI2MTUiPkY8L3RleHQ+PHRleHQgeD0iNDQ4IiB5PSI2MTUiPkY8L3RleHQ+CjxyZWN0IHg9IjEwMCIgeT0iNjc1IiB3aWR0aD0iODAiIGhlaWdodD0iNzAiIGZpbGw9IiNkY2Q3ZjMiIHN0cm9rZT0iIzQxMzY2YiIgc3Ryb2tlLXdpZHRoPSIzIi8+PHJlY3QgeD0iMzAwIiB5PSI2NzUiIHdpZHRoPSIyNDAiIGhlaWdodD0iNzAiIGZpbGw9IiNkOWVkZGYiIHN0cm9rZT0iIzI0NmQ1NCIgc3Ryb2tlLXdpZHRoPSIzIi8+Cjx0ZXh0IHg9IjEwNSIgeT0iNzkwIj40IGNtwrI8L3RleHQ+PHRleHQgeD0iMzg1IiB5PSI3OTAiPjEyIGNtwrI8L3RleHQ+PHRleHQgeD0iODUiIHk9Ijg0MCI+MTgga1BhPC90ZXh0Pjx0ZXh0IHg9IjM4MCIgeT0iODQwIj42IGtQYTwvdGV4dD48dGV4dCB4PSIxMTUiIHk9Ijg5NSI+cOKCgUHigoEgPSBw4oKCQeKCgiA6IGZvcnphIHVndWFsZTwvdGV4dD4KPHBhdGggZD0iTTMyIDk0MEg2MDgiIHN0cm9rZT0iI2IzYWJiZiIvPjx0ZXh0IHg9IjMyIiB5PSI5ODUiPjMuIFVuIGVzZW1waW86IM+BID0gMSBnL21MPC90ZXh0Pgo8cGF0aCBkPSJNMTIwIDEyOTBINTYwTTEyMCAxMjkwVjEwNDAiIHN0cm9rZT0iIzI1MjQzOCIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTEyMCAxMjkwIDQ4MCAxMDkwIiBzdHJva2U9IiMyNDZkNTQiIHN0cm9rZS13aWR0aD0iNSIvPgo8cGF0aCBkPSJNMzAwIDEyOTBWMTE5MEgxMjBNNDgwIDEyOTBWMTA5MEgxMjAiIHN0cm9rZT0iIzk3OGVhYiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI1IDUiIGZpbGw9Im5vbmUiLz4KPHRleHQgeD0iNDUiIHk9IjEwMzAiPm0gKGcpPC90ZXh0Pjx0ZXh0IHg9Ijg2IiB5PSIxMzIwIj4wPC90ZXh0Pjx0ZXh0IHg9IjcwIiB5PSIxMTk4Ij4yMDwvdGV4dD48dGV4dCB4PSI3MCIgeT0iMTA5OCI+NDA8L3RleHQ+PHRleHQgeD0iMjg1IiB5PSIxMzIwIj4yMDwvdGV4dD48dGV4dCB4PSI0NjUiIHk9IjEzMjAiPjQwPC90ZXh0Pjx0ZXh0IHg9IjQ2MCIgeT0iMTM2NSI+ViAobUwpPC90ZXh0Pjx0ZXh0IHg9IjEzNSIgeT0iMTQwMCI+UGVuZGVuemEgPSDOlG0gLyDOlFYgPSDPgTwvdGV4dD4KPC9nPjwvc3ZnPg=="
+    }
+  ]
+}
