@@ -1,0 +1,7 @@
+Mathematical/source partial only:179 original/effective reader/catalog records in33 existing review groups, no consumer activity credit. Includes6catalog wrappers,56lessons and117examples;14 existing DRAFT editions retain nested failed-published-edition judgments. The10 interactive worksheets are explicitly excluded from this179count.
+
+Original source discovery used every pinned5d1dc8 content JSON, not assumed filenames. Each original record/path/fileSHA and each effective revision package/binding is byte-frozen in reader-blueprint.json. All old mathematical/manual/pedagogical source readings are disclosed as reused, not new blinded first readings. Fresh exact/SymPy/Pint review functions were actually recomputed for all33groups, first successfully then again with relative-import dependency closure and producerSHA included in EVERY selected record.179source/math results pass within their recorded assumptions; this does not accept their UI.
+
+Original signatures/candidates/assets were not changed. All14 failed original judgments remain nested next to their existing reviewed DRAFT candidates.3targeted testsPASS.081s cover exact179unique identity, current helper/producer bytes and preserved14failures.
+
+Root requested postponing further large UI until the separate method-page CSS correction is authored/peer-reviewed, so every record remains UI_NOT_RUN_ON_FINAL_EPOCH, credit0/humanNOT_RUN/publicationNONE. Source27503c36 is a byte provenance reference for future UI input, not an assertion of any observed reader UI. No registry/ledger/runtime/Root edits.
