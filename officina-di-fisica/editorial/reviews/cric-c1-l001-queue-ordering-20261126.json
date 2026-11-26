@@ -1,0 +1,14 @@
+{
+  "scope": "local execution queue audit, no mathematical test result",
+  "cancelledOwnQueuedPid": 38781,
+  "exitCode": 143,
+  "childStarted": false,
+  "tests": "NOT_RUN for this queued attempt",
+  "reason": "Dependent report regeneration was still queued behind CORE. Cancelled only own waiting target wrapper so final report persistence must complete before targeted tests.",
+  "observedCoreHolder": 38703,
+  "observedCoreChildNode": 38712,
+  "otherProcessesTouched": false,
+  "observedAt": "2026-11-26T18:57:25.106055+00:00",
+  "humanApproval": "NOT_RUN",
+  "followup": "A diagnostic expected the new per-ID assumptions before the queued builder had consumed that edit; the assertion failed. A missing shell set-e still allowed an initial target, which genuinely passed 13 tests on the earlier transient metadata. Waited for preparation, reran builder and report persistence sequentially with set-e, then the final target genuinely passed 13 tests on all ten individual assumptions. Initial and final logs retained; no candidate, numerical law or runtime changed."
+}

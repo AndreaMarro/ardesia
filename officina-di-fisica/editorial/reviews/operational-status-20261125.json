@@ -6,25 +6,25 @@
   "mandate": "INCOMPLETE",
   "questions": {
     "accounted": 4606,
-    "scientificallyReviewed": 4000,
-    "scientificallyUnreviewed": 606,
+    "scientificallyReviewed": 4010,
+    "scientificallyUnreviewed": 596,
     "registeredDrafts": 3792,
     "compiledDraftsLocally": 3632,
     "compiledCandidateFullyLocallyValidated": false,
     "canonicalHistoricalRevisedDrafts": 3312,
-    "newRootAcceptanceReceipt": "editorial/reviews/u7-03-root-integration-20261126/receipt.json",
+    "newRootAcceptanceReceipt": "editorial/reviews/cric-c1-l001-root-integration-20261126/receipt.json",
     "compiledCandidateFullyRemotelyValidated": true,
     "unreviewedBySource": {
       "Ardesia": 0,
-      "Cric": 606
+      "Cric": 596
     },
     "newRootAcceptanceReceipts": [
       "editorial/reviews/u7-02-root-integration-20261126/receipt.json",
       "editorial/reviews/u7-03-root-integration-20261126/receipt.json"
     ],
-    "registrationPendingQuestions": 208,
+    "registrationPendingQuestions": 218,
     "fullArdesiaIdAudit": "editorial/reviews/u7-03-root-integration-20261126/ardesia4000-id-reconciliation.json",
-    "fullyAccepted": 3999,
+    "fullyAccepted": 4009,
     "pedagogicalReopened": 1,
     "pedagogicalReopenedIds": [
       "AR-u7-wavelength-in-medium-15"
@@ -128,13 +128,13 @@
     "headSha": "5e27eeee4ec5b9ae499f174c633525547d9a423a",
     "state": "FROZEN3792_RETRY_IN_PROGRESS; CURRENT_PEDAGOGICAL_WITHDRAWAL_PREVENTS_OLD_ADOPTION",
     "registrySha256": "62c195d8b6ab1f4ddbac1af2ada5ad834656943db19c85bb195f8742d0dcdb2c",
-    "scientificQuestionsPendingRegistryActivation": 208,
+    "scientificQuestionsPendingRegistryActivation": 218,
     "previewRequestPin": "DEFERRED_UNTIL3792_ADOPTION_BEFORE_PR_AVOIDS_DUPLICATE_PRODUCER",
     "currentRegistrySha256": "22e01f2beac0eb49edb9197d01463a94be526b159dbee7848e601e5cbfc0af23",
     "adoptionPlan": "Retain3792 as source-specific technical evidence, do not adopt against changed ledger. After Q15 closure register accepted pending lots and run/adopt a fresh complete current snapshot."
   },
-  "nextScientificAcceptanceId": "C1-Q001",
-  "nextNewAuthoringId": "C1-Q001",
+  "nextScientificAcceptanceId": "C1-Q011",
+  "nextNewAuthoringId": "C2-Q001",
   "assignments": "All4000 Ardesia independently reviewed and Root tested/imported. Pending registry208=U702160+U70348, do not redo. Cric606 source-only cross-primaries and existing assembler extension active;54 cohorts assigned.",
   "governance": {
     "publication": "DEFAULT_DENY",
@@ -326,12 +326,12 @@
     }
   },
   "cricProduction": {
-    "scientificallyAccepted": 0,
-    "authoredKnown": 60,
+    "scientificallyAccepted": 10,
+    "authoredKnown": 100,
     "authorAFirst10Commit": "a9e769ae",
     "authorBFirst50Commit": "41f9409d",
     "sourceOnlyPrimariesAndModels": "C1 reciprocal50 frozen before candidate exposure; C2 A50 primary/models also frozen byB",
-    "nextScientificAcceptanceId": "C1-Q001",
+    "nextScientificAcceptanceId": "C1-Q011",
     "protectedExamCount": 93
   },
   "nativeGoalControl": {
