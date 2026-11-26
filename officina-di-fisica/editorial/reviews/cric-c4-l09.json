@@ -1,0 +1,386 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "C4-Q081",
+      "sourceSha256": "cc948f07810a8472484546b1ee8bbfc77eae3f87a181c44a8f1f4b9514f29b6b",
+      "candidateSha256": "371d51044786ac6041674416cae3fad6d2899fea70aada87d282b48dc44f0454",
+      "reviewedSignature": "5c66d716eea17ea283392a4011b6084fe391df18a3aec3dfa16ac639e019694d",
+      "assetChecksums": {
+        "cric-c4-l09-progressive.svg": "261dd3e47bb74deec191a639bf121095f4c9ab0a36753a62fcb1e74aa2bf5315"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Inverte il verso mantenendo il modulo",
+      "dimension": {},
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Il campo del filo è proporzionale alla corrente orientata.\nInvertire I inverte il contributo B nel punto esterno fissato. Anche il modulo\nresta uguale se si mantiene uguale |I|; non si può dedurre il campo totale in\npresenza di altri contributi non specificati.",
+      "physicalAssumptions": "Contributo del solo filo lungo, punto esterno fisso, corrente non nulla invertita a modulo invariato; campo terrestre non incluso.",
+      "distractors": "Filo fisso non impone corrente fissa; punto fisso conserva distanza e inversione I cambia tangente orientata.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Il campo del filo è proporzionale alla corrente orientata.\nInvertire I inverte il contributo B nel punto esterno fissato. Anche il modulo\nresta uguale se si mantiene uguale |I|; non si può dedurre il campo totale in\npresenza di altri contributi non specificati.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Diciotto SVG originali fonte letti integralmente XML. Due fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q082",
+      "sourceSha256": "adae704eb7ef529cb0d938025755b265c8463f5d8d1439f79c7a06469d6e6657",
+      "candidateSha256": "47315f4f754565b7bbcafd89819e4701ec5fff2561dd8dde1ba930e87048cbf9",
+      "reviewedSignature": "eea901960c0d88d521e1615dddeda0c436ccfb1360d543df813625dc07a24ba2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Poiché v è perpendicolare a B, F=|q|vB. Quindi\n|q|=2 × 10⁻⁶/(400 × 1/2)C=10⁻⁸C=10 nC. È il modulo della carica, non il suo segno.\nLa conversione micro→nano dà un fattore 1000, verificato nel percorso Pint.",
+      "physicalAssumptions": "Velocità perpendicolare al campo, F e B assegnati in modulo; segno della carica non inferibile dal solo modulo.",
+      "distractors": "0,010 nC confonde nano/micro; 1000 nC produce 200 μN, non 2 μN; il segno non è determinato.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Poiché v è perpendicolare a B, F=|q|vB. Quindi\n|q|=2 × 10⁻⁶/(400 × 1/2)C=10⁻⁸C=10 nC. È il modulo della carica, non il suo segno.\nLa conversione micro→nano dà un fattore 1000, verificato nel percorso Pint.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q083",
+      "sourceSha256": "bc71cf655701e422b1ba68b2680e87801cdc6d9388f1ccf5a404dd718e5511e8",
+      "candidateSha256": "c7ddbd3fa8407f445bac36f7b470cfef59aaa994caa430eba9e24a35140470df",
+      "reviewedSignature": "549bdc117a6c22e7d07a131605ff1e7a7eaff3041a4e3db7c90427dea4d963d1",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Antiparallela al campo",
+      "dimension": {},
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Antiparallela. Con q, v e B non nulli, F=qv×B è zero quando\nsinθ=0, cioè per θ=0 oppureπ. Non è necessario che la particella sia ferma.",
+      "physicalAssumptions": "q, v e B non nulli; la nullità del prodotto vettoriale deriva dall’angolo, non da neutralità o velocità zero.",
+      "distractors": "90° massimizza forza, 45° non annulla seno, uniformità spaziale non annulla prodotto vettoriale.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Antiparallela. Con q, v e B non nulli, F=qv×B è zero quando\nsinθ=0, cioè per θ=0 oppureπ. Non è necessario che la particella sia ferma.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q084",
+      "sourceSha256": "a7301705d386c7a89e4f0209a3536fca1807a7a606826316d83457899f8e89f0",
+      "candidateSha256": "198975ca99483c87682aaf075f68c538e526a8a9b865ad26f3fdde8b9326cb7f",
+      "reviewedSignature": "8257dbe91c746445ff84cbc3a0cd156c517b4595cf5aa1da1513c0c3b07fdd18",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/25",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: F=IℓB sin 30°=4 ×(3/10)×(1/5)×(1/2)N=3/25 N=0,12 N.\nIl seno 30° è esattamente 1/2; non occorre una calcolatrice. L’angolo è quello\nfra la direzione della corrente nel filo e B.",
+      "physicalAssumptions": "Segmento rettilineo, campo uniforme, angolo 30° rispetto alla corrente; seno esatto 1/2.",
+      "distractors": "0,24 N omette seno, 0,06 N dimezza due volte, 1,2 N errore dieci, zero richiede fattore nullo o parallelismo.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: F=IℓB sin 30°=4 ×(3/10)×(1/5)×(1/2)N=3/25 N=0,12 N.\nIl seno 30° è esattamente 1/2; non occorre una calcolatrice. L’angolo è quello\nfra la direzione della corrente nel filo e B.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q085",
+      "sourceSha256": "28db2ae5a5a7078369170cc0e997727bf4d41018b5293de0f65b3c00d7f67506",
+      "candidateSha256": "cf5454a2b7bdaecaf5d712d10934cb50297beb3a13dcea63cc48de014f7c4a14",
+      "reviewedSignature": "072e16831ec3744c335c48f7498d3448c911ff638391a4823f9460a9d9edf57d",
+      "assetChecksums": {
+        "cric-c4-l09-progressive.svg": "261dd3e47bb74deec191a639bf121095f4c9ab0a36753a62fcb1e74aa2bf5315"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Verso il basso nel foglio",
+      "dimension": {},
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Scelgo x a destra, y in alto, z uscente. Per la velocità+x e\ncampo−z, v×B è+y. La carica negativa inverte quel verso: forza−y, verso il\nbasso. Il prodotto vettoriale è verificato anche con matrici simboliche.",
+      "physicalAssumptions": "q negativa, v a destra e B entrante nel foglio; assi x destra,y alto,z uscente.",
+      "distractors": "Alto corrisponde q positiva; destra non perpendicolare a v; entrante/uscente parallelo a B incompatibile con v×B.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Scelgo x a destra, y in alto, z uscente. Per la velocità+x e\ncampo−z, v×B è+y. La carica negativa inverte quel verso: forza−y, verso il\nbasso. Il prodotto vettoriale è verificato anche con matrici simboliche.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Diciotto SVG originali fonte letti integralmente XML. Due fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q086",
+      "sourceSha256": "3b69bd2e2572f70c69006f86893a4564b66dda073a5135319419baf709ab2a9d",
+      "candidateSha256": "2e0f397366ff7324cded160480a11d2164eff5f5f99d5bacab70d9180401c4a6",
+      "reviewedSignature": "e3038d6733e84a0efd52a4e3d3f65f8338bde5198c6c53fc7e531eeebf135b3e",
+      "assetChecksums": {
+        "cric-c4-l09-progressive.svg": "261dd3e47bb74deec191a639bf121095f4c9ab0a36753a62fcb1e74aa2bf5315"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "625",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Un quarto di periodo dura 0,40 ms, dunque T=4 × 0,40=1,60 ms.\nf=1/T=1000/1,6 Hz=10000/16 Hz=625 Hz. Moltiplicare per quattro la frequenza\nanziché ricostruire prima il periodo confonderebbe tempo e inverso del tempo.",
+      "physicalAssumptions": "Campo uniforme, regime non relativistico, rotazione uniforme; 0,40 ms è un QUARTO, non periodo completo.",
+      "distractors": "2500 Hz usa quarto come periodo; 0,625 ignora milli; 10000 moltiplica reciproco del quarto per quattro.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Un quarto di periodo dura 0,40 ms, dunque T=4 × 0,40=1,60 ms.\nf=1/T=1000/1,6 Hz=10000/16 Hz=625 Hz. Moltiplicare per quattro la frequenza\nanziché ricostruire prima il periodo confonderebbe tempo e inverso del tempo.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Diciotto SVG originali fonte letti integralmente XML. Due fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q087",
+      "sourceSha256": "bc7d38957029ab15eda1f43b77908e5443611665ba924cccb89e17dbd9f55530",
+      "candidateSha256": "61243292f943be61890895066eac8603c98a4b621be0a8ddcd55fb2b72111353",
+      "reviewedSignature": "a546093531aef6cc04f7ffff584e9010d9e1d96efcbdd95c5d74a35389c9015f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Un’elica cilindrica",
+      "dimension": {},
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: La traiettoria è un’elica. La componente parallela non subisce\nla forza magnetica e resta costante; quella perpendicolare ruota. Il cerchio\nè il caso limite con componente parallela nulla, escluso nel prompt.",
+      "physicalAssumptions": "Campo uniforme non nullo e nessun’altra forza; due componenti iniziali della velocità non nulle, regime non relativistico.",
+      "distractors": "Cerchio/retta richiedono una componente nulla esclusa; parabola o raggio crescente richiedono diversa dinamica/energia.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: La traiettoria è un’elica. La componente parallela non subisce\nla forza magnetica e resta costante; quella perpendicolare ruota. Il cerchio\nè il caso limite con componente parallela nulla, escluso nel prompt.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q088",
+      "sourceSha256": "29cfca00a167c8e0c334f258228a847ea59ad47cfb23082fd637e541c0fe6329",
+      "candidateSha256": "aa652b45ccdac0b0164f2169ce1934777148574a2cb6c89cc2c5d1344eaf8122",
+      "reviewedSignature": "d670400ac91e1d0d967dae2071556395aed449aa00742c1d93cc783ac185ef8e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "0",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: La potenza magnetica è q(v×B)·v=0 in ogni istante.\nLa velocità cambia direzione, ma non modulo: ΔK=0 J anche dopo la deviazione 90°.\nL’identità è simbolica per componenti generiche, non basata su un singolo disegno.",
+      "physicalAssumptions": "Sola forza magnetica statica uniforme; F perpendicolare a v in ogni istante e teorema lavoro-energia applicato all’intero arco.",
+      "distractors": "Forza non nulla non implica lavoro; deviazione di 90° non moltiplica K; segno q cambia curvatura ma non lavoro nullo.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: La potenza magnetica è q(v×B)·v=0 in ogni istante.\nLa velocità cambia direzione, ma non modulo: ΔK=0 J anche dopo la deviazione 90°.\nL’identità è simbolica per componenti generiche, non basata su un singolo disegno.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q089",
+      "sourceSha256": "256d81f203273d76a958c1dd88d1102fb8668cf279c0e9deca52567c4ee26b69",
+      "candidateSha256": "0511fcc70cb517fd55c816e7c798056dcaf19692eeba86f3c88146239bdd9bd9",
+      "reviewedSignature": "969e342b6914d8b1988f2c956a8f05aa4697484541cfa2530df7f5f3632233e8",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Quella con carica +2e",
+      "dimension": {},
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Dal moto circolare r=p/(|q|B). A parità di p e B, la carica+2 e\nha raggio metà di quella+e. Non serve conoscere separatamente massa e velocità.",
+      "physicalAssumptions": "Modulo della quantità di moto non nullo comune, B>0 comune, ingressi perpendicolari; nessuna uguaglianza separata di m o v necessaria.",
+      "distractors": "Stesso p non rende uguali raggi se |q| differisce; temperatura irrilevante; segno comune non cancella curvatura.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Dal moto circolare r=p/(|q|B). A parità di p e B, la carica+2 e\nha raggio metà di quella+e. Non serve conoscere separatamente massa e velocità.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q090",
+      "sourceSha256": "95cd2813de23e647e1884330abf613e5da722f344fadd44ffd507ff161401b7c",
+      "candidateSha256": "e46bf985958a5f5f290bdab15f12ff9e7f1e45e7ba36d52c9427034ce822353e",
+      "reviewedSignature": "533b497ee74b9ee8a183ed5d36152c13fd67c9bb0ea111604cfc21de5ef0b935",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "30000",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: L’assenza di deviazione richiede |q|E=|q|vB nelle condizioni\nperpendicolari date. v=E/B=1200/(1/25)=30000 m/s. La carica si cancella perché\nè non nulla; l’opposizione dei versi è già assegnata dal prompt.",
+      "physicalAssumptions": "Particella positiva non relativistica, campi incrociati e forze opposte, nessun’altra forza; q si cancella solo dopo il bilancio vettoriale.",
+      "distractors": "48 copia EB; 30 m/s dà vB=1,2 V/m; cancellazione q valida nel bilancio con versi opposti.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: L’assenza di deviazione richiede |q|E=|q|vB nelle condizioni\nperpendicolari date. v=E/B=1200/(1/25)=30000 m/s. La carica si cancella perché\nè non nulla; l’opposizione dei versi è già assegnata dal prompt.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "68f3588b78679fa5476e36137b405e6f71e05d427d1d1fb2490f401794effe5b",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "e611a73dba8b10eeea061b1362811f99ab1fc91b",
+  "packageSha256": "1c626a38ab432e808b6726e72bdef8a0a6ddbe4c31e26373b972af02e3b4cca6",
+  "bindingsSha256": "0f8f5c3703ca4c342452c6f5382726f9229ac38d9e13a5037df251d0835bb939",
+  "sourceFirstPrimarySha256": "e1c568e8028077a8be767b8d73cb00583dbd9d93e66240fe6d428d7184339653",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C4.json",
+    "reference": "Primaria e modello Root487d68fc precedenti alle candidate B; exposure RootQ091 mantenuta e compensazione source-only distinta A db4f4c7e. A ha riletto/risolto tutti50 prompt in83337ef8 prima di aprire il modello Root e le candidate. Boundary esatto e modello eseguiti realmente in2bd7ec24 prima della prima lettura delle candidate. Successivamente tutti50 originali completi, tutti50 candidati e cinque XML/native indipendenti interi letti;18SVG fonte e lezioni reali L06–L10 letti integralmente. UI prodotto e human NOT_RUN."
+  }
+}

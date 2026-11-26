@@ -1,0 +1,18 @@
+import {chromium} from '/private/tmp/cric-resident-integrator/officina-di-fisica/node_modules/playwright/index.mjs';
+import fs from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+const A='/private/tmp/cric-author-a-resident/officina-di-fisica',F=A+'/editorial/reviews/cric-c4-006-010-independent-proof-20261126/fixtures/assets',D=A+'/editorial/reviews/cric-c4-006-010-asset-review-20261126';
+const sha=b=>createHash('sha256').update(b).digest('hex');await fs.mkdir(D,{recursive:true});
+const browser=await chromium.launch({channel:'chrome'});
+try{
+ const page=await browser.newPage({viewport:{width:640,height:800},deviceScaleFactor:1});await page.route('**/*',r=>r.abort());
+ for(const n of[6,7,8,9,10]){
+  const batch='cric-c4-l'+String(n).padStart(2,'0'),raw=await fs.readFile(F+'/'+batch+'-progressive.svg'),out=D+'/'+batch;await fs.mkdir(out,{recursive:true});
+  await page.setContent('<!doctype html><html><head><style>html,body{margin:0;padding:0}svg{display:block}</style></head><body>'+raw.toString('utf8')+'</body></html>');await page.evaluate(()=>document.fonts.ready);
+  const size=await page.locator('svg').boundingBox();const texts=await page.locator('svg text').evaluateAll(ns=>ns.map(n=>{const r=n.getBBox();return{text:n.textContent,x:r.x,y:r.y,width:r.width,height:r.height}}));
+  const clipping=texts.filter(t=>t.x<0||t.y<0||t.x+t.width>size.width||t.y+t.height>size.height);if(clipping.length)throw Error('Text outside full SVG '+batch+' '+JSON.stringify(clipping));
+  await page.screenshot({path:out+'/full-native.png',fullPage:true});const png=await fs.readFile(out+'/full-native.png');if(png.readUInt32BE(16)!==size.width||png.readUInt32BE(20)!==size.height)throw Error('Whole native size mismatch');
+  const report={schemaVersion:'1.0.0',scope:'INDEPENDENT_FULL_ASSET_ONLY_NOT_PRODUCT_UI',batch,sourceSvgSha256:sha(raw),pngSha256:sha(png),pngWidth:png.readUInt32BE(16),pngHeight:png.readUInt32BE(20),svgBoundingBox:size,texts,clipping,browserVersion:browser.version(),instrumentSha256:sha(await fs.readFile(new URL(import.meta.url))),technicalObservation:'Captured; scientific/manual image review remains separate',humanApproval:'NOT_RUN',publicationAction:'NONE'};
+  await fs.writeFile(out+'/actual-render.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({batch,size,clipping,sourceSvgSha256:sha(raw)}));
+ }
+}finally{await browser.close();}

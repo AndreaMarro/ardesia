@@ -1,0 +1,400 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "C4-Q061",
+      "sourceSha256": "a40bafa9b3847d093c2668e02238ebdcdcd416f63171579b844f26d767074741",
+      "candidateSha256": "ee6f25b2b6df009d7cf0ba4cfb06fa9150b4734317c21adebc805b3840df5873",
+      "reviewedSignature": "f3a9086882eb13b794808005dc79d86f5517153ebd118378507922b85a2c63f8",
+      "assetChecksums": {
+        "cric-c4-l07-progressive.svg": "f802eb2f4a794f98dc438eec6b73e779fac5fae6b3ffa535dff70171710f4dee"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {
+        "[current]": "2",
+        "[time]": "4",
+        "[mass]": "-1",
+        "[length]": "-2"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Per il condensatore lineare la pendenza Q/V è C, quindi anche\nΔQ=CΔV. La variazione di tensione è 5−2=3 V, non 5 V. C=18μC/3 V=6μF. I prefissi si\ncorrispondono perché μC/V=μF.",
+      "physicalAssumptions": "Condensatore lineare invariato; incrementi coerenti di modulo Q su una sola armatura e modulo V.",
+      "distractors": "18/5 e 18/2 μF mescolano incremento con lettura; 6·3=18 ricostruisce ΔQ.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Per il condensatore lineare la pendenza Q/V è C, quindi anche\nΔQ=CΔV. La variazione di tensione è 5−2=3 V, non 5 V. C=18μC/3 V=6μF. I prefissi si\ncorrispondono perché μC/V=μF.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Diciotto SVG originali fonte letti integralmente XML. Due fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q062",
+      "sourceSha256": "48499dcefa943f71c89ededaf7e07c39ddfac5573eae889da3988cfa728bb6d4",
+      "candidateSha256": "eada20a3732132c99a2fe15aa9f5fa47fd3d4c8b4d70f8587b7034a1c35cc34f",
+      "reviewedSignature": "fff21159ba189efeb7591d3b071001bbeda28aaf3505aa624aa24a02accdf599",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Aumenta",
+      "dimension": {},
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Nel modello piano C=εA/d. Allontanare le armature riduce C; a Q\nfissata |V|=|Q|/C aumenta nella stessa proporzione di d. **Q deve essere non\nnulla** per un aumento stretto; se il condensatore è scarico resta V=0. Scrivere\n«condensatore carico» e chiedere il modulo della tensione evita ambiguità di segno.",
+      "physicalAssumptions": "Piastre cariche Q>0 isolate; area e permittività invariate, bordi trascurati nel regime piano.",
+      "distractors": "Vecchia sorgente scollegata non fissa V; isolamento non annulla campo; polarità non si inverte allontanando piastre.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Nel modello piano C=εA/d. Allontanare le armature riduce C; a Q\nfissata |V|=|Q|/C aumenta nella stessa proporzione di d. **Q deve essere non\nnulla** per un aumento stretto; se il condensatore è scarico resta V=0. Scrivere\n«condensatore carico» e chiedere il modulo della tensione evita ambiguità di segno.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q063",
+      "sourceSha256": "e4eb416a162a6793453656d99695326da7ce0a1fb7ecb5b0ddac6323ec7fbc49",
+      "candidateSha256": "66fd53773e7115cbbcba203fe278465bcb1c5af79aff88aa2c96fcd5397b7c56",
+      "reviewedSignature": "aff82417004c643077c7c928573795ebb1c0fb54f69e1e04b1b3bb8191bcc7eb",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Farad",
+      "dimension": {
+        "[current]": "2",
+        "[time]": "4",
+        "[mass]": "-1",
+        "[length]": "-2"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: L’unità è il farad:1 F=1 C/V. La capacità confronta la carica di una\narmatura con la differenza di potenziale, non con una corrente.",
+      "physicalAssumptions": "Capacità definita mediante modulo su una sola armatura e modulo della tensione; unità SI C/V.",
+      "distractors": "Coulomb misura carica, volt tensione, ohm resistenza e tesla campo; farad è C/V.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: L’unità è il farad:1 F=1 C/V. La capacità confronta la carica di una\narmatura con la differenza di potenziale, non con una corrente.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q064",
+      "sourceSha256": "6085e14d3ba4882e9dbfc3c627ca4afe1ef887f8f817c24c5c9918e930225ec9",
+      "candidateSha256": "a60fafece81caf414190795971c37b2d995d18bec51552858a76cc833dbc1c6b",
+      "reviewedSignature": "4dde82d54542943bb5a942fa366307126b3c27e62eb7d4a5aaf3c04277f7fa5b",
+      "assetChecksums": {
+        "cric-c4-l07-progressive.svg": "f802eb2f4a794f98dc438eec6b73e779fac5fae6b3ffa535dff70171710f4dee"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "100",
+      "dimension": {
+        "[length]": "2"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Inverto C=ε₀A/d: A=Cd/ε₀. Il rapporto 88,5/8,85 vale 10; i pF si\ncancellano fra C e il valore di ε₀ espresso in pF/m. Risulta A=10 m×(1/1000)m\n=1/100 m². Poiché 1 m²=10⁴cm², l’area è 100 cm². La conversione dell’area è quadratica;\nnon basta moltiplicare per 100.",
+      "physicalAssumptions": "Costante ε₀ numerica prescritta come modello; distanza 1 mm piccola rispetto al lato 10 cm; area affacciata e area della sezione non confuse.",
+      "distractors": "1 cm² usa conversione lineare per area; 10000 cm² richiede distanza 0,10 m alla C assegnata, non 1 mm; vecchia attribuzione al fattore mille respinta.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Inverto C=ε₀A/d: A=Cd/ε₀. Il rapporto 88,5/8,85 vale 10; i pF si\ncancellano fra C e il valore di ε₀ espresso in pF/m. Risulta A=10 m×(1/1000)m\n=1/100 m². Poiché 1 m²=10⁴cm², l’area è 100 cm². La conversione dell’area è quadratica;\nnon basta moltiplicare per 100.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Diciotto SVG originali fonte letti integralmente XML. Due fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q065",
+      "sourceSha256": "9475e20dd87f9cc0af9fb5dadfa35d89ba8ad7c3ff69a8d203cf9577f074d1be",
+      "candidateSha256": "0c05c56fbf31b295586276cc898617426dbe994ecce643036455dc6fcf16b6b1",
+      "reviewedSignature": "7c11e4b80899d522c71bbdc09f5c7afe3323eb6beeeccb231249015b7b474e1b",
+      "assetChecksums": {
+        "cric-c4-l07-progressive.svg": "f802eb2f4a794f98dc438eec6b73e779fac5fae6b3ffa535dff70171710f4dee"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Tensione V sull’asse verticale e carica q sull’asse orizzontale",
+      "dimension": {},
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Il lavoro elementare di carica è dU=Vdq: il grafico direttamente\nassociato al lavoro ha q orizzontale e V verticale. Per C costante V=q/C e\nl’integrale da 0 aQ è il triangolo U=QV/2. **Cautela per le alternative:** anche\nil grafico inverso Q(V), se lineare, ha area numericamente uguale CV²/2.\nNon classificarlo automaticamente come distrattore falso. Se si vuole una sola\nscelta, specificare il grafico dell’integrale Vdq oppure costruire alternative\nsenza due triangoli entrambi equivalenti nel modello lineare.",
+      "physicalAssumptions": "Condensatore lineare inizialmente scarico, caricamento lento; lavoro ∫V dq, tutte le alternative lette; il grafico duale Q(V) non è proposto come falso.",
+      "distractors": "Altri assi proposti danno K·s, Ω·m, T·s o C·s, non J; nessuna seconda alternativa duale con stessa area è presente.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Il lavoro elementare di carica è dU=Vdq: il grafico direttamente\nassociato al lavoro ha q orizzontale e V verticale. Per C costante V=q/C e\nl’integrale da 0 aQ è il triangolo U=QV/2. **Cautela per le alternative:** anche\nil grafico inverso Q(V), se lineare, ha area numericamente uguale CV²/2.\nNon classificarlo automaticamente come distrattore falso. Se si vuole una sola\nscelta, specificare il grafico dell’integrale Vdq oppure costruire alternative\nsenza due triangoli entrambi equivalenti nel modello lineare.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Diciotto SVG originali fonte letti integralmente XML. Due fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q066",
+      "sourceSha256": "5fe2e5409146ddf7bcb6973a5715e20eda88d7fd67cf2d854a8db5f9ab2011c5",
+      "candidateSha256": "1c59549fb796ffab6cee22592fdb9839515545978aa1d0832111d19350227774",
+      "reviewedSignature": "05d2eb7f0f40806a02c7ada28192a24d294cd71831506a084b18c660ea993c2b",
+      "assetChecksums": {
+        "cric-c4-l07-progressive.svg": "f802eb2f4a794f98dc438eec6b73e779fac5fae6b3ffa535dff70171710f4dee"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "30",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: U=CV²/2, perciò ΔU=(5μF/2)(4²−2²)V²=(5/2)× 12μJ=30μJ. Sottrarre\nprima le tensioni e poi elevare al quadrato darebbe una diversa grandezza.\nμF·V²=μJ, controllato anche nel percorso SI indipendente.",
+      "physicalAssumptions": "Stessa capacità positiva, due tensioni in modulo con origine energetica scarica comune; differenza di quadrati.",
+      "distractors": "40 μJ finale e 10 μJ iniziale non aumento; C(ΔV)²/2 coincide qui con 10 μJ per caso, non legge corretta.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: U=CV²/2, perciò ΔU=(5μF/2)(4²−2²)V²=(5/2)× 12μJ=30μJ. Sottrarre\nprima le tensioni e poi elevare al quadrato darebbe una diversa grandezza.\nμF·V²=μJ, controllato anche nel percorso SI indipendente.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Diciotto SVG originali fonte letti integralmente XML. Due fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q067",
+      "sourceSha256": "582294fef635b114437a0048d6c8959ffd7f32a597b19a25972b471d905b33f6",
+      "candidateSha256": "5e9e2659de7fe68e55aa07b2211d0461d08cba5f7bed408a427d44b4d156d61e",
+      "reviewedSignature": "98f13f0f9a06dd729b551800c8f93b6c7b820e2f82fb2f3f6ef4308c9b9ddf84",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La differenza di potenziale",
+      "dimension": {},
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Il generatore ideale collegato fissa la differenza di potenziale.\nInserendo il dielettrico cresce C e il generatore può fornire altra carica:\nnon si conserva automaticamente Q come nel condensatore isolato.",
+      "physicalAssumptions": "Dielettrico lineare, generatore ideale collegato durante inserimento; caso non nullo specificato nella formula del rapporto.",
+      "distractors": "Carica, C e U possono variare; dielettrico non cortocircuita e generatore scambia carica mantenendo V.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Il generatore ideale collegato fissa la differenza di potenziale.\nInserendo il dielettrico cresce C e il generatore può fornire altra carica:\nnon si conserva automaticamente Q come nel condensatore isolato.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q068",
+      "sourceSha256": "6abf4940d7280193f11615281258c635830418d7dacbc01c685d5c8b42afc079",
+      "candidateSha256": "16ad79bc062aa102aabc01ea77a2ebaabca1a3f45af4b8ab8e9373658990f65e",
+      "reviewedSignature": "443e7eed98ff9564bd9fc455c1de245046b9be50950417d33fc73ad5381bd4c1",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "32",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Con la tensione **mantenuta a 8 V dal generatore**, U=CV²/2 è\nproporzionale a C. Se C raddoppia,16μJ diventano 32μJ. Se invece si scollegasse\nla sorgente e si fissasse Q, varrebbe U=Q²/(2 C) e il risultato sarebbe diverso.\nEsplicitare che il collegamento resta durante l’inserimento.",
+      "physicalAssumptions": "Generatore da 8 V mantenuto per intero; capacità raddoppiata e energia iniziale 16 μJ, campo distinto dal lavoro totale del generatore.",
+      "distractors": "8 μJ usa isolamento a Q fissa; 16 μJ impone conservazione del solo campo; lavoro generatore distinto.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Con la tensione **mantenuta a 8 V dal generatore**, U=CV²/2 è\nproporzionale a C. Se C raddoppia,16μJ diventano 32μJ. Se invece si scollegasse\nla sorgente e si fissasse Q, varrebbe U=Q²/(2 C) e il risultato sarebbe diverso.\nEsplicitare che il collegamento resta durante l’inserimento.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q069",
+      "sourceSha256": "8cc8de2f7f17a5e5b817f0d28063dbab5fd2bed8655deb8f24df2e43f09923f9",
+      "candidateSha256": "28c42511e9fc6023934470428771cd44dae16720fe45d249044c44c32041dc08",
+      "reviewedSignature": "98fa5235e0eb69b281b0e7e15298d5ec35df9912c917fe2a6393e09ed416a4e1",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "7 μC",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Q è il modulo su una sola armatura:7μC. La carica netta dell’intero\ncondensatore è zero, mentre la somma dei moduli sarebbe 14μC: nessuna delle due\nsostituisce Q nella definizione data.",
+      "physicalAssumptions": "Cariche opposte +7 e −7 μC, Q definito come modulo su UNA armatura; totale algebrico e somma dei moduli distinti.",
+      "distractors": "14 μC conta entrambe le armature, zero totale algebrico, valori negativi non moduli.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Q è il modulo su una sola armatura:7μC. La carica netta dell’intero\ncondensatore è zero, mentre la somma dei moduli sarebbe 14μC: nessuna delle due\nsostituisce Q nella definizione data.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q070",
+      "sourceSha256": "9b3afa225e27f43090b8649d3a672558d79dd02fbe9a03dac9752b3485e8cb2a",
+      "candidateSha256": "662c9f3c0638bd00febd4b89512c097da78eeeb6439c6e43c4f13861e8005fec",
+      "reviewedSignature": "8a71f4997847b46ed29066a6e4e0066e6865896db6ca7ceff1f81432db0b5775",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Da U=CV²/2 ricavo |V|=√(2 U/C). Il radicando è 200μJ/(8μF)=25 V²;\nla radice positiva è 5 V. Non serve approssimare una radice irrazionale. La\nrichiesta del modulo seleziona il valore non negativo.",
+      "physicalAssumptions": "Capacità positiva 8 μF, energia 100 μJ, richiesta del modulo sceglie radice non negativa; segno della polarità non identificato.",
+      "distractors": "25 V copia V²; 5/2 V darebbe 25 μJ; radice negativa non è modulo.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Da U=CV²/2 ricavo |V|=√(2 U/C). Il radicando è 200μJ/(8μF)=25 V²;\nla radice positiva è 5 V. Non serve approssimare una radice irrazionale. La\nrichiesta del modulo seleziona il valore non negativo.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "0988d0890a6ca39366dd227b5013a934071f343678dea10cce591f03cddd0ffb",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "b95c2564b015ed6fec26aefcf2d044960c0706d8",
+  "packageSha256": "229229701a7d3dd10cdc6cb462d8147d403c6e9ae45495bbe6ef79beb8f3190f",
+  "bindingsSha256": "fb382c425e2da254d8179e93eeeb04b5eb087f25ed9e1ee4028d67307e04a478",
+  "sourceFirstPrimarySha256": "e1c568e8028077a8be767b8d73cb00583dbd9d93e66240fe6d428d7184339653",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C4.json",
+    "reference": "Primaria e modello Root487d68fc precedenti alle candidate B; exposure RootQ091 mantenuta e compensazione source-only distinta A db4f4c7e. A ha riletto/risolto tutti50 prompt in83337ef8 prima di aprire il modello Root e le candidate. Boundary esatto e modello eseguiti realmente in2bd7ec24 prima della prima lettura delle candidate. Successivamente tutti50 originali completi, tutti50 candidati e cinque XML/native indipendenti interi letti;18SVG fonte e lezioni reali L06–L10 letti integralmente. UI prodotto e human NOT_RUN."
+  }
+}

@@ -1,0 +1,690 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C4-Q051",
+      "kind": "question",
+      "course": "C4",
+      "section": "Seguire i nodi di un circuito",
+      "order": 51,
+      "title": "Ridurre prima il gruppo parallelo",
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C4-L05"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il gruppo parallelo si riduce prima della serie esterna. Un trentesimo più un sessantesimo è tre sessantesimi, cioè un ventesimo: il gruppo vale 20 Ω. Aggiungo i 10 Ω attraversati da tutta la corrente e ottengo 30 Ω. Dividere 9 V per 30 Ω dà 3/10 A, ossia 0,30 A. La resistenza parallela è inferiore a entrambe quelle dei rami."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/918d529a9d020e8ad3b5cddbb6176829b743e3067c453e78660beefc6cc394a6",
+          "text": "Il primo pannello segue i nodi della rete: il tratto da 10 Ω precede il gruppo da 30 Ω e 60 Ω in parallelo. La disposizione è schematica e non rappresenta resistenze mediante lunghezze."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac1{R_p}=\\left(\\frac1{30}+\\frac1{60}\\right)\\Omega^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " R_p=20\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}=30\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " I=\\frac9{30}\\,\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "0,09 A sommerebbe tutte e tre le resistenze come una serie. 0,45 A ometterebbe il resistore esterno; 0,90 A userebbe soltanto i 10 Ω. Una corrente di 3 A richiederebbe appena 3 Ω, incompatibili con il tratto in serie da 10 Ω."
+        }
+      ],
+      "prompt": "Due resistori ohmici da 30 Ω e 60 Ω condividono gli stessi due nodi. Il gruppo è in serie con 10 Ω e il generatore ideale applica 9 V all’intera rete. Qual è la corrente totale?",
+      "difficulty": 2,
+      "family": "un-parallelo-dentro-una-serie",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "0,30 A",
+          "0,09 A",
+          "0,45 A",
+          "0,90 A",
+          "3 A"
+        ],
+        "value": "0,30 A"
+      },
+      "hints": [
+        "Segna i due nodi del parallelo, poi sostituiscilo con un solo componente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "0,09 A sommerebbe tutte e tre le resistenze come una serie. 0,45 A ometterebbe il resistore esterno; 0,90 A userebbe soltanto i 10 Ω. Una corrente di 3 A richiederebbe appena 3 Ω, incompatibili con il tratto in serie da 10 Ω.",
+        "target": "C4-L06"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Nodi e collegamenti",
+        "Potenze e vincoli del generatore",
+        "Energia e inverse esatte"
+      ]
+    },
+    {
+      "id": "C4-Q052",
+      "kind": "question",
+      "course": "C4",
+      "section": "Seguire i nodi di un circuito",
+      "order": 52,
+      "title": "Confrontare potenze a tensione comune",
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C4-L05"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due rami hanno la stessa differenza di potenziale. Scrivo P=VI e sostituisco I=V/R: ottengo P=V²/R. Il numeratore è comune e positivo; una resistenza minore dà quindi potenza maggiore. Questo confronto usa tensione fissata e non può essere trasferito senza modifiche a due resistori in serie."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/918d529a9d020e8ad3b5cddbb6176829b743e3067c453e78660beefc6cc394a6",
+          "text": "Nel secondo pannello due rami da 30 Ω e 60 Ω sono confrontati a 6 V comuni. Le barre della potenza condividono origine e scala: 1,2 W e 0,6 W."
+        },
+        {
+          "type": "formula",
+          "text": "P=\\frac{V^2}{R}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{P_1}{P_2}=\\frac{R_2}{R_1}"
+        },
+        {
+          "type": "text",
+          "text": "La legge I²R non autorizza a confrontare soltanto R: qui le correnti sono diverse. La corrente minore appartiene al ramo di resistenza maggiore e porta anche potenza minore. Con V=0 entrambe sarebbero nulle; il prompt esclude proprio quel caso."
+        }
+      ],
+      "prompt": "Due resistori ohmici positivi di valori diversi sono in parallelo su un generatore ideale con tensione non nulla. Quale dissipa la maggiore potenza?",
+      "difficulty": 1,
+      "family": "piu-resistenza-piu-calore",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Il resistore di valore minore",
+          "Il resistore di valore maggiore",
+          "Entrambi necessariamente uguale",
+          "Quello con corrente minore",
+          "Nessuno, perché il collegamento è parallelo"
+        ],
+        "value": "Il resistore di valore minore"
+      },
+      "hints": [
+        "Scegli la forma della potenza che contiene la grandezza comune ai rami.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "La legge I²R non autorizza a confrontare soltanto R: qui le correnti sono diverse. La corrente minore appartiene al ramo di resistenza maggiore e porta anche potenza minore. Con V=0 entrambe sarebbero nulle; il prompt esclude proprio quel caso.",
+        "target": "C4-L06"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Nodi e collegamenti",
+        "Potenze e vincoli del generatore",
+        "Energia e inverse esatte"
+      ]
+    },
+    {
+      "id": "C4-Q053",
+      "kind": "question",
+      "course": "C4",
+      "section": "Seguire i nodi di un circuito",
+      "order": 53,
+      "title": "Riconoscere un nodo",
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C4-L05"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un nodo comprende tutti i punti connessi direttamente dal filo ideale. Si può disegnarli lontani sulla pagina: ciò che conta è la continuità del collegamento, non la distanza grafica. Per verificare un parallelo occorre ritrovare entrambi i nodi comuni, non soltanto una giunzione."
+        },
+        {
+          "type": "formula",
+          "text": "V_A=V_B\\quad\\text{nel medesimo nodo ideale}"
+        },
+        {
+          "type": "text",
+          "text": "Una maglia è un percorso chiuso e può attraversare più nodi e componenti. La resistenza equivalente descrive una risposta ai morsetti, non il nome dell’insieme. Un generatore impone una differenza di potenziale fra due morsetti distinti."
+        }
+      ],
+      "prompt": "Nel circuito ideale, un insieme di estremi è collegato mediante solo filo ideale, senza componenti interposti. Tutti questi punti hanno lo stesso potenziale. Come si chiama questo insieme?",
+      "difficulty": 1,
+      "family": "il-punto-in-comune",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Nodo",
+          "Maglia",
+          "Resistenza equivalente",
+          "Generatore",
+          "Ramo contenente necessariamente un resistore"
+        ],
+        "value": "Nodo"
+      },
+      "hints": [
+        "Segui il filo fino a incontrare un componente: restare sullo stesso filo significa restare nel nodo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una maglia è un percorso chiuso e può attraversare più nodi e componenti. La resistenza equivalente descrive una risposta ai morsetti, non il nome dell’insieme. Un generatore impone una differenza di potenziale fra due morsetti distinti.",
+        "target": "C4-L06"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Nodi e collegamenti",
+        "Potenze e vincoli del generatore",
+        "Energia e inverse esatte"
+      ]
+    },
+    {
+      "id": "C4-Q054",
+      "kind": "question",
+      "course": "C4",
+      "section": "Seguire i nodi di un circuito",
+      "order": 54,
+      "title": "Dalla corrente all’energia dissipata",
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C4-L05"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Converto 20 mA in 1/50 A prima di elevare al quadrato. La potenza I²R è 100/2500 W=1/25 W, ossia 0,040 W. Moltiplico per i 30 s di funzionamento: 30/25 J=6/5 J=1,20 J. Il resistore riceve energia durante tutto l’intervallo; il numero della potenza non è ancora quello dell’energia."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/918d529a9d020e8ad3b5cddbb6176829b743e3067c453e78660beefc6cc394a6",
+          "text": "L’ultimo pannello mostra l’energia cumulativa con corrente costante di 20 mA nel resistore da 100 Ω. La retta arriva a 1,20 J dopo 30 s; la sua pendenza è la potenza di 0,040 W."
+        },
+        {
+          "type": "formula",
+          "text": "I=\\frac1{50}\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " P=I^2R"
+        },
+        {
+          "type": "formula",
+          "text": " P=\\frac1{25}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " E=P t"
+        },
+        {
+          "type": "formula",
+          "text": " E=\\frac65\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "0,040 J copierebbe il valore numerico della potenza in watt senza moltiplicare per 30 s. Trattare 20 mA come 20 A darebbe 1200000 J, perché l’errore mille sulla corrente viene elevato al quadrato. 60 J non ricostruisce né I²R né il prodotto potenza per durata."
+        }
+      ],
+      "prompt": "Un resistore ohmico da 100 Ω porta una corrente costante di 20 mA per 30 s. La resistenza resta invariata. Quale energia elettrica viene trasformata in energia interna nel resistore?",
+      "difficulty": 2,
+      "family": "energia-di-un-resistore-acceso",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1,20 J",
+          "0,040 J",
+          "1200 J",
+          "1200000 J",
+          "60 J"
+        ],
+        "value": "1,20 J"
+      },
+      "hints": [
+        "La conversione della corrente precede il quadrato; solo dopo entra la durata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "0,040 J copierebbe il valore numerico della potenza in watt senza moltiplicare per 30 s. Trattare 20 mA come 20 A darebbe 1200000 J, perché l’errore mille sulla corrente viene elevato al quadrato. 60 J non ricostruisce né I²R né il prodotto potenza per durata.",
+        "target": "C4-L06"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Nodi e collegamenti",
+        "Potenze e vincoli del generatore",
+        "Energia e inverse esatte"
+      ]
+    },
+    {
+      "id": "C4-Q055",
+      "kind": "question",
+      "course": "C4",
+      "section": "Seguire i nodi di un circuito",
+      "order": 55,
+      "title": "Invertire la somma delle conduttanze",
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C4-L05"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In parallelo si sommano i reciproci. Tolgo 1/12 Ω⁻¹ da 1/4 Ω⁻¹: tre dodicesimi meno un dodicesimo sono due dodicesimi, cioè 1/6 Ω⁻¹. Questa è la conduttanza del resistore incognito. Solo invertendo ottengo 6 Ω; non posso sottrarre direttamente 12−4."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac1{R_x}=\\frac1{R_{\\rm eq}}-\\frac1{R_1}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac1{R_x}=\\left(\\frac14-\\frac1{12}\\right)\\Omega^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " R_x=6\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "8 Ω applica una sottrazione da serie a un parallelo. 1/6 è il valore numerico della conduttanza in siemens, non della resistenza in ohm. Verifico l’inversa: 12·6/(12+6)=72/18=4 Ω, inferiore a ciascun ramo."
+        }
+      ],
+      "prompt": "Un resistore da 12 Ω è in parallelo a un secondo resistore positivo. La resistenza equivalente dei due è 4 Ω. Trova il valore del secondo in ohm.",
+      "difficulty": 2,
+      "family": "ricavare-il-secondo-ramo",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "hints": [
+        "Isola una conduttanza, controllane l’unità e poi fai il reciproco.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "8 Ω applica una sottrazione da serie a un parallelo. 1/6 è il valore numerico della conduttanza in siemens, non della resistenza in ohm. Verifico l’inversa: 12·6/(12+6)=72/18=4 Ω, inferiore a ciascun ramo.",
+        "target": "C4-L06"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Nodi e collegamenti",
+        "Potenze e vincoli del generatore",
+        "Energia e inverse esatte"
+      ]
+    },
+    {
+      "id": "C4-Q056",
+      "kind": "question",
+      "course": "C4",
+      "section": "Seguire i nodi di un circuito",
+      "order": 56,
+      "title": "Aprire un ramo su una sorgente ideale",
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C4-L05"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il resistore superstite conserva sia R sia la tensione imposta dalla sorgente. La sua corrente V/R resta perciò identica. La corrente totale della sorgente diminuisce perché perde il contributo del ramo aperto; non si redistribuisce obbligatoriamente nel ramo rimasto."
+        },
+        {
+          "type": "formula",
+          "text": "I_{\\rm rimasto}=\\frac{V}{R}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{\\rm rimasto,f}=I_{\\rm rimasto}"
+        },
+        {
+          "type": "text",
+          "text": "Il raddoppio o il dimezzamento richiederebbero un cambiamento di V o di R. Il circuito non è completamente interrotto: rimane un percorso chiuso nel ramo superstite. La vecchia corrente totale comprendeva invece anche l’altro ramo."
+        }
+      ],
+      "prompt": "Due resistori invariati sono in parallelo direttamente sui morsetti di una sorgente ideale a tensione costante. Si apre uno dei rami. Che cosa accade alla corrente nel resistore che resta collegato?",
+      "difficulty": 2,
+      "family": "aprire-un-ramo-su-generatore-ideale",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Resta uguale",
+          "Raddoppia necessariamente",
+          "Diventa nulla",
+          "Diventa la vecchia corrente totale",
+          "È necessariamente dimezzata"
+        ],
+        "value": "Resta uguale"
+      },
+      "hints": [
+        "Confronta la tensione sui medesimi due morsetti prima e dopo l’apertura.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Il raddoppio o il dimezzamento richiederebbero un cambiamento di V o di R. Il circuito non è completamente interrotto: rimane un percorso chiuso nel ramo superstite. La vecchia corrente totale comprendeva invece anche l’altro ramo.",
+        "target": "C4-L06"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Nodi e collegamenti",
+        "Potenze e vincoli del generatore",
+        "Energia e inverse esatte"
+      ]
+    },
+    {
+      "id": "C4-Q057",
+      "kind": "question",
+      "course": "C4",
+      "section": "Seguire i nodi di un circuito",
+      "order": 57,
+      "title": "Dare un nome alla dissipazione resistiva",
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C4-L05"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "È l’effetto Joule. Il campo elettrico trasferisce energia alle cariche; le interazioni nel materiale alimentano l’energia interna. Se la temperatura del resistore rimane stazionaria, l’energia continua comunque a essere trasferita all’ambiente: una temperatura costante non annulla la potenza dissipata."
+        },
+        {
+          "type": "formula",
+          "text": "P_{\\rm Joule}=I^2R"
+        },
+        {
+          "type": "text",
+          "text": "L’effetto fotoelettrico riguarda emissione di elettroni sotto luce adeguata. Faraday riguarda una forza elettromotrice indotta dalla variazione del flusso magnetico. La dissipazione non conserva da sola l’energia elettrostatica nel componente, ma rispetta il bilancio energetico completo."
+        }
+      ],
+      "prompt": "Come si chiama l’effetto per cui un resistore trasforma l’energia elettrica ricevuta in energia interna?",
+      "difficulty": 1,
+      "family": "nome-della-dissipazione-resistiva",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Effetto Joule",
+          "Effetto fotoelettrico",
+          "Induzione di Faraday",
+          "Polarizzazione dielettrica soltanto",
+          "Conservazione della sola energia del campo nel resistore"
+        ],
+        "value": "Effetto Joule"
+      },
+      "hints": [
+        "Pensa al riscaldamento di un filo percorso da corrente, non alla produzione di una corrente indotta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "L’effetto fotoelettrico riguarda emissione di elettroni sotto luce adeguata. Faraday riguarda una forza elettromotrice indotta dalla variazione del flusso magnetico. La dissipazione non conserva da sola l’energia elettrostatica nel componente, ma rispetta il bilancio energetico completo.",
+        "target": "C4-L06"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Nodi e collegamenti",
+        "Potenze e vincoli del generatore",
+        "Energia e inverse esatte"
+      ]
+    },
+    {
+      "id": "C4-Q058",
+      "kind": "question",
+      "course": "C4",
+      "section": "Seguire i nodi di un circuito",
+      "order": 58,
+      "title": "Progettare la seconda resistenza della serie",
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C4-L05"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La corrente è comune. I primi 4 V su 80 Ω danno 1/20 A. Al secondo resistore restano 12−4=8 V: la sua resistenza è 8/(1/20)=160 Ω. La caduta doppia richiede resistenza doppia, perché i due componenti sono attraversati dalla stessa corrente."
+        },
+        {
+          "type": "formula",
+          "text": "I=\\frac4{80}\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " I=\\frac1{20}\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=8\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " R_2=\\frac{V_2}{I}"
+        },
+        {
+          "type": "formula",
+          "text": " R_2=160\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "240 Ω userebbe tutti i 12 V sul solo secondo resistore. 40 Ω invertirebbe il rapporto delle cadute. Il controllo complessivo dà 12/(80+160)=1/20 A, e questa corrente su 80 Ω produce proprio 4 V."
+        }
+      ],
+      "prompt": "Due resistori sono in serie senza derivazioni, alimentati da 12 V ideali. Sul primo da 80 Ω devono cadere 4 V. Quale resistenza R₂, in ohm, realizza questa condizione?",
+      "difficulty": 2,
+      "family": "partitore-con-un-vincolo",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 160,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "hints": [
+        "Ricava prima la corrente dal componente di cui conosci tensione e resistenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "240 Ω userebbe tutti i 12 V sul solo secondo resistore. 40 Ω invertirebbe il rapporto delle cadute. Il controllo complessivo dà 12/(80+160)=1/20 A, e questa corrente su 80 Ω produce proprio 4 V.",
+        "target": "C4-L06"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Nodi e collegamenti",
+        "Potenze e vincoli del generatore",
+        "Energia e inverse esatte"
+      ]
+    },
+    {
+      "id": "C4-Q059",
+      "kind": "question",
+      "course": "C4",
+      "section": "Seguire i nodi di un circuito",
+      "order": 59,
+      "title": "Il parallelo si decide seguendo i fili",
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C4-L05"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni resistore deve essere collegato fra la stessa coppia di nodi A e B. Questo vincolo rende uguale la differenza di potenziale ai capi. Posso ridisegnare un ramo lontano dall’altro senza cambiare il circuito, purché mantenga entrambe le connessioni."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/918d529a9d020e8ad3b5cddbb6176829b743e3067c453e78660beefc6cc394a6",
+          "text": "Segui i nodi A e B del primo pannello: il gruppo da 30 Ω e 60 Ω è in parallelo, mentre il componente da 10 Ω appartiene al tratto in serie."
+        },
+        {
+          "type": "formula",
+          "text": "V_{R_1}=V_A-V_B"
+        },
+        {
+          "type": "formula",
+          "text": " V_{R_2}=V_A-V_B"
+        },
+        {
+          "type": "text",
+          "text": "Una sola giunzione comune non garantisce il parallelo: l’altro terminale può andare altrove. Valori uguali o rettangoli uguali non fissano i collegamenti. L’orientamento della pagina non cambia la topologia elettrica."
+        }
+      ],
+      "prompt": "Due resistori sono vicini e alla stessa altezza nel disegno. Quale informazione basta a stabilire che sono davvero in parallelo?",
+      "difficulty": 1,
+      "family": "due-resistenze-disegnate-una-accanto-allaltra",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Entrambi i terminali corrispondenti appartengono agli stessi due nodi",
+          "Sono disegnati con rettangoli uguali",
+          "Hanno necessariamente la stessa resistenza",
+          "Condividono soltanto un terminale",
+          "La pagina è orientata orizzontalmente"
+        ],
+        "value": "Entrambi i terminali corrispondenti appartengono agli stessi due nodi"
+      },
+      "hints": [
+        "Marca A e B e verifica i due estremi di ciascun componente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una sola giunzione comune non garantisce il parallelo: l’altro terminale può andare altrove. Valori uguali o rettangoli uguali non fissano i collegamenti. L’orientamento della pagina non cambia la topologia elettrica.",
+        "target": "C4-L06"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Nodi e collegamenti",
+        "Potenze e vincoli del generatore",
+        "Energia e inverse esatte"
+      ]
+    },
+    {
+      "id": "C4-Q060",
+      "kind": "question",
+      "course": "C4",
+      "section": "Seguire i nodi di un circuito",
+      "order": 60,
+      "title": "Dimezzare la tensione su una resistenza fissa",
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C4-L05"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A resistenza fissa P=V²/R. Dimezzando V, la potenza viene moltiplicata per (1/2)²=1/4. Un quarto di 8 W è 2 W. Anche la corrente si dimezza, quindi il prodotto VI conferma due fattori 1/2 distinti."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{P_f}{P_i}=\\left(\\frac{V_f}{V_i}\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{P_f}{P_i}=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " P_f=2\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "4 W userebbe una proporzione lineare con la sola tensione. 32 W invertirebbe il rapporto finale/iniziale. 8 W ignorerebbe la variazione del generatore; la costanza di R non impone la costanza della potenza."
+        }
+      ],
+      "prompt": "Un resistore ohmico dissipa inizialmente 8 W. Il generatore dimezza il modulo della tensione ai suoi capi e la resistenza rimane invariata. Trova la nuova potenza in watt.",
+      "difficulty": 1,
+      "family": "dimezzare-la-tensione-a-resistenza-fissa",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "hints": [
+        "Scrivi il rapporto delle potenze prima di introdurre gli 8 W.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4 W userebbe una proporzione lineare con la sola tensione. 32 W invertirebbe il rapporto finale/iniziale. 8 W ignorerebbe la variazione del generatore; la costanza di R non impone la costanza della potenza.",
+        "target": "C4-L06"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Nodi e collegamenti",
+        "Potenze e vincoli del generatore",
+        "Energia e inverse esatte"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "918d529a9d020e8ad3b5cddbb6176829b743e3067c453e78660beefc6cc394a6",
+      "name": "cric-c4-l06-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTU2MCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTYwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPk5vZGksIHBvdGVuemEgYSB0ZW5zaW9uZSBjb211bmUgZWQgZW5lcmdpYSBuZWwgdGVtcG88L3RpdGxlPgo8ZGVzYyBpZD0iZGVzYyI+VHJlIHBhbm5lbGxpOiBnZW5lcmF0b3JlIGRhIG5vdmUgdm9sdCwgZGllY2kgb2htIGluIHNlcmllIGFsIHBhcmFsbGVsbyBkaSB0cmVudGEgZSBzZXNzYW50YSBvaG07IGJhcnJlIGRlbGxhIHBvdGVuemEgZGkgdW5vIHZpcmdvbGEgZHVlIGUgemVybyB2aXJnb2xhIHNlaSB3YXR0IGEgc2VpIHZvbHQgY29tdW5pOyBlbmVyZ2lhIGNoZSBzYWxlIGxpbmVhcm1lbnRlIGEgdW5vIHZpcmdvbGEgZHVlIGpvdWxlIGluIHRyZW50YSBzZWNvbmRpLjwvZGVzYz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTYwIiBmaWxsPSIjZmZmZGY3Ii8+CjxnIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZmlsbD0iIzIwMmMzOSIgZm9udC1zaXplPSIyMyI+Cjx0ZXh0IHg9IjMyIiB5PSI1MyIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9ImJvbGQiPjEuIFByaW1hIGkgbm9kaSwgcG9pIGxlIHNvbW1lPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iOTQiPklsIGJsb2NjbyBmcmEgQSBlIEIgw6ggaW4gcGFyYWxsZWxvLjwvdGV4dD4KPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA0ZDYzIiBzdHJva2Utd2lkdGg9IjQiPgo8cGF0aCBkPSJNOTAgMjQwVjE5MEgxOTBNMjcwIDE5MEg0MjBNNDkwIDE5MEg1NTBWNDQwSDkwVjMzME0zNTAgMTkwVjM4MEg0MjBNNDkwIDM4MEg1NTAiLz4KPHJlY3QgeD0iMTkwIiB5PSIxNzUiIHdpZHRoPSI4MCIgaGVpZ2h0PSIzMCIgZmlsbD0iI2RjZWFmMCIvPgo8cmVjdCB4PSI0MjAiIHk9IjE3NSIgd2lkdGg9IjcwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjZGNlYWYwIi8+CjxyZWN0IHg9IjQyMCIgeT0iMzY1IiB3aWR0aD0iNzAiIGhlaWdodD0iMzAiIGZpbGw9IiNlYWRiYzgiLz4KPGNpcmNsZSBjeD0iOTAiIGN5PSIyODUiIHI9IjQ1IiBmaWxsPSIjZmZmZmZmIi8+CjwvZz4KPGNpcmNsZSBjeD0iMzUwIiBjeT0iMTkwIiByPSI2IiBmaWxsPSIjMzA0ZDYzIi8+PGNpcmNsZSBjeD0iNTUwIiBjeT0iMTkwIiByPSI2IiBmaWxsPSIjMzA0ZDYzIi8+Cjx0ZXh0IHg9IjE5NiIgeT0iMTUwIj4xMCDOqTwvdGV4dD48dGV4dCB4PSI0MjEiIHk9IjE1MCI+MzAgzqk8L3RleHQ+PHRleHQgeD0iNDIxIiB5PSIzNDgiPjYwIM6pPC90ZXh0Pgo8dGV4dCB4PSIzMzIiIHk9IjEzOCI+QTwvdGV4dD48dGV4dCB4PSI1NTEiIHk9IjEzOCI+QjwvdGV4dD48dGV4dCB4PSI2NyIgeT0iMjk0Ij45IFY8L3RleHQ+Cjx0ZXh0IHg9IjExOSIgeT0iMjQ1Ij4rPC90ZXh0Pjx0ZXh0IHg9IjExOSIgeT0iMzQ0Ij7iiJI8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI0OTIiPlLigpogPSAyMCDOqTsgUiB0b3RhbGUgPSAzMCDOqS48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI1MzEiPlNjaGVtYSBkZWkgY29sbGVnYW1lbnRpLCBub24gc2NhbGEgcmVzaXN0aXZhLjwvdGV4dD4KPGxpbmUgeDE9IjMyIiB5MT0iNTY2IiB4Mj0iNjA4IiB5Mj0iNTY2IiBzdHJva2U9IiNiOGM0Y2EiLz4KPHRleHQgeD0iMzIiIHk9IjYyMCIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9ImJvbGQiPjIuIER1ZSByYW1pIHN1bGxhIHN0ZXNzYSB0ZW5zaW9uZTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjY2MiI+Q29uZnJvbnRvIHNlcGFyYXRvOiBWID0gNiBWIGluIGVudHJhbWJpLjwvdGV4dD4KPGxpbmUgeDE9IjE1MCIgeTE9IjcwMiIgeDI9IjE1MCIgeTI9Ijg4MSIgc3Ryb2tlPSIjMzA0ZDYzIiBzdHJva2Utd2lkdGg9IjMiLz4KPHRleHQgeD0iMTAxIiB5PSI3MjQiPjA8L3RleHQ+Cjx0ZXh0IHg9IjM4IiB5PSI3NzEiPjMwIM6pPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iNzM1IiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQ1IiBmaWxsPSIjMjY3MjhkIi8+PHRleHQgeD0iNDcyIiB5PSI3NjgiPjEsMiBXPC90ZXh0Pgo8dGV4dCB4PSIzOCIgeT0iODYwIj42MCDOqTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjgyNCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSI0NSIgZmlsbD0iIzk4NmMzNSIvPjx0ZXh0IHg9IjMyMCIgeT0iODU4Ij4wLDYgVzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjkzMCI+UCA9IFbCsi9SOiBtZXTDoCByZXNpc3RlbnphLCBkb3BwaWEgcG90ZW56YS48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI5NzIiPkJhcnJlIGNvbiBvcmlnaW5lIGUgc2NhbGEgY29tdW5pLjwvdGV4dD4KPGxpbmUgeDE9IjMyIiB5MT0iMTAxNCIgeDI9IjYwOCIgeTI9IjEwMTQiIHN0cm9rZT0iI2I4YzRjYSIvPgo8dGV4dCB4PSIzMiIgeT0iMTA3MCIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9ImJvbGQiPjMuIEVuZXJnaWEgYWNjdW11bGF0YSBuZWwgcmVzaXN0b3JlPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTExMCI+SSA9IDIwIG1BLCBSID0gMTAwIM6pLCBQID0gMCwwNDAgVy48L3RleHQ+CjxwYXRoIGQ9Ik0xNDAgMTE1MFYxNDQwSDU1NU0xNDAgMTQ0MEw1MDAgMTE3MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA0ZDYzIiBzdHJva2Utd2lkdGg9IjMiLz4KPHBhdGggZD0iTTE0MCAxNDQwTDUwMCAxMTcwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNjcyOGQiIHN0cm9rZS13aWR0aD0iNSIvPgo8cGF0aCBkPSJNMTQwIDExNzBINTAwVjE0NDBNMTQwIDEzMDVIMzIwVjE0NDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzhhOWE5ZiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI3IDciLz4KPHRleHQgeD0iMzgiIHk9IjExNTUiPkUgKEopPC90ZXh0Pjx0ZXh0IHg9Ijg0IiB5PSIxMTgwIj4xLDIwPC90ZXh0Pjx0ZXh0IHg9Ijg0IiB5PSIxMzE0Ij4wLDYwPC90ZXh0Pjx0ZXh0IHg9IjEwNSIgeT0iMTQ3MCI+MDwvdGV4dD4KPHRleHQgeD0iMzA3IiB5PSIxNDcwIj4xNTwvdGV4dD48dGV4dCB4PSI0ODciIHk9IjE0NzAiPjMwPC90ZXh0Pjx0ZXh0IHg9IjU0OCIgeT0iMTUwNSI+dCAocyk8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxNTM3Ij5MYSBwZW5kZW56YSBkZWxsYSByZXR0YSDDqCBsYSBwb3RlbnphIGNvc3RhbnRlLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}
