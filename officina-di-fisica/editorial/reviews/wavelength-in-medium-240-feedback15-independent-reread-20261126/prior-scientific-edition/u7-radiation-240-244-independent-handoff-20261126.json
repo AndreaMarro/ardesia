@@ -1,0 +1,191 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "independent scientific and pedagogical AI review A240–244 by B, separate from B245–249 authoring",
+  "primaryBeforeCandidates": {
+    "path": "editorial/reviews/u7-radiation-240-244-primary-source-only.md",
+    "sha256": "8771a65b67207b7b6f31618ba4ebc9cf17d99b55162f75f4c776cb0f327c975d",
+    "commit": "8a82a32527171b68346cf30a933552b2a5f9366f",
+    "exposure": "No opposite candidate, key, option or SVG opened before all80 prompt derivations. Own B245–249 final before opening A. Opposite primary on B never opened."
+  },
+  "numericalModelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/u7-radiation-240-244-independent-models.py",
+    "sha256": "b23231ee65202142c7f6d46957df443d426c54ad7c9dac9b6de9fd21b1ea9a94",
+    "commit": "f5ab7a660506550ea5220cce3e4ba8e3e15584b3",
+    "actualPreKeyChecks": 25,
+    "actualPreKeyFiniteExactDomainRejections": 395,
+    "astIdentityWithFinalNumericalHelpers": "PASS_actual_target",
+    "disclosure": "Only the numerical helper functions were implemented before keys; oracle adapters, exact option spelling maps, signatures and report framework were written after complete candidate reading."
+  },
+  "source": {
+    "ref": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U7-01.json",
+    "sha256": "609dec0246ff1cd1b89afed2ea7258c0f65ff8e853735ce9196fe24829fc1233"
+  },
+  "families": [
+    {
+      "batch": "wavelength-in-medium-240",
+      "reviewedCandidateCommit": "fdd8e1a3ea1b278f0813d5f0f4c9c9b1e758d87e",
+      "packageSha256": "a24178aaa56e880e82a2b9a41b4ac644739d4ec4dd0aa1c225e08fb87e25c833",
+      "bindingsSha256": "dd96ce38cb904f2527540e36693ca77bcfd750db7c4f6ffd4a716313f8fd12f2",
+      "acceptedByIndependentVerifier": 16,
+      "packetMutationCases": 29,
+      "verifierSha256": "654ff03aa45fff34ccc0e1c9fe9db00b9367012b1c58e1286f7b74940db27e9e"
+    },
+    {
+      "batch": "photon-packet-frequency-241",
+      "reviewedCandidateCommit": "02e5712bb4f356fdb93b45a35ee4fe15008d56cc",
+      "packageSha256": "dec2dc1d416173565e85734bfed27c715fe0d039298b59c48f8c99e261c23d30",
+      "bindingsSha256": "7b81f5265c4be9b4d4e0f9dee67fa910aaa17163b73e9ab4c8e10e3ae8d67abb",
+      "acceptedByIndependentVerifier": 16,
+      "packetMutationCases": 29,
+      "verifierSha256": "4d9d77690ffd02f96c58349551564236fa116c302316ff53eb43c77ee16e0590"
+    },
+    {
+      "batch": "photon-rate-power-242",
+      "reviewedCandidateCommit": "482111220cd352709a44d2150f3e9cda0773c4fc",
+      "packageSha256": "9829abe567e88421e759d66ed4a8bbaf9a44b4ecedefdd2df78cbe20bdf237b1",
+      "bindingsSha256": "435916ffa490fa3a72874746ec5b187e28273bb39e34652d6552fb53ed62502d",
+      "acceptedByIndependentVerifier": 16,
+      "packetMutationCases": 29,
+      "verifierSha256": "948b1abfa2a5016f560b4a08130aa3c236e8f63a784cc3ed6ae7ed9a5a62a06e"
+    },
+    {
+      "batch": "em-wave-field-power-243",
+      "reviewedCandidateCommit": "cc8048ccac91fc31f3601cb72ac1f579d743dc0c",
+      "packageSha256": "45acd692402263d016af395839f20f5a70b7a9c6efb75873dd4a5c60b2d47b92",
+      "bindingsSha256": "d7c73ce4964c9a2cc0f348b2b782b2a847f6965306304edb210c961d3deb9284",
+      "acceptedByIndependentVerifier": 16,
+      "packetMutationCases": 29,
+      "verifierSha256": "49c4f5e4d3fa8e27ed5bbf93de2a0f51a5c57503298f43516e14a7e87cceba95"
+    },
+    {
+      "batch": "absorbed-radiant-power-244",
+      "reviewedCandidateCommit": "8f63b33ab1ed4f6d105b9898322bbeff6ed6c79e",
+      "packageSha256": "f14480014181efa50a4f70cb655d2a7c25d37cdd12b66b44f89e8ecaba635c6d",
+      "bindingsSha256": "4331c0c2fd2d5e1d9a7fa8eb46002ddc2a38b295240be6b18b32611160580cd3",
+      "acceptedByIndependentVerifier": 16,
+      "packetMutationCases": 29,
+      "verifierSha256": "c3241dd07b61a413964243cd8aadec534401720f15982d023eb8aabb7796012a"
+    }
+  ],
+  "results": {
+    "records": 80,
+    "EXACT_ORACLE": 54,
+    "AI_CONCEPTUAL": 26,
+    "targetTests": 19,
+    "targetUnittestSeconds": 5.052,
+    "targetTerminalExit": 0,
+    "targetElapsedSeconds": 5.902099847793579,
+    "packetMutationsWithRenewedBindingsAndTokens": 145,
+    "wrongKeysAllRecords": 80,
+    "constitutiveFaults": 5,
+    "inverseFaults": 5,
+    "finiteExactGuardAssertions": 1345,
+    "hypothesis": {
+      "absorption": 40,
+      "calibration": 40,
+      "field": 40,
+      "packet": 40,
+      "rate": 40,
+      "wavelength": 40
+    },
+    "invalidCalibrationAssertions": 30,
+    "freshAndSavedAssertRecordIdentity": "PASS_actual_target",
+    "sourceGitHashes": 80,
+    "fullIndependentXMLAndNativeRead": 5,
+    "unresolvedFindings": 0
+  },
+  "findingClosed": {
+    "id": "AR-u7-em-wave-field-power-06",
+    "finalCommit": "cc8048ccac91fc31f3601cb72ac1f579d743dc0c",
+    "reread": "Full final record reread after correction:10cm² remains an area but predicts3/100W, not3/10W. Strictdiff only last text/error06 and binding; other15/allkeys/formulas/SVG identical.",
+    "nativeProvenance": "Native retains actual preceding1e844763 ref on unchanged SVG; no rerender or retag claimed."
+  },
+  "notationAndPhysicalLimits": [
+    "Wavelength λ₀/n refers to phase velocity and a stationary interface; source changes allowed only between preparations. n≥1 domain checked in inverse/scaling.",
+    "Packet N positive integer; inverse and constrained roots enforce integrality. Algebraic extension to mean count15/2 is not a physical packet.",
+    "Mean photon rate is continuous; no artificial integer constraint. Single-photon threshold discussion is conceptual and necessary energy only.",
+    "E₀ is peak, harmonic cos² average1/2 checked independently;Z₀375ohm and h6.6e−34Js are prescribed model constants.",
+    "Absorbed power uses1−τ and excludes other radiative channels. At constrained maximum4W the repeated root is one transmittance; below maximum two admissible positive branches verified."
+  ],
+  "negativeHistory": [
+    {
+      "path": "editorial/reviews/u7-radiation-240-244-prekey-model-negative-20261126.json",
+      "kind": "Preparation cwd prefix error, no models executed; corrected genuine25 checks/395 rejections before candidates."
+    },
+    {
+      "path": "editorial/reviews/u7-radiation-240-244-verifier-preparation-negative-20261126.json",
+      "kind": "Private launcher lacked app import path; dependent file edit consequently failed. Neither created a verifier or candidate change; corrected explicit cwd/PYTHONPATH before generation."
+    },
+    {
+      "path": "editorial/reviews/u7-radiation-240-244-target-initial.log",
+      "kind": "Actual exit1 in a test fixture: integer denominator10^20 exceeds unchanged exact decoder10^9 node budget. Final test asserts that rejection and uses a bounded product of integers plus an exact decimal lexeme for the same physical quantity. No decoder or mathematical gate expanded; final actual19PASS."
+    }
+  ],
+  "exactLiteralDependency": {
+    "path": "tools/corpus_engineering/exact_arithmetic_literals.py",
+    "sha256": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de",
+    "ownership": "Root canonical dependency, unmodified and excluded from B authorship"
+  },
+  "boundaries": {
+    "candidateAuthoringImports": false,
+    "candidateBytesModifiedByReviewer": false,
+    "rootFilesEdited": false,
+    "rootIntegratedIdentity": "PENDING_ROOT",
+    "canonicalImport": "PENDING_ROOT",
+    "productUI": "NOT_RUN",
+    "humanApproval": "NOT_RUN",
+    "publication": "DRAFT",
+    "registryCredit": "NONE_FROM_THIS_HANDOFF",
+    "SVGGuard": "Freezes independently derived scales and reread labels; not a general semantic graphics parser.",
+    "decoder": "Existing pure exact bounded parser; separately enumerated reviewed speed spellings, no eval or grammar/budget extension."
+  },
+  "files": {
+    "editorial/reviews/absorbed-radiant-power-244-independent-mutations.json": "21437c1729c7f47ced3addebcd2a8d8b24a0fb47de9351129261c12a3cb99924",
+    "editorial/reviews/absorbed-radiant-power-244-independent-note.md": "463bf91b250b58444f402a961baef8e31eba31d70d1cf787d702ab569188e88f",
+    "editorial/reviews/absorbed-radiant-power-244.json": "ddd61763cb85fc2c094cf9c2e08addd4b15db5b73e69325ce01ca13411cf2dfc",
+    "editorial/reviews/em-wave-field-power-243-independent-mutations.json": "3c472dd681ffa9f8bc01dff03f8b6e9c5d6ae536a439141ba440e000eb67c49d",
+    "editorial/reviews/em-wave-field-power-243-independent-note.md": "33785673cd0c0b083ca12837536d7f9754c52aab37e9c7a3c946f994856b2d7f",
+    "editorial/reviews/em-wave-field-power-243.json": "8799dde1b12d2dff5b17e1c7922302238bdc269af604f3920933cef44291bef9",
+    "editorial/reviews/photon-packet-frequency-241-independent-mutations.json": "95b3ad4deb57908c98b9edc5bfc3dce9b5d274f1eac984b0356aaedc84718ac8",
+    "editorial/reviews/photon-packet-frequency-241-independent-note.md": "74bcae1f1ae930e5237963754f53e6f50e985589f4b822f17b5c547d12d66b25",
+    "editorial/reviews/photon-packet-frequency-241.json": "61830318ab450c286de5f8b42cfd8227dbc4dfbea3cb123904835440d08a7ab6",
+    "editorial/reviews/photon-rate-power-242-independent-mutations.json": "cbed7c7bf145e7dcfdd1515cdbbcbdd5a6973445e31c0fc12e38247450fec73e",
+    "editorial/reviews/photon-rate-power-242-independent-note.md": "bac1de6d5b3d8745cb76c27ae5681e22ecb3dca04ca14dbcdd9a2220c4f3cea7",
+    "editorial/reviews/photon-rate-power-242.json": "a5223e80b86c7c697a1c4a74d4612bd58e39a127e8482b438023d4e9fdfe0cc9",
+    "editorial/reviews/u7-radiation-240-244-independent-models-pre-candidates-20261126.json": "73522e3c2a3c24493ae6766a99f55f716af96ab58d4162ca7147c6aede1d0ead",
+    "editorial/reviews/u7-radiation-240-244-independent-models.py": "b23231ee65202142c7f6d46957df443d426c54ad7c9dac9b6de9fd21b1ea9a94",
+    "editorial/reviews/u7-radiation-240-244-prekey-model-negative-20261126.json": "f68639178875b406133c8e90d2068ad8fdb118f90941f822dbd5470c10525b7b",
+    "editorial/reviews/u7-radiation-240-244-primary-source-only.md": "8771a65b67207b7b6f31618ba4ebc9cf17d99b55162f75f4c776cb0f327c975d",
+    "editorial/reviews/u7-radiation-240-244-svg-independent-evidence/absorbed-radiant-power-full.png": "a4acb42dd82e75739218856e55d2168ba53e5429606d1e32a1718db341ce5bd5",
+    "editorial/reviews/u7-radiation-240-244-svg-independent-evidence/absorbed-radiant-power-render.json": "491f51c23c1f15fa043e2bd5874725ba4acaea211890060bdcfdb089c323dcbb",
+    "editorial/reviews/u7-radiation-240-244-svg-independent-evidence/absorbed-radiant-power-terminal.json": "cd7b6fccfbb6324fa8906596fd79236a187e5b4bc94af15e5ff23933dd4bcd8e",
+    "editorial/reviews/u7-radiation-240-244-svg-independent-evidence/em-wave-field-power-full.png": "eedfbfecbe55c58b0123b60de2815f882fe2c4ec45dfdbfca8ea1cdee5db01f3",
+    "editorial/reviews/u7-radiation-240-244-svg-independent-evidence/em-wave-field-power-render.json": "babf5c1278ab77c566b356fcfe3a799060b16ba8360d5922090be5e3c294be1e",
+    "editorial/reviews/u7-radiation-240-244-svg-independent-evidence/em-wave-field-power-terminal.json": "45668bb53e5ac5217f3be4d7e433ea153ecdae6f95db9d6d781e827915c192b1",
+    "editorial/reviews/u7-radiation-240-244-svg-independent-evidence/native-svg-producer.mjs": "9e50e73636a47fc0358bea478d059ebf9533ffdae82d41f3dd9c29b6fc6b42fc",
+    "editorial/reviews/u7-radiation-240-244-svg-independent-evidence/photon-packet-frequency-full.png": "7ea62411c70d5468791373466358eb6ae4ea9782425e7fd826e123ba6b81415c",
+    "editorial/reviews/u7-radiation-240-244-svg-independent-evidence/photon-packet-frequency-render.json": "ecd0ef502c283b209cf103cce3a0a5c396295f4a766a0ac59d5fcafda17c49b0",
+    "editorial/reviews/u7-radiation-240-244-svg-independent-evidence/photon-packet-frequency-terminal.json": "3848cd11cb7b0f2850ef5080b31f7212c30bdf2e432816e2d41171696939c780",
+    "editorial/reviews/u7-radiation-240-244-svg-independent-evidence/photon-rate-power-full.png": "be0860439c1446402184d6d89b7951e1ede598850262b0da8720633c4b529b15",
+    "editorial/reviews/u7-radiation-240-244-svg-independent-evidence/photon-rate-power-render.json": "03cbb9d2ef6989a32bba68da7d2bc6f192aee90d7b7eaa2058fd77b161591bd3",
+    "editorial/reviews/u7-radiation-240-244-svg-independent-evidence/photon-rate-power-terminal.json": "0f3bd0022bd07d67e59bf8100500ba0b8700f41100b258ceb66d0e0b1cb7c787",
+    "editorial/reviews/u7-radiation-240-244-svg-independent-evidence/wavelength-in-medium-full.png": "07f48e294348b9e2680b07fa2eff1fe3782b5cf0a4401a5b7ca7aa70a603d42e",
+    "editorial/reviews/u7-radiation-240-244-svg-independent-evidence/wavelength-in-medium-render.json": "22e378f5c14cc3b4c4dac594285873a778627fb04b3722fa15057765d77bdcd6",
+    "editorial/reviews/u7-radiation-240-244-svg-independent-evidence/wavelength-in-medium-terminal.json": "25ccee4f7344abedd5f874a827e951b9cebe967bad45331c035a83b4b6eb876c",
+    "editorial/reviews/u7-radiation-240-244-target-final.json": "9f07d1b0db87043567c7cb20494401680a2e6bb816f86bb7ab9a732fe20e6002",
+    "editorial/reviews/u7-radiation-240-244-target-final.log": "87151269e628c0f569ac576ad7aaff41f693d7589a5a825d0eba17018ca0a1ba",
+    "editorial/reviews/u7-radiation-240-244-target-initial.json": "4b011488a9ea361fc31531313ed9ea37cfe629d0a8a1078d951ba7a20ede70d1",
+    "editorial/reviews/u7-radiation-240-244-target-initial.log": "39c80c6998f3f20cd00a77df49d33d31404b4362fbd23fcda3cada0d34c859df",
+    "editorial/reviews/u7-radiation-240-244-verifier-preparation-negative-20261126.json": "96a66fbc5d4c5351f3d9422dbbd7aaff7c6e2a1212c01cfc62d6e35f538d3d38",
+    "editorial/reviews/wavelength-in-medium-240-independent-mutations.json": "4170ff75ebe7f61ff9d20951e159c3e55c7522dfde022b8065a5550fe4470a50",
+    "editorial/reviews/wavelength-in-medium-240-independent-note.md": "3dff1d32aa56c392a3e8c29dec7043565d6ec2ba16370a7808de910ec9461813",
+    "editorial/reviews/wavelength-in-medium-240.json": "20acfb01291be0aab0441dc1eaad91a362a606634c09eaf32ececda31d1329a1",
+    "tests/corpus/test_u7_radiation_240_244_independent.py": "85313facc50c7fb243c12b77c9f05c6630724f73bcf33bee9ec129a4e114c019",
+    "tools/corpus_engineering/absorbed_radiant_power_verifier.py": "c3241dd07b61a413964243cd8aadec534401720f15982d023eb8aabb7796012a",
+    "tools/corpus_engineering/em_wave_field_power_verifier.py": "49c4f5e4d3fa8e27ed5bbf93de2a0f51a5c57503298f43516e14a7e87cceba95",
+    "tools/corpus_engineering/photon_packet_frequency_verifier.py": "4d9d77690ffd02f96c58349551564236fa116c302316ff53eb43c77ee16e0590",
+    "tools/corpus_engineering/photon_rate_power_verifier.py": "948b1abfa2a5016f560b4a08130aa3c236e8f63a784cc3ed6ae7ed9a5a62a06e",
+    "tools/corpus_engineering/wavelength_in_medium_verifier.py": "654ff03aa45fff34ccc0e1c9fe9db00b9367012b1c58e1286f7b74940db27e9e"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "scope": "actual selective reread plus unchanged five-family scientific regressions, not product UI",
+  "operations": [
+    {
+      "command": [
+        "/private/tmp/cric-recovery-venv/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/corpus",
+        "-p",
+        "test_u7_radiation_240_244_independent.py",
+        "-v"
+      ],
+      "startedAt": "2026-11-26T19:13:02.793638+00:00",
+      "elapsedSeconds": 7.31650854201871,
+      "exitCode": 0,
+      "signal": null,
+      "rawSha256": "aae0fecc285a0a7f5e22ba35aa141a39da7311c4191b1c2968951b67a0dcbe37"
+    },
+    {
+      "command": [
+        "/private/tmp/cric-recovery-venv/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/corpus",
+        "-p",
+        "test_wavelength_feedback15_independent_reread.py",
+        "-v"
+      ],
+      "startedAt": "2026-11-26T19:13:10.110639+00:00",
+      "elapsedSeconds": 0.9149725000024773,
+      "exitCode": 0,
+      "signal": null,
+      "rawSha256": "67d9ed92390ddf46f5920e0bf84fc22b81ec3660ecefbaa14feb22c8ba0c75d6"
+    }
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "allOperationsRun": true,
+  "testsReported": 22,
+  "rawSha256": "7678e17ee68600fc7818c374836d497f45fdc581c5aaf30c7b844d6227ed05b9",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "productUI": "NOT_RUN"
+}

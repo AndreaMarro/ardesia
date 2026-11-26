@@ -434,8 +434,8 @@
     {
       "id": "AR-u7-wavelength-in-medium-15",
       "sourceSha256": "548a8b63544df1587fe2d58a984806b96bd04a6df49592bd53b8145ba51dc323",
-      "candidateSha256": "ce3b1b94686f7d4f0ed8d83a8031240def1a857371db73c07c0720b0cdf336ee",
-      "reviewedSignature": "73c953d4d231d9af8ffa3a7e22ae8170d0002b2f60d16d3c4521ad02f0ea9225",
+      "candidateSha256": "72194988eb2dab43e41779f09a73413bff04f043499779a8afc11d661c2a2e4e",
+      "reviewedSignature": "b08cc567ffe41b58e67ec57843e2e3a859cb9c1b332eb83cb9d6e48bbd8d8a17",
       "reviewDependencySha256": {
         "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
       },
@@ -448,7 +448,7 @@
       },
       "manualArithmetic": "I riferimenti sono λ_A=300 nm e λ_B=1600/3 nm. ΔS=1400/3 e Δλ=700/3 nm, dunque a=2 per nm e b=1. S_C=801 implica λ_C=400 nm; n=2 dà λ₀, C=800 nm.",
       "physicalAssumptions": "Radiazione monocromatica, interfaccia e mezzo trasparenti stazionari. Indice di fase finito n≥1, velocità c/n alla frequenza considerata, frequenza conservata attraverso ciascun passaggio. Fra preparazioni la sorgente può cambiare; non si impone la stessa frequenza a λ₀ diverse. λ₀>0 e λ>0, medie statistiche e display continui. I casi 03/04 sono autonomi.",
-      "distractors": "λ₀801 nm, ottenuta senza sottrarre b, predice D 802.1600 nm omette il guadagno e 400 nm si ferma a λ nel mezzo. Il finale 800 nm dà λ400 nm e D 801.",
+      "distractors": "Omettere b dà λ₀=801 nm e quindi D=802, non 801. Sottrarre b ma omettere il guadagno dà λ₀=1600 nm e predice D=1601. Fermarsi a 400 nm confonde λ nel mezzo con λ₀ nel vuoto: con n=2 occorre ancora raddoppiare.",
       "pedagogicalReview": "Guadagno e offset identificati da due riferimenti distinti.",
       "assetReview": "not attached to this record",
       "verificationMode": "EXACT_ORACLE",
@@ -490,7 +490,7 @@
       "publication": "DRAFT"
     }
   ],
-  "verifierSha256": "654ff03aa45fff34ccc0e1c9fe9db00b9367012b1c58e1286f7b74940db27e9e",
+  "verifierSha256": "1d554b63f5924521e7b7cf4a2c32b242654a509bd7b3efce5f9feb58fc2e1a89",
   "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
   "reviewDependencySha256": {
     "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
@@ -503,9 +503,9 @@
   "reviewer": "separate_AI_reviewer_not_candidate_author",
   "humanApproval": "NOT_RUN",
   "publication": "DRAFT",
-  "reviewedCandidateCommit": "fdd8e1a3ea1b278f0813d5f0f4c9c9b1e758d87e",
-  "packageSha256": "a24178aaa56e880e82a2b9a41b4ac644739d4ec4dd0aa1c225e08fb87e25c833",
-  "bindingsSha256": "dd96ce38cb904f2527540e36693ca77bcfd750db7c4f6ffd4a716313f8fd12f2",
+  "reviewedCandidateCommit": "00d4ac919f3c9a04a4f619d27d702dc0063b708e",
+  "packageSha256": "dda2bcf552a3ef992fb0e9a9bcdac5773d210ebe731d8f9563b86dd5ecdcd026",
+  "bindingsSha256": "a7a706ffa2eb01a305e720b758b55e91224bb6f3fda3ebafccb208c7cf199af7",
   "source": {
     "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
     "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U7-01.json",

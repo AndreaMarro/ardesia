@@ -1,0 +1,8 @@
+{
+  "scope": "actual local preparation failure before any verifier mutation",
+  "exitCode": 1,
+  "stage": "archive manifest hashing",
+  "error": "TypeError: pipeline.sha expects bytes, received a Path",
+  "verifierWasMutated": false,
+  "correction": "Pass read_bytes() to the canonical SHA helper; no physics, candidate, or test assertion changed."
+}

@@ -182,11 +182,11 @@ Ipotesi: Radiazione monocromatica, interfaccia e mezzo trasparenti stazionari. I
 
 Derivazione manuale: I riferimenti sono λ_A=300 nm e λ_B=1600/3 nm. ΔS=1400/3 e Δλ=700/3 nm, dunque a=2 per nm e b=1. S_C=801 implica λ_C=400 nm; n=2 dà λ₀, C=800 nm.
 
-Distrattori: λ₀801 nm, ottenuta senza sottrarre b, predice D 802.1600 nm omette il guadagno e 400 nm si ferma a λ nel mezzo. Il finale 800 nm dà λ400 nm e D 801.
+Distrattori: Omettere b dà λ₀=801 nm e quindi D=802, non 801. Sottrarre b ma omettere il guadagno dà λ₀=1600 nm e predice D=1601. Fermarsi a 400 nm confonde λ nel mezzo con λ₀ nel vuoto: con n=2 occorre ancora raddoppiare.
 
 Didattica: Guadagno e offset identificati da due riferimenti distinti.
 
-Verifica automatica distinta: EXACT_ORACLE; esito del verificatore True. Firma 73c953d4d231d9af8ffa3a7e22ae8170d0002b2f60d16d3c4521ad02f0ea9225.
+Verifica automatica distinta: EXACT_ORACLE; esito del verificatore True. Firma b08cc567ffe41b58e67ec57843e2e3a859cb9c1b332eb83cb9d6e48bbd8d8a17.
 
 ## AR-u7-wavelength-in-medium-16
 
@@ -199,3 +199,9 @@ Distrattori: Un numero finito di coppie richiederebbe un altro dato indipendente
 Didattica: Vincolo sostituito prima di decidere numero e dominio delle soluzioni.
 
 Verifica automatica distinta: AI_CONCEPTUAL; esito del verificatore True. Firma 84a4c4bbd0d633667a0a7156ea553b1e8bc907d95c186be5f7a44246564ff775.
+
+## Rilettura selettiva del feedback 15 — 26 novembre 2026
+
+Riletto integralmente il record finale 00d4ac919f3c9a04a4f619d27d702dc0063b708e. Le tre frasi distinguono 801 nm, 1600 nm e 400 nm senza concatenare numeri appartenenti a frasi diverse. La taratura indipendente resta a_cal=2 nm⁻¹ e b_cal=1; la lettura 801 dà λ nel mezzo di 400 nm e λ nel vuoto di 800 nm. Le controprove danno rispettivamente display 802, 1601 e 401. Solo il token di questo record cambia; gli altri quindici, tutte le risposte, formule e SVG sono byte-identici. Primaria e modello pre-key immutati.
+
+La vecchia SCI completa è conservata nella cartella di rilettura. Nuovo report prodotto realmente dal verifier con identità fresh e saved; approvazione umana e UI del prodotto NOT_RUN, tutto DRAFT. Nessun nuovo rendering richiesto su asset invariato.
