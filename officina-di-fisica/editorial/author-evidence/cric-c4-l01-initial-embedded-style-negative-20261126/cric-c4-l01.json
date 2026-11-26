@@ -1,0 +1,589 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C4-Q001",
+      "kind": "question",
+      "course": "C4",
+      "section": "Elettricità e magnetismo",
+      "order": 1,
+      "title": "Contare un eccesso di elettroni",
+      "skill": "C4-L01",
+      "prerequisites": [],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un elettrone aggiunto porta carica −e, quindi il segno negativo indica un eccesso di elettroni. Per contarli divido il modulo della carica per e. Scrivo 4,80 fC=4,80×10⁻¹⁵ C: il rapporto è (4,80/1,60)×10⁴=3×10⁴. Il numero acquistato è positivo e intero: 30 000 elettroni."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/217dcab22b2411c550059cf00f8dab095aa9c24a0045c6948b70bbef655c9f41",
+          "text": "La carica negativa aggiunta corrisponde a 30 000 elettroni: tre gruppi simbolici da 10 000, non tre sole particelle. Ogni elettrone ha carica −e nel modello assegnato."
+        },
+        {
+          "type": "formula",
+          "text": "N=\\frac{|q|}{e}"
+        },
+        {
+          "type": "formula",
+          "text": " N=3\\cdot10^4"
+        },
+        {
+          "type": "text",
+          "text": "Il segno della carica non rende negativo il numero di elettroni acquistati. 3 000 elettroni darebbero −0,480 fC; 300 000 darebbero −48,0 fC. Il prefisso femto vale 10⁻¹⁵, mentre la carica elementare assegnata contiene 10⁻¹⁹."
+        }
+      ],
+      "prompt": "Una gocciolina inizialmente neutra acquisisce carica −4,80 fC in un ordinario trasferimento di elettroni. Quanti elettroni ha acquistato? Usa il valore di modello e=1,60×10⁻¹⁹ C.",
+      "difficulty": 1,
+      "family": "contare-gli-elettroni-trasferiti",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 30000,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "hints": [
+        "Conserva il segno per identificare gli elettroni in eccesso, poi usa il modulo per il conteggio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Il segno della carica non rende negativo il numero di elettroni acquistati. 3 000 elettroni darebbero −0,480 fC; 300 000 darebbero −48,0 fC. Il prefisso femto vale 10⁻¹⁵, mentre la carica elementare assegnata contiene 10⁻¹⁹.",
+        "target": "C4-L01"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Contare un eccesso di elettroni"
+      ]
+    },
+    {
+      "id": "C4-Q002",
+      "kind": "question",
+      "course": "C4",
+      "section": "Elettricità e magnetismo",
+      "order": 2,
+      "title": "Due forze applicate a corpi diversi",
+      "skill": "C4-L01",
+      "prerequisites": [],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge di Coulomb contiene lo stesso prodotto 3q² e la stessa distanza in entrambi i calcoli. La coppia di azione e reazione ha quindi uguale modulo e versi opposti lungo la congiungente. Le frecce sono applicate a corpi distinti: non si cancellano nel bilancio delle forze di uno solo dei due corpi."
+        },
+        {
+          "type": "formula",
+          "text": "\\mathbf F_{1\\to2}=-\\mathbf F_{2\\to1}"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto fra le cariche non è il rapporto fra le forze reciproche. Avere la stessa direzione geometrica non significa avere lo stesso verso. Senza conoscere le masse non si può confrontare l’accelerazione dei due corpi."
+        }
+      ],
+      "prompt": "Due cariche puntiformi ferme, isolate da altre sorgenti, valgono +q e +3q, con q>0. Si respingono. Quale confronto fra le forze reciproche rispetta la dinamica?",
+      "difficulty": 1,
+      "family": "forze-fra-cariche-diverse",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La carica +q non subisce forza",
+          "Le due forze hanno uguale modulo e versi opposti",
+          "La forza su +q è tre volte quella su +3q",
+          "La forza su +3q è tre volte quella su +q",
+          "Le due forze hanno lo stesso verso"
+        ],
+        "value": "Le due forze hanno uguale modulo e versi opposti"
+      },
+      "hints": [
+        "Confronta il prodotto delle due cariche quando scambi sorgente e corpo che subisce la forza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il rapporto fra le cariche non è il rapporto fra le forze reciproche. Avere la stessa direzione geometrica non significa avere lo stesso verso. Senza conoscere le masse non si può confrontare l’accelerazione dei due corpi.",
+        "target": "C4-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Due forze applicate a corpi diversi"
+      ]
+    },
+    {
+      "id": "C4-Q003",
+      "kind": "question",
+      "course": "C4",
+      "section": "Elettricità e magnetismo",
+      "order": 3,
+      "title": "Il prefisso delle piccole cariche",
+      "skill": "C4-L01",
+      "prerequisites": [],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prefisso nano indica un miliardesimo dell’unità. Una carica di 1 nC vale perciò 10⁻⁹ C. Il prefisso modifica il valore dell’unità, non il segno della carica: un nanocoulomb può essere positivo o negativo."
+        },
+        {
+          "type": "formula",
+          "text": "1\\,\\mathrm{nC}=10^{-9}\\,\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "Micro corrisponde a 10⁻⁶, pico a 10⁻¹², femto a 10⁻¹⁵ e milli a 10⁻³. Confondere nano con micro cambia il valore di un fattore mille."
+        }
+      ],
+      "prompt": "Quale prefisso SI, scritto in lettere, corrisponde a 10⁻⁹ e si usa spesso per piccole cariche?",
+      "difficulty": 1,
+      "family": "prefisso-sotto-il-microcoulomb",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "femto",
+          "milli",
+          "nano",
+          "micro",
+          "pico"
+        ],
+        "value": "nano"
+      },
+      "hints": [
+        "Riconosci il prefisso associato a un miliardesimo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Micro corrisponde a 10⁻⁶, pico a 10⁻¹², femto a 10⁻¹⁵ e milli a 10⁻³. Confondere nano con micro cambia il valore di un fattore mille.",
+        "target": "C4-L01"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Il prefisso delle piccole cariche"
+      ]
+    },
+    {
+      "id": "C4-Q004",
+      "kind": "question",
+      "course": "C4",
+      "section": "Elettricità e magnetismo",
+      "order": 4,
+      "title": "Ridurre la forza allontanando le cariche",
+      "skill": "C4-L01",
+      "prerequisites": [],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A cariche costanti la forza è inversamente proporzionale al quadrato della distanza. Per dividerla per nove devo moltiplicare la distanza per la radice positiva di nove, cioè tre. La nuova distanza è 3×4 cm=12 cm. Il controllo diretto dà (4/12)²=1/9."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/217dcab22b2411c550059cf00f8dab095aa9c24a0045c6948b70bbef655c9f41",
+          "text": "Stesse cariche e stesso mezzo: portare la distanza da 4 a 12 cm riduce il modulo della forza da F a F/9. Le frecce confrontano forze applicate a corpi distinti."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{F_f}{F_i}=\\left(\\frac{r_i}{r_f}\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": " r_f=3r_i"
+        },
+        {
+          "type": "text",
+          "text": "36 cm moltiplicherebbe la distanza per nove e ridurrebbe la forza a F/81. Ridurre la distanza aumenterebbe la forza. La radice negativa non è ammessa per una distanza fra due punti distinti."
+        }
+      ],
+      "prompt": "Due cariche puntiformi fisse nel vuoto, non nulle, inizialmente distanti 4 cm si respingono con modulo F. Senza cambiarle, a quanti cm vanno portate per ottenere il modulo F/9?",
+      "difficulty": 2,
+      "family": "la-distanza-necessaria-a-ridurre-la-forza",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 12,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "hints": [
+        "Applica la radice al fattore di variazione della forza prima di scalare la distanza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "36 cm moltiplicherebbe la distanza per nove e ridurrebbe la forza a F/81. Ridurre la distanza aumenterebbe la forza. La radice negativa non è ammessa per una distanza fra due punti distinti.",
+        "target": "C4-L01"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Ridurre la forza allontanando le cariche"
+      ]
+    },
+    {
+      "id": "C4-Q005",
+      "kind": "question",
+      "course": "C4",
+      "section": "Elettricità e magnetismo",
+      "order": 5,
+      "title": "Conservare la carica algebrica",
+      "skill": "C4-L01",
+      "prerequisites": [],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La conservazione riguarda la somma con segno. Scrivo q₁+q₂=q_tot e isolo q₂ sottraendo la carica positiva del primo oggetto. Ottengo −2,5−1,2=−3,7 nC. Il controllo è +1,2+(−3,7)=−2,5 nC. La separazione può ridistribuire le cariche, ma non modificarne il totale nel sistema isolato."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/217dcab22b2411c550059cf00f8dab095aa9c24a0045c6948b70bbef655c9f41",
+          "text": "Il totale algebrico resta −2,5 nC: l’oggetto A ha +1,2 nC e B ha −3,7 nC. Il riquadro indica il confine dell’intero sistema isolato, non una barriera che impedisce la separazione interna."
+        },
+        {
+          "type": "formula",
+          "text": "q_2=q_{\\rm tot}-q_1"
+        },
+        {
+          "type": "text",
+          "text": "−1,3 nC darebbe un totale di −0,1 nC. +3,7 nC e +1,3 nC darebbero totali positivi. Lasciare al secondo tutto −2,5 nC ignorerebbe il contributo +1,2 nC del primo."
+        }
+      ],
+      "prompt": "Un sistema isolato elettricamente ha carica totale −2,5 nC. Viene separato in due oggetti, senza scambio di carica con l’esterno. Il primo ha +1,2 nC. Qual è la carica del secondo?",
+      "difficulty": 1,
+      "family": "carica-mancante-dopo-la-separazione",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "−1,3 nC",
+          "+3,7 nC",
+          "+1,3 nC",
+          "−2,5 nC",
+          "−3,7 nC"
+        ],
+        "value": "−3,7 nC"
+      },
+      "hints": [
+        "Sottrai la carica del primo oggetto dal totale, conservando entrambi i segni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "−1,3 nC darebbe un totale di −0,1 nC. +3,7 nC e +1,3 nC darebbero totali positivi. Lasciare al secondo tutto −2,5 nC ignorerebbe il contributo +1,2 nC del primo.",
+        "target": "C4-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Conservare la carica algebrica"
+      ]
+    },
+    {
+      "id": "C4-Q006",
+      "kind": "question",
+      "course": "C4",
+      "section": "Elettricità e magnetismo",
+      "order": 6,
+      "title": "Quando basta il modello puntiforme",
+      "skill": "C4-L01",
+      "prerequisites": [],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da lontano i dettagli della distribuzione incidono meno sul campo rispetto al contributo complessivo della carica netta, nelle condizioni indicate. Se la dimensione caratteristica a è molto minore di r, posso approssimare il corpo con una sorgente puntiforme. Non è una regola per punti interni o vicinissimi alla superficie."
+        },
+        {
+          "type": "formula",
+          "text": "a\\ll r"
+        },
+        {
+          "type": "text",
+          "text": "Essere dentro o vicino al corpo non giustifica l’approssimazione lontana. Una carica netta nulla eliminerebbe il contributo monopolare considerato. La sola forma esterna non sostituisce le condizioni sulla distribuzione e sul punto di osservazione."
+        }
+      ],
+      "prompt": "Per stimare il campo lontano di un corpo carico con carica netta non nulla, nel regime in cui domina il contributo della carica totale, quale condizione geometrica permette usualmente di trascurarne le dimensioni?",
+      "difficulty": 2,
+      "family": "quando-approssimare-una-sfera-con-un-punto",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Le dimensioni del corpo sono molto minori della distanza dal punto di osservazione",
+          "Il punto di osservazione è dentro il corpo",
+          "La distanza è minore delle dimensioni del corpo",
+          "La carica totale deve essere necessariamente zero",
+          "La sola forma sferica rende irrilevante qualsiasi distribuzione di carica"
+        ],
+        "value": "Le dimensioni del corpo sono molto minori della distanza dal punto di osservazione"
+      },
+      "hints": [
+        "Confronta la dimensione del corpo con la distanza dalla sonda.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Essere dentro o vicino al corpo non giustifica l’approssimazione lontana. Una carica netta nulla eliminerebbe il contributo monopolare considerato. La sola forma esterna non sostituisce le condizioni sulla distribuzione e sul punto di osservazione.",
+        "target": "C4-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Quando basta il modello puntiforme"
+      ]
+    },
+    {
+      "id": "C4-Q007",
+      "kind": "question",
+      "course": "C4",
+      "section": "Elettricità e magnetismo",
+      "order": 7,
+      "title": "Cariche di segno opposto",
+      "skill": "C4-L01",
+      "prerequisites": [],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni carica è spinta verso la posizione dell’altra. La forza è quindi attrattiva e agisce lungo la congiungente delle cariche. Il segno del prodotto q₁q₂ distingue attrazione e repulsione, mentre il modulo dipende anche dalla distanza e dai valori assoluti delle cariche."
+        },
+        {
+          "type": "formula",
+          "text": "q_1q_2<0"
+        },
+        {
+          "type": "text",
+          "text": "Repulsiva descrive cariche dello stesso segno. L’opposizione dei segni non annulla le cariche né le forze reciproche. La forza di Coulomb non è tangenziale alla congiungente e non resta costante cambiando la distanza."
+        }
+      ],
+      "prompt": "Due cariche puntiformi ferme hanno segni opposti. Con quale aggettivo si definisce la forza che ciascuna esercita sull’altra?",
+      "difficulty": 1,
+      "family": "segni-opposti",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Indipendente dalla distanza",
+          "Attrattiva",
+          "Repulsiva",
+          "Sempre nulla",
+          "Tangenziale alla congiungente"
+        ],
+        "value": "Attrattiva"
+      },
+      "hints": [
+        "Il segno del prodotto delle cariche è negativo: le cariche si avvicinerebbero se libere.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Repulsiva descrive cariche dello stesso segno. L’opposizione dei segni non annulla le cariche né le forze reciproche. La forza di Coulomb non è tangenziale alla congiungente e non resta costante cambiando la distanza.",
+        "target": "C4-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Cariche di segno opposto"
+      ]
+    },
+    {
+      "id": "C4-Q008",
+      "kind": "question",
+      "course": "C4",
+      "section": "Elettricità e magnetismo",
+      "order": 8,
+      "title": "Cambiare carica e distanza insieme",
+      "skill": "C4-L01",
+      "prerequisites": [],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto delle cariche fornisce un fattore tre. Il denominatore r² fornisce invece un fattore quattro quando r raddoppia. Il rapporto finale rispetto all’iniziale è dunque 3/4: la forza diminuisce, pur essendo aumentata una delle cariche. Il mezzo è lo stesso, perciò il coefficiente della legge si semplifica."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{F_f}{F_i}=\\frac{3}{2^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{3}{2^2}=\\frac34"
+        },
+        {
+          "type": "text",
+          "text": "3/2 tratta la distanza come se comparisse alla prima potenza. 3 ignora la variazione della distanza. 4/3 è il rapporto inverso, mentre 12 moltiplica per quattro invece di dividere."
+        }
+      ],
+      "prompt": "Nel medesimo mezzo una delle due cariche puntiformi è triplicata e la distanza è raddoppiata; l’altra carica resta invariata. Le cariche iniziali sono non nulle. Qual è il rapporto F_f/F_i dei moduli delle forze?",
+      "difficulty": 2,
+      "family": "cambiare-insieme-cariche-e-distanza",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "12",
+          "3/4",
+          "3/2",
+          "3"
+        ],
+        "value": "3/4"
+      },
+      "hints": [
+        "Separa il fattore del numeratore da quello del denominatore quadratico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "3/2 tratta la distanza come se comparisse alla prima potenza. 3 ignora la variazione della distanza. 4/3 è il rapporto inverso, mentre 12 moltiplica per quattro invece di dividere.",
+        "target": "C4-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Cambiare carica e distanza insieme"
+      ]
+    },
+    {
+      "id": "C4-Q009",
+      "kind": "question",
+      "course": "C4",
+      "section": "Elettricità e magnetismo",
+      "order": 9,
+      "title": "Uno strofinio lascia il corpo positivo",
+      "skill": "C4-L01",
+      "prerequisites": [],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Gli elettroni portano carica negativa. Se alcuni vengono trasferiti dall’oggetto all’altro materiale, nel primo rimane un difetto di carica negativa e quindi una carica netta positiva. Non occorre cambiare il numero dei protoni nei nuclei. Il trasferimento conserva la carica complessiva dei materiali se il sistema è isolato."
+        },
+        {
+          "type": "formula",
+          "text": "q_{\\rm finale}>0"
+        },
+        {
+          "type": "text",
+          "text": "Acquistare elettroni renderebbe l’oggetto negativo. Trasformazioni dei nuclei e scomparsa di neutroni non descrivono l’ordinario strofinio. Essere inizialmente neutro non impedisce un successivo trasferimento di carica."
+        }
+      ],
+      "prompt": "Un oggetto inizialmente neutro diventa positivo per ordinaria elettrizzazione per strofinio, senza reazioni nucleari. Quale cambiamento microscopico è coerente?",
+      "difficulty": 1,
+      "family": "uno-sfregamento-lascia-il-materiale-positivo",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Si trasformano elettroni in protoni",
+          "Scompaiono i neutroni dei nuclei",
+          "Il corpo resta necessariamente neutro",
+          "L’oggetto perde alcuni elettroni",
+          "L’oggetto acquista elettroni"
+        ],
+        "value": "L’oggetto perde alcuni elettroni"
+      },
+      "hints": [
+        "Collega il segno finale al guadagno o alla perdita di portatori negativi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Acquistare elettroni renderebbe l’oggetto negativo. Trasformazioni dei nuclei e scomparsa di neutroni non descrivono l’ordinario strofinio. Essere inizialmente neutro non impedisce un successivo trasferimento di carica.",
+        "target": "C4-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Uno strofinio lascia il corpo positivo"
+      ]
+    },
+    {
+      "id": "C4-Q010",
+      "kind": "question",
+      "course": "C4",
+      "section": "Elettricità e magnetismo",
+      "order": 10,
+      "title": "Trovare la seconda carica con il suo segno",
+      "skill": "C4-L01",
+      "prerequisites": [],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’attrazione verso una carica positiva richiede che la seconda sia negativa. Dalla legge dei moduli ricavo |q|=Fr²/(kQ). In SI il numeratore vale (9×10⁻⁶)(0,20)²=3,6×10⁻⁷ N·m² e kQ=18 N·m²/C. Il rapporto è 2×10⁻⁸ C, cioè 20 nC. Ripristino il segno: q=−20 nC."
+        },
+        {
+          "type": "formula",
+          "text": "q=-\\frac{Fr^2}{kQ}"
+        },
+        {
+          "type": "formula",
+          "text": " q=-20\\,\\mathrm{nC}"
+        },
+        {
+          "type": "text",
+          "text": "+20 nC produrrebbe repulsione. −2 nC darebbe 0,9 μN e −200 nC darebbe 90 μN, mentre il modulo misurato è 9,0 μN. Il prefisso nano vale 10⁻⁹ e micro vale 10⁻⁶; non si possono lasciare quei numeri nel prodotto SI senza conversione."
+        }
+      ],
+      "prompt": "Nel vuoto, una carica +2,0 nC e una seconda carica puntiforme, distanti 0,20 m, si attraggono con modulo della forza 9,0 μN. Trova la seconda carica con segno in nC. Usa k=9,0×10⁹ N·m²/C².",
+      "difficulty": 3,
+      "family": "scegliere-il-valore-della-seconda-carica",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": -20,
+        "unit": "nC",
+        "tolerance": 0
+      },
+      "hints": [
+        "Determina prima il segno dall’attrazione, poi ricava il modulo con unità SI.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "+20 nC produrrebbe repulsione. −2 nC darebbe 0,9 μN e −200 nC darebbe 90 μN, mentre il modulo misurato è 9,0 μN. Il prefisso nano vale 10⁻⁹ e micro vale 10⁻⁶; non si possono lasciare quei numeri nel prodotto SI senza conversione.",
+        "target": "C4-L01"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trovare la seconda carica con il suo segno"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "217dcab22b2411c550059cf00f8dab095aa9c24a0045c6948b70bbef655c9f41",
+      "name": "cric-c4-l01-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTU0MCIgdmlld0JveD0iMCAwIDY0MCAxNTQwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkNhcmljYSBlbGVtZW50YXJlLCBkaXN0YW56YSBlIGNvbnNlcnZhemlvbmU8L3RpdGxlPgo8ZGVzYyBpZD0iZGVzYyI+VHJlIHBhbm5lbGxpIGRpc3RpbnRpOiB0cmUgZ3J1cHBpIHNpbWJvbGljaSBkYSBkaWVjaW1pbGEgZWxldHRyb25pIGNvcnJpc3BvbmRvbm8gYSBtZW5vIDQsODAgZmVtdG9jb3Vsb21iLiBQZXIgY2FyaWNoZSBmaXNzZSBsYSBkaXN0YW56YSBwYXNzYSBkYSA0IGEgMTIgY2VudGltZXRyaSBlIGxlIGZvcnplIGRhIEYgYSBGLzksIGNvbiBsYSBzdGVzc2Egc2NhbGEgZW50cm8gY2lhc2N1bmEgZ3JhbmRlenphLiBVbiBzaXN0ZW1hIGlzb2xhdG8gaGEgY2FyaWNoZSBwacO5IDEsMiBlIG1lbm8gMyw3IG5hbm9jb3Vsb21iLCBjb24gdG90YWxlIG1lbm8gMiw1IG5hbm9jb3Vsb21iLiBMZSBkaW1lbnNpb25pIGRlaSBzaW1ib2xpIGRlbGxlIGNhcmljaGUgbm9uIHJhcHByZXNlbnRhbm8gZGltZW5zaW9uaSBmaXNpY2hlLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIG1hcmtlcldpZHRoPSI1IiBtYXJrZXJIZWlnaHQ9IjUiIHJlZlg9IjUiIHJlZlk9IjIuNSIgb3JpZW50PSJhdXRvIiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0wIDBMNSAyLjVMMCA1WiIgZmlsbD0iIzZhNGEyMSIvPjwvbWFya2VyPjxzdHlsZT50ZXh0e2ZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7ZmlsbDojMjcyNTM2O2ZvbnQtc2l6ZToyMXB4fS5oZWFkaW5ne2ZvbnQtc2l6ZToyNXB4O2ZvbnQtd2VpZ2h0OmJvbGR9LnNtYWxse2ZvbnQtc2l6ZToxOHB4fS5uZWdhdGl2ZXtmaWxsOiNlOGU3Zjg7c3Ryb2tlOiM2MjUwYTA7c3Ryb2tlLXdpZHRoOjJ9LnBvc2l0aXZle2ZpbGw6I2Y3ZTdkZjtzdHJva2U6I2FhNDIzZTtzdHJva2Utd2lkdGg6Mn0uZm9yY2V7ZmlsbDpub25lO3N0cm9rZTojNmE0YTIxO3N0cm9rZS13aWR0aDozO21hcmtlci1lbmQ6dXJsKCNhcnJvdyl9PC9zdHlsZT48L2RlZnM+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTU0MCIgZmlsbD0iI2ZmZmRmNyIvPgo8dGV4dCB4PSI0MCIgeT0iNTUiIGNsYXNzPSJoZWFkaW5nIj4xIMK3IENvbnRhcmUgZWxldHRyb25pIHRyYXNmZXJpdGk8L3RleHQ+Cjx0ZXh0IHg9IjQwIiB5PSIxMDgiPnEgPSDiiJI0LDgwIGZDIDsgZSA9IDEsNjAgw5cgMTDigbvCueKBuSBDPC90ZXh0Pgo8Y2lyY2xlIGN4PSIxMjAiIGN5PSIyMzUiIHI9IjYyIiBjbGFzcz0ibmVnYXRpdmUiLz48Y2lyY2xlIGN4PSIzMjAiIGN5PSIyMzUiIHI9IjYyIiBjbGFzcz0ibmVnYXRpdmUiLz48Y2lyY2xlIGN4PSI1MjAiIGN5PSIyMzUiIHI9IjYyIiBjbGFzcz0ibmVnYXRpdmUiLz4KPHRleHQgeD0iMTIwIiB5PSIyMjkiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjEwIDAwMDwvdGV4dD48dGV4dCB4PSIxMjAiIHk9IjI1NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+ZWxldHRyb25pPC90ZXh0Pjx0ZXh0IHg9IjMyMCIgeT0iMjI5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4xMCAwMDA8L3RleHQ+PHRleHQgeD0iMzIwIiB5PSIyNTYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPmVsZXR0cm9uaTwvdGV4dD48dGV4dCB4PSI1MjAiIHk9IjIyOSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTAgMDAwPC90ZXh0Pjx0ZXh0IHg9IjUyMCIgeT0iMjU2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5lbGV0dHJvbmk8L3RleHQ+Cjx0ZXh0IHg9IjQwIiB5PSIzNjUiPk4gPSB8cXwgLyBlID0gMzAgMDAwPC90ZXh0Pjx0ZXh0IHg9IjQwIiB5PSI0MDUiIGNsYXNzPSJzbWFsbCI+T2duaSBncnVwcG8gw6ggdW4gY29udGVnZ2lvIHNpbWJvbGljbywgbm9uIHVuYSBwYXJ0aWNlbGxhLjwvdGV4dD4KPHBhdGggZD0iTTQwIDQ2MEg2MDAiIHN0cm9rZT0iI2NiYzZiYyIvPgo8dGV4dCB4PSI0MCIgeT0iNTE1IiBjbGFzcz0iaGVhZGluZyI+MiDCtyBTdGVzc2UgY2FyaWNoZSwgZGlzdGFuemUgZGl2ZXJzZTwvdGV4dD4KPHRleHQgeD0iNDAiIHk9IjU1NyIgY2xhc3M9InNtYWxsIj5EaXN0YW56ZSBtaXN1cmF0ZSBmcmEgbGUgcG9zaXppb25pIGRlbGxlIGNhcmljaGUuPC90ZXh0Pgo8Y2lyY2xlIGN4PSIxMzAiIGN5PSI2NjUiIHI9IjQiIGNsYXNzPSJwb3NpdGl2ZSIvPjxjaXJjbGUgY3g9IjIxMCIgY3k9IjY2NSIgcj0iNCIgY2xhc3M9InBvc2l0aXZlIi8+PHRleHQgeD0iMTMwIiB5PSI2MDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPitx4oKBPC90ZXh0Pjx0ZXh0IHg9IjIxMCIgeT0iNjA1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4rceKCgjwvdGV4dD4KPHBhdGggZD0iTTEzMCA2NjVINDAiIGNsYXNzPSJmb3JjZSIvPjxwYXRoIGQ9Ik0yMTAgNjY1SDMwMCIgY2xhc3M9ImZvcmNlIi8+Cjx0ZXh0IHg9IjY1IiB5PSI2MzUiPkY8L3RleHQ+PHRleHQgeD0iMjY0IiB5PSI2MzUiPkY8L3RleHQ+PHBhdGggZD0iTTEzMCA3MDhWNzMwSDIxMFY3MDgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzc3NyIvPjx0ZXh0IHg9IjE3MCIgeT0iNzY1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj40IGNtPC90ZXh0Pgo8Y2lyY2xlIGN4PSIxMzAiIGN5PSI4NjUiIHI9IjQiIGNsYXNzPSJwb3NpdGl2ZSIvPjxjaXJjbGUgY3g9IjM3MCIgY3k9Ijg2NSIgcj0iNCIgY2xhc3M9InBvc2l0aXZlIi8+PHRleHQgeD0iMTMwIiB5PSI4MDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPitx4oKBPC90ZXh0Pjx0ZXh0IHg9IjM3MCIgeT0iODA1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4rceKCgjwvdGV4dD4KPHBhdGggZD0iTTEzMCA4NjVIMTIwIiBjbGFzcz0iZm9yY2UiLz48cGF0aCBkPSJNMzcwIDg2NUgzODAiIGNsYXNzPSJmb3JjZSIvPgo8dGV4dCB4PSI3NyIgeT0iODMzIj5GLzk8L3RleHQ+PHRleHQgeD0iMzU2IiB5PSI4MzMiPkYvOTwvdGV4dD48cGF0aCBkPSJNMTMwIDkwOFY5MzBIMzcwVjkwOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzc3Ii8+PHRleHQgeD0iMjUwIiB5PSI5NjUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjEyIGNtPC90ZXh0Pgo8dGV4dCB4PSI0MCIgeT0iMTAxNSI+Rl9mIC8gRl9pID0gKDQgLyAxMinCsiA9IDEvOTwvdGV4dD4KPHBhdGggZD0iTTQwIDEwNjBINjAwIiBzdHJva2U9IiNjYmM2YmMiLz4KPHRleHQgeD0iNDAiIHk9IjExMTUiIGNsYXNzPSJoZWFkaW5nIj4zIMK3IElsIHRvdGFsZSBhbGdlYnJpY28gc2kgY29uc2VydmE8L3RleHQ+CjxyZWN0IHg9IjY1IiB5PSIxMTUwIiB3aWR0aD0iNTEwIiBoZWlnaHQ9IjI2NSIgcng9IjE0IiBmaWxsPSJub25lIiBzdHJva2U9IiM4ODgiIHN0cm9rZS1kYXNoYXJyYXk9IjggNSIvPgo8Y2lyY2xlIGN4PSIxOTUiIGN5PSIxMjUwIiByPSI0NSIgY2xhc3M9InBvc2l0aXZlIi8+PGNpcmNsZSBjeD0iNDQ1IiBjeT0iMTI1MCIgcj0iNDUiIGNsYXNzPSJuZWdhdGl2ZSIvPgo8dGV4dCB4PSIxOTUiIHk9IjEyNTciIHRleHQtYW5jaG9yPSJtaWRkbGUiPkE8L3RleHQ+PHRleHQgeD0iNDQ1IiB5PSIxMjU3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5CPC90ZXh0Pjx0ZXh0IHg9IjE5NSIgeT0iMTMzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+KzEsMiBuQzwvdGV4dD48dGV4dCB4PSI0NDUiIHk9IjEzMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuKIkjMsNyBuQzwvdGV4dD4KPHRleHQgeD0iMzIwIiB5PSIxMzkwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Ub3RhbGU6IOKIkjIsNSBuQzwvdGV4dD48dGV4dCB4PSI0MCIgeT0iMTQ4MCIgY2xhc3M9InNtYWxsIj5OZXNzdW5hIGNhcmljYSBhdHRyYXZlcnNhIGlsIGNvbmZpbmUgZGVsbOKAmWludGVybyBzaXN0ZW1hLjwvdGV4dD4KPC9zdmc+Cg=="
+    }
+  ]
+}

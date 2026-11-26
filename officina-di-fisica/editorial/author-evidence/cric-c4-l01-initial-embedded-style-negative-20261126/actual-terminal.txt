@@ -1,0 +1,17 @@
+SHARED_LOCK_ACQUIRED; free bytes 4667412480; one child
+Traceback (most recent call last):
+  File "/private/tmp/assemble_cric_author_a.py", line 8, in <module>
+    fp=runtime_fingerprint(ROOT);result=exercise_package(p);assert fp==runtime_fingerprint(ROOT)
+                                        ~~~~~~~~~~~~~~~~^^^
+  File "/private/tmp/cric-resident-integrator/officina-di-fisica/tools/corpus_engineering/integration.py", line 55, in exercise_package
+    if run.returncode: raise ValueError(run.stdout + run.stderr)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Traceback (most recent call last):
+  File "<string>", line 13, in <module>
+    first=import_drafts(db,{'id':'owner','role':'autore'},package)
+  File "/private/tmp/cric-resident-integrator/officina-di-fisica/tools/corpus_engineering/draft_import.py", line 30, in import_drafts
+    if result["errors"]: raise ValueError("; ".join(result["errors"]))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Allegato: Esporta SVG senza script, stili incorporati o risorse esterne.; C4-Q001 · File assente o percorso non valido: /asset/217dcab22b2411c550059cf00f8dab095aa9c24a0045c6948b70bbef655c9f41; C4-Q004 · File assente o percorso non valido: /asset/217dcab22b2411c550059cf00f8dab095aa9c24a0045c6948b70bbef655c9f41; C4-Q005 · File assente o percorso non valido: /asset/217dcab22b2411c550059cf00f8dab095aa9c24a0045c6948b70bbef655c9f41
+
+CHILD_EXIT 1; free bytes 4671344640
