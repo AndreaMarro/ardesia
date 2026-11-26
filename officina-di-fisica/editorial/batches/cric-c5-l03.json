@@ -1,0 +1,621 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C5-Q021",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 21,
+      "title": "Somma nello stesso punto",
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L02"
+      ],
+      "version": 2,
+      "prompt": "Nel regime lineare di una corda due piccoli impulsi danno, nello stesso punto e istante, spostamenti +1,2 mm e +0,8 mm rispetto allo stesso zero. Quanto vale lo spostamento risultante in millimetri?",
+      "family": "due-impulsi-concordi",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La sovrapposizione somma le coordinate con il segno, nello stesso punto e istante. Entrambe sono positive: 1,2+0,8=2,0 mm. Il risultato non è una media e non rappresenta la somma delle energie. Se un contributo avesse segno opposto, la sua ordinata andrebbe sottratta algebricamente."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/655426342173187b986c9fa2ae74555c53cb70a1cb56385b7f6c820e00f64a32",
+          "text": "Le tre barre del primo pannello si riferiscono allo stesso punto e istante, con lo stesso zero e scala in millimetri: +1,2 più +0,8 dà +2,0 mm. Non sono tre punti diversi della corda."
+        },
+        {
+          "type": "formula",
+          "text": "y=y_1+y_2"
+        },
+        {
+          "type": "formula",
+          "text": " y=+2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "1 mm è la media, non la somma. 0,4 mm sottrarrebbe contributi che qui hanno lo stesso segno. Il quadrato delle ampiezze riguarda altri bilanci e non dà l’ordinata istantanea richiesta."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "hints": [
+        "Allinea origine, punto e istante prima di sommare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "1 mm è la media, non la somma. 0,4 mm sottrarrebbe contributi che qui hanno lo stesso segno. Il quadrato delle ampiezze riguarda altri bilanci e non dà l’ordinata istantanea richiesta.",
+        "target": "C5-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Somma nello stesso punto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q022",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 22,
+      "title": "Rivedere gli impulsi dopo l’incontro",
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L02"
+      ],
+      "version": 2,
+      "prompt": "Due impulsi identici di segno opposto viaggiano in versi opposti su una corda ideale lineare. Si sovrappongono completamente e poi si incrociano, senza incontrare estremità. Che cosa accade dopo?",
+      "family": "dopo-la-cancellazione",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La soluzione totale è la somma dei due profili che continuano a propagarsi. Nell’istante di sovrapposizione le ordinate opposte si cancellano, ma questo non elimina le due soluzioni né le velocità locali del mezzo. Dopo l’incrocio tornano distinguibili i due impulsi. La conservazione dell’energia riguarda anche l’energia cinetica della corda."
+        },
+        {
+          "type": "formula",
+          "text": "y(x,t)=y_1(x,t)+y_2(x,t)"
+        },
+        {
+          "type": "text",
+          "text": "Spostamento nullo in un istante non significa velocità nulla o energia totale nulla. Un impulso fermo o la scomparsa permanente non sono le soluzioni del modello lineare senza dissipazione."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "L’energia totale viene annullata",
+          "Si separano e continuano nei rispettivi versi",
+          "Scompaiono per sempre",
+          "La corda resta definitivamente ferma ovunque",
+          "Rimane un unico impulso fermo"
+        ],
+        "value": "Si separano e continuano nei rispettivi versi"
+      },
+      "hints": [
+        "Distingui l’istante della cancellazione dagli istanti dopo l’incrocio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Spostamento nullo in un istante non significa velocità nulla o energia totale nulla. Un impulso fermo o la scomparsa permanente non sono le soluzioni del modello lineare senza dissipazione.",
+        "target": "C5-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Rivedere gli impulsi dopo l’incontro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q023",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 23,
+      "title": "La parte non cancellata",
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L02"
+      ],
+      "version": 2,
+      "prompt": "Due sinusoidi della stessa frequenza e della stessa direzione di oscillazione arrivano in P con ampiezze 5 mm e 3 mm, sempre in opposizione di fase. Nel regime lineare qual è l’ampiezza risultante in millimetri?",
+      "family": "un-residuo-in-opposizione",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Quando la prima oscillazione vale 5 cosφ mm, la seconda vale −3 cosφ mm. La loro somma è 2 cosφ mm. L’ampiezza, non negativa, è quindi 2 mm. La cancellazione completa richiederebbe anche ampiezze uguali, oltre all’opposizione di fase."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/655426342173187b986c9fa2ae74555c53cb70a1cb56385b7f6c820e00f64a32",
+          "text": "Il pannello centrale mostra i coefficienti di due coseni opposti: +5 e −3 mm, con somma +2 mm alla fase scelta. L’ampiezza della sinusoide risultante è 2 mm."
+        },
+        {
+          "type": "formula",
+          "text": "y=(5-3)\\cos\\varphi\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{\\rm tot}=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "8 mm somma i moduli come per onde in fase. Zero presume ampiezze uguali che qui non lo sono. −2 mm non è un’ampiezza; il segno di uno spostamento istantaneo non sostituisce il suo massimo modulo."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "hints": [
+        "Scrivi le due sinusoidi con lo stesso coseno e segni opposti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "8 mm somma i moduli come per onde in fase. Zero presume ampiezze uguali che qui non lo sono. −2 mm non è un’ampiezza; il segno di uno spostamento istantaneo non sostituisce il suo massimo modulo.",
+        "target": "C5-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "La parte non cancellata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q024",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 24,
+      "title": "Cammini uguali e fase iniziale opposta",
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L02"
+      ],
+      "version": 2,
+      "prompt": "Due sorgenti coerenti emettono sinusoidi della stessa frequenza in opposizione di fase. In un mezzo omogeneo il punto P è equidistante dalle due sorgenti e riceve contributi di uguale ampiezza e stessa polarizzazione. Come si chiama l’interferenza in P?",
+      "family": "sorgenti-fuori-fase-allorigine",
+      "difficulty": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I cammini uguali aggiungono lo stesso ritardo di propagazione, quindi non modificano la differenza iniziale di π radianti. I due contributi arrivano ancora opposti e, avendo uguali ampiezze, si cancellano. L’interferenza è distruttiva completa. Cammini uguali da soli non impongono un massimo se le sorgenti partono con fasi diverse."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta\\varphi_P=\\pi"
+        },
+        {
+          "type": "formula",
+          "text": " A_{\\rm tot}=0"
+        },
+        {
+          "type": "text",
+          "text": "Un massimo con cammini uguali richiederebbe sorgenti inizialmente in fase. Coerenza significa fase relativa stabile, non obbligatoriamente nulla. La cancellazione in P non significa che le sorgenti abbiano smesso di emettere."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Incoerente per la sola distanza",
+          "Necessariamente assente",
+          "Costruttiva perché i cammini sono uguali",
+          "Distruttiva completa",
+          "Costruttiva massima"
+        ],
+        "value": "Distruttiva completa"
+      },
+      "hints": [
+        "Conserva lo sfasamento iniziale quando aggiungi i due ritardi uguali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Un massimo con cammini uguali richiederebbe sorgenti inizialmente in fase. Coerenza significa fase relativa stabile, non obbligatoriamente nulla. La cancellazione in P non significa che le sorgenti abbiano smesso di emettere.",
+        "target": "C5-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Cammini uguali e fase iniziale opposta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q025",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 25,
+      "title": "Il minimo aumento di cammino",
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L02"
+      ],
+      "version": 2,
+      "prompt": "Due sorgenti coerenti in fase emettono alla stessa lunghezza d’onda λ>0. In P la differenza dei cammini è 5λ/2. Quale minimo aumento positivo di uno soltanto dei cammini porta a un massimo? Scegli la distanza.",
+      "family": "da-minimo-a-massimo",
+      "difficulty": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La differenza iniziale è 2,5λ, un semi-intero. I massimi più vicini hanno differenza 2λ oppure 3λ. Aumentando il cammino lungo di λ/2 si arriva a 3λ; aumentando quello corto di λ/2 si scende a 2λ. Entrambe le scelte richiedono la stessa minima distanza positiva, λ/2."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta s_i=\\frac52\\lambda"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta s_{\\min}=\\frac\\lambda2"
+        },
+        {
+          "type": "text",
+          "text": "λ/4 lascia un quarto di ciclo oltre o prima di un massimo. Un aumento λ torna a un semi-intero e quindi a un minimo, per sorgenti in fase. Aumenti maggiori non sono il minimo positivo richiesto."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "λ/4",
+          "λ",
+          "5λ/2",
+          "2λ",
+          "λ/2"
+        ],
+        "value": "λ/2"
+      },
+      "hints": [
+        "Cerca gli interi più vicini al numero 5/2.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "λ/4 lascia un quarto di ciclo oltre o prima di un massimo. Un aumento λ torna a un semi-intero e quindi a un minimo, per sorgenti in fase. Aumenti maggiori non sono il minimo positivo richiesto.",
+        "target": "C5-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Il minimo aumento di cammino"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q026",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 26,
+      "title": "Un minimo dipende dalla posizione",
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L02"
+      ],
+      "version": 2,
+      "prompt": "Due sorgenti sonore coerenti restano attive e alimentano un campo lineare. Una sonda di pressione trova un punto sempre quieto, mentre poco più in là registra un segnale. Quale spiegazione è compatibile?",
+      "family": "un-nodo-della-figura-stabile",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le distanze dalle sorgenti dipendono dalla posizione. Possono quindi cambiare i ritardi relativi e la differenza di fase. Nel punto quieto le pressioni oscillanti hanno ampiezze e fasi adatte alla cancellazione; nel punto vicino la somma può essere non nulla. È un contrasto spaziale del campo, non una modifica della velocità del mezzo."
+        },
+        {
+          "type": "formula",
+          "text": "p_{\\rm tot}=p_1+p_2"
+        },
+        {
+          "type": "text",
+          "text": "Coerenza non significa uguale somma in ogni punto. Pressione oscillante nulla non richiede frequenza nulla delle sorgenti o velocità di propagazione zero. La sonda non deve spegnere una sorgente per osservare un minimo."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La fase relativa dei contributi cambia con il punto di misura",
+          "La velocità di propagazione del suono è zero nel punto quieto",
+          "Le sorgenti hanno entrambe frequenza nulla",
+          "Una sorgente si spegne soltanto quando la sonda è nel minimo",
+          "Ogni punto deve avere la stessa pressione perché le sorgenti sono coerenti"
+        ],
+        "value": "La fase relativa dei contributi cambia con il punto di misura"
+      },
+      "hints": [
+        "Confronta la differenza dei due cammini nei due punti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Coerenza non significa uguale somma in ogni punto. Pressione oscillante nulla non richiede frequenza nulla delle sorgenti o velocità di propagazione zero. La sonda non deve spegnere una sorgente per osservare un minimo.",
+        "target": "C5-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Un minimo dipende dalla posizione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q027",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 27,
+      "title": "Ampiezza doppia e intensità",
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L02"
+      ],
+      "version": 2,
+      "prompt": "Due onde progressive coerenti identiche, della stessa frequenza e polarizzazione, si propagano nello stesso verso. In P sono in fase, con ampiezza A>0 ciascuna. Nelle stesse condizioni vale I=C A_tot² con C>0. Quanto vale l’intensità risultante rispetto a una sola onda?",
+      "family": "massimo-doppio-e-intensita",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima sommo le ampiezze coerenti: A_tot=A+A=2A. Soltanto dopo applico la relazione quadratica con lo stesso coefficiente C. Il rapporto è (2A)²/A²=4. Non si tratta della somma incoerente di due intensità indipendenti; il termine d’interferenza è presente nelle condizioni assegnate."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/655426342173187b986c9fa2ae74555c53cb70a1cb56385b7f6c820e00f64a32",
+          "text": "Nell’ultimo pannello le barre di ampiezza confrontano A e 2A sulla propria scala; le barre di intensità confrontano I₁ e 4I₁ su un’altra scala. Le due scale hanno dimensioni diverse e non vanno confrontate fra loro."
+        },
+        {
+          "type": "formula",
+          "text": "A_{\\rm tot}=2A"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{I_{\\rm tot}}{I_1}=4"
+        },
+        {
+          "type": "text",
+          "text": "Due volte sommerebbe le intensità senza il termine coerente. La metà e zero non ricostruiscono l’ampiezza 2A. La condizione di onde progressive nello stesso verso evita di confondere questo flusso con quello di due onde contropropaganti."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Zero",
+          "Quattro volte",
+          "Due volte",
+          "Uguale",
+          "La metà"
+        ],
+        "value": "Quattro volte"
+      },
+      "hints": [
+        "Esegui la somma delle ampiezze prima di elevare al quadrato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Due volte sommerebbe le intensità senza il termine coerente. La metà e zero non ricostruiscono l’ampiezza 2A. La condizione di onde progressive nello stesso verso evita di confondere questo flusso con quello di due onde contropropaganti.",
+        "target": "C5-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Ampiezza doppia e intensità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q028",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 28,
+      "title": "Quando la relazione di fase non resta ferma",
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L02"
+      ],
+      "version": 2,
+      "prompt": "Due sorgenti hanno fase relativa che varia casualmente con distribuzione uniforme su un giro durante il tempo di media. Perché non rimane una figura stabile di massimi e minimi d’interferenza?",
+      "family": "sorgenti-dal-ritmo-instabile",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il termine incrociato della somma dipende dalla fase relativa. Se questa percorre casualmente il giro di fase, un punto non conserva la stessa condizione di rinforzo o cancellazione. La lunga media non mantiene le frange stabili di una fase relativa fissata. Le singole sorgenti possono continuare a emettere con ampiezza non nulla."
+        },
+        {
+          "type": "formula",
+          "text": "\\langle\\cos\\Delta\\varphi\\rangle=0"
+        },
+        {
+          "type": "text",
+          "text": "La perdita di una figura stabile non ferma la propagazione e non impone ampiezze nulle. Una media non modifica fisicamente tutte le frequenze. Un massimo coerente stabile richiede una relazione di fase stabile, non soltanto due sorgenti accese."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Le sorgenti devono avere ampiezza nulla",
+          "La media temporale rende uguali tutte le frequenze",
+          "La condizione di rinforzo o cancellazione in un punto cambia nel tempo",
+          "Le singole onde devono cessare di propagarsi",
+          "La velocità delle onde diventa zero"
+        ],
+        "value": "La condizione di rinforzo o cancellazione in un punto cambia nel tempo"
+      },
+      "hints": [
+        "Pensa al punto che passa nel tempo da due creste insieme a una cresta e una valle.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La perdita di una figura stabile non ferma la propagazione e non impone ampiezze nulle. Una media non modifica fisicamente tutte le frequenze. Un massimo coerente stabile richiede una relazione di fase stabile, non soltanto due sorgenti accese.",
+        "target": "C5-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Quando la relazione di fase non resta ferma"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q029",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 29,
+      "title": "Un cammino più lungo arriva dopo",
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L02"
+      ],
+      "version": 2,
+      "prompt": "Due impulsi sono emessi simultaneamente e viaggiano nello stesso mezzo a 340 m/s. Uno percorre 1,02 m in più dell’altro. Di quanti millisecondi arriva dopo?",
+      "family": "ritardo-dalla-differenza-di-cammino",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il tempo extra è la distanza extra divisa per la velocità comune. Scrivo 1,02 m come 102/100 m e divido per 340 m/s: ottengo 3/1000 s. Moltiplicando per mille passo ai millisecondi: il ritardo è 3 ms. L’impulso del cammino maggiore arriva più tardi, quindi il ritardo richiesto è positivo."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta t=\\frac{\\Delta s}{v}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta t=\\frac3{1000}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta t=3\\,\\mathrm{ms}"
+        },
+        {
+          "type": "text",
+          "text": "0,003 ms conserva il coefficiente in secondi dopo aver cambiato solo il nome dell’unità. Moltiplicare distanza per velocità non produce un tempo. Un ritardo negativo invertirebbe quale dei due cammini è più lungo."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "ms",
+        "tolerance": 0
+      },
+      "hints": [
+        "Calcola prima in secondi, poi moltiplica il numero per mille.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "0,003 ms conserva il coefficiente in secondi dopo aver cambiato solo il nome dell’unità. Moltiplicare distanza per velocità non produce un tempo. Un ritardo negativo invertirebbe quale dei due cammini è più lungo.",
+        "target": "C5-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Un cammino più lungo arriva dopo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q030",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 30,
+      "title": "Due picchi lontani non si sommano da soli",
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L02"
+      ],
+      "version": 2,
+      "prompt": "Nello stesso istante due impulsi su una corda lineare hanno ciascuno un picco di +4 mm, ma in posizioni diverse. Si può concludere che il massimo della somma sia necessariamente 8 mm in quell’istante?",
+      "family": "somma-punto-per-punto",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La sovrapposizione somma y₁(x,t) e y₂(x,t) con le stesse coordinate x e t. Due massimi separati non garantiscono un punto dove entrambi valgano 4 mm. Per esempio impulsi stretti completamente separati hanno massimo risultante di 4 mm, non 8 mm. Occorre conoscere come i due profili si sovrappongono."
+        },
+        {
+          "type": "formula",
+          "text": "y_{\\rm tot}(x,t)=y_1(x,t)+y_2(x,t)"
+        },
+        {
+          "type": "text",
+          "text": "La stessa unità non rende uguali le ascisse. La somma non è necessariamente zero e può superare 4 mm se vi è sovrapposizione adatta. Il dato sui soli picchi non fissa l’intero massimo della somma."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Sì: basta sommare i due valori di picco dovunque siano",
+          "Sì: l’unità millimetro rende coincidenti le posizioni",
+          "No: la somma deve essere sempre nulla",
+          "No: la somma non può mai superare 4 mm",
+          "No: servono le ordinate dei due profili nello stesso punto"
+        ],
+        "value": "No: servono le ordinate dei due profili nello stesso punto"
+      },
+      "hints": [
+        "Allinea prima le ascisse e poi somma le ordinate.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La stessa unità non rende uguali le ascisse. La somma non è necessariamente zero e può superare 4 mm se vi è sovrapposizione adatta. Il dato sui soli picchi non fissa l’intero massimo della somma.",
+        "target": "C5-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Due picchi lontani non si sommano da soli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "655426342173187b986c9fa2ae74555c53cb70a1cb56385b7f6c820e00f64a32",
+      "name": "cric-c5-l03-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTY0MCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNjQwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPlNvbW1lIGFsZ2VicmljaGUsIG9wcG9zaXppb25lIGUgcXVhZHJhdG8gZGVsbOKAmWFtcGllenphPC90aXRsZT4KPGRlc2MgaWQ9ImRlc2MiPlRyZSBiYXJyZSBwb3NpdGl2ZSBzb21tYW5vIHVubyB2aXJnb2xhIGR1ZSBlIHplcm8gdmlyZ29sYSBvdHRvIGluIGR1ZSBtaWxsaW1ldHJpLiBCYXJyZSBjb24gc2Vnbmkgb3Bwb3N0aSBtb3N0cmFubyBjaW5xdWUgbWVubyB0cmUgdWd1YWxlIGR1ZSBtaWxsaW1ldHJpLiBEdWUgc2NhbGUgc2VwYXJhdGUgbW9zdHJhbm8gYW1waWV6emEgZG9wcGlhIGUgaW50ZW5zaXTDoCBxdWFkcnVwbGEgcGVyIG9uZGUgY29uY29yZGkgaW4gZmFzZS48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9InRpcCIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNiIgbWFya2VySGVpZ2h0PSI2IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iY29udGV4dC1zdHJva2UiLz48L21hcmtlcj48L2RlZnM+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTY0MCIgZmlsbD0iI2ZmZmRmNyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZpbGw9IiMyMDJjMzkiPgo8dGV4dCB4PSIzMiIgeT0iNTIiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4xLiBMYSBzb21tYSBjb25zZXJ2YSBpbCBzZWdubzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijk1IiBmb250LXNpemU9IjIzIj5TdGVzc28gcHVudG8gZSBpc3RhbnRlOyBzcG9zdGFtZW50aSBpbiBtbS48L3RleHQ+CjxwYXRoIGQ9Ik0xNDAgMTYwVjQyMEg1ODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMwNGQ2MyIgc3Ryb2tlLXdpZHRoPSIzIi8+Cjx0ZXh0IHg9IjQ3IiB5PSIxNzgiIGZvbnQtc2l6ZT0iMjMiPnkgKG1tKTwvdGV4dD4KPHRleHQgeD0iOTUiIHk9IjIyOCIgZm9udC1zaXplPSIyMyI+MjwvdGV4dD4KPHRleHQgeD0iNzUiIHk9IjMwOCIgZm9udC1zaXplPSIyMyI+MSwyPC90ZXh0Pgo8dGV4dCB4PSI3NSIgeT0iMzQ4IiBmb250LXNpemU9IjIzIj4wLDg8L3RleHQ+CjxyZWN0IHg9IjE5MCIgeT0iMzAwIiB3aWR0aD0iNzAiIGhlaWdodD0iMTIwIiBmaWxsPSIjMjY3MjhkIi8+CjxyZWN0IHg9IjMzMCIgeT0iMzQwIiB3aWR0aD0iNzAiIGhlaWdodD0iODAiIGZpbGw9IiM5ODZjMzUiLz4KPHJlY3QgeD0iNDcwIiB5PSIyMjAiIHdpZHRoPSI3MCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiM0ZTg3NmQiLz4KPHRleHQgeD0iMTA5IiB5PSI0NTIiIGZvbnQtc2l6ZT0iMjMiPjA8L3RleHQ+Cjx0ZXh0IHg9IjIwNiIgeT0iNDcwIiBmb250LXNpemU9IjIzIj554oKBPC90ZXh0Pgo8dGV4dCB4PSIzNDYiIHk9IjQ3MCIgZm9udC1zaXplPSIyMyI+eeKCgjwvdGV4dD4KPHRleHQgeD0iNDc2IiB5PSI0NzAiIGZvbnQtc2l6ZT0iMjMiPnkgdG90YWxlPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNTI1IiBmb250LXNpemU9IjIzIj4rMSwyIG1tICsgMCw4IG1tID0gKzIsMCBtbS48L3RleHQ+CjxsaW5lIHgxPSIzMiIgeTE9IjU2MCIgeDI9IjYwOCIgeTI9IjU2MCIgc3Ryb2tlPSIjYjhjNGNhIi8+Cjx0ZXh0IHg9IjMyIiB5PSI2MTUiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4yLiBM4oCZb3Bwb3NpemlvbmUgbGFzY2lhIHVuIHJlc2lkdW88L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI2NTgiIGZvbnQtc2l6ZT0iMjMiPkNvZWZmaWNpZW50aSBkZWkgY29zZW5pIGFsbGEgc3Rlc3NhIGZhc2UuPC90ZXh0Pgo8cGF0aCBkPSJNMTQwIDcwMFYxMDYwTTE0MCA5MjBINTgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzMDRkNjMiIHN0cm9rZS13aWR0aD0iMyIvPgo8dGV4dCB4PSIxMDQiIHk9Ijk0OCIgZm9udC1zaXplPSIyMyI+MDwvdGV4dD4KPHJlY3QgeD0iMTkwIiB5PSI3MjAiIHdpZHRoPSI3MCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiMyNjcyOGQiLz4KPHJlY3QgeD0iMzMwIiB5PSI5MjAiIHdpZHRoPSI3MCIgaGVpZ2h0PSIxMjAiIGZpbGw9IiM5ODZjMzUiLz4KPHJlY3QgeD0iNDcwIiB5PSI4NDAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI4MCIgZmlsbD0iIzRlODc2ZCIvPgo8dGV4dCB4PSIxODYiIHk9IjcwNSIgZm9udC1zaXplPSIyMyI+KzUgbW08L3RleHQ+Cjx0ZXh0IHg9IjMyNiIgeT0iMTA3NCIgZm9udC1zaXplPSIyMyI+4oiSMyBtbTwvdGV4dD4KPHRleHQgeD0iNDY2IiB5PSI4MjQiIGZvbnQtc2l6ZT0iMjMiPisyIG1tPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTEyMiIgZm9udC1zaXplPSIyMyI+TOKAmWFtcGllenphIGRlbGxhIHNvbW1hIMOoIDIgbW0sIG5vbiA4IG1tLjwvdGV4dD4KPGxpbmUgeDE9IjMyIiB5MT0iMTE1NSIgeDI9IjYwOCIgeTI9IjExNTUiIHN0cm9rZT0iI2I4YzRjYSIvPgo8dGV4dCB4PSIzMiIgeT0iMTIwOSIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9ImJvbGQiPjMuIEFtcGllenphIGUgaW50ZW5zaXTDoCBkaXN0aW50ZTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEyNTIiIGZvbnQtc2l6ZT0iMjMiPk9uZGUgcHJvZ3Jlc3NpdmUgY29uY29yZGkgZSBpbiBmYXNlLjwvdGV4dD4KPHRleHQgeD0iNDUiIHk9IjEzMDMiIGZvbnQtc2l6ZT0iMjMiPkE8L3RleHQ+CjxyZWN0IHg9IjE4MCIgeT0iMTI4MCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIzMCIgZmlsbD0iIzI2NzI4ZCIvPgo8dGV4dCB4PSI0NSIgeT0iMTM1MyIgZm9udC1zaXplPSIyMyI+MkE8L3RleHQ+CjxyZWN0IHg9IjE4MCIgeT0iMTMzMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIzMCIgZmlsbD0iIzI2NzI4ZCIvPgo8dGV4dCB4PSI0MDUiIHk9IjEzNTQiIGZvbnQtc2l6ZT0iMjMiPlNjYWxhOiBhbXBpZXp6YTwvdGV4dD4KPGxpbmUgeDE9IjMyIiB5MT0iMTM5MyIgeDI9IjYwOCIgeTI9IjEzOTMiIHN0cm9rZT0iI2I4YzRjYSIvPgo8dGV4dCB4PSI0NSIgeT0iMTQ0MyIgZm9udC1zaXplPSIyMyI+SeKCgTwvdGV4dD4KPHJlY3QgeD0iMTgwIiB5PSIxNDIwIiB3aWR0aD0iODAiIGhlaWdodD0iMzAiIGZpbGw9IiM5ODZjMzUiLz4KPHRleHQgeD0iNDUiIHk9IjE1MDMiIGZvbnQtc2l6ZT0iMjMiPjRJ4oKBPC90ZXh0Pgo8cmVjdCB4PSIxODAiIHk9IjE0ODAiIHdpZHRoPSIzMjAiIGhlaWdodD0iMzAiIGZpbGw9IiM5ODZjMzUiLz4KPHRleHQgeD0iMzIiIHk9IjE1NzAiIGZvbnQtc2l6ZT0iMjMiPk9nbmkgY29wcGlhIGhhIGxhIHByb3ByaWEgc2NhbGEgY29tdW5lLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjE2MTAiIGZvbnQtc2l6ZT0iMjMiPkludGVuc2l0w6AgcHJvcG9yemlvbmFsZSBhbCBxdWFkcmF0byBkaSBBLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

@@ -1,0 +1,787 @@
+{
+  "scope": "Exact independently authored and reviewed C5 files",
+  "deliveries": [
+    [
+      "a",
+      "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "editorial/author-notes/cric-c5-001-050-author-a-handoff-20261126.json",
+      "e4f0634cd0cf0e0d616b4781a484ed7b01245fedb8c23a63002cc34b76203d5d"
+    ],
+    [
+      "b",
+      "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "editorial/reviews/cric-c5-001-050-independent-handoff-20261127.json",
+      "89190d67cd2c975b63d4064201a2c231e09b951a0927016203e8115da82ba02d"
+    ]
+  ],
+  "files": {
+    "editorial/assets/cric-c5-l01-progressive.svg": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "213f58ec51042560641ca2d0879d1b699664ad76796ef8c827be90ba4903f743"
+    },
+    "editorial/assets/cric-c5-l02-progressive.svg": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "0edf33b30fc1aec70a37a5d483293521c166da9d787cc32ebceb9066c77e9cf1"
+    },
+    "editorial/assets/cric-c5-l03-progressive.svg": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "655426342173187b986c9fa2ae74555c53cb70a1cb56385b7f6c820e00f64a32"
+    },
+    "editorial/assets/cric-c5-l04-progressive.svg": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "88294b6965693c785a0084154a399b7d4dfbe5be34229b54ac9fdf323119516d"
+    },
+    "editorial/assets/cric-c5-l05-progressive.svg": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "9bf7dd4afc3e870261154750830924fed711c82c9257603e5eb3a6d61fb82b37"
+    },
+    "editorial/author-evidence/cric-c5-001-050-source-reading-20261126/C5-Q045-eco.svg": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "21ebeb9c59404dec247aaea5bedf84a477b1a6084c17115d98315d9f24740202"
+    },
+    "editorial/author-evidence/cric-c5-001-050-source-reading-20261126/C5-doppler.svg": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "618c6baecf5fe6b62d60f5e4c1ea7ad9bf1a475edeb1701e443a9758432c4697"
+    },
+    "editorial/author-evidence/cric-c5-001-050-source-reading-20261126/C5-istantanea.svg": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "d43a90344af8b498b583d626992faf25ef227ba03a0e23b3c6fff7e9d87ff0ff"
+    },
+    "editorial/author-evidence/cric-c5-001-050-source-reading-20261126/C5-original-verbatim.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422"
+    },
+    "editorial/author-evidence/cric-c5-001-050-source-reading-20261126/C5-orologio.svg": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "88d0ae6a4be838086f101e1e53c8648e8d6ac258e7e2610ecc3ada42726e6e6b"
+    },
+    "editorial/author-evidence/cric-c5-001-050-source-reading-20261126/C5-sei-massimi.svg": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "da399748274ad7caf667007a5d67510ab6479d0958b03ed4dd678d09ecf7bd82"
+    },
+    "editorial/author-evidence/cric-c5-001-050-source-reading-20261126/C5-sensore-inclinato.svg": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "44dee0f4591f98daf63639c99c8af1e7266bfe7a3ef5b9ad1bef0fc601f24f28"
+    },
+    "editorial/author-evidence/cric-c5-001-050-source-reading-20261126/C5-sfere.svg": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "acdc645c86411fc4b259a623a655074d88e843c4a2bd19cd2af9d2f3922f4f9b"
+    },
+    "editorial/author-evidence/cric-c5-001-050-source-reading-20261126/C5-somma.svg": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "a8f1e00e24ed8ad239163fcf84ff0eb5848c920d2748b29393769dbe0f55c069"
+    },
+    "editorial/author-evidence/cric-c5-001-050-source-reading-20261126/C5-suono.svg": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "ca709649408be8fa8f52ce9afbecde2b3eddaac7490c95d514291e022e9f12d8"
+    },
+    "editorial/author-evidence/cric-c5-001-050-source-reading-20261126/README.md": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "3776cf2ae583d52c44b3e582b53b897b980b8f19c312ac98b58f5a248bac047f"
+    },
+    "editorial/author-evidence/cric-c5-001-050-source-reading-20261126/git-inputs.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "afab2a2a98ce5302b8944813b6b3b172231932abffff5ed7be242ac5368c5cf1"
+    },
+    "editorial/author-evidence/cric-c5-l01-asset-only/actual-assembly-import-terminal.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "ce65c81a53f4eebf8d71e4d9280371dbddb82b0e6f2a2203ac100a7dd766fe2e"
+    },
+    "editorial/author-evidence/cric-c5-l01-asset-only/actual-canonical-assembly-import-instrument.py.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "06a27ee3b51a10561bb640b3d0ec311b4c3aa22bb2689077b7ad778e68183731"
+    },
+    "editorial/author-evidence/cric-c5-l01-asset-only/actual-finalize-terminal.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "795a5c8d9629fdb06d3e418917ed38cce757a8cceccd50b4c3f57867dbff7cdd"
+    },
+    "editorial/author-evidence/cric-c5-l01-asset-only/actual-native-terminal.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "32678a41978b38e380aff61208f7a70f013c8881360aeb0af6a7b94d4959efd3"
+    },
+    "editorial/author-evidence/cric-c5-l01-asset-only/actual-svg-render-instrument.mjs.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "4efb8ed9e55d135b419ad631f9475bab568f0a9ae04abfc609e9fb2796293474"
+    },
+    "editorial/author-evidence/cric-c5-l01-asset-only/full-native.png": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "ae33250703a461fff62ba041488485fa7383970c7b687c8742cbc5b279b29992"
+    },
+    "editorial/author-evidence/cric-c5-l01-asset-only/manifest.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "46ad4709a23a6ead52fc4a942822334fcf4e3e0734fb66a2b798fcf5976232ca"
+    },
+    "editorial/author-evidence/cric-c5-l01-asset-only/render.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "b3b3b985594d9f955cf032bda43444197c9f3606147225703d85a1746e779279"
+    },
+    "editorial/author-evidence/cric-c5-l01-asset-only/terminal-observation.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "28b5fc38579daf4b5323a7101679825da0f94334ef00a027af8c1f0b1573d7d0"
+    },
+    "editorial/author-evidence/cric-c5-l01-q004-alternative-superseded-20261126/cric-c5-l01-bindings.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "f6d215456748e6eb5a27c601721461dc3b2fd5adf36de6636df5f1bc2ebd4ea5"
+    },
+    "editorial/author-evidence/cric-c5-l01-q004-alternative-superseded-20261126/cric-c5-l01-handoff-20261126.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "e39c1e4770127186764417691979fb46e435b4502f7ad8cd22b74569505cfa64"
+    },
+    "editorial/author-evidence/cric-c5-l01-q004-alternative-superseded-20261126/cric-c5-l01-structural.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "f045e02432d7de91d6fafea480b270e5700bc0d1ea7b91e7349dc873ff99c3ce"
+    },
+    "editorial/author-evidence/cric-c5-l01-q004-alternative-superseded-20261126/cric-c5-l01.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "ce3cd13043c15dc83a4bda8558a89abbe4fe25ef3f70db423352ec0b5b1e7d0a"
+    },
+    "editorial/author-evidence/cric-c5-l01-q004-alternative-superseded-20261126/cric-c5-l01.md": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "c1e1bf5498e546365c565693503809f1432f69e294f2bbbe4cebd1a945cc2744"
+    },
+    "editorial/author-evidence/cric-c5-l01-q004-alternative-superseded-20261126/cric_c5_l01_authoring.py": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "4fc696eece27a3e0ef7ccdbd5bf1f95282f4fb6f519d636a1e82ee573a4d3fbf"
+    },
+    "editorial/author-evidence/cric-c5-l01-q004-alternative-superseded-20261126/manifest.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "a0b11095f21a28e2aa5a305bcf2ae8633c9ada21acf24a4d6e36b28faf260561"
+    },
+    "editorial/author-evidence/cric-c5-l01-q004-alternative-superseded-20261126/old-actual-technical-terminal.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "478d027fccab53000d6e5d4387410e9ca22806ca4c57346950e035650beddd1e"
+    },
+    "editorial/author-evidence/cric-c5-l01-q004-alternative-superseded-20261126/strict-diff.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "95add00f21f8ef3728ab3be8ae2e40de6e5ffa1c70aaa521141b85e84de647cf"
+    },
+    "editorial/author-evidence/cric-c5-l01-structural.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "dff8cdca274b1aacd9c559267d09abb5f693b972b91f8806396d9d0a6fb73e1d"
+    },
+    "editorial/author-evidence/cric-c5-l02-asset-only/actual-assembly-import-terminal.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "d0cbeaa174e8c4b76e654a6347d019eb15a90ab94029dca2d2aad98fa5283836"
+    },
+    "editorial/author-evidence/cric-c5-l02-asset-only/actual-canonical-assembly-import-instrument.py.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "06a27ee3b51a10561bb640b3d0ec311b4c3aa22bb2689077b7ad778e68183731"
+    },
+    "editorial/author-evidence/cric-c5-l02-asset-only/actual-finalize-terminal.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "50c2fe309ddb1b121c16322cb8c686a311d49f8e8a5fec38eea3aca62cb06619"
+    },
+    "editorial/author-evidence/cric-c5-l02-asset-only/actual-native-terminal.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "c6d23d883536d6f744534b2e29b65938f6369bc419dd74357489630a76fd6657"
+    },
+    "editorial/author-evidence/cric-c5-l02-asset-only/actual-svg-render-instrument.mjs.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "4efb8ed9e55d135b419ad631f9475bab568f0a9ae04abfc609e9fb2796293474"
+    },
+    "editorial/author-evidence/cric-c5-l02-asset-only/full-native.png": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "32cccb97350e9a8d81f9b0b44a4b6ffb796236d748f1a0be46460ef09b2b7990"
+    },
+    "editorial/author-evidence/cric-c5-l02-asset-only/manifest.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "14518473edac8f007f0f71f4776a97254c6321323a0eaae4bdf51d650669def5"
+    },
+    "editorial/author-evidence/cric-c5-l02-asset-only/render.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "15e1ec1077de572a8a523200f36d011590e4fbf3b5865e51f0b944e8288518e3"
+    },
+    "editorial/author-evidence/cric-c5-l02-asset-only/terminal-observation.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "63f8066127c1f36abcac2b24508088017753c0ecf19297094efd03d816a8b2c6"
+    },
+    "editorial/author-evidence/cric-c5-l02-structural.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "e1101b15d9d55ee4933f9f64b4eba4a830ae7d5b4e39cd1cda838ac5da5c5456"
+    },
+    "editorial/author-evidence/cric-c5-l03-asset-only/actual-assembly-import-terminal.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "1b44f04ad2538833341ae1fb074a2a47551c2d2d1c53457cfcfb0a9909cb87d7"
+    },
+    "editorial/author-evidence/cric-c5-l03-asset-only/actual-canonical-assembly-import-instrument.py.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "06a27ee3b51a10561bb640b3d0ec311b4c3aa22bb2689077b7ad778e68183731"
+    },
+    "editorial/author-evidence/cric-c5-l03-asset-only/actual-finalize-terminal.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "193912858fdaff3d7eb906a4465158c4a1490b6af493494ee8c287976d8c8495"
+    },
+    "editorial/author-evidence/cric-c5-l03-asset-only/actual-native-terminal.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "157e94d2587b6b25c0391ca27d1a012ae5b9a86bcd39847b097192ee013f4398"
+    },
+    "editorial/author-evidence/cric-c5-l03-asset-only/actual-svg-render-instrument.mjs.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "4efb8ed9e55d135b419ad631f9475bab568f0a9ae04abfc609e9fb2796293474"
+    },
+    "editorial/author-evidence/cric-c5-l03-asset-only/full-native.png": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "1486715d7545ad0275c0d1ae506f68dbf13bfae27841214097e5e0c8833d490c"
+    },
+    "editorial/author-evidence/cric-c5-l03-asset-only/manifest.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "7d0fb4300547680da02e9d84bf08802c49167875328a330c74be0d90e9da0fed"
+    },
+    "editorial/author-evidence/cric-c5-l03-asset-only/render.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "cccf3ec54a7538922f1cd4eddfe2e1877d3fa198f5c31b67171499ccb1777299"
+    },
+    "editorial/author-evidence/cric-c5-l03-asset-only/terminal-observation.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "e6552f265628992a06a46719da6af1c8fd30ecc0ee7831e493b1337fa1e085b9"
+    },
+    "editorial/author-evidence/cric-c5-l03-phase-distribution-superseded-20261126/cric-c5-l03-bindings.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "5f5ffda80b6d070fd6c94c13f2ffed204a41647dd27ea454a856e48009e1ac82"
+    },
+    "editorial/author-evidence/cric-c5-l03-phase-distribution-superseded-20261126/cric-c5-l03-handoff-20261126.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "19725476e3dec78aaf5f87ab4f2f7196e1619a52db127bf2992f96490b93e4e8"
+    },
+    "editorial/author-evidence/cric-c5-l03-phase-distribution-superseded-20261126/cric-c5-l03-structural.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "c55440924a794d28c9d33304fb815600ea4764164e50b0b502bf952bae467be9"
+    },
+    "editorial/author-evidence/cric-c5-l03-phase-distribution-superseded-20261126/cric-c5-l03.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "a8e2648761f07a69a79b41ffccbec50eab16e6ca97c210d136c2364c10e02ee1"
+    },
+    "editorial/author-evidence/cric-c5-l03-phase-distribution-superseded-20261126/cric-c5-l03.md": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "cfb18bffdfea58f4808242026bb29f9bfb9c00ba84cb578ecc26bf78184a45f0"
+    },
+    "editorial/author-evidence/cric-c5-l03-phase-distribution-superseded-20261126/cric_c5_l03_authoring.py": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "ff31aaf54550cf6d0d324730ce4ec39d5e40dd30d9d02fc39b3fd0669d74e24e"
+    },
+    "editorial/author-evidence/cric-c5-l03-phase-distribution-superseded-20261126/manifest.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "011347a836b67ada6ded97ad0b671ff34063385755df593b05b5b2c42dfa70db"
+    },
+    "editorial/author-evidence/cric-c5-l03-phase-distribution-superseded-20261126/old-actual-technical-terminal.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "f1ca190aec43fa0b149c8e00942ce9da85e0aa4bffd98a88addc8091bb03c7c5"
+    },
+    "editorial/author-evidence/cric-c5-l03-phase-distribution-superseded-20261126/strict-diff.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "01526a3428465a3aadc8c4a36f202e61e9232c1220ea014436b67b8f9dd945d7"
+    },
+    "editorial/author-evidence/cric-c5-l03-structural.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "98283221565420bb7065164228a7663629aaf1293932855136dec03697b9f424"
+    },
+    "editorial/author-evidence/cric-c5-l04-asset-only/actual-assembly-import-terminal.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "31d55f5a884f98350a1d872aa960af5d8eaac4441e25a5686754d4b7e2ae759e"
+    },
+    "editorial/author-evidence/cric-c5-l04-asset-only/actual-canonical-assembly-import-instrument.py.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "06a27ee3b51a10561bb640b3d0ec311b4c3aa22bb2689077b7ad778e68183731"
+    },
+    "editorial/author-evidence/cric-c5-l04-asset-only/actual-finalize-terminal.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "25643e183ee2c5c644334aafbd26bf16fd5f52b2dcda700b80b20d4b3cac4480"
+    },
+    "editorial/author-evidence/cric-c5-l04-asset-only/actual-native-terminal.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "0d8e6db4fd23d10bc694e2a9efab23fa2f55186de35ad69cb73d558263522fc0"
+    },
+    "editorial/author-evidence/cric-c5-l04-asset-only/actual-svg-render-instrument.mjs.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "4efb8ed9e55d135b419ad631f9475bab568f0a9ae04abfc609e9fb2796293474"
+    },
+    "editorial/author-evidence/cric-c5-l04-asset-only/full-native.png": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "0d12818d95cd6d6bdf22f809318ca97c26b38bc1927a695746066b19347eb5f7"
+    },
+    "editorial/author-evidence/cric-c5-l04-asset-only/manifest.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "0f89afac707dd9a0933bd51f69469ef616bfe39d184dceee8b173b3b92d8b1f3"
+    },
+    "editorial/author-evidence/cric-c5-l04-asset-only/render.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "ab9681ef8e911a6fab4d96ad056a3292237f5ce78daa1879987d7d795318e119"
+    },
+    "editorial/author-evidence/cric-c5-l04-asset-only/terminal-observation.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "e3106a019f984814f28082cf816eb32e5af54d4624f348bedd723f59a361b56e"
+    },
+    "editorial/author-evidence/cric-c5-l04-structural.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "414b0980444e4bfe49bce359a3a21583ab87e5b4969b1f93c5e37387d61d9871"
+    },
+    "editorial/author-evidence/cric-c5-l05-asset-only/actual-assembly-import-terminal.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "2689c402eb7530c40347e650d54bfea2618292a23ad7cc9a515eb1f8bdb6038c"
+    },
+    "editorial/author-evidence/cric-c5-l05-asset-only/actual-canonical-assembly-import-instrument.py.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "06a27ee3b51a10561bb640b3d0ec311b4c3aa22bb2689077b7ad778e68183731"
+    },
+    "editorial/author-evidence/cric-c5-l05-asset-only/actual-finalize-terminal.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "57bf96c483231b1dce497e35ffcfc582fcc7edf6fd985790d430a667993bcd97"
+    },
+    "editorial/author-evidence/cric-c5-l05-asset-only/actual-native-terminal.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "48e7a3bb5b390282c1e02e493266076c1715e82ce6dd5c872492d9cd81a455db"
+    },
+    "editorial/author-evidence/cric-c5-l05-asset-only/actual-svg-render-instrument.mjs.txt": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "4efb8ed9e55d135b419ad631f9475bab568f0a9ae04abfc609e9fb2796293474"
+    },
+    "editorial/author-evidence/cric-c5-l05-asset-only/full-native.png": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "833307336cc4756d71930f9af959014cb7a2b07e3046ddf73d09b6c1e1ed356a"
+    },
+    "editorial/author-evidence/cric-c5-l05-asset-only/manifest.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "d254e83cdb3f6b0b69198439fe9b790e905f9ccde5816da4fadfe3438e2a72b7"
+    },
+    "editorial/author-evidence/cric-c5-l05-asset-only/render.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "fbff7430c603970b567fb59562b187f3af7da741eb65530aa8f1b7452b0293c9"
+    },
+    "editorial/author-evidence/cric-c5-l05-asset-only/terminal-observation.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "a0e122ada9fde56159cdd4849865860eeacbc08307226df453669ded32cf592b"
+    },
+    "editorial/author-evidence/cric-c5-l05-structural.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "63bef0dd1da07d30d356e5600ae7f3feaabcb694cbe4fef6074e17613e1a9272"
+    },
+    "editorial/author-notes/cric-c5-001-050-author-a-handoff-20261126.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "e4f0634cd0cf0e0d616b4781a484ed7b01245fedb8c23a63002cc34b76203d5d"
+    },
+    "editorial/author-notes/cric-c5-l01-handoff-20261126.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "16b7109a6ec5211b4f49516eba503317baecb772c4e10fd36b56e4b56651007a"
+    },
+    "editorial/author-notes/cric-c5-l01.md": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "c1e1bf5498e546365c565693503809f1432f69e294f2bbbe4cebd1a945cc2744"
+    },
+    "editorial/author-notes/cric-c5-l02-handoff-20261126.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "72e061f4f84b5fb0c39b49602a6674739fc0e077f1f625676233c9f7467fbca7"
+    },
+    "editorial/author-notes/cric-c5-l02.md": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "4ddbb1db81a21fc89de17401e5d701a84ea3b3a549c6f09762fe84a468faef24"
+    },
+    "editorial/author-notes/cric-c5-l03-handoff-20261126.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "28c756012c3b412043e70bfe781c39cbf8c8e243105c5bcc35921406651ce852"
+    },
+    "editorial/author-notes/cric-c5-l03.md": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "37fdb1254801bd38b33118c7181157009ef3ffd09fa5b19b5c9433fa264c6024"
+    },
+    "editorial/author-notes/cric-c5-l04-handoff-20261126.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "e2397078a9e6b874a19d7c5b8f56f6aec3b8831b79dff0f3a7076a85a0d7fc53"
+    },
+    "editorial/author-notes/cric-c5-l04.md": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "fb6df1c33a7b8b37c48c58f75872e3ddfe851d95293ae0c948b7a1918c76ffd7"
+    },
+    "editorial/author-notes/cric-c5-l05-handoff-20261126.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "4e9d33b1478450ad4103514df7e49d5f0cfcfc7edaead29d400bc51a86ed4954"
+    },
+    "editorial/author-notes/cric-c5-l05.md": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "e29dd4f4951d6ce76d4d40e6862b49c2350d32a2412e04937fd34dfc49d3a884"
+    },
+    "editorial/batches/cric-c5-l01-bindings.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "6704eaf9b4680c053c5b55a36fb64f1b3c1b69c3f66789f4d850be952c859a17"
+    },
+    "editorial/batches/cric-c5-l01.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "a538d3ab14618260f0cc7c463a18855804cf7a04cbf8621642a2bc3dd4f56eae"
+    },
+    "editorial/batches/cric-c5-l02-bindings.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "6a951dec8913488e954da76232139236a2169fa198533231c101f1e460414f68"
+    },
+    "editorial/batches/cric-c5-l02.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "4b81f1c389a423e4a806e9c0a1c4551e1593d14c3e74db5fbfcb49547addea1f"
+    },
+    "editorial/batches/cric-c5-l03-bindings.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "474205d4a222162c032276ec4e99a8930fd3cd6d1c9c7c299d32cf2605694c63"
+    },
+    "editorial/batches/cric-c5-l03.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "1b5ff2d9ad1ae416ff3d40ee2b82221429a499053323db4dd88487e11855753e"
+    },
+    "editorial/batches/cric-c5-l04-bindings.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "ac3076d4722a1d07b1c18b1e21673419b23d6575dd8c9d7ca250d7538d9913a5"
+    },
+    "editorial/batches/cric-c5-l04.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "034d0fa43691f5bd3b742d555d68c562885723fd3b5cf25bf36d867dd3c3100b"
+    },
+    "editorial/batches/cric-c5-l05-bindings.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "375e4caaa1fc37df4033d930c670523a459b0ee9abb39fe91ee3f4edccdb564c"
+    },
+    "editorial/batches/cric-c5-l05.json": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "a5f9c13cbce8d2239ad168b8dfe9dff0d2ccac8728fc559aeae9fed7af2bd1d8"
+    },
+    "editorial/reviews/cric-c5-001-050-git-evidence/cric-c5-001-050-independent-models.py": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "0908ada36b1ff643d239adf7d25e636eeefd4cc7b21053ac6b6b6a53c75317b8"
+    },
+    "editorial/reviews/cric-c5-001-050-git-evidence/git-inputs.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "41fd35006138d3048c78a0f3122ed9cd2963883fbadd4e5a6e4844ddf257d5bc"
+    },
+    "editorial/reviews/cric-c5-001-050-independent-evidence/actual-operation-producer.py": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "688919050d387c3316e7b29c46614601a971954a22d7bafeab6e0e8db3c90af6"
+    },
+    "editorial/reviews/cric-c5-001-050-independent-evidence/build-final.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "9bf3e12aac6876c06672467f6de95a313253aa8bc15f84b9e5601842c05a8cf3"
+    },
+    "editorial/reviews/cric-c5-001-050-independent-evidence/build-final.log": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "13d4ef82e09af72756fae5af03085363553c6260b403f019bdb798920b73c1a8"
+    },
+    "editorial/reviews/cric-c5-001-050-independent-evidence/cric-c5-peer-persist.py": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "15ddaf15f6de4c716c9326a5ecceb776ef61e242e9714c92a43727d45cbce870"
+    },
+    "editorial/reviews/cric-c5-001-050-independent-evidence/cric-c5-review-build.py": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "28c4f5f2fbbdbd28e3f6716d4bab2e62b754307135da9b1e332c74bf1abfd6c4"
+    },
+    "editorial/reviews/cric-c5-001-050-independent-evidence/final-review.md": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "9fd6866728cbf6ba15886636493fd817c86249d61f4d90c31d43dbbcee82d324"
+    },
+    "editorial/reviews/cric-c5-001-050-independent-evidence/generator-initial-guard-negative.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "8b6d5ccfe5c7e6fa93dfd15ba0fb3e0f3fdc500592a3160f7156783c27bdd373"
+    },
+    "editorial/reviews/cric-c5-001-050-independent-evidence/git-inputs.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "06d767459f09043df7a982ae0954d58027f72eac3a9bbd75843b30c15d5cd5ad"
+    },
+    "editorial/reviews/cric-c5-001-050-independent-evidence/oracle-report-final.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "0c6e669e400c1150b5b35dd749b567ffa25a077bdf57db25cc5976a5905ec5df"
+    },
+    "editorial/reviews/cric-c5-001-050-independent-evidence/oracle-report-final.log": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "fba09ce4456d000b9c6c455ae1e80eee333cae644e5c130c377f4a8b660cc221"
+    },
+    "editorial/reviews/cric-c5-001-050-independent-evidence/oracle-report-first.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "de118b015bf6551147ac1077311f72260f05f8a227b120182b845709b70dd240"
+    },
+    "editorial/reviews/cric-c5-001-050-independent-evidence/oracle-report-first.log": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "fba09ce4456d000b9c6c455ae1e80eee333cae644e5c130c377f4a8b660cc221"
+    },
+    "editorial/reviews/cric-c5-001-050-independent-evidence/source-only-model.py": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "0908ada36b1ff643d239adf7d25e636eeefd4cc7b21053ac6b6b6a53c75317b8"
+    },
+    "editorial/reviews/cric-c5-001-050-independent-evidence/target-final.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "ae9be4b8a82030b561ae977bd101e942ebe81da88b0da72400e9ee09d7cfcf9d"
+    },
+    "editorial/reviews/cric-c5-001-050-independent-evidence/target-final.log": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "eb1088130737b90e97e55cf57d40c2b3ea1778b5ccb318b86d1352073a9e3842"
+    },
+    "editorial/reviews/cric-c5-001-050-independent-evidence/target-first-diagnosis.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "c498447445d3799a5db664c2af98644a2c77dc6bce87ce5b4d1c6fc947fcbc8f"
+    },
+    "editorial/reviews/cric-c5-001-050-independent-evidence/target-first-test-snapshot.py": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "bfe7624c51c052e54ccb2c0ecbf23ff6a520c39f588fa14da5c7d88a50a7d08e"
+    },
+    "editorial/reviews/cric-c5-001-050-independent-evidence/target-first.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "66146c944f45ebabce0831de5a9040421f50a4c099140b8cb8094e1ae467e49c"
+    },
+    "editorial/reviews/cric-c5-001-050-independent-evidence/target-first.log": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "7dbcf01f6507b57955d485bea7d04229660be235171812dadce1dc5f96208d12"
+    },
+    "editorial/reviews/cric-c5-001-050-independent-handoff-20261127.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "89190d67cd2c975b63d4064201a2c231e09b951a0927016203e8115da82ba02d"
+    },
+    "editorial/reviews/cric-c5-001-050-independent-models.py": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "0908ada36b1ff643d239adf7d25e636eeefd4cc7b21053ac6b6b6a53c75317b8"
+    },
+    "editorial/reviews/cric-c5-001-050-model-before-candidates-20261126.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "99e7209feb95489e6be042dc734849943a95608b5f0ef015b37078f14c4d78f0"
+    },
+    "editorial/reviews/cric-c5-001-050-model-before-candidates.log": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "11a54062ca3ffcb5f1c00242ec8d8b8b717fd33f6aff967ab69d4a9a40bcd557"
+    },
+    "editorial/reviews/cric-c5-001-050-source-only-handoff-20261126.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "28c03f1f70f737cdeb1978ff1369faf2730536de651198cbadacb56e3871f8c8"
+    },
+    "editorial/reviews/cric-c5-l01-independent-mutations.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "7e4e465f75d9f757317875db1ea4ffe32b6a59d211bb99d406145ffc5ecdb9fc"
+    },
+    "editorial/reviews/cric-c5-l01-independent-note.md": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "8176c14082d225fe5827af046b4e3a2bd6c11086804af59068c671724f9ab860"
+    },
+    "editorial/reviews/cric-c5-l01-svg-independent-evidence/cric-c5-l01-full.png": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "ae33250703a461fff62ba041488485fa7383970c7b687c8742cbc5b279b29992"
+    },
+    "editorial/reviews/cric-c5-l01-svg-independent-evidence/cric-c5-l01-render.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "10fad1df87ea7dcdb02428adde2da549cf2f787ff5d25865ee1872a5717ee1b2"
+    },
+    "editorial/reviews/cric-c5-l01-svg-independent-evidence/cric-c5-l01-terminal.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "b03b02acd45e5929fecc8660880db35619d8cd8ceaba390876bbfe813a0a10e8"
+    },
+    "editorial/reviews/cric-c5-l01-svg-independent-evidence/invalid-transcribed-ref-before-browser/operator-note.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "2d666af2dd68b36dcccebf0b643083cbe7c53afdc586e954449eabac78a3e03c"
+    },
+    "editorial/reviews/cric-c5-l01-svg-independent-evidence/native-svg-producer.mjs": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "5bc42afd72aa4cb6efccf9968ee5ec93379d7ba481de31a8f32975f1db0d0b57"
+    },
+    "editorial/reviews/cric-c5-l01.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "47467cc5bbe59c45302713044679db9002a3d2b9033d5e69784d9a2f931360b6"
+    },
+    "editorial/reviews/cric-c5-l02-independent-mutations.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "57dc8d04a7cf4296d5a6be9528fa77f450045ea659d526ee60df691c28037a68"
+    },
+    "editorial/reviews/cric-c5-l02-independent-note.md": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "c78f2115745d434f6e9feab70853096d6d4b4559926aa022fa325473bc9f1ed6"
+    },
+    "editorial/reviews/cric-c5-l02-svg-independent-evidence/cric-c5-l02-full.png": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "32cccb97350e9a8d81f9b0b44a4b6ffb796236d748f1a0be46460ef09b2b7990"
+    },
+    "editorial/reviews/cric-c5-l02-svg-independent-evidence/cric-c5-l02-render.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "804ef5c58b0d4cdce9e70dc63215927150c87da7ec70170d6302ae074d926d7f"
+    },
+    "editorial/reviews/cric-c5-l02-svg-independent-evidence/cric-c5-l02-terminal.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "6c72d655ff7bebfd0abb7f9ca5dc535182ae2dd67a504b78a7dc38bb3825fa80"
+    },
+    "editorial/reviews/cric-c5-l02-svg-independent-evidence/native-svg-producer.mjs": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "5bc42afd72aa4cb6efccf9968ee5ec93379d7ba481de31a8f32975f1db0d0b57"
+    },
+    "editorial/reviews/cric-c5-l02.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "de0780adb7307a70bb260504efba4d0d4aafe727d1da874de64c015d8a79d190"
+    },
+    "editorial/reviews/cric-c5-l03-independent-mutations.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "95cbef9d81d8a1e42e8ddd723c8a94b8e0e4bd8a2d809a8c3c40ab7eb7a99a27"
+    },
+    "editorial/reviews/cric-c5-l03-independent-note.md": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "3eb58af9a1e8f33cbca5e54d65d331c2a0fbcb772db65970b81415b3ee2cfb4d"
+    },
+    "editorial/reviews/cric-c5-l03-svg-independent-evidence/cric-c5-l03-full.png": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "1486715d7545ad0275c0d1ae506f68dbf13bfae27841214097e5e0c8833d490c"
+    },
+    "editorial/reviews/cric-c5-l03-svg-independent-evidence/cric-c5-l03-render.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "4cb55ffb187d77140b90f27415836b7235d9f11d79778085d231ef342897c2b0"
+    },
+    "editorial/reviews/cric-c5-l03-svg-independent-evidence/cric-c5-l03-terminal.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "30838abaef5389806f8fa0a1cad86f2838472c263c5299d3d0a5301077c49cff"
+    },
+    "editorial/reviews/cric-c5-l03-svg-independent-evidence/native-svg-producer.mjs": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "5bc42afd72aa4cb6efccf9968ee5ec93379d7ba481de31a8f32975f1db0d0b57"
+    },
+    "editorial/reviews/cric-c5-l03.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "569b1a73b8c8018a62366c9e0c4e68d899cec04bc80346aab08f7831e8e9451b"
+    },
+    "editorial/reviews/cric-c5-l04-independent-mutations.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "9bd0be4797c7569067c0a372dd9e1f3a65de279e22061b6124976d3152eafcee"
+    },
+    "editorial/reviews/cric-c5-l04-independent-note.md": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "2e334a040a61f481251fcf9920183b3ddb3e8bdf2dc426d2d89420f120439986"
+    },
+    "editorial/reviews/cric-c5-l04-svg-independent-evidence/cric-c5-l04-full.png": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "0d12818d95cd6d6bdf22f809318ca97c26b38bc1927a695746066b19347eb5f7"
+    },
+    "editorial/reviews/cric-c5-l04-svg-independent-evidence/cric-c5-l04-render.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "a2b96406710bc7cc1b787384880dcab635b9c7c37049e5eae1816343565c698a"
+    },
+    "editorial/reviews/cric-c5-l04-svg-independent-evidence/cric-c5-l04-terminal.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "55aafa7d127976f9292cd19affaa0a9e69f2c0f99dd86c3dd9f266c8af1e22ca"
+    },
+    "editorial/reviews/cric-c5-l04-svg-independent-evidence/native-svg-producer.mjs": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "5bc42afd72aa4cb6efccf9968ee5ec93379d7ba481de31a8f32975f1db0d0b57"
+    },
+    "editorial/reviews/cric-c5-l04.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "29a8baf6e45df46c8b6afec0d96da20f49f84a885bfca4982b58f424832f0fd0"
+    },
+    "editorial/reviews/cric-c5-l05-independent-mutations.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "6a864f45cb9320f53ea935a9582fda7d86371743309680fce1b4cd36792b77f2"
+    },
+    "editorial/reviews/cric-c5-l05-independent-note.md": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "7a2fb20a4e628ea0810918bf4b2c3bcb8d58b9bc7d0b385b2513cd13b9e0c833"
+    },
+    "editorial/reviews/cric-c5-l05-svg-independent-evidence/cric-c5-l05-full.png": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "cd206784f9705adfb7389ff3b55571d975b390f135accb03e85a2d3380d3fcd6"
+    },
+    "editorial/reviews/cric-c5-l05-svg-independent-evidence/cric-c5-l05-render.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "06ff14241cefdc5a010547fe9195b5e37a2fd19a1c66d140030081583b866883"
+    },
+    "editorial/reviews/cric-c5-l05-svg-independent-evidence/cric-c5-l05-terminal.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "1b4e12e8de25c36d4d8fe0957e1a5b8e3acf4a961b5a1c27913ba6cf13d1205a"
+    },
+    "editorial/reviews/cric-c5-l05-svg-independent-evidence/native-svg-producer.mjs": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "5bc42afd72aa4cb6efccf9968ee5ec93379d7ba481de31a8f32975f1db0d0b57"
+    },
+    "editorial/reviews/cric-c5-l05.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "8f8f50908dcc001ddff717f3572ef852a3df028e00a2d1123a4008675f008e17"
+    },
+    "editorial/reviews/cric-c5-source-only-model-initial-negative-20261126/cric-c5-001-050-independent-models.py": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "ace860728f26d8718337a39f47b46e10bb9349bf3c0376c45aef8b9732b416dc"
+    },
+    "editorial/reviews/cric-c5-source-only-model-initial-negative-20261126/cric-c5-001-050-model-before-candidates-20261126.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "d483867b8f5e043d24aa21fde5a4ae70bda1cd84cec8827054dcfe4d84f44979"
+    },
+    "editorial/reviews/cric-c5-source-only-model-initial-negative-20261126/cric-c5-001-050-model-before-candidates.log": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "bba6a8a7616b2247b3037e0c5aa2c6bc33968246d19de30e9bd7ca6ab5f4fda3"
+    },
+    "editorial/reviews/cric-c5-source-only-model-initial-negative-20261126/diagnosis.md": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "bdcaeff790cb64556f100565fd8746ce9c9c8e8c7aaa35236908efd5eb703cb1"
+    },
+    "editorial/reviews/cric-c5-source-only-model-initial-negative-20261126/manifest.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "5f41ae6d20ec4854382d1dab9391181abf972bf24b523ab90dfa10469379d772"
+    },
+    "editorial/reviews/cric-c5-source-only-model-initial-negative-20261126/pint-diagnosis.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "886c5c640e54ed6d7896865ade5abe9cbb1221834cb67643be45d3f0e8f54283"
+    },
+    "editorial/reviews/cric-c5-source-only-model-initial-negative-20261126/pint-negative-after-exact-numeric-fix/cric-c5-001-050-independent-models.py": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "d7524c1252ea02f175b3cd7bf78cbb4a935e1f6b4ceca738a200877160a2dc6e"
+    },
+    "editorial/reviews/cric-c5-source-only-model-initial-negative-20261126/pint-negative-after-exact-numeric-fix/cric-c5-001-050-model-before-candidates-20261126.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "ff3e20514f08bb7c1b199931c1c82fe1ace027bac53c099b3c1ce4e01b757669"
+    },
+    "editorial/reviews/cric-c5-source-only-model-initial-negative-20261126/pint-negative-after-exact-numeric-fix/cric-c5-001-050-model-before-candidates.log": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "1bc524b52b81393a6c469601d8bd9330acae1e567ada66d743ffd292012acdad"
+    },
+    "editorial/reviews/cric-c5-source-only-model-initial-negative-20261126/pint-negative-after-exact-numeric-fix/manifest.json": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "b8b00b1c7cd610058d40b8eb0784264dd5bb4f38e21ee20f02db9ef9c6cfe447"
+    },
+    "editorial/reviews/primary-cric-c5-001-050-before-candidates-20261126.md": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "27a0255c29f25dd30e89b343b8a1a1268bc76fbbdd8551d2cc8c83f9db569059"
+    },
+    "tests/corpus/test_cric_c5_l01_l05_independent.py": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "0700c1a66151d50f9cbe9356d008f378f8a90fef75cee4608b17ccc06d255a30"
+    },
+    "tools/corpus_engineering/cric_c5_independent_adversaries.py": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "ddff6559ca9b75648118481ee4198e5a7eabf711d87972d082b335d0a94e8e6c"
+    },
+    "tools/corpus_engineering/cric_c5_l01_authoring.py": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "eacd9c09cee9a296a7a20152c6f32ae286c9df47f105d39b6801aafb1d561539"
+    },
+    "tools/corpus_engineering/cric_c5_l01_verifier.py": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "69882be04398a14fd03936c239f609c5cd310b485dd5856126660771306ae327"
+    },
+    "tools/corpus_engineering/cric_c5_l02_authoring.py": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "ea988f136fc2b9d9562082bc154eabcb15c0055d85fcd535bf49634e3de1c4ea"
+    },
+    "tools/corpus_engineering/cric_c5_l02_verifier.py": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "6d3bc0088f070c66af9dd749a8e039e09c9b37a5c2521daf5161351556ee00d2"
+    },
+    "tools/corpus_engineering/cric_c5_l03_authoring.py": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "45b9414a09c475cdbd5239dc0ada6e0e2a20ac69fa801c90c8d83aac21f5c997"
+    },
+    "tools/corpus_engineering/cric_c5_l03_verifier.py": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "572adb3b6cbdf550e7808bf3d174e45cfeaa3b03d27ae44a7360204bdc1ac90f"
+    },
+    "tools/corpus_engineering/cric_c5_l04_authoring.py": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "b95ac3a79b9ddfc7b0eb8725e717051980d52bec086706e212701fa1d03f7b3b"
+    },
+    "tools/corpus_engineering/cric_c5_l04_verifier.py": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "972bb19307cbe690cc8c187082226645081d08b5ad00566bf2ee0b6e9a555ecc"
+    },
+    "tools/corpus_engineering/cric_c5_l05_authoring.py": {
+      "sourceCommit": "0db824ed411a484f9f9cc17e68f64ff1d2319c0c",
+      "sha256": "cb2a8a4b7ab6dbdb754c9d96628726f2a3d19f158307c4808c95688b3a110607"
+    },
+    "tools/corpus_engineering/cric_c5_l05_verifier.py": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "227b954394e8990cc1a29a7d204e2878dab8677a8ac03c4c71de8fab93bb5b69"
+    },
+    "tools/corpus_engineering/cric_c5_wave_physics.py": {
+      "sourceCommit": "6e02a5bed53a39527dbf2ce98181dc3c324e11f7",
+      "sha256": "93914663cf78ebfeca77636e9817dd6c77435641de4a9e83c3140df24909ea27"
+    }
+  }
+}

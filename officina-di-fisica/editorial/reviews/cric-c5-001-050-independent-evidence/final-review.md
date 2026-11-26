@@ -1,0 +1,13 @@
+# Revisione distinta dei cinquanta C5 A
+
+Tutti i 50 prompt originali sono stati derivati prima delle candidate nella primaria 18fd1cd4, senza opzioni, chiavi o soluzioni. Il modello computazionale congelato contiene 26 risultati numerici/simbolici e 8 controlli Pint esatti; ogni funzione resta AST-identica nei cinque verifier. Le 23 valutazioni concettuali restano distinte dai 27 oracoli esatti, incluso il rapporto 1/3 della lunghezza d’onda derivato nuovamente dal vincolo v costante.
+
+Sono stati letti integralmente tutti gli originali completi, le cinque lezioni effettive, tutti i 50 record finali e tutti i cinque SVG finali in XML e in nuove rese native indipendenti a piena altezza, prodotte realmente con exit 0 e poi viste interamente. I profili SVG storici sono stati riletti come contesto con attributi, label e riepilogo dei punti di svolta per le polilinee lunghe: non si dichiara una nuova approvazione visiva dei vecchi asset. Nessun candidato A è stato modificato, né aperta la primaria del verificatore dei miei quesiti B.
+
+Il target finale ha eseguito realmente 17 test positivi in 2,844 s, con 240 configurazioni Hypothesis contate, 150 mutazioni di pacchetto compresi tutti i 50 cambi di chiave con token/hash/binding/pin rinnovati, 26 guasti separati del modello pre-key, 9 guasti costitutivi, rimozione delle condizioni fisiche esplicite, equivalenze SI, geometria e title/desc. Le 220 prove finite/exact dei nuovi helper e le guardie dei cinque decoder rifiutano float binari, infiniti, non reali e input invalidi. Fresh e saved passano entrambi assert_record_identity sui pacchetti e binding effettivi.
+
+Negativi conservati: un riferimento Git completo trascritto male fu rifiutato prima di Node; una guardia di generazione usava «consecutivi» invece del testo «volte consecutive» e si fermò prima dei verifier. Il primo target aveva un confronto strutturale SymPy fra logaritmi esattamente equivalenti: raw, test e diagnosi sono preservati; il finale semplifica la differenza esatta a zero, senza epsilon. Nessun modello congelato, candidato, tolleranza o aspettativa fisica è stato cambiato per ottenere il positivo.
+
+La funzione main del modello è copiata letteralmente e conserva il messaggio del freeze storico. Le sue esecuzioni nei verifier avvengono ora dopo la lettura e non costituiscono una nuova pretesa di esecuzione blind. Le firme attestano i byte effettivamente letti, mentre le controprove matematiche sono separate dal giudizio discorsivo e dalla UI.
+
+Nessuna UI prodotto, registrazione, pubblicazione o approvazione umana: DRAFT e human NOT_RUN. Il consolidamento e il confronto finale dei file integrati spettano a Root.

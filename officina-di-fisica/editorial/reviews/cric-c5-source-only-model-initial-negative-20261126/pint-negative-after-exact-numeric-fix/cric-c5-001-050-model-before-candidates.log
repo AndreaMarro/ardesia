@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/cric-c5-001-050-independent-models.py", line 28, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/cric-c5-001-050-independent-models.py", line 25, in main
+    for x,unit,wanted in zip(dimensional_crosschecks(),['second','hertz','meter/second','watt','meter/second','meter','watt/meter**2','watt'],[Fraction(3,20),Fraction(250,9),15,Fraction(4,5),340,Fraction(37,25),20,10]):assert x.to(unit).magnitude==wanted
+                                                                                                                                                                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

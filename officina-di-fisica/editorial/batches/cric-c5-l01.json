@@ -1,0 +1,635 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C5-Q001",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 1,
+      "title": "Misurare dal centro a un estremo",
+      "skill": "C5-L01",
+      "prerequisites": [],
+      "version": 2,
+      "prompt": "Un oscillatore raggiunge +7 mm e −7 mm rispetto allo zero di equilibrio. Qual è l’ampiezza, in millimetri?",
+      "family": "fra-due-estremi",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’ampiezza è una distanza dall’equilibrio a un solo estremo. La corsa completa va da −7 a +7 mm e misura 14 mm. Dividendo questa corsa per due trovo 7 mm. Lo stesso risultato si legge direttamente come distanza fra zero e +7 mm, oppure fra zero e −7 mm."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/213f58ec51042560641ca2d0879d1b699664ad76796ef8c827be90ba4903f743",
+          "text": "Nel primo pannello gli estremi sono +7 e −7 mm. Ogni distanza dal centro a un estremo è 7 mm; la corsa completa è 14 mm. La figura confronta posizioni sulla stessa scala, non un percorso temporale."
+        },
+        {
+          "type": "formula",
+          "text": "A=\\frac{x_{\\max}-x_{\\min}}2"
+        },
+        {
+          "type": "formula",
+          "text": " A=7\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "14 mm è la distanza fra entrambi gli estremi, non l’ampiezza. −7 mm è una coordinata orientata: un’ampiezza non è negativa. 3,5 mm dividerebbe ancora per due una distanza già misurata dal centro."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 7,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "hints": [
+        "Traccia lo zero di equilibrio e misura fino a un solo estremo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "14 mm è la distanza fra entrambi gli estremi, non l’ampiezza. −7 mm è una coordinata orientata: un’ampiezza non è negativa. 3,5 mm dividerebbe ancora per due una distanza già misurata dal centro.",
+        "target": "C5-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Misurare dal centro a un estremo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q002",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 2,
+      "title": "Contare gli intervalli fra sei massimi",
+      "skill": "C5-L01",
+      "prerequisites": [],
+      "version": 2,
+      "prompt": "Un oscillatore periodico ha il primo massimo a 0,10 s e il sesto a 0,85 s. Qual è il periodo esatto?",
+      "family": "il-ciclo-mancante",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Fra il primo e il sesto massimo ci sono cinque intervalli, come fra sei tacche su un righello. Sottraggo i due tempi: 0,85−0,10=0,75 s. Divido per cinque e ottengo 0,15 s. Posso verificarlo elencando i massimi a 0,10; 0,25; 0,40; 0,55; 0,70; 0,85 s."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/213f58ec51042560641ca2d0879d1b699664ad76796ef8c827be90ba4903f743",
+          "text": "Sei massimi delimitano cinque intervalli temporali uguali. Le tacche da 0,10 a 0,85 s hanno scala comune e separazione di 0,15 s."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta t=0{,}75\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac{\\Delta t}{5}"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac3{20}\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "0,125 s divide 0,75 s per sei e conta un intervallo in più. 0,75 s è l’intero tempo trascorso. 0,17 s divide il tempo finale per cinque senza sottrarre l’istante iniziale."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "0,17 s",
+          "0,15 s",
+          "0,125 s",
+          "0,75 s",
+          "0,85 s"
+        ],
+        "value": "0,15 s"
+      },
+      "hints": [
+        "Conta i vuoti fra i sei massimi, poi sottrai gli estremi temporali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "testo",
+        "message": "0,125 s divide 0,75 s per sei e conta un intervallo in più. 0,75 s è l’intero tempo trascorso. 0,17 s divide il tempo finale per cinque senza sottrarre l’istante iniziale.",
+        "target": "C5-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Contare gli intervalli fra sei massimi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q003",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 3,
+      "title": "Due zeri non fanno ancora un giro",
+      "skill": "C5-L01",
+      "prerequisites": [],
+      "version": 3,
+      "prompt": "Un oscillatore armonico ideale di ampiezza non nulla passa due volte consecutive per l’equilibrio in versi opposti. Fra i due passaggi trascorrono 18 ms. Qual è la frequenza esatta?",
+      "family": "uno-zero-attraversato-due-volte",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Partendo dal centro in un verso, l’oscillatore visita un estremo e ritorna al centro nel verso opposto: è mezzo ciclo. Il periodo intero è dunque 36 ms, cioè 36/1000 s=9/250 s. Invertendo questa frazione ottengo 250/9 Hz. La frazione selezionabile evita una divisione decimale periodica."
+        },
+        {
+          "type": "formula",
+          "text": "T=2\\cdot18\\,\\mathrm{ms}"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac9{250}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " f=\\frac{250}{9}\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "text",
+          "text": "500/9 Hz tratta i 18 ms come un periodo intero. 125/9 Hz usa invece quattro volte 18 ms. I numeri 36 e 18 descrivono durate in millisecondi nei passaggi precedenti, non frequenze in hertz."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "36 Hz",
+          "18 Hz",
+          "250/9 Hz",
+          "500/9 Hz",
+          "125/9 Hz"
+        ],
+        "value": "250/9 Hz"
+      },
+      "hints": [
+        "Prima ricostruisci un ciclo intero e soltanto dopo fai il reciproco in secondi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "500/9 Hz tratta i 18 ms come un periodo intero. 125/9 Hz usa invece quattro volte 18 ms. I numeri 36 e 18 descrivono durate in millisecondi nei passaggi precedenti, non frequenze in hertz.",
+        "target": "C5-L01"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Due zeri non fanno ancora un giro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q004",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 4,
+      "title": "Riconoscere la fase nella corsa",
+      "skill": "C5-L01",
+      "prerequisites": [],
+      "version": 2,
+      "prompt": "Per lo stesso oscillatore armonico ideale, con ampiezza e pulsazione costanti, confronti due istanti lontani dagli estremi. Quale coppia di osservazioni identifica la stessa fase modulo un giro?",
+      "family": "quale-coppia-basta",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una posizione interna si attraversa due volte per ciclo. Sapere se il corpo sta andando verso destra o verso sinistra distingue quei due passaggi. Stessa posizione e stesso verso della velocità riportano quindi allo stesso stato della sinusoide, a meno di un numero intero di periodi. L’energia totale è invece identica in tutte le fasi del moto ideale."
+        },
+        {
+          "type": "formula",
+          "text": "x_2=x_1"
+        },
+        {
+          "type": "formula",
+          "text": " \\operatorname{sgn}(v_2)=\\operatorname{sgn}(v_1)"
+        },
+        {
+          "type": "text",
+          "text": "Il solo modulo della velocità coincide anche in posizioni opposte. Una posizione con verso di moto opposto corrisponde all’altro attraversamento e non alla stessa fase. La conservazione dell’energia non seleziona un istante del ciclo."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Stesso modulo della velocità, qualunque sia la posizione",
+          "Uguale energia totale",
+          "Stesso modulo dell’accelerazione",
+          "Stessa posizione e stesso verso della velocità",
+          "Stessa posizione e verso opposto della velocità"
+        ],
+        "value": "Stessa posizione e stesso verso della velocità"
+      },
+      "hints": [
+        "Immagina i due passaggi per il centro: quale informazione li distingue?",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il solo modulo della velocità coincide anche in posizioni opposte. Una posizione con verso di moto opposto corrisponde all’altro attraversamento e non alla stessa fase. La conservazione dell’energia non seleziona un istante del ciclo.",
+        "target": "C5-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Riconoscere la fase nella corsa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q005",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 5,
+      "title": "Il coseno parte da un estremo",
+      "skill": "C5-L01",
+      "prerequisites": [],
+      "version": 2,
+      "prompt": "Un oscillatore segue x(t)=A cos(ωt), con A>0 e ω>0. Quali posizione e velocità ha a t=0?",
+      "family": "istante-iniziale-di-un-coseno",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A t=0 l’argomento del coseno è zero e cos0=1: la coordinata è +A. La velocità è la pendenza della curva, oppure la derivata −Aω sin(ωt), che vale zero. L’accelerazione non è nulla: è −ω²A e punta verso l’equilibrio. Il corpo sta invertendo il verso del moto."
+        },
+        {
+          "type": "formula",
+          "text": "x(0)=A"
+        },
+        {
+          "type": "formula",
+          "text": " v(0)=0"
+        },
+        {
+          "type": "formula",
+          "text": " a(0)=-\\omega^2A"
+        },
+        {
+          "type": "text",
+          "text": "Il passaggio per l’equilibrio appartiene a una fase diversa. All’estremo la velocità non è massima: è momentaneamente zero. Il segno positivo dell’estremo deriva dal coseno iniziale, non dal segno della velocità."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Equilibrio e velocità positiva",
+          "Equilibrio e velocità nulla",
+          "Estremo negativo e velocità nulla",
+          "Estremo positivo e velocità massima",
+          "Estremo positivo e velocità nulla"
+        ],
+        "value": "Estremo positivo e velocità nulla"
+      },
+      "hints": [
+        "Valuta il coseno e la pendenza nello stesso istante iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Il passaggio per l’equilibrio appartiene a una fase diversa. All’estremo la velocità non è massima: è momentaneamente zero. Il segno positivo dell’estremo deriva dal coseno iniziale, non dal segno della velocità.",
+        "target": "C5-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Il coseno parte da un estremo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q006",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 6,
+      "title": "Dai radianti ai cicli trascorsi",
+      "skill": "C5-L01",
+      "prerequisites": [],
+      "version": 2,
+      "prompt": "La fase reale accumulata da un oscillatore armonico cresce di 3π radianti. Quanti periodi sono trascorsi? Non arrotondare il conteggio a un intero.",
+      "family": "meta-percorso-in-fase",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un ciclo completo corrisponde a 2π radianti. Divido la fase accumulata per quella di un giro: 3π/(2π)=3/2. È un periodo intero più mezzo periodo. Il numero di periodi trascorsi è un rapporto di tempi e può essere frazionario; non è un conteggio di soli giri completati."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\Delta t}{T}=\\frac{\\Delta\\varphi}{2\\pi}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta t}{T}=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Tre periodi richiederebbero 6π radianti. Mezzo periodo richiede solo π. 2/3 inverte il rapporto fra fase accumulata e fase di un giro. Non si deve eliminare il mezzo ciclo soltanto perché non è completo."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2 periodi",
+          "3 periodi",
+          "1/2 periodo",
+          "2/3 di periodo",
+          "6 periodi"
+        ],
+        "value": "3/2 periodi"
+      },
+      "hints": [
+        "Un giro di fase contiene 2π radianti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre periodi richiederebbero 6π radianti. Mezzo periodo richiede solo π. 2/3 inverte il rapporto fra fase accumulata e fase di un giro. Non si deve eliminare il mezzo ciclo soltanto perché non è completo.",
+        "target": "C5-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Dai radianti ai cicli trascorsi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q007",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 7,
+      "title": "Il segno del richiamo",
+      "skill": "C5-L01",
+      "prerequisites": [],
+      "version": 2,
+      "prompt": "Nella legge a=−ω²x di un oscillatore armonico, con ω>0 e origine x=0 scelta al centro del moto, verso quale posizione punta l’accelerazione quando x≠0?",
+      "family": "il-termine-del-richiamo",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Se x è positiva, l’accelerazione è negativa; se x è negativa, l’accelerazione è positiva. In entrambi i casi punta verso x=0, posizione di equilibrio. Il segno meno esprime un richiamo rispetto alla posizione, non un freno sempre opposto alla velocità. Nel passaggio per il centro l’accelerazione si annulla."
+        },
+        {
+          "type": "formula",
+          "text": "a=-\\omega^2x"
+        },
+        {
+          "type": "text",
+          "text": "Durante il moto verso il centro accelerazione e velocità possono avere lo stesso verso. Una forza dissipativa avrebbe invece un legame diverso con la velocità. Né l’estremo positivo né il verso positivo sono privilegiati lungo tutto il ciclo."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Il verso positivo dell’asse in ogni istante",
+          "La posizione di equilibrio",
+          "L’estremo positivo in ogni istante",
+          "L’estremo più vicino in ogni istante",
+          "Il verso della velocità in ogni istante"
+        ],
+        "value": "La posizione di equilibrio"
+      },
+      "hints": [
+        "Prova separatamente una coordinata positiva e una negativa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Durante il moto verso il centro accelerazione e velocità possono avere lo stesso verso. Una forza dissipativa avrebbe invece un legame diverso con la velocità. Né l’estremo positivo né il verso positivo sono privilegiati lungo tutto il ciclo.",
+        "target": "C5-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Il segno del richiamo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q008",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 8,
+      "title": "Il centro è il punto più veloce",
+      "skill": "C5-L01",
+      "prerequisites": [],
+      "version": 2,
+      "prompt": "Un oscillatore armonico ideale, di ampiezza non nulla, attraversa l’equilibrio. Quale fra queste grandezze raggiunge il massimo modulo?",
+      "family": "verso-della-velocita-al-centro",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "All’equilibrio lo spostamento e il richiamo elastico sono nulli. L’energia potenziale elastica è minima e tutta l’energia oscillatoria è cinetica. La velocità ha quindi modulo massimo, pari ad Aω. Lo stesso valore del modulo si ritrova nei due passaggi per il centro, con versi opposti."
+        },
+        {
+          "type": "formula",
+          "text": "|v|_{\\max}=A\\omega"
+        },
+        {
+          "type": "formula",
+          "text": " x=0"
+        },
+        {
+          "type": "formula",
+          "text": " a=0"
+        },
+        {
+          "type": "text",
+          "text": "Accelerazione e forza di richiamo hanno invece massimo modulo agli estremi, dove la velocità è zero. Lo spostamento al centro è nullo. Il massimo della velocità non richiede una forza massima nello stesso istante."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Lo spostamento dall’equilibrio",
+          "L’energia potenziale elastica rispetto al minimo",
+          "La velocità",
+          "L’accelerazione",
+          "La forza elastica risultante"
+        ],
+        "value": "La velocità"
+      },
+      "hints": [
+        "Segui dove si trova l’energia quando la deformazione elastica è nulla.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Accelerazione e forza di richiamo hanno invece massimo modulo agli estremi, dove la velocità è zero. Lo spostamento al centro è nullo. Il massimo della velocità non richiede una forza massima nello stesso istante.",
+        "target": "C5-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Il centro è il punto più veloce"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q009",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 9,
+      "title": "Una molla quattro volte meno rigida",
+      "skill": "C5-L01",
+      "prerequisites": [],
+      "version": 2,
+      "prompt": "Lo stesso corpo di massa m>0 oscilla senza attriti con una molla ideale. In una seconda preparazione k₂=k₁/4, con k₁>0. Come cambia il periodo, usando ω²=k/m?",
+      "family": "una-molla-meno-rigida",
+      "difficulty": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A massa costante il rapporto ω₂²/ω₁² vale 1/4. La pulsazione positiva diventa quindi metà di prima. Poiché T=2π/ω, il periodo raddoppia. Le due preparazioni possono avere la stessa ampiezza nel regime lineare: la variazione di periodo deriva dalla rigidezza, non da una variazione di massa."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\omega_2}{\\omega_1}=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{T_2}{T_1}=2"
+        },
+        {
+          "type": "text",
+          "text": "Quadruplicare T userebbe una dipendenza inversa da k senza la radice. Dimezzare T confonderebbe il rapporto dei periodi con quello delle pulsazioni. Il periodo non resta costante quando cambia k a massa fissata."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Si dimezza",
+          "Quadruplica",
+          "Diventa un quarto",
+          "Raddoppia",
+          "Resta uguale"
+        ],
+        "value": "Raddoppia"
+      },
+      "hints": [
+        "Estrai prima la radice del rapporto delle pulsazioni al quadrato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quadruplicare T userebbe una dipendenza inversa da k senza la radice. Dimezzare T confonderebbe il rapporto dei periodi con quello delle pulsazioni. Il periodo non resta costante quando cambia k a massa fissata.",
+        "target": "C5-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Una molla quattro volte meno rigida"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q010",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 10,
+      "title": "Massimi sempre più piccoli",
+      "skill": "C5-L01",
+      "prerequisites": [],
+      "version": 2,
+      "prompt": "Una traccia mostra massimi successivi di 8 mm, 6 mm e 4,5 mm rispetto allo stesso equilibrio, quasi equidistanti nel tempo. Quale descrizione è compatibile con questi dati?",
+      "family": "traccia-con-escursione-calante",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le altezze misurano l’ampiezza e diminuiscono: 6/8=3/4 e 4,5/6=3/4. Le separazioni temporali quasi uguali indicano invece un periodo osservato quasi costante. Una dissipazione debole è compatibile con questa traccia. I soli tre massimi non identificano in modo unico la legge completa dello smorzamento."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/213f58ec51042560641ca2d0879d1b699664ad76796ef8c827be90ba4903f743",
+          "text": "Le barre indicano soltanto le altezze di tre massimi successivi: 8, 6 e 4,5 mm. L’ascissa enumera i massimi e non misura una nuova durata; la quasi uguaglianza dei tempi è un dato della consegna."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{A_2}{A_1}=\\frac34"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{A_3}{A_2}=\\frac34"
+        },
+        {
+          "type": "text",
+          "text": "Un modello ideale ad ampiezza costante non riproduce queste altezze. Sottrarre millimetri non dà un tempo. La diminuzione dell’ampiezza non implica lo stesso rapporto per la frequenza: il dato temporale va letto separatamente."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Oscillatore ideale con ampiezza costante",
+          "Periodo uguale alla differenza fra le altezze",
+          "Frequenza che diminuisce necessariamente come le altezze",
+          "Nessun moto, perché i massimi non sono uguali",
+          "Ampiezza decrescente e periodo osservato quasi costante"
+        ],
+        "value": "Ampiezza decrescente e periodo osservato quasi costante"
+      },
+      "hints": [
+        "Confronta separatamente le ordinate dei massimi e le loro distanze temporali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Un modello ideale ad ampiezza costante non riproduce queste altezze. Sottrarre millimetri non dà un tempo. La diminuzione dell’ampiezza non implica lo stesso rapporto per la frequenza: il dato temporale va letto separatamente.",
+        "target": "C5-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Massimi sempre più piccoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "213f58ec51042560641ca2d0879d1b699664ad76796ef8c827be90ba4903f743",
+      "name": "cric-c5-l01-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTU2MCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTYwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkFtcGllenphLCBpbnRlcnZhbGxpIGZyYSBtYXNzaW1pIGUgYWx0ZXp6ZSBkZWNyZXNjZW50aTwvdGl0bGU+CjxkZXNjIGlkPSJkZXNjIj5HbGkgZXN0cmVtaSBhIHBpw7kgZSBtZW5vIHNldHRlIG1pbGxpbWV0cmkgZGlzdGFubyBjaWFzY3VubyBzZXR0ZSBtaWxsaW1ldHJpIGRhbCBjZW50cm8uIFNlaSBtYXNzaW1pIGRhIHplcm8gdmlyZ29sYSBkaWVjaSBhIHplcm8gdmlyZ29sYSBvdHRhbnRhY2lucXVlIHNlY29uZGkgZGVsaW1pdGFubyBjaW5xdWUgaW50ZXJ2YWxsaSBkaSB6ZXJvIHZpcmdvbGEgcXVpbmRpY2kgc2Vjb25kaS4gVHJlIGJhcnJlIGRpIGFsdGV6emUgb3R0bywgc2VpIGUgcXVhdHRybyB2aXJnb2xhIGNpbnF1ZSBtaWxsaW1ldHJpIHJhcHByZXNlbnRhbm8gbWFzc2ltaSBzdWNjZXNzaXZpLjwvZGVzYz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTYwIiBmaWxsPSIjZmZmZGY3Ii8+CjxnIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMyIgZmlsbD0iIzIwMmMzOSI+Cjx0ZXh0IHg9IjMyIiB5PSI1MiIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9ImJvbGQiPjEuIERhbCBjZW50cm8gYSB1biBzb2xvIGVzdHJlbW88L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI5NSI+UG9zaXppb25pIHJpc3BldHRvIGFsbOKAmWVxdWlsaWJyaW8sIGluIG1tLjwvdGV4dD4KPHBhdGggZD0iTTMyMCAxNTBWNDgwTTEzMCAzMjBINTEwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzMDRkNjMiIHN0cm9rZS13aWR0aD0iMyIvPgo8cGF0aCBkPSJNMTQwIDE4MEg0ODBNMTQwIDQ2MEg0ODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzg5OWE5ZiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI3IDciLz4KPGNpcmNsZSBjeD0iMzIwIiBjeT0iMTgwIiByPSI4IiBmaWxsPSIjMjY3MjhkIi8+PGNpcmNsZSBjeD0iMzIwIiBjeT0iNDYwIiByPSI4IiBmaWxsPSIjMjY3MjhkIi8+Cjx0ZXh0IHg9Ijc4IiB5PSIxODgiPis3PC90ZXh0Pjx0ZXh0IHg9Ijg5IiB5PSIzMjgiPjA8L3RleHQ+PHRleHQgeD0iNzgiIHk9IjQ2OCI+4oiSNzwvdGV4dD4KPHBhdGggZD0iTTUwMCAxODBWMzIwTTQ5MCAxODBINTEwTTQ5MCAzMjBINTEwTTUwMCAzMjBWNDYwTTQ5MCA0NjBINTEwIiBmaWxsPSJub25lIiBzdHJva2U9IiM5ODZjMzUiIHN0cm9rZS13aWR0aD0iMyIvPgo8dGV4dCB4PSI1MTYiIHk9IjI1NyI+NyBtbTwvdGV4dD48dGV4dCB4PSI1MTYiIHk9IjM5NyI+NyBtbTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjUyMCI+QW1waWV6emE6IDcgbW0uIENvcnNhIGNvbXBsZXRhOiAxNCBtbS48L3RleHQ+CjxsaW5lIHgxPSIzMiIgeTE9IjU1NSIgeDI9IjYwOCIgeTI9IjU1NSIgc3Ryb2tlPSIjYjhjNGNhIi8+Cjx0ZXh0IHg9IjMyIiB5PSI2MTIiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4yLiBTZWkgdGFjY2hlLCBjaW5xdWUgaW50ZXJ2YWxsaTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjY1NSI+TWFzc2ltaSBjb25zZWN1dGl2aSBkZWwgbWVkZXNpbW8gbW90by48L3RleHQ+CjxwYXRoIGQ9Ik05MCA3NjBINTUwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzMDRkNjMiIHN0cm9rZS13aWR0aD0iMyIvPgo8ZyBzdHJva2U9IiMyNjcyOGQiIHN0cm9rZS13aWR0aD0iNCI+PHBhdGggZD0iTTEwMCA3NDVWNzc1TTE4MCA3NDVWNzc1TTI2MCA3NDVWNzc1TTM0MCA3NDVWNzc1TTQyMCA3NDVWNzc1TTUwMCA3NDVWNzc1Ii8+PC9nPgo8dGV4dCB4PSI3NiIgeT0iODE1Ij4wLDEwPC90ZXh0Pjx0ZXh0IHg9IjE1NiIgeT0iODE1Ij4wLDI1PC90ZXh0Pjx0ZXh0IHg9IjIzNiIgeT0iODE1Ij4wLDQwPC90ZXh0Pjx0ZXh0IHg9IjMxNiIgeT0iODE1Ij4wLDU1PC90ZXh0Pjx0ZXh0IHg9IjM5NiIgeT0iODE1Ij4wLDcwPC90ZXh0Pjx0ZXh0IHg9IjQ3NiIgeT0iODE1Ij4wLDg1PC90ZXh0Pgo8dGV4dCB4PSI1MjUiIHk9Ijg1NSI+dCAocyk8L3RleHQ+CjxwYXRoIGQ9Ik0xMDAgODc1Vjg5NUg1MDBWODc1IiBmaWxsPSJub25lIiBzdHJva2U9IiM5ODZjMzUiIHN0cm9rZS13aWR0aD0iMyIvPgo8dGV4dCB4PSIxNTEiIHk9Ijk0MCI+VGVtcG8gY29tcGxlc3Npdm86IDAsNzUgczwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijk5NSI+T2duaSBpbnRlcnZhbGxvIGR1cmEgMCw3NSBzIC8gNSA9IDAsMTUgcy48L3RleHQ+CjxsaW5lIHgxPSIzMiIgeTE9IjEwMzAiIHgyPSI2MDgiIHkyPSIxMDMwIiBzdHJva2U9IiNiOGM0Y2EiLz4KPHRleHQgeD0iMzIiIHk9IjEwODUiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4zLiBM4oCZYWx0ZXp6YSBub24gw6ggdW4gdGVtcG88L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMTI4Ij5BbHRlenplIGRpIHRyZSBtYXNzaW1pIHN1Y2Nlc3NpdmkuPC90ZXh0Pgo8cGF0aCBkPSJNMTQwIDExODBWMTQ0MEg1ODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMwNGQ2MyIgc3Ryb2tlLXdpZHRoPSIzIi8+Cjx0ZXh0IHg9IjMyIiB5PSIxMTk1Ij5BIChtbSk8L3RleHQ+PHRleHQgeD0iOTgiIHk9IjEyODgiPjg8L3RleHQ+PHRleHQgeD0iOTgiIHk9IjEzMjgiPjY8L3RleHQ+PHRleHQgeD0iNzUiIHk9IjEzNTgiPjQsNTwvdGV4dD4KPHBhdGggZD0iTTE0MCAxMjgwSDIyME0xNDAgMTMyMEgzNjBNMTQwIDEzNTBINTAwIiBmaWxsPSJub25lIiBzdHJva2U9IiM4OTlhOWYiIHN0cm9rZS1kYXNoYXJyYXk9IjUgNiIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjE5MCIgeT0iMTI4MCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjE2MCIgZmlsbD0iIzI2NzI4ZCIvPjxyZWN0IHg9IjMzMCIgeT0iMTMyMCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iIzk4NmMzNSIvPjxyZWN0IHg9IjQ3MCIgeT0iMTM1MCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjkwIiBmaWxsPSIjNGU4NzZkIi8+Cjx0ZXh0IHg9IjEwOSIgeT0iMTQ3MCI+MDwvdGV4dD48dGV4dCB4PSIyMTMiIHk9IjE0NzQiPjE8L3RleHQ+PHRleHQgeD0iMzUzIiB5PSIxNDc0Ij4yPC90ZXh0Pjx0ZXh0IHg9IjQ5MyIgeT0iMTQ3NCI+MzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjE1MjUiPk9yZGluZSBkZWkgbWFzc2ltaTsgc3Rlc3NhIHNjYWxhIHZlcnRpY2FsZS48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}

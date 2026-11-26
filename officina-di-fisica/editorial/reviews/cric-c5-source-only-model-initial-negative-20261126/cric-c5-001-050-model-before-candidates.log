@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/cric-c5-001-050-independent-models.py", line 26, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/cric-c5-001-050-independent-models.py", line 22, in main
+    for n,wanted in expected.items():assert sp.simplify(values[f'C5-Q{n:03}']-wanted)==0,(n,values[f'C5-Q{n:03}'],wanted)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (27, 4.0, 4)
