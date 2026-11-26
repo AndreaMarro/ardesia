@@ -41,7 +41,8 @@ export const termica = {
     b.label([1.44, 0.58, 0], 'Volume');
   },
   termometro(b, s) {
-    b.ball([0, 0.39, 0], 0.27, c.rosso);
+    // Keep the lowest calibrated column cap above the opaque bulb.
+    b.ball([0, 0.3, 0], 0.22, c.rosso);
     b.rod([0, 0.46, 0], [0, 2.5, 0], 0.14, c.acqua, 0.3);
     b.rod([0, 0.43, 0], [0, 0.55 + 1.72 * s.livello, 0], 0.085, c.rosso);
     for (let i = 0; i <= 15; i++)
@@ -257,11 +258,11 @@ export const termica = {
     b.rod([0, 1, -0.27], [0, 1, 0.27], 0.5, c.metallo);
     b.ring([0, 1, 0.32], 0.43, 'xy', c.ocra);
     const d = s.frigo ? -1 : 1;
-    b.arrow([-1.03 - d * 0.58 * s.caldo, 1, 0], [-1.03 + d * 0.58 * s.caldo, 1, 0], c.rosso);
-    b.arrow([1.03 - d * 0.58 * s.freddo, 1, 0], [1.03 + d * 0.58 * s.freddo, 1, 0], c.verde);
+    b.arrow([-1.03 - d * 0.58 * s.caldo, 1, 0.85], [-1.03 + d * 0.58 * s.caldo, 1, 0.85], c.rosso);
+    b.arrow([1.03 - d * 0.58 * s.freddo, 1, 0.85], [1.03 + d * 0.58 * s.freddo, 1, 0.85], c.verde);
     b.arrow(
-      [0, 1 + 0.55 * (d < 0 ? s.lavoro : 0), 0.44],
-      [0, 1 + 0.55 * (d > 0 ? s.lavoro : 0), 0.44],
+      [0, 1 + 0.55 * (d < 0 ? s.lavoro : 0), 0.85],
+      [0, 1 + 0.55 * (d > 0 ? s.lavoro : 0), 0.85],
       c.viola,
     );
     b.label([0, 1.96, 0], 'Lavoro', c.viola);

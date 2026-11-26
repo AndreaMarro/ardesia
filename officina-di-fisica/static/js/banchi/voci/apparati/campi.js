@@ -32,7 +32,14 @@ export const campi = {
         b.line([o, [o[0] + 1.4 * Math.cos(a), y, 1.4 * Math.sin(a)]], c.ocra);
       }
       b.ball([px, y, 0], 0.09, c.verde);
-      b.arrow([px, y, 0], [px + s.campo, y, 0], c.viola);
+      // Preserve the true common field gain outside the opaque probe.
+      b.arrow([px, y, 0.3], [px + s.campo, y, 0.3], c.viola);
+      if (Math.abs(s.campo) > 0 && Math.abs(s.campo) < 0.1) {
+        // A labelled second representation makes the small field legible;
+        // the original arrow, inverse-square law and numeric reading remain.
+        b.arrow([px, 1.95, 0.3], [px + 10 * s.campo, 1.95, 0.3], c.viola);
+        b.label([px + 5 * s.campo, 2.35, 0.3], 'E ×10', c.viola);
+      }
       b.label([px, y + 0.45, 0], 'P');
       return;
     }
@@ -218,14 +225,16 @@ export const campi = {
   },
   lorentz(b, s) {
     const a = rad(s.angolo),
-      o = [0, 1.33, 0];
+      o = [0, 1.33, 0],
+      velocityOrigin = [0, 1.73, 0],
+      forceOrigin = [0, 1.33, 0.45];
     for (const z of [-0.85, 0, 0.85]) b.arrow([-1.65, 0.46, z], [1.6, 0.46, z], c.metallo);
     b.ball(o, 0.15, c.rosso);
-    b.arrow(o, [1.4 * Math.cos(a), 1.33, -1.4 * Math.sin(a)], c.verde);
+    b.arrow(velocityOrigin, [1.4 * Math.cos(a), velocityOrigin[1], -1.4 * Math.sin(a)], c.verde);
     // B points along +x. A velocity component toward −z gives a force toward −y.
-    b.arrow(o, [0, 1.33 - 0.95 * s.forza, 0], c.viola);
+    b.arrow(forceOrigin, [0, forceOrigin[1] - 0.95 * s.forza, forceOrigin[2]], c.viola);
     b.label([1.73, 0.79, -0.82], 'B');
-    b.label([1.4 * Math.cos(a), 1.67, -1.4 * Math.sin(a)], 'v', c.verde);
+    b.label([1.4 * Math.cos(a), 2.13, -1.4 * Math.sin(a)], 'v', c.verde);
   },
   spira(b, s) {
     const angle = rad(s.angolo),

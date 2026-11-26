@@ -147,7 +147,7 @@ export const ondulatoria = {
       b.box([wall + 0.065, 1, 0], [0.13, 1.65, 1.04], c.metallo, 0.43);
       b.ball([left, 0.82, 0], 0.15, c.ocra);
       b.arrow([left, 1.24, 0], [wall, 1.24, 0], c.verde);
-      b.arrow([wall, 0.7, 0], [left, 0.7, 0], c.viola);
+      b.arrow([wall, 0.45, 0], [left, 0.45, 0], c.viola);
       if (s.frazioneEco !== undefined) {
         const at = left + d * s.frazioneEco;
         b.ball([at, 1.01, 0.34], 0.13, c.viola);
@@ -190,7 +190,7 @@ export const ondulatoria = {
       b.rod([receiver, 0.1, 0], [receiver, 0.91, 0], 0.085, c.metallo);
       b.ball([receiver, 0.78, 0], 0.11, c.viola);
       if (s.pressioneRel !== undefined)
-        b.arrow([receiver, 1.18, 0], [receiver, 1.18 + 0.35 * s.pressioneRel, 0], c.viola);
+        b.arrow([receiver, 1.18, 0.3], [receiver, 1.18 + 0.35 * s.pressioneRel, 0.3], c.viola);
       b.label([sourceAt(time), 1.72, 0], 'Sorgente');
       b.label([receiver, 1.99, 0], 'Ricevitore');
       return;
@@ -357,7 +357,9 @@ export const ondulatoria = {
     if (!s.lente) {
       b.box([0, 0.73, 0], [4.6, 1.05, 0.91], s.riflesso ? c.metallo : c.acqua, s.riflesso ? 0.68 : 0.27);
       const a = rad(s.angolo),
-        l = 1.56;
+        // Ray length is schematic; keep both complete segments in the medium
+        // and above the solid table without changing either optical angle.
+        l = 1;
       b.line(
         [
           [0, 0.13, 0],

@@ -1,0 +1,51 @@
+{
+  "phase": "AUTHOR_GEOMETRY_CANDIDATE_NO_INDEPENDENT_OR_BROWSER_ACCEPTANCE",
+  "parentCommit": "6c6fbaaeaac03906e5e9b17a664eeea4c3b23a26",
+  "parentRuntimeSha256": "3fb19da4e8454d13e5b977ea56dc45dd0d97d338b9571048bd373faac3740b3b",
+  "candidateRuntimeSha256": "b2abff8e44eab69812c8c2a03c9876fdf49ae3dab2285f323303bcd3c1689e46",
+  "actualContexts": 351,
+  "scope": "Ten shared records: seven residual geometry IDs plus two shared engine branches and reflection. All legal control values plus five clock positions per nonzero duration. Not all139 UI or all possible continuous clock frames.",
+  "red": {
+    "tests": 7,
+    "seconds": 0.604,
+    "subcaseContractFailures": 299,
+    "errors": 0,
+    "interpretation": "Conservative desired separation-plane contracts;299 does NOT mean299 proven historical occlusions. Original independent17 finding scopes remain authoritative."
+  },
+  "initialHarnessNegative": "First7test run had299contract failures plus1IndexError because zero-delay echo legitimately has zero-length/no arrow. Fixed test to require absent zero arrow before production patch; original test/log retained.",
+  "greenGeometry": {
+    "tests": 7,
+    "seconds": 0.524,
+    "exitCode": 0
+  },
+  "generalTests": {
+    "tests": 80,
+    "seconds": 27.918,
+    "exitCode": 0
+  },
+  "nonvisualRegression": {
+    "controlsTimesAndNumericReadings": "EXACTLY_IDENTICAL_351_BEFORE_AFTER",
+    "sourceRecordsAndGradeFunctions": "NOT_EDITED"
+  },
+  "changes": [
+    "Thermometer opaque bulb reduced/repositioned, calibrated column and ticks unchanged.",
+    "Heat/work arrows translated outside opaque reservoirs/engine with original deltas/gains; separate work scale declared in legend.",
+    "True common-scale field arrow translated clear of P; small field has additional explicitly labelled \u00d710 representation, original numeric reading/arrow retained.",
+    "Lorentz v/F translated into parallel planes clear of charge, original deltas/cross-product/zero endpoints preserved.",
+    "Doppler pressure arrow translated clear of receiver; echo return translated below microphone with same distance and direction.",
+    "Interface ray segments shortened uniformly to schematic length1, same optical directions/angles, full glyphs clear of base. Lens branch unchanged."
+  ],
+  "changedFiles": [
+    "static/js/banchi/voci/apparati/termica.js",
+    "static/js/banchi/voci/apparati/campi.js",
+    "static/js/banchi/voci/apparati/onde.js",
+    "static/js/banchi/voci/legende.js"
+  ],
+  "scientificIndependentReview": "PENDING",
+  "productUI": "NOT_RUN_ON_THIS_EPOCH",
+  "completeActivityCredit": 0,
+  "originalFailures": "RETAINED",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "oldEvidenceReuse": "DO_NOT_RETAG"
+}
