@@ -1,0 +1,30 @@
+{
+  "scope": "Fix immutable archive path selection, no runtime or scientific expectation changes",
+  "failedRun": 45887711139,
+  "failedSource": "2b6c504042c942f8b266b2671787b6043bc044d1",
+  "observedUICases": 0,
+  "failure": "git archive rejected optional extensions directory absent from immutable candidate",
+  "correction": "Remove only nonexistent archive path; runtime reconstruction still enumerates all present Git files including any extensions and verifies exact full fingerprint",
+  "actualAllThreeImmutableArchiveBootstrapExit": 0,
+  "actualAllThreeStrictArchivesAfterBootstrapExit": 0,
+  "strictLocalPrebootstrapNegativeRetained": true,
+  "freshC6PrepareExit": 0,
+  "requestSha256": "18108b6c67ed31f470b7e1ce75add6b17c900d08195f8da0ebcb986717ac06bf",
+  "tests": [
+    {
+      "pattern": "test_experiment_visibility_request.py",
+      "count": 9,
+      "seconds": 0.662,
+      "exitCode": 0
+    },
+    {
+      "pattern": "test_experiment_visibility_integrity.py",
+      "count": 7,
+      "seconds": 1.17,
+      "exitCode": 0
+    }
+  ],
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "activityCredit": 0
+}

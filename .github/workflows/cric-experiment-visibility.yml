@@ -71,7 +71,7 @@ jobs:
           git archive "$CRIC_CANDIDATE" -- \
             officina-di-fisica/server officina-di-fisica/static officina-di-fisica/content \
             officina-di-fisica/contracts officina-di-fisica/migrations \
-            officina-di-fisica/policies officina-di-fisica/extensions \
+            officina-di-fisica/policies \
             officina-di-fisica/package.json officina-di-fisica/package-lock.json \
             officina-di-fisica/tools/corpus_engineering/draft_import.py \
             officina-di-fisica/tools/corpus_engineering/runtime_fingerprint.py \
