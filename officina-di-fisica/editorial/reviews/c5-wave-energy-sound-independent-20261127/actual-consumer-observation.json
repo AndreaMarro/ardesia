@@ -1,0 +1,2622 @@
+{
+  "consumerRef": "b9994b9116e87478905191d85cca8037d17ae4bd",
+  "records": [
+    {
+      "id": "SIM-C5-L04-01",
+      "tasks": [
+        {
+          "input": 2,
+          "inputUnit": "1",
+          "exactManualNumericEntry": 4,
+          "modelOutput": 4,
+          "outputUnit": "numero puro",
+          "prompt": "Imposta «Ampiezza rispetto ad A₀» su 2. Quale valore ottieni per «Potenza media rispetto a P₀»?",
+          "worked": "P media = ½μvω²A²; P/P₀ = (A/A₀)². 2 × 2 = 4.",
+          "entryAcceptedByInstalledNumberRule": true
+        },
+        {
+          "input": 1.5,
+          "inputUnit": "1",
+          "exactManualNumericEntry": 2.25,
+          "modelOutput": 2.25,
+          "outputUnit": "numero puro",
+          "prompt": "Sulla stessa corda mantieni invariata la frequenza e porti l’ampiezza a 1,5 volte quella iniziale. Per quale fattore cambia la potenza media?",
+          "worked": "P media = ½μvω²A²; P/P₀ = (A/A₀)². 1,5 × 1,5 = 2,25.",
+          "entryAcceptedByInstalledNumberRule": true
+        }
+      ],
+      "controls": [
+        {
+          "x": 0,
+          "output": 0,
+          "clocks": []
+        },
+        {
+          "x": 0.25,
+          "output": 0.0625,
+          "clocks": []
+        },
+        {
+          "x": 0.5,
+          "output": 0.25,
+          "clocks": []
+        },
+        {
+          "x": 0.75,
+          "output": 0.5625,
+          "clocks": []
+        },
+        {
+          "x": 1,
+          "output": 1,
+          "clocks": []
+        },
+        {
+          "x": 1.25,
+          "output": 1.5625,
+          "clocks": []
+        },
+        {
+          "x": 1.5,
+          "output": 2.25,
+          "clocks": []
+        },
+        {
+          "x": 1.75,
+          "output": 3.0625,
+          "clocks": []
+        },
+        {
+          "x": 2,
+          "output": 4,
+          "clocks": []
+        },
+        {
+          "x": 2.25,
+          "output": 5.0625,
+          "clocks": []
+        },
+        {
+          "x": 2.5,
+          "output": 6.25,
+          "clocks": []
+        },
+        {
+          "x": 2.75,
+          "output": 7.5625,
+          "clocks": []
+        },
+        {
+          "x": 3,
+          "output": 9,
+          "clocks": []
+        }
+      ],
+      "clockSetup": null
+    },
+    {
+      "id": "SIM-C5-L04-02",
+      "tasks": [
+        {
+          "input": 4,
+          "inputUnit": "cm²",
+          "exactManualNumericEntry": 8,
+          "modelOutput": 8,
+          "outputUnit": "mJ",
+          "prompt": "Imposta «Area del ricevitore» su 4 cm². Quale valore ottieni per «Energia raccolta in 2 s»?",
+          "worked": "E = I A t, con I = 10 W/m² e t = 2 s. 2 × 4 = 8 mJ.",
+          "entryAcceptedByInstalledNumberRule": true
+        },
+        {
+          "input": 3,
+          "inputUnit": "cm²",
+          "exactManualNumericEntry": 6,
+          "modelOutput": 6,
+          "outputUnit": "mJ",
+          "prompt": "Un ricevitore di area 3 cm² è investito perpendicolarmente da 10 W/m² per 2 s. Quanti millijoule intercetta?",
+          "worked": "E = I A t, con I = 10 W/m² e t = 2 s. 2 × 3 = 6 mJ.",
+          "entryAcceptedByInstalledNumberRule": true
+        }
+      ],
+      "controls": [
+        {
+          "x": 0.5,
+          "output": 1,
+          "clocks": []
+        },
+        {
+          "x": 1,
+          "output": 2,
+          "clocks": []
+        },
+        {
+          "x": 1.5,
+          "output": 3,
+          "clocks": []
+        },
+        {
+          "x": 2,
+          "output": 4,
+          "clocks": []
+        },
+        {
+          "x": 2.5,
+          "output": 5,
+          "clocks": []
+        },
+        {
+          "x": 3,
+          "output": 6,
+          "clocks": []
+        },
+        {
+          "x": 3.5,
+          "output": 7,
+          "clocks": []
+        },
+        {
+          "x": 4,
+          "output": 8,
+          "clocks": []
+        },
+        {
+          "x": 4.5,
+          "output": 9,
+          "clocks": []
+        },
+        {
+          "x": 5,
+          "output": 10,
+          "clocks": []
+        }
+      ],
+      "clockSetup": null
+    },
+    {
+      "id": "SIM-C5-L04-03",
+      "tasks": [
+        {
+          "input": 4,
+          "inputUnit": "m",
+          "exactManualNumericEntry": 0.0625,
+          "modelOutput": 0.0625,
+          "outputUnit": "W/m²",
+          "prompt": "Imposta «Distanza dalla sorgente» su 4 m. Quale valore ottieni per «Intensità»?",
+          "worked": "I = P/(4πr²); P = 4π W. 1 / (4²) = 0,0625 W/m².",
+          "entryAcceptedByInstalledNumberRule": true
+        },
+        {
+          "input": 3,
+          "inputUnit": "m",
+          "exactManualNumericEntry": 0.1111,
+          "modelOutput": 0.1111111111111111,
+          "outputUnit": "W/m²",
+          "prompt": "Una sorgente isotropa irradia 4π W. Alla distanza di 3 m, quale intensità attraversa una piccola superficie perpendicolare ai raggi?",
+          "worked": "I = P/(4πr²); P = 4π W. 1 / (3²) ≈ 0,1111 W/m².",
+          "entryAcceptedByInstalledNumberRule": true
+        }
+      ],
+      "controls": [
+        {
+          "x": 1,
+          "output": 1,
+          "clocks": []
+        },
+        {
+          "x": 1.25,
+          "output": 0.64,
+          "clocks": []
+        },
+        {
+          "x": 1.5,
+          "output": 0.4444444444444444,
+          "clocks": []
+        },
+        {
+          "x": 1.75,
+          "output": 0.32653061224489793,
+          "clocks": []
+        },
+        {
+          "x": 2,
+          "output": 0.25,
+          "clocks": []
+        },
+        {
+          "x": 2.25,
+          "output": 0.19753086419753085,
+          "clocks": []
+        },
+        {
+          "x": 2.5,
+          "output": 0.16,
+          "clocks": []
+        },
+        {
+          "x": 2.75,
+          "output": 0.1322314049586777,
+          "clocks": []
+        },
+        {
+          "x": 3,
+          "output": 0.1111111111111111,
+          "clocks": []
+        },
+        {
+          "x": 3.25,
+          "output": 0.09467455621301775,
+          "clocks": []
+        },
+        {
+          "x": 3.5,
+          "output": 0.08163265306122448,
+          "clocks": []
+        },
+        {
+          "x": 3.75,
+          "output": 0.07111111111111111,
+          "clocks": []
+        },
+        {
+          "x": 4,
+          "output": 0.0625,
+          "clocks": []
+        },
+        {
+          "x": 4.25,
+          "output": 0.05536332179930796,
+          "clocks": []
+        },
+        {
+          "x": 4.5,
+          "output": 0.04938271604938271,
+          "clocks": []
+        },
+        {
+          "x": 4.75,
+          "output": 0.0443213296398892,
+          "clocks": []
+        },
+        {
+          "x": 5,
+          "output": 0.04,
+          "clocks": []
+        }
+      ],
+      "clockSetup": null
+    },
+    {
+      "id": "SIM-C5-L05-01",
+      "tasks": [
+        {
+          "input": 3,
+          "inputUnit": "1",
+          "exactManualNumericEntry": 30,
+          "modelOutput": 30,
+          "outputUnit": "ms",
+          "prompt": "Imposta «Mezzo di propagazione» su Acciaio. Quale valore ottieni per «Tempo su 150 m»?",
+          "worked": "t = L/v; v = 340, 1500 o 5000 m/s secondo il mezzo. 150 000 / 5000 = 30 ms.",
+          "entryAcceptedByInstalledNumberRule": true
+        },
+        {
+          "input": 1,
+          "inputUnit": "1",
+          "exactManualNumericEntry": 441.2,
+          "modelOutput": 441.1764705882353,
+          "outputUnit": "ms",
+          "prompt": "Devi sincronizzare due sensori distanti 150 m nel mezzo «Aria». Usando la velocità indicata sul banco, quanti millisecondi impiega il suono?",
+          "worked": "t = L/v; v = 340, 1500 o 5000 m/s secondo il mezzo. 150 000 / 340 ≈ 441,2 ms.",
+          "entryAcceptedByInstalledNumberRule": true
+        }
+      ],
+      "controls": [
+        {
+          "x": 1,
+          "output": 441.1764705882353,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 0,
+              "readings": [
+                [
+                  "Mezzo di propagazione",
+                  "Aria",
+                  ""
+                ],
+                [
+                  "Tempo su 150 m",
+                  441.1764705882353,
+                  "ms"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  341.1764705882353,
+                  "ms"
+                ],
+                [
+                  "Cammino del suono",
+                  0,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 110.29411764705883,
+              "signal": 37.5,
+              "readings": [
+                [
+                  "Mezzo di propagazione",
+                  "Aria",
+                  ""
+                ],
+                [
+                  "Tempo su 150 m",
+                  441.1764705882353,
+                  "ms"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  341.1764705882353,
+                  "ms"
+                ],
+                [
+                  "Cammino del suono",
+                  37.5,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 220.58823529411765,
+              "signal": 75,
+              "readings": [
+                [
+                  "Mezzo di propagazione",
+                  "Aria",
+                  ""
+                ],
+                [
+                  "Tempo su 150 m",
+                  441.1764705882353,
+                  "ms"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  341.1764705882353,
+                  "ms"
+                ],
+                [
+                  "Cammino del suono",
+                  75,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 441.1764705882353,
+              "signal": 150,
+              "readings": [
+                [
+                  "Mezzo di propagazione",
+                  "Aria",
+                  ""
+                ],
+                [
+                  "Tempo su 150 m",
+                  441.1764705882353,
+                  "ms"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  341.1764705882353,
+                  "ms"
+                ],
+                [
+                  "Cammino del suono",
+                  150,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 2,
+          "output": 100,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 0,
+              "readings": [
+                [
+                  "Mezzo di propagazione",
+                  "Acqua",
+                  ""
+                ],
+                [
+                  "Tempo su 150 m",
+                  100,
+                  "ms"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0,
+                  "ms"
+                ],
+                [
+                  "Cammino del suono",
+                  0,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 25,
+              "signal": 37.5,
+              "readings": [
+                [
+                  "Mezzo di propagazione",
+                  "Acqua",
+                  ""
+                ],
+                [
+                  "Tempo su 150 m",
+                  100,
+                  "ms"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0,
+                  "ms"
+                ],
+                [
+                  "Cammino del suono",
+                  37.5,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 50,
+              "signal": 75,
+              "readings": [
+                [
+                  "Mezzo di propagazione",
+                  "Acqua",
+                  ""
+                ],
+                [
+                  "Tempo su 150 m",
+                  100,
+                  "ms"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0,
+                  "ms"
+                ],
+                [
+                  "Cammino del suono",
+                  75,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 100,
+              "signal": 150,
+              "readings": [
+                [
+                  "Mezzo di propagazione",
+                  "Acqua",
+                  ""
+                ],
+                [
+                  "Tempo su 150 m",
+                  100,
+                  "ms"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0,
+                  "ms"
+                ],
+                [
+                  "Cammino del suono",
+                  150,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 3,
+          "output": 30,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 0,
+              "readings": [
+                [
+                  "Mezzo di propagazione",
+                  "Acciaio",
+                  ""
+                ],
+                [
+                  "Tempo su 150 m",
+                  30,
+                  "ms"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -70,
+                  "ms"
+                ],
+                [
+                  "Cammino del suono",
+                  0,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 7.5,
+              "signal": 37.5,
+              "readings": [
+                [
+                  "Mezzo di propagazione",
+                  "Acciaio",
+                  ""
+                ],
+                [
+                  "Tempo su 150 m",
+                  30,
+                  "ms"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -70,
+                  "ms"
+                ],
+                [
+                  "Cammino del suono",
+                  37.5,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 15,
+              "signal": 75,
+              "readings": [
+                [
+                  "Mezzo di propagazione",
+                  "Acciaio",
+                  ""
+                ],
+                [
+                  "Tempo su 150 m",
+                  30,
+                  "ms"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -70,
+                  "ms"
+                ],
+                [
+                  "Cammino del suono",
+                  75,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 30,
+              "signal": 150,
+              "readings": [
+                [
+                  "Mezzo di propagazione",
+                  "Acciaio",
+                  ""
+                ],
+                [
+                  "Tempo su 150 m",
+                  30,
+                  "ms"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -70,
+                  "ms"
+                ],
+                [
+                  "Cammino del suono",
+                  150,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "clockSetup": "Il segnale parte dalla sorgente all’istante zero e arriva al ricevitore a 150 m."
+    },
+    {
+      "id": "SIM-C5-L05-02",
+      "tasks": [
+        {
+          "input": 6,
+          "inputUnit": "1",
+          "exactManualNumericEntry": 60,
+          "modelOutput": 60,
+          "outputUnit": "dB",
+          "prompt": "Imposta «Esponente in I/I₀ = 10ⁿ» su 6. Quale valore ottieni per «Livello di intensità»?",
+          "worked": "L = 10 log₁₀(I/I₀) = 10n; I₀ = 10⁻¹² W/m². 10 × 6 = 60 dB.",
+          "entryAcceptedByInstalledNumberRule": true
+        },
+        {
+          "input": 4,
+          "inputUnit": "1",
+          "exactManualNumericEntry": 40,
+          "modelOutput": 40,
+          "outputUnit": "dB",
+          "prompt": "Il rapporto fra l’intensità misurata e quella di riferimento è 10ⁿ, con n = 4. Quale livello leggeresti sul fonometro in decibel?",
+          "worked": "L = 10 log₁₀(I/I₀) = 10n; I₀ = 10⁻¹² W/m². 10 × 4 = 40 dB.",
+          "entryAcceptedByInstalledNumberRule": true
+        }
+      ],
+      "controls": [
+        {
+          "x": 0,
+          "output": 0,
+          "clocks": []
+        },
+        {
+          "x": 1,
+          "output": 10,
+          "clocks": []
+        },
+        {
+          "x": 2,
+          "output": 20,
+          "clocks": []
+        },
+        {
+          "x": 3,
+          "output": 30,
+          "clocks": []
+        },
+        {
+          "x": 4,
+          "output": 40,
+          "clocks": []
+        },
+        {
+          "x": 5,
+          "output": 50,
+          "clocks": []
+        },
+        {
+          "x": 6,
+          "output": 60,
+          "clocks": []
+        },
+        {
+          "x": 7,
+          "output": 70,
+          "clocks": []
+        },
+        {
+          "x": 8,
+          "output": 80,
+          "clocks": []
+        }
+      ],
+      "clockSetup": null
+    },
+    {
+      "id": "SIM-C5-L05-03",
+      "tasks": [
+        {
+          "input": 30,
+          "inputUnit": "m/s",
+          "exactManualNumericEntry": 333.3,
+          "modelOutput": 333.3333333333333,
+          "outputUnit": "Hz",
+          "prompt": "Imposta «Velocità della sorgente verso il ricevitore» su 30 m/s. Quale valore ottieni per «Frequenza ricevuta»?",
+          "worked": "f ricevuta = f₀ v/(v−u); f₀ = 300 Hz, v = 300 m/s. 90000 / (300 − 30) ≈ 333,3 Hz.",
+          "entryAcceptedByInstalledNumberRule": true
+        },
+        {
+          "input": -20,
+          "inputUnit": "m/s",
+          "exactManualNumericEntry": 281.25,
+          "modelOutput": 281.25,
+          "outputUnit": "Hz",
+          "prompt": "La sorgente emette 300 Hz e ha velocità con segno -20 m/s verso il ricevitore fermo. Se il suono viaggia a 300 m/s, quale frequenza riceve? Semplifica il rapporto tra le velocità.",
+          "worked": "f ricevuta = f₀ v/(v−u); f₀ = 300 Hz, v = 300 m/s. 90000 / (300 − (-20)) ≈ 281,3 Hz.",
+          "entryAcceptedByInstalledNumberRule": true
+        }
+      ],
+      "controls": [
+        {
+          "x": -40,
+          "output": 264.70588235294116,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": -0.6026346363792547,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -40,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  264.70588235294116,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -35.29411764705884,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.6026346363792547,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 5,
+              "signal": -0.4457383557765392,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -40,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  264.70588235294116,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -35.29411764705884,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.4457383557765392,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 10,
+              "signal": 1,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -40,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  264.70588235294116,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -35.29411764705884,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  1,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 20,
+              "signal": -0.6026346363792547,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -40,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  264.70588235294116,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -35.29411764705884,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.6026346363792547,
+                  ""
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": -35,
+          "output": 268.65671641791045,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": -0.38809185267224783,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -35,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  268.65671641791045,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -31.343283582089555,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.38809185267224783,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 5,
+              "signal": -0.5531311541252003,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -35,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  268.65671641791045,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -31.343283582089555,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.5531311541252003,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 10,
+              "signal": 1,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -35,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  268.65671641791045,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -31.343283582089555,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  1,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 20,
+              "signal": -0.38809185267224783,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -35,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  268.65671641791045,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -31.343283582089555,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.38809185267224783,
+                  ""
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": -30,
+          "output": 272.72727272727275,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": -0.14231483827328484,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -30,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  272.72727272727275,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -27.272727272727252,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.14231483827328484,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 5,
+              "signal": -0.6548607339452852,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -30,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  272.72727272727275,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -27.272727272727252,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.6548607339452852,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 10,
+              "signal": 1,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -30,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  272.72727272727275,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -27.272727272727252,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  1,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 20,
+              "signal": -0.14231483827328484,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -30,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  272.72727272727275,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -27.272727272727252,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.14231483827328484,
+                  ""
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": -25,
+          "output": 276.9230769230769,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 0.12053668025532184,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -25,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  276.9230769230769,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -23.076923076923094,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  0.12053668025532184,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 5,
+              "signal": -0.7485107481711006,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -25,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  276.9230769230769,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -23.076923076923094,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.7485107481711006,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 10,
+              "signal": 1,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -25,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  276.9230769230769,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -23.076923076923094,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  1,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 20,
+              "signal": 0.12053668025532184,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -25,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  276.9230769230769,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -23.076923076923094,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  0.12053668025532184,
+                  ""
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": -20,
+          "output": 281.25,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 0.38268343236508956,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -20,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  281.25,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -18.75,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  0.38268343236508956,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 5,
+              "signal": -0.8314696123025451,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -20,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  281.25,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -18.75,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.8314696123025451,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 10,
+              "signal": 1,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -20,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  281.25,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -18.75,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  1,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 20,
+              "signal": 0.38268343236508956,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -20,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  281.25,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -18.75,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  0.38268343236508956,
+                  ""
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": -15,
+          "output": 285.7142857142857,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 0.6234898018587329,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -15,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  285.7142857142857,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -14.285714285714278,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  0.6234898018587329,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 5,
+              "signal": -0.9009688679024189,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -15,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  285.7142857142857,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -14.285714285714278,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.9009688679024189,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 10,
+              "signal": 1,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -15,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  285.7142857142857,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -14.285714285714278,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  1,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 20,
+              "signal": 0.6234898018587329,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -15,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  285.7142857142857,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -14.285714285714278,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  0.6234898018587329,
+                  ""
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": -10,
+          "output": 290.3225806451613,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 0.8207634412072755,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -10,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  290.3225806451613,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -9.677419354838719,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  0.8207634412072755,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 5,
+              "signal": -0.9541392564000486,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -10,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  290.3225806451613,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -9.677419354838719,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.9541392564000486,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 10,
+              "signal": 1,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -10,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  290.3225806451613,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -9.677419354838719,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  1,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 20,
+              "signal": 0.8207634412072755,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -10,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  290.3225806451613,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -9.677419354838719,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  0.8207634412072755,
+                  ""
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": -5,
+          "output": 295.08196721311475,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 0.9526353808033825,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -5,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  295.08196721311475,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -4.918032786885249,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  0.9526353808033825,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 5,
+              "signal": -0.9880878960910772,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -5,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  295.08196721311475,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -4.918032786885249,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.9880878960910772,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 10,
+              "signal": 1,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -5,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  295.08196721311475,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -4.918032786885249,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  1,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 20,
+              "signal": 0.9526353808033825,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  -5,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  295.08196721311475,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -4.918032786885249,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  0.9526353808033825,
+                  ""
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 0,
+          "output": 300,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 1,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  0,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  300,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  1,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 5,
+              "signal": -1,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  0,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  300,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -1,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 10,
+              "signal": 1,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  0,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  300,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  1,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 20,
+              "signal": 1,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  0,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  300,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  1,
+                  ""
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 5,
+          "output": 305.08474576271186,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 0.9493976084683807,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  5,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  305.08474576271186,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  5.0847457627118615,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  0.9493976084683807,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 5,
+              "signal": -0.9872683547213444,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  5,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  305.08474576271186,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  5.0847457627118615,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.9872683547213444,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 10,
+              "signal": 1,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  5,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  305.08474576271186,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  5.0847457627118615,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  1,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 20,
+              "signal": 0.9493976084683807,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  5,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  305.08474576271186,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  5.0847457627118615,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  0.9493976084683807,
+                  ""
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 10,
+          "output": 310.3448275862069,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 0.7960930657056445,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  10,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  310.3448275862069,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  10.344827586206918,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  0.7960930657056445,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 5,
+              "signal": -0.9476531711828027,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  10,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  310.3448275862069,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  10.344827586206918,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.9476531711828027,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 10,
+              "signal": 1,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  10,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  310.3448275862069,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  10.344827586206918,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  1,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 20,
+              "signal": 0.7960930657056445,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  10,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  310.3448275862069,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  10.344827586206918,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  0.7960930657056445,
+                  ""
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 15,
+          "output": 315.7894736842105,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 0.5469481581224251,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  15,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  315.7894736842105,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  15.78947368421052,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  0.5469481581224251,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 5,
+              "signal": -0.8794737512064886,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  15,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  315.7894736842105,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  15.78947368421052,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.8794737512064886,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 10,
+              "signal": 1,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  15,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  315.7894736842105,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  15.78947368421052,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  1,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 20,
+              "signal": 0.5469481581224251,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  15,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  315.7894736842105,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  15.78947368421052,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  0.5469481581224251,
+                  ""
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 20,
+          "output": 321.42857142857144,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 0.2225209339563117,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  20,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  321.42857142857144,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  21.428571428571445,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  0.2225209339563117,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 5,
+              "signal": -0.7818314824680289,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  20,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  321.42857142857144,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  21.428571428571445,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.7818314824680289,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 10,
+              "signal": 1,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  20,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  321.42857142857144,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  21.428571428571445,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  1,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 20,
+              "signal": 0.2225209339563117,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  20,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  321.42857142857144,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  21.428571428571445,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  0.2225209339563117,
+                  ""
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 25,
+          "output": 327.27272727272725,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": -0.1423148382732869,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  25,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  327.27272727272725,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  27.272727272727252,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.1423148382732869,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 5,
+              "signal": -0.6548607339452844,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  25,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  327.27272727272725,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  27.272727272727252,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.6548607339452844,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 10,
+              "signal": 1,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  25,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  327.27272727272725,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  27.272727272727252,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  1,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 20,
+              "signal": -0.1423148382732869,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  25,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  327.27272727272725,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  27.272727272727252,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.1423148382732869,
+                  ""
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 30,
+          "output": 333.3333333333333,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": -0.4999999999999972,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  30,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  333.3333333333333,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  33.333333333333314,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.4999999999999972,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 5,
+              "signal": -0.5000000000000013,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  30,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  333.3333333333333,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  33.333333333333314,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.5000000000000013,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 10,
+              "signal": 1,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  30,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  333.3333333333333,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  33.333333333333314,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  1,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 20,
+              "signal": -0.4999999999999972,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  30,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  333.3333333333333,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  33.333333333333314,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.4999999999999972,
+                  ""
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 35,
+          "output": 339.62264150943395,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": -0.7948544414133524,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  35,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  339.62264150943395,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  39.62264150943395,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.7948544414133524,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 5,
+              "signal": -0.3202698538628383,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  35,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  339.62264150943395,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  39.62264150943395,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.3202698538628383,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 10,
+              "signal": 1,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  35,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  339.62264150943395,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  39.62264150943395,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  1,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 20,
+              "signal": -0.7948544414133524,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  35,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  339.62264150943395,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  39.62264150943395,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.7948544414133524,
+                  ""
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 40,
+          "output": 346.15384615384613,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": -0.9709418174260521,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  40,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  346.15384615384613,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  46.15384615384613,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.9709418174260521,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 5,
+              "signal": -0.12053668025532294,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  40,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  346.15384615384613,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  46.15384615384613,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.12053668025532294,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 10,
+              "signal": 1,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  40,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  346.15384615384613,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  46.15384615384613,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  1,
+                  ""
+                ]
+              ]
+            },
+            {
+              "time": 20,
+              "signal": -0.9709418174260521,
+              "readings": [
+                [
+                  "Velocità della sorgente verso il ricevitore",
+                  40,
+                  "m/s"
+                ],
+                [
+                  "Frequenza ricevuta",
+                  346.15384615384613,
+                  "Hz"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  46.15384615384613,
+                  "Hz"
+                ],
+                [
+                  "Pressione relativa al ricevitore",
+                  -0.9709418174260521,
+                  ""
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "clockSetup": "La sorgente emette 300 creste al secondo. Il ricevitore è a 3 m dalla posizione iniziale della sorgente e registra un massimo di pressione al passaggio di ogni cresta."
+    }
+  ],
+  "gridCount": 69,
+  "clockCount": 80,
+  "productUI": "NOT_RUN",
+  "activityCredit": 0
+}

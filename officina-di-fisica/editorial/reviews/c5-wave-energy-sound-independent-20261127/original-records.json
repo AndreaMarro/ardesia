@@ -1,0 +1,251 @@
+[
+  {
+    "id": "SIM-C5-L04-01",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L04",
+    "order": 1,
+    "section": "Energia, potenza e intensità",
+    "version": 1,
+    "title": "Energia e potenza di un’onda meccanica in un mezzo elastico",
+    "topic": "UD4 · energia e potenza di un’onda meccanica in un mezzo elastico",
+    "anchor": "Nell’onda armonica su una corda ideale le",
+    "summary": "Raddoppiare l’ampiezza raddoppia anche la potenza trasportata?",
+    "apparatus": "onda",
+    "control": {
+      "label": "Ampiezza rispetto ad A₀",
+      "unit": "1",
+      "min": 0.0,
+      "max": 3.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Potenza media rispetto a P₀",
+      "unit": "1"
+    },
+    "formula": "P media = ½μvω²A²; P/P₀ = (A/A₀)²",
+    "interpretation": "La corda mantiene la stessa densità lineare, tensione e frequenza. Aumenta di pari fattore la velocità oscillatoria dei punti. Nel regime lineare la potenza media cresce come il quadrato dell’ampiezza.",
+    "references": [
+      [
+        0.5,
+        0.25
+      ],
+      [
+        2.0,
+        4.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} × {x}",
+    "transferPrompt": "Sulla stessa corda mantieni invariata la frequenza e porti l’ampiezza a {x} volte quella iniziale. Per quale fattore cambia la potenza media?"
+  },
+  {
+    "id": "SIM-C5-L04-02",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L04",
+    "order": 2,
+    "section": "Energia, potenza e intensità",
+    "version": 1,
+    "title": "Intensità come energia per area e tempo",
+    "topic": "UD4 · intensità come energia per area e tempo",
+    "anchor": "Una sonda di area piccola e perpendicolare",
+    "summary": "Quanta energia intercetta una sonda più grande nello stesso intervallo?",
+    "apparatus": "sorgente",
+    "control": {
+      "label": "Area del ricevitore",
+      "unit": "cm²",
+      "min": 0.5,
+      "max": 5.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Energia raccolta in 2 s",
+      "unit": "mJ"
+    },
+    "formula": "E = I A t, con I = 10 W/m² e t = 2 s",
+    "interpretation": "La piccola superficie è perpendicolare a un fronte localmente piano. Converti cm² in m² prima di moltiplicare per intensità e durata.",
+    "references": [
+      [
+        1.0,
+        2.0
+      ],
+      [
+        4.0,
+        8.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2 × {x}",
+    "transferPrompt": "Un ricevitore di area {x} è investito perpendicolarmente da 10 W/m² per 2 s. Quanti millijoule intercetta?"
+  },
+  {
+    "id": "SIM-C5-L04-03",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L04",
+    "order": 3,
+    "section": "Energia, potenza e intensità",
+    "version": 1,
+    "title": "Legge dell’inverso del quadrato della distanza",
+    "topic": "UD4 · legge dell’inverso del quadrato della distanza",
+    "anchor": "Per una sorgente puntiforme isotropa in un",
+    "summary": "Perché raddoppiando la distanza ricevi un quarto dell’intensità?",
+    "apparatus": "sorgente",
+    "control": {
+      "label": "Distanza dalla sorgente",
+      "unit": "m",
+      "min": 1.0,
+      "max": 5.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Intensità",
+      "unit": "W/m²"
+    },
+    "formula": "I = P/(4πr²); P = 4π W",
+    "interpretation": "La sorgente puntiforme irradia in tutte le direzioni. Confronta le superfici sferiche attraversate dalla stessa potenza. Il modello trascura assorbimento e riflessioni.",
+    "references": [
+      [
+        2.0,
+        0.25
+      ],
+      [
+        4.0,
+        0.0625
+      ]
+    ],
+    "blocks": [],
+    "substitution": "1 / ({x}²)",
+    "transferPrompt": "Una sorgente isotropa irradia 4π W. Alla distanza di {x}, quale intensità attraversa una piccola superficie perpendicolare ai raggi?"
+  },
+  {
+    "id": "SIM-C5-L05-01",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L05",
+    "order": 1,
+    "section": "Suono e movimento relativo",
+    "version": 1,
+    "title": "Velocità del suono nei mezzi",
+    "topic": "UD4 · velocità del suono nei mezzi",
+    "anchor": "Un’eco percorre il tratto fra sorgente e",
+    "summary": "Lo stesso impulso arriva contemporaneamente attraverso aria, acqua e metallo?",
+    "apparatus": "doppler",
+    "control": {
+      "label": "Mezzo di propagazione",
+      "unit": "1",
+      "min": 1.0,
+      "max": 3.0,
+      "step": 1.0,
+      "choices": [
+        "Aria",
+        "Acqua",
+        "Acciaio"
+      ]
+    },
+    "measure": {
+      "label": "Tempo su 150 m",
+      "unit": "ms"
+    },
+    "formula": "t = L/v; v = 340, 1500 o 5000 m/s secondo il mezzo",
+    "interpretation": "Le velocità assegnate sono valori illustrativi per condizioni fissate. Un microfono si trova a 150 m. Per un’eco sullo stesso tragitto bisogna contare anche il ritorno.",
+    "references": [
+      [
+        2.0,
+        100.0
+      ],
+      [
+        3.0,
+        30.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": [
+      "150 000 / 340",
+      "150 000 / 1500",
+      "150 000 / 5000"
+    ],
+    "transferPrompt": "Devi sincronizzare due sensori distanti 150 m nel mezzo «{x}». Usando la velocità indicata sul banco, quanti millisecondi impiega il suono?"
+  },
+  {
+    "id": "SIM-C5-L05-02",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L05",
+    "order": 2,
+    "section": "Suono e movimento relativo",
+    "version": 1,
+    "title": "Intensità, percezione e livello sonoro in decibel",
+    "topic": "UD4 · intensità, percezione e livello sonoro in decibel",
+    "anchor": "Il livello di intensità sonora L confronta",
+    "summary": "Di quanti decibel cresce il livello moltiplicando l’intensità per dieci?",
+    "apparatus": "sorgente",
+    "control": {
+      "label": "Esponente in I/I₀ = 10ⁿ",
+      "unit": "1",
+      "min": 0.0,
+      "max": 8.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Livello di intensità",
+      "unit": "dB"
+    },
+    "formula": "L = 10 log₁₀(I/I₀) = 10n; I₀ = 10⁻¹² W/m²",
+    "interpretation": "Il fonometro riporta il logaritmo di un rapporto. Ogni salto di un esponente aggiunge 10 dB. La sensazione soggettiva dipende anche da frequenza e ascoltatore.",
+    "references": [
+      [
+        2.0,
+        20.0
+      ],
+      [
+        6.0,
+        60.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "10 × {x}",
+    "transferPrompt": "Il rapporto fra l’intensità misurata e quella di riferimento è 10ⁿ, con n = {x}. Quale livello leggeresti sul fonometro in decibel?"
+  },
+  {
+    "id": "SIM-C5-L05-03",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L05",
+    "order": 3,
+    "section": "Suono e movimento relativo",
+    "version": 1,
+    "title": "Effetto Doppler qualitativo",
+    "topic": "UD4 · effetto Doppler qualitativo",
+    "anchor": "Un ricevitore fermo investito da fronti più",
+    "summary": "Che cosa vede il ricevitore quando la sorgente si avvicina e poi si allontana?",
+    "apparatus": "doppler",
+    "control": {
+      "label": "Velocità della sorgente verso il ricevitore",
+      "unit": "m/s",
+      "min": -40.0,
+      "max": 40.0,
+      "step": 5.0
+    },
+    "measure": {
+      "label": "Frequenza ricevuta",
+      "unit": "Hz"
+    },
+    "formula": "f ricevuta = f₀ v/(v−u); f₀ = 300 Hz, v = 300 m/s",
+    "interpretation": "I fronti partono a intervalli uguali da posizioni diverse. Davanti a una sorgente che avanza arrivano più ravvicinati. Il ricevitore è fermo nel mezzo e la sorgente è subsonica.",
+    "references": [
+      [
+        0.0,
+        300.0
+      ],
+      [
+        30.0,
+        333.333333
+      ]
+    ],
+    "blocks": [],
+    "substitution": "90000 / (300 − {x})",
+    "transferPrompt": "La sorgente emette 300 Hz e ha velocità con segno {x} verso il ricevitore fermo. Se il suono viaggia a 300 m/s, quale frequenza riceve?"
+  }
+]
