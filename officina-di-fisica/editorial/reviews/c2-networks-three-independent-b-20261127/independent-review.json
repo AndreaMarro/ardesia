@@ -1,0 +1,247 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "INDEPENDENT_EXPERIMENT_DRAFT_CPU_REVIEW",
+  "author": "root",
+  "independentReviewer": "author_vectors_b",
+  "recusalAudit": "Reviewer did not author these drafts, network renderer or model. No edits to Root/candidates/registry/runtime.",
+  "candidateCommit": "6d814834668d6370094800f2d72ed2fe768903c9",
+  "consumerCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "runtimeSha256": "53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a",
+  "packageRawSha256": "de4d83e3ae13cdfb6d7d3edfcddfc7d794bf4e82e6e70eb498a8910606612070",
+  "bindingsRawSha256": "f2cd20a008b92f15a0b9bc385b00ad46cd79c4289e7dc0f430b5c103274b1e66",
+  "primaryFreezeCommit": "144eed60729bd2eaf0312f1483c471d3aaa25b69",
+  "primarySha256": "256b640265c090bdbccfe96c3b9ce76876024217d29bf049a043019fe59ea5c8",
+  "prekeyModelSha256": "94e31a308b16775b32d69f4b146a35f6b7c5e2f0af9b4b3cb6a1bee6286dd715",
+  "prekeyModelRunObservedExitCode": 0,
+  "sourceOnlyDisclosure": "General C2 course familiarity and other-bank reviews disclosed; no current DRAFT keys or blocks read.",
+  "lesson": "C2-L009 read completely; steady incompressible linear positive-resistance network, no inference to pulsatile/regulated physiological models.",
+  "records": [
+    {
+      "id": "SIM-C2-L009-01",
+      "candidateSha256": "a1a3f10779c394cf5a3c5e324e36f039a8128ebb1998e0e4bfedb52e72a2573b",
+      "sourceSha256": "d27bbd66f3ae41df70dbd93d632ed058afa7ea75d31a8f09377fcd6e06356f9c",
+      "manualArithmetic": "PASS_EXACT_WITH_GIVEN_DATA",
+      "pedagogicalReview": "PASS_DISTINCT_COMPLETE_RECORD_READING",
+      "comments": "Parallel conductances add; both2 gives1 and2//6 gives1.5 kPa·s/mL; inverse6 and comparison series8 explicit.",
+      "actualDraftQuestions": [
+        {
+          "prompt": "Imposta «Seconda resistenza» su 2 kPa·s/mL. Quale valore ottieni per «Resistenza equivalente in parallelo»?",
+          "value": 1,
+          "unit": "kPa·s/mL",
+          "worked": "1/Rₑq = 1/R₁ + 1/R₂ in parallelo. In serie Rₑq = R₁ + R₂. R₁ = 2 kPa·s/mL. 2 × 2 / (2 + 2) = 1 kPa·s/mL."
+        },
+        {
+          "prompt": "Un ramo da 2 kPa·s/mL è in parallelo con un ramo da 6 kPa·s/mL. Qual è la resistenza equivalente fra i due nodi comuni?",
+          "value": "1.5",
+          "unit": "kPa·s/mL",
+          "worked": "1/Rₑq = 1/R₁ + 1/R₂ in parallelo. In serie Rₑq = R₁ + R₂. R₁ = 2 kPa·s/mL. 2 × 6 / (2 + 6) = 1,5 kPa·s/mL."
+        }
+      ],
+      "modelVerification": "Both editions,8legal integer inputs each, strict independently rounded rational comparison; no epsilon.",
+      "visualReview": "NOT_RUN",
+      "finding": null
+    },
+    {
+      "id": "SIM-C2-L009-02",
+      "candidateSha256": "2f7c702ccde07f26994c81ef91d56ed7e7a848f3dcd59daaa5fdb7fb5c906930",
+      "sourceSha256": "a3797a919d164840d33a25031e9dcaa3bb2b02bbffe9daff5eccae0556f7972e",
+      "manualArithmetic": "PASS_EXACT_WITH_GIVEN_DATA",
+      "pedagogicalReview": "PASS_DISTINCT_COMPLETE_RECORD_READING",
+      "comments": "Common12kPa and lower branch3 fixed; upper flows4/2mL/s, total8/6 distinct.",
+      "actualDraftQuestions": [
+        {
+          "prompt": "Imposta «Resistenza del ramo superiore» su 3 kPa·s/mL. Quale valore ottieni per «Portata nel ramo superiore»?",
+          "value": 4,
+          "unit": "mL/s",
+          "worked": "Q₁ = Δp/R₁, con Δp = 12 kPa. 12 / 3 = 4 mL/s."
+        },
+        {
+          "prompt": "La pompa fissa una differenza di pressione di 12 kPa. La resistenza del ramo superiore è 6 kPa·s/mL. Quale portata passa in quel ramo?",
+          "value": 2,
+          "unit": "mL/s",
+          "worked": "Q₁ = Δp/R₁, con Δp = 12 kPa. 12 / 6 = 2 mL/s."
+        }
+      ],
+      "modelVerification": "Both editions,8legal integer inputs each, strict independently rounded rational comparison; no epsilon.",
+      "visualReview": "NOT_RUN",
+      "finding": null
+    },
+    {
+      "id": "SIM-C2-L009-03",
+      "candidateSha256": "f1498242e37615fcebf6d96bd25c246fd5f21d53fbae9879921aa2dfd63ea89b",
+      "sourceSha256": "1dd1702b1816f4c3638a58043d25914d9710539beccd34166e198ea47cf8b49a",
+      "manualArithmetic": "PASS_EXACT_WITH_GIVEN_DATA",
+      "pedagogicalReview": "PASS_DISTINCT_COMPLETE_RECORD_READING",
+      "comments": "Series common flow, inlet10/outlet0; intermediate5/7.5kPa; downstream and upstream pressure-drop reconstructions coincide.",
+      "actualDraftQuestions": [
+        {
+          "prompt": "Imposta «Resistenza a valle» su 2 kPa·s/mL. Quale valore ottieni per «Pressione nel nodo centrale»?",
+          "value": 5,
+          "unit": "kPa",
+          "worked": "pₙ − pᵤ = (pᵢ − pᵤ) R₂/(R₁ + R₂), con pᵢ = 10 kPa, pᵤ = 0 kPa e R₁ = 2 kPa·s/mL. 10 × 2 / (2 + 2) = 5 kPa."
+        },
+        {
+          "prompt": "In un tubo in serie R₁ = 2 kPa·s/mL e la resistenza a valle è 6 kPa·s/mL. Dall’ingresso a 10 kPa all’uscita a 0 kPa, quale pressione trovi fra R₁ e R₂?",
+          "value": "7.5",
+          "unit": "kPa",
+          "worked": "pₙ − pᵤ = (pᵢ − pᵤ) R₂/(R₁ + R₂), con pᵢ = 10 kPa, pᵤ = 0 kPa e R₁ = 2 kPa·s/mL. 10 × 6 / (2 + 6) = 7,5 kPa."
+        }
+      ],
+      "modelVerification": "Both editions,8legal integer inputs each, strict independently rounded rational comparison; no epsilon.",
+      "visualReview": "NOT_RUN",
+      "finding": null
+    }
+  ],
+  "completeDraftRecordsRead": 3,
+  "manualDraftTasks": 6,
+  "literalServedDraftPromptsChecked": 6,
+  "actualModelStatesBothEditions": 48,
+  "sourceAndDraftSceneClockParity": "STRICT_IDENTICAL_AT_ALL24_LEGAL_INPUTS; no raster/occlusion conclusion.",
+  "mathGuardAndMutationTests": 14,
+  "actualCpuTerminal": {
+    "stages": [
+      {
+        "stage": "actual-code",
+        "observedExitCode": 0,
+        "signal": null
+      },
+      {
+        "stage": "comparison",
+        "observedExitCode": 0,
+        "signal": null
+      },
+      {
+        "stage": "tests",
+        "observedExitCode": 0,
+        "signal": null
+      },
+      {
+        "stage": "grader",
+        "observedExitCode": 0,
+        "signal": null
+      }
+    ],
+    "elapsedSeconds": 1.523777584000527,
+    "executionEpoch": "THREE_NETWORKS_INDEPENDENT_REVIEW",
+    "Chrome": "NOT_RUN",
+    "activityCredit": 0
+  },
+  "actualUnchangedNumericGrader": {
+    "phase": "UNCHANGED_GRADER_BLOCK_CPU_ONLY",
+    "graderBlockSha256": "47873210c4ae3e5c412a9e9f5ed915534984f6639f1bc5c95017150df830d239",
+    "positiveManualInputs": 6,
+    "negativeInputs": 9,
+    "existingToleranceWindow": "UNCHANGED_SOURCE_BLOCK;NOT_NEW_REVIEW_TOLERANCE",
+    "results": [
+      {
+        "id": "SIM-C2-L009-01",
+        "positives": [
+          {
+            "input": "1",
+            "answer": 1,
+            "ok": true
+          },
+          {
+            "input": "1.5",
+            "answer": 1.5,
+            "ok": true
+          }
+        ],
+        "negatives": [
+          {
+            "input": "",
+            "answer": 0,
+            "ok": false
+          },
+          {
+            "input": "Infinity",
+            "answer": null,
+            "ok": false
+          },
+          {
+            "input": "NaN",
+            "answer": null,
+            "ok": false
+          }
+        ]
+      },
+      {
+        "id": "SIM-C2-L009-02",
+        "positives": [
+          {
+            "input": "4",
+            "answer": 4,
+            "ok": true
+          },
+          {
+            "input": "2",
+            "answer": 2,
+            "ok": true
+          }
+        ],
+        "negatives": [
+          {
+            "input": "",
+            "answer": 0,
+            "ok": false
+          },
+          {
+            "input": "Infinity",
+            "answer": null,
+            "ok": false
+          },
+          {
+            "input": "NaN",
+            "answer": null,
+            "ok": false
+          }
+        ]
+      },
+      {
+        "id": "SIM-C2-L009-03",
+        "positives": [
+          {
+            "input": "5",
+            "answer": 5,
+            "ok": true
+          },
+          {
+            "input": "7.5",
+            "answer": 7.5,
+            "ok": true
+          }
+        ],
+        "negatives": [
+          {
+            "input": "",
+            "answer": 0,
+            "ok": false
+          },
+          {
+            "input": "Infinity",
+            "answer": null,
+            "ok": false
+          },
+          {
+            "input": "NaN",
+            "answer": null,
+            "ok": false
+          }
+        ]
+      }
+    ]
+  },
+  "negativeCheckerRunsPreserved": [
+    "negative-si-internal-literal-terminal.json",
+    "negative-comparison-json-serialization/actual-terminal.json"
+  ],
+  "negativeDiagnoses": "Internal SI constant cannot be a bounded student literal; used exact internal Fraction without decoder changes. Evidence JSON serializer required default=str for Decimal; comparisons/inputs/assertions untouched.",
+  "openFindings": [],
+  "cpuVerdict": "THREE_DRAFT_TEXT_MATH_MANUAL_READINGS_PASS",
+  "overallAcceptance": "NOT_GRANTED_UI_AND_OWNER_GUEST_GATES_REMAIN_OPEN",
+  "Chrome": "NOT_RUN",
+  "canonicalDBImport": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "activityCredit": 0
+}

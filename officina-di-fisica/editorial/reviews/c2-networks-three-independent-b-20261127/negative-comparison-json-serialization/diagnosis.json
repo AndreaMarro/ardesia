@@ -1,0 +1,5 @@
+{
+  "observedExitCode": 1,
+  "cause": "Exact Decimal values in actual question metadata were not JSON serializable after all comparisons passed.",
+  "fix": "default=str only on evidence serialization; no model/assertion/expectation/input/tolerance changed."
+}

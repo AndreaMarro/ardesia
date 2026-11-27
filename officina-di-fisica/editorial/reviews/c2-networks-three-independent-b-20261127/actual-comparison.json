@@ -1,0 +1,490 @@
+{
+  "phase": "THREE_NETWORKS_CPU_COMPARISON",
+  "consumerCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "runtimeSha256": "53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a",
+  "candidateCommit": "6d814834668d6370094800f2d72ed2fe768903c9",
+  "records": [
+    {
+      "id": "SIM-C2-L009-01",
+      "variant": "published",
+      "states": [
+        {
+          "x": "1",
+          "exact": "2/3",
+          "observedOutputLexeme": "0.6666666666666666",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "2",
+          "exact": "1",
+          "observedOutputLexeme": "1",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "3",
+          "exact": "6/5",
+          "observedOutputLexeme": "1.2",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "4",
+          "exact": "4/3",
+          "observedOutputLexeme": "1.3333333333333333",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "5",
+          "exact": "10/7",
+          "observedOutputLexeme": "1.4285714285714286",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "6",
+          "exact": "3/2",
+          "observedOutputLexeme": "1.5",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "7",
+          "exact": "14/9",
+          "observedOutputLexeme": "1.5555555555555556",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "8",
+          "exact": "8/5",
+          "observedOutputLexeme": "1.6",
+          "correctlyRoundedRationalComparison": true
+        }
+      ],
+      "manualPoints": [
+        "6",
+        "5"
+      ],
+      "manualExactAnswers": [
+        "3/2",
+        "10/7"
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Seconda resistenza» su 6 kPa·s/mL. Quale valore ottieni per «Resistenza equivalente in parallelo»?",
+          "value": "1.5",
+          "unit": "kPa·s/mL",
+          "worked": "R parallelo = 2R₂/(2+R₂); R serie = 2+R₂. 2 × 6 / (2 + 6) = 1,5 kPa·s/mL."
+        },
+        {
+          "prompt": "Affianchi un ramo da 2 kPa·s/mL a un secondo da 5 kPa·s/mL. Quale resistenza equivalente presenta la coppia ai suoi capi?",
+          "value": "1.4285714285714286",
+          "unit": "kPa·s/mL",
+          "worked": "R parallelo = 2R₂/(2+R₂); R serie = 2+R₂. 2 × 5 / (2 + 5) ≈ 1,429 kPa·s/mL."
+        }
+      ],
+      "literalDraftPromptVerified": false,
+      "unit": "kPa·s/mL",
+      "clock": null
+    },
+    {
+      "id": "SIM-C2-L009-01",
+      "variant": "draft",
+      "states": [
+        {
+          "x": "1",
+          "exact": "2/3",
+          "observedOutputLexeme": "0.6666666666666666",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "2",
+          "exact": "1",
+          "observedOutputLexeme": "1",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "3",
+          "exact": "6/5",
+          "observedOutputLexeme": "1.2",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "4",
+          "exact": "4/3",
+          "observedOutputLexeme": "1.3333333333333333",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "5",
+          "exact": "10/7",
+          "observedOutputLexeme": "1.4285714285714286",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "6",
+          "exact": "3/2",
+          "observedOutputLexeme": "1.5",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "7",
+          "exact": "14/9",
+          "observedOutputLexeme": "1.5555555555555556",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "8",
+          "exact": "8/5",
+          "observedOutputLexeme": "1.6",
+          "correctlyRoundedRationalComparison": true
+        }
+      ],
+      "manualPoints": [
+        "2",
+        "6"
+      ],
+      "manualExactAnswers": [
+        "1",
+        "3/2"
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Seconda resistenza» su 2 kPa·s/mL. Quale valore ottieni per «Resistenza equivalente in parallelo»?",
+          "value": 1,
+          "unit": "kPa·s/mL",
+          "worked": "1/Rₑq = 1/R₁ + 1/R₂ in parallelo. In serie Rₑq = R₁ + R₂. R₁ = 2 kPa·s/mL. 2 × 2 / (2 + 2) = 1 kPa·s/mL."
+        },
+        {
+          "prompt": "Un ramo da 2 kPa·s/mL è in parallelo con un ramo da 6 kPa·s/mL. Qual è la resistenza equivalente fra i due nodi comuni?",
+          "value": "1.5",
+          "unit": "kPa·s/mL",
+          "worked": "1/Rₑq = 1/R₁ + 1/R₂ in parallelo. In serie Rₑq = R₁ + R₂. R₁ = 2 kPa·s/mL. 2 × 6 / (2 + 6) = 1,5 kPa·s/mL."
+        }
+      ],
+      "literalDraftPromptVerified": true,
+      "unit": "kPa·s/mL",
+      "clock": null
+    },
+    {
+      "id": "SIM-C2-L009-02",
+      "variant": "published",
+      "states": [
+        {
+          "x": "1",
+          "exact": "12",
+          "observedOutputLexeme": "12",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "2",
+          "exact": "6",
+          "observedOutputLexeme": "6",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "3",
+          "exact": "4",
+          "observedOutputLexeme": "4",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "4",
+          "exact": "3",
+          "observedOutputLexeme": "3",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "5",
+          "exact": "12/5",
+          "observedOutputLexeme": "2.4",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "6",
+          "exact": "2",
+          "observedOutputLexeme": "2",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "7",
+          "exact": "12/7",
+          "observedOutputLexeme": "1.7142857142857142",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "8",
+          "exact": "3/2",
+          "observedOutputLexeme": "1.5",
+          "correctlyRoundedRationalComparison": true
+        }
+      ],
+      "manualPoints": [
+        "6",
+        "5"
+      ],
+      "manualExactAnswers": [
+        "2",
+        "12/5"
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Resistenza del ramo superiore» su 6 kPa·s/mL. Quale valore ottieni per «Portata nel ramo superiore»?",
+          "value": 2,
+          "unit": "mL/s",
+          "worked": "Q₁ = Δp/R₁ = 12/R₁. 12 / 6 = 2 mL/s."
+        },
+        {
+          "prompt": "Ai capi di due rami ci sono 12 kPa. Se quello superiore presenta una resistenza di 5 kPa·s/mL, quanta portata passa proprio in quel ramo?",
+          "value": "2.4",
+          "unit": "mL/s",
+          "worked": "Q₁ = Δp/R₁ = 12/R₁. 12 / 5 = 2,4 mL/s."
+        }
+      ],
+      "literalDraftPromptVerified": false,
+      "unit": "mL/s",
+      "clock": null
+    },
+    {
+      "id": "SIM-C2-L009-02",
+      "variant": "draft",
+      "states": [
+        {
+          "x": "1",
+          "exact": "12",
+          "observedOutputLexeme": "12",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "2",
+          "exact": "6",
+          "observedOutputLexeme": "6",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "3",
+          "exact": "4",
+          "observedOutputLexeme": "4",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "4",
+          "exact": "3",
+          "observedOutputLexeme": "3",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "5",
+          "exact": "12/5",
+          "observedOutputLexeme": "2.4",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "6",
+          "exact": "2",
+          "observedOutputLexeme": "2",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "7",
+          "exact": "12/7",
+          "observedOutputLexeme": "1.7142857142857142",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "8",
+          "exact": "3/2",
+          "observedOutputLexeme": "1.5",
+          "correctlyRoundedRationalComparison": true
+        }
+      ],
+      "manualPoints": [
+        "3",
+        "6"
+      ],
+      "manualExactAnswers": [
+        "4",
+        "2"
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Resistenza del ramo superiore» su 3 kPa·s/mL. Quale valore ottieni per «Portata nel ramo superiore»?",
+          "value": 4,
+          "unit": "mL/s",
+          "worked": "Q₁ = Δp/R₁, con Δp = 12 kPa. 12 / 3 = 4 mL/s."
+        },
+        {
+          "prompt": "La pompa fissa una differenza di pressione di 12 kPa. La resistenza del ramo superiore è 6 kPa·s/mL. Quale portata passa in quel ramo?",
+          "value": 2,
+          "unit": "mL/s",
+          "worked": "Q₁ = Δp/R₁, con Δp = 12 kPa. 12 / 6 = 2 mL/s."
+        }
+      ],
+      "literalDraftPromptVerified": true,
+      "unit": "mL/s",
+      "clock": null
+    },
+    {
+      "id": "SIM-C2-L009-03",
+      "variant": "published",
+      "states": [
+        {
+          "x": "1",
+          "exact": "10/3",
+          "observedOutputLexeme": "3.3333333333333335",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "2",
+          "exact": "5",
+          "observedOutputLexeme": "5",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "3",
+          "exact": "6",
+          "observedOutputLexeme": "6",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "4",
+          "exact": "20/3",
+          "observedOutputLexeme": "6.666666666666667",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "5",
+          "exact": "50/7",
+          "observedOutputLexeme": "7.142857142857143",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "6",
+          "exact": "15/2",
+          "observedOutputLexeme": "7.5",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "7",
+          "exact": "70/9",
+          "observedOutputLexeme": "7.777777777777778",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "8",
+          "exact": "8",
+          "observedOutputLexeme": "8",
+          "correctlyRoundedRationalComparison": true
+        }
+      ],
+      "manualPoints": [
+        "6",
+        "5"
+      ],
+      "manualExactAnswers": [
+        "15/2",
+        "50/7"
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Resistenza a valle» su 6 kPa·s/mL. Quale valore ottieni per «Pressione nel nodo centrale»?",
+          "value": "7.5",
+          "unit": "kPa",
+          "worked": "p nodo = 10 R₂/(2 + R₂), con uscita a 0 kPa. 10 × 6 / (2 + 6) = 7,5 kPa."
+        },
+        {
+          "prompt": "Un tubo ha due resistenze in serie, la prima da 2 kPa·s/mL e la seconda da 5 kPa·s/mL. Se ingresso e uscita sono a 10 e 0 kPa, che pressione trovi al nodo?",
+          "value": "7.142857142857143",
+          "unit": "kPa",
+          "worked": "p nodo = 10 R₂/(2 + R₂), con uscita a 0 kPa. 10 × 5 / (2 + 5) ≈ 7,143 kPa."
+        }
+      ],
+      "literalDraftPromptVerified": false,
+      "unit": "kPa",
+      "clock": null
+    },
+    {
+      "id": "SIM-C2-L009-03",
+      "variant": "draft",
+      "states": [
+        {
+          "x": "1",
+          "exact": "10/3",
+          "observedOutputLexeme": "3.3333333333333335",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "2",
+          "exact": "5",
+          "observedOutputLexeme": "5",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "3",
+          "exact": "6",
+          "observedOutputLexeme": "6",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "4",
+          "exact": "20/3",
+          "observedOutputLexeme": "6.666666666666667",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "5",
+          "exact": "50/7",
+          "observedOutputLexeme": "7.142857142857143",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "6",
+          "exact": "15/2",
+          "observedOutputLexeme": "7.5",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "7",
+          "exact": "70/9",
+          "observedOutputLexeme": "7.777777777777778",
+          "correctlyRoundedRationalComparison": true
+        },
+        {
+          "x": "8",
+          "exact": "8",
+          "observedOutputLexeme": "8",
+          "correctlyRoundedRationalComparison": true
+        }
+      ],
+      "manualPoints": [
+        "2",
+        "6"
+      ],
+      "manualExactAnswers": [
+        "5",
+        "15/2"
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Resistenza a valle» su 2 kPa·s/mL. Quale valore ottieni per «Pressione nel nodo centrale»?",
+          "value": 5,
+          "unit": "kPa",
+          "worked": "pₙ − pᵤ = (pᵢ − pᵤ) R₂/(R₁ + R₂), con pᵢ = 10 kPa, pᵤ = 0 kPa e R₁ = 2 kPa·s/mL. 10 × 2 / (2 + 2) = 5 kPa."
+        },
+        {
+          "prompt": "In un tubo in serie R₁ = 2 kPa·s/mL e la resistenza a valle è 6 kPa·s/mL. Dall’ingresso a 10 kPa all’uscita a 0 kPa, quale pressione trovi fra R₁ e R₂?",
+          "value": "7.5",
+          "unit": "kPa",
+          "worked": "pₙ − pᵤ = (pᵢ − pᵤ) R₂/(R₁ + R₂), con pᵢ = 10 kPa, pᵤ = 0 kPa e R₁ = 2 kPa·s/mL. 10 × 6 / (2 + 6) = 7,5 kPa."
+        }
+      ],
+      "literalDraftPromptVerified": true,
+      "unit": "kPa",
+      "clock": null
+    }
+  ],
+  "states": 48,
+  "actualDraftTasks": 6,
+  "literalServedDraftPromptsMatched": 6,
+  "comparison": "Independent exact Fraction laws; JSON output lexemes compared strictly with correctly rounded rational. No epsilon. All control inputs are exactly representable integers.",
+  "editionSceneParity": "States/params/spec/clock strictly equal across original and draft, asserted in actual collector.",
+  "Chrome": "NOT_RUN",
+  "DBImport": "NOT_RUN",
+  "activityCredit": 0
+}

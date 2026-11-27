@@ -1,0 +1,213 @@
+{
+  "assets": [],
+  "records": [
+    {
+      "anchor": "In serie la portata è comune. Le",
+      "apparatus": "rete",
+      "assessmentSelection": {
+        "points": [
+          2,
+          6
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Segna il nodo di ingresso e quello di uscita, poi unisci gli stessi due nodi con due rami. Il salto di pressione è comune, mentre le due portate si sommano. Nel banco vale la legge lineare Δp = RQ per ciascun ramo. Aggiungendo il secondo ramo si aggiunge una via di passaggio.",
+          "type": "text"
+        },
+        {
+          "text": "Q=\\Delta p\\left(\\frac{1}{R_1}+\\frac{1}{R_2}\\right),\\qquad R_{\\rm eq}=\\frac{R_1R_2}{R_1+R_2}",
+          "type": "formula"
+        },
+        {
+          "text": "Con due rami da 2 kPa·s/mL, la portata è doppia rispetto a un solo ramo. La resistenza equivalente è la metà di 2, quindi 1 kPa·s/mL. Con R₂ = 6 kPa·s/mL calcola 2 × 6/(2 + 6) = 12/8 = 3/2 kPa·s/mL. Un ramo da 6 lascia passare meno fluido del ramo da 2 quando Δp è uguale.",
+          "type": "text"
+        },
+        {
+          "text": "Se l’equivalente vale 3/2 kPa·s/mL, sottrai 1/2 da 2/3 nelle unità della conduttanza. Rimane 1/6, quindi R₂ è 6 kPa·s/mL. Se invece disegni i due rami uno dopo l’altro, la portata è comune. In quella configurazione la pompa deve sostenere la somma delle due cadute e la resistenza è 2 + 6 = 8 kPa·s/mL.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Seconda resistenza",
+        "max": 8.0,
+        "min": 1.0,
+        "step": 1.0,
+        "unit": "kPa·s/mL"
+      },
+      "course": "C2",
+      "formula": "1/Rₑq = 1/R₁ + 1/R₂ in parallelo. In serie Rₑq = R₁ + R₂. R₁ = 2 kPa·s/mL",
+      "id": "SIM-C2-L009-01",
+      "interpretation": "I rami fra gli stessi nodi hanno lo stesso salto di pressione e sommano le portate. Confronta con la disposizione in serie, in cui la portata è comune e si sommano le cadute.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Resistenza equivalente in parallelo",
+        "unit": "kPa·s/mL"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C2-L009"
+      ],
+      "references": [
+        [
+          2.0,
+          1.0
+        ],
+        [
+          6.0,
+          1.5
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in movimento",
+      "skill": "C2-L009",
+      "substitution": "2 × {x} / (2 + {x})",
+      "summary": "Perché il parallelo offre meno resistenza del ramo più facile?",
+      "title": "Resistenze idrauliche in serie e in parallelo",
+      "topic": "Resistenze idrauliche in serie e in parallelo",
+      "transferPrompt": "Un ramo da 2 kPa·s/mL è in parallelo con un ramo da {x}. Qual è la resistenza equivalente fra i due nodi comuni?",
+      "version": 2
+    },
+    {
+      "anchor": "Un nuovo ramo parallelo offre un altro",
+      "apparatus": "rete",
+      "assessmentSelection": {
+        "points": [
+          3,
+          6
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Disegna le frecce dei due rami in parallelo. Entrambe collegano il nodo ad alta pressione allo stesso nodo a bassa pressione. La pompa fissa la differenza fra i nodi a 12 kPa e nel modello ogni ramo ha resistenza lineare. Puoi quindi calcolare la sua portata separatamente con la sua resistenza.",
+          "type": "text"
+        },
+        {
+          "text": "Q_1=\\frac{12\\ \\mathrm{kPa}}{R_1},\\qquad Q_2=\\frac{12\\ \\mathrm{kPa}}{3\\ \\mathrm{kPa\\,s/mL}}=4\\ \\mathrm{mL/s}",
+          "type": "formula"
+        },
+        {
+          "text": "Se R₁ = 3 kPa·s/mL, disegna frecce uguali e inserisci 12/3 = 4 mL/s per il ramo superiore. Se R₁ sale a 6 kPa·s/mL, disegna la freccia in alto lunga la metà. Il conto 12/6 dà 2 mL/s. Nel ramo inferiore persistono 4 mL/s perché lì non è cambiato né il salto di pressione né la resistenza.",
+          "type": "text"
+        },
+        {
+          "text": "La portata totale è la somma. Passa da 8 a 6 mL/s quando riduci la portata superiore. Per risalire a R₁ da 2 mL/s dividi 12 kPa per 2 mL/s. Il risultato è 6 kPa·s/mL. Questa dipendenza presuppone che la pompa mantenga davvero la stessa differenza ai due capi.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Resistenza del ramo superiore",
+        "max": 8.0,
+        "min": 1.0,
+        "step": 1.0,
+        "unit": "kPa·s/mL"
+      },
+      "course": "C2",
+      "formula": "Q₁ = Δp/R₁, con Δp = 12 kPa",
+      "id": "SIM-C2-L009-02",
+      "interpretation": "La pompa mantiene 12 kPa fra gli estremi. Il ramo inferiore resta a 3 kPa·s/mL e porta 4 mL/s. Cambia soltanto l’altro ramo e confronta le frecce.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Portata nel ramo superiore",
+        "unit": "mL/s"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C2-L009"
+      ],
+      "references": [
+        [
+          2.0,
+          6.0
+        ],
+        [
+          6.0,
+          2.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in movimento",
+      "skill": "C2-L009",
+      "substitution": "12 / {x}",
+      "summary": "Quale ramo riceve più flusso a parità di pressione tra i nodi?",
+      "title": "Portata nei rami",
+      "topic": "Portata nei rami",
+      "transferPrompt": "La pompa fissa una differenza di pressione di 12 kPa. La resistenza del ramo superiore è {x}. Quale portata passa in quel ramo?",
+      "version": 2
+    },
+    {
+      "anchor": "In serie la portata è comune. Le",
+      "apparatus": "rete",
+      "assessmentSelection": {
+        "points": [
+          2,
+          6
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Metti le due resistenze in fila e traccia una sola freccia di portata lungo il tubo. In moto stazionario incomprimibile la portata è uguale nei due tratti. Le cadute di pressione si sommano e ciascuna è proporzionale alla resistenza del proprio tratto. La pressione al nodo è quella di uscita più la caduta sul tratto a valle.",
+          "type": "text"
+        },
+        {
+          "text": "Q=\\frac{p_i-p_u}{R_1+R_2},\\qquad p_n-p_u=R_2Q=(p_i-p_u)\\frac{R_2}{R_1+R_2}",
+          "type": "formula"
+        },
+        {
+          "text": "Disegna un dislivello totale di 10 kPa. Con R₂ = 2 le due cadute sono uguali, quindi il nodo sta a 5 kPa. Con R₂ = 6 la parte a valle è 6/(2 + 6) = 3/4 del totale. Tre quarti di 10 fanno 7,5 kPa. La parte a monte scende a 2,5 kPa.",
+          "type": "text"
+        },
+        {
+          "text": "Se sai che il nodo è a 7,5 kPa, usa il rapporto fra le cadute. A valle cadono 7,5 kPa e a monte 2,5 kPa. Poiché la portata è uguale, R₂ è tre volte R₁, quindi 6 kPa·s/mL. Mentre la resistenza a valle cresce, la portata totale cala e la pressione del nodo si avvicina a quella di ingresso.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Resistenza a valle",
+        "max": 8.0,
+        "min": 1.0,
+        "step": 1.0,
+        "unit": "kPa·s/mL"
+      },
+      "course": "C2",
+      "formula": "pₙ − pᵤ = (pᵢ − pᵤ) R₂/(R₁ + R₂), con pᵢ = 10 kPa, pᵤ = 0 kPa e R₁ = 2 kPa·s/mL",
+      "id": "SIM-C2-L009-03",
+      "interpretation": "Il modello ha una pressione di ingresso di 10 kPa e una resistenza a monte di 2 kPa·s/mL. Aumentando la resistenza a valle cala la portata, ma cresce la pressione intermedia.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Pressione nel nodo centrale",
+        "unit": "kPa"
+      },
+      "order": 3,
+      "prerequisites": [
+        "C2-L009"
+      ],
+      "references": [
+        [
+          2.0,
+          5.0
+        ],
+        [
+          6.0,
+          7.5
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in movimento",
+      "skill": "C2-L009",
+      "substitution": "10 × {x} / (2 + {x})",
+      "summary": "A quale pressione si porta il nodo fra due resistenze in serie?",
+      "title": "Resistenze e pressioni nei sistemi biologici",
+      "topic": "Resistenze e pressioni nei sistemi biologici",
+      "transferPrompt": "In un tubo in serie R₁ = 2 kPa·s/mL e la resistenza a valle è {x}. Dall’ingresso a 10 kPa all’uscita a 0 kPa, quale pressione trovi fra R₁ e R₂?",
+      "version": 2
+    }
+  ],
+  "schema": "astra/1"
+}
