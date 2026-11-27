@@ -1,0 +1,13 @@
+# L04-01: distinct80-case phase/clock review on53bd
+
+New actual40/320 terminal0/null28.528s and40/1280 terminal0/null40.229s, with no timeout/intervention. All80 whole freshPNG read through11 lossless contact pages (four320, seven1280). Eight nativeOrbit/Side/Top/fallback profiles each include setup, five energy controls and four manually selected clock instants. Eight setup cases contain16 actual accepted submissions50g/55g. No original-edition interactive replay is claimed.
+
+Independent primary/model precede Core6ae3. For ice already at0C, Lf334J/g gives m=1000Q/334=(500/167)Q withQ in kJ.16.7kJ is16700/334=50g;18.37kJ is18370/334=55g.100g require33.4kJ. At the assigned constant heater power1.67kJ/s, the current transformed mass is min(final mass,5t grams). WithQ33.4kJ the four observed times0,1/8,10,20s give exactly0,5/8,50,100g. The current mass is distinct from the energy-selected final mass; both labels were actually read.0C stays fixed through this phase change.
+
+The preflight computes the unchanged source model at literal JSON control inputs0/1.67/16.7/18.37/33.4, rather than assuming18.37 is bit-identical to11×1.67. Strict collector=== remains unchanged. The model, original/draft parity and actual source/collector fingerprints are frozen. The exact physical oracle remains rational; binary observations use only the previously pinned finite/roundoff boundary.
+
+Seven actual tests pass. Adversaries change clock interaction/time/readout, substitute final for current mass, mutate model output, add liquid at zero/remove liquid at small positive mass, retain solid at full fusion, change thermometer/phase geometry, and violate exact domains. Legacy7c globals/helpers are untouched. The extra geometry checks preserve the source-defined schematic liquid and solid shapes while zero/full endpoints agree with independent mass balance.
+
+No new finding in the observed bounded scope. Quantities/volumes are schematic as stated in the actual guide; readings carry numerical masses. Alto is axial to the thermometer and vertical phase heights; nonaxial native/fallback were read. Four clock instants were set through the time control. Bench PNGs are not complete scrolling prose screenshots; all authored formulas fit in every setup DOM. There is no energy-arrow requirement for this ID: the historical L04-03 heat-arrow negative remains OPEN until its distinct fresh review.
+
+The earlier320-only partial reading/receipt remains unchanged. One compile typo and an immediately corrected contact-page diagnostic count are documented as development negatives, with no product attribution. No app/registry/status edits, humanNOT_RUN, credit0. Canonical private preview and integration bundle remain a separate next step.

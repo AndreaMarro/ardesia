@@ -1,0 +1,120 @@
+{
+  "acceptedCount": 1,
+  "activityCredit": 0,
+  "archiveSha256": "d16c7f483e66634b5d1f8f57e4a5454a58bbfa230cd8ff63ed05d1d0eff9eff0",
+  "evidenceManifestSha256": "fafedb306d62fd3567728e584f4a0e01887f573cff5ae337db0b169294f54381",
+  "humanApproval": "NOT_RUN",
+  "phaseGuardSha256": "4270eddd37e8c5ff612a3d5e09ad464da4d8c81a03a9d38e06af375e6d11f143",
+  "publicationAction": "NONE",
+  "records": [
+    {
+      "actualAnswerSubmissions": 16,
+      "actualBrowserCases": 80,
+      "actualClockCases": 32,
+      "baseVersion": 1,
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "a2667583c98036f2adad2e25b78659628bad0a0b269b191b1112e080c50f6ba0",
+      "candidateVersion": 2,
+      "failedPublishedEdition": false,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C3-L04-01",
+      "manualArithmetic": "Ghiaccio già a0C,Lf334J/g. Con16.7kJ:16700/334=50g. Con18.37kJ:18370/334=55g. Per100g servono33400J=33.4kJ. Il riscaldatore1.67kJ/s trasforma5g/s: con energia finale33.4kJ, a0,1/8,10,20s le masse già fuse sono0,5/8,50,100g. Distingui la massa finale assegnata dall’energia e la massa corrente al tempo impostato.",
+      "ok": true,
+      "originalEditionRetained": true,
+      "pedagogicalReview": "Source-first exact model frozen before Core6ae3; full authored text/manual read,80fresh53bd cases and all80whole PNG read.8 canonical examples explicitly subset of80.32 clock cases separate final/current mass, actual clock/readout/phase geometry and zero/full conditions.16 actual correct submissions. Original source retained and separately scoped, private preview separate. L04-03heat-arrow negative not adjudicated here.",
+      "physicalAssumptions": "100g iniziali di ghiaccio a0C,calorelatente assegnato costante334J/g,energia fornita0..33.4kJ. Riscaldatore ideale a potenza1.67kJ/s,senza dispersioni né tratto di riscaldamento prima della fusione. Temperatura fissa0C nella fase considerata. Quantità e volumi disegnati schematici; valori numerici dalle letture. Alto assiale alla colonna.",
+      "publicationAction": "DRAFT",
+      "publishedEditionReview": {
+        "actualAssignedTasks": [
+          {
+            "prompt": "Imposta «Energia fornita a ghiaccio a 0 °C» su 16,7 kJ. Quale valore ottieni per «Massa fusa»?",
+            "unit": "g",
+            "value": 50,
+            "worked": "m fusa = Q/Lf; Lf = 334 J/g. 1000 × 16,7 / 334 = 50 g."
+          },
+          {
+            "prompt": "Al ghiaccio già a 0 °C fornisci 18,37 kJ. Con calore latente di fusione 334 J/g, quanti grammi diventano acqua?",
+            "unit": "g",
+            "value": 54.999999999999986,
+            "worked": "m fusa = Q/Lf; Lf = 334 J/g. 1000 × 18,37 / 334 ≈ 55 g."
+          }
+        ],
+        "humanApproval": "NOT_RUN",
+        "judgmentScope": "Retained original assigned arithmetic only; no new original interactive replay",
+        "ok": true,
+        "publicationAction": "NONE",
+        "sourceSha256": "b8617a4b32bb39a3e5efde0da37c56cf805bef4d92eecde607fe7e3968df10c9"
+      },
+      "reviewedSignature": "e3e67e872ce8b12c653f78b5e813a928a1619d9a2825efef9ac1a7f1d4b2e2e6",
+      "sourceSha256": "b8617a4b32bb39a3e5efde0da37c56cf805bef4d92eecde607fe7e3968df10c9",
+      "sourceVersion": 1,
+      "visualScope": {
+        "acceptedAnswers": 16,
+        "browserCases": 80,
+        "clockCases": 32,
+        "clockEnergyKJ": 33.4,
+        "clockTimesSeconds": [
+          0,
+          0.125,
+          10,
+          20
+        ],
+        "gridClockTime": 0,
+        "gridEnergyKJ": [
+          0,
+          1.67,
+          16.7,
+          18.37,
+          33.4
+        ],
+        "limits": [
+          "DRAFT2/base1 only; no original interactive replay.",
+          "Clock set through the time control at four recorded instants; final mass from selected energy is distinct from current transformed mass.",
+          "Phase quantities/volume depiction are schematic, as the actual guide states. Numeric readouts carry the quantitative mass.",
+          "Alto is axial to thermometer/vertical phase heights; nonaxial native and fallback views were read.",
+          "Bench PNGs are not complete scrolling explanatory pages; all authored formulas checked for fitting DOM in setups.",
+          "No heat-arrow claim for L04-03, arbitrary camera/privateGPU, human approval or registry credit."
+        ],
+        "profiles": [
+          {
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "view": "side",
+            "width": 320
+          },
+          {
+            "view": "top",
+            "width": 320
+          },
+          {
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "setupCases": 8
+      }
+    }
+  ],
+  "runtimeSha256": "53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a",
+  "schemaVersion": "1.0.0",
+  "sourceCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "verifierSha256": "6eb3c4ff5d1cd92a10ab71acd48ccf5c4f961fa9b5b9fde44a87d139f815f584"
+}

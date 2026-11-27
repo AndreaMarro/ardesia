@@ -1,0 +1,86 @@
+{
+  "assets": [],
+  "records": [
+    {
+      "anchor": "Scalda lentamente del ghiaccio puro alla sua",
+      "apparatus": "fase",
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Il banco parte da 100 g di ghiaccio puro già alla temperatura di fusione, circa 0 °C alla pressione atmosferica. Assumiamo pressione costante, dispersioni trascurabili e un calore latente di lavoro Lf = 334 J/g. Finché coesistono ghiaccio e acqua, il calore fornito cambia la massa delle fasi e non la temperatura.",
+          "type": "text"
+        },
+        {
+          "text": "Q=m_f L_f",
+          "type": "formula"
+        },
+        {
+          "text": "m_f=\\frac{Q}{L_f}",
+          "type": "formula"
+        },
+        {
+          "text": "Il controllo dell’energia usa kilojoule, mentre Lf è in joule per grammo: moltiplica prima i kJ per 1000. Il primo compito assegna 16,7 kJ, cioè 16700 J. Poiché 334 per 5 è 1670, 334 per 50 è 16700: sono fusi 50 g.",
+          "type": "text"
+        },
+        {
+          "text": "m_f(16{,}7\\,\\mathrm{kJ})=50\\,\\mathrm g",
+          "type": "formula"
+        },
+        {
+          "text": "Il secondo compito mostra 18,37 kJ, cioè 18370 J. Dopo i primi 50 g restano 18370 meno 16700 = 1670 J, sufficienti per altri 5 g. In totale sono 55 g. Controlla moltiplicando 334 per 55: 16700 + 1670 = 18370 J.",
+          "type": "text"
+        },
+        {
+          "text": "m_f(18{,}37\\,\\mathrm{kJ})=55\\,\\mathrm g",
+          "type": "formula"
+        },
+        {
+          "text": "Inserisci 50 e 55, nelle unità g indicate dai compiti. Il limite del banco è 33,4 kJ, pari a 33400 J: fonde tutti i 100 g. Una massa fusa non può superare quella iniziale. La relazione usata qui non descrive il riscaldamento dell’acqua dopo la completa fusione.",
+          "type": "text"
+        },
+        {
+          "text": "Il riscaldatore del banco fornisce 1,67 kJ ogni secondo: le due energie corrispondono rispettivamente a 10 e 11 s. Durante l’animazione la massa già fusa cresce fino al valore finale; il compito chiede la massa al termine dell’energia assegnata. Il tempo zero non va confuso con la fine della prova. Le quantità delle due fasi nel disegno sono schematiche.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Energia fornita a ghiaccio a 0 °C",
+        "max": 33.4,
+        "min": 0.0,
+        "step": 1.67,
+        "unit": "kJ"
+      },
+      "course": "C3",
+      "formula": "m fusa = Q/Lf; Lf = 334 J/g",
+      "id": "SIM-C3-L04-01",
+      "interpretation": "Parti da 100 g di ghiaccio puro già a circa 0 °C alla pressione atmosferica. Con Lf = 334 J/g e dispersioni trascurabili, il calore riduce la massa solida fino alla completa fusione. Durante la coesistenza la temperatura resta circa costante.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Massa fusa",
+        "unit": "g"
+      },
+      "order": 1,
+      "prerequisites": [],
+      "references": [
+        [
+          8.35,
+          25.0
+        ],
+        [
+          16.7,
+          50.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Quando la temperatura si ferma",
+      "skill": "C3-L04",
+      "substitution": "1000 × {x} / 334",
+      "summary": "Mentre il ghiaccio fonde, dove va l’energia fornita?",
+      "title": "Fusione",
+      "topic": "5.2 Fusione",
+      "transferPrompt": "Al ghiaccio già a 0 °C fornisci {x}. Con calore latente di fusione 334 J/g, quanti grammi diventano acqua?",
+      "version": 2
+    }
+  ],
+  "schema": "astra/1"
+}

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "SIM-C3-L04-01",
+  "candidateCommit": "6ae3c2a177bcde74b2bebf8f22c1fa50850b0413",
+  "sourceCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "runtimeSha256": "53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a",
+  "browserCases": 80,
+  "setupCases": 8,
+  "acceptedAnswers": 16,
+  "profiles": 8,
+  "scientificReview": "POSITIVE_WITHIN_FROZEN_ASSUMPTIONS_AND_ACTUAL_TWO_TASKS",
+  "visualReview": "PASS",
+  "limits": [
+    "DRAFT2/base1 only; no original interactive replay.",
+    "Clock set through the time control at four recorded instants; final mass from selected energy is distinct from current transformed mass.",
+    "Phase quantities/volume depiction are schematic, as the actual guide states. Numeric readouts carry the quantitative mass.",
+    "Alto is axial to thermometer/vertical phase heights; nonaxial native and fallback views were read.",
+    "Bench PNGs are not complete scrolling explanatory pages; all authored formulas checked for fitting DOM in setups.",
+    "No heat-arrow claim for L04-03, arbitrary camera/privateGPU, human approval or registry credit."
+  ],
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "actualClockCases": 32,
+  "exactInstantMassAtFourTimes": [
+    "0",
+    "5/8",
+    "50",
+    "100"
+  ],
+  "finalAndCurrentMassSeparated": true,
+  "legacyModuleDependencySha256": "20a408c56410aec0fd4c925a7d6772b53798f8508a4608dd1f8c63cf929370a1",
+  "historicalExposure": "Independent source-first phase model and all Core drafts already read; literal-plan Node preflight distinct; no fresh blindness claimed"
+}
