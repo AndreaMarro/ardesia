@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/c6-transfer-v1-independent-evidence/post-key-exact-checks.py", line 19, in <module>
+    parsed=[parse(v)for v in row['answer']['options']];expected=values[key]
+            ~~~~~^^^
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/c6-transfer-v1-independent-evidence/post-key-exact-checks.py", line 18, in parse
+    return literal.exact_literal(option.removesuffix(suffix).replace('√(','sqrt('))
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tools/corpus_engineering/exact_arithmetic_literals.py", line 17, in exact_literal
+    if not re.fullmatch(r'[0-9rp()+*/. \-]+',raw):raise ValueError('unsupported numeric literal')
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: unsupported numeric literal

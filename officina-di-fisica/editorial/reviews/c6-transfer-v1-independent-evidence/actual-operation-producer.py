@@ -1,0 +1,3 @@
+from pathlib import Path
+import subprocess,sys,time,json,hashlib
+label,*cmd=sys.argv[1:];home=Path('editorial/reviews/c6-transfer-v1-independent-evidence');t=time.monotonic();result=subprocess.run(cmd,stdout=subprocess.PIPE,stderr=subprocess.STDOUT);(home/(label+'-raw.txt')).write_bytes(result.stdout);receipt={'scope':'independent review operation, not product UI or publication','command':cmd,'exitCode':result.returncode,'signal':-result.returncode if result.returncode<0 else None,'elapsedSeconds':time.monotonic()-t,'rawSha256':hashlib.sha256(result.stdout).hexdigest(),'humanApproval':'NOT_RUN','publicationAction':'NONE'};(home/(label+'-terminal.json')).write_text(json.dumps(receipt,indent=2)+'\n');print(result.stdout.decode(),flush=True);result.check_returncode()
