@@ -1,0 +1,210 @@
+{
+  "acceptedCount": 2,
+  "activityCredit": 0,
+  "archiveSha256": "c44ba774fd28f6e3daa6b0c79d37836181cdb13845c922a4c61b67670e2da0b7",
+  "evidenceManifestSha256": "4786cbde5652d5b823e2fd341df976e2e85cde0cac9f248d07f0068188edc202",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "records": [
+    {
+      "actualAnswerSubmissions": 16,
+      "actualBrowserCases": 48,
+      "baseVersion": 1,
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "b9f4aa6dcd873f95bc1b7484aab03e95dffee9777818e4b5f2ff25cd6c8c49ca",
+      "candidateVersion": 2,
+      "exactAssignedAnswers": [
+        "4157/50",
+        "45727/500"
+      ],
+      "failedPublishedEdition": false,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C3-L03-03",
+      "manualArithmetic": "Per una mole, Qp−Qv=nRΔT. Con10K:8.314×10=83.14J. Con11K aggiungi8.314J:91.454J. I valori assegnati sono decimali esatti del modello; ΔT=(Qp−Qv)/8.314 è l’inversa. Non serve scegliere un gas monoatomico né assegnare separatamente Cp e Cv.",
+      "ok": true,
+      "originalEditionRetained": true,
+      "pedagogicalReview": "Source-first model frozen before opening Core6ae3, full authored text/manual read,48fresh53bd cases and all48whole PNG read for this ID. Eight canonical examples are an explicit subset. Two installed tasks actually submitted per profile. Native axial and schematic limitations preserved; canonical private preview separate.",
+      "physicalAssumptions": "Una mole di gas perfetto;stessa variazione di temperatura da uno stesso stato;soltanto lavoro pV quasistatico;capacità molari costanti nell’intervallo. Differenza Cp−Cv=R=8.314J/(molK).0≤ΔT≤20K. Pistone e indicatore di pressione qualitativi, non scala dei Cp/Cv o della differenza di calore.",
+      "publicationAction": "DRAFT",
+      "publishedEditionReview": {
+        "actualAssignedTasks": [
+          {
+            "prompt": "Imposta «Aumento di temperatura» su 10 K. Quale valore ottieni per «Calore in più a pressione costante»?",
+            "unit": "J",
+            "value": 83.14,
+            "worked": "Qₚ − Qᵥ = n(Cₚ−Cᵥ)ΔT = nRΔT. 8,314 × 10 = 83,14 J."
+          },
+          {
+            "prompt": "Riscaldi una mole di gas ideale di 11 K, prima a pressione costante e poi, ripartendo dalle stesse condizioni, a volume costante. Con R = 8,314 J/(mol·K), quanti joule in più occorrono nella prima prova?",
+            "unit": "J",
+            "value": 91.45400000000001,
+            "worked": "Qₚ − Qᵥ = n(Cₚ−Cᵥ)ΔT = nRΔT. 8,314 × 11 ≈ 91,45 J."
+          }
+        ],
+        "humanApproval": "NOT_RUN",
+        "judgmentScope": "Retained published assigned arithmetic only; no new interactive original replay",
+        "ok": true,
+        "publicationAction": "NONE",
+        "sourceSha256": "d2f0fec12e9334a74da3bdbaaeb4d9a93c7a338952d5e66423d55ba51ae87c4d"
+      },
+      "reviewedSignature": "2a1595a61f560c010cc6f970e1f7957a4d3b2487926086a02b81fc4dbaf4c44f",
+      "sourceSha256": "d2f0fec12e9334a74da3bdbaaeb4d9a93c7a338952d5e66423d55ba51ae87c4d",
+      "sourceVersion": 1,
+      "visualScope": {
+        "acceptedAnswers": 16,
+        "browserCases": 48,
+        "grid": [
+          0,
+          2,
+          10,
+          11,
+          20
+        ],
+        "limits": [
+          "Only DRAFT2/base1 for this ID, with five selected slider values; no interactive original-edition replay.",
+          "Alto is axial to the piston travel and the red indicator, so their vertical extent is not readable in that projection. Height/shaft/cone comparison is limited to Obliqua/Laterale and fallback.",
+          "The figure is a qualitative constant-pressure expansion cue, not calibrated Cp/Cv, gas-volume or pressure units. The unchanged red pressure cue is not the increasing heat difference.",
+          "The seven authored formulas were opened and checked for fitting DOM in all setups; bench screenshots are not full-page raster captures of every explanation.",
+          "No arbitrary camera, private GPU introspection, human approval, other C3 closure or register credit."
+        ],
+        "profiles": [
+          {
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "view": "side",
+            "width": 320
+          },
+          {
+            "view": "top",
+            "width": 320
+          },
+          {
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "setupCases": 8
+      }
+    },
+    {
+      "actualAnswerSubmissions": 16,
+      "actualBrowserCases": 48,
+      "baseVersion": 1,
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "41eaa8dab7c6cfb407f858e091d882b66805a5e719fb88590383b5993058eb06",
+      "candidateVersion": 2,
+      "exactAssignedAnswers": [
+        "50",
+        "48"
+      ],
+      "failedPublishedEdition": false,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C3-L03-04",
+      "manualArithmetic": "Bilancio m c(80−Tf)=200 c(Tf−20). Cancella c comune e ottieni Tf=(80m+4000)/(m+200). Con200g masse uguali:50C. Con175g,80×175=14000;aggiungi4000 e dividi18000/375=48C. Controprova175×32=200×28=5600gK. Inversa m=200(Tf−20)/(80−Tf), nel dominio fisico20<Tf<80C e nel sottointervallo del controllo32..56C.",
+      "ok": true,
+      "originalEditionRetained": true,
+      "pedagogicalReview": "Source-first model frozen before opening Core6ae3, full authored text/manual read,48fresh53bd cases and all48whole PNG read for this ID. Eight canonical examples are an explicit subset. Two installed tasks actually submitted per profile. Native axial and schematic limitations preserved; canonical private preview separate.",
+      "physicalAssumptions": "Acqua calda80C,200g fredda20C;stesso calore specifico positivo costante. Recipiente isolato,capacità trascurabile;nessuna evaporazione. Massa calda50..300g. Differenze Celsius=kelvin;media affine,nessun rapporto di temperature assolute. Scatola,colore e livello fisso sono schematici.",
+      "publicationAction": "DRAFT",
+      "publishedEditionReview": {
+        "actualAssignedTasks": [
+          {
+            "prompt": "Imposta «Massa di acqua calda» su 200 g. Quale valore ottieni per «Temperatura di equilibrio»?",
+            "unit": "°C",
+            "value": 50,
+            "worked": "T finale = (80m + 20×200)/(m+200). (80 × 200 + 4000) / (200 + 200) = 50 °C."
+          },
+          {
+            "prompt": "Versi 175 g d’acqua a 80 °C in 200 g d’acqua a 20 °C. Trascurando il recipiente e le dispersioni, quale temperatura finale trovi?",
+            "unit": "°C",
+            "value": 48,
+            "worked": "T finale = (80m + 20×200)/(m+200). (80 × 175 + 4000) / (175 + 200) = 48 °C."
+          }
+        ],
+        "humanApproval": "NOT_RUN",
+        "judgmentScope": "Retained published assigned arithmetic only; no new interactive original replay",
+        "ok": true,
+        "publicationAction": "NONE",
+        "sourceSha256": "9253bd7c27605ca7b2cfc465b309727e59818ba99532dc4a2b1d5c631a5b7a3a"
+      },
+      "reviewedSignature": "feeda600ffe5d67c193c6e3656877a253090a83a237772d66bbfbdfabc35b578",
+      "sourceSha256": "9253bd7c27605ca7b2cfc465b309727e59818ba99532dc4a2b1d5c631a5b7a3a",
+      "sourceVersion": 1,
+      "visualScope": {
+        "acceptedAnswers": 16,
+        "browserCases": 48,
+        "grid": [
+          50,
+          100,
+          175,
+          200,
+          300
+        ],
+        "limits": [
+          "Only DRAFT2/base1 of this ID at five selected masses; no interactive original replay.",
+          "Alto is axial to the thermometer; column height cannot be quantitatively read there. Nonaxial native and fallback views were read.",
+          "The box, water color and fixed liquid level are declared schematic mass/temperature cues, not measured geometry of mixed water quantities. Use the numeric readings and balance.",
+          "Five authored formulas checked for fitting DOM in every setup; bench PNGs do not show every scrolling prose paragraph.",
+          "No arbitrary-camera/GPU-private-engine claim, human approval or registry credit."
+        ],
+        "profiles": [
+          {
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "view": "side",
+            "width": 320
+          },
+          {
+            "view": "top",
+            "width": 320
+          },
+          {
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "setupCases": 8
+      }
+    }
+  ],
+  "runtimeSha256": "53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a",
+  "schemaVersion": "1.0.0",
+  "sourceCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "verifierSha256": "abdd6e38dae0e1031cd8d1f0e166c18126e17f351dfa5dd981e69e5103098823"
+}
