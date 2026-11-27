@@ -1,0 +1,26 @@
+from pathlib import Path
+import subprocess,hashlib,json,shutil
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/cric-assembler-section-independent-a-20261127';D.mkdir(exist_ok=True);ref='07c49c98221afb1f700f11a7e084450d076e536c';old='23f3ff2bd9dfa5700f7e71acdd3a3d12c08fbab5';entries=[]
+for name in ['tools/corpus_engineering/vector_geometry_authoring.py','tests/corpus/test_cric_question_assembly.py']:
+ p=A/name
+ for r,label in [(old,'historical'),(ref,'candidate')]:
+  raw=subprocess.check_output(['git','show',r+':officina-di-fisica/'+name],cwd=A);dst=D/(label+'-'+p.name+'.txt');dst.write_bytes(raw);entries.append({'commit':r,'path':'officina-di-fisica/'+name,'snapshot':dst.name,'sha256':hashlib.sha256(raw).hexdigest()})
+ assert p.read_bytes()==(D/('historical-'+p.name+'.txt')).read_bytes()
+shutil.copyfile(A/'tests/corpus/test_independent_cric_assembler_boundary_a.py',D/'historical-independent-target.py.txt')
+(D/'git-inputs.json').write_text(json.dumps({'schemaVersion':'1.0.0','inputs':entries},indent=2)+'\n')
+(D/'section-regression-negative.py').write_text('''from pathlib import Path
+import sys,importlib.util,json,unittest
+A=Path(__file__).resolve().parents[3];sys.path.insert(0,str(A))
+p=A/'tests/corpus/test_independent_cric_assembler_boundary_a.py'
+s=importlib.util.spec_from_file_location('old_independent_boundary',p);m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
+class SourceSectionRegression(unittest.TestCase):
+ def test_original_section_preserved(self):
+  row=m.source(1);row['section']='Original individual section'
+  package,_=m.build([row],section='Wrong cohort section')
+  self.assertEqual(package['records'][0]['section'],row['section'])
+ def test_section_override_rejected(self):
+  row=m.source(1);row['section']='Original individual section'
+  with self.assertRaises(ValueError):m.build([row],overrides={1:{'section':'Wrong override'}})
+if __name__=='__main__':unittest.main(verbosity=2)
+''')
+print('PREPARED',D)

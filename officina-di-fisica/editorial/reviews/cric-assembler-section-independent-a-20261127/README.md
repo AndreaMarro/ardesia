@@ -1,0 +1,11 @@
+# Verifica tecnica distinta della sezione Cric
+
+Ho letto l’intero assembler e il delta immutabile 07c49c98221afb1f700f11a7e084450d076e536c. La patch introduce la conservazione della section sorgente nel solo ramo Cric e la aggiunge all’identità protetta, con controllo di valore e tipo. L’override uguale resta consentito; un valore diverso è respinto. Una fonte sintetica legacy priva del campo non acquista un vincolo fittizio. Il percorso Ardesia è invariato.
+
+Prima dell’adozione ho eseguito due regressioni indipendenti sulla versione storica 23f: entrambe sono realmente fallite, perché il titolo del cohort sostituiva la sezione individuale e un override arbitrario era accettato. Terminale e strumento sono conservati. Dopo adozione byte-esatta della sola dipendenza canonica e del test d’autore, il target indipendente ha superato 9 test reali con exit 0 in 0,271 s. Sono conservate tutte e cinque le precedenti falsificazioni su identità, versioni, esami, origine, cardinalità, tassonomia per ID e due pacchetti Ardesia byte-identici. Le loro funzioni AST sono identiche. Sono aggiunte sezioni diverse nello stesso lotto, otto override errati inclusa uguaglianza Python di tipo sbagliato, un override legittimo uguale e i due casi legacy senza section.
+
+La vecchia guardia stretta dei byte non è rimossa o ampliata: il suo file intero è conservato verbatim e la funzione originale viene eseguita in una fixture storica separata con i due blob 23f esatti. La guardia corrente richiede invece entrambi i blob 07c esatti. Snapshot e riferimenti Git completi sono dichiarati in git-inputs.json. La compilazione del modulo Python storico è limitata a codice fidato congelato, non interpreta espressioni di studenti.
+
+Il primo target nuovo ha avuto un errore nel solo bootstrap della fixture storica, che non definiva __file__; gli otto altri controlli erano passati. Quel negativo completo è conservato. È stato corretto solo il contesto del modulo fidato e il target 9 è stato ripetuto realmente, senza indebolire alcuna asserzione.
+
+Nessun DB, browser, importatore, candidato, registry, ledger o runtime Root modificato. I 4 test d’autore Root e il loro import restano dichiarati come lavoro dell’autore, non della presente review. Giudizio tecnico limitato al boundary, zero credito scientifico aggiuntivo e human NOT_RUN.
