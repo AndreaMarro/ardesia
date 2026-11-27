@@ -1,0 +1,29 @@
+{
+  "api": "report(sources, package=None, bindings=None, *, app=APP)",
+  "validateActivityBatchCompatibility": "Direct module.report(selected) API: install on actual375faa/runtime3ed5 only. No adapter. Does not copy or approve runtime.",
+  "sourceIds": [
+    "LAB3D-06",
+    "LAB3D-07",
+    "LAB3D-08",
+    "LAB3D-09",
+    "LAB3D-10"
+  ],
+  "externalFrozenManifest": {
+    "editorial/reviews/independent-wave-zero-3ed5-20261127/manifest.json": "c2d0faf54d7da65d0d7edc9ad02db3e9233ee685730b384631ae56b297d4ec47"
+  },
+  "externalFrozenManifestAllFilesRequired": true,
+  "pythonDependencies": {
+    "archiveSha256": "d5213f83f1921f21348fde48c4a7194f119fe6019d8f9e69b1b4042816ad95a3",
+    "files": {
+      "tools/corpus_engineering/bench_fields_optics_activity_verifier.py": "47eaceb1497a3a1db95248f271028670ebc2716050dd427a09a580586870ed8b",
+      "tools/corpus_engineering/bench_fields_optics_renewal_3ed5_verifier.py": "7e0be17b3f5e96be3cb2053ce842e4e1799a84d66b64826df3bb2eaef31348f2",
+      "tools/corpus_engineering/pipeline.py": "a3fc3a5756851fff487a1568aba085bfddcacb7d5d891c44dddd0f00ba146ef0",
+      "tools/corpus_engineering/runtime_fingerprint.py": "c23abf00cb3665ac9d5b90c1f8256852045a7582fa5e8bae5acf31462b619ab8"
+    },
+    "scope": "Exact executed Python dependencies, not permission to overwrite differing Root modules."
+  },
+  "notes": "Root may have differing historical pure-science modules. Archive preserves actually executed dependency bytes; do not overwrite differing Root modules silently. The verifier pins the precise pure science file and per-record dependency hash. Old published/source editions unchanged. Runtime helper tests require immutable375faa Git objects discovered via runtime-git-inputs/git-inputs.json.",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
