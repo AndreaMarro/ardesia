@@ -1,0 +1,4 @@
+from pathlib import Path
+import sys,json,subprocess,hashlib
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c2-density-pressure-five-1efc-independent-a-20261127';APP=Path('/private/tmp/cric-stevino-probe-label-20261127/officina-di-fisica');sys.path.insert(0,str(A));from tools.corpus_engineering import c2_density_pressure_five_1efc_review_a as v
+p=json.loads((D/'prepared-plan.json').read_bytes());fp=json.loads(subprocess.check_output([sys.executable,'-B','-m','tools.corpus_engineering.runtime_fingerprint'],cwd=APP));assert fp==p['runtimeFingerprint'];r=v.static_report();assert r['sourceCaseCount']==51 and r['sourceStageCount']==255;(D/'current-static-preflight.json').write_text(json.dumps(r,ensure_ascii=False,indent=2)+'\n');print('Static preflight PASS:',r['exactCheckCount'],'exact checks;',r['sourceCaseCount'],'legal states;',r['sourceStageCount'],'source stages; all current UI judgments remain pending')

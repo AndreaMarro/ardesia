@@ -1,0 +1,15 @@
+# Independent A preflight, five C2 originals, 1efc
+
+This is a static/math/source preflight only. No browser has been executed for this dossier and no current visual approval is asserted. Activity credit is zero; human approval is NOT_RUN.
+
+Scope: SIM-C2-L001-01 through SIM-C2-L001-05, original version 1. Candidate source 3abd7dce2c2d837c903c9e17ac1d7fd0aa08dcca and complete runtime fingerprint 1efcd26bbb078453b75be5fbd1502b95cf07c0ffabb4112a4e4cf78170ff46aa. Current source records match the immutable original C2 source. The five original mathematical models and their known historical negatives are reused with exposure disclosed; their original reports and source remain unchanged.
+
+The actual read-only Node collection terminated 0 (0.283 s), with 51 legal control states and all five source stages (255 scenes). The separate SymPy/Pint model comparison terminated 0 (3.151 s) and produced 31 exact checks, including the two installed tasks per ID. Six independent target tests terminated 0 (0.759 s unittest time): finite/exact barriers before casts, discrete-state mass preservation, wrong values in all 51 states, and rejection of the historical Couette arrow plane. None of this substitutes for native/fallback raster inspection. The density/volume sample and normal-force/area scale are quantitative; the phase-container shape is illustrative. Axial views must be interpreted with the accessible legend and an available transverse view, without claiming an apparent projected length is the vector magnitude.
+
+The final manual was authored by Root and independently reviewed by B before this adoption; its exact bytes and B handoff are included. For the area-7 transfer, the model is exactly 100/7 kPa and the installed decimal answer convention is 14.286; no tolerance is changed.
+
+The prepared-plan contains 224 unique cases: 23 selected control values across eight profiles, plus 40 setups, with 80 installed answer events planned. Profiles are native Orbit/Side/Top and fallback fixed projection, each at 320 and 1280. Zero, reference values, extrema, and assessment values are included. The full legal grid is covered statically. The plan retains the previously frozen technical baseline and owner-only DRAFT fixture as technical dependencies, although only five published originals are in the observation scope.
+
+The newly sealed Root collector is preserved verbatim as future-canonical-collector.mjs with its full commit and SHA in git-inputs.json. The initial plan metadata intentionally keeps futureBrowserProducerSha256 null as a non-executable planning state. A separately frozen actual request must adopt the producer pin before any replay. Execution requires Root authorization, the shared flock, the ordinary 2 GiB guard, and Root's extra disk reserve. No browser was queued during the low-space refusal reported by Core.
+
+Scripts and actual stdout/stderr/terminal receipts are preserved. Existing legacy Couette/probe/label negatives are retained as historical findings, not retagged to 1efc. The future browser and all raster judgments remain pending.

@@ -1,0 +1,152 @@
+{
+  "schemaVersion": "1.0.0",
+  "role": "DISTINCT_REVIEWER_B_ROOT_AUTHOR_RECUSED",
+  "source": "ROOT_EDITORIAL_MANUAL_NOT_CONSUMER_OR_BROWSER",
+  "author": "Root",
+  "reviewer": "author_vectors_b",
+  "initialSha256": "7187bd5d749a753d819cc40d833a3b3d4aa179697d2a692ef71ba097a757db4f",
+  "finalSha256": "d8ae8d076a9f734a5681ff22d42d66722265f1c15d21286636169d25df03d126",
+  "actualWholeManualRead": true,
+  "finalTwoCorrectionsReread": true,
+  "firstThirdFifthSectionsByteUnchanged": true,
+  "sourceModelCandidateCommit": "375faa7a90f5f643840aabb8cc3076f9a2d5f5de",
+  "sourceModelRuntimeSha256": "3ed5bc77d8320230b62e1c3e6ca3bdd00f240cc64ec236b10fe55a306ca79251",
+  "actualInstalledTasks": 10,
+  "records": [
+    {
+      "id": "SIM-C2-L001-01",
+      "manualReview": "PASS",
+      "reason": "Massa6g costante, tre stati discreti e densità assegnate. Gas6/(1/10)=60cm³ e liquido6/(4/5)=15/2cm³; inverse e cancellazione delle unità coerenti. Nessuna universalità dell’ordine delle densità viene attribuita a ogni sostanza.",
+      "actualInstalledTaskAnswersExact": [
+        "60",
+        "15/2"
+      ],
+      "numericInputs": [
+        "60",
+        "7.5"
+      ],
+      "unit": "cm³",
+      "actualInstalledTaskPrompts": [
+        "Imposta «Stato del campione» su Gas. Quale valore ottieni per «Volume del modello»?",
+        "Preleva 6 g di materiale e scegli lo stato «Liquido». Usando la densità indicata per questo campione, quale volume occupa?"
+      ],
+      "mathSourceModelReusedWithExposure": true,
+      "UI": "NOT_RUN_BY_THIS_MANUAL_REVIEW",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L001-02",
+      "manualReview": "PASS",
+      "reason": "Riletto finale: Couette fra lastre parallele, regime, aderenza, pressione costante lungo il moto ed effetti di bordo trascurabili rendono giustificato il profilo lineare. Gradiente6/2=3s⁻¹ e4/2=2s⁻¹; viscosità1Pa·s dà3Pa/2Pa. Inversa coerente.",
+      "actualInstalledTaskAnswersExact": [
+        "3",
+        "2"
+      ],
+      "numericInputs": [
+        "3",
+        "2"
+      ],
+      "unit": "Pa",
+      "actualInstalledTaskPrompts": [
+        "Imposta «Velocità della lastra superiore» su 6 cm/s. Quale valore ottieni per «Sforzo viscoso»?",
+        "Una piastra scorre a 4 cm/s sopra uno strato spesso 2 cm con viscosità 1 Pa·s. Quanto sforzo tangenziale dev’essere trasmesso?"
+      ],
+      "mathSourceModelReusedWithExposure": true,
+      "UI": "NOT_RUN_BY_THIS_MANUAL_REVIEW",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L001-03",
+      "manualReview": "PASS",
+      "reason": "Massa del solo contenuto, materiale omogeneo aρ5/2g/cm³. Compiti15g e25/2g, inversa5cm³ e conversione2500kg/m³ corretti; massa distinta dal peso.",
+      "actualInstalledTaskAnswersExact": [
+        "15",
+        "25/2"
+      ],
+      "numericInputs": [
+        "15",
+        "12.5"
+      ],
+      "unit": "g",
+      "actualInstalledTaskPrompts": [
+        "Imposta «Volume del materiale» su 6 cm³. Quale valore ottieni per «Massa sulla bilancia»?",
+        "Una provetta contiene 5 cm³ di un materiale con densità 2,5 g/cm³. Qual è la massa del solo contenuto?"
+      ],
+      "mathSourceModelReusedWithExposure": true,
+      "UI": "NOT_RUN_BY_THIS_MANUAL_REVIEW",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L001-04",
+      "manualReview": "PASS",
+      "reason": "Riletto finale: a numero puro in cm² e A area fisica sono distinti, A=(a/10000)m². Carico normale10N costante, pressione media20kPa e100/7kPa. Divisione e arrotondamento14,286 corretti; errore relativo1/50000, inversaF/p in m² coerente.",
+      "actualInstalledTaskAnswersExact": [
+        "20",
+        "100/7"
+      ],
+      "numericInputs": [
+        "20",
+        "14.286"
+      ],
+      "unit": "kPa",
+      "actualInstalledTaskPrompts": [
+        "Imposta «Area della faccia» su 5 cm². Quale valore ottieni per «Pressione sul piano»?",
+        "Un blocco esercita 10 N sul piano. Se appoggia su una faccia di area 7 cm², quale pressione in kPa registra il piano?"
+      ],
+      "mathSourceModelReusedWithExposure": true,
+      "UI": "NOT_RUN_BY_THIS_MANUAL_REVIEW",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L001-05",
+      "manualReview": "PASS",
+      "reason": "Liquido statico conρ1000kg/m³,g10m/s² e profondità1m. Incremento10000Pa=10kPa, assoluta110kPa/100kPa nei due compiti, relativa alla superficie indipendente dal valore atmosferico. Nessuna chiusura visiva dedotta.",
+      "actualInstalledTaskAnswersExact": [
+        "110",
+        "100"
+      ],
+      "numericInputs": [
+        "110",
+        "100"
+      ],
+      "unit": "kPa",
+      "actualInstalledTaskPrompts": [
+        "Imposta «Pressione atmosferica» su 100 kPa. Quale valore ottieni per «Pressione assoluta a 1 m»?",
+        "Sposti la vasca in un luogo con pressione atmosferica 90 kPa. Che pressione assoluta indica il sensore a un metro sott’acqua?"
+      ],
+      "mathSourceModelReusedWithExposure": true,
+      "UI": "NOT_RUN_BY_THIS_MANUAL_REVIEW",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    }
+  ],
+  "resolvedFindings": [
+    "COUETTE_LINEAR_PROFILE_REQUIRES_NO_PRESSURE_GRADIENT",
+    "NUMERICAL_CM2_VALUE_DISTINCT_FROM_PHYSICAL_AREA"
+  ],
+  "previousFindingsPreserved": true,
+  "actualAnalysisTerminal": {
+    "observedExitCode": 0,
+    "durationSeconds": 0.5579747919982765,
+    "analysisModuleSha256": "b3a280f3ee7f9aeae50bda936c173b157f881bb6ecad7b16a6616e32f7acd304",
+    "stdoutSha256": "f001dea933c54aff899c56da1f643c6baa692b66c002c00313e581a440f35781",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "newBrowser": "NOT_RUN",
+    "activityCredit": 0,
+    "humanApproval": "NOT_RUN",
+    "publicationAction": "NONE"
+  },
+  "exposureDisclosure": "Prior C2 source/course questions and installed models were known; canonical047 assumptions were read during this review. This is a distinct manual reread, not a new blind primary. Root wrote the manual; reviewerB did not.",
+  "limits": [
+    "No new Chrome, UI reading or visual acceptance for these five IDs.",
+    "The future opening of SIM-C2-L001-01 and globalgate048 are not closed by this manual receipt.",
+    "No consumer, ledger, registry or release edit."
+  ],
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

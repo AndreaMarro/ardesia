@@ -1,0 +1,7 @@
+from pathlib import Path
+import subprocess,time,json,hashlib,sys,os,shutil
+D=Path('/private/tmp/cric-author-a-resident/officina-di-fisica/editorial/reviews/c2-density-pressure-five-1efc-independent-a-20261127')
+for name,cmd in [('node',['node','/private/tmp/c2_density_1efc_collect_a.mjs']),('preflight',[sys.executable,'-B','/private/tmp/c2_density_1efc_preflight_a.py']),('target',[sys.executable,'-B','-m','unittest','tests.corpus.test_c2_density_pressure_five_1efc_preflight_a','-v'])]:
+ if shutil.disk_usage(D).free<2*1024**3:raise SystemExit('BLOCKED_BEFORE_'+name+'_CHILD_NOT_RUN')
+ t=time.time();r=subprocess.run(cmd,capture_output=True,timeout=45,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'});(D/(name+'.stdout.txt')).write_bytes(r.stdout);(D/(name+'.stderr.txt')).write_bytes(r.stderr);rec=dict(actualObservedExitCode=r.returncode,signal=None if r.returncode>=0 else-r.returncode,elapsedSeconds=time.time()-t,timeoutSeconds=45,command=cmd,stdoutSha256=hashlib.sha256(r.stdout).hexdigest(),stderrSha256=hashlib.sha256(r.stderr).hexdigest(),browser='NOT_RUN');(D/(name+'-terminal.json')).write_text(json.dumps(rec,indent=2)+'\n');print(name,r.stdout.decode()[-900:],r.stderr.decode()[-1200:],rec,flush=True)
+ if r.returncode:sys.exit(r.returncode)

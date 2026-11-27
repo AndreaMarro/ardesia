@@ -1,0 +1,13 @@
+"""One shared local task at a time; fail closed before the child starts."""
+import fcntl,os,shutil,subprocess,sys,time
+from pathlib import Path
+args=sys.argv[1:]
+if not args:raise SystemExit('Expected one subprocess command')
+with open('/private/tmp/cric-bounded-local-work.lock','a') as mutex:
+ fcntl.flock(mutex,fcntl.LOCK_EX)
+ free=shutil.disk_usage(Path.cwd()).free
+ if free<2*1024**3:raise SystemExit('BLOCKED_FREE_SPACE: '+str(free)+' bytes, child NOT_RUN')
+ print('SHARED_LOCK_ACQUIRED; free bytes '+str(free)+'; one child',flush=True)
+ result=subprocess.run(args,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1','PYTHONPYCACHEPREFIX':'/private/tmp/cric-recovery-pycache'})
+ print('CHILD_EXIT '+str(result.returncode)+'; free bytes '+str(shutil.disk_usage(Path.cwd()).free),flush=True)
+ raise SystemExit(result.returncode)
