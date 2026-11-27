@@ -1,0 +1,78 @@
+{
+  "scope": "AUTHOR_ACTUAL_INSTALLED_TASKS",
+  "activityCredit": 0,
+  "rows": [
+    {
+      "id": "SIM-C2-L008-01",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Raggio rispetto a r₀» su 2. Quale valore ottieni per «Portata relativa a Q₀»?",
+          "value": 16,
+          "unit": "numero puro",
+          "worked": "Q/Q₀ = (r/r₀)⁴. 2⁴ = 16."
+        },
+        {
+          "prompt": "In un tubo rigido il raggio diventa 0,5 volte quello iniziale. Nello stesso liquido e a pari lunghezza e salto di pressione, quale rapporto Q/Q₀ trovi?",
+          "value": 0.0625,
+          "unit": "numero puro",
+          "worked": "Q/Q₀ = (r/r₀)⁴. 0,5⁴ = 0,0625."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C2-L008-02",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Modifica rispetto al riferimento» su Raggio doppio. Quale valore ottieni per «Portata rispetto a Q₀»?",
+          "value": 16,
+          "unit": "numero puro",
+          "worked": "Q ∝ Δp r⁴/(η L). 2⁴ = 16."
+        },
+        {
+          "prompt": "Il tecnico seleziona «Lunghezza doppia» nel banco. Tutti gli altri parametri restano ai valori di riferimento. Quale rapporto fra la nuova portata e Q₀ ottiene?",
+          "value": 0.5,
+          "unit": "numero puro",
+          "worked": "Q ∝ Δp r⁴/(η L). 1 / 2 = 0,5."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C2-L008-03",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Portata richiesta» su 2,5 mL/s. Quale valore ottieni per «Differenza di pressione»?",
+          "value": 7.5,
+          "unit": "kPa",
+          "worked": "Δp = RQ, con R = 3 kPa·s/mL. 3 × 2,5 = 7,5 kPa."
+        },
+        {
+          "prompt": "Per ottenere una portata di 6 mL/s in un capillare di resistenza 3 kPa·s/mL, quale salto di pressione deve sostenere la pompa?",
+          "value": 18,
+          "unit": "kPa",
+          "worked": "Δp = RQ, con R = 3 kPa·s/mL. 3 × 6 = 18 kPa."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C2-L008-04",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Variazione del raggio rispetto al riferimento» su -20 %. Quale valore ottieni per «Portata del modello rigido rispetto a Q₀»?",
+          "value": 0.4096000000000001,
+          "unit": "numero puro",
+          "worked": "Q/Q₀ = [1 + Δr/r₀]⁴. Se il controllo vale x%, Δr/r₀ = x/100. (1 + (-20) / 100)⁴ ≈ 0,4096."
+        },
+        {
+          "prompt": "In un tubo rigido, il raggio varia del 20 %. A pari caduta di pressione, quanto vale il rapporto fra nuova portata e portata iniziale?",
+          "value": 2.0736,
+          "unit": "numero puro",
+          "worked": "Q/Q₀ = [1 + Δr/r₀]⁴. Se il controllo vale x%, Δr/r₀ = x/100. (1 + 20 / 100)⁴ ≈ 2,074."
+        }
+      ]
+    }
+  ]
+}

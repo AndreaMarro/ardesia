@@ -1,0 +1,293 @@
+{
+  "assets": [],
+  "records": [
+    {
+      "anchor": "In un tubo reale lungo e orizzontale,",
+      "apparatus": "condotto",
+      "assessmentSelection": {
+        "points": [
+          2,
+          0.5
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Per fare il confronto usa lo stesso liquido newtoniano e un tubo diritto, rigido e circolare. Mantieni uguali lunghezza e salto di pressione e supponi flusso laminare pienamente sviluppato. Nel rapporto fra le due portate si cancellano tutti i fattori tranne la quarta potenza del raggio.",
+          "type": "text"
+        },
+        {
+          "text": "Q=\\frac{\\pi r^4\\Delta p}{8\\eta L},\\qquad \\frac{Q}{Q_0}=\\left(\\frac{r}{r_0}\\right)^4",
+          "type": "formula"
+        },
+        {
+          "text": "Accosta due sezioni di raggio r₀ e 2r₀. La sezione più grande ha quattro volte l’area. Alla stessa caduta di pressione, il modello dà anche una velocità media quattro volte maggiore. Il prodotto area per velocità diventa 4 × 4 = 16 volte più grande.",
+          "type": "text"
+        },
+        {
+          "text": "Se dimezzi il raggio, il rapporto delle portate è (1/2)⁴ = 1/16. Per scriverlo in decimale, dimezza uno quattro volte o usa 625/10.000 e inserisci 0,0625. Per il problema inverso, se vuoi una portata 16 volte maggiore, la radice quarta positiva di 16 è 2 e devi raddoppiare il raggio mantenendo valide le ipotesi.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Raggio rispetto a r₀",
+        "max": 2.0,
+        "min": 0.5,
+        "step": 0.25,
+        "unit": "1"
+      },
+      "course": "C2",
+      "formula": "Q/Q₀ = (r/r₀)⁴",
+      "id": "SIM-C2-L008-01",
+      "interpretation": "Mantieni viscosità, lunghezza e salto di pressione fissi. L’area quadruplica e la velocità media quadruplica anch’essa. Vale per flusso laminare in un tubo rigido.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Portata relativa a Q₀",
+        "unit": "1"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C2-L008"
+      ],
+      "references": [
+        [
+          1.0,
+          1.0
+        ],
+        [
+          2.0,
+          16.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in movimento",
+      "skill": "C2-L008",
+      "substitution": "{x}⁴",
+      "summary": "Raddoppiare il raggio quadruplica o moltiplica per sedici la portata?",
+      "title": "Legge di Hagen–Poiseuille",
+      "topic": "Legge di Hagen–Poiseuille",
+      "transferPrompt": "In un tubo rigido il raggio diventa {x} volte quello iniziale. Nello stesso liquido e a pari lunghezza e salto di pressione, quale rapporto Q/Q₀ trovi?",
+      "version": 2
+    },
+    {
+      "anchor": "r e L sono in metri, η",
+      "apparatus": "condotto",
+      "assessmentSelection": {
+        "points": [
+          1,
+          2
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Usa un tubo di riferimento e ripeti l’esperimento cambiando una sola condizione. Per un liquido newtoniano in flusso laminare pienamente sviluppato dentro un tubo rigido, la quarta potenza del raggio e il salto di pressione stanno al numeratore. Viscosità e lunghezza stanno al denominatore.",
+          "type": "text"
+        },
+        {
+          "text": "\\frac{Q}{Q_0}=\\frac{\\Delta p}{\\Delta p_0}\\left(\\frac{r}{r_0}\\right)^4\\frac{\\eta_0}{\\eta}\\frac{L_0}{L}",
+          "type": "formula"
+        },
+        {
+          "text": "Disegna prima la sezione del tubo iniziale e poi quella di raggio doppio. Nell’ultima prova ottieni 2⁴ = 4 × 4 = 16 per la portata relativa. Riparti dal tubo iniziale e allungalo lasciando immutata la sezione. Con L = 2L₀ il rapporto diventa L₀/(2L₀) = 1/2, quindi inserisci 0,5.",
+          "type": "text"
+        },
+        {
+          "text": "Raddoppiare solo la viscosità dà ancora 1/2. Raddoppiare soltanto il salto di pressione dà invece 2. Se l’unico parametro variato è la lunghezza e osservi metà della portata, puoi invertire il rapporto e dedurre che il tubo è lungo il doppio. In figura l’area e la lunghezza sono due misure distinte.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "choices": [
+          "Raggio doppio",
+          "Lunghezza doppia",
+          "Viscosità doppia",
+          "Pressione doppia"
+        ],
+        "label": "Modifica rispetto al riferimento",
+        "max": 4.0,
+        "min": 1.0,
+        "step": 1.0,
+        "unit": "1"
+      },
+      "course": "C2",
+      "formula": "Q ∝ Δp r⁴/(η L)",
+      "id": "SIM-C2-L008-02",
+      "interpretation": "Ogni configurazione riparte dallo stesso tubo laminare di riferimento e modifica un solo parametro. Cambiare la viscosità o la lunghezza ha lo stesso effetto inverso; il raggio compare alla quarta potenza.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Portata rispetto a Q₀",
+        "unit": "1"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C2-L008"
+      ],
+      "references": [
+        [
+          1.0,
+          16.0
+        ],
+        [
+          4.0,
+          2.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in movimento",
+      "skill": "C2-L008",
+      "substitution": [
+        "2⁴",
+        "1 / 2",
+        "1 / 2",
+        "2 × 1"
+      ],
+      "summary": "Quale delle quattro modifiche produce il maggior cambiamento di portata?",
+      "title": "Ruolo di raggio, lunghezza, viscosità e salto di pressione",
+      "topic": "Ruolo di raggio, lunghezza, viscosità e salto di pressione",
+      "transferPrompt": "Il tecnico seleziona «{x}» nel banco. Tutti gli altri parametri restano ai valori di riferimento. Quale rapporto fra la nuova portata e Q₀ ottiene?",
+      "version": 2
+    },
+    {
+      "anchor": "In un tubo reale lungo e orizzontale,",
+      "apparatus": "rete",
+      "assessmentSelection": {
+        "points": [
+          2.5,
+          6
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "La resistenza idraulica R descrive quanta differenza di pressione occorre per mantenere una certa portata. Nel regime lineare del banco la geometria e il liquido restano uguali e R è costante. Segna la pressione a monte e quella a valle. La pompa sostiene la differenza fra le due letture.",
+          "type": "text"
+        },
+        {
+          "text": "\\Delta p=RQ,\\qquad R=3\\ \\mathrm{kPa}\\,\\mathrm{s}/\\mathrm{mL}",
+          "type": "formula"
+        },
+        {
+          "text": "Moltiplica 3 per 2,5 spezzando 2,5 in 2 + 1/2. Ottieni 6 + 1,5 = 7,5 kPa. Con 6 mL/s il conto è 3 × 6 = 18 kPa. Nelle unità, mL del flusso e s della resistenza si cancellano con quelli al denominatore del prodotto.",
+          "type": "text"
+        },
+        {
+          "text": "Aggiungi alla figura due punti su un grafico della differenza di pressione rispetto alla portata e uniscili all’origine. La pendenza è R, quindi puoi tornare da 18 kPa a 6 mL/s dividendo per 3 kPa·s/mL. Quando la portata è zero, il modello dà zero caduta di pressione nel tubo.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Portata richiesta",
+        "max": 8.0,
+        "min": 0.0,
+        "step": 0.5,
+        "unit": "mL/s"
+      },
+      "course": "C2",
+      "formula": "Δp = RQ, con R = 3 kPa·s/mL",
+      "id": "SIM-C2-L008-03",
+      "interpretation": "Per un tubo a regime laminare la resistenza è fissata. Leggi il salto fra monte e valle: tende a zero insieme alla portata e raddoppia quando la portata raddoppia.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Differenza di pressione",
+        "unit": "kPa"
+      },
+      "order": 3,
+      "prerequisites": [
+        "C2-L008"
+      ],
+      "references": [
+        [
+          2.0,
+          6.0
+        ],
+        [
+          5.0,
+          15.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in movimento",
+      "skill": "C2-L008",
+      "substitution": "3 × {x}",
+      "summary": "Quanta pressione deve fornire la pompa attraverso un condotto resistivo?",
+      "title": "Resistenza idraulica",
+      "topic": "Resistenza idraulica",
+      "transferPrompt": "Per ottenere una portata di {x} in un capillare di resistenza 3 kPa·s/mL, quale salto di pressione deve sostenere la pompa?",
+      "version": 2
+    },
+    {
+      "anchor": "La portata finale è un sedicesimo di",
+      "apparatus": "condotto",
+      "assessmentSelection": {
+        "points": [
+          -20,
+          20
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Il controllo assegna una variazione percentuale del raggio, da aggiungere al raggio iniziale. Disegna il raggio di riferimento e affianca due raggi con un quinto in meno e un quinto in più. Per il tubo rigido con liquido newtoniano in regime laminare, la portata dipende dalla quarta potenza del raggio a pari caduta di pressione, viscosità e lunghezza.",
+          "type": "text"
+        },
+        {
+          "text": "\\frac{Q}{Q_0}=\\left(1+\\frac{\\Delta r}{r_0}\\right)^4",
+          "type": "formula"
+        },
+        {
+          "text": "Con −20% hai r/r₀ = 4/5 = 8/10. Il numeratore al quadrato è 64 e il suo quadrato vale (60 + 4)² = 3.600 + 480 + 16 = 4.096. Dividendo per 10⁴ ottieni 0,4096. Con +20% hai 12/10. Fa 12² = 144, poi (150 − 6)² = 22.500 − 1.800 + 36 = 20.736. Su 10⁴ vale 2,0736.",
+          "type": "text"
+        },
+        {
+          "text": "Le due variazioni del raggio sono simmetriche attorno a r₀, mentre le portate distano da 1 rispettivamente di 0,5904 e 1,0736. La quarta potenza rompe quella simmetria. Per risalire dal rapporto di portata al raggio prendi la radice quarta positiva. Questi risultati descrivono il tubo rigido del banco. Pareti deformabili e flusso pulsante cambiano il modello.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Variazione del raggio rispetto al riferimento",
+        "max": 20.0,
+        "min": -20.0,
+        "step": 5.0,
+        "unit": "%"
+      },
+      "course": "C2",
+      "formula": "Q/Q₀ = [1 + Δr/r₀]⁴. Se il controllo vale x%, Δr/r₀ = x/100",
+      "id": "SIM-C2-L008-04",
+      "interpretation": "A pressione fissata un errore geometrico del 20% ha un effetto fortemente asimmetrico. È un test di sensibilità del tubo rigido: pulsatilità, elasticità e viscosità variabile richiedono altri modelli.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Portata del modello rigido rispetto a Q₀",
+        "unit": "1"
+      },
+      "order": 4,
+      "prerequisites": [
+        "C2-L008"
+      ],
+      "references": [
+        [
+          -20.0,
+          0.4096
+        ],
+        [
+          20.0,
+          2.0736
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in movimento",
+      "skill": "C2-L008",
+      "substitution": "(1 + {x} / 100)⁴",
+      "summary": "Quanto pesa un piccolo errore sul raggio in una stima fisiologica?",
+      "title": "Limiti dei modelli fisiologici",
+      "topic": "Limiti dei modelli fisiologici",
+      "transferPrompt": "In un tubo rigido, il raggio varia del {x}. A pari caduta di pressione, quanto vale il rapporto fra nuova portata e portata iniziale?",
+      "version": 2
+    }
+  ],
+  "schema": "astra/1"
+}
