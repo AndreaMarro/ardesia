@@ -1,0 +1,13 @@
+from pathlib import Path
+import json,hashlib,shutil
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');S=Path('/private/tmp/cric-c3-264-2096-actual-20261127');D=A/'editorial/reviews/c3-capacity-2096-setup-distinct-a-20261127';D.mkdir(exist_ok=True);sha=lambda b:hashlib.sha256(b).hexdigest();report=json.loads((S/'report.json').read_bytes());assert report['runtimeFingerprint']['sha256']=='2096493ae86311ec459e012032cd1f8fe41293326cc5769d86376aa5a0b59635';p=json.loads((S/'prepared.json').read_bytes());assert report['preparedSha256']==sha((S/'prepared.json').read_bytes());assert report['guestIsolation']=='ORIGINAL_OR_DENIED_AND_DRAFT_ASSETS_403';selected=[]
+for item in report['cases']:
+ raw=(S/item['file']).read_bytes();assert sha(raw)==item['sha256'];c=json.loads(raw)
+ if c['id']!='SIM-C3-L03-02'or'interaction'in c:continue
+ assert c['technicalOk']is True and c['axe']==[];target=D/item['file'];target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(raw)
+ for q in c['screenshots']:
+  image=(S/q['file']).read_bytes();assert sha(image)==q['sha256'];f=D/q['file'];f.parent.mkdir(exist_ok=True,parents=True);f.write_bytes(image);selected.append(dict(id=c['id'],variant=c['variant'],profile=c['profile'],caseKey=c['caseKey'],caseFile=str(target.relative_to(A)),caseSha256=item['sha256'],file=str(f.relative_to(A)),sha256=q['sha256'],wholeRawPngOpenedAndRead=False))
+assert len(selected)==16
+for name in ['report.json','prepared.json','request.json','actual-process.txt']:shutil.copyfile(S/name,D/name)
+for name in ['experiment-heat-capacity-revision-264.json','experiment-heat-capacity-revision-264-bindings.json']:shutil.copyfile(S/'private-inputs'/name,D/name)
+(D/'raw-png-reading-selection.json').write_text(json.dumps(selected,indent=2)+'\n');(D/'select.py.txt').write_bytes(Path(__file__).read_bytes());print('SELECTED16_SETUP_READONLY_NO_NEW_BROWSER',sha((D/'report.json').read_bytes()))
