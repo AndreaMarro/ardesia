@@ -1,0 +1,9 @@
+Otto PNG del375faa/3ed5 sono state aperte integralmente e consolidate con i rispettivi otto caseJSON e controlli effettivi. Sono canarini diagnostici di tre ID, non adozione del full448 terminato1. Nessuno degli otto caseKey è fra i tre duplicati della guardia; ogni case e PNG è stato verificato sul suoSHA.
+
+La label opacaSonda copre tutta la proiezione della testa inferiore del campo in sette immagini: L02-03 a3,5ms alle due larghezze; L03-02 a3cm alle due larghezze e a4cm nella sola320; L03-03 a8V alle due larghezze. In L03-02 a4cm/1280 è coperta la parte finale, non tutta la testa. Correggo così la descrizione preliminare che aveva generalizzato il caso parziale a entrambe le larghezze.
+
+Sono stati proiettati34vertici unici della testa conica chiusa a32suddivisioni, non34facce, usando le matrici della camera registrate. Le proiezioni della punta coincidono con quelle osservate dal collector; i rettangoli delle label sono i box correnti del renderer. Sette casi hanno34/34vertici dentro il rettangoloSonda, con margini positivi. Il caso parziale ha solo l’apice dentro, senza dedurre una percentuale di area dal conteggio dei vertici. La sorgente scena.js riempie il fondo della texture e usa depthTestfalse; le PNG confermano la copertura.
+
+Esiste anche una sovrapposizione puntuale del segno− con la freccia superiore in L03-03/Top320. Togliere soloSonda può far riposizionare− sulla freccia centrale: non ne dichiaro l’esito senza nuovo test. La correzione proposta trasferisceSonda e i due segni alla legenda soltanto per i tre ID, che manterrà polarità delle armature e ruolo del punto viola. Primitivi fisici, campo, controlli, dati e output restano invarianti.
+
+Dopo questo sigillo il revisoreB diventa autore del delta isolato e si ricusa dall’accettazione visiva/legenda di quei tre ID. Nessun nuovo Chrome è stato avviato. Nessun credito o pubblicazione.
