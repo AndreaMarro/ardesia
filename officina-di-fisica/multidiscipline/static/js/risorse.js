@@ -4,7 +4,7 @@ import { caseRoute, decodeCase, caseFromState } from './risorse-stato.js';
 const endpoint = '/v1/resource-cases';
 const href = route => '#' + route;
 const alive = route => location.hash === route;
-const requestId = () => crypto.randomUUID();
+const requestId = () => globalThis.crypto?.randomUUID?.() || 'rc' + Date.now().toString(36) + Math.random().toString(36).slice(2);
 const scopeHeaders = scope => scope ? { 'X-Officina-Session': scope } : {};
 const notice = message => `<p class="notice" role="status">${esc(message)}</p>`;
 const loginLink = next => link('Accedi al tuo quaderno', 'accedi/entra/' + next, true);
@@ -159,6 +159,7 @@ async function collections() {
   main.innerHTML = shell('Le mie raccolte',
     'Prepara una selezione di casi per un microcorso o una spiegazione. Lo studente può riaprire gli stessi casi e proseguire nella lezione.') +
     `<section aria-labelledby="collections-title"><h2 id="collections-title">Raccolte</h2>
+      ${notebook.totalCollections > notebook.collections.length ? '<p class="helper">Le ' + notebook.collections.length + ' raccolte più recenti su ' + notebook.totalCollections + '. Le altre restano raggiungibili dal loro collegamento.</p>' : ''}
       ${notebook.collections.length ? `<ul class="resource-saved-list">${notebook.collections.map(c =>
         `<li><div><a href="#raccolta/${esc(c.id)}">${esc(c.title)}</a><p>${esc(c.note || '')}</p></div><span>${c.shared ? 'Collegamento attivo' : 'Privata'}</span></li>`).join('')}</ul>` :
         '<p>Una raccolta è una selezione di risorse: puoi usarla con le tue slide, durante una spiegazione o nei materiali di studio.</p>'}
@@ -166,7 +167,8 @@ async function collections() {
       <form data-new-collection><label>Nome della raccolta<input name="title" required maxlength="120" placeholder="Es. Raggio, portata e resistenza"></label>
       <label>Obiettivo o istruzione (facoltativi)<textarea name="note" maxlength="2000" rows="2" placeholder="Che cosa osservare e perché"></textarea></label>
       <button class="solid">Crea raccolta</button><p role="status"></p></form></details></section>
-    <section class="resource-case-shelf" aria-labelledby="saved-cases-title"><h2 id="saved-cases-title">Casi salvati</h2>${savedCaseList(notebook.cases)}</section>
+    <section class="resource-case-shelf" aria-labelledby="saved-cases-title"><h2 id="saved-cases-title">Casi salvati</h2>
+      ${notebook.totalCases > notebook.cases.length ? '<p class="helper">I ' + notebook.cases.length + ' casi più recenti su ' + notebook.totalCases + '. I precedenti restano nelle raccolte e nei collegamenti salvati.</p>' : ''}${savedCaseList(notebook.cases)}</section>
     ${link('Apri uno strumento', 'risorse')}`;
   const form = main.querySelector('[data-new-collection]');
   let retry;

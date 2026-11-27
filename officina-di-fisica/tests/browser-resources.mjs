@@ -13,7 +13,7 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const storage = await fs.mkdtemp(path.join(tmpdir(), 'cric-resource-journey-'));
 const evidence = path.resolve(process.env.ASTRA_RESULTS || path.join(root, 'var/arch/browser/resources'));
 await fs.mkdir(evidence, {recursive:true});
-const env = {...process.env, ASTRA_DATA:storage, PYTHONDONTWRITEBYTECODE:'1'};
+const env = {...process.env, ASTRA_DATA:storage, ASTRA_HOSTED:'0', PYTHONDONTWRITEBYTECODE:'1'};
 const boot = 'from server.store import initialize; from multidiscipline.web import Handler; from http.server import ThreadingHTTPServer; initialize(); s=ThreadingHTTPServer(("127.0.0.1",0),Handler); print(s.server_port,flush=True); s.serve_forever()';
 const service = spawn('python3', ['-uc', boot], {cwd:root, env, stdio:['ignore','pipe','inherit']});
 const report = {checks:[], audits:[], errors:[], status:'RUNNING'};

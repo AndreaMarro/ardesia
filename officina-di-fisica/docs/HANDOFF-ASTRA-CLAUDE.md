@@ -120,7 +120,7 @@ Per la compatibilità esatta, dopo aver creato un commit della candidata:
 
 ```sh
 CRIC_COMPOSITION_REFS='7c29ccc18ad3b42ceecfca509ef57f786bd2c496,4e9a37eb120b2bd4a4c8876f5dc52d6471cfd7aa' python3 -m unittest tests.test_resource_composition -v
-python3 tools/verifica_convergenza.py --base 831b73fa71076b2e9b363006ffd94a350f22fe90 --platform HEAD --scientific 4e9a37eb120b2bd4a4c8876f5dc52d6471cfd7aa
+python3 tools/verifica_convergenza.py --base 7c29ccc18ad3b42ceecfca509ef57f786bd2c496 --platform HEAD --scientific 4e9a37eb120b2bd4a4c8876f5dc52d6471cfd7aa
 python3 tools/package_release.py var/cric-candidate.zip --verify
 ```
 
