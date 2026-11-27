@@ -1,0 +1,283 @@
+{
+  "assets": [],
+  "records": [
+    {
+      "anchor": "Una singola parte può perdere entropia. Per",
+      "apparatus": "motore",
+      "assessmentSelection": {
+        "points": [
+          -30,
+          60
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Fissa il confine attorno al corpo. Il calore è positivo se entra nel corpo e negativo se esce. Il banco idealizza un percorso reversibile a 300 K. L’entropia si ottiene integrando il calore reversibile diviso per la temperatura. Essendo costante, la temperatura si porta fuori dall’integrale.",
+          "type": "text"
+        },
+        {
+          "text": "\\Delta S=\\int\\frac{\\delta Q_{\\rm rev}}{T}=\\frac{Q_{\\rm rev}}{300\\ \\mathrm K}",
+          "type": "formula"
+        },
+        {
+          "text": "Disegna una freccia uscente da 30 J. La variazione per il corpo è −30/300 = −1/10 J/K, cioè −0,1 J/K. Poi traccia la freccia entrante da 60 J. Dividi 60 per 300 e trovi 1/5 J/K, cioè 0,2 J/K. Il segno segue quello dell’energia che attraversa il confine.",
+          "type": "text"
+        },
+        {
+          "text": "Per ritrovare il calore da 0,2 J/K moltiplica per 300 K e ottieni 60 J. Nel percorso reversibile il serbatoio alla stessa temperatura varia di entropia con segno opposto. Qui si chiede la variazione del corpo. Per due stati fissati, un altro percorso reversibile darebbe la stessa variazione di entropia.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Calore reversibile scambiato",
+        "max": 60.0,
+        "min": -60.0,
+        "step": 5.0,
+        "unit": "J"
+      },
+      "course": "C3",
+      "formula": "ΔS = Q reversibile/T, con T = 300 K",
+      "id": "SIM-C3-L10-01",
+      "interpretation": "Scambia energia reversibilmente con un serbatoio a 300 K. Se il sistema perde calore la sua entropia diminuisce. La variazione fra gli stessi stati si calcola lungo qualunque percorso reversibile che li colleghi.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Variazione di entropia del sistema",
+        "unit": "J/K"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C3-L10"
+      ],
+      "references": [
+        [
+          -30.0,
+          -0.1
+        ],
+        [
+          60.0,
+          0.2
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Seguire il verso dei processi",
+      "skill": "C3-L10",
+      "substitution": "{x} / 300",
+      "summary": "Quale variazione di entropia collega i due stati di un sistema isotermo?",
+      "title": "Entropia funzione di stato",
+      "topic": "5.5 Entropia funzione di stato",
+      "transferPrompt": "Nel percorso reversibile a temperatura costante di 300 K il corpo scambia un calore con segno di {x}. Qual è la variazione della sua entropia?",
+      "version": 2
+    },
+    {
+      "anchor": "Per un trasferimento fra due serbatoi la",
+      "apparatus": "radiazione",
+      "assessmentSelection": {
+        "points": [
+          30,
+          90
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Disegna la parte calda e quella fredda dentro un unico confine. La stessa energia Q esce dalla prima ed entra nella seconda. I serbatoi sono abbastanza grandi da mantenere le temperature. Per ciascuno, la variazione di entropia si calcola fra i suoi stati di equilibrio alla stessa temperatura, anche se lo scambio diretto fra i due è irreversibile.",
+          "type": "text"
+        },
+        {
+          "text": "\\Delta S_{\\rm tot}=-\\frac{Q}{600\\ \\mathrm K}+\\frac{Q}{300\\ \\mathrm K}=\\frac{Q}{600\\ \\mathrm K}",
+          "type": "formula"
+        },
+        {
+          "text": "La sorgente fredda guadagna il doppio dell’entropia che perde quella calda, perché ha metà della temperatura assoluta. Per 30 J hai 30/600 = 1/20 J/K, cioè 0,05 J/K. Per 90 J il valore è il triplo, 0,15 J/K. L’energia trasferita è uguale da un lato e dall’altro, mentre i due contributi di entropia hanno moduli diversi.",
+          "type": "text"
+        },
+        {
+          "text": "Risali da 0,15 J/K moltiplicando per 600 K. Tre ventesimi di 600 sono 90 J. Il segno positivo indica produzione di entropia per lo scambio spontaneo rispetto al confine che comprende entrambi i serbatoi.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Calore dal caldo al freddo",
+        "max": 120.0,
+        "min": 0.0,
+        "step": 10.0,
+        "unit": "J"
+      },
+      "course": "C3",
+      "formula": "ΔS totale = Q(1/300−1/600)",
+      "id": "SIM-C3-L10-02",
+      "interpretation": "Due serbatoi a 600 e 300 K mantengono le loro temperature. Il caldo perde Q/600, il freddo guadagna Q/300. La somma è positiva per un trasferimento spontaneo.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Aumento di entropia totale",
+        "unit": "J/K"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C3-L10"
+      ],
+      "references": [
+        [
+          30.0,
+          0.05
+        ],
+        [
+          90.0,
+          0.15
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Seguire il verso dei processi",
+      "skill": "C3-L10",
+      "substitution": "{x} / 600",
+      "summary": "Se una parte perde entropia, come controlli il bilancio complessivo?",
+      "title": "Implicazioni macroscopiche",
+      "topic": "5.5 Implicazioni macroscopiche",
+      "transferPrompt": "Da un serbatoio a 600 K passano {x} a uno a 300 K. Entrambi mantengono la loro temperatura. Quanto aumenta l’entropia della coppia?",
+      "version": 2
+    },
+    {
+      "anchor": "Dal punto di vista statistico un macrostato",
+      "apparatus": "microstati",
+      "assessmentSelection": {
+        "points": [
+          2,
+          4
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Disegna due riquadri e usa quattro lettere diverse per le particelle. Nel modello ciascuna particella occupa una metà. Se conosci quali sono a sinistra, le rimanenti sono a destra. Il banco raggruppa tutte le assegnazioni che hanno lo stesso numero a sinistra.",
+          "type": "text"
+        },
+        {
+          "text": "\\Omega(k)=\\binom{4}{k}=\\frac{4!}{k!(4-k)!}",
+          "type": "formula"
+        },
+        {
+          "text": "Per due a sinistra scrivi le coppie AB, AC, AD, BC, BD e CD. Hai sei configurazioni. AB e BA sono lo stesso gruppo, perché la posizione all’interno della metà resta fuori da questo conteggio. Con tutte e quattro a sinistra c’è un solo gruppo possibile.",
+          "type": "text"
+        },
+        {
+          "text": "Controlla il conto moltiplicando 4 × 3 per le scelte ordinate e dividendo per due per eliminare i doppi ordini. Se invece osservi quattro configurazioni compatibili, il numero a sinistra può essere uno oppure tre. Nel modello con assegnazioni equiprobabili, maggiore molteplicità corrisponde a maggiore entropia del conteggio. Per le due risposte basta contare le configurazioni.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Particelle nella metà sinistra",
+        "max": 4.0,
+        "min": 0.0,
+        "step": 1.0,
+        "unit": "1"
+      },
+      "course": "C3",
+      "discrete": true,
+      "formula": "Ω = 4!/[k!(4−k)!]; S = kB ln Ω",
+      "id": "SIM-C3-L10-03",
+      "interpretation": "Quattro particelle distinguibili e indipendenti possono occupare due metà equiprobabili. Il numero conta tutte le scelte delle particelle a sinistra. Il banco mostra un rappresentante e conta anche gli altri microstati.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Numero di configurazioni",
+        "unit": "1"
+      },
+      "order": 3,
+      "prerequisites": [
+        "C3-L10"
+      ],
+      "references": [
+        [
+          1.0,
+          4.0
+        ],
+        [
+          2.0,
+          6.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Seguire il verso dei processi",
+      "skill": "C3-L10",
+      "substitution": "4! / ({x}! × (4 − {x})!)",
+      "summary": "Perché osservi più spesso una distribuzione equilibrata delle particelle?",
+      "title": "Interpretazione statistica",
+      "topic": "5.5 Interpretazione statistica",
+      "transferPrompt": "Le quattro particelle A, B, C e D occupano due metà. Se le particelle nella metà sinistra sono {x}, quante assegnazioni delle identità alle due metà producono quel conteggio?",
+      "version": 2
+    },
+    {
+      "anchor": "Un cubetto caldo e uno freddo in",
+      "apparatus": "radiazione",
+      "assessmentSelection": {
+        "points": [
+          -60,
+          30
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Disegna una freccia dal serbatoio a 600 K verso quello a 300 K e usala per definire Q positivo. Con Q negativo la freccia effettiva si inverte. In entrambi i casi scrivi le variazioni dei due serbatoi usando le loro temperature assolute costanti.",
+          "type": "text"
+        },
+        {
+          "text": "\\Delta S_{\\rm coppia}=-\\frac{Q}{600\\ \\mathrm K}+\\frac{Q}{300\\ \\mathrm K}=\\frac{Q}{600\\ \\mathrm K}",
+          "type": "formula"
+        },
+        {
+          "text": "A Q = −60 J il caldo riceve 60 J e il freddo ne perde 60. La somma è −60/600 = −0,1 J/K. A Q = +30 J, la freccia segue il verso spontaneo e il conto è 30/600 = 0,05 J/K. Per risalire al calore da una variazione di entropia moltiplica per 600 K e conserva il segno.",
+          "type": "text"
+        },
+        {
+          "text": "Il risultato negativo segnala che il semplice scambio ipotizzato fra i soli due serbatoi non può avvenire spontaneamente. In un frigorifero reale entra lavoro e il calore ceduto al caldo supera quello sottratto al freddo. Il bilancio di quella macchina va fatto con entrambi i calori e con tutti i sistemi coinvolti.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Calore con segno dal caldo al freddo",
+        "max": 60.0,
+        "min": -60.0,
+        "step": 10.0,
+        "unit": "J"
+      },
+      "course": "C3",
+      "formula": "ΔS totale = Q(1/300−1/600) = Q/600",
+      "id": "SIM-C3-L10-04",
+      "interpretation": "La freccia è un’ipotesi da mettere alla prova. Per Q negativo il bilancio dà entropia totale negativa: quella trasformazione richiederebbe un intervento esterno e altri scambi.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Variazione di entropia dei due serbatoi",
+        "unit": "J/K"
+      },
+      "order": 4,
+      "prerequisites": [
+        "C3-L10"
+      ],
+      "references": [
+        [
+          -60.0,
+          -0.1
+        ],
+        [
+          30.0,
+          0.05
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Seguire il verso dei processi",
+      "skill": "C3-L10",
+      "substitution": "{x} / 600",
+      "summary": "Quale verso dello scambio è spontaneo per due serbatoi isolati dall’esterno?",
+      "title": "Direzione naturale dei processi",
+      "topic": "5.5 Direzione naturale dei processi",
+      "transferPrompt": "Fra due serbatoi a 600 e 300 K, il calore assegnato nel verso dal caldo al freddo vale {x}. Quale variazione totale di entropia risulta per la coppia, con il segno?",
+      "version": 2
+    }
+  ],
+  "schema": "astra/1"
+}

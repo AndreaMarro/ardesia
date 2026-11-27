@@ -1,0 +1,78 @@
+{
+  "scope": "AUTHOR_ACTUAL_INSTALLED_TASKS",
+  "activityCredit": 0,
+  "rows": [
+    {
+      "id": "SIM-C3-L10-01",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Calore reversibile scambiato» su -30 J. Quale valore ottieni per «Variazione di entropia del sistema»?",
+          "value": -0.1,
+          "unit": "J/K",
+          "worked": "ΔS = Q reversibile/T, con T = 300 K. (-30) / 300 = -0,1 J/K."
+        },
+        {
+          "prompt": "Nel percorso reversibile a temperatura costante di 300 K il corpo scambia un calore con segno di 60 J. Qual è la variazione della sua entropia?",
+          "value": 0.2,
+          "unit": "J/K",
+          "worked": "ΔS = Q reversibile/T, con T = 300 K. 60 / 300 = 0,2 J/K."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C3-L10-02",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Calore dal caldo al freddo» su 30 J. Quale valore ottieni per «Aumento di entropia totale»?",
+          "value": 0.05,
+          "unit": "J/K",
+          "worked": "ΔS totale = Q(1/300−1/600). 30 / 600 = 0,05 J/K."
+        },
+        {
+          "prompt": "Da un serbatoio a 600 K passano 90 J a uno a 300 K. Entrambi mantengono la loro temperatura. Quanto aumenta l’entropia della coppia?",
+          "value": 0.15,
+          "unit": "J/K",
+          "worked": "ΔS totale = Q(1/300−1/600). 90 / 600 = 0,15 J/K."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C3-L10-03",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Particelle nella metà sinistra» su 2. Quale valore ottieni per «Numero di configurazioni»?",
+          "value": 6,
+          "unit": "numero puro",
+          "worked": "Ω = 4!/[k!(4−k)!]; S = kB ln Ω. 4! / (2! × (4 − 2)!) = 6."
+        },
+        {
+          "prompt": "Le quattro particelle A, B, C e D occupano due metà. Se le particelle nella metà sinistra sono 4, quante assegnazioni delle identità alle due metà producono quel conteggio?",
+          "value": 1,
+          "unit": "numero puro",
+          "worked": "Ω = 4!/[k!(4−k)!]; S = kB ln Ω. 4! / (4! × (4 − 4)!) = 1."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C3-L10-04",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Calore con segno dal caldo al freddo» su -60 J. Quale valore ottieni per «Variazione di entropia dei due serbatoi»?",
+          "value": -0.1,
+          "unit": "J/K",
+          "worked": "ΔS totale = Q(1/300−1/600) = Q/600. (-60) / 600 = -0,1 J/K."
+        },
+        {
+          "prompt": "Fra due serbatoi a 600 e 300 K, il calore assegnato nel verso dal caldo al freddo vale 30 J. Quale variazione totale di entropia risulta per la coppia, con il segno?",
+          "value": 0.05,
+          "unit": "J/K",
+          "worked": "ΔS totale = Q(1/300−1/600) = Q/600. 30 / 600 = 0,05 J/K."
+        }
+      ]
+    }
+  ]
+}

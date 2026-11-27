@@ -1,0 +1,282 @@
+{
+  "assets": [],
+  "records": [
+    {
+      "anchor": "L’enunciato di Kelvin–Planck impedisce a una macchina",
+      "apparatus": "motore",
+      "assessmentSelection": {
+        "points": [
+          20,
+          60
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Nel disegno il frigorifero sottrae calore al serbatoio freddo e ne cede al caldo. Entrambi i valori sono moduli positivi. In un giro reversibile la variazione di entropia complessiva dei due serbatoi è zero. Il frigorifero torna allo stato di partenza, quindi il rapporto fra calore e temperatura ha lo stesso valore sui due lati.",
+          "type": "text"
+        },
+        {
+          "text": "\\frac{Q_h}{T_h}=\\frac{Q_c}{T_c},\\qquad Q_h=Q_c\\frac{450\\ \\mathrm K}{300\\ \\mathrm K}=\\frac32 Q_c",
+          "type": "formula"
+        },
+        {
+          "text": "Accanto alla freccia da 20 J sul lato freddo, scrivi il valore del lato caldo. Moltiplicare per 3/2 equivale ad aggiungere una metà. Ottieni 20 + 10 = 30 J. Con 60 J ottieni 60 + 30 = 90 J. Il kelvin si cancella nel rapporto delle temperature.",
+          "type": "text"
+        },
+        {
+          "text": "Il lavoro entrante è Qₕ − Q𝒸, cioè 10 J nel primo caso e 30 J nel secondo. Se la macchina ideale cede 90 J al caldo, moltiplica per 2/3 e ritrovi 60 J sottratti al freddo. Per lo stesso calore sottratto e le stesse temperature, una macchina irreversibile richiede più lavoro.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Calore prelevato dal freddo",
+        "max": 80.0,
+        "min": 0.0,
+        "step": 5.0,
+        "unit": "J"
+      },
+      "course": "C3",
+      "formula": "Q caldo/T caldo = Q freddo/T freddo; T caldo/T freddo = 1,5",
+      "id": "SIM-C3-L09-01",
+      "interpretation": "Nel frigorifero reversibile fra 300 e 450 K il lavoro minimo è Q caldo meno Q freddo. Invertendo il ciclo si ottiene un motore che deve cedere calore: sono le due letture del secondo principio.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Calore minimo ceduto al caldo",
+        "unit": "J"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C3-L09"
+      ],
+      "references": [
+        [
+          20.0,
+          30.0
+        ],
+        [
+          60.0,
+          90.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Dal calore al lavoro utile",
+      "skill": "C3-L09",
+      "substitution": "1,5 × {x}",
+      "summary": "Puoi trasferire calore dal freddo al caldo senza fornire lavoro?",
+      "title": "Secondo principio, enunciati di Kelvin–Planck e Clausius",
+      "topic": "5.5 Secondo principio, enunciati di Kelvin–Planck e Clausius",
+      "transferPrompt": "Un frigorifero reversibile preleva {x} da un serbatoio a 300 K. L’altro serbatoio è a 450 K. Quanto calore deve cedere alla sorgente calda nel caso limite?",
+      "version": 2
+    },
+    {
+      "anchor": "Un motore ciclico riceve energia da una",
+      "apparatus": "motore",
+      "assessmentSelection": {
+        "points": [
+          50,
+          150
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "La freccia entrante riporta il calore ricevuto dal caldo. La macchina funziona in ciclo, quindi quell’energia si divide fra lavoro utile e calore ceduto al freddo. Il 30% significa che tre decimi del calore ricevuto vanno nel ramo del lavoro.",
+          "type": "text"
+        },
+        {
+          "text": "\\eta=\\frac{W}{Q_h}=\\frac{3}{10},\\qquad W=\\frac{3Q_h}{10},\\qquad Q_c=Q_h-W",
+          "type": "formula"
+        },
+        {
+          "text": "Per 50 J dividi prima per dieci e poi moltiplica per tre. Fai 5 × 3 = 15 J e traccia una freccia da 35 J verso il freddo. Con 150 J il conto è 15 × 3 = 45 J, mentre alla sorgente fredda restano 105 J. Le due frecce in uscita fanno sempre la somma iniziale.",
+          "type": "text"
+        },
+        {
+          "text": "Per risalire al calore in ingresso da 45 J di lavoro, dividi per tre e moltiplica per dieci. Ottieni 150 J. Con le sorgenti a 600 e 300 K del banco, il limite reversibile è 1 − 300/600 = 1/2. Il 30% assegnato rispetta questo limite.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Calore assorbito per ciclo",
+        "max": 200.0,
+        "min": 0.0,
+        "step": 10.0,
+        "unit": "J"
+      },
+      "course": "C3",
+      "formula": "W = ηQ caldo, con η = 0,30",
+      "id": "SIM-C3-L09-02",
+      "interpretation": "Il motore opera fra 600 K e 300 K con rendimento 30%, inferiore al limite reversibile. Ogni 100 J in ingresso ne consegna 30 come lavoro e 70 al serbatoio freddo.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Lavoro utile",
+        "unit": "J"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C3-L09"
+      ],
+      "references": [
+        [
+          50.0,
+          15.0
+        ],
+        [
+          150.0,
+          45.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Dal calore al lavoro utile",
+      "skill": "C3-L09",
+      "substitution": "0,3 × {x}",
+      "summary": "Come si distribuisce l’energia assorbita da questa macchina termica?",
+      "title": "Macchine termiche",
+      "topic": "5.5 Macchine termiche",
+      "transferPrompt": "Una macchina termica assorbe {x} per ciclo e ha rendimento del 30%. Quanto lavoro consegna all’albero?",
+      "version": 2
+    },
+    {
+      "anchor": "Un motore ciclico riceve energia da una",
+      "apparatus": "motore",
+      "assessmentSelection": {
+        "points": [
+          15,
+          45
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Prendi come riferimento la freccia del calore assorbito, che vale 100 J. Il rendimento è la parte di quel calore che arriva all’albero. Dividi joule per joule e ottieni una frazione senza unità. Per esprimerla in percentuale, indica quante parti utili corrispondono a cento parti assorbite.",
+          "type": "text"
+        },
+        {
+          "text": "\\eta=\\frac{W}{100\\ \\mathrm J},\\qquad \\eta\\cdot100\\ \\text{è il valore percentuale}",
+          "type": "formula"
+        },
+        {
+          "text": "Accanto alla freccia da 100 J disegna un ramo lavoro da 15 J e uno calore ceduto da 85 J. Il rendimento è 15/100, cioè 15%. Nel secondo disegno 45 J di lavoro danno 45%. La stessa uguaglianza fra i numeri vale perché il riferimento è proprio 100 J.",
+          "type": "text"
+        },
+        {
+          "text": "Da 45% del calore noto risali al lavoro moltiplicando i 100 J per 45/100. Restano 55 J per il serbatoio freddo. Per le sorgenti assegnate, 300 e 600 K, il massimo reversibile è 50%. Il risultato del banco resta entro questo limite.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Lavoro per ciclo",
+        "max": 50.0,
+        "min": 0.0,
+        "step": 5.0,
+        "unit": "J"
+      },
+      "course": "C3",
+      "formula": "η = W/Q entrante, con Q entrante = 100 J. Il rendimento percentuale vale 100η",
+      "id": "SIM-C3-L09-03",
+      "interpretation": "La sorgente fornisce 100 J per ciclo. Con serbatoi a 600 K e 300 K il rendimento massimo è 50%. Confronta la freccia del lavoro con quella dell’energia entrante.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Rendimento",
+        "unit": "%"
+      },
+      "order": 3,
+      "prerequisites": [
+        "C3-L09"
+      ],
+      "references": [
+        [
+          10.0,
+          10.0
+        ],
+        [
+          40.0,
+          40.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Dal calore al lavoro utile",
+      "skill": "C3-L09",
+      "substitution": "{x}",
+      "summary": "Quale frazione del calore in ingresso diventa lavoro utile?",
+      "title": "Rendimento",
+      "topic": "5.5 Rendimento",
+      "transferPrompt": "Il motore assorbe 100 J in un giro completo e consegna {x} di lavoro. Qual è il suo rendimento in percentuale?",
+      "version": 2
+    },
+    {
+      "anchor": "Il ciclo di Carnot collega due isoterme",
+      "apparatus": "motore",
+      "assessmentSelection": {
+        "points": [
+          250,
+          400
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Disegna due serbatoi a temperatura assoluta fissata. In un ciclo reversibile i calori scambiati, presi in modulo, stanno fra loro come le temperature assolute. La differenza fra il calore assorbito e quello ceduto fornisce lavoro. Questo rapporto dà il limite di Carnot per la coppia di sorgenti.",
+          "type": "text"
+        },
+        {
+          "text": "\\frac{Q_c}{Q_h}=\\frac{T_c}{T_h},\\qquad \\eta_{\\rm rev}=1-\\frac{T_c}{T_h},\\qquad T_h=500\\ \\mathrm K",
+          "type": "formula"
+        },
+        {
+          "text": "Con 250 K in basso, 250/500 = 1/2. Su 100 J assorbiti, 50 J vanno al freddo e 50 diventano lavoro. Il limite è 50%. Con 400 K, dividi 400 per 500 e ottieni 4/5. Rimangono 1/5 per il lavoro, ossia il 20%. Mostra le due partizioni con la stessa freccia entrante da 100 J.",
+          "type": "text"
+        },
+        {
+          "text": "Se il limite è 20% e il caldo resta a 500 K, il rapporto delle temperature è 1 − 1/5 = 4/5. Quattro quinti di 500 sono 400 K. Quando le temperature coincidono il rapporto è uno, tutto il calore torna al serbatoio freddo e il lavoro netto si annulla.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Temperatura della sorgente fredda",
+        "max": 500.0,
+        "min": 250.0,
+        "step": 25.0,
+        "unit": "K"
+      },
+      "course": "C3",
+      "formula": "η reversibile = 1 − T fredda/(500 K). Esprimi il risultato in percentuale",
+      "id": "SIM-C3-L09-04",
+      "interpretation": "Il ciclo reversibile alterna due isoterme e due adiabatiche. Per ogni 100 J assorbiti il rapporto tra calore ceduto e ricevuto è T fredda/T calda. Con temperature uguali non si ottiene lavoro netto.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Rendimento reversibile",
+        "unit": "%"
+      },
+      "order": 4,
+      "prerequisites": [
+        "C3-L09"
+      ],
+      "references": [
+        [
+          250.0,
+          50.0
+        ],
+        [
+          400.0,
+          20.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Dal calore al lavoro utile",
+      "skill": "C3-L09",
+      "substitution": "100 × (1 − ({x} / 500))",
+      "summary": "Perché avvicinare le temperature riduce il massimo lavoro ottenibile?",
+      "title": "Ciclo di Carnot",
+      "topic": "5.5 Ciclo di Carnot",
+      "transferPrompt": "Un motore ciclico scambia calore con una sorgente calda a 500 K e una fredda a {x}. Qual è il suo massimo rendimento percentuale?",
+      "version": 2
+    }
+  ],
+  "schema": "astra/1"
+}

@@ -1,0 +1,78 @@
+{
+  "scope": "AUTHOR_ACTUAL_INSTALLED_TASKS",
+  "activityCredit": 0,
+  "rows": [
+    {
+      "id": "SIM-C3-L09-01",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Calore prelevato dal freddo» su 20 J. Quale valore ottieni per «Calore minimo ceduto al caldo»?",
+          "value": 30,
+          "unit": "J",
+          "worked": "Q caldo/T caldo = Q freddo/T freddo; T caldo/T freddo = 1,5. 1,5 × 20 = 30 J."
+        },
+        {
+          "prompt": "Un frigorifero reversibile preleva 60 J da un serbatoio a 300 K. L’altro serbatoio è a 450 K. Quanto calore deve cedere alla sorgente calda nel caso limite?",
+          "value": 90,
+          "unit": "J",
+          "worked": "Q caldo/T caldo = Q freddo/T freddo; T caldo/T freddo = 1,5. 1,5 × 60 = 90 J."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C3-L09-02",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Calore assorbito per ciclo» su 50 J. Quale valore ottieni per «Lavoro utile»?",
+          "value": 15,
+          "unit": "J",
+          "worked": "W = ηQ caldo, con η = 0,30. 0,3 × 50 = 15 J."
+        },
+        {
+          "prompt": "Una macchina termica assorbe 150 J per ciclo e ha rendimento del 30%. Quanto lavoro consegna all’albero?",
+          "value": 45,
+          "unit": "J",
+          "worked": "W = ηQ caldo, con η = 0,30. 0,3 × 150 = 45 J."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C3-L09-03",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Lavoro per ciclo» su 15 J. Quale valore ottieni per «Rendimento»?",
+          "value": 15,
+          "unit": "%",
+          "worked": "η = W/Q entrante, con Q entrante = 100 J. Il rendimento percentuale vale 100η. 15 = 15 %."
+        },
+        {
+          "prompt": "Il motore assorbe 100 J in un giro completo e consegna 45 J di lavoro. Qual è il suo rendimento in percentuale?",
+          "value": 45,
+          "unit": "%",
+          "worked": "η = W/Q entrante, con Q entrante = 100 J. Il rendimento percentuale vale 100η. 45 = 45 %."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C3-L09-04",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Temperatura della sorgente fredda» su 250 K. Quale valore ottieni per «Rendimento reversibile»?",
+          "value": 50,
+          "unit": "%",
+          "worked": "η reversibile = 1 − T fredda/(500 K). Esprimi il risultato in percentuale. 100 × (1 − (250 / 500)) = 50 %."
+        },
+        {
+          "prompt": "Un motore ciclico scambia calore con una sorgente calda a 500 K e una fredda a 400 K. Qual è il suo massimo rendimento percentuale?",
+          "value": 19.999999999999996,
+          "unit": "%",
+          "worked": "η reversibile = 1 − T fredda/(500 K). Esprimi il risultato in percentuale. 100 × (1 − (400 / 500)) ≈ 20 %."
+        }
+      ]
+    }
+  ]
+}

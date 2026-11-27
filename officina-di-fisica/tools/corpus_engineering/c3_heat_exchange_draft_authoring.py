@@ -1,4 +1,4 @@
-"""Assemble the C3 heat exchange, first law, process and cycle drafts."""
+"""Assemble the the calculator-free C3 experimental drafts by family."""
 
 import argparse
 import json
@@ -12,6 +12,8 @@ BATCH = 'experiment-c3-heat-exchange-reading-20261127'
 FIRST_LAW_BATCH = 'experiment-c3-first-law-reading-20261127'
 PATHS_BATCH = 'experiment-c3-thermal-paths-reading-20261127'
 CYCLES_BATCH = 'experiment-c3-thermal-cycles-reading-20261127'
+ENGINES_BATCH = 'experiment-c3-engines-reading-20261127'
+ENTROPY_BATCH = 'experiment-c3-entropy-reading-20261127'
 
 
 def text(value):
@@ -182,6 +184,94 @@ CYCLES = {
 }
 
 
+ENGINES = {
+    'SIM-C3-L09-01': {
+        'points': [20, 60],
+        'transferPrompt': 'Un frigorifero reversibile preleva {x} da un serbatoio a 300 K. L’altro serbatoio è a 450 K. Quanto calore deve cedere alla sorgente calda nel caso limite?',
+        'blocks': [
+            text('Nel disegno il frigorifero sottrae calore al serbatoio freddo e ne cede al caldo. Entrambi i valori sono moduli positivi. In un giro reversibile la variazione di entropia complessiva dei due serbatoi è zero. Il frigorifero torna allo stato di partenza, quindi il rapporto fra calore e temperatura ha lo stesso valore sui due lati.'),
+            formula(r'\frac{Q_h}{T_h}=\frac{Q_c}{T_c},\qquad Q_h=Q_c\frac{450\ \mathrm K}{300\ \mathrm K}=\frac32 Q_c'),
+            text('Accanto alla freccia da 20 J sul lato freddo, scrivi il valore del lato caldo. Moltiplicare per 3/2 equivale ad aggiungere una metà. Ottieni 20 + 10 = 30 J. Con 60 J ottieni 60 + 30 = 90 J. Il kelvin si cancella nel rapporto delle temperature.'),
+            text('Il lavoro entrante è Qₕ − Q𝒸, cioè 10 J nel primo caso e 30 J nel secondo. Se la macchina ideale cede 90 J al caldo, moltiplica per 2/3 e ritrovi 60 J sottratti al freddo. Per lo stesso calore sottratto e le stesse temperature, una macchina irreversibile richiede più lavoro.'),
+        ],
+    },
+    'SIM-C3-L09-02': {
+        'points': [50, 150],
+        'transferPrompt': 'Una macchina termica assorbe {x} per ciclo e ha rendimento del 30%. Quanto lavoro consegna all’albero?',
+        'blocks': [
+            text('La freccia entrante riporta il calore ricevuto dal caldo. La macchina funziona in ciclo, quindi quell’energia si divide fra lavoro utile e calore ceduto al freddo. Il 30% significa che tre decimi del calore ricevuto vanno nel ramo del lavoro.'),
+            formula(r'\eta=\frac{W}{Q_h}=\frac{3}{10},\qquad W=\frac{3Q_h}{10},\qquad Q_c=Q_h-W'),
+            text('Per 50 J dividi prima per dieci e poi moltiplica per tre. Fai 5 × 3 = 15 J e traccia una freccia da 35 J verso il freddo. Con 150 J il conto è 15 × 3 = 45 J, mentre alla sorgente fredda restano 105 J. Le due frecce in uscita fanno sempre la somma iniziale.'),
+            text('Per risalire al calore in ingresso da 45 J di lavoro, dividi per tre e moltiplica per dieci. Ottieni 150 J. Con le sorgenti a 600 e 300 K del banco, il limite reversibile è 1 − 300/600 = 1/2. Il 30% assegnato rispetta questo limite.'),
+        ],
+    },
+    'SIM-C3-L09-03': {
+        'points': [15, 45],
+        'formula': 'η = W/Q entrante, con Q entrante = 100 J. Il rendimento percentuale vale 100η',
+        'transferPrompt': 'Il motore assorbe 100 J in un giro completo e consegna {x} di lavoro. Qual è il suo rendimento in percentuale?',
+        'blocks': [
+            text('Prendi come riferimento la freccia del calore assorbito, che vale 100 J. Il rendimento è la parte di quel calore che arriva all’albero. Dividi joule per joule e ottieni una frazione senza unità. Per esprimerla in percentuale, indica quante parti utili corrispondono a cento parti assorbite.'),
+            formula(r'\eta=\frac{W}{100\ \mathrm J},\qquad \eta\cdot100\ \text{è il valore percentuale}'),
+            text('Accanto alla freccia da 100 J disegna un ramo lavoro da 15 J e uno calore ceduto da 85 J. Il rendimento è 15/100, cioè 15%. Nel secondo disegno 45 J di lavoro danno 45%. La stessa uguaglianza fra i numeri vale perché il riferimento è proprio 100 J.'),
+            text('Da 45% del calore noto risali al lavoro moltiplicando i 100 J per 45/100. Restano 55 J per il serbatoio freddo. Per le sorgenti assegnate, 300 e 600 K, il massimo reversibile è 50%. Il risultato del banco resta entro questo limite.'),
+        ],
+    },
+    'SIM-C3-L09-04': {
+        'points': [250, 400],
+        'formula': 'η reversibile = 1 − T fredda/(500 K). Esprimi il risultato in percentuale',
+        'transferPrompt': 'Un motore ciclico scambia calore con una sorgente calda a 500 K e una fredda a {x}. Qual è il suo massimo rendimento percentuale?',
+        'blocks': [
+            text('Disegna due serbatoi a temperatura assoluta fissata. In un ciclo reversibile i calori scambiati, presi in modulo, stanno fra loro come le temperature assolute. La differenza fra il calore assorbito e quello ceduto fornisce lavoro. Questo rapporto dà il limite di Carnot per la coppia di sorgenti.'),
+            formula(r'\frac{Q_c}{Q_h}=\frac{T_c}{T_h},\qquad \eta_{\rm rev}=1-\frac{T_c}{T_h},\qquad T_h=500\ \mathrm K'),
+            text('Con 250 K in basso, 250/500 = 1/2. Su 100 J assorbiti, 50 J vanno al freddo e 50 diventano lavoro. Il limite è 50%. Con 400 K, dividi 400 per 500 e ottieni 4/5. Rimangono 1/5 per il lavoro, ossia il 20%. Mostra le due partizioni con la stessa freccia entrante da 100 J.'),
+            text('Se il limite è 20% e il caldo resta a 500 K, il rapporto delle temperature è 1 − 1/5 = 4/5. Quattro quinti di 500 sono 400 K. Quando le temperature coincidono il rapporto è uno, tutto il calore torna al serbatoio freddo e il lavoro netto si annulla.'),
+        ],
+    },
+}
+ENTROPY = {
+    'SIM-C3-L10-01': {
+        'points': [-30, 60],
+        'transferPrompt': 'Nel percorso reversibile a temperatura costante di 300 K il corpo scambia un calore con segno di {x}. Qual è la variazione della sua entropia?',
+        'blocks': [
+            text('Fissa il confine attorno al corpo. Il calore è positivo se entra nel corpo e negativo se esce. Il banco idealizza un percorso reversibile a 300 K. L’entropia si ottiene integrando il calore reversibile diviso per la temperatura. Essendo costante, la temperatura si porta fuori dall’integrale.'),
+            formula(r'\Delta S=\int\frac{\delta Q_{\rm rev}}{T}=\frac{Q_{\rm rev}}{300\ \mathrm K}'),
+            text('Disegna una freccia uscente da 30 J. La variazione per il corpo è −30/300 = −1/10 J/K, cioè −0,1 J/K. Poi traccia la freccia entrante da 60 J. Dividi 60 per 300 e trovi 1/5 J/K, cioè 0,2 J/K. Il segno segue quello dell’energia che attraversa il confine.'),
+            text('Per ritrovare il calore da 0,2 J/K moltiplica per 300 K e ottieni 60 J. Nel percorso reversibile il serbatoio alla stessa temperatura varia di entropia con segno opposto. Qui si chiede la variazione del corpo. Per due stati fissati, un altro percorso reversibile darebbe la stessa variazione di entropia.'),
+        ],
+    },
+    'SIM-C3-L10-02': {
+        'points': [30, 90],
+        'transferPrompt': 'Da un serbatoio a 600 K passano {x} a uno a 300 K. Entrambi mantengono la loro temperatura. Quanto aumenta l’entropia della coppia?',
+        'blocks': [
+            text('Disegna la parte calda e quella fredda dentro un unico confine. La stessa energia Q esce dalla prima ed entra nella seconda. I serbatoi sono abbastanza grandi da mantenere le temperature. Per ciascuno, la variazione di entropia si calcola fra i suoi stati di equilibrio alla stessa temperatura, anche se lo scambio diretto fra i due è irreversibile.'),
+            formula(r'\Delta S_{\rm tot}=-\frac{Q}{600\ \mathrm K}+\frac{Q}{300\ \mathrm K}=\frac{Q}{600\ \mathrm K}'),
+            text('La sorgente fredda guadagna il doppio dell’entropia che perde quella calda, perché ha metà della temperatura assoluta. Per 30 J hai 30/600 = 1/20 J/K, cioè 0,05 J/K. Per 90 J il valore è il triplo, 0,15 J/K. L’energia trasferita è uguale da un lato e dall’altro, mentre i due contributi di entropia hanno moduli diversi.'),
+            text('Risali da 0,15 J/K moltiplicando per 600 K. Tre ventesimi di 600 sono 90 J. Il segno positivo indica produzione di entropia per lo scambio spontaneo rispetto al confine che comprende entrambi i serbatoi.'),
+        ],
+    },
+    'SIM-C3-L10-03': {
+        'points': [2, 4],
+        'transferPrompt': 'Le quattro particelle A, B, C e D occupano due metà. Se le particelle nella metà sinistra sono {x}, quante assegnazioni delle identità alle due metà producono quel conteggio?',
+        'blocks': [
+            text('Disegna due riquadri e usa quattro lettere diverse per le particelle. Nel modello ciascuna particella occupa una metà. Se conosci quali sono a sinistra, le rimanenti sono a destra. Il banco raggruppa tutte le assegnazioni che hanno lo stesso numero a sinistra.'),
+            formula(r'\Omega(k)=\binom{4}{k}=\frac{4!}{k!(4-k)!}'),
+            text('Per due a sinistra scrivi le coppie AB, AC, AD, BC, BD e CD. Hai sei configurazioni. AB e BA sono lo stesso gruppo, perché la posizione all’interno della metà resta fuori da questo conteggio. Con tutte e quattro a sinistra c’è un solo gruppo possibile.'),
+            text('Controlla il conto moltiplicando 4 × 3 per le scelte ordinate e dividendo per due per eliminare i doppi ordini. Se invece osservi quattro configurazioni compatibili, il numero a sinistra può essere uno oppure tre. Nel modello con assegnazioni equiprobabili, maggiore molteplicità corrisponde a maggiore entropia del conteggio. Per le due risposte basta contare le configurazioni.'),
+        ],
+    },
+    'SIM-C3-L10-04': {
+        'points': [-60, 30],
+        'transferPrompt': 'Fra due serbatoi a 600 e 300 K, il calore assegnato nel verso dal caldo al freddo vale {x}. Quale variazione totale di entropia risulta per la coppia, con il segno?',
+        'blocks': [
+            text('Disegna una freccia dal serbatoio a 600 K verso quello a 300 K e usala per definire Q positivo. Con Q negativo la freccia effettiva si inverte. In entrambi i casi scrivi le variazioni dei due serbatoi usando le loro temperature assolute costanti.'),
+            formula(r'\Delta S_{\rm coppia}=-\frac{Q}{600\ \mathrm K}+\frac{Q}{300\ \mathrm K}=\frac{Q}{600\ \mathrm K}'),
+            text('A Q = −60 J il caldo riceve 60 J e il freddo ne perde 60. La somma è −60/600 = −0,1 J/K. A Q = +30 J, la freccia segue il verso spontaneo e il conto è 30/600 = 0,05 J/K. Per risalire al calore da una variazione di entropia moltiplica per 600 K e conserva il segno.'),
+            text('Il risultato negativo segnala che il semplice scambio ipotizzato fra i soli due serbatoi non può avvenire spontaneamente. In un frigorifero reale entra lavoro e il calore ceduto al caldo supera quello sottratto al freddo. Il bilancio di quella macchina va fatto con entrambi i calori e con tutti i sistemi coinvolti.'),
+        ],
+    },
+}
+
+
 def write(path, payload):
     path.write_text(json.dumps(payload, ensure_ascii=False, sort_keys=True, indent=2) + '\n', encoding='utf-8')
 
@@ -214,6 +304,8 @@ if __name__ == '__main__':
     mode.add_argument('--first-law', action='store_true')
     mode.add_argument('--paths', action='store_true')
     mode.add_argument('--cycles', action='store_true')
+    mode.add_argument('--engines', action='store_true')
+    mode.add_argument('--entropy', action='store_true')
     args = parser.parse_args()
     if args.first_law:
         scope = FIRST_LAW_BATCH, FIRST_LAW, 'C3-L06'
@@ -221,6 +313,10 @@ if __name__ == '__main__':
         scope = PATHS_BATCH, PATHS, 'C3-L07'
     elif args.cycles:
         scope = CYCLES_BATCH, CYCLES, 'C3-L08'
+    elif args.engines:
+        scope = ENGINES_BATCH, ENGINES, 'C3-L09'
+    elif args.entropy:
+        scope = ENTROPY_BATCH, ENTROPY, 'C3-L10'
     else:
         scope = BATCH, EDITIONS, 'C3-L05'
     assemble(args.original, args.directory, *scope)
