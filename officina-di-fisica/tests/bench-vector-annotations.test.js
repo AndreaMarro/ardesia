@@ -50,18 +50,20 @@ test('field contributions and resultant share the probe, scale and annotation la
   assert.deepEqual(arrows.map(({ b }) => b), [18, 9, 27].map(component => [component * (1.25 / 27), 0, 0]));
 });
 
-test('the flight origin retains its marker and the top view leaves the apex unoccluded', () => {
+test('the flight retains the origin marker and the apex guide without a covering label', () => {
   const input = { speed: 5, elevation: 90, azimuth: 0 };
   for (const view of ['side', 'top']) {
     const { board } = drawing();
-    const rings = [], labels = [];
+    const rings = [], labels = [], guides = [];
     board.ring = (anchor, radius) => rings.push({ anchor, radius });
     board.label = (_anchor, title) => labels.push(title);
+    board.line = (points, _color, _group, dashed) => { if (dashed) guides.push(points); };
     flight(board, input, projectile.solve(input), 1, view);
     assert.equal(rings.length, 1);
     assert.deepEqual(rings[0], { anchor: [-0, 0.17, -0], radius: 0.22 });
     assert.ok(!labels.includes('O'));
-    assert.equal(labels.includes('culmine'), view === 'side');
+    assert.ok(!labels.includes('culmine'));
+    assert.ok(guides.some(([apex, ground]) => apex[1] > 1 && ground[1] === 0.15));
   }
 });
 
@@ -85,6 +87,9 @@ test('small flight velocities retain their direction and get a separate 16× det
   assert.equal(primary.scale.y, speedRatio);
   assert.equal(detail.scale.y, speedRatio * 16);
   assert.ok(detail.visible);
+  const worldY = detail.parent.position.y + detail.position.y;
+  assert.ok(worldY + detail.scale.y <= 2.8 + 1e-12);
+  assert.ok(worldY - detail.scale.y >= 0.35 - 1e-12);
   assert.deepEqual(primary.quaternion.toArray(), detail.quaternion.toArray());
   assert.deepEqual(primary.position.toArray(), [0.21, 0.22, 0.28]);
   update(solved.duration / 2);

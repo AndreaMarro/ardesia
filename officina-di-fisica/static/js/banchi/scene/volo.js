@@ -1,7 +1,7 @@
 import { sample } from '../modelli/volo.js';
 import { ink, metal, ivory, violet, brass, teal, red } from '../scena.js';
 export const spec = { target: [0, 0.9, 0], width: 8.5, height: 4.9, eye: [4, 3, 7], bg: 0xf1eddb };
-export function build(b, p, s, stage, view) {
+export function build(b, p, s, stage) {
   b.base(6.5, 4.3);
   const scale = Math.min(
     5.25 / Math.max(Math.abs(s.vx * s.duration), 0.01),
@@ -47,7 +47,6 @@ export function build(b, p, s, stage, view) {
     );
     const peak = pos(s.duration / 2);
     b.line([peak, [peak[0], 0.15, peak[2]]], metal, undefined, true);
-    if (view !== 'top') b.label([peak[0], peak[1] + 0.39, peak[2]], 'culmine', violet);
   }
   const ball = b.ball(start, 0.139, brass),
     moving = b.group();
@@ -63,7 +62,7 @@ export function build(b, p, s, stage, view) {
       previous.push(g);
     }
     detail = b.group(moving);
-    detail.position.set(-0.32, 0.5, 0.57);
+    detail.position.set(-0.32, 0, 0.57);
     b.arrow([0, 0, 0], [0, 1, 0], brass, detail, 0.022);
   }
   return (t) => {
@@ -89,8 +88,12 @@ export function build(b, p, s, stage, view) {
       const velocity = previous[0];
       detail.visible = velocity.visible && velocity.scale.y <= 0.05;
       if (detail.visible) {
+        const length = 16 * velocity.scale.y;
+        // Keep the entire enlarged arrow inside the instrument's vertical bounds.
+        const worldY = Math.max(0.35 + length, Math.min(2.8 - length, a[1] - 0.42));
+        detail.position.y = worldY - a[1];
         detail.quaternion.copy(velocity.quaternion);
-        detail.scale.y = 16 * velocity.scale.y;
+        detail.scale.y = length;
       }
     }
   };

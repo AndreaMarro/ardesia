@@ -429,7 +429,7 @@ export async function benchPage(id, origin, topicIndex) {
     } else if (view !== 'diagram' && pilot === 'volo') {
       nativeLegend = ' · Il vettore velocità è di fianco alla sfera. Il dettaglio ocra appare per velocità piccole e ingrandisce la freccia 16 volte nello stesso verso.';
       if (view === 'top') nativeLegend += ' Scegli Laterale per leggere l’altezza del culmine.';
-    } else if (view !== 'diagram' && pilot === 'piano') {
+    } else if (view !== 'diagram' && r.model === 'piano') {
       nativeLegend = ' · Il verso positivo della guida è verso monte. Le frecce delle forze sono in primo piano alla scala della guida.';
     } else if (view !== 'diagram' && r.model === 'campo') {
       const charges = s.sources.map(({q, pos: [x, y, z]}, i) => {
