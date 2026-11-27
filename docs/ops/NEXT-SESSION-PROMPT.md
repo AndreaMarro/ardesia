@@ -26,6 +26,10 @@ Il successivo replay delle 139 esperienze si è fermato in tutti e cinque i job 
 
 I 552 casi eseguiti su un candidato precedente delle famiglie C1 e le 530 immagini uniche sono riproducibili dall’archivio. L’esito tecnico attende il riscontro visivo indipendente. Il primo ID di chiusura resta `SIM-C1-L006-03`.
 
+Il candidato con il registro corrente ha ripetuto il doppio import in SQLite e verificato 4.628 bozze in 317 pacchetti, 4.628 invariate alla ripetizione, 991 edizioni pubblicate e tre tentativi sintetici preservati. Il test di adattività ha percorso 4.611 record. Le anteprime di questa revisione sono in esecuzione. [Ricevuta](https://github.com/AndreaMarro/ardesia/blob/2a1eccb446a91bfdc34633117a2ab11de29fa2a2/officina-di-fisica/editorial/reviews/canonical-candidate-full-coexistence-20261127/receipt.json) · [Esecuzione delle anteprime](https://github.com/AndreaMarro/ardesia/actions/runs/45935494138).
+
+La revisione indipendente ha conservato cinque esiti positivi sui banchi di campi e ottica. Nella meccanica ha trovato il tratto della freccia di gravità coperto dal tavolo al lancio. Nella vista 2D di C1 restavano punte poco leggibili. In C6 sono state riprodotte due coperture causate dalle etichette della lente e del rivelatore. Le correzioni sono nel candidato di revisione e attendono le verifiche mirate sul browser. Le 143 attività aperte restano da chiudere. [Prova indipendente dei banchi](https://github.com/AndreaMarro/ardesia/commit/68e821d7eea971ab11065cd70ce21eaeacb61c8c) · [Candidato visuale](https://github.com/AndreaMarro/ardesia/commit/ad00ccac9e1d0839c45bd1880cb344b9334f2ae1).
+
 Il branch di lavoro GitHub è `feat/cric-experiment-manual-revisions`. Il canone remoto verificato è `officina-di-fisica` a `7c29ccc18ad3b42ceecfca509ef57f786bd2c496`. Il checkpoint compilato da 3.632 quesiti e 246 attività è storico. PR canonica, CI integrata, approvazione umana e pubblicazione nell’app restano aperte. Le 100 revisioni Pro restano non identificate. I 199 controlli tecnici recuperati sono documentati separatamente.
 
 [Stato per la ripresa e ricevute](../../officina-di-fisica/editorial/reviews/handoff-4606-20261127.json).

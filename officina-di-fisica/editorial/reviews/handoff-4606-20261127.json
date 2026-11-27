@@ -200,9 +200,16 @@
       "receipt": "editorial/reviews/c1-foundation-work-composed-552-20261127/receipt.json",
       "actualCases": 552,
       "uniqueScreenshots": 530,
-      "independentVisualReview": "PENDING",
+      "independentVisualReview": "POSITIVE_LABEL_REMOVALS_WITH_SHORT_ARROW_FAILURES",
       "activityCredit": 0,
-      "nextReopenedId": "SIM-C1-L006-03"
+      "nextReopenedId": "SIM-C1-L006-03",
+      "independentDiagnosticCommit": "751e34d67ec47835ac27d31cc38e8da96c8a70cf",
+      "independentUniqueScreenshotsRead": 110,
+      "affectedIds": [
+        "SIM-C1-L006-03",
+        "SIM-C1-L007-02"
+      ],
+      "newCorrectionCommit": "4cce177d6b73ec58bfd265ff164424226501bcff"
     },
     "c2IndependentSixOutletsAndPitot": {
       "commit": "c8f1d20af2c336bc2d1bfe03f018bdf8ecb68dd8",
@@ -223,7 +230,48 @@
       "pending": "Complete cohorts 035 and 036",
       "activityCredit": 0,
       "independentProofCommitPrefix": "aca2a238",
-      "positiveFocusedCases": 22
+      "positiveFocusedCases": 22,
+      "wholeGroups": {
+        "commit": "68e821d7eea971ab11065cd70ce21eaeacb61c8c",
+        "035": {
+          "cases": 120,
+          "clockCases": 64,
+          "scientificRows": 5,
+          "consumerPositiveRows": 4,
+          "canonicalGate": "REJECT",
+          "reason": "LAB3D-02 gravity shaft intersects base at launch",
+          "correctiveCandidate": "4cce177d6b73ec58bfd265ff164424226501bcff"
+        },
+        "036": {
+          "cases": 148,
+          "clockCases": 56,
+          "scientificRows": 5,
+          "consumerPositiveRows": 5,
+          "canonicalIdentityGate": "PASS",
+          "finalRuntimeRenewal": "PENDING"
+        },
+        "activityCredit": 0
+      }
+    },
+    "c6ScopedVisualObservation": {
+      "twoPositiveAnnotationsCommit": "46cdfcfc295994599c463a578b599c54531d2698",
+      "cases": 104,
+      "otherFourIdsAfterActualTechnicalCases": 216,
+      "scope": "VISUAL_REVIEW_IN_PROGRESS_WITH_CONFIRMED_FINDINGS",
+      "confirmedFindings": [
+        {
+          "activityId": "SIM-C6-L04-01",
+          "state": "Top 320px with five layers",
+          "finding": "Opaque detector label covers weak transmitted beam"
+        },
+        {
+          "activityId": "SIM-C6-L06-01",
+          "state": "p/f=1/2 Orbit and Side at 320px and 1280px",
+          "finding": "Opaque object label covers the red virtual image arrowhead"
+        }
+      ],
+      "correctionCandidate": "ad00ccac9e1d0839c45bd1880cb344b9334f2ae1",
+      "activityCredit": 0
     }
   },
   "coexistence": {
@@ -246,6 +294,21 @@
       "secondImportSaved": 0,
       "oldAttemptsPreserved": 3,
       "adaptivityQuestionRecords": 4611
+    },
+    "currentRegisterProof": {
+      "commit": "2a1eccb446a91bfdc34633117a2ab11de29fa2a2",
+      "receipt": "editorial/reviews/canonical-candidate-full-coexistence-20261127/receipt.json",
+      "receiptSha256": "ac85c16aa3cded163be8dc6df27a81bd3f054a2716306952879b43509e6dac67",
+      "inputCommit": "4793a90b549173e520e5f7b3eb0009fccb13b1a3",
+      "runtimeSha256": "abb2bf2ac567438953766cf3550644b3d6ea501d75d610fb6291b2cffc5a428b",
+      "registrySha256": "a0b63e1aaf0d8df4a83ceb906241e07fc67948b7c18442390f5db91df10ca005",
+      "drafts": 4628,
+      "packages": 317,
+      "repeatSaved": 0,
+      "repeatedImportUnchanged": 4628,
+      "publishedRecordsPreserved": 991,
+      "historicalFixturesPreserved": 3,
+      "adaptiveQuestionRecords": 4611
     }
   },
   "canonicalIntegration": "PENDING",
@@ -388,6 +451,14 @@
         "reason": "New branch creation activated the historical visibility request. The valid replay is 45935050054."
       },
       "canonicalIntegration": "PENDING"
+    },
+    "newestSourceForBoundedReview": {
+      "commit": "ad00ccac9e1d0839c45bd1880cb344b9334f2ae1",
+      "branch": "review/cric-c6-optical-annotation",
+      "runtimeSha256": "0818bc9e4051c7533a27688f784c46fa283928209f37b80870086fa4b20dc440",
+      "nodePass": 310,
+      "contractPass": 2,
+      "candidateStatus": "SCOPED_INDEPENDENT_VERIFICATION_PENDING"
     }
   }
 }
