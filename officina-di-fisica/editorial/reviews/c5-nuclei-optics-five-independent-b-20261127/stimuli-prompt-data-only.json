@@ -1,0 +1,157 @@
+{
+  "sourceCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "sourcePath": "officina-di-fisica/content/esperienze-C5.json",
+  "sourceRawSha256": "7fff6e6703886003c45695e95b3361f8e09875da4b080ae17e6aa26d33f9bd84",
+  "allowlist": [
+    "id",
+    "version",
+    "title",
+    "summary",
+    "interpretation",
+    "control",
+    "measure",
+    "transferPrompt",
+    "apparatus",
+    "skill",
+    "section"
+  ],
+  "records": [
+    {
+      "id": "SIM-C5-L08-01",
+      "version": 1,
+      "title": "Nucleo instabile, nuclidi e isotopi radioattivi",
+      "summary": "Come riconosci isotopi dello stesso elemento senza confondere A e Z?",
+      "interpretation": "Il numero di protoni identifica il carbonio. Aggiungere neutroni cambia il nuclide: ¹²C e ¹³C sono stabili, ¹⁴C è radioattivo. La stabilità non si deduce dal solo conteggio con una regola lineare.",
+      "control": {
+        "label": "Neutroni in un nucleo con 6 protoni",
+        "unit": "1",
+        "min": 6.0,
+        "max": 8.0,
+        "step": 1.0
+      },
+      "measure": {
+        "label": "Numero di massa",
+        "unit": "1"
+      },
+      "transferPrompt": "Un isotopo del carbonio ha sei protoni e {x} neutroni. Quale numero di massa scrivi accanto al simbolo chimico?",
+      "apparatus": "nucleo",
+      "skill": "C5-L08",
+      "section": "Decadimenti e attività",
+      "proposedPointsOnly": [
+        7,
+        8
+      ]
+    },
+    {
+      "id": "SIM-C5-L08-03",
+      "version": 1,
+      "title": "Decadimenti α, β e transizioni γ",
+      "summary": "Quali conteggi del nucleo cambiano nelle transizioni alfa, beta meno e gamma?",
+      "interpretation": "Confronta il bilancio iniziale e finale. Nell’alfa escono due protoni e due neutroni; nel beta meno un neutrone diventa protone con emissione di elettrone e antineutrino. Una transizione gamma riduce l’energia del nucleo.",
+      "control": {
+        "label": "Transizione considerata",
+        "unit": "1",
+        "min": 1.0,
+        "max": 3.0,
+        "step": 1.0,
+        "choices": [
+          "Alfa",
+          "Beta meno",
+          "Gamma"
+        ]
+      },
+      "measure": {
+        "label": "Variazione del numero atomico",
+        "unit": "1"
+      },
+      "transferPrompt": "Segui il nucleo figlio nella transizione «{x}». Di quanto cambia il suo numero atomico rispetto al nucleo di partenza, con segno?",
+      "apparatus": "nucleo",
+      "skill": "C5-L08",
+      "section": "Decadimenti e attività",
+      "proposedPointsOnly": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "SIM-C5-L09-01",
+      "version": 1,
+      "title": "Legge della riflessione",
+      "summary": "Quale linea divide in due parti uguali il disegno della riflessione?",
+      "interpretation": "Traccia la normale nel punto d’incidenza sullo specchio. I due segmenti che escono geometricamente da quel punto delimitano un angolo doppio rispetto alla normale. Le frecce della luce distinguono arrivo e partenza.",
+      "control": {
+        "label": "Angolo incidente rispetto alla normale",
+        "unit": "°",
+        "min": 0.0,
+        "max": 75.0,
+        "step": 5.0
+      },
+      "measure": {
+        "label": "Angolo fra raggio verso la sorgente e raggio riflesso",
+        "unit": "°"
+      },
+      "transferPrompt": "Uno specchio riceve il raggio a {x} dalla normale. Qual è l’angolo fra la direzione che dal punto di incidenza torna alla sorgente e quella del raggio riflesso?",
+      "apparatus": "ottica",
+      "skill": "C5-L09",
+      "section": "Riflessione e rifrazione",
+      "proposedPointsOnly": [
+        20,
+        50
+      ]
+    },
+    {
+      "id": "SIM-C5-L10-01",
+      "version": 1,
+      "title": "Lenti sottili convergenti",
+      "summary": "Quale lente fa incontrare prima raggi paralleli all’asse?",
+      "interpretation": "I raggi paraassiali paralleli emergono verso il fuoco immagine. Una focale più corta porta i raggi a incrociarsi prima e corrisponde a più diottrie.",
+      "control": {
+        "label": "Distanza focale della lente",
+        "unit": "cm",
+        "min": 5.0,
+        "max": 20.0,
+        "step": 1.0
+      },
+      "measure": {
+        "label": "Potere diottrico",
+        "unit": "m⁻¹"
+      },
+      "transferPrompt": "Una lente convergente mette a fuoco raggi paralleli a {x} dalla lente. Quale potere diottrico scrivi sulla sua etichetta?",
+      "apparatus": "ottica",
+      "skill": "C5-L10",
+      "section": "Lenti e immagini",
+      "proposedPointsOnly": [
+        5,
+        20
+      ]
+    },
+    {
+      "id": "SIM-C5-L10-02",
+      "version": 1,
+      "title": "Legge dei punti coniugati e formazione di immagini",
+      "summary": "Come riconosci un’immagine reale, virtuale o all’infinito senza dividere per zero?",
+      "interpretation": "Regola la distanza dell’oggetto rispetto alla focale. Una vergenza negativa indica un’immagine virtuale e i prolungamenti si incontrano dal lato dell’oggetto. A p = f i raggi emergono paralleli e la vergenza è zero.",
+      "control": {
+        "label": "Distanza dell’oggetto",
+        "unit": "cm",
+        "min": 5.0,
+        "max": 25.0,
+        "step": 1.0
+      },
+      "measure": {
+        "label": "Vergenza dell’immagine",
+        "unit": "diottrie"
+      },
+      "transferPrompt": "Una lente convergente di focale 10 cm guarda un oggetto posto a {x}. Quale vergenza con segno 1/q, in diottrie, hanno i raggi in uscita?",
+      "apparatus": "ottica",
+      "skill": "C5-L10",
+      "section": "Lenti e immagini",
+      "proposedPointsOnly": [
+        5,
+        20
+      ]
+    }
+  ],
+  "candidateBlocksRead": false,
+  "authorReceiptRead": false
+}
