@@ -1,0 +1,1952 @@
+{
+  "schemaVersion": "1.0.0",
+  "phase": "PREPARATORY_REAL_UI_EVIDENCE_REQUIRES_INDEPENDENT_SCI_REVIEW",
+  "sourceCommit": "3abd7dce2c2d837c903c9e17ac1d7fd0aa08dcca",
+  "requestSha256": "53c8eeb2fca4a09cd83ffc9dfa4b2b03aa362a04abc0e79ecb7157c7d62a4bfd",
+  "course": "C2",
+  "runtimeFingerprint": {
+    "files": {
+      "content/C1.json": "0a79b1212adbef650733d655d1de2d5ffd7af5eb2be2bde50710a0a1721ab0cf",
+      "content/C2.json": "7f2d3cf84a46d5d0086fd9cd6318b923ee073febc110a52fbc8f682edd995b23",
+      "content/C3.json": "44cb7679671a99a5da654133d4f1c12a542acf1a4688987121bcd5a776a262e0",
+      "content/C4.json": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+      "content/C5.json": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "content/C6.json": "3f39318c261ec6ed7e68e06f2776dbfb6bce847ccd71cef6354cc5554699ac0c",
+      "content/banchi.json": "c0494a9091cca33b7631b68df1cb7b472c63d0e5481e7dbd391ae1b46e326bdf",
+      "content/catalog.json": "d748fc64cf4e8eec21791fc92009d73f7831da795116c74d82522f26827f1050",
+      "content/esempi-di-copertura.json": "a2db79961bac47ce346d482990d1fb47105151d0650de9c4e05c5b7a5e311d82",
+      "content/esperienze-C1.json": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+      "content/esperienze-C2.json": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+      "content/esperienze-C3.json": "2738799d5195ca5eda77c4dce1cdc79f708237e5660bb9cabcc7fac4f80ea3ff",
+      "content/esperienze-C4.json": "b56b6df61c44009e1508cf0e2cb7992b936db985e37f8c21fc9afd51b811e58d",
+      "content/esperienze-C5.json": "7fff6e6703886003c45695e95b3361f8e09875da4b080ae17e6aa26d33f9bd84",
+      "content/esperienze-C6.json": "6e6877e96bd91712fbcc15e530486c31a4c8087227e1292b9093876b465c292c",
+      "content/labs.json": "b8f94d6ee2b4794bea54b51f53e339da53ee635d4074d546a6afb15e732e61ab",
+      "content/lotto-001.json": "71c563d3ea98f92602f04d1956df968bf125b85fad72521bd6742d8070e53e2a",
+      "content/metodo.json": "dae8291fb86b18ca1324a3c926b1bfaf5b618ab01d3ce44e9fcd5218bf93842a",
+      "contracts/catalog-search-v1.schema.json": "6901f201811a416d200925b4db47de7456bfd367db748ef7843dd79e05115e43",
+      "contracts/engine-ref-v1.schema.json": "63ad37f4383c726ceaf2034c8f3c0c2207baaa8c33f4dd7a63e190c3b2ef338c",
+      "contracts/engine-v1.schema.json": "82c68827ce9cfcd3a8019cee8278bcad979a5e84128854acd6da4906fba15100",
+      "contracts/engine.d.ts": "de1760b0df0b5902d4b57aa2bb1a347c87a4520f00e4fe2d0d543bf9e972b0e6",
+      "contracts/error-diary-v1.schema.json": "892e07ba4bbea0f409d788c96db6846b90dce5fc613c73d64d4cfb9ac96371fd",
+      "contracts/exam-v1.schema.json": "c7d61fd7feaae3d9cb783a29146d5a1b133ef673e620784d1dac2e3a0ee04a0e",
+      "contracts/experiment-assessment-v1.schema.json": "937df48ca60e874797cf9428a00732eaf6974d1ae7abdc162743f03ceef4ddf5",
+      "contracts/library-v1.schema.json": "3d818665151e80508f0db5b60cdd11b4aa164032c42a3359102bf334c8d822be",
+      "contracts/openapi.json": "ed417fe1b5ba6480a7445c530c6f131fd4f63b4d6cfb1673b6c52e6c43f874ac",
+      "contracts/pathway-v1.schema.json": "fba19d401ff2db39caac674dd57c6a65bfac109cc0f47d883aa1d45752cdb813",
+      "contracts/proposal-v1.schema.json": "e3129637784d73377647ef317376a5af41f22d7869c374a164fabc17fe260805",
+      "contracts/reading-preferences-v1.schema.json": "8f6188421a36523f3ac5c8722c8ecee75ad5afe9e4f34156581151382d43557e",
+      "contracts/tsconfig.json": "650a0d5ace38e55304554fdc783d82413bdf1f9784864691d039f6f33be35636",
+      "migrations/001_initial.sql": "ff256b4fbd2a8b5add5a94c82b54a8d48d9cce15b6691b22905e90293d3f49ea",
+      "migrations/002_run_policies.sql": "b8d3f4ccde1a92f32f2197cd703409905b3a1c14c4d2446fbe6d3a2673f980f4",
+      "migrations/003_engine_releases.sql": "c035b4dcc6aeeb13187f1311b2814c3640a103b8bf0db3138d2ba314157249f9",
+      "migrations/004_reading_preferences.sql": "ace95a4a7f270ea725efa656fff3c06353a283d64d75cf32bd54f62f968e26d2",
+      "migrations/edizioni-iniziali.json": "08131823807590cd2197caa2c2318f127bc90705e01c23801b84c58709877be8",
+      "node_modules/axe-core/axe.min.js": "29348999450cdf2849a8e70b7912fc2da85a849da39c0d0d5394f51d4a9ed95c",
+      "node_modules/axe-core/package.json": "dfa850050afad33744b89076848d905e2c60a6915e650e054bf038544930f6e0",
+      "node_modules/playwright/package.json": "8be9edc5642a8c761b677e7af8b9937f36c0443a91e14765877716d70034e5bf",
+      "package-lock.json": "4d136237b0f18b6d2c709251be9dd3825fb6b409a5a3f94dfe0c8686440a532c",
+      "package.json": "1ceaf4e9313cebcd296324a6ee48eeb0dfd858e20fe0ff8efb4d97d0e90f76f9",
+      "policies/exams.json": "c2431c2a3705491a38299240f08ea657f89ad90f5c092d1b91f8e2b130f7dbf3",
+      "server/adapters/cloud_chrome.py": "f619e4dcfa74566fa2cee31197ddf35c1005098ee27f247a5c2b570bf30821aa",
+      "server/adapters/contracts.py": "53e1ea6c8fc912b749e5074eac7384f66ecbcfe89723e51642d3b26475bc07bc",
+      "server/adapters/editorial_mcp.py": "3b604ec2b2207ee49c8781daba8db033da310d8c8b2bb07d0012ff7c49723aa6",
+      "server/adapters/editorial_sandbox.py": "9e3512ace2266c93ffa9dc7e97325eabacb8a829e8f02e149cb84b99869569ea",
+      "server/adapters/engines.py": "c1bd1a5eb81f568fd86b22195ffb27ca633758b2282d46bed492d13275aca936",
+      "server/adapters/exam_policies.py": "137fa066420195e32d010a41d820c38b5cc10ce7d32722b23ed8babcda5ec0c0",
+      "server/adapters/hosted.py": "e9bb1ab4aa9310ea5e0642173172826cfd088d849a931e07c20b5488f1b40ad2",
+      "server/adapters/hosted_transfer.py": "b3e7d7894b4ed207dd8e2cb5c3be40a48a7e2f9ba9301e763b5ae17ed6d0d9d5",
+      "server/adapters/learning_repository.py": "69bb24698577f3edeb1d8fa84d18a404e34cf5e6619dd861aa3ba6e8c60ba487",
+      "server/adapters/migrations.py": "d0e262abde2ecc9f22b04504749c4f067827d76c2152fd72335196416a73e465",
+      "server/adapters/orders.py": "71e374176da5ec20d0b1aa91296d5b3ba694c05546aba046882dbe138ff22b3e",
+      "server/adapters/providers.py": "f37b7edf4d70269db25b7970ddf0fd30a604db15f602d4f7ebae9466dde17550",
+      "server/adapters/publication.py": "5c652b4d48350164af45059ac35050c0e34bb0b67515e79005dd7d2458d15cde",
+      "server/adapters/reading_preferences.py": "e6167b20406af3447402b5caf8da6663b610b8166c06e7f1effa0d75d4c60e7a",
+      "server/adapters/study_repository.py": "f0345eaf17ec2e484520fd5a04e3644665735fc2a87f98ed0b505c739c77bf8c",
+      "server/application/error_diary.py": "45ccda6b96066e5d6992f24cfa7ee47cd4a0fd4298df7408003db22e2414e271",
+      "server/application/formative.py": "fdcc70defd50ccf7a20f2bcf728b8bc1cf8f9279405d2a71224d604a7a40cc90",
+      "server/application/orders.py": "b75b317b163eb41fd8628a16445cc95def20a570640c3b389dadebe49e01c636",
+      "server/application/pathways.py": "e399aca2a0191b341dec3321fcdfc921240cf1ff5f1a6b40da055764596ed86a",
+      "server/application/publication.py": "d6a8885720bfa4c7f19d6e43082cdf67ce5a9c1cbee6e0ceffdac0aacf7203a8",
+      "server/application/study.py": "a3f5cd40dc5bb959f5138c32edcdcf09de290e7a43e5230815ae48a24466dc23",
+      "server/application/study_port.py": "4705481de3db5468f7cd45cbb661a6abd7ca774fdb2351a1660875f180e25b74",
+      "server/commerce.py": "ef44f536ef1009afb420b20b74eecbc9744a16311d74058991bc7d569b019437",
+      "server/domain/assessment.py": "a3c488245e0f64d26150fbb389220ac2c09dd500643bc0a45066637ff0b5a9df",
+      "server/domain/authoring.py": "bc42796627ca84424576ba189058dd6f37ddbc694d929a6e900fafb0e26dfa94",
+      "server/domain/catalog.py": "a469d450ebeb90b184a1962d0ff5cc526df41e1d2b3ec9e351b2134ad93f6bbb",
+      "server/domain/catalog_search.py": "abcb7a2be99f328a9bbba513477418da44d96b42d32244924e06972fd1355561",
+      "server/domain/error_diary.py": "517c22c37adc67398d68660b569497d2a4de162e5f0ca53231602538ab63f2e6",
+      "server/domain/errors.py": "490933f371486b1732269879be0839caf8ec11f6dca0f7c5f4591d005dcd5088",
+      "server/domain/experiment_assessment.py": "c51189c0daed89da19c943900736daa2646bd9862b68edc4c793fc882e4f06f6",
+      "server/domain/identity.py": "49b2da3c41ea173d5c472b12de359003f07c7b367a6a1bc39125b52c48b8e5f2",
+      "server/domain/method.py": "4932a47e3c95512ac5df906efbe02d27eee4e947e66af1bf0540bd50d5f8bcca",
+      "server/domain/orders.py": "40b438616b8e7c46bcb60244c506b990f541528711f6ef20e18280c49136bb2e",
+      "server/domain/pathway.py": "38f7998cc4b823adf237a02403cc14ff65af744120f824bfa30239234412b2c9",
+      "server/domain/science.py": "e0a9ed5ed033a5a80578f5b0b552aa3cf8a19bc802d1a83d8378089bfde2704f",
+      "server/editor.py": "5662186a96e8194bfb37f12c57f03703c445aed3d60974b42dfcb7753c8bd4b9",
+      "server/editorial/service.py": "9e3d94d968b72ac8f0f4c4e78ed6e18b8eff1e7990cad15b87a90529ae00d8e8",
+      "server/learning.py": "518a5ccb6e0e250afa354eec51f21a2036e944129eaca18bcf861fcde029f596",
+      "server/method.py": "621ac9eeafd304ac10d2a8f061cce31a738b5990a7c04c77c0e86836033452f8",
+      "server/printing.py": "39a13eab4b5c692b2d96ac0bf75e783704129138f5bf05dc7fe3978ed3606605",
+      "server/store.py": "ec6b25e347ab5c432ea4e1a01657d167583f63f10393d669084709dc683f02a8",
+      "server/web.py": "4fa905a4cdc02e6b9866fe2cb658a9f19225a17956187d35ca5ea98053d1d903",
+      "static/banchi.css": "e7f77ff24d451bd5f77d2512d2ef2de089173e805a96e453dd7bf7dc2c5deed7",
+      "static/figures/C1-Q008-1.svg": "6fff43981024c5897d51504b20ff39642b8a945301896b411fbb666a9b55dfd7",
+      "static/figures/C1-Q008-2.svg": "e7654f92fe828d4e365ada9a67bd9f3be3c0a73fd6a408ac7d74fcfa41d56b3b",
+      "static/figures/C1-Q013-1.svg": "d6f9f3f72e53f8c032f5df91d298b59c61315122390e85c20653cb36be4f747d",
+      "static/figures/C1-Q013-2.svg": "5acc0d412895c9a45a5f292e6d7d61c6e3d72b267aff43d910863d5fd371cfd1",
+      "static/figures/C1-Q022-sequenza.svg": "c5e1e4b39a6cf70fedfb2f04f0be7d3de7d8ef0b1462c4c251d3d0f6cf2f510e",
+      "static/figures/C1-Q023-2.svg": "d00422fe0f4074814b14d335937955b7e3995ddb4d4b7bf13a4b2f89c2c154bf",
+      "static/figures/C1-Q027-andata.svg": "9fffc659e21752c39fb316a666beea8d7bc451f29735eed1f9356a1bd7e86843",
+      "static/figures/C1-Q027-ritorno.svg": "9c6068cb514a0744b161fe03ea515ad809b749e1cac92334c49ba7cf69f2d2f0",
+      "static/figures/C1-Q027-somma.svg": "b144763e97eba20ed7ac24521b7cd2a47372a97d875a66a4ca99130c0db9b105",
+      "static/figures/C1-Q034-1.svg": "14edfe32c254f2795b72c6b4cd20fa06dbb0098839115eee22254dbc07c80705",
+      "static/figures/C1-Q034-2.svg": "ca0f73f487c284d82fef57313802d94ef223a70a0a1a2c5caca7070378def4d2",
+      "static/figures/C1-Q037-centripeta.svg": "51db646edec206aed56e8a56c331cc57d0b41039c0c9a04d0b35c2bb97b31b9f",
+      "static/figures/C1-Q044-1.svg": "0728e9a3ec9705d83b21dc01e48d9a771ba065385e50600b152df70ec873468a",
+      "static/figures/C1-Q044-2.svg": "8afd87beb024f3afee6a9533fc66f03d1eed2152de6a9f0e7dffcfa70d4a3aae",
+      "static/figures/C1-Q056-1.svg": "0dc260d074ebb7038218bee26589c917914dbea313ef63cbc9d03abc4510a343",
+      "static/figures/C1-Q056-2.svg": "80d78ec26c22ca891261cd75a980d15050d3afca139fcd914a6f287e96b8de4d",
+      "static/figures/C1-Q064-2.svg": "94d3f6f40d269a075b66550c7d9757a5e2f8857ba2e22d972c388680bdaa8d76",
+      "static/figures/C1-Q077-1.svg": "02c4f77e23b818ae28f7d296ce07b0ecbe56ae3f8c816c7a9ffe3c0678fa2af1",
+      "static/figures/C1-Q077-2.svg": "69636510a658935bbeda2f2a21a1ecd09616ee735fd161caa7665270d25f2557",
+      "static/figures/C1-Q078-attrito.svg": "cf480176a069609ca47e92db899b79976e75f200a2d6a26f460c006197ad5840",
+      "static/figures/C1-Q083-1.svg": "e059ea2c2a281b75d78c20c42e4b38ef59f3f876a4682a8126ec1a88ae120812",
+      "static/figures/C1-Q083-2.svg": "763823b531bdac4fd42991bf24f24cb67833d3fb982291c584a18b413567904e",
+      "static/figures/C1-Q095-1.svg": "7bac7acc6a4097c72c19010574d540b7071c1c5ddb10e158022be6523d75e5ce",
+      "static/figures/C1-Q095-2.svg": "1b66b3070b61405a811fbd56b0236d905b1beca78dbfe6c55f3ea7cce4277ed1",
+      "static/figures/C1-aggancio.svg": "94627f0e1d0c8ad0326d7ccf7894ab420ad9a5b8a40772809b4176362773db95",
+      "static/figures/C1-aree.svg": "1b947997bf88af2b574c2a775f16ee5a9c160a045eecf29d6ddf30b12182c717",
+      "static/figures/C1-ascensore.svg": "94d0a446107d71a2b193ede59de57c73d4c26db7fe2dbc81e6f64dcb4cd2c8e1",
+      "static/figures/C1-bordo.svg": "97e21bb158e0b3cb3bfa9eebc52f03883fc70d40d2a2c13bc04bd9b1a42e0771",
+      "static/figures/C1-cdm.svg": "3906b02224c15b11aa2dd7ec3dae9d455eeb3c2f44c15ebaeb3490c8d077ef77",
+      "static/figures/C1-circolo.svg": "158b6a3f5b0614ce90034b870182536612b95171a10fc9cb51ee6d7d749341cf",
+      "static/figures/C1-corsie.svg": "994baad429211ba07fb5ef33a83d036fa667e79e251dea36e1fe131cba1fbeb8",
+      "static/figures/C1-energia.svg": "13899393ff8432b08112f3766b163b4223d5d6f3d3541630b24f5a56faa1d21b",
+      "static/figures/C1-fermi.svg": "c8c539d525b9c32f360c858035f784ff66275c1acd4f0c9835d63d11db117c83",
+      "static/figures/C1-forze.svg": "23032966207743fa88c6b6c4491a80d13b9da68c1e913bd4ebd8719f610c620a",
+      "static/figures/C1-hooke.svg": "94b769fab79d345b6aeaf8be2dc8b71760bdde6e57ab6adf2b46e402aaa67997",
+      "static/figures/C1-impulso.svg": "da0e022c6e42c1509d6a7c3f5721cc633f046ff164b2ab06878cab7b931f8402",
+      "static/figures/C1-leva.svg": "e708c2fc539832a2dc4f5de2015f9b3cba8584883f3a7900ba2e1ad74a6f1d41",
+      "static/figures/C1-molla.svg": "0a74e505ec7655923b437653802e23302be900f6f2292751d1c56735f41868c1",
+      "static/figures/C1-p-tempo.svg": "34ca1fe8598e5012c18d0bea437db5c570d092f81aa43c4ab868a766876c5c28",
+      "static/figures/C1-parabola.svg": "dd8d8c1f3bd2470e26e9867d6d5475286f1bfab0030be95597f689031df37bcb",
+      "static/figures/C1-pattinatori.svg": "78bc46058a68d680c29093d58b365d026e5b94d388064b3c544f4793376a81ec",
+      "static/figures/C1-pattino-inerziale.svg": "e2e6c96b33f06ac62f1f4e361af537b46f5db6588028256f68094547c96d73d2",
+      "static/figures/C1-porzioni.svg": "7d9cbe10708ac5f8e0edb498d4a7cfc88ca95d98b40f72663d6b7a473afc3a79",
+      "static/figures/C1-posizione.svg": "60f8e433938fb419332373efd343b8986057bea63c44691770fa8d40454e6d89",
+      "static/figures/C1-scala.svg": "6c59566179802d99d4bc34c78f1a5074d2c3c1f0fd273c850631d0992ec19bad",
+      "static/figures/C1-tiro30.svg": "1b9ea2f613745a10509b8eea0b943e644f853043859f64b2abb28430338c6cf8",
+      "static/figures/C1-trapezio.svg": "bd1e6154064957e88331a1dc81700a0c655593d269b4a8e0f210c4a2c87c5a6f",
+      "static/figures/C1-velocita.svg": "0983a43aa7f3bb6aeb9493172a1bdc7361ef602887b9bb29c0e4db4e02776d3a",
+      "static/figures/C1-vettore.svg": "aba4cee638235b6a99ea823d57361e3b1366cd79ce92b8ac46240ec29580ff8c",
+      "static/figures/C1-vneg.svg": "9aa88588eea1f37f99ada7adc022777697cc21ec0ab5fd2a1c28c56c589c8c32",
+      "static/figures/C2-Q007-superficie.svg": "a41dffaa6919c6017f6e7f6ab3c033f618de17ba0b40f55d03cb8686c6573e6c",
+      "static/figures/C2-Q062-sezione.svg": "2c2568cf7992fa7c57852dfa64727c191f50c8ee85460176394833d3750e3afe",
+      "static/figures/C2-bernoulli.svg": "cf0bdde00128d3ba1f7d84cedc7062963a565dcd3b263873fb08d7dcec7efa63",
+      "static/figures/C2-capillare.svg": "3bd5058865211ddca1631b5195f13e3e0f788681e80720f125762914dc710de2",
+      "static/figures/C2-colonna.svg": "cb4402efed8b277b255f7e8019f634ad90f691557fc5bfeceb1b69598e9d6944",
+      "static/figures/C2-condotto.svg": "403e01941806532289c8c82f6751978bcd4512d6235e08069cc3e7bf65bb02ba",
+      "static/figures/C2-dirama.svg": "7a3295a71362d746c67346fead28e7e41f30322499db9cbc0ea065b121095e6e",
+      "static/figures/C2-dpq.svg": "ed51bafe7d0d1fe19ffd05d51ed9f8877b66c7cacf9715aab9ca5fd6e8d5189f",
+      "static/figures/C2-efflusso.svg": "c317f8b741114f2cd273b5b0bed1acb11a43c5674802f2d0ede4296c78b466ee",
+      "static/figures/C2-gocce.svg": "31a831c8b55812ba94ecce576f5afadfbce74989bfae54d681efacf5c3e536ff",
+      "static/figures/C2-manometro.svg": "6422c8e2f436ca33deee8b7d18294ffed0c4095e40d3fba6205dd616ea0bd90c",
+      "static/figures/C2-membrana.svg": "772b8d0bfb56f06eb29bf1e5d3fd29ea669f2ec099393f2866fc9bc5fb117ebd",
+      "static/figures/C2-mv.svg": "e1c2db0325040554cc91c70451106bae68b94ed8012848bcdaea12ca1199ba5c",
+      "static/figures/C2-nodi.svg": "81086fecea9a0b5ec7b360224cb982f4feee56d6ecd4146b2c5c6de3b1df4a0f",
+      "static/figures/C2-ph.svg": "99890eabd1e80fb39574f405da8e77d91913716912291a5219493cf628e39bc3",
+      "static/figures/C2-piastre.svg": "ea3f68a1d20e7e356868c0884ef020ab0dd607a41e237c87e781d4379a9fab1f",
+      "static/figures/C2-pressa.svg": "fb80bdf658d0cfc13979a52d2565a71c06f4788e49d6e6b921d746782d8808eb",
+      "static/figures/C2-profilo.svg": "73907de291ed86769e15e3d90e407b6ee78198524df50a8d456a8101df798b4c",
+      "static/figures/C2-raggio.svg": "edfcf1d6ba50e668f509b138b751154ce5bf1be7c81ad58561316ae072a02178",
+      "static/figures/C2-reti.svg": "2dbdd5ee675dab5d935061d55a2aa6c63b3a5f616a1ee48da17684ea1af3a377",
+      "static/figures/C2-rettangolo.svg": "6f7f8849fed4a60954fc5411065dd675fbcc314c649efe74137c0017fd7a6db1",
+      "static/figures/C2-spinta.svg": "2ecac15c1e05af22a89873203a18b57b63ba18235f8c9fd10acc52628b6a132f",
+      "static/figures/C2-strati.svg": "f46f81593447ebc68faa77ba1f0537cf8ff0714beb4f43e5c058aa17f01dc87a",
+      "static/figures/C2-traccianti.svg": "6299886015baa1a631f72237d6349b9ddc160bb0319c8d3e905b93038ac65841",
+      "static/figures/C3-Q051-bilancio.svg": "6d5e31020b04f90b707235da6d1fa66e40b55d7b9cef6262a9f54ed2e3d0a7f9",
+      "static/figures/C3-bilancio.svg": "0e2f94b8ca3e6ee11ccd8e3d0cc40d77782dca7a43315db6928fa6259035a815",
+      "static/figures/C3-ciclo.svg": "84d1b1fb87683ae92240d45760932a7a844a5e01da70037130d703d64690cb03",
+      "static/figures/C3-compressione.svg": "d5d094fbd32e0532a21a45ab170b8517b10c54f59155ba6793c5de5091945829",
+      "static/figures/C3-confine.svg": "60305e8f10320fd9030f3ac8a7b3a7d7ba25adbff8489be42e864d1e06ff39f4",
+      "static/figures/C3-convezione.svg": "8452b3e37127429e12ea1133f3930953d26de939ecfb578860a3baef9a2b2610",
+      "static/figures/C3-due-cilindri.svg": "cce5a1ed943fd9f48d84ff72c5610163e4ef685563a9fe1c3d833d34bc1ecdcd",
+      "static/figures/C3-entropia.svg": "8d95c2e3952150bb1a206ee74e61635e13fa841522aa1a06383d736ed49c7782",
+      "static/figures/C3-espansione-libera.svg": "2680bd9d79eae11adcf6592bfc4d9e8f32091c106462c93d5c3babac9a08bb0e",
+      "static/figures/C3-fasi.svg": "59316774d57a882676062fc86650c6a080c6aebda3180da2e5aaf83fc6940828",
+      "static/figures/C3-isoterma.svg": "f2b86e9001fe906ef43b1f6b54c3af3908e51e2ea3b3bdf9930aeafda5c00e47",
+      "static/figures/C3-macchina.svg": "d731c50778f96cbb5e0038adb43ee4196ed99af557dece4c7de381d1485fb193",
+      "static/figures/C3-parete.svg": "c7241066dc2e892527868cecb8fa7cbb1c14a2771b080d6c17b3edaf2ed4346f",
+      "static/figures/C3-percorsi.svg": "3bf54a3478de1a5cc2c30b33268d91d49456b432af41d5df7b0bdd2560edb85f",
+      "static/figures/C3-prova-cammini.svg": "62aaa5e7c76a6986cca392b30c61cbd38c62b6afa8352fcc8ed46b05412dd772",
+      "static/figures/C3-prova-ciclo.svg": "85f2835752fe4c6e09bb0381531082ebd28b7db56bf2cdb88e2ef835d0f79e73",
+      "static/figures/C3-prova-fusione.svg": "3b190caf012ab205ccbb17ffb226a3b770775b746de99a5609b90e415068be86",
+      "static/figures/C3-prova-orizzontale.svg": "29c2a4c9f869ab7258771916005a2691dc9e077253da0fd771fc1cd426f6c7ff",
+      "static/figures/C3-prova-pT.svg": "5e4fa69d52942d9c6e8b224fde3a22c1f1a25c3bbe21f7bce99a256a72eb6e7c",
+      "static/figures/C3-prova-plateau.svg": "c20768346679635a811da91402fa38aac622c01d31391d347635e2e025e3488d",
+      "static/figures/C3-prova-rette.svg": "c70185967c834e27187a628940c4ccc52398cc34253ed91a45d94a2d4ac5ac6a",
+      "static/figures/C3-prova-scambi.svg": "8e11e8b919e44db5cd8fc87e604ef9808a793258ec9f61027319615b746300f6",
+      "static/figures/C3-prova-trapezio.svg": "5a786b34be73e1809103eba7f59b70d7b8b27045007dd34f89858133ce0e2739",
+      "static/figures/C3-prova-triangolo.svg": "8cb171d4b2ce4ff6fcd15397ae0fd05b5c96c3ef5331bda79534f8b982381593",
+      "static/figures/C3-prova-verticale.svg": "74cfe8082059c5cefd032341097b9683a477aca1af76f4cb48c19fba257a8514",
+      "static/figures/C3-rigido.svg": "c41643ea4e0e5fc86b52a952cc7db66e49e3678d8059ce2321ee5c0577d8eca2",
+      "static/figures/C3-scambi.svg": "5fe72c5b200c4e14ad3db3c88469737cf19a1aca4b1516c9c391b025dc6f9c8f",
+      "static/figures/C3-scambio-radiante.svg": "a349e16243c82c568314d88b0d4bfa7fdff3ac244ddf983b0e448af6276c74a9",
+      "static/figures/C4-Q055-parallelo.svg": "88f4d678b8a82b71d4e77e51e11730e284d9fd9750919fc4601f60c4c316587b",
+      "static/figures/C4-Q091-flusso-v2.svg": "2c94107ff4bf4b0168641192dcb1cfef38d8105285311490894ac2791f24f25c",
+      "static/figures/C4-bussola-nord.svg": "0df5c1a38e4a58f25dd5608367a1bba41d61ce7382b7e995c1449b6663b30794",
+      "static/figures/C4-campo.svg": "9b7701684b5420ce228ee2ca927067718ff9837dbab4d9ac886295251f8cb071",
+      "static/figures/C4-condensatore.svg": "20cde9e81acdea30d4f7134a03b4634ecaa613c4dd13d2f55278e7027f8f6ce9",
+      "static/figures/C4-coulomb.svg": "e3478c630a080624cafaa8361d262ab0ce201ff83a2e86ea9922b9e900d95611",
+      "static/figures/C4-dipolo-indotto.svg": "fdd00e7ed9fe6b2155948bca6bdc0a8a322c0f5f169a20511d804c3541778c4c",
+      "static/figures/C4-dipolo.svg": "6a73d914ea2c4c15badb8b44f48dc1ba440da27283d610b2d7db212921a4fe49",
+      "static/figures/C4-filo-b.svg": "35676e416c40db8b8bcb2e852d6f021550458dff9fc7f1565b694c055d4ab61a",
+      "static/figures/C4-flusso.svg": "a0c10ef39955c42e2cbc9066e37e89d0befec67fb18b5e8f4f9eca1bb4745cd9",
+      "static/figures/C4-induzione-terra.svg": "20696a28c54e925e57b31c167bcecb1efdf28330cff10870d2d29a368917dc9d",
+      "static/figures/C4-lenz-decrescente.svg": "c48efc27347a24e10ace757e58d61ed6942e987512d7e6b8623bbc4141914071",
+      "static/figures/C4-lenz.svg": "9e5bb14e0620e1ac15ff6193dddcf1c9b463cad0339d7de1ed5920d386db6f5a",
+      "static/figures/C4-materiali.svg": "9a2737ac65cad7f65f6570bac50e031c3ec7008f301286036fc58d55631e65ba",
+      "static/figures/C4-ohm.svg": "e9aba90c0cdb89af126e62d397fb00952c59d5b527d5108c64ae34af5180874b",
+      "static/figures/C4-orbita.svg": "3c95346817907b8731c5b62f7880236e4b97c2411770f9bc617dcc576d89b3c5",
+      "static/figures/C4-potenziale.svg": "3b9790e70b1a7f14bd3bc095e2017700b4d8af1f7b256585a5b499893c97a2ba",
+      "static/figures/C4-prova-Bneg.svg": "af820df18c512a61311c8c992ccadd157b212a02d0c8d16ef157153b5d5818ed",
+      "static/figures/C4-prova-Cmista.svg": "baf517caff41db75da41710d9c96ac17c80b22431a574b58e3f0851a4ee13aa5",
+      "static/figures/C4-prova-Ctre.svg": "92e56da33d453554986e850661dde5dd27d6fa2d0250d0d625e05a32c4ab421a",
+      "static/figures/C4-prova-IV.svg": "6eca2cf7c736f7795b42a6d01f78fdafd03f1c7f7510a532a2ea2e631cd53788",
+      "static/figures/C4-prova-Rmista.svg": "f5d58d24e085b7de5b53503fadd8a2197e255391335aaa4e3324f32a00256049",
+      "static/figures/C4-prova-Rpar.svg": "cdbfa07edc13e1236ced0b9124938675524e24a6144fce4a9c95f4a90a5ffddb",
+      "static/figures/C4-prova-campo-nullo.svg": "eb9d408e1eb05aa1e37d3dded2d1a59536f7e4ea56c03d45a3950268503cae56",
+      "static/figures/C4-prova-campo.svg": "8f657958f96e4f0b18a9e8fd74dded0a066a6adb7bd3695e4d4860431ba2638f",
+      "static/figures/C4-prova-componenti.svg": "4761dc3599a9b50a2230e4735026d73a7f2d95cdbef755bd0a77afc04eee96e5",
+      "static/figures/C4-prova-crono.svg": "b113a718b8f126b118d246cd22b1077859e73e3664c6a7c30d24cc8ff0639513",
+      "static/figures/C4-prova-dipolo.svg": "291b90fc577af89771975f92021f059fdbd9cb6126cfb07848144017f2af6ec6",
+      "static/figures/C4-prova-equipot.svg": "60cefe38475e886157ab0b2472c395eabdca917ca82a8294c39b7ea6ae8252d6",
+      "static/figures/C4-prova-flussot.svg": "7ff02ccbdf19d8bd8b1566b041c43d3fdbabbad7dfa88f16a826311440a686dc",
+      "static/figures/C4-prova-obliquo.svg": "a3b51be84a2776e8f015f86d9ed31bc1d79e9a4c20d3880b87373826b76d16c1",
+      "static/figures/C4-prova-proiettile.svg": "31a640c8ace9f775e97e1d7f07bc2f4475be93ac9d7bc1f3f3edd67d09c1771d",
+      "static/figures/C4-prova-serie.svg": "d76bec03f7a48fe965142b4acabd08158e8cf5f12afd5afefb45991e775220b7",
+      "static/figures/C4-prova-switch.svg": "64606ec2ca31325d667c6f6a46f2bc3ad680cbbfec11b9f7d1ee58390fcb056c",
+      "static/figures/C4-reti-c.svg": "25ad5b7d73608cd8da31f1eaf583372363a27b0cd411ae5d0dffe7408821afbb",
+      "static/figures/C4-reti.svg": "07ebbd01de644aef59e43dd7fd9bda2389f55fd148901332d65e108644272333",
+      "static/figures/C5-Q045-eco.svg": "21ebeb9c59404dec247aaea5bedf84a477b1a6084c17115d98315d9f24740202",
+      "static/figures/C5-attenuazione.svg": "be137de5807896ee23ffe8b0ee181c48a4faea98ab6831eb294bfd734f2cc233",
+      "static/figures/C5-campi.svg": "76eecac175a09dc3230ea84a31ba22df7f6e9376f053542355c0a67aaa6db120",
+      "static/figures/C5-doppler.svg": "618c6baecf5fe6b62d60f5e4c1ea7ad9bf1a475edeb1701e443a9758432c4697",
+      "static/figures/C5-due-fronti.svg": "40341e7154851bd86d00d0ff8d5aab16cee1da6d82e8f945ebe6de592cbdbf3c",
+      "static/figures/C5-emivita.svg": "a7100392247d5f3be71ecc60e462678a7fc2c1b8a84035c708e88b30866e394b",
+      "static/figures/C5-istantanea.svg": "d43a90344af8b498b583d626992faf25ef227ba03a0e23b3c6fff7e9d87ff0ff",
+      "static/figures/C5-lente-reale.svg": "fc2ef2fc62d53691378c1258e2eb72017bbe6cbb7e66ab664720cce13c45f7f4",
+      "static/figures/C5-lente-virtuale.svg": "774c01eee8661d1802b9f7cccca4a8f893c99673ded0e538ffc7ee3a2eff05f5",
+      "static/figures/C5-orologio.svg": "88d0ae6a4be838086f101e1e53c8648e8d6ac258e7e2610ecc3ada42726e6e6b",
+      "static/figures/C5-rifrazione.svg": "12fbefd55feb65146632a6cf1295e143c2014048c7ad44b5cb09b71df277a26e",
+      "static/figures/C5-sei-massimi.svg": "da399748274ad7caf667007a5d67510ab6479d0958b03ed4dd678d09ecf7bd82",
+      "static/figures/C5-semilog.svg": "9e87cbddef63dcc72c9e959c4fb52fe77558e600ae23d72e9f328dc2f8d2e3aa",
+      "static/figures/C5-sensore-inclinato.svg": "44dee0f4591f98daf63639c99c8af1e7266bfe7a3ef5b9ad1bef0fc601f24f28",
+      "static/figures/C5-sfere.svg": "acdc645c86411fc4b259a623a655074d88e843c4a2bd19cd2af9d2f3922f4f9b",
+      "static/figures/C5-somma.svg": "a8f1e00e24ed8ad239163fcf84ff0eb5848c920d2748b29393769dbe0f55c069",
+      "static/figures/C5-spettro.svg": "bfff537db5e0ad8070bd0e10742483e7d3ae4daa72e4ab52da1aba442a95012d",
+      "static/figures/C5-suono.svg": "ca709649408be8fa8f52ce9afbecde2b3eddaac7490c95d514291e022e9f12d8",
+      "static/figures/C6-ciclo.svg": "48b3a84e6157c63e2da70b85bb2465ebf97366494256da54713eaea3e83e0206",
+      "static/figures/C6-corrente.svg": "97ebf0678d685bb2a3ec149960ab9be197ffcd6847ac648792cabdd4efdd8ac8",
+      "static/figures/C6-galleggiante.svg": "75e4ab92441954d2100ccfacf1bc402a8222ffc8c00b69f042b1e54289990a61",
+      "static/figures/C6-impulso.svg": "818cfbff146d51678ff0108ea02de3196227923dc3d68103aab48a4a85e11c04",
+      "static/figures/C6-pendenza.svg": "adbf3c8b52ee4e4104d7ac77f4502f118fd40d0c8b928fbf1fe819ee5a807aff",
+      "static/figures/C6-pompa.svg": "24c5a9679e704c11392cbdedde8f62513d448fd978238ff044257da9bb84e274",
+      "static/figures/C6-ponte.svg": "16cfcb0c66c406598497b5d31a33a73826d47c39b1776dc67d8b8dde1ba8e8f6",
+      "static/figures/C6-raccordo.svg": "2af815dc5eb5d0c9c8803de72877aa6d9e4583cf9477053f097f025c4f5892ed",
+      "static/figures/C6-specchi-ingresso.svg": "08540ba8ebccdd680e1df64c5326bc09101c9397409378ee065886f632dc4b36",
+      "static/figures/C6-specchi-uscita.svg": "446d66abea9e923b1d390dc87498a6690b4723d48a3da4eaec71410d21220703",
+      "static/identita/copertina-attiva.svg": "524379455bcf2db283cec44365835bad6a64bf695d703ad78d241f00eb62c9a0",
+      "static/identita/copertina.svg": "555b1894847069daf85eeea3a3f1f1869e2264e701b5bc3def5c45f21c882006",
+      "static/identita/cric-al-banco.svg": "d8ebca62f41d3be270afcdd27a229e884f0df3f55d70c708e4bfd2cdadedd90c",
+      "static/identita/cric-in-cammino.svg": "dfce8ab224c11e77a1baf0b6c62085a0566f9cd224ce74b6fa061e902865a57e",
+      "static/identita/esperienza.css": "3888bc6d8542c211fe88b2d9ca7c77fed1a709f1f1ff0dc5a7f874676ed6d86b",
+      "static/identita/gesti.svg": "81876ddfaa2b3449b7ff898841296eabdf12fb06b31818a49f954c175ed7f265",
+      "static/identita/segno.svg": "5cda75bb72e616b30793ff9c901be37f79ed515f1ee8db0f2423630bf817cdd2",
+      "static/index.html": "75bb11827a3680a81db97925d9be6b7448a43e2a5103f40dd3f7ddbf2c112231",
+      "static/js/account.js": "74256853e630c17c5ac4f33b2cb898351e20cc4f0a4d47fa1e626fbd78a0ba65",
+      "static/js/anteprima.js": "141ccb1814a105bff935ee85847a92bba10a45885878bcf5abb0ab23af208bfa",
+      "static/js/app.js": "c60ab19545fe57a15063af5d0c273c65155520a47ff89b1b749f116e2c7bb6c2",
+      "static/js/ascolto.js": "e07fdbee68fcb747deadd7d58fbbeab94253f6795d57b9e0060da9cbad80439b",
+      "static/js/attivita-metodo.js": "2b550172bbad1416b5457366ce369540e886f04d408d771deeaecd0a290e4944",
+      "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+      "static/js/banchi/banco.js": "44192babc8992b23a57d3852c14161f26c41a46e3c4902fe37a11e5fbb2a69cf",
+      "static/js/banchi/catalogo.js": "4aa0261293b98126c06c6af91ce27c2dd32e214856b04d488e3662e040d36a95",
+      "static/js/banchi/collegamenti.js": "23755d6085231531bab2cd86c9791e307e7cad132c96be4f6fdcbaabe6f0e5b7",
+      "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+      "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+      "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+      "static/js/banchi/modelli/calore.js": "83c89a3140ba5a3386eff0cff54a1aa2575c26ea1e973779b19303026c13bc23",
+      "static/js/banchi/modelli/campo.js": "3750efefa281d28712a973bea921544fb83dc5ad9eb2da7e0c09fe6fac6d50c3",
+      "static/js/banchi/modelli/circuito.js": "107b9e8defed3aaa6d04883442951ed20b7b2cdfdefb658f3ef746c24185a757",
+      "static/js/banchi/modelli/gas.js": "7981d292be241bb3c7921f755072bda44ab52e5be92f9ae203958a19b7ec1a6d",
+      "static/js/banchi/modelli/induzione.js": "14bec092bcfb1d23b0c5ad97426b75c003f56bd427ce30c6d65c0859319f48bc",
+      "static/js/banchi/modelli/lente.js": "5488291f98987538c4fc8483a61e2c058e45605c66391a7ccbdd2b9fb8787566",
+      "static/js/banchi/modelli/onde.js": "fdf5fc16432a92d816db87f35348d461d491cbf48ea45703c27cda2a02314bc3",
+      "static/js/banchi/modelli/piano.js": "0575020da70a7759527f307b6ba291777f79ff0a710e313b1a4cb7ee012de6e2",
+      "static/js/banchi/modelli/stevino.js": "620d9363d38867ce854c0f9c567bc8c63d5519a44f1ce1dfd0dddf1f315da0af",
+      "static/js/banchi/modelli/tubo.js": "ebe96bda5301f124182d7bd6ee3042b9ecad61b46689ea26a093deac784c3cd6",
+      "static/js/banchi/modelli/volo.js": "bb6280ec67bca5f07e80aa382b6a45c72717189887561090f9807493e1912713",
+      "static/js/banchi/quaderno.js": "ecc32226e0fa1781b36cac952fa926a2ac17be6b4eae491ef6ef5744fcd8885a",
+      "static/js/banchi/scena.js": "294a5e5966d004d48456e867a9deb27da5d32ba9ce43e087d4ea713f4544e399",
+      "static/js/banchi/scene/calore.js": "80272a42fbf7edd5a130df801c3819482aaca55471ed992e5fb411085f897f4e",
+      "static/js/banchi/scene/campo.js": "457fd9ccec431f43806a39e8b8fca78c243931514f8e5971c474b5cdbfae6dfa",
+      "static/js/banchi/scene/circuito.js": "049ed16c1cc2bd6d2c2662c4de38399d3b1bb00a5adabeb17bed06780df49701",
+      "static/js/banchi/scene/gas.js": "c39a13bb813bd6f2602a767cbf6e1e42f954092291ca320d3a61352491953223",
+      "static/js/banchi/scene/induzione.js": "b7b69747eae9b3941fc8db44047faa5ebad34e49d0a0b924b6765f4b4ec252a2",
+      "static/js/banchi/scene/lente.js": "8a238ff78b82cdd796b796691e147128c00a5a0f9d089d2398896c92a4c104b5",
+      "static/js/banchi/scene/onde.js": "61f9bf1a96d64a393127993da6857d25c9f9612e2a315f48e5145b35bd027ca6",
+      "static/js/banchi/scene/piano.js": "c98424e8911887f3a540c5c3a9d1e256d87d4fd7fa61e13375bbe33fb238f969",
+      "static/js/banchi/scene/stevino.js": "75836bd9014a1b8b23278efd3be3482dcecea533abf9c9a9d6ff3c71b9581c0c",
+      "static/js/banchi/scene/tubo.js": "a401bc41dbd89e106e01adefcec9298dabae15ad552992eef8f55e8364225667",
+      "static/js/banchi/scene/volo.js": "bcacd889db673a9f8a306a7bd4fca61aca66388fe37cbfe545d27d46d0355b68",
+      "static/js/banchi/tavola.js": "f03e3c823fe90deaab1b79c8b44b4cff3e5993e91953142ab32ced9c2f0e818f",
+      "static/js/banchi/voci/apparati/campi.js": "651c1662484ed35b5ab4fd22b617e0dd652282d0ca7e36ec8beccdb1bcb1c014",
+      "static/js/banchi/voci/apparati/fluidi.js": "8c1fe1edfe7fbca6eb9e08bbe2c7684a17f04edbccc91b48d5b950b6d64a71a9",
+      "static/js/banchi/voci/apparati/meccanica.js": "5ebb36d2be9f65c1308a42e7112b9327bbcfa28e630aaa374d78ceaea759ca02",
+      "static/js/banchi/voci/apparati/onde.js": "6aae6588b047f02ed7b31f8b2195d01ffc265dfc7236dfb25ca98ed1161aece2",
+      "static/js/banchi/voci/apparati/termica.js": "2c2dd287ce60ea861830437697e5cc182ffb9d2bdbbcb7085053a271c1cc4459",
+      "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+      "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+      "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+      "static/js/banchi/voci/esperimento.js": "42b750b18354fdad7c7e42f9e5e6bdc0ec4a28f5ede7a41b0780ad7509a6bac6",
+      "static/js/banchi/voci/geometria.js": "4264ad98c0a4fcdcdb236827157d66b3089e45c6dba00ce6462419292d3e7cb4",
+      "static/js/banchi/voci/legende.js": "5ebc1aced5b68f2a279324fda01ba7c447b84af3fbfc571bb05c588e661cbc27",
+      "static/js/banchi/voci/misure-affiancate.js": "2f3d2c629fdd4cced15556b49608b40e171d6c41468e29b8cbcdf34cb09be8a8",
+      "static/js/banchi/voci/modelli/C1.js": "2566eb562a896b56f42a85be1eb865bd7dcc988b0283f460abd29cb090446dea",
+      "static/js/banchi/voci/modelli/C2.js": "7e4db74e7c1e969bfdc5411af5e64cdb012427a6b4433add2d996a64e9b8fc7d",
+      "static/js/banchi/voci/modelli/C3.js": "b01a2fd9b40c4ebefa7a124d543ba6933708d95a7bd95e4e613dca88a05e53cd",
+      "static/js/banchi/voci/modelli/C4.js": "de65de5483970720e2ec9fb01e3146f71aaad90529dd1f0a3c298c56fd2bf620",
+      "static/js/banchi/voci/modelli/C5.js": "11df78b3c86ccd009853419ae869c54ae884619270636e8f7a7a0a7471dae004",
+      "static/js/banchi/voci/modelli/C6.js": "6e1af33f3af9fe5cc96b6216a110efe3123517e32c22c5dc856ac29d9b79129c",
+      "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+      "static/js/banchi/voci/tavola.js": "21373daa0b6841cc98b537d61cc678c3b9a935f4023d30f54d7cbd8ee2b693fa",
+      "static/js/diario.js": "0f1dfb7f8d8c289d0f1a4b58ded98fcac74702e25e58ca389131016f5d2ec568",
+      "static/js/editor.js": "7cc701964a5138bc93e3c5d4a6861eef7bda6a7965558864d8bde591c7b3f4ff",
+      "static/js/espressioni.js": "be3221b97d0f1cee948645f051ae6c0b2681d2ddd0aa1891d2d606e3ab9c7753",
+      "static/js/grafico-metodo.js": "23c98f884e3007e9401c766e02b286b06243e2b0acaa7bc347c03fb4f238b904",
+      "static/js/labs.js": "529893993dde3e2e67737835c85f9707fbcc0f6a3a7af690a7bde55152e76b63",
+      "static/js/lettura.js": "8d46cfee6c59121932262b35bfe33f1867ae5f7f7a7d4f2c6f3f83fa8f934c07",
+      "static/js/metodo.js": "5e086ed5c8ee8dff92a76880cf0e443467034f133bbf0538efb5b744a899d9eb",
+      "static/js/models.js": "525733758bad90ae00913d497d0916ff683168370fc9a1e320dd16e0c7a9faa6",
+      "static/js/percorso.js": "3a9111df330f170c0921d5b63f394740a51c908e7644685acd1219b17bdf1acb",
+      "static/js/practice.js": "6a03afdaf10568ed865e20565be8adaaad1e410b3952e0221a132c9e5d3d0628",
+      "static/js/preferenze-lettura.js": "a6eaa912f021f89e3e443d97990e8f4815fa7299f0ebeab62a48701b888cffdf",
+      "static/js/recupero/bozza.js": "c9f99a8a23029db6bbecc1580a8a2a021bba13b4699dcb3881fb406eda279061",
+      "static/js/recupero/campo.js": "73335c47b51acd592c82884175cdc5da1ca14110052e8440db29e79befc2ac81",
+      "static/js/recupero/cinematica.js": "3fa8e8e37c1021b4bec0a5ff7094ce61e25938ffc72369c124923996498fa5cb",
+      "static/js/recupero/pista.js": "88eceb74cd91b3a4f09b3dd8442df130b991284d462fbd8f5b39c8b42366d122",
+      "static/js/ricerca.js": "b45a178b796403a9da7c89442184a2ace35efa43a83c67dffcf1a3a49c207de3",
+      "static/js/trasferimento.js": "830308ffac83b895d9f5db91213b32f73812e15102d01596947b57c2542a8d1b",
+      "static/js/ui.js": "3a52638a56b674b50f24d41ab4fda5c4cff41c6699aa224fae34904dcc43b6c3",
+      "static/lab-models.json": "2e4397ef2dc7e63ad2a75eae804228221ca74506d43f1cc73ef2de78ed1b6b27",
+      "static/materie.svg": "acdfac4733cb980b719339361385bd0e85faee9d20922204c46b53c5351a95eb",
+      "static/metodo.css": "2bc3f1ecbe085a5c6f58b0a2761d9bc28295fbb84951d72cd1bbcb357017ab48",
+      "static/recupero-campo.css": "c80484d8543cd8f27df8849e91c2289048ef8bc9b283bc3c8e487453886e6b62",
+      "static/style.css": "afa9ee3c3184bc422d7deabc36a7c5602cb4df85fe1276c1bd9a20291bb9f705",
+      "static/type/baskervville-OFL.txt": "93e68d5aa74b1d3194a26c3ad4003b14058aa488c4861416bad8125a96dcf1d9",
+      "static/type/baskervville0.woff2": "92a42504be0b5e5493e5dd09d67ca400720a50c1bc5c9fcea8ef83ceae793c23",
+      "static/type/baskervville1.woff2": "b5575f64623c031fb1cda07069f6c2b8a2a1b0fceec115af5b518bd0b5e6cc93",
+      "static/type/type.css": "f6de9f167d07896d5bd25b4108ebaac1f216f85098b0042dc6db896297c7ce46",
+      "static/type/worksans-OFL.txt": "749aca05078664ce682dce1b1b10096ac397cb088c1a6df4e1bb56f0092a9272",
+      "static/type/worksans2.woff2": "72cd8f67849cc714f3364eeeb378df9a49f4aff00e6a3640fad36c9c93a9b197",
+      "static/vendor/KaTeX-LICENSE": "766ccc1f306c885aa45542a9846bbd0a505b27a0374f146778171c2254ce18e3",
+      "static/vendor/fonts/KaTeX_AMS-Regular.ttf": "68534840bcfdd2bffb6f0e8deb48684dd01e7f04ea2813267577afb906de1d13",
+      "static/vendor/fonts/KaTeX_AMS-Regular.woff": "30da91e84c893f875e252689faebdc590b2871145e8adc7f9a9d4dbd8ce0b251",
+      "static/vendor/fonts/KaTeX_AMS-Regular.woff2": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308",
+      "static/vendor/fonts/KaTeX_Caligraphic-Bold.ttf": "07d8e303ce4fc12b4bb54f1004170dd190a1f3db45d400fe68060df3e0897268",
+      "static/vendor/fonts/KaTeX_Caligraphic-Bold.woff": "1ae6bd7475590e97e7f145a89e09ccde322f7a6bc0b91607b1c8b8ee28290fed",
+      "static/vendor/fonts/KaTeX_Caligraphic-Bold.woff2": "de7701e42cf1f4cf0b766c03fb27977207eee2f4fd5d76fa82188406da43ea4c",
+      "static/vendor/fonts/KaTeX_Caligraphic-Regular.ttf": "ed0b74372feefcbb9c0666b2e210da37b7e49fa7fbbf3eeb11db5f693dacfbb7",
+      "static/vendor/fonts/KaTeX_Caligraphic-Regular.woff": "3398dd02302557a793f2863f88e02d96ce10df2abffa07c8e9fa90775116e65c",
+      "static/vendor/fonts/KaTeX_Caligraphic-Regular.woff2": "5d53e70ad607c2352162dec9e0923fb54ecdafaccbf604cd8dcf7d00facb989b",
+      "static/vendor/fonts/KaTeX_Fraktur-Bold.ttf": "9163df9c7122432e6495b4229fa9071cf9ae86a758ae5efc4924ec2e1a6dbce1",
+      "static/vendor/fonts/KaTeX_Fraktur-Bold.woff": "9be7ceb88004ab8ad124082246fbfcca4091e36385d4ec6ed1df67375dad50fb",
+      "static/vendor/fonts/KaTeX_Fraktur-Bold.woff2": "74444efd593c005e3f4573b44524704c0af0a937fe911cca9e94068d0d140d3f",
+      "static/vendor/fonts/KaTeX_Fraktur-Regular.ttf": "1e6f9579e90e2cac37f8f60a597c436e075c114385652b7cbeb0dec0421291b3",
+      "static/vendor/fonts/KaTeX_Fraktur-Regular.woff": "5e28753be717dac97f559f49bc10be9cf3c124ddcabda6659d11cb68febc6463",
+      "static/vendor/fonts/KaTeX_Fraktur-Regular.woff2": "51814d270d06ff0255dba0799994fa4d8c84d11f09951d47595f4abb1f3602dc",
+      "static/vendor/fonts/KaTeX_Main-Bold.ttf": "138ac28d1663b3037e9c5f52371fa5c63d8324f4a38d22cd573e6ea3a3fd0cf8",
+      "static/vendor/fonts/KaTeX_Main-Bold.woff": "c76c5d696297d51b9cb1639c7da4334f0e7dec81b42b11213b5e25ef671bb822",
+      "static/vendor/fonts/KaTeX_Main-Bold.woff2": "0f60d1b897938ec918c8ce073092411baf9438f6739465693ff18b0f9d20b021",
+      "static/vendor/fonts/KaTeX_Main-BoldItalic.ttf": "70ee1f64a20f2048c21940ef46d0144fd215baa953ca69afd1e31e98544f708f",
+      "static/vendor/fonts/KaTeX_Main-BoldItalic.woff": "a6f7ec0d846ac7ad975adb8959c37ed49b94acbc4ae436db9ce9e20287e4a64c",
+      "static/vendor/fonts/KaTeX_Main-BoldItalic.woff2": "99cd42a3c072d918f2f44984a807cf7aa16e13545fd0875fc07c6c65f99e715b",
+      "static/vendor/fonts/KaTeX_Main-Italic.ttf": "0d85ae7cc30f23790a7f1a58c4a112fdca8aae769b6ba11429af1d98b1b6cb3a",
+      "static/vendor/fonts/KaTeX_Main-Italic.woff": "f1d6ef86f3b11a528bd5185199bd2443ecb2b0dead96d88674b5a2c12be24bdf",
+      "static/vendor/fonts/KaTeX_Main-Italic.woff2": "97479ca6cce906abc961ecac96faa5f9ca2e61b8e7670d475826bcdee9a7c267",
+      "static/vendor/fonts/KaTeX_Main-Regular.ttf": "d0332f52868370fd83ae7fa46470f90c8f2eab2fcf12bc4f88080b340c95a830",
+      "static/vendor/fonts/KaTeX_Main-Regular.woff": "c6368d87e8a1a3a5d337623d83d8dc4b868f242a9ad476237d6f8d1e0f168cdc",
+      "static/vendor/fonts/KaTeX_Main-Regular.woff2": "c2342cd8b869e01752a9321dc17213fc40d4d04c79688c1d43f2cf316abd7866",
+      "static/vendor/fonts/KaTeX_Math-BoldItalic.ttf": "f9377ab0271cda59af24bcffbd46a4d0c8a3572ffafdbb38de2ad5ea7b0d5ee5",
+      "static/vendor/fonts/KaTeX_Math-BoldItalic.woff": "850c0af5c2238497febaf5e461d880bf458c341f42f4f330f1b1ab5698b1998e",
+      "static/vendor/fonts/KaTeX_Math-BoldItalic.woff2": "dc47344dbb6cb5b655c8460d561f4df5f501b90c804ad3c6cec65fe322351ab1",
+      "static/vendor/fonts/KaTeX_Math-Italic.ttf": "08ce98e51b04d58945a301e639e02b6998af29fdfd61a7b8afdd07bbfc479d4a",
+      "static/vendor/fonts/KaTeX_Math-Italic.woff": "8a8d244581371912b8f3f5a23e2437cb2a59cd9bcaebb0346e722c05737a2571",
+      "static/vendor/fonts/KaTeX_Math-Italic.woff2": "7af58c5ec8f132a2ddde9027c6d7814decce4d3b822a11192a42a20e2e973264",
+      "static/vendor/fonts/KaTeX_SansSerif-Bold.ttf": "1ece03f79f95277d57dc7f6b435a74e1379b0d46104a8530286b60ff49369ea0",
+      "static/vendor/fonts/KaTeX_SansSerif-Bold.woff": "ece03cfd83e22c212cdef66feb8442d25a083beb988db3f1883f3f9738d750ba",
+      "static/vendor/fonts/KaTeX_SansSerif-Bold.woff2": "e99ae51144bf1232efcc1bfe5add36262c6866b0faab24fa75740e1b98577a62",
+      "static/vendor/fonts/KaTeX_SansSerif-Italic.ttf": "3931dd81faed86ba021bb2bbdc36f5bed9a38d6b4f4077aca59b265aa1b02083",
+      "static/vendor/fonts/KaTeX_SansSerif-Italic.woff": "91ee67500cc0129aa0ace3ac5c61ff1692102f0f31d02b69347fba35dcb75bf2",
+      "static/vendor/fonts/KaTeX_SansSerif-Italic.woff2": "00b26ac825e2095056396e0553b8ac26d3f8ad158c3826e28b4c45b385c4714a",
+      "static/vendor/fonts/KaTeX_SansSerif-Regular.ttf": "f36ea897e19f4a2e571d1e900e4e3710e438deb05a842486045ba0a3e616a4ad",
+      "static/vendor/fonts/KaTeX_SansSerif-Regular.woff": "11e4dc8a6471ff6d6ee561d53d10fde8f7489e798257ff449c5d37c197435605",
+      "static/vendor/fonts/KaTeX_SansSerif-Regular.woff2": "68e8c73ef42afd3ccec58bf0fba302cce448938e7fc020a5e31f8a952eee1342",
+      "static/vendor/fonts/KaTeX_Script-Regular.ttf": "1c67f068fea8bb09bf099c088b1cf64bd27516a6e07f4684344873564bb66a67",
+      "static/vendor/fonts/KaTeX_Script-Regular.woff": "d96cdf2b3bdd4d64a8fd5f74a4c467f123a8a73931cd435889f08ffaf9bf947a",
+      "static/vendor/fonts/KaTeX_Script-Regular.woff2": "036d4e95149b69ff9bcc0cd55771efeb25ffa3947293e69acd78d5ac328c684b",
+      "static/vendor/fonts/KaTeX_Size1-Regular.ttf": "95b6d2f1a50173bfedb8c63e1d1c99b10427d0a4df4201cb44513b226951a22b",
+      "static/vendor/fonts/KaTeX_Size1-Regular.woff": "c943cc986384f59e86bea5fd7dc50a9c4dfe567a7c05eb40d6790720dead97c9",
+      "static/vendor/fonts/KaTeX_Size1-Regular.woff2": "6b47c40166b6dbe21a5dfca7718413f2147fd2399be1ba605d8ad39cedf25dfe",
+      "static/vendor/fonts/KaTeX_Size2-Regular.ttf": "a6b2099fb555c60e3a0db3a08842ebf1d732c6eb4e4bf44913613bed4fc4e39b",
+      "static/vendor/fonts/KaTeX_Size2-Regular.woff": "2014c523c3210bcc166648c4d4cc57f05b747df07a24277bf71c51e67dc79e3d",
+      "static/vendor/fonts/KaTeX_Size2-Regular.woff2": "d04c54219f9eaec6d4d4fd42dfb28785975a4794d6b2fc71e566b9cd6db842dd",
+      "static/vendor/fonts/KaTeX_Size3-Regular.ttf": "500e04d54f0d51666332c9d2089aa803be22aa878eca539e59fa53c6e522b082",
+      "static/vendor/fonts/KaTeX_Size3-Regular.woff": "6ab6b62e9b62dae2c00dd90f791bd10950be0ecc3490d7d6045f51c2e8fe0949",
+      "static/vendor/fonts/KaTeX_Size3-Regular.woff2": "73d591271b1604960cb10bb90fee021670af7297017e0e98480b332d11f51995",
+      "static/vendor/fonts/KaTeX_Size4-Regular.ttf": "c647367d1dd4e162468717d020e1fc0f1dc5c26ebfdffbe55261713bf88c5877",
+      "static/vendor/fonts/KaTeX_Size4-Regular.woff": "99f9c6750b489c9462bf04900bd3f939df9b829339daaaaa99ef5495cdddea58",
+      "static/vendor/fonts/KaTeX_Size4-Regular.woff2": "a4af7d414440a1c1790825cfb700cf9cf43b0f2c4b04f0ebc523011ad9853ec0",
+      "static/vendor/fonts/KaTeX_Typewriter-Regular.ttf": "f01f3e87d9c6a61c0c081ceb577abd864eb00a612f7ac1620dd6915fad2ef5aa",
+      "static/vendor/fonts/KaTeX_Typewriter-Regular.woff": "e14fed02b1aba7ce9f5afd5844b5d0321b22351febc720e0de8b8723527609f7",
+      "static/vendor/fonts/KaTeX_Typewriter-Regular.woff2": "71d517d67827787cfabdf186914cc3358eda539e37931941f2b2fd4a21f68c0b",
+      "static/vendor/katex.min.css": "0289a02cf451a44dd73add683a09644252363871ac11713a647b732cee8b1ee3",
+      "static/vendor/katex.min.js": "a29d2961d3146de5949d78ac7c1a9d93ae54955bad22a6db4fbe836e88e8bf48",
+      "static/vendor/sre-4.1.5/LICENSE": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+      "static/vendor/sre-4.1.5/NOTICE": "ba7f102be240256f7206168d44429dc7185c7d6802b786257223f6e5c78dc40f",
+      "static/vendor/sre-4.1.5/mathmaps/base.json": "9b21f937d18d7b231228aa7b425ff06251526b47a021f48832f2ace5a9fb5b75",
+      "static/vendor/sre-4.1.5/mathmaps/it.json": "9c5d61a4d32b2c6f0c4f9d33b95903cecbdafa6e41eec394a51295c03192795c",
+      "static/vendor/sre-4.1.5/sre.js": "d5c339578187a04f6324ad2841a1ac89e94d97cdf6b8c38bb62a72511ff41428",
+      "static/vendor/three-r180/LICENSE": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601",
+      "static/vendor/three-r180/LICENSE-boost": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
+      "static/vendor/three-r180/LICENSE-earcut": "324139c19d87af03fda38afea1590e00ca354c4159bdb2ae9e9cec070cfa46a8",
+      "static/vendor/three-r180/LICENSE-eventdispatcher": "f6be4a43cdb6a751010711ed619162fcba3628739f0cbb9020141253857ed204",
+      "static/vendor/three-r180/OrbitControls.js": "6c860c6b342200f8aef65493319c12bfb2d652107355b1d25eb2154371128391",
+      "static/vendor/three-r180/three.core.min.js": "61ba0df005b05991361d040d8ff670e1aadfd0ce7aeebd1fdb0725957a8957de",
+      "static/vendor/three-r180/three.module.min.js": "e2b5ee6bccd38fd6d8a2428546b83c5f2426d84b152ef82be8055556e3b40eb6",
+      "tools/corpus_engineering/draft_import.py": "bac465af65d315fd8a0d10ad5608b344bb2cbcabfcdc8dcf73365cb5eff67ce4"
+    },
+    "protocolSha256": "c23abf00cb3665ac9d5b90c1f8256852045a7582fa5e8bae5acf31462b619ab8",
+    "sha256": "1efcd26bbb078453b75be5fbd1502b95cf07c0ffabb4112a4e4cf78170ff46aa"
+  },
+  "protocolSha256": "e24c46b4c11403821b026c304875f68edc76b679aa6928b1716bd597c5d15e55",
+  "preparedSha256": "cb40299f119dd6abe8e929b13a5534074656a2863e4e1ec7f7ec1ae0e7d45cdf",
+  "cases": [
+    {
+      "caseKey": "SIM-C2-L001-01|published|320|orbit|setup",
+      "file": "cases/9966bb4ae1415cb80a42993bc2360711914ee0e8f67dc685aa26a2689ea527c2.json",
+      "sha256": "59bfd961b48e661774648cb1af3d5ad12a37979c361dcfb3c23819f11abc10e0",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|320|orbit|grid|0",
+      "file": "cases/6e0b165af11cdb066ecf1e7a1bcb2447ce9ad904930df0e958e40561dab286c7.json",
+      "sha256": "4452c57fabc5ac7e75916145681fb69309186eee0be45e65dac04f091643a503",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|320|orbit|grid|1",
+      "file": "cases/8b4cc30bec3aae085c8e10c0a63ba64161f184a55458bb1eca01ca69048df169.json",
+      "sha256": "d35da6e1250c0fda47866a51152d807688f825be59c2cf4b661ab530ebfda969",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|320|orbit|grid|2",
+      "file": "cases/15bfb6a7a1ad4906404a6ba557f8a1db873ed7b53b5e839c5dd234219a72af6e.json",
+      "sha256": "34a180a24b6dac0309df819d6f9f5853bd928c33958aa14a7c5744d02701be8e",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|320|orbit|setup",
+      "file": "cases/ee1402efa30a465952192a696a5801a6ab9efb55096abbdc4e050d5b31b1dbe4.json",
+      "sha256": "c514b072bfbf758fbdc5ecf806d0272b5e8ffe2a030ad11884847c80fb997d50",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|320|orbit|grid|0",
+      "file": "cases/2f1276fa8e10303fe72826fe336ac24fef31b1a14bd50188843ff4c2fbeb341a.json",
+      "sha256": "325d99828a59e8243219d29aa38691c24a5f9fe3f20e8997bbc19cb71bd8c74b",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|320|orbit|grid|1",
+      "file": "cases/1a8e51209912d81a2795adddd8e1f5b07e50395b89d80a6d4b71f35dfc6b0a8c.json",
+      "sha256": "5b4fd2d8cb69e1e2c8a60eeb5fc30a9935da6baab9dd5a7402be486b1d7f375f",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|320|orbit|grid|2",
+      "file": "cases/7495f18bef9f67770d421167e4086646b2d666abb8b392c6eccf1e6c7bde0c63.json",
+      "sha256": "b20c04e67fd34e45c4c037084d03a908f3d6e4eadd6d939499f69d9421ff90a6",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|320|orbit|grid|3",
+      "file": "cases/0a7c483a2dc71ec5728e2e02172b7501bc533e548f7e63bec8f874cb4f67aabd.json",
+      "sha256": "b33d3c7814b4b53fc3b7372be981f887b79b151d4c1489bbd84895d4d4e0b560",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|320|orbit|grid|4",
+      "file": "cases/6c666402180e914dbea899710f03adcdc338e033751b682dd05be4a6cdb33579.json",
+      "sha256": "834c8d3d73dcf856338e77ee3980d0581d0b135f66b86edcd386cb8163e13c41",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|320|orbit|setup",
+      "file": "cases/a9c48708dab179c0517b43dbf319dca0bed07f90801d66b3f6a6de9e49abe94c.json",
+      "sha256": "2536d2257501ee16d054c69b9b481d85d64e966fadec9d76ead09a45f07e458d",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|320|orbit|grid|0",
+      "file": "cases/6de91356af9c9320372fabae988a6e0ff7118c98451df8db6efe17462d8ec3b0.json",
+      "sha256": "c13889a559b8db739f4d1b6a5917f95930d3239142afe09267392e98e234ceeb",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|320|orbit|grid|1",
+      "file": "cases/800c9f0f8c3b981fbe8bb8fbfad2f3778495ea69c728b4745e2bb03dbf3ca40b.json",
+      "sha256": "c92960cff1ca83765c0a31f6d7921f000fcd7590cca4d1e90095f854c1067587",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|320|orbit|grid|2",
+      "file": "cases/50bc5221957316255fa8748795f78d61e6f2982961d3d633a2a77e2980bfa9f7.json",
+      "sha256": "006bfa97140e158454282159b92870ca1937c6f187a4fbb00e33fb5c02082e7b",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|320|orbit|grid|3",
+      "file": "cases/1590ac0491d8458488dde1ee6798b0a524eca5d50bac812ae6c152b1899771a6.json",
+      "sha256": "15c40eb2ecd3cc70efd25d145038504da13dc251fdefc8f2e82bdb11bb53cd61",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|320|orbit|grid|4",
+      "file": "cases/8b60119e8ccf1350c543e9d4946931cac7fb77b6b06b42d76bb0170a43d4d5b4.json",
+      "sha256": "a544831f560275dfbf4a5fd8d9fb9a84058f74704ce2e43f3e3f29367fafbe66",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|320|orbit|setup",
+      "file": "cases/e4766af225ef4860dc0db45e0631335193d2edd4934122809dacbdbb7bc0a1f4.json",
+      "sha256": "637456d58c9a79d8231558062e75dd027facc722aa58c7885afcb53285a630b1",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|320|orbit|grid|0",
+      "file": "cases/aebccefc3481bda219a3ae79e9533dbf0851434409d7b319a4b43cda051eb84c.json",
+      "sha256": "f749b60eaf196c4ce797342db6a0f41847e2292820bc0f21b6e0fe19e9174330",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|320|orbit|grid|1",
+      "file": "cases/f67f8a6a2318fc5aae305e72f1bb9f85f2de95bce1e2636871e18afb2a5996fb.json",
+      "sha256": "7f0f718268be1a6aee2642eba08b618f2499b1336cbc7a0848f8c53e32336f9d",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|320|orbit|grid|2",
+      "file": "cases/7b4ffc65fa21ff9dfd045ff5aa74d5a4653e98789386dd1371d6bd4c3a59e937.json",
+      "sha256": "45ea99f43f803c188fc56b27d7c47865433a6004d1d4ec6839933cffc5d83798",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|320|orbit|grid|3",
+      "file": "cases/13521d5e0a9d1f0039c34e27bd0fc124e92ba7f98027f19c08cc7f2fd900ac20.json",
+      "sha256": "aefaaff44927005ac05d6552ebf8143859bba59a7088804c4d2019e2775eceb2",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|320|orbit|grid|4",
+      "file": "cases/d8386711338519d8d93f5b37be930e06c5130498b0c09e0cfa904ed7ac3c396a.json",
+      "sha256": "feb9abd5074f7eb8df558677c80c1b32f3ec28ee675c48caab9ef98bc84ad4bc",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|320|orbit|setup",
+      "file": "cases/489b8b8a9205fc609a22713ac43b8e76cb7823ac3c8d2852252a07d00dd02784.json",
+      "sha256": "ddeebe67da8961f81e9ee80c42321f299c219359989ed7f902cbd1f9913b0444",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|320|orbit|grid|0",
+      "file": "cases/a12e782209f02fc9d5cf5a2caf8e6baead4c522986f82e4ad472bf96fea95dc9.json",
+      "sha256": "231dbea1538cd19248e05ded46d3c86cf9f97b150970f89d89ae014ffda3dc94",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|320|orbit|grid|1",
+      "file": "cases/6798a0b9af3a4815998104346bf1aaf04e826a6e9c784ff9f101fa569acc0fc6.json",
+      "sha256": "c670ef05b6e514015f9a4a8bcca3d07c74d8a499627d9a7cd1aca821e20e20fc",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|320|orbit|grid|2",
+      "file": "cases/2845240ca654162fafed2075456d5e120bf2e9c1a67eea30bc3c8511eb9cf9b6.json",
+      "sha256": "2556711a2ac0f49eecdf8d5dd4c32cc4527e2498a65ea8af8964184d1f7ae089",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|320|orbit|grid|3",
+      "file": "cases/36d5744e7b93b6da8469ee535c5442588faaf143f3c7a334ec996b807f67d09b.json",
+      "sha256": "4ac2633bf73c8692d93347e8fd2c2b2acec198faa97f127f25f2dac924da7576",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|320|orbit|grid|4",
+      "file": "cases/5a7b423e1e193e6b6128a4946e6fb6d2c8d3d5926ecb17caa3a83e7972e7fdd7.json",
+      "sha256": "7607a8a87a50912fc70dd2858695439c0503e9e8e8b3850991957a72a8963397",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|320|side|setup",
+      "file": "cases/95aefa5701646d3d79382633e7b64dd6ca55361512314a30d357ab5b815a4494.json",
+      "sha256": "6b1b1e24a44f1f7563ec63a03b039d4f7dd5e05269a436a7a792c66ebd7c0324",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|320|side|grid|0",
+      "file": "cases/4f44138f82071e0a95a604a310d7bfc753c0b7249e2b3bc54c1f9bf2ab51630c.json",
+      "sha256": "66e5955e240043d793bb8ec5d3648bf0653414c6a9ef3c937e1fa3b0fbb9a80f",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|320|side|grid|1",
+      "file": "cases/d89d19b4c5f30c0c6d891478a5add3862acc22ff4ee7b62a5c8e2eb6f18ce76d.json",
+      "sha256": "9956414d010ce233e6ff1196ba2916e0ae58ac6def13eb32b69f9c8fc26dbdb3",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|320|side|grid|2",
+      "file": "cases/0128ece94b087f883a949f44f1f7ebfd1c9efd1e34eb65e6eab106e8a281bccb.json",
+      "sha256": "f3e93b14470c3952196be78a37fdd225bada8bfc7a5ea037e030cf984eac05e7",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|320|side|setup",
+      "file": "cases/f8c9fb592b1603f5cd6eb09eade388f4b86aec1581cf21afaa7b0ae754ad8368.json",
+      "sha256": "fff51215811285293551258e6dfa1958623db6c6197aa188c26db06c07cfeea3",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|320|side|grid|0",
+      "file": "cases/9a0bed756e897c457126acdae15e846abba328a01a773a039b2fd8fd757b6294.json",
+      "sha256": "c6c3a14ae6c6d508a0a0207140f279cebe6befd9caf4fc5244f124e1bb23a4cf",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|320|side|grid|1",
+      "file": "cases/63fdd16061262b039078a3378225b1352133e38ec733bab86a4b4d0cb77de4ed.json",
+      "sha256": "eda76abf704d42377fd8e60e51e1b626b3998948589846285046bd89b263132d",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|320|side|grid|2",
+      "file": "cases/0b7e9e1e52ffad69dc66065c6fcfb210783d05747356011e04307e7a7e1ec8d4.json",
+      "sha256": "dda4455145bd64ff9932b1ed4e50f1356bbd3d38dce9300c712b319582d4e8aa",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|320|side|grid|3",
+      "file": "cases/d7333dce8f60d3f5a754d9461b95c2401d7d5342252f33b4ab10733eba6a94c7.json",
+      "sha256": "0deadedb44d13e8d4442fb307b382cda232b45ee33ad68c6674f1a6e909e3c4b",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|320|side|grid|4",
+      "file": "cases/944479e4b5b11b8979b0252f1f85461c5634c043297c8ee3444dcc2f1a62b47f.json",
+      "sha256": "9e56a9a46e3f145ef206f180bafcca4c4d2eb1669c7f4e952542e46faca658aa",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|320|side|setup",
+      "file": "cases/705f1cd57465feb3f171b2dd6e098f215a63c84a303955f3af727efaa5e70238.json",
+      "sha256": "591b7ba0f774bd15773530fddc2aa1187f6d4c2c4c514693bd7856b345af9778",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|320|side|grid|0",
+      "file": "cases/ce109c562da8f7d1c4e223c0ea9a5218e103271a6040e9d637b020d3db76175a.json",
+      "sha256": "150691cb8ae8e713757a9194281d3e9408b9fad7efddc7a7a653e4f225628fd6",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|320|side|grid|1",
+      "file": "cases/bf1da1dfb50cfceed98856e40baaadcee49341ecd334fba78a7856d3a4df3472.json",
+      "sha256": "26737665ef7d24fa9a8180b2950e9fd9406b75712369f3cf307ee7428e086e2a",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|320|side|grid|2",
+      "file": "cases/549b9164fc7709dfd8c8ba6687b72e2e4a6b1eff85e9d5cf1f4077ff2a4603a9.json",
+      "sha256": "66ee297de83a9f2bf702841f3e3858e587a412d1064b2f99e8b1dbd5a5810f84",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|320|side|grid|3",
+      "file": "cases/a9130352943e91d1c6bcebf923e98972901aa362e40d5facafcfec99edde35d7.json",
+      "sha256": "b70030bada034c48d544d4b9bb44badfb5193dd6a7b8da14273e43169d9c3193",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|320|side|grid|4",
+      "file": "cases/a0b6e5d7389d1de3f74d9ace911d3061761df7c1586c2e2c3d6d740ca7971030.json",
+      "sha256": "40c1913b90f85066992cded670aa1be5b9d5cb9f112a1f16573f815d478a1164",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|320|side|setup",
+      "file": "cases/e7979bdfce519b580f4774bdcba1fc67ec922203e27b2dbb4062c9ca8948ff56.json",
+      "sha256": "34e45106df4d939bdc3ac808354f11cb0d7299069b381c881d40f754a918ac43",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|320|side|grid|0",
+      "file": "cases/22ba2422cd03d73dfde81e40a5cce7e0cbc759cfb8bc4030d44384cc38142eba.json",
+      "sha256": "58501959ed0e568c74f488a98ef66cb3797a67edb940d82671ff5b2e34560a53",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|320|side|grid|1",
+      "file": "cases/38c57997a4053d11f42c4db7f4aca214418d17a5c2500d6b6f18ff5a4379c088.json",
+      "sha256": "4c22b202fabdb5bf1e3770f722503bc1f18f012782c481fb117f902c494d08a3",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|320|side|grid|2",
+      "file": "cases/0ee809242101506a7307e24122cbb49a3f22a9cab67fba4f28ac0b4952ebb73f.json",
+      "sha256": "84d3cf7fe8dbca536f33dc1b6c024b0071ad080a9e49a9f505d108597f5422c3",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|320|side|grid|3",
+      "file": "cases/27c53d39c3fbc6c1056bbfca27a35a1dbb7df1260545c522a143ac811bd923f3.json",
+      "sha256": "4b0e9d0d4bb63ca7f322510a655cbb65418cafde6f4a34bc4fa6276f7e248808",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|320|side|grid|4",
+      "file": "cases/116fe1cdeeed15dffa601fa2ee83ef49b09266b3e59a6ccbf9b7591455828362.json",
+      "sha256": "26bc4282ce145682e896e88c759c43788b80afb7c1370b77c27b1eb5522933f7",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|320|side|setup",
+      "file": "cases/8fd8c0785dd499d0da3dc9bf6d0c1701be60e92e9efcd7b44c10ac6774c9f41e.json",
+      "sha256": "b81076fe85d8e1db780ed7a16eaac00dfc6af04079c8212f86325640fb1e7d82",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|320|side|grid|0",
+      "file": "cases/32cb992f308bdd0ac1cd4fb91849f0751872ebb9362f2dde3578fe11c99904de.json",
+      "sha256": "a6b16f89c44ecb9b8af7dc73dd5510b793d1d1c94535cc7422a5a3e2aed20a40",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|320|side|grid|1",
+      "file": "cases/5c10d7aa9fa6d72fdd93907ec5ee184b0d584d6e1cfd3a8e7cd8656cd08f018a.json",
+      "sha256": "f4997cdbb1ff0ee41965e5105d0686d59fcdf8055e90b191ae31a24a06e3d16d",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|320|side|grid|2",
+      "file": "cases/81de8995c11cd39e9a4d3f38ff4a7d5b9536c42dde3f3cc8b16633be43dc59fe.json",
+      "sha256": "1e67e48dbfa0a690832e84688b95b632b8ee16eb6a6afe607af04e22e4633e24",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|320|side|grid|3",
+      "file": "cases/7c569465b56626356a79b6980638be8cc2c6ad830a1e6d40f88303508e956e11.json",
+      "sha256": "e8f2f06a2dbfd45520f60304a88d0e4d2060c2f0dd0ebf2ca0392b00e0b0e409",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|320|side|grid|4",
+      "file": "cases/db3026812d4f234a8d69133a14974748c1d7344b266191efb99b29424f322b4d.json",
+      "sha256": "e166d8d094025955c3012fc16e0dae71688db2eefdd5f9ab1bc0ecdfaa9e5494",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|320|top|setup",
+      "file": "cases/62c6a3778a414727e7b8ce198b165c407c74d61e91ba3930701953b3473d1aae.json",
+      "sha256": "a8b6b4fd3e67813ed6cc0167654468da95aa46fc76d4f97e81cd338922cedbff",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|320|top|grid|0",
+      "file": "cases/f94060ec5c8b0314f4ffacc5f5a5584cb1b3d3ff898d79db7416ac0c9d3cc071.json",
+      "sha256": "38e9c701671fb1b6bf947aceb343812c7243275cb4930b01f47781740b498f42",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|320|top|grid|1",
+      "file": "cases/935c623be609274a9052f577b4bb6c2f29ba884e639a8b235b76ff10a88ac1f6.json",
+      "sha256": "825aed44ab72729360c4c2dd072eb81f92909dea0c031116586cab9455def1e6",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|320|top|grid|2",
+      "file": "cases/693cf7528b78a0f0cbb029a23635d4e6c2bb3e359dca81ef6d4361da623a0ea3.json",
+      "sha256": "72d375f6ea1e3f1a900a1ee1d9b68ac28496a00c20dbd1d6126dfa68b0e0be6d",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|320|top|setup",
+      "file": "cases/960d32f083635b59072db298f14702889f494f5cf35daf5f6589a09ee448d67b.json",
+      "sha256": "a9323aae2f7882f5eec947012e73ecde8e03119d5140593b39bfffd2e6afbf11",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|320|top|grid|0",
+      "file": "cases/95cf5323a4da012240272602ecc270afe1d52593ab92af4a15ed9301059d3241.json",
+      "sha256": "9cd1c4b8ecebd78c6061a6d8a74d44f057eafba3a8b66bce22c278bf33a0b092",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|320|top|grid|1",
+      "file": "cases/da9e637d9d13997faa441c012fcf53ebf8e577d55704a0afe4b48d6d73a3b35c.json",
+      "sha256": "2f0989e92e27388655b912eb9003ab9ea4bbb5f552c32d7c15fbbef67ac9edf3",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|320|top|grid|2",
+      "file": "cases/2514d1aee8af70240c33d2ee4518cd5a671069669559c2673248b0d98edc0255.json",
+      "sha256": "43a8d4238701c1762912597816d1ecfc245d7f308b4939c8b094640ca39cb6e4",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|320|top|grid|3",
+      "file": "cases/0321e7d3db34a536e7cd6ae014aee9326adbbde54fdafbcaabf64c3baf28f5db.json",
+      "sha256": "abecd61218dfbd13ebe98a59484485e58c8aac8d775dc667a0173c909e7ac68a",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|320|top|grid|4",
+      "file": "cases/26de24202e4c7d2a80f83d67682852f01da78b08b1d28a1ba35c6b9ccd2a0330.json",
+      "sha256": "1c563577ec4b5f4a00294f2f805c71fd582dcc25b5d14f62bf9b61500f27ec18",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|320|top|setup",
+      "file": "cases/577311088cdf0ad98c7068e04aea9bbdffd67966fb8943691caa0c63a52bf68b.json",
+      "sha256": "77c3682d4ca6aa7da786761d880713ffecebcb06d07e5a0f2d307fc0a77796f1",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|320|top|grid|0",
+      "file": "cases/5b4247e49a1203aee81b135372a575bd7f0d57d4db7037c6d3b1de311cd8fe6b.json",
+      "sha256": "56c3701d0820b579130a555e14f6569108152281e5e5dd3f759de3587011346d",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|320|top|grid|1",
+      "file": "cases/eb9dce56937650324ac90b686d7c59635d70fa442b862657a11cd2f705bcf084.json",
+      "sha256": "0ed7d54c71dadd9c9b88ed4222fd3fb22f852a531916be136f106ec4ab06ce32",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|320|top|grid|2",
+      "file": "cases/41f75397a8f3d2c502339fe1ff99a05bb9fb5fa0700609fbb293fe7d41203780.json",
+      "sha256": "260a0d5483f51733554d28f66f42fa4a9cd3c0151c1032e4195d5ef0683ac994",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|320|top|grid|3",
+      "file": "cases/c98b33758aaaf89129a83860d90bf901a9cf52bb09c6cadde552dc0c72a9243d.json",
+      "sha256": "15f176c993e8d344692193dc2ecde1570b550cbef6d0bfe63137d0cb89b66cfb",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|320|top|grid|4",
+      "file": "cases/5ab3a220fb684545e502a66a6baa50fc182f1c51248481084571c1bf4543c25d.json",
+      "sha256": "d4f925cb1fdc4ff2e1c1f7180df44a453c5d7b1b1cad54e893603022769250fd",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|320|top|setup",
+      "file": "cases/dc4e2db8bb82751eb6347f3e6fb93e6d9601588830f51cfc1330ea97af781588.json",
+      "sha256": "5bb469f6eb76bb2e6948bb0a365b964bd9ee5da9af2d1262d9aef6a4234b3e11",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|320|top|grid|0",
+      "file": "cases/c4711d126e53fdb89c7288ef461ad9eb9121dd65055d9182c2958a60e77c446d.json",
+      "sha256": "2c15f4f85114edf27eae6829fc5080b68949468e01598567736d362490603930",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|320|top|grid|1",
+      "file": "cases/3fce184c37adf6ead4d91c8537319331aaebdcbbb8e6e5a5fad4a63114b95b80.json",
+      "sha256": "58bca2f52fec52b18cd2468356a2aa149913407ed7656b8dd069502015e284bd",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|320|top|grid|2",
+      "file": "cases/57a353f62555ad60320dfb97349ecbd02c5fa4bd7132fc227b05b3c639aa9d64.json",
+      "sha256": "dea5d2a4475a60f9679638d3c6c0d4ae1272acbb5d300d2b930988f2143a86bb",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|320|top|grid|3",
+      "file": "cases/98974c1b55db6e53617df58db6d24a7c974e87eebf6bee43f712722f5d910bad.json",
+      "sha256": "54e3645cdfd43cc7e5bb230e0ff329b5ead7db6699e44304e75ca38c7e25b478",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|320|top|grid|4",
+      "file": "cases/5fb862a489718c547c0d8a18fee8d174136e761a5cf90403f851abfcb9ac3f5f.json",
+      "sha256": "0169b939634323dc269abeef2e6e47b91c454c5950fb50b95d1f32602fb6f619",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|320|top|setup",
+      "file": "cases/bc785e72e96207d1b523a1a25bb159eaa36e7379f5069c5ec9478161286078fa.json",
+      "sha256": "82efb401894dfcc6f433e1db496865adca19f224aa80c9e223da3b33ed26f599",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|320|top|grid|0",
+      "file": "cases/4d7773e76c0a441e3cf147546f5cb4c5166557f98457f56282a63eca44ad285f.json",
+      "sha256": "818a5bac6b0b1cf029d6957f49177a9fa95f8e046a23a596bfeda024b8c4c569",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|320|top|grid|1",
+      "file": "cases/2360775dce35ee908f51a266f73188c4607d98c2a05cc7cfd9926a0fc097df63.json",
+      "sha256": "6183e9eeb6a66bbc9481783c65dc958d445d1797d4e64d43baebe78e026ed58a",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|320|top|grid|2",
+      "file": "cases/06d9f0a500c6abed15ae18146b14c3e932972512723ffaaafd3c16db163b8082.json",
+      "sha256": "ba3c25c9cf90e6763bd915198d3b9c16778800b377d8d192438b2d6bc3b850de",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|320|top|grid|3",
+      "file": "cases/30e2e9d42b02cac547b412c11593ef62d6fc64819c22deb8f49776f5e0cc4556.json",
+      "sha256": "94bb0c7beed27e93ff0d750248a4dcf1c7e9d9ea93b047a3a5ebb262b49deabd",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|320|top|grid|4",
+      "file": "cases/00c55f28ca024e6e29aa95c50114e61d1cf59e770848939a24f73362de3783eb.json",
+      "sha256": "ce58f606e43b7a7f0d501c78e5b4ff55b2084e84e6b6495827d4d6c3f6bbcd2b",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|320|fixed_projection|setup",
+      "file": "cases/0507687d56fa72e7b0c04b6089e015ca1f05599757cba8c2403337ff0f97d4aa.json",
+      "sha256": "eb5ca57c422a6d6b1562c750bfaf6bb44899c5a8a44629abaf16db1830eb3564",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|320|fixed_projection|grid|0",
+      "file": "cases/4af1729be03d67ee443c13867927ddcf024f1efc7135de24950635e5fd60fa32.json",
+      "sha256": "9f3f5f6865362a0369fc9e9523c366439ed8f321af9ca297e1c021bdc1224656",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|320|fixed_projection|grid|1",
+      "file": "cases/3df7c01ebc4ee0df762cc1880ab59afc890f2074db277f54e619403e4fd53def.json",
+      "sha256": "a50950b868e7e28f7c192aec931a47176a7f8f84c1d0bb40d091d36ce42a0d14",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|320|fixed_projection|grid|2",
+      "file": "cases/680e2b5cde72bd2b191a3dd953041b05269226a049167d129224809b81df79dd.json",
+      "sha256": "359b7b1c73e30dd36c3a25fca1dbb90a24ebaf1c83e146abc70e24d0f06f724e",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|320|fixed_projection|setup",
+      "file": "cases/bdb913750d2a0f9952eeba492d50fd74a3eae3323e4bd8600ce8eda11fcfb4da.json",
+      "sha256": "01a862b1308b4653f8b164fc8f0f3cb010e4aa1da1094a3f984eb09d4a17cb00",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|320|fixed_projection|grid|0",
+      "file": "cases/30219f95752009f1e4994b056a8113aa30dce82754a6a075aabdcf5962204f37.json",
+      "sha256": "6d81a9ea62201017899dcba349556fa1993c00a33606bcb970a993e8aeecee61",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|320|fixed_projection|grid|1",
+      "file": "cases/bfa1e6e79bd455e6002919a122b44418e8da95955db39217ff13bec295f036c5.json",
+      "sha256": "0e2da9a8b63998879d6b0d7e96e25bb188578604cf9301be7dae8fcc5b1e1407",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|320|fixed_projection|grid|2",
+      "file": "cases/363fc7b08c28d00ca769c4debd718c718cc9649004954ab4675db979e94ec9c6.json",
+      "sha256": "bc1948de461af9e9edd833ccbcf4e0b97f018e5b0839c9cb2ebbd3e9ab9bd47a",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|320|fixed_projection|grid|3",
+      "file": "cases/48430a15230d7db0e80c5bab393d9374c6e6c6f144bef8b92393adc2bcd2b86c.json",
+      "sha256": "0821e2faec1961264f9a145db0fc8aaaab53a04df1f49942ff94d17260aa915b",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|320|fixed_projection|grid|4",
+      "file": "cases/059c262a28f22d06144ef13933562904b0f8b6f566ce017c82470868d2a5d0e9.json",
+      "sha256": "4140a17698013e6b2116e8e9905d3580c11ef0ca70ebb43395ac116b4fe3dca5",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|320|fixed_projection|setup",
+      "file": "cases/e8cd466c20f76270abd9968da1e779b4992e8d29c1c71ae4bf67ab9a4aa1a871.json",
+      "sha256": "67fe8dc5bac01fbd584471888d8df77d3067cfd0a8f6027b1f532f9f587d7343",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|320|fixed_projection|grid|0",
+      "file": "cases/9a97186e927e94779ca9954fcd51d06501559fc281be9fcf76e3d680d9d4eee0.json",
+      "sha256": "f1d9f52fe9570f05fa0fcb56671360ecf827f4cc808c60e4e004ca7ed334276c",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|320|fixed_projection|grid|1",
+      "file": "cases/f0d50005f1c400f255920bd01f34bead525c898305141af9b1532924271cf57b.json",
+      "sha256": "040816022c8c22b83cdb91a77a4edb9d3ae07d8b61947b7a7ca2d215497418d6",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|320|fixed_projection|grid|2",
+      "file": "cases/d6df0f389c2d1c1ec9e3800e2ea3e3ae083e5e470df16b2c8630e722ff43e063.json",
+      "sha256": "e304c5c6b000e9f4a6c3f180057930bf564cf1ce4dfba865b3b2b90b3bd363bc",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|320|fixed_projection|grid|3",
+      "file": "cases/869dab5de30a8240a1f7e4d2bb9709ba8fd008df32946d9debf00fac09a3ecc3.json",
+      "sha256": "b4d56806a5794191c2713b768adafccbc67ebb693a9850530d5015af687693c3",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|320|fixed_projection|grid|4",
+      "file": "cases/f59e2556289fc3e34276a200bbe4a980324c4ec79657b92db031934e39d2c4f3.json",
+      "sha256": "4cebdc23ef91620add9093ec58cdf44b584eb5df1c6b46abe7a1e981761f39c4",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|320|fixed_projection|setup",
+      "file": "cases/45ba73d542e2be139a21ef90b155620e5d2a50247671d80e9d09e47b650038c1.json",
+      "sha256": "beae6682bae7214a4ed3f425117c0b33ab63920acc724368a56374de2e085644",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|320|fixed_projection|grid|0",
+      "file": "cases/b3423bc8400f9047c83c34adeaab132c1287cda1dce5346910e850a3f123577f.json",
+      "sha256": "14769848d012c6d507d739d223ab9ebfe670f3bf1f63b91d4bd0c608892f7d96",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|320|fixed_projection|grid|1",
+      "file": "cases/0b1914285df4aed381dcb555fd088a046a7e9b959f6f3057bfb20c396d83438a.json",
+      "sha256": "d9d92738dd83c794cccb7304690d32d801f65b67e39b7e22c579af4da346a79a",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|320|fixed_projection|grid|2",
+      "file": "cases/2c25728ca4a8832c6626ea889c84e98177558064b6015246da05828e2a5e8af1.json",
+      "sha256": "d4ad7a956fd481524a5a40cc998e80c71520b9bbb606e991c2388919896db134",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|320|fixed_projection|grid|3",
+      "file": "cases/25cbf34e966754ad86d818d04aa1b817e3b5b7b2025479b89d3aa3e733162ada.json",
+      "sha256": "0eeb7b8e9fde5e152d737198837cc9891f19b51101b19fd8c480d62712c5dc87",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|320|fixed_projection|grid|4",
+      "file": "cases/dcbd92e9f9bbbf3b1db26a4b09436e60275b6651bd0b4cd612cc6874818d5d6b.json",
+      "sha256": "7db5dbbd1b73469c18614868f6da40870f753ec3010edd2cdc3353201006fdb2",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|320|fixed_projection|setup",
+      "file": "cases/0fc381b1089b729a63a32bf5fc96b2c81c69309339d9fa09282bc497ea4a1e97.json",
+      "sha256": "57a04a9ad59a468f6e76065996dde5b0db5732c68fbc1589a105862614d9aedc",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|320|fixed_projection|grid|0",
+      "file": "cases/52dfe6c541ee025dd25d95b986a47ed77b9559bc4278fcfc0853c9789ee5ae5a.json",
+      "sha256": "53573ce115f804b39ce07f837a94297ac21e5d2d47b213d45ae3ed53d60a64dd",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|320|fixed_projection|grid|1",
+      "file": "cases/5e5fc7881b3db9dbd78ee28f810a9702438f72488d94423783d6e257942f79b5.json",
+      "sha256": "1356aea85f54fe80ebe3e86901018a274df98dbc8e48a57f36a73d4122690740",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|320|fixed_projection|grid|2",
+      "file": "cases/ea44481fb46a2d3e36a35efd77c3a60943a9231780e39413b9565a1c7865c47e.json",
+      "sha256": "de6d58d1a7d40f866a847c093e7a780447d78be6aa6971d356f77fadc08c9638",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|320|fixed_projection|grid|3",
+      "file": "cases/d65b96f1b72a996cd944db105efdec977c23d7b78ffaf6d54a030a7d5fc37798.json",
+      "sha256": "18449491b02a0c71d14b6def7bac8f23a3a6e3d4ce6ce6c711b1b9db57f6e45c",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|320|fixed_projection|grid|4",
+      "file": "cases/529e3395a24a63084d8a61cb753ae37fd01238fb904daec4685a7b73e98569d7.json",
+      "sha256": "770e7a5fa6af85ec689df4b81a1053aadf94714c89b772d804ebdc21cabb1cdc",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|1280|orbit|setup",
+      "file": "cases/aaeae80af73faa1e94d541b9c6d9b6eebe17e2b68faefdb47689b2d57002dca4.json",
+      "sha256": "8ac44d1d731185160e735a726806f34a8f5b80ef95b60b371640a5f2b88514eb",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|1280|orbit|grid|0",
+      "file": "cases/af71209790b09306e30f0862a13286a8e8c124c6b6af879cb64b12146d666e20.json",
+      "sha256": "724ced02a5b10c6bc53af0ddfafe35accbeebe6ed55f22914221559a12af2ba3",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|1280|orbit|grid|1",
+      "file": "cases/3b08af8f238137144189b8a15cf060810ca39c1b04e9063e929a35726b941fbc.json",
+      "sha256": "1b59fd57d901a71f7c9a2a9a25232e8530d64012cf2d7f6708c6d6aaa3749618",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|1280|orbit|grid|2",
+      "file": "cases/3c4b4af2a917f85c8aa6f48f2719c666f37b41a87aaca562b9ba2e80c9107ad3.json",
+      "sha256": "ea3e6afa11dcbf4f3ae3af395a74ffab52a21fdc2fcee50f5fe4ae1febda85fc",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|1280|orbit|setup",
+      "file": "cases/5ab0410f556bc4879affbbaaea221ebc020186bdb10630f16cb9e8782b4cc3e7.json",
+      "sha256": "0a5beb4d22090f70fa7eb7aa8c9d4083634c1ff1aa6f10ffbf6532f6f799d552",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|1280|orbit|grid|0",
+      "file": "cases/fb76068565d20a6e9dcee3158e328ab4b358aa2658cd184cea58cd5b064ad5ed.json",
+      "sha256": "95dabaf09531d64b7a6d73b2fecdb53365e1a99d01178c82007c7c35bbd43bdb",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|1280|orbit|grid|1",
+      "file": "cases/edfd707efda2dd7a85b7d243cd9689345422cd5f5a631d8c8ce0524c268d4f70.json",
+      "sha256": "282de950c67df0b20c759e0e64e544bf231e2360bbc7dbc376eeed123894d80a",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|1280|orbit|grid|2",
+      "file": "cases/2e2714c686347f62231201cc64c92b36cf6c23b328c98aab7bcf6040155fe39d.json",
+      "sha256": "01845d2b84463da0f41f4e95f6e55326154c23da9bff957f99f5e2668c98d038",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|1280|orbit|grid|3",
+      "file": "cases/c9f067d7b2028649d31baf43645db205297417ea783633e0369c7cd8f5f2e8b7.json",
+      "sha256": "ce2068ce1a1543c7d469e1563007c0cca8a27e6089374625d959706a8b3c684d",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|1280|orbit|grid|4",
+      "file": "cases/e8e01bc2eba2f1e422e1b0d9540ec85c20e8bfbcffb6382faa39e8e7566545e3.json",
+      "sha256": "3ed2524013c7451ac1bf5ae8849597acef3c822a2989e0e8bf294cedb527ab9f",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|1280|orbit|setup",
+      "file": "cases/59be76f2010856c8504ae70656ab87b79330239a6191cdd1454c1ef11d3fb801.json",
+      "sha256": "66eb0ada331c71d5c0ebf6c48daf974a6136e286adfcf41d258166fbf44279dd",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|1280|orbit|grid|0",
+      "file": "cases/8812fed77bfd7e16ad222f43c2afeda529e37ee3cea44f91a1a3c32d5dd9dca1.json",
+      "sha256": "1d452f87acc30c5dfd168756fed841355227f9d54d05ef629785d056393e176d",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|1280|orbit|grid|1",
+      "file": "cases/df80fb44353a9a7124828fdc3c034332bb93887de63b9c13e70be1b616bd3934.json",
+      "sha256": "ad452d42c7b37b0b63fdf7cffa2555a946b1b497c46344074aa1740035bd91d7",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|1280|orbit|grid|2",
+      "file": "cases/e4ba12d00bfb5d7afa91ad782984d8efefb8c1ea00783bf5c36e26967839a9fa.json",
+      "sha256": "4ca3955e41b367b6688af73813a1dcb396437c08b28c61e1e9ebd9c4232e90d0",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|1280|orbit|grid|3",
+      "file": "cases/6ed4ec1d976c500d82fde61cbb002e57ee6bb4d2fb9a672a205ff89edb57c3bd.json",
+      "sha256": "2191d99aa18a13316303ad9701f9916911e100823a32019efa1c6b39866cf8d1",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|1280|orbit|grid|4",
+      "file": "cases/c68856142fbfa00d4de3f911f494dd5d2e3fa49a7b82222ecead0a3e708fa898.json",
+      "sha256": "7930dd23a91dbfc0adc9831c526b9a2cc79a927919012de6b45d2492f359d4a2",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|1280|orbit|setup",
+      "file": "cases/9345e8b610aaf6a679595447a406740b65ae2db76e6a52a0ceaa339cec3ddf9a.json",
+      "sha256": "3af77591c72ae4b5c9adca3d99b6cb15f46e90162d86866e2685b9e3d8c466bb",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|1280|orbit|grid|0",
+      "file": "cases/f6f1ccb5dc39439839b52279db422bb35139bdc5794eb443c759c08bedd22473.json",
+      "sha256": "c64e2cf05c099b562a9b6af30f760666e54b4cfcedbb27830a7d3c608d06040c",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|1280|orbit|grid|1",
+      "file": "cases/7ef663601cfd1909a9826adf94edbfa98f112dbc6ac98fce15ca01f78e6c3c0a.json",
+      "sha256": "68380f7f635db6ddfbcdd67f4d4109c872d1a76c924a6eeb6175956f7036e08b",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|1280|orbit|grid|2",
+      "file": "cases/9446d550639a2e2cedfe14b6aab200b29d7b3952372ba49fdc0386db67f01eab.json",
+      "sha256": "afa3e1619a5be64ab15f6e9b2e177abaeb751473d81ef159a8b42c0a2406d847",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|1280|orbit|grid|3",
+      "file": "cases/5155d5f83480e2a75f42a9dfd78451d5df695a2799b4911ab13c22f974934de3.json",
+      "sha256": "565b064be662f49e9472b64d6666948192af0293a284778abe5618ff28e82857",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|1280|orbit|grid|4",
+      "file": "cases/eddacbce40249cd40c95990ed57da802e23417b7ea1771dd7723d0000377de70.json",
+      "sha256": "870a2c49663ac5d4b36ce3fe0fe133c19aa386346dcc76af55324a7ca6634def",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|1280|orbit|setup",
+      "file": "cases/a46e49bd5865a7af6de498d59406a77da7c70c60ab2b33b2d35ef3abff5584d6.json",
+      "sha256": "b0873824ec4bec88f959c3dc7c9d74d73b78599c60986990565672f99c6a1079",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|1280|orbit|grid|0",
+      "file": "cases/375d1071c8f7c074228fb2f5c7061af4e9c0de3e9842745c33cc8b794b675001.json",
+      "sha256": "a420b7a187708e913ca3a8f0c06e7edd557893d172d1347300f03fb5273ea7c8",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|1280|orbit|grid|1",
+      "file": "cases/d67a315f2e3a1d42e03ba59b00128bebc5bf9fabc8f6b1ba1883696ac6e3b54e.json",
+      "sha256": "6978db04666e5c2377c5b72109c03b604997dc0d95d2e09224282e700df4bd09",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|1280|orbit|grid|2",
+      "file": "cases/b6964c8539346837a018912a4ed80f8f3b9bada6a91b1cd6a9a3d9ce21c54729.json",
+      "sha256": "794d797a9514754ffcff707e613eba57973c0b2a3a245d667d82ad1ab8d2dee4",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|1280|orbit|grid|3",
+      "file": "cases/19ed20a239e2ba92231d425563bc8b5fe4e665cf288402241308cc1187768fda.json",
+      "sha256": "a038395eaddcb0d778f67d29126c1643c2fe93911595fa2f77e718f4c5e05185",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|1280|orbit|grid|4",
+      "file": "cases/a9a41b3f643435a71f8d62b69216f6950bb32cad16674e8d957604cfd5019f91.json",
+      "sha256": "17448d7dce43950234ca19ebcde567c50b6b032a8347b8a0fec06f5051fad0fe",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|1280|side|setup",
+      "file": "cases/c6c28f5e0b62b3018dfb110ed85eee36b1693ded10f1464574f44fe9fe6514da.json",
+      "sha256": "109fd13c0c69910683897f42b90b372577260f4ef394cb8047b32e1442abb0d8",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|1280|side|grid|0",
+      "file": "cases/933a4b15c7fddf705ba1af206ba3f3a384fff628431daded3d2a47b000f9a725.json",
+      "sha256": "9ddcc432e42b158527786e802a74d9986b048724ae3c9599a00d2f18076d6657",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|1280|side|grid|1",
+      "file": "cases/495888a7ceb816d31689b91fc86ad909ab5c409edef4a75c080ee70fd2abe051.json",
+      "sha256": "b157d75e75bef69e9e5b0de8f8b79f5ebb048be694978f03a29fac1cb103fdc0",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|1280|side|grid|2",
+      "file": "cases/7a91a67a0ac6506333a9119f555d9b93a9db8ed694588ca93ab42f27912fc06e.json",
+      "sha256": "83ba952246cfff953b6990474a607f552b9da14b8b91861066abf7794d57e7b5",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|1280|side|setup",
+      "file": "cases/d7a09f7fa29ce82b66093db92a2310ce56f3d1c60ddaea107812b31835f6ba1f.json",
+      "sha256": "dc6ef22ccce0b3d00a4b7fc474bab8364e438a3a29cc64c3c3787d4393196c7b",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|1280|side|grid|0",
+      "file": "cases/16cf9faf8bb45f632b6357dadb3d91377e5735cc7c41602cbfb42b516a789106.json",
+      "sha256": "bc471fe24d61bd0ebdad375b8936d54be1449bd04d2a04e9e4e4b66a097f5156",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|1280|side|grid|1",
+      "file": "cases/33de5542663e3426ac8244cdb40dc4d2daba772896cee32f58046af2a07b234d.json",
+      "sha256": "5644645447327364cfff81a07a3709d8fd3389621c0ffd0cf7dc033d05140884",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|1280|side|grid|2",
+      "file": "cases/0767da0148b437ede76167d44f353bfa04a1154eaa4edd011bcbed6be4e4f307.json",
+      "sha256": "05313576e694505528dd0a6abc1aa2fc18d9497b859fdb3911f745cdf99277d0",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|1280|side|grid|3",
+      "file": "cases/b248c54464439a598c1bf84399dabd6b71633d52a2e67150f7fcb6d9a1fa1a9b.json",
+      "sha256": "0597adbd70655e93798e91e80d97f94addae7cc4e7801be228c8f930c8ae6be3",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|1280|side|grid|4",
+      "file": "cases/897839a832d0642aaadc915f70e634b855ca9bd79711767f6cda143aed2f860a.json",
+      "sha256": "10e952d60aed89cc074f90889fdf74079fe61e8900094b1cfad9582088c5e168",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|1280|side|setup",
+      "file": "cases/a985ae6a87e9115e86edee491b28d1f16a81008cef93416b94b2337889f01506.json",
+      "sha256": "b15940fba935be0301b044caa7d512ea95cc05f5943bb908870f7b428a6f0313",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|1280|side|grid|0",
+      "file": "cases/39b1f245cea3f7c2b13262b1ccfda2157872d6a111bc6f08ba334ed7afcca33a.json",
+      "sha256": "b0cce71ba50ffdba989e3c6c81fc07395f50599ab3e4b2d54f8c8f64f404656e",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|1280|side|grid|1",
+      "file": "cases/d0d8d3e25f4f96b5d455a2eab73cab51dffb0c36f5013ace41f94937ec7b9209.json",
+      "sha256": "64cebccab60150f7ab074c11292f97d02473c9d6854e562718fdfeee76da97f1",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|1280|side|grid|2",
+      "file": "cases/363dfdbf33ca2b6b201336511df3ff20b3d9aa392fdc4c5a84e1cfcf699a74ee.json",
+      "sha256": "42c109b4b4a4d3e444b55a7d40e2a54b5dc964abfde9c785886af07776e8d507",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|1280|side|grid|3",
+      "file": "cases/57f1ff594818f17284bf32fe197b8bf69397658756b0f8aacc812ae865d5d9e9.json",
+      "sha256": "09d19b9e901cb05bdd58afee58c4f96c61d1d1a413f64b925c98f344e5c1e0f9",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|1280|side|grid|4",
+      "file": "cases/a5212c2ace8f73f3bff926d77b23f8e2ff667c6f207221ae0128b346742f7105.json",
+      "sha256": "c5e6fef4b3c095d50cfcdd29e485bb9692907c498f86237d9c1e9852f7388f4e",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|1280|side|setup",
+      "file": "cases/7972d39ea4c4ffa1e4e447485ea8ea77296df8dc49e38c3c6037adc08f962254.json",
+      "sha256": "ac47b3e3ba8c2f834dd71bb149ae3a9617f782688b6be1a6bd5b3e3fdacb1b01",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|1280|side|grid|0",
+      "file": "cases/7a7fc5bffcdf5f5c725cf6c5fe53ec082c8bd22b41e39570957af129f1cbbed1.json",
+      "sha256": "447bd26f4c6fdff907f1bb687cf86720f4ce29ea60e961db06991245001fe150",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|1280|side|grid|1",
+      "file": "cases/855e9f1f0c5d1266e1d5098f8e6b49c2bb1e0c54c1954da0b67ec6699d029be8.json",
+      "sha256": "57958598c5068908a1321e1548cb32442a52b798fbbb20af1ceac90b6e686a0d",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|1280|side|grid|2",
+      "file": "cases/ce905046d8320e3b938f059332ab5b3bff8f122795e8807a1eb2832c98c559bb.json",
+      "sha256": "6e61187bd4099f58578d82e2b409f7da6f8e72542ea67e8e1f9c47cf83eaadd3",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|1280|side|grid|3",
+      "file": "cases/b22d75debd96a088f9ee9a07492bd323f7babace9102a214dd4848556c2a30fa.json",
+      "sha256": "072fe85735eadf2c0653aff8b56b0be7f5170a8d42a590efe9d2f3a13037c2e9",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|1280|side|grid|4",
+      "file": "cases/1385c8785259212d26cdaf2c0cdb910dfd5e942051366468266b0a16cbf9dc6e.json",
+      "sha256": "fbda271f29a62d5a9f7b298058166ce3f34cca1c6f2a06e2b5b20721732b519b",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|1280|side|setup",
+      "file": "cases/efa56ae374cb79b04b4184e129d6d6c0c0b386444ceb128294995d0d72e6daff.json",
+      "sha256": "1c4ad979d0727d1a34188919a6b635e987ab4afa7366320bc1d768353862e0a5",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|1280|side|grid|0",
+      "file": "cases/118bbb19a9b0b9cdcb4f8ac5bf2735a8193bd7ab2a809ed481415abaeb8908be.json",
+      "sha256": "6eebdeb0d087a7b4b5dbaa69d8f06c99467e645d56eb1de8458fe20432176f6b",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|1280|side|grid|1",
+      "file": "cases/824129602a8625262a0f19363bc13cd6b33fbd765975054c1d3c9d3285c1d547.json",
+      "sha256": "51a5aef54bc704ec2be38099839cc37d8c406517be257a6aa7ade02e0212294c",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|1280|side|grid|2",
+      "file": "cases/6a790c95c9564e4660f3452bdaba09794a11a0d145aae9298e1c689c510bd1ed.json",
+      "sha256": "5a83cade4c6be73d06555b25563c015f1da06be6b2f96bd7d27a1360e69539ca",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|1280|side|grid|3",
+      "file": "cases/80435eae764c7128ee0dbb2979ba378fdfcfedbd8bc01a79b0a0b5d32ada220f.json",
+      "sha256": "dd4b3cb5d6e5867e8d4c60b0eaca20b66bbeaddef5d5450a6c821ad4cefffc24",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|1280|side|grid|4",
+      "file": "cases/849573299eb40229fb63b81c3e1787a37f983d29c577edc4ffaa3d3a45f091d3.json",
+      "sha256": "324cf7cff5121647e04c69be5ee567dc922e28eb1849680c024a6687eeb9693d",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|1280|top|setup",
+      "file": "cases/1a9b8acbf0fdfe2e5d4b2a76cae67c49d95112cf3615c25d54ae321a7b300a1a.json",
+      "sha256": "9d8250897e75d8795895296207f0c2e131610847cac64068c0181034881c7339",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|1280|top|grid|0",
+      "file": "cases/0956d0a5774ec74a5c07620e5b7d3010a82e10ed0dbf3e87a91a6728dc53d955.json",
+      "sha256": "65b06e729c6d475cff60ae332375d8b029b15c52c6ac5014cf6cd7605dbaa7af",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|1280|top|grid|1",
+      "file": "cases/e1cd4d3f14e0c82e378b13ea13f04144aaf9a7ce8000af1010c3576c0d1811a4.json",
+      "sha256": "38ab401ffb591914a140b9ce5cc39913b5701b0999ae3ae56d1674cacc1acc8c",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|1280|top|grid|2",
+      "file": "cases/ba2e2cf490d0d16cedfd2e5efe364035cf49ec411d877332c9867880bb9abfef.json",
+      "sha256": "7aba2532b76324eec7d8657d565ee58bc1496b941d38eefb2630c191e455b8ad",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|1280|top|setup",
+      "file": "cases/e8909450d912c2ff5d4355271ff3fd288ca238b84d8d94f3ec9cb02a58171a0a.json",
+      "sha256": "d19483a9c672e18be391e7ad70a1dbf3c01affaf84c6f7038c10687046f8904d",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|1280|top|grid|0",
+      "file": "cases/f8541126f7dab425dbc4a50ca286669288e2c30d2fc627d03988bb73c37ad2f6.json",
+      "sha256": "407f1f7c9d6de9e21dba9a3cb0222ed624e79ddb37f74daefa58d5418765ea8f",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|1280|top|grid|1",
+      "file": "cases/7628d4fe71b7d40e538b681e25fe7814d054cab7079a0ed3f5651910bb8cd46b.json",
+      "sha256": "b7d61ee10277a9280e56dbc83a3f691825c20010a8bfe6d0cfdc52b773083761",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|1280|top|grid|2",
+      "file": "cases/4a31de3e6314f2e28a97a8ae55370eb8a0dd7cbec2a0b8b41f80635186f12b88.json",
+      "sha256": "a8741251cb1cec7c49d4b0bffd3d26ef38ac158630de26225cf121e49d48f760",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|1280|top|grid|3",
+      "file": "cases/2098a9372d4632f35bfe464a2361e37a17705cc6491a9bd1d30edbf3d6582d8d.json",
+      "sha256": "dd21b4dc8fc78b31360be2f62bc2d89edb471cb7d7eaaa2ec08bd786861c6b44",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|1280|top|grid|4",
+      "file": "cases/2a5c37ec5169ec4a06b7589e1289d910b8c23121d0f23bf8a4fa612eedbe90d0.json",
+      "sha256": "7a6da98814a88ffeac6665e3325840b512212cf547bc73cd4cd1f575fc72377d",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|1280|top|setup",
+      "file": "cases/6e9cb130d14f3800ad4431d2da78006aafcb1237f7f95486778fdfb8f0f8fd80.json",
+      "sha256": "8ff2dc5b89273cf7bff88f4eaaf8ddb955f1d1f5081827d7553c141ee7e1989d",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|1280|top|grid|0",
+      "file": "cases/3d3132f05329669b93690005d0d202093e82ecaac91ca07166ca157b5a378da8.json",
+      "sha256": "cab8793ec89d0d5383871b209b2e05efc4b507d7b46d8cc7851b7e29058b49f6",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|1280|top|grid|1",
+      "file": "cases/10502d52ae9f303ecbfef5b95f39d87fd5fe8ab82fe3f815883506ed67a1fa41.json",
+      "sha256": "856e3d42d3dcf9357a74b2b7c9e7714554d148abcda3ef0623987b065a8bbeec",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|1280|top|grid|2",
+      "file": "cases/fa760286d2cfa44e43d3ab6f6fef64f50ad92178d69c87f2c9489560731106ab.json",
+      "sha256": "4daf4a079cc21e95c5c42588ec8d591738b710b609b2f18821a9b4170dcc29e5",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|1280|top|grid|3",
+      "file": "cases/0eb0b2c822de22ab6a7c2b453dc1d6d3c8d76938b73ed35873a36821e7a01db6.json",
+      "sha256": "c8eb3699dee83410d91441a2f1001c29067b53a32c404fbdce1452553e3a5cbb",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|1280|top|grid|4",
+      "file": "cases/097e96f58c16cd5776457c70ed68e183994d0718ff90d8edcc75fa4d6aee56ec.json",
+      "sha256": "770ab197f87a9b434d46f72951142767b31c8680e089fa94c24f60da6edd0920",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|1280|top|setup",
+      "file": "cases/5b33d4a8365312f81b2ec9cfd8deb07695a353763737e2425a72b0280b3c8426.json",
+      "sha256": "3916f638c3cbd844e00a9c52535461b96d4ade93ff542ccf034f84515c0e6f57",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|1280|top|grid|0",
+      "file": "cases/ef1a9b3b5a624909a3b095028cf4c33643139b174bb0677a914cde538d76f713.json",
+      "sha256": "d1a0efad708e6f93b88b2f2a98d4d0ae61a9781e665e4f8c136bff755805e52b",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|1280|top|grid|1",
+      "file": "cases/7768b0c2434641943dbf32d7bc65d2a66887046fe7d68d118ef489334797a83e.json",
+      "sha256": "123ebd539c8879970993248670cc1877edff03bb97ef6810164175bbf063f1b3",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|1280|top|grid|2",
+      "file": "cases/e747f7fb5ef5c04f0b84f19643d029d91015e04249be84d5a84763739906cd79.json",
+      "sha256": "c124fa409bf14cdfef1d1db834b1cb5ea98ef32124d0cc50ca8d993830c77e3d",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|1280|top|grid|3",
+      "file": "cases/b1efb68103d3372b0d9132673937bbf22fc4b941278e783a4e95bbfbf235329a.json",
+      "sha256": "b8fdbffd66d1648ac2f86ecdd8989798420b55241a46f6097c59768092cd1134",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|1280|top|grid|4",
+      "file": "cases/dc593cec250e3a08a5ad2f3ba9bb6f9e449c066e843a844e4a2b56b2dbd35f42.json",
+      "sha256": "124655410d11f7142cd42cb567b8d6669cbb8ae4fd7281ab88a733608f8f036c",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|1280|top|setup",
+      "file": "cases/c46e3b4f36d454542c31902c1902a2d090d3199ed068d0a79de732f46cdcdf2e.json",
+      "sha256": "e6014b2826d5d38e5b829ed5e1a992256ef2aa5c3bece8584d4dc4544972b1b8",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|1280|top|grid|0",
+      "file": "cases/5948d8739aacbd49ade2a40eb4930be4f7a0d1c7dcfeb556d1a3acb2affb5b0d.json",
+      "sha256": "a24ccb1c993525de7a9fef4eae27282b0703f8b891e056332c2adeb3d87d1629",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|1280|top|grid|1",
+      "file": "cases/7ed6a4f90a2b4be3e7722492c2dde593ffbc412cbf444a801563a891d9fcf2e5.json",
+      "sha256": "7d282ed46ac32d520ded190ba1f03bc3a39a744576a1677bc8466c49eb4a516d",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|1280|top|grid|2",
+      "file": "cases/e7adadc0bc6cc76a4ed4c0e765105ff6d80e4acdfcca8d9361fdf6a0097abbf9.json",
+      "sha256": "6a21b4a2ffe9e1ee5a2b6ed43118532ce72d08c685bc2926556691c783d17fbb",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|1280|top|grid|3",
+      "file": "cases/0d4188dacef49b5f791587ca987c47d80d929fdcae9d40cdce1b47228fc2998b.json",
+      "sha256": "5705a1bf47bd1a160158a1b357e9cf16a1b5746280f58733a0075013b4448832",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|1280|top|grid|4",
+      "file": "cases/9eec433e6fcab04d7d60c039dd515f29eb316d9552be1d07e55ff2d774498647.json",
+      "sha256": "3da0cab7d48b53e18cb988eab45677a47539a716edce369a39a2c604edd558ea",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|1280|fixed_projection|setup",
+      "file": "cases/ce987ed0e528c3b353d084bc0b9b2250ce795fdf15d09e6996a3dd32da7940ce.json",
+      "sha256": "0581d6c2eb0fdece7b100f1f2d51ac748c7469e4ac7195ae45a61a66ab9555f6",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|1280|fixed_projection|grid|0",
+      "file": "cases/7fe533f5e38035a47b764b6e73ba4284328906af803a3fc5c2d60397bfd3c90c.json",
+      "sha256": "e7300a8ea661682c331c943f6675756e71bf3d19a05b22da37c48cd673e5f4a6",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|1280|fixed_projection|grid|1",
+      "file": "cases/ce26f00da5c9c96e05eb5adf3ac808cf1e1a59a4485065317a33069ddc14ec1c.json",
+      "sha256": "5130756de59d591705cc611e46e4e2b84eee70f4a461d8401a42aad53ca6bbb1",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-01|published|1280|fixed_projection|grid|2",
+      "file": "cases/9e2b7c14c7d7e13f2e3430bddf2f656422c0beb6009701375d4b5d8823ed64a9.json",
+      "sha256": "c27af1075774cb82570c8eb59e34a21b60f3e97c4673fe8da40d4aa36aae295b",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|1280|fixed_projection|setup",
+      "file": "cases/adc36db68936a50a3e6774c812a091ff726d7d4643bbea14af8ff52aedecb214.json",
+      "sha256": "628933c7de9a48e3589ac9ad12eeb48742fc2452c01af4ff355031651000d3e9",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|1280|fixed_projection|grid|0",
+      "file": "cases/f55fe040114e340c8f77dadcf1e71712120a3128a2c5b981ac8b59b112376910.json",
+      "sha256": "e51250f242ef2a6b0cb264d05cf77628d992e2dcc45098f1682259613482b14d",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|1280|fixed_projection|grid|1",
+      "file": "cases/7149466155941ccaf889c056b4bd2fe695343d3f9ff57f8338cab7966fc9c259.json",
+      "sha256": "79173e88ad5037bbad26e2abc9a9ef71fcb4466165574913d98bd8f7db9b521a",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|1280|fixed_projection|grid|2",
+      "file": "cases/ac65984be55072f39e84178f6fb4d17c3ce41191c027f052e0278f2745416005.json",
+      "sha256": "e14618e2542808fb1bc458cff9f4ac9a52124efddde2ad1d5e0e3ea74070e16a",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|1280|fixed_projection|grid|3",
+      "file": "cases/482c81eac659846d5ac5ac3d6f4ab1ad90d216eebf08d5de9651bba624a1af79.json",
+      "sha256": "c87019abd989a5f962a9afe3d863970ef2837122425bf17d3e53f42254b3a137",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-02|published|1280|fixed_projection|grid|4",
+      "file": "cases/9367842243753950cc2016545c5ae034732991a9119c6ab6a284c6f0acd9ab39.json",
+      "sha256": "a9c1dc5dd9353cc39e3474cb39cf87d9be8121cbf0292cbdbf317d1cc89d4f7b",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|1280|fixed_projection|setup",
+      "file": "cases/984cf635d1a57800f446fd8d9ecc507ba865af3e78bcc10003fc1be78c3489ba.json",
+      "sha256": "725bc5314a9d59f5b03d9a8f1347bc97ae1673a9577445169d43eb48f0fcb079",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|1280|fixed_projection|grid|0",
+      "file": "cases/fa7120ccc7b6d9c891b9cfdcdbefff454b8d7157e46d674eef4240ee75d5d3d0.json",
+      "sha256": "fbf9d6ce134a899681ace7d0037be6bcee70f5dd2e1e7042d0a945186fe39c40",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|1280|fixed_projection|grid|1",
+      "file": "cases/0744373ccf35a680b6e77937e77e176935ee12b5fdfcd432a13c522d4095c3da.json",
+      "sha256": "5045579b5a0f37c09a70cf172ab073bd960101531dc8dbdecb50ff27afdd6484",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|1280|fixed_projection|grid|2",
+      "file": "cases/1d9bb985153aad13a6b0b79a0572edef1d4f2244f16fabdb5c8d77e3194983b1.json",
+      "sha256": "8160892c05796bbd044cdd9c23ab9ccb23a7d5b2165279e1fc60bb5e1ac84500",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|1280|fixed_projection|grid|3",
+      "file": "cases/f44ad583484f28061cba9876721ed153448b12fecb47f853eddc4be0828366ab.json",
+      "sha256": "523d172fb8a4ff80ac4068d64d700f29fc3cd01a505090dbffc19f5f6e2f2fb0",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-03|published|1280|fixed_projection|grid|4",
+      "file": "cases/2121b4dc431b1578e46228bd56cf7f0c79a9cb434f7e7e0e679bd2b29752bd2e.json",
+      "sha256": "ad3343e7f7a0c59fd512d9f8ae302759ea2b7b36fae2085e9b2e8cc9df83f5c5",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|1280|fixed_projection|setup",
+      "file": "cases/944e9d4a2560d937a8579c4ba8f6e362e937dd2507cf6825cb68ce91441511fa.json",
+      "sha256": "cfaa4dc3b951ea964cafa449743fc5436d9eac026a3685df526aa5964b9b8851",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|1280|fixed_projection|grid|0",
+      "file": "cases/577a28b1c39d8546e4b306122655e1db9189b27835895b42225cb8c8a6748b29.json",
+      "sha256": "1e055ce5d494df2add2c79a7d6ddb5ae5bb7432aeff58ca3a0c57615193f81c8",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|1280|fixed_projection|grid|1",
+      "file": "cases/a34b17189793e16b4b413d1187c25692e1b10b36c8f868ee46deab5cb6e38d5a.json",
+      "sha256": "c690a6565013362909ecf89e459973808c24baab02aba1df8ab9c9840ec908dd",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|1280|fixed_projection|grid|2",
+      "file": "cases/7761add25d1e0f14a7c289701e0eaed0a6bb1363af526705785903e868ae628e.json",
+      "sha256": "191ccd4fdf25df18349c7b3b28f582283672bf4d654fed8f682312a49a88db5f",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|1280|fixed_projection|grid|3",
+      "file": "cases/6dfc3bcc7a2602dbc49a5b84c588f100f22de9043fc5a8b7afb3b34600fcf9e6.json",
+      "sha256": "96b48943ac7926b434973bea7828a1cf426b5de74e4f74680e5321e0fd215952",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-04|published|1280|fixed_projection|grid|4",
+      "file": "cases/3941bf8c09831696a9412563f622a0a324a1e6404fa39d2c29b5a95b5f32708c.json",
+      "sha256": "0c7c79efbcf68ed55070f41be2c1587f8e36a5aff02790ddcd9800817daac25c",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|1280|fixed_projection|setup",
+      "file": "cases/cae620054ea92ef0363742d048014a36dfda69c63994c7b76394802ca663b097.json",
+      "sha256": "acea9b3ab9affd21975917341ccd1877cd0498dd71cd45cc3abc41d14fd788d2",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|1280|fixed_projection|grid|0",
+      "file": "cases/7b2634894b1df6fdafa90a4e70400a948c31ccce25791f58b2c9e650e5883846.json",
+      "sha256": "61d7bb84ed939ee4c9f43ae617fa8bb0e84436ada377930308ef24e756b0d3cb",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|1280|fixed_projection|grid|1",
+      "file": "cases/d04a896a5c1c00924210fe41e5482ed476b978a67f6823ea4f3985252c639e11.json",
+      "sha256": "24ce0e73aa8e163c7341d1bdb345e63b4b1f6a3cf6f5901ec69c3583941f6a98",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|1280|fixed_projection|grid|2",
+      "file": "cases/eae9057fb714ea42922e05623e83c22a1607a51800428a7300db4c4614a19d2a.json",
+      "sha256": "a774a2bb5b89e0ec086acd8c1e8bc51261d47a853f73c329d678f8de3ab75aa1",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|1280|fixed_projection|grid|3",
+      "file": "cases/1bb4d899cddf6d4bdba4f68c9e4aec15cb4e1333129a00ddca69e903b310ddf5.json",
+      "sha256": "1092f27f99726810de5f06362ff6966697aa57a1630deb05ff48d99c15a9b962",
+      "technicalOk": true
+    },
+    {
+      "caseKey": "SIM-C2-L001-05|published|1280|fixed_projection|grid|4",
+      "file": "cases/70604813394f50c1629ae7e4666e434cb9df1d02c7ac2f7aa486707145ede63d.json",
+      "sha256": "460611c344944ae20bea9ae43c0b57dc751ec5587af706307d180cd40657d812",
+      "technicalOk": true
+    }
+  ],
+  "errors": [],
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "canonicalImport": {
+    "publishedCount": 991,
+    "imports": [
+      {
+        "first": {
+          "saved": 8,
+          "unchanged": 0,
+          "publication": "DRAFT"
+        },
+        "second": {
+          "saved": 0,
+          "unchanged": 8,
+          "publication": "DRAFT"
+        }
+      },
+      {
+        "first": {
+          "saved": 1,
+          "unchanged": 0,
+          "publication": "DRAFT"
+        },
+        "second": {
+          "saved": 0,
+          "unchanged": 1,
+          "publication": "DRAFT"
+        }
+      }
+    ]
+  },
+  "browserVersion": "158.0.8127.37",
+  "guestIsolation": "ORIGINAL_OR_DENIED_AND_DRAFT_ASSETS_403",
+  "fullOwnerRecordIdentity": {
+    "scope": "All declared complete normalized owner records, no cross-language canonical digest",
+    "records": [
+      {
+        "id": "SIM-C2-L002-01",
+        "version": 2,
+        "responseBytesSha256": "bb6c0b6ab0a06d6e3465ac737cf7ecf6aafd0901be47fefc5d93eba8a17026e2"
+      },
+      {
+        "id": "SIM-C3-L07-05",
+        "version": 2,
+        "responseBytesSha256": "bb9785f03d21e62295b6460ebd38814682b9077d18b3c0c73f42e6497623da14"
+      },
+      {
+        "id": "SIM-C4-L09-02",
+        "version": 2,
+        "responseBytesSha256": "dd31f2935bb4dc5b8d84bc9b47c899b12df63318efd3a840d28ebb23167dbc8c"
+      },
+      {
+        "id": "SIM-C5-L01-01",
+        "version": 2,
+        "responseBytesSha256": "ea92afd42d4ed8613943837b66f784dc0ca3a8ae3f2cac59a8599f581d4fa0e1"
+      },
+      {
+        "id": "SIM-C5-L02-03",
+        "version": 2,
+        "responseBytesSha256": "03c91f90e02c6d676fe81d0501db48ebb69d95e175cb6d32ed023b63d079650b"
+      },
+      {
+        "id": "SIM-C5-L03-02",
+        "version": 2,
+        "responseBytesSha256": "fd3426a4be5661ca3d6dbae6e6ce98011d18f661996ed2de88c065ee6b72b85a"
+      },
+      {
+        "id": "SIM-C5-L07-02",
+        "version": 2,
+        "responseBytesSha256": "aeda4021885340c465d99afac6fc772c390610e6a3a7f2b648d6fac89578e997"
+      },
+      {
+        "id": "SIM-C5-L08-02",
+        "version": 2,
+        "responseBytesSha256": "e26b180f669579bde7027b2f4648a29d0512089f62bec0400c7f10866c9fd336"
+      },
+      {
+        "id": "SIM-C5-L09-02",
+        "version": 2,
+        "responseBytesSha256": "a59527e5180e282cc4d193fbe20765bcc15cf917301959bc592f5de6c3da0742"
+      }
+    ]
+  },
+  "baselineReference": {
+    "kind": "IMMUTABLE_BASELINE_ISOLATED_BROWSER_CONTEXT_V2",
+    "baselineRuntimeRef": "eb51d0e9bdc3f992e9ae0ae76810098376e2ab79",
+    "manifestSha256": "fa997076b86e689d5f3a4050edc0a87316854235efd9e4c30053d2a6d422dd1a",
+    "namespace": "/__cric_baseline/eb51d0e9bdc3f992e9ae0ae76810098376e2ab79/fa997076b86e689d5f3a4050edc0a87316854235efd9e4c30053d2a6d422dd1a/",
+    "dependencyClosure": {
+      "js/banchi/misure.js": [],
+      "js/banchi/modelli/induzione.js": [
+        "js/banchi/misure.js"
+      ],
+      "js/banchi/quaderno.js": [
+        "js/banchi/misure.js"
+      ],
+      "js/banchi/voci/apparati/campi.js": [
+        "js/banchi/voci/geometria.js"
+      ],
+      "js/banchi/voci/apparati/fluidi.js": [
+        "js/banchi/voci/geometria.js"
+      ],
+      "js/banchi/voci/apparati/meccanica.js": [
+        "js/banchi/voci/geometria.js"
+      ],
+      "js/banchi/voci/apparati/onde.js": [
+        "js/banchi/voci/geometria.js"
+      ],
+      "js/banchi/voci/apparati/termica.js": [
+        "js/banchi/voci/geometria.js"
+      ],
+      "js/banchi/voci/assessment-selection.js": [],
+      "js/banchi/voci/confronti.js": [],
+      "js/banchi/voci/engines.js": [
+        "js/banchi/voci/apparati/campi.js",
+        "js/banchi/voci/apparati/fluidi.js",
+        "js/banchi/voci/apparati/meccanica.js",
+        "js/banchi/voci/apparati/onde.js",
+        "js/banchi/voci/apparati/termica.js",
+        "js/banchi/voci/modelli/C1.js",
+        "js/banchi/voci/modelli/C2.js",
+        "js/banchi/voci/modelli/C3.js",
+        "js/banchi/voci/modelli/C4.js",
+        "js/banchi/voci/modelli/C5.js",
+        "js/banchi/voci/modelli/C6.js"
+      ],
+      "js/banchi/voci/esperimento.js": [
+        "js/banchi/misure.js",
+        "js/banchi/voci/assessment-selection.js",
+        "js/banchi/voci/confronti.js",
+        "js/banchi/voci/engines.js",
+        "js/banchi/voci/geometria.js",
+        "js/banchi/voci/legende.js",
+        "js/banchi/voci/orologi.js"
+      ],
+      "js/banchi/voci/geometria.js": [],
+      "js/banchi/voci/legende.js": [],
+      "js/banchi/voci/modelli/C1.js": [],
+      "js/banchi/voci/modelli/C2.js": [],
+      "js/banchi/voci/modelli/C3.js": [],
+      "js/banchi/voci/modelli/C4.js": [],
+      "js/banchi/voci/modelli/C5.js": [],
+      "js/banchi/voci/modelli/C6.js": [],
+      "js/banchi/voci/orologi.js": []
+    },
+    "servedFiles": {
+      "js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+      "js/banchi/quaderno.js": "ecc32226e0fa1781b36cac952fa926a2ac17be6b4eae491ef6ef5744fcd8885a",
+      "js/banchi/voci/apparati/fluidi.js": "02113df5c60acc56c8a75b0c83afd0d9e3dfa39809848df4197ba50e3f823eb5",
+      "js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+      "js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+      "js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+      "js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+      "js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+      "js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+      "js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+      "js/banchi/voci/modelli/C2.js": "a2bfb8da7c5f2ab29cd5afdd724e62192c7bd3cc5feea46e5b05f3b025561ea2",
+      "js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6"
+    },
+    "allManifestBytesCheckedBeforeAndAfter": true,
+    "scientificAuthority": "NONE_TECHNICAL_REGRESSION_PARITY_ONLY",
+    "activityCredit": 0,
+    "isolation": "DISTINCT_CONTEXT_AND_ORIGIN",
+    "realmId": "aa8d6c04-2cdb-47a0-b2b3-339d9a44b9c6",
+    "documentURL": "https://cric-baseline.invalid/__cric_baseline/eb51d0e9bdc3f992e9ae0ae76810098376e2ab79/fa997076b86e689d5f3a4050edc0a87316854235efd9e4c30053d2a6d422dd1a/realm.html",
+    "serviceWorkers": "block"
+  },
+  "technicalStatus": "ALL_PLANNED_CASES_OBSERVED_REVIEW_NOT_GRANTED"
+}
