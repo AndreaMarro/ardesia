@@ -1,0 +1,288 @@
+{
+  "consumerRef": "b9994b9116e87478905191d85cca8037d17ae4bd",
+  "producerSha256": "42b750b18354fdad7c7e42f9e5e6bdc0ec4a28f5ede7a41b0780ad7509a6bac6",
+  "records": [
+    {
+      "id": "SIM-C3-L03-01",
+      "sourceVersion": 1,
+      "inputUnit": "K",
+      "outputUnit": "J",
+      "control": {
+        "label": "Aumento di temperatura",
+        "unit": "K",
+        "min": 0,
+        "max": 12,
+        "step": 1
+      },
+      "tasks": [
+        {
+          "index": 0,
+          "input": 8,
+          "formattedInput": "8",
+          "inputUnit": "K",
+          "output": 400,
+          "formattedOutput": "400",
+          "outputUnit": "J",
+          "prompt": "Imposta «Aumento di temperatura» su 8 K. Quale valore ottieni per «Energia assorbita»?",
+          "worked": "Q = CΔT, con C = 50 J/K. 50 × 8 = 400 J.",
+          "suggestedNumericEntry": 400,
+          "entryAcceptedByInstalledNumberRule": true,
+          "acceptanceTolerance": 2
+        },
+        {
+          "index": 1,
+          "input": 6,
+          "formattedInput": "6",
+          "inputUnit": "K",
+          "output": 300,
+          "formattedOutput": "300",
+          "outputUnit": "J",
+          "prompt": "Vuoi scaldare un campione con capacità termica 50 J/K di 6 K. Quanti joule gli devi fornire?",
+          "worked": "Q = CΔT, con C = 50 J/K. 50 × 6 = 300 J.",
+          "suggestedNumericEntry": 300,
+          "entryAcceptedByInstalledNumberRule": true,
+          "acceptanceTolerance": 1.5
+        }
+      ],
+      "clock": null
+    },
+    {
+      "id": "SIM-C3-L03-03",
+      "sourceVersion": 1,
+      "inputUnit": "K",
+      "outputUnit": "J",
+      "control": {
+        "label": "Aumento di temperatura",
+        "unit": "K",
+        "min": 0,
+        "max": 20,
+        "step": 1
+      },
+      "tasks": [
+        {
+          "index": 0,
+          "input": 10,
+          "formattedInput": "10",
+          "inputUnit": "K",
+          "output": 83.14,
+          "formattedOutput": "83,14",
+          "outputUnit": "J",
+          "prompt": "Imposta «Aumento di temperatura» su 10 K. Quale valore ottieni per «Calore in più a pressione costante»?",
+          "worked": "Qₚ − Qᵥ = n(Cₚ−Cᵥ)ΔT = nRΔT. 8,314 × 10 = 83,14 J.",
+          "suggestedNumericEntry": 83.14,
+          "entryAcceptedByInstalledNumberRule": true,
+          "acceptanceTolerance": 0.4157
+        },
+        {
+          "index": 1,
+          "input": 11,
+          "formattedInput": "11",
+          "inputUnit": "K",
+          "output": 91.45400000000001,
+          "formattedOutput": "91,45",
+          "outputUnit": "J",
+          "prompt": "Riscaldi una mole di gas ideale di 11 K, prima a pressione costante e poi, ripartendo dalle stesse condizioni, a volume costante. Con R = 8,314 J/(mol·K), quanti joule in più occorrono nella prima prova?",
+          "worked": "Qₚ − Qᵥ = n(Cₚ−Cᵥ)ΔT = nRΔT. 8,314 × 11 ≈ 91,45 J.",
+          "suggestedNumericEntry": 91.45400000000001,
+          "entryAcceptedByInstalledNumberRule": true,
+          "acceptanceTolerance": 0.45727000000000007
+        }
+      ],
+      "clock": null
+    },
+    {
+      "id": "SIM-C3-L03-04",
+      "sourceVersion": 1,
+      "inputUnit": "g",
+      "outputUnit": "°C",
+      "control": {
+        "label": "Massa di acqua calda",
+        "unit": "g",
+        "min": 50,
+        "max": 300,
+        "step": 25
+      },
+      "tasks": [
+        {
+          "index": 0,
+          "input": 200,
+          "formattedInput": "200",
+          "inputUnit": "g",
+          "output": 50,
+          "formattedOutput": "50",
+          "outputUnit": "°C",
+          "prompt": "Imposta «Massa di acqua calda» su 200 g. Quale valore ottieni per «Temperatura di equilibrio»?",
+          "worked": "T finale = (80m + 20×200)/(m+200). (80 × 200 + 4000) / (200 + 200) = 50 °C.",
+          "suggestedNumericEntry": 50,
+          "entryAcceptedByInstalledNumberRule": true,
+          "acceptanceTolerance": 0.25
+        },
+        {
+          "index": 1,
+          "input": 175,
+          "formattedInput": "175",
+          "inputUnit": "g",
+          "output": 48,
+          "formattedOutput": "48",
+          "outputUnit": "°C",
+          "prompt": "Versi 175 g d’acqua a 80 °C in 200 g d’acqua a 20 °C. Trascurando il recipiente e le dispersioni, quale temperatura finale trovi?",
+          "worked": "T finale = (80m + 20×200)/(m+200). (80 × 175 + 4000) / (175 + 200) = 48 °C.",
+          "suggestedNumericEntry": 48,
+          "entryAcceptedByInstalledNumberRule": true,
+          "acceptanceTolerance": 0.24
+        }
+      ],
+      "clock": null
+    },
+    {
+      "id": "SIM-C3-L04-01",
+      "sourceVersion": 1,
+      "inputUnit": "kJ",
+      "outputUnit": "g",
+      "control": {
+        "label": "Energia fornita a ghiaccio a 0 °C",
+        "unit": "kJ",
+        "min": 0,
+        "max": 33.4,
+        "step": 1.67
+      },
+      "tasks": [
+        {
+          "index": 0,
+          "input": 16.7,
+          "formattedInput": "16,7",
+          "inputUnit": "kJ",
+          "output": 50,
+          "formattedOutput": "50",
+          "outputUnit": "g",
+          "prompt": "Imposta «Energia fornita a ghiaccio a 0 °C» su 16,7 kJ. Quale valore ottieni per «Massa fusa»?",
+          "worked": "m fusa = Q/Lf; Lf = 334 J/g. 1000 × 16,7 / 334 = 50 g.",
+          "suggestedNumericEntry": 50,
+          "entryAcceptedByInstalledNumberRule": true,
+          "acceptanceTolerance": 0.25
+        },
+        {
+          "index": 1,
+          "input": 18.369999999999997,
+          "formattedInput": "18,37",
+          "inputUnit": "kJ",
+          "output": 54.999999999999986,
+          "formattedOutput": "55",
+          "outputUnit": "g",
+          "prompt": "Al ghiaccio già a 0 °C fornisci 18,37 kJ. Con calore latente di fusione 334 J/g, quanti grammi diventano acqua?",
+          "worked": "m fusa = Q/Lf; Lf = 334 J/g. 1000 × 18,37 / 334 ≈ 55 g.",
+          "suggestedNumericEntry": 54.999999999999986,
+          "entryAcceptedByInstalledNumberRule": true,
+          "acceptanceTolerance": 0.2749999999999999
+        }
+      ],
+      "clock": {
+        "label": "Massa già fusa",
+        "durationAtSelected": [
+          10,
+          10.999999999999998
+        ],
+        "setup": "Il riscaldatore cede 1,67 kJ ogni secondo a 100 g di ghiaccio a 0 °C. Le quantità delle due fasi sono schematiche."
+      }
+    },
+    {
+      "id": "SIM-C3-L04-02",
+      "sourceVersion": 1,
+      "inputUnit": "g",
+      "outputUnit": "kJ",
+      "control": {
+        "label": "Massa che diventa vapore con segno",
+        "unit": "g",
+        "min": -5,
+        "max": 5,
+        "step": 0.5
+      },
+      "tasks": [
+        {
+          "index": 0,
+          "input": 3,
+          "formattedInput": "3",
+          "inputUnit": "g",
+          "output": 6.779999999999999,
+          "formattedOutput": "6,78",
+          "outputUnit": "kJ",
+          "prompt": "Imposta «Massa che diventa vapore con segno» su 3 g. Quale valore ottieni per «Calore assorbito dall’acqua»?",
+          "worked": "Q = m con segno × Lᵥ; Lᵥ ≈ 2,26 kJ/g. 2,26 × 3 ≈ 6,78 kJ.",
+          "suggestedNumericEntry": 6.779999999999999,
+          "entryAcceptedByInstalledNumberRule": true,
+          "acceptanceTolerance": 0.0339
+        },
+        {
+          "index": 1,
+          "input": 0,
+          "formattedInput": "0",
+          "inputUnit": "g",
+          "output": 0,
+          "formattedOutput": "0",
+          "outputUnit": "kJ",
+          "prompt": "Nel cambio di fase la massa trasformata, con il segno scelto nel banco, è 0 g. Quale calore scambia l’acqua con l’esterno, usando 2,26 kJ/g?",
+          "worked": "Q = m con segno × Lᵥ; Lᵥ ≈ 2,26 kJ/g. 2,26 × 0 ≈ 0 kJ.",
+          "suggestedNumericEntry": 0,
+          "entryAcceptedByInstalledNumberRule": true,
+          "acceptanceTolerance": 0.000001
+        }
+      ],
+      "clock": null
+    },
+    {
+      "id": "SIM-C3-L04-03",
+      "sourceVersion": 1,
+      "inputUnit": "kJ",
+      "outputUnit": "g",
+      "control": {
+        "label": "Energia dall’inizio del riscaldamento",
+        "unit": "kJ",
+        "min": 0,
+        "max": 54,
+        "step": 1
+      },
+      "tasks": [
+        {
+          "index": 0,
+          "input": 19,
+          "formattedInput": "19",
+          "inputUnit": "kJ",
+          "output": 50,
+          "formattedOutput": "50",
+          "outputUnit": "g",
+          "prompt": "Imposta «Energia dall’inizio del riscaldamento» su 19 kJ. Quale valore ottieni per «Massa fusa»?",
+          "worked": "Prima 2 kJ scaldano il ghiaccio; poi m fusa = min(100,1000(Q−2)/340). min(100; max(0; (19 − 2) × 1000 / 340)) = 50 g.",
+          "suggestedNumericEntry": 50,
+          "entryAcceptedByInstalledNumberRule": true,
+          "acceptanceTolerance": 0.25
+        },
+        {
+          "index": 1,
+          "input": 28,
+          "formattedInput": "28",
+          "inputUnit": "kJ",
+          "output": 76.47058823529412,
+          "formattedOutput": "76,47",
+          "outputUnit": "g",
+          "prompt": "Al campione arrivano in tutto 28 kJ. Tolti i 2 kJ di riscaldamento iniziale, quanti grammi dei 100 g di ghiaccio sono fusi, con L = 340 J/g?",
+          "worked": "Prima 2 kJ scaldano il ghiaccio; poi m fusa = min(100,1000(Q−2)/340). min(100; max(0; (28 − 2) × 1000 / 340)) ≈ 76,47 g.",
+          "suggestedNumericEntry": 76.47,
+          "entryAcceptedByInstalledNumberRule": true,
+          "acceptanceTolerance": 0.38235294117647056
+        }
+      ],
+      "clock": {
+        "label": "Massa già fusa",
+        "durationAtSelected": [
+          9.5,
+          14
+        ],
+        "setup": "Il riscaldatore cede 2 kJ ogni secondo. Osserva il termometro prima, durante e dopo la fusione di 100 g di ghiaccio."
+      }
+    }
+  ],
+  "role": "AUTHOR_SOURCE_CODE_OBSERVATION_NO_BROWSER",
+  "UI": "NOT_RUN",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN"
+}

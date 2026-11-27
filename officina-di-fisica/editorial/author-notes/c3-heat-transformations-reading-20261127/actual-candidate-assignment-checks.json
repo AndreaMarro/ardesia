@@ -1,0 +1,220 @@
+{
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "consumerRef": "b9994b9116e87478905191d85cca8037d17ae4bd",
+  "role": "AUTHOR_TECHNICAL_CHECK_NO_INDEPENDENT_APPROVAL",
+  "records": [
+    {
+      "id": "SIM-C3-L03-01",
+      "tasks": [
+        {
+          "input": 8,
+          "inputUnit": "K",
+          "actualPrompt": "Imposta «Aumento di temperatura» su 8 K. Quale valore ottieni per «Energia assorbita»?",
+          "modelOutput": 400,
+          "outputUnit": "J",
+          "manualNumericEntry": "400",
+          "absoluteEntryErrorVsModel": 0,
+          "installedAcceptanceTolerance": 2,
+          "acceptedByInstalledNumberRule": true
+        },
+        {
+          "input": 6,
+          "inputUnit": "K",
+          "actualPrompt": "Vuoi scaldare un campione con capacità termica 50 J/K di 6 K. Quanti joule gli devi fornire?",
+          "modelOutput": 300,
+          "outputUnit": "J",
+          "manualNumericEntry": "300",
+          "absoluteEntryErrorVsModel": 0,
+          "installedAcceptanceTolerance": 1.5,
+          "acceptedByInstalledNumberRule": true
+        }
+      ],
+      "sourceVersion": 1,
+      "candidateVersion": 2,
+      "baseVersion": 1,
+      "modelControlGeometryAndClockExact": true,
+      "productUI": "NOT_RUN",
+      "scientificAcceptance": "PENDING_DISTINCT_REVIEWER",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L03-03",
+      "tasks": [
+        {
+          "input": 10,
+          "inputUnit": "K",
+          "actualPrompt": "Imposta «Aumento di temperatura» su 10 K. Quale valore ottieni per «Calore in più a pressione costante»?",
+          "modelOutput": 83.14,
+          "outputUnit": "J",
+          "manualNumericEntry": "83.14",
+          "absoluteEntryErrorVsModel": 0,
+          "installedAcceptanceTolerance": 0.4157,
+          "acceptedByInstalledNumberRule": true
+        },
+        {
+          "input": 11,
+          "inputUnit": "K",
+          "actualPrompt": "Riscaldi una mole di gas ideale di 11 K, prima a pressione costante e poi, ripartendo dalle stesse condizioni, a volume costante. Con R = 8,314 J/(mol·K), quanti joule in più occorrono nella prima prova?",
+          "modelOutput": 91.45400000000001,
+          "outputUnit": "J",
+          "manualNumericEntry": "91.454",
+          "absoluteEntryErrorVsModel": 1.4210854715202004e-14,
+          "installedAcceptanceTolerance": 0.45727000000000007,
+          "acceptedByInstalledNumberRule": true
+        }
+      ],
+      "sourceVersion": 1,
+      "candidateVersion": 2,
+      "baseVersion": 1,
+      "modelControlGeometryAndClockExact": true,
+      "productUI": "NOT_RUN",
+      "scientificAcceptance": "PENDING_DISTINCT_REVIEWER",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L03-04",
+      "tasks": [
+        {
+          "input": 200,
+          "inputUnit": "g",
+          "actualPrompt": "Imposta «Massa di acqua calda» su 200 g. Quale valore ottieni per «Temperatura di equilibrio»?",
+          "modelOutput": 50,
+          "outputUnit": "°C",
+          "manualNumericEntry": "50",
+          "absoluteEntryErrorVsModel": 0,
+          "installedAcceptanceTolerance": 0.25,
+          "acceptedByInstalledNumberRule": true
+        },
+        {
+          "input": 175,
+          "inputUnit": "g",
+          "actualPrompt": "Versi 175 g d’acqua a 80 °C in 200 g d’acqua a 20 °C. Trascurando il recipiente e le dispersioni, quale temperatura finale trovi?",
+          "modelOutput": 48,
+          "outputUnit": "°C",
+          "manualNumericEntry": "48",
+          "absoluteEntryErrorVsModel": 0,
+          "installedAcceptanceTolerance": 0.24,
+          "acceptedByInstalledNumberRule": true
+        }
+      ],
+      "sourceVersion": 1,
+      "candidateVersion": 2,
+      "baseVersion": 1,
+      "modelControlGeometryAndClockExact": true,
+      "productUI": "NOT_RUN",
+      "scientificAcceptance": "PENDING_DISTINCT_REVIEWER",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L04-01",
+      "tasks": [
+        {
+          "input": 16.7,
+          "inputUnit": "kJ",
+          "actualPrompt": "Imposta «Energia fornita a ghiaccio a 0 °C» su 16,7 kJ. Quale valore ottieni per «Massa fusa»?",
+          "modelOutput": 50,
+          "outputUnit": "g",
+          "manualNumericEntry": "50",
+          "absoluteEntryErrorVsModel": 0,
+          "installedAcceptanceTolerance": 0.25,
+          "acceptedByInstalledNumberRule": true
+        },
+        {
+          "input": 18.37,
+          "inputUnit": "kJ",
+          "actualPrompt": "Al ghiaccio già a 0 °C fornisci 18,37 kJ. Con calore latente di fusione 334 J/g, quanti grammi diventano acqua?",
+          "modelOutput": 54.999999999999986,
+          "outputUnit": "g",
+          "manualNumericEntry": "55",
+          "absoluteEntryErrorVsModel": 1.4210854715202004e-14,
+          "installedAcceptanceTolerance": 0.2749999999999999,
+          "acceptedByInstalledNumberRule": true
+        }
+      ],
+      "sourceVersion": 1,
+      "candidateVersion": 2,
+      "baseVersion": 1,
+      "modelControlGeometryAndClockExact": true,
+      "productUI": "NOT_RUN",
+      "scientificAcceptance": "PENDING_DISTINCT_REVIEWER",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L04-02",
+      "tasks": [
+        {
+          "input": 3,
+          "inputUnit": "g",
+          "actualPrompt": "Imposta «Massa che diventa vapore con segno» su 3 g. Quale valore ottieni per «Calore assorbito dall’acqua»?",
+          "modelOutput": 6.779999999999999,
+          "outputUnit": "kJ",
+          "manualNumericEntry": "6.78",
+          "absoluteEntryErrorVsModel": 8.881784197001252e-16,
+          "installedAcceptanceTolerance": 0.0339,
+          "acceptedByInstalledNumberRule": true
+        },
+        {
+          "input": 0,
+          "inputUnit": "g",
+          "actualPrompt": "Nel cambio di fase la massa trasformata, con il segno scelto nel banco, è 0 g. Quale calore scambia l’acqua con l’esterno, usando 2,26 kJ/g?",
+          "modelOutput": 0,
+          "outputUnit": "kJ",
+          "manualNumericEntry": "0",
+          "absoluteEntryErrorVsModel": 0,
+          "installedAcceptanceTolerance": 0.000001,
+          "acceptedByInstalledNumberRule": true
+        }
+      ],
+      "sourceVersion": 1,
+      "candidateVersion": 2,
+      "baseVersion": 1,
+      "modelControlGeometryAndClockExact": true,
+      "productUI": "NOT_RUN",
+      "scientificAcceptance": "PENDING_DISTINCT_REVIEWER",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L04-03",
+      "tasks": [
+        {
+          "input": 19,
+          "inputUnit": "kJ",
+          "actualPrompt": "Imposta «Energia dall’inizio del riscaldamento» su 19 kJ. Quale valore ottieni per «Massa fusa»?",
+          "modelOutput": 50,
+          "outputUnit": "g",
+          "manualNumericEntry": "50",
+          "absoluteEntryErrorVsModel": 0,
+          "installedAcceptanceTolerance": 0.25,
+          "acceptedByInstalledNumberRule": true
+        },
+        {
+          "input": 28,
+          "inputUnit": "kJ",
+          "actualPrompt": "Al campione arrivano in tutto 28 kJ. Tolti i 2 kJ di riscaldamento iniziale, quanti grammi dei 100 g di ghiaccio sono fusi, con L = 340 J/g?",
+          "modelOutput": 76.47058823529412,
+          "outputUnit": "g",
+          "manualNumericEntry": "76.47",
+          "absoluteEntryErrorVsModel": 0.0005882352941171121,
+          "installedAcceptanceTolerance": 0.38235294117647056,
+          "acceptedByInstalledNumberRule": true
+        }
+      ],
+      "sourceVersion": 1,
+      "candidateVersion": 2,
+      "baseVersion": 1,
+      "modelControlGeometryAndClockExact": true,
+      "productUI": "NOT_RUN",
+      "scientificAcceptance": "PENDING_DISTINCT_REVIEWER",
+      "activityCredit": 0
+    }
+  ],
+  "controlValues": 142,
+  "sceneFrames": 294,
+  "katexFormulaCount": 33,
+  "producerSha256": "42b750b18354fdad7c7e42f9e5e6bdc0ec4a28f5ede7a41b0780ad7509a6bac6",
+  "symbolicExpressionNumberRejected": true,
+  "productUI": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "activityCredit": 0
+}
