@@ -1,0 +1,1031 @@
+{
+  "phase": "C3_SOURCE_ONLY_INDEPENDENT_DERIVATION_PRIMARY_NOT_REGISTRABLE",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/esperienze-C3.json",
+  "sourceFileSha256": "2738799d5195ca5eda77c4dce1cdc79f708237e5660bb9cabcc7fac4f80ea3ff",
+  "inputProjectionPath": "editorial/reviews/C3-36-source-input-projection-20261125.json",
+  "inputProjectionSha256": "a2868bb74fe085f909d55060e6fafbe093f9c070c67474a2a1512808d40feb88",
+  "recordCount": 36,
+  "priorExposureDisclosure": "Previously reviewed historical thermal lessons/examples and incidentally read shared orologi.js, which contains some C3 ramp/heat-input/time laws. No claim of full blinding. In this new phase modelli/C3.js and solution-bearing fields of these36 have not been read.",
+  "derivationProvenance": "Only allowlisted problem/control/reference-abscissa projection read in this phase. Numeric/symbolic values below were calculated by reviewer, never extracted source expected/output/prediction/implementation. They address visible transfer quantity at reference inputs, not yet the unseen actual comparison question.",
+  "records": [
+    {
+      "id": "SIM-C3-L01-01",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "d003fecefbebcdc71d214fa44e63e35d6d12effeadfdb8f0584fe594dc6865dc",
+      "reviewerDerivedLawFromSafeProblem": "V=20+10s",
+      "physicalAssumptionsAndUnresolvedConditions": "Closed gas, piston outward positive, fixed10cm² section. Volume gain is area times stroke. No mass crosses; heat/work cannot be inferred numerically without further data.",
+      "manualProcedureAndAdversarialCases": "Multiply stroke by10 then add20; inverse s=(V−20)/10. V20..100cm³ stays positive.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "2",
+          "reviewerDerivedForVisibleTransferQuantity": "40",
+          "unitInferredFromProblem": "cm³",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "6",
+          "reviewerDerivedForVisibleTransferQuantity": "80",
+          "unitInferredFromProblem": "cm³",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L01-02",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "b3d56f4842b9b8109d3bcaa8050423a539b223e32b32d0c2b6e309ca7c0b5f2b",
+      "reviewerDerivedLawFromSafeProblem": "p=(2/5)T",
+      "physicalAssumptionsAndUnresolvedConditions": "Fixed amount and rigid volume, absolute temperature and pressure. Working sensor coefficient0.4kPa/K assigned, not a Celsius-origin law.",
+      "manualProcedureAndAdversarialCases": "Multiply T by2 then divide5; T200..500K gives p80..200kPa.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "250",
+          "reviewerDerivedForVisibleTransferQuantity": "100",
+          "unitInferredFromProblem": "kPa",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "400",
+          "reviewerDerivedForVisibleTransferQuantity": "160",
+          "unitInferredFromProblem": "kPa",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L01-03",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "af615b14d03c86e32fb004f4402c758a9aa71ff8cd6a6780e20bb850aed5faaf",
+      "reviewerDerivedLawFromSafeProblem": "p=120/V",
+      "physicalAssumptionsAndUnresolvedConditions": "Closed ideal gas at fixed positive T; nRT120kPa·L given. Final equilibrium pressure is path-independent, not a claim Q or W is a state function.",
+      "manualProcedureAndAdversarialCases": "Divide120 by positive V1..5L; inverse V=120/p. kPa·L=J.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "2",
+          "reviewerDerivedForVisibleTransferQuantity": "60",
+          "unitInferredFromProblem": "kPa",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "4",
+          "reviewerDerivedForVisibleTransferQuantity": "30",
+          "unitInferredFromProblem": "kPa",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L01-04",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "e0d81775b36320d8a9e2dc0c831ecf015125d47ab095b05dcc804b5a1d6ebeef",
+      "reviewerDerivedLawFromSafeProblem": "T_K=theta_C+27315/100",
+      "physicalAssumptionsAndUnresolvedConditions": "Exact Celsius/Kelvin offset273.15. A working273 approximation would need actual student-visible qualification; it has not been assumed here.",
+      "manualProcedureAndAdversarialCases": "Add273.15; differences10°C and10K agree without an offset. Absolute temperature remains223.15..373.15K.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "0",
+          "reviewerDerivedForVisibleTransferQuantity": "5463/20",
+          "unitInferredFromProblem": "K",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "50",
+          "reviewerDerivedForVisibleTransferQuantity": "6463/20",
+          "unitInferredFromProblem": "K",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L02-01",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "a4a73a03cdb9f4d7fb7e293acc66d1f5a8945f910c501294bc4613ccf899abbd",
+      "reviewerDerivedLawFromSafeProblem": "p=240/V",
+      "physicalAssumptionsAndUnresolvedConditions": "Closed ideal gas, isothermal equilibrium endpoints and constantpV240kPa·L. V1..8L remains positive.",
+      "manualProcedureAndAdversarialCases": "Reference2L→120kPa and6L→40kPa; inverse volume from240/p. Pressure halves on doubling volume.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "2",
+          "reviewerDerivedForVisibleTransferQuantity": "120",
+          "unitInferredFromProblem": "kPa",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "6",
+          "reviewerDerivedForVisibleTransferQuantity": "40",
+          "unitInferredFromProblem": "kPa",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L02-02",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "7c1ad648b924027c86f7859e7912a01f743be81d9fe56d12790620340aa794e5",
+      "reviewerDerivedLawFromSafeProblem": "T=(5/2)p",
+      "physicalAssumptionsAndUnresolvedConditions": "Fixed amount and rigid volume, given V/(nR)=2.5K/kPa. p is explicitly absolute, not gauge.",
+      "manualProcedureAndAdversarialCases": "Multiply p by5 then divide2; p50..200kPa gives125..500K.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "100",
+          "reviewerDerivedForVisibleTransferQuantity": "250",
+          "unitInferredFromProblem": "K",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "160",
+          "reviewerDerivedForVisibleTransferQuantity": "400",
+          "unitInferredFromProblem": "K",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L03-01",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "a44cb00a7fd7d8be04cbebdbf849ce2484b33ad36b11ad8da1fc6332f1325855",
+      "reviewerDerivedLawFromSafeProblem": "Q=50 deltaT",
+      "physicalAssumptionsAndUnresolvedConditions": "Assigned total heat capacity50J/K held constant over the range; process/phase assumptions must match the full context. DeltaT is a difference, not an absolute temperature.",
+      "manualProcedureAndAdversarialCases": "Multiply by50; reference2→100J and8→400J. Zero increment needs zero modeled heat.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "2",
+          "reviewerDerivedForVisibleTransferQuantity": "100",
+          "unitInferredFromProblem": "J",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "8",
+          "reviewerDerivedForVisibleTransferQuantity": "400",
+          "unitInferredFromProblem": "J",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L03-02",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "46a741c32d9f3dd7e1e8bbf9c13a184a10dc80e89bf28ea9c10e11ebd9594094",
+      "reviewerDerivedLawFromSafeProblem": "C=(2/5)m_g",
+      "physicalAssumptionsAndUnresolvedConditions": "Same material with assigned specific heat0.4J/(gK), hence400J/(kgK). Total capacity scales with mass; specific heat does not.",
+      "manualProcedureAndAdversarialCases": "Multiply grams by2/5. Reference100→40J/K and250→100J/K.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "100",
+          "reviewerDerivedForVisibleTransferQuantity": "40",
+          "unitInferredFromProblem": "J/K",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "250",
+          "reviewerDerivedForVisibleTransferQuantity": "100",
+          "unitInferredFromProblem": "J/K",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L03-03",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "8e3c10cfc03e378d998f29bfef283ef322b04b3cc94c5a903fc2bc18ae53cf7c",
+      "reviewerDerivedLawFromSafeProblem": "Q_p−Q_v=nR deltaT=(4157/500)deltaT",
+      "physicalAssumptionsAndUnresolvedConditions": "One mole of fixed-composition ideal gas, two paths with the same initial state and same temperature increment. Mayer Cp−Cv=R; no monatomic assumption needed.8.314 is the explicitly assigned working R.",
+      "manualProcedureAndAdversarialCases": "Use8+0.314 per kelvin or integer4157/500. Difference equals extra expansion work; internal-energy differences agree.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "2",
+          "reviewerDerivedForVisibleTransferQuantity": "4157/250",
+          "unitInferredFromProblem": "J",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "10",
+          "reviewerDerivedForVisibleTransferQuantity": "4157/50",
+          "unitInferredFromProblem": "J",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L03-04",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "158536315417e0eb1f4c0c50467b99addfe86be19edae76ce6b46804d563b973",
+      "reviewerDerivedLawFromSafeProblem": "T_f=(80m+4000)/(m+200)",
+      "physicalAssumptionsAndUnresolvedConditions": "Mixing water, common constant specific heat model, no vessel heat or losses. Temperature differences allow Celsius in this weighted average. If c(T) is retained, an integral balance would replace this model.",
+      "manualProcedureAndAdversarialCases": "Balance m(80−Tf)=200(Tf−20). Reference100→40°C and200→50°C. Positive masses keep20<Tf<80; inverse m=200(Tf−20)/(80−Tf).",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "100",
+          "reviewerDerivedForVisibleTransferQuantity": "40",
+          "unitInferredFromProblem": "°C",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "200",
+          "reviewerDerivedForVisibleTransferQuantity": "50",
+          "unitInferredFromProblem": "°C",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L04-01",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "cced38e5300c701342387bbee643e8fb99a7897d3eaf83c0a0a9fe89c2a24224",
+      "reviewerDerivedLawFromSafeProblem": "m_fused=(500/167)Q_kJ",
+      "physicalAssumptionsAndUnresolvedConditions": "Ice initially at0°C, latent heat334J/g assigned. Available ice mass must be at least the melted mass; total initial mass/power is not visible in the safe prompt.",
+      "manualProcedureAndAdversarialCases": "Convert kJ toJ then divide334:8.35kJ→25g,16.7→50g. At33.4kJ result100g if that much ice is available. No clock law derived here.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "167/20",
+          "reviewerDerivedForVisibleTransferQuantity": "25",
+          "unitInferredFromProblem": "g",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "167/10",
+          "reviewerDerivedForVisibleTransferQuantity": "50",
+          "unitInferredFromProblem": "g",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L04-02",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "27f5d369327ac5aadae1432bf613f221dbb47b1a79c605a641deb3c302c2f67d",
+      "reviewerDerivedLawFromSafeProblem": "Q_system=(113/50)m_vapor_signed",
+      "physicalAssumptionsAndUnresolvedConditions": "Positive signed mass is liquid→vapour; negative is condensation. Standard heat-into-water sign used conditionally; full bank convention must be read before acceptance.",
+      "manualProcedureAndAdversarialCases": "Multiply signed grams by2.26kJ/g. Reference−2→−4.52kJ,3→6.78kJ; opposite environment heat has opposite sign.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "-2",
+          "reviewerDerivedForVisibleTransferQuantity": "-113/25",
+          "unitInferredFromProblem": "kJ",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "3",
+          "reviewerDerivedForVisibleTransferQuantity": "339/50",
+          "unitInferredFromProblem": "kJ",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L04-03",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "66760d0951ee0792266e6970d53f272937b209ec238efd2f8a7b3909ebc92a82",
+      "reviewerDerivedLawFromSafeProblem": "m_fused=min(100,max(0,(50/17)(Q_kJ−2)))",
+      "physicalAssumptionsAndUnresolvedConditions": "Exactly100g ice and assigned initial sensible-heat cost2kJ, latent340J/g=.34kJ/g. No melting below2kJ, partial melt2..36, full100g above36; further heat cannot melt more than100g.",
+      "manualProcedureAndAdversarialCases": "Subtract2kJ only in partial phase, convert units, divide. Reference1→0g and19→50g. Post-melt water temperature needs additional heat-capacity data; no clock power assumed.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "1",
+          "reviewerDerivedForVisibleTransferQuantity": "0",
+          "unitInferredFromProblem": "g",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "19",
+          "reviewerDerivedForVisibleTransferQuantity": "50",
+          "unitInferredFromProblem": "g",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L05-01",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "8070749aa58b160cae37fb44d1b46d2407f1db4eb63febaf5e685d3f34eb8e46",
+      "reviewerDerivedLawFromSafeProblem": "P=20/d_cm",
+      "physicalAssumptionsAndUnresolvedConditions": "Steady one-dimensional Fourier conduction, homogeneous constantk1W/(mK), area.01m², endpoint difference20K, positive thickness.",
+      "manualProcedureAndAdversarialCases": "d_cm/100 metres; kA deltaT/d=.2/(d/100). Reference2cm→10W,5cm→4W.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "2",
+          "reviewerDerivedForVisibleTransferQuantity": "10",
+          "unitInferredFromProblem": "W",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "5",
+          "reviewerDerivedForVisibleTransferQuantity": "4",
+          "unitInferredFromProblem": "W",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L05-02",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "613bacf9597ee4c00de5230753c6afe60c20e34938ba1e95be78b8cfb2a6e78a",
+      "reviewerDerivedLawFromSafeProblem": "P=42 mass_flow_g_per_s",
+      "physicalAssumptionsAndUnresolvedConditions": "Fixed42J released per gram in exchanger; constant flow, no extra mechanical/kinetic-energy term. Sign is heat delivered to second circuit.",
+      "manualProcedureAndAdversarialCases": "J/g times g/s is W. Reference1→42W and3→126W; no specific heat or10K drop inferred as a new given.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "1",
+          "reviewerDerivedForVisibleTransferQuantity": "42",
+          "unitInferredFromProblem": "W",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "3",
+          "reviewerDerivedForVisibleTransferQuantity": "126",
+          "unitInferredFromProblem": "W",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L05-03",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "18e6d403b51bc45ae44771f7f9aaa532d8158226943470580ba310c4f1050153",
+      "reviewerDerivedLawFromSafeProblem": "j_out=sigma(T_s^4−300^4)",
+      "physicalAssumptionsAndUnresolvedConditions": "Black surface emissivity1, positive absolute temperatures, net outward flux convention. Sigma value is not given in this safe projection; numerical use and manual feasibility remain conditional on full learner material.",
+      "manualProcedureAndAdversarialCases": "Factor10^8 using(T/100)^4−3^4 rather than huge fourth powers. At300K flux0;400K gives17500000000sigma. Cooler surface has negative outward flux, not negative absolute emitted power.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "300",
+          "reviewerDerivedForVisibleTransferQuantity": "0",
+          "unitInferredFromProblem": "W/m²",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "400",
+          "reviewerDerivedForVisibleTransferQuantity": "17500000000 sigma",
+          "unitInferredFromProblem": "W/m²",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L06-01",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "553d62d12533ba03b2b2b798742d9569777c4a1fca075aa8fcd20db0902386be",
+      "reviewerDerivedLawFromSafeProblem": "deltaU=Q−W_by_gas=Q−10",
+      "physicalAssumptionsAndUnresolvedConditions": "Closed gas, work by gas positive, given fixed10J. Ignore bulk kinetic/potential changes. A feasible positive initial internal energy is needed over the full negative-change range.",
+      "manualProcedureAndAdversarialCases": "Subtract10 with signs; reference10→0J and30→20J. Heat leaving is not made positive by an absolute value.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "10",
+          "reviewerDerivedForVisibleTransferQuantity": "0",
+          "unitInferredFromProblem": "J",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "30",
+          "reviewerDerivedForVisibleTransferQuantity": "20",
+          "unitInferredFromProblem": "J",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L06-02",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "c6fa5cecbec9861a8ab452453e28f105dd3d32a7be37b19edc12d0c354443234",
+      "reviewerDerivedLawFromSafeProblem": "deltaU=12 deltaT",
+      "physicalAssumptionsAndUnresolvedConditions": "Assigned totalnCv12J/K, fixed ideal-gas amount and working capacity. DeltaT sign controls deltaU; formula does not independently specify the heat/work path.",
+      "manualProcedureAndAdversarialCases": "Multiply by12;−10→−120J,20→240J. Initial absolute T must keep final T positive.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "-10",
+          "reviewerDerivedForVisibleTransferQuantity": "-120",
+          "unitInferredFromProblem": "J",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "20",
+          "reviewerDerivedForVisibleTransferQuantity": "240",
+          "unitInferredFromProblem": "J",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L06-03",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "508f073c83bb3dc4eae832c561e9c67dacd11c79df42b0e89b1f87cecf507060",
+      "reviewerDerivedLawFromSafeProblem": "Q=deltaU+W_by_gas=10+W",
+      "physicalAssumptionsAndUnresolvedConditions": "Single process with deltaU10J; not a completed engine cycle just because prompt uses the word motore. Work sign is by gas.",
+      "manualProcedureAndAdversarialCases": "Add10;−10J work→Q0 (adiabatic compression possible),20→Q30J.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "-10",
+          "reviewerDerivedForVisibleTransferQuantity": "0",
+          "unitInferredFromProblem": "J",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "20",
+          "reviewerDerivedForVisibleTransferQuantity": "30",
+          "unitInferredFromProblem": "J",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L06-04",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "0b954e89df7f8d20a9acd4ecc50743fc09f680ec68bea9b780f8180e6fa13aae",
+      "reviewerDerivedLawFromSafeProblem": "W_by_gas=100 deltaV_L",
+      "physicalAssumptionsAndUnresolvedConditions": "Constant100kPa external pressure, quasistatic boundary-work model. Positive expansion, negative compression. Initial absolute volume must exceed1L if the−1L boundary is reachable.",
+      "manualProcedureAndAdversarialCases": "1kPa·L=1J. Reference−.5L→−50J and1.5L→150J. No absolute V is visible in safe input.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "-1/2",
+          "reviewerDerivedForVisibleTransferQuantity": "-50",
+          "unitInferredFromProblem": "J",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "3/2",
+          "reviewerDerivedForVisibleTransferQuantity": "150",
+          "unitInferredFromProblem": "J",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L07-01",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "1b4abdd5abaa445e43ae33b6b5aa58c7879e4938702fe734293cba27538e1a65",
+      "reviewerDerivedLawFromSafeProblem": "W_N=100 sum_(j=1..N)1/(N+j)",
+      "physicalAssumptionsAndUnresolvedConditions": "Integer N1..8, Vi1L,Vf2L, equal volume increments1/N, prescribed external step pressures. Each pressure applies over its corresponding expansion step.",
+      "manualProcedureAndAdversarialCases": "Each step contributes100/(N+j)J. N1→50J,N2→175/3J. Finite sums can use hand long division with bounded rounding. Reversible limit100ln2 is separate and is not presumed an assigned numeric task.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "1",
+          "reviewerDerivedForVisibleTransferQuantity": "50",
+          "unitInferredFromProblem": "J",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "2",
+          "reviewerDerivedForVisibleTransferQuantity": "175/3",
+          "unitInferredFromProblem": "J",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L07-02",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "17ad3b826b0b1c4073ddc7ffa85d6170c3518f4b35b56283792139ea1bd848fe",
+      "reviewerDerivedLawFromSafeProblem": "p=100/V",
+      "physicalAssumptionsAndUnresolvedConditions": "Closed fixed-temperature ideal gas with givenpV100kPa·L, positive volumes1..4L. Summary mentions compression; actual path capability must be checked later.",
+      "manualProcedureAndAdversarialCases": "Divide100 byV. Reference1→100kPa,2→50kPa; path direction does not alter endpoint law.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "1",
+          "reviewerDerivedForVisibleTransferQuantity": "100",
+          "unitInferredFromProblem": "kPa",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "2",
+          "reviewerDerivedForVisibleTransferQuantity": "50",
+          "unitInferredFromProblem": "kPa",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L07-03",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "2576e0b255665708b6397a0fa9fee7959b5626bb18050926feacb6e7a8e03053",
+      "reviewerDerivedLawFromSafeProblem": "p=(1/2)T",
+      "physicalAssumptionsAndUnresolvedConditions": "Rigid closed ideal gas, absolute state150kPa/300K, fixedn/V. No moving-boundary work.",
+      "manualProcedureAndAdversarialCases": "Scale pressure with absolute T;250→125kPa,400→200kPa. No Celsius ratio.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "250",
+          "reviewerDerivedForVisibleTransferQuantity": "125",
+          "unitInferredFromProblem": "kPa",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "400",
+          "reviewerDerivedForVisibleTransferQuantity": "200",
+          "unitInferredFromProblem": "kPa",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L07-04",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "9660daab01df034e9b44faccdf7414898e71f22bbc4a25eb3cb13c967e175461",
+      "reviewerDerivedLawFromSafeProblem": "V=T/100",
+      "physicalAssumptionsAndUnresolvedConditions": "Closed ideal gas at fixed positive pressure, reference3L at300K. Thermal expansion may be heating or cooling, but amount remains fixed.",
+      "manualProcedureAndAdversarialCases": "3T/300L;250→2.5L,400→4L. Inverse T=100V.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "250",
+          "reviewerDerivedForVisibleTransferQuantity": "5/2",
+          "unitInferredFromProblem": "L",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "400",
+          "reviewerDerivedForVisibleTransferQuantity": "4",
+          "unitInferredFromProblem": "L",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L07-05",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "33aba67560b0eecd8b661a0871cbc872b8996a1e231619927c763c5fe7f3edf8",
+      "reviewerDerivedLawFromSafeProblem": "IF reversible/quasistatic nondissipative ideal-gas adiabat: p=100/(r sqrt(r))",
+      "physicalAssumptionsAndUnresolvedConditions": "Adiabatic Q0 alone is insufficient forpV^gamma constant. Full source/consumer must establish the isentropic/reversible ideal-gas assumptions and constantgamma3/2.",
+      "manualProcedureAndAdversarialCases": "At r1 pressure100kPa; r4 gives12.5kPa by exactsqrt4. Any generated non-perfect-square ratio needs an actually usable manual decimal method for Number grading; an exact radical alone is not sufficient.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "1",
+          "reviewerDerivedForVisibleTransferQuantity": "100",
+          "unitInferredFromProblem": "kPa",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "4",
+          "reviewerDerivedForVisibleTransferQuantity": "25/2",
+          "unitInferredFromProblem": "kPa",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L08-01",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "bfc96443566456d39c0805e9398759212adfe4844f613d8e817bb271dea2d558",
+      "reviewerDerivedLawFromSafeProblem": "W_clockwise=60 deltaV_L",
+      "physicalAssumptionsAndUnresolvedConditions": "Rectangular clockwisep–V loop, pressure span60kPa. Nonnegative width0..3L; zero width is a degenerate zero-work limit.",
+      "manualProcedureAndAdversarialCases": "Rectangle area and1kPa·L=1J:1L→60J,2→120J. Reversing cycle direction would reverse sign, not absolute heat amounts.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "1",
+          "reviewerDerivedForVisibleTransferQuantity": "60",
+          "unitInferredFromProblem": "J",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "2",
+          "reviewerDerivedForVisibleTransferQuantity": "120",
+          "unitInferredFromProblem": "J",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L08-02",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "97087f983d159364722b68031363c293fcfe15e91c2cc119614ea94f9e1bdb41",
+      "reviewerDerivedLawFromSafeProblem": "W=100−Q_cold_out",
+      "physicalAssumptionsAndUnresolvedConditions": "Completed cycle returns internal energy to its initial value.100J enters, xJ leaves to cold source. Temperatures are absent here, so any claimed efficiency must later respect actual reservoir Carnot bound.",
+      "manualProcedureAndAdversarialCases": "Subtract rejected heat:40→60J,80→20J. At100J rejected, work0; heat-out is a positive magnitude here.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "40",
+          "reviewerDerivedForVisibleTransferQuantity": "60",
+          "unitInferredFromProblem": "J",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "80",
+          "reviewerDerivedForVisibleTransferQuantity": "20",
+          "unitInferredFromProblem": "J",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L08-03",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "5d9d255ed1dbe99c8d3ee7968fd0e5d06444a98f4062fcba079cc504e6cf0c61",
+      "reviewerDerivedLawFromSafeProblem": "W_total=20N",
+      "physicalAssumptionsAndUnresolvedConditions": "Integer complete cycles, fixed20J output per turn, no residual internal-energy accumulation per completed cycle.",
+      "manualProcedureAndAdversarialCases": "Multiply turn count by20;2→40J,5→100J. Work accumulates while the state returns.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "2",
+          "reviewerDerivedForVisibleTransferQuantity": "40",
+          "unitInferredFromProblem": "J",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "5",
+          "reviewerDerivedForVisibleTransferQuantity": "100",
+          "unitInferredFromProblem": "J",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L09-01",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "8f515bf4b0607f208edca41181586e7d1e308795bdcfb4bfcf0284765f6fad2b",
+      "reviewerDerivedLawFromSafeProblem": "Q_hot_min=(3/2)Q_cold;W_min=Q_cold/2",
+      "physicalAssumptionsAndUnresolvedConditions": "Reversible refrigerator with positive absolute Th/Tc3/2. Reservoir entropy balance and energy balance apply; irreversible operation requires at least this heat rejection for fixedQc.",
+      "manualProcedureAndAdversarialCases": "Multiply removed heat by1.5:20→30J,60→90J. Qc0 is zero operation; do not evaluate a0/0 COP there.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "20",
+          "reviewerDerivedForVisibleTransferQuantity": "30",
+          "unitInferredFromProblem": "J",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "60",
+          "reviewerDerivedForVisibleTransferQuantity": "90",
+          "unitInferredFromProblem": "J",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L09-02",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "f9ac4e135c62f0356904f274d6c707847ebb1d02071e531ec147cdd2933da4c6",
+      "reviewerDerivedLawFromSafeProblem": "W=(3/10)Q_hot",
+      "physicalAssumptionsAndUnresolvedConditions": "Given fixed30% engine efficiency; input heat nonnegative. Rejected heat0.7Qh; any actual reservoir temperatures must permit that efficiency.",
+      "manualProcedureAndAdversarialCases": "Multiply by3 then divide10:50→15J,150→45J. At input0 the proportional model givesW0; efficiency is given, not measured from0/0.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "50",
+          "reviewerDerivedForVisibleTransferQuantity": "15",
+          "unitInferredFromProblem": "J",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "150",
+          "reviewerDerivedForVisibleTransferQuantity": "45",
+          "unitInferredFromProblem": "J",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L09-03",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "7cbb91fe54dcbad6705cf6d9c871ed6a2f8b1fa0c38f14ac25c0bee63b2b4554",
+      "reviewerDerivedLawFromSafeProblem": "eta_percent=W_J forQhot100J",
+      "physicalAssumptionsAndUnresolvedConditions": "Positive fixed100J input, output0..50J. Fractioneta=W/100, percent100eta; rejected heat100−W stays positive.",
+      "manualProcedureAndAdversarialCases": "Reference10J→10%,40J→40%. Do not confuse numeric percent with the fraction.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "10",
+          "reviewerDerivedForVisibleTransferQuantity": "10",
+          "unitInferredFromProblem": "%",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "40",
+          "reviewerDerivedForVisibleTransferQuantity": "40",
+          "unitInferredFromProblem": "%",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L09-04",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "dee1f476881e458180f934e6acb71a6177fbb0b5a5aa239c9bac2cec3871b631",
+      "reviewerDerivedLawFromSafeProblem": "eta_max_percent=100−T_cold/5",
+      "physicalAssumptionsAndUnresolvedConditions": "Carnot bound with Th500K,250<=Tc<=500K. Equality requires reversible operation; at equal temperatures bound0 is a degenerate no-positive-work limit.",
+      "manualProcedureAndAdversarialCases": "250K→50%,400K→20%; use absolute temperatures, not Celsius differences or ratios.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "250",
+          "reviewerDerivedForVisibleTransferQuantity": "50",
+          "unitInferredFromProblem": "%",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "400",
+          "reviewerDerivedForVisibleTransferQuantity": "20",
+          "unitInferredFromProblem": "%",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L10-01",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "140aeb3292815f80772d662d1f5ba0093748fc0e82799b6031d9050ee380797f",
+      "reviewerDerivedLawFromSafeProblem": "deltaS_body=Q_rev/300",
+      "physicalAssumptionsAndUnresolvedConditions": "Isothermal300K body exchanging reversible heat with signedQ into the body. This is not arbitrary irreversible heat divided byT; surroundings may compensate a negative body entropy change.",
+      "manualProcedureAndAdversarialCases": "Divide by300:−30→−.1J/K,60→.2J/K. PositiveQ andT do not fix a general irreversible path heat law.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "-30",
+          "reviewerDerivedForVisibleTransferQuantity": "-1/10",
+          "unitInferredFromProblem": "J/K",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "60",
+          "reviewerDerivedForVisibleTransferQuantity": "1/5",
+          "unitInferredFromProblem": "J/K",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L10-02",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "a13b741a175b451ba53fa725051906c025d939d2dffe6041520d8e2da435f0b7",
+      "reviewerDerivedLawFromSafeProblem": "deltaS_total=Q/600",
+      "physicalAssumptionsAndUnresolvedConditions": "Ideal reservoirs600K and300K, heatQ>=0 from hot to cold, no other exchange. Energy conserved, entropyproductionQ(1/300−1/600).",
+      "manualProcedureAndAdversarialCases": "30→.05J/K,90→.15J/K; sum signed reservoir changes, not their magnitudes.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "30",
+          "reviewerDerivedForVisibleTransferQuantity": "1/20",
+          "unitInferredFromProblem": "J/K",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "90",
+          "reviewerDerivedForVisibleTransferQuantity": "3/20",
+          "unitInferredFromProblem": "J/K",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L10-03",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "2f393610bed41d31899a213860e7fa42836e74ea6a6c2c7584f85ab5f1809545",
+      "reviewerDerivedLawFromSafeProblem": "Omega(k)=binomial(4,k)",
+      "physicalAssumptionsAndUnresolvedConditions": "Four distinguishable particles, exactly two locations each, integerk0..4. Compatible microstate counts1,4,6,4,1; equal probabilities are extra only when explaining frequencies.",
+      "manualProcedureAndAdversarialCases": "Choose whichk labels lie left; referencesk1→4,k2→6. No logarithm or factorial of a noninteger is physically permitted.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "1",
+          "reviewerDerivedForVisibleTransferQuantity": "4",
+          "unitInferredFromProblem": "1",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "2",
+          "reviewerDerivedForVisibleTransferQuantity": "6",
+          "unitInferredFromProblem": "1",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L10-04",
+      "sourceVersion": 1,
+      "safeProblemAndInputSha256": "9a0827747e6770e0c52dcfe3310ce6a05bcc98ab0fb600baf19b0efbb8a0f575",
+      "reviewerDerivedLawFromSafeProblem": "deltaS_total_signed=Q/600",
+      "physicalAssumptionsAndUnresolvedConditions": "Sign convention hot-to-cold positive. NegativeQ would transfer heat cold-to-hot and reduce isolated total entropy, so it is a hypothetical forbidden spontaneous direction unless external intervention changes the model.",
+      "manualProcedureAndAdversarialCases": "−60→−.1J/K,30→.05J/K. Do not present negative-total-entropy controls as a naturally realized isolated process; actual consumer warning/direction must be read later.",
+      "reviewerReferenceCalculationsNotSourceOutputs": [
+        {
+          "input": "-60",
+          "reviewerDerivedForVisibleTransferQuantity": "-1/10",
+          "unitInferredFromProblem": "J/K",
+          "isSourceReferenceOrdinate": false
+        },
+        {
+          "input": "30",
+          "reviewerDerivedForVisibleTransferQuantity": "1/20",
+          "unitInferredFromProblem": "J/K",
+          "isSourceReferenceOrdinate": false
+        }
+      ],
+      "actualComparisonQuestionRead": false,
+      "actualTransferInstantiationRead": false,
+      "newSolutionFieldsOrCourseModelRead": false,
+      "UI": "NOT_RUN",
+      "ok": false,
+      "activityCredit": 0
+    }
+  ],
+  "sourceOutputFormulaInterpretationSubstitutionBlocksAndCourseModelRead": false,
+  "sharedClockPreviouslyRead": true,
+  "actualGeneratedQuestionsVerified": false,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "UI": "NOT_RUN",
+  "acceptedCount": 0,
+  "activityCredit": 0,
+  "remoteDispatchAuthorized": false,
+  "localOnly": true
+}

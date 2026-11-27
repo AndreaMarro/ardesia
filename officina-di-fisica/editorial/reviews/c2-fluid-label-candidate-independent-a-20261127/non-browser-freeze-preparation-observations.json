@@ -1,0 +1,22 @@
+{
+  "scope": "Only lightweight local report construction, before independent target",
+  "observedFailures": [
+    {
+      "observedToolExit": 1,
+      "error": "ModuleNotFoundError: sympy",
+      "reason": "Wrong system Python for a script importing existing mathematical pipeline",
+      "resolution": "Use the existing recovery Python, no dependency contract changed"
+    },
+    {
+      "observedToolExit": 1,
+      "error": "AssertionError: two planned control points collapsed for a witness at maximum",
+      "resolution": "Keep the original first witness rather than overwrite by last repeated observation"
+    },
+    {
+      "observedToolExit": 1,
+      "error": "AssertionError: Q=L008-03 witness itself is maximum8",
+      "resolution": "Add distinct legal first positive control0.5 beside the observed maximum8; plan remains exactly two points"
+    }
+  ],
+  "doesNotModifyActualUiReceipts": true
+}

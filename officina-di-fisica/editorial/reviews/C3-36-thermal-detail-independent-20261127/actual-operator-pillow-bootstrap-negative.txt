@@ -1,0 +1,13 @@
+bounded local start; free bytes 2772873216
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C3-36-thermal-detail-independent-20261127/check-operators.py", line 4, in <module>
+    from PIL import Image
+ModuleNotFoundError: No module named 'PIL'
+Traceback (most recent call last):
+  File "/private/tmp/cric-bounded-local.py", line 7, in <module>
+    subprocess.run(sys.argv[1:],check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py", line 579, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['/private/tmp/cric-recovery-venv/bin/python', '-B', 'editorial/reviews/C3-36-thermal-detail-independent-20261127/check-operators.py']' returned non-zero exit status 1.
