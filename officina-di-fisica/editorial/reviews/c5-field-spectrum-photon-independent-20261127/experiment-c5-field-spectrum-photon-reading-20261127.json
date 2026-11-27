@@ -1,0 +1,368 @@
+{
+  "assets": [],
+  "records": [
+    {
+      "anchor": "La luce di una stella attraversa spazio",
+      "apparatus": "em",
+      "assessmentSelection": {
+        "points": [
+          90,
+          270
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 2,
+      "blocks": [
+        {
+          "text": "Comincia dalla sonda P. Traccia la direzione di propagazione e due assi trasversali per i campi elettrico e magnetico. Sono perpendicolari fra loro e alla direzione di propagazione. Nel vuoto le due componenti, misurate sugli assi positivi scelti, cambiano segno nello stesso istante. Il rapporto delle loro ampiezze è la velocità della luce.",
+          "type": "text"
+        },
+        {
+          "text": "B=\\frac{E}{c}=\\frac{3\\sin\\varphi\\ \\mathrm{V/m}}{3\\times10^8\\ \\mathrm{m/s}}=10^{-8}\\sin\\varphi\\ \\mathrm T=10\\sin\\varphi\\ \\mathrm{nT}",
+          "type": "formula"
+        },
+        {
+          "text": "Disegna le frecce in P in tre fotogrammi. A 90° il seno vale 1 e il campo magnetico vale +10 nT. A 180° entrambe le componenti sono nulle in P. A 270° il seno vale −1 e leggi −10 nT. L’ultima freccia magnetica ha la stessa lunghezza della precedente e verso opposto. Si inverte anche il campo elettrico, perciò il verso del prodotto vettoriale che indica la propagazione è lo stesso.",
+          "type": "text"
+        },
+        {
+          "text": "Per tornare dalla misura magnetica a quella elettrica usa E = cB. Una componente di −10 nT equivale a −10⁻⁸ T. Moltiplicando per 3 × 10⁸ m/s ottieni −3 V/m. Il segno vale per le componenti orientate, mentre i moduli sono positivi.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Fase del campo",
+        "max": 360.0,
+        "min": 0.0,
+        "step": 15.0,
+        "unit": "°"
+      },
+      "course": "C5",
+      "formula": "E = 3 sin φ V/m; B = E/c; c ≈ 3×10⁸ m/s",
+      "id": "SIM-C5-L06-01",
+      "interpretation": "Segui le frecce in P a 90°, 180° e 270°. A 180° i due campi e il flusso istantaneo in P si annullano. Nei due fotogrammi con campi diversi da zero la direzione del flusso è la stessa.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Campo magnetico istantaneo",
+        "unit": "nT"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C5-L03"
+      ],
+      "references": [
+        [
+          90.0,
+          10.0
+        ],
+        [
+          270.0,
+          -10.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Campi e spettro elettromagnetico",
+      "skill": "C5-L06",
+      "substitution": "10 × sin({x}°)",
+      "summary": "Come cambiano i due campi passando da 90° a 270°? Che cosa misuri a metà del percorso?",
+      "title": "Onde elettromagnetiche e campi ortogonali",
+      "topic": "UD7 · onde elettromagnetiche e campi ortogonali",
+      "transferPrompt": "In un’onda piana nel vuoto la componente elettrica in P è 3 sin φ V/m. Alla fase {x}, quale componente magnetica con segno esprimi in nT?",
+      "version": 3
+    },
+    {
+      "anchor": "L’ampiezza E₀ misura il massimo modulo del",
+      "apparatus": "em",
+      "assessmentSelection": {
+        "points": [
+          4,
+          3
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Il banco cambia l’altezza delle oscillazioni di un’onda piana sinusoidale nel vuoto. Poiché il campo magnetico ha ampiezza E₀/c, il flusso di energia coinvolge il prodotto dei due campi. Per onde nelle stesse condizioni e con la stessa forma, il fattore di media su un periodo è comune e si cancella nel rapporto.",
+          "type": "text"
+        },
+        {
+          "text": "\\frac{I}{I_{\\rm rif}}=\\left(\\frac{E_0}{2\\ \\mathrm{V/m}}\\right)^2",
+          "type": "formula"
+        },
+        {
+          "text": "Segna sullo stesso profilo l’altezza di riferimento 2 V/m. Aggiungi una traccia di altezza 4 V/m e mantieni ferme le creste lungo l’asse orizzontale. Il rapporto delle altezze è 4/2 = 2, quindi il rapporto delle intensità è 2² = 4. Per 3 V/m il quadrato di 3/2 è 9/4. Poiché 9 = 8 + 1, puoi inserire 2,25.",
+          "type": "text"
+        },
+        {
+          "text": "Se parti dal rapporto 9/4, prendi la radice positiva perché E₀ è un’ampiezza. Ne risulta E₀ = (3/2) × 2 V/m = 3 V/m. Nel banco la frequenza resta fissa e c = λf, quindi il profilo più alto ha la stessa lunghezza d’onda.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Ampiezza del campo elettrico",
+        "max": 6.0,
+        "min": 0.0,
+        "step": 0.5,
+        "unit": "V/m"
+      },
+      "course": "C5",
+      "formula": "I/I riferimento = (E₀/2)²; c = λf",
+      "id": "SIM-C5-L06-02",
+      "interpretation": "Sovrapponi due profili alla stessa scala. I massimi si alzano se aumenta E₀, mentre lo spazio tra le creste resta uguale a frequenza fissata.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Intensità rispetto a E₀ = 2 V/m",
+        "unit": "1"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C5-L05"
+      ],
+      "references": [
+        [
+          2.0,
+          1.0
+        ],
+        [
+          4.0,
+          4.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Campi e spettro elettromagnetico",
+      "skill": "C5-L06",
+      "substitution": "({x} / 2)²",
+      "summary": "Cambiando l’ampiezza di un’onda luminosa ne modifichi anche la lunghezza d’onda?",
+      "title": "Velocità, frequenza, lunghezza d’onda, ampiezza e intensità",
+      "topic": "UD7 · velocità, frequenza, lunghezza d’onda, ampiezza e intensità",
+      "transferPrompt": "A frequenza fissata vari l’ampiezza elettrica da 2 V/m a {x}. Quanto vale il rapporto fra la nuova intensità media e quella di riferimento?",
+      "version": 2
+    },
+    {
+      "anchor": "La luce visibile occupa una stretta regione",
+      "apparatus": "em",
+      "assessmentSelection": {
+        "points": [
+          1,
+          6
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Uno spettro occupa più ordini di grandezza. In una scala lineare, lunghezze come 100 m e 10⁻¹⁰ m sono difficili da rappresentare insieme. La scala del banco divide λ per un metro e colloca il numero puro sull’asse del logaritmo. L’unità di lunghezza resta il metro, mentre la coordinata sull’asse è adimensionale.",
+          "type": "text"
+        },
+        {
+          "text": "s=\\log_{10}(\\lambda/(1\\ \\mathrm m)),\\qquad \\lambda=10^s\\ \\mathrm m",
+          "type": "formula"
+        },
+        {
+          "text": "Scrivi sul disegno il punto zero per 1 m. Per il campione radio, 100 m sono 10² m e collochi il punto due passi a destra. Per il campione dei raggi X, 10⁻¹⁰ m si trova dieci passi a sinistra. I due punti distano 2 − (−10) = 12 passi, quindi le lunghezze differiscono di un fattore 10¹². I valori del banco rappresentano campioni, mentre ciascuna banda copre un intervallo.",
+          "type": "text"
+        },
+        {
+          "text": "Nel vuoto la stessa relazione c = λf vale per entrambe. Dividi la stessa c per le due lunghezze per ricavare le frequenze. Il campione X ha la lunghezza più piccola e la frequenza più alta. In figura la griglia dei logaritmi rende leggibile un rapporto che il numero di creste schematiche non rappresenta in scala.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "choices": [
+          "Radio",
+          "Microonde",
+          "Infrarosso",
+          "Visibile",
+          "UV",
+          "X",
+          "Gamma"
+        ],
+        "label": "Banda dello spettro",
+        "max": 7.0,
+        "min": 1.0,
+        "step": 1.0,
+        "unit": "1"
+      },
+      "course": "C5",
+      "formula": "log₁₀ λ(m) = log₁₀ c − log₁₀ f",
+      "id": "SIM-C5-L06-03",
+      "interpretation": "Posiziona le bande su una retta che conta gli esponenti delle lunghezze misurate in metri. Un passo verso sinistra divide la lunghezza per dieci.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Logaritmo decimale della lunghezza d’onda in metri",
+        "unit": "1"
+      },
+      "order": 3,
+      "prerequisites": [
+        "C5-L03"
+      ],
+      "references": [
+        [
+          1.0,
+          2.0
+        ],
+        [
+          4.0,
+          -6.3
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Campi e spettro elettromagnetico",
+      "skill": "C5-L06",
+      "substitution": [
+        "log₁₀(100)",
+        "log₁₀(0,01)",
+        "log₁₀(10⁻⁵)",
+        "log₁₀(10⁻⁶·³)",
+        "log₁₀(10⁻⁷·³)",
+        "log₁₀(10⁻¹⁰)",
+        "log₁₀(10⁻¹²)"
+      ],
+      "summary": "Come confronti onde di dimensioni enormemente diverse sulla stessa scala?",
+      "title": "Spettro: radio, microonde, infrarosso, visibile, UV, X e gamma",
+      "topic": "UD7 · spettro: radio, microonde, infrarosso, visibile, UV, X e gamma",
+      "transferPrompt": "Per la banda «{x}», il banco usa una lunghezza campione di 10⁻¹⁰ m. In che posizione si trova sulla scala log₁₀(λ/m)?",
+      "version": 2
+    },
+    {
+      "anchor": "La potenza luminosa dipende dall’energia portata da",
+      "apparatus": "em",
+      "assessmentSelection": {
+        "points": [
+          250,
+          500
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "La relazione di Planck associa un’energia a un fotone di frequenza f. Raddoppiare il numero di fotoni a frequenza fissa può aumentare l’energia totale del fascio, mentre l’energia di ciascun fotone resta hf. Qui il controllo modifica f. Prima di moltiplicare ricorda che 1 THz = 10¹² Hz e che Hz significa s⁻¹.",
+          "type": "text"
+        },
+        {
+          "text": "E=hf,\\quad E(250\\ \\mathrm{THz})=(4{,}136\\times10^{-15}\\ \\mathrm{eV}\\,\\mathrm s)(250\\times10^{12}\\ \\mathrm{s}^{-1})=\\frac{4{,}136}{4}\\ \\mathrm{eV}",
+          "type": "formula"
+        },
+        {
+          "text": "La divisione per quattro si fa con due dimezzamenti. Da 4,136 passi a 2,068, poi a 1,034 eV. A 500 THz moltiplichi per 1/2 e ottieni direttamente 2,068 eV. I decimali usano la costante approssimata assegnata dal banco.",
+          "type": "text"
+        },
+        {
+          "text": "Per ritrovare la frequenza partendo da 2,068 eV usa f = E/h. Il rapporto 2,068/4,136 è 1/2, quindi f ≃ (1/2) × 10¹⁵ Hz = 500 THz. Disegna per lo stesso tratto di spazio prima un periodo del profilo a 250 THz e poi due periodi a 500 THz. La maggiore frequenza corrisponde a creste più vicine.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Frequenza del fotone",
+        "max": 1000.0,
+        "min": 100.0,
+        "step": 50.0,
+        "unit": "THz"
+      },
+      "course": "C5",
+      "formula": "E = hf; h ≈ 4,136×10⁻¹⁵ eV·s",
+      "id": "SIM-C5-L07-01",
+      "interpretation": "Confronta il numero di cicli disegnati nello stesso tratto. Nel vuoto, raddoppiare la frequenza dimezza la lunghezza d’onda e raddoppia l’energia di ciascun fotone.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Energia per fotone",
+        "unit": "eV"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C5-L06"
+      ],
+      "references": [
+        [
+          250.0,
+          1.034
+        ],
+        [
+          750.0,
+          3.102
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fotoni e attenuazione",
+      "skill": "C5-L07",
+      "substitution": "0,004136 × {x}",
+      "summary": "Come cambia l’energia del singolo fotone se raddoppi la frequenza?",
+      "title": "Quantizzazione dell’energia e relazione di Planck",
+      "topic": "UD7 · quantizzazione dell’energia e relazione di Planck",
+      "transferPrompt": "Una sorgente monocromatica emette a {x}. Usa h ≃ 4,136 × 10⁻¹⁵ eV·s. Quanti eV trasporta un singolo fotone?",
+      "version": 2
+    },
+    {
+      "anchor": "Un singolo fotone può ionizzare un atomo",
+      "apparatus": "fotone",
+      "assessmentSelection": {
+        "points": [
+          14,
+          19
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Il modello descrive un assorbimento a singolo fotone in un bersaglio con energia di legame 14 eV. Traccia una soglia orizzontale a 14 eV. A 13 eV il fotone non copre il costo di separazione e il banco registra zero uscita. Un eV è già un’unità di energia, quindi puoi fare direttamente confronti e differenze in eV.",
+          "type": "text"
+        },
+        {
+          "text": "K_{\\max}=E_\\gamma-E_{\\rm legame}\\quad(E_\\gamma\\ge E_{\\rm legame}),\\qquad E_{\\rm legame}=14\\ \\mathrm{eV}",
+          "type": "formula"
+        },
+        {
+          "text": "A 14 eV raggiungi la soglia. Nel modello l’elettrone è libero con K massima zero. A 19 eV dividi la barra grafica in 14 eV necessari alla separazione e 5 eV di energia cinetica massima. Per il problema inverso, se vuoi 5 eV all’uscita aggiungi 14 eV e ricavi 19 eV per il fotone.",
+          "type": "text"
+        },
+        {
+          "text": "Qui trascuriamo il rinculo e altri canali. Il valore di soglia riguarda il bersaglio scelto. Nella scena, l’indicatore di elettrone libero distingue la soglia dalla situazione sotto soglia, anche quando il numero accanto all’energia cinetica è lo stesso.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Energia del singolo fotone",
+        "max": 25.0,
+        "min": 5.0,
+        "step": 1.0,
+        "unit": "eV"
+      },
+      "course": "C5",
+      "formula": "K = max(0, E fotone − 14 eV)",
+      "id": "SIM-C5-L07-03",
+      "interpretation": "Confronta 13, 14 e 19 eV. Lo zero nel misuratore compare sia sotto soglia, quando l’elettrone resta legato, sia alla soglia, quando il banco dà un elettrone libero con energia cinetica nulla.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Energia cinetica massima liberata",
+        "unit": "eV"
+      },
+      "order": 3,
+      "prerequisites": [
+        "C5-L06"
+      ],
+      "references": [
+        [
+          8.0,
+          0.0
+        ],
+        [
+          20.0,
+          6.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fotoni e attenuazione",
+      "skill": "C5-L07",
+      "substitution": "max(0; {x} − 14)",
+      "summary": "Basta aumentare l’intensità se ogni fotone è sotto la soglia?",
+      "title": "Distinzione fra radiazioni ionizzanti e non ionizzanti",
+      "topic": "UD7 · distinzione fra radiazioni ionizzanti e non ionizzanti",
+      "transferPrompt": "Un fotone da {x} incontra il bersaglio del banco, con energia di legame 14 eV. Quanta energia cinetica massima rimane all’elettrone?",
+      "version": 2
+    }
+  ],
+  "schema": "astra/1"
+}

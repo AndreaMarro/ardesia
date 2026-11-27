@@ -1,0 +1,203 @@
+{
+  "role": "AI_INDEPENDENT_FROM_ROOT_AUTHOR",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "draftCommit": "8f29e69c1b43243666ba754c982bf89a90c26c2c",
+  "sourcePrimaryCommit": "b6ae0e38e982e0c6b5184b77494ac978538cafee",
+  "sourcePrimarySha256": "d56d775575ac5f71c17ee9ca5880c0eb016cf90ed5e376d8733f5b8bb92c0ecb",
+  "runtimeCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "runtimeSha256": "53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a",
+  "records": [
+    {
+      "id": "SIM-C5-L06-01",
+      "sourceSha256": "52545bf8b79e0714ef7f0966bb456baa4b764c77f07f92e8a059ee67fc2f5770",
+      "candidateSha256": "9e71dad7fc9410ea066b524f1913ac58405d22e2e04b01c432a918370f15d81a",
+      "sourceVersion": 2,
+      "newVersion": 3,
+      "allFieldsAnd4BlocksRead": true,
+      "hypothesesAndUnits": "Signed orthogonal EM components; c_work3e8m/s; B_nT10sin(phi).",
+      "manualDerivation": "90:10nT;270:-10nT; exact sine1/-1. Inverse -10nT=-1e-8T, times3e8 yields-3V/m. Simultaneous reversal preserves E cross B; at180 zero vectors/flux in P, other positions may be nonzero.",
+      "actualSelectedPoints": [
+        90,
+        270
+      ],
+      "actualGeneratedTasks": [
+        {
+          "prompt": "Imposta «Fase del campo» su 90 °. Quale valore ottieni per «Campo magnetico istantaneo»?",
+          "value": 10,
+          "unit": "nT",
+          "worked": "E = 3 sin φ V/m; B = E/c; c ≈ 3×10⁸ m/s. 10 × sin(90°) ≈ 10 nT."
+        },
+        {
+          "prompt": "In un’onda piana nel vuoto la componente elettrica in P è 3 sin φ V/m. Alla fase 270 °, quale componente magnetica con segno esprimi in nT?",
+          "value": -10,
+          "unit": "nT",
+          "worked": "E = 3 sin φ V/m; B = E/c; c ≈ 3×10⁸ m/s. 10 × sin(270°) ≈ -10 nT."
+        }
+      ],
+      "textMathManualDecision": "PASS_INDEPENDENT_CPU_AND_READING",
+      "productUI": "NOT_RUN",
+      "assetCount": 0,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C5-L06-02",
+      "sourceSha256": "32e538825e7d81fb03092e855f3ab69b962d5c56120fb209d1f2f42bf6d9c85c",
+      "candidateSha256": "199e4e8c7fda7d7131b9dceabca30c41d7587bd173480502a988c796100dc947",
+      "sourceVersion": 1,
+      "newVersion": 2,
+      "allFieldsAnd4BlocksRead": true,
+      "hypothesesAndUnits": "Same vacuum medium/frequency and time-average waveform; intensity ratio(E0/2)^2.",
+      "manualDerivation": "4V/m gives4;3V/m gives9/4=2.25. Inverse positive square root yields3V/m. Frequency remains100MHz and wavelength approximately3m under rounded c.",
+      "actualSelectedPoints": [
+        4,
+        3
+      ],
+      "actualGeneratedTasks": [
+        {
+          "prompt": "Imposta «Ampiezza del campo elettrico» su 4 V/m. Quale valore ottieni per «Intensità rispetto a E₀ = 2 V/m»?",
+          "value": 4,
+          "unit": "numero puro",
+          "worked": "I/I riferimento = (E₀/2)²; c = λf. (4 / 2)² = 4."
+        },
+        {
+          "prompt": "A frequenza fissata vari l’ampiezza elettrica da 2 V/m a 3 V/m. Quanto vale il rapporto fra la nuova intensità media e quella di riferimento?",
+          "value": 2.25,
+          "unit": "numero puro",
+          "worked": "I/I riferimento = (E₀/2)²; c = λf. (3 / 2)² = 2,25."
+        }
+      ],
+      "textMathManualDecision": "PASS_INDEPENDENT_CPU_AND_READING",
+      "productUI": "NOT_RUN",
+      "assetCount": 0,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C5-L06-03",
+      "sourceSha256": "8e8a5dcd204fe6de3fdd9e6d95a2b5b18b45c86a30874c04774afbba1341b5fe",
+      "candidateSha256": "5e3bea7cc1de32be4c0b99d024ecfd85819f3c578c5de7b6a22514ce7c90ee29",
+      "sourceVersion": 1,
+      "newVersion": 2,
+      "allFieldsAnd4BlocksRead": true,
+      "hypothesesAndUnits": "Dimensionless log10(lambda/(1m)); illustrative band samples, not band boundaries.",
+      "manualDerivation": "Radio sample100m=10^2m yields2; X sample10^-10m yields-10. Coordinate difference12 means wavelength ratio10^12 and opposite frequency ratio. Source-only band label insufficiency is repaired by explicit assigned sample values in this draft.",
+      "actualSelectedPoints": [
+        1,
+        6
+      ],
+      "actualGeneratedTasks": [
+        {
+          "prompt": "Imposta «Banda dello spettro» su Radio. Quale valore ottieni per «Logaritmo decimale della lunghezza d’onda in metri»?",
+          "value": 2,
+          "unit": "numero puro",
+          "worked": "log₁₀ λ(m) = log₁₀ c − log₁₀ f. log₁₀(100) = 2."
+        },
+        {
+          "prompt": "Per la banda «X», il banco usa una lunghezza campione di 10⁻¹⁰ m. In che posizione si trova sulla scala log₁₀(λ/m)?",
+          "value": -10,
+          "unit": "numero puro",
+          "worked": "log₁₀ λ(m) = log₁₀ c − log₁₀ f. log₁₀(10⁻¹⁰) = -10."
+        }
+      ],
+      "textMathManualDecision": "PASS_INDEPENDENT_CPU_AND_READING",
+      "productUI": "NOT_RUN",
+      "assetCount": 0,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C5-L07-01",
+      "sourceSha256": "ffffd7cbed5d697d9ff1f18ea4316288b24972b57437f9dd870db1fafe992614",
+      "candidateSha256": "0634d1367d9ce292a8f44e2bd3ae669860040c59dcddf64ec2c33133ec2cf613",
+      "sourceVersion": 1,
+      "newVersion": 2,
+      "allFieldsAnd4BlocksRead": true,
+      "hypothesesAndUnits": "Single-photon Planck energy with assigned rounded h4.136e-15eV*s.",
+      "manualDerivation": "250THz gives4.136/4=1.034eV by two halvings;500THz gives4.136/2=2.068eV. Inverse2.068/4.136=1/2 then0.5e15Hz=500THz. Finite decimals exact relative to assigned h, approximation qualified.",
+      "actualSelectedPoints": [
+        250,
+        500
+      ],
+      "actualGeneratedTasks": [
+        {
+          "prompt": "Imposta «Frequenza del fotone» su 250 THz. Quale valore ottieni per «Energia per fotone»?",
+          "value": 1.034,
+          "unit": "eV",
+          "worked": "E = hf; h ≈ 4,136×10⁻¹⁵ eV·s. 0,004136 × 250 ≈ 1,034 eV."
+        },
+        {
+          "prompt": "Una sorgente monocromatica emette a 500 THz. Usa h ≃ 4,136 × 10⁻¹⁵ eV·s. Quanti eV trasporta un singolo fotone?",
+          "value": 2.068,
+          "unit": "eV",
+          "worked": "E = hf; h ≈ 4,136×10⁻¹⁵ eV·s. 0,004136 × 500 ≈ 2,068 eV."
+        }
+      ],
+      "textMathManualDecision": "PASS_INDEPENDENT_CPU_AND_READING",
+      "productUI": "NOT_RUN",
+      "assetCount": 0,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C5-L07-03",
+      "sourceSha256": "4400b2e879d2a547486214da98f9f5dc351c536f622d0caa26340bc1fffc589b",
+      "candidateSha256": "17eacd0fa88edac856913e8cbf654d1ff1c54408f4028b6370bffac3fc3c6e60",
+      "sourceVersion": 1,
+      "newVersion": 2,
+      "allFieldsAnd4BlocksRead": true,
+      "hypothesesAndUnits": "Ideal target binding energy14eV, one photon, recoil/other channels excluded.",
+      "manualDerivation": "At14eV free electron atKmax0; at19eV Kmax5eV. Below14 no electron; numerical0 is not proof of emitted resting electron. Inverse5+14=19eV.",
+      "actualSelectedPoints": [
+        14,
+        19
+      ],
+      "actualGeneratedTasks": [
+        {
+          "prompt": "Imposta «Energia del singolo fotone» su 14 eV. Quale valore ottieni per «Energia cinetica massima liberata»?",
+          "value": 0,
+          "unit": "eV",
+          "worked": "K = max(0, E fotone − 14 eV). max(0; 14 − 14) = 0 eV."
+        },
+        {
+          "prompt": "Un fotone da 19 eV incontra il bersaglio del banco, con energia di legame 14 eV. Quanta energia cinetica massima rimane all’elettrone?",
+          "value": 5,
+          "unit": "eV",
+          "worked": "K = max(0, E fotone − 14 eV). max(0; 19 − 14) = 5 eV."
+        }
+      ],
+      "textMathManualDecision": "PASS_INDEPENDENT_CPU_AND_READING",
+      "productUI": "NOT_RUN",
+      "assetCount": 0,
+      "activityCredit": 0
+    }
+  ],
+  "CPU": {
+    "testCount": 6,
+    "exitCode": 0,
+    "scalarControls": 85,
+    "strictOriginalDraftScenePairs4Stages": 340,
+    "katexFormulas": 5,
+    "assignedNumberEntries": 10,
+    "counterfactualMutationsRejected": 10
+  },
+  "floatingPointDisclosure": "Initial checker failure is preserved: photon100THz binary multiplication0.41359999999999997 differs from exact rational0.4136, and Pint floating prefix conversion gives9.999999999999998nT. The current oracle explicitly rounds exact Fraction.from_float(installed0.004136)*integer to nearest-even Float64, with no epsilon for photon outputs; units use Pint dimensions plus separate exact Fraction conversion3/(3e8)*1e9=10. Exact assigned task entries all pass. For85-phase-grid mathematical sin comparisons only,1e-12nT is an explicitly separate approximation check, never a product grader/parity change.",
+  "canonicalImport": {
+    "firstImport": {
+      "saved": 5,
+      "unchanged": 0,
+      "publication": "DRAFT"
+    },
+    "repeatImport": {
+      "saved": 0,
+      "unchanged": 5,
+      "publication": "DRAFT"
+    },
+    "publishedCount": 991,
+    "publishedBytesSha256": "99c8d805004c82ba63a19f7ad8c0825666ca813d4f15471b8df4db5657b7c9ee",
+    "oldVersionsPreserved": 991,
+    "allOldPayloadBytesPreserved": true
+  },
+  "visualCaveat": "No actual product browser started for these five. No full glyph/layout/figure accessibility acceptance from CPU; scene equality means no source/draft rendering primitive change on same runtime.",
+  "newTextMathFindings": [],
+  "overallActivityAcceptance": false,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
