@@ -41,8 +41,8 @@ test('all eight observed positions preserve the field, moving point and scalar e
   }
 });
 
-test('all 29 C4 controls, teaching outputs, clocks, geometry and unrelated legends retain the frozen baseline',async()=>{
-  assert.deepEqual(await contract(),baseline.records);
+test('all 29 C4 physical and teaching outputs retain baseline except the explicit three native camera eyes',async()=>{
+  assert.deepEqual(await contract({allowFrontalPlateView:true}),baseline.records);
 });
 
 test('the accessible descriptions identify the point without assigning a charge to the voltmeter probe',async()=>{

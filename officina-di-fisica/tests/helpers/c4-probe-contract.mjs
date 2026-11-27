@@ -1,4 +1,5 @@
 // Source-only characterization of installed outputs, not a raster verdict.
+import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 import {esperienza} from '../../static/js/banchi/voci/esperimento.js';
@@ -10,10 +11,18 @@ const normalize = (id, elements) => affected.has(id)
   ? elements.filter(e => e.kind !== 'label' || !['Sonda','+','−'].includes(e.text))
   : elements;
 
-export async function contract() {
+// Explicit exception for the separately tested native front-raised framing.
+const frontalPlateViewIds = new Set(['SIM-C4-L02-03','SIM-C4-L03-02','SIM-C4-L03-03']);
+export async function contract({allowFrontalPlateView = false} = {}) {
   const result = [];
   for (const record of records) {
     const a = await esperienza(record), states = [];
+    let characterizedSpec = a.scene.spec;
+    if (allowFrontalPlateView && frontalPlateViewIds.has(record.id)) {
+      // All other scene/physical/teaching values still enter the old hash unchanged.
+      assert.deepEqual(a.scene.spec.eye, [0,1.9,6.1], record.id + ' explicit native framing');
+      characterizedSpec = {...a.scene.spec, eye:[2.6,1.9,6.1]};
+    }
     const {min,max,step} = record.control;
     for (let i=0;i<=Math.round((max-min)/step);i++) {
       const x=min+i*step, solved=a.model.solve({x});
@@ -33,7 +42,7 @@ export async function contract() {
       states.push(entry);
     }
     result.push({id:record.id,controls:states.length,
-      physicalAndTeachingSha256:sha({record:a.record,params:a.model.params,spec:a.scene.spec,
+      physicalAndTeachingSha256:sha({record:a.record,params:a.model.params,spec:characterizedSpec,
         observe:a.observe,states}),
       // Only the three accessible descriptions are deliberately extended.
       ...(affected.has(record.id)?{}:{legends:['orbit','side','top','diagram'].map(view=>a.legend(2,view))})});
