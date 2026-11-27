@@ -1,0 +1,41 @@
+from pathlib import Path
+import json,hashlib,sys
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');sys.path.insert(0,str(A));from tools.corpus_engineering import c2_pitot_label_geometry_a as g
+D=A/'editorial/reviews/c2-fluid-labels-e511-independent-a-20261127';P=D/'targeted-actual';r=json.loads((P/'report.json').read_bytes());index={x['caseKey']:x for x in r['cases']};overlaps=json.loads((D/'targeted-native-intersection-census.json').read_bytes());views=json.loads((D/'targeted-overview-index.json').read_bytes());notes=json.loads((D/'manual-targeted-reading.json').read_bytes());by={(x['id'],x['variant']):x for x in notes};specific={
+'SIM-C2-L005-01':'Uscita copre la testa viola aTop320/max; Entrata è risolta. Orbita/Laterale e fallback mostrano la direzione; traccianti conservati.',
+'SIM-C2-L005-02':'Uscita copre interamente la testa viola aTop/max in entrambe le larghezze. Entrata rimossa e restringimento visibile.',
+'SIM-C2-L005-03':'Uscita copre la testa aTop/primo valore1 in entrambe le larghezze; allarando la sezione8 la freccia viola diventa più corta, correttamente.',
+'SIM-C2-L005-04':'Sezione di misura assente: profilo e frecce liberi, collasso naturale delle quote in Top. Traccianti e due valori letti.',
+'SIM-C2-L006-01':'Uscita copre testa aTop/max4; gli altri punti/vista mantengono pressione/altezza e velocità.',
+'SIM-C2-L006-02':'Pitot risolto anche nel nuovo624: frecce davanti alla sonda, senza etichette opache, 3D e fallback. Precedente56 prova inoltre zero e tre intermedi.',
+'SIM-C2-L006-03':'Uscita copre testa aTop320/min0.5; a1280 solo piccolo contatto3.132%. Asezione2 l uscita rallenta, correttamente.',
+'SIM-C2-L006-04':'Uscita resta ma non copre le teste nei16frame letti; le due altezze/parametro variabile e frecce sono distinguibili.',
+'SIM-C2-L007-01':'Profilo valido a0.05 libero; a0.6 è ritirato e compare esplicito fuori validità. Top collassa le quote, non significa assenza di moto.',
+'SIM-C2-L007-02':'Sezione di misura rimossa, profilo libero nelle viste laterali; traccianti conservati e Top collassa naturalmente le quote.',
+'SIM-C2-L007-03':'Freccia viola sforzo ora leggibile e diversa tra0.1/2 in tutte le viste, compresi i vecchi320/Orbit identici. Profilo verde conservato.',
+'SIM-C2-L007-05':'Profilo libero senza Sezione di misura, traccianti cambiano posizione; Top sovrappone naturalmente le frecce alle quote.',
+'SIM-C2-L008-01':'Uscita copre testa aTop320/max2; a1280 contatto minimo3.132%. Raggio0.5/2 e portata distinguibili.',
+'SIM-C2-L008-02':'Piccolo contatto tra Uscita e testa aTop320/max4 (2.032% area), con la maggior parte della testa e direzione visibili; non intera testa nascosta.',
+'SIM-C2-L008-03':'Presa intermedia rimossa: testa verde e colonna viola libere. Altezza colonna in Top è vista assialmente, correttamente.',
+'SIM-C2-L008-04':'Uscita non interseca le teste nei16frame selezionati; i due versi/valori restano distinguibili.',
+'SIM-C2-L009-01':'In parallelo assente, frecce della rete libere. In serie rimane ma non interseca i glifi misurati in questi frame.',
+'SIM-C2-L009-03':'Presa intermedia rimossa e vecchio contatto sulla testa verde risolto; colonna viola e due valori conservati.',
+'SIM-C2-L010-02':'Goccia assente: intera sfera piccola e raggio tornano visibili, a320/1280 ancheTop; grande sfera e freccia leggibili.',
+'SIM-C2-L010-05':'Film a due facce assente: sfera piccola visibile ancheTop, due contorni distinguibili nelle viste non assiali e nel fallback.'}
+for v in views:
+ key=v['id'],v['variant'];v['wholeOpenedAndRead']=True
+ if key not in by:by[key]={'id':v['id'],'variant':v['variant'],'wholeOverviewOpenedAndRead':True,'note':'Tutti16frame. '+specific[v['id']]}
+assert len(by)==26
+(D/'manual-targeted-reading.json').write_text(json.dumps(list(by.values()),ensure_ascii=False,indent=2)+'\n');(D/'targeted-overview-index.json').write_text(json.dumps(views,indent=2)+'\n')
+# Select one actual fullPNG per observed source of residual contact, retaining exact area and vertices separately.
+selected=[]
+for suffix in ['L005-01','L005-02','L005-03','L006-01','L006-03','L008-01','L008-02']:
+ o=next(o for o in overlaps if o['id']=='SIM-C2-'+suffix and o['profile']['view']=='top'and o['profile']['width']==320 and o['partIndex']==1 and o['label']=='Uscita');selected.append(o)
+selected.append(next(o for o in overlaps if o['id']=='SIM-C2-L001-02'and o['partIndex']==1))
+result=[]
+for o in selected:
+ item=index[o['caseKey']];raw=(P/item['file']).read_bytes();assert hashlib.sha256(raw).hexdigest()==item['sha256'];e=g.load_exact(raw);glyph=next(x for x in e['nativeGlyphs']if x['elementIndex']==o['elementIndex']);label=next(x for x in e['labels']if x['text']==o['label']);box=label['box'];inside=lambda p:box['x']-box['w']/2<=p[0]<=box['x']+box['w']/2 and box['y']-box['h']/2<=p[1]<=box['y']+box['h']/2;parts=[]
+ for n,part in enumerate(glyph['parts']):
+  pts=[g.project(p,e)for p in part['vertices']];total=g.area(g.hull(pts));covered=g.area(g.clip(g.hull(pts),box));parts.append({'partIndex':n,'vertices':len(pts),'verticesInside':sum(inside(p)for p in pts),'percentVerticesInside':100*sum(inside(p)for p in pts)/len(pts),'coveredFractionExact':str(covered/total),'coveredPercent':float(100*covered/total),'bounds':{k:str(v)for k,v in {'minX':min(p[0]for p in pts),'maxX':max(p[0]for p in pts),'minY':min(p[1]for p in pts),'maxY':max(p[1]for p in pts)}.items()}})
+ c=json.loads(raw);result.append({**o,'apparatus':next(t['record']['apparatus']for t in json.loads((D/'targeted-prepared.json').read_bytes())['records']if t['id']==o['id']and t['variant']==o['variant']),'parts':parts,'headTipInsideLabel':inside(g.project(glyph['tip'],e)),'labelRectangle':{k:str(v)for k,v in box.items()},'screenshot':{'file':str((P/o['screenshot']['file']).relative_to(A)),'sha256':o['screenshot']['sha256']},'fullPngOpenedAndRead':False,'classification':'FULL_CONE_OPAQUE_LABEL'if o['coveredPercent']==100 else'LIMITED_CONE_AREA_CONTACT'if o['label']=='Uscita'else'PREVIOUS_SUBPIXEL_CONTACT_NOT_NEW_WHOLE_GLYPH_DEFECT'})
+(D/'targeted-residual-witnesses.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n');print('26 overview readings frozen; exact residual witnesses',len(result))

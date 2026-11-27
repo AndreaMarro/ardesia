@@ -1,0 +1,33 @@
+from pathlib import Path
+import json,hashlib,math,sys,collections
+from PIL import Image,ImageDraw
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');sys.path.insert(0,str(A));from tools.corpus_engineering import c2_fluid_e511_review_a as review
+from tools.corpus_engineering import c2_pitot_label_geometry_a as g
+D=review.BASE;P=D/'targeted-actual';r=json.loads((P/'report.json').read_bytes());index={i['caseKey']:i for i in r['cases']};cases=review.observed_run('targeted');assert len(cases)==624;groups=collections.defaultdict(list);overlaps=[];outside=[];pngs={}
+for c in cases:
+ groups[(c['id'],c['variant'])].append(c)
+ for png in c['screenshots']:pngs[png['file']]=png['sha256']
+ if 'interaction'not in c or c['profile']['fallback']:continue
+ raw=(P/index[c['caseKey']]['file']).read_bytes();e=g.load_exact(raw)
+ for glyph in e['nativeGlyphs']:
+  tail,tip=glyph['tail'],glyph['tip'];vertical_top=c['profile']['view']=='top'and tail[0]==tip[0]and tail[2]==tip[2];ax=g.project(tip,e);ay=g.project(tail,e);axis2=(ax[0]-ay[0])**2+(ax[1]-ay[1])**2
+  for part_index,part in enumerate(glyph['parts']):
+   points=[g.project(v,e)for v in part['vertices']];poly=g.hull(points);total=g.area(poly)
+   if any(not(0<=x<=e['canvas']['width']and 0<=y<=e['canvas']['height'])for x,y in points):outside.append({'caseKey':c['caseKey'],'elementIndex':int(glyph['elementIndex']),'part':part_index})
+   if not total:continue
+   for label in e['labels']:
+    if 'box'not in label:continue
+    area=g.area(g.clip(poly,label['box']))
+    if area>0:overlaps.append({'id':c['id'],'variant':c['variant'],'caseKey':c['caseKey'],'control':c['sourceReplayedX'],'profile':c['profile'],'elementIndex':int(glyph['elementIndex']),'partIndex':part_index,'label':label['text'],'coveredFractionExact':str(area/total),'coveredPercent':float(100*area/total),'axisLengthPixels':math.sqrt(float(axis2)),'verticalTopEndOnLimit':vertical_top,'sourceCaseFile':str((P/index[c['caseKey']]['file']).relative_to(A)),'sourceCaseSha256':index[c['caseKey']]['sha256'],'screenshot':c['screenshots'][0],'status':'CANDIDATE_REQUIRES_ACTUAL_PNG_READING_NOT_AUTOMATIC_FINDING'})
+print('INTEGRITY624',len(cases),'pngs',len(pngs),'overlapCandidates',len(overlaps),'viewport',len(outside),flush=True)
+(D/'targeted-native-intersection-census.json').write_text(json.dumps(overlaps,ensure_ascii=False,indent=2)+'\n');(D/'targeted-viewport-candidates.json').write_text(json.dumps(outside,indent=2)+'\n')
+# Whole-canvas overviews:16 grid images per edition, no cropping; wide frames reduced uniformly.
+out=D/'targeted-whole-frame-overviews';out.mkdir(exist_ok=True);views=[]
+for(id_,variant),rows in groups.items():
+ grid=[c for c in rows if 'interaction'in c];assert len(grid)==16;canvas=Image.new('RGB',(1200,1520),'#f2f1ec');draw=ImageDraw.Draw(canvas);tiles=[]
+ for n,c in enumerate(grid):
+  p=c['screenshots'][0];im=Image.open(P/p['file']).convert('RGB');sw,sh=im.size;scale=min(294/sw,341/sh);dw,dh=round(sw*scale),round(sh*scale);im=im.resize((dw,dh));x=n%4*300;y=n//4*380;draw.text((x+2,y+5),f'{c["profile"]["view"]}{c["profile"]["width"]} x={c["sourceReplayedX"]}',fill='black');canvas.paste(im,(x+(300-dw)//2,y+30));tiles.append({'caseKey':c['caseKey'],'sourcePng':p,'sourceDimensions':[sw,sh],'displayDimensions':[dw,dh],'wholeCanvasNoCrop':True})
+ filename=id_+'-'+variant+'.png';canvas.save(out/filename);views.append({'id':id_,'variant':variant,'file':str((out/filename).relative_to(A)),'sha256':hashlib.sha256((out/filename).read_bytes()).hexdigest(),'tiles':tiles,'wholeOpenedAndRead':False})
+(D/'targeted-overview-index.json').write_text(json.dumps(views,indent=2)+'\n');(D/'targeted-integrity-result.json').write_text(json.dumps({'actualObservedAnalysisExit':0,'actualObservedUiExit':0,'cases':len(cases),'uniquePngsVerified':len(pngs),'recordEditions':len(groups),'sourceAndDraftWholeRecordIdentical':True,'exactSameBrowserIsolatedBaselineModelComparison':True,'overlapCandidates':len(overlaps),'viewportCandidates':len(outside),'wholeOverviewsGenerated':len(views),'wholeGridFramesInOverviews':416,'manualReading':'PENDING','activityCredit':0,'humanApproval':'NOT_RUN'},indent=2)+'\n');print('OVERVIEWS',len(views),'416tiles',flush=True)
+for id_ in sorted({o['id']for o in overlaps if not o['verticalTopEndOnLimit']}):
+ vals=[o for o in overlaps if o['id']==id_ and not o['verticalTopEndOnLimit'] and o['partIndex']==1];print(id_,[(x['label'],round(x['coveredPercent'],3),x['caseKey'])for x in vals][:6],flush=True)

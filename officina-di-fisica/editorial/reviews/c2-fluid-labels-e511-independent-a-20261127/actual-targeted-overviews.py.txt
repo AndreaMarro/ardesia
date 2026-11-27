@@ -1,0 +1,10 @@
+from pathlib import Path
+import json,hashlib
+from PIL import Image,ImageDraw
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c2-fluid-labels-e511-independent-a-20261127';P=D/'targeted-actual';groups=json.loads((D/'targeted-frame-groups.json').read_bytes());out=D/'targeted-whole-frame-overviews';out.mkdir(exist_ok=True);views=[]
+for group in groups:
+ id_,variant,grid=group['id'],group['variant'],group['grid'];canvas=Image.new('RGB',(1200,1520),'#f2f1ec');draw=ImageDraw.Draw(canvas);tiles=[]
+ for n,c in enumerate(grid):
+  p=c['screenshots'][0];raw=(P/p['file']).read_bytes();assert hashlib.sha256(raw).hexdigest()==p['sha256'];im=Image.open(P/p['file']).convert('RGB');sw,sh=im.size;scale=min(294/sw,341/sh);dw,dh=round(sw*scale),round(sh*scale);im=im.resize((dw,dh));x=n%4*300;y=n//4*380;draw.text((x+2,y+5),f'{c["profile"]["view"]}{c["profile"]["width"]} x={c["sourceReplayedX"]}',fill='black');canvas.paste(im,(x+(300-dw)//2,y+30));tiles.append({'caseKey':c['caseKey'],'sourcePng':p,'sourceDimensions':[sw,sh],'displayDimensions':[dw,dh],'wholeCanvasNoCrop':True})
+ filename=id_+'-'+variant+'.png';canvas.save(out/filename);views.append({'id':id_,'variant':variant,'file':str((out/filename).relative_to(A)),'sha256':hashlib.sha256((out/filename).read_bytes()).hexdigest(),'tiles':tiles,'wholeOpenedAndRead':False})
+(D/'targeted-overview-index.json').write_text(json.dumps(views,indent=2)+'\n');print('OVERVIEWS',len(views),'416tiles',flush=True)
