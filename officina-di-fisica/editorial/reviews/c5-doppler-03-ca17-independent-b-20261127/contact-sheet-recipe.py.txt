@@ -1,0 +1,29 @@
+from pathlib import Path
+import json,hashlib,shutil,math,collections,datetime
+from PIL import Image,ImageDraw
+R=Path.cwd();S=R.parent/'cric-compose-53bd-observations-20261127/sound-03-doppler-fix-ca17';D=R/'officina-di-fisica/editorial/reviews/c5-doppler-03-ca17-independent-b-20261127';D.mkdir(exist_ok=True);H=lambda b:hashlib.sha256(b).hexdigest();J=lambda p:json.loads(p.read_text());report=J(S/'actual/report.json');prepared=J(S/'prepared.json');assert len(report['cases'])==64 and report['errors']==[];assert report['runtimeFingerprint']['sha256']=='ca17f5b64aadd1923922854e22281f83e4dce1dbcdbbb4bbacf514a33b6d4ea3';assert J(S/'terminal.json')['observedExitCode']==0
+for f in['terminal.json','browser-info.json','prepared.json']:
+ (D/f).write_bytes((S/f).read_bytes())
+shutil.copytree(S/'actual',D/'raw',dirs_exist_ok=False);items=[];byprofile=collections.defaultdict(list);questions=0
+for entry in report['cases']:
+ raw=(S/'actual'/entry['file']).read_bytes();assert H(raw)==entry['sha256'];c=json.loads(raw);assert c['id']=='SIM-C5-L05-03'and c['variant']=='draft';assert c['runtimeSha256']==report['runtimeFingerprint']['sha256'];assert c['technicalOk']
+ if c['caseKey'].endswith('setup'):
+  questions+=len(c['questions']);assert all(q['actualPrompt']==q['prompt']and q['status'].startswith('Corretto.')for q in c['questions'])
+ for shot in c['screenshots']:assert H((S/'actual'/shot['file']).read_bytes())==shot['sha256']
+ ident=f"{c['profile']['width']}-{c['profile']['view']}";byprofile[ident].append(c)
+ item={'caseKey':c['caseKey'],'caseSha256':entry['sha256'],'caseFile':'raw/'+entry['file'],'profile':c['profile'],'screenshots':c['screenshots'],'requestedX':c.get('requestedX'),'requestedTime':c.get('requestedTime'),'actualRenderer':c.get('actualRenderer'),'model':c.get('model'),'clockReadout':c.get('clockReadout'),'legend':c.get('legend'),'readings':c.get('readings'),'fullGlyphAcceptance':c.get('fullGlyphAcceptance')};items.append(item)
+assert questions==16 and len(byprofile)==8
+sheets=[];setupgroups=collections.defaultdict(list)
+for name,cases in byprofile.items():
+ setup=next(c for c in cases if c['caseKey'].endswith('setup'));setupgroups[setup['profile']['width']].append(setup)
+ frames=[c for c in cases if not c['caseKey'].endswith('setup')];assert len(frames)==7
+ images=[Image.open(D/'raw'/c['screenshots'][0]['file']).convert('RGB')for c in frames];cols=4 if name.startswith('320')else 2;cellw=max(i.width for i in images);cellh=max(i.height for i in images)+32;canvas=Image.new('RGB',(cols*cellw,math.ceil(7/cols)*cellh),'white');draw=ImageDraw.Draw(canvas)
+ for j,(im,c)in enumerate(zip(images,frames)):
+  x=j%cols*cellw;y=j//cols*cellh;draw.text((x+3,y+3),c['caseKey'].split('|')[-2]+' '+str(c.get('requestedX'))+' @'+str(c.get('requestedTime'))+'ms',fill='black');canvas.paste(im,(x,y+32))
+ p=D/('sheet-'+name+'.png');canvas.save(p);sheets.append({'file':p.name,'caseKeys':[c['caseKey']for c in frames],'rawImagesIncludedComplete':True,'resized':False,'sha256':H(p.read_bytes())})
+for width,cases in setupgroups.items():
+ images=[Image.open(D/'raw'/c['screenshots'][0]['file']).convert('RGB')for c in cases];cols=4 if width==320 else 2;cellw=max(i.width for i in images);cellh=max(i.height for i in images)+32;canvas=Image.new('RGB',(cols*cellw,math.ceil(4/cols)*cellh),'white');draw=ImageDraw.Draw(canvas)
+ for j,(im,c)in enumerate(zip(images,cases)):
+  x=j%cols*cellw;y=j//cols*cellh;draw.text((x+3,y+3),c['profile']['view'],fill='black');canvas.paste(im,(x,y+32))
+ p=D/('sheet-setup-'+str(width)+'.png');canvas.save(p);sheets.append({'file':p.name,'caseKeys':[c['caseKey']for c in cases],'rawImagesIncludedComplete':True,'resized':False,'sha256':H(p.read_bytes())})
+(D/'verified-raw-index.json').write_text(json.dumps({'phase':'RAW_IDENTITY_VERIFIED_RASTER_READING_PENDING','reportSha256':H((S/'actual/report.json').read_bytes()),'sourceCommit':report['sourceCommit'],'runtimeSha256':report['runtimeFingerprint']['sha256'],'candidateSha256':prepared['records'][0]['candidateSha256'],'cases':items,'observedManualReplies':questions,'profiles':8,'sourceDirectoryReadOnly':str(S/'actual'),'allRawFilesCopiedVerbatim':True,'sheets':sheets,'newChrome':'NOT_RUN','humanApproval':'NOT_RUN','publicationAction':'NONE','activityCredit':0},ensure_ascii=False,indent=2)+'\n');print(json.dumps({'cases':len(items),'screens':64,'sheets':len(sheets),'reportSha256':H((S/'actual/report.json').read_bytes())}))

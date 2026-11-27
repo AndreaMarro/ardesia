@@ -1,0 +1,29 @@
+{
+  "runs": [
+    {
+      "label": "independent-math",
+      "command": [
+        "node",
+        "officina-di-fisica/editorial/reviews/c5-doppler-03-ca17-independent-b-20261127/independent-math.mjs"
+      ],
+      "observedExitCode": 0,
+      "elapsedSeconds": 0.3715739589997611,
+      "signal": null
+    },
+    {
+      "label": "tests",
+      "command": [
+        "python3",
+        "officina-di-fisica/editorial/reviews/c5-doppler-03-ca17-independent-b-20261127/test_raw_review.py",
+        "-v"
+      ],
+      "observedExitCode": 0,
+      "elapsedSeconds": 3.568158749999384,
+      "signal": null
+    }
+  ],
+  "browserStarted": false,
+  "dbStarted": false,
+  "mutex": "work/.cric-browser.lock",
+  "freeGuardBytes": 2147483648
+}
