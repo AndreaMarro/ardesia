@@ -1,0 +1,23 @@
+from pathlib import Path
+import json,hashlib,subprocess,shutil
+A=Path.cwd();ref='5d1dc8dc7b601aef959d10d564c75462be74708d';sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+for batch,finalizer,terminal in [('cric-c6-integrative','/private/tmp/finalize_cric_c6_integrative_section_a.py','/private/tmp/cric-c6-integrative-section-finalize-a.txt'),('cric-c6-protected-exam-02','/private/tmp/finalize_cric_c6_exam02_author_a.py','/private/tmp/cric-c6-protected-exam-02-finalize-a.txt')]:
+ H=A/f'editorial/author-notes/{batch}-handoff-20261127.json';h=json.loads(H.read_text());old=A/f'editorial/author-evidence/{batch}-section-superseded-20261127';manifest=json.loads((old/'manifest.json').read_text());p=A/f'editorial/batches/{batch}.json';b=p.with_name(batch+'-bindings.json');before=json.loads((old/manifest['files'][str(p.relative_to(A))]['snapshot']).read_text());after=json.loads(p.read_text());oldb=json.loads((old/manifest['files'][str(b.relative_to(A))]['snapshot']).read_text());newb=json.loads(b.read_text());changed=[]
+ for x,y,xb,yb in zip(before['records'],after['records'],oldb,newb):
+  assert {k:v for k,v in x.items()if k!='section'}=={k:v for k,v in y.items()if k!='section'}
+  path=yb['provenance']['sourcePath'];src=json.loads(subprocess.check_output(['git','show',ref+':'+path],cwd=A));original=next(r for r in src if r['id']==y['id']);assert y['section']==original['section']
+  assert {k:v for k,v in xb.items()if k!='candidateSha256'}=={k:v for k,v in yb.items()if k!='candidateSha256'}
+  if x['section']!=y['section']:changed.append(y['id'])
+ assert before['assets']==after['assets']
+ D=A/f'editorial/author-evidence/{batch}-asset-only'
+ for path,name in[(finalizer,'actual-finalizer.py.txt'),(terminal,'actual-finalizer-terminal.txt'),(__file__,'section-strictdiff-instrument.py.txt')]:shutil.copyfile(path,D/name)
+ note={'scope':'AUTHOR_METADATA_TECHNICAL_ONLY_NOT_SCI_APPROVAL','originalSectionPreservedPerId':True,'changedSectionIds':changed,'allOtherRecordFieldsByteEquivalentAfterJsonParsing':True,'onlyBindingCandidateSha256Changed':True,'allAssetsUnchanged':True,'newDoubleAssemblyAndCanonicalImportActualExit':0,'oldEvidenceRetained':str(old.relative_to(A)),'nativeReuse':'same SVG bytes; real prior whole SVG-only PNG reading, not a new UI result','humanApproval':'NOT_RUN','productUi':'NOT_RUN','integrationCredit':'PENDING_ROOT_DISTINCT_REVIEW_AND_GATES'}
+ (D/'section-restoration-strictdiff.json').write_text(json.dumps(note,ensure_ascii=False,indent=2)+'\n')
+ notes=A/f'editorial/author-notes/{batch}.md';notes.write_text(notes.read_text().rstrip()+'\n\nLa sezione originale è ripristinata per ciascun ID dal medesimo file fonte: nessun altro campo didattico, risposta, formula o asset cambia. I precedenti byte e risultati tecnici sono conservati; le nuove doppie assembly e importazioni sono reali e distinte. Nessuna firma scientifica propria.\n')
+ files=set(h['files'])
+ for f in (A/'editorial/author-evidence').glob(batch+'-*'):
+  files.update([str(f.relative_to(A))]if f.is_file()else[str(q.relative_to(A))for q in f.rglob('*')if q.is_file()])
+ h['originalSectionPreservedPerId']=True;h['files']={name:sha(A/name)for name in sorted(files)};H.write_text(json.dumps(h,ensure_ascii=False,indent=2)+'\n')
+ for name in h['files']:subprocess.run(['git','add','--',name],cwd=A,check=True)
+ subprocess.run(['git','add','--',str(H.relative_to(A))],cwd=A,check=True)
+ print(batch,'section-only changes',len(changed),'H',sha(H),'files',len(h['files']))

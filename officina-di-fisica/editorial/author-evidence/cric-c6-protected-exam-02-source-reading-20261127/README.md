@@ -1,0 +1,9 @@
+# Lettura autore: C6 simulazione 2
+
+Tutti i 31 prompt Q044–074 sono stati letti e derivati dai dati prima delle chiavi originali; poi tutti i 31 record fonte completi e lo SVG originale del ciclo sono stati letti integralmente. Le lezioni reali dei cinque corsi e le sei lezioni di trasferimento C6 sono riferimenti già letti nello stesso pin; skill e prerequisiti individuali restano quelli delle fonti. La primaria B per questi quesiti era congelata prima dell’autoria e non è stata aperta.
+
+Il nuovo diagramma del ciclo è schematico a tre tratti, coerente col terzo e ultimo tratto richiesto. Il rettangolo originale ha quattro segmenti: i suoi valori locali degli assi non vengono presentati come misure della nuova figura. La nuova figura preserva esplicitamente l’area assegnata di 12 kPa·L, il verso antiorario e i calori del problema; gli assi sono senza scala numerica e il ciclo è sopra l’asse orizzontale. Non viene aggiunta una particolare equazione di stato.
+
+Sono resi espliciti i domini: quantità di gas conservata e volume del collegamento trascurabile negli equilibri 046; massa e dislivello positivi per i rapporti 051; regime parassiale 053; rapidità e raggio positivi 054; portata positiva 055; sola forza magnetica 056; unico lavoro p dV 057; rivelatori piccoli e area positiva 058; circuito resistivo e autoinduzione trascurabile 073. Q062 distingue l’entropia del solo sistema da quella totale e calcola il ritorno tramite funzione di stato. I quesiti nominali hanno categoria concetto e l’unità 074 categoria unità.
+
+Tutte le risposte sono scelte letterali esatte, con cinque alternative distinte e spiegazione individuale. Il passaggio di quantità di moto Q061 è stato spezzato prima della consegna, introducendo p₁/p₂ in prosa; vecchi byte e precedenti risultati tecnici sono conservati. Nessuna UI prodotto, approvazione scientifica propria o umana.

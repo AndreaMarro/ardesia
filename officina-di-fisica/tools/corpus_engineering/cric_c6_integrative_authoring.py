@@ -4,6 +4,8 @@ Uses the existing canonical assembler twice and merges records and bindings,
 with byte-identical asset deduplication. No alternative ETL or own approval.
 """
 from .vector_geometry_authoring import assemble_family,write_family
+from .pipeline import git_bytes
+import json
 TASKS=[('Un solo tragitto fra due sensori',
   'Due sensori fermi sono distanti 30 cm lungo un tratto rettilineo d’acqua. Un segnale acustico lo '
   'percorre a velocità uniforme 1500 m/s. Il primo sensore avvia il cronometro e il secondo lo ferma; '
@@ -226,8 +228,9 @@ def assemble(repo,source_ref):
     outputs=[]
     # The two source paths are declared in the assignment, not inferred from course.
     for start,end,path in[(0,12,'officina-di-fisica/content/C6.json'),(12,13,'officina-di-fisica/content/lotto-001.json')]:
+        originals={r["id"]:r for r in json.loads(git_bytes(repo,source_ref,path))}
         subset=TASKS[start:end]
-        overrides={j:{'error':{'category':CATEGORIES[start+j],'message':t[5],'target':'C6-L01'},'coverage':[t[0]]}for j,t in enumerate(subset,1)}
+        overrides={j:{'section':originals[SOURCE_IDS[start+j-1]]['section'],'error':{'category':CATEGORIES[start+j],'message':t[5],'target':'C6-L01'},'coverage':[t[0]]}for j,t in enumerate(subset,1)}
         outputs.append(assemble_family(repo,source_ref,BATCH,subset,{j:CHOICES[start+j]for j in range(1,len(subset)+1)if start+j in CHOICES},{j:UNITS[start+j]for j in range(1,len(subset)+1)if start+j in UNITS},BATCH+'-progressive.svg',{j:FIGURES[start+j]for j in range(1,len(subset)+1)if start+j in FIGURES},0,source_path=path,source_origin='cric',source_ids=SOURCE_IDS[start:end],course='C6',skill='C6-L01',section='Problemi integrativi',coverage=['Problemi distinti di trasferimento'],overrides=overrides))
     records=[];bindings=[];assets={}
     for package,binding in outputs:

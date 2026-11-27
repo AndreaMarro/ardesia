@@ -185,3 +185,5 @@ Passaggi: `P=\dot m c\Delta T\qquad \dot m=\frac1{250}\,\mathrm{kg/s}\qquad Q_V=
 Distrattori: 0,004 mL/s copierebbe il numero della portata massica in kg/s con un’unità volumica diversa. 4000 mL/s trascurerebbe il rapporto fra chilogrammi e grammi a densità assegnata. La densità serve dopo il bilancio termico, per trasformare massa al secondo in volume al secondo.
 
 Aiuto: Trova prima quanti chilogrammi si possono scaldare ogni secondo, poi convertili in volume.
+
+La sezione originale è ripristinata per ciascun ID dal medesimo file fonte: nessun altro campo didattico, risposta, formula o asset cambia. I precedenti byte e risultati tecnici sono conservati; le nuove doppie assembly e importazioni sono reali e distinte. Nessuna firma scientifica propria.
