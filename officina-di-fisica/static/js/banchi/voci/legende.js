@@ -77,9 +77,8 @@ export function legendaTavola(apparato) {
 const annotazioniScene = new Map();
 const annotazioni = {
   C1: [
-    ['Distanza fra i centri', 'Le frecce verdi hanno la stessa lunghezza e puntano verso l’altra massa. Quando sono corte, le due frecce ocra le mostrano in una fascia separata, sei volte più lunghe e negli stessi versi.', ['L006-03']],
-    ['Carrello', 'All’inizio la velocità è nulla e la freccia scompare. Per le piccole velocità, il dettaglio ocra mostra la stessa freccia sei volte più lunga, lungo il binario e nello stesso verso.', ['L007-02']],
-    ['Carrello', '', ['L007-03']],
+    ['Distanza fra i centri', 'Le frecce verdi hanno la stessa lunghezza e puntano verso l’altra massa. Quando sono corte, le due frecce ocra scuro le mostrano in una fascia separata, cinque volte più lunghe e negli stessi versi.', ['L006-03']],
+    ['Carrello', 'Da fermo la freccia della velocità scompare. Per le piccole velocità, il dettaglio ocra scuro mostra la stessa freccia sei volte più lunga, lungo il binario e nello stesso verso.', ['L007-02','L007-03']],
   ],
   C2: [
     ['Entrata', 'L’entrata è a sinistra e l’uscita a destra.', ['L005-01','L005-02','L005-03','L006-01','L006-02','L006-03','L006-04','L008-01','L008-02','L008-04']],
@@ -94,7 +93,7 @@ const annotazioni = {
     ['Film a due facce', 'I due contorni schematici indicano le superfici del film a due facce. La freccia ocra indica il raggio di riferimento.', ['L010-05']],
   ],
   C4: [
-    ['+1', 'Le due sfere rosse hanno ciascuna carica +1 nC. Le frecce viola sono riportate accanto alle sfere alla stessa scala, parallele alla retta che unisce i centri. Il dettaglio ocra conserva i versi e ingrandisce di otto volte le frecce più corte.', ['L01-02']],
+    ['+1', 'Le due sfere rosse hanno ciascuna carica +1 nC. Le frecce viola sono riportate accanto alle sfere alla stessa scala, parallele alla retta che unisce i centri. Il dettaglio ocra scuro conserva i versi e ingrandisce di otto volte le frecce più corte.', ['L01-02']],
     ['P', 'Il punto P è a metà fra le due cariche. Resta fisso mentre si varia la carica a destra.', ['L02-02']],
     ['Corrente convenzionale', '', ['L05-01','L05-04','L05-05']],
     ['Pila', '', ['L05-02','L05-03','L06-02']],
@@ -108,7 +107,7 @@ const annotazioni = {
     ['Massa oscillante', 'Il blocco ocra è la massa oscillante. La freccia parte dall’equilibrio e arriva alla posizione della massa.', ['L01-02']],
     ['Sorgente', '', ['L05-03']],
     ['Ricevitore', '', ['L05-03']],
-    ['Elettrone libero', 'L’elettrone verde rimane legato sull’anello oppure compare all’esterno come elettrone libero. La freccia verde è spostata rispetto alla sfera e la sua lunghezza segue l’energia cinetica. Quando appare il dettaglio ocra, conserva lo stesso verso e ha lunghezza quattro volte maggiore.', ['L07-03']],
+    ['Elettrone libero', 'L’elettrone verde rimane legato sull’anello oppure compare all’esterno come elettrone libero. La freccia verde è spostata rispetto alla sfera e la sua lunghezza segue l’energia cinetica. Quando appare il dettaglio ocra scuro, conserva lo stesso verso e ha lunghezza quattro volte maggiore.', ['L07-03']],
     ['Elettrone legato', '', ['L07-03']],
   ],
   C6: [

@@ -4,6 +4,7 @@ export const colore = {
   carta: 0xffedc5,
   viola: 0x7350b0,
   ocra: 0xd49332,
+  ocraScuro: 0x995a14,
   verde: 0x147979,
   rosso: 0xb94f48,
   acqua: 0x68bdcf,

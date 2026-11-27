@@ -65,8 +65,8 @@ export const campi = {
       for (const k of [-1, 1]) {
         b.arrow([k * d, height, depth], [k * (d + length), height, depth], c.viola);
         // Below this length the small SVG arrowhead needs the separate detail.
-        if (s.frecceSeparate && Math.abs(length) > 0 && Math.abs(length) < 0.16) {
-          b.arrow([k * d, 1.50, 0.86], [k * (d + 8 * length), 1.50, 0.86], c.ocra, true);
+        if (s.frecceSeparate && Math.abs(length) > 0 && Math.abs(length) < 0.24) {
+          b.arrow([k * d, 1.50, 0.86], [k * (d + 8 * length), 1.50, 0.86], c.ocraScuro, true);
         }
       }
     }

@@ -15,10 +15,10 @@ test('both Coulomb forces keep the common gain clear of the charge spheres', asy
   for (const x of [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6]) {
     const elements = activity.elements(x, 2);
     const forces = elements.filter(element => element.kind === 'arrow' && element.c === colore.viola);
-    const detail = elements.filter(element => element.kind === 'arrow' && element.c === colore.ocra);
+    const detail = elements.filter(element => element.kind === 'arrow' && element.c === colore.ocraScuro);
     assert.equal(forces.length, 2);
     const length = 0.62 * (90 / x ** 2) / 60;
-    assert.equal(detail.length, x >= 2.5 ? 2 : 0);
+    assert.equal(detail.length, x >= 2 ? 2 : 0);
     for (const [index, arrow] of forces.entries()) {
       const sense = 2 * index - 1;
       assert.equal(arrow.a[2], 0.38);
@@ -49,7 +49,7 @@ test('the photoelectron inset preserves direction, gives its scale, and vanishes
     assert.equal(main.a[2], 0.29);
     assert.ok(Math.abs(main.b[0] - main.a[0] - length) < 1e-12);
     if (excess <= 3) {
-      assert.equal(inset.c, colore.ocra);
+      assert.equal(inset.c, colore.ocraScuro);
       assert.equal(inset.dettaglio, true);
       assert.ok(Math.abs(inset.b[0] - inset.a[0] - 4 * length) < 1e-12);
     } else {
@@ -78,9 +78,9 @@ test('small gravitational attraction remains visible in both inward directions',
   for (let r = 1; r <= 4; r += 0.25) {
     const arrows = activity.elements(r, 2).filter(element => element.kind === 'arrow');
     const original = arrows.filter(element => element.c === colore.verde);
-    const details = arrows.filter(element => element.c === colore.ocra);
+    const details = arrows.filter(element => element.c === colore.ocraScuro);
     assert.equal(original.length, 2);
-    assert.equal(details.length, r >= 2.25 ? 2 : 0);
+    assert.equal(details.length, r >= 1.5 ? 2 : 0);
     assert.equal(activity.model.solve({ x: r }).y, 1 / r ** 2);
     for (const [index, arrow] of original.entries()) {
       const towardOtherMass = 1 - 2 * index;
@@ -89,23 +89,23 @@ test('small gravitational attraction remains visible in both inward directions',
       if (details[index]) {
         const detail = details[index];
         assert.equal(detail.dettaglio, true);
-        assert.ok(Math.abs(detail.b[0] - detail.a[0] - 6 * delta) < 1e-12);
+        assert.ok(Math.abs(detail.b[0] - detail.a[0] - 5 * delta) < 1e-12);
         assert.ok(Math.abs(detail.a[2] - arrow.a[2]) > 0.7);
         assert.equal(Math.sign(detail.a[0]), Math.sign(detail.b[0]));
       }
     }
   }
-  assert.match(activity.legend(2, 'diagram'), /sei volte/);
+  assert.match(activity.legend(2, 'diagram'), /cinque volte/);
 });
 
 test('the early cart velocity has a separate direction cue only above zero', async () => {
   const activity = await experience('SIM-C1-L007-02');
-  for (const time of [0, 0.25, 0.5, 0.75, 1, 4]) {
+  for (const time of [0, 0.25, 0.5, 0.75, 1, 1.75, 2, 4]) {
     const arrows = activity.elements(time, 2, time).filter(element => element.kind === 'arrow');
     const original = arrows.filter(element => element.c === colore.viola);
-    const details = arrows.filter(element => element.c === colore.ocra);
+    const details = arrows.filter(element => element.c === colore.ocraScuro);
     assert.equal(original.length, time ? 1 : 0);
-    assert.equal(details.length, time > 0 && time < 1 ? 1 : 0);
+    assert.equal(details.length, time > 0 && time < 2 ? 1 : 0);
     assert.equal(activity.model.solve({ x: time }).y, 6 * time);
     if (details.length) {
       const [detail] = details;
@@ -150,4 +150,23 @@ test('the C6 attenuation detector label leaves the transmitted beam unobstructed
     assert.equal(activity.model.solve({ x: layers }).y, 120 / 2 ** layers);
   }
   assert.match(activity.legend(2, 'top'), /rivelatore è la piastra grigia a destra/i);
+});
+
+test('the kinetic-energy cart keeps its original speed and adds a visible short-vector detail', async () => {
+  const activity = await experience('SIM-C1-L007-03');
+  for (const work of [0, 1, 2, 3, 4, 16]) {
+    const arrows = activity.elements(work, 2).filter(element => element.kind === 'arrow');
+    const original = arrows.filter(element => element.c === colore.viola);
+    const details = arrows.filter(element => element.c === colore.ocraScuro);
+    assert.equal(original.length, work ? 1 : 0);
+    assert.equal(details.length, work > 0 && work < 4 ? 1 : 0);
+    assert.equal(activity.model.solve({ x: work }).y, Math.sqrt(work));
+    if (details.length) {
+      const [detail] = details;
+      const [primary] = original;
+      assert.equal(detail.dettaglio, true);
+      assert.ok(Math.abs(detail.b[0] - detail.a[0] - 6 * (primary.b[0] - primary.a[0])) < 1e-12);
+    }
+  }
+  assert.match(activity.legend(2, 'diagram'), /sei volte/);
 });

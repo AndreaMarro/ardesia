@@ -155,8 +155,8 @@ export const meccanica = {
     carrello(b, x, c.verde);
     const length = (s.freccia ?? 0) * 0.65;
     b.arrow([x, 0.95, 0], [x + length, 0.95, 0], c.viola);
-    if (s.dettaglioVelocita && length > 0 && length < 0.18) {
-      b.arrow([x, 1.56, 0.80], [x + 6 * length, 1.56, 0.80], c.ocra, true);
+    if (s.dettaglioVelocita && length > 0 && length < 0.38) {
+      b.arrow([x, 1.56, 0.80], [x + 6 * length, 1.56, 0.80], c.ocraScuro, true);
     }
     if (s.startLabel) b.label([old, 0.85, 0.72], s.startLabel, s.marks ? c.inchiostro : c.ocra);
     if (s.turn !== undefined) {
@@ -300,8 +300,9 @@ export const meccanica = {
     const length = 0.85 * s.forza;
     for (const k of [-1, 1]) {
       b.arrow([k * d, 1.36, 0], [k * (d - length), 1.36, 0], c.verde);
-      if (length > 0 && length < 0.18) {
-        b.arrow([k * d, 1.90, 0.82], [k * (d - 6 * length), 1.90, 0.82], c.ocra, true);
+      if (length > 0 && length < 0.38) {
+        const insetOrigin = 2.1;
+        b.arrow([k * insetOrigin, 1.90, 0.82], [k * (insetOrigin - 5 * length), 1.90, 0.82], c.ocraScuro, true);
       }
     }
     b.label([0, 1.95, 0], 'Distanza fra i centri');

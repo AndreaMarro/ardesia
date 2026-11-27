@@ -198,7 +198,7 @@ export const experiments = {
   'SIM-C1-L007-03': {
     observe: "Raddoppia la velocità finale aumentando il lavoro. Verifica sul contatore quante volte hai dovuto moltiplicare il lavoro netto.",
     measure: (x) => Math.sqrt(x),
-    apparatus: (x, y) => ({ pos: x, inizio: 0, min: 0, max: 16, freccia: y / 3 }),
+    apparatus: (x, y) => ({ pos: x, inizio: 0, min: 0, max: 16, freccia: y / 3, dettaglioVelocita: true }),
   },
   // Forze conservative e non conservative
   'SIM-C1-L008-01': {
