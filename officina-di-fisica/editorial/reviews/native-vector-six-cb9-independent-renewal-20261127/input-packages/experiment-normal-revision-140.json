@@ -1,0 +1,124 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "SIM-C1-L005-05",
+      "kind": "experiment",
+      "course": "C1",
+      "skill": "C1-L005",
+      "order": 5,
+      "section": "Moto e forze",
+      "version": 2,
+      "title": "Forza peso e normale",
+      "topic": "Forza peso e normale",
+      "anchor": "Scegli gli assi per ridurre i conti",
+      "summary": "La bilancia perpendicolare al piano misura tutto il peso?",
+      "apparatus": "piano",
+      "control": {
+        "label": "Inclinazione",
+        "unit": "°",
+        "min": 0.0,
+        "max": 75.0,
+        "step": 5.0
+      },
+      "measure": {
+        "label": "Reazione normale",
+        "unit": "N"
+      },
+      "formula": "N = mg cos θ, con mg = 20 N",
+      "interpretation": "Inclina lentamente il piano. Il peso resta verticale; la normale ruota con la superficie e bilancia solo la componente perpendicolare. Il blocco è trattenuto lungo la guida.",
+      "references": [
+        [
+          0.0,
+          20.0
+        ],
+        [
+          60.0,
+          10.0
+        ]
+      ],
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il modello usa una massa m=2 kg e un’accelerazione di gravità g=10 m/s²: il peso ha modulo mg=20 N e resta verticale al variare dell’inclinazione. La normale è la forza di contatto perpendicolare alla guida. Le frecce del banco usano una scala comune per le forze: puoi confrontarne i moduli mantenendo distinta la loro direzione."
+        },
+        {
+          "type": "text",
+          "text": "Scegli un asse perpendicolare al piano. Il corpo resta a contatto con la guida rettilinea e non accelera lungo questo asse. Il secondo principio dà quindi una risultante perpendicolare nulla: la normale bilancia soltanto la componente perpendicolare del peso. Lungo il piano la risultante può invece essere diversa da zero. Non stiamo assumendo equilibrio in tutte le direzioni."
+        },
+        {
+          "type": "formula",
+          "text": "N-mg\\cos\\theta=ma_\\perp"
+        },
+        {
+          "type": "formula",
+          "text": " a_\\perp=0"
+        },
+        {
+          "type": "formula",
+          "text": " N=mg\\cos\\theta"
+        },
+        {
+          "type": "text",
+          "text": "Il piano e l’orizzontale formano θ; la normale al piano e la verticale formano lo stesso angolo. Proietta perciò il peso sull’asse perpendicolare usando il coseno. Usare il seno sceglierebbe la componente lungo il piano e farebbe prevedere una normale nulla per un piano orizzontale: un controllo limite che permette di scartare subito la formula sbagliata."
+        },
+        {
+          "type": "text",
+          "text": "Nel primo conto richiesto porta l’inclinazione a 60°. L’angolo è notevole: cos60°=1/2. Moltiplica 20 N per un mezzo, cioè dimezza 20; non serve approssimare il coseno in un decimale. La normale deve risultare più piccola del peso."
+        },
+        {
+          "type": "formula",
+          "text": "N(60^\\circ)=20\\cdot\\frac12\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": "20\\cdot\\frac12\\,\\mathrm N=10\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Per il trasferimento considera la guida orizzontale, θ=0°. Ora il peso è interamente perpendicolare alla superficie. Cos0°=1 e la normale vale 20 N. Le due forze hanno moduli uguali e versi opposti: a questa inclinazione anche le frecce della scena devono avere la stessa lunghezza. Il peso non è la reazione alla normale: entrambe le forze qui agiscono sullo stesso corpo e provengono da interazioni diverse."
+        },
+        {
+          "type": "formula",
+          "text": "N(0^\\circ)=20\\cdot1\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": "20\\cdot1\\,\\mathrm N=20\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Controlla le dimensioni: kg·m/s² è il newton; il coseno e il rapporto N/(mg) non hanno unità. Nel dominio installato 0°≤θ≤75° vale 0<N≤20 N. Una normale negativa indicherebbe una lettura fisicamente incompatibile con questo semplice contatto appoggiato. Puoi osservare altre inclinazioni e leggere lo strumento: le verifiche numeriche assegnate sono soltanto 60° e 0°, entrambe esatte."
+        },
+        {
+          "type": "formula",
+          "text": "\\cos\\theta=\\frac{N}{mg}"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{N}{g\\cos\\theta}\\quad(g\\cos\\theta\\ne0)"
+        },
+        {
+          "type": "text",
+          "text": "Per ricavare la massa dal primo caso, dividi 10 N per (10 m/s²)(1/2). Il denominatore è 5 m/s² e 10/5=2: ottieni 2 kg. Viceversa N/(mg)=10/20=1/2 identifica θ=60° nel dominio assegnato, senza calcolare una funzione trigonometrica inversa. L’uguaglianza N=mg vale qui solo a 0°: applicarla automaticamente a un piano inclinato confonde peso e sua componente."
+        }
+      ],
+      "substitution": "20 × cos({x}°)",
+      "transferPrompt": "Un pacco pesa 20 N su un ripiano inclinato di {x}. Quanto segna il sensore perpendicolare al ripiano?",
+      "baseVersion": 1,
+      "assessmentSelection": {
+        "schemaVersion": "1.0.0",
+        "points": [
+          60,
+          0
+        ]
+      },
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "review": "Candidata DRAFT; verifica scientifica distinta NOT_RUN; approvazione umana NOT_RUN."
+    }
+  ],
+  "assets": []
+}

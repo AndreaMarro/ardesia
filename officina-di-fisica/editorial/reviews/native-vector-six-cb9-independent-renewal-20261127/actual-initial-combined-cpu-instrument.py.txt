@@ -1,0 +1,7 @@
+import subprocess,sys,json,hashlib
+from pathlib import Path
+A=Path.cwd();D=A/'editorial/reviews/native-vector-six-cb9-independent-renewal-20261127';O=A/'output/playwright/native-vector-six-cb9-independent-renewal-20261127';r=json.loads((O/'terminal-receipt.json').read_text());assert r['observedExitCode']==0 and r['error']is None
+for name in ['vector_six_cb9_source_grid_a.mjs','vector_six_cb9_whole_mesh_a.mjs']:
+ subprocess.run(['node','/private/tmp/'+name],check=True)
+subprocess.run([sys.executable,'/private/tmp/analyze_vector_six_cb9_ui_a.py'],check=True)
+print('ACTUAL_SOURCE_GRID_MESH_UI_ANALYSIS_ALL_EXIT_0')
