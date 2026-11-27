@@ -1,0 +1,18 @@
+SHARED_LOCK_ACQUIRED; free bytes 3976724480; one child
+test01_fresh_saved_complete_current_records (__main__.SixIndependentRenewal.test01_fresh_saved_complete_current_records) ... ok
+test02_actual_original_versions_and_separate_manuality_failures (__main__.SixIndependentRenewal.test02_actual_original_versions_and_separate_manuality_failures) ... ok
+test03_wrong_epoch_cannot_be_retagged (__main__.SixIndependentRenewal.test03_wrong_epoch_cannot_be_retagged) ... ok
+test04_changed_source_identity_rejected (__main__.SixIndependentRenewal.test04_changed_source_identity_rejected) ... ok
+test05_numeric_runtime_mutants_reach_physics_comparison (__main__.SixIndependentRenewal.test05_numeric_runtime_mutants_reach_physics_comparison) ... ok
+test06_constitutive_functions_are_not_approved_by_hash_alone (__main__.SixIndependentRenewal.test06_constitutive_functions_are_not_approved_by_hash_alone) ... ok
+test07_rebound_candidate_and_binding_still_need_physics (__main__.SixIndependentRenewal.test07_rebound_candidate_and_binding_still_need_physics) ... ok
+test08_exit_one_rejected_even_with_rebound_handoff_pin (__main__.SixIndependentRenewal.test08_exit_one_rejected_even_with_rebound_handoff_pin) ... ok
+test09_legacy_globals_and_sources_unchanged (__main__.SixIndependentRenewal.test09_legacy_globals_and_sources_unchanged) ... ok
+test10_nonfinite_or_non_numeric_actual_readings_rejected (__main__.SixIndependentRenewal.test10_nonfinite_or_non_numeric_actual_readings_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 6.192s
+
+OK
+{"schemaVersion": "1.0.0", "actualExit": 0, "testsRun": 10, "failures": 0, "errors": 0, "elapsedSeconds": 6.192489625012968, "statistics": {"numericRuntimeFaultsRejected": 6, "constitutiveFaultsRejected": 3, "retokenizedDraftMathFaultsRejected": 2, "nonfiniteReadingsRejected": 18}, "actualApp": "/private/tmp/cric-method-css-748-independent-app", "runtime": "cb9fc66d96ecced2addff3df4dfbeb0b5834e73a13719a78ea964bc28a5ada49", "humanApproval": "NOT_RUN", "publicationAction": "NONE", "activityCredit": 0}
+CHILD_EXIT 0; free bytes 3976867840

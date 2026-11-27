@@ -1,0 +1,12 @@
+from pathlib import Path
+import shutil
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');old=A/'editorial/reviews/native-vector-six-scientific-renewal-927-20261126';new=A/'editorial/reviews/native-vector-six-scientific-renewal-cb9-20261127';new.mkdir(exist_ok=True)
+for name in ['legacy','fixtures']:shutil.copytree(old/name,new/name,dirs_exist_ok=True)
+h=new/'historical-927';h.mkdir(exist_ok=True)
+for name in ['current-six-scientific-report.json','fresh-saved-receipt.json','actual-scientific-target-result.json','handoff.json']:shutil.copyfile(old/name,h/name)
+shutil.copyfile(A/'tools/corpus_engineering/c1_six_vector_renewal_927_verifier.py',h/'c1_six_vector_renewal_927_verifier.py.txt')
+p=A/'tools/corpus_engineering/c1_six_vector_renewal_cb9_verifier.py';s=(A/'tools/corpus_engineering/c1_six_vector_renewal_927_verifier.py').read_text().replace('scientific-renewal-927-20261126','scientific-renewal-cb9-20261127').replace('native-vector-six-independent-27503-20261126','native-vector-six-cb9-independent-renewal-20261127').replace('9279713a1f2cbb27fbb2014ae68d15b70f71ea3249c4ec33d7430a54a3fdcd0d','cb9fc66d96ecced2addff3df4dfbeb0b5834e73a13719a78ea964bc28a5ada49').replace('b67cdecdf76068b62f4a680d227f2e73c963b0cbb45d4034dab6afcec779c18a','bea0d82005482e8db7578e8490e4ffb75a1002e3e34ec4f41da1d172e3c29b94').replace('Actual927','Actualcb9').replace('read927 UI','read cb9 UI').replace('renewal-927','renewal-cb9')
+p.write_text(s)
+s=(old/'run-scientific-checks.py').read_text().replace('c1_six_vector_renewal_927_verifier','c1_six_vector_renewal_cb9_verifier').replace('frozen927','frozen cb9').replace('Actual927','Actualcb9');(new/'run-scientific-checks.py').write_text(s)
+s=Path('/private/tmp/run_six_vector_scientific_refresh_a.py').read_text().replace('cric-vector-six-independent-a-927-app','cric-method-css-748-independent-app').replace('c1_six_vector_renewal_927_verifier','c1_six_vector_renewal_cb9_verifier').replace('scientific-renewal-927-20261126','scientific-renewal-cb9-20261127');Path('/private/tmp/run_six_cb9_scientific_refresh_a.py').write_text(s)
+print('PREPARED')

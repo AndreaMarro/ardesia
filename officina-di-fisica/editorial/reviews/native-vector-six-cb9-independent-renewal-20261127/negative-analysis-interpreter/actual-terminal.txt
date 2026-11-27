@@ -1,0 +1,16 @@
+SHARED_LOCK_ACQUIRED; free bytes 4029419520; one child
+{"legalInputs":148,"states":888,"records":6,"legendsChanged":[]}
+{"schemaVersion":"1.0.0","scope":"Independent analytical orthographic camera bases (cross/dot products, not Three.project) applied to actual immutable Three Float32 body/line buffers and actual world transforms. All148 legal input points, five stages, three preset views, two observed aspects and one transition aspect. Excludes sprites, GPU/raster and arbitrary zoom/orbit. Whole convex mesh faces follow from vertex containment.","productionConstructorSha256":"906ee23aade1ad214407ac1e3ca78af6fd32bac96eb1032eb44f16a8bca976fb","scenaSha256":"4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095","points":148,"contexts":740,"projections":6660,"opaqueAndLineParts":9335,"oldHeightUncontained":770,"finalHeightUncontained":0,"minimumFinalNdcMargin":0.06998393366890443,"activityCredit":0,"humanApproval":"NOT_RUN","publicationAction":"NONE"}
+Traceback (most recent call last):
+  File "/private/tmp/analyze_vector_six_cb9_ui_a.py", line 3, in <module>
+    from PIL import Image,ImageDraw
+ModuleNotFoundError: No module named 'PIL'
+Traceback (most recent call last):
+  File "/private/tmp/run_vector_six_cb9_cpu_a.py", line 6, in <module>
+    subprocess.run([sys.executable,'/private/tmp/analyze_vector_six_cb9_ui_a.py'],check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py", line 579, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['/private/tmp/cric-recovery-venv/bin/python', '/private/tmp/analyze_vector_six_cb9_ui_a.py']' returned non-zero exit status 1.
+CHILD_EXIT 1; free bytes 4026744832
