@@ -1,0 +1,148 @@
+{
+  "status": "PLANNED_ONLY_AFTER_CURRENT_C1_296;NOT_QUEUED",
+  "candidateCommit": "3d060603540c981bf641f776ca65fd3ef76106c3",
+  "runtimeSha256": "2096493ae86311ec459e012032cd1f8fe41293326cc5769d86376aa5a0b59635",
+  "grid": {
+    "SIM-C4-L01-01": [
+      0,
+      2,
+      4,
+      6,
+      8
+    ],
+    "SIM-C4-L01-02": [
+      1,
+      1.5,
+      2,
+      3,
+      4,
+      6
+    ],
+    "SIM-C4-L02-01": [
+      1,
+      2,
+      3,
+      5,
+      8
+    ],
+    "SIM-C4-L02-02": [
+      -3,
+      -1,
+      0,
+      0.5,
+      1,
+      1.5,
+      3
+    ],
+    "SIM-C4-L02-03": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "SIM-C4-L03-01": [
+      -2,
+      -1,
+      -0.5,
+      0,
+      0.5,
+      2,
+      3
+    ],
+    "SIM-C4-L03-02": [
+      -4,
+      -2,
+      0,
+      3,
+      4
+    ],
+    "SIM-C4-L03-03": [
+      0,
+      2,
+      4,
+      5,
+      8
+    ]
+  },
+  "clock": [
+    {
+      "id": "SIM-C4-L02-03",
+      "anchor": 1,
+      "time": 0.5
+    },
+    {
+      "id": "SIM-C4-L02-03",
+      "anchor": 1,
+      "time": 1.5
+    },
+    {
+      "id": "SIM-C4-L02-03",
+      "anchor": 1,
+      "time": 3.5
+    }
+  ],
+  "profiles": 8,
+  "setupCases": 64,
+  "expectedCases": 448,
+  "browser": "NOT_RUN",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "candidateApp": "/private/tmp/cric-midpoint-charge-labels-20261127/officina-di-fisica",
+  "canary24": "Fresh24 read; six tests actual0; no residual in its six profiles",
+  "runtimeTransition": "Fresh collector output required, no retag of 980 or77c reports",
+  "priority": "Only after C1 actual296 and single Chrome slot; no second browser queued",
+  "profilesExplicit": [
+    {
+      "width": 320,
+      "view": "orbit",
+      "fallback": false
+    },
+    {
+      "width": 320,
+      "view": "side",
+      "fallback": false
+    },
+    {
+      "width": 320,
+      "view": "top",
+      "fallback": false
+    },
+    {
+      "width": 320,
+      "view": "fixed_projection",
+      "fallback": true
+    },
+    {
+      "width": 1280,
+      "view": "orbit",
+      "fallback": false
+    },
+    {
+      "width": 1280,
+      "view": "side",
+      "fallback": false
+    },
+    {
+      "width": 1280,
+      "view": "top",
+      "fallback": false
+    },
+    {
+      "width": 1280,
+      "view": "fixed_projection",
+      "fallback": true
+    }
+  ],
+  "perIDPointsRationale": {
+    "SIM-C4-L01-01": "Zero and positive integer electron transfers; conserved opposite charges.",
+    "SIM-C4-L01-02": "Both actual tasks plus closest distance, detail threshold and far distance.",
+    "SIM-C4-L02-01": "Both actual tasks, distance boundary, strong and weak field.",
+    "SIM-C4-L02-02": "Both signs, zero charge, cancellation at+1, both nearby nonzero cues, signed range ends.",
+    "SIM-C4-L02-03": "Rest zero and later times, actual tasks, three fractional clock points.",
+    "SIM-C4-L03-01": "Negative and positive total energy, cancellation at−0.5 while pair interactions remain.",
+    "SIM-C4-L03-02": "Both displacement directions and zero potential difference with nonzero field.",
+    "SIM-C4-L03-03": "Zero and positive net work; both actual tasks and range boundary."
+  }
+}
