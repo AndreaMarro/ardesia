@@ -1,0 +1,197 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C1-E003",
+      "kind": "example",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 3,
+      "title": "Un tragitto attraverso due corsie",
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L002"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Lo spostamento collega direttamente partenza e arrivo; il cammino segue invece entrambe le corsie. Scegliamo est positivo sull’asse x e nord positivo sull’asse y. Le due componenti sono quindi positive e perpendicolari: questa geometria giustifica Pitagora."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b06a9573a55f27f2d1a1ba2e9a909fdcc215d72bf6335a9bce0b6e6c9e2a29ca",
+          "text": "Tre tappe alla stessa scala: componenti di 30 m a est e 40 m a nord, diagonale di 50 m e angolo θ misurato a nord dell’est. Seno e coseno ne specificano la direzione senza ricavare decimali."
+        },
+        {
+          "type": "formula",
+          "text": "R_x=30\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " R_y=40\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " R^2=R_x^2+R_y^2"
+        },
+        {
+          "type": "formula",
+          "text": " R^2=(900+1600)\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\sqrt{2500}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\sqrt{2500}\\,\\mathrm m=50\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Per il conto a mano si riconosce il triangolo 3–4–5 ingrandito di dieci: 3²+4²=5² e dunque la diagonale misura 10·5 m. La radice positiva è richiesta perché R è un modulo. La direzione non si ottiene sommando i metri: si confrontano le componenti con la diagonale."
+        },
+        {
+          "type": "formula",
+          "text": "\\cos\\theta=\\frac{R_x}{R}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{R_x}{R}=\\frac{30}{50}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{30}{50}=\\frac35"
+        },
+        {
+          "type": "formula",
+          "text": " \\sin\\theta=\\frac{R_y}{R}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{R_y}{R}=\\frac{40}{50}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{40}{50}=\\frac45"
+        },
+        {
+          "type": "formula",
+          "text": " \\tan\\theta=\\frac{R_y}{R_x}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{R_y}{R_x}=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "Entrambe le componenti positive collocano il vettore nel primo quadrante, quindi 0°<θ<90°. I rapporti esatti cosθ=3/5 e sinθ=4/5 identificano un’unica direzione a nord dell’est. Volendo nominare l’angolo con una funzione inversa, θ=arctan(4/3): questa è già una risposta esatta e non richiede di valutare un’inversa trigonometrica a mano."
+        },
+        {
+          "type": "text",
+          "text": "Il cateto nord supera quello est, perciò θ è maggiore di 45°. Il modulo di 50 m è minore del cammino di 30+40=70 m. La differenza di 20 m descrive la deviazione del percorso rispetto al collegamento diretto; non è una componente mancante. Sommare 30+40 per trovare il modulo confonderebbe queste due grandezze."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "Una persona cammina per 30 m a est e poi per 40 m a nord. Trova il modulo dello spostamento e descrivine la direzione con rapporti trigonometrici esatti, senza approssimare l’angolo in gradi.",
+      "family": "un-tragitto-attraverso-due-corsie",
+      "baseVersion": 1,
+      "review": "Nuova edizione candidata dopo finding indipendente; revisione della candidata NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "C1-E008",
+      "kind": "example",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 8,
+      "title": "Seguire un punto del disco",
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L004"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il periodo T è la durata di un giro. Poiché il moto è uniforme, il punto percorre archi uguali in tempi uguali: il modulo della velocità si ricava dividendo la circonferenza per T. Scrivere il raggio come 1/5 m rende immediata la semplificazione senza convertire π in un decimale."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/42efc0b54ebd1492019539433c2539578265f032bfcbce5d9aa5b9048350bea7",
+          "text": "Prima il raggio e il periodo; poi la velocità tangente; infine l’accelerazione centripeta. Il cerchio mantiene la stessa scala. Le frecce di velocità e accelerazione indicano direzioni di grandezze con unità diverse, senza confrontarne graficamente i moduli."
+        },
+        {
+          "type": "formula",
+          "text": "C=2\\pi r"
+        },
+        {
+          "type": "formula",
+          "text": "2\\pi r=\\frac{2\\pi}{5}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " v=\\frac CT"
+        },
+        {
+          "type": "formula",
+          "text": " v=\\frac{2\\pi/5}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v=\\frac\\pi5\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il due si cancella prima di qualsiasi moltiplicazione. La velocità vettoriale è tangente alla circonferenza e cambia direzione anche se il suo modulo resta costante. Occorre quindi un’accelerazione: nel moto circolare uniforme è rivolta verso il centro e ha modulo v²/r. La legge si applica qui perché r e v sono costanti."
+        },
+        {
+          "type": "formula",
+          "text": "a_c=\\frac{v^2}{r}"
+        },
+        {
+          "type": "formula",
+          "text": " v^2=\\frac{\\pi^2}{25}\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " a_c=\\frac{\\pi^2/25}{1/5}\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " a_c=\\frac{5\\pi^2}{25}\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " a_c=\\frac{\\pi^2}{5}\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Dividere per 1/5 significa moltiplicare per cinque. L’unità si controlla separatamente: (m²/s²)/m=m/s². Un controllo usa la velocità angolare ω=2π/T=π s⁻¹: v=ωr e a_c=ω²r restituiscono gli stessi risultati esatti."
+        },
+        {
+          "type": "text",
+          "text": "Le risposte sono dunque v=π/5 m/s e a_c=π²/5 m/s². Nessun arrotondamento entra nella seconda formula. Se il periodo raddoppia a raggio fisso, v si dimezza e l’accelerazione diventa un quarto, perché contiene il quadrato della velocità. Accelerazione nulla e rapidità costante non sono equivalenti: qui cambia continuamente la direzione del vettore velocità."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un segno a r=1/5 m dal centro di un disco compie un giro in T=2 s, a ritmo uniforme. Trova i moduli della velocità e dell’accelerazione lasciando π nei risultati.",
+      "family": "seguire-un-punto-del-disco",
+      "baseVersion": 1,
+      "review": "Nuova edizione candidata dopo finding indipendente; revisione della candidata NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    }
+  ],
+  "assets": [
+    {
+      "id": "b06a9573a55f27f2d1a1ba2e9a909fdcc215d72bf6335a9bce0b6e6c9e2a29ca",
+      "name": "example-corsie-exact.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTEyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InQgZCI+Cjx0aXRsZSBpZD0idCI+VHJlbnRhIG1ldHJpIGEgZXN0LCBxdWFyYW50YSBhIG5vcmQ8L3RpdGxlPjxkZXNjIGlkPSJkIj5UcmUgdGFwcGUgYWxsYSBzdGVzc2Egc2NhbGEgZGkgc2VpIHBpeGVsIHBlciBtZXRybzogY2F0ZXRpIGRpIHRyZW50YSBlIHF1YXJhbnRhIG1ldHJpLCBkaWFnb25hbGUgZGkgY2lucXVhbnRhIG1ldHJpIGUgYW5nb2xvIHRoZXRhIGEgbm9yZCBkZWxs4oCZZXN0LiBDb3Nlbm8gdHJlIHF1aW50aSBlIHNlbm8gcXVhdHRybyBxdWludGkgaWRlbnRpZmljYW5vIGVzYXR0YW1lbnRlIGxhIGRpcmV6aW9uZSBuZWwgcHJpbW8gcXVhZHJhbnRlLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOCIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjYiIG1hcmtlckhlaWdodD0iNiIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iY29udGV4dC1zdHJva2UiLz48L21hcmtlcj48L2RlZnM+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTEyMCIgcng9IjE4IiBmaWxsPSIjZmFmOGYyIi8+CjxnIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksc2Fucy1zZXJpZiIgZmlsbD0iIzE0MmYzYiI+PHRleHQgeD0iMjgiIHk9IjM2IiBmb250LXNpemU9IjIzIiBmb250LXdlaWdodD0iNzAwIj5EYWwgcGVyY29yc28gYWxsYSBkaXJlemlvbmUgZXNhdHRhPC90ZXh0Pgo8ZyBmb250LXNpemU9IjIxIj48dGV4dCB4PSIyOCIgeT0iNzYiPjEgwrcgU2NlZ2xpIGVzdCBlIG5vcmQgY29tZSBhc3NpPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI0MTQiPjIgwrcgQ29sbGVnYSBwYXJ0ZW56YSBlIGFycml2bzwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNzUyIj4zIMK3IERlc2NyaXZpIGzigJlhbmdvbG8gY29uIHJhcHBvcnRpPC90ZXh0PjwvZz4KPGcgc3Ryb2tlPSIjMTI2MTdjIiBzdHJva2Utd2lkdGg9IjUiIGZpbGw9Im5vbmUiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIj48cGF0aCBkPSJNODggMzM4SDI2OCIvPjxwYXRoIGQ9Ik0yNjggMzM4Vjk4Ii8+PHBhdGggZD0iTTg4IDY3NkgyNjgiLz48cGF0aCBkPSJNMjY4IDY3NlY0MzYiLz48cGF0aCBkPSJNODggMTAxNEgyNjgiLz48cGF0aCBkPSJNMjY4IDEwMTRWNzc0Ii8+PC9nPgo8ZyBzdHJva2U9IiMxNDJmM2IiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTI0OCAzMzhWMzE4SDI2OE0yNDggNjc2VjY1NkgyNjhNMjQ4IDEwMTRWOTk0SDI2OCIvPjxwYXRoIGQ9Ik0xMjggMTAxNEE0MCA0MCAwIDAgMCAxMTIgOTgyIi8+PC9nPgo8ZyBzdHJva2U9IiM5YjRiMjAiIHN0cm9rZS13aWR0aD0iNSIgZmlsbD0ibm9uZSIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiPjxwYXRoIGQ9Ik04OCA2NzZMMjY4IDQzNiIvPjxwYXRoIGQ9Ik04OCAxMDE0TDI2OCA3NzQiLz48L2c+CjxnIGZvbnQtc2l6ZT0iMTkiPjx0ZXh0IHg9IjEzNSIgeT0iMzY2Ij4zMCBtIGVzdDwvdGV4dD48dGV4dCB4PSIyODIiIHk9IjIxOCI+NDAgbSBub3JkPC90ZXh0Pjx0ZXh0IHg9IjEzNSIgeT0iNzA0Ij4zMCBtIGVzdDwvdGV4dD48dGV4dCB4PSIyODIiIHk9IjU1NiI+NDAgbSBub3JkPC90ZXh0Pjx0ZXh0IHg9IjEyMCIgeT0iNTM0Ij41MCBtPC90ZXh0Pjx0ZXh0IHg9IjEzNSIgeT0iMTA0MiI+MzAgbSBlc3Q8L3RleHQ+PHRleHQgeD0iMjgyIiB5PSI4OTQiPjQwIG0gbm9yZDwvdGV4dD48dGV4dCB4PSIxMjAiIHk9Ijg3MiI+NTAgbTwvdGV4dD48dGV4dCB4PSIxMzkiIHk9Ijk5MyI+zrg8L3RleHQ+PHRleHQgeD0iMzY2IiB5PSIxNDgiPkR1ZSBjYXRldGk8L3RleHQ+PHRleHQgeD0iMzY2IiB5PSIxODAiPnBlcnBlbmRpY29sYXJpPC90ZXh0Pjx0ZXh0IHg9IjM2NiIgeT0iNDc2Ij4zwrIgKyA0wrIgPSA1wrI8L3RleHQ+PHRleHQgeD0iMzY2IiB5PSI1MDgiPlNjYWxhIMOXMTAgbTwvdGV4dD48dGV4dCB4PSIzNTIiIHk9IjgwNiI+Y29zIM64ID0gMy81PC90ZXh0Pjx0ZXh0IHg9IjM1MiIgeT0iODQyIj5zaW4gzrggPSA0LzU8L3RleHQ+PHRleHQgeD0iMzUyIiB5PSI4NzgiPjDCsCAmbHQ7IM64ICZsdDsgOTDCsDwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTA5NCI+U3Rlc3NhIHNjYWxhIG5laSB0cmUgcGFubmVsbGk7IG5lc3N1biBhbmdvbG8gZGVjaW1hbGUuPC90ZXh0PjwvZz48L2c+PC9zdmc+Cg=="
+    },
+    {
+      "id": "42efc0b54ebd1492019539433c2539578265f032bfcbce5d9aa5b9048350bea7",
+      "name": "example-circular-exact.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgOTkwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idCBkIj4KPHRpdGxlIGlkPSJ0Ij5Nb3RvIGNpcmNvbGFyZSB1bmlmb3JtZSBzZW56YSBhcHByb3NzaW1hcmUgcGkgZ3JlY288L3RpdGxlPjxkZXNjIGlkPSJkIj5UcmUgdGFwcGU6IGNpcmNvbmZlcmVuemEgY29uIHJhZ2dpbyB1biBxdWludG8gZGkgbWV0cm8gZSBwZXJpb2RvIGR1ZSBzZWNvbmRpOyB2ZWxvY2l0w6AgdGFuZ2VudGUgZGkgbW9kdWxvIHBpIGdyZWNvIHF1aW50aSBtZXRyaSBhbCBzZWNvbmRvOyBhY2NlbGVyYXppb25lIHZlcnNvIGlsIGNlbnRybyBkaSBtb2R1bG8gcGkgZ3JlY28gYWwgcXVhZHJhdG8gcXVpbnRpIG1ldHJpIGFsIHNlY29uZG8gcXVhZHJhdG8uIExlIGZyZWNjZSBpbmRpY2FubyBkaXJlemlvbmkgZGkgZ3JhbmRlenplIGNvbiB1bml0w6AgZGl2ZXJzZS48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9ImFycm93IiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjgiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI2IiBtYXJrZXJIZWlnaHQ9IjYiIG9yaWVudD0iYXV0by1zdGFydC1yZXZlcnNlIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9ImNvbnRleHQtc3Ryb2tlIi8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9Ijk5MCIgcng9IjE4IiBmaWxsPSIjZmFmOGYyIi8+CjxnIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksc2Fucy1zZXJpZiIgZmlsbD0iIzE0MmYzYiI+PHRleHQgeD0iMjgiIHk9IjM2IiBmb250LXNpemU9IjIzIiBmb250LXdlaWdodD0iNzAwIj5VbmEgdHJhaWV0dG9yaWEsIGR1ZSB2ZXR0b3JpIGRpdmVyc2k8L3RleHQ+CjxnIGZvbnQtc2l6ZT0iMjEiPjx0ZXh0IHg9IjI4IiB5PSI4MCI+MSDCtyBVbiBnaXJvIGluIGR1ZSBzZWNvbmRpPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIzNjgiPjIgwrcgTGEgdmVsb2NpdMOgIMOoIHRhbmdlbnRlPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI2NTYiPjMgwrcgTOKAmWFjY2VsZXJhemlvbmUgcHVudGEgYWwgY2VudHJvPC90ZXh0PjwvZz4KPGcgc3Ryb2tlPSIjNmI3NDc3IiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiPjxjaXJjbGUgY3g9IjE1MCIgY3k9IjIwMiIgcj0iODAiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSI0OTAiIHI9IjgwIi8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iNzc4IiByPSI4MCIvPjxwYXRoIGQ9Ik0xNTAgMjAySDIzMCIgc3Ryb2tlLWRhc2hhcnJheT0iNiA1Ii8+PHBhdGggZD0iTTE1MCA0OTBIMjMwTTE1MCA3NzhIMjMwIiBzdHJva2UtZGFzaGFycmF5PSI2IDUiLz48L2c+CjxnIGZpbGw9IiMxNDJmM2IiPjxjaXJjbGUgY3g9IjE1MCIgY3k9IjIwMiIgcj0iNCIvPjxjaXJjbGUgY3g9IjIzMCIgY3k9IjIwMiIgcj0iNCIvPjxjaXJjbGUgY3g9IjE1MCIgY3k9IjQ5MCIgcj0iNCIvPjxjaXJjbGUgY3g9IjIzMCIgY3k9IjQ5MCIgcj0iNCIvPjxjaXJjbGUgY3g9IjE1MCIgY3k9Ijc3OCIgcj0iNCIvPjxjaXJjbGUgY3g9IjIzMCIgY3k9Ijc3OCIgcj0iNCIvPjwvZz4KPGcgc3Ryb2tlPSIjMTI2MTdjIiBzdHJva2Utd2lkdGg9IjUiIGZpbGw9Im5vbmUiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIj48cGF0aCBkPSJNMjMwIDQ5MFY0MDhNMjMwIDc3OFY2OTYiLz48L2c+PHBhdGggZD0iTTIzMCA3NzhIMTU4IiBzdHJva2U9IiM5YjRiMjAiIHN0cm9rZS13aWR0aD0iNSIgZmlsbD0ibm9uZSIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KPHBhdGggZD0iTTIxMiA3NzhWNzYwSDIzMCIgc3Ryb2tlPSIjMTQyZjNiIiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiLz4KPGcgZm9udC1zaXplPSIyMCI+PHRleHQgeD0iMzA0IiB5PSIxNjYiPnIgPSAxLzUgbTwvdGV4dD48dGV4dCB4PSIzMDQiIHk9IjIwNiI+VCA9IDIgczwvdGV4dD48dGV4dCB4PSIzMDQiIHk9IjI0NiI+VW4gZ2lybzogMs+AcjwvdGV4dD48dGV4dCB4PSIyNDgiIHk9IjQyNiI+djwvdGV4dD48dGV4dCB4PSIzMDQiIHk9IjQ4MiI+diA9IM+ALzUgbS9zPC90ZXh0Pjx0ZXh0IHg9IjMwNCIgeT0iNTI2Ij5Nb2R1bG8gY29zdGFudGU8L3RleHQ+PHRleHQgeD0iMjQ4IiB5PSI3MTQiPnY8L3RleHQ+PHRleHQgeD0iMTYwIiB5PSI4MTIiPmEgdmVyc28gaWwgY2VudHJvPC90ZXh0Pjx0ZXh0IHg9IjMwNCIgeT0iNzY4Ij5hID0gz4DCsi81IG0vc8KyPC90ZXh0Pjx0ZXh0IHg9IjMwNCIgeT0iODEyIj52IGUgYSBwZXJwZW5kaWNvbGFyaTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTAwIj5MZSBmcmVjY2UgbW9zdHJhbm8gbGUgZGlyZXppb25pLCBub24gdW5hIHNjYWxhPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI5MzIiPmNvbXVuZSBmcmEgdmVsb2NpdMOgIGUgYWNjZWxlcmF6aW9uZS48L3RleHQ+PHRleHQgeD0iMjgiIHk9Ijk2NiI+SWwgY2VyY2hpbyBjb25zZXJ2YSByYWdnaW8gZSBwb3NpemlvbmUgbmVsbGUgdHJlIHRhcHBlLjwvdGV4dD48L2c+PC9nPjwvc3ZnPgo="
+    }
+  ]
+}
