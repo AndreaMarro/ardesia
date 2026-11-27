@@ -1,0 +1,208 @@
+{
+  "reviewedCommit": "da6c179fc382865e26a33e3fc6d410350c4c2509",
+  "candidateRef": "64aef05bef5ca7ebff8491060762dd4cac0cbb34",
+  "browserVersion": "158.0.8127.37",
+  "before": {
+    "sourceReplayedX": 55,
+    "sourceReplayedClockTime": null,
+    "pilot": null,
+    "actualDOMControls": [
+      {
+        "name": "x",
+        "value": "55"
+      }
+    ],
+    "model": {
+      "x": 55,
+      "y": 3.441458618106277
+    },
+    "baselineReference": {
+      "kind": "IMMUTABLE_BASELINE_ISOLATED_BROWSER_CONTEXT_V2",
+      "namespace": "/__cric_baseline/eb51d0e9bdc3f992e9ae0ae76810098376e2ab79/fa997076b86e689d5f3a4050edc0a87316854235efd9e4c30053d2a6d422dd1a/",
+      "isolation": "DISTINCT_CONTEXT_AND_ORIGIN",
+      "realmId": "e26e5e80-6312-4586-a428-1f2bca1bd007",
+      "documentURL": "https://cric-baseline.invalid/__cric_baseline/eb51d0e9bdc3f992e9ae0ae76810098376e2ab79/fa997076b86e689d5f3a4050edc0a87316854235efd9e4c30053d2a6d422dd1a/realm.html",
+      "serviceWorkers": "block",
+      "pilot": null,
+      "observedX": 55,
+      "clockTime": null,
+      "model": {
+        "x": 55,
+        "y": 3.441458618106277
+      },
+      "actualDOMControls": [
+        {
+          "name": "x",
+          "value": "55"
+        }
+      ]
+    }
+  },
+  "after": {
+    "sourceReplayedX": 55,
+    "sourceReplayedClockTime": null,
+    "pilot": null,
+    "actualDOMControls": [
+      {
+        "name": "x",
+        "value": "55"
+      }
+    ],
+    "model": {
+      "x": 55,
+      "y": 3.4414586181062776
+    },
+    "baselineReference": {
+      "kind": "IMMUTABLE_BASELINE_ISOLATED_BROWSER_CONTEXT_V2",
+      "namespace": "/__cric_baseline/eb51d0e9bdc3f992e9ae0ae76810098376e2ab79/fa997076b86e689d5f3a4050edc0a87316854235efd9e4c30053d2a6d422dd1a/",
+      "isolation": "DISTINCT_CONTEXT_AND_ORIGIN",
+      "realmId": "e26e5e80-6312-4586-a428-1f2bca1bd007",
+      "documentURL": "https://cric-baseline.invalid/__cric_baseline/eb51d0e9bdc3f992e9ae0ae76810098376e2ab79/fa997076b86e689d5f3a4050edc0a87316854235efd9e4c30053d2a6d422dd1a/realm.html",
+      "serviceWorkers": "block",
+      "pilot": null,
+      "observedX": 55,
+      "clockTime": null,
+      "model": {
+        "x": 55,
+        "y": 3.441458618106277
+      },
+      "actualDOMControls": [
+        {
+          "name": "x",
+          "value": "55"
+        }
+      ]
+    }
+  },
+  "restored": {
+    "sourceReplayedX": 55,
+    "sourceReplayedClockTime": null,
+    "pilot": null,
+    "actualDOMControls": [
+      {
+        "name": "x",
+        "value": "55"
+      }
+    ],
+    "model": {
+      "x": 55,
+      "y": 3.441458618106277
+    },
+    "baselineReference": {
+      "kind": "IMMUTABLE_BASELINE_ISOLATED_BROWSER_CONTEXT_V2",
+      "namespace": "/__cric_baseline/eb51d0e9bdc3f992e9ae0ae76810098376e2ab79/fa997076b86e689d5f3a4050edc0a87316854235efd9e4c30053d2a6d422dd1a/",
+      "isolation": "DISTINCT_CONTEXT_AND_ORIGIN",
+      "realmId": "e26e5e80-6312-4586-a428-1f2bca1bd007",
+      "documentURL": "https://cric-baseline.invalid/__cric_baseline/eb51d0e9bdc3f992e9ae0ae76810098376e2ab79/fa997076b86e689d5f3a4050edc0a87316854235efd9e4c30053d2a6d422dd1a/realm.html",
+      "serviceWorkers": "block",
+      "pilot": null,
+      "observedX": 55,
+      "clockTime": null,
+      "model": {
+        "x": 55,
+        "y": 3.441458618106277
+      },
+      "actualDOMControls": [
+        {
+          "name": "x",
+          "value": "55"
+        }
+      ]
+    }
+  },
+  "rejection": "Immutable same-browser baseline model drifted\n+ actual - expected\n\n  {\n    x: 55,\n+   y: 3.4414586181062776\n-   y: 3.441458618106277\n  }\n",
+  "referenceEvidence": {
+    "kind": "IMMUTABLE_BASELINE_ISOLATED_BROWSER_CONTEXT_V2",
+    "baselineRuntimeRef": "eb51d0e9bdc3f992e9ae0ae76810098376e2ab79",
+    "manifestSha256": "fa997076b86e689d5f3a4050edc0a87316854235efd9e4c30053d2a6d422dd1a",
+    "namespace": "/__cric_baseline/eb51d0e9bdc3f992e9ae0ae76810098376e2ab79/fa997076b86e689d5f3a4050edc0a87316854235efd9e4c30053d2a6d422dd1a/",
+    "dependencyClosure": {
+      "js/banchi/misure.js": [],
+      "js/banchi/modelli/induzione.js": [
+        "js/banchi/misure.js"
+      ],
+      "js/banchi/quaderno.js": [
+        "js/banchi/misure.js"
+      ],
+      "js/banchi/voci/apparati/campi.js": [
+        "js/banchi/voci/geometria.js"
+      ],
+      "js/banchi/voci/apparati/fluidi.js": [
+        "js/banchi/voci/geometria.js"
+      ],
+      "js/banchi/voci/apparati/meccanica.js": [
+        "js/banchi/voci/geometria.js"
+      ],
+      "js/banchi/voci/apparati/onde.js": [
+        "js/banchi/voci/geometria.js"
+      ],
+      "js/banchi/voci/apparati/termica.js": [
+        "js/banchi/voci/geometria.js"
+      ],
+      "js/banchi/voci/assessment-selection.js": [],
+      "js/banchi/voci/confronti.js": [],
+      "js/banchi/voci/engines.js": [
+        "js/banchi/voci/apparati/campi.js",
+        "js/banchi/voci/apparati/fluidi.js",
+        "js/banchi/voci/apparati/meccanica.js",
+        "js/banchi/voci/apparati/onde.js",
+        "js/banchi/voci/apparati/termica.js",
+        "js/banchi/voci/modelli/C1.js",
+        "js/banchi/voci/modelli/C2.js",
+        "js/banchi/voci/modelli/C3.js",
+        "js/banchi/voci/modelli/C4.js",
+        "js/banchi/voci/modelli/C5.js",
+        "js/banchi/voci/modelli/C6.js"
+      ],
+      "js/banchi/voci/esperimento.js": [
+        "js/banchi/misure.js",
+        "js/banchi/voci/assessment-selection.js",
+        "js/banchi/voci/confronti.js",
+        "js/banchi/voci/engines.js",
+        "js/banchi/voci/geometria.js",
+        "js/banchi/voci/legende.js",
+        "js/banchi/voci/orologi.js"
+      ],
+      "js/banchi/voci/geometria.js": [],
+      "js/banchi/voci/legende.js": [],
+      "js/banchi/voci/modelli/C1.js": [],
+      "js/banchi/voci/modelli/C2.js": [],
+      "js/banchi/voci/modelli/C3.js": [],
+      "js/banchi/voci/modelli/C4.js": [],
+      "js/banchi/voci/modelli/C5.js": [],
+      "js/banchi/voci/modelli/C6.js": [],
+      "js/banchi/voci/orologi.js": []
+    },
+    "servedFiles": {
+      "js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+      "js/banchi/quaderno.js": "ecc32226e0fa1781b36cac952fa926a2ac17be6b4eae491ef6ef5744fcd8885a",
+      "js/banchi/voci/apparati/campi.js": "869db393319c413814f168003dbbf4bf07fa7dedc8f36d58870fab818c776953",
+      "js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+      "js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+      "js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+      "js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+      "js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+      "js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+      "js/banchi/voci/modelli/C4.js": "5d99d0015d7ae1807ad5167cf510a5e51f6fad4011caa0ba9a6c04ebff8d5941",
+      "js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6"
+    },
+    "allManifestBytesCheckedBeforeAndAfter": true,
+    "scientificAuthority": "NONE_TECHNICAL_REGRESSION_PARITY_ONLY",
+    "activityCredit": 0,
+    "isolation": "DISTINCT_CONTEXT_AND_ORIGIN",
+    "realmId": "e26e5e80-6312-4586-a428-1f2bca1bd007",
+    "documentURL": "https://cric-baseline.invalid/__cric_baseline/eb51d0e9bdc3f992e9ae0ae76810098376e2ab79/fa997076b86e689d5f3a4050edc0a87316854235efd9e4c30053d2a6d422dd1a/realm.html",
+    "serviceWorkers": "block"
+  },
+  "sameContextAttemptRejected": true,
+  "baselineFetchCandidateOriginBlocked": true,
+  "baselineCookieJarEmpty": true,
+  "unpinnedScriptRejectedAndEvidenceFails": true,
+  "candidate80ExactGitBeforeAfter": true,
+  "interpretation": "V1 shared intrinsic drift is now rejected while isolated immutable baseline stays unchanged; no new activity/scientific/UI approval",
+  "syntheticControlsDisclosure": "The logical x55 control tuple is a fixture; the existing bench/DOM controls were not mounted in this pure-model test",
+  "activityCredit": 0,
+  "productUI": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
