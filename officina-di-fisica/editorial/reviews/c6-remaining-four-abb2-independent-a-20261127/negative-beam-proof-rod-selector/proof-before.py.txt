@@ -1,0 +1,13 @@
+from pathlib import Path
+import sys,json,itertools,hashlib
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');sys.path.insert(0,str(A));from tools.corpus_engineering import c2_pitot_label_geometry_a as g
+D=A/'editorial/reviews/c6-remaining-four-abb2-independent-a-20261127';report=json.loads((D/'actual/report.json').read_bytes());result=[]
+for width in [320,1280]:
+ item=next(i for i in report['cases']if i['caseKey']==f'SIM-C6-L04-01|published|{width}|top|grid|3');raw=(D/'actual'/item['file']).read_bytes();c=g.load_exact(raw);label=next(l for l in c['labels']if l['text']=='Rivelatore');box=label['box'];inside=lambda p:box['x']-box['w']/2<=p[0]<=box['x']+box['w']/2 and box['y']-box['h']/2<=p[1]<=box['y']+box['h']/2
+ rods=[]
+ for index,e in enumerate(c['elements']):
+  if e['kind']!='rod'or e['a'][0]!=g.Q(27,20)or e['b'][0]!=g.Q(113,50):continue
+  points=[g.project([p[i]+signs[i]*e['r']for i in range(3)],c)for p in [e['a'],e['b']]for signs in itertools.product([-1,1],repeat=3)];rods.append(dict(elementIndex=index,alpha=str(e['alpha']),all16ConservativeEndpointCubeVerticesInsideOpaqueLabel=all(inside(p)for p in points),verticesInside=sum(inside(p)for p in points),projectedCubeBounds={k:str(v)for k,v in dict(minX=min(p[0]for p in points),maxX=max(p[0]for p in points),minY=min(p[1]for p in points),maxY=max(p[1]for p in points)).items()}))
+ assert len(rods)==12
+ plain=json.loads(raw);result.append(dict(caseKey=plain['caseKey'],layerCount=5,profile=plain['profile'],label='Rivelatore',labelRectangle={k:str(v)for k,v in box.items()},outgoingRods=rods,all12EntireCylinderEnclosuresInsideLabel=all(r['all16ConservativeEndpointCubeVerticesInsideOpaqueLabel']for r in rods),proofScope='Every finite cylinder is contained in the convex hull of radius-expanded endpoint cubes; containment is conservative, not a GPU depth approximation or a new32facet claim',sourceCaseFile=str((D/'actual'/item['file']).relative_to(A)),sourceCaseSha256=item['sha256'],screenshot=plain['screenshots'][0],wholePngOpenedAndRead=True))
+(D/'beam-outgoing-label-witnesses.json').write_text(json.dumps(result,indent=2)+'\n');print([(r['profile']['width'],r['all12EntireCylinderEnclosuresInsideLabel'],[a['verticesInside']for a in r['outgoingRods']])for r in result])

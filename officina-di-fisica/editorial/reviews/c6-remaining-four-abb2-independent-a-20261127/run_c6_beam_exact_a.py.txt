@@ -1,0 +1,5 @@
+from pathlib import Path
+import subprocess,time,json,hashlib,sys
+D=Path('/private/tmp/cric-author-a-resident/officina-di-fisica/editorial/reviews/c6-remaining-four-abb2-independent-a-20261127');t=time.time();r=subprocess.run([sys.executable,'/private/tmp/compute_c6_beam_label_abb2_a.py'],capture_output=True)
+for k,b in [('stdout',r.stdout),('stderr',r.stderr)]:(D/('beam-proof.'+k+'.txt')).write_bytes(b)
+rec=dict(actualObservedExitCode=r.returncode,elapsedSeconds=time.time()-t,stdoutSha256=hashlib.sha256(r.stdout).hexdigest(),stderrSha256=hashlib.sha256(r.stderr).hexdigest());(D/'beam-proof-terminal.json').write_text(json.dumps(rec,indent=2)+'\n');print(r.stdout.decode(),r.stderr.decode(),rec);sys.exit(r.returncode)

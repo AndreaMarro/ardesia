@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/private/tmp/analyze_c6_abb2_a.py", line 4, in <module>
+    D=v.BASE;cases=v.actual();states=[c for c in cases if'interaction'in c];assert len(states)==184;groups=[];census=[]
+                   ~~~~~~~~^^
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tools/corpus_engineering/c6_remaining_four_abb2_review_a.py", line 67, in actual
+    c=validate_case(json.loads(raw),p)
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tools/corpus_engineering/c6_remaining_four_abb2_review_a.py", line 51, in validate_case
+    physics.scalar_observation(c['id'],c['sourceReplayedX'],c['model']['y']);independent_scene(c)
+                                                                             ~~~~~~~~~~~~~~~~~^^^
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tools/corpus_engineering/c6_remaining_four_abb2_review_a.py", line 37, in independent_scene
+    if len(object_)!=1 or not same(object_[0]['b'],[-p,F(49,25),0]):raise ValueError('Lens object geometry inconsistent with p/f')
+                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Lens object geometry inconsistent with p/f

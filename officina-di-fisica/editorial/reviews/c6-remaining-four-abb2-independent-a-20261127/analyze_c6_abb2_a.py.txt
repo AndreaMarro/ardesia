@@ -1,0 +1,16 @@
+from pathlib import Path
+import sys,json,subprocess
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');sys.path.insert(0,str(A));from tools.corpus_engineering import c6_remaining_four_abb2_review_a as v
+D=v.BASE;cases=v.actual();states=[c for c in cases if'interaction'in c];assert len(states)==184;groups=[];census=[]
+for id_ in sorted(v.IDS):
+ for profile in json.loads((D/'prepared.json').read_bytes())['profiles']:
+  groups.append(dict(id=id_,profile=profile,cases=[c for c in states if c['id']==id_ and c['profile']==profile]))
+for c in states:
+ glyphs=c.get('nativeGlyphs',[]);outside=[];labeltips=[]
+ for g in glyphs:
+  b=g['vertexViewportBounds']
+  if not(0<=b['minX']<=b['maxX']<=c['canvas']['width']and 0<=b['minY']<=b['maxY']<=c['canvas']['height']):outside.append(dict(elementIndex=g['elementIndex'],bounds=b))
+  if g['tipInsideOpaqueLabel']:labeltips.append(dict(elementIndex=g['elementIndex'],labels=g['tipInsideOpaqueLabel']))
+ census.append(dict(caseKey=c['caseKey'],id=c['id'],profile=c['profile'],sourceReplayedX=c['sourceReplayedX'],sourceReplayedClockTime=c['sourceReplayedClockTime'],nativeGlyphs=len(glyphs),viewportCandidates=outside,opaqueTipCandidates=labeltips,scope='Candidates only, not accepted raster failure; natural end-on projection remains distinct'))
+(D/'current-state-census.json').write_text(json.dumps(census,indent=2)+'\n');(D/'overview-groups.json').write_text(json.dumps(groups,ensure_ascii=False,indent=2)+'\n');print('CURRENT216_184STATES_VALIDATED',sum(len(c['viewportCandidates'])for c in census),'viewportCandidates',sum(len(c['opaqueTipCandidates'])for c in census),'labeltipCandidates',flush=True)
+r=subprocess.run(['python3','/private/tmp/render_c6_abb2_a.py']);sys.exit(r.returncode)

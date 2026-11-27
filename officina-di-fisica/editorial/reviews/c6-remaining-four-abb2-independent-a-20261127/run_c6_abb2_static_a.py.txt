@@ -1,0 +1,5 @@
+from pathlib import Path
+import subprocess,json,time,sys
+D=Path('/private/tmp/cric-author-a-resident/officina-di-fisica/editorial/reviews/c6-remaining-four-abb2-independent-a-20261127');t=time.time();cmd=['node','/private/tmp/compare_c6_abb2_a.mjs','/private/tmp/cric-combined-preintegration-20261127/officina-di-fisica','/private/tmp/cric-canonical-integration-candidate-20261127/officina-di-fisica'];r=subprocess.run(cmd,capture_output=True)
+for k,b in [('stdout',r.stdout),('stderr',r.stderr)]:(D/('static.'+k+'.txt')).write_bytes(b)
+(D/'static-terminal.json').write_text(json.dumps(dict(actualObservedExitCode=r.returncode,elapsedSeconds=time.time()-t,command=cmd),indent=2)+'\n');print(r.stdout.decode()[-1500:],r.stderr.decode());sys.exit(r.returncode)

@@ -1,0 +1,19 @@
+from pathlib import Path
+import json,sys,subprocess,hashlib
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');sys.path.insert(0,str(A));from tools.corpus_engineering import c2_pitot_label_geometry_a as g
+D=A/'editorial/reviews/c6-remaining-four-abb2-independent-a-20261127';cmd=['node','/private/tmp/inventory_c6_lens_labels_abb2_a.mjs'];r=subprocess.run(cmd,capture_output=True);(D/'lens-label-inventory.stdout.txt').write_bytes(r.stdout);(D/'lens-label-inventory.stderr.txt').write_bytes(r.stderr);(D/'lens-label-inventory-terminal.json').write_text(json.dumps(dict(actualObservedExitCode=r.returncode,command=cmd),indent=2)+'\n');assert r.returncode==0;rpt=json.loads((D/'actual/report.json').read_bytes());results=[]
+for item in rpt['cases']:
+ if not item['caseKey'].startswith('SIM-C6-L06-01|')or'|grid|'not in item['caseKey']:continue
+ raw=(D/'actual'/item['file']).read_bytes();c=g.load_exact(raw)
+ if c['profile']['fallback']:continue
+ for glyph in c['nativeGlyphs']:
+  for label in c['labels']:
+   parts=[]
+   for index,part in enumerate(glyph['parts']):
+    points=[g.project(p,c)for p in part['vertices']];poly=g.hull(points);total=g.area(poly);covered=g.area(g.clip(poly,label['box']))
+    if not total or not covered:continue
+    box=label['box'];inside=lambda p:box['x']-box['w']/2<=p[0]<=box['x']+box['w']/2 and box['y']-box['h']/2<=p[1]<=box['y']+box['h']/2
+    parts.append(dict(partIndex=index,coveredFractionExact=str(covered/total),coveredPercent=float(100*covered/total),projectedVertices=len(points),verticesInsideLabel=sum(inside(p)for p in points)))
+   if parts:
+    plain=json.loads(raw);results.append(dict(caseKey=plain['caseKey'],pOverF=plain['sourceReplayedX'],profile=plain['profile'],label=label['text'],labelRectangle={k:str(v)for k,v in label['box'].items()},elementIndex=int(glyph['elementIndex']),parts=parts,sourceCaseFile=str((D/'actual'/item['file']).relative_to(A)),sourceCaseSha256=item['sha256'],screenshot=plain['screenshots'][0],classification='AXIAL_PROJECTION_RETAINED_SEPARATELY_NOT_NEW_DIRECTION_FAILURE'if plain['profile']['view']=='top'else'NON_AXIAL_LABEL_OVERLAP_REQUIRES_RASTER_READING'))
+(D/'lens-exact-label-intersections.json').write_text(json.dumps(results,indent=2)+'\n');print('EXACT_NONAXIAL',json.dumps([r for r in results if r['profile']['view']!='top'],indent=2))

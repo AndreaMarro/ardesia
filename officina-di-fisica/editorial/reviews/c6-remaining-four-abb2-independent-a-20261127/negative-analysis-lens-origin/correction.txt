@@ -1,0 +1,1 @@
+Initial independent scene decoder used an incorrect lens-axis origin1.55. Full immutable ottica() source defines O=[0,1.27,0], so object1.27+0.41=1.68. Correct only the explicit source origin, retain exact p/q/magnification and all rejection guards; no tolerance or product changes.

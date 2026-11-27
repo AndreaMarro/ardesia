@@ -1,0 +1,64 @@
+from pathlib import Path
+import hashlib,json,subprocess
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c6-remaining-four-abb2-independent-a-20261127';OLD=A/'editorial/reviews/c6-two-annotations-4e-independent-a-20261127';h=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+assert json.loads((D/'target-terminal.json').read_bytes())['actualObservedExitCode']==0
+assert json.loads((D/'actual-terminal.json').read_bytes())['actualObservedExitCode']==0
+for name in ['prepare_c6_remaining_abb2_a.py','run_c6_remaining_abb2_a.py','compare_c6_abb2_a.mjs','run_c6_abb2_static_a.py','analyze_c6_abb2_a.py','render_c6_abb2_a.py','run_c6_abb2_analysis_a.py','inventory_c6_lens_labels_abb2_a.mjs','compute_c6_lens_overlap_abb2_a.py','compute_c6_beam_label_abb2_a.py','run_c6_beam_exact_a.py','run_c6_abb2_target_a.py','seal_c6_abb2_a.py']:(D/(name+'.txt')).write_bytes((Path('/private/tmp')/name).read_bytes())
+inputs=[];C='63cc5fd89df00ce4a4885479b1306ca1a5833064'
+for ref,path,name in [('5d1dc8dc7b601aef959d10d564c75462be74708d','content/esperienze-C6.json','original-source.json'),(C,'static/js/banchi/voci/modelli/C6.js','candidate-C6.js.txt'),(C,'static/js/banchi/voci/apparati/onde.js','candidate-onde.js.txt'),(C,'static/js/banchi/voci/apparati/termica.js','candidate-termica.js.txt'),(C,'static/js/banchi/voci/orologi.js','candidate-orologi.js.txt'),(C,'static/js/banchi/voci/legende.js','candidate-legende.js.txt'),(C,'static/js/banchi/scena.js','candidate-native-renderer.js.txt'),(C,'static/js/banchi/voci/tavola.js','candidate-svg-renderer.js.txt'),('bd8d6bcf357c484d48fdb5a2ef50b8518621a01a','tools/corpus_engineering/experiment_visibility_ui.mjs','canonical-protocol.mjs.txt')]:
+ raw=subprocess.check_output(['git','-c','gc.auto=0','show',ref+':officina-di-fisica/'+path],cwd=A);dest=D/name
+ if dest.exists():assert dest.read_bytes()==raw
+ dest.write_bytes(raw);inputs.append(dict(commit=ref,path='officina-di-fisica/'+path,snapshot=name,sha256=hashlib.sha256(raw).hexdigest()))
+(D/'git-inputs.json').write_text(json.dumps(dict(schemaVersion='1.0.0',inputs=inputs),indent=2)+'\n')
+report=json.loads((D/'actual/report.json').read_bytes());assert report['protocolSha256']==h(D/'canonical-protocol.mjs.txt')
+lens=json.loads((D/'lens-exact-label-intersections.json').read_bytes());beam=json.loads((D/'beam-outgoing-label-witnesses.json').read_bytes())
+(D/'author-label-correction-input.json').write_text(json.dumps(dict(candidateCommit=C,runtime='abb2bf2ac567438953766cf3550644b3d6ea501d75d610fb6291b2cffc5a428b',confirmed=[dict(id='SIM-C6-L06-01',apparatus='ottica',label='Oggetto',controlPOverF=.5,observations=[r for r in lens if r['profile']['view']!='top'],notEmitted=['Immagine','Lente'],FPrimePreserved='No nonaxial head intersection in six observed ratios'),dict(id='SIM-C6-L04-01',apparatus='assorbitore',label='Rivelatore',layers=5,observations=beam,Fascio='Partial overlap at entrance; incoming bundle remains visible, not included as a complete outgoing-bundle failure')],axialLensCases=[r for r in lens if r['profile']['view']=='top'],productionChanged=False),indent=2)+'\n')
+(D/'README.md').write_text('''# Independent four remaining C6: two actual visual negatives onabb2
+
+Read-only candidate runtime-source63cc5fd89df00ce4a4885479b1306ca1a5833064, observed appHEAD4793a90b549173e520e5f7b3eb0009fccb13b1a3, full actual fingerprintabb2bf2ac567438953766cf3550644b3d6ea501d75d610fb6291b2cffc5a428b. A authored no consumer corrections here. Prior C6 question/source/model exposure is disclosed; equations are reused and rechecked, not claimed newly blind. No previous4e/cb9 images are retagged.
+
+## Actual acquisition and reading
+
+The canonical new216case run really terminated0 in79.450s, signalnull/errorsJSempty. Scope is four originals in orbit/side/top/fallback320/1280:32setupcases with real phase/question/keyboard-openedlegend/axe/overflow checks and184grid/clockframes. Echo uses duration0/2/10/20ms plus20msclock5/10/15/20ms (clock0 is already the20msgridcase). Calorimeter uses0/20/50/80/100s; absorber0/1/3/5layers; lens p/f0.5/0.75/1/1.25/2/3. All32wholeoverview sheets and184uncropped grid/clockframes were opened/read, plus6additional whole original PNGs. Not every rawsetupPNG is claimed manually opened. All currentcase/PNG hashes and exact same-browser isolated-reference values were checked. This technical success does not override the two observed visual failures.
+
+## SIM-C6-L06-01: Oggetto covers the virtual-image head
+
+At p/f0.5 the actual red virtual-image cone lies behind the opaque native Oggetto sprite in bothOrbit/Side320. The entire projected cone is covered:100%exact silhouette area and34/34actual Float32vertices. The shafts are32.6427%/21.6397%covered respectively. At1280 the overlap is partial,93.8205%Orbit and70.0058%Side; the head is not declared completely free merely because its tip protrudes. Both1280wholePNGs were read. The initial quick overview impression described1280asfree; exact geometry and fullPNGreading corrected that impression before this freeze, and the correction was sent immediately to Root. No historical raw observation was changed.
+
+Whole320PNGhashes are7eeadf7ff4634bc60b209ba22dca28ed89de5f0207715c7dd59b165eeb4cd24d and2570cfe3a448981043530512469c5b08f1e427ddd412a9dc275876eeb2b3e30e. Full exact fractions, vertices, rectangles, case/source/PNGhashes are in lens-exact-label-intersections.json. The labelinventory covers all11legal ratios and5phases: only Oggetto andF′ are emitted; Immagine/Lente are not emitted sprites for this source. F′ has no nonaxial arrow intersection in the six acquired ratios. Top naturally views the ray plane and vertical arrows edge-on; its separate overlap candidates are retained without inventing a new directional failure. Fallback has no opaque sprite-background failure. Original thin-lens signs, normalized vergence and object/image coordinates are numerically correct.
+
+## SIM-C6-L04-01: Rivelatore covers the outgoing bundle
+
+At five layers inTop320, the opaque Rivelatore label covers every complete outgoing cylinder after the slab:12nonnullrods with opacity1/32 and radius0.026. This is not a head-only or end-on projection assertion: the beam extends alongx and is visible inTop. Both fullTop320/1280PNGs were opened/read. At1280 the label covers only part of the outgoing segment; part remains visible before the label. Do not generalize full320containment to1280. Sourcebeam/measurement remains120/2^n and the residual intensity is nonzero.
+
+The exact proof conservatively encloses each finite cylinder in the convex hull of radius-expanded endpoint cubes. At320 all16corners for every one of12outgoingrod enclosures lie inside the opaque rectangle; at1280 they do not. This proves whole containment without inventing actual32facetrod vertices or using GPUdepth inference. SourceNativeSprite fills its canvas with opaque#fffcef, disables depthTest/depthWrite and uses renderOrder6. The complete cube/projection bounds, raw/source/PNGhashes and controls are in beam-outgoing-label-witnesses.json. Incoming Fascio partially overlaps the entrance side, but does not hide the whole incoming bundle and is not the confirmed whole-outgoing-bundle finding. Orbit/Side and fallback in the acquired four layer values remain readable.
+
+## Other bounded outcomes and science
+
+EchoL01-01 has no new finding in72actualcases. Zero is a degenerate no-journey case with no directed arrow. The two separated forward/return indicators and pulse positions at the reflector/return are visible in all acquired profiles. The independent pulse equation0.34min(t,T−t)m and the supplied roundtripdistance0.17T_ms are checked separately. The reflector is translucent and the old1aopaque-base issue is not blindly carried as a current failure; judgement is limited to current observed scenes.
+
+CalorimeterL03-01 has no new finding in48actualcases. Supplied10W, useful8W and400J/K give ΔT=t/50K; the column coordinate is separately checked against the source. NativeTop naturally collapses the vertical column, while Orbit/Side/fallback show the rise. Both numeric readings and color changes are retained; there is no new claim that Top alone measures column height.
+
+All184current scalars/independent shape contracts and full model/input/clock parity were checked. The original C6 observer comparator is unchanged, relative1e-10 and absolute1e-10 only at exact zero; the separate technical isolated-reference comparison is exact with scientificAuthorityNONE. Sourcecomparison of all6originals on4eversusabb2 really returns equality for97controls,493default-plus-clock slots and2465five-stage arrays, including all labels. The493slots may include coincident default0/explicit0; they are not claimed uniquephysicalstates. The older A97rational-grid/6Pint derivations and source-primary remain available as disclosed scientific groundwork, not new blindness or newIDcredit.
+
+## Checks and retained utility negatives
+
+20new independent tests actually pass while explicitly requiring both visual negatives: source scopes, clockmotion/temperature/opacity/lensbranch checks, exactcone/cylinder witnesses, finite/domain guards, wrongshape/model/identity/approval refusals, full raster-reading indexes and refusal to grant macro approval. A passing diagnosticsuite is not a visualPASS forL04orL06.
+
+The first independent shape decoder mistakenly used lensaxis1.55; the immutable source explicitly defines1.27. Its genuine analysisexit1/script/stderr are retained; the correction pins1.27, objectheight0.41 and all same p/q/scale/signguards. A regression rejects the wrong1.55origin. The first exact beam selector assumed tail1.35 rather than its literal captured1.3499999999999999 and returned exit1; it was corrected to select by exact recorded endpoint2.26, radius0.026 andalpha1/32, retaining all recorded-decimal coordinates without rounding. Its negative is preserved. Neither utility failure changed UIbytes, code, tolerances or scientific inputs. A separate real space-guard rejection (free2107424768bytes below2GiB) occurred before the target child started; it is stored as wrapperexit1/childNOT_RUN and is not a test failure or pass. The final target receipt is required independently before this handoff can be produced.
+
+Production/Root editsfalse, completeC6Renewalfalse, scientificAcceptanceGrantedfalse, activityCredit0, humanNOT_RUN. Root is sole integrator. The later combined annotation candidate is outside this frozen216; it needs a separate actual boundedrecheck after this handoff.
+''')
+files={}
+p=json.loads((D/'prepared.json').read_bytes())
+for path,want in p['inputFiles'].items():
+ path=Path(path);assert h(path)==want;files[str(path.relative_to(A))]=want
+for path in Path(p['baselineBundleRoot']).rglob('*'):
+ if path.is_file():files[str(path.relative_to(A))]=h(path)
+for name in ['independent-physics.json','physics-execution-receipt.json','prior-C6-scientific-primary.json','prior-C6-scientific-verifier.py.txt']:files[str((OLD/name).relative_to(A))]=h(OLD/name)
+for path in D.rglob('*'):
+ if path.is_file()and path.name!='handoff.json':files[str(path.relative_to(A))]=h(path)
+for name in ['tools/corpus_engineering/c6_remaining_four_abb2_review_a.py','tools/corpus_engineering/c6_two_annotations_4e_review_a.py','tools/corpus_engineering/c2_pitot_label_geometry_a.py','tests/corpus/test_c6_remaining_four_abb2_independent_a.py']:files[name]=h(A/name)
+for path,want in files.items():assert h(A/path)==want,path
+handoff=dict(schemaVersion='1.0.0',role='DISTINCT_REVIEWER_A_FOUR_C6_BOUNDED_NEGATIVE',candidateCommit=C,observedAppHead='4793a90b549173e520e5f7b3eb0009fccb13b1a3',runtimeSha256='abb2bf2ac567438953766cf3550644b3d6ea501d75d610fb6291b2cffc5a428b',actualCases=216,actualTechnicalExit=0,actualGridClockFramesRead=184,wholeOverviewsRead=32,additionalWholePngsRead=6,actualIndependentTests=20,actualIndependentTestsExit=0,visualFailureIds=['SIM-C6-L04-01','SIM-C6-L06-01'],positiveBoundedIds=['SIM-C6-L01-01','SIM-C6-L03-01'],exactConfirmedLabelNames=['Oggetto','Rivelatore'],lensAxialCasesSeparate=True,completeC6Renewal=False,scientificAcceptanceGranted=False,activityCredit=0,humanApproval='NOT_RUN',files=files)
+(D/'handoff.json').write_text(json.dumps(handoff,ensure_ascii=False,indent=2)+'\n');print('HANDOFF',h(D/'handoff.json'),'BLOBS',len(files))
