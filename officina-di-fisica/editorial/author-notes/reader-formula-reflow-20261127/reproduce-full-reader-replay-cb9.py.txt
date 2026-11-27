@@ -1,0 +1,24 @@
+import fcntl,json,os,shutil,subprocess,sys
+from pathlib import Path
+
+app=Path.cwd()
+base=app/'editorial/author-notes/reader-formula-reflow-20261127'
+fixture=base/'fixture-cb9'
+reset=(sys.argv[1:]or ['catalogs','C1','C2','C3','C4','C5','C6'])
+python='/private/tmp/cric-recovery-venv/bin/python'
+env={**os.environ,'PYTHON':python,'ASTRA_EXTENSIONS':str(app/'extensions'),'PYTHONDONTWRITEBYTECODE':'1'}
+summary=[]
+for cohort in reset:
+    destination=base/'full-reader-replay-cb9'/cohort;destination.parent.mkdir(exist_ok=True)
+    assert not destination.exists(),destination
+    with open('/private/tmp/cric-bounded-local-work.lock','a')as lock:
+        fcntl.flock(lock,fcntl.LOCK_EX)
+        assert shutil.disk_usage(base).free>=2*1024**3
+        log=destination.parent/f'{cohort}-process.txt'
+        with log.open('xb')as stream:
+            result=subprocess.run(['node',str(fixture/'browser-readers.mjs'),str(destination),cohort],env=env,stdout=stream,stderr=subprocess.STDOUT,timeout=600)
+    report=json.loads((destination/'report.json').read_bytes())
+    cases=report['records'];entry={'cohort':cohort,'exitCode':result.returncode,'cases':len(cases),'pass':sum(r['technicalOk']for r in cases),'status':report['status'],'runtime':report['runtimeFingerprint']['sha256']}
+    summary.append(entry);print(json.dumps(entry),flush=True)
+    (destination.parent/'cohort-results.json').write_text(json.dumps(summary,indent=2)+'\n')
+    if result.returncode:raise SystemExit(result.returncode)
