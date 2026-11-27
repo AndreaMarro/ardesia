@@ -42,14 +42,14 @@
   },
   "otherActivities": {
     "total": 385,
-    "registered": 266,
-    "open": 119,
-    "newReviewsOpen": 119,
+    "registered": 271,
+    "open": 114,
+    "newReviewsOpen": 114,
     "explicitlyReopened": 0,
     "nextReopenedId": null,
-    "nextNewOriginalId": "SIM-C2-L002-01",
-    "candidateCommit": "8936ab7a798fa4b398d03ee8c655103820657537",
-    "registrySha256": "2216ff2d4dce9cde7059038aba5a0ca7b767ecf42aba2eed92be63c5b940b745",
+    "nextNewOriginalId": "SIM-C2-L005-01",
+    "candidateCommit": "d3d1bde8082bb1d7a9e5df43dfc78bd28fa8deb1",
+    "registrySha256": "7ab323edaf75c057f7813e493f83eb450c65e428db2d65d863723a44c95e7893",
     "completedOnUnifiedRuntime": false,
     "historical242Snapshot": {
       "registered": 242,
@@ -371,18 +371,20 @@
       "activityCredit": 0
     },
     "mostAdvancedCandidate": {
-      "registered": 248,
-      "open": 137,
-      "previousStagingRegistered": 242,
-      "remainingExplicitC1": 4,
-      "remainingC2ThroughC5": 133,
-      "nextReopenedId": "SIM-C1-L006-03",
-      "branch": "review/cric-flight-gravity-annotation",
-      "commit": "0be84bc345eb5da07798531e203fabf907c049b5",
-      "statusPath": "editorial/reviews/full-corpus-work-status-20261126.json",
-      "registrySha256": "da15020895d1ffa5cb2e96462c435f20f2e2a9a8ca7fb9a2d823ab2e16f647a9",
+      "branch": "review/cric-wave-current-integration",
+      "commit": "d3d1bde8082bb1d7a9e5df43dfc78bd28fa8deb1",
+      "registrySha256": "7ab323edaf75c057f7813e493f83eb450c65e428db2d65d863723a44c95e7893",
+      "runtimeSha256": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6",
+      "registeredAcrossEvidenceEpochs": 271,
+      "activeAlreadyRegisteredWithdrawals": 0,
+      "nextNewOriginalId": "SIM-C2-L005-01",
+      "perIdStatusPath": "editorial/reviews/full-corpus-work-status-20261126.json",
+      "perIdStatusSha256": "08487ff811f1d457ada098bcfefe1844b83ba6b5c824ae116acc8c204dd7734e",
+      "fullSingleRuntimeRenewal": "PENDING",
       "canonicalIntegration": "PENDING",
-      "finalRuntimeRecheckRequired": true
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE",
+      "open": 114
     },
     "twoC1FamiliesActualUi980": {
       "sourceCommit": "e02b0a767097f22ed66b7240432fc30b206217fd",
@@ -631,6 +633,96 @@
     },
     "currentSourceActivityRegister": {
       "branch": "review/cric-wave-current-integration",
+      "commit": "d3d1bde8082bb1d7a9e5df43dfc78bd28fa8deb1",
+      "registrySha256": "7ab323edaf75c057f7813e493f83eb450c65e428db2d65d863723a44c95e7893",
+      "runtimeSha256": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6",
+      "registeredAcrossEvidenceEpochs": 271,
+      "activeAlreadyRegisteredWithdrawals": 0,
+      "nextNewOriginalId": "SIM-C2-L005-01",
+      "perIdStatusPath": "editorial/reviews/full-corpus-work-status-20261126.json",
+      "perIdStatusSha256": "08487ff811f1d457ada098bcfefe1844b83ba6b5c824ae116acc8c204dd7734e",
+      "fullSingleRuntimeRenewal": "PENDING",
+      "canonicalIntegration": "PENDING",
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    "continuityReadingDrafts": {
+      "authorCommit": "4690ac2e82670bdc19aa37eaeb3fabd6b729801d",
+      "manualClarificationCommit": "3ac8647a7ad412518cc4cd2ced1838a498809a19",
+      "independentCommit": "820f32eb94aeab1c4abbec24264d9ede8847d2c4",
+      "ids": [
+        "SIM-C2-L005-01",
+        "SIM-C2-L005-02",
+        "SIM-C2-L005-03",
+        "SIM-C2-L005-04",
+        "SIM-C2-L005-05"
+      ],
+      "actualAssignedTasks": 10,
+      "actualControls": 68,
+      "independentTestsPassed": 7,
+      "actualOwnerPreview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    "c4ComposedInterruptionAndRetry": {
+      "sourceCommit": "b9994b9116e87478905191d85cca8037d17ae4bd",
+      "runtimeSha256": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6",
+      "appNodePass": 323,
+      "contractPass": 2,
+      "priorReproduction": "a5462a49273508ec5f603fe51f1615c56b8ee372",
+      "authorAlphabetAndProbeChange": "0387b946e225dd20c7d11c28e2af002bd9c94993",
+      "wholeAttemptObservedExit": 1,
+      "actualUniqueCasesBeforeDiskGuard": 225,
+      "plannedCases": 448,
+      "archiveSha256": "0896b5e0787b954fd7c074376b93f0d4057e925c31ccbbef7abca42aa29c4a10",
+      "archive": "editorial/reviews/c4-composed-7c72-browser-interruption-20261127/actual-prefix.zip",
+      "nextPlan": "FOUR_DISJOINT_SLICES_EACH_112_WITH_IDENTICAL_CANDIDATE_AND_REQUEST",
+      "activityCredit": 0,
+      "freshSlices": {
+        "archiveCommit": "0848ecd06819453aa5ae988b1d6a839852894508",
+        "status": "TECHNICAL_COMPLETE_AND_VISUAL_FINDINGS_REMAIN",
+        "actualCases": 448,
+        "assignedAnswerEvents": 128,
+        "completedSlices": 4,
+        "rootVisualOrbitBlockedIds": [
+          "SIM-C4-L02-03",
+          "SIM-C4-L03-02",
+          "SIM-C4-L03-03"
+        ],
+        "peerVisualFallbackBlockedIds": [
+          "SIM-C4-L02-01",
+          "SIM-C4-L02-02"
+        ],
+        "authorFallbackCandidate": "2e615e493f37e3aae80644a556052f965958fbd0",
+        "authorFallbackNodePass": 325,
+        "authorFallbackContractPass": 2,
+        "next": "Compose the fallback and orbit corrections, verify five IDs on the exact merged test runtime; the older evidence remains frozen."
+      }
+    },
+    "openCountsByCourse": {
+      "C2": 26,
+      "C3": 35,
+      "C4": 26,
+      "C5": 27
+    },
+    "c3StateGasDrafts": {
+      "authorCommit": "b9530f9be51234a0e9cce760025741031ab3ccfb",
+      "ids": [
+        "SIM-C3-L01-01",
+        "SIM-C3-L01-02",
+        "SIM-C3-L01-03",
+        "SIM-C3-L01-04",
+        "SIM-C3-L02-01",
+        "SIM-C3-L02-02"
+      ],
+      "savedFirst": 6,
+      "repeatSaved": 0,
+      "publishedVersionsPreserved": 991,
+      "independentReview": "IN_PROGRESS",
+      "actualOwnerUi": "NOT_RUN",
+      "activityCredit": 0
+    },
+    "historical266SourceActivityRegister": {
+      "branch": "review/cric-wave-current-integration",
       "commit": "8936ab7a798fa4b398d03ee8c655103820657537",
       "registrySha256": "2216ff2d4dce9cde7059038aba5a0ca7b767ecf42aba2eed92be63c5b940b745",
       "runtimeSha256": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6",
@@ -689,80 +781,45 @@
         "adversarialRejections": 3
       }
     },
-    "continuityReadingDrafts": {
-      "authorCommit": "4690ac2e82670bdc19aa37eaeb3fabd6b729801d",
-      "manualClarificationCommit": "3ac8647a7ad412518cc4cd2ced1838a498809a19",
-      "independentCommit": "820f32eb94aeab1c4abbec24264d9ede8847d2c4",
-      "ids": [
-        "SIM-C2-L005-01",
-        "SIM-C2-L005-02",
-        "SIM-C2-L005-03",
-        "SIM-C2-L005-04",
-        "SIM-C2-L005-05"
-      ],
-      "actualAssignedTasks": 10,
-      "actualControls": 68,
-      "independentTestsPassed": 7,
-      "actualOwnerPreview": "NOT_RUN",
-      "activityCredit": 0
+    "latestHydrostaticClosure": {
+      "stevinoCommit": "dcb2ff393d976147fadbf9b1c4ffe03c8a094417",
+      "fourDraftsCommit": "d3d1bde8082bb1d7a9e5df43dfc78bd28fa8deb1",
+      "distinctFinalPascalCommit": "a6faf94441d21e08159d53d95e31937603cf8d6e",
+      "stevinoCases": 120,
+      "fourDraftCases": 192,
+      "fourDraftAnswers": 64,
+      "protectedPreviewCases": 15,
+      "repeatedRegistrationWrites": 0
     },
-    "c4ComposedInterruptionAndRetry": {
-      "sourceCommit": "b9994b9116e87478905191d85cca8037d17ae4bd",
-      "runtimeSha256": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6",
-      "appNodePass": 323,
-      "contractPass": 2,
-      "priorReproduction": "a5462a49273508ec5f603fe51f1615c56b8ee372",
-      "authorAlphabetAndProbeChange": "0387b946e225dd20c7d11c28e2af002bd9c94993",
-      "wholeAttemptObservedExit": 1,
-      "actualUniqueCasesBeforeDiskGuard": 225,
-      "plannedCases": 448,
-      "archiveSha256": "0896b5e0787b954fd7c074376b93f0d4057e925c31ccbbef7abca42aa29c4a10",
-      "archive": "editorial/reviews/c4-composed-7c72-browser-interruption-20261127/actual-prefix.zip",
-      "nextPlan": "FOUR_DISJOINT_SLICES_EACH_112_WITH_IDENTICAL_CANDIDATE_AND_REQUEST",
+    "latestC4FiveOpen": {
+      "actualCohortCommit": "dc705d5bc1e11254c6bd02fe7839a143ec614438",
+      "twoIdPeerCommit": "a8dffa5fca22d1437df2638c0c1cc89c7092e0a7",
+      "newestTargetedCorrectionCommit": "1dbd137840444b5a38ae49f17b00b6591f27f7d0",
+      "newestTargetedRuntimeSha256": "f357b970906cb827c8e8046a42e45b35d8745179752f2a756b2affdf56bbe5f4",
+      "findingId": "SIM-C4-L02-01",
+      "findingStatus": "AWAITING_INDEPENDENT_BROWSER_AFTER_FIX",
+      "registered": 0
+    },
+    "latestContinuityFinding": {
+      "id": "SIM-C2-L005-03",
+      "commit": "90620e84f8f81416e6be4e985c56679f5a03c943",
+      "scope": "2D direction marker at 8 cm², 320 and 1280",
+      "registered": 0
+    },
+    "c4NextAuthoredDrafts": {
+      "batches": [
+        {
+          "commit": "967e45d1f25b11f4e28423527d813fa040fed8d2",
+          "records": 7
+        },
+        {
+          "commit": "45af4e31194a07e4b9d9967874ecbaceb49cf106",
+          "records": 7
+        }
+      ],
       "activityCredit": 0,
-      "freshSlices": {
-        "archiveCommit": "0848ecd06819453aa5ae988b1d6a839852894508",
-        "status": "TECHNICAL_COMPLETE_AND_VISUAL_FINDINGS_REMAIN",
-        "actualCases": 448,
-        "assignedAnswerEvents": 128,
-        "completedSlices": 4,
-        "rootVisualOrbitBlockedIds": [
-          "SIM-C4-L02-03",
-          "SIM-C4-L03-02",
-          "SIM-C4-L03-03"
-        ],
-        "peerVisualFallbackBlockedIds": [
-          "SIM-C4-L02-01",
-          "SIM-C4-L02-02"
-        ],
-        "authorFallbackCandidate": "2e615e493f37e3aae80644a556052f965958fbd0",
-        "authorFallbackNodePass": 325,
-        "authorFallbackContractPass": 2,
-        "next": "Compose the fallback and orbit corrections, verify five IDs on the exact merged test runtime; the older evidence remains frozen."
-      }
-    },
-    "openCountsByCourse": {
-      "C2": 31,
-      "C3": 35,
-      "C4": 26,
-      "C5": 27
-    },
-    "c3StateGasDrafts": {
-      "authorCommit": "b9530f9be51234a0e9cce760025741031ab3ccfb",
-      "ids": [
-        "SIM-C3-L01-01",
-        "SIM-C3-L01-02",
-        "SIM-C3-L01-03",
-        "SIM-C3-L01-04",
-        "SIM-C3-L02-01",
-        "SIM-C3-L02-02"
-      ],
-      "savedFirst": 6,
-      "repeatSaved": 0,
-      "publishedVersionsPreserved": 991,
-      "independentReview": "IN_PROGRESS",
-      "actualOwnerUi": "NOT_RUN",
-      "activityCredit": 0
+      "independentReview": "PENDING",
+      "browser": "NOT_RUN"
     }
   },
   "coexistence": {
@@ -800,6 +857,28 @@
       "publishedRecordsPreserved": 991,
       "historicalFixturesPreserved": 3,
       "adaptiveQuestionRecords": 4611
+    },
+    "currentHydrostaticRegisterProof": {
+      "commit": "a7a33dfcfc844adc5f766db7d2c91e4f97781cdb",
+      "receipt": "editorial/reviews/current-7c72-coexistence-with-hydrostatic-20261127/result.json",
+      "receiptSha256": "96f6ec8ec1fd1f1919a24f2f879de9bb46cc38a055313ee2348f8df721dced2b",
+      "inputCommit": "d3d1bde8082bb1d7a9e5df43dfc78bd28fa8deb1",
+      "runtimeSha256": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6",
+      "registrySha256": "7ab323edaf75c057f7813e493f83eb450c65e428db2d65d863723a44c95e7893",
+      "registeredPackages": 320,
+      "actuallyImportedDrafts": 4634,
+      "actualQuestionDrafts": 4606,
+      "separateReviewedSupplementalQuestions": 5,
+      "repeatedImportSaved": 0,
+      "originalPublishedPreserved": 991,
+      "syntheticAttemptsPreserved": 3,
+      "pinnedSyntheticItemsPreserved": 3,
+      "protectedQuestionSourceCount": 93,
+      "adaptiveQuestionRecords": 4611,
+      "rawResultSha256": "29e7de495024717ced4e09c7eec33b6a6b278280614e7ea02a9718734dd926ea",
+      "rawEmptyFixtureResultSha256": "9e8540157335a9e69f76bd54fe1bd6ea733a96b91c54e8287c6206a493053b1c",
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
     }
   },
   "canonicalIntegration": "PENDING",
@@ -883,14 +962,21 @@
         "zipSha256": "f3a1ad83e541763c9b54554e23d27598d4502f35c82d8810d082dc7d4b3a9a2c"
       },
       "activityCredit": 0
+    },
+    "allFiveArchivedVisibility139": {
+      "indexCommit": "00cbc9c0ee0a7b1d1d175347cc3ba5a41e647da6",
+      "indexPath": "editorial/reviews/visibility139-3ed5-run45945853585-archive-index-20261127.json",
+      "indexSha256": "3c6671878e6c085de673f88963a6ac46ede7177247816e083859cf659c19d105",
+      "actualCases": 45576,
+      "distinctIds": 139,
+      "activityCredit": 0
     }
   },
   "nextAction": [
-    "Replay the first open original SIM-C2-L002-01 and DRAFT047 with separate original and draft decisions, then validate the other four hydrostatic drafts in the same review scope.",
-    "Run owner-only and per-ID runtime checks for the five C2 continuity drafts. Retain the earlier geometry findings until evidence on the composed candidate exists.",
-    "Compose the two targeted C4 display patches, then reproduce and independently review the five visually open IDs on that exact composed runtime.",
-    "Continue the remaining 119 C2–C5 IDs. Renew complete same-runtime integration and execute CI on the integrated canonical SHA.",
-    "Record human scientific approval and publication separately."
+    "Continue from SIM-C2-L005-01; preserve the distinct SIM-C2-L005-03 2D negative and register any fully positive flow scope through the canonical validator.",
+    "Run the independent SIM-C4-L02-01 replay on f357b970, retain the 1209 negative, and register the exact individually accepted C4 activities.",
+    "Finish independent tests of the C3 and C5 drafts and continue the remaining 114 C2–C5 IDs. Reconcile the complete registry, canonical integration, and exact-SHA CI.",
+    "Record human scientific approval and app publication separately."
   ],
   "composedCandidate": {
     "branch": "feat/cric-composed-runtime",
