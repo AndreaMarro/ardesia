@@ -1,0 +1,9 @@
+# Distinct signed latent-heat48 review on53bd
+
+SIM-C3-L04-02 only, Core6ae3 DRAFT2/base1. Both24-case groups are actual undisturbed0/null (32020.105s;128023.138s), all48 whole newPNG read through six lossless pages. Five transformed masses−5/−2/0/3/5g cover signed endpoints, zero, negative reference and assigned positive task. Eight profiles contain16 actual accepted submissions6.78kJ/0kJ. No original interactive replay is claimed.
+
+Independent source-first model: Q=(113/50)m_s kJ for m_s in g. Positive transformed amount means liquid→vapor with heat absorbed by water; negative means condensation with heat released. With+3g,2×3+0.26×3=6.78kJ; with0g latent transfer is0;−2g gives−4.52kJ. Inverse preserves sign. The physical total mass remains positive. GivenLv2.26kJ/g is the rounded model value near atmospheric boiling, at the chosen coexistence conditions; it is not a universal exact material constant or an assertion Q=ΔU without mechanical work.
+
+Zero transformed quantity is distinct from an empty sample or the absence of both phases. Particle number and liquid height are schematic comparisons, not calibrated molecule count or absolute phase inventory. Alto is axial to vertical phase depths; nonaxial native and fallback were read. Actual labels/readings retain the heat sign and kJ units. Four formulas fit setupDOM; benchPNG do not contain all scrolling prose.
+
+Five actual tests pass: exact balance/inverse and strict domains, sign/readout adversaries, phase endpoint and particle mutations, fresh/saved identity, legacy epoch separation. Current physics and geometry records are pinned to53bd and unchanged collector719; no app/registry/status modifications, credit0 and humanNOT_RUN. The separate L04-03 heat-arrow negative remains OPEN until its own new observation. Canonical preview/delivery follows separately.
