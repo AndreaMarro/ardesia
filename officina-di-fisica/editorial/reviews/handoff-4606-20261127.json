@@ -42,14 +42,14 @@
   },
   "otherActivities": {
     "total": 385,
-    "registered": 271,
-    "open": 114,
-    "newReviewsOpen": 114,
+    "registered": 276,
+    "open": 109,
+    "newReviewsOpen": 109,
     "explicitlyReopened": 0,
     "nextReopenedId": null,
     "nextNewOriginalId": "SIM-C2-L005-01",
-    "candidateCommit": "d3d1bde8082bb1d7a9e5df43dfc78bd28fa8deb1",
-    "registrySha256": "7ab323edaf75c057f7813e493f83eb450c65e428db2d65d863723a44c95e7893",
+    "candidateCommit": "3be1ddfe5bbec66daa88127859e6c95ef5e25cd3",
+    "registrySha256": "667af5c0261d136a2d1578c0ebc5fa90851a482cab967339dac4126c25497e23",
     "completedOnUnifiedRuntime": false,
     "historical242Snapshot": {
       "registered": 242,
@@ -372,19 +372,19 @@
     },
     "mostAdvancedCandidate": {
       "branch": "review/cric-wave-current-integration",
-      "commit": "d3d1bde8082bb1d7a9e5df43dfc78bd28fa8deb1",
-      "registrySha256": "7ab323edaf75c057f7813e493f83eb450c65e428db2d65d863723a44c95e7893",
-      "runtimeSha256": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6",
-      "registeredAcrossEvidenceEpochs": 271,
+      "commit": "3be1ddfe5bbec66daa88127859e6c95ef5e25cd3",
+      "registrySha256": "667af5c0261d136a2d1578c0ebc5fa90851a482cab967339dac4126c25497e23",
+      "runtimeSha256": "f357b970906cb827c8e8046a42e45b35d8745179752f2a756b2affdf56bbe5f4",
+      "registeredAcrossEvidenceEpochs": 276,
       "activeAlreadyRegisteredWithdrawals": 0,
       "nextNewOriginalId": "SIM-C2-L005-01",
       "perIdStatusPath": "editorial/reviews/full-corpus-work-status-20261126.json",
-      "perIdStatusSha256": "08487ff811f1d457ada098bcfefe1844b83ba6b5c824ae116acc8c204dd7734e",
+      "perIdStatusSha256": "067f21329d4ad06ba6fb4cf905837ee54f3df2111e0405cd12dd1afd560c8e75",
       "fullSingleRuntimeRenewal": "PENDING",
       "canonicalIntegration": "PENDING",
       "humanApproval": "NOT_RUN",
       "publicationAction": "NONE",
-      "open": 114
+      "open": 109
     },
     "twoC1FamiliesActualUi980": {
       "sourceCommit": "e02b0a767097f22ed66b7240432fc30b206217fd",
@@ -633,14 +633,14 @@
     },
     "currentSourceActivityRegister": {
       "branch": "review/cric-wave-current-integration",
-      "commit": "d3d1bde8082bb1d7a9e5df43dfc78bd28fa8deb1",
-      "registrySha256": "7ab323edaf75c057f7813e493f83eb450c65e428db2d65d863723a44c95e7893",
-      "runtimeSha256": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6",
-      "registeredAcrossEvidenceEpochs": 271,
+      "commit": "3be1ddfe5bbec66daa88127859e6c95ef5e25cd3",
+      "registrySha256": "667af5c0261d136a2d1578c0ebc5fa90851a482cab967339dac4126c25497e23",
+      "runtimeSha256": "f357b970906cb827c8e8046a42e45b35d8745179752f2a756b2affdf56bbe5f4",
+      "registeredAcrossEvidenceEpochs": 276,
       "activeAlreadyRegisteredWithdrawals": 0,
       "nextNewOriginalId": "SIM-C2-L005-01",
       "perIdStatusPath": "editorial/reviews/full-corpus-work-status-20261126.json",
-      "perIdStatusSha256": "08487ff811f1d457ada098bcfefe1844b83ba6b5c824ae116acc8c204dd7734e",
+      "perIdStatusSha256": "067f21329d4ad06ba6fb4cf905837ee54f3df2111e0405cd12dd1afd560c8e75",
       "fullSingleRuntimeRenewal": "PENDING",
       "canonicalIntegration": "PENDING",
       "humanApproval": "NOT_RUN",
@@ -701,7 +701,7 @@
     "openCountsByCourse": {
       "C2": 26,
       "C3": 35,
-      "C4": 26,
+      "C4": 21,
       "C5": 27
     },
     "c3StateGasDrafts": {
@@ -791,15 +791,6 @@
       "protectedPreviewCases": 15,
       "repeatedRegistrationWrites": 0
     },
-    "latestC4FiveOpen": {
-      "actualCohortCommit": "dc705d5bc1e11254c6bd02fe7839a143ec614438",
-      "twoIdPeerCommit": "a8dffa5fca22d1437df2638c0c1cc89c7092e0a7",
-      "newestTargetedCorrectionCommit": "1dbd137840444b5a38ae49f17b00b6591f27f7d0",
-      "newestTargetedRuntimeSha256": "f357b970906cb827c8e8046a42e45b35d8745179752f2a756b2affdf56bbe5f4",
-      "findingId": "SIM-C4-L02-01",
-      "findingStatus": "AWAITING_INDEPENDENT_BROWSER_AFTER_FIX",
-      "registered": 0
-    },
     "latestContinuityFinding": {
       "id": "SIM-C2-L005-03",
       "commit": "90620e84f8f81416e6be4e985c56679f5a03c943",
@@ -820,6 +811,88 @@
       "activityCredit": 0,
       "independentReview": "PENDING",
       "browser": "NOT_RUN"
+    },
+    "historical271SourceActivityRegister": {
+      "branch": "review/cric-wave-current-integration",
+      "commit": "d3d1bde8082bb1d7a9e5df43dfc78bd28fa8deb1",
+      "registrySha256": "7ab323edaf75c057f7813e493f83eb450c65e428db2d65d863723a44c95e7893",
+      "runtimeSha256": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6",
+      "registeredAcrossEvidenceEpochs": 271,
+      "activeAlreadyRegisteredWithdrawals": 0,
+      "nextNewOriginalId": "SIM-C2-L005-01",
+      "perIdStatusPath": "editorial/reviews/full-corpus-work-status-20261126.json",
+      "perIdStatusSha256": "08487ff811f1d457ada098bcfefe1844b83ba6b5c824ae116acc8c204dd7734e",
+      "fullSingleRuntimeRenewal": "PENDING",
+      "canonicalIntegration": "PENDING",
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    "historicalC4FiveOpen": {
+      "actualCohortCommit": "dc705d5bc1e11254c6bd02fe7839a143ec614438",
+      "twoIdPeerCommit": "a8dffa5fca22d1437df2638c0c1cc89c7092e0a7",
+      "newestTargetedCorrectionCommit": "1dbd137840444b5a38ae49f17b00b6591f27f7d0",
+      "newestTargetedRuntimeSha256": "f357b970906cb827c8e8046a42e45b35d8745179752f2a756b2affdf56bbe5f4",
+      "findingId": "SIM-C4-L02-01",
+      "findingStatus": "AWAITING_INDEPENDENT_BROWSER_AFTER_FIX",
+      "registered": 0
+    },
+    "latestC4Closure": {
+      "commit": "3be1ddfe5bbec66daa88127859e6c95ef5e25cd3",
+      "receiptPath": "editorial/reviews/c4-eight-originals-f357-acceptance-20261127/registration-receipt.json",
+      "receiptSha256": "cd23b0903a183d674c611db39fc34c955e8b32deeac3bcab206d91fafed79a24",
+      "activityIds": [
+        "SIM-C4-L01-01",
+        "SIM-C4-L01-02",
+        "SIM-C4-L02-01",
+        "SIM-C4-L02-02",
+        "SIM-C4-L02-03",
+        "SIM-C4-L03-01",
+        "SIM-C4-L03-02",
+        "SIM-C4-L03-03"
+      ],
+      "renewedIds": [
+        "SIM-C4-L01-01",
+        "SIM-C4-L01-02",
+        "SIM-C4-L03-01"
+      ],
+      "added": 5,
+      "renewed": 3,
+      "runtimeSha256": "f357b970906cb827c8e8046a42e45b35d8745179752f2a756b2affdf56bbe5f4",
+      "actualBrowserCases": 448,
+      "focusedFieldCases": 56,
+      "reportSha256": "1f8739d1d088273499ab03c655a87ef869dcf0cbf6b9c1c8932b3087e07dbf26",
+      "registrySha256": "667af5c0261d136a2d1578c0ebc5fa90851a482cab967339dac4126c25497e23",
+      "registeredAcrossEvidenceEpochs": 276,
+      "openActivities": 109,
+      "rejectedAlteredSourceVersion": "The eight exact original records changed",
+      "canonicalIntegration": "PENDING",
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    "latestC5Canary": {
+      "actualCommit": "5cba6bd89e20a4bdf3b973c732b3fc031a86b192",
+      "peerIndexCommit": "85b40b28ba73fb4c2a31d0cbceb5af970c5d796e",
+      "actualCases": 264,
+      "actualAnswerSubmissions": 176,
+      "boundedPositiveIds": 9,
+      "explicitlyOutsidePositive": {
+        "SIM-C5-L05-01": "CURRENT_DISPLAY_AND_LEGEND_FINDINGS",
+        "SIM-C5-L05-03": "HISTORICAL_CLOCK_STATES_REQUIRE_REFRESH"
+      },
+      "registered": 0
+    },
+    "latestContinuityCorrections": {
+      "branch": "feat/cric-continuity-downstream-arrow",
+      "commit": "cbf7792f872caf575d58acd28cc7ace1ada14169",
+      "affectedIds": [
+        "SIM-C2-L005-03",
+        "SIM-C2-L005-05",
+        "SIM-C2-L006-03"
+      ],
+      "nodePassed": 326,
+      "contractsPassed": 2,
+      "independentBrowser": "PENDING",
+      "registered": 0
     }
   },
   "coexistence": {
@@ -973,10 +1046,10 @@
     }
   },
   "nextAction": [
-    "Continue from SIM-C2-L005-01; preserve the distinct SIM-C2-L005-03 2D negative and register any fully positive flow scope through the canonical validator.",
-    "Run the independent SIM-C4-L02-01 replay on f357b970, retain the 1209 negative, and register the exact individually accepted C4 activities.",
-    "Finish independent tests of the C3 and C5 drafts and continue the remaining 114 C2–C5 IDs. Reconcile the complete registry, canonical integration, and exact-SHA CI.",
-    "Record human scientific approval and app publication separately."
+    "Resume at SIM-C2-L005-01 and verify the scoped current C2 fixes on the composed app through the real consumer.",
+    "Prepare canonical private previews and independently accepted records for the nine C5 canary-positive drafts. Keep the two scoped limitations open.",
+    "Finish the C3 and remaining C4 independent checks, reconcile all 109 open records, then run the unified runtime gates, canonical PR and exact-SHA CI.",
+    "Record human approval and publication separately."
   ],
   "composedCandidate": {
     "branch": "feat/cric-composed-runtime",
@@ -1154,5 +1227,13 @@
       "fullPreviewReplayOnFinalCandidate": "PENDING"
     }
   },
-  "activityCandidateRuntimeSha256": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6"
+  "activityCandidateRuntimeSha256": "f357b970906cb827c8e8046a42e45b35d8745179752f2a756b2affdf56bbe5f4",
+  "currentCloneSpaceRecovery": {
+    "path": "editorial/reviews/verified-archive-dematerialization-20261127-276.json",
+    "sha256": "9f5a3bd03e15d39a3d85c4350e94e61af101bf68de80165181bbe6f8d5191cc0",
+    "freeBytesBefore": 663216128,
+    "freeBytesAfter": 2937139200,
+    "gitPublicationRetained": true,
+    "scientificCredit": 0
+  }
 }
