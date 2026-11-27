@@ -58,7 +58,7 @@ Con esponente 6 moltiplica 10 per 6 e ottieni 60 dB. Con esponente 4 ottieni 40 
 
 $$\frac{I}{I_0}=10^{L/10}$$
 
-Un aumento di 10 dB moltiplica per dieci l’intensità, dato che corrisponde a un esponente maggiore di uno. Il livello è una misura fisica. La percezione dipende anche dalla frequenza e dall’ascoltatore.
+Un aumento di 10 dB moltiplica per dieci l’intensità, dato che corrisponde a un esponente aumentato di un’unità. Il livello è una misura fisica. La percezione dipende anche dalla frequenza e dall’ascoltatore.
 
 ## `SIM-C5-L05-03` · Effetto Doppler qualitativo
 
