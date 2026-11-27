@@ -1,0 +1,522 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "C6-Q001",
+      "sourceSha256": "39475f24a4f8a803e0f3e92b3067b85bdaf753cac8448bed7ba342f7f7b58d0b",
+      "candidateSha256": "5c09dc37eede79ea3e89efa29b88b881c4020274a591abe15ba9fafc71c5f127",
+      "reviewedSignature": "b0c63922bb0f3e09d47c1db9928edc24ecc2d28a2b12f1a1ad8a8dfb74cd6641",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c6-integrative-progressive.svg": "01c8ebe0a7729860e10c09047f720bea5dfb9dd1859f9424d695c2a052b33ef3"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "200",
+      "dimension": {
+        "[time]": "1"
+      },
+      "manualArithmetic": "Il primo sensore avvia e il secondo arresta: t=d/c=(3/10)/1500 s=1/5000 s=200 μs. Non compare il fattore due dell’eco. La distanza è il percorso effettivo nel mezzo e la velocità è assegnata costante.",
+      "physicalAssumptions": "Percorso diretto di 0,30 m, non eco;200 μs ricostruiscono 1500·200 e−6=0,30 m. Le conversioni in ms eμs non si scambiano.",
+      "distractors": "Percorso diretto di 0,30 m, non eco;200 μs ricostruiscono 1500·200 e−6=0,30 m. Le conversioni in ms eμs non si scambiano.",
+      "pedagogicalReview": "Percorso diretto di 0,30 m, non eco;200 μs ricostruiscono 1500·200 e−6=0,30 m. Le conversioni in ms eμs non si scambiano.",
+      "assetReview": "Il nuovo SVG indipendente misura 640 × 2120 ed è stato letto integralmente in XML e nel PNG dopo exit 0. Le facce dei sensori sono a 140 e 500: il tratto di 360 coordinate rappresenta 30 cm in un solo verso. Le barre da 405, 135, 216 e 54 coordinate hanno origine comune e rappresentano 90 = 30 + 48 + 12 mL/min. Nel grafico della corrente, le basi 200/250 rappresentano 4/5 s e le altezze 90/30 rappresentano +0,30/−0,10 A; le aree orientate danno +1,2 − 0,5 = +0,7 C. Il pannello finale è schematico: 4 g di acqua ogni secondo, 8 J/s e aumento di 0,50 K con densità 1000 kg/m³. Nessuna indicazione è attraversata e non sono presenti testi tagliati.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "prompt_only_frozen_primary_and_identical_source_model_AST",
+        "exact_SymPy_and_Fraction_Pint_dimensions",
+        "separate_manual_original_final_distractor_lesson_and_full_SVG_review"
+      ],
+      "lessonReference": {
+        "id": "C6-L01",
+        "title": "Dal dato al modello",
+        "sourcePath": "officina-di-fisica/content/C6.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+      },
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q002",
+      "sourceSha256": "9aa5ad5cc9931519a365a3dd491e8c7ff9b1ae0d1062acf0491964fd50322042",
+      "candidateSha256": "21159892b444eb62461d4d1f94f1d7d45be0a777d1d996863c1b275d06ff577d",
+      "reviewedSignature": "c37d3af3dba19897572a82c5589fe6bd7dbdfd23de68a5645316c3ae1ef67a51",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "A=2·10⁻⁴ m², Δp=25000 Pa. La forza risultante delle due facce è Δp A=5 N, equivalente a m=F/g=1/2 kg con g assegnata. Non occorre sommare la pressione atmosferica comune sulle due facce; il dato è una differenza.",
+      "physicalAssumptions": "La differenza di pressione è già netta:25 kPa·2 cm²=5 N e massa equivalente 1/2 kg. Non aggiungere atmosfera né identificare numero della forza e massa.",
+      "distractors": "La differenza di pressione è già netta:25 kPa·2 cm²=5 N e massa equivalente 1/2 kg. Non aggiungere atmosfera né identificare numero della forza e massa.",
+      "pedagogicalReview": "La differenza di pressione è già netta:25 kPa·2 cm²=5 N e massa equivalente 1/2 kg. Non aggiungere atmosfera né identificare numero della forza e massa.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "prompt_only_frozen_primary_and_identical_source_model_AST",
+        "exact_SymPy_and_Fraction_Pint_dimensions",
+        "separate_manual_original_final_distractor_lesson_and_full_SVG_review"
+      ],
+      "lessonReference": {
+        "id": "C6-L01",
+        "title": "Dal dato al modello",
+        "sourcePath": "officina-di-fisica/content/C6.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+      },
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q003",
+      "sourceSha256": "c9b0f56c04cdb9af263a6b5135b8c2d101d27d75d063bbbf52367533f69cf037",
+      "candidateSha256": "2e4f131c0c5d0dce06511daa3a5150e8a4ce302993603eadc4bbeb9f028ab03e",
+      "reviewedSignature": "016b8335701f5407eddd9f2d7a9971b8ec5d7b87b4ba019db21454d914ff15a1",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c6-integrative-progressive.svg": "01c8ebe0a7729860e10c09047f720bea5dfb9dd1859f9424d695c2a052b33ef3"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "48",
+      "dimension": {
+        "[length]": "3",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Per un liquido incomprimibile, con portate volumetriche riferite allo stesso liquido, il flusso entrante 90 si ripartisce in 30, nell’accumulo laterale di 12 e nel terzo ramo. Quindi 90−30−12=48 mL/min. Non imporre stazionarietà dell’intero sistema: il serbatoio sta accumulando.",
+      "physicalAssumptions": "Il sistema include il serbatoio:90=30+48+12. Non imporre assenza di accumulo;60 omette il volume trattenuto e 72 ne inverte il segno.",
+      "distractors": "Il sistema include il serbatoio:90=30+48+12. Non imporre assenza di accumulo;60 omette il volume trattenuto e 72 ne inverte il segno.",
+      "pedagogicalReview": "Il sistema include il serbatoio:90=30+48+12. Non imporre assenza di accumulo;60 omette il volume trattenuto e 72 ne inverte il segno.",
+      "assetReview": "Il nuovo SVG indipendente misura 640 × 2120 ed è stato letto integralmente in XML e nel PNG dopo exit 0. Le facce dei sensori sono a 140 e 500: il tratto di 360 coordinate rappresenta 30 cm in un solo verso. Le barre da 405, 135, 216 e 54 coordinate hanno origine comune e rappresentano 90 = 30 + 48 + 12 mL/min. Nel grafico della corrente, le basi 200/250 rappresentano 4/5 s e le altezze 90/30 rappresentano +0,30/−0,10 A; le aree orientate danno +1,2 − 0,5 = +0,7 C. Il pannello finale è schematico: 4 g di acqua ogni secondo, 8 J/s e aumento di 0,50 K con densità 1000 kg/m³. Nessuna indicazione è attraversata e non sono presenti testi tagliati.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "prompt_only_frozen_primary_and_identical_source_model_AST",
+        "exact_SymPy_and_Fraction_Pint_dimensions",
+        "separate_manual_original_final_distractor_lesson_and_full_SVG_review"
+      ],
+      "lessonReference": {
+        "id": "C6-L02",
+        "title": "Segui ciò che attraversa la superficie",
+        "sourcePath": "officina-di-fisica/content/C6.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+      },
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q004",
+      "sourceSha256": "97abbf881f66175c16ae5e77e42743dc0d49f55656200b853fd40ade11f8f09c",
+      "candidateSha256": "49f04f2ae78b010e4f5e8bb0e294e1c7d98170e51c9d91b06de161da689ba606",
+      "reviewedSignature": "5ec86155f43c54097ca1691b20bbd946ef198f73ac9f021d7bd191160c145054",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "In un minuto passa Q=12 C: I media=12/60 A=1/5 A. Se la caduta è 5 V costante nell’intervallo, P media=VQ/Δt=1 W. I dati non determinano una potenza istantanea se la corrente varia: una nuova edizione deve chiedere la media o dichiarare corrente costante.",
+      "physicalAssumptions": "Tensione costante e 12 C in 60 s danno energia 60 J e potenza media 1 W. I dati non fissano una potenza istantanea; il finale chiede esplicitamente la media.",
+      "distractors": "Tensione costante e 12 C in 60 s danno energia 60 J e potenza media 1 W. I dati non fissano una potenza istantanea; il finale chiede esplicitamente la media.",
+      "pedagogicalReview": "Tensione costante e 12 C in 60 s danno energia 60 J e potenza media 1 W. I dati non fissano una potenza istantanea; il finale chiede esplicitamente la media.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "prompt_only_frozen_primary_and_identical_source_model_AST",
+        "exact_SymPy_and_Fraction_Pint_dimensions",
+        "separate_manual_original_final_distractor_lesson_and_full_SVG_review"
+      ],
+      "lessonReference": {
+        "id": "C6-L02",
+        "title": "Segui ciò che attraversa la superficie",
+        "sourcePath": "officina-di-fisica/content/C6.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+      },
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q005",
+      "sourceSha256": "08d443f785a45fbd998297680ae2ee7f258d116e3f0ce5009c02cd3a3a83ea65",
+      "candidateSha256": "063006eec937e7163d02a34062e4c5412180de630c933b75062569deeb81f6cd",
+      "reviewedSignature": "6c7a13fccf3fb6bfbb70e0078132028a244757f2c6c4b2bb0848c4627ceb4a6b",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "La diminuzione potenziale fornisce 30 J. Con ΔK=0, se questo è l’ingresso meccanico complessivo del sistema considerato, i 24 J registrati lasciano 30−24=6 J ad altri canali, compreso eventuale accumulo interno non misurato. Esplicitare che non sono presenti ulteriori apporti energetici al bilancio.",
+      "physicalAssumptions": "ΔK nullo e nessun altro ingresso:30 J=24 J+6 J. La quota residua può trasferirsi o accumularsi, non identifica da sola un particolare elemento riscaldato.",
+      "distractors": "ΔK nullo e nessun altro ingresso:30 J=24 J+6 J. La quota residua può trasferirsi o accumularsi, non identifica da sola un particolare elemento riscaldato.",
+      "pedagogicalReview": "ΔK nullo e nessun altro ingresso:30 J=24 J+6 J. La quota residua può trasferirsi o accumularsi, non identifica da sola un particolare elemento riscaldato.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "prompt_only_frozen_primary_and_identical_source_model_AST",
+        "exact_SymPy_and_Fraction_Pint_dimensions",
+        "separate_manual_original_final_distractor_lesson_and_full_SVG_review"
+      ],
+      "lessonReference": {
+        "id": "C6-L03",
+        "title": "Dove finisce l’energia?",
+        "sourcePath": "officina-di-fisica/content/C6.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+      },
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q006",
+      "sourceSha256": "7c954db3f185a1c77b8a028f2c7dbf9eecaa2682742975629428e76037a2a9aa",
+      "candidateSha256": "b036aca90080b29fda8436007528dd5f980cf70336c2832a9e16322262256d29",
+      "reviewedSignature": "bf1a0dcbae08ad283f5d7778108476cf4c3357fb10326d4cd819f3859600f68c",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "240",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Il ritorno allo stato iniziale annulla ΔU. Il lavoro netto prodotto è 900−600=300 J. La conversione elettrica all’80% ne rende 4/5·300=240 J. Il 20% restante del lavoro non va confuso con i 600 J ceduti direttamente dalla macchina.",
+      "physicalAssumptions": "Ciclo chiuso:300 J all’albero, poi 80%→240 J elettrici.600 J già ceduti e 60 J persi dal generatore sono canali diversi; energia totale 900 J ricostruita.",
+      "distractors": "Ciclo chiuso:300 J all’albero, poi 80%→240 J elettrici.600 J già ceduti e 60 J persi dal generatore sono canali diversi; energia totale 900 J ricostruita.",
+      "pedagogicalReview": "Ciclo chiuso:300 J all’albero, poi 80%→240 J elettrici.600 J già ceduti e 60 J persi dal generatore sono canali diversi; energia totale 900 J ricostruita.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "prompt_only_frozen_primary_and_identical_source_model_AST",
+        "exact_SymPy_and_Fraction_Pint_dimensions",
+        "separate_manual_original_final_distractor_lesson_and_full_SVG_review"
+      ],
+      "lessonReference": {
+        "id": "C6-L03",
+        "title": "Dove finisce l’energia?",
+        "sourcePath": "officina-di-fisica/content/C6.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+      },
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q007",
+      "sourceSha256": "6a37a00271c0e280029fc9bf30f952cdb2068eb652a1237d17e8d7440109d121",
+      "candidateSha256": "81579d74756e965957995e5c04af0b71886db922fc5ade5584509ca399b5837d",
+      "reviewedSignature": "9d6afdf3f7d8c70ab5789d8dbda22e40aa881d63b4661bf54a15e8c129588149",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/16",
+      "dimension": {},
+      "manualArithmetic": "Nel modello laminare newtoniano sviluppato di Poiseuille, Q è proporzionale a Δp r⁴ a lunghezza e viscosità comuni positive. Raddoppiare r moltiplica il coefficiente per 16; per mantenere la stessa portata non nulla serve Δp₂/Δp₁=1/16. Il rapporto richiede Δp₁≠0; una preparazione a portata nulla lo renderebbe indefinito.",
+      "physicalAssumptions": "Poiseuille newtoniano laminare sviluppato con no-slip; portata positiva costante, viscosità e lunghezza comuni. Raggio doppio richiedeΔp diviso 16; zero escluso dal rapporto.",
+      "distractors": "Poiseuille newtoniano laminare sviluppato con no-slip; portata positiva costante, viscosità e lunghezza comuni. Raggio doppio richiedeΔp diviso 16; zero escluso dal rapporto.",
+      "pedagogicalReview": "Poiseuille newtoniano laminare sviluppato con no-slip; portata positiva costante, viscosità e lunghezza comuni. Raggio doppio richiedeΔp diviso 16; zero escluso dal rapporto.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "prompt_only_frozen_primary_and_identical_source_model_AST",
+        "exact_SymPy_and_Fraction_Pint_dimensions",
+        "separate_manual_original_final_distractor_lesson_and_full_SVG_review"
+      ],
+      "lessonReference": {
+        "id": "C6-L04",
+        "title": "Riconoscere il fattore che si ripete",
+        "sourcePath": "officina-di-fisica/content/C6.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+      },
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q008",
+      "sourceSha256": "db2ad0212d82ea17344a19b94f9df40d17d561c84c58f17035d46d7e0c36e0d0",
+      "candidateSha256": "371580c97ca29e5ccc5f502517cb29985fefb5b0d87e2514e91dd126fd0c5804",
+      "reviewedSignature": "ad688ac24a7276ada499980be7777bcc68596b901fed5b0c943f9783457c670b",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "18",
+      "dimension": {},
+      "manualArithmetic": "Per emissione isotropa, stessa efficienza e piccola area normale, il tasso è proporzionale all’attività e a 1/r². Il secondo tasso è (1/2)(1/9)=1/18 del primo, perciò iniziale/finale=18. Attività e distanza iniziali devono essere positive, fondo e attenuazione sono esclusi dal prompt.",
+      "physicalAssumptions": "Tasso proporzionale ad attività positiva e 1/r² con area/efficienza fisse: finale 1/18, rapporto richiesto iniziale/finale 18. Distanza e attività non si sommano.",
+      "distractors": "Tasso proporzionale ad attività positiva e 1/r² con area/efficienza fisse: finale 1/18, rapporto richiesto iniziale/finale 18. Distanza e attività non si sommano.",
+      "pedagogicalReview": "Tasso proporzionale ad attività positiva e 1/r² con area/efficienza fisse: finale 1/18, rapporto richiesto iniziale/finale 18. Distanza e attività non si sommano.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "prompt_only_frozen_primary_and_identical_source_model_AST",
+        "exact_SymPy_and_Fraction_Pint_dimensions",
+        "separate_manual_original_final_distractor_lesson_and_full_SVG_review"
+      ],
+      "lessonReference": {
+        "id": "C6-L04",
+        "title": "Riconoscere il fattore che si ripete",
+        "sourcePath": "officina-di-fisica/content/C6.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+      },
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q009",
+      "sourceSha256": "e8933979e8e18ba61ca04b921d0df9e4a069fe12e9a5206b5a21c6b3181ae478",
+      "candidateSha256": "294242bb04a30aef3dc3ad3dd5b7795f2f95bac684dbbf8b3dc70ec3b39a84f1",
+      "reviewedSignature": "8d0f3546ff26c1fae49c65ba5b8c4986e95461604daf3f0ae1ad1f9c38467c60",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c6-integrative-progressive.svg": "01c8ebe0a7729860e10c09047f720bea5dfb9dd1859f9424d695c2a052b33ef3"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "7/10",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "Il primo intervallo trasporta (3/10)·4=6/5 C nel verso positivo; il secondo (−1/10)·5=−1/2 C. La somma algebrica è 7/10 C. Sommare i moduli produrrebbe 17/10 C e risponderebbe a un’altra domanda.",
+      "physicalAssumptions": "Aree orientate:0,30·4−0,10·5=7/10 C.17/10 somma moduli e−7/10 inverte il riferimento. Unità e durata del secondo tratto restano cinque secondi.",
+      "distractors": "Aree orientate:0,30·4−0,10·5=7/10 C.17/10 somma moduli e−7/10 inverte il riferimento. Unità e durata del secondo tratto restano cinque secondi.",
+      "pedagogicalReview": "Aree orientate:0,30·4−0,10·5=7/10 C.17/10 somma moduli e−7/10 inverte il riferimento. Unità e durata del secondo tratto restano cinque secondi.",
+      "assetReview": "Il nuovo SVG indipendente misura 640 × 2120 ed è stato letto integralmente in XML e nel PNG dopo exit 0. Le facce dei sensori sono a 140 e 500: il tratto di 360 coordinate rappresenta 30 cm in un solo verso. Le barre da 405, 135, 216 e 54 coordinate hanno origine comune e rappresentano 90 = 30 + 48 + 12 mL/min. Nel grafico della corrente, le basi 200/250 rappresentano 4/5 s e le altezze 90/30 rappresentano +0,30/−0,10 A; le aree orientate danno +1,2 − 0,5 = +0,7 C. Il pannello finale è schematico: 4 g di acqua ogni secondo, 8 J/s e aumento di 0,50 K con densità 1000 kg/m³. Nessuna indicazione è attraversata e non sono presenti testi tagliati.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "prompt_only_frozen_primary_and_identical_source_model_AST",
+        "exact_SymPy_and_Fraction_Pint_dimensions",
+        "separate_manual_original_final_distractor_lesson_and_full_SVG_review"
+      ],
+      "lessonReference": {
+        "id": "C6-L05",
+        "title": "Pendenza, altezza o area?",
+        "sourcePath": "officina-di-fisica/content/C6.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+      },
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q010",
+      "sourceSha256": "767ec77053f3775cab320612a10dbb9ba012d4e45186aee2d9df7b5960aedd11",
+      "candidateSha256": "2ff0a0e7eda79e2ef8d4a70917d416fd7db9bdaababb07d35604bd22cc4df469",
+      "reviewedSignature": "2c115e287e305735eedbf022e98278d00ebce0b055b95864516a70b6da8358b3",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "800",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-3"
+      },
+      "manualArithmetic": "Se il liquido è fermo, Δp=ρgΔh e ρ=2000/(10·1/4)=800 kg/m³. Il solo fatto che il tubo sia pieno non esclude contributi dinamici: una nuova edizione deve dire fluido fermo o specificare condizioni che cancellino quei contributi. Non assumere una legge idrostatica universale per ogni flusso.",
+      "physicalAssumptions": "Quiete e densità omogenea sono dichiarate:2000/(10·1/4)=800 kg/m³. Con 500 kg/m³ la pressione prevista sarebbe 1250 Pa; non applicare universalmente la legge a un flusso.",
+      "distractors": "Quiete e densità omogenea sono dichiarate:2000/(10·1/4)=800 kg/m³. Con 500 kg/m³ la pressione prevista sarebbe 1250 Pa; non applicare universalmente la legge a un flusso.",
+      "pedagogicalReview": "Quiete e densità omogenea sono dichiarate:2000/(10·1/4)=800 kg/m³. Con 500 kg/m³ la pressione prevista sarebbe 1250 Pa; non applicare universalmente la legge a un flusso.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "prompt_only_frozen_primary_and_identical_source_model_AST",
+        "exact_SymPy_and_Fraction_Pint_dimensions",
+        "separate_manual_original_final_distractor_lesson_and_full_SVG_review"
+      ],
+      "lessonReference": {
+        "id": "C6-L05",
+        "title": "Pendenza, altezza o area?",
+        "sourcePath": "officina-di-fisica/content/C6.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+      },
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q011",
+      "sourceSha256": "7068ee2a34b485ebf6fcbe40aa9ee9aa5a9f988564f9ebdf36c11ad922d45cd2",
+      "candidateSha256": "ef546916dcfe3fa4078796e0b14df9fb7b14d503dbc773dcfd462f494d69f653",
+      "reviewedSignature": "f4802561ce1c99cac7d2129fc3eefc82f06e2dd9f9f88ef3c37fb81faba24b4d",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Frequenza invariata e potenza ottica incidente maggiore",
+      "dimension": {},
+      "manualArithmetic": "L’energia per fotone monocromatico è hf. Fra le due ipotesi date, osservare frequenza invariata (equivalentemente lunghezza d’onda invariata nello stesso mezzo) esclude un cambiamento di hf. Con geometria, risposta ed efficienza del sensore invariati, il livello maggiore si attribuisce allora al tasso di fotoni maggiore. La sola intensità non separa i due fattori.",
+      "physicalAssumptions": "Nel finale la misura è della potenza ottica incidente, non un segnale elettrico non calibrato. A f invariata hf è fisso, dunque P maggiore impone tasso fotonico maggiore. La primaria aveva richiesto controllare la risposta strumentale; la misura ottica esplicita risolve tale limite.",
+      "distractors": "Nel finale la misura è della potenza ottica incidente, non un segnale elettrico non calibrato. A f invariata hf è fisso, dunque P maggiore impone tasso fotonico maggiore. La primaria aveva richiesto controllare la risposta strumentale; la misura ottica esplicita risolve tale limite.",
+      "pedagogicalReview": "Nel finale la misura è della potenza ottica incidente, non un segnale elettrico non calibrato. A f invariata hf è fisso, dunque P maggiore impone tasso fotonico maggiore. La primaria aveva richiesto controllare la risposta strumentale; la misura ottica esplicita risolve tale limite.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "prompt_only_frozen_primary_and_identical_source_model_AST",
+        "exact_SymPy_and_Fraction_Pint_dimensions",
+        "separate_manual_original_final_distractor_lesson_and_full_SVG_review"
+      ],
+      "lessonReference": {
+        "id": "C6-L06",
+        "title": "Ricostruire un ragionamento a distanza",
+        "sourcePath": "officina-di-fisica/content/C6.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+      },
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q012",
+      "sourceSha256": "36554715e62172f4da17675df72789cce4865167bc4641f468165fe5774a49b8",
+      "candidateSha256": "1d95e3e8be37c3ec0c6beec4683f40cccf783a05f1742c5282cfe49facad4e88",
+      "reviewedSignature": "cec5b2a8a80f8b335d0ba641cd8990c294f2e742f636f6e94295b0653b0e2792",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "60",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "La potenza luminosa è (1/5)·5=1 W. Il rivelatore ne riceve 1/50 W; in 3 s riceve3/50 J=60 mJ. Le frazioni sono di energie o potenze successive, non vanno sommate; assumere regime e frazioni costanti durante i 3 s.",
+      "physicalAssumptions": "Due frazioni successive:5·1/5·1/50·3=3/50 J=60 mJ.3000 mJ omette l’intercettazione,300 mJ omette la conversione elettricità-luce. Non sommare percentuali.",
+      "distractors": "Due frazioni successive:5·1/5·1/50·3=3/50 J=60 mJ.3000 mJ omette l’intercettazione,300 mJ omette la conversione elettricità-luce. Non sommare percentuali.",
+      "pedagogicalReview": "Due frazioni successive:5·1/5·1/50·3=3/50 J=60 mJ.3000 mJ omette l’intercettazione,300 mJ omette la conversione elettricità-luce. Non sommare percentuali.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "prompt_only_frozen_primary_and_identical_source_model_AST",
+        "exact_SymPy_and_Fraction_Pint_dimensions",
+        "separate_manual_original_final_distractor_lesson_and_full_SVG_review"
+      ],
+      "lessonReference": {
+        "id": "C6-L06",
+        "title": "Ricostruire un ragionamento a distanza",
+        "sourcePath": "officina-di-fisica/content/C6.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+      },
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-AQ01",
+      "sourceSha256": "ae075a9daf79f95cc104f573e3d4621cbb4c1ea3d20361fd7c47a535fe6ebf9e",
+      "candidateSha256": "38d5ecd8a3fbda1d2848766c4161b24dd67077e693b9173cf27f79c17d63a417",
+      "reviewedSignature": "631db18afb6c47ec893ac56d4b524ed85a12949b4e315e712cf176272b311cf2",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c6-integrative-progressive.svg": "01c8ebe0a7729860e10c09047f720bea5dfb9dd1859f9424d695c2a052b33ef3"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[length]": "3",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "In regime stazionario e con le perdite e i contributi macroscopici esclusi, P=ṁ c ΔT. Quindi ṁ=8/(4000·1/2)=1/250 kg/s. Dividendo per ρ = 1000 kg/m³ si ottiene 1/250000 m³/s=4 mL/s. Il dato 8 W è già la potenza trasferita al liquido, senza introdurre un rendimento aggiuntivo.",
+      "physicalAssumptions": "Potenza già trasferita all’acqua, regime stazionario senza altre variazioni o fasi:ṁ=8/(4000·1/2)=1/250 kg/s; dividereρ e convertire dà 4 mL/s. Risultato verificato con 4 g e 8 J.",
+      "distractors": "Potenza già trasferita all’acqua, regime stazionario senza altre variazioni o fasi:ṁ=8/(4000·1/2)=1/250 kg/s; dividereρ e convertire dà 4 mL/s. Risultato verificato con 4 g e 8 J.",
+      "pedagogicalReview": "Potenza già trasferita all’acqua, regime stazionario senza altre variazioni o fasi:ṁ=8/(4000·1/2)=1/250 kg/s; dividereρ e convertire dà 4 mL/s. Risultato verificato con 4 g e 8 J.",
+      "assetReview": "Il nuovo SVG indipendente misura 640 × 2120 ed è stato letto integralmente in XML e nel PNG dopo exit 0. Le facce dei sensori sono a 140 e 500: il tratto di 360 coordinate rappresenta 30 cm in un solo verso. Le barre da 405, 135, 216 e 54 coordinate hanno origine comune e rappresentano 90 = 30 + 48 + 12 mL/min. Nel grafico della corrente, le basi 200/250 rappresentano 4/5 s e le altezze 90/30 rappresentano +0,30/−0,10 A; le aree orientate danno +1,2 − 0,5 = +0,7 C. Il pannello finale è schematico: 4 g di acqua ogni secondo, 8 J/s e aumento di 0,50 K con densità 1000 kg/m³. Nessuna indicazione è attraversata e non sono presenti testi tagliati.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "prompt_only_frozen_primary_and_identical_source_model_AST",
+        "exact_SymPy_and_Fraction_Pint_dimensions",
+        "separate_manual_original_final_distractor_lesson_and_full_SVG_review"
+      ],
+      "lessonReference": {
+        "id": "C6-L01",
+        "title": "Dal dato al modello",
+        "sourcePath": "officina-di-fisica/content/C6.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+      },
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "69b603a36b1a1fffe8741adc555b50af66ea23aafbac0c9306b67fa27d10128a",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+  "packageSha256": "dd17525b5a35246cd1c4a50e6a942089be77eea072b0ec94ff721cabe845d765",
+  "bindingsSha256": "84d14ac47f8dd1d55f96ce712958daba426c079876b2dd0a1b77a8d8f7852f31",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "pathsById": {
+      "C6-Q001": "officina-di-fisica/content/C6.json",
+      "C6-Q002": "officina-di-fisica/content/C6.json",
+      "C6-Q003": "officina-di-fisica/content/C6.json",
+      "C6-Q004": "officina-di-fisica/content/C6.json",
+      "C6-Q005": "officina-di-fisica/content/C6.json",
+      "C6-Q006": "officina-di-fisica/content/C6.json",
+      "C6-Q007": "officina-di-fisica/content/C6.json",
+      "C6-Q008": "officina-di-fisica/content/C6.json",
+      "C6-Q009": "officina-di-fisica/content/C6.json",
+      "C6-Q010": "officina-di-fisica/content/C6.json",
+      "C6-Q011": "officina-di-fisica/content/C6.json",
+      "C6-Q012": "officina-di-fisica/content/C6.json",
+      "C6-AQ01": "officina-di-fisica/content/lotto-001.json"
+    },
+    "sourceFileSha256": {
+      "officina-di-fisica/content/lotto-001.json": "71c563d3ea98f92602f04d1956df968bf125b85fad72521bd6742d8070e53e2a",
+      "officina-di-fisica/content/C6.json": "3f39318c261ec6ed7e68e06f2776dbfb6bce847ccd71cef6354cc5554699ac0c"
+    }
+  },
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/primary-cric-c6-integrative-partial-before-candidates-20261126.md",
+    "sha256": "8bb6f588e4ab2de5c93824c8681ad4a13ecd5d36e186b24e109ea5cc49630bda"
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/cric-c6-integrative-partial-independent-models.py",
+    "sha256": "cd4410e00907ce4dc77331d824a288e94602fff3d64e8ec7898cc63c95b3c689",
+    "commit": "1d7ff6d21044e7cd4fe62a6729117d5492ab4b0b"
+  },
+  "modelFunctionBodies": "All frozen source-only model functions retain identical AST; separate typed SI-law witnesses and exact literal guard added afterward."
+}
