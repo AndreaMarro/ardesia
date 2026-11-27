@@ -92,6 +92,12 @@ def apply_evidence(repo, app, source_ref, entries, questions):
                 "sciencePath":paths["science"],"scienceSha256":sums["science"],"integrationPath":paths["integration"],
                 "integrationSha256":sums["integration"],"browserPath":paths["browser"],"browserSha256":sums["browser"],
                 "assetChecksums":result["assetChecksums"]}]
+            if "sectionReconciliation" in paths:
+                entry["evidence"][0]["sectionReconciliation"] = {
+                    "path": paths["sectionReconciliation"],
+                    "sha256": sums["sectionReconciliation"],
+                    **result["verifiedSectionReconciliation"],
+                }
             attach_withdrawal_audit(entry,batch,result)
     return {"recoveredTechnicalQuestionCount":199,"revisedDraftCount":sum(len(b["records"]) for b in batches),
         "recoveredRequestedPro100":"NOT_IDENTIFIED","newlyPublishedQuestionCount":0,

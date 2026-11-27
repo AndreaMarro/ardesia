@@ -170,19 +170,32 @@ def validate_batch(spec,app=APP):
     module=importlib.import_module("."+spec["verifier"],__package__)
     scientific=app/"editorial/reviews"/(batch+".json")
     report=json.loads(scientific.read_text())
-    current=module.verify(package,bindings)
-    assert_record_identity(current,set(spec["questionIds"]),package,bindings)
+    reconciled = 'sectionReconciliationSha256' in spec
+    if reconciled:
+        from .section_reconciliation import pinned_history, verify_reconciliation
+        reviewed_package, reviewed_bindings, historical_pins = pinned_history(app, batch)
+    else:
+        reviewed_package, reviewed_bindings = package, bindings
+    current=module.verify(reviewed_package,reviewed_bindings)
+    assert_record_identity(current,set(spec["questionIds"]),reviewed_package,reviewed_bindings)
     if not current or not all(r["ok"] for r in current) or current!=report["records"]:
         raise ValueError("Scientific evidence failed or stale: "+batch)
     if report["verifierSha256"]!=sha(Path(module.__file__).read_bytes()):raise ValueError("Verifier changed: "+batch)
     if "contractSha256" in report and report["contractSha256"]!=sha(Path(__file__).with_name("review_contract.py").read_bytes()):
         raise ValueError("Review contract changed: "+batch)
+    if reconciled:
+        current, certificate = verify_reconciliation(
+            app, spec, reviewed_package, reviewed_bindings, historical_pins, scientific, package, bindings, current,
+        )
+        assert_record_identity(current,set(spec["questionIds"]),package,bindings)
     integrated=exercise(batch)
     integration=app/"editorial/reviews"/(batch+"-integration.json")
     if integrated!=json.loads(integration.read_text()) or integrated["packageSha256"]!=digest(package):
         raise ValueError("Integration evidence changed: "+batch)
     browser_file,browser_count=validate_browser_preview(batch,package_file,package,spec['questionIds'],app)
     files={"package":package_file,"bindings":binding_file,"science":scientific,"integration":integration,"browser":browser_file}
+    if reconciled:
+        files["sectionReconciliation"] = certificate
     assert_unchanged_acceptance(acceptance,spec,set(spec["questionIds"]),app)
     audit={"acceptanceWithdrawals":acceptance} if acceptance else {}
     return {**audit,"spec":spec,"package":package,"bindings":bindings,"records":current,"browserCases":browser_count,
