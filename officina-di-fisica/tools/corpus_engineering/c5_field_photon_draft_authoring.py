@@ -140,6 +140,7 @@ NUCLEI_OPTICS = {
     },
     'SIM-C5-L10-02': {
         'points': [5, 20],
+        'formula': '1/q = 1/(0,10 m) − 1/p, con p e q espressi in metri',
         'prerequisites': ['C5-L09'],
         'interpretation': 'Sposta l’oggetto da prima del fuoco a oltre il fuoco. Per leggere il segno di 1/q cerca l’incontro dei raggi oppure il punto in cui si incontrano i loro prolungamenti.',
         'transferPrompt': 'L’oggetto è a {x} da una lente sottile convergente con f = 10 cm. Qual è la vergenza dell’immagine 1/q con segno, in diottrie?',
