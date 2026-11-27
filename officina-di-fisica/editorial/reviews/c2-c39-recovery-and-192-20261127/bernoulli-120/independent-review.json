@@ -1,0 +1,196 @@
+{
+  "reviewerRole": "AI_INDEPENDENT_FROM_ROOT_AUTHOR",
+  "priorExposure": "Source-only primary and full four-draft CPU review frozen before this UI; no author oracle imported. All eight contact sheets (120 cells) and six listed native-size original PNGs actually read.",
+  "runtimeCommit": "cbf7792f872caf575d58acd28cc7ace1ada14169",
+  "runtimeSha256": "c39f7cdf31e4443059614bac79e7e27c6399c1cfc6fe3dcd1bfdb6b9c3db027e",
+  "draftCandidateCommit": "93ee5b5acf91de1030dbeb33f962252acb9ba34f",
+  "process": {
+    "exitCode": 0,
+    "elapsedSeconds": 62.212810039520264,
+    "cases": 120,
+    "NumberSubmissions": 64,
+    "JSerrors": []
+  },
+  "reading": {
+    "contactSheets": [
+      {
+        "file": "contact-320-orbit.png",
+        "sha256": "8590d288f3137179d2138649f36c44b841b778641277f0ffd28d09ec4d5b7523",
+        "cases": 15
+      },
+      {
+        "file": "contact-320-side.png",
+        "sha256": "c7f991cedc2d2992e45bad22b31995aa93c440fc6b70380092f56426a22729ae",
+        "cases": 15
+      },
+      {
+        "file": "contact-320-top.png",
+        "sha256": "73c899aaf6f79edcd57bc8061f79a42617781fbe77c22d43822e3e14da97109b",
+        "cases": 15
+      },
+      {
+        "file": "contact-320-fixed_projection.png",
+        "sha256": "4e8b5b7cc6e952df6edf24786975b66eb75e1699452d191f12ddcb0a2605f806",
+        "cases": 15
+      },
+      {
+        "file": "contact-1280-orbit.png",
+        "sha256": "7d2517bbb231fe521f97ef1f01ce21c0916e29962d8cc3d3c7c8553bb6d7af19",
+        "cases": 15
+      },
+      {
+        "file": "contact-1280-side.png",
+        "sha256": "5accf7bf6cfe972d574923840b8d9530204f7f3f56a8d699b1f1b99a54731697",
+        "cases": 15
+      },
+      {
+        "file": "contact-1280-top.png",
+        "sha256": "aa81cd01aa23297928d1905372ab4e5f590b577b7150826a9817395b07402236",
+        "cases": 15
+      },
+      {
+        "file": "contact-1280-fixed_projection.png",
+        "sha256": "297877a7ed73099431c68d73572ef9b91156b1f4bec7feb2c346c17bac0efe2b",
+        "cases": 15
+      }
+    ],
+    "nativeSizePNGs": [
+      {
+        "file": "actual/screens/c847dc00857fe90e7692eef6a994c8827727a19104eda36fd210b85daf74b60b.png",
+        "sha256": "c847dc00857fe90e7692eef6a994c8827727a19104eda36fd210b85daf74b60b"
+      },
+      {
+        "file": "actual/screens/599dbb94b1bbe785bb1a2df2f62f49ab4f8f5b91eb5beb3ebe02d99a5b1ab758.png",
+        "sha256": "599dbb94b1bbe785bb1a2df2f62f49ab4f8f5b91eb5beb3ebe02d99a5b1ab758"
+      },
+      {
+        "file": "actual/screens/b83d87d316416c9d9b34cd517bf80a2f9558bfb82e549558b13a52d4f1b5de29.png",
+        "sha256": "b83d87d316416c9d9b34cd517bf80a2f9558bfb82e549558b13a52d4f1b5de29"
+      },
+      {
+        "file": "actual/screens/fdf3337686e8ea64071e0ab373a8357f8c22fa8bbedbdde4b732b9d92cb70425.png",
+        "sha256": "fdf3337686e8ea64071e0ab373a8357f8c22fa8bbedbdde4b732b9d92cb70425"
+      },
+      {
+        "file": "actual/screens/63e23cd5dc5ae77b9517ff9a777173a2517a2335dcb55810275a897b55d0b3c2.png",
+        "sha256": "63e23cd5dc5ae77b9517ff9a777173a2517a2335dcb55810275a897b55d0b3c2"
+      },
+      {
+        "file": "actual/screens/32da58d0eabff7ef0214c2cd42650d59bcffb9146a4d096164b5fe684d3c1b09.png",
+        "sha256": "32da58d0eabff7ef0214c2cd42650d59bcffb9146a4d096164b5fe684d3c1b09"
+      }
+    ]
+  },
+  "perID": [
+    {
+      "id": "SIM-C2-L006-01",
+      "candidateSha256": "52b5286cab0964c438baa916f705c138de102a2f0af4b49a3f606cf093bc6efe",
+      "sourceSha256": "a8641f475c5461bd70081f0e1f75f7e6399ce44c1a4a1fa689c2c8f7e58445c3",
+      "manualInputs": [
+        3,
+        2
+      ],
+      "expectedOutputs": [
+        16,
+        18.5
+      ],
+      "assignedAnswerEntries": [
+        "16",
+        "18.5"
+      ],
+      "textMathDecision": "INDEPENDENT_CPU_PASS_PREVIOUSLY_FROZEN",
+      "boundedVisualDecision": "POSITIVE_IN_ACTUALLY_READ_8PROFILE_STATES",
+      "scope": "Setup, selected assigned points and explicitly planned extras only; not full legal grid or further camera poses"
+    },
+    {
+      "id": "SIM-C2-L006-02",
+      "candidateSha256": "0d818189045b4bb173250da4dcac0bdae0376b6203e3280ed06e9bb416ebf290",
+      "sourceSha256": "3eb95d73c097bd1e2f86fe4bf933ed1e2e983a91b5657e6be4e007aacc5585b8",
+      "manualInputs": [
+        2,
+        4,
+        0,
+        5
+      ],
+      "expectedOutputs": [
+        2,
+        8,
+        0,
+        12.5
+      ],
+      "assignedAnswerEntries": [
+        "2",
+        "8"
+      ],
+      "textMathDecision": "INDEPENDENT_CPU_PASS_PREVIOUSLY_FROZEN",
+      "boundedVisualDecision": "POSITIVE_IN_ACTUALLY_READ_8PROFILE_STATES",
+      "scope": "Setup, selected assigned points and explicitly planned extras only; not full legal grid or further camera poses"
+    },
+    {
+      "id": "SIM-C2-L006-03",
+      "candidateSha256": "75709288fb0abf5bdd1653c90c5e79e7722a03377a234b5cb13a8bd73f558948",
+      "sourceSha256": "9c5c80d7f2f0d324fc23bcaab1e9c658a43e6b279b1e9c747811ef98233201cc",
+      "manualInputs": [
+        0.5,
+        2,
+        1
+      ],
+      "expectedOutputs": [
+        4,
+        1,
+        2
+      ],
+      "assignedAnswerEntries": [
+        "4",
+        "1"
+      ],
+      "textMathDecision": "INDEPENDENT_CPU_PASS_PREVIOUSLY_FROZEN",
+      "boundedVisualDecision": "POSITIVE_IN_ACTUALLY_READ_8PROFILE_STATES",
+      "scope": "Setup, selected assigned points and explicitly planned extras only; not full legal grid or further camera poses"
+    },
+    {
+      "id": "SIM-C2-L006-04",
+      "candidateSha256": "58b85a52cf85f20793b09e41df8b861ae75ad107929c13f0fec587dca099ed8e",
+      "sourceSha256": "b03e54d1553407d7135907a2bd3c436b01d0ebf4e4f805feab3ab6e7140bd437",
+      "manualInputs": [
+        6,
+        4
+      ],
+      "expectedOutputs": [
+        9,
+        11
+      ],
+      "assignedAnswerEntries": [
+        "9",
+        "11"
+      ],
+      "textMathDecision": "INDEPENDENT_CPU_PASS_PREVIOUSLY_FROZEN",
+      "boundedVisualDecision": "POSITIVE_IN_ACTUALLY_READ_8PROFILE_STATES",
+      "scope": "Setup, selected assigned points and explicitly planned extras only; not full legal grid or further camera poses"
+    }
+  ],
+  "observations": [
+    "L006-03 equal-area state1 has equal same-scale velocity arrows and equal column levels; assigned .5 and2 retain inverse direction and speed ratios.",
+    "Pitot0 has no velocity arrows. Assigned2/4 and max5 show probe and velocity glyphs in acquired views. Native full-size4 image retains the violet tip in front of the gray probe; apparent overlap in thumbnail is not evidence of full head occlusion. No new product defect inferred.",
+    "Loss model Uscita cartiglio remains distinct from both horizontal velocity arrows in selected images.",
+    "Fallback explicitly says WebGL is unavailable and retains readings; no disabled-view instruction required in its displayed legend."
+  ],
+  "canonicalImport": {
+    "firstSaved": 4,
+    "repeatSaved": 0,
+    "repeatUnchanged": 4,
+    "publishedCount": 991,
+    "publishedAndHistoricalPayloadsUnchanged": true
+  },
+  "limitations": [
+    "No full-grid/camera closure of historic Pitot restrictions is implied.",
+    "Native geometry is source reconstruction from the actual DOM input; raster images are actual product. No GPU object introspection asserted.",
+    "Zero-asset package means no nonempty draft-asset403 coverage here; guest original-version check actually executed.",
+    "No new approval/human publication or canonical registry adoption."
+  ],
+  "newFindings": [],
+  "overallActivityAcceptance": false,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

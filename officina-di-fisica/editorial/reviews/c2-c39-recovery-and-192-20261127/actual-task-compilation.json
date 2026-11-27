@@ -1,0 +1,146 @@
+[
+  {
+    "id": "SIM-C2-L006-01",
+    "sourcePrediction": 0,
+    "hasClock": false,
+    "questions": [
+      {
+        "prompt": "Imposta «Velocità nella gola» su 3 m/s. Quale valore ottieni per «Pressione statica nella gola»?",
+        "value": 16,
+        "unit": "kPa",
+        "worked": "p₂ = p₁ + ½ρ(v₁²−v₂²); p₁ = 20 kPa, v₁ = 1 m/s. 20,5 − (0,5 × 3 × 3) = 16 kPa."
+      },
+      {
+        "prompt": "In un Venturi orizzontale ideale entrano acqua a 1 m/s e pressione statica di 20 kPa. Se nella gola l’acqua scorre a 2 m/s, quale pressione statica vi leggi?",
+        "value": 18.5,
+        "unit": "kPa",
+        "worked": "p₂ = p₁ + ½ρ(v₁²−v₂²); p₁ = 20 kPa, v₁ = 1 m/s. 20,5 − (0,5 × 2 × 2) = 18,5 kPa."
+      }
+    ],
+    "values": [
+      16,
+      18.5
+    ]
+  },
+  {
+    "id": "SIM-C2-L006-02",
+    "sourcePrediction": 2,
+    "hasClock": false,
+    "questions": [
+      {
+        "prompt": "Imposta «Velocità dell’acqua» su 2 m/s. Quale valore ottieni per «Pressione dinamica»?",
+        "value": 2,
+        "unit": "kPa",
+        "worked": "q = ½ρv², con ρ = 1000 kg/m³. 0,5 × 2 × 2 = 2 kPa."
+      },
+      {
+        "prompt": "Su un tubo di Pitot in acqua che scorre a 4 m/s, di quanti kPa la pressione di ristagno supera quella statica?",
+        "value": 8,
+        "unit": "kPa",
+        "worked": "q = ½ρv², con ρ = 1000 kg/m³. 0,5 × 4 × 4 = 8 kPa."
+      }
+    ],
+    "values": [
+      2,
+      8,
+      0,
+      12.5
+    ]
+  },
+  {
+    "id": "SIM-C2-L006-03",
+    "sourcePrediction": 0,
+    "hasClock": false,
+    "questions": [
+      {
+        "prompt": "Imposta «Area locale rispetto a quella iniziale» su 0,5. Quale valore ottieni per «Velocità locale»?",
+        "value": 4,
+        "unit": "m/s",
+        "worked": "v₂ = v₁ A₁/A₂; v₁ = 2 m/s. 2 / 0,5 = 4 m/s."
+      },
+      {
+        "prompt": "Un condotto trasporta acqua a 2 m/s all’ingresso. Se l’area locale diventa 2 volte quella iniziale, quale velocità trovi?",
+        "value": 1,
+        "unit": "m/s",
+        "worked": "v₂ = v₁ A₁/A₂; v₁ = 2 m/s. 2 / 2 = 1 m/s."
+      }
+    ],
+    "values": [
+      4,
+      1,
+      2
+    ]
+  },
+  {
+    "id": "SIM-C2-L006-04",
+    "sourcePrediction": 0,
+    "hasClock": false,
+    "questions": [
+      {
+        "prompt": "Imposta «Perdita di energia per volume» su 6 kPa. Quale valore ottieni per «Pressione statica in uscita»?",
+        "value": 9,
+        "unit": "kPa",
+        "worked": "A e quota costanti: p₂ = p₁ − Δp perdita. 15 − 6 = 9 kPa."
+      },
+      {
+        "prompt": "L’acqua entra in un tubo orizzontale a 15 kPa. A sezione costante perde 4 kPa di energia per volume. Quale pressione statica rimane in uscita?",
+        "value": 11,
+        "unit": "kPa",
+        "worked": "A e quota costanti: p₂ = p₁ − Δp perdita. 15 − 4 = 11 kPa."
+      }
+    ],
+    "values": [
+      9,
+      11
+    ]
+  },
+  {
+    "id": "SIM-C2-L005-03",
+    "sourcePrediction": 0,
+    "hasClock": false,
+    "questions": [
+      {
+        "prompt": "Imposta «Area della seconda sezione» su 6 cm². Quale valore ottieni per «Velocità nella seconda sezione»?",
+        "value": 4,
+        "unit": "cm/s",
+        "worked": "A₁v₁ = Q = 24 cm³/s; v₂ = 24/A₂. 24 / 6 = 4 cm/s."
+      },
+      {
+        "prompt": "Passano 24 cm³ d’acqua al secondo. In un punto di area 5 cm², quale velocità media serve perché non si accumuli acqua?",
+        "value": 4.8,
+        "unit": "cm/s",
+        "worked": "A₁v₁ = Q = 24 cm³/s; v₂ = 24/A₂. 24 / 5 = 4,8 cm/s."
+      }
+    ],
+    "values": [
+      4,
+      4.8,
+      3
+    ]
+  },
+  {
+    "id": "SIM-C2-L005-05",
+    "sourcePrediction": 0,
+    "hasClock": false,
+    "questions": [
+      {
+        "prompt": "Imposta «Portata nel ramo superiore» su 8 mL/s. Quale valore ottieni per «Portata nel ramo inferiore»?",
+        "value": 4,
+        "unit": "mL/s",
+        "worked": "Q entrante = Q₁ + Q₂ = 12 mL/s. 12 − 8 = 4 mL/s."
+      },
+      {
+        "prompt": "Un raccordo riceve 12 mL/s e manda 6 mL/s nel ramo superiore. Quanta acqua al secondo deve uscire dall’altro ramo?",
+        "value": 6,
+        "unit": "mL/s",
+        "worked": "Q entrante = Q₁ + Q₂ = 12 mL/s. 12 − 6 = 6 mL/s."
+      }
+    ],
+    "values": [
+      12,
+      11,
+      1,
+      0
+    ]
+  }
+]
