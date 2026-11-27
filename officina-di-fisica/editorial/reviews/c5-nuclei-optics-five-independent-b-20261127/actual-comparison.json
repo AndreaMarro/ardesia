@@ -1,0 +1,1186 @@
+{
+  "phase": "FIVE_C5_CPU_SCIENTIFIC_COMPARISON",
+  "candidateCommit": "4291f9ee053dbd40d7f7e66349e2955473161799",
+  "consumerCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "states": 118,
+  "records": [
+    {
+      "id": "SIM-C5-L08-01",
+      "variant": "published",
+      "manualPoints": [
+        "8",
+        "7"
+      ],
+      "manualNominalExactAnswers": [
+        "14",
+        "13"
+      ],
+      "sourceUnit": "1",
+      "states": [
+        {
+          "gridIndex": 0,
+          "input": "6",
+          "nominalExactGivenData": "12",
+          "actualOutputLexeme": "12",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "input": "7",
+          "nominalExactGivenData": "13",
+          "actualOutputLexeme": "13",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "input": "8",
+          "nominalExactGivenData": "14",
+          "actualOutputLexeme": "14",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Neutroni in un nucleo con 6 protoni» su 8. Quale valore ottieni per «Numero di massa»?",
+          "value": 14,
+          "unit": "numero puro",
+          "worked": "A = Z + N, con Z = 6. 6 + 8 = 14."
+        },
+        {
+          "prompt": "Un isotopo del carbonio ha sei protoni e 7 neutroni. Quale numero di massa scrivi accanto al simbolo chimico?",
+          "value": 13,
+          "unit": "numero puro",
+          "worked": "A = Z + N, con Z = 6. 6 + 7 = 13."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "14",
+        "13"
+      ],
+      "literalPromptsMatchFrozenData": false
+    },
+    {
+      "id": "SIM-C5-L08-01",
+      "variant": "draft",
+      "manualPoints": [
+        "7",
+        "8"
+      ],
+      "manualNominalExactAnswers": [
+        "13",
+        "14"
+      ],
+      "sourceUnit": "1",
+      "states": [
+        {
+          "gridIndex": 0,
+          "input": "6",
+          "nominalExactGivenData": "12",
+          "actualOutputLexeme": "12",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "input": "7",
+          "nominalExactGivenData": "13",
+          "actualOutputLexeme": "13",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "input": "8",
+          "nominalExactGivenData": "14",
+          "actualOutputLexeme": "14",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Neutroni in un nucleo con 6 protoni» su 7. Quale valore ottieni per «Numero di massa»?",
+          "value": 13,
+          "unit": "numero puro",
+          "worked": "A = Z + N, con Z = 6. 6 + 7 = 13."
+        },
+        {
+          "prompt": "Un nucleo di carbonio contiene 6 protoni e 8 neutroni. Quale numero di massa scrivi in alto a sinistra di C?",
+          "value": 14,
+          "unit": "numero puro",
+          "worked": "A = Z + N, con Z = 6. 6 + 8 = 14."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "13",
+        "14"
+      ],
+      "literalPromptsMatchFrozenData": true
+    },
+    {
+      "id": "SIM-C5-L08-03",
+      "variant": "published",
+      "manualPoints": [
+        "2",
+        "3"
+      ],
+      "manualNominalExactAnswers": [
+        "1",
+        "0"
+      ],
+      "sourceUnit": "1",
+      "states": [
+        {
+          "gridIndex": 0,
+          "input": "1",
+          "nominalExactGivenData": "-2",
+          "actualOutputLexeme": "-2",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "input": "2",
+          "nominalExactGivenData": "1",
+          "actualOutputLexeme": "1",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "input": "3",
+          "nominalExactGivenData": "0",
+          "actualOutputLexeme": "0",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Transizione considerata» su Beta meno. Quale valore ottieni per «Variazione del numero atomico»?",
+          "value": 1,
+          "unit": "numero puro",
+          "worked": "α: ΔZ = −2 e ΔA = −4; β⁻: ΔZ = +1 e ΔA = 0; γ: entrambi nulli. 1 − 0 = 1."
+        },
+        {
+          "prompt": "Segui il nucleo figlio nella transizione «Gamma». Di quanto cambia il suo numero atomico rispetto al nucleo di partenza, con segno?",
+          "value": 0,
+          "unit": "numero puro",
+          "worked": "α: ΔZ = −2 e ΔA = −4; β⁻: ΔZ = +1 e ΔA = 0; γ: entrambi nulli. 0 = 0."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "1",
+        "0"
+      ],
+      "literalPromptsMatchFrozenData": false
+    },
+    {
+      "id": "SIM-C5-L08-03",
+      "variant": "draft",
+      "manualPoints": [
+        "1",
+        "2"
+      ],
+      "manualNominalExactAnswers": [
+        "-2",
+        "1"
+      ],
+      "sourceUnit": "1",
+      "states": [
+        {
+          "gridIndex": 0,
+          "input": "1",
+          "nominalExactGivenData": "-2",
+          "actualOutputLexeme": "-2",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "input": "2",
+          "nominalExactGivenData": "1",
+          "actualOutputLexeme": "1",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "input": "3",
+          "nominalExactGivenData": "0",
+          "actualOutputLexeme": "0",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Transizione considerata» su Alfa. Quale valore ottieni per «Variazione del numero atomico»?",
+          "value": -2,
+          "unit": "numero puro",
+          "worked": "α: ΔZ = −2 e ΔA = −4; β⁻: ΔZ = +1 e ΔA = 0; γ: entrambi nulli. 0 − 2 = -2."
+        },
+        {
+          "prompt": "Nel decadimento «Beta meno», quale valore con segno ottieni sottraendo il numero atomico del nucleo padre da quello del figlio?",
+          "value": 1,
+          "unit": "numero puro",
+          "worked": "α: ΔZ = −2 e ΔA = −4; β⁻: ΔZ = +1 e ΔA = 0; γ: entrambi nulli. 1 − 0 = 1."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "-2",
+        "1"
+      ],
+      "literalPromptsMatchFrozenData": true
+    },
+    {
+      "id": "SIM-C5-L09-01",
+      "variant": "published",
+      "manualPoints": [
+        "50",
+        "40"
+      ],
+      "manualNominalExactAnswers": [
+        "100",
+        "80"
+      ],
+      "sourceUnit": "°",
+      "states": [
+        {
+          "gridIndex": 0,
+          "input": "0",
+          "nominalExactGivenData": "0",
+          "actualOutputLexeme": "0",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "input": "5",
+          "nominalExactGivenData": "10",
+          "actualOutputLexeme": "10",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "input": "10",
+          "nominalExactGivenData": "20",
+          "actualOutputLexeme": "20",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "input": "15",
+          "nominalExactGivenData": "30",
+          "actualOutputLexeme": "30",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "input": "20",
+          "nominalExactGivenData": "40",
+          "actualOutputLexeme": "40",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "input": "25",
+          "nominalExactGivenData": "50",
+          "actualOutputLexeme": "50",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "input": "30",
+          "nominalExactGivenData": "60",
+          "actualOutputLexeme": "60",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "input": "35",
+          "nominalExactGivenData": "70",
+          "actualOutputLexeme": "70",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "input": "40",
+          "nominalExactGivenData": "80",
+          "actualOutputLexeme": "80",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "input": "45",
+          "nominalExactGivenData": "90",
+          "actualOutputLexeme": "90",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "input": "50",
+          "nominalExactGivenData": "100",
+          "actualOutputLexeme": "100",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 11,
+          "input": "55",
+          "nominalExactGivenData": "110",
+          "actualOutputLexeme": "110",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 12,
+          "input": "60",
+          "nominalExactGivenData": "120",
+          "actualOutputLexeme": "120",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 13,
+          "input": "65",
+          "nominalExactGivenData": "130",
+          "actualOutputLexeme": "130",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 14,
+          "input": "70",
+          "nominalExactGivenData": "140",
+          "actualOutputLexeme": "140",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 15,
+          "input": "75",
+          "nominalExactGivenData": "150",
+          "actualOutputLexeme": "150",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Angolo incidente rispetto alla normale» su 50 °. Quale valore ottieni per «Angolo fra raggio verso la sorgente e raggio riflesso»?",
+          "value": 100,
+          "unit": "°",
+          "worked": "θ riflesso = θ incidente; apertura = 2θ. 2 × 50 = 100 °."
+        },
+        {
+          "prompt": "Uno specchio riceve il raggio a 40 ° dalla normale. Qual è l’angolo fra la direzione che dal punto di incidenza torna alla sorgente e quella del raggio riflesso?",
+          "value": 80,
+          "unit": "°",
+          "worked": "θ riflesso = θ incidente; apertura = 2θ. 2 × 40 = 80 °."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "100",
+        "80"
+      ],
+      "literalPromptsMatchFrozenData": false
+    },
+    {
+      "id": "SIM-C5-L09-01",
+      "variant": "draft",
+      "manualPoints": [
+        "20",
+        "50"
+      ],
+      "manualNominalExactAnswers": [
+        "40",
+        "100"
+      ],
+      "sourceUnit": "°",
+      "states": [
+        {
+          "gridIndex": 0,
+          "input": "0",
+          "nominalExactGivenData": "0",
+          "actualOutputLexeme": "0",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "input": "5",
+          "nominalExactGivenData": "10",
+          "actualOutputLexeme": "10",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "input": "10",
+          "nominalExactGivenData": "20",
+          "actualOutputLexeme": "20",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "input": "15",
+          "nominalExactGivenData": "30",
+          "actualOutputLexeme": "30",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "input": "20",
+          "nominalExactGivenData": "40",
+          "actualOutputLexeme": "40",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "input": "25",
+          "nominalExactGivenData": "50",
+          "actualOutputLexeme": "50",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "input": "30",
+          "nominalExactGivenData": "60",
+          "actualOutputLexeme": "60",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "input": "35",
+          "nominalExactGivenData": "70",
+          "actualOutputLexeme": "70",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "input": "40",
+          "nominalExactGivenData": "80",
+          "actualOutputLexeme": "80",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "input": "45",
+          "nominalExactGivenData": "90",
+          "actualOutputLexeme": "90",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "input": "50",
+          "nominalExactGivenData": "100",
+          "actualOutputLexeme": "100",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 11,
+          "input": "55",
+          "nominalExactGivenData": "110",
+          "actualOutputLexeme": "110",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 12,
+          "input": "60",
+          "nominalExactGivenData": "120",
+          "actualOutputLexeme": "120",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 13,
+          "input": "65",
+          "nominalExactGivenData": "130",
+          "actualOutputLexeme": "130",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 14,
+          "input": "70",
+          "nominalExactGivenData": "140",
+          "actualOutputLexeme": "140",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 15,
+          "input": "75",
+          "nominalExactGivenData": "150",
+          "actualOutputLexeme": "150",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Angolo incidente rispetto alla normale» su 20 °. Quale valore ottieni per «Angolo fra raggio verso la sorgente e raggio riflesso»?",
+          "value": 40,
+          "unit": "°",
+          "worked": "θ riflesso = θ incidente; apertura = 2θ. 2 × 20 = 40 °."
+        },
+        {
+          "prompt": "Un raggio arriva su uno specchio piano con un angolo di 50 ° rispetto alla normale. Qual è l’apertura tra il segmento che torna alla sorgente e il raggio riflesso?",
+          "value": 100,
+          "unit": "°",
+          "worked": "θ riflesso = θ incidente; apertura = 2θ. 2 × 50 = 100 °."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "40",
+        "100"
+      ],
+      "literalPromptsMatchFrozenData": true
+    },
+    {
+      "id": "SIM-C5-L10-01",
+      "variant": "published",
+      "manualPoints": [
+        "20",
+        "13"
+      ],
+      "manualNominalExactAnswers": [
+        "5",
+        "100/13"
+      ],
+      "sourceUnit": "m⁻¹",
+      "states": [
+        {
+          "gridIndex": 0,
+          "input": "5",
+          "nominalExactGivenData": "20",
+          "actualOutputLexeme": "20",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "input": "6",
+          "nominalExactGivenData": "50/3",
+          "actualOutputLexeme": "16.666666666666668",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "input": "7",
+          "nominalExactGivenData": "100/7",
+          "actualOutputLexeme": "14.285714285714286",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "input": "8",
+          "nominalExactGivenData": "25/2",
+          "actualOutputLexeme": "12.5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "input": "9",
+          "nominalExactGivenData": "100/9",
+          "actualOutputLexeme": "11.11111111111111",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "input": "10",
+          "nominalExactGivenData": "10",
+          "actualOutputLexeme": "10",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "input": "11",
+          "nominalExactGivenData": "100/11",
+          "actualOutputLexeme": "9.090909090909092",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "input": "12",
+          "nominalExactGivenData": "25/3",
+          "actualOutputLexeme": "8.333333333333334",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "input": "13",
+          "nominalExactGivenData": "100/13",
+          "actualOutputLexeme": "7.6923076923076925",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "input": "14",
+          "nominalExactGivenData": "50/7",
+          "actualOutputLexeme": "7.142857142857143",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "input": "15",
+          "nominalExactGivenData": "20/3",
+          "actualOutputLexeme": "6.666666666666667",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 11,
+          "input": "16",
+          "nominalExactGivenData": "25/4",
+          "actualOutputLexeme": "6.25",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 12,
+          "input": "17",
+          "nominalExactGivenData": "100/17",
+          "actualOutputLexeme": "5.882352941176471",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 13,
+          "input": "18",
+          "nominalExactGivenData": "50/9",
+          "actualOutputLexeme": "5.555555555555555",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 14,
+          "input": "19",
+          "nominalExactGivenData": "100/19",
+          "actualOutputLexeme": "5.2631578947368425",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 15,
+          "input": "20",
+          "nominalExactGivenData": "5",
+          "actualOutputLexeme": "5",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Distanza focale della lente» su 20 cm. Quale valore ottieni per «Potere diottrico»?",
+          "value": 5,
+          "unit": "m⁻¹",
+          "worked": "D = 1/f(m) = 100/f(cm). 100 / 20 = 5 m⁻¹."
+        },
+        {
+          "prompt": "Una lente convergente mette a fuoco raggi paralleli a 13 cm dalla lente. Quale potere diottrico scrivi sulla sua etichetta?",
+          "value": "7.6923076923076925",
+          "unit": "m⁻¹",
+          "worked": "D = 1/f(m) = 100/f(cm). 100 / 13 ≈ 7,692 m⁻¹."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "5",
+        "7,692"
+      ],
+      "literalPromptsMatchFrozenData": false
+    },
+    {
+      "id": "SIM-C5-L10-01",
+      "variant": "draft",
+      "manualPoints": [
+        "5",
+        "20"
+      ],
+      "manualNominalExactAnswers": [
+        "20",
+        "5"
+      ],
+      "sourceUnit": "m⁻¹",
+      "states": [
+        {
+          "gridIndex": 0,
+          "input": "5",
+          "nominalExactGivenData": "20",
+          "actualOutputLexeme": "20",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "input": "6",
+          "nominalExactGivenData": "50/3",
+          "actualOutputLexeme": "16.666666666666668",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "input": "7",
+          "nominalExactGivenData": "100/7",
+          "actualOutputLexeme": "14.285714285714286",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "input": "8",
+          "nominalExactGivenData": "25/2",
+          "actualOutputLexeme": "12.5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "input": "9",
+          "nominalExactGivenData": "100/9",
+          "actualOutputLexeme": "11.11111111111111",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "input": "10",
+          "nominalExactGivenData": "10",
+          "actualOutputLexeme": "10",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "input": "11",
+          "nominalExactGivenData": "100/11",
+          "actualOutputLexeme": "9.090909090909092",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "input": "12",
+          "nominalExactGivenData": "25/3",
+          "actualOutputLexeme": "8.333333333333334",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "input": "13",
+          "nominalExactGivenData": "100/13",
+          "actualOutputLexeme": "7.6923076923076925",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "input": "14",
+          "nominalExactGivenData": "50/7",
+          "actualOutputLexeme": "7.142857142857143",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "input": "15",
+          "nominalExactGivenData": "20/3",
+          "actualOutputLexeme": "6.666666666666667",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 11,
+          "input": "16",
+          "nominalExactGivenData": "25/4",
+          "actualOutputLexeme": "6.25",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 12,
+          "input": "17",
+          "nominalExactGivenData": "100/17",
+          "actualOutputLexeme": "5.882352941176471",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 13,
+          "input": "18",
+          "nominalExactGivenData": "50/9",
+          "actualOutputLexeme": "5.555555555555555",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 14,
+          "input": "19",
+          "nominalExactGivenData": "100/19",
+          "actualOutputLexeme": "5.2631578947368425",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 15,
+          "input": "20",
+          "nominalExactGivenData": "5",
+          "actualOutputLexeme": "5",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Distanza focale della lente» su 5 cm. Quale valore ottieni per «Potere diottrico»?",
+          "value": 20,
+          "unit": "m⁻¹",
+          "worked": "D = 1/f(m) = 100/f(cm). 100 / 5 = 20 m⁻¹."
+        },
+        {
+          "prompt": "Una lente convergente sottile mette a fuoco raggi paralleli a 20 cm. Quale potere ottico ha in diottrie?",
+          "value": 5,
+          "unit": "m⁻¹",
+          "worked": "D = 1/f(m) = 100/f(cm). 100 / 20 = 5 m⁻¹."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "20",
+        "5"
+      ],
+      "literalPromptsMatchFrozenData": true
+    },
+    {
+      "id": "SIM-C5-L10-02",
+      "variant": "published",
+      "manualPoints": [
+        "20",
+        "15"
+      ],
+      "manualNominalExactAnswers": [
+        "5",
+        "10/3"
+      ],
+      "sourceUnit": "diottrie",
+      "states": [
+        {
+          "gridIndex": 0,
+          "input": "5",
+          "nominalExactGivenData": "-10",
+          "actualOutputLexeme": "-10",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "input": "6",
+          "nominalExactGivenData": "-20/3",
+          "actualOutputLexeme": "-6.666666666666668",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "input": "7",
+          "nominalExactGivenData": "-30/7",
+          "actualOutputLexeme": "-4.2857142857142865",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "input": "8",
+          "nominalExactGivenData": "-5/2",
+          "actualOutputLexeme": "-2.5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "input": "9",
+          "nominalExactGivenData": "-10/9",
+          "actualOutputLexeme": "-1.1111111111111107",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "input": "10",
+          "nominalExactGivenData": "0",
+          "actualOutputLexeme": "0",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "input": "11",
+          "nominalExactGivenData": "10/11",
+          "actualOutputLexeme": "0.9090909090909083",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "input": "12",
+          "nominalExactGivenData": "5/3",
+          "actualOutputLexeme": "1.666666666666666",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "input": "13",
+          "nominalExactGivenData": "30/13",
+          "actualOutputLexeme": "2.3076923076923075",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "input": "14",
+          "nominalExactGivenData": "20/7",
+          "actualOutputLexeme": "2.8571428571428568",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "input": "15",
+          "nominalExactGivenData": "10/3",
+          "actualOutputLexeme": "3.333333333333333",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 11,
+          "input": "16",
+          "nominalExactGivenData": "15/4",
+          "actualOutputLexeme": "3.75",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 12,
+          "input": "17",
+          "nominalExactGivenData": "70/17",
+          "actualOutputLexeme": "4.117647058823529",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 13,
+          "input": "18",
+          "nominalExactGivenData": "40/9",
+          "actualOutputLexeme": "4.444444444444445",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 14,
+          "input": "19",
+          "nominalExactGivenData": "90/19",
+          "actualOutputLexeme": "4.7368421052631575",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 15,
+          "input": "20",
+          "nominalExactGivenData": "5",
+          "actualOutputLexeme": "5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 16,
+          "input": "21",
+          "nominalExactGivenData": "110/21",
+          "actualOutputLexeme": "5.238095238095238",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 17,
+          "input": "22",
+          "nominalExactGivenData": "60/11",
+          "actualOutputLexeme": "5.454545454545454",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 18,
+          "input": "23",
+          "nominalExactGivenData": "130/23",
+          "actualOutputLexeme": "5.6521739130434785",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 19,
+          "input": "24",
+          "nominalExactGivenData": "35/6",
+          "actualOutputLexeme": "5.833333333333333",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 20,
+          "input": "25",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Distanza dell’oggetto» su 20 cm. Quale valore ottieni per «Vergenza dell’immagine»?",
+          "value": 5,
+          "unit": "diottrie",
+          "worked": "1/q = 1/f − 1/p, con f = 10 cm; 1/q(m) = 10 − 100/p. 10 − (100 / 20) = 5 diottrie."
+        },
+        {
+          "prompt": "Una lente convergente di focale 10 cm guarda un oggetto posto a 15 cm. Quale vergenza con segno 1/q, in diottrie, hanno i raggi in uscita?",
+          "value": "3.333333333333333",
+          "unit": "diottrie",
+          "worked": "1/q = 1/f − 1/p, con f = 10 cm; 1/q(m) = 10 − 100/p. 10 − (100 / 15) ≈ 3,333 diottrie."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "5",
+        "3,333"
+      ],
+      "literalPromptsMatchFrozenData": false
+    },
+    {
+      "id": "SIM-C5-L10-02",
+      "variant": "draft",
+      "manualPoints": [
+        "5",
+        "20"
+      ],
+      "manualNominalExactAnswers": [
+        "-10",
+        "5"
+      ],
+      "sourceUnit": "diottrie",
+      "states": [
+        {
+          "gridIndex": 0,
+          "input": "5",
+          "nominalExactGivenData": "-10",
+          "actualOutputLexeme": "-10",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "input": "6",
+          "nominalExactGivenData": "-20/3",
+          "actualOutputLexeme": "-6.666666666666668",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "input": "7",
+          "nominalExactGivenData": "-30/7",
+          "actualOutputLexeme": "-4.2857142857142865",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "input": "8",
+          "nominalExactGivenData": "-5/2",
+          "actualOutputLexeme": "-2.5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "input": "9",
+          "nominalExactGivenData": "-10/9",
+          "actualOutputLexeme": "-1.1111111111111107",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "input": "10",
+          "nominalExactGivenData": "0",
+          "actualOutputLexeme": "0",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "input": "11",
+          "nominalExactGivenData": "10/11",
+          "actualOutputLexeme": "0.9090909090909083",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "input": "12",
+          "nominalExactGivenData": "5/3",
+          "actualOutputLexeme": "1.666666666666666",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "input": "13",
+          "nominalExactGivenData": "30/13",
+          "actualOutputLexeme": "2.3076923076923075",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "input": "14",
+          "nominalExactGivenData": "20/7",
+          "actualOutputLexeme": "2.8571428571428568",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "input": "15",
+          "nominalExactGivenData": "10/3",
+          "actualOutputLexeme": "3.333333333333333",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 11,
+          "input": "16",
+          "nominalExactGivenData": "15/4",
+          "actualOutputLexeme": "3.75",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 12,
+          "input": "17",
+          "nominalExactGivenData": "70/17",
+          "actualOutputLexeme": "4.117647058823529",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 13,
+          "input": "18",
+          "nominalExactGivenData": "40/9",
+          "actualOutputLexeme": "4.444444444444445",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 14,
+          "input": "19",
+          "nominalExactGivenData": "90/19",
+          "actualOutputLexeme": "4.7368421052631575",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 15,
+          "input": "20",
+          "nominalExactGivenData": "5",
+          "actualOutputLexeme": "5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 16,
+          "input": "21",
+          "nominalExactGivenData": "110/21",
+          "actualOutputLexeme": "5.238095238095238",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 17,
+          "input": "22",
+          "nominalExactGivenData": "60/11",
+          "actualOutputLexeme": "5.454545454545454",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 18,
+          "input": "23",
+          "nominalExactGivenData": "130/23",
+          "actualOutputLexeme": "5.6521739130434785",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 19,
+          "input": "24",
+          "nominalExactGivenData": "35/6",
+          "actualOutputLexeme": "5.833333333333333",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 20,
+          "input": "25",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Distanza dell’oggetto» su 5 cm. Quale valore ottieni per «Vergenza dell’immagine»?",
+          "value": -10,
+          "unit": "diottrie",
+          "worked": "1/q = 1/(0,10 m) − 1/p, con p e q espressi in metri. 10 − (100 / 5) = -10 diottrie."
+        },
+        {
+          "prompt": "L’oggetto è a 20 cm da una lente sottile convergente con f = 10 cm. Qual è la vergenza dell’immagine 1/q con segno, in diottrie?",
+          "value": 5,
+          "unit": "diottrie",
+          "worked": "1/q = 1/(0,10 m) − 1/p, con p e q espressi in metri. 10 − (100 / 20) = 5 diottrie."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "-10",
+        "5"
+      ],
+      "literalPromptsMatchFrozenData": true
+    }
+  ],
+  "numericIsolation": "Frozen reference from fresh pre-key Node process without any consumer imports; strict Decimal lexeme comparison; no epsilon.",
+  "representation": "Exact rational manual calculations retained separately from actual IEEE outputs; isolated reference table and no epsilon.",
+  "clockParity": "Each legal input duration and five clock frames compared across editions; initial-reference duration excluded from metadata because references can change.",
+  "bindingIdentity": "ALL5_SOURCE_AND_CANDIDATE_CANONICAL_HASHES_MATCH",
+  "actualDraftManualTasks": 10,
+  "literalServedPromptsMatched": 10,
+  "originalAndDraftStates": "IDENTICAL_ASSERTED_BY_PRODUCER",
+  "Chrome": "NOT_RUN",
+  "canonicalDBImport": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "activityCredit": 0
+}

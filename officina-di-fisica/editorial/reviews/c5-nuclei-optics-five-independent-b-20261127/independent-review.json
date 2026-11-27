@@ -1,0 +1,204 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "INDEPENDENT_FIVE_DRAFT_C5_CPU_TEXT_MATH_MANUAL_REVIEW",
+  "author": "root",
+  "independentReviewer": "author_vectors_b",
+  "candidateCommit": "4291f9ee053dbd40d7f7e66349e2955473161799",
+  "consumerCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "rawPackageSha256": "e7083267fd47669650fbbca13e664f20485dac8911a8c7adc97b280dfc3badce",
+  "reviewedRecords": [
+    {
+      "id": "SIM-C5-L08-01",
+      "candidateSha256": "19495f07720d3d41d22c871891df6d824448e941617b7f722f27c7acbfb5ab9f",
+      "version": 2,
+      "baseVersion": 1,
+      "textMathManualReview": {
+        "ok": true,
+        "assumptionsAndDimensions": "Z=6 fixed defines carbon; A=Z+N counts nucleons and is not the bound atomic mass. N is discrete; stability is additional nuclear information, not inferred from the arithmetic.",
+        "independentManualCalculation": "7neutrons→A13;8→A14. Inverse N=A−6 returns7/8. Both outputs dimensionless.",
+        "manualArithmeticAndPedagogy": "13C/14C preserve the element while changing nuclide; stable13C/radioactive14C is an assigned fact. Two additions and an inverse subtraction, no calculator.",
+        "servedPoints": [
+          "7",
+          "8"
+        ],
+        "exactAnswers": [
+          "13",
+          "14"
+        ],
+        "unit": "1",
+        "literalServedPromptsVerified": true
+      },
+      "statesEachEdition": 3,
+      "visualReview": "NOT_RUN",
+      "humanApproval": "NOT_RUN",
+      "findings": []
+    },
+    {
+      "id": "SIM-C5-L08-03",
+      "candidateSha256": "24df9356a6722b42afd4c13a88b830dd0b1b62aa899f5ff077dfac1993925ba6",
+      "version": 2,
+      "baseVersion": 1,
+      "textMathManualReview": {
+        "ok": true,
+        "assumptionsAndDimensions": "Single assigned events, nucleus daughter relative to parent. Alpha emission removes2protons/2neutrons; beta-minus converts a neutron to proton and emits electron/antineutrino; gamma changes excitation only.",
+        "independentManualCalculation": "Alpha ΔZ−2,ΔA−4; beta-minus ΔZ+1,ΔA0. The actual tasks ask ΔZ and return−2/+1; gamma state returns0.",
+        "manualArithmeticAndPedagogy": "Distinguishes daughter nuclear charge from emitted electron charge. Charge conservation and unchanged nucleon count in beta-minus are explicit; no unassigned decay chain inferred.",
+        "servedPoints": [
+          "1",
+          "2"
+        ],
+        "exactAnswers": [
+          "-2",
+          "1"
+        ],
+        "unit": "1",
+        "literalServedPromptsVerified": true
+      },
+      "statesEachEdition": 3,
+      "visualReview": "NOT_RUN",
+      "humanApproval": "NOT_RUN",
+      "findings": []
+    },
+    {
+      "id": "SIM-C5-L09-01",
+      "candidateSha256": "98c203078558ae04a927ae3d1146be385287e2628e9ca870fa868040dabc41d8",
+      "version": 2,
+      "baseVersion": 1,
+      "textMathManualReview": {
+        "ok": true,
+        "assumptionsAndDimensions": "Angles measured to the normal of the plane mirror. Asked opening is between geometric segments from the impact point towards source and reflected ray, not between the propagation velocity vectors.",
+        "independentManualCalculation": "α=2θ;20°→40°,50°→100°. Inverse θ=α/2. At normal incidence opening0° even though propagation directions oppose.",
+        "manualArithmeticAndPedagogy": "Construction and inverse halving are explicit; prevents using180°−2θ for this different geometric quantity.",
+        "servedPoints": [
+          "20",
+          "50"
+        ],
+        "exactAnswers": [
+          "40",
+          "100"
+        ],
+        "unit": "°",
+        "literalServedPromptsVerified": true
+      },
+      "statesEachEdition": 16,
+      "visualReview": "NOT_RUN",
+      "humanApproval": "NOT_RUN",
+      "findings": []
+    },
+    {
+      "id": "SIM-C5-L10-01",
+      "candidateSha256": "f20a222f3333b5d5adee7a515f07d4c683c3544bb372826dc3c65396b47cb8ef",
+      "version": 2,
+      "baseVersion": 1,
+      "textMathManualReview": {
+        "ok": true,
+        "assumptionsAndDimensions": "Thin convergent lens, paraxial parallel input; positive focal length. Power reciprocal of physical focal length in metres, reported m⁻¹. Formula f(m)/f(cm) denotes explicitly labelled numerical readings.",
+        "independentManualCalculation": "5cm=.05m=1/20m→20m⁻¹;20cm=.2m=1/5m→5m⁻¹. Inverse1/(5m⁻¹)=.2m=20cm.",
+        "manualArithmeticAndPedagogy": "Fourfold longer focal length gives quarter power. Explicit centimetre/metre conversion avoids off-by100 reciprocal mistake; manual integer divisions.",
+        "servedPoints": [
+          "5",
+          "20"
+        ],
+        "exactAnswers": [
+          "20",
+          "5"
+        ],
+        "unit": "m⁻¹",
+        "literalServedPromptsVerified": true
+      },
+      "statesEachEdition": 16,
+      "visualReview": "NOT_RUN",
+      "humanApproval": "NOT_RUN",
+      "findings": []
+    },
+    {
+      "id": "SIM-C5-L10-02",
+      "candidateSha256": "938a2561c9ef1633cb2cf1e3f0e9a77470bdde23f0745b8767af87ca98061045",
+      "version": 2,
+      "baseVersion": 1,
+      "textMathManualReview": {
+        "ok": true,
+        "assumptionsAndDimensions": "Thin lens f=.10m, real object p>0, positive q towards emerging side. Finite output is image vergence1/q, not image distance at focus.",
+        "independentManualCalculation": "V=10−100/p_cm D.5cm→−10D and q−10cm virtual;20cm→+5D and q+20cm real. p10cm→V0 with parallel output, not finite q. Inverse p_cm=100/(10−V) recovers5/20.",
+        "manualArithmeticAndPedagogy": "The final physical formula1/q=1/(.10m)−1/p now declares p/q metres. Re-read confirms only this field changed; signs, finite-at-focus output and manual conversion/reciprocal steps remain correct.",
+        "servedPoints": [
+          "5",
+          "20"
+        ],
+        "exactAnswers": [
+          "-10",
+          "5"
+        ],
+        "unit": "diottrie",
+        "literalServedPromptsVerified": true
+      },
+      "statesEachEdition": 21,
+      "visualReview": "NOT_RUN",
+      "humanApproval": "NOT_RUN",
+      "findings": []
+    }
+  ],
+  "primary": {
+    "commit": "fdba148f1be10368abbf87dc9b279c7dca16d0c3",
+    "sha256": "370619a05ffe1319adebb9ffb4ad27d9a6fea3d7f4aa4b07ec14b26ed6298359"
+  },
+  "preKeyModel": {
+    "commit": "53865a3bc49caecd323e8c047f648a28db67139c",
+    "sha256": "2e7be93733fbe41854cf5713b1a156742ddf788c647014d6fb7dce7fd82686c8",
+    "consumerImports": [],
+    "realExitCode": 0,
+    "independentStates": 59,
+    "tasks": 10
+  },
+  "automation": {
+    "realTests": 14,
+    "testsExitCode": 0,
+    "actualModelStatesBothEditions": 118,
+    "manualTasks": 10,
+    "manualInputsAcceptedByUnchangedGrader": 10,
+    "negativeInputsRejected": 15,
+    "exactComparison": "Strict equality with consumer-free pre-key IEEE table; exact rational manual derivations and inverses separately tested; no epsilon.",
+    "originalDraftSameInputSceneClockParity": true,
+    "allFiveClocks": null,
+    "stages": [
+      {
+        "stage": "actual-code",
+        "observedExitCode": 0,
+        "signal": null
+      },
+      {
+        "stage": "comparison",
+        "observedExitCode": 0,
+        "signal": null
+      },
+      {
+        "stage": "tests",
+        "observedExitCode": 0,
+        "signal": null
+      },
+      {
+        "stage": "grader",
+        "observedExitCode": 0,
+        "signal": null
+      }
+    ]
+  },
+  "historicalFinding": {
+    "id": "SIM-C5-L10-02",
+    "field": "formula",
+    "oldCommit": "d345b689567ce73da192b44d855c48d94f654c03",
+    "status": "RESOLVED_ON_4291_ONLY",
+    "strictDiff": "Only formula changed; four other records and all answer values/points/blocks unchanged.",
+    "oldBytesAndMathRun": "superseded-d345-before-unit-field/"
+  },
+  "sourceAndCandidateIdentities": "ALL5_CANONICAL_BINDINGS_AND_GIT_SNAPSHOTS_BYTE_EXACT",
+  "findings": [],
+  "reviewedSource": "Every field of all five candidate records read after primary/model freeze; candidate blocks constitute the manual solutions. No author receipt used as verification.",
+  "Chrome": "NOT_RUN",
+  "canonicalDBImport": "NOT_RUN",
+  "runtimeFingerprint": "NOT_RUN_FULL_RUNTIME;actualCPUmodules pinned to1b72and verifiedGitbyteexact",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "activityCredit": 0,
+  "timestamp": "2026-11-27T08:48:17.941610+00:00"
+}

@@ -1,0 +1,552 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "INDEPENDENT_FIVE_DRAFT_C5_CPU_TEXT_REVIEW",
+  "candidateCommit": "4291f9ee053dbd40d7f7e66349e2955473161799",
+  "consumerCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "rawPackageSha256": "e7083267fd47669650fbbca13e664f20485dac8911a8c7adc97b280dfc3badce",
+  "reviewSha256": "c2299f3fe8038437447bc0059c28b6531d4fbec39483b44cf60695c3822b7a5d",
+  "reviewedRecords": 5,
+  "tasks": 10,
+  "realTests": 14,
+  "realTestExitCode": 0,
+  "actualSourceModulesPinned": 52,
+  "findings": [],
+  "historicalFinding": "L10-02d345formulaRESOLVED_ON4291_ONLY",
+  "UI": "NOT_RUN",
+  "canonicalDBImport": "NOT_RUN",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "ownedRepositoryFiles": [
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/actual-code.json",
+      "sha256": "7488c605e1e92270ac27ee0a73eab87bfd5b082b236872de94f403c9752ee826",
+      "bytes": 74779
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/actual-code.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/actual-code.stdout.txt",
+      "sha256": "7488c605e1e92270ac27ee0a73eab87bfd5b082b236872de94f403c9752ee826",
+      "bytes": 74779
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/actual-comparison.json",
+      "sha256": "d0227ec005dea209c84fad355b031eee175f32cd9d6009268005d884e4f72653",
+      "bytes": 36608
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/actual-grader-block.js.txt",
+      "sha256": "47873210c4ae3e5c412a9e9f5ed915534984f6639f1bc5c95017150df830d239",
+      "bytes": 356
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/actual-terminal.json",
+      "sha256": "a420b5d5480d78cdaffd24dfc7f4cf75fa7450f5c7044007ae216e20ed2f7a51",
+      "bytes": 525
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/check_actual.py",
+      "sha256": "06eda4bfb482305b3606762c4bffc4217ea2dc257a0fe0d40b732e0f24d37b7f",
+      "bytes": 5187
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/collect-actual.mjs",
+      "sha256": "b7921bc31dedda97124267afe7056cb9e8592e771c89ca086d23ac4cc28e1d5c",
+      "bytes": 2415
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/comparison.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/comparison.stdout.txt",
+      "sha256": "8297976ad8fd5a757595d04b852442cb5e52e1326185fac1e0a3c09cd04fcd15",
+      "bytes": 61
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/content/esperienze-C5.json",
+      "sha256": "7fff6e6703886003c45695e95b3361f8e09875da4b080ae17e6aa26d33f9bd84",
+      "bytes": 36269
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/package.json",
+      "sha256": "1ceaf4e9313cebcd296324a6ee48eeb0dfd858e20fe0ff8efb4d97d0e90f76f9",
+      "bytes": 535
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/aula.js",
+      "sha256": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+      "bytes": 4885
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/banco.js",
+      "sha256": "44192babc8992b23a57d3852c14161f26c41a46e3c4902fe37a11e5fbb2a69cf",
+      "bytes": 35891
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/catalogo.js",
+      "sha256": "4aa0261293b98126c06c6af91ce27c2dd32e214856b04d488e3662e040d36a95",
+      "bytes": 4099
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/collegamenti.js",
+      "sha256": "23755d6085231531bab2cd86c9791e307e7cad132c96be4f6fdcbaabe6f0e5b7",
+      "bytes": 1481
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/etichette.js",
+      "sha256": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+      "bytes": 778
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/grafici.js",
+      "sha256": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+      "bytes": 5880
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/misure.js",
+      "sha256": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+      "bytes": 1512
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/modelli/calore.js",
+      "sha256": "83c89a3140ba5a3386eff0cff54a1aa2575c26ea1e973779b19303026c13bc23",
+      "bytes": 2236
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/modelli/campo.js",
+      "sha256": "3750efefa281d28712a973bea921544fb83dc5ad9eb2da7e0c09fe6fac6d50c3",
+      "bytes": 3362
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/modelli/circuito.js",
+      "sha256": "107b9e8defed3aaa6d04883442951ed20b7b2cdfdefb658f3ef746c24185a757",
+      "bytes": 2686
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/modelli/gas.js",
+      "sha256": "7981d292be241bb3c7921f755072bda44ab52e5be92f9ae203958a19b7ec1a6d",
+      "bytes": 2335
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/modelli/induzione.js",
+      "sha256": "14bec092bcfb1d23b0c5ad97426b75c003f56bd427ce30c6d65c0859319f48bc",
+      "bytes": 2454
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/modelli/lente.js",
+      "sha256": "5488291f98987538c4fc8483a61e2c058e45605c66391a7ccbdd2b9fb8787566",
+      "bytes": 3787
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/modelli/onde.js",
+      "sha256": "fdf5fc16432a92d816db87f35348d461d491cbf48ea45703c27cda2a02314bc3",
+      "bytes": 4000
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/modelli/piano.js",
+      "sha256": "0575020da70a7759527f307b6ba291777f79ff0a710e313b1a4cb7ee012de6e2",
+      "bytes": 2826
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/modelli/stevino.js",
+      "sha256": "620d9363d38867ce854c0f9c567bc8c63d5519a44f1ce1dfd0dddf1f315da0af",
+      "bytes": 2066
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/modelli/tubo.js",
+      "sha256": "ebe96bda5301f124182d7bd6ee3042b9ecad61b46689ea26a093deac784c3cd6",
+      "bytes": 3958
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/modelli/volo.js",
+      "sha256": "bb6280ec67bca5f07e80aa382b6a45c72717189887561090f9807493e1912713",
+      "bytes": 3301
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/quaderno.js",
+      "sha256": "ecc32226e0fa1781b36cac952fa926a2ac17be6b4eae491ef6ef5744fcd8885a",
+      "bytes": 15609
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/scena.js",
+      "sha256": "294a5e5966d004d48456e867a9deb27da5d32ba9ce43e087d4ea713f4544e399",
+      "bytes": 13864
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/scene/calore.js",
+      "sha256": "80272a42fbf7edd5a130df801c3819482aaca55471ed992e5fb411085f897f4e",
+      "bytes": 1337
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/scene/campo.js",
+      "sha256": "457fd9ccec431f43806a39e8b8fca78c243931514f8e5971c474b5cdbfae6dfa",
+      "bytes": 4525
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/scene/circuito.js",
+      "sha256": "049ed16c1cc2bd6d2c2662c4de38399d3b1bb00a5adabeb17bed06780df49701",
+      "bytes": 2179
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/scene/gas.js",
+      "sha256": "c39a13bb813bd6f2602a767cbf6e1e42f954092291ca320d3a61352491953223",
+      "bytes": 1817
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/scene/induzione.js",
+      "sha256": "b7b69747eae9b3941fc8db44047faa5ebad34e49d0a0b924b6765f4b4ec252a2",
+      "bytes": 2017
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/scene/lente.js",
+      "sha256": "8a238ff78b82cdd796b796691e147128c00a5a0f9d089d2398896c92a4c104b5",
+      "bytes": 2738
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/scene/onde.js",
+      "sha256": "61f9bf1a96d64a393127993da6857d25c9f9612e2a315f48e5145b35bd027ca6",
+      "bytes": 4996
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/scene/piano.js",
+      "sha256": "c98424e8911887f3a540c5c3a9d1e256d87d4fd7fa61e13375bbe33fb238f969",
+      "bytes": 2060
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/scene/stevino.js",
+      "sha256": "75836bd9014a1b8b23278efd3be3482dcecea533abf9c9a9d6ff3c71b9581c0c",
+      "bytes": 1731
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/scene/tubo.js",
+      "sha256": "a401bc41dbd89e106e01adefcec9298dabae15ad552992eef8f55e8364225667",
+      "bytes": 2295
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/scene/volo.js",
+      "sha256": "bcacd889db673a9f8a306a7bd4fca61aca66388fe37cbfe545d27d46d0355b68",
+      "bytes": 3369
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/tavola.js",
+      "sha256": "f03e3c823fe90deaab1b79c8b44b4cff3e5993e91953142ab32ced9c2f0e818f",
+      "bytes": 20863
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/voci/apparati/campi.js",
+      "sha256": "627c9de0ebca6af8ffe602876b85a6e998cfde753d4e0091a14b9a70a94feabb",
+      "bytes": 10208
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/voci/apparati/fluidi.js",
+      "sha256": "6faf0e94d26620dca5288633c55e7acb842cc7c3f849d4ccfb9fa796e802d4c5",
+      "bytes": 12032
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/voci/apparati/meccanica.js",
+      "sha256": "5ebb36d2be9f65c1308a42e7112b9327bbcfa28e630aaa374d78ceaea759ca02",
+      "bytes": 13298
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/voci/apparati/onde.js",
+      "sha256": "6aae6588b047f02ed7b31f8b2195d01ffc265dfc7236dfb25ca98ed1161aece2",
+      "bytes": 14895
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/voci/apparati/termica.js",
+      "sha256": "2c2dd287ce60ea861830437697e5cc182ffb9d2bdbbcb7085053a271c1cc4459",
+      "bytes": 10440
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/voci/assessment-selection.js",
+      "sha256": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+      "bytes": 1102
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/voci/confronti.js",
+      "sha256": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+      "bytes": 4981
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/voci/engines.js",
+      "sha256": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+      "bytes": 2692
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/voci/esperimento.js",
+      "sha256": "e1c68c5530372696f9f863e95a148ce9afd49118708edf921f20781aa116feb3",
+      "bytes": 13868
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/voci/geometria.js",
+      "sha256": "4264ad98c0a4fcdcdb236827157d66b3089e45c6dba00ce6462419292d3e7cb4",
+      "bytes": 6835
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/voci/legende.js",
+      "sha256": "97a4e012a2d763e1e921837497e944a04755519297fe93850c2650454da2dc6d",
+      "bytes": 17325
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/voci/misure-affiancate.js",
+      "sha256": "2f3d2c629fdd4cced15556b49608b40e171d6c41468e29b8cbcdf34cb09be8a8",
+      "bytes": 2822
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/voci/modelli/C1.js",
+      "sha256": "2566eb562a896b56f42a85be1eb865bd7dcc988b0283f460abd29cb090446dea",
+      "bytes": 13003
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/voci/modelli/C2.js",
+      "sha256": "a747ffb8336a479f4a42959e734f377f8960cfdf32261d90499deca3cadd59e0",
+      "bytes": 12576
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/voci/modelli/C3.js",
+      "sha256": "b01a2fd9b40c4ebefa7a124d543ba6933708d95a7bd95e4e613dca88a05e53cd",
+      "bytes": 10928
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/voci/modelli/C4.js",
+      "sha256": "de65de5483970720e2ec9fb01e3146f71aaad90529dd1f0a3c298c56fd2bf620",
+      "bytes": 8916
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/voci/modelli/C5.js",
+      "sha256": "11df78b3c86ccd009853419ae869c54ae884619270636e8f7a7a0a7471dae004",
+      "bytes": 8814
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/voci/modelli/C6.js",
+      "sha256": "6e1af33f3af9fe5cc96b6216a110efe3123517e32c22c5dc856ac29d9b79129c",
+      "bytes": 2374
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/voci/orologi.js",
+      "sha256": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+      "bytes": 9914
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer/static/js/banchi/voci/tavola.js",
+      "sha256": "21373daa0b6841cc98b537d61cc678c3b9a935f4023d30f54d7cbd8ee2b693fa",
+      "bytes": 5049
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/consumer-source-verification.json",
+      "sha256": "d568e3ab2bce630c15a7cd6532a002955b7ed7f26d463ad513d26b14e20b88e2",
+      "bytes": 18613
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/finding-L10-02-d345.json",
+      "sha256": "bbabce724b465b1fcc970057750cc5800e2d6a41c4c21f3d6006f70d4a919c51",
+      "bytes": 687
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/frozen_exact_arithmetic_literals.py",
+      "sha256": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de",
+      "bytes": 2372
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/git-inputs.json",
+      "sha256": "8caeab6bf509572001ae2e5b0a8ceb686a44be2f7d8c0dbd40908ca2778b196b",
+      "bytes": 16556
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/grade-actual.mjs",
+      "sha256": "e32ff77d943330f5a462fd3a850ecee045d4c1d9a4e26eb2c5c7eca892e06021",
+      "bytes": 1618
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/grader.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/grader.stdout.txt",
+      "sha256": "b58f63b025133e57979393831df6e182f0f507b50109bc3432321e24b7693b0e",
+      "bytes": 1498
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/independent-model-before-blocks.mjs",
+      "sha256": "2e7be93733fbe41854cf5713b1a156742ddf788c647014d6fb7dce7fd82686c8",
+      "bytes": 1133
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/independent-review.json",
+      "sha256": "c2299f3fe8038437447bc0059c28b6531d4fbec39483b44cf60695c3822b7a5d",
+      "bytes": 8355
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/independent_math.py",
+      "sha256": "9a1e9b0f12b65e262a3a184dfedec916a5d2ac5e91da9a15879e7391d91c9441",
+      "bytes": 3248
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/package-bindings.json",
+      "sha256": "ec5e7e75c77b72567e29c3166766cbe00dc3fbe7a74a481258489a97cd8adcb4",
+      "bytes": 1673
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/package.json",
+      "sha256": "e7083267fd47669650fbbca13e664f20485dac8911a8c7adc97b280dfc3badce",
+      "bytes": 14601
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/pre-key-model-terminal.json",
+      "sha256": "79920e917e07a4273093308153a63e2e5463bc10e2b27f616c949c39d77ff0d5",
+      "bytes": 326
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/pre-key-model.json",
+      "sha256": "0aeaa36788d80356065bb349113db33fd3c014fa10e8e364d8167011b5fdc882",
+      "bytes": 6571
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/pre-key-model.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/pre-key-model.stdout.txt",
+      "sha256": "9dc590f3812b6d76e9d70f6722fc434f2c3578a252a5397602d2da25ba682c78",
+      "bytes": 3169
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/primary-before-blocks.md",
+      "sha256": "370619a05ffe1319adebb9ffb4ad27d9a6fea3d7f4aa4b07ec14b26ed6298359",
+      "bytes": 3570
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/primary-freeze.json",
+      "sha256": "eb8b3feaffdf963b85c2d37d8b971be0ff3097160d45f4a5619bc58c2728533c",
+      "bytes": 304
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/review-note.md",
+      "sha256": "996d6a57600824f44176e91ad15170a3c3b50af57f815ccd6e8b089be115eabc",
+      "bytes": 2826
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/run_review.py",
+      "sha256": "5c7494b531deeb978426b6b75755e72d602a22f8fd9c595d04b69ba5c309a921",
+      "bytes": 1270
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/stimuli-prompt-data-only.json",
+      "sha256": "356c0eaa24cc056c32b1250b41d70138aa8daba107475a481ad3fb12495b010c",
+      "bytes": 5666
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/superseded-d345-before-unit-field/actual-code.json",
+      "sha256": "77930dc6d407b3ee57b81134b86124e1c5a79782390be3ae19b01aedb7375641",
+      "bytes": 74785
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/superseded-d345-before-unit-field/actual-code.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/superseded-d345-before-unit-field/actual-code.stdout.txt",
+      "sha256": "77930dc6d407b3ee57b81134b86124e1c5a79782390be3ae19b01aedb7375641",
+      "bytes": 74785
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/superseded-d345-before-unit-field/actual-comparison.json",
+      "sha256": "97803df9d432960bd7b1c121500440719ab9eea302fe04925ac70f19b3d03dbd",
+      "bytes": 36612
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/superseded-d345-before-unit-field/actual-grader-block.js.txt",
+      "sha256": "47873210c4ae3e5c412a9e9f5ed915534984f6639f1bc5c95017150df830d239",
+      "bytes": 356
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/superseded-d345-before-unit-field/actual-terminal.json",
+      "sha256": "03e64eb4225902df588e03d0534d2b776d3964119f878ac47568c5ef46210efe",
+      "bytes": 525
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/superseded-d345-before-unit-field/check_actual.py",
+      "sha256": "b4a9c546cbd3bc4f67853125ce520276577fd23d6fc6c2e37cefe0a7e9c83423",
+      "bytes": 5187
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/superseded-d345-before-unit-field/comparison.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/superseded-d345-before-unit-field/comparison.stdout.txt",
+      "sha256": "8297976ad8fd5a757595d04b852442cb5e52e1326185fac1e0a3c09cd04fcd15",
+      "bytes": 61
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/superseded-d345-before-unit-field/finding-L10-02-d345.json",
+      "sha256": "bbabce724b465b1fcc970057750cc5800e2d6a41c4c21f3d6006f70d4a919c51",
+      "bytes": 687
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/superseded-d345-before-unit-field/git-inputs.json",
+      "sha256": "47c77bdd35836320f4d4ff9391ee315683186000687ceb10287a4410403cf64f",
+      "bytes": 16556
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/superseded-d345-before-unit-field/grader.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/superseded-d345-before-unit-field/grader.stdout.txt",
+      "sha256": "b58f63b025133e57979393831df6e182f0f507b50109bc3432321e24b7693b0e",
+      "bytes": 1498
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/superseded-d345-before-unit-field/package-bindings.json",
+      "sha256": "d9fa9fefb2224238670226be8716310e1fcbf314877592826fbdf68bca7177cb",
+      "bytes": 1673
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/superseded-d345-before-unit-field/package.json",
+      "sha256": "175f6809df42311b78740d9291b3aa2db8f09136f4cb6b253a13e2feb1386be5",
+      "bytes": 14603
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/superseded-d345-before-unit-field/tests.stderr.txt",
+      "sha256": "31e6742ae2150dc0f316461dccbcb964de451177aa97b6363a1f9edffac0bdc3",
+      "bytes": 113
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/superseded-d345-before-unit-field/tests.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/test_review.py",
+      "sha256": "5f222642bb0364a06ddf61723c02c5b2a78e54731ebb832082338de6042c0ec2",
+      "bytes": 3635
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/tests.stderr.txt",
+      "sha256": "31e6742ae2150dc0f316461dccbcb964de451177aa97b6363a1f9edffac0bdc3",
+      "bytes": 113
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/tests.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-nuclei-optics-five-independent-b-20261127/unit-field-final-reread.json",
+      "sha256": "8cc5a745d29f6c75e5eb89bdfd574dfe6d9f149f622f6cb7bf696bba41cefba5",
+      "bytes": 2331
+    }
+  ]
+}
