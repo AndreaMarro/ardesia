@@ -30,7 +30,9 @@ EDITIONS = {
         'transferPrompt': 'Una parete di spessore {x} e area 0,01 m² ha k = 1 W/(m·K). Le due facce differiscono di 20 K. Quale potenza termica attraversa la parete?',
         'blocks': [
             text('Segna la faccia calda e quella fredda dello stesso materiale. Nella conduzione stazionaria monodimensionale, con conducibilità costante e perdite laterali trascurate, la temperatura cambia linearmente nello spessore. La pendenza del profilo vale ΔT/L in modulo. Il flusso di calore va dalla faccia più calda a quella più fredda.'),
-            formula(r'P=kA\frac{\Delta T}{L},\quad kA\Delta T=(1\ \mathrm{W/(m\,K)})(0{,}01\ \mathrm{m^2})(20\ \mathrm K)=0{,}20\ \mathrm{W\,m}'),
+            formula(r'P=kA\frac{\Delta T}{L}'),
+            text('Calcola prima il prodotto kAΔT. Moltiplica 1 per 0,01 e poi per 20. Riunendo W/(m·K), m² e K, rimangono W·m.'),
+            formula(r'kA\Delta T=0{,}20\ \mathrm{W\,m}'),
             text('Disegna i due profili con la stessa differenza di temperatura. A 2 cm, cioè 0,02 m, il conto è 0,20/0,02 = 20/2 = 10 W. Con 8 cm, cioè 0,08 m, dividi 20 per 8 e ottieni 5/2 = 2,5 W. La seconda pendenza è un quarto della prima perché lo spessore è quadruplicato.'),
             text('Per risalire allo spessore inverti la legge. Con P = 2,5 W, dividi 0,20 W·m per 2,5 W e trovi 0,08 m, pari a 8 cm. La misura è in watt perché il kelvin si cancella nella legge e dopo la divisione dei metri rimane soltanto la potenza.'),
         ],
