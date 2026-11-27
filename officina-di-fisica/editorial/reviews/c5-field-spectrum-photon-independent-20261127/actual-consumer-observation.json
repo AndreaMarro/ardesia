@@ -1,0 +1,987 @@
+{
+  "app": "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-converged-runtime-20261127/officina-di-fisica",
+  "rows": [
+    {
+      "id": "SIM-C5-L06-01",
+      "version": 3,
+      "baseVersion": 2,
+      "selection": [
+        90,
+        270
+      ],
+      "tasks": [
+        {
+          "prompt": "Imposta «Fase del campo» su 90 °. Quale valore ottieni per «Campo magnetico istantaneo»?",
+          "value": 10,
+          "unit": "nT",
+          "worked": "E = 3 sin φ V/m; B = E/c; c ≈ 3×10⁸ m/s. 10 × sin(90°) ≈ 10 nT."
+        },
+        {
+          "prompt": "In un’onda piana nel vuoto la componente elettrica in P è 3 sin φ V/m. Alla fase 270 °, quale componente magnetica con segno esprimi in nT?",
+          "value": -10,
+          "unit": "nT",
+          "worked": "E = 3 sin φ V/m; B = E/c; c ≈ 3×10⁸ m/s. 10 × sin(270°) ≈ -10 nT."
+        }
+      ],
+      "hasClock": false,
+      "grid": [
+        {
+          "x": 0,
+          "output": 0,
+          "rawMeasure": 0,
+          "apparatus": {
+            "fase": 0,
+            "ampiezza": 0.7,
+            "campoSonda": 0
+          }
+        },
+        {
+          "x": 15,
+          "output": 2.5881904510252074,
+          "rawMeasure": 2.5881904510252074,
+          "apparatus": {
+            "fase": 0.2617993877991494,
+            "ampiezza": 0.7,
+            "campoSonda": 0.25881904510252074
+          }
+        },
+        {
+          "x": 30,
+          "output": 4.999999999999999,
+          "rawMeasure": 4.999999999999999,
+          "apparatus": {
+            "fase": 0.5235987755982988,
+            "ampiezza": 0.7,
+            "campoSonda": 0.4999999999999999
+          }
+        },
+        {
+          "x": 45,
+          "output": 7.071067811865475,
+          "rawMeasure": 7.071067811865475,
+          "apparatus": {
+            "fase": 0.7853981633974483,
+            "ampiezza": 0.7,
+            "campoSonda": 0.7071067811865475
+          }
+        },
+        {
+          "x": 60,
+          "output": 8.660254037844386,
+          "rawMeasure": 8.660254037844386,
+          "apparatus": {
+            "fase": 1.0471975511965976,
+            "ampiezza": 0.7,
+            "campoSonda": 0.8660254037844386
+          }
+        },
+        {
+          "x": 75,
+          "output": 9.659258262890683,
+          "rawMeasure": 9.659258262890683,
+          "apparatus": {
+            "fase": 1.3089969389957472,
+            "ampiezza": 0.7,
+            "campoSonda": 0.9659258262890683
+          }
+        },
+        {
+          "x": 90,
+          "output": 10,
+          "rawMeasure": 10,
+          "apparatus": {
+            "fase": 1.5707963267948966,
+            "ampiezza": 0.7,
+            "campoSonda": 1
+          }
+        },
+        {
+          "x": 105,
+          "output": 9.659258262890683,
+          "rawMeasure": 9.659258262890683,
+          "apparatus": {
+            "fase": 1.8325957145940461,
+            "ampiezza": 0.7,
+            "campoSonda": 0.9659258262890683
+          }
+        },
+        {
+          "x": 120,
+          "output": 8.660254037844387,
+          "rawMeasure": 8.660254037844387,
+          "apparatus": {
+            "fase": 2.0943951023931953,
+            "ampiezza": 0.7,
+            "campoSonda": 0.8660254037844387
+          }
+        },
+        {
+          "x": 135,
+          "output": 7.0710678118654755,
+          "rawMeasure": 7.0710678118654755,
+          "apparatus": {
+            "fase": 2.356194490192345,
+            "ampiezza": 0.7,
+            "campoSonda": 0.7071067811865476
+          }
+        },
+        {
+          "x": 150,
+          "output": 4.999999999999999,
+          "rawMeasure": 4.999999999999999,
+          "apparatus": {
+            "fase": 2.6179938779914944,
+            "ampiezza": 0.7,
+            "campoSonda": 0.4999999999999999
+          }
+        },
+        {
+          "x": 165,
+          "output": 2.58819045102521,
+          "rawMeasure": 2.58819045102521,
+          "apparatus": {
+            "fase": 2.8797932657906435,
+            "ampiezza": 0.7,
+            "campoSonda": 0.258819045102521
+          }
+        },
+        {
+          "x": 180,
+          "output": 0,
+          "rawMeasure": 1.2246467991473533e-15,
+          "apparatus": {
+            "fase": 3.141592653589793,
+            "ampiezza": 0.7,
+            "campoSonda": 0
+          }
+        },
+        {
+          "x": 195,
+          "output": -2.5881904510252034,
+          "rawMeasure": -2.5881904510252034,
+          "apparatus": {
+            "fase": 3.4033920413889422,
+            "ampiezza": 0.7,
+            "campoSonda": -0.25881904510252035
+          }
+        },
+        {
+          "x": 210,
+          "output": -5.000000000000001,
+          "rawMeasure": -5.000000000000001,
+          "apparatus": {
+            "fase": 3.6651914291880923,
+            "ampiezza": 0.7,
+            "campoSonda": -0.5000000000000001
+          }
+        },
+        {
+          "x": 225,
+          "output": -7.071067811865475,
+          "rawMeasure": -7.071067811865475,
+          "apparatus": {
+            "fase": 3.9269908169872414,
+            "ampiezza": 0.7,
+            "campoSonda": -0.7071067811865475
+          }
+        },
+        {
+          "x": 240,
+          "output": -8.660254037844386,
+          "rawMeasure": -8.660254037844386,
+          "apparatus": {
+            "fase": 4.1887902047863905,
+            "ampiezza": 0.7,
+            "campoSonda": -0.8660254037844386
+          }
+        },
+        {
+          "x": 255,
+          "output": -9.659258262890683,
+          "rawMeasure": -9.659258262890683,
+          "apparatus": {
+            "fase": 4.4505895925855405,
+            "ampiezza": 0.7,
+            "campoSonda": -0.9659258262890683
+          }
+        },
+        {
+          "x": 270,
+          "output": -10,
+          "rawMeasure": -10,
+          "apparatus": {
+            "fase": 4.71238898038469,
+            "ampiezza": 0.7,
+            "campoSonda": -1
+          }
+        },
+        {
+          "x": 285,
+          "output": -9.659258262890681,
+          "rawMeasure": -9.659258262890681,
+          "apparatus": {
+            "fase": 4.97418836818384,
+            "ampiezza": 0.7,
+            "campoSonda": -0.9659258262890681
+          }
+        },
+        {
+          "x": 300,
+          "output": -8.660254037844386,
+          "rawMeasure": -8.660254037844386,
+          "apparatus": {
+            "fase": 5.235987755982989,
+            "ampiezza": 0.7,
+            "campoSonda": -0.8660254037844386
+          }
+        },
+        {
+          "x": 315,
+          "output": -7.071067811865477,
+          "rawMeasure": -7.071067811865477,
+          "apparatus": {
+            "fase": 5.497787143782138,
+            "ampiezza": 0.7,
+            "campoSonda": -0.7071067811865477
+          }
+        },
+        {
+          "x": 330,
+          "output": -5.000000000000004,
+          "rawMeasure": -5.000000000000004,
+          "apparatus": {
+            "fase": 5.759586531581287,
+            "ampiezza": 0.7,
+            "campoSonda": -0.5000000000000004
+          }
+        },
+        {
+          "x": 345,
+          "output": -2.588190451025207,
+          "rawMeasure": -2.588190451025207,
+          "apparatus": {
+            "fase": 6.021385919380437,
+            "ampiezza": 0.7,
+            "campoSonda": -0.2588190451025207
+          }
+        },
+        {
+          "x": 360,
+          "output": 0,
+          "rawMeasure": -2.4492935982947065e-15,
+          "apparatus": {
+            "fase": 6.283185307179586,
+            "ampiezza": 0.7,
+            "campoSonda": 0
+          }
+        }
+      ],
+      "legendOrbit": "Viola · campo elettrico E. Verde · campo magnetico B, su una scala diversa. L’asse segue la propagazione. Ad ampiezza zero entrambi i campi sono nulli.",
+      "legendFallback": "Viola · campo elettrico E. Verde · campo magnetico B, su una scala diversa. L’asse segue la propagazione. Ad ampiezza zero entrambi i campi sono nulli.",
+      "sourceApparatus": "em"
+    },
+    {
+      "id": "SIM-C5-L06-02",
+      "version": 2,
+      "baseVersion": 1,
+      "selection": [
+        4,
+        3
+      ],
+      "tasks": [
+        {
+          "prompt": "Imposta «Ampiezza del campo elettrico» su 4 V/m. Quale valore ottieni per «Intensità rispetto a E₀ = 2 V/m»?",
+          "value": 4,
+          "unit": "numero puro",
+          "worked": "I/I riferimento = (E₀/2)²; c = λf. (4 / 2)² = 4."
+        },
+        {
+          "prompt": "A frequenza fissata vari l’ampiezza elettrica da 2 V/m a 3 V/m. Quanto vale il rapporto fra la nuova intensità media e quella di riferimento?",
+          "value": 2.25,
+          "unit": "numero puro",
+          "worked": "I/I riferimento = (E₀/2)²; c = λf. (3 / 2)² = 2,25."
+        }
+      ],
+      "hasClock": true,
+      "grid": [
+        {
+          "x": 0,
+          "output": 0,
+          "rawMeasure": 0,
+          "apparatus": {
+            "ampiezza": 0,
+            "fase": 0.8
+          }
+        },
+        {
+          "x": 0.5,
+          "output": 0.0625,
+          "rawMeasure": 0.0625,
+          "apparatus": {
+            "ampiezza": 0.07142857142857142,
+            "fase": 0.8
+          }
+        },
+        {
+          "x": 1,
+          "output": 0.25,
+          "rawMeasure": 0.25,
+          "apparatus": {
+            "ampiezza": 0.14285714285714285,
+            "fase": 0.8
+          }
+        },
+        {
+          "x": 1.5,
+          "output": 0.5625,
+          "rawMeasure": 0.5625,
+          "apparatus": {
+            "ampiezza": 0.21428571428571427,
+            "fase": 0.8
+          }
+        },
+        {
+          "x": 2,
+          "output": 1,
+          "rawMeasure": 1,
+          "apparatus": {
+            "ampiezza": 0.2857142857142857,
+            "fase": 0.8
+          }
+        },
+        {
+          "x": 2.5,
+          "output": 1.5625,
+          "rawMeasure": 1.5625,
+          "apparatus": {
+            "ampiezza": 0.35714285714285715,
+            "fase": 0.8
+          }
+        },
+        {
+          "x": 3,
+          "output": 2.25,
+          "rawMeasure": 2.25,
+          "apparatus": {
+            "ampiezza": 0.42857142857142855,
+            "fase": 0.8
+          }
+        },
+        {
+          "x": 3.5,
+          "output": 3.0625,
+          "rawMeasure": 3.0625,
+          "apparatus": {
+            "ampiezza": 0.5,
+            "fase": 0.8
+          }
+        },
+        {
+          "x": 4,
+          "output": 4,
+          "rawMeasure": 4,
+          "apparatus": {
+            "ampiezza": 0.5714285714285714,
+            "fase": 0.8
+          }
+        },
+        {
+          "x": 4.5,
+          "output": 5.0625,
+          "rawMeasure": 5.0625,
+          "apparatus": {
+            "ampiezza": 0.6428571428571429,
+            "fase": 0.8
+          }
+        },
+        {
+          "x": 5,
+          "output": 6.25,
+          "rawMeasure": 6.25,
+          "apparatus": {
+            "ampiezza": 0.7142857142857143,
+            "fase": 0.8
+          }
+        },
+        {
+          "x": 5.5,
+          "output": 7.5625,
+          "rawMeasure": 7.5625,
+          "apparatus": {
+            "ampiezza": 0.7857142857142857,
+            "fase": 0.8
+          }
+        },
+        {
+          "x": 6,
+          "output": 9,
+          "rawMeasure": 9,
+          "apparatus": {
+            "ampiezza": 0.8571428571428571,
+            "fase": 0.8
+          }
+        }
+      ],
+      "legendOrbit": "Viola · campo elettrico E. Verde · campo magnetico B, su una scala diversa. L’asse segue la propagazione. Ad ampiezza zero entrambi i campi sono nulli.",
+      "legendFallback": "Viola · campo elettrico E. Verde · campo magnetico B, su una scala diversa. L’asse segue la propagazione. Ad ampiezza zero entrambi i campi sono nulli.",
+      "sourceApparatus": "em"
+    },
+    {
+      "id": "SIM-C5-L06-03",
+      "version": 2,
+      "baseVersion": 1,
+      "selection": [
+        1,
+        6
+      ],
+      "tasks": [
+        {
+          "prompt": "Imposta «Banda dello spettro» su Radio. Quale valore ottieni per «Logaritmo decimale della lunghezza d’onda in metri»?",
+          "value": 2,
+          "unit": "numero puro",
+          "worked": "log₁₀ λ(m) = log₁₀ c − log₁₀ f. log₁₀(100) = 2."
+        },
+        {
+          "prompt": "Per la banda «X», il banco usa una lunghezza campione di 10⁻¹⁰ m. In che posizione si trova sulla scala log₁₀(λ/m)?",
+          "value": -10,
+          "unit": "numero puro",
+          "worked": "log₁₀ λ(m) = log₁₀ c − log₁₀ f. log₁₀(10⁻¹⁰) = -10."
+        }
+      ],
+      "hasClock": false,
+      "grid": [
+        {
+          "x": 1,
+          "output": 2,
+          "rawMeasure": 2,
+          "apparatus": {
+            "banda": 1,
+            "ampiezza": 0.55
+          }
+        },
+        {
+          "x": 2,
+          "output": -2,
+          "rawMeasure": -2,
+          "apparatus": {
+            "banda": 2,
+            "ampiezza": 0.55
+          }
+        },
+        {
+          "x": 3,
+          "output": -5,
+          "rawMeasure": -5,
+          "apparatus": {
+            "banda": 3,
+            "ampiezza": 0.55
+          }
+        },
+        {
+          "x": 4,
+          "output": -6.3,
+          "rawMeasure": -6.3,
+          "apparatus": {
+            "banda": 4,
+            "ampiezza": 0.55
+          }
+        },
+        {
+          "x": 5,
+          "output": -7.3,
+          "rawMeasure": -7.3,
+          "apparatus": {
+            "banda": 5,
+            "ampiezza": 0.55
+          }
+        },
+        {
+          "x": 6,
+          "output": -10,
+          "rawMeasure": -10,
+          "apparatus": {
+            "banda": 6,
+            "ampiezza": 0.55
+          }
+        },
+        {
+          "x": 7,
+          "output": -12,
+          "rawMeasure": -12,
+          "apparatus": {
+            "banda": 7,
+            "ampiezza": 0.55
+          }
+        }
+      ],
+      "legendOrbit": "Viola · campo elettrico E. Verde · campo magnetico B, su una scala diversa. L’asse segue la propagazione. Ad ampiezza zero entrambi i campi sono nulli.",
+      "legendFallback": "Viola · campo elettrico E. Verde · campo magnetico B, su una scala diversa. L’asse segue la propagazione. Ad ampiezza zero entrambi i campi sono nulli.",
+      "sourceApparatus": "em"
+    },
+    {
+      "id": "SIM-C5-L07-01",
+      "version": 2,
+      "baseVersion": 1,
+      "selection": [
+        250,
+        500
+      ],
+      "tasks": [
+        {
+          "prompt": "Imposta «Frequenza del fotone» su 250 THz. Quale valore ottieni per «Energia per fotone»?",
+          "value": 1.034,
+          "unit": "eV",
+          "worked": "E = hf; h ≈ 4,136×10⁻¹⁵ eV·s. 0,004136 × 250 ≈ 1,034 eV."
+        },
+        {
+          "prompt": "Una sorgente monocromatica emette a 500 THz. Usa h ≃ 4,136 × 10⁻¹⁵ eV·s. Quanti eV trasporta un singolo fotone?",
+          "value": 2.068,
+          "unit": "eV",
+          "worked": "E = hf; h ≈ 4,136×10⁻¹⁵ eV·s. 0,004136 × 500 ≈ 2,068 eV."
+        }
+      ],
+      "hasClock": true,
+      "grid": [
+        {
+          "x": 100,
+          "output": 0.41359999999999997,
+          "rawMeasure": 0.41359999999999997,
+          "apparatus": {
+            "cicli": 0.4,
+            "ampiezza": 0.55
+          }
+        },
+        {
+          "x": 150,
+          "output": 0.6204,
+          "rawMeasure": 0.6204,
+          "apparatus": {
+            "cicli": 0.6,
+            "ampiezza": 0.55
+          }
+        },
+        {
+          "x": 200,
+          "output": 0.8271999999999999,
+          "rawMeasure": 0.8271999999999999,
+          "apparatus": {
+            "cicli": 0.8,
+            "ampiezza": 0.55
+          }
+        },
+        {
+          "x": 250,
+          "output": 1.034,
+          "rawMeasure": 1.034,
+          "apparatus": {
+            "cicli": 1,
+            "ampiezza": 0.55
+          }
+        },
+        {
+          "x": 300,
+          "output": 1.2408,
+          "rawMeasure": 1.2408,
+          "apparatus": {
+            "cicli": 1.2,
+            "ampiezza": 0.55
+          }
+        },
+        {
+          "x": 350,
+          "output": 1.4476,
+          "rawMeasure": 1.4476,
+          "apparatus": {
+            "cicli": 1.4,
+            "ampiezza": 0.55
+          }
+        },
+        {
+          "x": 400,
+          "output": 1.6543999999999999,
+          "rawMeasure": 1.6543999999999999,
+          "apparatus": {
+            "cicli": 1.6,
+            "ampiezza": 0.55
+          }
+        },
+        {
+          "x": 450,
+          "output": 1.8612,
+          "rawMeasure": 1.8612,
+          "apparatus": {
+            "cicli": 1.8,
+            "ampiezza": 0.55
+          }
+        },
+        {
+          "x": 500,
+          "output": 2.068,
+          "rawMeasure": 2.068,
+          "apparatus": {
+            "cicli": 2,
+            "ampiezza": 0.55
+          }
+        },
+        {
+          "x": 550,
+          "output": 2.2748,
+          "rawMeasure": 2.2748,
+          "apparatus": {
+            "cicli": 2.2,
+            "ampiezza": 0.55
+          }
+        },
+        {
+          "x": 600,
+          "output": 2.4816,
+          "rawMeasure": 2.4816,
+          "apparatus": {
+            "cicli": 2.4,
+            "ampiezza": 0.55
+          }
+        },
+        {
+          "x": 650,
+          "output": 2.6884,
+          "rawMeasure": 2.6884,
+          "apparatus": {
+            "cicli": 2.6,
+            "ampiezza": 0.55
+          }
+        },
+        {
+          "x": 700,
+          "output": 2.8952,
+          "rawMeasure": 2.8952,
+          "apparatus": {
+            "cicli": 2.8,
+            "ampiezza": 0.55
+          }
+        },
+        {
+          "x": 750,
+          "output": 3.102,
+          "rawMeasure": 3.102,
+          "apparatus": {
+            "cicli": 3,
+            "ampiezza": 0.55
+          }
+        },
+        {
+          "x": 800,
+          "output": 3.3087999999999997,
+          "rawMeasure": 3.3087999999999997,
+          "apparatus": {
+            "cicli": 3.2,
+            "ampiezza": 0.55
+          }
+        },
+        {
+          "x": 850,
+          "output": 3.5156,
+          "rawMeasure": 3.5156,
+          "apparatus": {
+            "cicli": 3.4,
+            "ampiezza": 0.55
+          }
+        },
+        {
+          "x": 900,
+          "output": 3.7224,
+          "rawMeasure": 3.7224,
+          "apparatus": {
+            "cicli": 3.6,
+            "ampiezza": 0.55
+          }
+        },
+        {
+          "x": 950,
+          "output": 3.9292,
+          "rawMeasure": 3.9292,
+          "apparatus": {
+            "cicli": 3.8,
+            "ampiezza": 0.55
+          }
+        },
+        {
+          "x": 1000,
+          "output": 4.136,
+          "rawMeasure": 4.136,
+          "apparatus": {
+            "cicli": 4,
+            "ampiezza": 0.55
+          }
+        }
+      ],
+      "legendOrbit": "Viola · campo elettrico E. Verde · campo magnetico B, su una scala diversa. L’asse segue la propagazione. Ad ampiezza zero entrambi i campi sono nulli.",
+      "legendFallback": "Viola · campo elettrico E. Verde · campo magnetico B, su una scala diversa. L’asse segue la propagazione. Ad ampiezza zero entrambi i campi sono nulli.",
+      "sourceApparatus": "em"
+    },
+    {
+      "id": "SIM-C5-L07-03",
+      "version": 2,
+      "baseVersion": 1,
+      "selection": [
+        14,
+        19
+      ],
+      "tasks": [
+        {
+          "prompt": "Imposta «Energia del singolo fotone» su 14 eV. Quale valore ottieni per «Energia cinetica massima liberata»?",
+          "value": 0,
+          "unit": "eV",
+          "worked": "K = max(0, E fotone − 14 eV). max(0; 14 − 14) = 0 eV."
+        },
+        {
+          "prompt": "Un fotone da 19 eV incontra il bersaglio del banco, con energia di legame 14 eV. Quanta energia cinetica massima rimane all’elettrone?",
+          "value": 5,
+          "unit": "eV",
+          "worked": "K = max(0, E fotone − 14 eV). max(0; 19 − 14) = 5 eV."
+        }
+      ],
+      "hasClock": false,
+      "grid": [
+        {
+          "x": 5,
+          "output": 0,
+          "rawMeasure": 0,
+          "apparatus": {
+            "energia": 0.2,
+            "uscita": 0,
+            "ionizzato": false,
+            "mostraDettaglio": true
+          }
+        },
+        {
+          "x": 6,
+          "output": 0,
+          "rawMeasure": 0,
+          "apparatus": {
+            "energia": 0.24,
+            "uscita": 0,
+            "ionizzato": false,
+            "mostraDettaglio": true
+          }
+        },
+        {
+          "x": 7,
+          "output": 0,
+          "rawMeasure": 0,
+          "apparatus": {
+            "energia": 0.28,
+            "uscita": 0,
+            "ionizzato": false,
+            "mostraDettaglio": true
+          }
+        },
+        {
+          "x": 8,
+          "output": 0,
+          "rawMeasure": 0,
+          "apparatus": {
+            "energia": 0.32,
+            "uscita": 0,
+            "ionizzato": false,
+            "mostraDettaglio": true
+          }
+        },
+        {
+          "x": 9,
+          "output": 0,
+          "rawMeasure": 0,
+          "apparatus": {
+            "energia": 0.36,
+            "uscita": 0,
+            "ionizzato": false,
+            "mostraDettaglio": true
+          }
+        },
+        {
+          "x": 10,
+          "output": 0,
+          "rawMeasure": 0,
+          "apparatus": {
+            "energia": 0.4,
+            "uscita": 0,
+            "ionizzato": false,
+            "mostraDettaglio": true
+          }
+        },
+        {
+          "x": 11,
+          "output": 0,
+          "rawMeasure": 0,
+          "apparatus": {
+            "energia": 0.44,
+            "uscita": 0,
+            "ionizzato": false,
+            "mostraDettaglio": true
+          }
+        },
+        {
+          "x": 12,
+          "output": 0,
+          "rawMeasure": 0,
+          "apparatus": {
+            "energia": 0.48,
+            "uscita": 0,
+            "ionizzato": false,
+            "mostraDettaglio": true
+          }
+        },
+        {
+          "x": 13,
+          "output": 0,
+          "rawMeasure": 0,
+          "apparatus": {
+            "energia": 0.52,
+            "uscita": 0,
+            "ionizzato": false,
+            "mostraDettaglio": true
+          }
+        },
+        {
+          "x": 14,
+          "output": 0,
+          "rawMeasure": 0,
+          "apparatus": {
+            "energia": 0.56,
+            "uscita": 0,
+            "ionizzato": true,
+            "mostraDettaglio": true
+          }
+        },
+        {
+          "x": 15,
+          "output": 1,
+          "rawMeasure": 1,
+          "apparatus": {
+            "energia": 0.6,
+            "uscita": 0.09090909090909091,
+            "ionizzato": true,
+            "mostraDettaglio": true
+          }
+        },
+        {
+          "x": 16,
+          "output": 2,
+          "rawMeasure": 2,
+          "apparatus": {
+            "energia": 0.64,
+            "uscita": 0.18181818181818182,
+            "ionizzato": true,
+            "mostraDettaglio": true
+          }
+        },
+        {
+          "x": 17,
+          "output": 3,
+          "rawMeasure": 3,
+          "apparatus": {
+            "energia": 0.68,
+            "uscita": 0.2727272727272727,
+            "ionizzato": true,
+            "mostraDettaglio": true
+          }
+        },
+        {
+          "x": 18,
+          "output": 4,
+          "rawMeasure": 4,
+          "apparatus": {
+            "energia": 0.72,
+            "uscita": 0.36363636363636365,
+            "ionizzato": true,
+            "mostraDettaglio": true
+          }
+        },
+        {
+          "x": 19,
+          "output": 5,
+          "rawMeasure": 5,
+          "apparatus": {
+            "energia": 0.76,
+            "uscita": 0.45454545454545453,
+            "ionizzato": true,
+            "mostraDettaglio": true
+          }
+        },
+        {
+          "x": 20,
+          "output": 6,
+          "rawMeasure": 6,
+          "apparatus": {
+            "energia": 0.8,
+            "uscita": 0.5454545454545454,
+            "ionizzato": true,
+            "mostraDettaglio": true
+          }
+        },
+        {
+          "x": 21,
+          "output": 7,
+          "rawMeasure": 7,
+          "apparatus": {
+            "energia": 0.84,
+            "uscita": 0.6363636363636364,
+            "ionizzato": true,
+            "mostraDettaglio": true
+          }
+        },
+        {
+          "x": 22,
+          "output": 8,
+          "rawMeasure": 8,
+          "apparatus": {
+            "energia": 0.88,
+            "uscita": 0.7272727272727273,
+            "ionizzato": true,
+            "mostraDettaglio": true
+          }
+        },
+        {
+          "x": 23,
+          "output": 9,
+          "rawMeasure": 9,
+          "apparatus": {
+            "energia": 0.92,
+            "uscita": 0.8181818181818182,
+            "ionizzato": true,
+            "mostraDettaglio": true
+          }
+        },
+        {
+          "x": 24,
+          "output": 10,
+          "rawMeasure": 10,
+          "apparatus": {
+            "energia": 0.96,
+            "uscita": 0.9090909090909091,
+            "ionizzato": true,
+            "mostraDettaglio": true
+          }
+        },
+        {
+          "x": 25,
+          "output": 11,
+          "rawMeasure": 11,
+          "apparatus": {
+            "energia": 1,
+            "uscita": 1,
+            "ionizzato": true,
+            "mostraDettaglio": true
+          }
+        }
+      ],
+      "legendOrbit": "Onda viola · fotone incidente. Verde · elettrone del bersaglio. L’elettrone verde rimane legato sull’anello oppure compare all’esterno come elettrone libero. La freccia verde è spostata rispetto alla sfera e la sua lunghezza segue l’energia cinetica. Quando appare il dettaglio ocra scuro, conserva lo stesso verso e ha lunghezza quattro volte maggiore.",
+      "legendFallback": "Onda viola · fotone incidente. Verde · elettrone del bersaglio. L’elettrone verde rimane legato sull’anello oppure compare all’esterno come elettrone libero. La freccia verde è spostata rispetto alla sfera e la sua lunghezza segue l’energia cinetica. Quando appare il dettaglio ocra scuro, conserva lo stesso verso e ha lunghezza quattro volte maggiore.",
+      "sourceApparatus": "fotone"
+    }
+  ],
+  "scalarControls": 85,
+  "katexFormulas": 5,
+  "allOriginalDraftScalarAnd4StageScenePairsStrictlyEqual": true,
+  "productUI": "NOT_RUN",
+  "activityCredit": 0
+}

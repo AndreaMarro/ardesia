@@ -1,0 +1,29 @@
+test_all10_assigned_tasks_exact_independent_rationals (__main__.IndependentScientific.test_all10_assigned_tasks_exact_independent_rationals) ... ok
+test_all85_grid_laws_independently (__main__.IndependentScientific.test_all85_grid_laws_independently) ... FAIL
+test_dimensions_and_inverses (__main__.IndependentScientific.test_dimensions_and_inverses) ... FAIL
+test_mutated_numeric_task_and_nonstandard_selection_rejected (__main__.IndependentScientific.test_mutated_numeric_task_and_nonstandard_selection_rejected) ... ok
+test_source_bindings_full_authority_and_version (__main__.IndependentScientific.test_source_bindings_full_authority_and_version) ... ok
+test_threshold_and_zero_emission_distinct (__main__.IndependentScientific.test_threshold_and_zero_emission_distinct) ... ok
+
+======================================================================
+FAIL: test_all85_grid_laws_independently (__main__.IndependentScientific.test_all85_grid_laws_independently)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-review-c2-resume-20261127/officina-di-fisica/editorial/reviews/c5-field-spectrum-photon-independent-20261127/independent-oracle.py", line 35, in test_all85_grid_laws_independently
+    else:self.assertEqual(state['output'],float(v))
+         ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0.41359999999999997 != 0.4136
+
+======================================================================
+FAIL: test_dimensions_and_inverses (__main__.IndependentScientific.test_dimensions_and_inverses)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-review-c2-resume-20261127/officina-di-fisica/editorial/reviews/c5-field-spectrum-photon-independent-20261127/independent-oracle.py", line 37, in test_dimensions_and_inverses
+    self.assertEqual((3*U.volt/U.meter/(3e8*U.meter/U.second)).to('nanotesla').magnitude,10)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 9.999999999999998 != 10
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.218s
+
+FAILED (failures=2)

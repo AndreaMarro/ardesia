@@ -1,0 +1,20 @@
+test_changed_actual_leaf_bytes_rejected_in_disposable_dossier (__main__.CanonicalFiveC5.test_changed_actual_leaf_bytes_rejected_in_disposable_dossier) ... ok
+test_changed_saved_report_rejected_without_dropping_any_gate (__main__.CanonicalFiveC5.test_changed_saved_report_rejected_without_dropping_any_gate) ... ok
+test_complete_fresh_scientific_identity_and_explicit_clock_limits (__main__.CanonicalFiveC5.test_complete_fresh_scientific_identity_and_explicit_clock_limits) ... FAIL
+test_existing_validate_activity_batch_fresh_saved_and15preview (__main__.CanonicalFiveC5.test_existing_validate_activity_batch_fresh_saved_and15preview) ... ok
+test_mutated_retokens_and_partial_sets_default_deny (__main__.CanonicalFiveC5.test_mutated_retokens_and_partial_sets_default_deny) ... ok
+test_source_model_and_unit_mutations_default_deny (__main__.CanonicalFiveC5.test_source_model_and_unit_mutations_default_deny) ... ok
+
+======================================================================
+FAIL: test_complete_fresh_scientific_identity_and_explicit_clock_limits (__main__.CanonicalFiveC5.test_complete_fresh_scientific_identity_and_explicit_clock_limits)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-review-c2-resume-20261127/officina-di-fisica/editorial/reviews/c5-field-spectrum-photon-canonical-adoption-53bd-20261127/test_canonical_bundle.py", line 13, in test_complete_fresh_scientific_identity_and_explicit_clock_limits
+    for r in report['records']:self.assertTrue(r['ok']);self.assertEqual(r['humanApproval'],'NOT_RUN');self.assertEqual(r['publicationAction'],'DRAFT');self.assertIn('no clock sweep',r['visualScope']['scope'])
+                                                                                                                                                        ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'no clock sweep' not found in 'Two assigned points in native orbit/side/top and fixed fallback at320/1280; clocked records explicitly reset0, no time sweep'
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.395s
+
+FAILED (failures=1)

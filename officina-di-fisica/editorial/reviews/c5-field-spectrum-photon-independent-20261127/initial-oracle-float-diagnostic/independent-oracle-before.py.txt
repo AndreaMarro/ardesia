@@ -1,0 +1,52 @@
+from pathlib import Path
+from fractions import Fraction as Q
+import json,hashlib,unittest,math
+import sympy as s
+import pint
+F=Path(__file__).parent;sha=lambda b:hashlib.sha256(b).hexdigest();canon=lambda r:json.dumps(r,sort_keys=True,separators=(',',':'),ensure_ascii=False,allow_nan=False).encode();p=json.loads((F/'experiment-c5-field-spectrum-photon-reading-20261127.json').read_bytes());b=json.loads((F/'experiment-c5-field-spectrum-photon-reading-20261127-bindings.json').read_bytes());source={r['id']:r for r in json.loads((F/'source-C5-5d.json').read_bytes())};actual=json.loads((F/'actual-consumer-observation.json').read_bytes());U=pint.UnitRegistry();
+POINTS=[[90,270],[4,3],[1,6],[250,500],[14,19]];ANSWERS=[[Q(10),Q(-10)],[Q(4),Q(9,4)],[Q(2),Q(-10)],[Q(517,500),Q(517,250)],[Q(0),Q(5)]]
+def validate_tasks(i,row):
+ assert row['selection']==POINTS[i]
+ assert len(row['tasks'])==2
+ for t,q in zip(row['tasks'],ANSWERS[i]):assert t['value']==float(q)
+def oracle(i,x):
+ if i==0:return s.simplify(10*s.sin(s.pi*s.Rational(str(x))/180))
+ if i==1:return (Q(str(x))/2)**2
+ if i==2:return [Q(2),Q(-2),Q(-5),Q(-63,10),Q(-73,10),Q(-10),Q(-12)][int(x)-1]
+ if i==3:return Q(517,125000)*Q(str(x))
+ return max(Q(0),Q(str(x))-14)
+class IndependentScientific(unittest.TestCase):
+ def test_source_bindings_full_authority_and_version(self):
+  self.assertEqual(len(p['records']),5);self.assertEqual(len({r['id']for r in p['records']}),5);self.assertEqual(p['assets'],[])
+  for row,binding in zip(p['records'],b):
+   old=source[row['id']];self.assertEqual(binding['id'],row['id']);self.assertEqual(binding['candidateSha256'],sha(canon(row)));self.assertEqual(binding['sourceSha256'],sha(canon(old)));self.assertEqual(row['baseVersion'],old['version']);self.assertEqual(row['version'],old['version']+1)
+   for field in ['id','course','skill','apparatus','control','measure','references','formula','substitution']:self.assertEqual(row[field],old[field])
+ def test_all10_assigned_tasks_exact_independent_rationals(self):
+  for i,row in enumerate(actual['rows']):validate_tasks(i,row)
+ def test_all85_grid_laws_independently(self):
+  self.assertEqual(actual['scalarControls'],85)
+  for i,row in enumerate(actual['rows']):
+   for state in row['grid']:
+    v=oracle(i,state['x']);self.assertTrue(math.isfinite(state['output']))
+    if i==0:
+     # Exact symbolic oracle; a finite floating sin approximation is assessed
+     # separately. This is not a change in the product grader or parity gate.
+     self.assertLessEqual(abs(state['output']-float(v)),1e-12)
+    else:self.assertEqual(state['output'],float(v))
+ def test_dimensions_and_inverses(self):
+  self.assertEqual((3*U.volt/U.meter/(3e8*U.meter/U.second)).to('nanotesla').magnitude,10)
+  self.assertEqual(((4*U.volt/U.meter)/(2*U.volt/U.meter))**2,4*U.dimensionless)
+  self.assertEqual((100*U.megahertz).to('hertz').magnitude,1e8)
+  self.assertEqual(Q(2)*Q(3,2),3);self.assertEqual(Q(517,250)/Q(517,125000),500)
+  self.assertEqual((1*U.electron_volt*U.second*U.hertz).to('electron_volt').magnitude,1)
+  self.assertEqual(s.log(s.Integer(100),10),2);self.assertEqual(s.log(s.Rational(1,10**10),10),-10)
+ def test_threshold_and_zero_emission_distinct(self):
+  row=actual['rows'][4];by={g['x']:g for g in row['grid']}
+  self.assertEqual(by[13]['output'],0);self.assertFalse(by[13]['apparatus']['ionizzato']);self.assertEqual(by[14]['output'],0);self.assertTrue(by[14]['apparatus']['ionizzato']);self.assertEqual(by[19]['output'],5)
+ def test_mutated_numeric_task_and_nonstandard_selection_rejected(self):
+  for i,row in enumerate(actual['rows']):
+   changed=json.loads(json.dumps(row));changed['tasks'][1]['value']+=1
+   with self.assertRaises(AssertionError):validate_tasks(i,changed)
+   changed=json.loads(json.dumps(row));changed['selection'][1]=0
+   with self.assertRaises(AssertionError):validate_tasks(i,changed)
+if __name__=='__main__':unittest.main(verbosity=2)

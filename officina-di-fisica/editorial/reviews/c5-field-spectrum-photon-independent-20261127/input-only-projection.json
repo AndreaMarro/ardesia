@@ -1,0 +1,146 @@
+[
+  {
+    "id": "SIM-C5-L06-01",
+    "version": 2,
+    "course": "C5",
+    "skill": "C5-L06",
+    "title": "Onde elettromagnetiche e campi ortogonali",
+    "topic": "UD7 · onde elettromagnetiche e campi ortogonali",
+    "anchor": "La luce di una stella attraversa spazio",
+    "summary": "Come cambiano i due campi passando da 90° a 270°? Che cosa misuri a metà del percorso?",
+    "control": {
+      "label": "Fase del campo",
+      "unit": "°",
+      "min": 0.0,
+      "max": 360.0,
+      "step": 15.0
+    },
+    "measure": {
+      "label": "Campo magnetico istantaneo",
+      "unit": "nT"
+    },
+    "formula": "E = 3 sin φ V/m; B = E/c; c ≈ 3×10⁸ m/s",
+    "interpretation": "Porta la fase a 90°, poi a 180° e infine a 270°. A 90° la componente magnetica vale +10 nT. A 180° entrambi i campi sono nulli nel punto P e nessuno dei due vettori in P ha un verso. A 270° la componente magnetica vale −10 nT. Nei due tratti i campi si invertono insieme e il flusso di energia mantiene il verso di propagazione. In P anche il flusso istantaneo è zero al passaggio dal positivo al negativo. I valori nelle altre posizioni dell’onda possono essere diversi.",
+    "referenceInputOnly": [
+      90.0,
+      270.0
+    ]
+  },
+  {
+    "id": "SIM-C5-L06-02",
+    "version": 1,
+    "course": "C5",
+    "skill": "C5-L06",
+    "title": "Velocità, frequenza, lunghezza d’onda, ampiezza e intensità",
+    "topic": "UD7 · velocità, frequenza, lunghezza d’onda, ampiezza e intensità",
+    "anchor": "L’ampiezza E₀ misura il massimo modulo del",
+    "summary": "Cambiando l’ampiezza di un’onda luminosa ne modifichi anche la lunghezza d’onda?",
+    "control": {
+      "label": "Ampiezza del campo elettrico",
+      "unit": "V/m",
+      "min": 0.0,
+      "max": 6.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Intensità rispetto a E₀ = 2 V/m",
+      "unit": "1"
+    },
+    "formula": "I/I riferimento = (E₀/2)²; c = λf",
+    "interpretation": "La sorgente mantiene f = 100 MHz nel vuoto, quindi λ ≈ 3 m. Cambia solo l’altezza dei campi. L’intensità media è proporzionale al quadrato dell’ampiezza.",
+    "referenceInputOnly": [
+      2.0,
+      4.0
+    ]
+  },
+  {
+    "id": "SIM-C5-L06-03",
+    "version": 1,
+    "course": "C5",
+    "skill": "C5-L06",
+    "title": "Spettro: radio, microonde, infrarosso, visibile, UV, X e gamma",
+    "topic": "UD7 · spettro: radio, microonde, infrarosso, visibile, UV, X e gamma",
+    "anchor": "La luce visibile occupa una stretta regione",
+    "summary": "Come confronti onde di dimensioni enormemente diverse sulla stessa scala?",
+    "control": {
+      "label": "Banda dello spettro",
+      "unit": "1",
+      "min": 1.0,
+      "max": 7.0,
+      "step": 1.0,
+      "choices": [
+        "Radio",
+        "Microonde",
+        "Infrarosso",
+        "Visibile",
+        "UV",
+        "X",
+        "Gamma"
+      ]
+    },
+    "measure": {
+      "label": "Logaritmo decimale della lunghezza d’onda in metri",
+      "unit": "1"
+    },
+    "formula": "log₁₀ λ(m) = log₁₀ c − log₁₀ f",
+    "interpretation": "Scegli un valore rappresentativo per ciascuna banda. L’asse dei logaritmi conta potenze di dieci, e λ = c/f ordina le frequenze al contrario. Il numero di creste nella scena è schematico.",
+    "referenceInputOnly": [
+      1.0,
+      4.0
+    ]
+  },
+  {
+    "id": "SIM-C5-L07-01",
+    "version": 1,
+    "course": "C5",
+    "skill": "C5-L07",
+    "title": "Quantizzazione dell’energia e relazione di Planck",
+    "topic": "UD7 · quantizzazione dell’energia e relazione di Planck",
+    "anchor": "La potenza luminosa dipende dall’energia portata da",
+    "summary": "Come cambia l’energia del singolo fotone se raddoppi la frequenza?",
+    "control": {
+      "label": "Frequenza del fotone",
+      "unit": "THz",
+      "min": 100.0,
+      "max": 1000.0,
+      "step": 50.0
+    },
+    "measure": {
+      "label": "Energia per fotone",
+      "unit": "eV"
+    },
+    "formula": "E = hf; h ≈ 4,136×10⁻¹⁵ eV·s",
+    "interpretation": "Conta i cicli nello stesso intervallo spaziale nel vuoto. La frequenza fissa l’energia per quanto, mentre aumentando solo il numero di fotoni aumenteresti l’energia totale.",
+    "referenceInputOnly": [
+      250.0,
+      750.0
+    ]
+  },
+  {
+    "id": "SIM-C5-L07-03",
+    "version": 1,
+    "course": "C5",
+    "skill": "C5-L07",
+    "title": "Distinzione fra radiazioni ionizzanti e non ionizzanti",
+    "topic": "UD7 · distinzione fra radiazioni ionizzanti e non ionizzanti",
+    "anchor": "Un singolo fotone può ionizzare un atomo",
+    "summary": "Basta aumentare l’intensità se ogni fotone è sotto la soglia?",
+    "control": {
+      "label": "Energia del singolo fotone",
+      "unit": "eV",
+      "min": 5.0,
+      "max": 25.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Energia cinetica massima liberata",
+      "unit": "eV"
+    },
+    "formula": "K = max(0, E fotone − 14 eV)",
+    "interpretation": "Per questo bersaglio ideale servono 14 eV in un solo fotone. Sotto soglia non esce alcun elettrone; alla soglia esso può essere liberato con energia cinetica nulla. Il modello considera un assorbimento a singolo fotone.",
+    "referenceInputOnly": [
+      8.0,
+      20.0
+    ]
+  }
+]
