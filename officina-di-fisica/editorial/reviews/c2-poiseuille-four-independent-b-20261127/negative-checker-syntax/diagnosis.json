@@ -1,0 +1,24 @@
+{
+  "cause": "Reviewer helper typoelse100 prevented Python import before comparison; no candidate defect.",
+  "correction": "Insert required whitespace after else; math expressions and expectations unchanged.",
+  "actualStages": [
+    {
+      "stage": "actual-code",
+      "exitCode": 0
+    },
+    {
+      "stage": "comparison",
+      "exitCode": 1
+    }
+  ],
+  "files": {
+    "actual-code.json": "078bfc749c528c8fbe042859add277857c1b8091f583adc96215b6e50c8e987f",
+    "actual-code.stdout.txt": "078bfc749c528c8fbe042859add277857c1b8091f583adc96215b6e50c8e987f",
+    "actual-code.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "comparison.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "comparison.stderr.txt": "f487dffa7f78ad61bb4bb192c68e16d0cc46749d83ae922dd584f9f30ccc4581",
+    "actual-terminal.json": "6c281681651d03dc42549e4ffcac5fce096aa0049b6070f4c50f3f36eece277e",
+    "independent_math.py.txt": "77951ff5891686a2857221370830850ad00e79cb5ffba3ca52bd2b19dd5f7a7d"
+  },
+  "archiveFormat": "Invalid historical source preserved verbatim as.py.txt, not importable"
+}

@@ -1,0 +1,190 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "INDEPENDENT_FOUR_POISEUILLE_DRAFT_CPU_TEXT_MATH_MANUAL_REVIEW",
+  "author": "root",
+  "independentReviewer": "author_vectors_b",
+  "candidateCommit": "7d4e9d5e04bab57462cead5b41edb37da773a489",
+  "consumerCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "rawPackageSha256": "55d869fda830039c16b530d26d0d2e4da43cdf9bd72533361e619416e67e5ed7",
+  "reviewedRecords": [
+    {
+      "id": "SIM-C2-L008-01",
+      "candidateSha256": "5e6f838fa55423c172744a6999fd2a65c1e6ef8f20a06764277ec5550734c249",
+      "version": 2,
+      "baseVersion": 1,
+      "skill": "C2-L008",
+      "textMathManualReview": {
+        "ok": true,
+        "assumptionsAndDimensions": "Rigid circular straight pipe, Newtonian liquid and fully developed laminar flow in both compared configurations. Same viscosity,length and pressure drop. ReferenceQ₀is the fixed nonzero normalization; this review does not extend to a zero-pressure-drop reference or to nonlaminar states.",
+        "independentManualCalculation": "Q/Q₀=(r/r₀)^4:2→16;.5→1/16=.0625. Positive fourth roots return2/.5. Area and mean-speed factors are4and4 for doubled radius.",
+        "manualArithmeticAndPedagogy": "Exact powers/halving, decimal1/16=625/10000. Prior incidental installed x**4 exposure disclosed; no fullblind claim.",
+        "servedPoints": [
+          "2",
+          "0.5"
+        ],
+        "exactAnswers": [
+          "16",
+          "0.0625"
+        ],
+        "unit": "1",
+        "literalServedPromptsVerified": true
+      },
+      "statesEachEdition": 7,
+      "priorInstalledModelExposure": true,
+      "visualReview": "NOT_RUN",
+      "humanApproval": "NOT_RUN",
+      "findings": []
+    },
+    {
+      "id": "SIM-C2-L008-02",
+      "candidateSha256": "e0487fcdbcf33e276d79f19ab77efd7241165d3f474e0e9497c05199e5635064",
+      "version": 2,
+      "baseVersion": 1,
+      "skill": "C2-L008",
+      "textMathManualReview": {
+        "ok": true,
+        "assumptionsAndDimensions": "Each choice restarts the same normalized positive-flow reference, changing only one parameter. Text clarifies the pressure choice means pressure drop, not absolute pressure. Laminar fixed-liquid/pipe assumptions remain.",
+        "independentManualCalculation": "Radius double→16;length double→.5. Other choices viscosity double→.5,pressure-drop double→2. Half-flow alone identifies either length or viscosity change; specifying only length varied resolves that inverse.",
+        "manualArithmeticAndPedagogy": "Manual factor cancellation and powers. The categorical inverse helper returns both valid configurations for.5 rather than inventing a unique choice. Prior incidental installed table exposure disclosed.",
+        "servedPoints": [
+          "1",
+          "2"
+        ],
+        "exactAnswers": [
+          "16",
+          "0.5"
+        ],
+        "unit": "1",
+        "literalServedPromptsVerified": true
+      },
+      "statesEachEdition": 4,
+      "priorInstalledModelExposure": true,
+      "visualReview": "NOT_RUN",
+      "humanApproval": "NOT_RUN",
+      "findings": []
+    },
+    {
+      "id": "SIM-C2-L008-03",
+      "candidateSha256": "a1c0f0b2946f19b3a75661bd048fd81f8df2e19cc9445702f7493d5ea4427fe9",
+      "version": 2,
+      "baseVersion": 1,
+      "skill": "C2-L008",
+      "textMathManualReview": {
+        "ok": true,
+        "assumptionsAndDimensions": "Fixed linear hydraulic resistance3kPa·s/mL for this capillary/model regime; pressure difference is upstream minus downstream, not absolute pressure.",
+        "independentManualCalculation": "Q2.5mL/s→7.5kPa;6→18kPa. R_SI=3e9Pa·s/m³;Q2.5e−6/6e−6m³/s gives7500/18000Pa. Inverse pressure divided by3returns2.5/6mL/s;zeroQ→zeroΔp.",
+        "manualArithmeticAndPedagogy": "Simple multiplication by3using2+.5 and unit cancellation, with explicit inverse. Source-only primary for this ID had no installed-function exposure.",
+        "servedPoints": [
+          "2.5",
+          "6"
+        ],
+        "exactAnswers": [
+          "7.5",
+          "18"
+        ],
+        "unit": "kPa",
+        "literalServedPromptsVerified": true
+      },
+      "statesEachEdition": 17,
+      "priorInstalledModelExposure": false,
+      "visualReview": "NOT_RUN",
+      "humanApproval": "NOT_RUN",
+      "findings": []
+    },
+    {
+      "id": "SIM-C2-L008-04",
+      "candidateSha256": "a521d6e089389ebd578f59848d00add067ea5acea829356e3562f62427a7d652",
+      "version": 2,
+      "baseVersion": 1,
+      "skill": "C2-L008",
+      "textMathManualReview": {
+        "ok": true,
+        "assumptionsAndDimensions": "Percentage control is radius change,δ/100=Δr/r₀. Fixed nonzero reference with same pressure drop,viscosity and length in the rigid Newtonian laminar model; physiological elasticity/pulsatility limits are explicit.",
+        "independentManualCalculation": "−20%→(4/5)^4=256/625=.4096; +20%→(6/5)^4=1296/625=2.0736. Changes in flow are−59.04%/+107.36%, distinct from requested ratios. Positive fourth roots recoverδ−20/+20.",
+        "manualArithmeticAndPedagogy": "Repeated squares and denominator10000 produce exact decimal manual inputs. Machine.4096000000000001and display≈2.074remain distinct from exact.4096/2.0736. Both exact manual inputs were accepted. Source-only primary for this ID had no installed-function exposure.",
+        "servedPoints": [
+          "-20",
+          "20"
+        ],
+        "exactAnswers": [
+          "0.4096",
+          "2.0736"
+        ],
+        "unit": "1",
+        "literalServedPromptsVerified": true
+      },
+      "statesEachEdition": 9,
+      "priorInstalledModelExposure": false,
+      "visualReview": "NOT_RUN",
+      "humanApproval": "NOT_RUN",
+      "findings": []
+    }
+  ],
+  "primary": {
+    "commit": "3e9e74a9fa1f644b58a3e0ab68935340efc124b2",
+    "sha256": "62d2bafe29bac1da0254b9e0d37e219afcea11db597f2b8049acfcdcdad5e2f1",
+    "newCandidateBlocksKeysAndAuthorReceiptNotReadBeforeFreeze": true,
+    "priorExposure": {
+      "commit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+      "path": "officina-di-fisica/static/js/banchi/voci/modelli/C2.js",
+      "IDs": [
+        "SIM-C2-L008-01",
+        "SIM-C2-L008-02"
+      ],
+      "context": "Previous L007grep unintentionally included the next lines. Not candidate7dkeys.",
+      "fullBlindClaim": false
+    },
+    "fullBlindClaimForAllFour": false
+  },
+  "isolatedReference": {
+    "commit": "3e9e74a9fa1f644b58a3e0ab68935340efc124b2",
+    "moduleSha256": "c4b6480fbf3f649945c9daf870a79c115afcd0ad32f0480f29ed27a97182e5c6",
+    "consumerImports": [],
+    "realExitCode": 0,
+    "independentStates": 37,
+    "tasks": 8
+  },
+  "automation": {
+    "realTests": 14,
+    "observedExitCode": 0,
+    "actualStatesBothEditions": 74,
+    "literalServedPrompts": 8,
+    "manualInputsAcceptedByUnchangedGrader": 8,
+    "negativeInputsRejected": 12,
+    "comparison": "Actual input/output strictly match isolated referenceIEEEtable without epsilon; exact nominal fraction/manual arithmetic separately verified.",
+    "sameInputSceneClockParity": true,
+    "stages": [
+      {
+        "stage": "actual-code",
+        "observedExitCode": 0,
+        "signal": null
+      },
+      {
+        "stage": "comparison",
+        "observedExitCode": 0,
+        "signal": null
+      },
+      {
+        "stage": "tests",
+        "observedExitCode": 0,
+        "signal": null
+      },
+      {
+        "stage": "grader",
+        "observedExitCode": 0,
+        "signal": null
+      }
+    ]
+  },
+  "negativeHistory": "negative-checker-syntax: actualcode0,comparison1 from missing whitespace in reviewerhelper. Old invalidsource preserved verbatim as.py.txt; corrected syntax only, then fresh full real0. No candidate issue.",
+  "sourceAndCandidateIdentities": "ALL4_CANONICAL_BINDINGS_AND_GIT_SNAPSHOTS_BYTE_EXACT",
+  "findings": [],
+  "reviewedSource": "All four candidate fields/blocks plus bindings read; theoreticalC2-L008 mapping preserved. Ratios are conditional on fixed nonzero reference; no arbitraryzeroΔp₀ extension.",
+  "Chrome": "NOT_RUN",
+  "canonicalDBImport": "NOT_RUN",
+  "runtimeFingerprint": "NOT_RUN_FULL_RUNTIME;actualmodules pinned to1b72and Gitbyteverified",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "activityCredit": 0,
+  "timestamp": "2026-11-27T09:16:23.103234+00:00"
+}

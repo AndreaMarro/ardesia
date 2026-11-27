@@ -1,0 +1,502 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "INDEPENDENT_FOUR_POISEUILLE_DRAFT_CPU_REVIEW",
+  "candidateCommit": "7d4e9d5e04bab57462cead5b41edb37da773a489",
+  "consumerCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "rawPackageSha256": "55d869fda830039c16b530d26d0d2e4da43cdf9bd72533361e619416e67e5ed7",
+  "reviewSha256": "6fb280f30bee7991912fe30861bd4bde40c0f0e3d9fee72c09d2cf8d4c873e56",
+  "reviewedRecords": 4,
+  "tasks": 8,
+  "realTests": 14,
+  "realTestExitCode": 0,
+  "actualSourceModulesPinned": 52,
+  "priorInstalledModelExposureIDs": [
+    "SIM-C2-L008-01",
+    "SIM-C2-L008-02"
+  ],
+  "fullBlindClaimForAllFour": false,
+  "newCandidateReadOnlyAfterPrimaryAndReferenceGitFreeze": true,
+  "findings": [],
+  "UI": "NOT_RUN",
+  "canonicalDBImport": "NOT_RUN",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "ownedRepositoryFiles": [
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/actual-code.json",
+      "sha256": "078bfc749c528c8fbe042859add277857c1b8091f583adc96215b6e50c8e987f",
+      "bytes": 51788
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/actual-code.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/actual-code.stdout.txt",
+      "sha256": "078bfc749c528c8fbe042859add277857c1b8091f583adc96215b6e50c8e987f",
+      "bytes": 51788
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/actual-comparison.json",
+      "sha256": "e7528b77554c7a249f270e4c9ca1db140c0ce1a06cf03b377c969acf9bb2127f",
+      "bytes": 28313
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/actual-grader-block.js.txt",
+      "sha256": "47873210c4ae3e5c412a9e9f5ed915534984f6639f1bc5c95017150df830d239",
+      "bytes": 356
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/actual-terminal.json",
+      "sha256": "8c9271ee356927b3976abbabbd8448e66be8c4ba0c16f0f1b176abddd18fcca4",
+      "bytes": 543
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/check_actual.py",
+      "sha256": "c5e247d7d390ea9fc4ebe40bd971fed5dc365db825cdc757ff08baa627458b11",
+      "bytes": 5498
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/collect-actual.mjs",
+      "sha256": "b7921bc31dedda97124267afe7056cb9e8592e771c89ca086d23ac4cc28e1d5c",
+      "bytes": 2415
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/comparison.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/comparison.stdout.txt",
+      "sha256": "01869599125d7cb496380f4712563e994611b051d6ddd1fc0439642c5ba190c0",
+      "bytes": 59
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/content/esperienze-C2.json",
+      "sha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+      "bytes": 51464
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/package.json",
+      "sha256": "1ceaf4e9313cebcd296324a6ee48eeb0dfd858e20fe0ff8efb4d97d0e90f76f9",
+      "bytes": 535
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/aula.js",
+      "sha256": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+      "bytes": 4885
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/banco.js",
+      "sha256": "44192babc8992b23a57d3852c14161f26c41a46e3c4902fe37a11e5fbb2a69cf",
+      "bytes": 35891
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/catalogo.js",
+      "sha256": "4aa0261293b98126c06c6af91ce27c2dd32e214856b04d488e3662e040d36a95",
+      "bytes": 4099
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/collegamenti.js",
+      "sha256": "23755d6085231531bab2cd86c9791e307e7cad132c96be4f6fdcbaabe6f0e5b7",
+      "bytes": 1481
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/etichette.js",
+      "sha256": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+      "bytes": 778
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/grafici.js",
+      "sha256": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+      "bytes": 5880
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/misure.js",
+      "sha256": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+      "bytes": 1512
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/modelli/calore.js",
+      "sha256": "83c89a3140ba5a3386eff0cff54a1aa2575c26ea1e973779b19303026c13bc23",
+      "bytes": 2236
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/modelli/campo.js",
+      "sha256": "3750efefa281d28712a973bea921544fb83dc5ad9eb2da7e0c09fe6fac6d50c3",
+      "bytes": 3362
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/modelli/circuito.js",
+      "sha256": "107b9e8defed3aaa6d04883442951ed20b7b2cdfdefb658f3ef746c24185a757",
+      "bytes": 2686
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/modelli/gas.js",
+      "sha256": "7981d292be241bb3c7921f755072bda44ab52e5be92f9ae203958a19b7ec1a6d",
+      "bytes": 2335
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/modelli/induzione.js",
+      "sha256": "14bec092bcfb1d23b0c5ad97426b75c003f56bd427ce30c6d65c0859319f48bc",
+      "bytes": 2454
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/modelli/lente.js",
+      "sha256": "5488291f98987538c4fc8483a61e2c058e45605c66391a7ccbdd2b9fb8787566",
+      "bytes": 3787
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/modelli/onde.js",
+      "sha256": "fdf5fc16432a92d816db87f35348d461d491cbf48ea45703c27cda2a02314bc3",
+      "bytes": 4000
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/modelli/piano.js",
+      "sha256": "0575020da70a7759527f307b6ba291777f79ff0a710e313b1a4cb7ee012de6e2",
+      "bytes": 2826
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/modelli/stevino.js",
+      "sha256": "620d9363d38867ce854c0f9c567bc8c63d5519a44f1ce1dfd0dddf1f315da0af",
+      "bytes": 2066
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/modelli/tubo.js",
+      "sha256": "ebe96bda5301f124182d7bd6ee3042b9ecad61b46689ea26a093deac784c3cd6",
+      "bytes": 3958
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/modelli/volo.js",
+      "sha256": "bb6280ec67bca5f07e80aa382b6a45c72717189887561090f9807493e1912713",
+      "bytes": 3301
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/quaderno.js",
+      "sha256": "ecc32226e0fa1781b36cac952fa926a2ac17be6b4eae491ef6ef5744fcd8885a",
+      "bytes": 15609
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/scena.js",
+      "sha256": "294a5e5966d004d48456e867a9deb27da5d32ba9ce43e087d4ea713f4544e399",
+      "bytes": 13864
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/scene/calore.js",
+      "sha256": "80272a42fbf7edd5a130df801c3819482aaca55471ed992e5fb411085f897f4e",
+      "bytes": 1337
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/scene/campo.js",
+      "sha256": "457fd9ccec431f43806a39e8b8fca78c243931514f8e5971c474b5cdbfae6dfa",
+      "bytes": 4525
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/scene/circuito.js",
+      "sha256": "049ed16c1cc2bd6d2c2662c4de38399d3b1bb00a5adabeb17bed06780df49701",
+      "bytes": 2179
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/scene/gas.js",
+      "sha256": "c39a13bb813bd6f2602a767cbf6e1e42f954092291ca320d3a61352491953223",
+      "bytes": 1817
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/scene/induzione.js",
+      "sha256": "b7b69747eae9b3941fc8db44047faa5ebad34e49d0a0b924b6765f4b4ec252a2",
+      "bytes": 2017
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/scene/lente.js",
+      "sha256": "8a238ff78b82cdd796b796691e147128c00a5a0f9d089d2398896c92a4c104b5",
+      "bytes": 2738
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/scene/onde.js",
+      "sha256": "61f9bf1a96d64a393127993da6857d25c9f9612e2a315f48e5145b35bd027ca6",
+      "bytes": 4996
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/scene/piano.js",
+      "sha256": "c98424e8911887f3a540c5c3a9d1e256d87d4fd7fa61e13375bbe33fb238f969",
+      "bytes": 2060
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/scene/stevino.js",
+      "sha256": "75836bd9014a1b8b23278efd3be3482dcecea533abf9c9a9d6ff3c71b9581c0c",
+      "bytes": 1731
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/scene/tubo.js",
+      "sha256": "a401bc41dbd89e106e01adefcec9298dabae15ad552992eef8f55e8364225667",
+      "bytes": 2295
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/scene/volo.js",
+      "sha256": "bcacd889db673a9f8a306a7bd4fca61aca66388fe37cbfe545d27d46d0355b68",
+      "bytes": 3369
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/tavola.js",
+      "sha256": "f03e3c823fe90deaab1b79c8b44b4cff3e5993e91953142ab32ced9c2f0e818f",
+      "bytes": 20863
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/voci/apparati/campi.js",
+      "sha256": "627c9de0ebca6af8ffe602876b85a6e998cfde753d4e0091a14b9a70a94feabb",
+      "bytes": 10208
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/voci/apparati/fluidi.js",
+      "sha256": "6faf0e94d26620dca5288633c55e7acb842cc7c3f849d4ccfb9fa796e802d4c5",
+      "bytes": 12032
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/voci/apparati/meccanica.js",
+      "sha256": "5ebb36d2be9f65c1308a42e7112b9327bbcfa28e630aaa374d78ceaea759ca02",
+      "bytes": 13298
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/voci/apparati/onde.js",
+      "sha256": "6aae6588b047f02ed7b31f8b2195d01ffc265dfc7236dfb25ca98ed1161aece2",
+      "bytes": 14895
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/voci/apparati/termica.js",
+      "sha256": "2c2dd287ce60ea861830437697e5cc182ffb9d2bdbbcb7085053a271c1cc4459",
+      "bytes": 10440
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/voci/assessment-selection.js",
+      "sha256": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+      "bytes": 1102
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/voci/confronti.js",
+      "sha256": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+      "bytes": 4981
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/voci/engines.js",
+      "sha256": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+      "bytes": 2692
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/voci/esperimento.js",
+      "sha256": "e1c68c5530372696f9f863e95a148ce9afd49118708edf921f20781aa116feb3",
+      "bytes": 13868
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/voci/geometria.js",
+      "sha256": "4264ad98c0a4fcdcdb236827157d66b3089e45c6dba00ce6462419292d3e7cb4",
+      "bytes": 6835
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/voci/legende.js",
+      "sha256": "97a4e012a2d763e1e921837497e944a04755519297fe93850c2650454da2dc6d",
+      "bytes": 17325
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/voci/misure-affiancate.js",
+      "sha256": "2f3d2c629fdd4cced15556b49608b40e171d6c41468e29b8cbcdf34cb09be8a8",
+      "bytes": 2822
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/voci/modelli/C1.js",
+      "sha256": "2566eb562a896b56f42a85be1eb865bd7dcc988b0283f460abd29cb090446dea",
+      "bytes": 13003
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/voci/modelli/C2.js",
+      "sha256": "a747ffb8336a479f4a42959e734f377f8960cfdf32261d90499deca3cadd59e0",
+      "bytes": 12576
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/voci/modelli/C3.js",
+      "sha256": "b01a2fd9b40c4ebefa7a124d543ba6933708d95a7bd95e4e613dca88a05e53cd",
+      "bytes": 10928
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/voci/modelli/C4.js",
+      "sha256": "de65de5483970720e2ec9fb01e3146f71aaad90529dd1f0a3c298c56fd2bf620",
+      "bytes": 8916
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/voci/modelli/C5.js",
+      "sha256": "11df78b3c86ccd009853419ae869c54ae884619270636e8f7a7a0a7471dae004",
+      "bytes": 8814
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/voci/modelli/C6.js",
+      "sha256": "6e1af33f3af9fe5cc96b6216a110efe3123517e32c22c5dc856ac29d9b79129c",
+      "bytes": 2374
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/voci/orologi.js",
+      "sha256": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+      "bytes": 9914
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer/static/js/banchi/voci/tavola.js",
+      "sha256": "21373daa0b6841cc98b537d61cc678c3b9a935f4023d30f54d7cbd8ee2b693fa",
+      "bytes": 5049
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/consumer-source-verification.json",
+      "sha256": "ae137831c99dea281516200da9c4c1b66d5dfa45ff5c75864230f342033d9142",
+      "bytes": 18607
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/frozen_exact_arithmetic_literals.py",
+      "sha256": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de",
+      "bytes": 2372
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/git-inputs.json",
+      "sha256": "5a564bff80599967285b6bd8b74dec2d7209e2ae8fef247ccfac5dc0213a7cb8",
+      "bytes": 16550
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/grade-actual.mjs",
+      "sha256": "a61c5717bdd574f2d9f192407a0858c3c6ae2a0ee1661a048aae360fa033ec10",
+      "bytes": 1620
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/grader.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/grader.stdout.txt",
+      "sha256": "4cbf19ee12b0453ae69070b78c6bb1e9018d569431690d0d6b9c406deb754c11",
+      "bytes": 1284
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/independent-model-before-blocks.mjs",
+      "sha256": "c4b6480fbf3f649945c9daf870a79c115afcd0ad32f0480f29ed27a97182e5c6",
+      "bytes": 1254
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/independent-review.json",
+      "sha256": "6fb280f30bee7991912fe30861bd4bde40c0f0e3d9fee72c09d2cf8d4c873e56",
+      "bytes": 8312
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/independent_math.py",
+      "sha256": "6f6592e2619361cb1d6447ce22142e765a828e2214752e4d6b94dda37b312e4e",
+      "bytes": 3541
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/negative-checker-syntax/actual-code.json",
+      "sha256": "078bfc749c528c8fbe042859add277857c1b8091f583adc96215b6e50c8e987f",
+      "bytes": 51788
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/negative-checker-syntax/actual-code.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/negative-checker-syntax/actual-code.stdout.txt",
+      "sha256": "078bfc749c528c8fbe042859add277857c1b8091f583adc96215b6e50c8e987f",
+      "bytes": 51788
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/negative-checker-syntax/actual-terminal.json",
+      "sha256": "6c281681651d03dc42549e4ffcac5fce096aa0049b6070f4c50f3f36eece277e",
+      "bytes": 368
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/negative-checker-syntax/comparison.stderr.txt",
+      "sha256": "f487dffa7f78ad61bb4bb192c68e16d0cc46749d83ae922dd584f9f30ccc4581",
+      "bytes": 737
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/negative-checker-syntax/comparison.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/negative-checker-syntax/diagnosis.json",
+      "sha256": "237016d6a27fe679a973c6f583915d459367f6a09525dca6b26d5a16fbbf74e9",
+      "bytes": 1148
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/negative-checker-syntax/independent_math.py.txt",
+      "sha256": "77951ff5891686a2857221370830850ad00e79cb5ffba3ca52bd2b19dd5f7a7d",
+      "bytes": 3540
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/package-bindings.json",
+      "sha256": "97f31c9fa2bd95ef74ff3783d38469627578eca100a1207f8476a6362c30f64f",
+      "bytes": 1347
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/package.json",
+      "sha256": "55d869fda830039c16b530d26d0d2e4da43cdf9bd72533361e619416e67e5ed7",
+      "bytes": 11889
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/pre-key-model-terminal.json",
+      "sha256": "73d7c50c3bbe717981cb02bef02b49eb7931d570844b966a8d16276ece7fd830",
+      "bytes": 325
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/pre-key-model.json",
+      "sha256": "d2ea0734f4fb887b122e94a1bb1a70b18e4220643a9d6c46fd1d030817ef996b",
+      "bytes": 5565
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/pre-key-model.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/pre-key-model.stdout.txt",
+      "sha256": "f4d78f6a2607c49ec4c7ca294c0e2750c008cf09bab36b995d4316fe8e3eedcf",
+      "bytes": 2819
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/primary-before-blocks.md",
+      "sha256": "62d2bafe29bac1da0254b9e0d37e219afcea11db597f2b8049acfcdcdad5e2f1",
+      "bytes": 4614
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/primary-freeze.json",
+      "sha256": "3907748636ce649d8424b20985f3aa45e4540ca473f68177d9d1e78b9678ded6",
+      "bytes": 885
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/review-note.md",
+      "sha256": "78ddd6b08c707b9eee13b546670ea8a8de5ce74981dc8bb206bac47ce43bba19",
+      "bytes": 3110
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/run_review.py",
+      "sha256": "fad8ab416b89f173219372935db19cb76c8f64117792ff73535107c44d0d438a",
+      "bytes": 1306
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/stimuli-prompt-data-only.json",
+      "sha256": "e6dba6a841a7ec2b7ede92b0419b3b53ca6639709d42676a556c9d80ab18bc51",
+      "bytes": 4659
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/test_review.py",
+      "sha256": "30ba9fa7cfd98c4a4d264502ba6b48fe5b596e8a954873a48e99501256d3b8eb",
+      "bytes": 3681
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/tests.stderr.txt",
+      "sha256": "e68df21350c2e606673c38dcf5dfe4b1a31fc6d26c59ea10313ff44bd46d0cfc",
+      "bytes": 113
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c2-poiseuille-four-independent-b-20261127/tests.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  ]
+}

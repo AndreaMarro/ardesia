@@ -1,0 +1,884 @@
+{
+  "phase": "FOUR_POISEUILLE_CPU_SCIENTIFIC_COMPARISON",
+  "candidateCommit": "7d4e9d5e04bab57462cead5b41edb37da773a489",
+  "consumerCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "states": 74,
+  "records": [
+    {
+      "id": "SIM-C2-L008-01",
+      "variant": "published",
+      "manualPoints": [
+        "2",
+        "5/4"
+      ],
+      "manualNominalExactAnswers": [
+        "16",
+        "625/256"
+      ],
+      "sourceUnit": "1",
+      "states": [
+        {
+          "gridIndex": 0,
+          "nominalInput": "1/2",
+          "actualInputLexeme": "0.5",
+          "nominalExactGivenData": "1/16",
+          "actualOutputLexeme": "0.0625",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "nominalInput": "3/4",
+          "actualInputLexeme": "0.75",
+          "nominalExactGivenData": "81/256",
+          "actualOutputLexeme": "0.31640625",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "nominalInput": "1",
+          "actualInputLexeme": "1",
+          "nominalExactGivenData": "1",
+          "actualOutputLexeme": "1",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "nominalInput": "5/4",
+          "actualInputLexeme": "1.25",
+          "nominalExactGivenData": "625/256",
+          "actualOutputLexeme": "2.44140625",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "nominalInput": "3/2",
+          "actualInputLexeme": "1.5",
+          "nominalExactGivenData": "81/16",
+          "actualOutputLexeme": "5.0625",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "nominalInput": "7/4",
+          "actualInputLexeme": "1.75",
+          "nominalExactGivenData": "2401/256",
+          "actualOutputLexeme": "9.37890625",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "nominalInput": "2",
+          "actualInputLexeme": "2",
+          "nominalExactGivenData": "16",
+          "actualOutputLexeme": "16",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Raggio rispetto a r₀» su 2. Quale valore ottieni per «Portata relativa a Q₀»?",
+          "value": 16,
+          "unit": "numero puro",
+          "worked": "Q/Q₀ = (r/r₀)⁴. 2⁴ = 16."
+        },
+        {
+          "prompt": "Nel medesimo capillare porti il raggio a 1,25 volte il riferimento. Con lo stesso salto di pressione, quale rapporto Q/Q₀ ottieni?",
+          "value": "2.44140625",
+          "unit": "numero puro",
+          "worked": "Q/Q₀ = (r/r₀)⁴. 1,25⁴ ≈ 2,441."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "16",
+        "2,441"
+      ],
+      "literalPromptsMatchFrozenData": false
+    },
+    {
+      "id": "SIM-C2-L008-01",
+      "variant": "draft",
+      "manualPoints": [
+        "2",
+        "0.5"
+      ],
+      "manualNominalExactAnswers": [
+        "16",
+        "0.0625"
+      ],
+      "sourceUnit": "1",
+      "states": [
+        {
+          "gridIndex": 0,
+          "nominalInput": "1/2",
+          "actualInputLexeme": "0.5",
+          "nominalExactGivenData": "1/16",
+          "actualOutputLexeme": "0.0625",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "nominalInput": "3/4",
+          "actualInputLexeme": "0.75",
+          "nominalExactGivenData": "81/256",
+          "actualOutputLexeme": "0.31640625",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "nominalInput": "1",
+          "actualInputLexeme": "1",
+          "nominalExactGivenData": "1",
+          "actualOutputLexeme": "1",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "nominalInput": "5/4",
+          "actualInputLexeme": "1.25",
+          "nominalExactGivenData": "625/256",
+          "actualOutputLexeme": "2.44140625",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "nominalInput": "3/2",
+          "actualInputLexeme": "1.5",
+          "nominalExactGivenData": "81/16",
+          "actualOutputLexeme": "5.0625",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "nominalInput": "7/4",
+          "actualInputLexeme": "1.75",
+          "nominalExactGivenData": "2401/256",
+          "actualOutputLexeme": "9.37890625",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "nominalInput": "2",
+          "actualInputLexeme": "2",
+          "nominalExactGivenData": "16",
+          "actualOutputLexeme": "16",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Raggio rispetto a r₀» su 2. Quale valore ottieni per «Portata relativa a Q₀»?",
+          "value": 16,
+          "unit": "numero puro",
+          "worked": "Q/Q₀ = (r/r₀)⁴. 2⁴ = 16."
+        },
+        {
+          "prompt": "In un tubo rigido il raggio diventa 0,5 volte quello iniziale. Nello stesso liquido e a pari lunghezza e salto di pressione, quale rapporto Q/Q₀ trovi?",
+          "value": "0.0625",
+          "unit": "numero puro",
+          "worked": "Q/Q₀ = (r/r₀)⁴. 0,5⁴ = 0,0625."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "16",
+        "0,0625"
+      ],
+      "literalPromptsMatchFrozenData": true
+    },
+    {
+      "id": "SIM-C2-L008-02",
+      "variant": "published",
+      "manualPoints": [
+        "4",
+        "3"
+      ],
+      "manualNominalExactAnswers": [
+        "2",
+        "1/2"
+      ],
+      "sourceUnit": "1",
+      "states": [
+        {
+          "gridIndex": 0,
+          "nominalInput": "1",
+          "actualInputLexeme": "1",
+          "nominalExactGivenData": "16",
+          "actualOutputLexeme": "16",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "nominalInput": "2",
+          "actualInputLexeme": "2",
+          "nominalExactGivenData": "1/2",
+          "actualOutputLexeme": "0.5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "nominalInput": "3",
+          "actualInputLexeme": "3",
+          "nominalExactGivenData": "1/2",
+          "actualOutputLexeme": "0.5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "nominalInput": "4",
+          "actualInputLexeme": "4",
+          "nominalExactGivenData": "2",
+          "actualOutputLexeme": "2",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Modifica rispetto al riferimento» su Pressione doppia. Quale valore ottieni per «Portata rispetto a Q₀»?",
+          "value": 2,
+          "unit": "numero puro",
+          "worked": "Q ∝ Δp r⁴/(η L). 2 × 1 = 2."
+        },
+        {
+          "prompt": "Il tecnico sceglie la modifica «Viscosità doppia» alla prova di Poiseuille. A parità delle altre condizioni, per quale fattore cambia la portata?",
+          "value": "0.5",
+          "unit": "numero puro",
+          "worked": "Q ∝ Δp r⁴/(η L). 1 / 2 = 0,5."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "2",
+        "0,5"
+      ],
+      "literalPromptsMatchFrozenData": false
+    },
+    {
+      "id": "SIM-C2-L008-02",
+      "variant": "draft",
+      "manualPoints": [
+        "1",
+        "2"
+      ],
+      "manualNominalExactAnswers": [
+        "16",
+        "0.5"
+      ],
+      "sourceUnit": "1",
+      "states": [
+        {
+          "gridIndex": 0,
+          "nominalInput": "1",
+          "actualInputLexeme": "1",
+          "nominalExactGivenData": "16",
+          "actualOutputLexeme": "16",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "nominalInput": "2",
+          "actualInputLexeme": "2",
+          "nominalExactGivenData": "1/2",
+          "actualOutputLexeme": "0.5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "nominalInput": "3",
+          "actualInputLexeme": "3",
+          "nominalExactGivenData": "1/2",
+          "actualOutputLexeme": "0.5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "nominalInput": "4",
+          "actualInputLexeme": "4",
+          "nominalExactGivenData": "2",
+          "actualOutputLexeme": "2",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Modifica rispetto al riferimento» su Raggio doppio. Quale valore ottieni per «Portata rispetto a Q₀»?",
+          "value": 16,
+          "unit": "numero puro",
+          "worked": "Q ∝ Δp r⁴/(η L). 2⁴ = 16."
+        },
+        {
+          "prompt": "Il tecnico seleziona «Lunghezza doppia» nel banco. Tutti gli altri parametri restano ai valori di riferimento. Quale rapporto fra la nuova portata e Q₀ ottiene?",
+          "value": "0.5",
+          "unit": "numero puro",
+          "worked": "Q ∝ Δp r⁴/(η L). 1 / 2 = 0,5."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "16",
+        "0,5"
+      ],
+      "literalPromptsMatchFrozenData": true
+    },
+    {
+      "id": "SIM-C2-L008-03",
+      "variant": "published",
+      "manualPoints": [
+        "5",
+        "4"
+      ],
+      "manualNominalExactAnswers": [
+        "15",
+        "12"
+      ],
+      "sourceUnit": "kPa",
+      "states": [
+        {
+          "gridIndex": 0,
+          "nominalInput": "0",
+          "actualInputLexeme": "0",
+          "nominalExactGivenData": "0",
+          "actualOutputLexeme": "0",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "nominalInput": "1/2",
+          "actualInputLexeme": "0.5",
+          "nominalExactGivenData": "3/2",
+          "actualOutputLexeme": "1.5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "nominalInput": "1",
+          "actualInputLexeme": "1",
+          "nominalExactGivenData": "3",
+          "actualOutputLexeme": "3",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "nominalInput": "3/2",
+          "actualInputLexeme": "1.5",
+          "nominalExactGivenData": "9/2",
+          "actualOutputLexeme": "4.5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "nominalInput": "2",
+          "actualInputLexeme": "2",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "nominalInput": "5/2",
+          "actualInputLexeme": "2.5",
+          "nominalExactGivenData": "15/2",
+          "actualOutputLexeme": "7.5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "nominalInput": "3",
+          "actualInputLexeme": "3",
+          "nominalExactGivenData": "9",
+          "actualOutputLexeme": "9",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "nominalInput": "7/2",
+          "actualInputLexeme": "3.5",
+          "nominalExactGivenData": "21/2",
+          "actualOutputLexeme": "10.5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "nominalInput": "4",
+          "actualInputLexeme": "4",
+          "nominalExactGivenData": "12",
+          "actualOutputLexeme": "12",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "nominalInput": "9/2",
+          "actualInputLexeme": "4.5",
+          "nominalExactGivenData": "27/2",
+          "actualOutputLexeme": "13.5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "nominalInput": "5",
+          "actualInputLexeme": "5",
+          "nominalExactGivenData": "15",
+          "actualOutputLexeme": "15",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 11,
+          "nominalInput": "11/2",
+          "actualInputLexeme": "5.5",
+          "nominalExactGivenData": "33/2",
+          "actualOutputLexeme": "16.5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 12,
+          "nominalInput": "6",
+          "actualInputLexeme": "6",
+          "nominalExactGivenData": "18",
+          "actualOutputLexeme": "18",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 13,
+          "nominalInput": "13/2",
+          "actualInputLexeme": "6.5",
+          "nominalExactGivenData": "39/2",
+          "actualOutputLexeme": "19.5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 14,
+          "nominalInput": "7",
+          "actualInputLexeme": "7",
+          "nominalExactGivenData": "21",
+          "actualOutputLexeme": "21",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 15,
+          "nominalInput": "15/2",
+          "actualInputLexeme": "7.5",
+          "nominalExactGivenData": "45/2",
+          "actualOutputLexeme": "22.5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 16,
+          "nominalInput": "8",
+          "actualInputLexeme": "8",
+          "nominalExactGivenData": "24",
+          "actualOutputLexeme": "24",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Portata richiesta» su 5 mL/s. Quale valore ottieni per «Differenza di pressione»?",
+          "value": 15,
+          "unit": "kPa",
+          "worked": "Δp = RQ, con R = 3 kPa·s/mL. 3 × 5 = 15 kPa."
+        },
+        {
+          "prompt": "Per ottenere una portata di 4 mL/s in un capillare con resistenza 3 kPa·s/mL, quale salto di pressione deve fornire la pompa?",
+          "value": 12,
+          "unit": "kPa",
+          "worked": "Δp = RQ, con R = 3 kPa·s/mL. 3 × 4 = 12 kPa."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "15",
+        "12"
+      ],
+      "literalPromptsMatchFrozenData": false
+    },
+    {
+      "id": "SIM-C2-L008-03",
+      "variant": "draft",
+      "manualPoints": [
+        "2.5",
+        "6"
+      ],
+      "manualNominalExactAnswers": [
+        "7.5",
+        "18"
+      ],
+      "sourceUnit": "kPa",
+      "states": [
+        {
+          "gridIndex": 0,
+          "nominalInput": "0",
+          "actualInputLexeme": "0",
+          "nominalExactGivenData": "0",
+          "actualOutputLexeme": "0",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "nominalInput": "1/2",
+          "actualInputLexeme": "0.5",
+          "nominalExactGivenData": "3/2",
+          "actualOutputLexeme": "1.5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "nominalInput": "1",
+          "actualInputLexeme": "1",
+          "nominalExactGivenData": "3",
+          "actualOutputLexeme": "3",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "nominalInput": "3/2",
+          "actualInputLexeme": "1.5",
+          "nominalExactGivenData": "9/2",
+          "actualOutputLexeme": "4.5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "nominalInput": "2",
+          "actualInputLexeme": "2",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "nominalInput": "5/2",
+          "actualInputLexeme": "2.5",
+          "nominalExactGivenData": "15/2",
+          "actualOutputLexeme": "7.5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "nominalInput": "3",
+          "actualInputLexeme": "3",
+          "nominalExactGivenData": "9",
+          "actualOutputLexeme": "9",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "nominalInput": "7/2",
+          "actualInputLexeme": "3.5",
+          "nominalExactGivenData": "21/2",
+          "actualOutputLexeme": "10.5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "nominalInput": "4",
+          "actualInputLexeme": "4",
+          "nominalExactGivenData": "12",
+          "actualOutputLexeme": "12",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "nominalInput": "9/2",
+          "actualInputLexeme": "4.5",
+          "nominalExactGivenData": "27/2",
+          "actualOutputLexeme": "13.5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "nominalInput": "5",
+          "actualInputLexeme": "5",
+          "nominalExactGivenData": "15",
+          "actualOutputLexeme": "15",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 11,
+          "nominalInput": "11/2",
+          "actualInputLexeme": "5.5",
+          "nominalExactGivenData": "33/2",
+          "actualOutputLexeme": "16.5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 12,
+          "nominalInput": "6",
+          "actualInputLexeme": "6",
+          "nominalExactGivenData": "18",
+          "actualOutputLexeme": "18",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 13,
+          "nominalInput": "13/2",
+          "actualInputLexeme": "6.5",
+          "nominalExactGivenData": "39/2",
+          "actualOutputLexeme": "19.5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 14,
+          "nominalInput": "7",
+          "actualInputLexeme": "7",
+          "nominalExactGivenData": "21",
+          "actualOutputLexeme": "21",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 15,
+          "nominalInput": "15/2",
+          "actualInputLexeme": "7.5",
+          "nominalExactGivenData": "45/2",
+          "actualOutputLexeme": "22.5",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 16,
+          "nominalInput": "8",
+          "actualInputLexeme": "8",
+          "nominalExactGivenData": "24",
+          "actualOutputLexeme": "24",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Portata richiesta» su 2,5 mL/s. Quale valore ottieni per «Differenza di pressione»?",
+          "value": "7.5",
+          "unit": "kPa",
+          "worked": "Δp = RQ, con R = 3 kPa·s/mL. 3 × 2,5 = 7,5 kPa."
+        },
+        {
+          "prompt": "Per ottenere una portata di 6 mL/s in un capillare di resistenza 3 kPa·s/mL, quale salto di pressione deve sostenere la pompa?",
+          "value": 18,
+          "unit": "kPa",
+          "worked": "Δp = RQ, con R = 3 kPa·s/mL. 3 × 6 = 18 kPa."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "7,5",
+        "18"
+      ],
+      "literalPromptsMatchFrozenData": true
+    },
+    {
+      "id": "SIM-C2-L008-04",
+      "variant": "published",
+      "manualPoints": [
+        "20",
+        "0"
+      ],
+      "manualNominalExactAnswers": [
+        "1296/625",
+        "1"
+      ],
+      "sourceUnit": "1",
+      "states": [
+        {
+          "gridIndex": 0,
+          "nominalInput": "-20",
+          "actualInputLexeme": "-20",
+          "nominalExactGivenData": "256/625",
+          "actualOutputLexeme": "0.4096000000000001",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "nominalInput": "-15",
+          "actualInputLexeme": "-15",
+          "nominalExactGivenData": "83521/160000",
+          "actualOutputLexeme": "0.5220062499999999",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "nominalInput": "-10",
+          "actualInputLexeme": "-10",
+          "nominalExactGivenData": "6561/10000",
+          "actualOutputLexeme": "0.6561000000000001",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "nominalInput": "-5",
+          "actualInputLexeme": "-5",
+          "nominalExactGivenData": "130321/160000",
+          "actualOutputLexeme": "0.8145062499999999",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "nominalInput": "0",
+          "actualInputLexeme": "0",
+          "nominalExactGivenData": "1",
+          "actualOutputLexeme": "1",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "nominalInput": "5",
+          "actualInputLexeme": "5",
+          "nominalExactGivenData": "194481/160000",
+          "actualOutputLexeme": "1.2155062500000002",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "nominalInput": "10",
+          "actualInputLexeme": "10",
+          "nominalExactGivenData": "14641/10000",
+          "actualOutputLexeme": "1.4641000000000006",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "nominalInput": "15",
+          "actualInputLexeme": "15",
+          "nominalExactGivenData": "279841/160000",
+          "actualOutputLexeme": "1.7490062499999994",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "nominalInput": "20",
+          "actualInputLexeme": "20",
+          "nominalExactGivenData": "1296/625",
+          "actualOutputLexeme": "2.0736",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Variazione del raggio rispetto al riferimento» su 20 %. Quale valore ottieni per «Portata del modello rigido rispetto a Q₀»?",
+          "value": "2.0736",
+          "unit": "numero puro",
+          "worked": "Q/Q₀ = (1 + Δr/100)⁴. (1 + 20 / 100)⁴ ≈ 2,074."
+        },
+        {
+          "prompt": "Il modello rigido prevede una variazione del raggio del 0 %. Quale rapporto fra nuova portata e portata iniziale corrisponde, a pari caduta di pressione?",
+          "value": 1,
+          "unit": "numero puro",
+          "worked": "Q/Q₀ = (1 + Δr/100)⁴. (1 + 0 / 100)⁴ = 1."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "2,074",
+        "1"
+      ],
+      "literalPromptsMatchFrozenData": false
+    },
+    {
+      "id": "SIM-C2-L008-04",
+      "variant": "draft",
+      "manualPoints": [
+        "-20",
+        "20"
+      ],
+      "manualNominalExactAnswers": [
+        "0.4096",
+        "2.0736"
+      ],
+      "sourceUnit": "1",
+      "states": [
+        {
+          "gridIndex": 0,
+          "nominalInput": "-20",
+          "actualInputLexeme": "-20",
+          "nominalExactGivenData": "256/625",
+          "actualOutputLexeme": "0.4096000000000001",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "nominalInput": "-15",
+          "actualInputLexeme": "-15",
+          "nominalExactGivenData": "83521/160000",
+          "actualOutputLexeme": "0.5220062499999999",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "nominalInput": "-10",
+          "actualInputLexeme": "-10",
+          "nominalExactGivenData": "6561/10000",
+          "actualOutputLexeme": "0.6561000000000001",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "nominalInput": "-5",
+          "actualInputLexeme": "-5",
+          "nominalExactGivenData": "130321/160000",
+          "actualOutputLexeme": "0.8145062499999999",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "nominalInput": "0",
+          "actualInputLexeme": "0",
+          "nominalExactGivenData": "1",
+          "actualOutputLexeme": "1",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "nominalInput": "5",
+          "actualInputLexeme": "5",
+          "nominalExactGivenData": "194481/160000",
+          "actualOutputLexeme": "1.2155062500000002",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "nominalInput": "10",
+          "actualInputLexeme": "10",
+          "nominalExactGivenData": "14641/10000",
+          "actualOutputLexeme": "1.4641000000000006",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "nominalInput": "15",
+          "actualInputLexeme": "15",
+          "nominalExactGivenData": "279841/160000",
+          "actualOutputLexeme": "1.7490062499999994",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "nominalInput": "20",
+          "actualInputLexeme": "20",
+          "nominalExactGivenData": "1296/625",
+          "actualOutputLexeme": "2.0736",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Variazione del raggio rispetto al riferimento» su -20 %. Quale valore ottieni per «Portata del modello rigido rispetto a Q₀»?",
+          "value": "0.4096000000000001",
+          "unit": "numero puro",
+          "worked": "Q/Q₀ = [1 + Δr/r₀]⁴. Se il controllo vale x%, Δr/r₀ = x/100. (1 + (-20) / 100)⁴ ≈ 0,4096."
+        },
+        {
+          "prompt": "In un tubo rigido, il raggio varia del 20 %. A pari caduta di pressione, quanto vale il rapporto fra nuova portata e portata iniziale?",
+          "value": "2.0736",
+          "unit": "numero puro",
+          "worked": "Q/Q₀ = [1 + Δr/r₀]⁴. Se il controllo vale x%, Δr/r₀ = x/100. (1 + 20 / 100)⁴ ≈ 2,074."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "0,4096",
+        "2,074"
+      ],
+      "literalPromptsMatchFrozenData": true
+    }
+  ],
+  "numericIsolation": "Frozen reference from fresh pre-key Node process without any consumer imports; strict Decimal lexeme comparison; no epsilon.",
+  "representation": "Exact nominal rational slider grids are separate from actual IEEE grid-input lexemes. Actual input/output match isolated pre-key table strictly; no epsilon. All nominal exact values derived by grid index.",
+  "clockParity": "Each legal input duration and five clock frames compared across editions; initial-reference duration excluded from metadata because references can change.",
+  "bindingIdentity": "ALL4_SOURCE_AND_CANDIDATE_CANONICAL_HASHES_MATCH",
+  "actualDraftManualTasks": 8,
+  "literalServedPromptsMatched": 8,
+  "originalAndDraftStates": "IDENTICAL_ASSERTED_BY_PRODUCER",
+  "Chrome": "NOT_RUN",
+  "canonicalDBImport": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "activityCredit": 0
+}
