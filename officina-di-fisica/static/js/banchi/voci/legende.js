@@ -96,6 +96,20 @@ for (const [etichetta, descrizione, voci] of [
 
 export const annotazioneFluido = (record) => annotazioniFluidi.get(record.id);
 
+// Author overlay: these two entries merge into the shared per-course lookup.
+// Locating text belongs in the accessible legend, outside the measured glyphs.
+const annotazioniIntegrative = new Map([
+  ['SIM-C6-L02-01', {
+    etichette: ['Entrata', 'Uscita'],
+    descrizioni: ['L’entrata è a sinistra e l’uscita a destra.'],
+  }],
+  ['SIM-C6-L05-01', {
+    etichette: ['Carrello'],
+    descrizioni: ['Il carrello è il blocco verde sulla guida graduata.'],
+  }],
+]);
+export const annotazioneScena = (record) => annotazioneFluido(record) ?? annotazioniIntegrative.get(record.id);
+
 export function legendaVoce(record, vista) {
   const legenda = vista === 'diagram' ? legendaTavola(record.apparatus) : legende[record.apparatus];
   if (record.id === 'SIM-C3-L04-03') {
@@ -108,7 +122,7 @@ export function legendaVoce(record, vista) {
   if (record.id === 'SIM-C3-L10-01') {
     return 'Il serbatoio è a sinistra e il sistema a destra. La freccia viola punta verso il sistema quando entra calore, verso il serbatoio quando esce. A Q uguale a zero lo scambio è nullo.';
   }
-  const annotazione = annotazioneFluido(record);
+  const annotazione = annotazioneScena(record);
   if (annotazione) return legenda.replace(/\.$/,'') + '. ' + annotazione.descrizioni.join(' ');
   return legenda;
 }

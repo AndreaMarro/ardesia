@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "AUTHOR_C6_LABEL_OVERLAY_NOT_INDEPENDENT_APPROVAL",
+  "author": "author_vectors_b",
+  "baseCommit": "45c8c4bb42926e99b564bba697ed352bf7ee82d5",
+  "ownedIds": [
+    "SIM-C6-L02-01",
+    "SIM-C6-L05-01"
+  ],
+  "editScope": "Two semantic entries and a temporary per-ID overlay delegating to the existing C2 lookup. Integrator merges the entries into its shared annotazioneScena table, not a duplicate pipeline.",
+  "models": 181,
+  "gridStates": 2838,
+  "clockFrames": 3715,
+  "totalSceneObservations": 6553,
+  "preservedExactly": "All source records, generated prompts/tasks, guides, model solutions, readings, graphs, steps, source parameters, scene specs and all scene elements except the three explicitly transferred labels; all unrelated legends and labels unchanged.",
+  "actualRed": {
+    "tests": 3,
+    "failed": 2,
+    "passed": 1,
+    "file": "actual-red.txt"
+  },
+  "initialReviewerFixtureSerializationErrorRetained": "actual-red-before-json-observation-normalization.txt: the third failure was undefined properties omitted by saved JSON. Fixed by JSON-normalizing the newly collected observation; two genuine target failures then remained.",
+  "actualGreen": {
+    "tests": 12,
+    "failed": 0,
+    "passed": 12,
+    "durationMs": 3421.142292,
+    "file": "actual-green.txt"
+  },
+  "actualGreenCompressedFixture": {
+    "tests": 12,
+    "failed": 0,
+    "passed": 12,
+    "durationMs": 3326.948959,
+    "file": "actual-green-compressed-fixture.txt"
+  },
+  "baselineEncoding": "Lossless deterministic gzip, compressed and decompressed SHA identities in lossless-encoding.json. Original wrapper raw output preserved too.",
+  "negativeScreenshots": "Original cb9 run45917299096 PNGs and Root CPU geometry census preserved verbatim, separately from the45c author baseline. No new candidate PNG is claimed.",
+  "exitGlyphRelocationRisk": "Both Entrata and Uscita are transferred for the same condotto ID, so removal of the first label cannot cause the remaining opaque exit label to obscure the downstream arrow. Arrows, colors and scales stay byte-identical.",
+  "UI": "NOT_RUN_ON_NEW_AUTHOR_OVERLAY",
+  "scientificApproval": "NOT_RUN_AUTHOR_RECUSED",
+  "reviewerMustBeDistinct": true,
+  "authorCannotIndependentlyAcceptTheseTwoIds": true,
+  "fullRuntimeFingerprint": "NOT_CLAIMED_FROM_SPARSE_AUTHOR_WORKTREE; integrator will compute after merging shared lookup",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
