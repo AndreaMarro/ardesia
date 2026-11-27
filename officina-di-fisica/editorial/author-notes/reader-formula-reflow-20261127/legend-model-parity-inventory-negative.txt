@@ -1,0 +1,17 @@
+node:internal/modules/run_main:122
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+6 !== 5
+
+    at file:///private/tmp/cric-check-legend-model-equality-20261127.mjs:31:35 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 6,
+  expected: 5,
+  operator: 'strictEqual'
+}
+
+Node.js v22.14.0
