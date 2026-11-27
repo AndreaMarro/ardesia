@@ -4,7 +4,8 @@ import {existsSync, readFileSync} from 'node:fs';
 import path from 'node:path';
 import {sha256, validateBatchSpec, validateCompletion, validateReport} from '../../../tests/corpus/browser-batches-resume.mjs';
 
-const [commit, artifacts] = process.argv.slice(2);
+const [commit, artifacts, expectation = 'historical-c2-overflow'] = process.argv.slice(2);
+assert.ok(['historical-c2-overflow', 'all-positive'].includes(expectation));
 const app = process.cwd();
 const blob = name => execFileSync('git', ['show', commit + ':' + name], {cwd:app, maxBuffer: 20_000_000});
 const request = JSON.parse(blob('.github/cric-preview-request.json'));
@@ -49,8 +50,12 @@ for (const spec of specs) {
     row.formulas.some(formula=>formula.scroll>formula.width+1||formula.typeset>formula.width+1));
   rejected.push({id:spec.id,totalCases:report.records.length,reportSha256:sha256(reportBytes),failures});
 }
-assert.deepEqual(rejected.map(group=>group.id),['cric-c2-l002']);
-assert.deepEqual(rejected[0].failures.map(row=>[row.id,row.width,row.overflow]),[['C2-Q013',320,74]]);
+if (expectation === 'all-positive') {
+  assert.deepEqual(rejected, []);
+} else {
+  assert.deepEqual(rejected.map(group=>group.id),['cric-c2-l002']);
+  assert.deepEqual(rejected[0].failures.map(row=>[row.id,row.width,row.overflow]),[['C2-Q013',320,74]]);
+}
 console.log(JSON.stringify({sourceCommit:commit,registrySha256:request.registrySha256,runtimeSha256:request.runtimeSha256,
   packagesExpected:specs.length,positiveTerminalMarkers:passed.length,passed,failed:rejected,
   actualBrowserCasesInPositiveMarkers:passed.reduce((total,row)=>total+row.cases,0),
