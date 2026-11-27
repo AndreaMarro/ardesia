@@ -74,6 +74,56 @@ export function legendaTavola(apparato) {
   return testo;
 }
 
+const annotazioniScene = new Map();
+const annotazioni = {
+  C2: [
+    ['Entrata', 'L’entrata è a sinistra e l’uscita a destra.', ['L005-01','L005-02','L005-03','L006-01','L006-02','L006-03','L006-04','L008-01','L008-02','L008-04']],
+    ['Presa frontale', 'La presa frontale del tubo di Pitot è a destra. È rivolta contro il flusso e misura la pressione di ristagno.', ['L006-02']],
+    ['Uscita', 'Le frecce di velocità sono spostate di lato nel disegno per lasciare visibile la presa. La loro lunghezza segue la velocità lungo il tubo.', ['L006-02']],
+    ['Sezione di misura', 'Quando è valido il profilo laminare, le frecce viola mostrano la velocità alle varie quote nella sezione di misura. Il profilo verde ne congiunge le punte.', ['L005-04','L007-01','L007-02','L007-05']],
+    ['Sforzo sulla lastra', 'Lo sforzo sulla lastra mobile è rappresentato dalla freccia viola sopra la lastra.', ['L007-03']],
+    ['Presa intermedia', 'La presa intermedia è tra i due tratti del condotto, al centro della tavola.', ['L008-03','L009-03']],
+    ['In parallelo', 'Il collegamento in serie è a sinistra e quello in parallelo è a destra.', ['L009-01']],
+    ['Goccia', 'La sfera azzurra è la goccia. La freccia ocra va dal centro alla superficie.', ['L010-02']],
+    ['Film a due facce', 'I due contorni schematici indicano le superfici del film a due facce. La freccia ocra indica il raggio di riferimento.', ['L010-05']],
+  ],
+  C4: [
+    ['+1', 'Le due sfere rosse hanno ciascuna carica +1 nC.', ['L01-02']],
+    ['P', 'Il punto P è a metà fra le due cariche. Resta fisso mentre si varia la carica a destra.', ['L02-02']],
+    ['Corrente convenzionale', '', ['L05-01','L05-04','L05-05']],
+    ['Pila', '', ['L05-02','L05-03','L06-02']],
+    ['In parallelo', 'Il circuito in serie è a sinistra. Il circuito in parallelo è a destra e i rami condividono gli stessi nodi.', ['L06-01']],
+    ['+', 'La piastra rossa porta il segno + e quella verde il segno −.', ['L07-01']],
+    ['−', '', ['L07-01']],
+    ['Sonda B', 'La sonda B è a destra del filo. La freccia in quel punto è tangente alla circonferenza del campo.', ['L09-01']],
+    ['Normale alla spira', 'La normale alla spira forma un angolo retto con il piano della spira.', ['L10-01']],
+  ],
+  C5: [
+    ['Massa oscillante', 'Il blocco ocra è la massa oscillante. La freccia parte dall’equilibrio e arriva alla posizione della massa.', ['L01-02']],
+    ['Sorgente', '', ['L05-03']],
+    ['Elettrone libero', 'L’elettrone verde rimane legato sull’anello oppure compare all’esterno come elettrone libero. La freccia verde, se presente, indica la sua direzione di uscita.', ['L07-03']],
+    ['Elettrone legato', '', ['L07-03']],
+  ],
+  C6: [
+    ['Entrata', 'L’entrata è a sinistra e l’uscita a destra.', ['L02-01']],
+    ['Uscita', '', ['L02-01']],
+    ['Carrello', 'Il carrello è il blocco verde sulla guida graduata.', ['L05-01']],
+  ],
+};
+for (const [corso, gruppo] of Object.entries(annotazioni)) {
+  for (const [etichetta, descrizione, voci] of gruppo) {
+    for (const voce of voci) {
+      const id = 'SIM-' + corso + '-' + voce;
+      const annotazione = annotazioniScene.get(id) ?? { etichette: [], descrizioni: [] };
+      annotazione.etichette.push(etichetta);
+      if (descrizione) annotazione.descrizioni.push(descrizione);
+      annotazioniScene.set(id, annotazione);
+    }
+  }
+}
+
+export const annotazioneScena = (record) => annotazioniScene.get(record.id);
+
 export function legendaVoce(record, vista) {
   const legenda = vista === 'diagram' ? legendaTavola(record.apparatus) : legende[record.apparatus];
   if (record.id === 'SIM-C3-L04-03') {
@@ -86,5 +136,10 @@ export function legendaVoce(record, vista) {
   if (record.id === 'SIM-C3-L10-01') {
     return 'Il serbatoio è a sinistra e il sistema a destra. La freccia viola punta verso il sistema quando entra calore, verso il serbatoio quando esce. A Q uguale a zero lo scambio è nullo.';
   }
+  if (record.id === 'SIM-C5-L05-03') {
+    return 'Sfera ocra · sorgente. Punto viola · ricevitore. Gli archi verdi sono le creste emesse dalla sorgente. La freccia rossa indica il verso di moto della sorgente.';
+  }
+  const descrizioni = annotazioneScena(record)?.descrizioni;
+  if (descrizioni?.length) return legenda.replace(/\.$/,'') + '. ' + descrizioni.join(' ');
   return legenda;
 }
