@@ -1,0 +1,41 @@
+{
+  "ok": true,
+  "decision": "FOCUSED_DISPLAY_FIX_POSITIVE_ONLY",
+  "candidateCommit": "375faa7a90f5f643840aabb8cc3076f9a2d5f5de",
+  "runtimeSha256": "3ed5bc77d8320230b62e1c3e6ca3bdd00f240cc64ec236b10fe55a306ca79251",
+  "priorNegativeCommit": "e52c789d44ec9942a2fb583c8fcf93dbfa452fae",
+  "actualUiStates": 98,
+  "actualPaths": 14,
+  "rawModelSolveCases": 240,
+  "rawSampleComparisons": 2160,
+  "independentMath": {
+    "geometry": "r1=r2=3/5m=lambda, phase0",
+    "wave": "y(t)=4cos(2πt)mm",
+    "crossing": "t=1/4: y0, envelope4mm",
+    "persistentNode": "phaseπ/equalpaths: y0 for all t, envelope0",
+    "nearCrossing": "t=1/4±1/100000: y=±4sin(π/50000)mm",
+    "manualReviewerBound": {
+      "piLower": "333/106",
+      "piUpper": "355/113",
+      "yLowerExact": "18707939987691321/74438500000000000000",
+      "yUpperExact": "71/282500",
+      "rounds4sig": "0,0002513 mm",
+      "scope": "Reviewer-derived display check, not a newly assigned student calculation."
+    },
+    "assignedSourceAnswers": [
+      "2+2=4mm",
+      "oppositeequalcontributions=0mm"
+    ],
+    "assignedPilotAnswers": [
+      "3/2−1/2=1mm",
+      "pathdifference.3m/lambda.6m=1/2 => destructive0mm"
+    ]
+  },
+  "displayPolicy": "32epsilon times single-source amplitude2mm: bound~1.421e−17m (~1.421e−14mm). Values at/below that display-only bound are suppressed, not a claim every arbitrarily tiny finite physical input remains displayed. Solver/samples unchanged; above-bound±values retained; nonfinite remainsnonfinite.",
+  "imageReading": "All98 readout crops across2sheets examined;4original instrumentPNG additionally opened, including fallbackzero/nativezero/smallpositive/permanentnode.",
+  "scope": "Focused display peer only. No whole036/035renewal, arbitrary-grid/camera/GPU/global app approval. Prior exposure disclosed, Root author distinct.",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "ledgerAction": "NONE"
+}

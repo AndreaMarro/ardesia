@@ -5,9 +5,9 @@
   "sourceQuestionCount": 4606,
   "reviewedQuestions": 4606,
   "remainingQuestions": 0,
-  "reviewedActivities": 252,
-  "remainingActivities": 133,
-  "registrySha256": "07a83db56ea7ba2426f263d2b6062825fba207c973d0a24ab156242e0362fe5e",
+  "reviewedActivities": 253,
+  "remainingActivities": 132,
+  "registrySha256": "c2b3c316b342471e9d6d0e7c7df1ff5453142909fb2481f04a82ae87bee38dfc",
   "questions": [
     {
       "id": "AR-u1-area-conversion-01",
@@ -23855,8 +23855,8 @@
     },
     {
       "id": "LAB3D-10",
-      "state": "EXPLICITLY_REOPENED_REQUIRES_FRESH_CLOSURE",
-      "evidence": "editorial/reviews/lab3d10-oscillating-zero-withdrawal-20261127/independent-original-observations.json"
+      "state": "REVIEWED_ORIGINAL_ON_3ED5_PENDING_CANONICAL",
+      "evidence": "editorial/reviews/bench-fields-optics-036.json"
     },
     {
       "id": "SIM-C1-L001-01",
@@ -24610,9 +24610,7 @@
   ],
   "nextRootQuestionId": null,
   "missingQuestionIds": [],
-  "blockedActivityIds": [
-    "LAB3D-10"
-  ],
+  "blockedActivityIds": [],
   "fullSnapshotGate": "BLOCKED_BY_OPEN_SCIENTIFIC_WITHDRAWAL; no gate change and no stale3792 adoption",
   "humanApproval": "NOT_RUN",
   "publicationAction": "NONE",
@@ -24705,12 +24703,13 @@
     },
     {
       "id": "lab3d10-oscillating-zero-display-20261127",
-      "state": "OPEN",
+      "state": "CLOSED_ON_3ED5_PENDING_CANONICAL_INTEGRATION",
       "affectedIds": [
         "LAB3D-10"
       ],
       "evidence": "editorial/acceptance/withdrawals-v1.json",
-      "resolution": "Reprove the exact display, both neighboring signs, and whole 036 on the selected runtime."
+      "resolution": "Reprove the exact display, both neighboring signs, and whole 036 on the selected runtime.",
+      "resolvedOnCurrentRuntime": "3ed5bc77d8320230b62e1c3e6ca3bdd00f240cc64ec236b10fe55a306ca79251"
     }
   ]
 }
