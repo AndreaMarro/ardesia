@@ -1,0 +1,561 @@
+{
+  "records": [
+    {
+      "id": "SIM-C3-L05-01",
+      "points": [
+        2,
+        8
+      ],
+      "tasks": [
+        {
+          "prompt": "Imposta «Spessore della parete» su 2 cm. Quale valore ottieni per «Potenza condotta»?",
+          "value": 10,
+          "unit": "W",
+          "worked": "P = kAΔT/L; k = 1 W/(m·K), A = 0,01 m², ΔT = 20 K. 20 / 2 = 10 W."
+        },
+        {
+          "prompt": "Una parete di spessore 8 cm e area 0,01 m² ha k = 1 W/(m·K). Le due facce differiscono di 20 K. Quale potenza termica attraversa la parete?",
+          "value": 2.5,
+          "unit": "W",
+          "worked": "P = kAΔT/L; k = 1 W/(m·K), A = 0,01 m², ΔT = 20 K. 20 / 8 = 2,5 W."
+        }
+      ],
+      "originalTasks": [
+        {
+          "prompt": "Imposta «Spessore della parete» su 5 cm. Quale valore ottieni per «Potenza condotta»?",
+          "value": 4,
+          "unit": "W",
+          "worked": "P = kAΔT/L; k = 1 W/(m·K), A = 0,01 m², ΔT = 20 K. 20 / 5 = 4 W."
+        },
+        {
+          "prompt": "Una parete con k = 1 W/(m·K), area 0,01 m² e spessore 4,5 cm separa ambienti con 20 K di differenza. Quale potenza la attraversa?",
+          "value": 4.444444444444445,
+          "unit": "W",
+          "worked": "P = kAΔT/L; k = 1 W/(m·K), A = 0,01 m², ΔT = 20 K. 20 / 4,5 ≈ 4,444 W."
+        }
+      ],
+      "grid": [
+        {
+          "x": 1,
+          "y": 20
+        },
+        {
+          "x": 1.5,
+          "y": 13.333333333333334
+        },
+        {
+          "x": 2,
+          "y": 10
+        },
+        {
+          "x": 2.5,
+          "y": 8
+        },
+        {
+          "x": 3,
+          "y": 6.666666666666667
+        },
+        {
+          "x": 3.5,
+          "y": 5.714285714285714
+        },
+        {
+          "x": 4,
+          "y": 5
+        },
+        {
+          "x": 4.5,
+          "y": 4.444444444444445
+        },
+        {
+          "x": 5,
+          "y": 4
+        },
+        {
+          "x": 5.5,
+          "y": 3.6363636363636362
+        },
+        {
+          "x": 6,
+          "y": 3.3333333333333335
+        },
+        {
+          "x": 6.5,
+          "y": 3.076923076923077
+        },
+        {
+          "x": 7,
+          "y": 2.857142857142857
+        },
+        {
+          "x": 7.5,
+          "y": 2.6666666666666665
+        },
+        {
+          "x": 8,
+          "y": 2.5
+        }
+      ],
+      "hasClock": false,
+      "clocks": []
+    },
+    {
+      "id": "SIM-C3-L05-02",
+      "points": [
+        2,
+        3.5
+      ],
+      "tasks": [
+        {
+          "prompt": "Imposta «Portata di massa» su 2 g/s. Quale valore ottieni per «Potenza termica trasportata»?",
+          "value": 84,
+          "unit": "W",
+          "worked": "P = ṁcΔT; c = 4,2 J/(g·K), ΔT = 10 K. 42 × 2 = 84 W."
+        },
+        {
+          "prompt": "Nello scambiatore passano 3,5 g/s d’acqua. Ogni grammo cede 42 J all’altro circuito. Quanti watt trasferisce l’acqua?",
+          "value": 147,
+          "unit": "W",
+          "worked": "P = ṁcΔT; c = 4,2 J/(g·K), ΔT = 10 K. 42 × 3,5 = 147 W."
+        }
+      ],
+      "originalTasks": [
+        {
+          "prompt": "Imposta «Portata di massa» su 3 g/s. Quale valore ottieni per «Potenza termica trasportata»?",
+          "value": 126,
+          "unit": "W",
+          "worked": "P = ṁcΔT; c = 4,2 J/(g·K), ΔT = 10 K. 42 × 3 = 126 W."
+        },
+        {
+          "prompt": "In uno scambiatore l’acqua scorre con portata di massa 2,5 g/s e cede 42 J per grammo. Quanti watt trasferisce al secondo circuito?",
+          "value": 105,
+          "unit": "W",
+          "worked": "P = ṁcΔT; c = 4,2 J/(g·K), ΔT = 10 K. 42 × 2,5 = 105 W."
+        }
+      ],
+      "grid": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.25,
+          "y": 10.5
+        },
+        {
+          "x": 0.5,
+          "y": 21
+        },
+        {
+          "x": 0.75,
+          "y": 31.5
+        },
+        {
+          "x": 1,
+          "y": 42
+        },
+        {
+          "x": 1.25,
+          "y": 52.5
+        },
+        {
+          "x": 1.5,
+          "y": 63
+        },
+        {
+          "x": 1.75,
+          "y": 73.5
+        },
+        {
+          "x": 2,
+          "y": 84
+        },
+        {
+          "x": 2.25,
+          "y": 94.5
+        },
+        {
+          "x": 2.5,
+          "y": 105
+        },
+        {
+          "x": 2.75,
+          "y": 115.5
+        },
+        {
+          "x": 3,
+          "y": 126
+        },
+        {
+          "x": 3.25,
+          "y": 136.5
+        },
+        {
+          "x": 3.5,
+          "y": 147
+        },
+        {
+          "x": 3.75,
+          "y": 157.5
+        },
+        {
+          "x": 4,
+          "y": 168
+        },
+        {
+          "x": 4.25,
+          "y": 178.5
+        },
+        {
+          "x": 4.5,
+          "y": 189
+        },
+        {
+          "x": 4.75,
+          "y": 199.5
+        },
+        {
+          "x": 5,
+          "y": 210
+        }
+      ],
+      "hasClock": true,
+      "clocks": [
+        {
+          "x": 2,
+          "t": 0,
+          "duration": 10,
+          "unit": "g",
+          "clockUnit": "s",
+          "signal": 0,
+          "frame": {
+            "giri": 0
+          }
+        },
+        {
+          "x": 2,
+          "t": 5,
+          "duration": 10,
+          "unit": "g",
+          "clockUnit": "s",
+          "signal": 10,
+          "frame": {
+            "giri": 1
+          }
+        },
+        {
+          "x": 2,
+          "t": 10,
+          "duration": 10,
+          "unit": "g",
+          "clockUnit": "s",
+          "signal": 20,
+          "frame": {
+            "giri": 2
+          }
+        },
+        {
+          "x": 3.5,
+          "t": 0,
+          "duration": 10,
+          "unit": "g",
+          "clockUnit": "s",
+          "signal": 0,
+          "frame": {
+            "giri": 0
+          }
+        },
+        {
+          "x": 3.5,
+          "t": 5,
+          "duration": 10,
+          "unit": "g",
+          "clockUnit": "s",
+          "signal": 17.5,
+          "frame": {
+            "giri": 1.75
+          }
+        },
+        {
+          "x": 3.5,
+          "t": 10,
+          "duration": 10,
+          "unit": "g",
+          "clockUnit": "s",
+          "signal": 35,
+          "frame": {
+            "giri": 3.5
+          }
+        }
+      ]
+    },
+    {
+      "id": "SIM-C3-L05-03",
+      "points": [
+        200,
+        400
+      ],
+      "tasks": [
+        {
+          "prompt": "Imposta «Temperatura della superficie» su 200 K. Quale valore ottieni per «Flusso radiativo netto»?",
+          "value": -368.55,
+          "unit": "W/m²",
+          "worked": "P/A = εσ(T⁴ − Tₐ⁴), con ε = 1, Tₐ = 300 K e σ ≃ 5,67 × 10⁻⁸ W/(m²·K⁴). 5,67 × 10⁻⁸ × (200⁴ − 300⁴) ≈ -368,6 W/m²."
+        },
+        {
+          "prompt": "Una piastra nera a 400 K scambia radiazione con un grande ambiente nero a 300 K. Qual è il flusso radiativo netto per metro quadrato, positivo se esce dalla piastra?",
+          "value": 992.25,
+          "unit": "W/m²",
+          "worked": "P/A = εσ(T⁴ − Tₐ⁴), con ε = 1, Tₐ = 300 K e σ ≃ 5,67 × 10⁻⁸ W/(m²·K⁴). 5,67 × 10⁻⁸ × (400⁴ − 300⁴) ≈ 992,3 W/m²."
+        }
+      ],
+      "originalTasks": [
+        {
+          "prompt": "Imposta «Temperatura della superficie» su 400 K. Quale valore ottieni per «Flusso radiativo netto»?",
+          "value": 992.25,
+          "unit": "W/m²",
+          "worked": "P/A = εσ(T⁴−Tₐ⁴); ε = 1, Tₐ = 300 K, σ ≈ 5,67×10⁻⁸. 5,67 × 10⁻⁸ × (400⁴ − 300⁴) ≈ 992,3 W/m²."
+        },
+        {
+          "prompt": "La superficie nera è a 350 K in un ambiente a 300 K. Quale flusso netto per metro quadrato ottieni includendo l’irraggiamento dell’ambiente?",
+          "value": 391.58437499999997,
+          "unit": "W/m²",
+          "worked": "P/A = εσ(T⁴−Tₐ⁴); ε = 1, Tₐ = 300 K, σ ≈ 5,67×10⁻⁸. 5,67 × 10⁻⁸ × (350⁴ − 300⁴) ≈ 391,6 W/m²."
+        }
+      ],
+      "grid": [
+        {
+          "x": 200,
+          "y": -368.55
+        },
+        {
+          "x": 210,
+          "y": -348.999273
+        },
+        {
+          "x": 220,
+          "y": -326.446848
+        },
+        {
+          "x": 230,
+          "y": -300.600153
+        },
+        {
+          "x": 240,
+          "y": -271.153008
+        },
+        {
+          "x": 250,
+          "y": -237.78562499999998
+        },
+        {
+          "x": 260,
+          "y": -200.164608
+        },
+        {
+          "x": 270,
+          "y": -157.942953
+        },
+        {
+          "x": 280,
+          "y": -110.760048
+        },
+        {
+          "x": 290,
+          "y": -58.241673
+        },
+        {
+          "x": 300,
+          "y": 0
+        },
+        {
+          "x": 310,
+          "y": 64.366407
+        },
+        {
+          "x": 320,
+          "y": 135.272592
+        },
+        {
+          "x": 330,
+          "y": 213.14720699999998
+        },
+        {
+          "x": 340,
+          "y": 298.432512
+        },
+        {
+          "x": 350,
+          "y": 391.58437499999997
+        },
+        {
+          "x": 360,
+          "y": 493.072272
+        },
+        {
+          "x": 370,
+          "y": 603.379287
+        },
+        {
+          "x": 380,
+          "y": 723.002112
+        },
+        {
+          "x": 390,
+          "y": 852.451047
+        },
+        {
+          "x": 400,
+          "y": 992.25
+        },
+        {
+          "x": 410,
+          "y": 1142.936487
+        },
+        {
+          "x": 420,
+          "y": 1305.061632
+        },
+        {
+          "x": 430,
+          "y": 1479.190167
+        },
+        {
+          "x": 440,
+          "y": 1665.900432
+        },
+        {
+          "x": 450,
+          "y": 1865.784375
+        },
+        {
+          "x": 460,
+          "y": 2079.447552
+        },
+        {
+          "x": 470,
+          "y": 2307.509127
+        },
+        {
+          "x": 480,
+          "y": 2550.6018719999997
+        },
+        {
+          "x": 490,
+          "y": 2809.372167
+        },
+        {
+          "x": 500,
+          "y": 3084.48
+        }
+      ],
+      "hasClock": false,
+      "clocks": []
+    }
+  ],
+  "scalarControls": 67,
+  "stagePairs": 268,
+  "katexFormulas": 4,
+  "radiazioneWitness": [
+    {
+      "x": 200,
+      "y": -368.55,
+      "arrows": [
+        {
+          "a": [
+            0.10888977272727272,
+            1.55,
+            -0.48
+          ],
+          "b": [
+            -0.10888977272727272,
+            1.55,
+            -0.48
+          ],
+          "color": 7557296
+        },
+        {
+          "a": [
+            0.10888977272727272,
+            1.55,
+            0
+          ],
+          "b": [
+            -0.10888977272727272,
+            1.55,
+            0
+          ],
+          "color": 7557296
+        },
+        {
+          "a": [
+            0.10888977272727272,
+            1.55,
+            0.48
+          ],
+          "b": [
+            -0.10888977272727272,
+            1.55,
+            0.48
+          ],
+          "color": 7557296
+        }
+      ],
+      "scope": "SOURCE_CODE_PRIMITIVES_NOT_ACTUAL_UI"
+    },
+    {
+      "x": 300,
+      "y": 0,
+      "arrows": [],
+      "scope": "SOURCE_CODE_PRIMITIVES_NOT_ACTUAL_UI"
+    },
+    {
+      "x": 400,
+      "y": 992.25,
+      "arrows": [
+        {
+          "a": [
+            -0.29316477272727276,
+            1.55,
+            -0.48
+          ],
+          "b": [
+            0.29316477272727276,
+            1.55,
+            -0.48
+          ],
+          "color": 7557296
+        },
+        {
+          "a": [
+            -0.29316477272727276,
+            1.55,
+            0
+          ],
+          "b": [
+            0.29316477272727276,
+            1.55,
+            0
+          ],
+          "color": 7557296
+        },
+        {
+          "a": [
+            -0.29316477272727276,
+            1.55,
+            0.48
+          ],
+          "b": [
+            0.29316477272727276,
+            1.55,
+            0.48
+          ],
+          "color": 7557296
+        }
+      ],
+      "scope": "SOURCE_CODE_PRIMITIVES_NOT_ACTUAL_UI"
+    }
+  ],
+  "productUI": "NOT_RUN",
+  "activityCredit": 0
+}

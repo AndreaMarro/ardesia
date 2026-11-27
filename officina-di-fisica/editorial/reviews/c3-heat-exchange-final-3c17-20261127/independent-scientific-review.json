@@ -1,0 +1,126 @@
+{
+  "role": "AI_INDEPENDENT_FROM_ROOT_AUTHOR",
+  "sourcePrimaryCommit": "fa8e94bd8e69842712b97dd8e3ada63c2cf6776a",
+  "sourcePrimarySha256": "582d7987da9640695396f371ee48e9b076be9a8b89e445f94a1285a14893107d",
+  "originalTransferCorrectionSha256": "099d2176fc19751eff267363420a9d0e415fb840da11d2927e41634b635a6026",
+  "originalTransferCorrection": "Convection original generic transfer is2.5g/s->105W, additive correction before candidate reading; six selected new solutions unchanged.",
+  "draftCommit": "1413e2c41a8c7fec6b2a5ff421685dbed4e3ab8b",
+  "runtimeCommit": "f30201defc4c77b472cd791bb0adea7e1d8e7810",
+  "runtimeSha256": "3c174677e6b7fc585903dbb6a5bc6b9fa078b435375f9333a6a81897f1027dc2",
+  "records": [
+    {
+      "id": "SIM-C3-L05-01",
+      "sourceSha256": "20f725b8dda9bfffcbbbd3e5d120b5ca3c8562b8c5d909dd15e8858c06e7f988",
+      "candidateSha256": "c6668cf3ea9c7a892a8e168427e052d6ac3f7079c5555e45f16c0deee2af62d8",
+      "reviewedSignature": "b05e10200a672544dbe05ad6bf2b2e3cb9a99afa1bc0893caa9a824f2e841f46",
+      "textMathManualDecision": "PASS_INDEPENDENT_CPU_AND_READING",
+      "blocksRead": 6,
+      "manualDerivation": "1*0.01*20=0.2W*m; divide by0.02m ->10W and0.08m ->2.5W. Or cancel hundredths to20/x. Quadrupling thickness2->8 divides power by4. Inverse L_cm=20/P_W.",
+      "exactSelectedOutputs": [
+        "10",
+        "5/2"
+      ],
+      "manualNumberEntries": [
+        "10",
+        "2.5"
+      ],
+      "hypothesesAndUnits": "Stationary one-dimensional conduction through a homogeneous flat slab, constantk, isothermal faces20K apart, negligible lateral losses/contact resistance/internal generation; P is positive hot-to-cold power magnitude. Fixed face temperatures maintained, not a transient cooling law. W/(mK)*m2*K/m=W; centimetres converted explicitly to metres.",
+      "inverseMethod": "Conduction L_cm=20/P_W; advection massFlow_gs=P_W/42.",
+      "actualGeneratedTasks": [
+        {
+          "prompt": "Imposta «Spessore della parete» su 2 cm. Quale valore ottieni per «Potenza condotta»?",
+          "value": 10,
+          "unit": "W",
+          "worked": "P = kAΔT/L; k = 1 W/(m·K), A = 0,01 m², ΔT = 20 K. 20 / 2 = 10 W."
+        },
+        {
+          "prompt": "Una parete di spessore 8 cm e area 0,01 m² ha k = 1 W/(m·K). Le due facce differiscono di 20 K. Quale potenza termica attraversa la parete?",
+          "value": 2.5,
+          "unit": "W",
+          "worked": "P = kAΔT/L; k = 1 W/(m·K), A = 0,01 m², ΔT = 20 K. 20 / 8 = 2,5 W."
+        }
+      ],
+      "sourcePrimaryExposureDisclosure": "Previously reviewed originalC3 source/model family in139partial work; not key-naive to historical source. This primary uses the original selected problem/formula/interpretation/control/unit/reference-input projection and Root neutralpoint list only. Original interpretation contains42J/g given support. No new636bc draft JSON/module/receipt/values opened before freeze."
+    },
+    {
+      "id": "SIM-C3-L05-02",
+      "sourceSha256": "16cb138880c0509f85f26c36e1f6e4a33eac7c8b1058f0c1c93f43712e451b08",
+      "candidateSha256": "52739cf2daacade04b0bc06c0c8fd1fb00236b3a86c6bfd91cdd02a49fc5a02f",
+      "reviewedSignature": "1f4245d34ecaa7898deb8449fa36016a399ce08ab4adaa62ef4842407915b150",
+      "textMathManualDecision": "PASS_INDEPENDENT_CPU_AND_READING",
+      "blocksRead": 4,
+      "manualDerivation": "Each gram releases42J. At2g/s double42 ->84J/s=84W. At3.5g/s use42*(3+1/2)=126+21=147W. Inverse mdot=P/42:147/42=7/2g/s.",
+      "exactSelectedOutputs": [
+        "84",
+        "147"
+      ],
+      "manualNumberEntries": [
+        "84",
+        "147"
+      ],
+      "hypothesesAndUnits": "Steady mass-conserving stream with fixed10K temperature drop and constant specific heat, negligible kinetic/potential changes, shaft work and losses outside assigned heat-transfer balance. This is stream enthalpy transport, not a prescribed Newton h*A*DeltaT coefficient law. g/s*J/(gK)*K=J/s=W. Same specific heat4200J/(kgK), massflow0.002/0.0035kg/s.",
+      "inverseMethod": "Conduction L_cm=20/P_W; advection massFlow_gs=P_W/42.",
+      "actualGeneratedTasks": [
+        {
+          "prompt": "Imposta «Portata di massa» su 2 g/s. Quale valore ottieni per «Potenza termica trasportata»?",
+          "value": 84,
+          "unit": "W",
+          "worked": "P = ṁcΔT; c = 4,2 J/(g·K), ΔT = 10 K. 42 × 2 = 84 W."
+        },
+        {
+          "prompt": "Nello scambiatore passano 3,5 g/s d’acqua. Ogni grammo cede 42 J all’altro circuito. Quanti watt trasferisce l’acqua?",
+          "value": 147,
+          "unit": "W",
+          "worked": "P = ṁcΔT; c = 4,2 J/(g·K), ΔT = 10 K. 42 × 3,5 = 147 W."
+        }
+      ],
+      "sourcePrimaryExposureDisclosure": "Previously reviewed originalC3 source/model family in139partial work; not key-naive to historical source. This primary uses the original selected problem/formula/interpretation/control/unit/reference-input projection and Root neutralpoint list only. Original interpretation contains42J/g given support. No new636bc draft JSON/module/receipt/values opened before freeze."
+    },
+    {
+      "id": "SIM-C3-L05-03",
+      "sourceSha256": "9dfad569d14db6aaeecd08c0d959da1dd85a241ea83f82bb31120de92519fc05",
+      "candidateSha256": "37cfc96add22d662a3585a89ad746d429ac2467cccdf4bb112a1ca0a0c95c9f3",
+      "reviewedSignature": "e16eadb27080f95712728d2538fcf6684420e39b8349600903e141816514023a",
+      "textMathManualDecision": "PASS_INDEPENDENT_CPU_AND_READING",
+      "blocksRead": 5,
+      "manualDerivation": "Set theta=T/(100K). Then q=(567/100)*(theta^4-81)W/m2. At200K theta2,2^4-81=16-81=-65;567*65=36855 ->-368.55W/m2. At400K theta4,4^4-81=256-81=175;567*175=99225 ->992.25W/m2. No large-log/power calculator required.",
+      "exactSelectedOutputs": [
+        "-7371/20",
+        "3969/4"
+      ],
+      "manualNumberEntries": [
+        "-368.55",
+        "992.25"
+      ],
+      "hypothesesAndUnits": "Black diffuse surface/view factor1 in a large uniform black radiative environment at300K; equal absorptivity/emissivity1, no other heat channels included. Positive q is outward from plate, negative q is net absorption. Surface200/400 is an assigned instantaneous or externally maintained temperature; onlyT300 is radiative equilibrium for a freely equilibrating plate. No thermal capacity/time evolution provided. sigmaW*m^-2*K^-4 timesK^4 givesW/m2, a flux, not totalW without area. Assigned sigma is rounded; rational/decimal arithmetic exact relative to that working value, physical Stefan constant remains approximate.",
+      "inverseMethod": "theta^4=q/(5.67W/m2)+81. The two selected q values recover16or256, positive fourth roots2or4 ->200or400K. Arbitrary fourth-root decimal evaluation is not claimed manual.",
+      "actualGeneratedTasks": [
+        {
+          "prompt": "Imposta «Temperatura della superficie» su 200 K. Quale valore ottieni per «Flusso radiativo netto»?",
+          "value": -368.55,
+          "unit": "W/m²",
+          "worked": "P/A = εσ(T⁴ − Tₐ⁴), con ε = 1, Tₐ = 300 K e σ ≃ 5,67 × 10⁻⁸ W/(m²·K⁴). 5,67 × 10⁻⁸ × (200⁴ − 300⁴) ≈ -368,6 W/m²."
+        },
+        {
+          "prompt": "Una piastra nera a 400 K scambia radiazione con un grande ambiente nero a 300 K. Qual è il flusso radiativo netto per metro quadrato, positivo se esce dalla piastra?",
+          "value": 992.25,
+          "unit": "W/m²",
+          "worked": "P/A = εσ(T⁴ − Tₐ⁴), con ε = 1, Tₐ = 300 K e σ ≃ 5,67 × 10⁻⁸ W/(m²·K⁴). 5,67 × 10⁻⁸ × (400⁴ − 300⁴) ≈ 992,3 W/m²."
+        }
+      ],
+      "sourcePrimaryExposureDisclosure": "Previously reviewed originalC3 source/model family in139partial work; not key-naive to historical source. This primary uses the original selected problem/formula/interpretation/control/unit/reference-input projection and Root neutralpoint list only. Original interpretation contains42J/g given support. No new636bc draft JSON/module/receipt/values opened before freeze."
+    }
+  ],
+  "newTextMathFindings": [],
+  "actualCPU": {
+    "scalarControls": 67,
+    "sourceDraftSceneStagePairs": 268,
+    "katexFormulas": 4,
+    "independentTests": 7,
+    "exitCode": 0
+  },
+  "roundedWorkingConstant": "sigma=567/10^10 is assigned approximate physical value; selected rational arithmetic exact relative to working data.",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
