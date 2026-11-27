@@ -32,13 +32,14 @@ export const campi = {
         b.line([o, [o[0] + 1.4 * Math.cos(a), y, 1.4 * Math.sin(a)]], c.ocra);
       }
       b.ball([px, y, 0], 0.09, c.verde);
-      // Preserve the true common field gain outside the opaque probe.
-      b.arrow([px, y, 0.3], [px + s.campo, y, 0.3], c.viola);
-      if (Math.abs(s.campo) > 0 && Math.abs(s.campo) < 0.1) {
+      const mostraDettaglio = Math.abs(s.campo) > 0 && Math.abs(s.campo) < 0.1;
+      // Where it stands alone, keep the 2D arrowhead visible beyond the shaft.
+      b.arrow([px, y, 0.3], [px + s.campo, y, 0.3], c.viola, !mostraDettaglio);
+      if (mostraDettaglio) {
         // A labelled second representation makes the small field legible;
         // the original arrow, inverse-square law and numeric reading remain.
         // Separate in z as well: height separation collapses in the top view.
-        b.arrow([px, 1.95, 0.95], [px + 10 * s.campo, 1.95, 0.95], c.ocra);
+        b.arrow([px, 1.95, 0.95], [px + 10 * s.campo, 1.95, 0.95], c.ocra, true);
       }
       return;
     }
@@ -57,7 +58,8 @@ export const campi = {
       const length = 0.78 * s.campo;
       b.ball([0, y, 0], 0.09, c.verde);
       if (length !== 0) {
-        b.arrow([0, y, 0.3], [length, y, 0.3], c.viola);
+        // Raise the display arrow above the charged spheres in the fixed projection.
+        b.arrow([0, y + 0.5, 0.3], [length, y + 0.5, 0.3], c.viola);
         if (Math.abs(length) < 0.2) {
           b.arrow([0, 1.57, 0.95], [10 * length, 1.57, 0.95], c.ocraScuro);
         }
