@@ -1,0 +1,11 @@
+# Distinct review of the heat-capacity DRAFT 264
+
+Root is author; author_vectors_b is the independent reviewer. The existing C3 prompt-only primary (c87e8e0d) was frozen before this candidate and remains unchanged. All learner blocks, the interpretation, units, summary question and protected source metadata of candidate bcc73b33 were read in full. The summary remains an interrogative about specific heat; the explanation correctly says specific heat stays constant.
+
+The source law C=mc is correct. The original prose is a separate negative: for 100g and 250g it says energy doubles, while capacities 40 and100J/K have ratio 5/2. The new edition does not modify the original. It explicitly states5/2 and gives correct manual operations, positive capacities, the inverse, and distinction between J/K and J/(g K). Q denotes heat absorbed by the sample; the text makes no unsupported claim about heater losses. Constant assigned specific heat is limited to the small temperature interval.
+
+The actual installed cb9 consumer was probed on this complete candidate without authoring imports. Both generated questions remain250g→100J/K and175g→70J/K; all11 actual grid states agree with the independent exact2m/5 law. A fresh repeat genuinely exited zero with the full cb9 runtime fingerprint unchanged before/after. No browser, database or native figure was run for this review; the candidate has no uploaded figure assets.
+
+Twelve targeted tests passed after a real stub RED. The final tests also renew binding and test-only review/observation pins, so protected metadata, wrong engine/transfer values, units and a doubling backslide must be rejected by the physical/content checks. Public mathematical helpers reject nonpositive, boolean, nonreal, nonfinite and binary-float inputs. Pint independently checks capacity, heat and inverse dimensions. Fresh/saved report, candidate and source identities are exact.
+
+This is content/math/manual review only. The outer record remains ok=false, publicationAction=NONE and activityCredit=0; its candidateTextMathManualReview is positive and the originalPublishedEdition judgment remains negative. Product UI is NOT_RUN. The review cannot pass the canonical whole-activity acceptance gate until its additional evidence is genuinely produced.
