@@ -30,9 +30,14 @@ C5_PATH = 'officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-2
 C5_AUTHOR = 'd20c200b8731739ef512f7e2820104a7bd755202'
 PULSE_FIX = ('593c82a93a1dd635461a33297d84ee8634db3fcd',
              '6efcc26c2b698fd7c1c89bde711f568359ffd5d3465780f9e9c673deae7fdbb2')
+DOPPLER_FIX = ('f1fdd0dae20e03fba233a9ee6e0425f1f3197bae',
+               'ca17f5b64aadd1923922854e22281f83e4dce1dbcdbbb4bbacf514a33b6d4ea3')
 COLLECTOR = '719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15'
 C2_SCOPES = {'bernoulli-120': 120, 'continuity-32': 32, 'branches-40': 40}
-CONTINUITY_SCOPES = {'continuity-l00501-320': 320, 'continuity-l00501-1280': 1280}
+CONTINUITY_SCOPES = {
+    f'continuity-l00501-{width}-{variant}': (width, variant)
+    for width in (320, 1280) for variant in ('draft', 'published')
+}
 PITOT_SCOPE = 'pitot-targeted'
 C5_SCOPES = {'sound-01': 'SIM-C5-L05-01', 'sound-03': 'SIM-C5-L05-03'}
 
@@ -136,11 +141,14 @@ def c2_inputs(repo, directory, scope):
 
 
 def continuity_inputs(repo, directory, scope):
-    width = CONTINUITY_SCOPES[scope]
+    width, variant = CONTINUITY_SCOPES[scope]
     template = git_blob(repo, CONTINUITY_PEER, f'{CONTINUITY_PATH}/blocks/01-{width}/prepared.json')
     plan = json.loads(template)
     assert len(plan['expectedCaseKeys']) == 80
     assert all(row['id'] == 'SIM-C2-L005-01' for row in plan['records'])
+    plan['records'] = [row for row in plan['records'] if row['variant'] == variant]
+    plan['expectedCaseKeys'] = [key for key in plan['expectedCaseKeys'] if key.split('|')[1] == variant]
+    assert len(plan['records']) == 1 and len(plan['expectedCaseKeys']) == 40
     originals = {Path(name).name: checksum for name, checksum in plan['inputFiles'].items()}
     batch = 'experiment-c2-flow-continuity-reading-20261127'
     files = {}
@@ -287,11 +295,19 @@ if __name__ == '__main__':
     parser.add_argument('app', type=Path)
     parser.add_argument('directory', type=Path)
     parser.add_argument('source', type=Path, help='Input Git repository for prepare, shared lock file for run')
-    parser.add_argument('--pulse-layer-fix', action='store_true', help='Use the exact isolated acoustic correction')
+    epoch = parser.add_mutually_exclusive_group()
+    epoch.add_argument('--pulse-layer-fix', action='store_true', help='Use the exact acoustic endpoint correction')
+    epoch.add_argument('--doppler-fix', action='store_true', help='Use the exact direction and pressure-legend correction')
     args = parser.parse_args()
-    if args.pulse_layer_fix and args.scope != 'sound-01':
-        parser.error('The pulse-layer correction replay applies only to sound-01')
-    candidate, runtime = PULSE_FIX if args.pulse_layer_fix else (CANDIDATE, RUNTIME)
+    candidate, runtime = CANDIDATE, RUNTIME
+    if args.pulse_layer_fix:
+        if args.scope != 'sound-01':
+            parser.error('The pulse-layer correction replay applies only to sound-01')
+        candidate, runtime = PULSE_FIX
+    if args.doppler_fix:
+        if args.scope != 'sound-03':
+            parser.error('The direction and legend correction replay applies only to sound-03')
+        candidate, runtime = DOPPLER_FIX
     if args.phase == 'prepare':
         prepare(args.app.resolve(), args.directory.resolve(), args.source.resolve(), args.scope, candidate, runtime)
     else:
