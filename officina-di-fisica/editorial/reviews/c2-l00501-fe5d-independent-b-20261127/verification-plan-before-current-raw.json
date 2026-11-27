@@ -1,0 +1,183 @@
+{
+  "schemaVersion": "1.0.0",
+  "phase": "FROZEN_BEFORE_CURRENT_FE5D_CASE_OUTPUTS_AND_PNGS",
+  "id": "SIM-C2-L005-01",
+  "reviewer": "author_vectors_b",
+  "recusalAudit": "Reviewer authored neither this C2 model, DRAFT nor renderer fix. Own C6 overlay and unrelated C4 annotation scope excluded.",
+  "historicalReviewCommit": "a0bba8fc3b12a23ee87a83fd9d0fc3d013d7ccc1",
+  "historicalReviewSha256": "f9fc34e7784a9852ac4fa9002a2b04ef16d5bb2e68615c5548c74b0d9cf60f10",
+  "historicalPrimaryCommit": "5114b5439eff1daaa143c674459fc470018a126d",
+  "historicalPrimarySha256": "fa50a2ceeb39798796e28345c82631c669b8aad88f9f7a8dddfcddc8441b2907",
+  "historicalScientificReview": "820f32eb94aeab1c4abbec24264d9ede8847d2c4",
+  "newRuntimePrefixOnlyAtFreeze": "fe5d",
+  "knownArchiveCommits": [
+    "6e6bcbb1890b5c2a270b77930052a85bb2fa3023",
+    "1f70d18f76be4a9cd69b78c9151258598e880cc2"
+  ],
+  "pendingArchiveAuthority": "Published320/1280 exact commits pending parent; no current-case result read at freeze.",
+  "editions": [
+    "draft",
+    "published"
+  ],
+  "widths": [
+    320,
+    1280
+  ],
+  "profilesPerWidth": [
+    "orbit",
+    "side",
+    "top",
+    "fixed_projection"
+  ],
+  "gridCmPerSecond": [
+    0,
+    1,
+    6,
+    7,
+    12
+  ],
+  "clockPairsCmPerSecondSeconds": [
+    [
+      0,
+      6
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      7,
+      3
+    ],
+    [
+      12,
+      6
+    ]
+  ],
+  "casesPerWidthEdition": 40,
+  "expectedTotalCasesAfterAllSuccessfulParts": 160,
+  "requiredCaseIdentity": [
+    "id",
+    "variant",
+    "profile",
+    "sourceSha256",
+    "candidateSha256",
+    "requestedX",
+    "requestedTime",
+    "sourceReplayedX",
+    "sourceReplayedClockTime",
+    "actualDOMControls",
+    "model",
+    "clockReadout",
+    "readings",
+    "guide",
+    "legend",
+    "sourceCommit",
+    "runtimeSha256",
+    "protocolSha256"
+  ],
+  "arithmeticInstrumentForm": {
+    "sectionArea": "4cm² =4e-4m²",
+    "QmLPerSecond": "4*vCmPerSecond",
+    "distanceCm": "v*t",
+    "volumeMilliLitre": "4*v*t",
+    "gridExactQ": [
+      0,
+      4,
+      24,
+      28,
+      48
+    ],
+    "clockExactDistanceCm": [
+      0,
+      3,
+      21,
+      72
+    ],
+    "clockExactTransportedVolumeML": [
+      0,
+      12,
+      84,
+      288
+    ],
+    "zero": "No directional velocity arrow at v0. No transport at any captured time.",
+    "periodicTracers": "At72cm=6×12cm spatial period, repeated tracer positions are not a clock failure if exact time/displacement and intermediate frames/readouts support transport.",
+    "manualInputs": "24 and28mL/s for two draft tasks per profile; original questions checked against own old case identities separately.",
+    "strictness": "All scalar/clock/readout/control/question/candidate identities compared to53bd same-case inputs without epsilon or retag. New scene changes allowed only declared arrowhead detail and tracer depth; derive exact source diff before positive interpretation."
+  },
+  "frozenCriticalCases": {
+    "F01": {
+      "count": 8,
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|fixed_projection|grid|1",
+        "SIM-C2-L005-01|draft|320|fixed_projection|clock|1",
+        "SIM-C2-L005-01|published|320|fixed_projection|grid|1",
+        "SIM-C2-L005-01|published|320|fixed_projection|clock|1",
+        "SIM-C2-L005-01|draft|1280|fixed_projection|grid|1",
+        "SIM-C2-L005-01|draft|1280|fixed_projection|clock|1",
+        "SIM-C2-L005-01|published|1280|fixed_projection|grid|1",
+        "SIM-C2-L005-01|published|1280|fixed_projection|clock|1"
+      ],
+      "expectedInstrumentEvidence": "Read each whole fallbackv1PNG and same-colour shaft/head geometry. Both green/purple tips must have visible protrusion and correctpositive flow direction; mere polygon presence is insufficient.",
+      "historicalMargin": "Old1.504head transverse width lies inside2.7shaft; exact SVG intrinsic units, not CSSpixels.",
+      "setupAlsoRequired": [
+        "SIM-C2-L005-01|draft|320|fixed_projection|setup",
+        "SIM-C2-L005-01|published|320|fixed_projection|setup",
+        "SIM-C2-L005-01|draft|1280|fixed_projection|setup",
+        "SIM-C2-L005-01|published|1280|fixed_projection|setup"
+      ]
+    },
+    "F02": {
+      "count": 16,
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|orbit|grid|2",
+        "SIM-C2-L005-01|draft|320|orbit|clock|2",
+        "SIM-C2-L005-01|draft|320|side|grid|2",
+        "SIM-C2-L005-01|draft|320|side|clock|2",
+        "SIM-C2-L005-01|published|320|orbit|grid|2",
+        "SIM-C2-L005-01|published|320|orbit|clock|2",
+        "SIM-C2-L005-01|published|320|side|grid|2",
+        "SIM-C2-L005-01|published|320|side|clock|2",
+        "SIM-C2-L005-01|draft|1280|orbit|grid|2",
+        "SIM-C2-L005-01|draft|1280|orbit|clock|2",
+        "SIM-C2-L005-01|draft|1280|side|grid|2",
+        "SIM-C2-L005-01|draft|1280|side|clock|2",
+        "SIM-C2-L005-01|published|1280|orbit|grid|2",
+        "SIM-C2-L005-01|published|1280|orbit|clock|2",
+        "SIM-C2-L005-01|published|1280|side|grid|2",
+        "SIM-C2-L005-01|published|1280|side|clock|2"
+      ],
+      "expectedInstrumentEvidence": "Read each complete current native Orbit/SidePNG at greenv6/t0 and purplev7/t3; check tip apex/full head/shaft continuity relative to opaque tracers. Exact tip-to-camera projection rays tested against all opaque tracer spheres in actual camera frame, not 3D point-in-sphere alone. Geometry is supporting evidence, not a substitute for reading the raster.",
+      "historicalGeometry": "Old point-in-ball result0 did not rule out projected occlusion; preserve both historical screens."
+    }
+  },
+  "readingFormPerCase": [
+    "caseKey",
+    "rawCaseSha256",
+    "rawPngSha256",
+    "width",
+    "edition",
+    "view",
+    "input",
+    "time",
+    "actualRenderer",
+    "greenArrowDirectionAndTip",
+    "purpleArrowDirectionAndTip",
+    "tracerOcclusionObserved",
+    "zeroSemantics",
+    "legendSemantics",
+    "readoutArithmetic",
+    "comparisonToOldWitness",
+    "scopeVerdict",
+    "limitations"
+  ],
+  "scopeLimits": [
+    "No Chrome or renderer mutation",
+    "Only actual successful terminal parts receive raw attribution; report-before-timeout is historical diagnostic only",
+    "No published case acceptance before exact current authority and raw hashes verified",
+    "All160 should be read in complete unscaled sheets if allparts available; critical24 additionally opened individually",
+    "Any remaining exact-profile residual remains open; do not infer unsampled states",
+    "Human NOT_RUN, publicationNONE, activityCredit0"
+  ],
+  "timestamp": "2026-11-27T09:58:18.327984+00:00"
+}
