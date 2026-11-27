@@ -1,0 +1,202 @@
+[
+  {
+    "id": "SIM-C5-L01-02",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L01",
+    "order": 2,
+    "section": "Il tempo di un’oscillazione",
+    "version": 2,
+    "title": "Ampiezza, periodo, frequenza e pulsazione",
+    "topic": "UD4 · ampiezza, periodo, frequenza e pulsazione",
+    "anchor": "La pulsazione ω indica quanti radianti di",
+    "summary": "Come cambia il numero di ritorni in un secondo se allunghi il periodo?",
+    "apparatus": "oscillatore",
+    "control": {
+      "label": "Periodo",
+      "unit": "s",
+      "min": 0.5,
+      "max": 4.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Frequenza",
+      "unit": "Hz"
+    },
+    "formula": "f = 1/T; ω = 2π/T; ampiezza = 3 cm",
+    "interpretation": "La sorgente parte dal massimo, a 3 cm dall’equilibrio. Avvia il moto e conta i ritorni al massimo in due periodi. Nelle tavole A e B confronta la posizione a 0,5 s. Fra i due estremi ci sono 6 cm. La frequenza conta i cicli al secondo, la pulsazione i radianti al secondo.",
+    "references": [
+      [
+        0.5,
+        2.0
+      ],
+      [
+        2.0,
+        0.5
+      ]
+    ],
+    "blocks": [],
+    "substitution": "1 / {x}",
+    "transferPrompt": "Un sensore rileva un’oscillazione completa ogni {x}. Quanti cicli registra per secondo?"
+  },
+  {
+    "id": "SIM-C5-L02-01",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L02",
+    "order": 1,
+    "section": "Lo spazio di un’onda",
+    "version": 1,
+    "title": "Perturbazione, energia e mezzo materiale",
+    "topic": "UD4 · perturbazione, energia e mezzo materiale",
+    "anchor": "Un nastro legato a una corda sale",
+    "summary": "Un pezzetto di corda viaggia insieme all’impulso?",
+    "apparatus": "onda",
+    "control": {
+      "label": "Tempo di propagazione",
+      "unit": "s",
+      "min": 0.0,
+      "max": 3.0,
+      "step": 0.125
+    },
+    "measure": {
+      "label": "Posizione del centro dell’impulso",
+      "unit": "m"
+    },
+    "formula": "x centro = vt, con v = 2 m/s",
+    "interpretation": "Segui la cresta e il punto materiale evidenziato. La prima avanza, il secondo si sposta trasversalmente e torna all’equilibrio. L’energia si propaga nel mezzo.",
+    "references": [
+      [
+        0.5,
+        1.0
+      ],
+      [
+        2.0,
+        4.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2 × {x}",
+    "transferPrompt": "Un impulso si propaga su una corda a 2 m/s. Dopo {x}, quanto dista il centro dell’impulso dal punto di partenza?"
+  },
+  {
+    "id": "SIM-C5-L02-02",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L02",
+    "order": 2,
+    "section": "Lo spazio di un’onda",
+    "version": 1,
+    "title": "Velocità, frequenza e lunghezza d’onda",
+    "topic": "UD4 · velocità, frequenza e lunghezza d’onda",
+    "anchor": "Una fotografia a un istante fissato permette",
+    "summary": "Come cambia la distanza fra due creste su una corda con velocità di propagazione fissa?",
+    "apparatus": "onda",
+    "control": {
+      "label": "Frequenza della sorgente",
+      "unit": "Hz",
+      "min": 1.0,
+      "max": 5.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Lunghezza d’onda",
+      "unit": "m"
+    },
+    "formula": "λ = v/f, con v = 6 m/s",
+    "interpretation": "Il tratto rappresenta 6 m di corda. Conta quante ripetizioni entrano nella stessa lunghezza. A frequenza doppia le creste consecutive distano la metà.",
+    "references": [
+      [
+        2.0,
+        3.0
+      ],
+      [
+        4.0,
+        1.5
+      ]
+    ],
+    "blocks": [],
+    "substitution": "6 / {x}",
+    "transferPrompt": "Su una corda le onde viaggiano a 6 m/s. Se il generatore oscilla a {x}, quanto distano due creste consecutive?"
+  },
+  {
+    "id": "SIM-C5-L02-04",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L02",
+    "order": 4,
+    "section": "Lo spazio di un’onda",
+    "version": 1,
+    "title": "Onde trasversali su corda e longitudinali nei fluidi",
+    "topic": "UD4 · onde trasversali su corda e longitudinali nei fluidi",
+    "anchor": "Sulla corda y è perpendicolare al cammino",
+    "summary": "In quale direzione si spostano le particelle in un’onda trasversale e in una longitudinale?",
+    "apparatus": "onda",
+    "control": {
+      "label": "Fase del punto marcato",
+      "unit": "°",
+      "min": 0.0,
+      "max": 360.0,
+      "step": 15.0
+    },
+    "measure": {
+      "label": "Spostamento del punto lungo la sua oscillazione",
+      "unit": "mm"
+    },
+    "formula": "s = A sin φ; A = 2 mm",
+    "interpretation": "Confronta la corda e la fila di particelle del fluido. La stessa legge locale di oscillazione si applica su due assi diversi: perpendicolare alla propagazione sulla corda e parallelo nel fluido.",
+    "references": [
+      [
+        90.0,
+        2.0
+      ],
+      [
+        270.0,
+        -2.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2 × sin({x}°)",
+    "transferPrompt": "Il punto marcato ha ampiezza di 2 mm e fase {x}. Misurando lungo la sua direzione di oscillazione, quale spostamento con segno trovi?"
+  },
+  {
+    "id": "SIM-C5-L03-01",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L03",
+    "order": 1,
+    "section": "Sovrapposizione e interferenza",
+    "version": 1,
+    "title": "Principio di sovrapposizione",
+    "topic": "UD4 · principio di sovrapposizione",
+    "anchor": "Due impulsi raggiungono lo stesso tratto di",
+    "summary": "Come si sommano due spostamenti istantanei sulla stessa corda?",
+    "apparatus": "onda",
+    "control": {
+      "label": "Spostamento della seconda onda",
+      "unit": "cm",
+      "min": -3.0,
+      "max": 3.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Spostamento risultante alla sonda",
+      "unit": "cm"
+    },
+    "formula": "y = y₁ + y₂ = 2 cm + y₂",
+    "interpretation": "Leggi separatamente i due contributi valutati nello stesso punto e allo stesso istante. La curva risultante aggiunge i valori con segno, anche quando uno dei due è negativo.",
+    "references": [
+      [
+        -2.0,
+        0.0
+      ],
+      [
+        2.0,
+        4.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2 + {x}",
+    "transferPrompt": "Alla sonda arrivano insieme una perturbazione di +2 cm e una di {x}. Di quanto si sposta in quell’istante il punto della corda?"
+  }
+]

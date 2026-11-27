@@ -1,0 +1,5129 @@
+{
+  "consumerRef": "b9994b9116e87478905191d85cca8037d17ae4bd",
+  "records": [
+    {
+      "id": "SIM-C5-L01-02",
+      "tasks": [
+        {
+          "input": 2,
+          "inputUnit": "s",
+          "exactManualNumericEntry": 0.5,
+          "modelOutput": 0.5,
+          "outputUnit": "Hz",
+          "prompt": "Imposta «Periodo» su 2 s. Quale valore ottieni per «Frequenza»?",
+          "worked": "f = 1/T; ω = 2π/T; ampiezza = 3 cm. 1 / 2 = 0,5 Hz.",
+          "entryAcceptedByInstalledNumberRule": true
+        },
+        {
+          "input": 2.5,
+          "inputUnit": "s",
+          "exactManualNumericEntry": 0.4,
+          "modelOutput": 0.4,
+          "outputUnit": "Hz",
+          "prompt": "Un sensore rileva un’oscillazione completa ogni 2,5 s. Quanti cicli registra per secondo?",
+          "worked": "f = 1/T; ω = 2π/T; ampiezza = 3 cm. 1 / 2,5 = 0,4 Hz.",
+          "entryAcceptedByInstalledNumberRule": true
+        }
+      ],
+      "controls": [
+        {
+          "x": 0.5,
+          "output": 2,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  0.5,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  2,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  12.566370614359172,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 0.25,
+              "signal": -3,
+              "readings": [
+                [
+                  "Periodo",
+                  0.5,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  2,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  12.566370614359172,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  -3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 0.5,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  0.5,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  2,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  12.566370614359172,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 1,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  0.5,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  2,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  12.566370614359172,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 0.75,
+          "output": 1.3333333333333333,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  0.75,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  1.3333333333333333,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  8.377580409572781,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 0.375,
+              "signal": -3,
+              "readings": [
+                [
+                  "Periodo",
+                  0.75,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  1.3333333333333333,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  8.377580409572781,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  -3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  0.75,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  1.3333333333333333,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  8.377580409572781,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  0.75,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  1.3333333333333333,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  8.377580409572781,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 1,
+          "output": 1,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  1,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  1,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  6.283185307179586,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 0.5,
+              "signal": -3,
+              "readings": [
+                [
+                  "Periodo",
+                  1,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  1,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  6.283185307179586,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  -3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 1,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  1,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  1,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  6.283185307179586,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 2,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  1,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  1,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  6.283185307179586,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 1.25,
+          "output": 0.8,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  1.25,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.8,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  5.026548245743669,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 0.625,
+              "signal": -3,
+              "readings": [
+                [
+                  "Periodo",
+                  1.25,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.8,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  5.026548245743669,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  -3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 1.25,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  1.25,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.8,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  5.026548245743669,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 2.5,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  1.25,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.8,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  5.026548245743669,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 1.5,
+          "output": 0.6666666666666666,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  1.5,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.6666666666666666,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  4.1887902047863905,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "signal": -3,
+              "readings": [
+                [
+                  "Periodo",
+                  1.5,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.6666666666666666,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  4.1887902047863905,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  -3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  1.5,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.6666666666666666,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  4.1887902047863905,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  1.5,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.6666666666666666,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  4.1887902047863905,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 1.75,
+          "output": 0.5714285714285714,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  1.75,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.5714285714285714,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  3.5903916041026207,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 0.875,
+              "signal": -3,
+              "readings": [
+                [
+                  "Periodo",
+                  1.75,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.5714285714285714,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  3.5903916041026207,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  -3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 1.75,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  1.75,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.5714285714285714,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  3.5903916041026207,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 3.5,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  1.75,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.5714285714285714,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  3.5903916041026207,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 2,
+          "output": 0.5,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  2,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.5,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  3.141592653589793,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 1,
+              "signal": -3,
+              "readings": [
+                [
+                  "Periodo",
+                  2,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.5,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  3.141592653589793,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  -3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 2,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  2,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.5,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  3.141592653589793,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 4,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  2,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.5,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  3.141592653589793,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 2.25,
+          "output": 0.4444444444444444,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  2.25,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.4444444444444444,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  2.792526803190927,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 1.125,
+              "signal": -3,
+              "readings": [
+                [
+                  "Periodo",
+                  2.25,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.4444444444444444,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  2.792526803190927,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  -3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 2.25,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  2.25,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.4444444444444444,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  2.792526803190927,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 4.5,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  2.25,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.4444444444444444,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  2.792526803190927,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 2.5,
+          "output": 0.4,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  2.5,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.4,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  2.5132741228718345,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 1.25,
+              "signal": -3,
+              "readings": [
+                [
+                  "Periodo",
+                  2.5,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.4,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  2.5132741228718345,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  -3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 2.5,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  2.5,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.4,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  2.5132741228718345,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 5,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  2.5,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.4,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  2.5132741228718345,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 2.75,
+          "output": 0.36363636363636365,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  2.75,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.36363636363636365,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  2.284794657156213,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 1.375,
+              "signal": -3,
+              "readings": [
+                [
+                  "Periodo",
+                  2.75,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.36363636363636365,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  2.284794657156213,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  -3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 2.75,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  2.75,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.36363636363636365,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  2.284794657156213,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 5.5,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  2.75,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.36363636363636365,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  2.284794657156213,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 3,
+          "output": 0.3333333333333333,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  3,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.3333333333333333,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  2.0943951023931953,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "signal": -3,
+              "readings": [
+                [
+                  "Periodo",
+                  3,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.3333333333333333,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  2.0943951023931953,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  -3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  3,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.3333333333333333,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  2.0943951023931953,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 6,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  3,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.3333333333333333,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  2.0943951023931953,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 3.25,
+          "output": 0.3076923076923077,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  3.25,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.3076923076923077,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  1.933287786824488,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 1.625,
+              "signal": -3,
+              "readings": [
+                [
+                  "Periodo",
+                  3.25,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.3076923076923077,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  1.933287786824488,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  -3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 3.25,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  3.25,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.3076923076923077,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  1.933287786824488,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 6.5,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  3.25,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.3076923076923077,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  1.933287786824488,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 3.5,
+          "output": 0.2857142857142857,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  3.5,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.2857142857142857,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  1.7951958020513104,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 1.75,
+              "signal": -3,
+              "readings": [
+                [
+                  "Periodo",
+                  3.5,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.2857142857142857,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  1.7951958020513104,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  -3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 3.5,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  3.5,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.2857142857142857,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  1.7951958020513104,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 7,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  3.5,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.2857142857142857,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  1.7951958020513104,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 3.75,
+          "output": 0.26666666666666666,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  3.75,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.26666666666666666,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  1.6755160819145563,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 1.875,
+              "signal": -3,
+              "readings": [
+                [
+                  "Periodo",
+                  3.75,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.26666666666666666,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  1.6755160819145563,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  -3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 3.75,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  3.75,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.26666666666666666,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  1.6755160819145563,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 7.5,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  3.75,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.26666666666666666,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  1.6755160819145563,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 4,
+          "output": 0.25,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  4,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.25,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  1.5707963267948966,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 2,
+              "signal": -3,
+              "readings": [
+                [
+                  "Periodo",
+                  4,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.25,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  1.5707963267948966,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  -3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 4,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  4,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.25,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  1.5707963267948966,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 8,
+              "signal": 3,
+              "readings": [
+                [
+                  "Periodo",
+                  4,
+                  "s"
+                ],
+                [
+                  "Frequenza",
+                  0.25,
+                  "Hz"
+                ],
+                [
+                  "Pulsazione",
+                  1.5707963267948966,
+                  "rad/s"
+                ],
+                [
+                  "Posizione della sorgente",
+                  3,
+                  "cm"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "clockSetup": null
+    },
+    {
+      "id": "SIM-C5-L02-01",
+      "tasks": [
+        {
+          "input": 2,
+          "inputUnit": "s",
+          "exactManualNumericEntry": 4,
+          "modelOutput": 4,
+          "outputUnit": "m",
+          "prompt": "Imposta «Tempo di propagazione» su 2 s. Quale valore ottieni per «Posizione del centro dell’impulso»?",
+          "worked": "x centro = vt, con v = 2 m/s. 2 × 2 = 4 m.",
+          "entryAcceptedByInstalledNumberRule": true
+        },
+        {
+          "input": 1.5,
+          "inputUnit": "s",
+          "exactManualNumericEntry": 3,
+          "modelOutput": 3,
+          "outputUnit": "m",
+          "prompt": "Un impulso si propaga su una corda a 2 m/s. Dopo 1,5 s, quanto dista il centro dell’impulso dal punto di partenza?",
+          "worked": "x centro = vt, con v = 2 m/s. 2 × 1,5 = 3 m.",
+          "entryAcceptedByInstalledNumberRule": true
+        }
+      ],
+      "controls": [
+        {
+          "x": 0,
+          "output": 0,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  0,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -1,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  0,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -1,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  0,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -1,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  0,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -1,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 0.125,
+          "output": 0.25,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.125,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  0.25,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -0.75,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.125,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  0.25,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -0.75,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.125,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  0.25,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -0.75,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.125,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  0.25,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -0.75,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 0.25,
+          "output": 0.5,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.25,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  0.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -0.5,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.25,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  0.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -0.5,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.25,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  0.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -0.5,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.25,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  0.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -0.5,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 0.375,
+          "output": 0.75,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.375,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  0.75,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -0.25,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.375,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  0.75,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -0.25,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.375,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  0.75,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -0.25,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.375,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  0.75,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -0.25,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 0.5,
+          "output": 1,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.5,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  1,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.5,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  1,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.5,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  1,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.5,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  1,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 0.625,
+          "output": 1.25,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.625,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  1.25,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0.25,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.625,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  1.25,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0.25,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.625,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  1.25,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0.25,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.625,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  1.25,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0.25,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 0.75,
+          "output": 1.5,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.75,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  1.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0.5,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.75,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  1.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0.5,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.75,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  1.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0.5,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.75,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  1.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0.5,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 0.875,
+          "output": 1.75,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.875,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  1.75,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0.75,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.875,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  1.75,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0.75,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.875,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  1.75,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0.75,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  0.875,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  1.75,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0.75,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 1,
+          "output": 2,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  2,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  1,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  2,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  1,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  2,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  1,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  2,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  1,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 1.125,
+          "output": 2.25,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.125,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  2.25,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  1.25,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.125,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  2.25,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  1.25,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.125,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  2.25,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  1.25,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.125,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  2.25,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  1.25,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 1.25,
+          "output": 2.5,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.25,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  2.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  1.5,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.25,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  2.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  1.5,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.25,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  2.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  1.5,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.25,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  2.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  1.5,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 1.375,
+          "output": 2.75,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.375,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  2.75,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  1.75,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.375,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  2.75,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  1.75,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.375,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  2.75,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  1.75,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.375,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  2.75,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  1.75,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 1.5,
+          "output": 3,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.5,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  3,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  2,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.5,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  3,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  2,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.5,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  3,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  2,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.5,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  3,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  2,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 1.625,
+          "output": 3.25,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.625,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  3.25,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  2.25,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.625,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  3.25,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  2.25,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.625,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  3.25,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  2.25,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.625,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  3.25,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  2.25,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 1.75,
+          "output": 3.5,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.75,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  3.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  2.5,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.75,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  3.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  2.5,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.75,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  3.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  2.5,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.75,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  3.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  2.5,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 1.875,
+          "output": 3.75,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.875,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  3.75,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  2.75,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.875,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  3.75,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  2.75,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.875,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  3.75,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  2.75,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  1.875,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  3.75,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  2.75,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 2,
+          "output": 4,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  4,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  3,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  4,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  3,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  4,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  3,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  4,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  3,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 2.125,
+          "output": 4.25,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.125,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  4.25,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  3.25,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.125,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  4.25,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  3.25,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.125,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  4.25,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  3.25,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.125,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  4.25,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  3.25,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 2.25,
+          "output": 4.5,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.25,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  4.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  3.5,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.25,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  4.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  3.5,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.25,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  4.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  3.5,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.25,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  4.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  3.5,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 2.375,
+          "output": 4.75,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.375,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  4.75,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  3.75,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.375,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  4.75,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  3.75,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.375,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  4.75,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  3.75,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.375,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  4.75,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  3.75,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 2.5,
+          "output": 5,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.5,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  4,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.5,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  4,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.5,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  4,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.5,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  4,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 2.625,
+          "output": 5.25,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.625,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  5.25,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  4.25,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.625,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  5.25,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  4.25,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.625,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  5.25,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  4.25,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.625,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  5.25,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  4.25,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 2.75,
+          "output": 5.5,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.75,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  5.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  4.5,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.75,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  5.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  4.5,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.75,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  5.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  4.5,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.75,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  5.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  4.5,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 2.875,
+          "output": 5.75,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.875,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  5.75,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  4.75,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.875,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  5.75,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  4.75,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.875,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  5.75,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  4.75,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  2.875,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  5.75,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  4.75,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 3,
+          "output": 6,
+          "clocks": [
+            {
+              "time": 0,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  3,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  6,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  5,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  3,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  6,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  5,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  3,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  6,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  5,
+                  "m"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "readings": [
+                [
+                  "Tempo di propagazione",
+                  3,
+                  "s"
+                ],
+                [
+                  "Posizione del centro dell’impulso",
+                  6,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  5,
+                  "m"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "clockSetup": null
+    },
+    {
+      "id": "SIM-C5-L02-02",
+      "tasks": [
+        {
+          "input": 4,
+          "inputUnit": "Hz",
+          "exactManualNumericEntry": 1.5,
+          "modelOutput": 1.5,
+          "outputUnit": "m",
+          "prompt": "Imposta «Frequenza della sorgente» su 4 Hz. Quale valore ottieni per «Lunghezza d’onda»?",
+          "worked": "λ = v/f, con v = 6 m/s. 6 / 4 = 1,5 m.",
+          "entryAcceptedByInstalledNumberRule": true
+        },
+        {
+          "input": 3,
+          "inputUnit": "Hz",
+          "exactManualNumericEntry": 2,
+          "modelOutput": 2,
+          "outputUnit": "m",
+          "prompt": "Su una corda le onde viaggiano a 6 m/s. Se il generatore oscilla a 3 Hz, quanto distano due creste consecutive?",
+          "worked": "λ = v/f, con v = 6 m/s. 6 / 3 = 2 m.",
+          "entryAcceptedByInstalledNumberRule": true
+        }
+      ],
+      "controls": [
+        {
+          "x": 1,
+          "output": 6,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 0,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  1,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  6,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  3,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "signal": -1,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  1,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  6,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  3,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  -1,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "signal": 3.6739403974420594e-16,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  1,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  6,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  3,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "signal": -7.347880794884119e-16,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  1,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  6,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  3,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 1.5,
+          "output": 4,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 0,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  1.5,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  4,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  1,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "signal": 0.7071067811865474,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  1.5,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  4,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  1,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0.7071067811865474,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "signal": 1,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  1.5,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  4,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  1,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  1,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "signal": 1.102182119232618e-15,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  1.5,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  4,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  1,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 2,
+          "output": 3,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 0,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  2,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  3,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "signal": 3.6739403974420594e-16,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  2,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  3,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "signal": -7.347880794884119e-16,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  2,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  3,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "signal": -1.4695761589768238e-15,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  2,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  3,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  0,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 2.5,
+          "output": 2.4,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 0,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  2.5,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  2.4,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -0.6000000000000001,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "signal": -0.7071067811865485,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  2.5,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  2.4,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -0.6000000000000001,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  -0.7071067811865485,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "signal": -1,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  2.5,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  2.4,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -0.6000000000000001,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  -1,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "signal": 5.3896838775215305e-15,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  2.5,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  2.4,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -0.6000000000000001,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 3,
+          "output": 2,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 0,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  3,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  2,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -1,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "signal": 1,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  3,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  2,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -1,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  1,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "signal": 1.102182119232618e-15,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  3,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  2,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -1,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "signal": -2.204364238465236e-15,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  3,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  2,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -1,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 3.5,
+          "output": 1.7142857142857142,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 0,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  3.5,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  1.7142857142857142,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -1.2857142857142858,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "signal": -0.7071067811865477,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  3.5,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  1.7142857142857142,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -1.2857142857142858,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  -0.7071067811865477,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "signal": 1,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  3.5,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  1.7142857142857142,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -1.2857142857142858,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  1,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "signal": -9.809554005910593e-16,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  3.5,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  1.7142857142857142,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -1.2857142857142858,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 4,
+          "output": 1.5,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 0,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  4,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  1.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -1.5,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "signal": -7.347880794884119e-16,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  4,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  1.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -1.5,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "signal": -1.4695761589768238e-15,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  4,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  1.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -1.5,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "signal": -2.9391523179536475e-15,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  4,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  1.5,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -1.5,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 4.5,
+          "output": 1.3333333333333333,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 0,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  4.5,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  1.3333333333333333,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -1.6666666666666667,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "signal": 0.7071067811865488,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  4.5,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  1.3333333333333333,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -1.6666666666666667,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0.7071067811865488,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "signal": -1,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  4.5,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  1.3333333333333333,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -1.6666666666666667,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  -1,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "signal": 6.859260036498355e-15,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  4.5,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  1.3333333333333333,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -1.6666666666666667,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "x": 5,
+          "output": 1.2,
+          "clocks": [
+            {
+              "time": 0,
+              "signal": 0,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  5,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  1.2,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -1.8,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 0.75,
+              "signal": -1,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  5,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  1.2,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -1.8,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  -1,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 1.5,
+              "signal": 5.3896838775215305e-15,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  5,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  1.2,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -1.8,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            },
+            {
+              "time": 3,
+              "signal": -1.0779367755043061e-14,
+              "readings": [
+                [
+                  "Frequenza della sorgente",
+                  5,
+                  "Hz"
+                ],
+                [
+                  "Lunghezza d’onda",
+                  1.2,
+                  "m"
+                ],
+                [
+                  "Variazione dal riferimento",
+                  -1.8,
+                  "m"
+                ],
+                [
+                  "Spostamento alla sorgente",
+                  0,
+                  "cm"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "clockSetup": "L’ampiezza della corda è fissata a 1 cm. La sonda si trova all’estremo sinistro."
+    },
+    {
+      "id": "SIM-C5-L02-04",
+      "tasks": [
+        {
+          "input": 270,
+          "inputUnit": "°",
+          "exactManualNumericEntry": -2,
+          "modelOutput": -2,
+          "outputUnit": "mm",
+          "prompt": "Imposta «Fase del punto marcato» su 270 °. Quale valore ottieni per «Spostamento del punto lungo la sua oscillazione»?",
+          "worked": "s = A sin φ; A = 2 mm. 2 × sin(270°) = -2 mm.",
+          "entryAcceptedByInstalledNumberRule": true
+        },
+        {
+          "input": 180,
+          "inputUnit": "°",
+          "exactManualNumericEntry": 0,
+          "modelOutput": 0,
+          "outputUnit": "mm",
+          "prompt": "Il punto marcato ha ampiezza di 2 mm e fase 180 °. Misurando lungo la sua direzione di oscillazione, quale spostamento con segno trovi?",
+          "worked": "s = A sin φ; A = 2 mm. 2 × sin(180°) = 0 mm.",
+          "entryAcceptedByInstalledNumberRule": true
+        }
+      ],
+      "controls": [
+        {
+          "x": 0,
+          "output": 0,
+          "clocks": []
+        },
+        {
+          "x": 15,
+          "output": 0.5176380902050415,
+          "clocks": []
+        },
+        {
+          "x": 30,
+          "output": 0.9999999999999999,
+          "clocks": []
+        },
+        {
+          "x": 45,
+          "output": 1.414213562373095,
+          "clocks": []
+        },
+        {
+          "x": 60,
+          "output": 1.7320508075688772,
+          "clocks": []
+        },
+        {
+          "x": 75,
+          "output": 1.9318516525781366,
+          "clocks": []
+        },
+        {
+          "x": 90,
+          "output": 2,
+          "clocks": []
+        },
+        {
+          "x": 105,
+          "output": 1.9318516525781366,
+          "clocks": []
+        },
+        {
+          "x": 120,
+          "output": 1.7320508075688774,
+          "clocks": []
+        },
+        {
+          "x": 135,
+          "output": 1.4142135623730951,
+          "clocks": []
+        },
+        {
+          "x": 150,
+          "output": 0.9999999999999999,
+          "clocks": []
+        },
+        {
+          "x": 165,
+          "output": 0.517638090205042,
+          "clocks": []
+        },
+        {
+          "x": 180,
+          "output": 0,
+          "clocks": []
+        },
+        {
+          "x": 195,
+          "output": -0.5176380902050407,
+          "clocks": []
+        },
+        {
+          "x": 210,
+          "output": -1.0000000000000002,
+          "clocks": []
+        },
+        {
+          "x": 225,
+          "output": -1.414213562373095,
+          "clocks": []
+        },
+        {
+          "x": 240,
+          "output": -1.732050807568877,
+          "clocks": []
+        },
+        {
+          "x": 255,
+          "output": -1.9318516525781366,
+          "clocks": []
+        },
+        {
+          "x": 270,
+          "output": -2,
+          "clocks": []
+        },
+        {
+          "x": 285,
+          "output": -1.9318516525781364,
+          "clocks": []
+        },
+        {
+          "x": 300,
+          "output": -1.7320508075688772,
+          "clocks": []
+        },
+        {
+          "x": 315,
+          "output": -1.4142135623730954,
+          "clocks": []
+        },
+        {
+          "x": 330,
+          "output": -1.0000000000000009,
+          "clocks": []
+        },
+        {
+          "x": 345,
+          "output": -0.5176380902050414,
+          "clocks": []
+        },
+        {
+          "x": 360,
+          "output": 0,
+          "clocks": []
+        }
+      ],
+      "clockSetup": null
+    },
+    {
+      "id": "SIM-C5-L03-01",
+      "tasks": [
+        {
+          "input": 2,
+          "inputUnit": "cm",
+          "exactManualNumericEntry": 4,
+          "modelOutput": 4,
+          "outputUnit": "cm",
+          "prompt": "Imposta «Spostamento della seconda onda» su 2 cm. Quale valore ottieni per «Spostamento risultante alla sonda»?",
+          "worked": "y = y₁ + y₂ = 2 cm + y₂. 2 + 2 = 4 cm.",
+          "entryAcceptedByInstalledNumberRule": true
+        },
+        {
+          "input": 0,
+          "inputUnit": "cm",
+          "exactManualNumericEntry": 2,
+          "modelOutput": 2,
+          "outputUnit": "cm",
+          "prompt": "Alla sonda arrivano insieme una perturbazione di +2 cm e una di 0 cm. Di quanto si sposta in quell’istante il punto della corda?",
+          "worked": "y = y₁ + y₂ = 2 cm + y₂. 2 + 0 = 2 cm.",
+          "entryAcceptedByInstalledNumberRule": true
+        }
+      ],
+      "controls": [
+        {
+          "x": -3,
+          "output": -1,
+          "clocks": []
+        },
+        {
+          "x": -2.5,
+          "output": -0.5,
+          "clocks": []
+        },
+        {
+          "x": -2,
+          "output": 0,
+          "clocks": []
+        },
+        {
+          "x": -1.5,
+          "output": 0.5,
+          "clocks": []
+        },
+        {
+          "x": -1,
+          "output": 1,
+          "clocks": []
+        },
+        {
+          "x": -0.5,
+          "output": 1.5,
+          "clocks": []
+        },
+        {
+          "x": 0,
+          "output": 2,
+          "clocks": []
+        },
+        {
+          "x": 0.5,
+          "output": 2.5,
+          "clocks": []
+        },
+        {
+          "x": 1,
+          "output": 3,
+          "clocks": []
+        },
+        {
+          "x": 1.5,
+          "output": 3.5,
+          "clocks": []
+        },
+        {
+          "x": 2,
+          "output": 4,
+          "clocks": []
+        },
+        {
+          "x": 2.5,
+          "output": 4.5,
+          "clocks": []
+        },
+        {
+          "x": 3,
+          "output": 5,
+          "clocks": []
+        }
+      ],
+      "clockSetup": null
+    }
+  ],
+  "gridCount": 87,
+  "clockCount": 196,
+  "productUI": "NOT_RUN",
+  "activityCredit": 0
+}
