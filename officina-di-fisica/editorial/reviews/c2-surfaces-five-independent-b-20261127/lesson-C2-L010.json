@@ -1,0 +1,53 @@
+{
+  "id": "C2-L010",
+  "kind": "lesson",
+  "course": "C2",
+  "section": "Interfacce e capillarità",
+  "order": 10,
+  "title": "Una superficie che costa energia",
+  "skill": "C2-L010",
+  "prerequisites": [
+    "C2-L001",
+    "C2-L002",
+    "C2-L004"
+  ],
+  "version": 1,
+  "blocks": [
+    {
+      "type": "text",
+      "text": "Piccole gocce libere tendono alla forma sferica. Creare superficie richiede energia: in condizioni assegnate la tensione superficiale γ è l’energia richiesta per unità di nuova area. Si può anche misurare come forza tangente all’interfaccia per unità di lunghezza lungo un bordo. Le unità J/m² e N/m coincidono. A volume fissato la sfera ha la superficie più piccola; per gocce grandi gravità e appoggi possono modificare sensibilmente la forma."
+    },
+    {
+      "type": "formula",
+      "text": "\\Delta E=\\gamma\\Delta A,\\qquad F=\\gamma\\ell\\quad\\text{per una sola superficie}"
+    },
+    {
+      "type": "text",
+      "text": "Un film di sapone teso su un telaio possiede due interfacce aria–liquido. Se entrambe tirano lo stesso bordo, il contributo si raddoppia. Conta le superfici fisiche e misura la lunghezza effettiva del contatto."
+    },
+    {
+      "type": "figure",
+      "src": "/figures/C2-capillare.svg",
+      "text": "Nel capillare bagnante il liquido sale. Il dislivello verticale si misura rispetto alla superficie esterna, trascurando le piccole correzioni per il menisco."
+    },
+    {
+      "type": "text",
+      "text": "All’orlo di un capillare la componente verticale della forza di tensione superficiale bilancia il peso della colonna sollevata. L’angolo di contatto θ si misura attraverso il liquido fra interfaccia e parete. Per un tubo circolare sottile, atmosfera uguale sui due lati e densità del gas trascurabile, la risalita di equilibrio è inversamente proporzionale al raggio."
+    },
+    {
+      "type": "formula",
+      "text": "2\\pi r\\gamma\\cos\\theta=\\rho g\\pi r^2 h\\quad\\Rightarrow\\quad h=\\frac{2\\gamma\\cos\\theta}{\\rho gr}"
+    },
+    {
+      "type": "text",
+      "text": "Con θ inferiore a 90° il coseno è positivo e il livello sale; con θ superiore a 90° si ha depressione. La legge di Laplace collega la curvatura di un’interfaccia a una differenza di pressione. Per una goccia sferica di raggio R, con un’interfaccia, p interna − p esterna = 2γ/R. Un’interfaccia piana ha curvatura nulla; a parità di γ una goccia più piccola richiede sovrapressione maggiore. Per una bolla di sapone a film sottile in aria ci sono due interfacce e la sovrapressione è circa 4γ/R. Queste forme quantitative illustrano il significato qualitativo richiesto dal syllabus."
+    }
+  ],
+  "coverage": [
+    "Tensione superficiale",
+    "Piccole quantità di liquido",
+    "Bagnabilità e capillarità",
+    "Interfacce piane e curve",
+    "Legge di Laplace e pressione di curvatura"
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "sourceCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+  "sourceRawSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+  "allowlist": [
+    "id",
+    "version",
+    "title",
+    "summary",
+    "interpretation",
+    "control",
+    "measure",
+    "transferPrompt",
+    "apparatus",
+    "skill",
+    "section",
+    "prerequisites"
+  ],
+  "records": [
+    {
+      "id": "SIM-C2-L010-01",
+      "version": 1,
+      "title": "Tensione superficiale",
+      "summary": "Perché la pellicola di sapone tira con il doppio della forza di una sola superficie?",
+      "interpretation": "Il telaio sostiene un film con due facce. Ognuna tira il bordo mobile con γℓ. Le due tensioni hanno lo stesso verso e si sommano.",
+      "control": {
+        "label": "Lunghezza del bordo mobile",
+        "unit": "cm",
+        "min": 0.5,
+        "max": 5.0,
+        "step": 0.5
+      },
+      "measure": {
+        "label": "Forza sul bordo",
+        "unit": "mN"
+      },
+      "transferPrompt": "Una pellicola di sapone con due superfici trascina un bordo lungo {x}. Con γ = 0,05 N/m, quale forza in mN devi bilanciare?",
+      "apparatus": "film",
+      "skill": "C2-L010",
+      "section": "Interfacce e capillarità",
+      "proposedPointsOnly": [
+        "1.5",
+        "4"
+      ]
+    },
+    {
+      "id": "SIM-C2-L010-02",
+      "version": 1,
+      "title": "Piccole quantità di liquido",
+      "summary": "Perché gli effetti di superficie diventano importanti nelle piccole gocce?",
+      "interpretation": "Confronta gocce sferiche dello stesso liquido. Dimezzando il raggio la superficie si riduce a un quarto, il volume a un ottavo. Ogni unità di volume dispone quindi di più superficie.",
+      "control": {
+        "label": "Raggio della goccia",
+        "unit": "mm",
+        "min": 0.5,
+        "max": 4.0,
+        "step": 0.5
+      },
+      "measure": {
+        "label": "Rapporto superficie/volume",
+        "unit": "mm⁻¹"
+      },
+      "transferPrompt": "Suddividendo un liquido ottieni gocce sferiche di raggio {x}. Quanta area espongono per unità di volume, in mm⁻¹?",
+      "apparatus": "goccia",
+      "skill": "C2-L010",
+      "section": "Interfacce e capillarità",
+      "proposedPointsOnly": [
+        "0.5",
+        "3"
+      ]
+    },
+    {
+      "id": "SIM-C2-L010-03",
+      "version": 1,
+      "title": "Bagnabilità e capillarità",
+      "summary": "Quando il liquido sale e quando scende rispetto al serbatoio?",
+      "interpretation": "Nel tubo di raggio 1 mm, con γ = 0,05 N/m, ρ = 1000 kg/m³ e g = 10 m/s², conta la componente verticale della tensione. L’angolo si misura nel liquido. A 90° il dislivello è nullo.",
+      "control": {
+        "label": "Angolo di contatto",
+        "unit": "°",
+        "min": 0.0,
+        "max": 180.0,
+        "step": 5.0
+      },
+      "measure": {
+        "label": "Salita con segno",
+        "unit": "mm"
+      },
+      "transferPrompt": "In un capillare una salita massima di 10 mm corrisponde ad angolo nullo. Se l’angolo di contatto diventa {x}, quale dislivello con segno devi cercare?",
+      "apparatus": "capillare",
+      "skill": "C2-L010",
+      "section": "Interfacce e capillarità",
+      "proposedPointsOnly": [
+        "60",
+        "120"
+      ]
+    },
+    {
+      "id": "SIM-C2-L010-04",
+      "version": 1,
+      "title": "Interfacce piane e curve",
+      "summary": "Quale salto di pressione rimane quando l’interfaccia diventa piana?",
+      "interpretation": "Una superficie liquida sferica ha due curvature principali uguali. Con γ = 0,05 N/m il salto cresce con la curvatura. La configurazione zero rappresenta il limite piano.",
+      "control": {
+        "label": "Curvatura 1/r",
+        "unit": "mm⁻¹",
+        "min": 0.0,
+        "max": 2.0,
+        "step": 0.25
+      },
+      "measure": {
+        "label": "Eccesso di pressione",
+        "unit": "Pa"
+      },
+      "transferPrompt": "Per una goccia con una sola interfaccia e γ = 0,05 N/m, la curvatura 1/r vale {x}. Di quanti pascal la pressione interna supera quella esterna?",
+      "apparatus": "goccia",
+      "skill": "C2-L010",
+      "section": "Interfacce e capillarità",
+      "proposedPointsOnly": [
+        "0",
+        "1.5"
+      ]
+    },
+    {
+      "id": "SIM-C2-L010-05",
+      "version": 1,
+      "title": "Legge di Laplace e pressione di curvatura",
+      "summary": "Perché una bolla di sapone piccola richiede più pressione di una grande?",
+      "interpretation": "Entrambe le facce del film contribuiscono al salto. Per uno stesso raggio la bolla ideale presenta il doppio del salto di una goccia con una sola interfaccia.",
+      "control": {
+        "label": "Raggio della bolla di sapone",
+        "unit": "mm",
+        "min": 1.0,
+        "max": 8.0,
+        "step": 1.0
+      },
+      "measure": {
+        "label": "Pressione interna in eccesso",
+        "unit": "Pa"
+      },
+      "transferPrompt": "Una bolla di sapone ha due interfacce e raggio {x}. Con γ = 0,05 N/m, quale sovrapressione interna serve?",
+      "apparatus": "goccia",
+      "skill": "C2-L010",
+      "section": "Interfacce e capillarità",
+      "proposedPointsOnly": [
+        "2",
+        "8"
+      ]
+    }
+  ],
+  "candidateBlocksRead": false,
+  "authorReceiptRead": false
+}
