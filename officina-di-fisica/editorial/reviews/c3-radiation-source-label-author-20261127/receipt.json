@@ -1,0 +1,34 @@
+{
+  "acceptedActivities": 0,
+  "browserReplay": "PENDING_DISTINCT_OBSERVATION",
+  "change": "Both plate names are in the accessible scene legend. The existing radiation law, controls, quantities and arrow coordinates are preserved.",
+  "contractTestsPassed": 2,
+  "failedCase": {
+    "finding": "The Sistema label covered the first five screen pixels of the central arrow.",
+    "observedScreenshotSha256": "e4b30e681abb6c94081d8c3ccde0bf22315c0ce283dbd91c72f7d702e4e4d77a",
+    "temperatureKelvin": 500,
+    "view": "top",
+    "width": 320
+  },
+  "files": {
+    "editorial/reviews/c3-radiation-source-label-author-20261127/actual-contract-tests.txt": "92e76edba6d79de0d3656e0d5a8e7061817da5d2a36d917310c3399a54686b6a",
+    "editorial/reviews/c3-radiation-source-label-author-20261127/actual-node-tests.txt": "08bc0b0be9343bfda91264ab1fa6a36aecc4cfc4081981edde0046c312ab10ca",
+    "static/js/banchi/voci/legende.js": "ce8205f12b6ddd1e2210e74712691db312b6024371c423188e1c0ed395358599",
+    "tests/thermal-arrow-labels.test.js": "c767e64918022942f4d62f980afab4c0a80885477ddf080d6d8df87dff93006d"
+  },
+  "humanApproval": "NOT_RUN",
+  "nodeTestsPassed": 339,
+  "otherLocalAttempts": [
+    {
+      "affectedTests": 7,
+      "result": "SETUP_FAILED_MISSING_SPARSE_HISTORICAL_FIXTURE",
+      "scope": "Historical browser integrity suite"
+    }
+  ],
+  "priorReviewCommit": "25748b896eae46a86db1211c7c5c4f5104b9691a",
+  "priorRuntimeSha256": "7ee9c627d6845f3da1a7eeb5449447bd325fd64236aa112679dcfdc512bc1f20",
+  "publicationAction": "NONE",
+  "runtimeSha256": "3c174677e6b7fc585903dbb6a5bc6b9fa078b435375f9333a6a81897f1027dc2",
+  "schemaVersion": "1.0.0",
+  "scope": "SIM-C3-L05-03 diagram label placement"
+}

@@ -30,14 +30,14 @@ test('convection return stays in the legend and clears the downward arrow', asyn
   assert.match(loop.legend(2, 'side'), /ritorno.*scende.*destra/i);
 });
 
-test('the ambient label clears the net radiation indicator in the top view', async () => {
+test('the source and ambient labels clear all net radiation arrow ends in the top view', async () => {
   const radiation = await bench('L05-03');
   for (const temperature of [200, 300, 400, 500]) {
     const scene = radiation.elements(temperature, 2);
-    assert.equal(scene.some(mark => mark.kind === 'label' && mark.text === 'Ambiente'), false);
+    assert.equal(scene.some(mark => mark.kind === 'label' && ['Sistema','Ambiente'].includes(mark.text)), false);
     const arrows = scene.filter(mark => mark.kind === 'arrow' && mark.c === colore.viola);
     assert.equal(arrows.length, temperature === 300 ? 0 : 3);
     assert.ok(arrows.every(arrow => Math.sign(arrow.b[0] - arrow.a[0]) === Math.sign(temperature - 300)));
   }
-  assert.match(radiation.legend(2, 'top'), /ambiente.*300 K.*frecce.*scambio netto/i);
+  assert.match(radiation.legend(2, 'top'), /sistema.*sinistra.*ambiente.*destra.*300 K.*frecce.*scambio netto/i);
 });

@@ -96,7 +96,8 @@ const annotazioni = {
     ['Calda', 'La faccia calda della parete è a sinistra. La faccia fredda è a destra. La freccia indica il flusso dalla faccia calda a quella fredda.', ['L05-01']],
     ['Fredda', '', ['L05-01']],
     ['Ritorno', 'Il ritorno percorre il ramo azzurro. Il fluido scende a destra e la freccia viola ne indica il verso.', ['L05-02']],
-    ['Ambiente', 'L’ambiente è la piastra azzurra a destra mantenuta a 300 K. Le frecce viola mostrano il verso dello stesso scambio netto.', ['L05-03']],
+    ['Sistema', 'Il sistema è la piastra a sinistra. L’ambiente è la piastra azzurra a destra mantenuta a 300 K. Le frecce viola mostrano il verso dello stesso scambio netto.', ['L05-03']],
+    ['Ambiente', '', ['L05-03']],
   ],
   C4: [
     ['+1', 'Le due sfere rosse hanno ciascuna carica +1 nC. Le frecce viola sono riportate accanto alle sfere alla stessa scala, parallele alla retta che unisce i centri. Il dettaglio ocra scuro conserva i versi e ingrandisce di otto volte le frecce più corte.', ['L01-02']],
