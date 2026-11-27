@@ -1,0 +1,186 @@
+{
+  "role": "INDEPENDENT_AI_PRIMARY_BEFORE_NEW_DRAFT_BLOCKS",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+  "candidateCommitForProjectedIdsAndAssessmentPointsOnly": "93ee5b5acf91de1030dbeb33f962252acb9ba34f",
+  "disclosure": "Reviewer previouslyread alloriginalC2sources/modelsandoldpartialinventory. NotauthorofRoot4drafts. OnlycandidateID/version/assessmentSelection projected; newblocks/interpretations/authornotesnotread yet. ProgrammaticJSONloadingforprojectiondoesnotclaimunreadbytes,onlyunexposednewsolutions.",
+  "records": [
+    {
+      "id": "SIM-C2-L006-01",
+      "sourceInputProjection": {
+        "id": "SIM-C2-L006-01",
+        "version": 1,
+        "title": "Teorema di Bernoulli",
+        "apparatus": "condotto",
+        "control": {
+          "label": "Velocità nella gola",
+          "unit": "m/s",
+          "min": 1.0,
+          "max": 4.0,
+          "step": 0.25
+        },
+        "measure": {
+          "label": "Pressione statica nella gola",
+          "unit": "kPa"
+        },
+        "formula": "p₂ = p₁ + ½ρ(v₁²−v₂²); p₁ = 20 kPa, v₁ = 1 m/s",
+        "transferPrompt": "In un Venturi orizzontale ideale entrano acqua a 1 m/s e pressione statica di 20 kPa. Se nella gola l’acqua scorre a {x}, quale pressione statica vi leggi?"
+      },
+      "newCandidatePointsOnly": [
+        "3",
+        "2"
+      ],
+      "independentLaw": "p2=20kPa+(rho/2)*(v1²-v2²),rho1000kg/m³,v1=1m/s ->20+(1-x²)/2kPa",
+      "hypothesesAndDomain": "Steadyincompressible inviscidliquid,samestreamline/horizontal,noexternalshaftwork;density1000assigned,phasestable/nocavitation;upstreamboundarygivenv1p1 andthroatareaadjustscontinuity. Staticpressuresmustusesamereference.",
+      "exactAnswers": [
+        {
+          "input": "3",
+          "inputUnit": "m/s",
+          "outputExact": "16",
+          "outputUnit": "kPa"
+        },
+        {
+          "input": "2",
+          "inputUnit": "m/s",
+          "outputExact": "37/2",
+          "outputUnit": "kPa"
+        }
+      ],
+      "manualProcedureAndInverse": "v3:20+(1-9)/2=20-4=16kPa;v2:20+(1-4)/2=20-1.5=18.5=37/2kPa. Inversev2=sqrt(41-2*p2[kPa])m/s;16->3,18.5->2. Domainv1..4=>p12.5..20kPa."
+    },
+    {
+      "id": "SIM-C2-L006-02",
+      "sourceInputProjection": {
+        "id": "SIM-C2-L006-02",
+        "version": 1,
+        "title": "Pressione statica e dinamica",
+        "apparatus": "condotto",
+        "control": {
+          "label": "Velocità dell’acqua",
+          "unit": "m/s",
+          "min": 0.0,
+          "max": 5.0,
+          "step": 0.25
+        },
+        "measure": {
+          "label": "Pressione dinamica",
+          "unit": "kPa"
+        },
+        "formula": "q = ½ρv², con ρ = 1000 kg/m³",
+        "transferPrompt": "Su un tubo di Pitot in acqua che scorre a {x}, di quanti kPa la pressione di ristagno supera quella statica?"
+      },
+      "newCandidatePointsOnly": [
+        "2",
+        "4"
+      ],
+      "independentLaw": "q=p_stagnation-p_static=rho*v²/2;rho1000 ->x²/2kPa",
+      "hypothesesAndDomain": "IdealalignedPitot/stagnationdeceleration onstreamline,sameheight,steadyincompressible rho,noheadlossbetweenports. qnonnegative;v0=>q0. Staticpressureandstagnationpressurearenotinterchangeable.",
+      "exactAnswers": [
+        {
+          "input": "2",
+          "inputUnit": "m/s",
+          "outputExact": "2",
+          "outputUnit": "kPa"
+        },
+        {
+          "input": "4",
+          "inputUnit": "m/s",
+          "outputExact": "8",
+          "outputUnit": "kPa"
+        }
+      ],
+      "manualProcedureAndInverse": "v2:q=4/2=2kPa;v4:q=16/2=8kPa. Inversev=sqrt(2*q[kPa])m/s;2->2,8->4. Maxv5gives12.5kPa;zeroexact."
+    },
+    {
+      "id": "SIM-C2-L006-03",
+      "sourceInputProjection": {
+        "id": "SIM-C2-L006-03",
+        "version": 1,
+        "title": "Stenosi e aneurisma in modello ideale",
+        "apparatus": "condotto",
+        "control": {
+          "label": "Area locale rispetto a quella iniziale",
+          "unit": "1",
+          "min": 0.5,
+          "max": 2.0,
+          "step": 0.25
+        },
+        "measure": {
+          "label": "Velocità locale",
+          "unit": "m/s"
+        },
+        "formula": "v₂ = v₁ A₁/A₂; v₁ = 2 m/s",
+        "transferPrompt": "Un condotto trasporta acqua a 2 m/s all’ingresso. Se l’area locale diventa {x} volte quella iniziale, quale velocità trovi?"
+      },
+      "newCandidatePointsOnly": [
+        "1/2",
+        "2"
+      ],
+      "independentLaw": "Steadyincompressibleclosedconduit A1*v1=A2*v2, v1=2m/s,A2/A1=x ->v2=2/x m/s",
+      "hypothesesAndDomain": "Stationaryincompressibleflux,rigidcrosssections,sectionmeanvelocities;noaccumulation/leak. Ratio0.5..2strictlypositive. Stenosis/aneurysmisanalogyonly,notclinicalprediction: viscosity,compliance,pulsatilitynotmodeled.",
+      "exactAnswers": [
+        {
+          "input": "1/2",
+          "inputUnit": "1",
+          "outputExact": "4",
+          "outputUnit": "m/s"
+        },
+        {
+          "input": "2",
+          "inputUnit": "1",
+          "outputExact": "1",
+          "outputUnit": "m/s"
+        }
+      ],
+      "manualProcedureAndInverse": "Ratio1/2:2/(1/2)=4m/s;ratio2:2/2=1m/s. Inversearearatio=2/(v2inm/s);halfarea doubles meanspeed, doubledarea halves meanspeed."
+    },
+    {
+      "id": "SIM-C2-L006-04",
+      "sourceInputProjection": {
+        "id": "SIM-C2-L006-04",
+        "version": 1,
+        "title": "Condizioni di validità",
+        "apparatus": "condotto",
+        "control": {
+          "label": "Perdita di energia per volume",
+          "unit": "kPa",
+          "min": 0.0,
+          "max": 8.0,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Pressione statica in uscita",
+          "unit": "kPa"
+        },
+        "formula": "A e quota costanti: p₂ = p₁ − Δp perdita",
+        "transferPrompt": "L’acqua entra in un tubo orizzontale a 15 kPa. A sezione costante perde {x} di energia per volume. Quale pressione statica rimane in uscita?"
+      },
+      "newCandidatePointsOnly": [
+        "6",
+        "4"
+      ],
+      "independentLaw": "Steadyhorizontal equalarea=>equalmeanspeeds;no pump/turbine;p2=15kPa-dpLoss ->15-x kPa",
+      "hypothesesAndDomain": "Extendedmechanicalenergybalancewithassignedpositiveenergylosspervolume,constantarea/height;massfluxsame,mechanicalenergyconversionnotannihilationoftotalenergy. dp0..8kPa=>p2[7,15]kPa.",
+      "exactAnswers": [
+        {
+          "input": "6",
+          "inputUnit": "kPa",
+          "outputExact": "9",
+          "outputUnit": "kPa"
+        },
+        {
+          "input": "4",
+          "inputUnit": "kPa",
+          "outputExact": "11",
+          "outputUnit": "kPa"
+        }
+      ],
+      "manualProcedureAndInverse": "Loss6:15-6=9kPa;loss4:15-4=11kPa. Inverse loss15-p2;unitkPa=1000J/m³. No pressureincreasefrompositiveloss inthisfixedarea/no-pumpmodel."
+    }
+  ],
+  "priorPitotLimits": "Originalcode/visualpressureprobe/column/textfindingsremainhistorical. Neweditorialdraftscannotbythemselvescloseconsumergeometry;UI_NOT_RUN inthisreview.",
+  "productUI": "NOT_RUN",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
