@@ -1,0 +1,382 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C6-TR02",
+      "kind": "question",
+      "course": "C6",
+      "section": "Segui ciò che attraversa la superficie",
+      "order": 202,
+      "title": "La stessa potenza su una faccia più piccola",
+      "skill": "C6-L02",
+      "prerequisites": [
+        "C6-L01",
+        "C2-L001",
+        "C4-L05",
+        "C5-L04"
+      ],
+      "family": "densita-flusso-termico-faccia",
+      "difficulty": 2,
+      "version": 1,
+      "baseVersion": 0,
+      "prompt": "In regime stazionario, 18 W attraversano uniformemente una lastra di area 600 cm². Un secondo esperimento usa una faccia dimezzata e regola le sorgenti perché attraverso la lastra passino ancora 18 W. Quali sono le due densità di flusso termico, nell’ordine, in W/m²?",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza conta l’energia che attraversa l’intera faccia ogni secondo. Per la densità di flusso dividiamo questa potenza per l’area perché il passaggio è uniforme. Il confronto è possibile anche se per mantenere la stessa potenza bisogna regolare le sorgenti."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0633032c1f6ca12430a3a34b73ceb8ce769dfd25a52b8c66073a2f548b8fdd8d",
+          "text": "Due facce affiancate con uguale freccia di potenza. La prima ha larghezza doppia della seconda. L’area più piccola riceve il doppio della potenza per metro quadrato."
+        },
+        {
+          "type": "formula",
+          "text": "600\\,\\mathrm{cm^2}=\\frac{600}{10\\,000}\\,\\mathrm{m^2}=\\frac{3}{50}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": "j_1=\\frac{P}{A_1}=18\\cdot\\frac{50}{3}=300\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": "j_2=\\frac{P}{A_1/2}=2j_1=600\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Controllo inverso. Moltiplicando ciascuna densità per la sua area si ritrovano 18 W. La stessa quantità di energia al secondo è concentrata su una superficie più piccola."
+        },
+        {
+          "type": "text",
+          "text": "300 e 150 farebbe variare il flusso come l’area a potenza fissata. 0,03 e 0,06 sono valori in W/cm², non in W/m². 600 e 600 attribuisce la prima densità alla faccia già dimezzata."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "value": "300 e 600",
+        "options": [
+          "300 e 150",
+          "0,03 e 0,06",
+          "300 e 600",
+          "600 e 600"
+        ]
+      },
+      "hints": [
+        "La portata energetica è 18 J ogni secondo in entrambe le prove. Su quale area si distribuisce in ciascuna?"
+      ],
+      "error": {
+        "category": "modello",
+        "message": "300 e 150 farebbe variare il flusso come l’area a potenza fissata. 0,03 e 0,06 sono valori in W/cm², non in W/m². 600 e 600 attribuisce la prima densità alla faccia già dimezzata.",
+        "target": "C6-L02"
+      },
+      "review": "DRAFT; autore; verifica indipendente e approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-TR03",
+      "kind": "question",
+      "course": "C6",
+      "section": "Dove finisce l’energia?",
+      "order": 203,
+      "title": "Quanto rimane nell’accumulatore",
+      "skill": "C6-L03",
+      "prerequisites": [
+        "C6-L01",
+        "C6-L02",
+        "C1-L007",
+        "C3-L06",
+        "C4-L05"
+      ],
+      "family": "accumulo-energetico-potenza-netta",
+      "difficulty": 2,
+      "version": 1,
+      "baseVersion": 0,
+      "prompt": "Per 5 s un alimentatore eroga a un accumulatore 12 W costanti. Nello stesso intervallo l’accumulatore cede all’ambiente calore alla potenza costante di 3 W. Trascurando ogni altro scambio, di quanti joule aumenta l’energia interna?",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il contorno racchiude il solo accumulatore. L’alimentatore gli trasferisce energia per via elettrica e il calore ne sottrae una parte verso l’ambiente. Poiché le potenze sono costanti, a ogni secondo entrano 12 J ed escono 3 J."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/1d8657cf986022e21e049c99545f6a6b6888213a5a32708b8defa2a05d8c9550",
+          "text": "Una freccia da 12 J al secondo entra nel contorno dell’accumulatore e una da 3 J al secondo ne esce. Il contorno delimita l’energia da contabilizzare."
+        },
+        {
+          "type": "formula",
+          "text": "P_{\\mathrm{netta}}=12-3=9\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U=P_{\\mathrm{netta}}\\,\\Delta t=9\\cdot 5=45\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Il saldo è positivo. Si può ricostruire l’ingresso aggiungendo al saldo i 15 J di calore ceduto. I 60 J ottenuti coincidono con il prodotto di 12 W per 5 s."
+        },
+        {
+          "type": "text",
+          "text": "60 J è l’energia in ingresso. 15 J è l’energia uscita sotto forma di calore. 75 J si ottiene sommando la perdita all’ingresso."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "value": "45 J",
+        "options": [
+          "45 J",
+          "60 J",
+          "15 J",
+          "75 J"
+        ]
+      },
+      "hints": [
+        "Prendi l’accumulatore come sistema. Conta separatamente il lavoro elettrico in entrata e il calore in uscita."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "60 J è l’energia in ingresso. 15 J è l’energia uscita sotto forma di calore. 75 J si ottiene sommando la perdita all’ingresso.",
+        "target": "C6-L03"
+      },
+      "review": "DRAFT; autore; verifica indipendente e approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-TR04",
+      "kind": "question",
+      "course": "C6",
+      "section": "Riconoscere il fattore che si ripete",
+      "order": 204,
+      "title": "Due strati uguali in serie",
+      "skill": "C6-L04",
+      "prerequisites": [
+        "C6-L01",
+        "C5-L07",
+        "C5-L08"
+      ],
+      "family": "trasmissione-singola-da-prodotto-strati",
+      "difficulty": 2,
+      "version": 1,
+      "baseVersion": 0,
+      "prompt": "Un fascio attraversa due filtri identici in serie. Si trascurano riflessioni multiple e ciascun filtro lascia passare una frazione costante dell’intensità che riceve. Dopo entrambi rimane 1/16 dell’intensità iniziale. Quale frazione passa attraverso un solo filtro?",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Chiamiamo T la frazione trasmessa da un filtro. Il fascio entra nel secondo strato con l’intensità già ridotta dal primo. Nelle ipotesi della consegna, il secondo opera con lo stesso T sulla propria intensità in ingresso."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/02da9f271ddd56c6fee85aafef6337edf127ba665c3fafb05d161fe71a5bd71c",
+          "text": "Tre misure sullo stesso fascio: intensità iniziale, quella dopo il primo filtro e quella dopo il secondo. A ciascuna interfaccia si moltiplica per T."
+        },
+        {
+          "type": "formula",
+          "text": "I_1=T I_0,\\qquad I_2=T I_1=T^2 I_0"
+        },
+        {
+          "type": "formula",
+          "text": "T^2=\\frac{1}{16}=\\left(\\frac14\\right)^2"
+        },
+        {
+          "type": "text",
+          "text": "Prendiamo la radice positiva perché una frazione di intensità trasmessa è compresa fra zero e uno. Da 16 parti iniziali ne passano 4 dopo il primo filtro e una dopo il secondo. Questo verifica direttamente il fattore 1/4."
+        },
+        {
+          "type": "text",
+          "text": "Con T = 1/8, due filtri lascerebbero passare (1/8)² = 1/64, mentre l’osservazione dà 1/16. 1/16 è la frazione composta. 3/4 è la frazione tolta da un filtro, non quella trasmessa."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "value": "1/4",
+        "options": [
+          "1/8",
+          "1/16",
+          "3/4",
+          "1/4"
+        ]
+      },
+      "hints": [
+        "All’uscita del primo filtro c’è già meno intensità. Applica la stessa frazione alla nuova intensità."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Con T = 1/8, due filtri lascerebbero passare (1/8)² = 1/64, mentre l’osservazione dà 1/16. 1/16 è la frazione composta. 3/4 è la frazione tolta da un filtro, non quella trasmessa.",
+        "target": "C6-L04"
+      },
+      "review": "DRAFT; autore; verifica indipendente e approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-TR05",
+      "kind": "question",
+      "course": "C6",
+      "section": "Pendenza, altezza o area?",
+      "order": 205,
+      "title": "Lavoro sotto un tratto inclinato",
+      "skill": "C6-L05",
+      "prerequisites": [
+        "C6-L01",
+        "C6-L02",
+        "C1-L003",
+        "C3-L07"
+      ],
+      "family": "lavoro-forza-posizione-trapezio",
+      "difficulty": 2,
+      "version": 1,
+      "baseVersion": 0,
+      "prompt": "Tra x = 0 m e x = 6 m, la componente della forza lungo il moto cresce linearmente da 2 N a 6 N. Il corpo si sposta nel verso positivo. Quanto lavoro compie questa forza nel tratto?",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza è positiva e varia con la posizione. Il lavoro lungo il tratto è l’area sotto il grafico di quella componente, perché somma prodotti forza per piccoli spostamenti. L’area qui è un trapezio."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/4212e0902ea1207d90e30cc7333ba90f20c2fa1c8e4e8dbd506ea2e3f5967034",
+          "text": "Grafico con x orizzontale e forza verticale. Il segmento da (0 m, 2 N) a (6 m, 6 N) delimita un rettangolo e un triangolo, la cui somma è il lavoro."
+        },
+        {
+          "type": "formula",
+          "text": "W_1=2\\cdot 6=12\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": "W_2=\\frac{(6-2)\\cdot6}{2}=12\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": "W=W_1+W_2=24\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Il rettangolo è il contributo della forza di 2 N presente per tutto il tragitto. Il triangolo è il contributo dell’aumento lineare. Il controllo per forza media dà 4 N per 6 m, ancora 24 J."
+        },
+        {
+          "type": "text",
+          "text": "36 J userebbe per tutto il percorso la forza misurata alla fine. 12 J è la sola area del rettangolo da 2 N e manca la parte crescente. 4 J copia il valore numerico della forza media, 4 N, senza moltiplicarlo per i 6 m percorsi."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "value": "24 J",
+        "options": [
+          "36 J",
+          "24 J",
+          "12 J",
+          "4 J"
+        ]
+      },
+      "hints": [
+        "In un grafico forza-posizione ciascuna striscia ha unità N·m. Che figura formano tutte le strisce?"
+      ],
+      "error": {
+        "category": "modello",
+        "message": "36 J userebbe per tutto il percorso la forza misurata alla fine. 12 J è la sola area del rettangolo da 2 N e manca la parte crescente. 4 J copia il valore numerico della forza media, 4 N, senza moltiplicarlo per i 6 m percorsi.",
+        "target": "C6-L05"
+      },
+      "review": "DRAFT; autore; verifica indipendente e approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-TR06",
+      "kind": "question",
+      "course": "C6",
+      "section": "Ricostruire un ragionamento a distanza",
+      "order": 206,
+      "title": "Il fondo nel confronto fra due sorgenti sonore",
+      "skill": "C6-L06",
+      "prerequisites": [
+        "C6-L01",
+        "C6-L02",
+        "C6-L03",
+        "C6-L04",
+        "C6-L05",
+        "C5-L10",
+        "C4-L06"
+      ],
+      "family": "stima-ampiezza-sottrazione-fondo-incoerente",
+      "difficulty": 2,
+      "version": 1,
+      "baseVersion": 0,
+      "prompt": "In un confronto fra due prove sonore alla stessa frequenza e con la stessa geometria, il fonometro lineare misura intensità totali di 8 e 20 nW/m². Il fondo costante, misurato da solo, vale 4 nW/m² ed è incoerente con il suono di prova, quindi le intensità si sommano. Se l’intensità del suono utile è proporzionale al quadrato dell’ampiezza, quanto vale il rapporto ampiezza della seconda prova / ampiezza della prima?",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Vogliamo confrontare il suono prodotto nelle due prove. Il dato complessivo del fonometro contiene anche il fondo. Essendo incoerente con il suono utile, il fondo può essere sottratto come intensità e non come ampiezza."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/29d19d9f4de824fa79e21dd1a8910c9af3c088b07271b92ef2b7126d048d462a",
+          "text": "Due barre di intensità contengono lo stesso tratto di fondo. Tolto quel tratto, la seconda parte utile è quattro volte la prima. Il confronto delle ampiezze richiede la radice del rapporto."
+        },
+        {
+          "type": "formula",
+          "text": "I_1=8-4=4\\,\\mathrm{nW/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": "I_2=20-4=16\\,\\mathrm{nW/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{A_2}{A_1}=\\sqrt{\\frac{I_2}{I_1}}=\\sqrt{\\frac{16}{4}}=2"
+        },
+        {
+          "type": "text",
+          "text": "La seconda ampiezza è doppia. Le unità di intensità si cancellano nel rapporto. Il controllo inverso produce un’intensità utile quattro volte maggiore, 16 nW/m², che con il fondo torna a 20 nW/m²."
+        },
+        {
+          "type": "text",
+          "text": "4 è il rapporto fra le intensità utili e va estratta la radice. 5/2 è il rapporto fra le intensità totali. √(5/2) applica la radice prima di isolare il segnale dal fondo."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "value": "2",
+        "options": [
+          "4",
+          "5/2",
+          "2",
+          "√(5/2)"
+        ]
+      },
+      "hints": [
+        "Isola prima la parte che dipende dalla sorgente. Poi usa il rapporto fra intensità e ampiezza."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "4 è il rapporto fra le intensità utili e va estratta la radice. 5/2 è il rapporto fra le intensità totali. √(5/2) applica la radice prima di isolare il segnale dal fondo.",
+        "target": "C6-L06"
+      },
+      "review": "DRAFT; autore; verifica indipendente e approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "0633032c1f6ca12430a3a34b73ceb8ce769dfd25a52b8c66073a2f548b8fdd8d",
+      "name": "c6-tr02.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NjAgMjE2IiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+TGEgc3Rlc3NhIHBvdGVuemEgc3UgdW5hIGZhY2NpYSBwacO5IHBpY2NvbGE8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5EdWUgZmFjY2UgYWZmaWFuY2F0ZSBjb24gdWd1YWxlIGZyZWNjaWEgZGkgcG90ZW56YS4gTGEgcHJpbWEgaGEgbGFyZ2hlenphIGRvcHBpYSBkZWxsYSBzZWNvbmRhLiBM4oCZYXJlYSBwacO5IHBpY2NvbGEgcmljZXZlIGlsIGRvcHBpbyBkZWxsYSBwb3RlbnphIHBlciBtZXRybyBxdWFkcmF0by48L2Rlc2M+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjQ2MCIgaGVpZ2h0PSIyMTYiIHJ4PSI5IiBmaWxsPSIjZmFmOGVlIi8+PGcgZmlsbD0iIzE3MjY0NCIgc3Ryb2tlPSIjMTcyNjQ0IiBzdHJva2Utd2lkdGg9IjIiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE3Ij48dGV4dCB4PSIyNSIgeT0iMjgiIHN0cm9rZT0ibm9uZSI+UG90ZW56YSBmaXNzYXRhIGluIGVudHJhbWJlIGxlIHByb3ZlPC90ZXh0PjxwYXRoIGQ9Ik0yNSA3OSBMMTI4IDc5IiBmaWxsPSJub25lIiAvPjxwYXRoIGQ9Ik0xMjAgNzQgTDEyOCA3OSBMMTIwIDg0IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTI1IDE2MyBMMTI4IDE2MyIgZmlsbD0ibm9uZSIgLz48cGF0aCBkPSJNMTIwIDE1OCBMMTI4IDE2MyBMMTIwIDE2OCIgZmlsbD0ibm9uZSIvPjxyZWN0IHg9IjE1MSIgeT0iNjIiIHdpZHRoPSIxNDYiIGhlaWdodD0iMzYiIGZpbGw9IiNiZGRkZWQiLz48cmVjdCB4PSIxNTEiIHk9IjE0NiIgd2lkdGg9IjczIiBoZWlnaHQ9IjM2IiBmaWxsPSIjYmRkZGVkIi8+PHRleHQgeD0iMzE0IiB5PSI4NiIgc3Ryb2tlPSJub25lIj42MDAgY23CsjwvdGV4dD48dGV4dCB4PSIyNDQiIHk9IjE3MSIgc3Ryb2tlPSJub25lIj4zMDAgY23CsjwvdGV4dD48L2c+PC9zdmc+Cg=="
+    },
+    {
+      "id": "1d8657cf986022e21e049c99545f6a6b6888213a5a32708b8defa2a05d8c9550",
+      "name": "c6-tr03.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NjAgMjE2IiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+UXVhbnRvIHJpbWFuZSBuZWxs4oCZYWNjdW11bGF0b3JlPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+VW5hIGZyZWNjaWEgZGEgMTIgSiBhbCBzZWNvbmRvIGVudHJhIG5lbCBjb250b3JubyBkZWxs4oCZYWNjdW11bGF0b3JlIGUgdW5hIGRhIDMgSiBhbCBzZWNvbmRvIG5lIGVzY2UuIElsIGNvbnRvcm5vIGRlbGltaXRhIGzigJllbmVyZ2lhIGRhIGNvbnRhYmlsaXp6YXJlLjwvZGVzYz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNDYwIiBoZWlnaHQ9IjIxNiIgcng9IjkiIGZpbGw9IiNmYWY4ZWUiLz48ZyBmaWxsPSIjMTcyNjQ0IiBzdHJva2U9IiMxNzI2NDQiIHN0cm9rZS13aWR0aD0iMiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTciPjx0ZXh0IHg9IjI1IiB5PSIyOCIgc3Ryb2tlPSJub25lIj5CaWxhbmNpbyBwZXIgdW4gc2Vjb25kbzwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjY4IiB3aWR0aD0iMTU0IiBoZWlnaHQ9IjcyIiBmaWxsPSIjYmRkZGVkIi8+PHBhdGggZD0iTTMwIDEwNCBMMTUwIDEwNCIgZmlsbD0ibm9uZSIgLz48cGF0aCBkPSJNMTQyIDk5IEwxNTAgMTA0IEwxNDIgMTA5IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTMwNCAxMDQgTDQxOCAxMDQiIGZpbGw9Im5vbmUiIC8+PHBhdGggZD0iTTQxMCA5OSBMNDE4IDEwNCBMNDEwIDEwOSIgZmlsbD0ibm9uZSIvPjx0ZXh0IHg9IjI1IiB5PSI4NSIgc3Ryb2tlPSJub25lIj4xMiBKIGVudHJhbm88L3RleHQ+PHRleHQgeD0iMzE1IiB5PSI4NSIgc3Ryb2tlPSJub25lIj4zIEogZXNjb25vPC90ZXh0Pjx0ZXh0IHg9IjE1OSIgeT0iMTEwIiBzdHJva2U9Im5vbmUiPmFjY3VtdWxhdG9yZTwvdGV4dD48dGV4dCB4PSIxNTAiIHk9IjE4MSIgc3Ryb2tlPSJub25lIj5TYWxkbzogKzkgSjwvdGV4dD48L2c+PC9zdmc+Cg=="
+    },
+    {
+      "id": "02da9f271ddd56c6fee85aafef6337edf127ba665c3fafb05d161fe71a5bd71c",
+      "name": "c6-tr04.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NjAgMjE2IiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+RHVlIHN0cmF0aSB1Z3VhbGkgaW4gc2VyaWU8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgbWlzdXJlIHN1bGxvIHN0ZXNzbyBmYXNjaW86IGludGVuc2l0w6AgaW5pemlhbGUsIHF1ZWxsYSBkb3BvIGlsIHByaW1vIGZpbHRybyBlIHF1ZWxsYSBkb3BvIGlsIHNlY29uZG8uIEEgY2lhc2N1bmEgaW50ZXJmYWNjaWEgc2kgbW9sdGlwbGljYSBwZXIgVC48L2Rlc2M+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjQ2MCIgaGVpZ2h0PSIyMTYiIHJ4PSI5IiBmaWxsPSIjZmFmOGVlIi8+PGcgZmlsbD0iIzE3MjY0NCIgc3Ryb2tlPSIjMTcyNjQ0IiBzdHJva2Utd2lkdGg9IjIiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE3Ij48dGV4dCB4PSIyNSIgeT0iMjgiIHN0cm9rZT0ibm9uZSI+QXBwbGljYSBUIGFsIGZhc2NpbyBjaGUgYXJyaXZhPC90ZXh0PjxwYXRoIGQ9Ik0zMSAxMTAgTDE0MCAxMTAiIGZpbGw9Im5vbmUiIC8+PHBhdGggZD0iTTEzMiAxMDUgTDE0MCAxMTAgTDEzMiAxMTUiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNMTYwIDExMCBMMjg0IDExMCIgZmlsbD0ibm9uZSIgLz48cGF0aCBkPSJNMjc2IDEwNSBMMjg0IDExMCBMMjc2IDExNSIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0zMDQgMTEwIEw0MjIgMTEwIiBmaWxsPSJub25lIiAvPjxwYXRoIGQ9Ik00MTQgMTA1IEw0MjIgMTEwIEw0MTQgMTE1IiBmaWxsPSJub25lIi8+PHJlY3QgeD0iMTQ1IiB5PSI2MCIgd2lkdGg9IjEwIiBoZWlnaHQ9Ijk0IiBmaWxsPSIjNzM0ZTgxIi8+PHJlY3QgeD0iMjkwIiB5PSI2MCIgd2lkdGg9IjEwIiBoZWlnaHQ9Ijk0IiBmaWxsPSIjNzM0ZTgxIi8+PHRleHQgeD0iNTYiIHk9IjE0NSIgc3Ryb2tlPSJub25lIj5J4oKAPC90ZXh0Pjx0ZXh0IHg9IjE5MSIgeT0iMTQ1IiBzdHJva2U9Im5vbmUiPlQgSeKCgDwvdGV4dD48dGV4dCB4PSIzNDciIHk9IjE0NSIgc3Ryb2tlPSJub25lIj5UwrIgSeKCgDwvdGV4dD48L2c+PC9zdmc+Cg=="
+    },
+    {
+      "id": "4212e0902ea1207d90e30cc7333ba90f20c2fa1c8e4e8dbd506ea2e3f5967034",
+      "name": "c6-tr05.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NjAgMjE2IiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+TGF2b3JvIHNvdHRvIHVuIHRyYXR0byBpbmNsaW5hdG88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5HcmFmaWNvIGNvbiB4IG9yaXp6b250YWxlIGUgZm9yemEgdmVydGljYWxlLiBJbCBzZWdtZW50byBkYSAoMCBtLCAyIE4pIGEgKDYgbSwgNiBOKSBkZWxpbWl0YSB1biByZXR0YW5nb2xvIGUgdW4gdHJpYW5nb2xvLCBsYSBjdWkgc29tbWEgw6ggaWwgbGF2b3JvLjwvZGVzYz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNDYwIiBoZWlnaHQ9IjIxNiIgcng9IjkiIGZpbGw9IiNmYWY4ZWUiLz48ZyBmaWxsPSIjMTcyNjQ0IiBzdHJva2U9IiMxNzI2NDQiIHN0cm9rZS13aWR0aD0iMiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTciPjx0ZXh0IHg9IjI1IiB5PSIyNCIgc3Ryb2tlPSJub25lIj5GIChOKTwvdGV4dD48cGF0aCBkPSJNNzUgMTM0IEwzNDMgMTM0IEwzNDMgNjIgWiIgZmlsbD0iI2IwZGFiYSIvPjxyZWN0IHg9Ijc1IiB5PSIxMzQiIHdpZHRoPSIyNjgiIGhlaWdodD0iMzYiIGZpbGw9IiNiZGRkZWQiLz48cGF0aCBkPSJNNzUgMTcwIEwzOTMgMTcwIiBmaWxsPSJub25lIiAvPjxwYXRoIGQ9Ik03NSAxNzAgTDc1IDQxIiBmaWxsPSJub25lIiAvPjxwYXRoIGQ9Ik03NSAxMzQgTDM0MyA2MiIgZmlsbD0ibm9uZSIgLz48dGV4dCB4PSIzOSIgeT0iMTM5IiBzdHJva2U9Im5vbmUiPjI8L3RleHQ+PHRleHQgeD0iMzkiIHk9IjY3IiBzdHJva2U9Im5vbmUiPjY8L3RleHQ+PHRleHQgeD0iNjkiIHk9IjE5NSIgc3Ryb2tlPSJub25lIj4wPC90ZXh0Pjx0ZXh0IHg9IjMzNSIgeT0iMTk1IiBzdHJva2U9Im5vbmUiPjY8L3RleHQ+PHRleHQgeD0iMzg1IiB5PSIxOTYiIHN0cm9rZT0ibm9uZSI+eCAobSk8L3RleHQ+PC9nPjwvc3ZnPgo="
+    },
+    {
+      "id": "29d19d9f4de824fa79e21dd1a8910c9af3c088b07271b92ef2b7126d048d462a",
+      "name": "c6-tr06.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NjAgMjE2IiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+SWwgZm9uZG8gbmVsIGNvbmZyb250byBmcmEgZHVlIHNvcmdlbnRpIHNvbm9yZTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPkR1ZSBiYXJyZSBkaSBpbnRlbnNpdMOgIGNvbnRlbmdvbm8gbG8gc3Rlc3NvIHRyYXR0byBkaSBmb25kby4gVG9sdG8gcXVlbCB0cmF0dG8sIGxhIHNlY29uZGEgcGFydGUgdXRpbGUgw6ggcXVhdHRybyB2b2x0ZSBsYSBwcmltYS4gSWwgY29uZnJvbnRvIGRlbGxlIGFtcGllenplIHJpY2hpZWRlIGxhIHJhZGljZSBkZWwgcmFwcG9ydG8uPC9kZXNjPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI0NjAiIGhlaWdodD0iMjE2IiByeD0iOSIgZmlsbD0iI2ZhZjhlZSIvPjxnIGZpbGw9IiMxNzI2NDQiIHN0cm9rZT0iIzE3MjY0NCIgc3Ryb2tlLXdpZHRoPSIyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNyI+PHRleHQgeD0iMjUiIHk9IjI3IiBzdHJva2U9Im5vbmUiPlNvdHRyYWkgaWwgZm9uZG8gaW4gZW50cmFtYmUgbGUgcHJvdmU8L3RleHQ+PHRleHQgeD0iMjUiIHk9IjkxIiBzdHJva2U9Im5vbmUiPlByaW1hPC90ZXh0Pjx0ZXh0IHg9IjI1IiB5PSIxNTYiIHN0cm9rZT0ibm9uZSI+U2Vjb25kYTwvdGV4dD48cmVjdCB4PSIxMTAiIHk9IjY0IiB3aWR0aD0iNTAiIGhlaWdodD0iNDAiIGZpbGw9IiNkNWE2NmQiLz48cmVjdCB4PSIxNjAiIHk9IjY0IiB3aWR0aD0iNTAiIGhlaWdodD0iNDAiIGZpbGw9IiNiZGRkZWQiLz48cmVjdCB4PSIxMTAiIHk9IjEyOSIgd2lkdGg9IjUwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjZDVhNjZkIi8+PHJlY3QgeD0iMTYwIiB5PSIxMjkiIHdpZHRoPSIyMDAiIGhlaWdodD0iNDAiIGZpbGw9IiNiZGRkZWQiLz48dGV4dCB4PSIxMDQiIHk9IjIwMCIgc3Ryb2tlPSJub25lIj5mb25kbzwvdGV4dD48dGV4dCB4PSIxODQiIHk9IjIwMCIgc3Ryb2tlPSJub25lIj5zZWduYWxlIHV0aWxlPC90ZXh0PjwvZz48L3N2Zz4K"
+    }
+  ]
+}

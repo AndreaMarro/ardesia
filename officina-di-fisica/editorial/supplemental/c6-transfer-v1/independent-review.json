@@ -1,0 +1,103 @@
+{
+  "schemaVersion": "1.0.0",
+  "packageSha256": "011e197cd8d082baad71d0c82d4170dceda538c0570534793eab9a30b5fd986b",
+  "author": "root",
+  "independentReviewer": "author_vectors_b",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "candidateCommit": "573b16bdb653346a69048f41aa9880230b5f42b0",
+  "primaryBeforeCandidateReading": {
+    "path": "editorial/reviews/primary-c6-transfer-v1-before-candidates-20261127.md",
+    "commit": "cf1349a43360179301b0986259cdbe89c9267d09",
+    "sha256": "83fa36894ffc43a4a50a09013e39ae2858aab04e27d1ee82d5458c11042b2d6b"
+  },
+  "scope": "Five new supplemental practice exercises, outside the original 4606 inventory; no registration or publication performed",
+  "productUI": "NOT_RUN",
+  "arithmeticEvidence": {
+    "path": "editorial/reviews/c6-transfer-v1-independent-evidence/post-key-exact-results.json",
+    "sha256": "104c9089161d4c28288520031cdfaf1e8d6021aa82c7c3a7a68adce1b07cf53f",
+    "timing": "Computation genuinely executed after candidate reading; independent manual derivations frozen beforehand"
+  },
+  "records": [
+    {
+      "id": "C6-TR02",
+      "candidateSha256": "e80903357f164b10c705c4bd5ccd68beb103b0147a8decf09d661255cb152396",
+      "ok": true,
+      "verificationMode": "EXACT_ORACLE",
+      "manualArithmetic": "La prima area è 600 cm² = 600/10000 m² = 3/50 m². La densità di flusso termico media, uniforme per ipotesi, è potenza divisa per area: 18/(3/50) = 300 W/m². La faccia dimezzata è 3/100 m², mentre le sorgenti mantengono ancora 18 W: la seconda densità è 600 W/m². Si confrontano 300 e 600, non una stessa densità a potenza fissa: è stato variato il rapporto area/potenza. Non confondere la potenza totale con la densità di flusso.",
+      "pedagogicalReview": "Passaggi espliciti nella conversione cm²→m² e controllo inverso jA=18 W. I tre distrattori distinguono proporzionalità errata con l’area, uso di W/cm² e applicazione prematura della faccia dimezzata. Potenza totale e densità di flusso restano distinte. Famiglia nuova specifica e competenza C6-L02 coerenti.",
+      "figureReview": "Letti XML e PNG integrale dopo exit 0: rettangoli 146×36 e 73×36, dunque aree 2:1, con frecce di potenza uguali. Etichette 600/300 cm² coerenti; non sono introdotte unità pixel nella prosa.",
+      "assetChecksums": {
+        "c6-tr02.svg": "0633032c1f6ca12430a3a34b73ceb8ce769dfd25a52b8c66073a2f548b8fdd8d"
+      },
+      "family": "densita-flusso-termico-faccia",
+      "competency": "C6-L02",
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C6-TR03",
+      "candidateSha256": "958910112f0ce31d84069ea75b6fc30e0538dc71ce1d9cd37545b496ccb1ef47",
+      "ok": true,
+      "verificationMode": "EXACT_ORACLE",
+      "manualArithmetic": "L’alimentatore trasferisce 12×5 = 60 J nell’accumulatore; il calore ceduto all’ambiente è 3×5 = 15 J. Con gli altri scambi esclusi, la variazione di energia interna è +60−15 = +45 J. Il contributo elettrico è lavoro entrante, mentre il calore uscente ha segno negativo nel bilancio del sistema. La capacità di accumulo non coincide con l’energia erogata lorda e non si sommano due potenze uscenti.",
+      "pedagogicalReview": "Il contorno del sistema e i segni sono espliciti. 12 W entrano come lavoro elettrico, 3 W escono come calore: 60 J lordi,15 J ceduti e 75 J da somma impropria sono tutti distinti dal saldo 45 J. Competenza C6-L03 e famiglia di accumulo netto coerenti.",
+      "figureReview": "Letti XML e PNG integrale dopo exit 0: freccia elettrica entrante e freccia di calore uscente attraversano il contorno dell’accumulatore. Il saldo +9 J si riferisce esplicitamente a un secondo; lo schema non dichiara una scala di lunghezza delle frecce.",
+      "assetChecksums": {
+        "c6-tr03.svg": "1d8657cf986022e21e049c99545f6a6b6888213a5a32708b8defa2a05d8c9550"
+      },
+      "family": "accumulo-energetico-potenza-netta",
+      "competency": "C6-L03",
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C6-TR04",
+      "candidateSha256": "ad6e47e2fd610dc9be98168a906735e3837cdb0e1507b8e0468ed92a6e6d97c7",
+      "ok": true,
+      "verificationMode": "EXACT_ORACLE",
+      "manualArithmetic": "Sia t la frazione trasmessa da ciascun filtro: per passività 0≤t≤1. I filtri sono identici e il secondo riceve soltanto la frazione t passata dal primo, quindi t²=1/16. Le due radici algebriche sarebbero ±1/4, ma una frazione fisica di intensità non è negativa: t=1/4. Non si divide 1/16 per due e non si sommano le perdite assolute rispetto alla stessa intensità iniziale. Il modello esclude la necessità di ricostruire riflessioni multiple.",
+      "pedagogicalReview": "Radice algebrica negativa esclusa dal dominio fisico 0≤T≤1. Il finale573b16bd è stato riletto intero: T=1/8 produrrebbe 1/64, non 1/16; la frazione composta 1/16 e quella rimossa 3/4 sono alternative diverse. Non si invoca una dipendenza lineare dai due strati. Competenza C6-L04 coerente.",
+      "figureReview": "Letti XML e PNG integrale dopo exit 0: due filtri identici e tre segmenti del fascio, con I₀, T I₀ e T² I₀. Le frecce indicano propagazione, senza una scala numerica di intensità. Titolo e descrizione accessibile sono coerenti.",
+      "assetChecksums": {
+        "c6-tr04.svg": "02da9f271ddd56c6fee85aafef6337edf127ba665c3fafb05d161fe71a5bd71c"
+      },
+      "family": "trasmissione-singola-da-prodotto-strati",
+      "competency": "C6-L04",
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C6-TR05",
+      "candidateSha256": "984384b1fac94e3413444d8c1fc9dc7cdc0cc10ac94188d3f35ca93ec8ff59ef",
+      "ok": true,
+      "verificationMode": "EXACT_ORACLE",
+      "manualArithmetic": "Il lavoro è l’integrale rispetto allo spostamento della componente della forza, non l’integrale nel tempo. La crescita è lineare: il valore medio sul tratto è (2+6)/2=4 N. Moltiplicando per 6 m si ottengono +24 J. Lo stesso calcolo separa rettangolo 2×6=12 J e triangolo (6−2)×6/2=12 J. Il segno è positivo perché componente e spostamento sono concordi.",
+      "pedagogicalReview": "Scomposizione rettangolo/triangolo e calcolo alternativo con forza media sono manuali. Il finale573b16bd è stato riletto intero: 4 J copia il valore numerico di 4 N senza moltiplicare per 6 m; 36 J usa sempre la forza finale e 12 J omette il triangolo. Grafico forza-posizione distinto da impulso. Competenza C6-L05 coerente.",
+      "figureReview": "Letti XML e PNG integrale dopo exit 0: asse x a y170, F=2 a y134 e F=6 a y62. Rettangolo 268×36 e triangolo 268×72/2 hanno aree uguali, entrambe pari a 12 J nella scala fisica. Intervallo orizzontale 0–6 m e segno del lavoro corretti.",
+      "assetChecksums": {
+        "c6-tr05.svg": "4212e0902ea1207d90e30cc7333ba90f20c2fa1c8e4e8dbd506ea2e3f5967034"
+      },
+      "family": "lavoro-forza-posizione-trapezio",
+      "competency": "C6-L05",
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C6-TR06",
+      "candidateSha256": "971f568b26e45813858130d100b9f61ff31b400d1b88ecc6dd01c0b4404af7c7",
+      "ok": true,
+      "verificationMode": "EXACT_ORACLE",
+      "manualArithmetic": "L’incoerenza permette di sottrarre il fondo nelle intensità, non nelle ampiezze: I1,utile=8−4=4 nW/m² e I2,utile=20−4=16 nW/m². Con lo stesso coefficiente della proporzionalità dichiarata I_utile=C A², il rapporto dei quadrati è 16/4=4; il rapporto positivo delle ampiezze è 2. Il denominatore utile è positivo. Usare direttamente 20/8 incorporerebbe il fondo costante e darebbe un altro rapporto; usare 4 senza radice confonderebbe intensità e ampiezza.",
+      "pedagogicalReview": "Prima si sottrae il fondo incoerente nelle intensità, poi si estrae la radice. I distrattori 4, 5/2 e √(5/2) rappresentano rispettivamente rapporto utile senza radice, rapporto totale e radice del totale. Il denominatore utile è positivo e il coefficiente comune della proporzionalità dichiarata rende univoco il rapporto. Competenza C6-L06 e famiglia di inferenza con fondo coerenti.",
+      "figureReview": "Letti XML e PNG integrale dopo exit 0: fondo largo 50 in entrambe le barre; segnale utile 50 nella prima e 200 nella seconda. Il rapporto 4 fra le parti utili e 2 fra le ampiezze è distinto dal rapporto 5/2 fra le barre totali. Legenda chiara, nessun testo tagliato.",
+      "assetChecksums": {
+        "c6-tr06.svg": "29d19d9f4de824fa79e21dd1a8910c9af3c088b07271b92ef2b7126d048d462a"
+      },
+      "family": "stima-ampiezza-sottrazione-fondo-incoerente",
+      "competency": "C6-L06",
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ]
+}

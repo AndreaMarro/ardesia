@@ -113,15 +113,18 @@ def reviewed_supplemental_practice(registry, app=APP):
         if (package.get("schema") != "astra/1" or len(by_id) != len(records) or set(by_id) != expected
                 or len(observed) != len(expected) or {row["id"] for row in observed} != expected):
             raise ValueError("Supplemental practice evidence has missing or duplicate IDs")
+        reviewers = (review.get("author"), review.get("independentReviewer"))
         if (review.get("schemaVersion") != "1.0.0" or review.get("packageSha256") != spec["packageSha256"]
                 or review.get("humanApproval") != "NOT_RUN" or review.get("publicationAction") != "NONE"
-                or not review.get("author") or not review.get("independentReviewer")
-                or review["author"] == review["independentReviewer"]):
+                or not all(isinstance(name, str) and name.strip() for name in reviewers)
+                or reviewers[0].strip().casefold() == reviewers[1].strip().casefold()):
             raise ValueError("Supplemental practice requires a distinct reviewed draft")
         for decision in observed:
             row = by_id[decision["id"]]
-            if (row.get("kind") != "question" or row.get("exam") or row.get("baseVersion", 0) != 0
-                    or row.get("version") != 1 or not row.get("family") or not row.get("skill")
+            if (row.get("kind") != "question" or row.get("exam") is not None
+                    or type(row.get("baseVersion")) is not int or row["baseVersion"] != 0
+                    or type(row.get("version")) is not int or row["version"] != 1
+                    or not row.get("family") or not row.get("skill")
                     or decision.get("candidateSha256") != digest(row) or decision.get("ok") is not True
                     or not decision.get("manualArithmetic") or not decision.get("pedagogicalReview")):
                 raise ValueError("Invalid individual supplemental practice evidence: " + row["id"])

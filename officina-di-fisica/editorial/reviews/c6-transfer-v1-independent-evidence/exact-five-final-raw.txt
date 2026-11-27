@@ -1,0 +1,31 @@
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/c6-transfer-v1-independent-evidence/post-key-exact-checks.py", line 27, in <module>
+    result={'scope':'Actual exact computation after candidate reading, supporting earlier frozen manual primary; not a new pre-key run','records':{key:str(value)for key,value in values.items()},'exactDimensionChecks':[{'value':str(v.magnitude),'units':str(v.units)}for v,_ in checks],'all15FalseChoicesRejected':false,'floatApproximationOrTolerance':False,'humanApproval':'NOT_RUN','publicationAction':'NONE'}
+                                                                                                                                                                                                                                                            ~~~^^^^^^^^^
+  File "/private/tmp/cric-recovery-venv/lib/python3.13/site-packages/pint/facets/plain/unit.py", line 70, in __str__
+    return self._REGISTRY.formatter.format_unit(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/private/tmp/cric-recovery-venv/lib/python3.13/site-packages/pint/delegates/formatter/full.py", line 138, in format_unit
+    return self.get_formatter(uspec).format_unit(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        unit, uspec, sort_func=sort_func, **babel_kwds
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/private/tmp/cric-recovery-venv/lib/python3.13/site-packages/pint/delegates/formatter/plain.py", line 105, in format_unit
+    return formatter(
+        numerator,
+    ...<6 lines>...
+        parentheses_fmt=r"({})",
+    )
+  File "/private/tmp/cric-recovery-venv/lib/python3.13/site-packages/pint/delegates/formatter/_format_helpers.py", line 212, in formatter
+    neg_terms.append(power_fmt.format(key, fun(value)))
+                                           ~~~^^^^^^^
+  File "/private/tmp/cric-recovery-venv/lib/python3.13/site-packages/pint/delegates/formatter/_format_helpers.py", line 196, in <lambda>
+    fun = lambda x: exp_call(abs(x))
+                    ~~~~~~~~^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/fractions.py", line 577, in __format__
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Invalid format specifier 'n' for object of type 'Fraction'

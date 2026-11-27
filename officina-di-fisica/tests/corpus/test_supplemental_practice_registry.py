@@ -53,7 +53,13 @@ class SupplementalPracticeRegistryTests(unittest.TestCase):
             reviewed_supplemental_practice({'supplementalPractice': [self.item]}, self.app)
 
     def test_author_signoff_does_not_satisfy_distinct_review(self):
-        self.review['independentReviewer'] = self.review['author']
+        self.review['independentReviewer'] = ' ' + self.review['author'].upper() + ' '
         self.save_review()
         with self.assertRaisesRegex(ValueError, 'distinct reviewed draft'):
+            reviewed_supplemental_practice({'supplementalPractice': [self.item]}, self.app)
+
+    def test_base_version_requires_an_integer(self):
+        self.candidate['baseVersion'] = False
+        self.build_fixture()
+        with self.assertRaisesRegex(ValueError, 'Invalid individual'):
             reviewed_supplemental_practice({'supplementalPractice': [self.item]}, self.app)
