@@ -1,0 +1,130 @@
+TAP version 13
+# Subtest: the weight and normal keep their length and origin in the moving block frame
+ok 1 - the weight and normal keep their length and origin in the moving block frame
+  ---
+  duration_ms: 2.088208
+  ...
+# Subtest: field contributions and resultant share the probe, scale and annotation layer
+ok 2 - field contributions and resultant share the probe, scale and annotation layer
+  ---
+  duration_ms: 0.748041
+  ...
+# Subtest: the flight retains the origin marker and the apex guide without a covering label
+ok 3 - the flight retains the origin marker and the apex guide without a covering label
+  ---
+  duration_ms: 1.034708
+  ...
+# Subtest: small flight velocities retain their direction and get a separate 16× detail
+ok 4 - small flight velocities retain their direction and get a separate 16× detail
+  ---
+  duration_ms: 1.432541
+  ...
+# Subtest: the constant gravity arrow clears the launch and landing platform
+ok 5 - the constant gravity arrow clears the launch and landing platform
+  ---
+  duration_ms: 2.284709
+  ...
+# Subtest: SIM-C4-L02-03: the moving point and plate labels cannot mask a field arrow
+ok 6 - SIM-C4-L02-03: the moving point and plate labels cannot mask a field arrow
+  ---
+  duration_ms: 16.392
+  ...
+# Subtest: SIM-C4-L03-02: the moving point and plate labels cannot mask a field arrow
+ok 7 - SIM-C4-L03-02: the moving point and plate labels cannot mask a field arrow
+  ---
+  duration_ms: 1.734084
+  ...
+# Subtest: SIM-C4-L03-03: the moving point and plate labels cannot mask a field arrow
+ok 8 - SIM-C4-L03-03: the moving point and plate labels cannot mask a field arrow
+  ---
+  duration_ms: 0.607625
+  ...
+# Subtest: all eight observed positions preserve the field, moving point and scalar exactly
+ok 9 - all eight observed positions preserve the field, moving point and scalar exactly
+  ---
+  duration_ms: 2.724209
+  ...
+# Subtest: all 29 C4 controls, teaching outputs, clocks, geometry and unrelated legends retain the frozen baseline
+ok 10 - all 29 C4 controls, teaching outputs, clocks, geometry and unrelated legends retain the frozen baseline
+  ---
+  duration_ms: 111.234667
+  ...
+# Subtest: the accessible descriptions identify the point without assigning a charge to the voltmeter probe
+ok 11 - the accessible descriptions identify the point without assigning a charge to the voltmeter probe
+  ---
+  duration_ms: 1.103041
+  ...
+# Subtest: zero displacement and zero energy gain leave the nonzero uniform field visible
+ok 12 - zero displacement and zero energy gain leave the nonzero uniform field visible
+  ---
+  duration_ms: 0.512625
+  ...
+# Subtest: Entrata stays in the accessible legend and off the measured glyphs
+ok 13 - Entrata stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 32.65125
+  ...
+# Subtest: Presa frontale stays in the accessible legend and off the measured glyphs
+ok 14 - Presa frontale stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 2.169791
+  ...
+# Subtest: Uscita stays in the accessible legend and off the measured glyphs
+ok 15 - Uscita stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 8.2805
+  ...
+# Subtest: Sezione di misura stays in the accessible legend and off the measured glyphs
+ok 16 - Sezione di misura stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 6.120667
+  ...
+# Subtest: Sforzo sulla lastra stays in the accessible legend and off the measured glyphs
+ok 17 - Sforzo sulla lastra stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 0.689625
+  ...
+# Subtest: Presa intermedia stays in the accessible legend and off the measured glyphs
+ok 18 - Presa intermedia stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 1.360416
+  ...
+# Subtest: In parallelo stays in the accessible legend and off the measured glyphs
+ok 19 - In parallelo stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 1.080416
+  ...
+# Subtest: Goccia stays in the accessible legend and off the measured glyphs
+ok 20 - Goccia stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 0.587375
+  ...
+# Subtest: Film a due facce stays in the accessible legend and off the measured glyphs
+ok 21 - Film a due facce stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 1.021834
+  ...
+# Subtest: unrelated labels keep their existing anchors
+ok 22 - unrelated labels keep their existing anchors
+  ---
+  duration_ms: 1.221708
+  ...
+# Subtest: the Pitot velocity arrows pass beside the probes with the same direction and scale
+ok 23 - the Pitot velocity arrows pass beside the probes with the same direction and scale
+  ---
+  duration_ms: 4.63925
+  ...
+# Subtest: press arrows show motion direction and disappear at zero stroke
+ok 24 - press arrows show motion direction and disappear at zero stroke
+  ---
+  duration_ms: 0.938291
+  ...
+1..24
+# tests 24
+# suites 0
+# pass 24
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 278.053

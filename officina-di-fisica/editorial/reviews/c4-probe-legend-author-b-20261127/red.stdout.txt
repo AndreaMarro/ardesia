@@ -1,0 +1,296 @@
+TAP version 13
+# Subtest: SIM-C4-L02-03: the moving point and plate labels cannot mask a field arrow
+not ok 1 - SIM-C4-L02-03: the moving point and plate labels cannot mask a field arrow
+  ---
+  duration_ms: 8.721583
+  location: '/private/tmp/cric-c4-probe-legend-author-b-20261127/officina-di-fisica/tests/c4-probe-legend.test.js:11:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    SIM-C4-L02-03, x=0, stage=0
+    + actual - expected
+    
+    + [
+    +   {
+    +     c: 3484994,
+    +     kind: 'label',
+    +     p: [
+    +       -1.48,
+    +       0.67,
+    +       0.52
+    +     ],
+    +     text: 'Sonda'
+    +   },
+    +   {
+    +     c: 3484994,
+    +     kind: 'label',
+    +     p: [
+    +       -1.68,
+    +       2.25,
+    +       0
+    +     ],
+    +     text: '+'
+    +   },
+    +   {
+    +     c: 3484994,
+    +     kind: 'label',
+    +     p: [
+    +       1.68,
+    +       2.25,
+    +       0
+    +     ],
+    +     text: '−'
+    +   }
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      kind: 'label'
+      p:
+        0: -1.48
+        1: 0.67
+        2: 0.52
+      text: 'Sonda'
+      c: 3484994
+    1:
+      kind: 'label'
+      p:
+        0: -1.68
+        1: 2.25
+        2: 0
+      text: '+'
+      c: 3484994
+    2:
+      kind: 'label'
+      p:
+        0: 1.68
+        1: 2.25
+        2: 0
+      text: '−'
+      c: 3484994
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/cric-c4-probe-legend-author-b-20261127/officina-di-fisica/tests/c4-probe-legend.test.js:18:16)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: SIM-C4-L03-02: the moving point and plate labels cannot mask a field arrow
+not ok 2 - SIM-C4-L03-02: the moving point and plate labels cannot mask a field arrow
+  ---
+  duration_ms: 1.447625
+  location: '/private/tmp/cric-c4-probe-legend-author-b-20261127/officina-di-fisica/tests/c4-probe-legend.test.js:11:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    SIM-C4-L03-02, x=-4, stage=0
+    + actual - expected
+    
+    + [
+    +   {
+    +     c: 3484994,
+    +     kind: 'label',
+    +     p: [
+    +       -1.48,
+    +       0.67,
+    +       0.52
+    +     ],
+    +     text: 'Sonda'
+    +   },
+    +   {
+    +     c: 3484994,
+    +     kind: 'label',
+    +     p: [
+    +       -1.68,
+    +       2.25,
+    +       0
+    +     ],
+    +     text: '+'
+    +   },
+    +   {
+    +     c: 3484994,
+    +     kind: 'label',
+    +     p: [
+    +       1.68,
+    +       2.25,
+    +       0
+    +     ],
+    +     text: '−'
+    +   }
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      kind: 'label'
+      p:
+        0: -1.48
+        1: 0.67
+        2: 0.52
+      text: 'Sonda'
+      c: 3484994
+    1:
+      kind: 'label'
+      p:
+        0: -1.68
+        1: 2.25
+        2: 0
+      text: '+'
+      c: 3484994
+    2:
+      kind: 'label'
+      p:
+        0: 1.68
+        1: 2.25
+        2: 0
+      text: '−'
+      c: 3484994
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/cric-c4-probe-legend-author-b-20261127/officina-di-fisica/tests/c4-probe-legend.test.js:18:16)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+# Subtest: SIM-C4-L03-03: the moving point and plate labels cannot mask a field arrow
+not ok 3 - SIM-C4-L03-03: the moving point and plate labels cannot mask a field arrow
+  ---
+  duration_ms: 0.620625
+  location: '/private/tmp/cric-c4-probe-legend-author-b-20261127/officina-di-fisica/tests/c4-probe-legend.test.js:11:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    SIM-C4-L03-03, x=0, stage=0
+    + actual - expected
+    
+    + [
+    +   {
+    +     c: 3484994,
+    +     kind: 'label',
+    +     p: [
+    +       0,
+    +       0.67,
+    +       0.52
+    +     ],
+    +     text: 'Sonda'
+    +   },
+    +   {
+    +     c: 3484994,
+    +     kind: 'label',
+    +     p: [
+    +       -1.68,
+    +       2.25,
+    +       0
+    +     ],
+    +     text: '+'
+    +   },
+    +   {
+    +     c: 3484994,
+    +     kind: 'label',
+    +     p: [
+    +       1.68,
+    +       2.25,
+    +       0
+    +     ],
+    +     text: '−'
+    +   }
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      kind: 'label'
+      p:
+        0: 0
+        1: 0.67
+        2: 0.52
+      text: 'Sonda'
+      c: 3484994
+    1:
+      kind: 'label'
+      p:
+        0: -1.68
+        1: 2.25
+        2: 0
+      text: '+'
+      c: 3484994
+    2:
+      kind: 'label'
+      p:
+        0: 1.68
+        1: 2.25
+        2: 0
+      text: '−'
+      c: 3484994
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/cric-c4-probe-legend-author-b-20261127/officina-di-fisica/tests/c4-probe-legend.test.js:18:16)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+# Subtest: all eight observed positions preserve the field, moving point and scalar exactly
+not ok 4 - all eight observed positions preserve the field, moving point and scalar exactly
+  ---
+  duration_ms: 0.966583
+  location: '/private/tmp/cric-c4-probe-legend-author-b-20261127/officina-di-fisica/tests/c4-probe-legend.test.js:25:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    SIM-C4-L02-03|published|320|top|clock|2
+    
+    3 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 3
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/cric-c4-probe-legend-author-b-20261127/officina-di-fisica/tests/c4-probe-legend.test.js:32:12)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+# Subtest: all 29 C4 controls, teaching outputs, clocks, geometry and unrelated legends retain the frozen baseline
+ok 5 - all 29 C4 controls, teaching outputs, clocks, geometry and unrelated legends retain the frozen baseline
+  ---
+  duration_ms: 104.607417
+  ...
+# Subtest: the accessible descriptions identify the point without assigning a charge to the voltmeter probe
+not ok 6 - the accessible descriptions identify the point without assigning a charge to the voltmeter probe
+  ---
+  duration_ms: 0.611875
+  location: '/private/tmp/cric-c4-probe-legend-author-b-20261127/officina-di-fisica/tests/c4-probe-legend.test.js:40:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /ocra.*campo.*uniforme/. Input:
+    
+    'Armatura positiva a sinistra · armatura negativa a destra'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: 'Armatura positiva a sinistra · armatura negativa a destra'
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/cric-c4-probe-legend-author-b-20261127/officina-di-fisica/tests/c4-probe-legend.test.js:46:14)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+# Subtest: zero displacement and zero energy gain leave the nonzero uniform field visible
+ok 7 - zero displacement and zero energy gain leave the nonzero uniform field visible
+  ---
+  duration_ms: 0.600209
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 2
+# fail 5
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 208.805833
