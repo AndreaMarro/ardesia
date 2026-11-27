@@ -119,15 +119,38 @@ export function blocks(data = []) {
 function assetPath(s) {
   return /^\/(?:figures\/[\w.-]+\.svg|asset\/[a-f0-9]{64})$/.test(s || '') ? s : '';
 }
+// KaTeX already breaks between many top-level relations. At editorial spaces,
+// offer the visual output another breakpoint without changing its MathML.
+function readerLayoutTeX(tex) {
+  if (!/\\(?:quad|qquad)\b/.test(tex) || /\\(?:begin|left)\b/.test(tex)) return tex;
+  let groups = 0;
+  return tex.replace(/\\(?:[a-zA-Z]+|[^\r\n])|[{}]/g, (token) => {
+    if (token === '{') groups++;
+    if (token === '}') groups--;
+    return groups === 0 && (token === '\\quad' || token === '\\qquad')
+      ? '\\allowbreak' + token
+      : token;
+  });
+}
 export function typeset(node = main) {
   if (!window.katex) return;
+  const options = { displayMode: true, throwOnError: false, strict: false, trust: false };
   for (const el of node.querySelectorAll('[data-tex]')) {
-    katex.render(el.dataset.tex, el, {
-      displayMode: true,
-      throwOnError: false,
-      strict: false,
-      trust: false,
-    });
+    const original = el.dataset.tex;
+    katex.render(original, el, options);
+    if (el.closest('.reader .lettura-contenuto')) {
+      const visual = el.querySelector('.katex-html');
+      const layout = readerLayoutTeX(original);
+      if (visual && layout !== original) {
+        const temporary = document.createElement('div');
+        katex.render(layout, temporary, { ...options, output: 'html' });
+        const wrapped = temporary.querySelector('.katex-html');
+        if (wrapped) {
+          wrapped.setAttribute('aria-hidden', 'true');
+          visual.replaceWith(wrapped);
+        }
+      }
+    }
     el.removeAttribute('data-tex');
   }
 }

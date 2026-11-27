@@ -1,0 +1,51 @@
+"""Install exactly the independently exercised runtime files into the feature checkout."""
+import hashlib
+import json
+import os
+import subprocess
+from pathlib import Path
+
+app=Path.cwd();root=app.parent
+source='cf3d8774ea4eb2f5287b7d7b890d9be0bf8bc8bc'
+expected='cb9fc66d96ecced2addff3df4dfbeb0b5834e73a13719a78ea964bc28a5ada49'
+repo=Path('/private/tmp/cric-vector-apparatus-author-20261126')
+env={**os.environ,'GIT_NO_LAZY_FETCH':'1','GIT_ALTERNATE_OBJECT_DIRECTORIES':'/private/tmp/cric-work-axis-author-20261126/.git/objects'}
+def git(*args,cwd=root):
+    return subprocess.check_output(['git','-c','gc.auto=0',*args],cwd=cwd,env=env)
+def sha(data):return hashlib.sha256(data).hexdigest()
+allowed={f'officina-di-fisica/static/{p}' for p in (
+    'js/banchi/banco.js','js/banchi/voci/apparati/campi.js','js/banchi/voci/apparati/fluidi.js',
+    'js/banchi/voci/apparati/onde.js','js/banchi/voci/apparati/termica.js','js/banchi/voci/esperimento.js',
+    'js/banchi/voci/legende.js','js/banchi/voci/modelli/C2.js','js/ui.js','metodo.css','style.css')}
+paths=git('diff','--name-only','HEAD',source,'--','officina-di-fisica/static','officina-di-fisica/server',
+          'officina-di-fisica/content','officina-di-fisica/policies','officina-di-fisica/contracts',
+          'officina-di-fisica/migrations','officina-di-fisica/package.json','officina-di-fisica/package-lock.json').decode().splitlines()
+# Corpus-editorial schema changes from the feature are deliberately outside the installed consumer.
+nonruntime={'officina-di-fisica/contracts/corpus-batches-v1.schema.json'}
+assert set(paths)-nonruntime==allowed,set(paths)-nonruntime
+assert not git('status','--porcelain','--','officina-di-fisica/static')
+files={}
+original={}
+for name in sorted(allowed):
+    target=root/name
+    old=git('show','HEAD:'+name)
+    assert target.read_bytes()==old
+    new=git('show',source+':'+name,cwd=repo)
+    original[target]=old
+    files[name]={'previousSha256':sha(old),'candidateSha256':sha(new)}
+    target.write_bytes(new)
+try:
+    fp=json.loads(subprocess.check_output(['/private/tmp/cric-recovery-venv/bin/python','-B','-m','tools.corpus_engineering.runtime_fingerprint'],cwd=app))
+    assert fp['sha256']==expected,fp['sha256']
+except BaseException:
+    for target,old in original.items():target.write_bytes(old)
+    raise
+review=app/'editorial/reviews/cb9-runtime-root-staging-20261127';review.mkdir(exist_ok=False)
+log=review/'actual-node-tests.txt'
+run=subprocess.run(['npm','test'],cwd=app,capture_output=True);log.write_bytes(run.stdout+run.stderr)
+print(run.stdout.decode()[-320:],flush=True);assert run.returncode==0
+receipt={'sourceCommit':source,'beforeIntegrationCommit':git('rev-parse','HEAD').decode().strip(),'candidateRuntimeSha256':expected,
+         'scope':'Feature checkout runtime staging. Canonical branch and all editorial decisions are separate.', 'observedTestsExit':run.returncode,
+         'files':files,'activityCredit':0,'humanApproval':'NOT_RUN','publicationAction':'NONE'}
+(review/'receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
+print('Verified',len(files),'runtime files. Fingerprint',fp['sha256'])

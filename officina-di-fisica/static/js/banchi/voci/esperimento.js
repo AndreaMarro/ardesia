@@ -1,5 +1,5 @@
 import { chart, curve, n, param, select } from '../misure.js';
-import { legende } from './legende.js';
+import { legende, legendaTavola } from './legende.js';
 import { confronti } from './confronti.js';
 import { orologioVoce } from './orologi.js';
 import { disegna3D, scenaMobile, tavolo } from './geometria.js';
@@ -39,6 +39,7 @@ export async function esperienza(record) {
     : param('x', a.label, a.unit === '1' ? '' : a.unit, a.min, a.max, a.step, x0);
   const calc = (x) => stabile(law.measure(x));
   const clock = record.engine ? null : orologioVoce(record, law);
+  const nativeVectorAxes = !record.engine && record.apparatus === 'vettori';
   function elements(x, stage, time) {
     if (clock?.input && time !== undefined) x = time;
     const board = tavolo(Math.max(stage, 0));
@@ -75,7 +76,9 @@ export async function esperienza(record) {
         board.label([dx, 1.7, 0], series ? 'In serie' : 'In parallelo');
       }
     } else instrument(board, state);
-    return board.elementi;
+    // In Side view the opaque y sprite projects onto vector shafts. Keep
+    // both complete axis lines and identify y in the native apparatus legend.
+    return nativeVectorAxes ? board.elementi.filter((e) => !(e.kind === 'label' && e.text === 'y')) : board.elementi;
   }
   const levels = ['Diminuisce', 'Resta uguale', 'Aumenta'];
   const sign = Math.abs(y1 - y0) < 1e-8 ? 0 : Math.sign(y1 - y0);
@@ -152,6 +155,14 @@ export async function esperienza(record) {
       return readings;
     },
     steps(p, { x, y }) {
+      // Match controller roundoff, never a different legal slider step. The
+      // worked calculation uses the declared point; measurements retain x.
+      const assignedInput = selectedPoints.find((value) =>
+        Math.abs(value - x) <= Math.min(
+          a.step / 1e6,
+          8 * Number.EPSILON * Math.max(Math.abs(a.min), Math.abs(a.max), Math.abs(value), Math.abs(x), Number.MIN_VALUE),
+        ),
+      );
       return [
         ['Individua il fenomeno', record.interpretation, record.formula],
         [
@@ -165,11 +176,18 @@ export async function esperienza(record) {
             '.',
           a.label + ' = ' + fmt(x) + ' · ' + m.label + ' = ' + valore(y, m.unit),
         ],
-        [
-          'Controlla il calcolo',
-          record.formula + '. Sostituisci i dati e confronta il risultato con la lettura dello strumento.',
-          calculation(x, y),
-        ],
+        assignedInput !== undefined
+          ? [
+              'Controlla il calcolo',
+              record.formula + '. Sostituisci i dati e confronta il risultato con la lettura dello strumento.',
+              calculation(assignedInput, calc(assignedInput)),
+            ]
+          : [
+              'Osserva la lettura del modello',
+              'Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: ' +
+                fmt(selectedPoints[0]) + ' e ' + fmt(selectedPoints[1]) + '.',
+              m.label + ' = ' + valore(y, m.unit),
+            ],
         [
           'Ripeti con un altro dato',
           'Prevedi la lettura con «' +
@@ -282,7 +300,9 @@ export async function esperienza(record) {
   ].includes(record.apparatus);
   const spec = {
     target: [0, high ? 1.27 : 0.95, 0],
-    height: high ? 4.65 : top ? 4.68 : 4.25,
+    // Native vector grids include full vertical components and the table feet.
+    // Keep their complete opaque meshes in all three preset camera frames.
+    height: nativeVectorAxes ? 6 : high ? 4.65 : top ? 4.68 : 4.25,
     width: 8.1,
     eye: top ? [2.3, 4.35, 6.1] : [2.6, 1.9, 6.1],
     bg: { C1: 0xf3eddd, C2: 0xe7efe5, C3: 0xf4eada, C4: 0xecebf1, C5: 0xe7edf0, C6: 0xe9eeea }[record.course] ?? 0xe9eeea,
@@ -306,6 +326,9 @@ export async function esperienza(record) {
     measurement,
     clock,
     observe: law.observe,
-    legend: () => legend ?? legende[record.apparatus],
+    legend: (_stage, view) => legend ?? (nativeVectorAxes
+      ? legende.vettori.replace('Gli assi x e y sono indicati sulla tavola.',
+        'L’asse x è etichettato. L’asse y passa per la coda del primo vettore ed è perpendicolare a x nel piano dei vettori. Nella tavola 2D è l’altra retta grigia; in una vista 3D di taglio può apparire come un punto. Usa i controlli e le letture numeriche per confrontare i risultati.')
+      : view === 'diagram' ? legendaTavola(record.apparatus) : legende[record.apparatus]),
   };
 }

@@ -62,7 +62,8 @@ def assert_assignment_identity(package, bindings, assignment, source_ref):
         key = row['id']
         source = originals[key]
         for name in ('kind', 'course', 'skill', 'family', 'exam', 'section', 'order', 'prerequisites'):
-            assert row.get(name) == source.get(name), (key, name)
+            assert type(row.get(name)) is type(source.get(name)) and row.get(name) == source.get(name), (key, name)
+        assert type(row['baseVersion']) is int and type(row['version']) is int
         assert row['baseVersion'] == source['version'] and row['version'] == source['version'] + 1
         assert bool(row.get('exam')) == assignment['protectedExam']
         assert by_binding[key]['sourceSha256'] == hashlib.sha256(canonical(source).encode()).hexdigest()

@@ -52,7 +52,8 @@ export const fluidi = {
     for (let i = 0; i <= 5; i++) {
       const f = i / 5,
         y = 0.22 + h * f;
-      b.arrow([-1, y, 0.78], [-1 + 1.8 * s.velocita * f, y, 0.78], c.verde);
+      // Keep the complete shaft and cone in a plane in front of both plates.
+      b.arrow([-1, y, 1.1], [-1 + 1.8 * s.velocita * f, y, 1.1], c.verde);
     }
     if (s.sforzo !== undefined) b.arrow([-0.7, h + 0.6, 0], [-0.7 + s.sforzo, h + 0.6, 0], c.viola);
     b.label([0, 0.57 + h, 0], s.sforzo === undefined ? 'Lastra mobile' : 'Sforzo sulla lastra');
@@ -80,8 +81,6 @@ export const fluidi = {
       true,
     );
     if (s.superficie !== undefined) b.arrow([0, 2.75, 0], [0, 2.75 - 0.45 * s.superficie, 0], c.rosso);
-    b.label([-1.17, y + 0.18, 0.55], 'Sonda');
-    b.label([0.6, 2.52, -0.45], 'Superficie');
   },
   manometro(b, s) {
     if (s.barometro) {
@@ -140,8 +139,6 @@ export const fluidi = {
         i ? c.verde : c.rosso,
       );
     }
-    b.label([-1.15, 2.65, 0], 'A₁');
-    b.label([1.15, 2.65, 0], '4 A₁');
   },
   galleggia(b, s) {
     const top = 1.56,
@@ -179,7 +176,9 @@ export const fluidi = {
       const v = s.v2 ?? 0,
         h1 = s.pitot ? 0.55 : 0.85,
         h2 = s.pitot
-          ? 0.55 + 0.45 * v * v
+          // Both heads share one vertical gain; the complete legal speed
+          // range fits the glass, with no clipping or value-dependent clamp.
+          ? 0.55 + 0.3 * v * v
           : s.perdita !== undefined
             ? 0.85 - 0.65 * s.perdita
             : 0.85 + 0.24 * (s.v1 * s.v1 - v * v);
@@ -252,6 +251,8 @@ export const fluidi = {
       B = [1.62, 1.05, 0];
     tubo(b, [-2.6, 1.05, 0], A, 0.15);
     tubo(b, B, [2.6, 1.05, 0], 0.15);
+    // The same flow gain applies to the inlet and both branches.
+    b.arrow([-2.5, 1.43, 0], [-2.5 + 1.1 * (s.alto + s.basso), 1.43, 0], c.ocra);
     for (const [k, f] of [
       [-1, s.alto],
       [1, s.basso],
@@ -263,8 +264,6 @@ export const fluidi = {
       tubo(b, r, B, 0.14);
       b.arrow([-0.72, 1.25, 0.9 * k], [-0.72 + 1.1 * f, 1.25, 0.9 * k], k < 0 ? c.viola : c.verde);
     }
-    b.label([-1.7, 1.67, 0], 'Nodo A');
-    b.label([1.7, 1.67, 0], 'Nodo B');
   },
   film(b, s) {
     const w = 3.1 * s.bordo,

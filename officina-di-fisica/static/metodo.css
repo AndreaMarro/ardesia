@@ -13,7 +13,7 @@
   font-weight: 650;
 }
 .method-steps { display: grid; gap: .7rem; margin-top: 1.5rem; max-width: 1020px; }
-.method-step { border: 1.5px solid var(--ink); background: white; }
+.method-step { min-width: 0; border: 1.5px solid var(--ink); background: white; }
 .method-step[open] { border-left-width: 5px; border-left-color: var(--violet); }
 .method-step > summary {
   display: flex; align-items: center; gap: .8rem;
@@ -65,7 +65,7 @@
 @media (max-width: 650px) {
   .method-figure { display: block; }
   .method-step > p { padding-left: 1rem; }
-  .method-step .math { margin-left: 1rem; }
+  .method-step .math { margin-left: .25rem; margin-right: .25rem; padding-left: .25rem; padding-right: .25rem; }
   .method-steps { gap: .5rem; }
 }
 @media (prefers-reduced-motion: reduce) {
