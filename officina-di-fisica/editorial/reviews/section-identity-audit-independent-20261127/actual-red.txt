@@ -1,0 +1,410 @@
+bounded local start; free bytes 4025884672
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+======================================================================
+FAIL: test_accepts_only_the_original_section_and_preserves_caller_inputs (test_section_identity_audit.SectionOnlyIdentityTests.test_accepts_only_the_original_section_and_preserves_caller_inputs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 21, in test_accepts_only_the_original_section_and_preserves_caller_inputs
+    before=encoded([self.p,self.b,self.new,self.nb,self.originals]);out=self.check();self.assertIsInstance(out,dict);self.assertEqual(out['changedIds'],['C1-FIX-001']);self.assertEqual(out['checkedIds'],['C1-FIX-001']);self.assertEqual(out['scientificApproval'],'NOT_RUN');self.assertEqual(encoded([self.p,self.b,self.new,self.nb,self.originals]),before)
+                                                                                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+AssertionError: None is not an instance of <class 'dict'>
+
+======================================================================
+FAIL: test_rejects_asset_or_package_envelope_change (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_asset_or_package_envelope_change)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 67, in test_rejects_asset_or_package_envelope_change
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_every_non_section_field_even_with_binding_renewed (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_every_non_section_field_even_with_binding_renewed) (field='kind')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 30, in test_rejects_every_non_section_field_even_with_binding_renewed
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_every_non_section_field_even_with_binding_renewed (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_every_non_section_field_even_with_binding_renewed) (field='course')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 30, in test_rejects_every_non_section_field_even_with_binding_renewed
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_every_non_section_field_even_with_binding_renewed (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_every_non_section_field_even_with_binding_renewed) (field='order')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 30, in test_rejects_every_non_section_field_even_with_binding_renewed
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_every_non_section_field_even_with_binding_renewed (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_every_non_section_field_even_with_binding_renewed) (field='title')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 30, in test_rejects_every_non_section_field_even_with_binding_renewed
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_every_non_section_field_even_with_binding_renewed (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_every_non_section_field_even_with_binding_renewed) (field='version')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 30, in test_rejects_every_non_section_field_even_with_binding_renewed
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_every_non_section_field_even_with_binding_renewed (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_every_non_section_field_even_with_binding_renewed) (field='baseVersion')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 30, in test_rejects_every_non_section_field_even_with_binding_renewed
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_every_non_section_field_even_with_binding_renewed (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_every_non_section_field_even_with_binding_renewed) (field='skill')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 30, in test_rejects_every_non_section_field_even_with_binding_renewed
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_every_non_section_field_even_with_binding_renewed (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_every_non_section_field_even_with_binding_renewed) (field='prerequisites')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 30, in test_rejects_every_non_section_field_even_with_binding_renewed
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_every_non_section_field_even_with_binding_renewed (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_every_non_section_field_even_with_binding_renewed) (field='family')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 30, in test_rejects_every_non_section_field_even_with_binding_renewed
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_every_non_section_field_even_with_binding_renewed (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_every_non_section_field_even_with_binding_renewed) (field='difficulty')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 30, in test_rejects_every_non_section_field_even_with_binding_renewed
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_every_non_section_field_even_with_binding_renewed (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_every_non_section_field_even_with_binding_renewed) (field='prompt')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 30, in test_rejects_every_non_section_field_even_with_binding_renewed
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_every_non_section_field_even_with_binding_renewed (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_every_non_section_field_even_with_binding_renewed) (field='hints')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 30, in test_rejects_every_non_section_field_even_with_binding_renewed
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_every_non_section_field_even_with_binding_renewed (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_every_non_section_field_even_with_binding_renewed) (field='coverage')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 30, in test_rejects_every_non_section_field_even_with_binding_renewed
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_every_non_section_field_even_with_binding_renewed (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_every_non_section_field_even_with_binding_renewed) (field='reuse')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 30, in test_rejects_every_non_section_field_even_with_binding_renewed
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_every_non_section_field_even_with_binding_renewed (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_every_non_section_field_even_with_binding_renewed) (field='review')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 30, in test_rejects_every_non_section_field_even_with_binding_renewed
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_every_non_section_field_even_with_binding_renewed (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_every_non_section_field_even_with_binding_renewed) (field='exam')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 30, in test_rejects_every_non_section_field_even_with_binding_renewed
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_every_non_section_field_even_with_binding_renewed (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_every_non_section_field_even_with_binding_renewed) (field='unreadField')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 30, in test_rejects_every_non_section_field_even_with_binding_renewed
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_fake_original_with_matching_section (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_fake_original_with_matching_section)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 54, in test_rejects_fake_original_with_matching_section
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_formula_unit_hint_or_feedback_drift (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_formula_unit_hint_or_feedback_drift) (kind='formula')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 39, in test_rejects_formula_unit_hint_or_feedback_drift
+    with self.subTest(kind=kind),self.assertRaises(ValueError):self.check()
+                                 ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_formula_unit_hint_or_feedback_drift (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_formula_unit_hint_or_feedback_drift) (kind='unit')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 39, in test_rejects_formula_unit_hint_or_feedback_drift
+    with self.subTest(kind=kind),self.assertRaises(ValueError):self.check()
+                                 ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_formula_unit_hint_or_feedback_drift (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_formula_unit_hint_or_feedback_drift) (kind='feedback')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 39, in test_rejects_formula_unit_hint_or_feedback_drift
+    with self.subTest(kind=kind),self.assertRaises(ValueError):self.check()
+                                 ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_formula_unit_hint_or_feedback_drift (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_formula_unit_hint_or_feedback_drift) (kind='figure')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 39, in test_rejects_formula_unit_hint_or_feedback_drift
+    with self.subTest(kind=kind),self.assertRaises(ValueError):self.check()
+                                 ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_integer_boolean_or_float_equivalence (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_integer_boolean_or_float_equivalence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 43, in test_rejects_integer_boolean_or_float_equivalence
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_invalid_old_or_new_candidate_binding (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_invalid_old_or_new_candidate_binding)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 58, in test_rejects_invalid_old_or_new_candidate_binding
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_missing_duplicate_or_reordered_ids (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_missing_duplicate_or_reordered_ids)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 72, in test_rejects_missing_duplicate_or_reordered_ids
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_removed_field (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_removed_field)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 48, in test_rejects_removed_field
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_source_or_provenance_rebinding (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_source_or_provenance_rebinding) (field='sourceSha256')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 62, in test_rejects_source_or_provenance_rebinding
+    with self.subTest(field=field),self.assertRaises(ValueError):self.check()
+                                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_source_or_provenance_rebinding (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_source_or_provenance_rebinding) (field='sourceRef')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 62, in test_rejects_source_or_provenance_rebinding
+    with self.subTest(field=field),self.assertRaises(ValueError):self.check()
+                                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_source_or_provenance_rebinding (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_source_or_provenance_rebinding) (field='assetChecksums')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 62, in test_rejects_source_or_provenance_rebinding
+    with self.subTest(field=field),self.assertRaises(ValueError):self.check()
+                                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_source_or_provenance_rebinding (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_source_or_provenance_rebinding) (field='extraBindingField')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 62, in test_rejects_source_or_provenance_rebinding
+    with self.subTest(field=field),self.assertRaises(ValueError):self.check()
+                                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_source_or_provenance_rebinding (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_source_or_provenance_rebinding)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 64, in test_rejects_source_or_provenance_rebinding
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_wrong_answer_even_with_candidate_binding_renewed (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_wrong_answer_even_with_candidate_binding_renewed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 24, in test_rejects_wrong_answer_even_with_candidate_binding_renewed
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_wrong_new_section (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_wrong_new_section)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 51, in test_rejects_wrong_new_section
+    with self.assertRaises(ValueError):self.check()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_wrong_source_pin_and_nonfinite_json (test_section_identity_audit.SectionOnlyIdentityTests.test_rejects_wrong_source_pin_and_nonfinite_json)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 78, in test_rejects_wrong_source_pin_and_nonfinite_json
+    with self.assertRaises(ValueError):assert_section_only(self.p,self.b,self.new,self.nb,self.originals,source_ref='b'*40)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_groups_existing_packages_without_repartitioning_or_writes (test_section_identity_audit.SectionPlanTests.test_groups_existing_packages_without_repartitioning_or_writes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 89, in test_groups_existing_packages_without_repartitioning_or_writes
+    before=encoded([self.audit,self.originals]);out=self.plan();self.assertIsInstance(out,dict);self.assertEqual(out['questionCount'],2);self.assertEqual(out['packageCount'],2);self.assertEqual([r['batch']for r in out['packages']],['cric-fixture-one','cric-fixture-two']);self.assertEqual(out['packages'][0]['packagePath'],'editorial/batches/cric-fixture-one.json');self.assertEqual(encoded([self.audit,self.originals]),before)
+                                                                ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+AssertionError: None is not an instance of <class 'dict'>
+
+======================================================================
+FAIL: test_ignores_unregistered_c6_without_inventing_inputs (test_section_identity_audit.SectionPlanTests.test_ignores_unregistered_c6_without_inventing_inputs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 108, in test_ignores_unregistered_c6_without_inventing_inputs
+    self.audit['rows'].append({'id':'C6-FIX-001','batch':'cric-c6-fixture','registered':False});out=self.plan();self.assertIsInstance(out,dict);self.assertEqual(out['questionCount'],2);self.assertEqual(out['excludedRows'],1)
+                                                                                                                ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+AssertionError: None is not an instance of <class 'dict'>
+
+======================================================================
+FAIL: test_rejects_duplicate_audit_ids (test_section_identity_audit.SectionPlanTests.test_rejects_duplicate_audit_ids)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 98, in test_rejects_duplicate_audit_ids
+    with self.assertRaises(ValueError):self.plan()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_incomplete_audit_coverage_within_a_selected_package (test_section_identity_audit.SectionPlanTests.test_rejects_incomplete_audit_coverage_within_a_selected_package)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 111, in test_rejects_incomplete_audit_coverage_within_a_selected_package
+    with self.assertRaises(ValueError):self.plan()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_missing_package (test_section_identity_audit.SectionPlanTests.test_rejects_missing_package)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 92, in test_rejects_missing_package
+    with self.assertRaises(ValueError):self.plan()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_stale_package_checksum (test_section_identity_audit.SectionPlanTests.test_rejects_stale_package_checksum)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 95, in test_rejects_stale_package_checksum
+    with self.assertRaises(ValueError):self.plan()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_unsafe_batch_names (test_section_identity_audit.SectionPlanTests.test_rejects_unsafe_batch_names)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 106, in test_rejects_unsafe_batch_names
+    with self.assertRaises(ValueError):self.plan()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rejects_wrong_source_or_draft_sections (test_section_identity_audit.SectionPlanTests.test_rejects_wrong_source_or_draft_sections)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_section_identity_audit.py", line 102, in test_rejects_wrong_source_or_draft_sections
+    with self.assertRaises(ValueError):self.plan()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.015s
+
+FAILED (failures=44)
+Traceback (most recent call last):
+  File "/private/tmp/cric-bounded-local.py", line 7, in <module>
+    subprocess.run(sys.argv[1:],check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py", line 579, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['python3', '-B', '-m', 'unittest', 'discover', '-s', 'tests/corpus', '-p', 'test_section_identity_audit.py']' returned non-zero exit status 1.
