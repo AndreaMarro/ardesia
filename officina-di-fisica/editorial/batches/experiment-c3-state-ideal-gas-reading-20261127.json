@@ -1,0 +1,436 @@
+{
+  "assets": [],
+  "records": [
+    {
+      "anchor": "Un sistema chiuso conserva la materia e",
+      "apparatus": "pistone",
+      "assessmentSelection": {
+        "points": [
+          6,
+          4
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Nel disegno la faccia interna del pistone è una parete mobile del volume occupato dal gas. Se avanza verso l’esterno di s, aggiunge uno strato di spessore s e di area uguale a quella della faccia. In questo modello il cilindro ha sezione fissa e lo spostamento si misura lungo il suo asse.",
+          "type": "text"
+        },
+        {
+          "text": "V=V_0+A s",
+          "type": "formula"
+        },
+        {
+          "text": "Il volume iniziale è 20 cm³ e il pistone ha area 10 cm². Per una corsa di 6 cm, il volume aggiunto è 10 per 6, cioè 60 cm³. Sommandolo ai 20 cm³ iniziali ottieni 80 cm³. Per 4 cm aggiungi 40 cm³ e ottieni 60 cm³ complessivi.",
+          "type": "text"
+        },
+        {
+          "text": "s=\\frac{V-V_0}{A}",
+          "type": "formula"
+        },
+        {
+          "text": "Per risalire alla corsa da un volume finale, sottrai prima il volume iniziale e poi dividi per l’area. Il prodotto area per corsa misura il solo incremento. Il volume finale a corsa zero resta 20 cm³. Questa costruzione geometrica lascia da misurare pressione e scambi energetici.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Corsa del pistone",
+        "max": 8.0,
+        "min": 0.0,
+        "step": 0.5,
+        "unit": "cm"
+      },
+      "course": "C3",
+      "formula": "V = V₀ + As; V₀ = 20 cm³, A = 10 cm²",
+      "id": "SIM-C3-L01-01",
+      "interpretation": "Il bordo del gas segue il pistone. La massa racchiusa resta costante e il volume varia. Nel movimento può essere scambiato lavoro attraverso il confine.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Volume del sistema",
+        "unit": "cm³"
+      },
+      "order": 1,
+      "prerequisites": [],
+      "references": [
+        [
+          2.0,
+          40.0
+        ],
+        [
+          6.0,
+          80.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Il confine del sistema e il termometro",
+      "skill": "C3-L01",
+      "substitution": "20 + 10 × {x}",
+      "summary": "Che cosa attraversa il confine di un gas chiuso quando sposti il pistone?",
+      "title": "Sistema e ambiente",
+      "topic": "5.1 Sistema e ambiente",
+      "transferPrompt": "La camera contiene inizialmente 20 cm³. Il pistone di area 10 cm² avanza verso l’esterno di {x}. Qual è il nuovo volume del gas?",
+      "version": 2
+    },
+    {
+      "anchor": "All’equilibrio, pressione p, volume V e temperatura",
+      "apparatus": "pistone",
+      "assessmentSelection": {
+        "points": [
+          400,
+          350
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Immagina la parete del recipiente bloccata mentre il gas si scalda. In un recipiente rigido e chiuso il volume e il numero di moli restano fissi. Per il gas ideale in equilibrio vale pV = nRT. Isolando p compare un coefficiente costante, pari a 0,4 kPa per kelvin.",
+          "type": "text"
+        },
+        {
+          "text": "p=\\frac{nR}{V}\\,T",
+          "type": "formula"
+        },
+        {
+          "text": "Scrivi 0,4 come 2/5. A 400 K, dividi 400 per 5 e raddoppia 80, ottenendo 160 kPa. A 350 K, dividi 350 per 5 e raddoppia 70, ottenendo 140 kPa. I kelvin si semplificano con il denominatore del coefficiente.",
+          "type": "text"
+        },
+        {
+          "text": "T=\\frac{p}{nR/V}",
+          "type": "formula"
+        },
+        {
+          "text": "In senso inverso, 140 kPa divisi per 2/5 kPa al kelvin restituiscono 350 K. Una proporzione diretta richiede temperatura e pressione assolute e lo stesso volume. Se il recipiente cambia volume, cambia anche il coefficiente.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Temperatura assoluta",
+        "max": 500.0,
+        "min": 200.0,
+        "step": 10.0,
+        "unit": "K"
+      },
+      "course": "C3",
+      "formula": "p = (nR/V)T; nR/V = 0,4 kPa/K",
+      "id": "SIM-C3-L01-02",
+      "interpretation": "Il pistone è bloccato. Ad ogni posizione del controllo corrisponde uno stato di equilibrio distinto. Per confrontare le pressioni usa la temperatura assoluta.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Pressione",
+        "unit": "kPa"
+      },
+      "order": 2,
+      "prerequisites": [],
+      "references": [
+        [
+          250.0,
+          100.0
+        ],
+        [
+          400.0,
+          160.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Il confine del sistema e il termometro",
+      "skill": "C3-L01",
+      "substitution": "0,4 × {x}",
+      "summary": "Quale variabile cambia se riscaldi una quantità fissa di gas in un volume bloccato?",
+      "title": "Stato termodinamico e variabili p, V, T",
+      "topic": "5.1 Stato termodinamico e variabili p, V, T",
+      "transferPrompt": "In un recipiente rigido il sensore misura 0,4 kPa per ogni kelvin. Portando il gas a {x}, quale pressione assoluta prevedi?",
+      "version": 2
+    },
+    {
+      "anchor": "All’equilibrio, pressione p, volume V e temperatura",
+      "apparatus": "pistone",
+      "assessmentSelection": {
+        "points": [
+          4,
+          3
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Segui il pistone fino a due possibili posizioni finali. La quantità di gas ideale e la temperatura di arrivo sono uguali per i due stati a confronto. Il prodotto nRT resta 120 kPa·L. La legge del gas permette di ricavare la pressione dallo stato finale in equilibrio.",
+          "type": "text"
+        },
+        {
+          "text": "p_{\\mathrm{fin}}=\\frac{120\\,\\mathrm{kPa\\,L}}{V_{\\mathrm{fin}}}",
+          "type": "formula"
+        },
+        {
+          "text": "Con 4 L il conto è 120 diviso 4, cioè 30 kPa. Con 3 L è 120 diviso 3, cioè 40 kPa. I litri del denominatore cancellano quelli del numeratore. La pressione è maggiore a volume minore perché il prodotto deve restare uguale.",
+          "type": "text"
+        },
+        {
+          "text": "V_{\\mathrm{fin}}=\\frac{nRT}{p_{\\mathrm{fin}}}",
+          "type": "formula"
+        },
+        {
+          "text": "Con 40 kPa ritrovi 3 L. Il prodotto pressione per volume controlla ogni coppia di valori finali. Possono cambiare gli scambi di calore o lavoro lungo il percorso che ha portato il gas a quello stato.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Volume finale",
+        "max": 5.0,
+        "min": 1.0,
+        "step": 0.25,
+        "unit": "L"
+      },
+      "course": "C3",
+      "formula": "p finale = nRT/V = (120 kPa·L)/V",
+      "id": "SIM-C3-L01-03",
+      "interpretation": "Puoi comprimere subito o riscaldare il gas e poi riportarlo alla temperatura iniziale. Con uguale stato finale la pressione è la stessa. Il calore e il lavoro lungo i percorsi possono differire.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Pressione finale",
+        "unit": "kPa"
+      },
+      "order": 3,
+      "prerequisites": [],
+      "references": [
+        [
+          2.0,
+          60.0
+        ],
+        [
+          4.0,
+          30.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Il confine del sistema e il termometro",
+      "skill": "C3-L01",
+      "substitution": "120 / {x}",
+      "summary": "Due preparazioni che portano a uguali n, T e V possono dare pressioni finali diverse?",
+      "title": "Funzioni di stato",
+      "topic": "5.1 Funzioni di stato",
+      "transferPrompt": "Lo stesso gas ideale raggiunge il volume {x} alla temperatura fissata, con nRT = 120 kPa·L. Quale pressione finale misuri?",
+      "version": 2
+    },
+    {
+      "anchor": "Due corpi in contatto termico raggiungono l’equilibrio",
+      "apparatus": "termometro",
+      "assessmentSelection": {
+        "points": [
+          50,
+          25
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Allinea due scale con tacche distanti allo stesso modo. Accosta la tacca 0 °C alla tacca 273,15 K. Ogni aumento delle due scale avanza della stessa distanza. Per una lettura assoluta in kelvin devi tenere conto dello scarto tra i due zeri.",
+          "type": "text"
+        },
+        {
+          "text": "\\frac{T}{\\mathrm K}=\\frac{t}{^\\circ\\mathrm C}+273{,}15",
+          "type": "formula"
+        },
+        {
+          "text": "A 50 °C aggiungi cinquanta e ottieni 323,15 K. Per 25 °C puoi aggiungere prima 20 e poi 5, ottenendo 298,15 K. La parte decimale resta 15. Il banco può abbreviare queste letture a 323,2 K e 298,2 K. Il conto esatto mantiene i due decimali.",
+          "type": "text"
+        },
+        {
+          "text": "\\frac{t}{^\\circ\\mathrm C}=\\frac{T}{\\mathrm K}-273{,}15",
+          "type": "formula"
+        },
+        {
+          "text": "Per tornare alla scala Celsius sottrai lo scarto fra gli zeri. Se confronti due letture, lo scarto si cancella. Una variazione di 25 °C equivale a una variazione di 25 K.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Temperatura Celsius",
+        "max": 100.0,
+        "min": -50.0,
+        "step": 5.0,
+        "unit": "°C"
+      },
+      "course": "C3",
+      "formula": "T/K = t/°C + 273,15",
+      "id": "SIM-C3-L01-04",
+      "interpretation": "Il bulbo ideale confronta due scale lineari sullo stesso capillare. Un incremento di 10 °C è 10 K; lo zero delle due scale cade a due temperature diverse.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Temperatura assoluta",
+        "unit": "K"
+      },
+      "order": 4,
+      "prerequisites": [],
+      "references": [
+        [
+          0.0,
+          273.15
+        ],
+        [
+          50.0,
+          323.15
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Il confine del sistema e il termometro",
+      "skill": "C3-L01",
+      "substitution": "{x} + 273,15",
+      "summary": "Di quanto si sposta la colonna salendo di dieci gradi sulle due scale?",
+      "title": "Temperatura e scale",
+      "topic": "5.1 Temperatura e scale",
+      "transferPrompt": "Il termometro in laboratorio indica {x}. Quale valore scriveresti in una legge che richiede la temperatura assoluta?",
+      "version": 2
+    },
+    {
+      "anchor": "Una siringa tappata oppone resistenza alla compressione.",
+      "apparatus": "pistone",
+      "assessmentSelection": {
+        "points": [
+          6,
+          4.5
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Il modello confronta stati di equilibrio di una quantità fissa di gas ideale alla stessa temperatura. Il prodotto pressione assoluta per volume resta 240 kPa·L. Segui il pistone mentre il volume aumenta. A volume maggiore corrisponde una pressione minore perché il prodotto resta fisso.",
+          "type": "text"
+        },
+        {
+          "text": "p=\\frac{240\\,\\mathrm{kPa\\,L}}{V}",
+          "type": "formula"
+        },
+        {
+          "text": "A 6 L dividi 240 per 6 e ottieni 40 kPa. A 4,5 L sostituisci 9/2 L al numero decimale. Dividere per 9/2 equivale a moltiplicare per 2/9. Restano 480/9 kPa, che si semplificano in 160/3 kPa.",
+          "type": "text"
+        },
+        {
+          "text": "p(4{,}5\\,\\mathrm L)=\\frac{160}{3}\\,\\mathrm{kPa}",
+          "type": "formula"
+        },
+        {
+          "text": "Per l’ingresso decimale dividi 160 per 3. Ottieni 53 con resto 1, da cui seguono solo cifre 3. Puoi scrivere 53,33 kPa. Controlla che l’esito cada tra i 60 kPa di 4 L e i 40 kPa di 6 L. Per risalire al volume dividi il prodotto fissato per la pressione.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Volume del gas",
+        "max": 8.0,
+        "min": 1.0,
+        "step": 0.5,
+        "unit": "L"
+      },
+      "course": "C3",
+      "formula": "pV = nRT = 240 kPa·L",
+      "id": "SIM-C3-L02-01",
+      "interpretation": "Conta sempre la stessa quantità di gas perfetto in equilibrio. Il prodotto della pressione assoluta per il volume resta 240 kPa·L. Il modello trascura volume molecolare e interazioni.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Pressione isoterma",
+        "unit": "kPa"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C3-L01"
+      ],
+      "references": [
+        [
+          2.0,
+          120.0
+        ],
+        [
+          6.0,
+          40.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Contare le moli con il gas perfetto",
+      "skill": "C3-L02",
+      "substitution": "240 / {x}",
+      "summary": "Come si dispone il pistone quando raddoppia il volume a temperatura costante?",
+      "title": "Gas perfetti",
+      "topic": "5.1 Gas perfetti",
+      "transferPrompt": "Un gas si espande isotermicamente fino a {x}, con pV costante di 240 kPa·L. A quale pressione si ferma il pistone?",
+      "version": 2
+    },
+    {
+      "anchor": "p è la pressione assoluta, V il",
+      "apparatus": "pistone",
+      "assessmentSelection": {
+        "points": [
+          160,
+          130
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Nel recipiente chiuso e rigido il volume e le moli restano fissi. Risolvi la legge pV = nRT per T dividendo per nR. Il rapporto V/(nR) vale 2,5 K/kPa. Usa la pressione assoluta del manometro. Una sovrapressione andrebbe prima sommata alla pressione di riferimento.",
+          "type": "text"
+        },
+        {
+          "text": "T=\\left(\\frac{V}{nR}\\right)p",
+          "type": "formula"
+        },
+        {
+          "text": "Scrivi 2,5 come 5/2. Per 160 kPa, dimezza 160 e moltiplica 80 per 5. Ottieni 400 K. Per 130 kPa dimezza 130 e moltiplica 65 per 5, ottenendo 325 K. I kilopascal del manometro si semplificano con quelli del rapporto.",
+          "type": "text"
+        },
+        {
+          "text": "p=\\frac{T}{V/(nR)}",
+          "type": "formula"
+        },
+        {
+          "text": "Controlla senza rifare le moltiplicazioni. Le pressioni 130 e 160 stanno nel rapporto 13/16. Le temperature 325 e 400 si riducono allo stesso rapporto dividendo per 25. Se cambia il volume, la pressione da sola non basta a determinare una temperatura con quel coefficiente.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Pressione assoluta",
+        "max": 200.0,
+        "min": 50.0,
+        "step": 10.0,
+        "unit": "kPa"
+      },
+      "course": "C3",
+      "formula": "T = pV/(nR); V/(nR) = 2,5 K/kPa",
+      "id": "SIM-C3-L02-02",
+      "interpretation": "Parti dalle letture assolute. Il rapporto assegnato V/(nR) è costante e un kilopascal litro vale un joule. Il risultato è una temperatura in kelvin.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Temperatura",
+        "unit": "K"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C3-L01"
+      ],
+      "references": [
+        [
+          100.0,
+          250.0
+        ],
+        [
+          160.0,
+          400.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Contare le moli con il gas perfetto",
+      "skill": "C3-L02",
+      "substitution": "2,5 × {x}",
+      "summary": "Puoi ricostruire la temperatura dalla pressione del pistone bloccato?",
+      "title": "Equazione di stato e variabili assolute",
+      "topic": "5.1 Equazione di stato e variabili assolute",
+      "transferPrompt": "In un recipiente chiuso e rigido la pressione assoluta è {x}. Se V/(nR) = 2,5 K/kPa, quale temperatura deduci?",
+      "version": 2
+    }
+  ],
+  "schema": "astra/1"
+}
