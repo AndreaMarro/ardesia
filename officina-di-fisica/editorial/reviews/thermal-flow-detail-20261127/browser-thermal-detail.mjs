@@ -62,10 +62,13 @@ try {
       page.setDefaultTimeout(15000);
       page.on('pageerror', error => report.errors.push(String(error)));
       for (const [id, states] of Object.entries(cases)) {
+        await page.goto('about:blank');
         await page.goto(base + '/#banco/' + id);
         await page.locator('[data-predict]').waitFor();
         await page.locator('[name=prediction]').first().check();
         await page.locator('[data-predict] button').click();
+        await page.waitForFunction(expected => document.querySelector('[data-display]')?.textContent === expected,
+          fallback ? 'Tavola di misura' : '3D interattivo');
         await page.locator('[data-phase="3"]').click();
         if (!fallback) {
           const button = page.locator('[data-view="' + view + '"]');
@@ -98,21 +101,25 @@ try {
             instant:document.querySelector('[data-instant]')?.value ?? null,
             colorArrows:[...document.querySelectorAll('.bench-stage svg path[stroke="#d49332"][stroke-width="2.7"]')]
               .map(element => ({line:element.getAttribute('d'),head:element.nextElementSibling?.getAttribute('points')})),
-            canvasCount:document.querySelectorAll('.bench-stage canvas').length,
+            display:document.querySelector('[data-display]')?.textContent,
+            visibleCanvases:[...document.querySelectorAll('.bench-stage canvas')]
+              .filter(element => element.getClientRects().length && getComputedStyle(element).visibility === 'visible').length,
             overflow:document.documentElement.scrollWidth-innerWidth,
           }));
           assert.equal(observed.input,input);
           if (instant !== undefined) assert.equal(Number(observed.instant),instant);
           assert.ok(observed.overflow <= 1);
           if (fallback) {
-            assert.equal(observed.canvasCount,0);
+            assert.equal(observed.display,'Tavola di misura');
+            assert.equal(observed.visibleCanvases,0);
             assert.equal(observed.colorArrows.length,(instant ?? input) > 0 ? 1 : 0);
             for (const arrow of observed.colorArrows) {
               const [, high, low] = arrow.head.split(' ').map(point => point.split(',').map(Number));
               assert.ok(Math.hypot(high[0]-low[0],high[1]-low[1]) > 2.7);
             }
           } else {
-            assert.equal(observed.canvasCount,1);
+            assert.equal(observed.display,'3D interattivo');
+            assert.equal(observed.visibleCanvases,1);
           }
           const image = await stage.screenshot();
           const imageSha = sha(image);
