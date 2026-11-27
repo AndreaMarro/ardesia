@@ -19,11 +19,15 @@ const cases = {
 const fingerprint = () => JSON.parse(execFileSync('python3', ['-B', '-m', 'tools.corpus_engineering.runtime_fingerprint'], {cwd:app}));
 const before = fingerprint();
 const staging = await mkdtemp('/private/tmp/cric-local-thermal-preview-');
-const boot = `from server import store
+const boot = `import hashlib,json,secrets,time
+from server import store
 from server.web import Handler, ThreadingHTTPServer
 store.initialize()
+ticket = secrets.token_urlsafe(32)
+with store.connect() as db:
+    db.execute('INSERT INTO tickets VALUES(?,?)', (hashlib.sha256(ticket.encode()).hexdigest(),int(time.time())+600))
 server = ThreadingHTTPServer(('127.0.0.1', 0), Handler)
-print(server.server_port, flush=True)
+print(json.dumps({'port':server.server_port,'ticket':ticket}), flush=True)
 server.serve_forever()`;
 const server = spawn('python3', ['-uc', boot], {cwd:app, env:{...process.env, ASTRA_DATA:staging,
   ASTRA_HOSTED:'0', ASTRA_HTTPS:'0', ASTRA_EXTENSIONS:path.join(app,'extensions')}, stdio:['ignore','pipe','inherit']});
@@ -33,14 +37,19 @@ let browser;
 
 try {
   await mkdir(output, {recursive:true});
-  const [port] = await Promise.race([once(server.stdout, 'data'), once(server, 'exit').then(() => {throw Error('Preview server exited');})]);
-  const base = 'http://127.0.0.1:' + String(port).trim();
+  const [raw] = await Promise.race([once(server.stdout, 'data'), once(server, 'exit').then(() => {throw Error('Preview server exited');})]);
+  const {port,ticket} = JSON.parse(raw);
+  const base = 'http://127.0.0.1:' + port;
   browser = await chromium.launch({channel:'chrome', args:['--enable-unsafe-swiftshader']});
   report.browser = browser.version();
+  const bootstrap = await browser.newContext();
+  assert.ok((await bootstrap.request.post(base+'/api/owner',{headers:{'X-Astra-Request':'1'},data:{ticket}})).ok());
+  const storageState = await bootstrap.storageState();
+  await bootstrap.close();
   for (const width of [320, 1280]) {
     for (const view of ['orbit', 'side', 'top', 'diagram']) {
       const fallback = view === 'diagram';
-      const context = await browser.newContext({viewport:{width,height:1000},reducedMotion:'reduce',bypassCSP:true});
+      const context = await browser.newContext({viewport:{width,height:1000},reducedMotion:'reduce',bypassCSP:true,storageState});
       if (fallback) {
         await context.addInitScript(() => {
           const getContext = HTMLCanvasElement.prototype.getContext;
@@ -87,7 +96,8 @@ try {
           const observed = await page.evaluate(() => ({
             input:Number(document.querySelector('[name=x]').value),
             instant:document.querySelector('[data-instant]')?.value ?? null,
-            colorArrows:[...document.querySelectorAll('.bench-stage svg path[stroke="#d49332"][stroke-width="2.7"]')].map(element => element.getAttribute('d')),
+            colorArrows:[...document.querySelectorAll('.bench-stage svg path[stroke="#d49332"][stroke-width="2.7"]')]
+              .map(element => ({line:element.getAttribute('d'),head:element.nextElementSibling?.getAttribute('points')})),
             canvasCount:document.querySelectorAll('.bench-stage canvas').length,
             overflow:document.documentElement.scrollWidth-innerWidth,
           }));
@@ -97,6 +107,10 @@ try {
           if (fallback) {
             assert.equal(observed.canvasCount,0);
             assert.equal(observed.colorArrows.length,(instant ?? input) > 0 ? 1 : 0);
+            for (const arrow of observed.colorArrows) {
+              const [, high, low] = arrow.head.split(' ').map(point => point.split(',').map(Number));
+              assert.ok(Math.hypot(high[0]-low[0],high[1]-low[1]) > 2.7);
+            }
           } else {
             assert.equal(observed.canvasCount,1);
           }

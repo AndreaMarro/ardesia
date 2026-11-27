@@ -16,7 +16,7 @@ function frecciaTermica(b, inizio, fine, colore, spostamentoDettaglio) {
   if (lunghezza > 0 && lunghezza < 0.03) {
     const origine = inizio.map((coordinata, indice) => coordinata + spostamentoDettaglio[indice]);
     const punta = origine.map((coordinata, indice) => coordinata + 32 * componenti[indice]);
-    b.arrow(origine, punta, c.ocra);
+    b.arrow(origine, punta, c.ocra, true);
   }
 }
 export const termica = {
