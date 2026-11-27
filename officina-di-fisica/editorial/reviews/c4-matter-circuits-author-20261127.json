@@ -13,7 +13,7 @@
       "unchanged": 0
     },
     "humanApproval": "NOT_RUN",
-    "packageSha256": "5ac334f0a169f25f06b4b268bd91ffdf6059c8e1d750bf8412069d34c6b4877b",
+    "packageSha256": "94c9edc2b234ee858a47e34f039981f2517033951752e475907b3d85b812bc9d",
     "preservedHistoricalVersions": 991,
     "preservedLiveHeads": 7,
     "publication": "DRAFT",
@@ -33,9 +33,26 @@
       "SIM-C4-L05-05"
     ]
   },
+  "correction": {
+    "previousAuthorCommit": "967e45d1f25b11f4e28423527d813fa040fed8d2",
+    "previousPackageFileSha256": "3a68de7e9101afb50d308481abcf66ebb35b424cd63d8808421220458d385776",
+    "records": [
+      {
+        "amendedFormula": "R = ρL/A = (2 Ω/m)L; I = (4 V)/R",
+        "amendedRecordSha256": "669e7f4070e7e8af966e3835964995fd527ee0f97918db02f849959a84712fa5",
+        "changedFields": [
+          "formula"
+        ],
+        "id": "SIM-C4-L05-04",
+        "previousFormula": "R = ρL/A = 2L Ω; I = 4/R",
+        "previousRecordSha256": "78d07c831d4474e7b1f7dc946bdafca53917f283c4097248c5d2fbc8c177074a"
+      }
+    ],
+    "reviewStatus": "INDEPENDENT_REREAD_PENDING"
+  },
   "fileSha256": {
-    "editorial/batches/experiment-c4-matter-circuits-reading-20261127-bindings.json": "78e07026ef5bed92b03634030a860b3af0ba2791715f29ef2302b08db031a0af",
-    "editorial/batches/experiment-c4-matter-circuits-reading-20261127.json": "3a68de7e9101afb50d308481abcf66ebb35b424cd63d8808421220458d385776",
+    "editorial/batches/experiment-c4-matter-circuits-reading-20261127-bindings.json": "92ffdbdb24835692fec25336e53164390df761d69eb00ebc8de890e171657168",
+    "editorial/batches/experiment-c4-matter-circuits-reading-20261127.json": "6cddc1091d7a77dacebc05734246f839bb2361e5f8daccdd024c8c3bf3d4492d",
     "editorial/reviews/c4-matter-circuits-manual-20261127.md": "bb61c06aff8c8c7597d02ce9ca564db02edab378927c29854dc1ed0187a0877d"
   },
   "humanApproval": "NOT_RUN",

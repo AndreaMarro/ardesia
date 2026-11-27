@@ -13,7 +13,7 @@
       "unchanged": 0
     },
     "humanApproval": "NOT_RUN",
-    "packageSha256": "9967421417151dbb2f468b42fea8889c7ae693f9dd6bc5555f391b6d3458b922",
+    "packageSha256": "fbdc989dd31e3c4deaea9cf7847cf4d429612b59816e5b2ce8cfbbdf6ab2df92",
     "preservedHistoricalVersions": 991,
     "preservedLiveHeads": 7,
     "publication": "DRAFT",
@@ -33,9 +33,36 @@
       "SIM-C4-L08-02"
     ]
   },
+  "correction": {
+    "previousAuthorCommit": "45af4e31194a07e4b9d9967874ecbaceb49cf106",
+    "previousPackageFileSha256": "63ce3375ed224270732c15cb7f0e893886b75b6ba8c5f06ff042aeb51cae2281",
+    "records": [
+      {
+        "amendedFormula": "R parallelo = (4 Ω)R₂/(4 Ω + R₂); R serie = 4 Ω + R₂",
+        "amendedRecordSha256": "4b4f6c6b8ecd47af8daca43a97b89a5e209c3b40f4f079cd2f524ca4b1886b2f",
+        "changedFields": [
+          "formula"
+        ],
+        "id": "SIM-C4-L06-01",
+        "previousFormula": "R parallelo = 4R₂/(4+R₂); R serie = 4+R₂",
+        "previousRecordSha256": "d2acff3bf95f51606c9e6bf13e55ea89810195c929c5a9c1b7e7bfc427c07e14"
+      },
+      {
+        "amendedFormula": "C serie = (2 µF)C₂/(2 µF + C₂); C parallelo = 2 µF + C₂",
+        "amendedRecordSha256": "9f2a906e062b1ff42870702a640d30d1ef223c076aefe6d6e77b9688d079838c",
+        "changedFields": [
+          "formula"
+        ],
+        "id": "SIM-C4-L08-01",
+        "previousFormula": "C serie = 2C₂/(2+C₂); C parallelo = 2+C₂",
+        "previousRecordSha256": "0797da625f4f72e5de138344c3fb16cee0394e27fba5955351d42b859bb3d376"
+      }
+    ],
+    "reviewStatus": "INDEPENDENT_REREAD_PENDING"
+  },
   "fileSha256": {
-    "editorial/batches/experiment-c4-circuit-capacitor-reading-20261127-bindings.json": "a87044bc9d6382b0b2c2f4b5388ff33e94d3d29099e556fc3772154d55b7c620",
-    "editorial/batches/experiment-c4-circuit-capacitor-reading-20261127.json": "63ce3375ed224270732c15cb7f0e893886b75b6ba8c5f06ff042aeb51cae2281",
+    "editorial/batches/experiment-c4-circuit-capacitor-reading-20261127-bindings.json": "31ac49d69f129912517b873e4450463f2a64186e354ddb3d8badfbdf3fd111d4",
+    "editorial/batches/experiment-c4-circuit-capacitor-reading-20261127.json": "cb5181fe29afab4c23f9515361a01e4b25e6fa866e1bdb8830001d74a297a2b7",
     "editorial/reviews/c4-circuit-capacitor-manual-20261127.md": "0d0641608911fc69fc75a6e6f2af43c8104f9cb07380177309e0d1441ae49964"
   },
   "humanApproval": "NOT_RUN",
