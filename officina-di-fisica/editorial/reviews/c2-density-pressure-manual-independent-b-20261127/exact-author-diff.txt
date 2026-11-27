@@ -1,0 +1,20 @@
+--- initial
++++ final
+@@ -10,7 +10,7 @@
+ 
+ ## `SIM-C2-L001-02` · Ricavare lo sforzo tra due lastre
+ 
+-La lastra superiore scorre a velocità costante, mentre quella inferiore è ferma. In un fluido newtoniano, a regime e con aderenza alle lastre, la velocità cresce linearmente da zero a \(v\) attraverso lo strato di spessore \(h\). Il gradiente di velocità è \(v/h\), quindi il modulo dello sforzo tangenziale è \(\tau=\eta v/h\). Nel disegno confronta gli strati dalla lastra ferma verso quella mobile.
++La lastra superiore scorre a velocità costante, mentre quella inferiore è ferma. Il banco usa il modello di Couette a regime fra lastre parallele. Assume un fluido newtoniano che aderisce alle lastre, pressione costante lungo la direzione dello scorrimento ed effetti di bordo trascurabili. La velocità cresce linearmente da zero a \(v\) attraverso lo strato di spessore \(h\). Il gradiente di velocità è \(v/h\), quindi il modulo dello sforzo tangenziale è \(\tau=\eta v/h\). Nel disegno confronta gli strati dalla lastra ferma verso quella mobile.
+ 
+ Con \(h=2\,\mathrm{cm}\), i centimetri di \(6\,\mathrm{cm/s}\) si cancellano. Rimane \(3\,\mathrm{s^{-1}}\). La viscosità indicata è \(1\,\mathrm{Pa\,s}\), così lo sforzo vale **3 Pa**. A \(4\,\mathrm{cm/s}\) il gradiente è 2 al secondo e lo sforzo è **2 Pa**. Se conosci lo sforzo, moltiplica per lo spessore e dividi per la viscosità per recuperare la velocità. Il gradiente più ripido richiede uno sforzo maggiore anche con la stessa sostanza.
+ 
+@@ -22,7 +22,7 @@
+ 
+ ## `SIM-C2-L001-04` · Distribuire lo stesso carico su un’altra faccia
+ 
+-Il piano sostiene 10 N perpendicolari alla faccia di appoggio. L’area conta perché la pressione media misura quanta forza normale corrisponde a un’unità di superficie. Con \(A\) espresso come numero di centimetri quadrati, l’area in metri quadrati è \(A/10000\). Allora \(p=10/(A/10000)\,\mathrm{Pa}=100000/A\,\mathrm{Pa}=100/A\,\mathrm{kPa}\). Nel disegno, a carico fisso, allargare la faccia riduce la lettura.
++Il piano sostiene 10 N perpendicolari alla faccia di appoggio. L’area conta perché la pressione media misura quanta forza normale corrisponde a un’unità di superficie. Chiama \(a\) il numero di centimetri quadrati e \(A\) l’area fisica. Poiché \(A=(a/10000)\,\mathrm{m^2}\), puoi scrivere \(p=10/(a/10000)\,\mathrm{Pa}=100000/a\,\mathrm{Pa}=100/a\,\mathrm{kPa}\). Nel disegno, a carico fisso, allargare la faccia riduce la lettura.
+ 
+ La faccia di 5 cm² dà \(100/5=\) **20 kPa**. Con 7 cm² ottieni \(100/7\,\mathrm{kPa}\). Per l’ingresso numerico, 7 in 100 ci sta 14 volte con resto 2. Dividendo in successione 20, 60, 40 e 50 per 7 trovi le cifre 2, 8, 5 e 7. Arrotondando alla terza cifra decimale scrivi **14,286 kPa**. La formula inversa è \(A=F/p\), da usare con newton e pascal per ottenere metri quadrati. Il valore descrive la pressione media sulla faccia.
+ 

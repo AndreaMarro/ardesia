@@ -1,0 +1,20 @@
+{
+  "initialSha256": "7187bd5d749a753d819cc40d833a3b3d4aa179697d2a692ef71ba097a757db4f",
+  "author": "Root",
+  "reviewer": "author_vectors_b",
+  "findings": [
+    {
+      "id": "SIM-C2-L001-02",
+      "code": "COUETTE_LINEAR_PROFILE_REQUIRES_NO_PRESSURE_GRADIENT",
+      "reason": "Regime/Newtonian/no-slip alone also allow a curved Couette-Poiseuille profile. Require parallel plates, zero pressure gradient in motion direction and negligible edge effects."
+    },
+    {
+      "id": "SIM-C2-L001-04",
+      "code": "NUMERICAL_CM2_VALUE_DISTINCT_FROM_PHYSICAL_AREA",
+      "reason": "Do not reuse A first as a pure number in cm\u00b2 and later as the physical area F/p in m\u00b2. Use a for the number and A for the physical quantity."
+    }
+  ],
+  "newBrowser": "NOT_RUN",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN"
+}

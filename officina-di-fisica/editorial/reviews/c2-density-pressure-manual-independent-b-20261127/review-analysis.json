@@ -1,0 +1,106 @@
+{
+  "finalManualSha256": "d8ae8d076a9f734a5681ff22d42d66722265f1c15d21286636169d25df03d126",
+  "actualNodeExitCode": 0,
+  "actualInstalledRecords": 5,
+  "actualInstalledTasks": 10,
+  "runtimeSha256": "3ed5bc77d8320230b62e1c3e6ca3bdd00f240cc64ec236b10fe55a306ca79251",
+  "runtimeBeforeAfterIdentical": true,
+  "records": [
+    {
+      "id": "SIM-C2-L001-01",
+      "actualInstalledTaskAnswersExact": [
+        "60",
+        "15/2"
+      ],
+      "numericInputs": [
+        "60",
+        "7.5"
+      ],
+      "unit": "cm\u00b3",
+      "actualPrompts": [
+        "Imposta \u00abStato del campione\u00bb su Gas. Quale valore ottieni per \u00abVolume del modello\u00bb?",
+        "Preleva 6 g di materiale e scegli lo stato \u00abLiquido\u00bb. Usando la densit\u00e0 indicata per questo campione, quale volume occupa?"
+      ],
+      "actualInstalledTasksMatch": true
+    },
+    {
+      "id": "SIM-C2-L001-02",
+      "actualInstalledTaskAnswersExact": [
+        "3",
+        "2"
+      ],
+      "numericInputs": [
+        "3",
+        "2"
+      ],
+      "unit": "Pa",
+      "actualPrompts": [
+        "Imposta \u00abVelocit\u00e0 della lastra superiore\u00bb su 6 cm/s. Quale valore ottieni per \u00abSforzo viscoso\u00bb?",
+        "Una piastra scorre a 4 cm/s sopra uno strato spesso 2 cm con viscosit\u00e0 1 Pa\u00b7s. Quanto sforzo tangenziale dev\u2019essere trasmesso?"
+      ],
+      "actualInstalledTasksMatch": true
+    },
+    {
+      "id": "SIM-C2-L001-03",
+      "actualInstalledTaskAnswersExact": [
+        "15",
+        "25/2"
+      ],
+      "numericInputs": [
+        "15",
+        "12.5"
+      ],
+      "unit": "g",
+      "actualPrompts": [
+        "Imposta \u00abVolume del materiale\u00bb su 6 cm\u00b3. Quale valore ottieni per \u00abMassa sulla bilancia\u00bb?",
+        "Una provetta contiene 5 cm\u00b3 di un materiale con densit\u00e0 2,5 g/cm\u00b3. Qual \u00e8 la massa del solo contenuto?"
+      ],
+      "actualInstalledTasksMatch": true
+    },
+    {
+      "id": "SIM-C2-L001-04",
+      "actualInstalledTaskAnswersExact": [
+        "20",
+        "100/7"
+      ],
+      "numericInputs": [
+        "20",
+        "14.286"
+      ],
+      "unit": "kPa",
+      "actualPrompts": [
+        "Imposta \u00abArea della faccia\u00bb su 5 cm\u00b2. Quale valore ottieni per \u00abPressione sul piano\u00bb?",
+        "Un blocco esercita 10 N sul piano. Se appoggia su una faccia di area 7 cm\u00b2, quale pressione in kPa registra il piano?"
+      ],
+      "actualInstalledTasksMatch": true
+    },
+    {
+      "id": "SIM-C2-L001-05",
+      "actualInstalledTaskAnswersExact": [
+        "110",
+        "100"
+      ],
+      "numericInputs": [
+        "110",
+        "100"
+      ],
+      "unit": "kPa",
+      "actualPrompts": [
+        "Imposta \u00abPressione atmosferica\u00bb su 100 kPa. Quale valore ottieni per \u00abPressione assoluta a 1 m\u00bb?",
+        "Sposti la vasca in un luogo con pressione atmosferica 90 kPa. Che pressione assoluta indica il sensore a un metro sott\u2019acqua?"
+      ],
+      "actualInstalledTasksMatch": true
+    }
+  ],
+  "exactAdditionalChecks": {
+    "pressureInputRelativeError": "1/50000",
+    "densitySI": "2500 kg/m^3",
+    "couetteOmittedGradientCounterexample": "WithU0.06m/s,h0.02m,eta1Pa*s,dp/dx200Pa/m,upperstress5Pa ratherthan3Pa. Finalmanualexcludesit.",
+    "physicalAreaAt7cm2": "7/10000 m\u00b2"
+  },
+  "firstThirdFifthSectionsByteUnchanged": true,
+  "newBrowser": "NOT_RUN",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
