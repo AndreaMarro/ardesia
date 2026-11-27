@@ -144,7 +144,7 @@ with store.connect() as db:
 
 def exercise_registry():
     """Coexistence of all registered drafts, with bounded imports and private domain fixtures."""
-    from .batches import load_registry,load_activity_registry
+    from .batches import load_registry,load_activity_registry,reviewed_supplemental_practice
     from .runtime_fingerprint import runtime_fingerprint
     assert_bundled_runtime(APP)
     registry_file=APP/'editorial/batches/registry.json'
@@ -156,6 +156,9 @@ def exercise_registry():
         names=[spec['id'] for spec in load_registry(snapshot)]
         names+=list(dict.fromkeys(spec['revisionPackage'] for spec in load_activity_registry(snapshot) if spec.get('revisionPackage')))
         paths=[APP/'editorial/batches'/(name+'.json') for name in names]
+        supplemental=reviewed_supplemental_practice(json.loads(registry_bytes),APP)
+        names+=list(supplemental)
+        paths.extend(item['file'] for item in supplemental.values())
         package_checksums={name:sha(path.read_bytes()) for name,path in zip(names,paths)}
         runtime=runtime_fingerprint(APP)
         run=subprocess.run([sys.executable,'-c',COHORT_CODE,json.dumps([str(path) for path in paths])],cwd=APP,
@@ -166,7 +169,15 @@ def exercise_registry():
       or registry_sha!=sha((APP/'editorial/batches/registry.json').read_bytes()) or runtime!=runtime_fingerprint(APP)
       or protocol_sha!=sha(Path(__file__).read_bytes())):
         raise ValueError('Registry, packages or runtime changed during coexistence verification')
+    if supplemental!=reviewed_supplemental_practice(json.loads(registry_bytes),APP):
+        raise ValueError('Supplemental evidence changed during coexistence verification')
     result=json.loads(run.stdout)
+    if supplemental:
+        supplemental_ids=set().union(*(item['ids'] for item in supplemental.values()))
+        trace=result['records']
+        result['supplementalRecords']=[row for row in trace if row['id'] in supplemental_ids]
+        result['records']=[row for row in trace if row['id'] not in supplemental_ids]
+        result['supplementalReviewSha256ByBatch']={name:item['reviewSha256'] for name,item in supplemental.items()}
     result.update(registryFileSha256=registry_sha,packageFileSha256ByBatch=package_checksums,
       protocolSha256=protocol_sha,runtimeFingerprint=runtime)
     return result

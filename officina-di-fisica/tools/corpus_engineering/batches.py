@@ -75,6 +75,11 @@ def load_registry(file=None):
         if batch["id"] in seen_batches or seen_activities.intersection(batch["activityIds"]):
             raise ValueError("Duplicate activity batch or activity identity")
         seen_batches.add(batch["id"]);seen_activities.update(batch["activityIds"])
+    for batch in registry.get("supplementalPractice", []):
+        if batch["id"] in seen_batches or (seen_ids | seen_activities).intersection(batch["questionIds"]):
+            raise ValueError("Duplicate supplemental batch or question identity")
+        seen_batches.add(batch["id"])
+        seen_ids.update(batch["questionIds"])
     return registry["batches"]
 
 
@@ -82,6 +87,47 @@ def load_activity_registry(file=None):
     file=file or APP/"editorial/batches/registry.json"
     load_registry(file)
     return json.loads(file.read_text()).get("activityBatches",[])
+
+
+def reviewed_supplemental_practice(registry, app=APP):
+    """Supplemental practice is outside the source inventory and remains private."""
+    packages = {}
+    for spec in registry.get("supplementalPractice", []):
+        folder = (app / "editorial/supplemental" / spec["id"]).resolve()
+        if folder.parent != (app / "editorial/supplemental").resolve():
+            raise ValueError("Supplemental practice package escaped its directory")
+        package_file = folder / "package.json"
+        review_file = folder / "independent-review.json"
+        if any(file.is_symlink() or not file.is_file() for file in (package_file, review_file)):
+            raise ValueError("Supplemental practice evidence must use regular files")
+        package_raw = package_file.read_bytes()
+        review_raw = review_file.read_bytes()
+        if sha(package_raw) != spec["packageSha256"] or sha(review_raw) != spec["reviewSha256"]:
+            raise ValueError("Supplemental practice bytes drifted")
+        package = json.loads(package_raw)
+        review = json.loads(review_raw)
+        expected = set(spec["questionIds"])
+        records = package.get("records", [])
+        observed = review.get("records", [])
+        by_id = {row["id"]: row for row in records}
+        if (package.get("schema") != "astra/1" or len(by_id) != len(records) or set(by_id) != expected
+                or len(observed) != len(expected) or {row["id"] for row in observed} != expected):
+            raise ValueError("Supplemental practice evidence has missing or duplicate IDs")
+        if (review.get("schemaVersion") != "1.0.0" or review.get("packageSha256") != spec["packageSha256"]
+                or review.get("humanApproval") != "NOT_RUN" or review.get("publicationAction") != "NONE"
+                or not review.get("author") or not review.get("independentReviewer")
+                or review["author"] == review["independentReviewer"]):
+            raise ValueError("Supplemental practice requires a distinct reviewed draft")
+        for decision in observed:
+            row = by_id[decision["id"]]
+            if (row.get("kind") != "question" or row.get("exam") or row.get("baseVersion", 0) != 0
+                    or row.get("version") != 1 or not row.get("family") or not row.get("skill")
+                    or decision.get("candidateSha256") != digest(row) or decision.get("ok") is not True
+                    or not decision.get("manualArithmetic") or not decision.get("pedagogicalReview")):
+                raise ValueError("Invalid individual supplemental practice evidence: " + row["id"])
+        packages[spec["id"]] = {"file": package_file, "review": review_file, "ids": expected,
+                                 "packageSha256": spec["packageSha256"], "reviewSha256": spec["reviewSha256"]}
+    return packages
 
 
 def validate_browser_preview(batch,package_file,package,record_ids,app=APP):
