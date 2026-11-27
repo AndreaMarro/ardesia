@@ -1,0 +1,41 @@
+from pathlib import Path
+import json,hashlib,subprocess
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c6-two-repairs-0818-independent-a-20261127';OLD=A/'editorial/reviews/c6-remaining-four-abb2-independent-a-20261127';h=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();assert json.loads((D/'target-terminal.json').read_bytes())['actualObservedExitCode']==0;assert json.loads((D/'actual-terminal.json').read_bytes())['actualObservedExitCode']==0
+for name in ['prepare_c6_two_repairs_0818_a.py','run_c6_two_repairs_0818_a.py','compare_c6_0818_a.mjs','run_c6_0818_stages_a.py','analyze_c6_0818_a.py','render_c6_0818_a.py','run_c6_0818_analysis_a.py','run_c6_0818_target_a.py','seal_c6_0818_a.py']:(D/(name+'.txt')).write_bytes((Path('/private/tmp')/name).read_bytes())
+inputs=[];C='ad00ccac9e1d0839c45bd1880cb344b9334f2ae1'
+for ref,path,name in [(C,'static/js/banchi/voci/legende.js','candidate-legende.js.txt'),(C,'static/js/banchi/voci/esperimento.js','candidate-esperimento.js.txt'),(C,'static/js/banchi/voci/modelli/C6.js','candidate-C6.js.txt'),(C,'static/js/banchi/voci/apparati/onde.js','candidate-onde.js.txt'),(C,'static/js/banchi/scena.js','candidate-native-renderer.js.txt'),('bd8d6bcf357c484d48fdb5a2ef50b8518621a01a','tools/corpus_engineering/experiment_visibility_ui.mjs','canonical-protocol.mjs.txt')]:
+ raw=subprocess.check_output(['git','-c','gc.auto=0','show',ref+':officina-di-fisica/'+path],cwd=A);dest=D/name
+ if dest.exists():assert dest.read_bytes()==raw
+ dest.write_bytes(raw);inputs.append(dict(commit=ref,path='officina-di-fisica/'+path,snapshot=name,sha256=hashlib.sha256(raw).hexdigest()))
+(D/'git-inputs.json').write_text(json.dumps(dict(schemaVersion='1.0.0',inputs=inputs),indent=2)+'\n');assert json.loads((D/'actual/report.json').read_bytes())['protocolSha256']==h(D/'canonical-protocol.mjs.txt')
+(D/'README.md').write_text('''# Distinct C6 two-label repair review onad00 /0818
+
+Read-only candidatead00ccac9e1d0839c45bd1880cb344b9334f2ae1, complete actual runtime0818bc9e4051c7533a27688f784c46fa283928209f37b80870086fa4b20dc440. A made no consumer, production, registry, Root or candidate edits. All oldabb2raw/negative calculations and their correction chronology remain byte-identical and are transported in this handoff. Existing C6 source/model and question-authoring exposure is disclosed; independent physical functions are reused without a newblind-primary claim or newIDcredit.
+
+## New actual acquisition
+
+The canonical new88case run really terminated0 in47.921s, signalnull/errorsJSempty, complete fingerprint equal before/after. The sourcecomparison first really returned0: all6C6originals,97legal controls,493default-plus-clock slots and2465five-stage scenes differ fromabb2only by Rivelatore inL04 and Oggetto inL06. C1changes also present in this composed candidate are outside A's C6 judgement; the C6 comparison protects against side effects. Default0 and explicitclock0 may coincide, so493is not claimed uniquephysicalstates.
+
+NewUI scope isL04layers0/3/5 andL06ratios0.5/0.75/1/1.25/2/3, each inOrbit/Side/Top and fallback320/1280. There are16actual setup observations (question/phases, keyboard-openedlegend, axe0, overflow) and72gridframes. All16wholeoverview sheets/72uncropped gridframes and4additional whole original PNGs were opened/read. Not every setup rawPNG is claimed individually opened. Every case/PNGdigest was checked, and all72model/input/clock objects match the canonical distinct-context immutable reference exactly. The reference scientificAuthority remainsNONE, and the independent original rational equations/geometry contracts are checked separately with their unchanged observer boundary.
+
+## Two bounded positive outcomes
+
+L06-01: the entire red virtual-image head and shaft at p/f0.5 are now visible in both previously failing320Orbit/Side cases and their1280comparisons. The purple object, F′, lens body, ray directions/dashed virtual extensions, image sign/magnification and all Float32mesh vertices are unchanged. NativeTop is still an edge-on ray-plane view; the source legend explains that limitation. The exactfocus case has parallel emergent rays and no finite imagearrow; outside-frame images remain limited as before. Accessible text now identifies the purple object/red image and distinguishes uprightvirtual/same-side from invertedreal/opposite-side. The generic lens guidance is made usable in fallback by the existing fixed-projection legend, without requiring disabled3Dcontrols.
+
+L04-01: at5layersTop320the full faint outgoing bundle after the slab is visible up to the gray detector; the former opaque Rivelatore rectangle is absent. At1280the previously partial cover is likewise removed. Beamsection, all12outgoingrods, their nonzero1/32opacity, slabgeometry/transparency and120/2^n readings are identical. Fascio is retained. New accessible text locates the detector on the right and asks the learner to inspect the transmitted segment; each layer's halving is consistent with the original law. The faintness is the assigned attenuation, not a zero signal or a changed contrast/physics model.
+
+The72whole-primitive/actual-mesh/camera comparisons are exact after deleting just the designated label and its derived tipInsideOpaqueLabel entries. Native elementIndex changes are accounted for by the exact old-to-kept primitive-index mapping; no mesh vertex, tail, tip, radius, sourcecamera or other retained label is normalized or altered. Both old visual failures remain in the immutableabb2disposition. The new positive is bounded to the actual88cases, not the older216or remote3992case campaign retagged onto0818.
+
+## Verification and limits
+
+14new independent tests really passed in0.292s (0.618s supervisor): current88identity, all16accessibility setups, exact72physical/mesh comparisons, oldfailinghead cases, outgoingbundle scale/opacity, readable retained names, restoredlabel/wrongmesh/sharedwrongmodel/lostname/staleruntime/falseapproval refusals and the priornegative preservation. All current preparation/static/browser/analysis/test stages returned real0 on their first execution. No consumer assertion, threshold, tolerance or pipeline code was changed. The earlier spaceguard failure belongs to the old216stage and stays there as childNOT_RUN, distinct from this run.
+
+The reported outcome is positive for both annotation repairs within the observed source/fallback/width/threshold scope. It is not a complete6activity/all-control/clock renewal, a macroclosure, a C1sign-off, or a human approval. CompleteC6Renewalfalse, scientificAcceptanceGrantedfalse, activityCredit0, humanNOT_RUN. Parent alone integrates and determines any wider acceptance or current global runtime renewal.
+''')
+old=json.loads((OLD/'handoff.json').read_bytes());files=dict(old['files']);files[str((OLD/'handoff.json').relative_to(A))]=h(OLD/'handoff.json')
+for p in D.rglob('*'):
+ if p.is_file()and p.name!='handoff.json':files[str(p.relative_to(A))]=h(p)
+for name in ['tools/corpus_engineering/c6_two_repairs_0818_review_a.py','tests/corpus/test_c6_two_repairs_0818_independent_a.py']:files[name]=h(A/name)
+for p,want in files.items():assert h(A/p)==want,p
+handoff=dict(schemaVersion='1.0.0',role='DISTINCT_REVIEWER_A_C6_TWO_REPAIRS_BOUNDED',candidateCommit=C,runtimeSha256='0818bc9e4051c7533a27688f784c46fa283928209f37b80870086fa4b20dc440',actualCases=88,actualTechnicalExit=0,currentGridFramesRead=72,currentWholeOverviewsRead=16,currentAdditionalWholePngsRead=4,actualIndependentTests=14,actualIndependentTestsExit=0,sourceComparisonOriginals=6,sourceControls=97,sourceDefaultPlusClockSlots=493,sourceFiveStageScenes=2465,labelsRemoved=2,annotationIds=['SIM-C6-L04-01','SIM-C6-L06-01'],twoRepairs='POSITIVE_WITHIN_CURRENT88_SCOPE',oldAbb2NegativeHandoffSha256=h(OLD/'handoff.json'),oldAbb2FilesUnchanged=True,completeC6Renewal=False,scientificAcceptanceGranted=False,activityCredit=0,humanApproval='NOT_RUN',files=files)
+(D/'handoff.json').write_text(json.dumps(handoff,ensure_ascii=False,indent=2)+'\n');print('HANDOFF',h(D/'handoff.json'),'BLOBS',len(files))

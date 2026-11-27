@@ -1,0 +1,10 @@
+from pathlib import Path
+import sys,json,subprocess
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');sys.path.insert(0,str(A));from tools.corpus_engineering import c6_two_repairs_0818_review_a as v
+D=v.BASE;cases=v.actual();old=v.prior.actual();states=[c for c in cases if'interaction'in c];assert len(states)==72;groups=[];proof=[]
+for c in states:
+ previous=next(o for o in old if'interaction'in o and o['id']==c['id']and o['profile']==c['profile']and o['sourceReplayedX']==c['sourceReplayedX']);v.compare_physical(c,previous);proof.append(dict(caseKey=c['caseKey'],wholePhysicalAndMeshAndCameraMatch=True,onlyRemovedLabel=v.LABELS[c['id']],retainedLabels=[l['text']for l in c.get('labels',[])],zeroAddedLabelTipCandidates=not any(g['tipInsideOpaqueLabel']for g in c.get('nativeGlyphs',[]))))
+for id_ in v.LABELS:
+ for profile in json.loads((D/'prepared.json').read_bytes())['profiles']:groups.append(dict(id=id_,profile=profile,cases=[c for c in states if c['id']==id_ and c['profile']==profile]))
+(D/'current-physical-comparison.json').write_text(json.dumps(proof,indent=2)+'\n');(D/'overview-groups.json').write_text(json.dumps(groups,ensure_ascii=False,indent=2)+'\n');print('CURRENT88_AND72EXACT_PHYSICAL_MATCH',flush=True)
+r=subprocess.run(['python3','/private/tmp/render_c6_0818_a.py']);sys.exit(r.returncode)
