@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "1.0.0",
+  "classification": "REVIEWER_METADATA_UNIT_ERROR_CORRECTED_BY_ADDENDUM",
+  "authorOfError": "IndependentAIreviewer, not Rootcandidateauthor",
+  "sourceId": "LAB3D-03",
+  "correctUnits": [
+    "kPa",
+    "m"
+  ],
+  "correctValues": [
+    5,
+    2
+  ],
+  "independentManual": [
+    {
+      "operation": "1000kg/m3 *10m/s2 *(1/2)m",
+      "resultExactPa": "5000",
+      "convertPaToKPaDivisor": 1000,
+      "resultExactKPa": "5"
+    },
+    {
+      "operation": "16000Pa /(800kg/m3 *10m/s2)",
+      "resultExactMetres": "2"
+    }
+  ],
+  "priorIncorrectMetadata": "bar/bar and5bar/2bar in reviewer prose/plan are false and superseded by kPa/m,5kPa/2m. Numerical5/2 alone is not a dimension check.",
+  "affectedFrozenFilesUnchanged": {
+    "editorial/reviews/renewal-bench-mechanics-fluids-035-3ed5-20261127/independent-review.md": "93cee33dc6b0641531d3e5bf2f934244c9da53757584773e6708a1f505181360",
+    "editorial/reviews/independent-stevino-label-1efc-20261127/independent-review.md": "d1e116d297286a8f8a52fde89000d730c6f8bd0b35e0785d71fa0b093cff0970",
+    "editorial/reviews/independent-stevino-label-1efc-20261127/independent-pre-run-plan.json": "e472174aaf7f616303a6b802bc18fecf19175b76afdcacd6e16935073cc3db1b"
+  },
+  "oldFocusedCommitPreserved": "46be39bcda147096e1211da788fb4db4838fbc4a",
+  "oldNegative035CommitPreserved": "6efa87b28fbb3c7417be6fb5c1ec2b76eb9e8fff",
+  "oldSourceAndCandidateBytesUnchanged": true,
+  "sourceScientificFailure": false,
+  "runtimeOrSourceChange": false,
+  "browserReplayNotPerformedForMetadataCorrection": true,
+  "actualOriginalNumericSubmissionEvidence": "Existingactual8profiles submitted5and2, rejectedwrong andacceptedright. Source-unitfieldlabels were not separately captured from form suffix; this addendum binds the complete originalsource and independent dimensions instead. All pressure-readoutunits kPa in the capturedinstrument remain correct.",
+  "instrumentGravityVersusAssignedGravity": "Instrument uses981/100m/s2; sourcequestionexplicitlyassigns10m/s2. Neither is changed or conflated.",
+  "whole035ReportIndependentManualAlreadyCorrect": true,
+  "whole035RenewalMustRequireThisAddendum": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "activityCredit": 0
+}
