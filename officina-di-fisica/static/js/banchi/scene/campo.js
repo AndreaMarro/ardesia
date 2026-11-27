@@ -1,6 +1,6 @@
 import { field } from '../modelli/campo.js';
 import { norm, sub, sum, mul } from '../misure.js';
-import { ink, metal, violet, brass, teal, red, glass, lime } from '../scena.js';
+import { metal, violet, brass, teal, red, glass, lime } from '../scena.js';
 export const spec = { target: [0, 0, 0], width: 7.15, height: 5.85, eye: [3, 1.9, 6], bg: 0xf0ecf1 };
 function equipotential(b, s) {
   const target = s.reading?.V;
@@ -82,19 +82,16 @@ export function build(b, p, s, stage) {
       metal,
     );
   }
-  for (const [i, source] of s.sources.entries()) {
+  for (const source of s.sources) {
     if (!source.q) continue;
     const [x, y, z] = source.pos,
       c = source.q > 0 ? red : violet;
     b.ball(source.pos, 0.19, c);
     b.rod([x, -2.13, z], [x, y - 0.19, z], 0.023, metal);
-    b.label([x, y + 0.37, z], (source.q > 0 ? '+' : '−') + 'q' + (i ? '₂' : '₁'), c);
   }
-  const [x, y, z] = s.probe;
   b.ring(s.probe, 0.13, 'xz', brass);
   b.ball(s.probe, 0.075, brass);
   if (stage < 0) return;
-  b.label([x, y + 0.29, z + 0.12], 'P', ink);
   if (s.reading) {
     const scale = 1.25 / Math.max(1, s.reading.magnitude, ...s.reading.contributions.map(norm));
     b.annotate((layer) => {

@@ -59,7 +59,9 @@ export const campi = {
       b.label([0, 1.45, 0], 'P');
     }
     if (s.forza !== undefined) {
-      for (const k of [-1, 1]) b.arrow([k * d, 0.67, 0], [k * (d + 0.62 * s.forza), 0.67, 0], c.viola);
+      const height = s.frecceSeparate ? 0.56 : 0.67;
+      const depth = s.frecceSeparate ? 0.38 : 0;
+      for (const k of [-1, 1]) b.arrow([k * d, height, depth], [k * (d + 0.62 * s.forza), height, depth], c.viola);
     }
     if (s.trasferimento)
       for (let i = 0; i < Math.abs(s.qa); i++)

@@ -119,7 +119,7 @@ export const experiments = {
   'SIM-C5-L07-03': {
     observe: "Porta l’energia del fotone sotto e sopra 14 eV. Distingui l’energia necessaria a liberare l’elettrone da quella che gli rimane.",
     measure: (x) => Math.max(0, x - 14),
-    apparatus: (x, y) => ({ energia: x / 25, uscita: y / 11, ionizzato: x >= 14 }),
+    apparatus: (x, y) => ({ energia: x / 25, uscita: y / 11, ionizzato: x >= 14, mostraDettaglio: true }),
   },
   // Nucleo instabile, nuclidi e isotopi radioattivi
   'SIM-C5-L08-01': {

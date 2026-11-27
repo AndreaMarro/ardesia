@@ -1,12 +1,13 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import * as T from '../static/vendor/three-r180/three.module.min.js';
 import { build as plane } from '../static/js/banchi/scene/piano.js';
 import { build as field } from '../static/js/banchi/scene/campo.js';
 import { build as flight } from '../static/js/banchi/scene/volo.js';
 import * as forces from '../static/js/banchi/modelli/piano.js';
 import * as electrostatics from '../static/js/banchi/modelli/campo.js';
 import * as projectile from '../static/js/banchi/modelli/volo.js';
-import { red, teal } from '../static/js/banchi/scena.js';
+import { brass, red, teal } from '../static/js/banchi/scena.js';
 
 function drawing() {
   const arrows = [];
@@ -62,4 +63,31 @@ test('the flight origin retains its marker and the top view leaves the apex unoc
     assert.ok(!labels.includes('O'));
     assert.equal(labels.includes('culmine'), view === 'side');
   }
+});
+
+test('small flight velocities retain their direction and get a separate 16× detail', () => {
+  const input = { speed: 5, elevation: 90, azimuth: 0 };
+  const solved = projectile.solve(input);
+  const { board, arrows } = drawing();
+  board.T = T;
+  board.group = (parent) => {
+    const group = new T.Group();
+    parent?.add(group);
+    return group;
+  };
+  board.ball = () => new T.Object3D();
+  const update = flight(board, input, solved, 1, 'side');
+  const primary = arrows.find(arrow => arrow.color === teal && arrow.group).group;
+  const detail = arrows.find(arrow => arrow.color === brass && arrow.group).group;
+  update(0.5);
+  const speedRatio = projectile.sample(solved, 0.5).vy / input.speed;
+  assert.ok(speedRatio > 0 && speedRatio <= 0.05);
+  assert.equal(primary.scale.y, speedRatio);
+  assert.equal(detail.scale.y, speedRatio * 16);
+  assert.ok(detail.visible);
+  assert.deepEqual(primary.quaternion.toArray(), detail.quaternion.toArray());
+  assert.deepEqual(primary.position.toArray(), [0.21, 0.22, 0.28]);
+  update(solved.duration / 2);
+  assert.equal(primary.visible, false);
+  assert.equal(detail.visible, false);
 });

@@ -1,0 +1,100 @@
+TAP version 13
+# Subtest: the weight and normal keep their length and origin in the moving block frame
+ok 1 - the weight and normal keep their length and origin in the moving block frame
+  ---
+  duration_ms: 3.009084
+  ...
+# Subtest: field contributions and resultant share the probe, scale and annotation layer
+ok 2 - field contributions and resultant share the probe, scale and annotation layer
+  ---
+  duration_ms: 0.732584
+  ...
+# Subtest: the flight origin retains its marker and the top view leaves the apex unoccluded
+ok 3 - the flight origin retains its marker and the top view leaves the apex unoccluded
+  ---
+  duration_ms: 0.826458
+  ...
+# Subtest: small flight velocities retain their direction and get a separate 16× detail
+ok 4 - small flight velocities retain their direction and get a separate 16× detail
+  ---
+  duration_ms: 1.206292
+  ...
+# Subtest: Entrata stays in the accessible legend and off the measured glyphs
+ok 5 - Entrata stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 31.648625
+  ...
+# Subtest: Presa frontale stays in the accessible legend and off the measured glyphs
+ok 6 - Presa frontale stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 2.482
+  ...
+# Subtest: Uscita stays in the accessible legend and off the measured glyphs
+ok 7 - Uscita stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 8.405083
+  ...
+# Subtest: Sezione di misura stays in the accessible legend and off the measured glyphs
+ok 8 - Sezione di misura stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 5.124083
+  ...
+# Subtest: Sforzo sulla lastra stays in the accessible legend and off the measured glyphs
+ok 9 - Sforzo sulla lastra stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 0.623667
+  ...
+# Subtest: Presa intermedia stays in the accessible legend and off the measured glyphs
+ok 10 - Presa intermedia stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 1.345667
+  ...
+# Subtest: In parallelo stays in the accessible legend and off the measured glyphs
+ok 11 - In parallelo stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 1.099166
+  ...
+# Subtest: Goccia stays in the accessible legend and off the measured glyphs
+ok 12 - Goccia stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 0.617166
+  ...
+# Subtest: Film a due facce stays in the accessible legend and off the measured glyphs
+ok 13 - Film a due facce stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 1.041209
+  ...
+# Subtest: unrelated labels keep their existing anchors
+ok 14 - unrelated labels keep their existing anchors
+  ---
+  duration_ms: 1.230583
+  ...
+# Subtest: the Pitot velocity arrows pass beside the probes with the same direction and scale
+ok 15 - the Pitot velocity arrows pass beside the probes with the same direction and scale
+  ---
+  duration_ms: 4.54875
+  ...
+# Subtest: both Coulomb forces keep the common gain clear of the charge spheres
+ok 16 - both Coulomb forces keep the common gain clear of the charge spheres
+  ---
+  duration_ms: 13.613
+  ...
+# Subtest: the photoelectron inset preserves direction, gives its scale, and vanishes at zero excess
+ok 17 - the photoelectron inset preserves direction, gives its scale, and vanishes at zero excess
+  ---
+  duration_ms: 8.278166
+  ...
+# Subtest: confirmed C1 and Doppler cartouches leave the geometry and the accessible names legible
+ok 18 - confirmed C1 and Doppler cartouches leave the geometry and the accessible names legible
+  ---
+  duration_ms: 7.712
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 213.358417

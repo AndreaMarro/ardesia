@@ -76,10 +76,15 @@ export function legendaTavola(apparato) {
 
 const annotazioniScene = new Map();
 const annotazioni = {
+  C1: [
+    ['Distanza fra i centri', '', ['L006-03']],
+    ['Carrello', '', ['L007-02','L007-03']],
+  ],
   C2: [
     ['Entrata', 'L’entrata è a sinistra e l’uscita a destra.', ['L005-01','L005-02','L005-03','L006-01','L006-02','L006-03','L006-04','L008-01','L008-02','L008-04']],
     ['Presa frontale', 'La presa frontale del tubo di Pitot è a destra. È rivolta contro il flusso e misura la pressione di ristagno.', ['L006-02']],
     ['Uscita', 'Le frecce di velocità sono spostate di lato nel disegno per lasciare visibile la presa. La loro lunghezza segue la velocità lungo il tubo.', ['L006-02']],
+    ['Uscita', '', ['L005-01','L005-02','L005-03','L006-01','L006-03','L008-01']],
     ['Sezione di misura', 'Quando è valido il profilo laminare, le frecce viola mostrano la velocità alle varie quote nella sezione di misura. Il profilo verde ne congiunge le punte.', ['L005-04','L007-01','L007-02','L007-05']],
     ['Sforzo sulla lastra', 'Lo sforzo sulla lastra mobile è rappresentato dalla freccia viola sopra la lastra.', ['L007-03']],
     ['Presa intermedia', 'La presa intermedia è tra i due tratti del condotto, al centro della tavola.', ['L008-03','L009-03']],
@@ -88,7 +93,7 @@ const annotazioni = {
     ['Film a due facce', 'I due contorni schematici indicano le superfici del film a due facce. La freccia ocra indica il raggio di riferimento.', ['L010-05']],
   ],
   C4: [
-    ['+1', 'Le due sfere rosse hanno ciascuna carica +1 nC.', ['L01-02']],
+    ['+1', 'Le due sfere rosse hanno ciascuna carica +1 nC. Le frecce viola sono riportate accanto alle sfere alla stessa scala, parallele alla retta che unisce i centri.', ['L01-02']],
     ['P', 'Il punto P è a metà fra le due cariche. Resta fisso mentre si varia la carica a destra.', ['L02-02']],
     ['Corrente convenzionale', '', ['L05-01','L05-04','L05-05']],
     ['Pila', '', ['L05-02','L05-03','L06-02']],
@@ -101,7 +106,8 @@ const annotazioni = {
   C5: [
     ['Massa oscillante', 'Il blocco ocra è la massa oscillante. La freccia parte dall’equilibrio e arriva alla posizione della massa.', ['L01-02']],
     ['Sorgente', '', ['L05-03']],
-    ['Elettrone libero', 'L’elettrone verde rimane legato sull’anello oppure compare all’esterno come elettrone libero. La freccia verde, se presente, indica la sua direzione di uscita.', ['L07-03']],
+    ['Ricevitore', '', ['L05-03']],
+    ['Elettrone libero', 'L’elettrone verde rimane legato sull’anello oppure compare all’esterno come elettrone libero. La freccia verde è spostata rispetto alla sfera e la sua lunghezza segue l’energia cinetica. Quando appare il dettaglio ocra, conserva lo stesso verso e ha lunghezza quattro volte maggiore.', ['L07-03']],
     ['Elettrone legato', '', ['L07-03']],
   ],
   C6: [

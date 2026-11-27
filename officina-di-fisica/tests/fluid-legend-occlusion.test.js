@@ -8,7 +8,7 @@ const sources = JSON.parse(readFileSync(new URL('../content/esperienze-C2.json',
 const transfers = {
   'Entrata': ['L005-01','L005-02','L005-03','L006-01','L006-02','L006-03','L006-04','L008-01','L008-02','L008-04'],
   'Presa frontale': ['L006-02'],
-  'Uscita': ['L006-02'],
+  'Uscita': ['L005-01','L005-02','L005-03','L006-01','L006-02','L006-03','L008-01'],
   'Sezione di misura': ['L005-04','L007-01','L007-02','L007-05'],
   'Sforzo sulla lastra': ['L007-03'],
   'Presa intermedia': ['L008-03','L009-03'],
@@ -37,7 +37,7 @@ for (const [label, ids] of Object.entries(transfers)) {
 }
 
 test('unrelated labels keep their existing anchors', async () => {
-  for (const [suffix,label] of [['L005-01','Uscita'],['L009-01','In serie'],['L001-02','Lastra mobile']]) {
+  for (const [suffix,label] of [['L006-04','Uscita'],['L009-01','In serie'],['L001-02','Lastra mobile']]) {
     const row = sources.find(entry => entry.id === 'SIM-C2-' + suffix);
     const bench = await esperienza(row);
     assert.ok(bench.elements(row.references[0][0],2).some(element => element.kind === 'label' && element.text === label));

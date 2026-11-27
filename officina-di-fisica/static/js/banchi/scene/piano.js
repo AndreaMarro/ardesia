@@ -45,7 +45,6 @@ export function build(b, p, s, stage) {
       }
     }, block);
     b.label([-1.95, 0.45, 0.99], '0', ink);
-    b.label([-0.1, 0.12, 1.02], 'monte →', ink);
   }
   return (t) => {
     const time = Math.min(t, s.duration);

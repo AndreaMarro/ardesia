@@ -423,13 +423,21 @@ export async function benchPage(id, origin, topicIndex) {
   get('[data-reference]').ontoggle = references;
   function draw() {
     if (available && view !== 'diagram') gpu.rebuild(world.build, p, s, sceneLevel());
-    const nativeLegend = pilot === 'onde' && view === 'section'
-      ? ' · Linea scura · spostamento istantaneo lungo la sezione passante per P'
-      : pilot === 'volo' && view === 'top'
-        ? ' · Scegli Laterale per leggere l’altezza del culmine.'
-      : view !== 'diagram' && (pilot === 'piano' || r.model === 'campo')
-        ? ' · Le frecce in primo piano rappresentano vettori; la loro lunghezza segue la scala indicata nella guida.'
-      : '';
+    let nativeLegend = '';
+    if (pilot === 'onde' && view === 'section') {
+      nativeLegend = ' · Linea scura · spostamento istantaneo lungo la sezione passante per P';
+    } else if (view !== 'diagram' && pilot === 'volo') {
+      nativeLegend = ' · Il vettore velocità è di fianco alla sfera. Il dettaglio ocra appare per velocità piccole e ingrandisce la freccia 16 volte nello stesso verso.';
+      if (view === 'top') nativeLegend += ' Scegli Laterale per leggere l’altezza del culmine.';
+    } else if (view !== 'diagram' && pilot === 'piano') {
+      nativeLegend = ' · Il verso positivo della guida è verso monte. Le frecce delle forze sono in primo piano alla scala della guida.';
+    } else if (view !== 'diagram' && r.model === 'campo') {
+      const charges = s.sources.map(({q, pos: [x, y, z]}, i) => {
+        const symbol = i === 0 ? 'q₁' : 'q₂';
+        return q ? `${symbol} = ${n(q)} nC, con x ${n(x)}, y ${n(y)} e z ${n(z)} m.` : `${symbol} è spenta.`;
+      });
+      nativeLegend = ' · L’anello ocra indica la sonda P. Le frecce del campo sono in primo piano alla stessa scala. ' + charges.join(' ');
+    }
     get('[data-legend]').textContent =
       pilot === 'induzione'
         ? 'Viola · campo imposto / n · normale positiva / rosso · corrente nel circuito chiuso'

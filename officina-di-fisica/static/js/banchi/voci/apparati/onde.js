@@ -288,7 +288,14 @@ export const ondulatoria = {
     );
     const x = 0.73 + (s.ionizzato ? 0.38 + 1.14 * s.uscita : 0);
     b.ball([x, 1.08, 0], 0.11, c.verde);
-    if (s.ionizzato) b.arrow([x, 1.36, 0], [x + 0.75 * s.uscita, 1.36, 0], c.verde);
+    if (s.ionizzato) {
+      const length = 0.75 * s.uscita;
+      const depth = s.mostraDettaglio ? 0.29 : 0;
+      b.arrow([x, 1.36, depth], [x + length, 1.36, depth], c.verde);
+      if (s.mostraDettaglio && s.uscita > 0 && s.uscita <= 2 / 11) {
+        b.arrow([x, 2.04, 0.62], [x + 4 * length, 2.04, 0.62], c.ocra, true);
+      }
+    }
     b.label([0, 2.06, 0], s.ionizzato ? 'Elettrone libero' : 'Elettrone legato');
   },
   nucleo(b, s) {

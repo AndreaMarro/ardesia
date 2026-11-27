@@ -51,15 +51,20 @@ export function build(b, p, s, stage, view) {
   }
   const ball = b.ball(start, 0.139, brass),
     moving = b.group();
-  let previous = [];
-  // A single unit vector group rotates to follow velocity, without allocating geometry per frame.
+  const previous = [];
+  let detail;
+  // Unit vectors rotate and scale without allocating geometry during playback.
   if (stage >= 1) {
     b.arrow([0, 0, 0], [0, -0.64, 0], red, moving);
     for (let i = 0; i < (stage >= 2 ? 4 : 1); i++) {
       const g = b.group(moving);
+      if (i === 0) g.position.set(0.21, 0.22, 0.28);
       b.arrow([0, 0, 0], [0, 1, 0], [teal, violet, brass, ink][i], g, i ? 0.016 : 0.034);
       previous.push(g);
     }
+    detail = b.group(moving);
+    detail.position.set(-0.32, 0.5, 0.57);
+    b.arrow([0, 0, 0], [0, 1, 0], brass, detail, 0.022);
   }
   return (t) => {
     const a = pos(t),
@@ -80,5 +85,13 @@ export function build(b, p, s, stage, view) {
       g.quaternion.setFromUnitVectors(new b.T.Vector3(0, 1, 0), d.normalize());
       g.scale.y = len / p.speed;
     });
+    if (detail) {
+      const velocity = previous[0];
+      detail.visible = velocity.visible && velocity.scale.y <= 0.05;
+      if (detail.visible) {
+        detail.quaternion.copy(velocity.quaternion);
+        detail.scale.y = 16 * velocity.scale.y;
+      }
+    }
   };
 }
