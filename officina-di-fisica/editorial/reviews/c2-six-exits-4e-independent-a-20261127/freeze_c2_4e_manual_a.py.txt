@@ -1,0 +1,8 @@
+from pathlib import Path
+import json,hashlib
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c2-six-exits-4e-independent-a-20261127';v=json.loads((D/'overview-index.json').read_bytes());notes=[]
+for row in v:
+ row['wholeOpenedAndRead']=True
+ notes.append(dict(id=row['id'],wholeOverviewOpenedAndRead=True,frames=len(row['tiles']),conclusion='Six old opaque Uscita overlaps absent; both complete directional heads and shafts read in the selected Top controls and widths.'if row['id']not in ['SIM-C2-L008-02','SIM-C2-L006-02']else'Previously limited Uscita apex contact retained atTop320/max4; most cone and direction remain visible. Not classified as whole head hidden.'if row['id']=='SIM-C2-L008-02'else'All24 gridframes read: zero has no directed arrows; both nonzero indicators remain visible in orbit/side/top/fallback320/1280, including the old4.25fallback failure.'))
+(D/'overview-index.json').write_text(json.dumps(v,indent=2)+'\n');(D/'manual-reading.json').write_text(json.dumps(notes,indent=2)+'\n')
+(D/'extra-full-png-reading.json').write_text(json.dumps([dict(file='exits-actual/screens/0ae57c5ef66ef7ae4efa3c175d5cc57033c13be4f554dae784bd45aa874e3946.png',sha256='0ae57c5ef66ef7ae4efa3c175d5cc57033c13be4f554dae784bd45aa874e3946',wholeOpenedAndRead=True),dict(file='pitot-actual/screens/1b0a5ebf55291d342d3f665a0f8d0cd6daa88466be8d82c6413e7c3c2f40a2b0.png',sha256='1b0a5ebf55291d342d3f665a0f8d0cd6daa88466be8d82c6413e7c3c2f40a2b0',wholeOpenedAndRead=True)],indent=2)+'\n')

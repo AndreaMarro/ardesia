@@ -1,0 +1,10 @@
+from pathlib import Path
+from PIL import Image,ImageDraw
+import json,hashlib
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c2-six-exits-4e-independent-a-20261127';groups=json.loads((D/'overview-groups.json').read_bytes());out=D/'whole-overviews';out.mkdir(exist_ok=True);index=[]
+for g in groups:
+ cases=g['cases'];cols=4;rows=(len(cases)+cols-1)//cols;im=Image.new('RGB',(1200,rows*380),'#f2f1ec');draw=ImageDraw.Draw(im);tiles=[]
+ for i,c in enumerate(cases):
+  p=c['screenshots'][0];src=D/(g['kind']+'-actual')/p['file'];assert hashlib.sha256(src.read_bytes()).hexdigest()==p['sha256'];tile=Image.open(src).convert('RGB');sw,sh=tile.size;s=min(294/sw,341/sh);dw,dh=round(sw*s),round(sh*s);tile=tile.resize((dw,dh));x=i%cols*300;y=i//cols*380;draw.text((x+2,y+5),f'{c["profile"]["view"]}{c["profile"]["width"]} x={c["sourceReplayedX"]}',fill='black');im.paste(tile,(x+(300-dw)//2,y+30));tiles.append(dict(caseKey=c['caseKey'],wholeCanvasNoCrop=True,sourcePng=p,sourceDimensions=[sw,sh],displayDimensions=[dw,dh]))
+ dest=out/(g['id']+'.png');im.save(dest);index.append(dict(id=g['id'],kind=g['kind'],file=str(dest.relative_to(A)),sha256=hashlib.sha256(dest.read_bytes()).hexdigest(),tiles=tiles,wholeOpenedAndRead=False))
+(D/'overview-index.json').write_text(json.dumps(index,indent=2)+'\n');print('WHOLE_OVERVIEWS',len(index),'tiles',sum(len(g['tiles'])for g in index))

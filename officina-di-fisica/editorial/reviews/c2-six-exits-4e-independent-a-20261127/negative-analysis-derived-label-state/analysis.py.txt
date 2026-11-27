@@ -1,0 +1,13 @@
+from pathlib import Path
+import sys,json,subprocess,hashlib
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');sys.path.insert(0,str(A));from tools.corpus_engineering import c2_six_exits_4e_review_a as v
+D=v.BASE;oldtarget=v.old.observed_run('targeted');oldpitot=v.old.observed_run('canary');summary=[];groups=[]
+for kind in ['exits','pitot']:
+ rows=v.actual(kind);before=oldtarget if kind=='exits'else oldpitot;states=[c for c in rows if 'interaction'in c]
+ for c in states:
+  prev=next(o for o in before if 'interaction'in o and o['id']==c['id']and o['profile']==c['profile']and o['sourceReplayedX']==c['sourceReplayedX']);v.compare_new_to_old(c,prev)
+ ids=list(dict.fromkeys(c['id']for c in states))
+ for id_ in ids:groups.append(dict(kind=kind,id=id_,cases=[c for c in states if c['id']==id_]))
+ summary.append(dict(run=kind,cases=len(rows),observedGridStates=len(states),sourcePhysicalModelAccepted=True,exactIsolatedBaselineParity=True,oldCurrentWholePrimitiveAndNativeGlyphAndCameraComparison=True))
+(D/'actual-independent-comparison.json').write_text(json.dumps(summary,indent=2)+'\n');(D/'overview-groups.json').write_text(json.dumps(groups,ensure_ascii=False,indent=2)+'\n');print(json.dumps(summary),flush=True)
+r=subprocess.run(['python3','/private/tmp/render_c2_4e_a.py']);sys.exit(r.returncode)

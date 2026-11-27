@@ -1,0 +1,7 @@
+from pathlib import Path
+import subprocess,json,hashlib,time,sys,os
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c2-six-exits-4e-independent-a-20261127';APP=Path('/private/tmp/cric-combined-preintegration-20261127/officina-di-fisica');t=time.time();cmd=['node','/private/tmp/compare_c2_4e_independent_a.mjs','/private/tmp/cric-method-css-748-independent-app',str(APP),str(A/'editorial/reviews/c2-41-cb9-actual-ui-peer-a-20261127/author-label-correction-input.json')];r=subprocess.run(cmd,cwd=A,capture_output=True)
+for k,v in [('stdout',r.stdout),('stderr',r.stderr)]:(D/('static-process.'+k+'.txt')).write_bytes(v)
+(D/'static-terminal.json').write_text(json.dumps(dict(actualObservedExitCode=r.returncode,signal=-r.returncode if r.returncode<0 else None,elapsedSeconds=time.time()-t,command=cmd),indent=2)+'\n');print(r.stdout.decode()[-1000:],r.stderr.decode()[-3000:],flush=True)
+if r.returncode:sys.exit(r.returncode)
+j=json.loads(r.stdout);assert(j['originalEditions'],j['controls'],j['states'],j['sceneComparisons'])==(41,555,875,4375);assert sum(len(x['onlyRemovedLabels'])for x in j['records'])==28;(D/'static-comparison.json').write_bytes(r.stdout);(D/'compare.mjs.txt').write_bytes(Path('/private/tmp/compare_c2_4e_independent_a.mjs').read_bytes());print('STATIC41/555/875/4375/28 actual0')

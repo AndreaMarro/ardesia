@@ -1,0 +1,8 @@
+from pathlib import Path
+import os,subprocess,json,hashlib,time,sys
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c2-six-exits-4e-independent-a-20261127';APP=Path('/private/tmp/cric-combined-preintegration-20261127/officina-di-fisica');ROOT=Path('/private/tmp/cric-resident-integrator/officina-di-fisica');env={**os.environ,'PATH':'/private/tmp/cric-recovery-venv/bin:'+os.environ['PATH'],'PYTHONDONTWRITEBYTECODE':'1'}
+for kind in ['exits','pitot']:
+ cmd=['node',str(ROOT/'tools/corpus_engineering/experiment_visibility_ui.mjs'),str(D/(kind+'-request.json'))];t=time.time();r=subprocess.run(cmd,cwd=ROOT,env=env,capture_output=True)
+ for tag,raw in [('stdout',r.stdout),('stderr',r.stderr)]:(D/(kind+'-process.'+tag+'.txt')).write_bytes(raw)
+ rec=dict(actualObservedExitCode=r.returncode,signal=-r.returncode if r.returncode<0 else None,elapsedSeconds=time.time()-t,command=cmd,stdoutSha256=hashlib.sha256(r.stdout).hexdigest(),stderrSha256=hashlib.sha256(r.stderr).hexdigest(),scientificAcceptanceGranted=False);(D/(kind+'-terminal.json')).write_text(json.dumps(rec,indent=2)+'\n');print(kind,json.dumps(rec),r.stdout.decode()[-1500:],r.stderr.decode()[-2500:],flush=True)
+ if r.returncode:sys.exit(r.returncode)

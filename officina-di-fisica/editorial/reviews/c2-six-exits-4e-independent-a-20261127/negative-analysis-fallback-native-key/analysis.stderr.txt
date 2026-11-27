@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/private/tmp/analyze_c2_4e_a.py", line 8, in <module>
+    prev=next(o for o in before if 'interaction'in o and o['id']==c['id']and o['profile']==c['profile']and o['sourceReplayedX']==c['sourceReplayedX']);v.compare_new_to_old(c,prev)
+                                                                                                                                                       ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tools/corpus_engineering/c2_six_exits_4e_review_a.py", line 47, in compare_new_to_old
+    if len(current['nativeGlyphs'])!=len(previous['nativeGlyphs']):raise ValueError('Glyph count changed')
+           ~~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'nativeGlyphs'

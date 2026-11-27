@@ -1,0 +1,41 @@
+from pathlib import Path
+import json,hashlib,subprocess,shutil
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c2-six-exits-4e-independent-a-20261127';ROOT=Path('/private/tmp/cric-resident-integrator/officina-di-fisica');C='03f9634d7d6a8dcfe9161990c4d5dbc62e3773f5';FP='4e753b9dbfa1f0062cdcc10d7a6f6f9ec83c4bd69bda9e4f276c3757e8dbba3b';h=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();assert json.loads((D/'target-terminal.json').read_bytes())['actualObservedExitCode']==0
+for name in ['prepare_c2_4e_recheck_a.py','run_c2_4e_recheck_a.py','run_c2_4e_static_a.py','analyze_c2_4e_a.py','render_c2_4e_a.py','run_c2_4e_analysis_a.py','freeze_c2_4e_manual_a.py','run_c2_4e_target_a.py','seal_c2_4e_a.py']:(D/(name+'.txt')).write_bytes((Path('/private/tmp')/name).read_bytes())
+inputs=[]
+for ref,path,name in [(C,'static/js/banchi/voci/esperimento.js','source-esperimento.js.txt'),(C,'static/js/banchi/voci/legende.js','source-legende.js.txt'),(C,'static/js/banchi/voci/apparati/fluidi.js','source-fluidi.js.txt'),(C,'static/js/banchi/scena.js','source-scena.js.txt'),('bd8d6bcf357c484d48fdb5a2ef50b8518621a01a','tools/corpus_engineering/experiment_visibility_ui.mjs','canonical-protocol.mjs.txt'),('da6c179fc382865e26a33e3fc6d410350c4c2509','tools/corpus_engineering/baseline_browser_reference.mjs','canonical-baseline-helper.mjs.txt')]:
+ raw=subprocess.check_output(['git','-c','gc.auto=0','show',ref+':officina-di-fisica/'+path],cwd=A);dest=D/name
+ if name=='canonical-protocol.mjs.txt':assert dest.read_bytes()==raw
+ dest.write_bytes(raw);inputs.append(dict(commit=ref,path='officina-di-fisica/'+path,snapshot=name,sha256=hashlib.sha256(raw).hexdigest()))
+for kind in ['exits','pitot']:
+ report=json.loads((D/(kind+'-actual/report.json')).read_bytes());assert report['protocolSha256']==h(D/'canonical-protocol.mjs.txt');assert len(report['cases'])==(42 if kind=='exits'else32)
+(D/'git-inputs.json').write_text(json.dumps(dict(schemaVersion='1.0.0',inputs=inputs),indent=2)+'\n')
+(D/'README.md').write_text('''# Bounded independent C2 recheck on03f /4e
+
+Author candidate03f9634d7d6a8dcfe9161990c4d5dbc62e3773f5, complete actual runtime4e753b9dbfa1f0062cdcc10d7a6f6f9ec83c4bd69bda9e4f276c3757e8dbba3b. Candidate/app read-only; A authored no consumer or candidate changes. The e511 negative census remains immutable. No approval is inferred from author tests.
+
+## Actual scope and result
+
+Two fresh canonical runs really terminated0:42cases in47.435s and32cases in20.590s,74total. The first covers six corrected exit IDs and unchanged L008-02 contact control, each at two source controls andTop320/1280. The second covers Pitot at0,4.25,5 in all8native/fallback profiles and two widths. These current observations are bound to the executed canonical collector2c48f62282d0db2a692f8a082902392d67e4d96a25d3fc0379478dda38b5fd61, recovered verbatim with a full immutable Git input; no c21f/e511 replay is retagged.
+
+All8wholeoverview sheets/52uncropped gridframes and two additional whole original PNGs were opened/read. The six opaque Uscita labels no longer cover either head or shaft; the visible HTML legend retains entry/exit names and spatial references. Their exact primitive/mesh/camera differences from the same e511 controls are only removal of Uscita and the resulting derived tip-inside-label state. Physics, control, sourceDerivedCamera, full Float32 mesh vertices/tail/tip and remaining scene primitives match exactly. L008-02 retains the same limited2.032%cone/apex contact atTop320/max4; most cone and direction remain visible, and no whole-head failure is asserted. This was deliberately not included in the six-label author correction.
+
+Pitot retains both translated complete velocity indicators and late paint order. All8zero states have no directed velocity arrows; nonzero states remain readable in orbit/side/top/fallback320/1280. The previous4.25fallback opaque-probe failure is absent in the new fullPNG. Exact SVG analysis also finds no later-painted probe coverage. This is a fresh32case regression recheck, not another claim that the old56cases were replayed on4e.
+
+The independent full source comparison really returned0 for all41originals,555controls,875states,4375five-stage scene arrays. All models, readings, graphs, worked calculations and measurement functions are unchanged from the pinned cb9 source except28authorized label removals and the previously verified Pitot parallel displacement/paint ordering. Six of28are the added Uscita removals. Other course changes in this composed candidate are outside this C2 judgement. The shared new annotate helper is not invoked by C2 apparatus; C2 models/apparatus/geometria have no source delta.
+
+All52observed scalar inputs were checked with recovered independent exact equations, using the unchanged original observation comparator. Complete current model/input/clock objects also match the same-browser isolated immutable reference exactly, without tolerance. The80referenceJS files are inherited verbatim and manifest-transported; their scientificAuthority remains NONE.12new independent tests really passed in1.172s (3.483s supervisor), including wrong physical outputs even when both technicalmodels agree, changed mesh, restored opaque labels, stale identities and false approval refusal.
+
+Two analysis-only negatives are retained. First, comparing the whole nativeGlyph object correctly detected that its derived tipInsideOpaqueLabel state changed when the label was removed; the corrected comparison pins every field and permits only that named derived change. Second, the first fallback iteration attempted an absent nativeGlyphs key; its genuine exit1/stdout/stderr are preserved. The current final analysis really returned0. Neither was a browser or consumer failure, and neither changed any current/old UI bytes.
+
+## Limits
+
+This is a targeted positive review of the six label corrections and Pitot regression; not a complete41activity/all-control/clock UI renewal or macro acceptance.22setup observations contain real phase/question/axe/keyboard/legend checks, but every setup rawPNG is not claimed manually opened. All earlier cb9/1674/3427/2047/e511 evidence and failures are manifest-preserved, including the sourceStevino@1 conflict (g10transfer15kPa wrongly rejected) and separate correctedDRAFT@2. No original is silently replaced or source failure closed by this legend patch. ScientificAcceptanceGrantedfalse, activityCredit0, humanNOT_RUN; parent remains sole integrator.
+''')
+oldpath=A/'editorial/reviews/c2-fluid-labels-e511-independent-a-20261127/handoff.json';old=json.loads(oldpath.read_bytes());files=dict(old['files']);files[str(oldpath.relative_to(A))]=h(oldpath)
+for p in D.rglob('*'):
+ if p.is_file()and p.name!='handoff.json':files[str(p.relative_to(A))]=h(p)
+for name in ['tools/corpus_engineering/c2_six_exits_4e_review_a.py','tests/corpus/test_c2_six_exits_4e_independent_a.py']:files[name]=h(A/name)
+for p,want in files.items():assert h(A/p)==want,p
+handoff=dict(schemaVersion='1.0.0',role='DISTINCT_REVIEWER_A_BOUNDED_C2_SIX_EXITS_AND_PITOT',candidateCommit=C,runtimeSha256=FP,currentActualCases=74,currentGridFramesRead=52,currentWholeOverviewsRead=8,currentAdditionalFullPngsRead=2,actualUiExitsCases=42,actualUiPitotCases=32,actualUiExitsExit=0,actualUiPitotExit=0,actualTests=12,actualTestsExit=0,sourceComparison=dict(originals=41,controls=555,states=875,fiveStageScenes=4375,authorizedLabelsRemoved=28),sixOpaqueExitCorrections='POSITIVE_IN_CURRENT_BOUNDED_TOP320_1280_SCOPE',pitotRegression='POSITIVE_CURRENT32_CASE_SCOPE',limitedL00802ContactRetained=True,originalStevinoFailureStillOpen=True,completeC2Renewal=False,scientificAcceptanceGranted=False,activityCredit=0,humanApproval='NOT_RUN',files=files)
+(D/'handoff.json').write_text(json.dumps(handoff,ensure_ascii=False,indent=2)+'\n');print('HANDOFF',h(D/'handoff.json'),'BLOBS',len(files))
