@@ -1,0 +1,2187 @@
+{
+  "phase": "CANONICAL_ADOPTION_BUNDLE_REQUIRES_ROOT_REGISTRATION",
+  "runtimeCommit": "f30201defc4c77b472cd791bb0adea7e1d8e7810",
+  "runtimeSha256": "3c174677e6b7fc585903dbb6a5bc6b9fa078b435375f9333a6a81897f1027dc2",
+  "candidateCommit": "1413e2c41a8c7fec6b2a5ff421685dbed4e3ab8b",
+  "independentScienceManifestSha256": "6da22d1280a2dd66f3270d94b012b48776a7257fc972f2357cfaa90a16ce33e1",
+  "verifier": "officina-di-fisica/tools/corpus_engineering/experiments_c3_heat_exchange_3c17_verifier.py",
+  "verifierSha256": "682eaf2f3e6c61cce5279d8faccf185dedb45e399427c309d2c25463cc5ce04e",
+  "verifierAPI": "report(sources,package,bindings) directly; no adapter",
+  "unregisteredSpec": "officina-di-fisica/editorial/reviews/c3-heat-exchange-canonical-adoption-3c17-20261127/unregistered-spec.json",
+  "actualBoundedCases": 184,
+  "actualNumberSubmissions": 64,
+  "canonicalBrowserCases": 9,
+  "independentTests": {
+    "scientificCPU": 7,
+    "actualEvidence": 6,
+    "canonicalAndAdversarial": 8
+  },
+  "externalDependencies": "Standard pipeline.py,review_contract.py,runtime_fingerprint.py and installed immutable runtime; source and all active scientific/raw evidence are self-contained in final3c17 dossier. Historical negative dossiers are separately retained, not needed to run this verifier.",
+  "registryChanged": false,
+  "ledgerChanged": false,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "files": [
+    {
+      "path": "officina-di-fisica/editorial/batches/experiment-c3-heat-exchange-reading-20261127-bindings.json",
+      "bytes": 1005,
+      "sha256": "9c90a8b19a04cc9e866def0f278510950dc391641d7ff82bd5cf23a7d1c7ae46"
+    },
+    {
+      "path": "officina-di-fisica/editorial/batches/experiment-c3-heat-exchange-reading-20261127.json",
+      "bytes": 9382,
+      "sha256": "59ced7b0c3a789667477731d46a39c3d5f2dde79484047af257c95f2a74636a8"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-canonical-adoption-3c17-20261127/README.md",
+      "bytes": 1994,
+      "sha256": "c108dec3397620c75c3a3ae1243c00030a8e0119387c81c5fb70175e36a495f8"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-canonical-adoption-3c17-20261127/actual-canonical-input-copy.json",
+      "bytes": 519,
+      "sha256": "e86ca5095d2f912e61c93709a80f410ff00102a670d741e6edab06d507091a9c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-canonical-adoption-3c17-20261127/actual-canonical-tests.txt",
+      "bytes": 1368,
+      "sha256": "d00ab90e083d1bf3206fc018d1a6642b4e979f579688c64d2947f94caf280973"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-canonical-adoption-3c17-20261127/actual-preview-process.txt",
+      "bytes": 274,
+      "sha256": "c1467902e5efe7f938934645adcc941a94c680acf1aa50aa2997dbe95a414a47"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-canonical-adoption-3c17-20261127/actual-preview-terminal.json",
+      "bytes": 93326,
+      "sha256": "4030440b58d69209580e8efd429d67a743c1062d9ee243220fcf4d9d023c1417"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-canonical-adoption-3c17-20261127/actual-science-integration-process.txt",
+      "bytes": 917,
+      "sha256": "9e7618e356781a7b2807ebf88756eac2bc5ab3175d634a4c6ed148e8ffc089e6"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-canonical-adoption-3c17-20261127/actual-validate-activity-batch.json",
+      "bytes": 13977,
+      "sha256": "cd049f56587d97894897646165ffc8504ef7541e8d6620792e82e708b020114c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-canonical-adoption-3c17-20261127/actual-validation-process.txt",
+      "bytes": 1404,
+      "sha256": "5d34b63f299293db292a26d80c71226ba3f7ed2a5e235e1ed6cb8e200b17452c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-canonical-adoption-3c17-20261127/actual-validation-tests-receipt.json",
+      "bytes": 192,
+      "sha256": "42e6a254a1e69cf8a3a81db40419b8a411881eae4a24c99a690a4e04c684f0d4"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-canonical-adoption-3c17-20261127/canonical-preview-9/SIM-C3-L05-01-1440.png",
+      "bytes": 138450,
+      "sha256": "230a954ed22e9574faec3bd9d6035e81cc8ac6590ecd5f81d4586fde0ea3441a"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-canonical-adoption-3c17-20261127/canonical-preview-9/SIM-C3-L05-01-320.png",
+      "bytes": 72924,
+      "sha256": "040b02b620bb948d64ee3df06d133164b5cfb6b465d0885bd959ec6c0cf82323"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-canonical-adoption-3c17-20261127/canonical-preview-9/SIM-C3-L05-03-1440.png",
+      "bytes": 164604,
+      "sha256": "1ad84950e69502f68a8b72573f888e2ac54e9604d2017150a49f1f8f7dc80be5"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-canonical-adoption-3c17-20261127/canonical-preview-9/SIM-C3-L05-03-320.png",
+      "bytes": 80063,
+      "sha256": "5d977bbf5b6c85f46f074a47ef4044c4b5cdc76e98d957dd78d6a6ff44640b3d"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-canonical-adoption-3c17-20261127/canonical-preview-9/report.json",
+      "bytes": 49426,
+      "sha256": "1b075a491bdca831393c064ac5e28037413cfef33af2238558a83bea45ef38e6"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-canonical-adoption-3c17-20261127/generate-science-integration.py",
+      "bytes": 1540,
+      "sha256": "8aa1d7ed8bb39adf76e70d953399db8c648f04defd2b24ab4939858bc509c712"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-canonical-adoption-3c17-20261127/run-canonical-preview.py",
+      "bytes": 2542,
+      "sha256": "c8fab55669a7efe7ea33658c0b6078f997f17c6fac82c4c288447596cc879548"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-canonical-adoption-3c17-20261127/test_canonical_bundle.py",
+      "bytes": 3887,
+      "sha256": "3b563d00fe37af289ff1baed1947f2f6d52b998fe0836a23cf5a7074d6d6ec44"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-canonical-adoption-3c17-20261127/unregistered-spec.json",
+      "bytes": 263,
+      "sha256": "5b75e86924485e9056f7362a63c964d88959c1bc22a76d086b0419635c33a2da"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-canonical-adoption-3c17-20261127/validate-and-test.py",
+      "bytes": 1534,
+      "sha256": "7b5930e8cfecfab932502b3c4555f93a21afbc4ba6f1e9cc911377c20d284c06"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/actual-CPU-receipt.json",
+      "bytes": 94059,
+      "sha256": "11a7b64d249dbf7ad7ab9d338ce8d29d7c63d86340ad42619852cf6a4a2bad82"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/actual-canonical-import.json",
+      "bytes": 787,
+      "sha256": "7ce924eb96df574e793fa5cda39d791050709e0b6a3838c03f2efd1e0053475c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/actual-consumer-process.txt",
+      "bytes": 2596,
+      "sha256": "cd7e5b1f428c849b97914541ee03de73e98b6d01431f9c30c1cfb5156bde1ccb"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/actual-current-consumer.json",
+      "bytes": 12262,
+      "sha256": "ae1a19e8dbe5499a8f19ab3237c7b9a95edf2e4774e036c3d87e0f9966c5553b"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/actual-independent-oracle-process.txt",
+      "bytes": 1090,
+      "sha256": "c50c0ba97dc6cb5790b66e7ce84cbed7768ec40506e35177723ad2ee5d4e9ff5"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/actual-private-runtime-adoption.json",
+      "bytes": 93072,
+      "sha256": "e0534908df29d69ae0760d8792860a90888a695dd195f7c7a6a8b5dac0c51f98"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/actual184-tests-receipt.json",
+      "bytes": 105,
+      "sha256": "908259aa51f47bbe7cb86fe273f2d505a7aefcb97aa592604718d26bf1ebf235"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/actual184-tests.txt",
+      "bytes": 1086,
+      "sha256": "93117004f45cc0b62295734cdf2656249a51fe171d6a9bf0db2945d203a3c18d"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/analyze-bounded.py",
+      "bytes": 2620,
+      "sha256": "de51099260e1c5e8f08a817b6c9fb348b2dccedf47cb3e2d86f5021bbfdc4957"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/candidate-3c17-legende.js.txt",
+      "bytes": 17900,
+      "sha256": "ce8205f12b6ddd1e2210e74712691db312b6024371c423188e1c0ed395358599"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/collector-719.mjs",
+      "bytes": 26773,
+      "sha256": "719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/01324a6c918b4ad39212b2b940ac741fa1ac7aec93937faaf300043ade6898d0.json",
+      "bytes": 11632,
+      "sha256": "366dafa5f2499d955045a2957d4014bcb31bc5c38ec73b83166af96104157357"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/014441b1b7a734dca820b89709fe4890dcfa0df7dbe15fd335f6f5600b1a82b7.json",
+      "bytes": 11578,
+      "sha256": "6a0d2a7ba3510d131ca4203eaf753999b67638723d5d085e22662d07e827c1a9"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/019c42376e63b703800478fe8c6771808c27a1f60990b5718ccba38db4370102.json",
+      "bytes": 30419,
+      "sha256": "75d3b16872dde2e60d16d79d2cb9289eb32c377862e05dc9de8359022ab127a3"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/030b9ab1bcf439763088bc40b47b38351b68bc3a5c90cbc3d8717a3dde476dc5.json",
+      "bytes": 3698,
+      "sha256": "f3d55f5bdf2fc8d15adfc54cb4d6c69d302ee36f04be7cbd1693aa6a7bfbc14c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/0545d7b8a8460b31f47af1d74f1d876e9faa9cbf8213bb65ff0a7592f7c742ba.json",
+      "bytes": 11796,
+      "sha256": "e810111e22b65c68e8f9897da60fd7f2c0bde704180a155bbe2ff6c3e9eb4c75"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/073b7931bdf064225201b63b0e356b083762060b329bfe8e45137678f7762f9d.json",
+      "bytes": 14797,
+      "sha256": "46ab57cb343f056948d83c00e1b035e97729e85577283685043a40a7f216a9cf"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/07ada1968cee95e84f0db53d1553e1ba08cc876f8bfa000ae7afde1db39e334f.json",
+      "bytes": 14811,
+      "sha256": "8968ac236660d057602344cf8004be3000d66293c1626730cda84754b55c5d17"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/07fff334480c74b863e6d283048c2dcc0e9bd297b7134290e1bf30c9ba483b89.json",
+      "bytes": 14342,
+      "sha256": "ff1150847edb174cb98590d05a727c6249f5b82a40e5e923fb2b6372303bc677"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/08bb03d045473eebca4a5ed11dfc3a8f01e86f15ee2b85ebd826916cd697662c.json",
+      "bytes": 3698,
+      "sha256": "5440b29f99cb874850c47af4a6ff672671e8b82ff5945b03d718bb9d3bb07f43"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/09e8339ad8a5ca53449dc828bd586dd4b4b35e1a2b76b80b2f5e6d6ab20c10b9.json",
+      "bytes": 16788,
+      "sha256": "0d4e975092ba646926d28901ec87b5518081a03ef323f819cc24f9d2da957ba9"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/0a3fa16223b56f5bf673de6f6196957590678ab2afad955e0d29e441bcb1b9e2.json",
+      "bytes": 3293,
+      "sha256": "5d56d5b8d56715ffdf7cba3e8983401ce90701359229c872c0bae15b7bcc1ec1"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/0ae3c9569de0a29ff5f394f1cddad6625e593e8a9e1cd80eb851763f20b01df1.json",
+      "bytes": 15637,
+      "sha256": "e1fa543d5565d24cf825cdc1c0fbc8a7bf8dda00b9d2a2dbcd616028bb3127cb"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/0be577155558293ffe1cea6bd91b4b8d6a227149d8b53f84caea4948c5779d7e.json",
+      "bytes": 15216,
+      "sha256": "35296cac81f5fde8c2159ea86ad60826a5166445125bdf429c928916b4c126e6"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/0cecb411da6c6d9761d6e06b1dd41929ee48ab0f620cbaf2a1b7f7b609fecc09.json",
+      "bytes": 30126,
+      "sha256": "bcba792491a6b33dfe73d0533824c5bd06685b75ada9038cbffaf084fcc2e9ff"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/0e18320ac1cd94131b5b5b4791ceb479be4971598cdea248e165f572fe168d86.json",
+      "bytes": 11693,
+      "sha256": "ea402ef61e13fa229c79b1ca71151017e3ae62bdcbc11fc2e418d4b998f546b7"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/0e23ac2ef400f7709c63a1b1135af7a1fe603eb6c48c5ed42bc35673734a5661.json",
+      "bytes": 4555,
+      "sha256": "55208e73535636acbf98c7036f7d408fe01c5ec1b99a26d0839cc0fe47b8e072"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/159105568b7cc683d48e867c7d1b8dd7cb153f8d50796174ca1958911a47bcf7.json",
+      "bytes": 3416,
+      "sha256": "44fc65f060b8d500bd96b36a3d3fe0d9bea0d04ae71c2c468fd30511bb7e0f7b"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/1ed72a64651fd1b0846303835d8f70c020818e4ef47c8392601d3f0dd595d979.json",
+      "bytes": 11820,
+      "sha256": "d6beaf29b34d3eff28076a23c0ae97b921236161cf1e063e937cc18b94c0539d"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/1f016cef072c4e2013b9ca2390221398669a1d5f090d0fd8efbaf3a894316de3.json",
+      "bytes": 3723,
+      "sha256": "4b6405183086226af2b3c9573c80267f384dea74c5596921456c74cd5da66c7b"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/20adadbefae6070d3a06b57b74849a0c4700eb239e9e7d1a08adaa2429a80b14.json",
+      "bytes": 30056,
+      "sha256": "f322d89bc087936a713b774020be1977cadc5464e6196e8af519cbc4521a8790"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/24dc9c6949c588ed0ef07fc2ca4f67ec344c43a93fb09d7f9db70e24dc9c71af.json",
+      "bytes": 3272,
+      "sha256": "06f15fce99d72b2a5d84c5f4392482f1a71b3912aa28451ad83021cfd1638b73"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/27393cb476419fe8f037b7a45df9c6ac16344c73738f2e09b3e40a3925c7dd00.json",
+      "bytes": 14405,
+      "sha256": "8e8209d3a423ec10b83d8340e8f403f519a27f6696f6bbb328808172de9dd9ff"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/2c12a33a647a98ef26f5e8b7e5e42b6612437953143beac23622802a3fb39a02.json",
+      "bytes": 14414,
+      "sha256": "14a808216295964119f3db38481ce4246193d1162960e7816611eb19b443e1fc"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/30462d4cc591288fbf8d87b8c7b7ed2fa07d1d74f209cf305222649aea665f5c.json",
+      "bytes": 3418,
+      "sha256": "084513cc7b4121fe19c937cd945a55a1d29801b0b2f9b08eebd1c9a0c77e3f05"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/335f0d157cf3f33e2c9e95854b76abde89b0ab6909a6c3ff17e41ddd00087c19.json",
+      "bytes": 7236,
+      "sha256": "7df2e22fa8970f25a7fa667b22a286764793e3139d97f3a8b3c60a9625f4282e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/3376e929494c167cac523f0c72002ef1aea219d5dda272bf058284028fdb4d02.json",
+      "bytes": 11584,
+      "sha256": "4d8385777f4c43e9bda8f0a35dcd348205049e0740fdbd6611980a965b0978b2"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/357be60ab5e595227b9371af61635c04b15ae0757d1075ac8cd5e83344793d93.json",
+      "bytes": 11626,
+      "sha256": "e7e848e92d9541c2321fdddf7ea84ca952f2928cc3f306314bf170cf6c18300a"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/35b9801771e487e9c06c474b9c6910fd137b209a0f6b91f7911eaf2edeef13f8.json",
+      "bytes": 7904,
+      "sha256": "413d5098739f7d0c19050fe41ab93412c690452edd6d6546ffa4a5d8ba7280cd"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/38c0c7fffb116a46a0d0b3ef8dfd282b5851e8c09d071045c6a8cff51a85e31a.json",
+      "bytes": 4657,
+      "sha256": "40288d4d0abfc12b3ac7475cab41c4a057debb3742d09675352ca4fef58b22ac"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/43a54138bd593e43b71cd974387baecdc9ce5975fdea45bdb21a2e34d1981a4f.json",
+      "bytes": 30523,
+      "sha256": "40bb24c6070c23c09982381427d01cb7c98995f5f7621fbf2613987c67640a85"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/471b6ecbfbe9f90706d3bf502982cce9344da54d9a146bdbf6bd71acdc289cd1.json",
+      "bytes": 3268,
+      "sha256": "84121028f6b9b1d4402f549f519d1d865b3878bbd4d5767c03e04a4a1af4127d"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/475ee627b8f8abf339ab086120c49490c742c9bfa65c706fcb1b9acd6a950970.json",
+      "bytes": 14330,
+      "sha256": "65389f4e7e02c8c372cb9bc2dea7725b51c7a8ca59ff2c9647dec72ac3b61cc7"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/48a3fc381f427b50ce499b3d13677f8503c4ee1d836690c872e034f1865a7966.json",
+      "bytes": 3272,
+      "sha256": "f7eb1af51693c1a288f0e1bf563924bfc36832930e74b6e2f8c07bfd553f16bb"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/48fca40dedea4e8be5449b00788a1654a97c4c1b7c04bb5c356eb10ac6c19b78.json",
+      "bytes": 14934,
+      "sha256": "ab051024bdc5b1adf2710d823490c443744c7681f0603b386b5dce01b9da4aa6"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/5720d60b66f66a38b508bfde60e2863b006c28fd1bf3dc1a92ce0074dabc4e8a.json",
+      "bytes": 30160,
+      "sha256": "29794f955ac649ac2fe73c21a86bf6162fbfa151804a90685d0750f1f69a7219"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/5e4d618c1bac32b0ee470d86f126f09205baab8fc88cca5ab71abc005b3e664b.json",
+      "bytes": 15197,
+      "sha256": "458ccdebfc87b9a4a943c87179d9d82ea6e3f08b8b8f0919810824f1c805fade"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/60917d273ff041bdc92a12a1a2564ca4a9d50dcbc13970938c9ffaab969f4dc3.json",
+      "bytes": 11687,
+      "sha256": "db1009c7f354e89dc671d5fa07a02939ec68d5de26cb7b0b2e032b43c32248b0"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/6248b97ad4c6aadcd03aa63ca28432d7909eb01aa0e25c6ba52f0129f9974712.json",
+      "bytes": 10148,
+      "sha256": "0f3961782c4b5444bda3eeab17cfb9fa3f5122c921f7ac600caf0058a2a7109c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/655a3fee4d45c71985f4fdd7231126a3cf81a35169e5920815e2386b440129e5.json",
+      "bytes": 14818,
+      "sha256": "1e91d4c36b3c65988ecedce7565029324bf0051c1b3990b8d12ffd10b65810ef"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/65cc27c2b8c94b7a9928acfbd7b12efa2b834150ca26cda24b4d8e03334811e7.json",
+      "bytes": 29887,
+      "sha256": "32ba561327ccfd14f3f706440b98f8406aafecf7f833db5b09fb8aece0816ebb"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/68e84a8ca2fb55ea4d7c45d05348db4cf87d80ae60ec502b6725c536b8e42c25.json",
+      "bytes": 30119,
+      "sha256": "159dc8beecaf73ec0f3438da98ae0b56527fbf3584971237c2a019926dd5fdaf"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/6c6a5f72a01e9aa6e822892c459c061ab93c5456151115e82989b2b550f8d688.json",
+      "bytes": 7246,
+      "sha256": "1b82d9840afbde2af6257bdce1b52cb9d688d83f31f8f979cbfa662d53523928"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/6c8a756b1805d34bddbdc72ee8004cc6aa1d06dbb0ee523aacf92f980033f255.json",
+      "bytes": 11863,
+      "sha256": "29c093564b2320a12bd8b2ceeaaff0922c034aa9b3774fa5d9fee5cf3002b1e2"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/6d3b57abf2a0e92614cb986ac82d453b152051379c2405ffe1b6ba1f6306ced7.json",
+      "bytes": 30411,
+      "sha256": "d9d8ba544eee5b936971ea8af5f4d69683da63edd87af46ffc70cbdad73b13dd"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/71d5bd01b6fa33b42f8593e875635f3d86cad93617c670fa642533fb766ef588.json",
+      "bytes": 10038,
+      "sha256": "74178f014687ff448bc78f697ca06c11d9e356fc0683e2bda552465f4e2f7fb5"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/71f67db722625a799fb8a76b14eb4e01c98879413b5c4385e522cb376b9ce69f.json",
+      "bytes": 10140,
+      "sha256": "96e1813cce8b4dbbecc7df3ba534b839d555454cf533994da3ff931b231c610a"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/74a6661da9b48325802835849e22a04f62bb33c596ea926e67441ca07c554efc.json",
+      "bytes": 15670,
+      "sha256": "7e4a024db51884e57061ea1cf93effa866ce416fa3cae38a05c624d70227a689"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/798d915fd58e3949a673d6232bb62672e21d502e1a8bff45ae211213a8b84a51.json",
+      "bytes": 30289,
+      "sha256": "f3590ed517735524da87eccf14dff283cb1f1ab2f981427c22a3a2bbdd37ec15"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/7b5b8dd2feb1d50a065589130f597143b7b7a29df99ad4f5db5bc17e125778a2.json",
+      "bytes": 16597,
+      "sha256": "5ffe4205e2a8d08ff91f8ebce33c4c1adf965dbcef18d00fe27025e6351d15c0"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/7d9fe6fa812bfca3742eb882853a702dddcd1235ad0c0a13f140d71b29d71cbb.json",
+      "bytes": 11735,
+      "sha256": "bde01ef7aff144813c725725b096a97bc3ff8bd42eeba0031f3adb7b5fec2c7b"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/8029c5d36739779763c6682d314ecfff8857246e9553a6ba58b498e052a649fd.json",
+      "bytes": 3702,
+      "sha256": "fea83044570645de472c4b91d252710d6f766a8c8a13253f3002ad14019f9fc1"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/824e8e71daeb20dfd5bdaa8dbe529d69e9c65870b60685ba1e679d73d0b499e4.json",
+      "bytes": 3700,
+      "sha256": "89eed533876b2aca0f2e382ecfb93b9a8dc699c71d41ee1119f45e68c03b5a6d"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/87605a863629233aba711c7a8aaaacff7cb1204f20cf1d2c20edc69608988ff3.json",
+      "bytes": 13281,
+      "sha256": "8c9a5aa3d0801d3cb65959b4213814ddfa15c401c65314132ea9f322ee3dc8fd"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/878f9041c5109b22ae5df68b445e2e1ec505da506a75228fdef13a66d0292480.json",
+      "bytes": 15454,
+      "sha256": "3bce25064142ac5c5e8596b5f2431d5a16680af1f38f50e18265f6fb6c6313c0"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/88874e87ed60ac3d67fa932b9a9af3b454dfdfcad1863b43f02fc1b2d158cc35.json",
+      "bytes": 10276,
+      "sha256": "687172618eecfebdcae13a2200b92aea0913d71e6bae0c83997d63eececedf41"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/8aa5fbf1c10c8968a1d54da7f9edb0845004ccbc52bad464fcb8ac018049c7a5.json",
+      "bytes": 10030,
+      "sha256": "a8e2b095ad1817d1dc95752d12123b89411df759c77f101cccf31b6741d55d10"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/8b049a7e0fc763deab72961f82fae99e885dc13c4391655ad27296e3ece2b4cb.json",
+      "bytes": 3420,
+      "sha256": "649711e21332534ea31ff599eb149a4cc5afa2efbdcca5cc920487dc042cd849"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/8c5b1c80aefb9aeaf1d15e724741fafc863aeda08e415e7e3719374237f5a12f.json",
+      "bytes": 7832,
+      "sha256": "feb99f117239b4787827b22f62e092b0c70ce3f223803bd8f1bb9f57638a77a1"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/8dd484f9dc22b5c9a9283fc5f76ff178f8c30de7b420009baa1fea5531ce7c2a.json",
+      "bytes": 3270,
+      "sha256": "2797f4b7949a1c1a943f47af90e78e1987df9fe65768534ecba75efeed67a915"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/916dbcee9d228c8f8a24abc436dde2fc76494e736e6ff8844657eab050b94543.json",
+      "bytes": 11925,
+      "sha256": "c55f5e061982d8a13929c55293ad74828c802ec3493b40448a1dbe81e4c4532f"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/91825b29c311ba6778460f4a1a7aa685657196fbd6b17c588babe6e997c90816.json",
+      "bytes": 11801,
+      "sha256": "52cb3bd495177f610341733cd58adfebd19614e414c06f26a9d1646114125963"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/92ca4cbe8d7dba61b96a5978db9245a0b8c254322a1da838eb100709ee7f2ad6.json",
+      "bytes": 4443,
+      "sha256": "b175e2967948266b90d2a27e6a6d41f80288175e28ed43b4606c84766ebe92f7"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/9547b4bb2bbe5e321a1b86357650f4e9aaf999f68d7915f6432015dbc48b02f1.json",
+      "bytes": 11740,
+      "sha256": "00379fed2d2e258f45d1319702fdc2178bee69ddfb94f5701a4d087a6d8d8604"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/9b717c1a0e27e265ed6c03fee7d924424e99c1799c2bf48fe1e43168b16ae405.json",
+      "bytes": 3723,
+      "sha256": "278ba28ad6e55ef100f7292243fdbeb166e29109c5b5f5d846fc93cd172a51f2"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/9bc0c2eb780084f054db56354839a50f9b0ba6de1ef11bb933ece07ec5f8cb1b.json",
+      "bytes": 11868,
+      "sha256": "011dee814c67d92a7cecb0ee85ca9971a5216d2921fe17fbff559ba62497c9a7"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/9cae0541632732f2d01c57363ecbe2d5e0b90fbe9654e84f2fed2417b1597940.json",
+      "bytes": 10268,
+      "sha256": "4f5ebb9327e0f0a7965595a06aa620fc7fcadfd0cef08cc83d470843c985a4a1"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/9f72fb2eac28e6bff1e505040fc5b5a1e4bcfc3f6f0614b1e2c4058ee3b5ad72.json",
+      "bytes": 29997,
+      "sha256": "a53b529064ec7c074751fbd8c370a205514dcf297ab1a93619ebcf03bd8b3380"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/9feef4614afa8e0a995ce1625644469e4e324c87ee474ac17dfe06589837c31a.json",
+      "bytes": 15165,
+      "sha256": "fde98dbd4da8ef24b156148c42ecd379d07dc77e0211038155823b2d80cf6cf4"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/a2938d52e5055b05b0802cba64397dd3279f8cf26dcc4a921bf4f21882662e5e.json",
+      "bytes": 30640,
+      "sha256": "91cf1935acd19ebb6fa981769546c1217843a6f8fa7ad3fdd1e3faab31948955"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/a688e828951aa1c4ea0a7abf2f55a4b5b86010df20b973f782f328e3cfb7ff91.json",
+      "bytes": 3270,
+      "sha256": "939234106defd44a86d4380514201fc18547653d37b77b6cf44664fe34efec67"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/a69c34f6b43851b75397138dafc5a68061eb8906baeabbfc95e1c259203c8af3.json",
+      "bytes": 7806,
+      "sha256": "9ac6b419d5cd8cf0f329a5cdff9595eb2641b00ed2243357703fc8c9ed5bd0ae"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/aa90df69c221dbba90956e4e88a79086d537a681f5622cc012cf0588967cf160.json",
+      "bytes": 14351,
+      "sha256": "576db006790ec9ae4e5c82b056512ef00d00825af714bc9b6d1420c50c24dc6d"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/ab3210698ec6a7b0d848f08e7d5d7ecbe7e1aa27b530a89abaaebc630613b7df.json",
+      "bytes": 4530,
+      "sha256": "7e6c37d250f4f113696481929bf07b51ca0d7cf511d1880bb0b043c087a261db"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/af611c6ccfdd7e93cba16acd6f5463557d185754223a6f5ae6098dde97c6978f.json",
+      "bytes": 14802,
+      "sha256": "37b63a695b13344dbacb1927c69b74f17ae1c0288081f676428384c6ad04b0c1"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/b28d1cd517123c652e152e721088d4d33c8e2741ced746fe2d0197336b09dc85.json",
+      "bytes": 3414,
+      "sha256": "347e896dbe4ada9c73a567b450842bb0078511d9d4efe9e9c34932f842250601"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/b7328e3bccc168d8f1adad5f19c3b071dce63923a8cad49f22f15fcddd8fae61.json",
+      "bytes": 16818,
+      "sha256": "2881c25d3107d852e52031eef9a8d56f3a25f48a1e78e35a636989fbf166601e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/b86371cf1be22d82ef2c3a65e40a2e83176154405d36c2ef94445ceb3408d39f.json",
+      "bytes": 11928,
+      "sha256": "6ac003d99df235a1108860aa4b3a8ffe0bbfe1f60ec2b161eb846debcde5c04a"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/bacac3ac8eff057c52eba3789bdd3f2224fef8eb69a056653dca87d65e1ce888.json",
+      "bytes": 11687,
+      "sha256": "6367f951ea5a71ced1dd447093ff52194d1e45fe63f56029ad8c4c4bcc54b381"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/bb577729976dda62a743d52003aa875bf81a1d126567a11e9bccbc3df3c74d7e.json",
+      "bytes": 3418,
+      "sha256": "ee93a3f2f22c3f5d20e9ce41c147bd7bb8b9de4596ba5d1827ea1c6104009210"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/bd14e03f8c0e861ced9e88f210ca7ee2bfd607d76eba8e01239685cda024ba1a.json",
+      "bytes": 14809,
+      "sha256": "b9cb4af8d55144733d76620c1005102f6205f7d43de1234c774225a74fbc0250"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/be300ea7f4cad4210fb86301b250190f26dc21f6b1f5e8a8d787884970cf28fe.json",
+      "bytes": 15567,
+      "sha256": "3ec79c467467b76f31146bc74f15b8474d091ef338735c970da8eab601d7c520"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/c1190e6334d99fe699e3cd03dbafaf89328228fab2c964cf625cf36aba7ce355.json",
+      "bytes": 13272,
+      "sha256": "97fbe65b5e46ad086b6b92b196774e8050860bd4b5d2307aed83f01aa48a2162"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/c26c89248cb630be5baba67684aef5b821c51badbc57795bd20f6a7acac3f9f0.json",
+      "bytes": 16569,
+      "sha256": "0da79ae772d104cf76a50a75ef596bc173e0908a97b8a72567eee4cc25b8cd71"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/c63927f3cb490fc0f147a890b334e4105744a81254a0d690b405da0c0748a31a.json",
+      "bytes": 3700,
+      "sha256": "022ab7758b8acde18db185a4e56177c2aaa248a7f954c91af81f407f7c9e12a4"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/c8975f42042dc668b84aa2cda8bac88e28156a3e0fe4bfed21f78df26c1a3c13.json",
+      "bytes": 7894,
+      "sha256": "0dc1ce98e74c975a60409e9643f8c270d66e67bae84e154bbed28f3596228b04"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/c91383db70247877ee54782216c0fb12c219a20522ba2a45389b401e19a7b3cd.json",
+      "bytes": 30521,
+      "sha256": "f3b7d27e224dd52be15f241801bc6a27ccb0199540b33df3f1cc3799cd5ba4f9"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/c9cc0f8338d73d675c090192773d8fe1c3489a27e39991213fc93b2c9d60ada1.json",
+      "bytes": 4680,
+      "sha256": "61334328b93a77408b735a77636edf625d96bce9743e8dc8fb782a8403275b49"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/ca5ae9975d985d866a842ae8a70b2d07b5b2971009b7883f3d74cec776283430.json",
+      "bytes": 3416,
+      "sha256": "39f95cb4f60b51d60265b3394f59b6bd87de07a4cbeb7731330848d56186de41"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/cb0a330d3282e5fe21e53bb83287f174b4bf4c3bd7daa992a3af7ec33b669b11.json",
+      "bytes": 15093,
+      "sha256": "e62e89b07db767236f6ce5ae39c7c075dc33c28431f1a2220f27ceb2efb1bdec"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/ccc7501828b58b9642ca38975a6f16bfd2593b2ae0e1d234ef4430297d8f2418.json",
+      "bytes": 30155,
+      "sha256": "0638717439ab6bf3cc7461bec3ca99c43271aad0288430d33ba9faa074e49228"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/cf50efdf595b4840ea409b36e2407dadbf50a7444537e1ab07f575b3c953c1c8.json",
+      "bytes": 14321,
+      "sha256": "3827238fc7b6cce1e0e48b6c9361852018e4e41ed7b36a7fe381843b7da71c1b"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/d300d958fca17f0f5c698270a12492942dad4f4bb3c0138ec3e907e489830945.json",
+      "bytes": 16717,
+      "sha256": "3e0452868a4a5fefa4f565510c86e859f0fed92e041c28f81d61ea57631251ce"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/d69dac16bdc02487baf43e7ac347f9d4ca14ff5a605526a850d283bcc9d60d88.json",
+      "bytes": 14972,
+      "sha256": "57cbbcaae34a6014bf6830c9c16a25f0b24c6544b3633a887fcb175fed088e0a"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/d9aa5257a2d4d33124ed573bdff0f442f0e95d0bee613e31713a726af9a012b5.json",
+      "bytes": 11692,
+      "sha256": "5127b908c014400a89e4966dd3d60cc424d4b0fb8f432c0925105e98cf32858b"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/dd73cfdc6a83dbb2fcbe5718d84b9c944eed7ec1fa73178c7e304fcf6f85a3d8.json",
+      "bytes": 7822,
+      "sha256": "62cb0d012d35ef112c061a0aac93823bd8a050267568afb9d18525ac9b03476d"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/df048ac554080bb1e03a552dc0357e3f9df5317c46b87804ac1301650f0b2a0f.json",
+      "bytes": 15690,
+      "sha256": "bc806ab05a83339848319e2fa57056bf52eb70069617c8f3354f099d126dc9b0"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/e024ce205bae2ea4a25ceee105d66716e8addb464b5bfcbee42023c37d04030d.json",
+      "bytes": 7816,
+      "sha256": "e7b7ae74158f1fac2880b1eaac21a740f89fc6e537558d2447efbb80b1be8534"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/e04c913ce15cc28c17019451206bb741973df3ca7b5b1abf97b70829e3ca8189.json",
+      "bytes": 4420,
+      "sha256": "bd1a8d3cfcd7d2877264dd0eb2895e5b93fefabf526d3248695004d1bfe7d191"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/e054dda138b3fc5e06996ef968fec438c0e99688133c907a16eda2ecf9468473.json",
+      "bytes": 3441,
+      "sha256": "63a8c80950cb0ff4b916b068ab061fb33d18d9205e95022f6da3ce0ccf5a69c9"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/e0706086badc318733ac046336825659259a899dfc05c7df8c3b155c6409bb32.json",
+      "bytes": 14806,
+      "sha256": "22128967e450529032973c34a9f5bb671ea828954847c6dc831524e735b274fc"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/e0d369607a34d9ce4f4c733644e8db1471963bf5dd9896f4521bf2d3212d6b0f.json",
+      "bytes": 3702,
+      "sha256": "5f0a4f61c6a142ce2ea6d0fb500ed5627b75e16069354802ebff1a8770fc7331"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/e2fe27b15119471f8e129705e21ef1bd09f49643fbb7059f1c4f84fc0458bfa1.json",
+      "bytes": 3268,
+      "sha256": "7ba4fa7d4866e22761d6513b71db3354af7269e9a785f119739a93e3aebd5077"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/e3be51573b341f20a66b62711045ced660319a37a6bbeecb013f16d37d6be944.json",
+      "bytes": 30653,
+      "sha256": "931fc06f108fd250056848951df024958a14167ef5d2469f5e81d1d32a1ecfd4"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/e4a40120bdcfd8277e4a095dc1372c470f0ce7927649de60fed4860fec77f629.json",
+      "bytes": 11814,
+      "sha256": "5a7b6eaf0715d62663fc59044d645faa9d5e1152dfb60ffd468d039d9a1919e0"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/e92dcf7996bed70d1bb449d94771b989ac5ef47f43b6a7ec275ceafcc0d1f945.json",
+      "bytes": 3439,
+      "sha256": "6de44cb9fcd9036f43fbd73beb72eb0b8096b9bcabcba195f9990315907c0dbc"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/ea1ca9a1be53c4d67ce65cb5dd22c342230301fb6e82b7d1070a84842bcae5ce.json",
+      "bytes": 29892,
+      "sha256": "0af5f9e404d9c5daa5ac176755266a6933a8a9e56fe02ccea8a2615eaf4e3d52"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/ed4e0081a5a2952ea16fab923f3ab2324c5a864ea0fc780c3f87831d3981966a.json",
+      "bytes": 30283,
+      "sha256": "53103cc9041c0ac6f109ede792a12c0dce545426beca212240653e62e2aceb2b"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/ed85e34006959dd0383b46b22584c5cf8600c170f0f092265ab9454e9efef54e.json",
+      "bytes": 30045,
+      "sha256": "453113b2913d672380f7af79e1e73c91154bcced4b80b407f191c2243677231b"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/ef243f6998ee5c9e9200439600a8f5c4e26baf41723f690501cdce4bf0930fba.json",
+      "bytes": 29996,
+      "sha256": "eb62090a392591d8e264c9b628290930ae2764f337a794802a1100e1b881769b"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/f11eb26f49468e9fbbd698950ee8cb999f8054814d405fc38a3cf95430a6bea9.json",
+      "bytes": 16840,
+      "sha256": "4523ad279ee1e0483242c700d9c9f3039fb5d9728e1fb0e73ebdb136a66d84c9"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/fa21ef49331b53bea4981e18cbcf60f6434559ddb9be94b9a6dd443a0c088a85.json",
+      "bytes": 3293,
+      "sha256": "46e2eaa919fb236d6c82a3124bde275c787d14fe5b3f905931c9e123d077175c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/cases/fa3e7ecdfe4e7e7c303f433cdfb839e3a96a0d209df2d8a0a3c49141f7b4cef6.json",
+      "bytes": 15408,
+      "sha256": "285ec72b8e448e4fb86e38e382554eadf8d3094b070b0b26aa8328c881c729a0"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/completed-cases.jsonl",
+      "bytes": 26128,
+      "sha256": "0671ecc3eab2f5b74f4802ab1a4140391185ec6b415f3f74decbe6357264d4d7"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/report.json",
+      "bytes": 78965,
+      "sha256": "6bf583c1234a81fb1db33f1dfd90bfe3bebeffa7b2b9f05f684b891231de1e30"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/0117646ab8475f74254ae460b04f032ee1a7b5b92e9d234fc7f04cfff5305608.png",
+      "bytes": 1779,
+      "sha256": "0117646ab8475f74254ae460b04f032ee1a7b5b92e9d234fc7f04cfff5305608"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/02e9569e629862abfd60bc631fd0b631871088500dc93b2d1507f8c3525e5e2f.png",
+      "bytes": 51537,
+      "sha256": "02e9569e629862abfd60bc631fd0b631871088500dc93b2d1507f8c3525e5e2f"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/0338620dfb640807abe7332500d0fe3b34097f8f0697dd5a7acb2a8b2f9d91ec.png",
+      "bytes": 39963,
+      "sha256": "0338620dfb640807abe7332500d0fe3b34097f8f0697dd5a7acb2a8b2f9d91ec"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/0717c3e905eb4ff3b9740f77b854eb0ee0018d34ef5cf08b40af29b69ef5eb6d.png",
+      "bytes": 46039,
+      "sha256": "0717c3e905eb4ff3b9740f77b854eb0ee0018d34ef5cf08b40af29b69ef5eb6d"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/0934a993548be82857d153490622bce06d7649d31b56694d6044b5f6026ea493.png",
+      "bytes": 3334,
+      "sha256": "0934a993548be82857d153490622bce06d7649d31b56694d6044b5f6026ea493"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/0cb0faa23847bb3a86cdf4e27e3c3a7414edf12b4c49ccc8f5457ccc4095b5ff.png",
+      "bytes": 2890,
+      "sha256": "0cb0faa23847bb3a86cdf4e27e3c3a7414edf12b4c49ccc8f5457ccc4095b5ff"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/12f3d0f5d0534733c6e233745442ddb638aa97400465f8fe0873fb64959cf995.png",
+      "bytes": 1861,
+      "sha256": "12f3d0f5d0534733c6e233745442ddb638aa97400465f8fe0873fb64959cf995"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/1671d1e2ccd057ebcc82e8baec2ecbdd506516624569aa2ea1de1eb62e26423f.png",
+      "bytes": 6490,
+      "sha256": "1671d1e2ccd057ebcc82e8baec2ecbdd506516624569aa2ea1de1eb62e26423f"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/19ba821968ac3e6f617ee5ad9b93ffb591698e6315e0f074b2975c1c7eaf2ab7.png",
+      "bytes": 65999,
+      "sha256": "19ba821968ac3e6f617ee5ad9b93ffb591698e6315e0f074b2975c1c7eaf2ab7"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/1bd401f3a35b646fd38aefa290806c806e124418f86cee7258e23ca8b15d126f.png",
+      "bytes": 66564,
+      "sha256": "1bd401f3a35b646fd38aefa290806c806e124418f86cee7258e23ca8b15d126f"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/1bfb644bba4e38df066911d03df3cedddd8ad2394c1eb363a3d5645df4a14473.png",
+      "bytes": 39166,
+      "sha256": "1bfb644bba4e38df066911d03df3cedddd8ad2394c1eb363a3d5645df4a14473"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/22c0fc3786924806cd21a89203f77ee83b8a8e58de013a4ba0cd38a398eef2bd.png",
+      "bytes": 15756,
+      "sha256": "22c0fc3786924806cd21a89203f77ee83b8a8e58de013a4ba0cd38a398eef2bd"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/281740f6bc286bd7cfe32b5e1f8d3ae5c01e6ee8b7eb8c1fbc964b899b9bb658.png",
+      "bytes": 17071,
+      "sha256": "281740f6bc286bd7cfe32b5e1f8d3ae5c01e6ee8b7eb8c1fbc964b899b9bb658"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/28e586347f2e0f19475d2be13a7693e01de3a01efda8d56372ba496e50498ed9.png",
+      "bytes": 7132,
+      "sha256": "28e586347f2e0f19475d2be13a7693e01de3a01efda8d56372ba496e50498ed9"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/29b7c1e9896e195b93ab387de6f572756a3c5072c941337f376b6fb84e5f420b.png",
+      "bytes": 44886,
+      "sha256": "29b7c1e9896e195b93ab387de6f572756a3c5072c941337f376b6fb84e5f420b"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/2e3fac47c54960a4275755ea5527038b9d02d606f006c21008801d23673d674f.png",
+      "bytes": 15431,
+      "sha256": "2e3fac47c54960a4275755ea5527038b9d02d606f006c21008801d23673d674f"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/33b336d4df431834f5171e98886ed3354efc21de574c738624dc3ff5f7ac7dc7.png",
+      "bytes": 4533,
+      "sha256": "33b336d4df431834f5171e98886ed3354efc21de574c738624dc3ff5f7ac7dc7"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/3442838ab3dcde048b35b149fe8551173d0becdde7e0152526136bc7f99188ea.png",
+      "bytes": 5037,
+      "sha256": "3442838ab3dcde048b35b149fe8551173d0becdde7e0152526136bc7f99188ea"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/376059edeaa48de1272ee7c11e3f54620d5610f81c38375a8070f26d4ce3f9ba.png",
+      "bytes": 40162,
+      "sha256": "376059edeaa48de1272ee7c11e3f54620d5610f81c38375a8070f26d4ce3f9ba"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/3890d127777750b1c72116041b87910dd2475bc526db28dd33f811d3d84993ab.png",
+      "bytes": 49898,
+      "sha256": "3890d127777750b1c72116041b87910dd2475bc526db28dd33f811d3d84993ab"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/39a5becb20499f27a01fb9c77d155a570ec93854226cbfeb35370f07d5a4d62e.png",
+      "bytes": 4931,
+      "sha256": "39a5becb20499f27a01fb9c77d155a570ec93854226cbfeb35370f07d5a4d62e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/3b5110ab6be996dd2de83fd6fa43a654d7aa94aa7336f9366f3d4e16179a251e.png",
+      "bytes": 2862,
+      "sha256": "3b5110ab6be996dd2de83fd6fa43a654d7aa94aa7336f9366f3d4e16179a251e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/3e5363169090655038d79f6007e13770c4699123410fbaa5987661dd8f0629ce.png",
+      "bytes": 64004,
+      "sha256": "3e5363169090655038d79f6007e13770c4699123410fbaa5987661dd8f0629ce"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/3fa734881ecd699e1c9f1edb82714606a9313f60943535d0ae05802559880f50.png",
+      "bytes": 13446,
+      "sha256": "3fa734881ecd699e1c9f1edb82714606a9313f60943535d0ae05802559880f50"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/41f961b8d4cee7cbdaac4e3018eea36e48dd4e55d59abb1170b1eeb2d86aed5a.png",
+      "bytes": 7834,
+      "sha256": "41f961b8d4cee7cbdaac4e3018eea36e48dd4e55d59abb1170b1eeb2d86aed5a"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/4211af801291e83cfeab3c584afbfbca1114330b8e005213ec4eb7ec08f9d525.png",
+      "bytes": 45507,
+      "sha256": "4211af801291e83cfeab3c584afbfbca1114330b8e005213ec4eb7ec08f9d525"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/4600a122d90f6e8c215cebae0a12dadd2621ab7582103b95b2d82ea41915ee42.png",
+      "bytes": 52334,
+      "sha256": "4600a122d90f6e8c215cebae0a12dadd2621ab7582103b95b2d82ea41915ee42"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/462c56c7f630e943cc8f3f6d35528579983a424c89db851a01671f005a71e053.png",
+      "bytes": 6857,
+      "sha256": "462c56c7f630e943cc8f3f6d35528579983a424c89db851a01671f005a71e053"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/4774369e8692fc2a9144e460d3f030dd90d87b3b9a9ecd4a9b24bbfed635b7d8.png",
+      "bytes": 3229,
+      "sha256": "4774369e8692fc2a9144e460d3f030dd90d87b3b9a9ecd4a9b24bbfed635b7d8"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/47cfda1d1e1ba97cba71876a278016b3da42d516e98d6261e3367182e38c9847.png",
+      "bytes": 11892,
+      "sha256": "47cfda1d1e1ba97cba71876a278016b3da42d516e98d6261e3367182e38c9847"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/49a03bee42f47fb27f0e8c8be29a43d0e28ba88b59b9f4f20be3436b5ec39ae0.png",
+      "bytes": 9191,
+      "sha256": "49a03bee42f47fb27f0e8c8be29a43d0e28ba88b59b9f4f20be3436b5ec39ae0"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/4e2d8eedae031f4321716a3c3efcdea91fc18fbcc61346bdabe5490a3b05d5d2.png",
+      "bytes": 35236,
+      "sha256": "4e2d8eedae031f4321716a3c3efcdea91fc18fbcc61346bdabe5490a3b05d5d2"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/4e820163b3117a00b49e5a78abbed0d87167bd0a6ffd0c54b800a6e4f6f3524e.png",
+      "bytes": 15106,
+      "sha256": "4e820163b3117a00b49e5a78abbed0d87167bd0a6ffd0c54b800a6e4f6f3524e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/501d80b0a57f911bc1276c9d1989dc978047560dd48d9aaaba5b4ff3b674e8f4.png",
+      "bytes": 7853,
+      "sha256": "501d80b0a57f911bc1276c9d1989dc978047560dd48d9aaaba5b4ff3b674e8f4"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/509de08fca946e2423599ecac586ed71616b6aa022fa02ead7c120ba8782eef7.png",
+      "bytes": 44879,
+      "sha256": "509de08fca946e2423599ecac586ed71616b6aa022fa02ead7c120ba8782eef7"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/520a59aed3a39e495ebdecaa2278ea66899d56fa1ce694f83316db6cee7f2ff1.png",
+      "bytes": 15486,
+      "sha256": "520a59aed3a39e495ebdecaa2278ea66899d56fa1ce694f83316db6cee7f2ff1"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/55d63c2b443188bc2412b3eb3e026b5390124f326c04eb4587b1709bcab8c423.png",
+      "bytes": 58473,
+      "sha256": "55d63c2b443188bc2412b3eb3e026b5390124f326c04eb4587b1709bcab8c423"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/5ac1c3144a3c3d95c1c56f2b17e2ef91137f271665ce5d01082c9c62c5ecfef0.png",
+      "bytes": 61125,
+      "sha256": "5ac1c3144a3c3d95c1c56f2b17e2ef91137f271665ce5d01082c9c62c5ecfef0"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/5b3cf430d6a9105d7afba3c242e9155fbd5bc21c7b22bb8f0144d32913064525.png",
+      "bytes": 1665,
+      "sha256": "5b3cf430d6a9105d7afba3c242e9155fbd5bc21c7b22bb8f0144d32913064525"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/5cf8cfc764c5e8fa4dddb0322fdc09549f25ab9cbecfcb8f9f64e2afab5a3164.png",
+      "bytes": 77160,
+      "sha256": "5cf8cfc764c5e8fa4dddb0322fdc09549f25ab9cbecfcb8f9f64e2afab5a3164"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/5ee3229f9307867f3973c95e77a55ed6160875bd3c6234459722c1f8aebe1e7d.png",
+      "bytes": 11472,
+      "sha256": "5ee3229f9307867f3973c95e77a55ed6160875bd3c6234459722c1f8aebe1e7d"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/5f1eef46f24161cc1f56fde845fd8d3f04c2a3a5ca567987d75d020fd0dfdf83.png",
+      "bytes": 15312,
+      "sha256": "5f1eef46f24161cc1f56fde845fd8d3f04c2a3a5ca567987d75d020fd0dfdf83"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/60740919d8b4c58efdddf3132c58b4424696f76b4fa8f1eb2a6c01833ad08487.png",
+      "bytes": 33949,
+      "sha256": "60740919d8b4c58efdddf3132c58b4424696f76b4fa8f1eb2a6c01833ad08487"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/653b6b6606b8c5403a7c1ebc61d4b4d2d6bc25b482889710ff568a9e30b15b41.png",
+      "bytes": 55247,
+      "sha256": "653b6b6606b8c5403a7c1ebc61d4b4d2d6bc25b482889710ff568a9e30b15b41"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/65d276c4e23a5d9e08c7582cc7994724f2715c41cb22d339a6be8a6830a7c938.png",
+      "bytes": 4831,
+      "sha256": "65d276c4e23a5d9e08c7582cc7994724f2715c41cb22d339a6be8a6830a7c938"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/677e50a5230875d24d24fef25164c088b127dd9ef3074c0da05f8f4cf5d519dd.png",
+      "bytes": 4424,
+      "sha256": "677e50a5230875d24d24fef25164c088b127dd9ef3074c0da05f8f4cf5d519dd"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/67f8211af62e238f4454efc3d4b0a9f621f06827c9157188cc5561894489b36f.png",
+      "bytes": 2389,
+      "sha256": "67f8211af62e238f4454efc3d4b0a9f621f06827c9157188cc5561894489b36f"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/691a9220bd577baab7d17d933abb67622eacd56a93d33f24f55806833aedcaaf.png",
+      "bytes": 49089,
+      "sha256": "691a9220bd577baab7d17d933abb67622eacd56a93d33f24f55806833aedcaaf"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/69be97791c362e8ba9e48de0ea82bd67c232c92c3a6ab96e3b4bc296d0b01048.png",
+      "bytes": 38631,
+      "sha256": "69be97791c362e8ba9e48de0ea82bd67c232c92c3a6ab96e3b4bc296d0b01048"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/6ac80dc9c07219e20b7a4d6d173a6eb2a8ecaea4ab44ef1caeb9d0dda911ee61.png",
+      "bytes": 38704,
+      "sha256": "6ac80dc9c07219e20b7a4d6d173a6eb2a8ecaea4ab44ef1caeb9d0dda911ee61"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/6b71409be7de5e8ccd37a42bc2fb8b08711abb7371c1140daf993fb18de58783.png",
+      "bytes": 29448,
+      "sha256": "6b71409be7de5e8ccd37a42bc2fb8b08711abb7371c1140daf993fb18de58783"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/70809acbea0a843259bf16f3eb87700ca13d5fcb52a667855561570fdacde8bc.png",
+      "bytes": 82332,
+      "sha256": "70809acbea0a843259bf16f3eb87700ca13d5fcb52a667855561570fdacde8bc"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/7515cab3cae87ff9048c3e0927ca56976f3d3a963219a375f478a2d770df4350.png",
+      "bytes": 3748,
+      "sha256": "7515cab3cae87ff9048c3e0927ca56976f3d3a963219a375f478a2d770df4350"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/7a2d0ffe850a56930b868f2f002f638545565691793dbbbe11bc0f8d731fd05e.png",
+      "bytes": 8639,
+      "sha256": "7a2d0ffe850a56930b868f2f002f638545565691793dbbbe11bc0f8d731fd05e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/7bbfdafe77f02e18fd9dc3ba9fa463d548c19e21da8b87b7079b5fa9b8af005e.png",
+      "bytes": 54642,
+      "sha256": "7bbfdafe77f02e18fd9dc3ba9fa463d548c19e21da8b87b7079b5fa9b8af005e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/7ddfda06e18ee003b9b3e585279720931561c0932f3b94f776c347b318eda882.png",
+      "bytes": 7348,
+      "sha256": "7ddfda06e18ee003b9b3e585279720931561c0932f3b94f776c347b318eda882"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/7e994155821e28c9ec8b11a1ca6d41f26695e80f03aec6e26c74266fa422b891.png",
+      "bytes": 4765,
+      "sha256": "7e994155821e28c9ec8b11a1ca6d41f26695e80f03aec6e26c74266fa422b891"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/7f648bcd6e5b177b0322e9e9c14c707c6e2ea2d71c9e2d7e1aa70dc84929f668.png",
+      "bytes": 11803,
+      "sha256": "7f648bcd6e5b177b0322e9e9c14c707c6e2ea2d71c9e2d7e1aa70dc84929f668"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/7f69d78399e45e9697bdc2d32452493ba37546f8da967216e0d9566e6aab46ff.png",
+      "bytes": 11283,
+      "sha256": "7f69d78399e45e9697bdc2d32452493ba37546f8da967216e0d9566e6aab46ff"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/7fab4caf1da9a8cb78e6154caf9c77e1cae2c1018efb14b8bc8e9159758f1d03.png",
+      "bytes": 44433,
+      "sha256": "7fab4caf1da9a8cb78e6154caf9c77e1cae2c1018efb14b8bc8e9159758f1d03"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/80c42a5811cd4c7625304d5e190e2b794e172bfecb47fe7a4da2e2ece03fecd6.png",
+      "bytes": 15428,
+      "sha256": "80c42a5811cd4c7625304d5e190e2b794e172bfecb47fe7a4da2e2ece03fecd6"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/81d6ee4b726ac9e126504e75514418b7377033f9428e604863c743bfe1f41953.png",
+      "bytes": 1594,
+      "sha256": "81d6ee4b726ac9e126504e75514418b7377033f9428e604863c743bfe1f41953"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/83b163fda5ad7bc24fe3c555351a364c54ab426b67e9cb0902a43b03f5635f62.png",
+      "bytes": 60235,
+      "sha256": "83b163fda5ad7bc24fe3c555351a364c54ab426b67e9cb0902a43b03f5635f62"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/8e60b46732529aaf89ebb3d9f9f09cc220dbc2c2c008f35d9afa361e6807ec9f.png",
+      "bytes": 12989,
+      "sha256": "8e60b46732529aaf89ebb3d9f9f09cc220dbc2c2c008f35d9afa361e6807ec9f"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/904195190d1bb51028c6d536978e4e77f7da5a24f396236ba1e38f1b46f08519.png",
+      "bytes": 12528,
+      "sha256": "904195190d1bb51028c6d536978e4e77f7da5a24f396236ba1e38f1b46f08519"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/9068b5a8b28b89fc3dfde351d6858ee07682f76f786db00f8586e2416d825b45.png",
+      "bytes": 3211,
+      "sha256": "9068b5a8b28b89fc3dfde351d6858ee07682f76f786db00f8586e2416d825b45"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/945656877f9ef69c645c67c061d5fc3f9b21a5047dc97d94c0acb4126b29f538.png",
+      "bytes": 103686,
+      "sha256": "945656877f9ef69c645c67c061d5fc3f9b21a5047dc97d94c0acb4126b29f538"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/962f75d55cda975d2f226bf7e84e19301cc1033e7c8bf9199eb09836b482d40f.png",
+      "bytes": 8270,
+      "sha256": "962f75d55cda975d2f226bf7e84e19301cc1033e7c8bf9199eb09836b482d40f"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/97d51aa81ea41a7a89d45ff2d8147a21572fe0f0bd8871cc890c2d0af388c747.png",
+      "bytes": 104450,
+      "sha256": "97d51aa81ea41a7a89d45ff2d8147a21572fe0f0bd8871cc890c2d0af388c747"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/99eb4eb34972be3d86576b1323133bb9430a263c7d57b881adc63b1a11444acf.png",
+      "bytes": 3141,
+      "sha256": "99eb4eb34972be3d86576b1323133bb9430a263c7d57b881adc63b1a11444acf"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/9b237aebba32098cc20785ae54593bc3a7e5fc331f744887925165437e24c9e0.png",
+      "bytes": 1649,
+      "sha256": "9b237aebba32098cc20785ae54593bc3a7e5fc331f744887925165437e24c9e0"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/9f157418cab0e229d81b774e2386069585dd8914433c57e9de7b58b2434218bc.png",
+      "bytes": 15780,
+      "sha256": "9f157418cab0e229d81b774e2386069585dd8914433c57e9de7b58b2434218bc"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/9f69ca57f0fd3c690208eef9852fe698e62b985d52af43d1642b5a2788ea751b.png",
+      "bytes": 17084,
+      "sha256": "9f69ca57f0fd3c690208eef9852fe698e62b985d52af43d1642b5a2788ea751b"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/aec5193abe7e482dfd83a9f20e3813490766a0b78eea54d060fadf00f811316c.png",
+      "bytes": 30842,
+      "sha256": "aec5193abe7e482dfd83a9f20e3813490766a0b78eea54d060fadf00f811316c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/b6c7f11f7b7944db4357b1b3ae4220ae2e89ae10c073ef276f90fd60ad5c4cda.png",
+      "bytes": 3132,
+      "sha256": "b6c7f11f7b7944db4357b1b3ae4220ae2e89ae10c073ef276f90fd60ad5c4cda"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/b6f9f69a31d3c314113612fae988f06ecfca83a40c413bb4350b05109a4ce1f0.png",
+      "bytes": 84530,
+      "sha256": "b6f9f69a31d3c314113612fae988f06ecfca83a40c413bb4350b05109a4ce1f0"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/bc3a93e6d6fd98e9b47d7236d7bbdb85c6b67b122719af521fcf87005e4a2cb0.png",
+      "bytes": 4118,
+      "sha256": "bc3a93e6d6fd98e9b47d7236d7bbdb85c6b67b122719af521fcf87005e4a2cb0"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/bd410ef931bac22aa81d2dd238289a50d9536bf7432c4c7c35a37cfe2935b7d1.png",
+      "bytes": 7588,
+      "sha256": "bd410ef931bac22aa81d2dd238289a50d9536bf7432c4c7c35a37cfe2935b7d1"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/be3424f4192a3a568240b87edf331d71a7e5cd80ef754fa00ffdc8082030c440.png",
+      "bytes": 11609,
+      "sha256": "be3424f4192a3a568240b87edf331d71a7e5cd80ef754fa00ffdc8082030c440"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/bfc845d60d7953362c8bf077eeebc96bd0a787707270b769de27ac44b9a7ae27.png",
+      "bytes": 37964,
+      "sha256": "bfc845d60d7953362c8bf077eeebc96bd0a787707270b769de27ac44b9a7ae27"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/c5548fb98d20a745c5dd1f7235210b71f1b603040a5fe101277cd0013b5fe049.png",
+      "bytes": 3292,
+      "sha256": "c5548fb98d20a745c5dd1f7235210b71f1b603040a5fe101277cd0013b5fe049"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/c5c4783224fa3801a3e332938cdf17b00ad3b2df793019b7dbe8aafc5a85b1c7.png",
+      "bytes": 43522,
+      "sha256": "c5c4783224fa3801a3e332938cdf17b00ad3b2df793019b7dbe8aafc5a85b1c7"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/c7970901dadb5066a30349a86a3f2a42b51aefd26b2d6b2d90528596709a970e.png",
+      "bytes": 46264,
+      "sha256": "c7970901dadb5066a30349a86a3f2a42b51aefd26b2d6b2d90528596709a970e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/c8cb591f37041f42fe1e8148886d46fea7262e0cb9f77a089519cb58ffab5e8c.png",
+      "bytes": 11843,
+      "sha256": "c8cb591f37041f42fe1e8148886d46fea7262e0cb9f77a089519cb58ffab5e8c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/c981ccac8874849adce4dfb31763c68003ccb6f6db438d25ea429093376e0f4c.png",
+      "bytes": 1872,
+      "sha256": "c981ccac8874849adce4dfb31763c68003ccb6f6db438d25ea429093376e0f4c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/c9a490fad329c505f1e4b5c3f1e0f31d8bf5fd80ff808c26759516330b68e6d2.png",
+      "bytes": 17084,
+      "sha256": "c9a490fad329c505f1e4b5c3f1e0f31d8bf5fd80ff808c26759516330b68e6d2"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/cb5867016652eaa246ab7cf31642188f277800c0366b3f83e3d3154d4a2e5590.png",
+      "bytes": 6779,
+      "sha256": "cb5867016652eaa246ab7cf31642188f277800c0366b3f83e3d3154d4a2e5590"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/cc0e0121ab13440f504bda2da831d3862107ca5111b15e745e7dac83b7564550.png",
+      "bytes": 71744,
+      "sha256": "cc0e0121ab13440f504bda2da831d3862107ca5111b15e745e7dac83b7564550"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/d138ff4db0e3d5de91026977ca40f9288403b03e05628d68cf2bbfd1b52f3dbb.png",
+      "bytes": 46084,
+      "sha256": "d138ff4db0e3d5de91026977ca40f9288403b03e05628d68cf2bbfd1b52f3dbb"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/d30246cf1a20f7d0f6b095ff1d194c637840f7285a55df01c7297191646f4713.png",
+      "bytes": 4623,
+      "sha256": "d30246cf1a20f7d0f6b095ff1d194c637840f7285a55df01c7297191646f4713"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/d3d8848ffc1a0c01f3f728713e2d2374af93d30ae90e33757c2ee991a92a3d5a.png",
+      "bytes": 45225,
+      "sha256": "d3d8848ffc1a0c01f3f728713e2d2374af93d30ae90e33757c2ee991a92a3d5a"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/d92004e5ccea0d34ec74f35e45b7c8afe9ac74c3fc25dc265e84d823d95ca1a7.png",
+      "bytes": 1699,
+      "sha256": "d92004e5ccea0d34ec74f35e45b7c8afe9ac74c3fc25dc265e84d823d95ca1a7"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/dc20f8bce01143fde8db6030cf26fd8efefd9f0b148e559331b465435068a95c.png",
+      "bytes": 32854,
+      "sha256": "dc20f8bce01143fde8db6030cf26fd8efefd9f0b148e559331b465435068a95c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/dd5463ca1cd9a8e378e0ce517b1188c40377876fc575ae97a04d20e686b428f0.png",
+      "bytes": 71990,
+      "sha256": "dd5463ca1cd9a8e378e0ce517b1188c40377876fc575ae97a04d20e686b428f0"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/debd9b5588db30cb4f560920050fa1b363fb7a225cd1ca79f203b4890b56e291.png",
+      "bytes": 50774,
+      "sha256": "debd9b5588db30cb4f560920050fa1b363fb7a225cd1ca79f203b4890b56e291"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/e1c603f1c0599c0678933569fdcfd89472a16f3f2d85707afd6d965dc15873ba.png",
+      "bytes": 31217,
+      "sha256": "e1c603f1c0599c0678933569fdcfd89472a16f3f2d85707afd6d965dc15873ba"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/e1da34709ee50f178eb61f23713ed26b21e67417ab6ae899a1b831c4f64ed384.png",
+      "bytes": 7210,
+      "sha256": "e1da34709ee50f178eb61f23713ed26b21e67417ab6ae899a1b831c4f64ed384"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/e3ecac0c3d1e4b5b92d0d40a420efc787bfa5d5d3496da5b41ab6253c4b4cd25.png",
+      "bytes": 3236,
+      "sha256": "e3ecac0c3d1e4b5b92d0d40a420efc787bfa5d5d3496da5b41ab6253c4b4cd25"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/e52d42a649d5e293f8375bfa5478eb20e9f6285c28d21155f7f7bb26bba58c0e.png",
+      "bytes": 4833,
+      "sha256": "e52d42a649d5e293f8375bfa5478eb20e9f6285c28d21155f7f7bb26bba58c0e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/e9fa5c10ec6b357b2a2a09218250c1c887dc229625dacb60e373e6b8e523a1ba.png",
+      "bytes": 38284,
+      "sha256": "e9fa5c10ec6b357b2a2a09218250c1c887dc229625dacb60e373e6b8e523a1ba"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/ec036b8501b4e9df56948489a6c87de1f01ca28d7a66eeafa22d9dcf7971a05e.png",
+      "bytes": 30358,
+      "sha256": "ec036b8501b4e9df56948489a6c87de1f01ca28d7a66eeafa22d9dcf7971a05e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/eeea6f7295d676ae858cb214c02233edd1f371cbc556ce4232f923126478bdf9.png",
+      "bytes": 88711,
+      "sha256": "eeea6f7295d676ae858cb214c02233edd1f371cbc556ce4232f923126478bdf9"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/f0f7bcc1e37b9600d19bd582d930dcecfee2d566ea97cd87209b430fcd6ca6eb.png",
+      "bytes": 11582,
+      "sha256": "f0f7bcc1e37b9600d19bd582d930dcecfee2d566ea97cd87209b430fcd6ca6eb"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/f1d6fd7217974a91c14c5218e6f7b91ea2791cae32109a2094bc038d54c230d4.png",
+      "bytes": 11370,
+      "sha256": "f1d6fd7217974a91c14c5218e6f7b91ea2791cae32109a2094bc038d54c230d4"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/f2d30aa6c7f117c21fdc73e5681e1a891ee01dd60fb17d3151d45a1de135efd5.png",
+      "bytes": 76715,
+      "sha256": "f2d30aa6c7f117c21fdc73e5681e1a891ee01dd60fb17d3151d45a1de135efd5"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/f66e2eaf56fad00519f14009b8c0bfeaabe588d82647a1b1e29292da54db69fc.png",
+      "bytes": 44859,
+      "sha256": "f66e2eaf56fad00519f14009b8c0bfeaabe588d82647a1b1e29292da54db69fc"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/f7ca7eaa5f29877a30e8798d6983887cb46ad2b62787451a62ea816553c1daa7.png",
+      "bytes": 7881,
+      "sha256": "f7ca7eaa5f29877a30e8798d6983887cb46ad2b62787451a62ea816553c1daa7"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/f7e7048f4faca1cf063174748a46a58eb5ed89aaafc93a51f7dcd0023baeb977.png",
+      "bytes": 4996,
+      "sha256": "f7e7048f4faca1cf063174748a46a58eb5ed89aaafc93a51f7dcd0023baeb977"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/fb41910bdffe0a98664208d5529e7f6db6cdb5d39c389cbb237bdb75e7a7c471.png",
+      "bytes": 13299,
+      "sha256": "fb41910bdffe0a98664208d5529e7f6db6cdb5d39c389cbb237bdb75e7a7c471"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/ffe38178f9ad8c5ef08d52e01846678080b4de6fba69e3f3dc9db4b447d630ee.png",
+      "bytes": 7661,
+      "sha256": "ffe38178f9ad8c5ef08d52e01846678080b4de6fba69e3f3dc9db4b447d630ee"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual/screens/fff1a97dad72b39f7a0caebd25cd5a758ebf1344b008beccdaca283aaa4231b1.png",
+      "bytes": 4346,
+      "sha256": "fff1a97dad72b39f7a0caebd25cd5a758ebf1344b008beccdaca283aaa4231b1"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual-process.log",
+      "bytes": 177,
+      "sha256": "7581ee17051750f81299bb47d11e9acc847a4d287dc582291059aacd97324c51"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/actual-terminal.json",
+      "bytes": 659,
+      "sha256": "ef178b240789d85cfdfd78dc9b46ecb8b485f7b85a30fd08b9b859ea2224fad4"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/contact-1280-fixed_projection.png",
+      "bytes": 175797,
+      "sha256": "2f9315cf146a9a7aae55e70375bf7efefb05d78043e0b6f2840acd5c2801a6d6"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/contact-1280-orbit.png",
+      "bytes": 312515,
+      "sha256": "bf85e6d68b391529cc18522c954a843459e36b43a7360c4a68a8d34845dc5c54"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/contact-1280-side.png",
+      "bytes": 154402,
+      "sha256": "ed6d88a49548a1163580b46af57cb80e54cfefba0cc502f9a06baaf2bf054aec"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/contact-1280-top.png",
+      "bytes": 276751,
+      "sha256": "a13788f323750ba74714872fbf7b8382fd4a1bd460a0ca0b0581499d0a568c07"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/contact-320-fixed_projection.png",
+      "bytes": 141970,
+      "sha256": "f3132d2f024129859a55bfa79bcb09437a4222d97d9f3d22ad70f833853fa6d8"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/contact-320-orbit.png",
+      "bytes": 217627,
+      "sha256": "10a87c7baab2895fae4c6ab222ef6b81592638fd602c42b4e32c05a0c15969b2"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/contact-320-side.png",
+      "bytes": 131766,
+      "sha256": "f5cc91addf06e732b074d04bf05431025d428f14fe1c6e5b400e7d47337d5c43"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/contact-320-top.png",
+      "bytes": 229280,
+      "sha256": "f9600d34c85aca5f6f10914b35a12c5020b83c561828c124c22b221bec5469cc"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/info.json",
+      "bytes": 654,
+      "sha256": "96193a2e892cce8c362983dc3d684f9b50bcd5ceb1e07552d427e3a24b721984"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/prepared.json",
+      "bytes": 77484,
+      "sha256": "b9fdeb0fc62bb444d4279e41ebf715dd857dfd7119176a2c5bfc2bf96ff8fb0e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112/technical-summary.json",
+      "bytes": 1892,
+      "sha256": "5ebd94907a2de71f601a52e1fb968da4089bbf6b2827b80be4be0030afea88ca"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/controls-112-request.json",
+      "bytes": 713,
+      "sha256": "eb5063d04405de7783b4bb0ebdf23c83cdce692e737a6b80bff7ef02798823ef"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/06bf34f095c2e9264dac452507cddadbab99f89fb15167d86b5c734dffce62fd.json",
+      "bytes": 15254,
+      "sha256": "e304f5f524bfc2777c1cfdf563b2f53351b621ca0492ec338d421bc8fbfc89a3"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/0a3fa16223b56f5bf673de6f6196957590678ab2afad955e0d29e441bcb1b9e2.json",
+      "bytes": 3293,
+      "sha256": "8d95437170c343449a24860fe59686ab87906292e9bb99098c08d67fd0b1f0c0"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/0ae3c9569de0a29ff5f394f1cddad6625e593e8a9e1cd80eb851763f20b01df1.json",
+      "bytes": 15165,
+      "sha256": "fae9ab19ded4ade2617834bf4964016b6959db97cd32988cc02f84eda0fc3402"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/0e23ac2ef400f7709c63a1b1135af7a1fe603eb6c48c5ed42bc35673734a5661.json",
+      "bytes": 15567,
+      "sha256": "22c6bc859ace1f90f83601cfe5d69410860c2636e8590d7bbc098edcb15e2705"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/19e8485e3667881890e3fa9b54e3139af43a3844054b4b9d87247c94cfd66778.json",
+      "bytes": 7976,
+      "sha256": "ea1028cca02e67e8686df9ffcaefd82819ded8ceed1c6e314f1db2ad28fcd12f"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/1a1e67e93dacf605513c673dfa5ac4d1c6c2ac3564ec453a32ee108fc70e0345.json",
+      "bytes": 15705,
+      "sha256": "f1baddf0a4a0c8a7ac7411daff77320e97da9ae9001f8f201dff9b8e4e6cdc04"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/1c8a63cb0ef0a003b456d9fcf2c7519f574663d26baf3aa48fbd80f6ec12f2fd.json",
+      "bytes": 14972,
+      "sha256": "e6652596bc0f504604acf86c00c8c4ba660bf46826a272beb0277545f3fc63b9"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/1d407bec47d9bc91be04419c6cff25aaf57d85c33adf962c3e2ea2c277e6551e.json",
+      "bytes": 15261,
+      "sha256": "2b6f48c18f85fe24c0c9a3fad823cd335aa6b19d4531882106a3d09a64f0de5c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/223a17a874c7e0bb77ab3d8ed73b88f444c1e5caad0fabade2f631b7699c3569.json",
+      "bytes": 15675,
+      "sha256": "0d2d356356d75fcc0b0e6dbc97d246895ce3739efe6c2a5c3ef7f9a7d7b92af2"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/24dc9c6949c588ed0ef07fc2ca4f67ec344c43a93fb09d7f9db70e24dc9c71af.json",
+      "bytes": 3272,
+      "sha256": "8de4945ac4ae97465a2f051cefa5ee88f13266aef944ec22ee6d77209a35cae1"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/273ec8b6777b888c62ee8fb980743ff0009caae707565d1da9e3657b3bce105d.json",
+      "bytes": 15605,
+      "sha256": "9ca02832807343b1a74336b73e21aa0cb3333e30a67e058fde93b914c34e8136"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/27945c4d11779d15d5e20611524aee41895009b5f26642e30aa8486dfd4d8a75.json",
+      "bytes": 7925,
+      "sha256": "413d341ed46ae7d3952398ba8aecbdd69ae1f5e591ba4f8dc62e031fa9e5b82e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/29cfc81e73ed3a4dab052701581a6e7e91123de3d1ade30d574a3349e431d0ed.json",
+      "bytes": 7929,
+      "sha256": "93428965582369edcdbe1db173c0c250261091ad219aff39ac434ebc1697c71f"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/2e161c4a1777c3356d1e69b3d7cb36018cccdf4736c40581fa7840aff9559c9c.json",
+      "bytes": 15732,
+      "sha256": "f4222e576638e06a53aa8576c61a09b5e7c1e87f8b830dbeb9e4b0b69c40d22d"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/3086de8432288039a2e699b2a57a9761d398ebbff6d345daab7e7af222022028.json",
+      "bytes": 14998,
+      "sha256": "c9e4d6d5c71e1f6eebb24100985fdb847a7644cc3869d64b111b582e1a38d3dd"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/335f0d157cf3f33e2c9e95854b76abde89b0ab6909a6c3ff17e41ddd00087c19.json",
+      "bytes": 7894,
+      "sha256": "f1fa2d1c9ea2e30b0bb977f045f74a4532eca7a55384c0c9858577cb55c5929e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/35b9801771e487e9c06c474b9c6910fd137b209a0f6b91f7911eaf2edeef13f8.json",
+      "bytes": 7832,
+      "sha256": "4d3ec0a1ad379a8574c2108e9a92d505ee1d69032cdb73a9394544cb9fa2ae97"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/38c0c7fffb116a46a0d0b3ef8dfd282b5851e8c09d071045c6a8cff51a85e31a.json",
+      "bytes": 15670,
+      "sha256": "8a4bac6aa53c38b3748cca3eb8412f4c923765ebd11c75dd99b4d21064301fb0"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/3d49d6fc37644a35f903bc0dac5e81e67e30e9e17b5cdf84b856208f78ee4adf.json",
+      "bytes": 7919,
+      "sha256": "9907c3c871e424e22a6e28f0e2282e4901f154cc5159a2d37db183cd507c5d9c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/3d87993f3661f4f1f25933b6fb928dbe15292035a6f199ce45bd415121f2e411.json",
+      "bytes": 15157,
+      "sha256": "16f0293c3f039ac0edde8c5b8711835dfb81d8ffdf801fc7823836d1fcfdfef5"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/3da78ea4291a71c4ad8ad6bc4b041793da9e9f0543438d5719e4f48fab78e469.json",
+      "bytes": 15712,
+      "sha256": "5ea62dddf8b6d14fdcd36ad95437a923473d9979b930ac77e6aea5c801bc07b0"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/42873f9df5ea34a17af63b8454e74b634efb952c93ec698909e22f8535998c79.json",
+      "bytes": 7973,
+      "sha256": "0c540f75f9c4d8e1cf43b72935b5b8991195a9177cbcd9160b571f37f8fb631b"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/471b6ecbfbe9f90706d3bf502982cce9344da54d9a146bdbf6bd71acdc289cd1.json",
+      "bytes": 3268,
+      "sha256": "3d51d03ac9de1735997e57577101320d5e373ca12c6e2d229700685f8693da84"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/48a3fc381f427b50ce499b3d13677f8503c4ee1d836690c872e034f1865a7966.json",
+      "bytes": 3272,
+      "sha256": "77bbb6522633750fa6496a35c22467b288d0d19579556f0f38ee5f17efe154a4"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/533ca1da1e71592dc646f3fa7076686e1d1228017c852b4b8ddb36aabcdb988e.json",
+      "bytes": 15235,
+      "sha256": "b89c322c8552fd90ba3e4163d345525a9ebfc84a5de1c35114f848f97aca56ff"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/54f65799573b7c380dc3f05b33f32f739aa78bcf7be350d78ba3d9506d3cfd6c.json",
+      "bytes": 15270,
+      "sha256": "dd6cf4923f0496d328731f200535c439e78c54f97d5d5e54f0ad5fb7cb264929"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/659a1ca8ee447107011fed8e93c7ec1a33e5547c73d9d0b5133593d825790540.json",
+      "bytes": 15203,
+      "sha256": "8e5b1e1841434ec56a2b2f3901d706b0734d2fd54719508855574d5da48e6a93"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/66fd69e749a0567f3381d23d78d4c2e8090cca0b4beae011695493fb2b27f00f.json",
+      "bytes": 15496,
+      "sha256": "298acb13b22c55ef4211be65a8e487771c8e503f57dc885c08b2c602d35fbc21"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/6ab00676906c158198f3b5de65256545e407405a22a93b27dc9217265a9204f1.json",
+      "bytes": 15238,
+      "sha256": "06e4858546759078440ee3db746fa3db7bd6ffb83108a1b832fd78c4b32429e8"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/6b193c011aca855c525f7e08fe8a68cc73826c8b70a65be162dd5052ca4adf42.json",
+      "bytes": 15450,
+      "sha256": "02062be2126b8495aa6a33f5307f7a288255c2e693f020dd283e9e75d7073c33"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/6c6a5f72a01e9aa6e822892c459c061ab93c5456151115e82989b2b550f8d688.json",
+      "bytes": 7904,
+      "sha256": "d7f9860c7427333cc5bb3b40136a8ab66cc60c1c32a815bca0eb29a6d905df56"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/6ea7e3da5a893b1fe4fd8d8e808726a9b2ea3273b6fe7205d2ec4561eda3d6b3.json",
+      "bytes": 7983,
+      "sha256": "4af9bc9a0301ac16dd290d5014844a34b9dd55d03368b79802a82ca8c28b95f2"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/74a6661da9b48325802835849e22a04f62bb33c596ea926e67441ca07c554efc.json",
+      "bytes": 15197,
+      "sha256": "81e8b9ad51f94ad3869a436b1d183b055b1cd4ce345bf0bc8ec5aa6b8fa27a4c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/77b227e3c0ffc22eb1e74baf01f36aacd8628b9c760d3d98adf93b09df58f46f.json",
+      "bytes": 7986,
+      "sha256": "634721634c075a8b96d516c48bab5c22dee1ae08c2051d8da0f0e5f54d024721"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/7ca1685a6144f878c1c94f4729f2a60e590303798f8aeb1fa415d2559553bea3.json",
+      "bytes": 15609,
+      "sha256": "f03731737f565babd3500dffbf8512287d65cb21b865b978fa127fcd987a9cff"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/7f5588dedac155ba17468e43816da02f0e9ae8b2f8ad988fd0ba2d066b37f33c.json",
+      "bytes": 7915,
+      "sha256": "3cb31c5bf368cfdaad5d79a2d1f7e229d70ac79e805e4d989a9a9d901c2552c1"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/833f0813be96245912436ca926cfaabf160d77c1f4f47745c5eda135702594a4.json",
+      "bytes": 15489,
+      "sha256": "46e247ba74afdb1140e49aa2934fec977f0c0e09fa458fbb4ee56f3ed447f69b"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/85e4e0170ae2932f50c17c5c80e77f5eb98ea764488a55a7adbe79d0759f2393.json",
+      "bytes": 7910,
+      "sha256": "1be3261edca3a909e7e5358223e5fd691916a09c76d379736fdf1982cf31fc02"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/878f9041c5109b22ae5df68b445e2e1ec505da506a75228fdef13a66d0292480.json",
+      "bytes": 14972,
+      "sha256": "b52ae261cf96a468d2219d6eee867b96b4a6c0ef0a6f923e2644b775dff7a1ff"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/89b8a6dee51a44e89b15928e3908d09837d2e1652d07d00a7e0f14c13ab2f739.json",
+      "bytes": 7979,
+      "sha256": "a9ef19240cebe9ae1caed835b3e26fff953e1f8fd2d769c5ce7f0a22c0f4c7aa"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/8dd484f9dc22b5c9a9283fc5f76ff178f8c30de7b420009baa1fea5531ce7c2a.json",
+      "bytes": 3270,
+      "sha256": "1a08a51d5f4d82c7e56efc0c62751508cafa40c4db6016ade1a2d58eb5c7c189"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/8ed327e9bcae729b491d587ffa857d351698f8126383d6576338bbc7711fc531.json",
+      "bytes": 15289,
+      "sha256": "ff2bc61e271b0a757c8c7fe2e10329ee09d1f16a9b752bc36f5df5ad71b1c50f"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/92ca4cbe8d7dba61b96a5978db9245a0b8c254322a1da838eb100709ee7f2ad6.json",
+      "bytes": 15454,
+      "sha256": "dd386ed4fe52e9cf4b131426bb56c26263701c12f899755dd7bcf30faa83828e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/930337faf7a2f7fbec84b3864dcd98e536314c34afe8d071e9c16e185ec69968.json",
+      "bytes": 15007,
+      "sha256": "445294622e67017c1fab9e6d86c22cd1695ce3d113bf93384a27a412213f5cd4"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/965ab7ea2eca48093a234359add8ccfab528d90963b79dc119c64d81d79b8828.json",
+      "bytes": 15229,
+      "sha256": "f406cf8b25316a04c048af7fb3f635a7dcb334718b258282327f3231894ea80a"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/9af7efbacf43945450d0c896f05cadb47455e78ddc57c0839f643268d284ebd6.json",
+      "bytes": 15280,
+      "sha256": "af131391a077bd8e5131eed30ac58ac69287285b8a111af74636afb8c30192d4"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/a688e828951aa1c4ea0a7abf2f55a4b5b86010df20b973f782f328e3cfb7ff91.json",
+      "bytes": 3270,
+      "sha256": "7e786ba07a3ef595f951821b29f9fdb6a85e04cb081c7bb9c387e192e07698cd"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/ab3210698ec6a7b0d848f08e7d5d7ecbe7e1aa27b530a89abaaebc630613b7df.json",
+      "bytes": 15637,
+      "sha256": "35ef8da592d41da94752bea2b276197d3524297520a003348779c7ccb63204ac"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/ac31275902f414cefda95250d09988d6ecff5567773d2d271102a9404fbd3a1e.json",
+      "bytes": 15036,
+      "sha256": "8e4b8d185f97224c8416242f3cd040542f2c75e677358263530966a59e395a32"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/b624bafc135fd79c42aa7e66ef42bf1f7233a69912430f32c967ff030970959a.json",
+      "bytes": 15010,
+      "sha256": "0a6e019b87f7846d5b1d05250fac3e38d1cf51a33995a17772348f5a6605f34f"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/b6a9f5fcf98480c942f880f5525a3aa02414fd3e51ed80f8ae71899ead521873.json",
+      "bytes": 7920,
+      "sha256": "77cb74f92dd03fed9196f882261b924a18e74281ed981c6f41d0e7e3790199ea"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/be300ea7f4cad4210fb86301b250190f26dc21f6b1f5e8a8d787884970cf28fe.json",
+      "bytes": 15093,
+      "sha256": "6d712f182b565e274e677be7764b4bb5a2319a6c75f2d220054f6111a0b9672d"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/c398c8d50d8af67fcc7a07224234f766e2d77bb4c33e99268ef67a0390c1d77f.json",
+      "bytes": 15602,
+      "sha256": "36303c466118a28a919b8b0184f487000b4e9d881c23bb737a29781637c98276"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/c8975f42042dc668b84aa2cda8bac88e28156a3e0fe4bfed21f78df26c1a3c13.json",
+      "bytes": 7822,
+      "sha256": "7392a863cb666d6ce8a43646f68ee31cfbdf745a7fdcd69553f0d3565893a4a1"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/c9c0fb074feec2178ee285a0febe6d750408b0b91120ab7ad6a5c16fe974b84f.json",
+      "bytes": 7969,
+      "sha256": "07db1ce103755178b3d316cc767eb32b5e3ec12ddd2ce1ede950e3d8b68c53cf"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/c9cc0f8338d73d675c090192773d8fe1c3489a27e39991213fc93b2c9d60ada1.json",
+      "bytes": 15690,
+      "sha256": "364519c4dec8a885c90222a94d7dedc2b65b33c5fe601abfc35f05f641146239"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/d166b6e9381e35e7fdad20048d4e5a8010aa912581200b6f4fb55ceeb0359e31.json",
+      "bytes": 15728,
+      "sha256": "0f8bc21fa7f5ec878f87a9d21ac6d5cc5a0e1df18afcf6a5439954af6b9d2641"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/d16d4faed8dcc0fd212a102f23a2a6973b448ff0b9d15e1d3f80c9a9a37bccfb.json",
+      "bytes": 15708,
+      "sha256": "8ff97a8eb880e19535d84f74b39aa24a13912820372818daa8a03961d6f36023"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/d4878f8b1ae1e25b4451e08beacc941b5b91bce489f2447300d0a2555e156c66.json",
+      "bytes": 15672,
+      "sha256": "c44515dee3d531c3f6d717027565b4e12219b2ac1cae6a95853da613d9f4e160"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/d8582c903072b29f7e3ea33abe20fdc6a50b5c24fcfa606350a8828c83e16139.json",
+      "bytes": 15679,
+      "sha256": "7e367b19de2cfbc626e612e1dc1e8253d2331be672f5d593e9ad269a55ba2160"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/dc7e8abbc7d08254f9c2b38f16bfc2887886cb7dcaf88e368def79f6da8ba017.json",
+      "bytes": 15131,
+      "sha256": "d7006d1ef7007eefb91ee915003e2e5db1a19b0c2786d2c0f09f613b95970ad3"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/df048ac554080bb1e03a552dc0357e3f9df5317c46b87804ac1301650f0b2a0f.json",
+      "bytes": 15216,
+      "sha256": "4c022871adbb18ef4204535c0b796ee0d4eff166981e731a1c1a145e77f307bd"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/dfbd398cf2af238f6b664bd594a66e7e2619d7a019f4a45c0edceb77bc81e1ff.json",
+      "bytes": 15492,
+      "sha256": "19f78a5d94c25d7943968cf70313361b7776dfc4d20af70e6a600d81751f252d"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/e04c913ce15cc28c17019451206bb741973df3ca7b5b1abf97b70829e3ca8189.json",
+      "bytes": 15408,
+      "sha256": "a41858aa5d88f1247c35f1af48a65b67038329a7c14f9910818f1b796a851059"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/e0d45f32812df9d9598e86b2e01b67e64a4e552d893808a7a591b5f007dad8d2.json",
+      "bytes": 15166,
+      "sha256": "efdd33a4f9e58c99207b804943eba570866e024ecc9d594df3844b8ebb084927"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/e2fe27b15119471f8e129705e21ef1bd09f49643fbb7059f1c4f84fc0458bfa1.json",
+      "bytes": 3268,
+      "sha256": "b956d6e63956318963f4dfe8e8805359ad7f3a4a9538cade5dc729e69967027f"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/f23235216bd8d7b96a51cc365241a1b6c31db85716d97d89c5d0e3ac7d02e1b8.json",
+      "bytes": 15725,
+      "sha256": "1373c7d9d4212e50d097740812cf9e9aed703ac2a244e59db488867102343a1a"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/f34a264a81c6ba895626dab25c26333be2b671976c957ea24b1fc6e6d7440ea7.json",
+      "bytes": 15045,
+      "sha256": "24f042566d7dac35d3954b97b8a19245eae78b3969dc6f6310244338417c7bda"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/f44ab4c91d0f0e9269849bb8007c1cf80d7e701e3324bafd9dfdfa60695a5db1.json",
+      "bytes": 15443,
+      "sha256": "1ac0725f9a6910890408cb4c03e9d15b8ff398fbf72c73e534bd0bdf293da684"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/f81ea391ec781104a2ff811e6ff866563bc1daa78180b30ec3022f0b33f84dd5.json",
+      "bytes": 15446,
+      "sha256": "224a6bdd1c54766ad4afc7522c081dea019bd6ad5d251182c5340c4d95c5c92e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/fa21ef49331b53bea4981e18cbcf60f6434559ddb9be94b9a6dd443a0c088a85.json",
+      "bytes": 3293,
+      "sha256": "651b121ffe8ccfb9bde6db8df445d4e592dee3112f354e6f92863294064919b8"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/cases/fa3e7ecdfe4e7e7c303f433cdfb839e3a96a0d209df2d8a0a3c49141f7b4cef6.json",
+      "bytes": 14934,
+      "sha256": "73d65964fd3360737a273911907620286957bab57b5b67bd691e861e92f28c23"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/completed-cases.jsonl",
+      "bytes": 16852,
+      "sha256": "f576a9c55aa2fcc53121ae19c4e471480ed1f54decaaeca8c43fba4d26858f92"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/report.json",
+      "bytes": 68009,
+      "sha256": "f92029f7e554197f8e78ef41ab521738c33b8c618c532b888c2de2a546ce6e3c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/026ddcc4f3b3f74105597771262f204cc984be1b4bba37f66c73565c8bbcc450.png",
+      "bytes": 5032,
+      "sha256": "026ddcc4f3b3f74105597771262f204cc984be1b4bba37f66c73565c8bbcc450"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/0717c3e905eb4ff3b9740f77b854eb0ee0018d34ef5cf08b40af29b69ef5eb6d.png",
+      "bytes": 46039,
+      "sha256": "0717c3e905eb4ff3b9740f77b854eb0ee0018d34ef5cf08b40af29b69ef5eb6d"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/0f5a40fb731f87825e501ad36a2c67d01165d52b41b03ffbef4e43c8ad07d9e5.png",
+      "bytes": 4618,
+      "sha256": "0f5a40fb731f87825e501ad36a2c67d01165d52b41b03ffbef4e43c8ad07d9e5"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/0fe4f74eb2aea26c399ce7cf84b7add76c8f9088e90133d5aea0594f7b4e0aa0.png",
+      "bytes": 12948,
+      "sha256": "0fe4f74eb2aea26c399ce7cf84b7add76c8f9088e90133d5aea0594f7b4e0aa0"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/1bd401f3a35b646fd38aefa290806c806e124418f86cee7258e23ca8b15d126f.png",
+      "bytes": 66564,
+      "sha256": "1bd401f3a35b646fd38aefa290806c806e124418f86cee7258e23ca8b15d126f"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/2a0217ac2d4255e902a67067669cd05ed96d952bffc70ae98323438b9f031559.png",
+      "bytes": 5192,
+      "sha256": "2a0217ac2d4255e902a67067669cd05ed96d952bffc70ae98323438b9f031559"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/2b7de35ff4100b93bf54d6389f44fafc42712e6f4a19d0ddc7d79a9b179df8a7.png",
+      "bytes": 13617,
+      "sha256": "2b7de35ff4100b93bf54d6389f44fafc42712e6f4a19d0ddc7d79a9b179df8a7"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/307fef762264cb4a14edd61e666a85dff0c0416a88408a3b0e0822d6d8518f0c.png",
+      "bytes": 4759,
+      "sha256": "307fef762264cb4a14edd61e666a85dff0c0416a88408a3b0e0822d6d8518f0c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/3547c2c051074d0e8e0053c9c6329a247456c1082a92cc97c4cc147b2a906286.png",
+      "bytes": 46019,
+      "sha256": "3547c2c051074d0e8e0053c9c6329a247456c1082a92cc97c4cc147b2a906286"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/39a5becb20499f27a01fb9c77d155a570ec93854226cbfeb35370f07d5a4d62e.png",
+      "bytes": 4931,
+      "sha256": "39a5becb20499f27a01fb9c77d155a570ec93854226cbfeb35370f07d5a4d62e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/3e360065287f2e58b03bf203b265d007ff2d23cd6ba8d683f8d46c2bc6d2d4d5.png",
+      "bytes": 4930,
+      "sha256": "3e360065287f2e58b03bf203b265d007ff2d23cd6ba8d683f8d46c2bc6d2d4d5"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/3e5363169090655038d79f6007e13770c4699123410fbaa5987661dd8f0629ce.png",
+      "bytes": 64004,
+      "sha256": "3e5363169090655038d79f6007e13770c4699123410fbaa5987661dd8f0629ce"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/4e1c08070081d72a2eb8f7357220bc1dbfcef0835ad4454d91dbc57ff04edf18.png",
+      "bytes": 14164,
+      "sha256": "4e1c08070081d72a2eb8f7357220bc1dbfcef0835ad4454d91dbc57ff04edf18"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/509de08fca946e2423599ecac586ed71616b6aa022fa02ead7c120ba8782eef7.png",
+      "bytes": 44879,
+      "sha256": "509de08fca946e2423599ecac586ed71616b6aa022fa02ead7c120ba8782eef7"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/54dcdfd2ba0203a1e2ff9ef7cf02244e543744ebb5b9a8fadf5bd28de6614126.png",
+      "bytes": 4830,
+      "sha256": "54dcdfd2ba0203a1e2ff9ef7cf02244e543744ebb5b9a8fadf5bd28de6614126"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/5ac1c3144a3c3d95c1c56f2b17e2ef91137f271665ce5d01082c9c62c5ecfef0.png",
+      "bytes": 61125,
+      "sha256": "5ac1c3144a3c3d95c1c56f2b17e2ef91137f271665ce5d01082c9c62c5ecfef0"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/5cf8cfc764c5e8fa4dddb0322fdc09549f25ab9cbecfcb8f9f64e2afab5a3164.png",
+      "bytes": 77160,
+      "sha256": "5cf8cfc764c5e8fa4dddb0322fdc09549f25ab9cbecfcb8f9f64e2afab5a3164"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/6753afc6cc850425943962bdfa7db4783cb4516149b36307cac1d5843a902daa.png",
+      "bytes": 11848,
+      "sha256": "6753afc6cc850425943962bdfa7db4783cb4516149b36307cac1d5843a902daa"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/79a8cc2e94929917fdfe13e925c3e17ea009975f51e5e816c58b4ee14b59abe9.png",
+      "bytes": 11826,
+      "sha256": "79a8cc2e94929917fdfe13e925c3e17ea009975f51e5e816c58b4ee14b59abe9"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/7e994155821e28c9ec8b11a1ca6d41f26695e80f03aec6e26c74266fa422b891.png",
+      "bytes": 4765,
+      "sha256": "7e994155821e28c9ec8b11a1ca6d41f26695e80f03aec6e26c74266fa422b891"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/7f648bcd6e5b177b0322e9e9c14c707c6e2ea2d71c9e2d7e1aa70dc84929f668.png",
+      "bytes": 11803,
+      "sha256": "7f648bcd6e5b177b0322e9e9c14c707c6e2ea2d71c9e2d7e1aa70dc84929f668"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/8123187ab675bedd237f4412d0a367d17e958c9ca1f966c019dbabc67c574991.png",
+      "bytes": 45084,
+      "sha256": "8123187ab675bedd237f4412d0a367d17e958c9ca1f966c019dbabc67c574991"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/8cdcb3d0d55c882640c1439304818c2f8062c81e4a1c3be6167ff0ae2322b1da.png",
+      "bytes": 46143,
+      "sha256": "8cdcb3d0d55c882640c1439304818c2f8062c81e4a1c3be6167ff0ae2322b1da"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/8e60b46732529aaf89ebb3d9f9f09cc220dbc2c2c008f35d9afa361e6807ec9f.png",
+      "bytes": 12989,
+      "sha256": "8e60b46732529aaf89ebb3d9f9f09cc220dbc2c2c008f35d9afa361e6807ec9f"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/945656877f9ef69c645c67c061d5fc3f9b21a5047dc97d94c0acb4126b29f538.png",
+      "bytes": 103686,
+      "sha256": "945656877f9ef69c645c67c061d5fc3f9b21a5047dc97d94c0acb4126b29f538"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/97d51aa81ea41a7a89d45ff2d8147a21572fe0f0bd8871cc890c2d0af388c747.png",
+      "bytes": 104450,
+      "sha256": "97d51aa81ea41a7a89d45ff2d8147a21572fe0f0bd8871cc890c2d0af388c747"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/9860b8702fa1c45668410c002bab7aea62446f8f40a440852ec4d332400ac9b2.png",
+      "bytes": 17231,
+      "sha256": "9860b8702fa1c45668410c002bab7aea62446f8f40a440852ec4d332400ac9b2"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/9f69ca57f0fd3c690208eef9852fe698e62b985d52af43d1642b5a2788ea751b.png",
+      "bytes": 17084,
+      "sha256": "9f69ca57f0fd3c690208eef9852fe698e62b985d52af43d1642b5a2788ea751b"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/a961c3588519a88f9dd7a80b950d92fe895b5f2dbaa2a58ccdb3d0cc5258a89f.png",
+      "bytes": 11572,
+      "sha256": "a961c3588519a88f9dd7a80b950d92fe895b5f2dbaa2a58ccdb3d0cc5258a89f"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/b44c6cea02d8e3743a406f73e717abc0edadd8d099f3ebdde0a8404ab783bbf6.png",
+      "bytes": 11934,
+      "sha256": "b44c6cea02d8e3743a406f73e717abc0edadd8d099f3ebdde0a8404ab783bbf6"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/b995c0e97783f285b8380752f6db43b10923547c2928341ab1ce0118ed80f17b.png",
+      "bytes": 46067,
+      "sha256": "b995c0e97783f285b8380752f6db43b10923547c2928341ab1ce0118ed80f17b"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/be3424f4192a3a568240b87edf331d71a7e5cd80ef754fa00ffdc8082030c440.png",
+      "bytes": 11609,
+      "sha256": "be3424f4192a3a568240b87edf331d71a7e5cd80ef754fa00ffdc8082030c440"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/c23811a745bf741ebf2bf2b34fbc1e452a40281149593bd5da5e20c394a3e641.png",
+      "bytes": 4992,
+      "sha256": "c23811a745bf741ebf2bf2b34fbc1e452a40281149593bd5da5e20c394a3e641"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/c8cb591f37041f42fe1e8148886d46fea7262e0cb9f77a089519cb58ffab5e8c.png",
+      "bytes": 11843,
+      "sha256": "c8cb591f37041f42fe1e8148886d46fea7262e0cb9f77a089519cb58ffab5e8c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/c9a490fad329c505f1e4b5c3f1e0f31d8bf5fd80ff808c26759516330b68e6d2.png",
+      "bytes": 17084,
+      "sha256": "c9a490fad329c505f1e4b5c3f1e0f31d8bf5fd80ff808c26759516330b68e6d2"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/caebc533595895590853c248b73b9f5676e241cb65dc48d29fc89320165a2aef.png",
+      "bytes": 11803,
+      "sha256": "caebc533595895590853c248b73b9f5676e241cb65dc48d29fc89320165a2aef"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/cc0e0121ab13440f504bda2da831d3862107ca5111b15e745e7dac83b7564550.png",
+      "bytes": 71744,
+      "sha256": "cc0e0121ab13440f504bda2da831d3862107ca5111b15e745e7dac83b7564550"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/d138ff4db0e3d5de91026977ca40f9288403b03e05628d68cf2bbfd1b52f3dbb.png",
+      "bytes": 46084,
+      "sha256": "d138ff4db0e3d5de91026977ca40f9288403b03e05628d68cf2bbfd1b52f3dbb"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/d30246cf1a20f7d0f6b095ff1d194c637840f7285a55df01c7297191646f4713.png",
+      "bytes": 4623,
+      "sha256": "d30246cf1a20f7d0f6b095ff1d194c637840f7285a55df01c7297191646f4713"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/d774a2da822e91c31dab7c9c8702e3b800aca69b7844c5678a6637e0a9385d45.png",
+      "bytes": 46964,
+      "sha256": "d774a2da822e91c31dab7c9c8702e3b800aca69b7844c5678a6637e0a9385d45"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/d7ba16af495685df00783aedb35d6b57d079ce6b9e57ed4866014a7d27e5baaf.png",
+      "bytes": 11347,
+      "sha256": "d7ba16af495685df00783aedb35d6b57d079ce6b9e57ed4866014a7d27e5baaf"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/dab7141d9da3250753a7ad4ea2cb92cb8ffd8f1a4390c98c9949ec0bad7ee007.png",
+      "bytes": 5055,
+      "sha256": "dab7141d9da3250753a7ad4ea2cb92cb8ffd8f1a4390c98c9949ec0bad7ee007"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/dbadd4ca2fc86b637a6fc1985945295bd3e0e3dca6ca344fef7ea7de57a08e40.png",
+      "bytes": 13256,
+      "sha256": "dbadd4ca2fc86b637a6fc1985945295bd3e0e3dca6ca344fef7ea7de57a08e40"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/dd5463ca1cd9a8e378e0ce517b1188c40377876fc575ae97a04d20e686b428f0.png",
+      "bytes": 71990,
+      "sha256": "dd5463ca1cd9a8e378e0ce517b1188c40377876fc575ae97a04d20e686b428f0"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/e1053de8fc52bb569be6434caa57bce9eb81ba707ef3fb077282b8ba12016e3c.png",
+      "bytes": 45017,
+      "sha256": "e1053de8fc52bb569be6434caa57bce9eb81ba707ef3fb077282b8ba12016e3c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/f1d6fd7217974a91c14c5218e6f7b91ea2791cae32109a2094bc038d54c230d4.png",
+      "bytes": 11370,
+      "sha256": "f1d6fd7217974a91c14c5218e6f7b91ea2791cae32109a2094bc038d54c230d4"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/f47a43bb2ed2a99ebb1834ad65289366bd9a08dfaa0a813481a227113deaa943.png",
+      "bytes": 12132,
+      "sha256": "f47a43bb2ed2a99ebb1834ad65289366bd9a08dfaa0a813481a227113deaa943"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/f66e2eaf56fad00519f14009b8c0bfeaabe588d82647a1b1e29292da54db69fc.png",
+      "bytes": 44859,
+      "sha256": "f66e2eaf56fad00519f14009b8c0bfeaabe588d82647a1b1e29292da54db69fc"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/f7e7048f4faca1cf063174748a46a58eb5ed89aaafc93a51f7dcd0023baeb977.png",
+      "bytes": 4996,
+      "sha256": "f7e7048f4faca1cf063174748a46a58eb5ed89aaafc93a51f7dcd0023baeb977"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/fb41910bdffe0a98664208d5529e7f6db6cdb5d39c389cbb237bdb75e7a7c471.png",
+      "bytes": 13299,
+      "sha256": "fb41910bdffe0a98664208d5529e7f6db6cdb5d39c389cbb237bdb75e7a7c471"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/fbbedacbef323fbaef76e6936b7a496abcd714374c1bd2ca74f72126e919d0c4.png",
+      "bytes": 11581,
+      "sha256": "fbbedacbef323fbaef76e6936b7a496abcd714374c1bd2ca74f72126e919d0c4"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual/screens/fddd9ed48e8be736ed227efb93591af522b89feaeb91e0186128faf5eb710b0a.png",
+      "bytes": 17099,
+      "sha256": "fddd9ed48e8be736ed227efb93591af522b89feaeb91e0186128faf5eb710b0a"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual-process.log",
+      "bytes": 86,
+      "sha256": "2ec4ab25ef2705806cc57861a24b5f5f6c145b187f81ed0550034c8ca16769ab"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/actual-terminal.json",
+      "bytes": 664,
+      "sha256": "c96dbd339186da19a8c9ea8aeef3eb44684b826a4520b161cd2234402d6db200"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/contact-1280-fixed_projection.png",
+      "bytes": 76908,
+      "sha256": "4f4555a08a0658eafab00217f1092c337080fd0b97e2ba39341d70ef4d83d52e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/contact-1280-orbit.png",
+      "bytes": 158457,
+      "sha256": "7c7cd5d18f5f74b64f5a3b187604dba447dbb619cfd29086a4499d4b157f460a"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/contact-1280-side.png",
+      "bytes": 80456,
+      "sha256": "6c89df46310fe2280c4b51fd6b8973fb1a2097bfc0533d84646a3157f545b33d"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/contact-1280-top.png",
+      "bytes": 134582,
+      "sha256": "7a921d0c04b6e068f74bd1cfdeec4f81d2fa5cdb6d1a60e32911e2d66b666ddd"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/contact-320-fixed_projection.png",
+      "bytes": 64377,
+      "sha256": "90ac9d866a0ebc3fd5a9409bf0698a30e0e87321f35766485e4e489752ce5b55"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/contact-320-orbit.png",
+      "bytes": 110507,
+      "sha256": "bdc1229076a0b5af604c0c0199e7b8eb0b3a4694c595e9755d564132d1b60ff5"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/contact-320-side.png",
+      "bytes": 66372,
+      "sha256": "7fa571599f543996b07769ca3a02c81956d7e01b88707e389273a1b4183a00c1"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/contact-320-top.png",
+      "bytes": 113791,
+      "sha256": "2e3caaf6048a948ec3131d99ecdfed807c8ed5ea661661decf56d1da3f5b6206"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/info.json",
+      "bytes": 668,
+      "sha256": "ab588d1e968fb7a49f69b49578f77683004e18b1651657c12fd707a359d8c66b"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/prepared.json",
+      "bytes": 66483,
+      "sha256": "2f7862a3599cebc37da84a681c2bd130120d4bbdadebba85f3419216a78ce1d9"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72/technical-summary.json",
+      "bytes": 1880,
+      "sha256": "2c07fa6a850c25c69e52c30eb92d65b96b3c115b2849a94f9ae660827773966d"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/convection-clock-72-request.json",
+      "bytes": 720,
+      "sha256": "43827262a9a0c1e04ca3d026ef4f7e3bf8c89bf117df882fd9ee39bd88647746"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/final-science-handoff.json",
+      "bytes": 91507,
+      "sha256": "6da22d1280a2dd66f3270d94b012b48776a7257fc972f2357cfaa90a16ce33e1"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/independent-oracle.py",
+      "bytes": 3564,
+      "sha256": "5ba505a23a05dc93c718489a604c306adcf8f474137449167be07bb6425e4894"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/independent-preliminary-delta-review.json",
+      "bytes": 786,
+      "sha256": "9d1fd36136e4d45fea1020977de2c3bd3f394d35328d7933dab6caf50a7e5e50"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/independent-scientific-review.json",
+      "bytes": 8481,
+      "sha256": "8c8d97cc68145d09f282394b88a26bbef93c21c81b4c11f1d7320a853d38abb1"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/independent-visual-review.json",
+      "bytes": 3685,
+      "sha256": "a7b5a95d27fc5d898b5c6d755c38b9946ee9bf14e0ae439c371241d42fce40ce"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/inputs/experiment-c3-heat-exchange-reading-20261127-bindings.json",
+      "bytes": 1005,
+      "sha256": "9c90a8b19a04cc9e866def0f278510950dc391641d7ff82bd5cf23a7d1c7ae46"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/inputs/experiment-c3-heat-exchange-reading-20261127.json",
+      "bytes": 9382,
+      "sha256": "59ced7b0c3a789667477731d46a39c3d5f2dde79484047af257c95f2a74636a8"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/neutral-controls-and-clock-primary-extension.json",
+      "bytes": 5657,
+      "sha256": "16d3b69eaf499476d3d60c18e90bf48c89a48a11c65e8edf9f26199bc99007fe"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/observe-consumer.mjs",
+      "bytes": 2183,
+      "sha256": "f4942f9db4ddc5741bd3eba1de4bafb585de80cf7f1b4225b0240271f588d096"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/original-task-input-only-reconciliation.json",
+      "bytes": 1425,
+      "sha256": "099d2176fc19751eff267363420a9d0e415fb840da11d2927e41634b635a6026"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/pre-browser-plan-handoff.json",
+      "bytes": 3565,
+      "sha256": "85f94df5deafc05dc668915678e822aa271115eb9e10578d6f5088709c370111"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/previous-7ee9-legende.js.txt",
+      "bytes": 17830,
+      "sha256": "d89bf8aa5b5050d9fd5789524f58e86c92d919b97cbd38923d8ad1f9a65488a6"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/run-bounded.py",
+      "bytes": 3863,
+      "sha256": "84d01a8e316e3fb7d23597a7af78254c09989957e128186f5c887a4d4f6f5294"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/run-current-CPU.py",
+      "bytes": 2387,
+      "sha256": "5656fd0467e88c03cca00404983b27df667ccd654e89324d76132b499b86df39"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/source-C3-5d.json",
+      "bytes": 45385,
+      "sha256": "2738799d5195ca5eda77c4dce1cdc79f708237e5660bb9cabcc7fac4f80ea3ff"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/source-primary.json",
+      "bytes": 6197,
+      "sha256": "582d7987da9640695396f371ee48e9b076be9a8b89e445f94a1285a14893107d"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-heat-exchange-final-3c17-20261127/test_actual184.py",
+      "bytes": 5288,
+      "sha256": "26eb84570ebc5e24c63ed17df7ae8c8df3381cbca2fec1ff5aa92fcb6cf3d5f0"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/experiment-c3-heat-exchange-reading-20261127-browser.json",
+      "bytes": 49426,
+      "sha256": "1b075a491bdca831393c064ac5e28037413cfef33af2238558a83bea45ef38e6"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/experiment-c3-heat-exchange-reading-20261127-integration.json",
+      "bytes": 787,
+      "sha256": "7ce924eb96df574e793fa5cda39d791050709e0b6a3838c03f2efd1e0053475c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/experiments-c3-heat-exchange-3c17.json",
+      "bytes": 12018,
+      "sha256": "a45935104a698ee9f393e881ac92fb8f35fad2e1e2c50eb361fa764803d8ecb2"
+    },
+    {
+      "path": "officina-di-fisica/tools/corpus_engineering/experiments_c3_heat_exchange_3c17_verifier.py",
+      "bytes": 11920,
+      "sha256": "682eaf2f3e6c61cce5279d8faccf185dedb45e399427c309d2c25463cc5ce04e"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "role": "AI_INDEPENDENT_FROM_ROOT_AUTHOR",
+  "draftCommit": "1413e2c41a8c7fec6b2a5ff421685dbed4e3ab8b",
+  "runtimeCommit": "f30201defc4c77b472cd791bb0adea7e1d8e7810",
+  "runtimeSha256": "3c174677e6b7fc585903dbb6a5bc6b9fa078b435375f9333a6a81897f1027dc2",
+  "actualSlices": {
+    "controls-112": {
+      "cases": 112,
+      "exitCode": 0,
+      "seconds": 105.19607496261597
+    },
+    "convection-clock-72": {
+      "cases": 72,
+      "exitCode": 0,
+      "seconds": 67.52014517784119
+    }
+  },
+  "actualNumberSubmissions": 64,
+  "rasterReadings": {
+    "contactSheets": 16,
+    "cells": 184,
+    "fullOriginalPNGs": [
+      "controls-112/actual/screens/9f157418cab0e229d81b774e2386069585dd8914433c57e9de7b58b2434218bc.png",
+      "controls-112/actual/screens/6ac80dc9c07219e20b7a4d6d173a6eb2a8ecaea4ab44ef1caeb9d0dda911ee61.png",
+      "controls-112/actual/screens/d30246cf1a20f7d0f6b095ff1d194c637840f7285a55df01c7297191646f4713.png",
+      "controls-112/actual/screens/c7970901dadb5066a30349a86a3f2a42b51aefd26b2d6b2d90528596709a970e.png"
+    ]
+  },
+  "perID": [
+    {
+      "id": "SIM-C3-L05-01",
+      "boundedVisualDecision": "POSITIVE_IN_ACTUALLY_READ_BOUNDED_STATES",
+      "actualCases": 32,
+      "actualNumberSubmissions": 16,
+      "scope": "Eight profiles at1/2/8cm; narrow authored formulas fit; complete formerly masked Top1cm tip/shaft visible; hot/cold sides retained in accessible legend."
+    },
+    {
+      "id": "SIM-C3-L05-02",
+      "boundedVisualDecision": "POSITIVE_IN_ACTUALLY_READ_BOUNDED_STATES",
+      "actualCases": 112,
+      "actualNumberSubmissions": 32,
+      "scope": "Eight profiles at0/2/3.5/5g/s plus separate clock samples at2/3.5g/s,t0/2.5/5/10s; previous Ritorno tip masks removed, actual DOM accumulated masses matchflow*time; loop phase repeatability verified. Top views vertical arrows end-on: no claim of readable arrow length there; Orbit/Side/fallback are the informative projections."
+    },
+    {
+      "id": "SIM-C3-L05-03",
+      "boundedVisualDecision": "POSITIVE_IN_ACTUALLY_READ_BOUNDED_STATES",
+      "actualCases": 40,
+      "actualNumberSubmissions": 16,
+      "scope": "Eight profiles at200/300/400/500K; inward/zero/outward net signal correct. At320Top500 the formerly hidden central tail, shaft and head now fully visible; Sistema/Ambiente retained in accessible legend."
+    }
+  ],
+  "readoutPrecision": "Existing Intl formatter displays4significant digits (e.g.-368.6/992.3/3084); strict model outputs and exact accepted manual answers remain separate. No comparator/grader tolerance changed.",
+  "geometryScope": "Full requested raster frames and source-derived32facet observations at scoped controls; not a universal camera/zoom or continuous-time GPU visibility proof. The thermometer/bar/loop drawing is schematic; physical quantities are the controls/readouts and defined arrows, no SI ruler calibration inferred from apparatus pixels.",
+  "clockScope": "Only L05-02 has installedclock.64clock-bearing states in the separate72, including16t0 states and48positive-time states; some reset states repeat the controls112.184 are acquisitions in two sublots, not184distinct physical states. No continuous sweep or all-flow-grid clock proof. Markers may traverse apparatus housing; no assertion that every tracer sphere is exposed at every instant.",
+  "previousFindingsRetained": [
+    "Old636 documentation negative5ef21598 resolved in775 text; not rewritten.",
+    "53bd formula320 and Calda/Fredda/Ritorno/Ambiente negative7a4b2521 retained.",
+    "7ee9 remaining Sistema-tail negative25748b89 retained."
+  ],
+  "newFindings": [],
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

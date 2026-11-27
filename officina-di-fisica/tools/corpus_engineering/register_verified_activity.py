@@ -32,9 +32,9 @@ def replace(path, raw):
         temporary.unlink(missing_ok=True)
 
 
-def register(spec, source_file, receipt_file, expected_runtime, expected_registry):
-    registry_file = APP / 'editorial/batches/registry.json'
-    status_file = APP / 'editorial/reviews/full-corpus-work-status-20261126.json'
+def register(spec, source_file, receipt_file, expected_runtime, expected_registry, *, registry_file=None, status_file=None):
+    registry_file = registry_file or APP / 'editorial/batches/registry.json'
+    status_file = status_file or APP / 'editorial/reviews/full-corpus-work-status-20261126.json'
     registry_raw, status_raw = registry_file.read_bytes(), status_file.read_bytes()
     registry, status = map(json.loads, (registry_raw, status_raw))
     registry_sha = sha(registry_raw)
@@ -43,7 +43,7 @@ def register(spec, source_file, receipt_file, expected_runtime, expected_registr
         raise ValueError('The activity adoption does not match the exact runtime and work register')
 
     ids = set(spec['activityIds'])
-    before = [row for row in load_activity_registry() if ids.intersection(row['activityIds'])]
+    before = [row for row in load_activity_registry(registry_file) if ids.intersection(row['activityIds'])]
     if before and before != [spec]:
         raise ValueError('An existing cohort owns one or more selected activities')
     if not before and registry_sha != expected_registry:
@@ -63,7 +63,7 @@ def register(spec, source_file, receipt_file, expected_runtime, expected_registr
     if any(row.get('state') != 'NOT_FULLY_REVIEWED' for row in rows):
         raise ValueError('Only open activities can enter a new cohort')
 
-    questions = load_registry()
+    questions = load_registry(registry_file)
     registry['activityBatches'].append(spec)
     for row in rows:
         row.update(state=state, evidence=proof['path'])
@@ -95,7 +95,7 @@ def register(spec, source_file, receipt_file, expected_runtime, expected_registr
         raise ValueError('The work register changed during independent validation')
     try:
         replace(registry_file, new_registry)
-        if load_registry() != questions or spec not in load_activity_registry():
+        if load_registry(registry_file) != questions or spec not in load_activity_registry(registry_file):
             raise ValueError('Proposed adoption changed questions or failed its activity schema')
         replace(status_file, new_status)
         write_immutable(receipt_file, encode(result))
@@ -114,11 +114,16 @@ def main():
     parser.add_argument('lock', type=Path)
     parser.add_argument('--expect-runtime', required=True)
     parser.add_argument('--expect-registry', required=True)
+    parser.add_argument('--registry-file', type=Path, help='Registry in the integration worktree')
+    parser.add_argument('--status-file', type=Path, help='Per-ID status in the same integration worktree')
     args = parser.parse_args()
+    if bool(args.registry_file) != bool(args.status_file):
+        parser.error('--registry-file and --status-file must be supplied together')
     spec = json.loads(args.spec.read_bytes())
     with args.lock.open('a') as lock:
         fcntl.flock(lock, fcntl.LOCK_EX)
-        print(register(spec, args.source, args.receipt, args.expect_runtime, args.expect_registry))
+        print(register(spec, args.source, args.receipt, args.expect_runtime, args.expect_registry,
+                       registry_file=args.registry_file, status_file=args.status_file))
 
 
 if __name__ == '__main__':
