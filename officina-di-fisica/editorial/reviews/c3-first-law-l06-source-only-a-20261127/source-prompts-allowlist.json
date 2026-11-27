@@ -1,0 +1,117 @@
+{
+  "allowlist": [
+    "id",
+    "title",
+    "summary",
+    "interpretation",
+    "control",
+    "measure",
+    "transferPrompt",
+    "skill",
+    "section",
+    "prerequisites",
+    "apparatus",
+    "version"
+  ],
+  "excluded": [
+    "formula",
+    "substitution",
+    "references",
+    "blocks",
+    "review",
+    "drafts"
+  ],
+  "records": [
+    {
+      "apparatus": "pistone",
+      "control": {
+        "label": "Calore entrante",
+        "max": 50.0,
+        "min": -20.0,
+        "step": 5.0,
+        "unit": "J"
+      },
+      "id": "SIM-C3-L06-01",
+      "interpretation": "Il pistone compie 10 J di lavoro sull’esterno in ogni prova. Solo l’energia entrata in eccesso rispetto al lavoro rimane nel gas. Un valore negativo rappresenta un calo di U.",
+      "measure": {
+        "label": "Variazione di energia interna",
+        "unit": "J"
+      },
+      "section": "Fare i conti con il primo principio",
+      "skill": "C3-L06",
+      "summary": "Il gas può espandersi senza aumentare la sua energia interna?",
+      "title": "Primo principio",
+      "transferPrompt": "Il gas riceve un calore con segno di {x} e compie 10 J di lavoro. Di quanti joule cambia la sua energia interna?",
+      "version": 1
+    },
+    {
+      "apparatus": "pistone",
+      "control": {
+        "label": "Variazione di temperatura",
+        "max": 30.0,
+        "min": -20.0,
+        "step": 2.0,
+        "unit": "K"
+      },
+      "id": "SIM-C3-L06-02",
+      "interpretation": "Per una quantità fissa di gas ideale con capacità costante conta ΔT. Il pistone è bloccato per rendere visibile un caso a lavoro nullo. La stessa ΔT darebbe la stessa ΔU lungo un altro percorso.",
+      "measure": {
+        "label": "Variazione di energia interna",
+        "unit": "J"
+      },
+      "section": "Fare i conti con il primo principio",
+      "skill": "C3-L06",
+      "summary": "Quale lettura determina la variazione di energia interna del gas perfetto?",
+      "title": "Energia interna",
+      "transferPrompt": "Per questo gas nCᵥ vale 12 J/K. Con una variazione di temperatura di {x}, quanta energia interna acquista o perde?",
+      "version": 1
+    },
+    {
+      "apparatus": "pistone",
+      "control": {
+        "label": "Lavoro compiuto dal gas",
+        "max": 30.0,
+        "min": -20.0,
+        "step": 5.0,
+        "unit": "J"
+      },
+      "id": "SIM-C3-L06-03",
+      "interpretation": "Il lavoro è positivo quando il pistone sale. Con una compressione di 10 J l’ambiente fornisce già tutta l’energia interna richiesta. Con espansione serve calore aggiuntivo.",
+      "measure": {
+        "label": "Calore entrante per ΔU = 10 J",
+        "unit": "J"
+      },
+      "section": "Fare i conti con il primo principio",
+      "skill": "C3-L06",
+      "summary": "Quale scambio di calore serve per ottenere lo stesso aumento di energia interna?",
+      "title": "Calore e lavoro",
+      "transferPrompt": "Il motore compie un lavoro con segno di {x} mentre l’energia interna aumenta di 10 J. Quanto calore deve entrare nel gas?",
+      "version": 1
+    },
+    {
+      "apparatus": "ciclo",
+      "control": {
+        "label": "Variazione di volume",
+        "max": 2.0,
+        "min": -1.0,
+        "step": 0.25,
+        "unit": "L"
+      },
+      "id": "SIM-C3-L06-04",
+      "interpretation": "Sul piano p–V la freccia indica da quale stato parti. L’area geometrica è positiva, ma l’integrale è negativo se percorri la curva verso volumi minori. Un kPa·L vale un joule.",
+      "measure": {
+        "label": "Lavoro del gas",
+        "unit": "J"
+      },
+      "section": "Fare i conti con il primo principio",
+      "skill": "C3-L06",
+      "summary": "Cosa misura l’area sotto un’isobara quando il volume diminuisce?",
+      "title": "Interpretazione del lavoro su un diagramma p–V",
+      "transferPrompt": "Il pistone spazza una variazione di volume di {x} a 100 kPa costanti. Quale lavoro con segno compie il gas sull’ambiente?",
+      "version": 1
+    }
+  ],
+  "sourcePath": "officina-di-fisica/content/esperienze-C3.json",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourceWholeSha256": "2738799d5195ca5eda77c4dce1cdc79f708237e5660bb9cabcc7fac4f80ea3ff"
+}

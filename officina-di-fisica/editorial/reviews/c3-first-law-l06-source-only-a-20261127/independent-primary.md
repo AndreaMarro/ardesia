@@ -1,0 +1,25 @@
+# Primaria indipendente: quattro originali C3 L06, prima dei blocchi Root
+
+Lettura consentita: id, titolo, sommario, interpretazione fisica, controllo, grandezza misurata, domanda di trasferimento e collocazione. Nessuna formula, sostituzione, coppia riferimento/risposta, svolgimento o blocco DRAFT è stato aperto in questa preparazione. I quattro modelli sono derivati qui prima del confronto con la consegna Root. Non dichiaro una nuova cecità assoluta: ho una lunga esposizione alla termodinamica e al corpus, e in precedenti verifiche ho letto fonti generali e consumatori. Durante la diagnosi L04-03 è apparso anche il solo inizio della voce L06-01 (“Per ogni prova annota calore entrante e lavoro compiuto dal gas…”). Non ho aperto i nuovi blocchi Root first-law né un loro handoff in questa fase. Questo documento congela una verifica distinta dei prompt originali, non una prova che ogni espressione sia nuova per il revisore.
+
+Convenzione comune: sistema chiuso costituito dal gas, Q positivo verso il gas e W positivo per lavoro compiuto dal gas sull’ambiente. Bilancio senza altri scambi o variazioni macroscopiche cinetiche/potenziali: ΔU=Q−W. Specificare questo dominio quando si passa dalla relazione generale all’illustrazione di un pistone. Il primo principio non impone da solo un gas ideale. Nessuna freccia disegnata determina il segno al posto della convenzione.
+
+## SIM-C3-L06-01 — Primo principio
+
+Il prompt assegna W=+10 J in ogni prova e controlla Q fra−20 e50 J. Sottraggo10 J all’energia ricevuta: ΔU=Q−10 J. Il gas può espandersi con ΔU nullo se riceve10 J, oppure con ΔU negativo se riceve meno di10 J. A Q=−20,0,10,20,50 J ottengo rispettivamente−30,−10,0,10,40 J. Controllo a ritroso Q=ΔU+10 J. La pendenza è1, l’intercetta−10 J; spostare la curva nell’altro verso produrrebbe energia senza lo scambio corrispondente. Controprove: sommare il lavoro darebbe20 J a Q=10 anziché0; usare |Q−10| perderebbe il raffreddamento a Q=0. Il dominio di ΔU è[−30,40] J; l’inversa deve respingere valori esterni se si riferisce a questo banco.
+
+## SIM-C3-L06-02 — Energia interna
+
+Quantità fissa di gas ideale con nCv costante=12 J/K. La differenza di energia interna vale ΔU=nCvΔT=12ΔT J. Per ΔT=−20,−2,0,2,30 K ottengo−240,−24,0,24,360 J. L’inversa è ΔT=ΔU/(12 J/K). Una differenza di1 K equivale a una differenza di1°C: non si aggiunge273,15 a un incremento. Il pistone bloccato è un caso con lavoro di volume nullo; se gli unici scambi sono Q e lavoro di volume, Q=ΔU. La stessa ΔT darebbe la stessa ΔU su un altro percorso, ma il calore non sarebbe necessariamente identico. Per evitare temperature assolute non positive su tutto il controllo, una preparazione fisica deve avere Ti>20 K; il prompt non dà Ti e quindi non può autorizzare un calcolo della temperatura finale assoluta. Controprove: +273,15 renderebbe non nullo ΔU a ΔT=0; una legge proporzionale a1/ΔT sarebbe singolare nel punto regolare zero. Dominio y[−240,360] J.
+
+## SIM-C3-L06-03 — Calore e lavoro
+
+ΔU=+10 J è fissato, il controllo è W da−20 a30 J. Risolvo10=Q−W: Q=10+W. A W=−20,−10,0,10,30 J il calore è−10,0,10,20,40 J. Compressione W=−10 J fornisce già10 J al gas: Q=0. Con compressione più energica W=−20 J il gas deve cedere10 J per mantenere l’aumento interno richiesto. Inversa W=Q−10 J; dominio di Q[−10,40] J. Controprove: Q=10−W a W=−10 darebbe20 J e quindi ΔU=30 J, non10. Prendere |W| cancellerebbe la distinzione compressione/espansione. Il vincolo sull’energia interna non impone da solo un particolare percorso o temperatura senza un’equazione di stato e dati ulteriori.
+
+## SIM-C3-L06-04 — Lavoro sul diagramma p–V
+
+Pressione costante assegnata100 kPa, variazione di volume ΔV in[−1,2] L. W=∫p dV=pΔV. Un kPa·L=(1000 Pa)(0,001 m³)=1 J: W=100ΔV J. Per ΔV=−1,−3/4,0,1/4,2 L ottengo−100,−75,0,25,200 J. L’inversa è ΔV=W/100 L; y[−100,200] J. L’area geometrica è il modulo; l’integrale orientato è negativo in compressione. La coordinata iniziale del volume non è data nel prompt; non posso inventarla né imporre che il volume finale sia una variazione. Per una preparazione che consenta tutto l’intervallo con volumi assoluti positivi serve Vi>1 L, oppure un dominio ridotto coerente dichiarato. Il lavoro di gas contro la pressione esterna coincide con il tratto p–V rappresentato nel limite quasistatico/meccanicamente equilibrato (o con p esterna costante dichiarata per il lavoro). Controprove: l’omissione di L→m³ associata a Pa darebbe100000 J per1 L; l’area non orientata darebbe+75 J anziché−75 J a−3/4 L. Non deduco Q o ΔU da questo solo diagramma.
+
+## Limiti e futura prova
+
+Il modello numerico è esatto, distinto dalle approssimazioni binarie del consumer; eventuali discrepanze vanno registrate senza ampliare tolleranze del valutatore. La primaria non attesta disegno, clock, testi DRAFT, assenza di occlusioni, accessibilità o risposte installate. Dopo il congelamento confronterò separatamente i due compiti effettivi e i nuovi blocchi Root. UI NOT_RUN, credito attività0, approvazione umana NOT_RUN.
