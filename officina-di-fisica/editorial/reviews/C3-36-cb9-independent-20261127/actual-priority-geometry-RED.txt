@@ -1,0 +1,36 @@
+bounded local start; free bytes 3892072448
+test_degenerate_zero_work_has_no_purple_arrow (__main__.PriorityGeometry.test_degenerate_zero_work_has_no_purple_arrow) ... ok
+test_engine_positive_work_has_visible_geometry_at_smallest_positive_input (__main__.PriorityGeometry.test_engine_positive_work_has_visible_geometry_at_smallest_positive_input) ... FAIL
+test_fridge_positive_work_has_visible_geometry_at_smallest_positive_input (__main__.PriorityGeometry.test_fridge_positive_work_has_visible_geometry_at_smallest_positive_input) ... FAIL
+test_thermometer_end_cap_is_above_opaque_bulb_at_all31_inputs (__main__.PriorityGeometry.test_thermometer_end_cap_is_above_opaque_bulb_at_all31_inputs) ... ok
+
+======================================================================
+FAIL: test_engine_positive_work_has_visible_geometry_at_smallest_positive_input (__main__.PriorityGeometry.test_engine_positive_work_has_visible_geometry_at_smallest_positive_input)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C3-36-cb9-independent-20261127/test-priority-geometry.py", line 17, in test_engine_positive_work_has_visible_geometry_at_smallest_positive_input
+    self.assertEqual(sum(e['kind']=='arrow'and e['c']==PURPLE for e in case['elements']),1,'Qh=10 J gives W=3 J, not zero')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1 : Qh=10 J gives W=3 J, not zero
+
+======================================================================
+FAIL: test_fridge_positive_work_has_visible_geometry_at_smallest_positive_input (__main__.PriorityGeometry.test_fridge_positive_work_has_visible_geometry_at_smallest_positive_input)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C3-36-cb9-independent-20261127/test-priority-geometry.py", line 14, in test_fridge_positive_work_has_visible_geometry_at_smallest_positive_input
+    self.assertEqual(sum(e['kind']=='arrow'and e['c']==PURPLE for e in case['elements']),1,'Qc=5 J gives W=2.5 J, not zero')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1 : Qc=5 J gives W=2.5 J, not zero
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+FAILED (failures=2)
+Traceback (most recent call last):
+  File "/private/tmp/cric-bounded-local.py", line 7, in <module>
+    subprocess.run(sys.argv[1:],check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py", line 579, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['python3', '-B', 'editorial/reviews/C3-36-cb9-independent-20261127/test-priority-geometry.py']' returned non-zero exit status 1.
