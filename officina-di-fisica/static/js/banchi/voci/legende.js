@@ -95,6 +95,11 @@ const annotazioni = {
   C4: [
     ['+1', 'Le due sfere rosse hanno ciascuna carica +1 nC. Le frecce viola sono riportate accanto alle sfere alla stessa scala, parallele alla retta che unisce i centri. Il dettaglio ocra scuro conserva i versi e ingrandisce di otto volte le frecce più corte.', ['L01-02']],
     ['P', 'Il punto P è a metà fra le due cariche. Resta fisso mentre si varia la carica a destra.', ['L02-02']],
+    ['Sonda', 'Il punto viola rappresenta la particella positiva.', ['L02-03']],
+    ['Sonda', 'Il punto viola è la sonda; il suo spostamento è misurato rispetto al riferimento centrale.', ['L03-02']],
+    ['Sonda', 'Il punto viola rappresenta la carica positiva di 3 µC.', ['L03-03']],
+    ['+', 'Le frecce ocra rappresentano il campo elettrico uniforme dalla piastra positiva a quella negativa.', ['L02-03','L03-02','L03-03']],
+    ['−', '', ['L02-03','L03-02','L03-03']],
     ['Corrente convenzionale', '', ['L05-01','L05-04','L05-05']],
     ['Pila', '', ['L05-02','L05-03','L06-02']],
     ['In parallelo', 'Il circuito in serie è a sinistra. Il circuito in parallelo è a destra e i rami condividono gli stessi nodi.', ['L06-01']],
