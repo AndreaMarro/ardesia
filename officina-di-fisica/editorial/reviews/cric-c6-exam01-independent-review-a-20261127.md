@@ -1,6 +1,6 @@
 # Revisione indipendente C6 esame 01
 
-31 problemi distinti, letti e verificati solo dopo primaria e modelli congelati. Tutti i record fresh e saved soddisfano il contratto di identità. 16 test reali exit 0, 102 chiavi errate con token/pin/binding rinnovati respinte; 70 metadati, 22 unità/tolleranze, 11 guasti costitutivi, 319 guardie finite/exact, 11 rimozioni di dominio, 2 title/desc e 3 duplicati di fase respinti; 120 configurazioni Hypothesis reali.
+31 problemi distinti, letti e verificati solo dopo primaria e modelli congelati. Tutti i record fresh e saved soddisfano il contratto di identità. 16 test reali exit 0, 102 chiavi errate con token/pin/binding rinnovati respinte; 163 metadati, 22 unità/tolleranze, 11 guasti costitutivi, 319 guardie finite/exact, 11 rimozioni di dominio, 2 title/desc e 3 duplicati di fase respinti; 120 configurazioni Hypothesis reali.
 
 Una nuova figura XML/native completa 640×1740 letta; UI prodotto e human NOT_RUN. DRAFT, nessuna pubblicazione o credito Root anticipato.
 
@@ -251,3 +251,5 @@ Primaria antecedente: S è l’entropia, funzione di stato con unità J/K. Una v
 Ipotesi finali: Entropia funzione di stato, J/K; integrale reversibile fra estremi per qualunque processo reale.
 
 Distrattori e feedback: Alternative lette individualmente. Energia interna, lavoro e calore hanno unità joule; temperatura assoluta kelvin. Calore e lavoro sono trasferimenti e non funzioni di stato del sistema. Non si identifica S con Q/T per qualunque processo reale senza controllare le ipotesi.
+
+Supplemento di integrità: il vecchio confronto Python equiparava True a 1. Il replay esplicito del codice storico con tutti i pin rinnovati ha accettato exam=True; il codice corrente lo rifiuta confrontando metadati canonici e tipi interi delle versioni. Nessun candidato reale cambia. I precedenti moduli/report/test e terminali restano nel sottoarchivio type-guard-superseded; 16 test correnti e 163 mutazioni di metadati sono realmente positivi.

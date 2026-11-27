@@ -1,0 +1,25 @@
+{
+  "reason": "Guard protected exam and version metadata against Python bool/int equality after fully rebound malicious edits; real candidates remain exact original ints",
+  "files": {
+    "tools/corpus_engineering/cric_c6_exam01_review_common_a.py": {
+      "snapshot": "0-cric_c6_exam01_review_common_a.py",
+      "sha256": "bb07398bbb48c5884523605d3c4110d194c920f4264bebe6d5da1c4636638a27"
+    },
+    "tools/corpus_engineering/cric_c6_protected_exam_01_verifier.py": {
+      "snapshot": "1-cric_c6_protected_exam_01_verifier.py",
+      "sha256": "3dd357d784b247b046d0cc7f3e4fb0c5624441a76f123eef93271e81994ef461"
+    },
+    "tests/corpus/test_cross_review_cric_c6_exam01_a.py": {
+      "snapshot": "2-test_cross_review_cric_c6_exam01_a.py",
+      "sha256": "0cc489d9925cdaeb0e03f1f256fd08c89bd3929071dcf22dd89c39dd89e34e6b"
+    },
+    "editorial/reviews/cric-c6-protected-exam-01.json": {
+      "snapshot": "3-cric-c6-protected-exam-01.json",
+      "sha256": "d9cb0e51dbaa34134218a717faa88cff998d5ff4c327059d84d8cbb095562503"
+    },
+    "editorial/reviews/cric-c6-exam01-independent-handoff-a-20261127.json": {
+      "snapshot": "4-cric-c6-exam01-independent-handoff-a-20261127.json",
+      "sha256": "0391ef5108c26c1e4d60d614c29175d6804f49418c3d15e9905530d7afa5c5a8"
+    }
+  }
+}

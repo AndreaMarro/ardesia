@@ -41,7 +41,7 @@ class SeparateC6Exam01(unittest.TestCase):
     def test_03_every_section_and_protected_exam_metadata_rebound(self):
         op,ob=packet()
         for i,row in enumerate(op['records']):
-            for field,value in [('section','Collapsed exam cohort'),('exam',None)]:
+            for field,value in [('section','Collapsed exam cohort'),('exam',None),('exam',True),('exam',False),('exam',1.0)]:
                 p,b=copy.deepcopy(op),copy.deepcopy(ob);p['records'][i][field]=value
                 with rebound(p,b):result=m.verify(p,b,ASSETS)[i]
                 self.assertFalse(result['ok']);self.assertTrue(any('identity/taxonomy'in e for e in result['errors']));self.stats['metadata']+=1
