@@ -1,0 +1,27 @@
+{
+  "activityCredit": 0,
+  "detailStages": "primary_tip=-1.71+(.85*E)/54; component=primary_tip-(-1.71); origin=-1.71-.85; tip=origin+128*component. Exact binary stage equality checked; no expanded tolerance.",
+  "files": {
+    "static/js/banchi/voci/apparati/termica.js": {
+      "sha256": "2c2dd287ce60ea861830437697e5cc182ffb9d2bdbbcb7085053a271c1cc4459",
+      "snapshot": "termica.source-verbatim.js"
+    },
+    "static/js/banchi/voci/confronti.js": {
+      "sha256": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+      "snapshot": "confronti.source-verbatim.js"
+    },
+    "static/js/banchi/voci/esperimento.js": {
+      "sha256": "e1c68c5530372696f9f863e95a148ce9afd49118708edf921f20781aa116feb3",
+      "snapshot": "esperimento.source-verbatim.js"
+    }
+  },
+  "finalTemperature": "T_final=-5 degC at selected Q=1 kJ",
+  "humanApproval": "NOT_RUN",
+  "oneStepRoundoffNegative": "Preserved: single endpoint16ULP does not account for cancellation then128x. Physics exact oracle and existing16ULP guard unchanged.",
+  "physicalEnergy": "E(t)=min(1,2t) kJ",
+  "physicalTemperature": "T(t)=-10+5E(t) degC while E<=2 kJ",
+  "readout": "confronti[id](s.x,s.y) ignores t and returns T_final under unqualified label Temperatura del campione",
+  "runtimeSha256": "53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a",
+  "sourceCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "thermometer": "height=.88+.026*T_current"
+}
