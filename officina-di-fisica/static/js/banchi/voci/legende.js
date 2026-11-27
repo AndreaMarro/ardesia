@@ -74,6 +74,21 @@ export function legendaTavola(apparato) {
   return testo;
 }
 
+const annotazioniFluidi = new Map();
+for (const [etichetta, descrizione, voci] of [
+  ['Entrata', 'L’entrata è a sinistra e l’uscita a destra.', ['L005-01','L005-02','L005-03','L006-01','L006-02','L006-03','L006-04','L008-01','L008-02','L008-04']],
+  ['Sezione di misura', 'Quando è valido il profilo laminare, le frecce viola mostrano la velocità alle varie quote nella sezione di misura. Il profilo verde ne congiunge le punte.', ['L005-04','L007-01','L007-02','L007-05']],
+  ['Sforzo sulla lastra', 'Lo sforzo sulla lastra mobile è rappresentato dalla freccia viola sopra la lastra.', ['L007-03']],
+  ['Presa intermedia', 'La presa intermedia è tra i due tratti del condotto, al centro della tavola.', ['L008-03','L009-03']],
+  ['In parallelo', 'Il collegamento in serie è a sinistra e quello in parallelo è a destra.', ['L009-01']],
+  ['Goccia', 'La sfera azzurra è la goccia. La freccia ocra va dal centro alla superficie.', ['L010-02']],
+  ['Film a due facce', 'I due contorni schematici indicano le superfici del film a due facce. La freccia ocra indica il raggio di riferimento.', ['L010-05']],
+]) {
+  for (const id of voci) annotazioniFluidi.set('SIM-C2-' + id, { etichetta, descrizione });
+}
+
+export const annotazioneFluido = (record) => annotazioniFluidi.get(record.id);
+
 export function legendaVoce(record, vista) {
   const legenda = vista === 'diagram' ? legendaTavola(record.apparatus) : legende[record.apparatus];
   if (record.id === 'SIM-C3-L04-03') {
@@ -86,5 +101,7 @@ export function legendaVoce(record, vista) {
   if (record.id === 'SIM-C3-L10-01') {
     return 'Il serbatoio è a sinistra e il sistema a destra. La freccia viola punta verso il sistema quando entra calore, verso il serbatoio quando esce. A Q uguale a zero lo scambio è nullo.';
   }
+  const annotazione = annotazioneFluido(record);
+  if (annotazione) return legenda.replace(/\.?$/,'') + '. ' + annotazione.descrizione;
   return legenda;
 }

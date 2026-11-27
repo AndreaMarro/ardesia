@@ -1,5 +1,5 @@
 import { chart, curve, n, param, select } from '../misure.js';
-import { legende, legendaVoce } from './legende.js';
+import { annotazioneFluido, legende, legendaVoce } from './legende.js';
 import { confronti } from './confronti.js';
 import { orologioVoce } from './orologi.js';
 import { disegna3D, scenaMobile, tavolo } from './geometria.js';
@@ -40,6 +40,7 @@ export async function esperienza(record) {
   const calc = (x) => stabile(law.measure(x));
   const clock = record.engine ? null : orologioVoce(record, law);
   const nativeVectorAxes = !record.engine && record.apparatus === 'vettori';
+  const etichettaFuoriScena = nativeVectorAxes ? 'y' : !record.engine && annotazioneFluido(record)?.etichetta;
   function elements(x, stage, time) {
     if (clock?.input && time !== undefined) x = time;
     const board = tavolo(Math.max(stage, 0));
@@ -76,9 +77,10 @@ export async function esperienza(record) {
         board.label([dx, 1.7, 0], series ? 'In serie' : 'In parallelo');
       }
     } else instrument(board, state);
-    // In Side view the opaque y sprite projects onto vector shafts. Keep
-    // both complete axis lines and identify y in the native apparatus legend.
-    return nativeVectorAxes ? board.elementi.filter((e) => !(e.kind === 'label' && e.text === 'y')) : board.elementi;
+    // The accessible legend locates labels whose opaque sprites hide a measured glyph.
+    return etichettaFuoriScena
+      ? board.elementi.filter(elemento => elemento.kind !== 'label' || elemento.text !== etichettaFuoriScena)
+      : board.elementi;
   }
   const levels = ['Diminuisce', 'Resta uguale', 'Aumenta'];
   const sign = Math.abs(y1 - y0) < 1e-8 ? 0 : Math.sign(y1 - y0);

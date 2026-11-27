@@ -253,7 +253,7 @@ main:focus { outline: none; }
 .index .current { background: var(--lime); color: var(--ink); font-weight: 720; }
 .reader { max-width: 51rem; min-width: 0; }
 .reader > h1 { font-size: clamp(2.35rem, 4.55vw, 4.7rem); margin-bottom: 1.3rem; }
-.reader .copy p, .prose p { font: 410 clamp(1.06rem, 1.26vw, 1.25rem)/1.62 var(--serif); margin: .8em 0; }
+.reader .copy p, .prose p { font: 410 clamp(1.06rem, 1.26vw, 1.25rem)/1.62 var(--serif); margin: .8em 0; overflow-wrap: anywhere; }
 .lettore-opzioni { margin: .85rem 0 .25rem; border-block: 1px solid var(--fine); }
 .lettore-opzioni > summary { padding: .64rem .1rem; min-height: 44px; color: var(--ink); font-weight: 620; }
 .lettore-impostazioni { max-width: 45rem; padding: .4rem .15rem .8rem; }
