@@ -1,0 +1,288 @@
+{
+  "priorExposure": "Original source/models previously independently solved; current source unchanged. Actually new cb9 screenshots read; no historical UI approval transferred. Reviewer did not author these benches. Six native-vector authored IDs absent.",
+  "records": {
+    "LAB3D-06": {
+      "consumerVisualOk": true,
+      "notes": "Read8 actual profiles plus320 reversedheat case: face temperatures matchgradient, signed rightwardpower becomes−1.92W whenleft20/right80; zero/reversal controls observed. Length and cross-section visual axes schematic, actual L/A and units read numerically."
+    },
+    "LAB3D-07": {
+      "consumerVisualOk": false,
+      "failure": "Partial arrow shaft/head masked by opaque source charge spheres in default superposition scene; full base rims inside spheres. Tips remain outside, not full-cone containment.",
+      "evidence": "field-cone-actual-geometry.json",
+      "notes": "Actual Laterale1280 independently opened, corresponding320 also contactsheet-read; equalcharges produce E0 but individual±18N/C contributions should be visible for Somma le frecce. GeometryCPU actual Float32/ray evidence separate from raster observation. Source physics/manual/graded answers correct; no historical1a replay inferred."
+    },
+    "LAB3D-08": {
+      "consumerVisualOk": true,
+      "notes": "Read8profiles plus320top series12V/2+4ohm: I2A, drops4/8V, powers8/16W,total24W. Ideal connectivity, conventional flowdirections and total/branchreadouts coherent; numericzero-sourceboundary observed."
+    },
+    "LAB3D-09": {
+      "consumerVisualOk": true,
+      "notes": "Read8profiles, actual320fallback p=f infinity and1280Side virtual p5/f10 q−10,m2; virtual extensions dotted, positiveuprightvirtual arrow and no finite screenfocus coherent. Lens/screen transparent; symbolic infinity not finite graded answer."
+    },
+    "LAB3D-10": {
+      "consumerVisualOk": false,
+      "failure": "Native Sezione surface disappears at symmetric z=0 despite nonflat expected wave profile; strip viewed exactly edge-on.",
+      "evidence": "wave-section-actual-geometry.json",
+      "notes": "Actual t0and.5 extrema320/1280 images opened; probe displacement/readout is correct. Quarterperiod0 is legitimate and not a failure. Float32CPU projection all128triangleszeroarea at both nonflat extrema. Other native/default/fallback plot profiles observed; no sourcephysics or clock law failure inferred."
+    }
+  },
+  "images": [
+    {
+      "name": "LAB3D-06-1280-diagram.png",
+      "sha256": "3e8eda1b76532e1d40ea9aee05fea2f948bcf0752689977be15476f0c3e8f3d1",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-06-1280-orbit.png",
+      "sha256": "8e22a408fda3d940beb6ce2791cbdfc15f693a65acfdf8c64d3afdb51600c37f",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-06-1280-side.png",
+      "sha256": "367e6570081238c7b64322801900fdb9596e61fc20cfbb5f31d8791b3ef9bf3f",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-06-1280-top.png",
+      "sha256": "319d5f9d1dcecf0645dc7450e5d43aaece23dfe95094f46b29a1cb4a91fb9656",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-06-320-diagram.png",
+      "sha256": "43c32bd4022ec9be26f6a84587c4782846ace848923508e2b29268c0825247ce",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-06-320-orbit-orbit-boundary0.png",
+      "sha256": "8c0485158e6d42b699083685b43d633dadad8c022b479789a4173b276f71189d",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "name": "LAB3D-06-320-orbit.png",
+      "sha256": "2e4b92f5ef9404d7276756a7facf7678fd0536ceec3d64a0356dbd9191d95517",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-06-320-side.png",
+      "sha256": "5ddc39bca4932e1ae3e3d15f03da594649324a739ef800b5f60795ea944a008d",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-06-320-top.png",
+      "sha256": "5ed978c8bab0362acaefcbfee99a565d83cf0045343425c804212121ec1dfe8c",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-07-1280-diagram.png",
+      "sha256": "49a6816b73ceac69f8b6680161e771804f3dfc91c2d2b6b833e4eb4f1325e18d",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-07-1280-orbit.png",
+      "sha256": "02df5e7001351d05573c31da5d6865cbbc9a0bed195435e6e5e1fea63be80ee8",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-07-1280-side.png",
+      "sha256": "5de060fb1e47ae7f71109e141eddf9b2fbfbc29889f5fdd1a1bc373f132ff0e7",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "name": "LAB3D-07-1280-top.png",
+      "sha256": "04adeffd2a18aa950170c172a93e36cc829987ada164d3c1ddbd966f7ae54fef",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-07-320-diagram.png",
+      "sha256": "a13e6229dcb27047353ebe56e5f9bca7a397b18650ac545cbc8eaecd13cfb467",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-07-320-orbit-orbit-boundary0.png",
+      "sha256": "2dd015da63d0dde99888bac99c0b6c557dc12197c07082d8255c9c4a63d5d422",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "name": "LAB3D-07-320-orbit.png",
+      "sha256": "b07ace4ea68090091e15a366b2765e8432b4d6870b236c9b4c4a2e0813df8726",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-07-320-side.png",
+      "sha256": "a5a91437715cf4ed0365f97ba715a266bae3cf55db003ce48ee9f65714d30e7e",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-07-320-top.png",
+      "sha256": "cbdad8b8bc15a48fc306c8dda97504f8cfee6c693a275bd220e99f7878409b0f",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-08-1280-diagram.png",
+      "sha256": "0cd8c25907e85eb4e19676bbb92fee995389475f2bd8b3b6942796c7d4099f34",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-08-1280-orbit.png",
+      "sha256": "5189520fcf178f92dfc9604e66a15c53b181173425441368a9c23862da3fc67e",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-08-1280-side.png",
+      "sha256": "a8e098ca0b39fc4e3a65705b5fa29c8c347b1f6b2af002748740b877dab98b31",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-08-1280-top.png",
+      "sha256": "ac2fedc42cc1356ca9a9bb4d32b671a61e87dc82edb7f013e7c8fa01d17bd034",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-08-320-diagram.png",
+      "sha256": "949266dfecd9fa1f2c3beab72730d80b35c020413b16069ca8a1b98ece2043b4",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-08-320-orbit.png",
+      "sha256": "d3eece86c18c055b2f1db1a1f911b18ae398807edbae08745b8a89157dba653f",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-08-320-side.png",
+      "sha256": "ec7699955cd2e7ee3fc234f9faefa26264928d1568ae60833f8e8d5394325b6a",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-08-320-top-top-boundary1.png",
+      "sha256": "424d9eb8dde051b02f1a9a0628812bd7586202e970e5f44dce3a000686c3dc3b",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "name": "LAB3D-08-320-top.png",
+      "sha256": "a37c70d884a219a8070e1746a1f396c75675b2869adeeb46d6d657964ae8edcb",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-09-1280-diagram.png",
+      "sha256": "b3e3cca5e9c3f8ff84208caddc6f14b9594bd6e2168aa4fed799a773e7879758",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-09-1280-orbit.png",
+      "sha256": "f766fafd65728f2185f3f1effdf5797f9ca5f38098662d23b0db3ab6b3979f18",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-09-1280-side-side-boundary1.png",
+      "sha256": "4dfba02732ee9d142a281b56669a9569d31b91f43aa8770a915b2556013c71e7",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "name": "LAB3D-09-1280-side.png",
+      "sha256": "7a3eadd87ace4d7f0f7232b81b4b023deb6359730c4fda85902c2e7e4279d9e9",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-09-1280-top.png",
+      "sha256": "c343d63963a3583cd29d9bc8e5c994b4ef52568b3358a862749ebd092b86ba8b",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-09-320-diagram-diagram-boundary0.png",
+      "sha256": "ff8dbbf4ecc10404643b4b1f33625b3058bfd48881e2a008fd58a76a26a10a3e",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "name": "LAB3D-09-320-diagram.png",
+      "sha256": "75d5e2cf9f03ad90b8ec5533e1fcc3ac2b398f8b9136ee41cabbab69ce41e5aa",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-09-320-orbit.png",
+      "sha256": "a4df7801d03bc8b21a87b0c493c3379307e4b8a911c9f4e26aaabe0b86f71ba2",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-09-320-side.png",
+      "sha256": "9ffc3e24b0912da5495548c99678ac76d179d6023b1b48ff803d9d2a6000829e",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-09-320-top.png",
+      "sha256": "4a06cdd647d359a06423c48ea2a2071a4c43a8c4de4d0aa07dcc0793ffb1f202",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-10-1280-diagram.png",
+      "sha256": "395c97a9e8f657355c50416cb1903b9e4324a04a05af80b69f22de3d264dc16c",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-10-1280-orbit-section-clock0.5.png",
+      "sha256": "e43dc9b70c2fa161ff9758f46b11de1f5b8fa5c9cb95cd45e7696410fd91f4e4",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "name": "LAB3D-10-1280-orbit-section-clock0.png",
+      "sha256": "dd17d1840793e0d812c5ab6376c52aeedb2eb0a012df2b5fda1a3e02ed539ad3",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "name": "LAB3D-10-1280-orbit.png",
+      "sha256": "e2c47005670ff907d352e97944bbdb433053d64d9e1dd6f5073e274fc07e0119",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-10-1280-side.png",
+      "sha256": "b9967821668aeb3ff3330d086c78de47c8f4fa42707747faaea24b0cd4312c9d",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-10-1280-top.png",
+      "sha256": "3bb4fdf986865729c4e370c157bb931f65e101ff9f4d8820678a5629818c653c",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-10-320-diagram.png",
+      "sha256": "81d500fbc18cfde58f5f8e63ab811161a7402bda937ccbf95cd67161733cc4f2",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-10-320-orbit-section-clock0.25.png",
+      "sha256": "c9b3397c095fc94d9fd66cfbac9bf30b099e867c50251b91283d134eeae537bc",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "name": "LAB3D-10-320-orbit-section-clock0.png",
+      "sha256": "36d30c1b9dccb8ac34027dd71fcfa025dc6675039068304d52be439104db437c",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "name": "LAB3D-10-320-orbit.png",
+      "sha256": "42d2eed76ae3eb1e9643bfb1f1c94e086ec2cb147d97e6d6b7d613e1e9a1a858",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-10-320-side.png",
+      "sha256": "f78eb6b5493947ac58e04aff3dfcdd81b2e72295afa74b98b6ffb048ff8bd1af",
+      "reading": "PROFILE_CONTACTSHEET"
+    },
+    {
+      "name": "LAB3D-10-320-top.png",
+      "sha256": "bc6df54b880604eb2111b91acc3720f94e0fde8fcaebae4d585a09b6bc53e1c9",
+      "reading": "PROFILE_CONTACTSHEET"
+    }
+  ],
+  "contactSheets": {
+    "LAB3D-06-actual-profiles-contactsheet.jpg": "ad61a8cd0f2b3a4323ddfad4f57e2f4b34a40e040fe98ef6ad2bf8d0f7531be6",
+    "LAB3D-09-actual-profiles-contactsheet.jpg": "f381cee5db26672e14e859956b67a8ba2cbe5e7fb9f1bdeecada7b72405adf2a",
+    "LAB3D-10-actual-profiles-contactsheet.jpg": "252e524402927ca7b9f34fd77c6eb3f18f16c0d458569c7f035ca77230c4353a",
+    "LAB3D-07-actual-profiles-contactsheet.jpg": "f5c5e08c0ef78ffe4757452e8309cb50c63b0e27fa584380571a1cccfbec2b09",
+    "LAB3D-08-actual-profiles-contactsheet.jpg": "cd36fa426604e3a674af2039304c684c3d32a8eace18c93a9b16775d0a5e83f8"
+  },
+  "newRuntimeOrSourceEdits": false,
+  "historical1aReproduction": "NOT_RUN_IN_THIS_DELIVERY",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

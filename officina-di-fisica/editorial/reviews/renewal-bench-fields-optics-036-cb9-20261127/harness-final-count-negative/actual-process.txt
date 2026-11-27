@@ -1,0 +1,8 @@
+file:///private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/renewal-bench-fields-optics-036-cb9-20261127/browser-bench-fields-optics-cb9.mjs:73
+ if(report.cases.length!==140)throw Error('Expected140 actual base/boundary cases, got'+report.cases.length);if(report.clockObservations?.reduce((n,x)=>n+x.observations.length,0)!==40)throw Error('Expected40 actual clock observations');
+                                    ^
+
+Error: Expected140 actual base/boundary cases, got148
+    at file:///private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/renewal-bench-fields-optics-036-cb9-20261127/browser-bench-fields-optics-cb9.mjs:73:37
+
+Node.js v22.14.0
