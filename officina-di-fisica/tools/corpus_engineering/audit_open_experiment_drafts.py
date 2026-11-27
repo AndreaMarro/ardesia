@@ -28,8 +28,8 @@ def blob(repository, ref, path):
     return subprocess.check_output(['git','show',f'{ref}:{path}'],cwd=repository,timeout=30)
 
 
-def audit(integration, staging, historical):
-    status_raw = blob(integration, STATUS, 'officina-di-fisica/editorial/reviews/full-corpus-work-status-20261126.json')
+def audit(integration, staging, historical, status_ref=STATUS, staging_ref=STAGING):
+    status_raw = blob(integration, status_ref, 'officina-di-fisica/editorial/reviews/full-corpus-work-status-20261126.json')
     status = json.loads(status_raw)
     pending = {row['id'] for row in status['activities'] if row['state'] == 'NOT_FULLY_REVIEWED'}
     if len(pending) != status['remainingActivities'] or any(not key.startswith('SIM-') for key in pending):
@@ -40,7 +40,7 @@ def audit(integration, staging, historical):
         sources.update({row['id']: row for row in json.loads(blob(historical, SOURCE, path))})
     chosen = {}
     package_index = []
-    packages = [(staging, STAGING, f'experiment-{course.lower()}-{kind}-reading-20261127')
+    packages = [(staging, staging_ref, f'experiment-{course.lower()}-{kind}-reading-20261127')
                 for course, kinds in STAGING_PACKAGES.items() for kind in kinds]
     packages += [
         (historical, PHASES, 'experiment-c3-heat-transformations-reading-20261127'),
@@ -88,7 +88,7 @@ def audit(integration, staging, historical):
     assert len(chosen) + len(missing) == len(pending)
     return {
         'schemaVersion': '1.0.0', 'phase': 'OPEN_ACTIVITY_AUTHORING_COVERAGE',
-        'sourceStatusCommit': STATUS, 'sourceStatusSha256': sha(status_raw),
+        'sourceStatusCommit': status_ref, 'sourceStatusSha256': sha(status_raw),
         'registrySha256': status['registrySha256'], 'registeredActivities': status['reviewedActivities'],
         'remainingActivities': len(pending), 'openActivitiesWithDraft': len(chosen),
         'openActivitiesWithoutDraft': missing,
@@ -104,7 +104,13 @@ if __name__ == '__main__':
     parser.add_argument('staging', type=Path)
     parser.add_argument('historical', type=Path)
     parser.add_argument('output', type=Path)
+    parser.add_argument('--status-ref', default=STATUS)
+    parser.add_argument('--staging-ref', default=STAGING)
     args = parser.parse_args()
-    result = audit(args.integration, args.staging, args.historical)
+    status_ref = subprocess.check_output(['git', 'rev-parse', args.status_ref + '^{commit}'],
+                                         cwd=args.integration, text=True, timeout=30).strip()
+    staging_ref = subprocess.check_output(['git', 'rev-parse', args.staging_ref + '^{commit}'],
+                                          cwd=args.staging, text=True, timeout=30).strip()
+    result = audit(args.integration, args.staging, args.historical, status_ref, staging_ref)
     args.output.write_text(json.dumps(result, ensure_ascii=False, sort_keys=True, indent=2) + '\n')
     print(result['openActivitiesWithDraft'], result['openActivitiesWithoutDraft'])
