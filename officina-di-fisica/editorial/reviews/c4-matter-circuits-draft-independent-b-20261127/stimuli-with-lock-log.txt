@@ -1,0 +1,203 @@
+bounded local start; free bytes 2873696256
+{
+  "phase": "STIMULUS_ALLOWLIST_NO_CANDIDATE_SOLUTIONS",
+  "sourceLawDisclosure": "The existing visible source-law formula is part of the exercise stimulus; no claim of blind rediscovery of that supplied law.",
+  "records": [
+    {
+      "id": "SIM-C4-L04-01",
+      "sourceTitle": "Conduttori e induzione elettrostatica",
+      "sourceSummary": "Come può il campo interno restare nullo mentre avvicini una sorgente esterna?",
+      "sourceData": "Nel campione metallico isolato gli elettroni liberi si ridistribuiscono sulle superfici. Il campo da loro creato compensa l’esterno. Le quantità di carica positiva e negativa indotte si bilanciano.",
+      "sourceControl": {
+        "label": "Campo esterno uniforme",
+        "unit": "kV/m",
+        "min": 0,
+        "max": 10,
+        "step": 1
+      },
+      "sourceMeasure": {
+        "label": "Campo interno nel conduttore in equilibrio",
+        "unit": "kV/m"
+      },
+      "sourceVisibleGivenLaw": "E interno = E esterno + E indotto = 0",
+      "tasks": [
+        {
+          "prompt": "Imposta «Campo esterno uniforme» su 2 kV/m. Quale valore ottieni per «Campo interno nel conduttore in equilibrio»?",
+          "unit": "kV/m"
+        },
+        {
+          "prompt": "Applichi 8 kV/m a un conduttore e attendi l’equilibrio elettrostatico. Quanto campo dovrebbe misurare una sonda nel materiale conduttore?",
+          "unit": "kV/m"
+        }
+      ]
+    },
+    {
+      "id": "SIM-C4-L04-02",
+      "sourceTitle": "Dielettrici e polarizzazione",
+      "sourceSummary": "Perché nel materiale isolante il campo si riduce senza annullarsi?",
+      "sourceData": "Fra grandi piastre a carica libera fissata entra un dielettrico lineare omogeneo. I centri di carica legata si separano leggermente. La polarizzazione si oppone al campo applicato.",
+      "sourceControl": {
+        "label": "Campo esterno a carica libera fissata",
+        "unit": "kV/m",
+        "min": 0,
+        "max": 12,
+        "step": 1
+      },
+      "sourceMeasure": {
+        "label": "Campo nel dielettrico",
+        "unit": "kV/m"
+      },
+      "sourceVisibleGivenLaw": "E = E₀/εᵣ, con εᵣ = 3",
+      "tasks": [
+        {
+          "prompt": "Imposta «Campo esterno a carica libera fissata» su 3 kV/m. Quale valore ottieni per «Campo nel dielettrico»?",
+          "unit": "kV/m"
+        },
+        {
+          "prompt": "Scolleghi il generatore per mantenere fissa la carica sulle piastre. Il campo senza dielettrico sarebbe 9 kV/m. Inserendo un materiale con εᵣ = 3, quale campo resta al suo interno?",
+          "unit": "kV/m"
+        }
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-01",
+      "sourceTitle": "Corrente continua e intensità",
+      "sourceSummary": "Quanta carica attraversa la sezione marcata del filo?",
+      "sourceData": "Ogni secondo passano 2 coulomb di carica convenzionale. Nel metallo gli elettroni derivano nel verso opposto alla corrente.",
+      "sourceControl": {
+        "label": "Durata della misura",
+        "unit": "s",
+        "min": 0.5,
+        "max": 5,
+        "step": 0.5
+      },
+      "sourceMeasure": {
+        "label": "Carica attraversata",
+        "unit": "C"
+      },
+      "sourceVisibleGivenLaw": "Δq = IΔt, con I = 2 A",
+      "tasks": [
+        {
+          "prompt": "Imposta «Durata della misura» su 1 s. Quale valore ottieni per «Carica attraversata»?",
+          "unit": "C"
+        },
+        {
+          "prompt": "Un filo porta una corrente stazionaria di 2 A per 4 s. Quanti coulomb attraversano la stessa sezione?",
+          "unit": "C"
+        }
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-02",
+      "sourceTitle": "Generatore ideale",
+      "sourceSummary": "Il generatore ideale mantiene la tensione o la corrente quando cambi il carico?",
+      "sourceData": "Collega il resistore alla stessa batteria ideale da 12 V. Il voltmetro ai morsetti conserva la lettura e l’amperometro cambia con il carico.",
+      "sourceControl": {
+        "label": "Resistenza del carico",
+        "unit": "Ω",
+        "min": 2,
+        "max": 12,
+        "step": 1
+      },
+      "sourceMeasure": {
+        "label": "Corrente nel carico",
+        "unit": "A"
+      },
+      "sourceVisibleGivenLaw": "I = V/R, con V = 12 V fissata dal generatore",
+      "tasks": [
+        {
+          "prompt": "Imposta «Resistenza del carico» su 3 Ω. Quale valore ottieni per «Corrente nel carico»?",
+          "unit": "A"
+        },
+        {
+          "prompt": "Un alimentatore ideale da 12 V fa funzionare un carico da 6 Ω. Quale corrente dovrebbe leggere l’amperometro in serie?",
+          "unit": "A"
+        }
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-03",
+      "sourceTitle": "Conduzione ohmica",
+      "sourceSummary": "Cosa fa un resistore ohmico quando inverti i morsetti?",
+      "sourceData": "La resistenza è costante a temperatura fissata. Invertendo la tensione si inverte la corrente. Il grafico è una retta passante per l’origine.",
+      "sourceControl": {
+        "label": "Tensione al resistore",
+        "unit": "V",
+        "min": -8,
+        "max": 8,
+        "step": 1
+      },
+      "sourceMeasure": {
+        "label": "Corrente con segno",
+        "unit": "A"
+      },
+      "sourceVisibleGivenLaw": "I = V/R, con R = 4 Ω",
+      "tasks": [
+        {
+          "prompt": "Imposta «Tensione al resistore» su -4 V. Quale valore ottieni per «Corrente con segno»?",
+          "unit": "A"
+        },
+        {
+          "prompt": "A un resistore di 4 Ω applichi la tensione con segno 8 V. Quale lettura con segno dà l’amperometro col verso di riferimento del banco?",
+          "unit": "A"
+        }
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-04",
+      "sourceTitle": "Prima e seconda legge di Ohm",
+      "sourceSummary": "Come si combinano le due leggi di Ohm quando allunghi il filo?",
+      "sourceData": "Mantieni sezione e materiale fissi, con resistenza per metro di 2 Ω/m. Prima calcola la resistenza dal filo, poi usa la tensione ai morsetti per trovare la corrente.",
+      "sourceControl": {
+        "label": "Lunghezza del filo",
+        "unit": "m",
+        "min": 0.5,
+        "max": 4,
+        "step": 0.5
+      },
+      "sourceMeasure": {
+        "label": "Corrente a 4 V",
+        "unit": "A"
+      },
+      "sourceVisibleGivenLaw": "R = ρL/A = 2L Ω; I = 4/R",
+      "tasks": [
+        {
+          "prompt": "Imposta «Lunghezza del filo» su 1 m. Quale valore ottieni per «Corrente a 4 V»?",
+          "unit": "A"
+        },
+        {
+          "prompt": "Un filo presenta una resistenza di 2 Ω per metro e ne usi 2 m. Alimentandolo a 4 V, quale corrente scorre?",
+          "unit": "A"
+        }
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-05",
+      "sourceTitle": "Resistività",
+      "sourceSummary": "Due fili geometricamente identici presentano la stessa resistenza?",
+      "sourceData": "Sostituisci il materiale mantenendo lunghezza, area e temperatura. Converti µΩ·m e mm² in SI: i fattori dieci alla meno sei si semplificano.",
+      "sourceControl": {
+        "label": "Resistività",
+        "unit": "µΩ·m",
+        "min": 0.1,
+        "max": 1,
+        "step": 0.1
+      },
+      "sourceMeasure": {
+        "label": "Resistenza del filo",
+        "unit": "Ω"
+      },
+      "sourceVisibleGivenLaw": "R = ρL/A, con L = 2 m e A = 1 mm²",
+      "tasks": [
+        {
+          "prompt": "Imposta «Resistività» su 0,2 µΩ·m. Quale valore ottieni per «Resistenza del filo»?",
+          "unit": "Ω"
+        },
+        {
+          "prompt": "Tagli un filo lungo 2 m di sezione 1 mm² in un materiale di resistività 0,8 µΩ·m. Quale resistenza misuri ai capi?",
+          "unit": "Ω"
+        }
+      ]
+    }
+  ]
+}
