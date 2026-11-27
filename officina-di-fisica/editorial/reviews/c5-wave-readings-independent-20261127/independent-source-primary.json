@@ -1,0 +1,471 @@
+{
+  "role": "INDEPENDENT_AI_REVIEW_PRIMARY_BEFORE_CANDIDATE_BLOCKS",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "disclosure": "Reviewer previously read original C5 sources and installed consumers in139partialreviews; didnotauthor these11candidates. Only candidateID/version/assessmentSelection and source input/formula projection havebeen displayed; newcandidateblocks/authornotesnotyetread. JSONprojectionrequiredloadingcandidatebytes,butcandidateworkedsolutionswerenotdisplayed.",
+  "candidateRefs": [
+    "4691a70e6d51535b85822a32f3e29143c2c64316",
+    "c5ae34ddeec000a36082c5ce620dc3ff8f018a06"
+  ],
+  "records": [
+    {
+      "id": "SIM-C5-L01-02",
+      "sourceInputProjection": {
+        "id": "SIM-C5-L01-02",
+        "version": 2,
+        "title": "Ampiezza, periodo, frequenza e pulsazione",
+        "apparatus": "oscillatore",
+        "control": {
+          "label": "Periodo",
+          "unit": "s",
+          "min": 0.5,
+          "max": 4.0,
+          "step": 0.25
+        },
+        "measure": {
+          "label": "Frequenza",
+          "unit": "Hz"
+        },
+        "formula": "f = 1/T; ω = 2π/T; ampiezza = 3 cm",
+        "transferPrompt": "Un sensore rileva un’oscillazione completa ogni {x}. Quanti cicli registra per secondo?"
+      },
+      "derivedLawAndHypotheses": "f=1/T; omega=2*pi/T. T>0, fixed oscillator amplitude3cm.",
+      "exactAnswers": [
+        {
+          "input": "2",
+          "inputUnit": "s",
+          "answerExact": "1/2",
+          "outputUnit": "Hz"
+        },
+        {
+          "input": "5/2",
+          "inputUnit": "s",
+          "answerExact": "2/5",
+          "outputUnit": "Hz"
+        }
+      ],
+      "manualProceduresAndBoundaries": [
+        "1/2=0.5 Hz; divide1by2.5=divide2by5=0.4Hz.",
+        "InverseT=1/f; period and frequency reciprocals; angular frequency has unitrad/s, notHz."
+      ]
+    },
+    {
+      "id": "SIM-C5-L02-01",
+      "sourceInputProjection": {
+        "id": "SIM-C5-L02-01",
+        "version": 1,
+        "title": "Perturbazione, energia e mezzo materiale",
+        "apparatus": "onda",
+        "control": {
+          "label": "Tempo di propagazione",
+          "unit": "s",
+          "min": 0.0,
+          "max": 3.0,
+          "step": 0.125
+        },
+        "measure": {
+          "label": "Posizione del centro dell’impulso",
+          "unit": "m"
+        },
+        "formula": "x centro = vt, con v = 2 m/s",
+        "transferPrompt": "Un impulso si propaga su una corda a 2 m/s. Dopo {x}, quanto dista il centro dell’impulso dal punto di partenza?"
+      },
+      "derivedLawAndHypotheses": "x=v*t withx0=0 andv=2m/s; centerofpulse, not material displacement.",
+      "exactAnswers": [
+        {
+          "input": "2",
+          "inputUnit": "s",
+          "answerExact": "4",
+          "outputUnit": "m"
+        },
+        {
+          "input": "3/2",
+          "inputUnit": "s",
+          "answerExact": "3",
+          "outputUnit": "m"
+        }
+      ],
+      "manualProceduresAndBoundaries": [
+        "2*2=4m;2*(3/2)=3m.",
+        "Inverse t=x/2; t0 center0, t3 center6m; markedmaterialpoint oscillateslocally."
+      ]
+    },
+    {
+      "id": "SIM-C5-L02-02",
+      "sourceInputProjection": {
+        "id": "SIM-C5-L02-02",
+        "version": 1,
+        "title": "Velocità, frequenza e lunghezza d’onda",
+        "apparatus": "onda",
+        "control": {
+          "label": "Frequenza della sorgente",
+          "unit": "Hz",
+          "min": 1.0,
+          "max": 5.0,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Lunghezza d’onda",
+          "unit": "m"
+        },
+        "formula": "λ = v/f, con v = 6 m/s",
+        "transferPrompt": "Su una corda le onde viaggiano a 6 m/s. Se il generatore oscilla a {x}, quanto distano due creste consecutive?"
+      },
+      "derivedLawAndHypotheses": "lambda=v/f withv=6m/s fixed medium andtension, f>0.",
+      "exactAnswers": [
+        {
+          "input": "4",
+          "inputUnit": "Hz",
+          "answerExact": "3/2",
+          "outputUnit": "m"
+        },
+        {
+          "input": "3",
+          "inputUnit": "Hz",
+          "answerExact": "2",
+          "outputUnit": "m"
+        }
+      ],
+      "manualProceduresAndBoundaries": [
+        "6/4=3/2=1.5m;6/3=2m.",
+        "Inversef=6/lambda; samephase points separatedbyone wavelength; f1 gives6m,f5gives6/5m."
+      ]
+    },
+    {
+      "id": "SIM-C5-L02-04",
+      "sourceInputProjection": {
+        "id": "SIM-C5-L02-04",
+        "version": 1,
+        "title": "Onde trasversali su corda e longitudinali nei fluidi",
+        "apparatus": "onda",
+        "control": {
+          "label": "Fase del punto marcato",
+          "unit": "°",
+          "min": 0.0,
+          "max": 360.0,
+          "step": 15.0
+        },
+        "measure": {
+          "label": "Spostamento del punto lungo la sua oscillazione",
+          "unit": "mm"
+        },
+        "formula": "s = A sin φ; A = 2 mm",
+        "transferPrompt": "Il punto marcato ha ampiezza di 2 mm e fase {x}. Misurando lungo la sua direzione di oscillazione, quale spostamento con segno trovi?"
+      },
+      "derivedLawAndHypotheses": "s=2mm*sin(phi); coordinate along pointoscillation, transversalto propagation forstring, parallel forfluid.",
+      "exactAnswers": [
+        {
+          "input": "270",
+          "inputUnit": "°",
+          "answerExact": "-2",
+          "outputUnit": "mm"
+        },
+        {
+          "input": "180",
+          "inputUnit": "°",
+          "answerExact": "0",
+          "outputUnit": "mm"
+        }
+      ],
+      "manualProceduresAndBoundaries": [
+        "Unitcircle sin270=-1, sin180=0 -> -2mm,0mm.",
+        "Zerois equilibriumposition, notzeroamplitude. 90gives+2,360gives0; phase inverse nonunique."
+      ]
+    },
+    {
+      "id": "SIM-C5-L03-01",
+      "sourceInputProjection": {
+        "id": "SIM-C5-L03-01",
+        "version": 1,
+        "title": "Principio di sovrapposizione",
+        "apparatus": "onda",
+        "control": {
+          "label": "Spostamento della seconda onda",
+          "unit": "cm",
+          "min": -3.0,
+          "max": 3.0,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Spostamento risultante alla sonda",
+          "unit": "cm"
+        },
+        "formula": "y = y₁ + y₂ = 2 cm + y₂",
+        "transferPrompt": "Alla sonda arrivano insieme una perturbazione di +2 cm e una di {x}. Di quanto si sposta in quell’istante il punto della corda?"
+      },
+      "derivedLawAndHypotheses": "Linear superposition atsameposition/time: y=2cm+y2.",
+      "exactAnswers": [
+        {
+          "input": "2",
+          "inputUnit": "cm",
+          "answerExact": "4",
+          "outputUnit": "cm"
+        },
+        {
+          "input": "0",
+          "inputUnit": "cm",
+          "answerExact": "2",
+          "outputUnit": "cm"
+        }
+      ],
+      "manualProceduresAndBoundaries": [
+        "Signedsum2+2=4cm;2+0=2cm.",
+        "Inverse y2=y-2cm; cancellationaty2=-2, domain[-3,3] ->result[-1,5]."
+      ]
+    },
+    {
+      "id": "SIM-C5-L04-01",
+      "sourceInputProjection": {
+        "id": "SIM-C5-L04-01",
+        "version": 1,
+        "title": "Energia e potenza di un’onda meccanica in un mezzo elastico",
+        "apparatus": "onda",
+        "control": {
+          "label": "Ampiezza rispetto ad A₀",
+          "unit": "1",
+          "min": 0.0,
+          "max": 3.0,
+          "step": 0.25
+        },
+        "measure": {
+          "label": "Potenza media rispetto a P₀",
+          "unit": "1"
+        },
+        "formula": "P media = ½μvω²A²; P/P₀ = (A/A₀)²",
+        "transferPrompt": "Sulla stessa corda mantieni invariata la frequenza e porti l’ampiezza a {x} volte quella iniziale. Per quale fattore cambia la potenza media?"
+      },
+      "derivedLawAndHypotheses": "Pmean=.5*mu*v*omega^2*A^2; sameidealstring, fixedmu/tension/frequency, smallslopes, progressivewave,noattenuation.",
+      "exactAnswers": [
+        {
+          "input": "2",
+          "inputUnit": "1",
+          "answerExact": "4",
+          "outputUnit": "1"
+        },
+        {
+          "input": "3/2",
+          "inputUnit": "1",
+          "answerExact": "9/4",
+          "outputUnit": "1"
+        }
+      ],
+      "manualProceduresAndBoundaries": [
+        "Square2->4; square3/2->9/4=2.25.",
+        "dimensionlesspositivebaseP0/A0;0->0,3->9. Inverseamplituderatio nonnegative sqrt(P/P0)."
+      ]
+    },
+    {
+      "id": "SIM-C5-L04-02",
+      "sourceInputProjection": {
+        "id": "SIM-C5-L04-02",
+        "version": 1,
+        "title": "Intensità come energia per area e tempo",
+        "apparatus": "sorgente",
+        "control": {
+          "label": "Area del ricevitore",
+          "unit": "cm²",
+          "min": 0.5,
+          "max": 5.0,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Energia raccolta in 2 s",
+          "unit": "mJ"
+        },
+        "formula": "E = I A t, con I = 10 W/m² e t = 2 s",
+        "transferPrompt": "Un ricevitore di area {x} è investito perpendicolarmente da 10 W/m² per 2 s. Quanti millijoule intercetta?"
+      },
+      "derivedLawAndHypotheses": "E=I*A*t, uniformnormalfluxI10W/m2,t2s; cm2->1e-4m2,J->1000mJ.",
+      "exactAnswers": [
+        {
+          "input": "4",
+          "inputUnit": "cm²",
+          "answerExact": "8",
+          "outputUnit": "mJ"
+        },
+        {
+          "input": "3",
+          "inputUnit": "cm²",
+          "answerExact": "6",
+          "outputUnit": "mJ"
+        }
+      ],
+      "manualProceduresAndBoundaries": [
+        "Per1cm2:10*2*10^-4J=.002J=2mJ. Areas4/3 ->8/6mJ.",
+        "Inversearea numericalcm2=EmJ/2. Equateinterceptedenergy toincidentflux, absorptionefficiency onlyifassumed."
+      ]
+    },
+    {
+      "id": "SIM-C5-L04-03",
+      "sourceInputProjection": {
+        "id": "SIM-C5-L04-03",
+        "version": 1,
+        "title": "Legge dell’inverso del quadrato della distanza",
+        "apparatus": "sorgente",
+        "control": {
+          "label": "Distanza dalla sorgente",
+          "unit": "m",
+          "min": 1.0,
+          "max": 5.0,
+          "step": 0.25
+        },
+        "measure": {
+          "label": "Intensità",
+          "unit": "W/m²"
+        },
+        "formula": "I = P/(4πr²); P = 4π W",
+        "transferPrompt": "Una sorgente isotropa irradia 4π W. Alla distanza di {x}, quale intensità attraversa una piccola superficie perpendicolare ai raggi?"
+      },
+      "derivedLawAndHypotheses": "Isotropicpointsource power4piW, losslessunbounded medium I=P/(4pi*r^2)=1/r^2W/m2,r>0.",
+      "exactAnswers": [
+        {
+          "input": "4",
+          "inputUnit": "m",
+          "answerExact": "1/16",
+          "outputUnit": "W/m²"
+        },
+        {
+          "input": "3",
+          "inputUnit": "m",
+          "answerExact": "1/9",
+          "outputUnit": "W/m²"
+        }
+      ],
+      "manualProceduresAndBoundaries": [
+        "1/16=.0625 exact;1/9=.111...;enter0.1111 accepted if5perthousand toleranceunchanged.",
+        "Inverse r=sqrt(1/I) inassignedunits;radiusdouble->quarter, r0outside domain. Surface isperpendiculartorays."
+      ]
+    },
+    {
+      "id": "SIM-C5-L05-01",
+      "sourceInputProjection": {
+        "id": "SIM-C5-L05-01",
+        "version": 1,
+        "title": "Velocità del suono nei mezzi",
+        "apparatus": "doppler",
+        "control": {
+          "label": "Mezzo di propagazione",
+          "unit": "1",
+          "min": 1.0,
+          "max": 3.0,
+          "step": 1.0,
+          "choices": [
+            "Aria",
+            "Acqua",
+            "Acciaio"
+          ]
+        },
+        "measure": {
+          "label": "Tempo su 150 m",
+          "unit": "ms"
+        },
+        "formula": "t = L/v; v = 340, 1500 o 5000 m/s secondo il mezzo",
+        "transferPrompt": "Devi sincronizzare due sensori distanti 150 m nel mezzo «{x}». Usando la velocità indicata sul banco, quanti millisecondi impiega il suono?"
+      },
+      "derivedLawAndHypotheses": "One-way150m travel,t=L/v; assignedspeeds340/1500/5000m/sforair/water/steel, respectively.",
+      "exactAnswers": [
+        {
+          "input": "3",
+          "inputUnit": "1",
+          "answerExact": "30",
+          "outputUnit": "ms"
+        },
+        {
+          "input": "1",
+          "inputUnit": "1",
+          "answerExact": "7500/17",
+          "outputUnit": "ms"
+        }
+      ],
+      "manualProceduresAndBoundaries": [
+        "Steel150/5000s=.03s=30ms. Air150000/340ms=7500/17;17*441=7497remainder3 ->441.176...ms.",
+        "Thesearemedium/categoryinputindices, nottimes. Airentry441.18haserror3/850ms;one-way,notroundtrip."
+      ]
+    },
+    {
+      "id": "SIM-C5-L05-02",
+      "sourceInputProjection": {
+        "id": "SIM-C5-L05-02",
+        "version": 1,
+        "title": "Intensità, percezione e livello sonoro in decibel",
+        "apparatus": "sorgente",
+        "control": {
+          "label": "Esponente in I/I₀ = 10ⁿ",
+          "unit": "1",
+          "min": 0.0,
+          "max": 8.0,
+          "step": 1.0
+        },
+        "measure": {
+          "label": "Livello di intensità",
+          "unit": "dB"
+        },
+        "formula": "L = 10 log₁₀(I/I₀) = 10n; I₀ = 10⁻¹² W/m²",
+        "transferPrompt": "Il rapporto fra l’intensità misurata e quella di riferimento è 10ⁿ, con n = {x}. Quale livello leggeresti sul fonometro in decibel?"
+      },
+      "derivedLawAndHypotheses": "L=10log10(I/I0), I/I0=10^n, I0=1e-12W/m2.",
+      "exactAnswers": [
+        {
+          "input": "6",
+          "inputUnit": "1",
+          "answerExact": "60",
+          "outputUnit": "dB"
+        },
+        {
+          "input": "4",
+          "inputUnit": "1",
+          "answerExact": "40",
+          "outputUnit": "dB"
+        }
+      ],
+      "manualProceduresAndBoundaries": [
+        "log10(10^n)=n ->60dB,40dB by10*n.",
+        "0dBisI=I0,notzeroenergy; +10dBmeans10timesintensity, not10timesperceivedloudness."
+      ]
+    },
+    {
+      "id": "SIM-C5-L05-03",
+      "sourceInputProjection": {
+        "id": "SIM-C5-L05-03",
+        "version": 1,
+        "title": "Effetto Doppler qualitativo",
+        "apparatus": "doppler",
+        "control": {
+          "label": "Velocità della sorgente verso il ricevitore",
+          "unit": "m/s",
+          "min": -40.0,
+          "max": 40.0,
+          "step": 5.0
+        },
+        "measure": {
+          "label": "Frequenza ricevuta",
+          "unit": "Hz"
+        },
+        "formula": "f ricevuta = f₀ v/(v−u); f₀ = 300 Hz, v = 300 m/s",
+        "transferPrompt": "La sorgente emette 300 Hz e ha velocità con segno {x} verso il ricevitore fermo. Se il suono viaggia a 300 m/s, quale frequenza riceve?"
+      },
+      "derivedLawAndHypotheses": "Restmediumc300m/s, stationaryreceiver, sourcef0300Hz,u positive towardreceiver, |u|<=40<c. fr=f0*c/(c-u).",
+      "exactAnswers": [
+        {
+          "input": "30",
+          "inputUnit": "m/s",
+          "answerExact": "1000/3",
+          "outputUnit": "Hz"
+        },
+        {
+          "input": "-20",
+          "inputUnit": "m/s",
+          "answerExact": "1125/4",
+          "outputUnit": "Hz"
+        }
+      ],
+      "manualProceduresAndBoundaries": [
+        "90000/270=1000/3=333.333...Hz;entry333.33. Recession -20:90000/320=1125/4=281.25Hz.",
+        "u0gives300; approachraisesf,recessionlowersf; inverseu=c*(1-f0/fr). Singularityu=cnotallowed."
+      ]
+    }
+  ],
+  "credit": 0,
+  "productUI": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
