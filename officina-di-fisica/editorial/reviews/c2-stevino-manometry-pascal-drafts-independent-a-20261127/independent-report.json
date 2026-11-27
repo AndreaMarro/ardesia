@@ -1,0 +1,179 @@
+{
+  "schemaVersion": "1.0.0",
+  "reviewer": "A_distinct_from_Root_author",
+  "draftCount": 4,
+  "actualTaskCount": 8,
+  "records": [
+    {
+      "id": "SIM-C2-L002-02",
+      "sourceVersion": 1,
+      "draftVersion": 2,
+      "candidateSha256": "18a22ca154a2ebaf2b19856064b7953ed310d6906a86709264397d41af39dac9",
+      "sourceSha256": "c1796958ce9c149c706ec657215910a75a615e03c981646a7bedd1121435983b",
+      "tasks": [
+        {
+          "inputLexeme": "2",
+          "independentExact": "10",
+          "actual": {
+            "prompt": "Imposta «Quota della sonda sopra il fondo» su 2 m. Quale valore ottieni per «Pressione relativa»?",
+            "value": 10,
+            "unit": "kPa",
+            "worked": "h = 3−z; Δp = 10(3−z) kPa. 10 × (3 − 2) = 10 kPa."
+          },
+          "unit": "kPa",
+          "manualFeasible": true
+        },
+        {
+          "inputLexeme": "1.5",
+          "independentExact": "15",
+          "actual": {
+            "prompt": "L’acqua raggiunge quota 3 m rispetto al fondo. Installi la sonda alla quota 1,5 m. Quale pressione relativa devi aspettarti?",
+            "value": 15,
+            "unit": "kPa",
+            "worked": "h = 3−z; Δp = 10(3−z) kPa. 10 × (3 − 1,5) = 15 kPa."
+          },
+          "unit": "kPa",
+          "manualFeasible": true
+        }
+      ],
+      "physicalDimensionCheck": "10 kilopascal",
+      "actualControlStates": 13,
+      "manualAndTextReview": "PASS_DISTINCT_AI_WITH_MODELS_REUSED_DISCLOSED",
+      "sourceVersionPreserved": true,
+      "prerequisiteReview": "PASS_ACTUAL_C2_LESSONS_READ",
+      "UI": "NOT_RUN",
+      "visualReview": "PENDING_ACTUAL_DRAFT_BROWSER",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L002-03",
+      "sourceVersion": 1,
+      "draftVersion": 2,
+      "candidateSha256": "6415a41c72f383097e2f95aef2321971008cbb156bcfd5ac774e0de397b5b5fd",
+      "sourceSha256": "c2be7516d571aa319bb70077386c4d915ed29409885a5a9d09aca460a27abf09",
+      "tasks": [
+        {
+          "inputLexeme": "102",
+          "independentExact": "75",
+          "actual": {
+            "prompt": "Imposta «Pressione dell’aria» su 102 kPa. Quale valore ottieni per «Altezza della colonna di mercurio»?",
+            "value": 75,
+            "unit": "cm",
+            "worked": "h = p/(ρg); ρ = 13600 kg/m³, g = 10 m/s². 102 / 1,36 = 75 cm."
+          },
+          "unit": "cm",
+          "manualFeasible": true
+        },
+        {
+          "inputLexeme": "88.4",
+          "independentExact": "65",
+          "actual": {
+            "prompt": "Un barometro a mercurio è esposto alla pressione 88,4 kPa. Quale altezza della colonna prevedi con ρ = 13 600 kg/m³ e g = 10 m/s²?",
+            "value": 65,
+            "unit": "cm",
+            "worked": "h = p/(ρg); ρ = 13600 kg/m³, g = 10 m/s². 88,4 / 1,36 = 65 cm."
+          },
+          "unit": "cm",
+          "manualFeasible": true
+        }
+      ],
+      "physicalDimensionCheck": "34/25 kilopascal",
+      "actualControlStates": 31,
+      "manualAndTextReview": "PASS_DISTINCT_AI_WITH_MODELS_REUSED_DISCLOSED",
+      "sourceVersionPreserved": true,
+      "prerequisiteReview": "PASS_ACTUAL_C2_LESSONS_READ",
+      "UI": "NOT_RUN",
+      "visualReview": "PENDING_ACTUAL_DRAFT_BROWSER",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L002-04",
+      "sourceVersion": 2,
+      "draftVersion": 3,
+      "candidateSha256": "b7e17d592b1daa6131e5a10915378a2cb6def963baf9002d5885b2cc348bf7a5",
+      "sourceSha256": "6931192982208a0aad15a657d2fbcafa7d40a727a951e25fda05f1ddee372c24",
+      "tasks": [
+        {
+          "inputLexeme": "2",
+          "independentExact": "20",
+          "actual": {
+            "prompt": "Imposta «Differenza di pressione» su 2 kPa. Quale valore ottieni per «Dislivello con segno»?",
+            "value": 20,
+            "unit": "cm",
+            "worked": "Δp = p sinistra − p destra. Δh = h destra − h sinistra = Δp/(ρg), con acqua e g = 10 m/s².. 10 × 2 = 20 cm."
+          },
+          "unit": "cm",
+          "manualFeasible": true
+        },
+        {
+          "inputLexeme": "0",
+          "independentExact": "0",
+          "actual": {
+            "prompt": "La pressione a sinistra meno la pressione a destra vale 0 kPa. Quanto misura, in centimetri e con segno, il livello destro meno quello sinistro?",
+            "value": 0,
+            "unit": "cm",
+            "worked": "Δp = p sinistra − p destra. Δh = h destra − h sinistra = Δp/(ρg), con acqua e g = 10 m/s².. 10 × 0 = 0 cm."
+          },
+          "unit": "cm",
+          "manualFeasible": true
+        }
+      ],
+      "physicalDimensionCheck": "1 kilopascal",
+      "actualControlStates": 21,
+      "manualAndTextReview": "PASS_DISTINCT_AI_WITH_MODELS_REUSED_DISCLOSED",
+      "sourceVersionPreserved": true,
+      "prerequisiteReview": "PASS_ACTUAL_C2_LESSONS_READ",
+      "UI": "NOT_RUN",
+      "visualReview": "PENDING_ACTUAL_DRAFT_BROWSER",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L003-01",
+      "sourceVersion": 1,
+      "draftVersion": 2,
+      "candidateSha256": "f387b8257f084c6f65b046f2aa2d0a0726e78795cd9f41c0f1aedde332bfa925",
+      "sourceSha256": "94028905ba7c74aceb6579da0400b5b3f89e923d3ef093d0a897379df752d79a",
+      "tasks": [
+        {
+          "inputLexeme": "6",
+          "independentExact": "12",
+          "actual": {
+            "prompt": "Imposta «Pressione aggiunta» su 6 kPa. Quale valore ottieni per «Incremento di forza sul pistone grande»?",
+            "value": 12,
+            "unit": "N",
+            "worked": "ΔF = Δp A; A = 20 cm². 2 × 6 = 12 N."
+          },
+          "unit": "N",
+          "manualFeasible": true
+        },
+        {
+          "inputLexeme": "5",
+          "independentExact": "10",
+          "actual": {
+            "prompt": "Aumenti di 5 kPa la pressione idraulica. Il pistone di uscita ha area 20 cm². Di quanto aumenta la forza che può esercitare?",
+            "value": 10,
+            "unit": "N",
+            "worked": "ΔF = Δp A; A = 20 cm². 2 × 5 = 10 N."
+          },
+          "unit": "N",
+          "manualFeasible": true
+        }
+      ],
+      "physicalDimensionCheck": "2 newton",
+      "actualControlStates": 11,
+      "manualAndTextReview": "PASS_DISTINCT_AI_WITH_MODELS_REUSED_DISCLOSED",
+      "sourceVersionPreserved": true,
+      "prerequisiteReview": "PASS_ACTUAL_C2_LESSONS_READ",
+      "UI": "NOT_RUN",
+      "visualReview": "PENDING_ACTUAL_DRAFT_BROWSER",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    }
+  ],
+  "UI": "NOT_RUN",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN"
+}

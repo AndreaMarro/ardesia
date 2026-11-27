@@ -1,0 +1,6 @@
+import fs from'node:fs';import{pathToFileURL}from'node:url';
+const app='/private/tmp/cric-stevino-probe-label-20261127/officina-di-fisica',D='/private/tmp/cric-author-a-resident/officina-di-fisica/editorial/reviews/c2-stevino-manometry-pascal-drafts-independent-a-20261127';
+const {esperienza}=await import(pathToFileURL(app+'/static/js/banchi/voci/esperimento.js'));
+const p=JSON.parse(fs.readFileSync(D+'/experiment-c2-hydrostatic-reading-20261127.json')),records=[];
+for(const r of p.records){const a=await esperienza(r),cases=[];for(let i=0;i<=Math.round((r.control.max-r.control.min)/r.control.step);i++){const x=Number((r.control.min+i*r.control.step).toFixed(10));cases.push({x,y:a.model.solve({x}).y})}records.push({id:r.id,record:a.record,assessment:a.record.assessment,params:a.model.params,clock:a.clock,legend:['orbit','side','top','diagram'].map(view=>({view,text:a.legend(2,view)})),cases})}
+fs.writeFileSync(D+'/actual-installed-node.json',JSON.stringify({browser:'NOT_RUN',runtimeSha256:'1efcd26bbb078453b75be5fbd1502b95cf07c0ffabb4112a4e4cf78170ff46aa',records}));console.log('Four actual draft editions / eight installed tasks / '+records.reduce((s,r)=>s+r.cases.length,0)+' control states; browser NOT_RUN')

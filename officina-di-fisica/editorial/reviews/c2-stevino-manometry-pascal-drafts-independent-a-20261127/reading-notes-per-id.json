@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "Full four draft records, four matching manual sections, all eight actual installed tasks, immutable originals and actual C2-L001/L002/L003 lesson text",
+  "records": [
+    {
+      "id": "SIM-C2-L002-02",
+      "distinctReading": "PASS_FOR_MATH_MANUAL_DOMAIN_TEXT_ONLY",
+      "reason": "Independent height-depth derivation gives 10(3-z) kPa. Draft tasks z=2 and3/2 yield10 and15 kPa. Relative pressure zero is at the free surface, not tank bottom. All prose, inverse and endpoints agree.",
+      "UI": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L002-03",
+      "distinctReading": "PASS_FOR_MATH_MANUAL_DOMAIN_TEXT_ONLY",
+      "reason": "Independent static column balance gives h=(25/34)p in cm, assigned g10. Tasks102 and88.4 kPa yield75 and65 cm. Mercury vapour pressure is explicitly neglected and vertical reference is reservoir free surface. No confusion with efflux Torricelli law.",
+      "UI": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L002-04",
+      "distinctReading": "PASS_FOR_MATH_MANUAL_DOMAIN_TEXT_ONLY",
+      "reason": "Independent pressure-plus-rho-g-height balance confirms signed right-minus-left displacement; tasks+2 and0 kPa yield+20 and0 cm. Equal cross sections justify half-arm motions; negative example is consistent. Original v2 becomes draftv3, notv2.",
+      "UI": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L003-01",
+      "distinctReading": "PASS_FOR_MATH_MANUAL_DOMAIN_TEXT_ONLY",
+      "reason": "Independent area conversion20cm²=1/500m² gives2 N/kPa; tasks6 and5kPa yield12 and10 N. Incremental force is distinguished from absolute/background loads. Prose directs numerical interpretation to assigned area/pressure and uses picture only for identity/direction. Source visual ambiguities remain outside this CPU-only review.",
+      "UI": "NOT_RUN",
+      "activityCredit": 0
+    }
+  ],
+  "excludedManualSection": "SIM-C2-L002-01 was present in the supplied manual but is not among these four candidate records and is not newly approved",
+  "humanApproval": "NOT_RUN"
+}
