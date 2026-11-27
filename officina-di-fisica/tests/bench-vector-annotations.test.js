@@ -112,8 +112,16 @@ test('the constant gravity arrow clears the launch and landing platform', () => 
       return group;
     };
     board.ball = () => new T.Object3D();
+    board.annotate = (draw, parent) => {
+      const layer = board.group(parent);
+      layer.annotation = true;
+      draw(layer);
+    };
     const update = flight(board, input, solved, 2, 'side');
     const arrow = arrows.find(item => item.color === red);
+    assert.ok(arrow.group.annotation);
+    assert.equal(arrow.group.parent.position.x, 0.55);
+    assert.equal(arrow.group.parent.position.z, -0.38);
     assert.deepEqual(arrow.a, [0, 0, 0]);
     assert.deepEqual(arrow.b, [0, -0.64, 0]);
     for (const t of [0, solved.duration / 2, solved.duration]) {

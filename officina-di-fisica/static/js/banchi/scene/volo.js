@@ -55,8 +55,8 @@ export function build(b, p, s, stage) {
   // Unit vectors rotate and scale without allocating geometry during playback.
   if (stage >= 1) {
     gravity = b.group(moving);
-    gravity.position.set(-0.34, 0, -0.46);
-    b.arrow([0, 0, 0], [0, -0.64, 0], red, gravity);
+    gravity.position.set(0.55, 0, -0.38);
+    b.annotate(layer => b.arrow([0, 0, 0], [0, -0.64, 0], red, layer), gravity);
     for (let i = 0; i < (stage >= 2 ? 4 : 1); i++) {
       const g = b.group(moving);
       if (i === 0) g.position.set(0.21, 0.22, 0.28);
