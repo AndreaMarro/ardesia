@@ -1,0 +1,133 @@
+{
+  "sourceCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+  "sourceRawSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+  "allowlist": [
+    "id",
+    "version",
+    "title",
+    "summary",
+    "interpretation",
+    "control",
+    "measure",
+    "transferPrompt",
+    "apparatus",
+    "skill",
+    "section",
+    "prerequisites"
+  ],
+  "records": [
+    {
+      "id": "SIM-C2-L008-01",
+      "version": 1,
+      "title": "Legge di Hagen–Poiseuille",
+      "summary": "Raddoppiare il raggio quadruplica o moltiplica per sedici la portata?",
+      "interpretation": "Mantieni viscosità, lunghezza e salto di pressione fissi. L’area quadruplica e la velocità media quadruplica anch’essa. Vale per flusso laminare in un tubo rigido.",
+      "control": {
+        "label": "Raggio rispetto a r₀",
+        "unit": "1",
+        "min": 0.5,
+        "max": 2.0,
+        "step": 0.25
+      },
+      "measure": {
+        "label": "Portata relativa a Q₀",
+        "unit": "1"
+      },
+      "transferPrompt": "Nel medesimo capillare porti il raggio a {x} volte il riferimento. Con lo stesso salto di pressione, quale rapporto Q/Q₀ ottieni?",
+      "apparatus": "condotto",
+      "skill": "C2-L008",
+      "section": "Fluidi in movimento",
+      "proposedPointsOnly": [
+        2,
+        0.5
+      ]
+    },
+    {
+      "id": "SIM-C2-L008-02",
+      "version": 1,
+      "title": "Ruolo di raggio, lunghezza, viscosità e salto di pressione",
+      "summary": "Quale delle quattro modifiche produce il maggior cambiamento di portata?",
+      "interpretation": "Ogni configurazione riparte dallo stesso tubo laminare di riferimento e modifica un solo parametro. Cambiare la viscosità o la lunghezza ha lo stesso effetto inverso; il raggio compare alla quarta potenza.",
+      "control": {
+        "label": "Modifica rispetto al riferimento",
+        "unit": "1",
+        "min": 1.0,
+        "max": 4.0,
+        "step": 1.0,
+        "choices": [
+          "Raggio doppio",
+          "Lunghezza doppia",
+          "Viscosità doppia",
+          "Pressione doppia"
+        ]
+      },
+      "measure": {
+        "label": "Portata rispetto a Q₀",
+        "unit": "1"
+      },
+      "transferPrompt": "Il tecnico sceglie la modifica «{x}» alla prova di Poiseuille. A parità delle altre condizioni, per quale fattore cambia la portata?",
+      "apparatus": "condotto",
+      "skill": "C2-L008",
+      "section": "Fluidi in movimento",
+      "proposedPointsOnly": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "SIM-C2-L008-03",
+      "version": 1,
+      "title": "Resistenza idraulica",
+      "summary": "Quanta pressione deve fornire la pompa attraverso un condotto resistivo?",
+      "interpretation": "Per un tubo a regime laminare la resistenza è fissata. Leggi il salto fra monte e valle: tende a zero insieme alla portata e raddoppia quando la portata raddoppia.",
+      "control": {
+        "label": "Portata richiesta",
+        "unit": "mL/s",
+        "min": 0.0,
+        "max": 8.0,
+        "step": 0.5
+      },
+      "measure": {
+        "label": "Differenza di pressione",
+        "unit": "kPa"
+      },
+      "transferPrompt": "Per ottenere una portata di {x} in un capillare con resistenza 3 kPa·s/mL, quale salto di pressione deve fornire la pompa?",
+      "apparatus": "rete",
+      "skill": "C2-L008",
+      "section": "Fluidi in movimento",
+      "proposedPointsOnly": [
+        2.5,
+        6
+      ]
+    },
+    {
+      "id": "SIM-C2-L008-04",
+      "version": 1,
+      "title": "Limiti dei modelli fisiologici",
+      "summary": "Quanto pesa un piccolo errore sul raggio in una stima fisiologica?",
+      "interpretation": "A pressione fissata un errore geometrico del 20% ha un effetto fortemente asimmetrico. È un test di sensibilità del tubo rigido: pulsatilità, elasticità e viscosità variabile richiedono altri modelli.",
+      "control": {
+        "label": "Variazione del raggio rispetto al riferimento",
+        "unit": "%",
+        "min": -20.0,
+        "max": 20.0,
+        "step": 5.0
+      },
+      "measure": {
+        "label": "Portata del modello rigido rispetto a Q₀",
+        "unit": "1"
+      },
+      "transferPrompt": "Il modello rigido prevede una variazione del raggio del {x}. Quale rapporto fra nuova portata e portata iniziale corrisponde, a pari caduta di pressione?",
+      "apparatus": "condotto",
+      "skill": "C2-L008",
+      "section": "Fluidi in movimento",
+      "proposedPointsOnly": [
+        -20,
+        20
+      ]
+    }
+  ],
+  "candidateBlocksRead": false,
+  "authorReceiptRead": false
+}
