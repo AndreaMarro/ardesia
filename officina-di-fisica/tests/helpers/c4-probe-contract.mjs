@@ -26,10 +26,15 @@ function normalize(id, elements) {
   });
 }
 
-export async function contract() {
+export async function contract({allowFrontalPlateView = false} = {}) {
   const result = [];
   for (const record of records) {
     const a = await esperienza(record), states = [];
+    let characterizedSpec = a.scene.spec;
+    if (allowFrontalPlateView && affected.has(record.id)) {
+      assert.deepEqual(a.scene.spec.eye, [0,1.9,6.1], record.id + ' explicit native framing');
+      characterizedSpec = {...a.scene.spec, eye:[2.6,1.9,6.1]};
+    }
     const {min,max,step} = record.control;
     for (let i=0;i<=Math.round((max-min)/step);i++) {
       const x=min+i*step, solved=a.model.solve({x});
@@ -49,7 +54,7 @@ export async function contract() {
       states.push(entry);
     }
     result.push({id:record.id,controls:states.length,
-      physicalAndTeachingSha256:sha({record:a.record,params:a.model.params,spec:a.scene.spec,
+      physicalAndTeachingSha256:sha({record:a.record,params:a.model.params,spec:characterizedSpec,
         observe:a.observe,states}),
       // Only the three accessible descriptions are deliberately extended.
       ...(affected.has(record.id)?{}:{legends:['orbit','side','top','diagram'].map(view=>a.legend(2,view))})});

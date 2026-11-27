@@ -43,6 +43,11 @@ def digest(value):return sha(canonical(value))
 def load(path):return json.loads(Path(path).read_bytes())
 
 
+def is_next_edition(row):
+    base, version = row.get('baseVersion'), row.get('version')
+    return type(base) is int and type(version) is int and 1 <= base < 2**53 - 1 and version == base + 1
+
+
 def safe(root,name):
     if not isinstance(name,str):raise ValueError('Unsafe evidence path')
     p=PurePosixPath(name)
@@ -211,8 +216,10 @@ def prepare(request_file,course,workspace):
             p=target/rel;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(blob);input_files[str(p)]=sha(blob)
         package=load(target/'editorial/batches'/f'{batch}.json');packages.append(str(target/'editorial/batches'/f'{batch}.json'))
         for row in package['records']:
-            if row['id']in drafts or row['id']not in inv or(row['version'],row['baseVersion'])!=(2,1):raise ValueError('Bad revision identity')
+            if row['id'] in drafts or row['id'] not in inv or not is_next_edition(row):
+                raise ValueError('Bad revision identity')
             base=next(s for s in sources if s['id']==row['id'])
+            if row['baseVersion'] != base.get('version', 1):raise ValueError('Draft base does not match the source edition')
             for field in ('control','measure','references','apparatus','course','kind','engine'):
                 if row.get(field)!=base.get(field):raise ValueError('Physical source field changed: '+field)
             drafts[row['id']]=row
@@ -339,8 +346,12 @@ def verify_planned_interaction(case,row,state):
 
 
 def verify_report(out,prepared,protocol_sha):
+    return verify_report_bytes(lambda name: safe(out,name).read_bytes(),prepared,protocol_sha)
+
+
+def verify_report_bytes(read,prepared,protocol_sha):
     """Fail closed on omitted/duplicated states or byte/provenance drift."""
-    out=Path(out);report=load(out/'report.json')
+    report=json.loads(read('report.json'))
     if report.get('technicalStatus')!='ALL_PLANNED_CASES_OBSERVED_REVIEW_NOT_GRANTED':raise ValueError('No complete technical report')
     for name,value in {'sourceCommit':prepared['sourceCommit'],'requestSha256':prepared['requestSha256'],
                        'runtimeFingerprint':prepared['runtimeFingerprint'],'protocolSha256':protocol_sha,
@@ -369,7 +380,7 @@ def verify_report(out,prepared,protocol_sha):
     cases=report['cases'];expected=prepared['expectedCaseKeys']
     if len(cases)!=len(expected)or len({c['caseKey']for c in cases})!=len(cases)or {c['caseKey']for c in cases}!=set(expected):raise ValueError('Missing/duplicate UI cases')
     for item in cases:
-        case_bytes=safe(out,item['file']).read_bytes()
+        case_bytes=read(item['file'])
         if sha(case_bytes)!=item['sha256']:raise ValueError('Case bytes drift')
         case=json.loads(case_bytes)
         expected_fields={'caseKey':item['caseKey'],'technicalOk':True,'sourceCommit':prepared['sourceCommit'],
@@ -393,7 +404,7 @@ def verify_report(out,prepared,protocol_sha):
             if any(type(v)not in(int,float)or not math.isfinite(v)for v in values):raise ValueError('Nonfinite baseline case')
         if not case.get('screenshots'):raise ValueError('Observed UI case has no actual PNG')
         for image in case['screenshots']:
-            if sha(safe(out,image['file']).read_bytes())!=image['sha256']:raise ValueError('PNG bytes drift')
+            if sha(read(image['file']))!=image['sha256']:raise ValueError('PNG bytes drift')
     return report
 
 
@@ -423,7 +434,7 @@ def verify_prepared_inputs(info,prepared):
     rows={}
     for name in packages:
         for row in json.loads(blobs[name])['records']:
-            if row['id']in rows or(row['version'],row['baseVersion'])!=(2,1):raise ValueError('Private revision identity differs')
+            if row['id'] in rows or not is_next_edition(row):raise ValueError('Private revision identity differs')
             rows[row['id']]=row
     planned=prepared.get('draftRecords',[])
     if len(rows)!=9 or len(planned)!=9 or len({x['id']for x in planned})!=9 or canonical({x['id']:x for x in planned})!=canonical(rows):
@@ -431,7 +442,7 @@ def verify_prepared_inputs(info,prepared):
     for item in prepared['records']:
         if item['variant']=='draft'and(digest(item['record'])!=digest(rows.get(item['id']))or item['candidateSha256']!=digest(rows[item['id']])):
             raise ValueError('Cohort candidate rebound')
-    normalized={key:{**{k:v for k,v in row.items()if k not in('baseVersion','review')},'version':2,'review':'bozza'}for key,row in rows.items()}
+    normalized={key:{**{k:v for k,v in row.items()if k not in('baseVersion','review')},'review':'bozza'}for key,row in rows.items()}
     result={'files':expected,'normalizedOwnerRecords':normalized,'activityCredit':0}
     if baseline is not None:result['baselineReference']=baseline
     return result

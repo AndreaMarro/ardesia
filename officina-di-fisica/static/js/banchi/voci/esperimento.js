@@ -40,6 +40,9 @@ export async function esperienza(record) {
   const calc = (x) => stabile(law.measure(x));
   const clock = record.engine ? null : orologioVoce(record, law);
   const nativeVectorAxes = !record.engine && record.apparatus === 'vettori';
+  const frontalPlateProbe = !record.engine && [
+    'SIM-C4-L02-03', 'SIM-C4-L03-02', 'SIM-C4-L03-03',
+  ].includes(record.id);
   const etichetteFuoriScena = nativeVectorAxes ? ['y'] : !record.engine && annotazioneScena(record)?.etichette;
   function elements(x, stage, time) {
     if (clock?.input && time !== undefined) x = time;
@@ -306,7 +309,10 @@ export async function esperienza(record) {
     // Keep their complete opaque meshes in all three preset camera frames.
     height: nativeVectorAxes ? 6 : high ? 4.65 : top ? 4.68 : 4.25,
     width: 8.1,
-    eye: top ? [2.3, 4.35, 6.1] : [2.6, 1.9, 6.1],
+    // A lateral eye lets the opaque right plate hide the nearby probe. In these
+    // three native activities, a raised frontal view keeps their x positions
+    // separate on screen without moving the probe, field or physical plates.
+    eye: frontalPlateProbe ? [0, 1.9, 6.1] : top ? [2.3, 4.35, 6.1] : [2.6, 1.9, 6.1],
     bg: { C1: 0xf3eddd, C2: 0xe7efe5, C3: 0xf4eada, C4: 0xecebf1, C5: 0xe7edf0, C6: 0xe9eeea }[record.course] ?? 0xe9eeea,
   };
   const scene = {
@@ -328,9 +334,14 @@ export async function esperienza(record) {
     measurement,
     clock,
     observe: law.observe,
-    legend: (_stage, view) => legend ?? (nativeVectorAxes
-      ? legende.vettori.replace('Gli assi x e y sono indicati sulla tavola.',
-        'L’asse x è etichettato. L’asse y passa per la coda del primo vettore ed è perpendicolare a x nel piano dei vettori. Nella tavola 2D è l’altra retta grigia; in una vista 3D di taglio può apparire come un punto. Usa i controlli e le letture numeriche per confrontare i risultati.')
-      : legendaVoce(record, view)),
+    legend: (_stage, view) => {
+      const text = legend ?? (nativeVectorAxes
+        ? legende.vettori.replace('Gli assi x e y sono indicati sulla tavola.',
+          'L’asse x è etichettato. L’asse y passa per la coda del primo vettore ed è perpendicolare a x nel piano dei vettori. Nella tavola 2D è l’altra retta grigia; in una vista 3D di taglio può apparire come un punto. Usa i controlli e le letture numeriche per confrontare i risultati.')
+        : legendaVoce(record, view));
+      return frontalPlateProbe && view !== 'diagram'
+        ? text + ' La vista Obliqua parte da un’inquadratura frontale rialzata. Se ruoti la scena e una piastra copre il punto, usa Ripristina vista oppure scegli Alto o Laterale per confrontare la posizione lungo il campo.'
+        : text;
+    },
   };
 }
