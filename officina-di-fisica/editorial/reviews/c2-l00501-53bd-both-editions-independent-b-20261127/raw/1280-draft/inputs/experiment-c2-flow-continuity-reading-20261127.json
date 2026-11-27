@@ -1,0 +1,371 @@
+{
+  "assets": [],
+  "records": [
+    {
+      "anchor": "Segna un piano immaginario di traverso a",
+      "apparatus": "condotto",
+      "assessmentSelection": {
+        "points": [
+          6,
+          7
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Segna una sezione del tubo perpendicolare al suo asse. In un secondo una velocità media di 6 cm/s equivale al passaggio di uno strato lungo 6 cm che occupa tutta la sezione. La costruzione usa la velocità media sulla sezione e vale anche quando alcune parti del liquido scorrono più rapide di altre.",
+          "type": "text"
+        },
+        {
+          "text": "Q=A\\bar v",
+          "type": "formula"
+        },
+        {
+          "text": "Moltiplica i 4 cm² della sezione per 6 cm/s. Le unità danno centimetri cubi al secondo e il prodotto vale 24. Un centimetro cubo è un millilitro, così la portata è 24 mL/s. A 7 cm/s, moltiplica 4 per 7 e ottieni 28 mL/s.",
+          "type": "text"
+        },
+        {
+          "text": "Q(7\\,\\mathrm{cm/s})=28\\,\\mathrm{mL/s}",
+          "type": "formula"
+        },
+        {
+          "text": "In senso inverso, per ricavare la velocità dividi la portata per l’area. Dalla portata di 28 cm³/s e dalla sezione di 4 cm² ritrovi 7 cm/s. A sezione fissa, raddoppiare la velocità raddoppia la portata. A velocità nulla il volume attraversato è zero.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Velocità media",
+        "max": 12.0,
+        "min": 0.0,
+        "step": 1.0,
+        "unit": "cm/s"
+      },
+      "course": "C2",
+      "formula": "Q = A v media; A = 4 cm²",
+      "id": "SIM-C2-L005-01",
+      "interpretation": "Immagina il cilindro che attraversa il piano durante un secondo. Ha volume area per distanza. Un centimetro cubo corrisponde a un millilitro.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Portata volumetrica",
+        "unit": "mL/s"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "references": [
+        [
+          2.0,
+          8.0
+        ],
+        [
+          6.0,
+          24.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in movimento",
+      "skill": "C2-L005",
+      "substitution": "4 × {x}",
+      "summary": "Quanto liquido varca la sezione colorata in un secondo?",
+      "title": "Flusso e portata volumetrica",
+      "topic": "Flusso e portata volumetrica",
+      "transferPrompt": "Un tubo di area 4 cm² porta un liquido a velocità media {x}. Quanti millilitri entrano nel recipiente ogni secondo?",
+      "version": 2
+    },
+    {
+      "anchor": "In regime stazionario nessuna regione accumula massa",
+      "apparatus": "condotto",
+      "assessmentSelection": {
+        "points": [
+          3,
+          2.5
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Contorna il tratto tra ingresso e uscita. In regime stazionario, senza perdite o aggiunte, la sua massa di liquido rimane costante. La massa che entra in un secondo coincide quindi con quella che esce. Le due sezioni possono cambiare la velocità locale.",
+          "type": "text"
+        },
+        {
+          "text": "\\dot m=\\rho Q",
+          "type": "formula"
+        },
+        {
+          "text": "Ogni litro del liquido ha massa 0,8 kg, cioè 4/5 kg. Moltiplicando i litri al secondo per i chilogrammi al litro i litri si semplificano. A 3 L/s ottieni 12/5 kg/s, cioè 2,4 kg/s esatti. A 2,5 L/s riscrivi la portata come 5/2 L/s e semplifica il fattore 5 prima di moltiplicare.",
+          "type": "text"
+        },
+        {
+          "text": "\\frac45\\cdot\\frac52\\,\\mathrm{kg/s}=2\\,\\mathrm{kg/s}",
+          "type": "formula"
+        },
+        {
+          "text": "Per risalire alla portata volumetrica, dividi la portata massica per la densità. Per esempio 2 kg/s divisi per 4/5 kg/L danno 5/2 L/s. La stessa portata volumetrica corrisponderebbe a una portata massica diversa con un altro liquido.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Portata in ingresso",
+        "max": 5.0,
+        "min": 0.0,
+        "step": 0.25,
+        "unit": "L/s"
+      },
+      "course": "C2",
+      "formula": "ṁ = ρQ; ρ = 0,8 kg/L",
+      "id": "SIM-C2-L005-02",
+      "interpretation": "Il liquido percorre un tubo senza perdite e senza accumulo. La massa che entra in un secondo deve uscire nello stesso intervallo. La velocità locale può cambiare.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Portata massica in uscita",
+        "unit": "kg/s"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "references": [
+        [
+          1.0,
+          0.8
+        ],
+        [
+          3.0,
+          2.4
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in movimento",
+      "skill": "C2-L005",
+      "substitution": "0,8 × {x}",
+      "summary": "Quale massa ritrovi all’uscita in ogni secondo di regime stazionario?",
+      "title": "Conservazione della massa",
+      "topic": "Conservazione della massa",
+      "transferPrompt": "All’ingresso di un tubo arrivano {x} di un liquido da 0,8 kg/L. In regime stazionario, quanti chilogrammi al secondo escono?",
+      "version": 2
+    },
+    {
+      "anchor": "In un condotto più stretto la velocità",
+      "apparatus": "condotto",
+      "assessmentSelection": {
+        "points": [
+          6,
+          5
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Segna due sezioni del tubo e segui una porzione d’acqua mentre attraversa entrambe. Il flusso è stazionario, l’acqua incomprimibile e tra le sezioni non ci sono perdite o rami. Lo stesso volume passa per entrambe ogni secondo. Alla sezione più stretta serve allora una maggiore velocità media.",
+          "type": "text"
+        },
+        {
+          "text": "Q=A_1\\bar v_1=A_2\\bar v_2",
+          "type": "formula"
+        },
+        {
+          "text": "Per calcolare la velocità media in uscita dividi la portata di 24 cm³/s per l’area della seconda sezione. Con 6 cm² ottieni 4 cm/s. Con 5 cm² ottieni 24/5 cm/s. Moltiplica sopra e sotto per 2 per passare a 48/10 cm/s, cioè 4,8 cm/s.",
+          "type": "text"
+        },
+        {
+          "text": "\\bar v_2(5\\,\\mathrm{cm^2})=\\frac{48}{10}\\,\\mathrm{cm/s}",
+          "type": "formula"
+        },
+        {
+          "text": "Il controllo inverso moltiplica 5 per 4,8 e ritrova 24 cm³/s. Se invece devi dimensionare la sezione per una velocità positiva, calcola A₂ = Q diviso la velocità media. Una sezione che passa da 6 a 5 cm² diminuisce di un sesto, mentre la velocità aumenta di un quinto.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Area della seconda sezione",
+        "max": 8.0,
+        "min": 1.0,
+        "step": 1.0,
+        "unit": "cm²"
+      },
+      "course": "C2",
+      "formula": "A₁v₁ = Q = 24 cm³/s; v₂ = 24/A₂",
+      "id": "SIM-C2-L005-03",
+      "interpretation": "L’ingresso ha area 4 cm² e velocità 6 cm/s. Ogni secondo devono passare gli stessi 24 mL in entrambe le sezioni. Osserva insieme il raggio e la freccia di velocità.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Velocità nella seconda sezione",
+        "unit": "cm/s"
+      },
+      "order": 3,
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "references": [
+        [
+          2.0,
+          12.0
+        ],
+        [
+          6.0,
+          4.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in movimento",
+      "skill": "C2-L005",
+      "substitution": "24 / {x}",
+      "summary": "Perché il liquido accelera in un restringimento?",
+      "title": "Equazione di continuità",
+      "topic": "Equazione di continuità",
+      "transferPrompt": "Passano 24 cm³ d’acqua al secondo. In un punto di area {x}, quale velocità media serve perché non si accumuli acqua?",
+      "version": 2
+    },
+    {
+      "anchor": "Segna un piano immaginario di traverso a",
+      "apparatus": "profilo",
+      "assessmentSelection": {
+        "points": [
+          10,
+          6
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Per il capillare il modello assume fluido newtoniano, moto laminare pienamente sviluppato, parete aderente e sezione circolare. Osserva velocità massima al centro e nulla alla parete. Per la portata servono pesi uguali per aree uguali. Corone dello stesso spessore radiale in genere occupano aree diverse.",
+          "type": "text"
+        },
+        {
+          "text": "v(r)=v_{\\max}\\left(1-\\frac{r^2}{R^2}\\right)",
+          "type": "formula"
+        },
+        {
+          "text": "Se a è l’area racchiusa dal raggio r, allora a = πr². Corone di uguale area corrispondono a incrementi uguali di a. In funzione di a la stessa velocità scende lungo una retta, dalla velocità massima a zero.",
+          "type": "text"
+        },
+        {
+          "text": "v(a)=v_{\\max}\\left(1-\\frac{a}{\\pi R^2}\\right)",
+          "type": "formula"
+        },
+        {
+          "text": "L’altezza media della retta è quella del rettangolo con la stessa area del triangolo che sta sotto il grafico, cioè metà dell’altezza iniziale. Con 10 cm/s al centro la media è 5 cm/s, con 6 cm/s è 3 cm/s. In questo profilo, raddoppiare quella media restituisce la velocità di asse. Con un profilo diverso la media va ricalcolata.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Velocità sull’asse",
+        "max": 12.0,
+        "min": 0.0,
+        "step": 1.0,
+        "unit": "cm/s"
+      },
+      "course": "C2",
+      "formula": "v media = v massima/2 in un tubo circolare laminare",
+      "id": "SIM-C2-L005-04",
+      "interpretation": "Nel profilo parabolico le corone vicino alla parete occupano area e si muovono più lentamente. La media pesata per area vale metà della velocità sull’asse.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Velocità media",
+        "unit": "cm/s"
+      },
+      "order": 4,
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "references": [
+        [
+          4.0,
+          2.0
+        ],
+        [
+          10.0,
+          5.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in movimento",
+      "skill": "C2-L005",
+      "substitution": "{x} / 2",
+      "summary": "La freccia centrale rappresenta la velocità media su tutto il tubo?",
+      "title": "Velocità media di sezione",
+      "topic": "Velocità media di sezione",
+      "transferPrompt": "Nel centro di un capillare a flusso laminare la sonda misura {x}. Quale velocità media devi usare per calcolare la portata?",
+      "version": 2
+    },
+    {
+      "anchor": "In regime stazionario nessuna regione accumula massa",
+      "apparatus": "rete",
+      "assessmentSelection": {
+        "points": [
+          8,
+          6
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Segui l’acqua verso il nodo e poi lungo entrambe le uscite. Il raccordo è pieno, il flusso stazionario e l’acqua incomprimibile. In un secondo entrano 12 mL ed escono gli stessi 12 mL complessivi. Conosci il ramo superiore e vuoi trovare ciò che resta all’altro.",
+          "type": "text"
+        },
+        {
+          "text": "Q_{\\mathrm{in}}=Q_{\\mathrm{sup}}+Q_{\\mathrm{inf}}",
+          "type": "formula"
+        },
+        {
+          "text": "Sottrai la portata superiore dalla portata di ingresso. Con 8 mL/s in alto, il ramo inferiore porta 12 − 8 = 4 mL/s. Con 6 mL/s in alto il ramo inferiore porta 12 − 6 = 6 mL/s.",
+          "type": "text"
+        },
+        {
+          "text": "Q_{\\mathrm{inf}}=Q_{\\mathrm{in}}-Q_{\\mathrm{sup}}",
+          "type": "formula"
+        },
+        {
+          "text": "Per ritrovare l’ingresso somma le due uscite. Le due portate sono uguali nel secondo compito perché entrambe valgono metà del totale. Il primo compito mostra già una divisione diversa. Agli estremi del modello un ramo può essere chiuso mentre tutto il flusso percorre l’altro.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Portata nel ramo superiore",
+        "max": 12.0,
+        "min": 0.0,
+        "step": 1.0,
+        "unit": "mL/s"
+      },
+      "course": "C2",
+      "formula": "Q entrante = Q₁ + Q₂ = 12 mL/s",
+      "id": "SIM-C2-L005-05",
+      "interpretation": "Il nodo di biforcazione non accumula fluido. Fissa a 12 mL/s l’ingresso e confronta le frecce dei due rami. La loro somma deve riprodurre la freccia in entrata.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Portata nel ramo inferiore",
+        "unit": "mL/s"
+      },
+      "order": 5,
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "references": [
+        [
+          2.0,
+          10.0
+        ],
+        [
+          8.0,
+          4.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in movimento",
+      "skill": "C2-L005",
+      "substitution": "12 − {x}",
+      "summary": "Quanto resta per il secondo ramo quando il primo porta via più liquido?",
+      "title": "Biforcazioni",
+      "topic": "Biforcazioni",
+      "transferPrompt": "Un raccordo riceve 12 mL/s e manda {x} nel ramo superiore. Quanta acqua al secondo deve uscire dall’altro ramo?",
+      "version": 2
+    }
+  ],
+  "schema": "astra/1"
+}

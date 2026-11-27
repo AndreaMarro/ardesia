@@ -1,0 +1,116 @@
+from pathlib import Path
+from PIL import Image, ImageDraw
+import json, hashlib, shutil, subprocess, collections, math
+
+R = Path.cwd()
+D = R / 'officina-di-fisica/editorial/reviews/c2-l00501-53bd-both-editions-independent-b-20261127'
+BASE = R.parent / 'cric-compose-53bd-observations-20261127'
+D.mkdir(exist_ok=True)
+H = lambda b: hashlib.sha256(b).hexdigest()
+J = lambda p: json.loads(p.read_text())
+items, groups, unique, git_inputs = [], [], {}, []
+for width in [320, 1280]:
+    for variant in ['draft', 'published']:
+        name = f'{width}-{variant}'
+        source = BASE / ('continuity-l00501-' + name)
+        target = D / 'raw' / name
+        target.mkdir(parents=True)
+        report = J(source / 'actual/report.json')
+        prepared = J(source / 'prepared.json')
+        terminal = J(source / 'terminal.json')
+        assert terminal['observedExitCode'] == 0 and not terminal['timeoutTriggered']
+        assert len(report['cases']) == 40 and report['errors'] == []
+        assert report['runtimeFingerprint']['sha256'] == '53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a'
+        assert report['preparedSha256'] == H((source / 'prepared.json').read_bytes())
+        shutil.copytree(source / 'actual', target / 'actual')
+        for f in ['terminal.json', 'prepared.json', 'request.json', 'browser-info.json']:
+            if (source / f).is_file():
+                shutil.copyfile(source / f, target / f)
+        if (source / 'inputs').is_dir():
+            shutil.copytree(source / 'inputs', target / 'inputs')
+        assert set(prepared['expectedCaseKeys']) == {r['caseKey'] for r in report['cases']}
+        for entry in report['cases']:
+            path = source / 'actual' / entry['file']
+            assert H(path.read_bytes()) == entry['sha256']
+            c = J(path)
+            assert c['id'] == 'SIM-C2-L005-01' and c['variant'] == variant
+            assert c['profile']['width'] == width and c['technicalOk']
+            for shot in c['screenshots']:
+                image = source / 'actual' / shot['file']
+                assert H(image.read_bytes()) == shot['sha256']
+                unique.setdefault(shot['sha256'], {'path': str((target / 'actual' / shot['file']).relative_to(D)), 'caseKeys': []})['caseKeys'].append(c['caseKey'])
+            items.append({'group': name, 'caseKey': c['caseKey'], 'caseSha256': entry['sha256'], 'caseFile': str((target / 'actual' / entry['file']).relative_to(D)), 'profile': c['profile'], 'variant': variant, 'requestedX': c.get('requestedX'), 'requestedTime': c.get('requestedTime'), 'actualRenderer': c.get('actualRenderer'), 'screenshots': c['screenshots']})
+        groups.append({'group': name, 'sourceDirectory': str(source), 'rawReportSha256': H((source / 'actual/report.json').read_bytes()), 'preparedSha256': report['preparedSha256'], 'terminal': terminal, 'cases': 40, 'variant': variant, 'width': width, 'canonicalImport': report['canonicalImport'], 'guestIsolation': report['guestIsolation'], 'fullOwnerRecordIdentity': report['fullOwnerRecordIdentity']})
+assert len(items) == 160 and len(unique) == 64
+
+prior = D / 'historical'
+prior.mkdir()
+for commit, path, snapshot in [
+    ('5114b5439eff1daaa143c674459fc470018a126d', 'officina-di-fisica/editorial/reviews/c2-flow-continuity-draft-independent-b-20261127/prompt-only-primary.md', 'primary-continuity-prompt-only.md'),
+    ('820f32eb94aeab1c4abbec24264d9ede8847d2c4', 'officina-di-fisica/editorial/reviews/c2-flow-continuity-draft-independent-b-20261127/independent-review.json', 'prior-independent-review.json'),
+    ('820f32eb94aeab1c4abbec24264d9ede8847d2c4', 'officina-di-fisica/editorial/reviews/c2-flow-continuity-draft-independent-b-20261127/manual-final.md', 'prior-manual-final.md'),
+    ('820f32eb94aeab1c4abbec24264d9ede8847d2c4', 'officina-di-fisica/editorial/reviews/c2-flow-continuity-draft-independent-b-20261127/review-note.md', 'prior-review-note.md')]:
+    raw = subprocess.check_output(['git', '-c', 'gc.auto=0', 'show', commit + ':' + path])
+    (prior / snapshot).write_bytes(raw)
+    git_inputs.append({'commit': commit, 'path': path, 'snapshot': 'historical/' + snapshot, 'sha256': H(raw)})
+assert H((prior / 'primary-continuity-prompt-only.md').read_bytes()) == 'fa50a2ceeb39798796e28345c82631c669b8aad88f9f7a8dddfcddc8441b2907'
+(D / 'git-inputs.json').write_text(json.dumps({'schemaVersion': '1.0.0', 'inputs': git_inputs}, indent=2) + '\n')
+
+sheets, setups = [], collections.defaultdict(list)
+for width in [320, 1280]:
+    for view in ['orbit', 'side', 'top', 'fixed_projection']:
+        same = [r for r in items if r['profile']['width'] == width and r['profile']['view'] == view]
+        assert len(same) == 20
+        frames, seen = [], set()
+        for row in same:
+            shot = row['screenshots'][0]
+            if shot['sha256'] in seen:
+                continue
+            seen.add(shot['sha256'])
+            if row['caseKey'].endswith('setup'):
+                setups[width].append(row)
+            else:
+                frames.append(row)
+        assert len(frames) == 7
+        images = [Image.open(D / unique[r['screenshots'][0]['sha256']]['path']).convert('RGB') for r in frames]
+        cols = 4 if width == 320 else 2
+        cellw = max(im.width for im in images)
+        cellh = max(im.height for im in images) + 32
+        canvas = Image.new('RGB', (cols * cellw, math.ceil(len(images) / cols) * cellh), 'white')
+        draw = ImageDraw.Draw(canvas)
+        for i, (im, row) in enumerate(zip(images, frames)):
+            x, y = i % cols * cellw, i // cols * cellh
+            label = row['caseKey'].split('|')[-2] + ' v=' + str(row['requestedX']) + ' t=' + str(row['requestedTime'])
+            draw.text((x + 3, y + 3), label, fill='black')
+            canvas.paste(im, (x, y + 32))
+        p = D / f'sheet-{width}-{view}.png'
+        canvas.save(p)
+        sheets.append({'file': p.name, 'sourcePngs': [r['screenshots'][0]['sha256'] for r in frames], 'resized': False, 'completeImages': True, 'sha256': H(p.read_bytes())})
+for width, rows in setups.items():
+    assert len(rows) == 4
+    images = [Image.open(D / unique[r['screenshots'][0]['sha256']]['path']).convert('RGB') for r in rows]
+    cols = 4 if width == 320 else 2
+    cellw, cellh = max(i.width for i in images), max(i.height for i in images) + 32
+    canvas = Image.new('RGB', (cols * cellw, math.ceil(4 / cols) * cellh), 'white')
+    draw = ImageDraw.Draw(canvas)
+    for i, (im, row) in enumerate(zip(images, rows)):
+        x, y = i % cols * cellw, i // cols * cellh
+        draw.text((x + 3, y + 3), row['profile']['view'], fill='black')
+        canvas.paste(im, (x, y + 32))
+    p = D / f'sheet-setup-{width}.png'
+    canvas.save(p)
+    sheets.append({'file': p.name, 'sourcePngs': [r['screenshots'][0]['sha256'] for r in rows], 'resized': False, 'completeImages': True, 'sha256': H(p.read_bytes())})
+
+clock_read = []
+seen = set()
+for row in items:
+    if '|clock|' not in row['caseKey']:
+        continue
+    sha = row['screenshots'][0]['sha256']
+    if sha not in seen:
+        seen.add(sha)
+        clock_read.append({'caseKey': row['caseKey'], 'path': str((D / unique[sha]['path']).resolve()), 'sha256': sha, 'allCoveredOccurrences': unique[sha]['caseKeys']})
+assert len(clock_read) == 32
+(D / 'critical-clock-read-list.json').write_text(json.dumps(clock_read, indent=2) + '\n')
+(D / 'verified-raw-index.json').write_text(json.dumps({'phase': 'IDENTITIES_VERIFIED_RASTER_READING_PENDING', 'id': 'SIM-C2-L005-01', 'consumerCommit': '1b72b71a68a6023ab1c9fa189733947b03029914', 'runtimeSha256': '53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a', 'observations': 160, 'uniquePngCount': 64, 'screenOccurrences': 160, 'groups': groups, 'cases': items, 'uniqueScreenshots': unique, 'sheets': sheets, 'mixed80SIGKILL': 'EXCLUDED_DIAGNOSTIC_NOT_USED', 'newChrome': 'NOT_RUN', 'activityCredit': 0}, ensure_ascii=False, indent=2) + '\n')
+print(json.dumps({'observations': 160, 'uniqueImages': 64, 'clockImagesDirect': 32, 'sheets': len(sheets)}))
