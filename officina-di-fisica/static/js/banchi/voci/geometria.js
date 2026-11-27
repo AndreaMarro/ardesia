@@ -36,8 +36,10 @@ export function tavolo(stage) {
       const path = cleaned ?? points;
       if (path.length > 1) add('line', { points: path, c, dash });
     },
-    arrow: (a, b, c) => {
-      if (stage >= 0 && Math.hypot(...b.map((v, i) => v - a[i])) > 0.015) add('arrow', { a, b, c });
+    arrow: (a, b, c, dettaglio = false) => {
+      if (stage >= 0 && Math.hypot(...b.map((v, i) => v - a[i])) > 0.015) {
+        add('arrow', dettaglio ? { a, b, c, dettaglio } : { a, b, c });
+      }
     },
     label: (p, text, c = colore.inchiostro) => {
       if (stage >= 0) add('label', { p, text, c });

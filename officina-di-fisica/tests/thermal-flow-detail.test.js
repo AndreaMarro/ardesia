@@ -69,3 +69,23 @@ test('legends explain the active view and distinguish heat from work', async () 
     assert.doesNotMatch(legend, /lavoro|ocra/);
   }
 });
+
+test('the fallback arrowhead extends beyond the shaft without moving its tip', async () => {
+  const fusion = await simulation('SIM-C3-L04-03');
+  const [detail] = arrows(fusion.elements(1, 2, 0.125), colore.ocra);
+  const previousDocument = globalThis.document;
+  globalThis.document ??= {querySelector: () => null};
+  let disegna2D;
+  try {
+    ({disegna2D} = await import('../static/js/banchi/voci/tavola.js'));
+  } finally {
+    if (previousDocument === undefined) delete globalThis.document;
+  }
+  const polygon = element => disegna2D([element], 'Dettaglio', 'bench-diagram', 294)
+    .match(/<polygon points="([^"]+)"/)[1].split(' ').map(point => point.split(',').map(Number));
+  const [tip, high, low] = polygon(detail);
+  const [plainTip, plainHigh, plainLow] = polygon({...detail, dettaglio:false});
+  assert.deepEqual(tip, plainTip);
+  assert.ok(Math.abs(high[1]-low[1]) > 2.7);
+  assert.ok(Math.abs(plainHigh[1]-plainLow[1]) <= 2.7);
+});
