@@ -370,6 +370,28 @@
       "registrySha256": "da15020895d1ffa5cb2e96462c435f20f2e2a9a8ca7fb9a2d823ab2e16f647a9",
       "canonicalIntegration": "PENDING",
       "finalRuntimeRecheckRequired": true
+    },
+    "twoC1FamiliesActualUi980": {
+      "sourceCommit": "e02b0a767097f22ed66b7240432fc30b206217fd",
+      "runtimeSha256": "980518b78d0767d90f16322539852e7e79360e20f05078ceb6e9b0425e805301",
+      "archiveCommit": "6085680883a44f954433d5ee312f24cf0ed03ca0",
+      "receipt": "editorial/reviews/c1-two-families-980-552-20261127/receipt.json",
+      "archiveSha256": "359c39f518ac4e22b2a0d3b2a939880757061b292c7c702f624683b831909952",
+      "actualCases": 552,
+      "setupCases": 96,
+      "correctAssignedAnswers": 192,
+      "uniqueScreenshots": 530,
+      "recordIds": 12,
+      "status": "TECHNICAL_SUCCESS_INDEPENDENT_RASTER_REVIEW_PENDING",
+      "activityCredit": 0
+    },
+    "C3HeatCapacityDraft264": {
+      "id": "SIM-C3-L03-02",
+      "status": "ORIGINAL_NEGATIVE_DRAFT_MATH_PEER_REVIEWED_FRESH_UI_PLAN_VERIFIED",
+      "runner": "editorial/reviews/heat-capacity-264-independent-20261127/run-activity-ui.py",
+      "plannedCases": 192,
+      "actualCasesForThisPlan": 0,
+      "activityCredit": 0
     }
   },
   "coexistence": {
@@ -480,7 +502,7 @@
   },
   "nextAction": [
     "Renew the four C1 closures beginning SIM-C1-L006-03 on the candidate chosen for integration",
-    "Continue the next 133 original C2\u2013C5 activities by family using the independent installed model, manual task and actual browser evidence",
+    "Continue the next 133 original C2–C5 activities by family using the independent installed model, manual task and actual browser evidence",
     "Rerun all groups, including the six registered candidate C6 activities, on the exact integration runtime",
     "Integrate through the ordinary canonical PR and record CI on the integrated SHA",
     "Keep separate evidence for human approval and publication in the app"
@@ -516,7 +538,7 @@
       "contractPass": 2,
       "requestCommit": "f7b4a31d783aed06ac89d35d2c09956a2f16c58f",
       "visibilityRun": 45935050054,
-      "visibilityStatusAtCheckpoint": "BROWSER_STEP_OBSERVED_FOR_C2_C3_C4_C5",
+      "visibilityStatusAtCheckpoint": "C2_C4_SUCCESS_C4_ARCHIVED_C3_C5_C6_LAST_OBSERVED_RUNNING",
       "C5Preflight": {
         "plannedCases": 14464,
         "originalRecords": 27,
@@ -524,6 +546,15 @@
         "allDraftInputsVerified": 9,
         "actualBrowserCases": 0,
         "receipt": "editorial/reviews/composed-draft-pin-preflight-20261127/receipt.json"
+      },
+      "C4TechnicalArchive": {
+        "commit": "6085680883a44f954433d5ee312f24cf0ed03ca0",
+        "receipt": "editorial/reviews/visibility139-abb2-run45935050054-20261127/C4/receipt.json",
+        "artifactId": 15172159159,
+        "upstreamZipSha256": "a1e5534cbf32e943d6469141e5d4c414c1ed5f12e45922b402764e79bac3463e",
+        "observedCases": 7872,
+        "technicalFailures": 0,
+        "activityCredit": 0
       }
     },
     "canonicalIntegrationCandidate": {
@@ -533,7 +564,7 @@
       "runtimeSha256": "abb2bf2ac567438953766cf3550644b3d6ea501d75d610fb6291b2cffc5a428b",
       "registrySha256": "a0b63e1aaf0d8df4a83ceb906241e07fc67948b7c18442390f5db91df10ca005",
       "privatePreviewRun": 45935494138,
-      "previewObservedStatus": "IN_PROGRESS",
+      "previewObservedStatus": "COMPLETED",
       "nodePass": 305,
       "contractPass": 2,
       "c6OriginalStaticReplay": {
@@ -548,7 +579,14 @@
         "conclusion": "CANCELLED",
         "reason": "New branch creation activated the historical visibility request. The valid replay is 45935050054."
       },
-      "canonicalIntegration": "PENDING"
+      "canonicalIntegration": "PENDING",
+      "previewObservedConclusion": "SUCCESS",
+      "actualPreviewCasesFromOriginalJobLog": 13869,
+      "renderedBatches": 316,
+      "previewJobId": 140297636992,
+      "previewJobLogReceipt": "editorial/reviews/full-preview-45935494138-20261127/upstream-terminal-summary.json",
+      "previewArtifactId": 15172917063,
+      "fullZipMarkerReplay": "PENDING_LOCAL_REPLAY"
     },
     "newestSourceForBoundedReview": {
       "commit": "c3b03eb98cdafd706499ee64d6b3f5e356f27da8",
@@ -572,7 +610,36 @@
       "runtimeSha256": "980518b78d0767d90f16322539852e7e79360e20f05078ceb6e9b0425e805301",
       "nodePass": 311,
       "contractPass": 2,
-      "independentConsumerReview": "PENDING"
+      "independentConsumerReview": "SCOPED_POSITIVE",
+      "independentCommit": "484b89b79fccefe9cd8e05d47d7151abf8348946",
+      "scopedCases": 70,
+      "geometryStates": 58,
+      "wholeGroupStatus": "PENDING"
+    },
+    "midpointAndPressSource": {
+      "commit": "099fe6614bdaf14702da8a472eea1bb743fd1599",
+      "branch": "review/cric-midpoint-and-press-visibility",
+      "runtimeSha256": "77c13a37088c8b19e7e56558a85ff8ad644acf8488abb9b5d0a5214991c696d4",
+      "nodePass": 313,
+      "contractPass": 2,
+      "independentCurrentSourceReview": "IN_PROGRESS",
+      "authoringScope": [
+        "SIM-C2-L003-02",
+        "SIM-C4-L02-02"
+      ],
+      "priorIndependentFindings": {
+        "SIM-C2-L003-02": {
+          "commit": "77ce7ba7884a54215b71bd119a3530b9c53a1824",
+          "finding": "PRESS_FORCE_ARROW_SCALE_UNDECLARED"
+        },
+        "SIM-C4-L02-02": {
+          "commit": "eea7e75f9c2545c7584c678b2b46fbb80e0e7008",
+          "findings": [
+            "MARKER_AND_VECTOR_LEGEND_MISMATCH",
+            "SMALL_DIRECTIONAL_ARROWHEAD_UNREADABLE_IN_2D"
+          ]
+        }
+      }
     }
   }
 }

@@ -2320,3 +2320,12 @@ Il validatore delle attività ha accettato le sei edizioni originali C6 sulla so
 2. Portare nel registro le famiglie C2–C5 dopo le verifiche individuali in corso, preservando i risultati negativi originali e le bozze correttive.
 3. Riprodurre i sei C6 sulla versione d’integrazione, acquisire le campagne browser attive e rigenerare il checkpoint.
 4. Portare la revisione ordinaria alla SHA integrata e conservare esito CI, coda umana e pubblicazione separati.
+
+
+## 27 novembre 2026 — Prove C1, volo e correzioni mirate C2/C4
+
+L’ultima ripetizione locale C1 ha completato **552 interazioni**, comprese 96 configurazioni e 192 risposte corrette. L’archivio contiene 530 immagini uniche e i controlli per tutti i 12 ID. La lettura indipendente e la chiusura sul runtime d’integrazione sono in corso. Il primo ID da riprendere è `SIM-C1-L006-03`. [Prova tecnica C1](https://github.com/AndreaMarro/ardesia/blob/6085680883a44f954433d5ee312f24cf0ed03ca0/officina-di-fisica/editorial/reviews/c1-two-families-980-552-20261127/receipt.json).
+
+La nuova prova indipendente del banco del volo ha superato 70 casi e 58 controlli geometrici sul runtime `980518…`. Il campo a metà tra due cariche mostrava una legenda incoerente e una punta poco leggibile nella tavola 2D. Nella pressa idraulica la legenda lasciava ambigua la lunghezza delle frecce. Il candidato `099fe6614bdaf14702da8a472eea1bb743fd1599` corregge entrambe le attività e ha superato 313 test Node e due contratti. Il nuovo collaudo visivo è in corso. [Prova indipendente del volo](https://github.com/AndreaMarro/ardesia/commit/484b89b79fccefe9cd8e05d47d7151abf8348946) · [Correzioni di pressa e campo](https://github.com/AndreaMarro/ardesia/commit/099fe6614bdaf14702da8a472eea1bb743fd1599).
+
+Il job C4 del replay composto ha completato 7.872 interazioni. Lo ZIP originale e i checksum di ogni caso e immagine sono verificati e versionati. Il job C2 è terminato con esito tecnico positivo. Restano da acquisire i risultati terminali di C3, C5 e C6 e da eseguire la verifica individuale delle attività sul runtime scelto. [Ricevuta C4](https://github.com/AndreaMarro/ardesia/blob/6085680883a44f954433d5ee312f24cf0ed03ca0/officina-di-fisica/editorial/reviews/visibility139-abb2-run45935050054-20261127/C4/receipt.json) · [Esecuzione GitHub](https://github.com/AndreaMarro/ardesia/actions/runs/45935050054).
