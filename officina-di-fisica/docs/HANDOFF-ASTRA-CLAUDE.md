@@ -2,7 +2,14 @@
 
 Data: **27 novembre 2026**, fuso di riferimento Europe/Rome.
 
-Questo è il punto d’ingresso per continuare il lavoro senza dipendere dalla chat o da un provider. Il codice e le prove sono l’autorità sul comportamento effettivo. I risultati scientifici rimangono nei rispettivi registri; questo documento non li sostituisce.
+Questo è il punto d’ingresso per continuare il lavoro senza dipendere dalla chat o da un provider. La consegna è nella [PR pubblica in bozza #366](https://github.com/AndreaMarro/ardesia/pull/366), branch `feat/cric-resource-learning-20261127`. Il codice e le prove sono l’autorità sul comportamento effettivo. I risultati scientifici rimangono nei rispettivi registri; questo documento non li sostituisce.
+
+## Lettura iniziale e destinazione
+
+1. Questo documento: decisioni, struttura e istruzioni di ripresa.
+2. [Traguardo di prodotto e criteri di accettazione](PRODUCT-TARGET-AND-ACCEPTANCE.md): come portare il progetto alla visione richiesta, con priorità e prove osservabili.
+3. [Registro della consegna](resource-learning-validation-20261127.json): revisioni esatte, prove riuscite, prove negative e limiti.
+4. [PR #366](https://github.com/AndreaMarro/ardesia/pull/366): head remota e stato aggiornato dei controlli. I risultati appartengono alla revisione indicata, non automaticamente alla head successiva.
 
 ## 1. Mandato del proprietario
 
@@ -27,6 +34,8 @@ La ricognizione non vede eventuali modifiche non pubblicate nei worktree delle a
 
 Il branch di questa consegna è **`feat/cric-resource-learning-20261127`**. È nato in un worktree separato dal canone e compone la PR #365 con un merge normale, base comune `831b73fa71076b2e9b363006ffd94a350f22fe90`. Le 38 path della PR multidisciplinare non si sovrapponevano alle modifiche canoniche o scientifiche osservate. Il merge locale iniziale è `615e81d7`; non usarlo come sinonimo della head remota finale. Per la candidata effettiva leggere Git, la PR e il registro di verifica di questa consegna.
 
+La pubblicazione è avvenuta con le API Git del connettore perché il clone locale non aveva credenziali di scrittura CLI. Ogni tree pubblicato è stato confrontato con il tree locale e deve essere identico; i commit possono avere SHA differenti per metadati e parent remoti. Il merge pubblico iniziale è `6b97800eed735a71a1c98a08ff42c848cb5a3712`, con parent canonico `7c29ccc` e PR #365 `71a4a31`. Il checkpoint pubblico `d10582d58386c6c64caf244660343002dede1527` contiene esattamente il tree `edaa75c6e223f66c0755b8728260df5ddb34a71d` della prova locale di coesistenza. In un clone nuovo usare le SHA pubbliche, non pretendere che i commit locali menzionati nelle ricevute siano raggiungibili dal remoto.
+
 **Il ramo scientifico #4e9 non è stato fuso indiscriminatamente.** Contiene lavoro e prove ancora in revisione. Una composizione temporanea verifica compatibilità e riapertura dei dati senza muovere quel ramo, riscrivere checkpoint o attribuire retroattivamente validità scientifica ai nuovi flussi.
 
 ## 3. Incremento implementato
@@ -35,7 +44,7 @@ Il branch di questa consegna è **`feat/cric-resource-learning-20261127`**. È n
 
 La copertina composta propone due azioni principali: percorso/ripresa dello studio e risorse. La navigazione principale espone **Il mio studio, Percorsi, Risorse**. I percorsi di Fisica, la preparazione all’esame e le simulazioni rimangono raggiungibili. La palette, la tipografia e le illustrazioni esistenti sono riutilizzate.
 
-La pagina Risorse permette di cercare i banchi e aprirli in uso libero. Il docente può usare immediatamente i comandi senza rispondere alla previsione iniziale. L’attività guidata resta un percorso distinto e raggiungibile. La concentrazione dell’uso libero mantiene nello stesso spazio scena, spiegazione e parametri. I controlli dei parametri hanno etichette esplicite.
+La pagina Risorse permette di cercare i banchi e aprirli in uso libero. Il docente può usare immediatamente i comandi senza rispondere alla previsione iniziale. L’attività guidata resta un percorso distinto e raggiungibile. La concentrazione dell’uso libero mantiene nello stesso spazio scena, spiegazione e parametri. I controlli dei parametri hanno etichette esplicite. Il consumer attribuisce un ruolo esplicito ai gruppi SVG etichettati dopo ogni ridisegno: il primo audit browser aveva rilevato una semantica ARIA non valida nella tavola del capillare. La correzione resta nel modulo composto; la sorgente scientifica nativa richiede coordinamento separato con il suo revisore.
 
 Il primo contratto completo di caso riproducibile riguarda **LAB3D-04, Poiseuille**. Salva sette parametri, istante e vista standard, con identità e versione della risorsa e impronta del modello. La riapertura valida gli stessi dati. Un modello o un’edizione incompatibile producono una spiegazione; non si sostituiscono silenziosamente i valori con quelli iniziali.
 
@@ -80,10 +89,20 @@ I punti d’innesto falliscono se un’ancora non compare esattamente una volta.
 
 ## 5. Avvio riproducibile e dati di prova
 
-Da un clone del repository, lavorare sempre in un nuovo worktree sul branch di consegna aggiornato. I seguenti comandi si eseguono dentro `officina-di-fisica/`:
+Da un clone del repository, controllare prima `git status`, worktree e PR. Aggiornare le ref e creare un proprio branch, senza riusare o cancellare il worktree di un’altra sessione:
+
+```sh
+git fetch origin officina-di-fisica feat/cric-resource-learning-20261127 feat/cric-learning-platform review/cric-converged-runtime
+git worktree add -b feat/cric-next ../cric-next origin/feat/cric-resource-learning-20261127
+cd ../cric-next/officina-di-fisica
+```
+
+Scegliere nomi liberi se quel branch o percorso esistono. La PR #365 è già un parent della consegna: non riapplicarne alla cieca i file. I comandi seguenti si eseguono dentro `officina-di-fisica/`:
 
 ```sh
 npm ci
+export ASTRA_DATA="$(mktemp -d -t cric-handoff.XXXXXX)"
+export ASTRA_HOSTED=0
 python3 app.py install-discipline examples/discipline/catalog.json
 python3 app.py serve --port 0 --open
 ```
@@ -151,4 +170,4 @@ La lista personale mostra gli ultimi 200 casi e le ultime 100 raccolte con conte
 
 ## 9. Prompt breve da dare all’agente successivo
 
-> Lavora su `AndreaMarro/ardesia`, cartella esclusiva `officina-di-fisica/`, in un worktree nuovo. Leggi `AGENTS.md`, rigenera lo stato e leggi questo handoff, la PR della candidata e le sue prove. Ricontrolla le head: il ramo scientifico può essere avanzato e può esistere lavoro locale non pubblicato. Continua il prodotto preservando la visione: il docente attinge a strumenti e casi; lo studente trova spiegazione, pratica e recupero coerenti. Non introdurre un LMS per conduzione delle lezioni. Conserva architettura, dati e gate. Verifica il consumer reale e la riapertura prima di dichiarare completato. Correggi le regressioni osservate; non indebolire test o firme. Documenta comandi, SHA, limiti e prossimo passo. La pubblicazione dei materiali nell’app resta soggetta al gate umano.
+> Lavora su `AndreaMarro/ardesia`, cartella esclusiva `officina-di-fisica/`, in un worktree nuovo a partire dalla head aggiornata della PR DRAFT #366 (`feat/cric-resource-learning-20261127`). Leggi `AGENTS.md`, rigenera lo stato e leggi questo handoff, `PRODUCT-TARGET-AND-ACCEPTANCE.md`, il registro della consegna e i check della PR. Ricontrolla le head: il ramo scientifico può essere avanzato e può esistere lavoro locale non pubblicato. Continua il prodotto preservando la visione: il docente attinge a strumenti e casi; lo studente trova spiegazione, pratica e recupero coerenti. Non introdurre un LMS per conduzione delle lezioni. Conserva architettura, dati e gate. Verifica il consumer reale e la riapertura prima di dichiarare completato. Correggi le regressioni osservate; non indebolire test o firme. Documenta comandi, SHA, limiti e prossimo passo. La pubblicazione dei materiali nell’app resta soggetta al gate umano.

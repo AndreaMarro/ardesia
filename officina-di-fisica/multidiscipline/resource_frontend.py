@@ -28,6 +28,14 @@ _HOOKS = (
     ("    desiredView = 'orbit',", "    desiredView = options.initialCase?.view ?? 'orbit',"),
     ('  function goStep(next) {',
      '  function goStep(next) {\n    if (options.explore && next < 0) next = 0;'),
+    ("      get('[data-math-art]').innerHTML = disegnoPasso(pilot, mathStep, p, s, t, instant(), explanation[0], model);\n    }",
+     "      get('[data-math-art]').innerHTML = disegnoPasso(pilot, mathStep, p, s, t, instant(), explanation[0], model);\n    }\n"
+     "    // Labelled SVG groups need an explicit naming-compatible role. Apply\n"
+     "    // after each drawing refresh, preserving the shared scientific renderer.\n"
+     "    if (options.explore && (view === 'diagram' || explanation)) {\n"
+     "      for (const group of root.querySelectorAll('svg g[aria-label]:not([role])'))\n"
+     "        group.setAttribute('role', 'group');\n"
+     "    }"),
     ('    segnaMomento(root, stage + 1, !answered);',
      "    segnaMomento(root, stage + 1, !answered);\n"
      "    if (options.explore) {\n"
