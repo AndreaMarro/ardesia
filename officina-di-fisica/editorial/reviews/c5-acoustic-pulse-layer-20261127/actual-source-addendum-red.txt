@@ -1,0 +1,27 @@
+✔ the top view frames every circular front across the three media (10.75075ms)
+✔ one-way transmission identifies the pulse without labels on its path (1.979167ms)
+✖ the fixed drawing keeps the pulse above the source and receiver markers (0.761ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 146.468709
+
+✖ failing tests:
+
+test at work/cric-sound-pulse-layer-20261127/officina-di-fisica/tests/sound-wavefront-framing.test.js:46:1
+✖ the fixed drawing keeps the pulse above the source and receiver markers (0.761ms)
+  AssertionError [ERR_ASSERTION]: the source must precede the pulse in the flat drawing
+      at TestContext.<anonymous> (file:///Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-sound-pulse-layer-20261127/officina-di-fisica/tests/sound-wavefront-framing.test.js:59:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

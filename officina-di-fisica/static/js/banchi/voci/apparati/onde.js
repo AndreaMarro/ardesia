@@ -198,10 +198,11 @@ export const ondulatoria = {
       const r = (s.velocita === undefined ? 0.46 : 0.26 + 0.3 * s.velocita) * j;
       b.ring([source, 0.62, 0], r, 'xz', c.verde);
     }
+    // The flat view paints in insertion order. Keep the pulse visible at both ends.
+    b.rod([receiver, 0.1, 0], [receiver, 1.26, 0], 0.08, c.metallo);
+    b.ball([source, 0.62, 0], 0.16, c.ocra);
     if (s.frazioneViaggio !== undefined)
       b.ball([source + (receiver - source) * s.frazioneViaggio, 0.85, 0.15], 0.105, c.viola);
-    b.ball([source, 0.62, 0], 0.16, c.ocra);
-    b.rod([receiver, 0.1, 0], [receiver, 1.26, 0], 0.08, c.metallo);
     b.label([source, 1.53, 0], 'Sorgente');
     b.label([receiver, 1.6, 0], 'Ricevitore');
   },
