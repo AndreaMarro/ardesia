@@ -1,0 +1,106 @@
+"""Distinct per-ID canonical bridge to sealed48 observations; no approval or registry writes."""
+from fractions import Fraction
+import json
+from pathlib import Path
+import subprocess
+from zipfile import ZipFile
+from .activity_observations import normalise_numbers,observed_answers,read_visual_decision
+from .experiment_visibility_request import verify_report_bytes,planned_interactions,verify_planned_interaction
+from .pipeline import digest,sha
+from .review_contract import reviewed_rows
+from .runtime_fingerprint import runtime_fingerprint
+from .c3_six_heat_phase_primary_models_a import law,inverse
+APP=Path(__file__).resolve().parents[2]
+PROOF=APP/'editorial/reviews/c3-l0301-canonical-53bd-delivery-a-20261127'
+FOLDER='officina-di-fisica/editorial/reviews/c3-l0301-canonical-53bd-delivery-a-20261127/observations'
+KEY='SIM-C3-L03-01'
+RUNTIME='53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a'
+SOURCE_COMMIT='1b72b71a68a6023ab1c9fa189733947b03029914'
+SOURCE_REF='5d1dc8dc7b601aef959d10d564c75462be74708d'
+SOURCE_SHA='736da8e3b6cea5028e6a9cda6ac168ae960956a455f431556aa12fe70867265a'
+CANDIDATE='639aec5e95e02bdb86e78d7864382161b8c358704a7bc6892e768e39c19e7b24'
+SIGNATURE='8dfb23cf86ea4deedecebcf3fa3032bbc357dfb2b0fc41b0592695c9e902a281'
+ARCHIVE='6f184acdffe850f736605df63af33b6e3f3d088099971c72d07785815b15bf11'
+MANIFEST='222b2a61e45f3173fb25f5915538d6dc3c88aab15aa884af573543b2815580b1'
+COLLECTOR='719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15'
+MODEL_SHA='faf3583af19d0c8e9597de1e21280cf1152d96ddae1d2e3a58934c14c2450a76'
+CONSUMER=r"""
+import {readFile} from 'node:fs/promises';
+import {pathToFileURL} from 'node:url';
+const app=process.argv[2];
+const {esperienza}=await import(pathToFileURL(app+'/static/js/banchi/voci/esperimento.js'));
+const rows=JSON.parse(await readFile(app+'/content/esperienze-C3.json','utf8'));
+console.log(JSON.stringify((await esperienza(rows.find(r=>r.id==='SIM-C3-L03-01'))).record.assessment));
+"""
+def require(ok,message):
+    if not ok:raise ValueError(message)
+
+def terminal_identity(t):
+    # Preserve the original receipt schema. No inferred supervisor result exists.
+    require(type(t.get('actualObservedExitCode'))is int and t['actualObservedExitCode']==0 and
+            t.get('signal')is None and t.get('timedOut')is False and t.get('assistedTermination')is False and
+            t.get('intervention')==[], 'Real browser terminal was unsuccessful, assisted, or incomplete')
+
+def load_proof():
+    manifest_raw=(PROOF/'observations-manifest.json').read_bytes()
+    raw=(PROOF/'observations.zip').read_bytes()
+    require(sha(manifest_raw)==MANIFEST and sha(raw)==ARCHIVE,'Sealed observation transport changed')
+    manifest=json.loads(manifest_raw);require(manifest['archiveSha256']==ARCHIVE and manifest['runtimeSha256']==RUNTIME,'Wrong archive epoch')
+    all_cases={};draft=None
+    with ZipFile(PROOF/'observations.zip')as archive:
+        require(len(archive.namelist())==len(set(archive.namelist())) and set(archive.namelist())==set(manifest['files']),'Missing or repeated archive members')
+        def pinned(name):
+            blob=archive.read(name);require(sha(blob)==manifest['files'][name],'Changed archive member: '+name);return blob
+        for width in (320,1280):
+            prefix=FOLDER+'/'+str(width);prepared_raw=pinned(prefix+'/prepared.json');prepared=json.loads(prepared_raw)
+            run=verify_report_bytes(lambda name:pinned(prefix+'/actual/'+name),prepared,COLLECTOR)
+            terminal_identity(json.loads(pinned(prefix+'/actual-terminal.json')))
+            require(run['preparedSha256']==sha(prepared_raw) and run['sourceCommit']==SOURCE_COMMIT and
+                    run['runtimeFingerprint']['sha256']==RUNTIME and not run['errors'] and
+                    run['guestIsolation']=='ORIGINAL_OR_DENIED_AND_DRAFT_ASSETS_403','Wrong actual runtime or owner/guest isolation')
+            require(len(prepared['records'])==1 and prepared['records'][0]['id']==KEY and prepared['records'][0]['variant']=='draft' and
+                    prepared['records'][0]['sourceSha256']==SOURCE_SHA,'Wrong actual source/draft scope')
+            selected=prepared['records'][0];complete=[r for r in prepared['draftRecords']if r['id']==KEY]
+            require(len(complete)==1 and digest(complete[0])==CANDIDATE and
+                    digest(normalise_numbers(complete[0]))==digest(normalise_numbers(selected['record'])) and
+                    digest(selected['record'])==selected['candidateSha256'],'Complete owner record and selected record differ')
+            require(any(r['id']==KEY and r['version']==2 for r in run['fullOwnerRecordIdentity']['records']),'Owner draft v2 absent')
+            if draft is not None:require(draft==complete[0],'Group drafts differ')
+            draft=complete[0];planned=planned_interactions(prepared)
+            require(len(run['cases'])==24 and len(planned)==24,'Incomplete bounded width group')
+            for entry in run['cases']:
+                case=json.loads(pinned(prefix+'/actual/'+entry['file']));row,state=planned[case['caseKey']]
+                verify_planned_interaction(case,row,state)
+                require(case['id']==KEY and case['sourceSha256']==SOURCE_SHA and case['candidateSha256']==selected['candidateSha256'] and case['profile']['width']==width,'Case identity mismatch')
+                if state is not None:
+                    require(Fraction(str(case['model']['y']))==Fraction(law(KEY,Fraction(str(state['x'])))),'Observed Q differs from independent exact50x')
+                else:
+                    require(not case['axe'] and len(case['phases'])==4,'Missing accessibility/setup phase')
+                require(case['caseKey']not in all_cases,'Duplicate case');all_cases[case['caseKey']]=case
+        require(len(all_cases)==48 and observed_answers(all_cases,[('400',True),('300',True)])==8,'Actual assessment coverage incomplete')
+        visual=read_visual_decision(archive,FOLDER,all_cases,KEY,'draft',2,CANDIDATE,RUNTIME,SOURCE_COMMIT)
+        original_raw=pinned(FOLDER+'/source-independent-visual-review.verbatim.json');original=json.loads(original_raw)['records'][0]
+        require(len(original['readFiles'])==48 and len(visual['readFiles'])==8 and visual['representativeSubsetOfRead48']is True and
+                visual['all48ReadPngSha256']==[r['sha256']for r in original['readFiles']],'Eight profile examples must remain an explicit subset of48 read rasters')
+        require(all(any(r['caseKey']==e['caseKey']and r['sha256']==e['sha256']for r in original['readFiles'])for e in visual['readFiles']),'New unreviewed image in canonical subset')
+        for name in manifest['files']:pinned(name)
+    return draft,all_cases,visual
+
+def report(sources,package,bindings):
+    require(set(sources)=={KEY} and digest(sources[KEY])==SOURCE_SHA and runtime_fingerprint(APP)['sha256']==RUNTIME,'Wrong exact source or runtime')
+    require(sha((APP/'tools/corpus_engineering/c3_six_heat_phase_primary_models_a.py').read_bytes())==MODEL_SHA,'Pre-key independent model changed')
+    draft,cases,visual=load_proof();rows=list(reviewed_rows(package,bindings,{KEY:SIGNATURE},{KEY},APP/'editorial/assets'))
+    require(len(rows)==1,'Expected one canonical reviewed row');candidate,binding,signature,assets,errors=rows[0]
+    require(not errors and not assets and candidate==draft and digest(candidate)==CANDIDATE and binding['sourceRef']==SOURCE_REF and binding['sourceSha256']==SOURCE_SHA,'Filtered canonical candidate/binding changed')
+    for x in range(13):require(law(KEY,x)==50*x and inverse(KEY,50*x)==x,'Exact law/inverse failed')
+    require(candidate.get('assessmentSelection',{}).get('points',[8,6])==[8,6],'Assigned draft inputs changed')
+    actual_published=json.loads(subprocess.check_output(['node','--input-type=module','-',str(APP)],input=CONSUMER.encode(),cwd=APP,timeout=30))
+    require(len(actual_published)==2 and [Fraction(str(r['value']))for r in actual_published]==[Fraction(400),Fraction(300)],'Retained original assessment differs from the exact manual model')
+    manual='C=50 J/K riguarda tutto il campione. Per8K fai5×8=40, aggiungi lo zero:400J. Per6K fai5×6=30, aggiungi lo zero:300J. Il controllo inverso Q/(50J/K) restituisce8K e6K; non serve una massa aggiuntiva. AΔT=0 il modello dàQ=0.'
+    assumptions='Capacità termica totale positiva costante;0≤ΔT≤12K; nessun cambio di fase, dispersione o lavoro meccanico. Incrementi inK equivalgono a incrementi Celsius; nessun rapporto di temperature assolute. Termometro e colore schematici, Alto assiale non dà una misura quantitativa della colonna.'
+    result=dict(id=KEY,ok=True,sourceSha256=SOURCE_SHA,sourceVersion=sources[KEY]['version'],candidateSha256=CANDIDATE,candidateVersion=2,baseVersion=1,reviewedSignature=signature,originalEditionRetained=True,failedPublishedEdition=False,
+        publishedEditionReview=dict(ok=True,sourceSha256=SOURCE_SHA,actualAssignedTasks=actual_published,judgmentScope='Retained published assigned arithmetic only; no new interactive published replay',humanApproval='NOT_RUN',publicationAction='NONE'),
+        calculationScope='EXACT_MANUAL_CALCULATION',manualArithmetic=manual,physicalAssumptions=assumptions,
+        pedagogicalReview='All authored text and four formulas independently read; exact source-first model predates Core6ae3.48 fresh53bd cases and all48PNG read;8 canonical examples are a documented subset,16 actual correct submissions. Native axial and schematic limits explicit; canonical private preview recorded separately.',
+        actualBrowserCases=48,actualAnswerSubmissions=16,visualScope=visual['scope'],humanApproval='NOT_RUN',publicationAction='DRAFT')
+    return dict(schemaVersion='1.0.0',records=[result],acceptedCount=1,runtimeSha256=RUNTIME,sourceCommit=SOURCE_COMMIT,archiveSha256=ARCHIVE,evidenceManifestSha256=MANIFEST,verifierSha256=sha(Path(__file__).read_bytes()),activityCredit=0,humanApproval='NOT_RUN',publicationAction='NONE')

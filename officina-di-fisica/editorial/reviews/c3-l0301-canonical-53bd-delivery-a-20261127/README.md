@@ -1,0 +1,17 @@
+# L03-01: distinct canonical delivery on 53bd
+
+This bundle proposes only SIM-C3-L03-01, DRAFT v2/base1. The record and binding are filtered without field changes from Core6ae3. No application, registry, status, ledger, original edition or shared helper was changed. Activity credit remains zero and human approval NOT_RUN; Root owns adoption.
+
+The independent source-first model was frozen in 0afeaea938b66c7d6f8f1efc414655a3e01cb732 before opening Core's candidate. Its exact 50ΔT law, inverse, units and assumptions remain unchanged. Earlier C3 exposure and own7c review are disclosed. The published-edition judgment in the canonical report covers the retained assigned arithmetic400J/300J, compiled again from the actual53bd consumer. It does not claim a new interactive replay of the published edition.
+
+The ZIP is lossless transport of both current53bd observation groups:48 actual cases,8 setup profiles,16 actual correct submissions. Both real terminals have actualObservedExitCode0, null signal, no timeout or intervention. Their original schema deliberately has no supervisorResultExitCode. We use canonical verify_report_bytes, planned_interactions, verify_planned_interaction and observed_answers, then check exactly the fields that the real terminals contain. No successful supervisor field is inferred.
+
+The canonical visual JSON selects8 max-input rasters, one for each profile, as an explicit subset of the48 PNGs already read in c8f75b46. The full original review and all48 digests are retained unchanged. This is schema adaptation, not a new visual judgment or an old-runtime retag. Alto is axial; it cannot supply a quantitative vertical-column measurement. Color and thermometer are schematic. No arbitrary camera/GPU/private-engine geometry claim.
+
+A new isolated fixture copies exactly the421 pinned53bd runtime files from the read-only composed app. It uses canonical browser-drafts.mjs unchanged. Actual preview:3 cases at1440/768/320, terminal0, null signal,4.142s, no intervention. Allfour formulas rendered and fit, no axe violations/overflow. Both emitted900px viewport PNGs at320/1440 were read. There is no768 PNG and no claim of full scrolling-article screenshot reading; authored text was independently read in the preceding manual review. Canonical disposable import saved1, repeated0/unchanged1 and preserved991 published rows and historical/live versions.
+
+Seven actual boundary tests pass, including rebinding mutated candidate fields, wrong source/version, forged approval/result/identity, nonfinite/exact-domain refusals and real terminal failure/assisted rejection. The initial compile typo and first component run are retained separately. The final terminal guard also requires every original terminal field to exist.
+
+Canonical validation components assert_activity_identity and validate_browser_preview were executed against the frozen canonical tools. Full validate_activity_batch/registry acceptance remains Root's step, since no fake registry or withdrawal ledger was created. activity-spec-proposal.json is an inert integration proposal only.
+
+Reproduction: prepare-delivery.py verifies runtime pins and provisions a private fixture; it never modifies the source app. run-private-preview.py refuses overwriting a real terminal. run-canonical-checks.py invokes canonical helpers and import in that private fixture under the persistent global lock. Each canonical dependency is snapshotted and declared in git-inputs.json for clean-clone recovery.
