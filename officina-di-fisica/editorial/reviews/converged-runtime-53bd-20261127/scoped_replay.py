@@ -32,6 +32,8 @@ PULSE_FIX = ('593c82a93a1dd635461a33297d84ee8634db3fcd',
              '6efcc26c2b698fd7c1c89bde711f568359ffd5d3465780f9e9c673deae7fdbb2')
 DOPPLER_FIX = ('f1fdd0dae20e03fba233a9ee6e0425f1f3197bae',
                'ca17f5b64aadd1923922854e22281f83e4dce1dbcdbbb4bbacf514a33b6d4ea3')
+DOPPLER_PRESSURE_FIX = ('d13f3a73bb90c2f0f0514595573fb77ebb5f5e1a',
+                        'cd227bf722561ea823b1506f2d3e1522f257c247da67cff5055e9a2b065f0111')
 FLUID_FIX = ('8de7bd774c71841c4b744485b012abd6506f3645',
              'fe5d26413e1aeb59987cc3fd6040adde3b01952b6e5e5c3951695b2e64d9166b')
 COLLECTOR = '719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15'
@@ -200,7 +202,7 @@ def pitot_inputs(app, repo, directory):
                       'expectedCaseKeys': keys, 'expectedOriginalGridInputs': len(grid),
                       'expectedDraftGridInputs': len(grid), 'inputFiles': files, 'packageFiles': [str(package_file)]}
 
-def prepare(app, directory, repo, scope, candidate, runtime):
+def prepare(app, directory, repo, scope, candidate, runtime, views=None, widths=None):
     directory.mkdir(parents=True, exist_ok=True)
     inputs = directory / 'inputs'
     inputs.mkdir(exist_ok=True)
@@ -216,12 +218,24 @@ def prepare(app, directory, repo, scope, candidate, runtime):
     else:
         template, plan = sound_inputs(app, repo, inputs, scope)
         template_ref = C5_PEER
+    if views or widths:
+        profiles = [row for row in plan['profiles']
+                    if (not views or row['view'] in views) and (not widths or row['width'] in widths)]
+        selected = {(str(row['width']), row['view']) for row in profiles}
+        plan['profiles'] = profiles
+        plan['expectedCaseKeys'] = [key for key in plan['expectedCaseKeys'] if tuple(key.split('|')[2:4]) in selected]
+        if not plan['expectedCaseKeys']:
+            raise ValueError('No requested render profiles are available')
     fingerprint, _ = profile(app, runtime)
     request = {'schemaVersion': '1.0.0', 'scope': scope, 'sourceCommit': candidate,
                'runtimeSha256': runtime, 'templateCommit': template_ref,
                'templateSha256': freeze(directory / 'earlier-prepared.json', template),
                'inputFiles': plan['inputFiles'], 'activityCredit': 0,
                'humanApproval': 'NOT_RUN', 'publicationAction': 'NONE'}
+    if views:
+        request['views'] = sorted(views)
+    if widths:
+        request['widths'] = sorted(widths)
     request_file = directory / 'request.json'
     plan = {**plan, 'scope': scope, 'sourceCommit': candidate, 'runtimeFingerprint': fingerprint,
             'requestFile': str(request_file), 'requestSha256': write(request_file, request)}
@@ -297,9 +311,12 @@ if __name__ == '__main__':
     parser.add_argument('app', type=Path)
     parser.add_argument('directory', type=Path)
     parser.add_argument('source', type=Path, help='Input Git repository for prepare, shared lock file for run')
+    parser.add_argument('--view', action='append', choices=('orbit','side','top','fixed_projection'))
+    parser.add_argument('--width', action='append', type=int, choices=(320, 1280))
     epoch = parser.add_mutually_exclusive_group()
     epoch.add_argument('--pulse-layer-fix', action='store_true', help='Use the exact acoustic endpoint correction')
     epoch.add_argument('--doppler-fix', action='store_true', help='Use the exact direction and pressure-legend correction')
+    epoch.add_argument('--doppler-pressure-fix', action='store_true', help='Also use the separate fallback pressure arrow detail')
     epoch.add_argument('--fluid-direction-fix', action='store_true', help='Use the exact C2 probe and tracer direction correction')
     args = parser.parse_args()
     candidate, runtime = CANDIDATE, RUNTIME
@@ -307,15 +324,16 @@ if __name__ == '__main__':
         if args.scope != 'sound-01':
             parser.error('The pulse-layer correction replay applies only to sound-01')
         candidate, runtime = PULSE_FIX
-    if args.doppler_fix:
+    if args.doppler_fix or args.doppler_pressure_fix:
         if args.scope != 'sound-03':
             parser.error('The direction and legend correction replay applies only to sound-03')
-        candidate, runtime = DOPPLER_FIX
+        candidate, runtime = DOPPLER_PRESSURE_FIX if args.doppler_pressure_fix else DOPPLER_FIX
     if args.fluid_direction_fix:
         if args.scope not in (*CONTINUITY_SCOPES, PITOT_SCOPE):
             parser.error('The fluid direction correction replay requires a continuity or targeted Pitot scope')
         candidate, runtime = FLUID_FIX
     if args.phase == 'prepare':
-        prepare(args.app.resolve(), args.directory.resolve(), args.source.resolve(), args.scope, candidate, runtime)
+        prepare(args.app.resolve(), args.directory.resolve(), args.source.resolve(), args.scope, candidate, runtime,
+                args.view, args.width)
     else:
         run(args.app.resolve(), args.directory.resolve(), args.source.resolve(), candidate, runtime)
