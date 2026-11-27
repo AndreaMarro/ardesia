@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/c4-matter-circuits-draft-independent-b-20261127/check_actual.py", line 21, in <module>
+    for q,point,answer in zip(r['questions'],points,answers):assert exact(q['value'])==value(ident,point,True)==exact(answer)and q['unit']==unit
+                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
