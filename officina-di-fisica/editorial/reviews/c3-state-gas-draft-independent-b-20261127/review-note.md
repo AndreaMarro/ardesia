@@ -1,0 +1,13 @@
+# C3: lettura distinta di sei bozze su stato e gas ideale
+
+B è distinto dall'autore Root. Prima di aprire le nuove spiegazioni ho congelato le dodici derivazioni prompt/dati-only in73c3ab766e0d5253ad1a0a1e9f89a9f0ef16d287, SHA4978eacda23378dd419c6614a4c224d8684d11afb77a10cc7f14f0b6dc66abce. L'esposizione precedente alle leggi originali C3 è dichiarata. Ho poi letto integralmente tutti i sei record e il manuale; nessun candidato è stato modificato.
+
+Risultati:80/60cm³;160/140kPa;30/40kPa;323,15/298,15K;40 e160/3kPa;400/325K. Le inverse sono dimensionalmente corrette. La chiusura del sistema non viene confusa con isolamento energetico; il volume spazzato è distinto dal totale. Le pressioni e le temperature del gas sono assolute. La temperatura Celsius richiede un offset, mentre la differenza numerica delle due scale no. Le condizioni di equilibrio, stessa quantità di gas e volume/temperatura fissati sono esplicite nei casi pertinenti. Il modello ideale e il coefficiente assegnato sono dichiarati, senza generalizzazione a un fluido qualunque.
+
+Per160/3kPa, la divisione manuale dà53 con resto1 e cifre3 periodiche. Il testo mantiene prima il risultato esatto e propone53,33 per il campo decimale. L'errore relativo è1/16000. È stato eseguito realmente il blocco numerico del grader originale, con le vere consegne compilate:12 ingressi finiti accettati e18 casi vuoto/Infinity/NaN rifiutati. Nessuna nuova tolleranza è introdotta. Le conversioni323,15/298,15 sono esatte; il testo spiega che la lettura del banco può abbreviare a323,2/298,2. Nessuna resa browser è certificata da questo controllo.
+
+La prova finale usa l'installazione Root in sola lettura con52 fileJS banchi esattamente uguali allo snapshot b953, identici prima e dopo. Node0 e8test reali0;127 stati legali confrontati esattamente fra originale e DRAFT, a due stadi della geometria. Binding, versioni individuali e campi fisici originali verificati. Nessun import DB o Chrome B.
+
+Provenienza dei prototipi conservata: un controllo iniziale rilevò il dispatcher di legende diverso sul composto7c e una shell proseguì per errore, producendo8test matematici positivi ma senza il vincolo completo di sorgente richiesto. Un successivo prototipo Root aveva una mappa vuota per un pathspec risolto dalla sottocartella app. Entrambi sono preservati esplicitamente come non finali. Il target finale rifiuta una mappa vuota e controlla52 hash effettivi prima e dopo; soltanto quest'ultimo sostiene la presente consegna.
+
+Nessun finding residuo fisico o didattico sui byte dichiarati. I precedenti difetti visivi delle attività originali non sono sanati automaticamente da nuovi blocchi di lettura. UI e humanNOT_RUN, attività0, publicationActionNONE. Root resta unico integratore.

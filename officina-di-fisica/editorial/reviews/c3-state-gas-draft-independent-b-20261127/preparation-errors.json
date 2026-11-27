@@ -1,0 +1,20 @@
+{
+  "events": [
+    {
+      "stage": "initial source comparison",
+      "error": "AssertionError: static/js/banchi/voci/esperimento.js",
+      "effect": "7c compatibility result preserved separately; no final source claim"
+    },
+    {
+      "stage": "metadata recovery",
+      "error": "FileNotFoundError: git-inputs.json was not yet written by initial interrupted preparation",
+      "effect": "No child started in this set-e attempt; inputs rebuilt explicitly"
+    },
+    {
+      "stage": "Root pin selector prototype",
+      "error": "sourceFilesBeforeAfterIdentical0 due cwd/pathspec mismatch",
+      "effect": "Preserved separately; final selector resolves repository root and rejects empty map"
+    }
+  ],
+  "finalState": "52 source JS files actually pinned and stable, real Node/test exit0"
+}

@@ -1,0 +1,1 @@
+This actual Root CPU run passed eight mathematical tests, but its git-ls-tree pin map was empty because a repository-relative pathspec was used from the app subdirectory. This prototype is not the final provenance proof. Preserve its real terminal; final preparation uses repo cwd and rejects an empty pin set. No UI or credit.

@@ -1,0 +1,195 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "INDEPENDENT_CPU_AND_TEXT_DRAFT_REVIEW",
+  "author": "Root",
+  "reviewer": "B",
+  "candidateCommit": "b9530f9be51234a0e9cce760025741031ab3ccfb",
+  "rawPackageSha256": "f9367981287aaacfcdd2f09398aec15fcb22523769c5426ec0c7f2aa0fecccc9",
+  "bindingsSha256": "eeaa9f8bec0c85dbfa6ded8967b14a43a41cbfa4be8e4fa97fb07a36f3d649b1",
+  "manualActuallyReadSha256": "2a642c0b77a1a348393956c26249b833c2b4041c78fd29dd2ace6f170ea8a71a",
+  "primaryBeforeExplanations": {
+    "commit": "73c3ab766e0d5253ad1a0a1e9f89a9f0ef16d287",
+    "path": "officina-di-fisica/editorial/reviews/c3-state-gas-draft-independent-b-20261127/prompt-only-primary.md",
+    "sha256": "4978eacda23378dd419c6614a4c224d8684d11afb77a10cc7f14f0b6dc66abce",
+    "disclosure": "Original C3laws and earlier independent mathematics already known; the twelve new prompt/data-only derivations were committed before reading these new explanations. B did not author any of these six drafts."
+  },
+  "perId": [
+    {
+      "id": "SIM-C3-L01-01",
+      "candidateSha256": "be59c554c23af739cf617fbb5b6d06311f7414b42e586fc012d1864b7b11f71d",
+      "sourceSha256": "0ef151665d37771fe59b67bff1fb0c3ea449d36a8a2a2970905d6fd60c50859a",
+      "inputs": [
+        6,
+        4
+      ],
+      "independentExactResults": [
+        "80",
+        "60"
+      ],
+      "unit": "cm³",
+      "manualArithmetic": "PASS",
+      "pedagogicalReading": "PASS",
+      "bindingsAndSourceIdentity": "PASS",
+      "allLegalControlStatesCompared": 17,
+      "note": "Volume finale distinto da incremento:20+10s, quindi80/60cm³. Volume iniziale non nullo a corsa zero. Il solo spostamento non determina pressione o scambi energetici.",
+      "UI": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C3-L01-02",
+      "candidateSha256": "4cf938fbc34dc3f9b52afb304e41af9fbaa2d981a3f3f70b5de6acdbf53cd39a",
+      "sourceSha256": "c2850d6bdafa7ea9440c20aa3ff79c0843f1164fe393a7f7174554361f80a536",
+      "inputs": [
+        400,
+        350
+      ],
+      "independentExactResults": [
+        "160",
+        "140"
+      ],
+      "unit": "kPa",
+      "manualArithmetic": "PASS",
+      "pedagogicalReading": "PASS",
+      "bindingsAndSourceIdentity": "PASS",
+      "allLegalControlStatesCompared": 31,
+      "note": "Gas ideale a quantità e volume fissati: p=(2/5)T,160/140kPa. Temperatura e pressione assolute, coefficiente con unitàkPa/K; inversaT=5p/2 corretta.",
+      "UI": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C3-L01-03",
+      "candidateSha256": "c3ebc119ec8923f4eb648bf94c635f8ce037eb80e2fad9015e7b942eb1c8c841",
+      "sourceSha256": "683b7f8c7f666aaa5f611f9690c55275a4d68e692478a3fe818de6c830940cba",
+      "inputs": [
+        4,
+        3
+      ],
+      "independentExactResults": [
+        "30",
+        "40"
+      ],
+      "unit": "kPa",
+      "manualArithmetic": "PASS",
+      "pedagogicalReading": "PASS",
+      "bindingsAndSourceIdentity": "PASS",
+      "allLegalControlStatesCompared": 17,
+      "note": "Con uguali n,T finali e nRT120kPa·L:120/4=30 e120/3=40kPa. Pressione di stato distinta da calore/lavoro di percorso. Volume positivo.",
+      "UI": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C3-L01-04",
+      "candidateSha256": "a6b153e39796ac1da36d36676ee0a366cb01270ef112e1382a5b85ecc3826ad5",
+      "sourceSha256": "cc9401c0ce4d31fa48a00c808f720213753ffae05584dc76107aae82adfa963e",
+      "inputs": [
+        50,
+        25
+      ],
+      "independentExactResults": [
+        "6463/20",
+        "5963/20"
+      ],
+      "unit": "K",
+      "manualArithmetic": "PASS",
+      "pedagogicalReading": "PASS",
+      "bindingsAndSourceIdentity": "PASS",
+      "allLegalControlStatesCompared": 31,
+      "note": "Conversioni esatte323,15/298,15K con offset273,15. Differenze Celsius e Kelvin hanno uguale valore numerico; rapporti di letture assolute non si conservano. Arrotondamento del banco dichiarato nel testo.",
+      "UI": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C3-L02-01",
+      "candidateSha256": "19cd3d0aff020037d6fd805b15c1659dea8e3e4643f6b3723203a0a80443e23a",
+      "sourceSha256": "85e6a775d0b631effd9d54b09927b081a0406a74faad02bb97b2d61135f310b2",
+      "inputs": [
+        6,
+        4.5
+      ],
+      "independentExactResults": [
+        "40",
+        "160/3"
+      ],
+      "unit": "kPa",
+      "manualArithmetic": "PASS",
+      "pedagogicalReading": "PASS",
+      "bindingsAndSourceIdentity": "PASS",
+      "allLegalControlStatesCompared": 15,
+      "note": "Stessa quantità di gas ideale e stessaT, pV240kPa·L:40 e160/3kPa. Divisione manuale in53 con resto1 e cifre3 periodiche. Ingresso53,33 distinto dal risultato esatto e accettato dal grader invariato.",
+      "UI": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C3-L02-02",
+      "candidateSha256": "90ca59d5e0c28db37e5b157936f83448bc39548f0823dbc4f159d360a771064d",
+      "sourceSha256": "23d59fbe257bb268a6507ca99351aa7db129ff2e1fd51e889fe79cc54132ce1c",
+      "inputs": [
+        160,
+        130
+      ],
+      "independentExactResults": [
+        "400",
+        "325"
+      ],
+      "unit": "K",
+      "manualArithmetic": "PASS",
+      "pedagogicalReading": "PASS",
+      "bindingsAndSourceIdentity": "PASS",
+      "allLegalControlStatesCompared": 16,
+      "note": "Recipiente chiuso rigido e coefficiente assegnato5/2K/kPa:400/325K. Pressione assoluta distinta da sovrapressione. Rapporto325/400=130/160=13/16 e inversa corretti.",
+      "UI": "NOT_RUN"
+    }
+  ],
+  "compiledTasks": 12,
+  "legalControlStatesCompared": 127,
+  "sourceBinding": {
+    "sourceCommit": "b9530f9be51234a0e9cce760025741031ab3ccfb",
+    "actualBanchiJSFiles": 52,
+    "beforeAfterByteIdentical": true,
+    "noEmptyPinMapAllowed": true,
+    "scope": "Actual Root installed mathematical consumer at the supplied code snapshot; not a new composed runtime or browser observation."
+  },
+  "numericInput": {
+    "sourceGraderBlockSha256": "47873210c4ae3e5c412a9e9f5ed915534984f6639f1bc5c95017150df830d239",
+    "method": "The unchanged numeric parsing/grading source block is executed in isolation with real compiled assessment records. No browser event or DOM transport is simulated as observed.",
+    "finiteInputsAccepted": 12,
+    "emptyInfinityNaNRejected": 18,
+    "nonterminatingExact": "160/3 kPa",
+    "manualFiniteInput": "53.33",
+    "exactRelativeTruncationError": "1/16000",
+    "newToleranceIntroduced": false,
+    "originalGraderRelativeWindow": "0.005, unchanged; recorded for provenance, not expanded by this review"
+  },
+  "knownReadoutRounding": {
+    "id": "SIM-C3-L01-04",
+    "exactAssigned": [
+      "323.15 K",
+      "298.15 K"
+    ],
+    "shortReadings": [
+      "323.2 K",
+      "298.2 K"
+    ],
+    "status": "Explicitly explained by draft and manual; exact manual inputs validated separately"
+  },
+  "findings": [],
+  "realTerminal": {
+    "consumerSourceCommit": "b9530f9be51234a0e9cce760025741031ab3ccfb",
+    "sourceFilesBeforeAfterIdentical": 52,
+    "nodeExitCode": 0,
+    "testExitCode": 0,
+    "signal": null,
+    "elapsedSeconds": 0.3001785409869626,
+    "collectorSha256": "f4e4734006debd5bd0a367fdc7748fb8a56bed69f874b49268430fba5e6e7708",
+    "testsSha256": "361a2789ec59688effd5915a69c549cabb3a93c14fcd8d1871987db29df3b41f",
+    "UI": "NOT_RUN",
+    "activityCredit": 0,
+    "humanApproval": "NOT_RUN",
+    "publicationAction": "NONE"
+  },
+  "preservedPrototypeScopes": [
+    "superseded-7c-compatibility: passed mathematics on a different legend dispatcher after initial source comparison failure; not final source proof",
+    "superseded-empty-pin-prototype: passed mathematics but returned an empty source pin selector; not final source proof"
+  ],
+  "canonicalDBImport": "NOT_RUN_BY_B; Root author receipt preserved in supplied commit",
+  "UI": "NOT_RUN",
+  "scientificApproval": false,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
