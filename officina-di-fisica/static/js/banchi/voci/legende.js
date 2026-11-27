@@ -1,5 +1,7 @@
 const orientaLorentz = 'Per confrontare il modulo della forza scegli la vista Obliqua o Laterale.';
 const orientaOttica = 'Per confrontare gli angoli dei raggi scegli la vista Obliqua o Laterale: dall’alto il loro piano si vede di taglio.';
+const lavoroTermico = new Set(['SIM-C3-L08-02', 'SIM-C3-L09-01', 'SIM-C3-L09-02', 'SIM-C3-L09-03', 'SIM-C3-L09-04']);
+const dettaglioTermico = ' Il dettaglio sul davanti, in ocra, mantiene il verso e ingrandisce 32 volte le frecce più corte.';
 
 export const legende = {
   calibro: 'Ganasce verdi · tratto ocra fra i due riferimenti',
@@ -70,4 +72,19 @@ export function legendaTavola(apparato) {
     return testo.replace(orientaOttica, 'La tavola mostra lo schema nel piano di misura.');
   }
   return testo;
+}
+
+export function legendaVoce(record, vista) {
+  const legenda = vista === 'diagram' ? legendaTavola(record.apparatus) : legende[record.apparatus];
+  if (record.id === 'SIM-C3-L04-03') {
+    return legenda + '. La freccia rossa indica l’energia fornita.' + dettaglioTermico;
+  }
+  if (lavoroTermico.has(record.id)) {
+    const suggerimento = vista === 'diagram' ? '' : ' Per leggere la freccia verticale del lavoro scegli la vista Obliqua o Laterale.';
+    return legenda + dettaglioTermico + suggerimento;
+  }
+  if (record.id === 'SIM-C3-L10-01') {
+    return 'Il serbatoio è a sinistra e il sistema a destra. La freccia viola punta verso il sistema quando entra calore, verso il serbatoio quando esce. A Q uguale a zero lo scambio è nullo.';
+  }
+  return legenda;
 }
