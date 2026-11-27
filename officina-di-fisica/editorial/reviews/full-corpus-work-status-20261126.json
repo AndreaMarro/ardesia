@@ -1,13 +1,13 @@
 {
   "schemaVersion": "1.0.0",
   "scope": "Derived per-source-ID work snapshot; scientific authority remains individual immutable reports, bindings and existing acceptance ledger",
-  "observedAt": "2026-11-27T02:41:02.827086+00:00",
+  "observedAt": "2026-11-27T03:06:18.346041+00:00",
   "sourceQuestionCount": 4606,
   "reviewedQuestions": 4606,
   "remainingQuestions": 0,
-  "reviewedActivities": 244,
-  "remainingActivities": 141,
-  "registrySha256": "05c71babe91b61c292cf9175552944b785ddb216cd8909cace6296f265ecd213",
+  "reviewedActivities": 242,
+  "remainingActivities": 143,
+  "registrySha256": "a0b63e1aaf0d8df4a83ceb906241e07fc67948b7c18442390f5db91df10ca005",
   "questions": [
     {
       "id": "AR-u1-area-conversion-01",
@@ -23879,8 +23879,9 @@
     },
     {
       "id": "SIM-C1-L001-06",
-      "state": "EXPLICITLY_REOPENED_REQUIRES_FRESH_CLOSURE",
-      "withdrawalId": "vector-axis-shaft-side-00106-root-20261126"
+      "state": "REVIEWED_CURRENT_CB9_PENDING_FINAL_INTEGRATION",
+      "withdrawalId": "vector-axis-shaft-side-00106-root-20261126",
+      "currentClosureReceipt": "editorial/reviews/c1-foundation-work-current-audit-20261127/foundation-closure-and-force-work-reopening-receipt.json"
     },
     {
       "id": "SIM-C1-L002-01",
@@ -23980,7 +23981,8 @@
     },
     {
       "id": "SIM-C1-L006-03",
-      "state": "REVIEWED_PENDING_CURRENT_FULL_INTEGRATION"
+      "state": "EXPLICITLY_REOPENED_REQUIRES_FRESH_CLOSURE",
+      "withdrawalId": "observed-top-label-c1-l006-03-20261127"
     },
     {
       "id": "SIM-C1-L007-01",
@@ -23989,11 +23991,13 @@
     },
     {
       "id": "SIM-C1-L007-02",
-      "state": "REVIEWED_PENDING_CURRENT_FULL_INTEGRATION"
+      "state": "EXPLICITLY_REOPENED_REQUIRES_FRESH_CLOSURE",
+      "withdrawalId": "observed-top-label-c1-l007-02-20261127"
     },
     {
       "id": "SIM-C1-L007-03",
-      "state": "REVIEWED_PENDING_CURRENT_FULL_INTEGRATION"
+      "state": "EXPLICITLY_REOPENED_REQUIRES_FRESH_CLOSURE",
+      "withdrawalId": "observed-top-label-c1-l007-03-20261127"
     },
     {
       "id": "SIM-C1-L008-01",
@@ -24595,8 +24599,10 @@
   "nextRootQuestionId": null,
   "missingQuestionIds": [],
   "blockedActivityIds": [
-    "SIM-C1-L001-06",
-    "SIM-C1-L007-01"
+    "SIM-C1-L006-03",
+    "SIM-C1-L007-01",
+    "SIM-C1-L007-02",
+    "SIM-C1-L007-03"
   ],
   "fullSnapshotGate": "BLOCKED_BY_OPEN_SCIENTIFIC_WITHDRAWAL; no gate change and no stale3792 adoption",
   "humanApproval": "NOT_RUN",
@@ -24606,16 +24612,16 @@
       "id": "work-axis-shaft-side-root-20261126",
       "state": "OPEN",
       "affectedIds": [
-        "SIM-C1-L001-06",
         "SIM-C1-L007-01"
       ],
       "evidence": "editorial/acceptance/withdrawals-v1.json",
-      "resolution": "Complete the affected foundation and force/work groups with current-runtime individual proofs and explicit batch closures.",
+      "resolution": "Complete the remaining forces and work family with explicit same-ID closure in the currently reviewed runtime.",
       "resolvedOnCurrentScopeIds": [
         "SIM-C1-L002-01",
         "SIM-C1-L002-02",
         "SIM-C1-L002-03",
-        "SIM-C1-L002-04"
+        "SIM-C1-L002-04",
+        "SIM-C1-L001-06"
       ]
     },
     {
@@ -24661,6 +24667,17 @@
       "state": "OPEN",
       "evidence": "editorial/reviews/shared-realm-root-recovery-20261127.json",
       "resolution": "Isolated baseline browser context, explicit version and distinct adversarial review before new full139 campaign; zero automatic scientific credit"
+    },
+    {
+      "id": "force-work-top-label-reopening-20261127",
+      "state": "OPEN",
+      "affectedIds": [
+        "SIM-C1-L006-03",
+        "SIM-C1-L007-02",
+        "SIM-C1-L007-03"
+      ],
+      "evidence": "editorial/reviews/c1-foundation-work-current-audit-20261127/foundation-closure-and-force-work-reopening-receipt.json",
+      "resolution": "Current native 320 px evidence shows label occlusion; the independent remake must pass with stable vector geometry."
     }
   ]
 }

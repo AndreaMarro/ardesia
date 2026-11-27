@@ -51,7 +51,9 @@ if(plan.numericalReference){
  baseline=await reference.loadBaselineReference(plan);assertBaselineParity=reference.assertStrictBaselineParity;createBaselineRealm=reference.createBaselineRealm;
 }
 const data=await fs.mkdtemp(path.join(os.tmpdir(),'cric-visibility-db-'));
-const env={...process.env,ASTRA_DATA:data,ASTRA_HOSTED:'0',ASTRA_HTTPS:'0',ASTRA_EXTENSIONS:path.join(app,'extensions'),ASTRA_PACKAGES:JSON.stringify(plan.packageFiles),ASTRA_INPUT_FILES:JSON.stringify(plan.inputFiles)};
+const env={...process.env,ASTRA_DATA:data,ASTRA_HOSTED:'0',ASTRA_HTTPS:'0',ASTRA_EXTENSIONS:path.join(app,'extensions'),
+ ASTRA_PACKAGES:JSON.stringify(plan.packageFiles),ASTRA_INPUT_FILES:JSON.stringify(plan.inputFiles),
+ ASTRA_DRAFT_IDS:JSON.stringify(plan.draftRecords.map(record=>record.id))};
 const fingerprint=()=>JSON.parse(execFileSync('python3',['-B','-m','tools.corpus_engineering.runtime_fingerprint'],{cwd:app,env,encoding:'utf8'}));
 assert.deepEqual(fingerprint(),plan.runtimeFingerprint);
 const boot=`import json,os,secrets,hashlib,time
@@ -60,11 +62,18 @@ from server.web import Handler,ThreadingHTTPServer
 from tools.corpus_engineering.draft_import import import_drafts
 from pathlib import Path
 files=json.loads(os.environ['ASTRA_INPUT_FILES']);names=json.loads(os.environ['ASTRA_PACKAGES'])
-assert len(files)==4 and len(names)==2 and len(set(names))==2
-assert set(Path(next(iter(files))).parent.iterdir())==set(map(Path,files))
+paths={Path(name) for name in names}
+assert len(paths)==len(names) and all(name.suffix=='.json' for name in paths)
+expected=paths | {name.with_name(name.stem+'-bindings.json') for name in paths}
+assert expected==set(map(Path,files))
+if files:
+ parents={entry.parent for entry in expected}
+ assert len(parents)==1 and set(next(iter(parents)).iterdir())==expected
 checked={name:Path(name).read_bytes() for name in files}
 assert all(not Path(name).is_symlink() and hashlib.sha256(raw).hexdigest()==files[name] for name,raw in checked.items())
 packages=[json.loads(checked[name]) for name in names]
+ids=[record['id'] for package in packages for record in package['records']]
+assert len(ids)==len(set(ids)) and sorted(ids)==sorted(json.loads(os.environ['ASTRA_DRAFT_IDS']))
 store.initialize()
 with store.connect() as db:
  before=store.encode(store.published(db));count=len(store.published(db))
@@ -196,7 +205,8 @@ try{
   if(!ownerState){
    assert.ok((await context.request.post(base+'/api/owner',{headers:{'X-Astra-Request':'1'},data:{ticket}})).ok());ownerState=await context.storageState();
    const checked=[];for(const expected of plan.draftRecords){const response=await context.request.get(base+'/api/author/item/'+expected.id);assert.ok(response.ok());const text=await response.text();assertOwnerRecord(JSON.parse(text).record,expected);checked.push({id:expected.id,version:2,responseBytesSha256:sha(Buffer.from(text))});}
-   assert.equal(checked.length,9);report.fullOwnerRecordIdentity={scope:'All nine complete normalized owner records, no cross-language canonical digest',records:checked};
+   assert.equal(checked.length,plan.draftRecords.length);
+   report.fullOwnerRecordIdentity={scope:'All declared complete normalized owner records, no cross-language canonical digest',records:checked};
   }
   const page=await context.newPage();page.setDefaultTimeout(15000);page.on('pageerror',e=>report.errors.push(String(e)));
   for(const r of plan.records){

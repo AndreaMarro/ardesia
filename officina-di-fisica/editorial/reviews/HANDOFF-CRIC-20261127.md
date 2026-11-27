@@ -8,7 +8,7 @@ Le sezioni originali di **250 bozze in 25 lotti** sono state ripristinate. Il co
 
 La prova di coesistenza `9c0eb3f59945321d4409d47485d9c92714d86775` ha importato 4.628 bozze in 317 pacchetti e ha salvato zero record alla ripetizione. Ha conservato i 991 contenuti pubblicati, tre tentativi sintetici preesistenti e i relativi payload e versioni. I 4.628 record includono cinque esercizi supplementari, separati dai 4.606 sorgente, e 17 revisioni di attività. La prova precede il riallineamento delle sezioni.
 
-Il registro conta **244/385 altre attività accettate e 141 aperte**. Otto schede di metodo sono state chiuse dopo 20 percorsi browser da 98 passaggi e 12 controlli di catalogo. Le quattro simulazioni `SIM-C1-L002-01`–`SIM-C1-L002-04` hanno superato il validatore dell’intero lotto sul runtime di lavorazione, con riproduzione scientifica distinta, tre anteprime riservate della nuova edizione e importazione idempotente. Restano riaperte `SIM-C1-L001-06` e `SIM-C1-L007-01`, oltre alle 139 attività C2–C6 da chiudere. Le chiusure richiedono verifica sul runtime effettivamente integrato.
+Il registro conta **242/385 altre attività accettate e 143 aperte**. Le quattro simulazioni `SIM-C1-L002-01`–`SIM-C1-L002-04` e l’intero lotto delle fondazioni C1 hanno superato i rispettivi validatori, compresa la chiusura di `SIM-C1-L001-06`. Le prove correnti di forze e lavoro hanno mostrato tre coperture complete di frecce a 320 px, ora riaperte nel registro. Restano quattro attività C1 riaperte e 139 attività C2–C6 da chiudere. Le chiusure richiedono verifica sul runtime effettivamente integrato.
 
 Sul runtime candidato `cb9fc66d96ecced2addff3df4dfbeb0b5834e73a13719a78ea964bc28a5ada49`, i 62 modelli delle edizioni originali C4–C6 sono stati rieseguiti. Quattro originali richiedono correzioni di fattibilità manuale. Le prove delle nuove bozze sono conservate per edizione.
 
@@ -16,7 +16,7 @@ La campagna delle anteprime ha verificato 315 lotti su 316. L’unico lotto con 
 
 I cinque job della campagna interattiva sono terminati con esito tecnico positivo. Tutti i cinque archivi originali e i relativi hash sono stati verificati e consolidati in Git. La ricevuta riconcilia 45.576 interazioni e 139 ID sorgente. Il collaudo distingue i risultati tecnici dall’accettazione delle singole attività. Restano sotto revisione le prove visive su Pitot, fusione, i banchi `LAB3D-07` e `LAB3D-10` e l’accessibilità della tavola di `LAB3D-04`. [Esecuzione GitHub delle 139 esperienze](https://github.com/AndreaMarro/ardesia/actions/runs/45917299096).
 
-La riproduzione dei lettori sullo stesso runtime ha confermato 189 record già registrati in 33 gruppi. Nessun nuovo ID è contato sulla base di queste riproduzioni. Il prossimo ID esplicitamente riaperto resta `SIM-C1-L001-06`.
+La riproduzione dei lettori sullo stesso runtime ha confermato 189 record già registrati in 33 gruppi. Nessun nuovo ID è contato sulla base di queste riproduzioni. Il prossimo ID esplicitamente riaperto è `SIM-C1-L006-03`.
 
 Il candidato composto riunisce le correzioni al lettore e ai banchi e contiene le nuove annotazioni per C2–C6. Ha superato 301 test Node e due test dei contratti. Le anteprime riservate sull’intero registro sono in esecuzione sul commit `728474c72f069e87ab8528549bb31f172ed5608a`. Le prove distinte sulle correzioni rimangono vincolate alle revisioni effettivamente eseguite. [Anteprime del candidato composto](https://github.com/AndreaMarro/ardesia/actions/runs/45929961994).
 

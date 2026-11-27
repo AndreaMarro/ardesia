@@ -14,7 +14,7 @@
     "nextQuestionId": null,
     "protectedExamQuestions": 93,
     "registrationCommit": "90ac066dcd8fdb6db1fe3b4d89d5e46eb94ffe46",
-    "registrySha256": "05c71babe91b61c292cf9175552944b785ddb216cd8909cace6296f265ecd213",
+    "registrySha256": "a0b63e1aaf0d8df4a83ceb906241e07fc67948b7c18442390f5db91df10ca005",
     "perIdStatus": "editorial/reviews/full-corpus-work-status-20261126.json",
     "scientificReplay": {
       "commit": "f72cfcf016c4e7d9cf28c331fcbccea3b6b22e5a",
@@ -36,14 +36,14 @@
   },
   "otherActivities": {
     "total": 385,
-    "registered": 244,
-    "open": 141,
+    "registered": 242,
+    "open": 143,
     "newReviewsOpen": 139,
-    "explicitlyReopened": 2,
+    "explicitlyReopened": 4,
     "historicalClosuresNeedingCurrentRuntime": 6,
     "overlapBetweenHistoricalClosuresAndExplicitReopenings": 1,
     "independentFiveReplayCommit": "1ed3c13cebb8fe8b80dc997f8b6c9a6b0646f1e8",
-    "nextReopenedId": "SIM-C1-L001-06",
+    "nextReopenedId": "SIM-C1-L006-03",
     "methodsClosureCommit": "6b3eb8ba422ca76548021d557d1d54da22d8c098",
     "currentC4ToC6ModelReplay": {
       "commit": "52b5a65b0b46d9b8603dacf1e702dbf92bff7c6b",
@@ -154,7 +154,22 @@
         "SIM-C6-L05-01"
       ],
       "exactComposedBrowser": "PENDING"
-    }
+    },
+    "currentFoundationClosure": {
+      "closedIds": [
+        "SIM-C1-L001-06"
+      ],
+      "runtimeSha256": "cb9fc66d96ecced2addff3df4dfbeb0b5834e73a13719a78ea964bc28a5ada49",
+      "receipt": "editorial/reviews/c1-foundation-work-current-audit-20261127/foundation-closure-and-force-work-reopening-receipt.json",
+      "sha256": "f907b8669ad9d3e721ec1fcbb1783169d2649a23716727a5d74b74eddea077e0",
+      "newForceWorkReopenings": [
+        "SIM-C1-L006-03",
+        "SIM-C1-L007-02",
+        "SIM-C1-L007-03"
+      ],
+      "requiresRenewalOnFinalRuntime": true
+    },
+    "pendingManualAppendixC6": "editorial/reviews/c6-activities-exact-manual-solution-20261127.json"
   },
   "coexistence": {
     "commit": "9c0eb3f59945321d4409d47485d9c92714d86775",
@@ -212,7 +227,7 @@
   },
   "nextAction": [
     "Use five verified upstream archives to complete the individual visual assessments and verify the targeted corrections",
-    "Close the remaining C1 reopenings SIM-C1-L001-06 and SIM-C1-L007-01 and all 139 other open IDs",
+    "Close the four remaining C1 force/work reopenings beginning SIM-C1-L006-03, and the 139 C2–C6 activities",
     "Validate all groups on the exact integration runtime and rerun final previews and coexistence",
     "Open and validate canonical integration and document CI on the integrated SHA"
   ],
