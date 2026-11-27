@@ -41,10 +41,15 @@ export function sample(s, t) {
   const second = amp * Math.cos(s.k * s.probe.r2 + s.phi - s.omega * t);
   return { first, second, y: displacement(s, s.probe, t) };
 }
+export function displacementMillimetres(value) {
+  // Suppress floating-point residue at the display, using the source amplitude as the scale.
+  const roundoff = 32 * Number.EPSILON * amp;
+  return Math.abs(value) <= roundoff ? 0 : 1000 * value;
+}
 export const readings = (p, s, t) => [
   ['Differenza r₂ − r₁', s.probe.r2 - s.probe.r1, 'm'],
   ['Ampiezza alla sonda', 1000 * s.envelope, 'mm'],
-  ['Spostamento istantaneo', 1000 * displacement(s, s.probe, t), 'mm'],
+  ['Spostamento istantaneo', displacementMillimetres(displacement(s, s.probe, t)), 'mm'],
   ['Fase relativa', s.probe.delta, 'rad'],
 ];
 export const steps = (p, s) => [
