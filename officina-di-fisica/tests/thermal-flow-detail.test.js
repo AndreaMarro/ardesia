@@ -38,11 +38,11 @@ test('five early fusion frames retain a directional indicator for supplied energ
   ]) {
     const detail = arrows(fusion.elements(input, 2, time), colore.ocra);
     assert.equal(detail.length, 1);
-    assertDisplacement(detail[0], [32 * 0.85 * energy / 54, 0, 0]);
+    assertDisplacement(detail[0], [128 * 0.85 * energy / 54, 0, 0]);
   }
   assert.equal(arrows(fusion.elements(1, 2, 0), colore.ocra).length, 0);
   assert.equal(arrows(fusion.elements(1, 2, 0), colore.rosso).length, 0);
-  assert.match(fusion.legend(), /ocra.*32 volte/);
+  assert.match(fusion.legend(), /in alto, in ocra.*128 volte/);
 });
 
 test('larger transfers keep their existing scale and no magnified arrow', async () => {
@@ -81,10 +81,11 @@ test('the fallback arrowhead extends beyond the shaft without moving its tip', a
   } finally {
     if (previousDocument === undefined) delete globalThis.document;
   }
+  const projectedShort = {...detail,b:detail.a.map((start,index) => start+(detail.b[index]-start)/4)};
   const polygon = element => disegna2D([element], 'Dettaglio', 'bench-diagram', 294)
     .match(/<polygon points="([^"]+)"/)[1].split(' ').map(point => point.split(',').map(Number));
-  const [tip, high, low] = polygon(detail);
-  const [plainTip, plainHigh, plainLow] = polygon({...detail, dettaglio:false});
+  const [tip, high, low] = polygon(projectedShort);
+  const [plainTip, plainHigh, plainLow] = polygon({...projectedShort, dettaglio:false});
   assert.deepEqual(tip, plainTip);
   assert.ok(Math.abs(high[1]-low[1]) > 2.7);
   assert.ok(Math.abs(plainHigh[1]-plainLow[1]) <= 2.7);
