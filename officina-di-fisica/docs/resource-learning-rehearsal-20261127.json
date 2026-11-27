@@ -1,0 +1,70 @@
+{
+  "schema": "cric.resource-learning-rehearsal/1",
+  "recordedAt": "2026-11-27T17:27:30.768925+00:00",
+  "testedLocalCommit": "db9a82aec78b03d13db148155213435526f80456",
+  "testedTree": "edaa75c6e223f66c0755b8728260df5ddb34a71d",
+  "publishedCheckpointWithSameTree": "d10582d58386c6c64caf244660343002dede1527",
+  "command": "python3 tools/verifica_convergenza.py --base 7c29ccc18ad3b42ceecfca509ef57f786bd2c496 --platform db9a82aec78b03d13db148155213435526f80456 --scientific 4e9a37eb120b2bd4a4c8876f5dc52d6471cfd7aa",
+  "exitCode": 0,
+  "seconds": 3.13,
+  "result": {
+    "base": "7c29ccc18ad3b42ceecfca509ef57f786bd2c496",
+    "platform": "db9a82aec78b03d13db148155213435526f80456",
+    "scientific": "4e9a37eb120b2bd4a4c8876f5dc52d6471cfd7aa",
+    "platformPaths": 52,
+    "scientificProductPaths": 15908,
+    "identicalOverlaps": [],
+    "incompatiblePaths": [],
+    "runtimeExtraction": {
+      "method": "explicit-git-blobs",
+      "files": 95,
+      "sha256": "9b7459e7bc6c49bb075d26195d6269d5fdc5993f04440b41a5d3bcc2ce3e50bb"
+    },
+    "physicsRuntimeFilesChanged": 0,
+    "composedBrowserAssets": "verified",
+    "legacy": {
+      "heads": {
+        "count": 991,
+        "sha256": "d4e9ed3731b3bc21cbbb469801012ecd871e961f1be6e84522dda3e474d1107f"
+      },
+      "versions": {
+        "count": 991,
+        "sha256": "1d77a2e0eb22d4dd761bef8e32bbd06c90b71a9a704e557c10d50e6c79cec641"
+      },
+      "reads": {
+        "count": 1,
+        "sha256": "8583045ed922b71f0f1f0d7ce00ee4f94265ac2cb32f0a52a6baa1c60e302dd4"
+      },
+      "attempts": {
+        "count": 1,
+        "sha256": "c2c18d1999e0861fc8af50f6789ab8733519c17ae590f3f1263607705e008e7c"
+      },
+      "runs": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "access": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "reading_preferences": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "publishedExamItems": 93,
+      "schema": 4
+    },
+    "installReplay": "identical",
+    "oldReader": "identical",
+    "newAttemptAfterLegacyRestart": "identical",
+    "resourceCaseAndCollectionAfterLegacyRestart": "identical",
+    "resourceExplorationLeavesIndependentEvidence": "unchanged"
+  },
+  "scope": [
+    "Exact scientific Git objects and composed candidate; no scientific worktree or ref was edited.",
+    "Legacy tables, installation replay, old reader restart, new attempt and saved resource case/collection were exercised.",
+    "This report is a technical coexistence rehearsal, not scientific approval, human publication approval, or browser evidence.",
+    "The later test-only ASTRA_HOSTED=0 environment guard does not modify product runtime; browser execution remains pending CI."
+  ],
+  "reproductionWithPublishedCheckpoint": "python3 tools/verifica_convergenza.py --base 7c29ccc18ad3b42ceecfca509ef57f786bd2c496 --platform d10582d58386c6c64caf244660343002dede1527 --scientific 4e9a37eb120b2bd4a4c8876f5dc52d6471cfd7aa"
+}

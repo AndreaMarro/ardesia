@@ -1,0 +1,517 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Casi riproducibili e raccolte personali di risorse · v1",
+  "$defs": {
+    "case": {
+      "type": "object",
+      "properties": {
+        "schema": {
+          "const": "cric.resource-case/1"
+        },
+        "resource": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "const": "LAB3D-04"
+            },
+            "version": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "id",
+            "version",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "model": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "const": "tubo"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "id",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "enum": [
+                "pressure",
+                "flow"
+              ]
+            },
+            "r": {
+              "type": "number",
+              "minimum": 0.5,
+              "maximum": 4,
+              "description": "Il runtime v1 richiede incrementi di 0.1 a partire dal minimo; tolleranza di roundoff 1e-7 nell’indice dell’incremento. È un limite dei controlli, non della legge fisica."
+            },
+            "probe": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Il runtime v1 richiede incrementi di 0.05 a partire dal minimo; tolleranza di roundoff 1e-7 nell’indice dell’incremento. È un limite dei controlli, non della legge fisica."
+            },
+            "mu": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 12,
+              "description": "Il runtime v1 richiede incrementi di 0.5 a partire dal minimo; tolleranza di roundoff 1e-7 nell’indice dell’incremento. È un limite dei controlli, non della legge fisica."
+            },
+            "length": {
+              "type": "number",
+              "minimum": 5,
+              "maximum": 50,
+              "description": "Il runtime v1 richiede incrementi di 1 a partire dal minimo; tolleranza di roundoff 1e-7 nell’indice dell’incremento. È un limite dei controlli, non della legge fisica."
+            },
+            "dp": {
+              "type": "number",
+              "minimum": 5,
+              "maximum": 500,
+              "description": "Il runtime v1 richiede incrementi di 5 a partire dal minimo; tolleranza di roundoff 1e-7 nell’indice dell’incremento. È un limite dei controlli, non della legge fisica."
+            },
+            "flow": {
+              "type": "number",
+              "minimum": 0.1,
+              "maximum": 12,
+              "description": "Il runtime v1 richiede incrementi di 0.1 a partire dal minimo; tolleranza di roundoff 1e-7 nell’indice dell’incremento. È un limite dei controlli, non della legge fisica."
+            }
+          },
+          "required": [
+            "mode",
+            "r",
+            "probe",
+            "mu",
+            "length",
+            "dp",
+            "flow"
+          ],
+          "additionalProperties": false
+        },
+        "time": {
+          "type": "number",
+          "minimum": 0
+        },
+        "view": {
+          "enum": [
+            "orbit",
+            "top",
+            "side",
+            "diagram"
+          ]
+        }
+      },
+      "required": [
+        "schema",
+        "resource",
+        "model",
+        "parameters",
+        "time",
+        "view"
+      ],
+      "additionalProperties": false
+    },
+    "resource": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "const": "LAB3D-04"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "title": {
+          "type": "string"
+        },
+        "course": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "sha256",
+        "title",
+        "course",
+        "skill"
+      ],
+      "additionalProperties": false
+    },
+    "validationRequest": {
+      "type": "object",
+      "properties": {
+        "case": {
+          "$ref": "#/$defs/case"
+        }
+      },
+      "required": [
+        "case"
+      ],
+      "additionalProperties": false
+    },
+    "validation": {
+      "type": "object",
+      "properties": {
+        "case": {
+          "$ref": "#/$defs/case"
+        },
+        "resource": {
+          "$ref": "#/$defs/resource"
+        }
+      },
+      "required": [
+        "case",
+        "resource"
+      ],
+      "additionalProperties": false
+    },
+    "caseRequest": {
+      "type": "object",
+      "properties": {
+        "requestId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "case": {
+          "$ref": "#/$defs/case"
+        }
+      },
+      "required": [
+        "requestId",
+        "title",
+        "case"
+      ],
+      "additionalProperties": false
+    },
+    "caseDocument": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^rcase-[a-f0-9]{32}$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "created": {
+          "type": "integer"
+        },
+        "available": {
+          "type": "boolean"
+        },
+        "case": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/case"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "resource": {
+          "$ref": "#/$defs/resource"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "created",
+        "available",
+        "case"
+      ],
+      "additionalProperties": false
+    },
+    "collectionRequest": {
+      "type": "object",
+      "properties": {
+        "requestId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "caseIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^rcase-[a-f0-9]{32}$"
+          },
+          "minItems": 0,
+          "maxItems": 24,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "requestId",
+        "title",
+        "caseIds"
+      ],
+      "additionalProperties": false
+    },
+    "collectionUpdate": {
+      "type": "object",
+      "properties": {
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "caseIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^rcase-[a-f0-9]{32}$"
+          },
+          "minItems": 0,
+          "maxItems": 24,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "revision",
+        "title",
+        "caseIds"
+      ],
+      "additionalProperties": false
+    },
+    "sharing": {
+      "type": "object",
+      "properties": {
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "shared": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "revision",
+        "shared"
+      ],
+      "additionalProperties": false
+    },
+    "collection": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^rcol-[a-f0-9]{32}$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "created": {
+          "type": "integer"
+        },
+        "updated": {
+          "type": "integer"
+        },
+        "cases": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/caseDocument"
+          },
+          "minItems": 0,
+          "maxItems": 24
+        },
+        "caseIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^rcase-[a-f0-9]{32}$"
+          },
+          "minItems": 0,
+          "maxItems": 24,
+          "uniqueItems": true
+        },
+        "shareToken": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-f0-9]{48}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "shared": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "note",
+        "revision",
+        "created",
+        "updated",
+        "cases",
+        "shared"
+      ],
+      "additionalProperties": false
+    },
+    "notebook": {
+      "type": "object",
+      "properties": {
+        "cases": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/caseDocument"
+          },
+          "maxItems": 200
+        },
+        "collections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/collection"
+          },
+          "maxItems": 100
+        },
+        "totalCases": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "totalCollections": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "cases",
+        "collections",
+        "totalCases",
+        "totalCollections"
+      ],
+      "additionalProperties": false
+    },
+    "specification": {
+      "type": "object",
+      "properties": {
+        "schema": {
+          "const": "cric.resource-case/1"
+        },
+        "resource": {
+          "$ref": "#/$defs/resource"
+        },
+        "model": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "const": "tubo"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "id",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "minItems": 7,
+          "maxItems": 7
+        },
+        "views": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "orbit",
+              "top",
+              "side",
+              "diagram"
+            ]
+          }
+        },
+        "initialCase": {
+          "$ref": "#/$defs/case"
+        }
+      },
+      "required": [
+        "schema",
+        "resource",
+        "model",
+        "parameters",
+        "views",
+        "initialCase"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

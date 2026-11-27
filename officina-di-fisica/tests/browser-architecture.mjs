@@ -273,3 +273,9 @@ try {
   if(service.exitCode===null && service.signalCode===null){ const ended=once(service,'exit');service.kill();await ended;}
   await fs.rm(storage,{recursive:true,force:true});
 }
+
+// Run the composed product against a separate account, database and browser session.
+await import('./browser-discipline.mjs');
+// Resource reuse has its own disposable accounts and database. Its report and
+// screenshots are kept under var/arch/browser for the existing CI artifact.
+await import('./browser-resources.mjs');

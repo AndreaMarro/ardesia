@@ -1,0 +1,276 @@
+{
+  "schema": "cric.resource-learning-validation/1",
+  "recordedAt": "2026-11-27T17:53:34+00:00",
+  "timezone": "Europe/Rome",
+  "pullRequest": "https://github.com/AndreaMarro/ardesia/pull/366",
+  "branch": "feat/cric-resource-learning-20261127",
+  "publication": {
+    "draft": true,
+    "merged": false,
+    "deployed": false,
+    "scientificPublicationApproved": false
+  },
+  "references": {
+    "canonical": "7c29ccc18ad3b42ceecfca509ef57f786bd2c496",
+    "platformPR365": "71a4a31bed9357cdc6a8291b6291a58593e70a73",
+    "scientificSuccessor": "4e9a37eb120b2bd4a4c8876f5dc52d6471cfd7aa"
+  },
+  "checkpoints": [
+    {
+      "role": "Composition of canonical and PR365",
+      "local": "615e81d7805b927c09940facfc68013a16d67cac",
+      "remote": "6b97800eed735a71a1c98a08ff42c848cb5a3712",
+      "tree": "11c3504aa5403bd149a47767c8b702c39808fdf6"
+    },
+    {
+      "role": "Feature implementation and local coexistence rehearsal",
+      "local": "db9a82aec78b03d13db148155213435526f80456",
+      "remote": "d10582d58386c6c64caf244660343002dede1527",
+      "tree": "edaa75c6e223f66c0755b8728260df5ddb34a71d"
+    },
+    {
+      "role": "Fixture isolation, portable request IDs and list-limit disclosure",
+      "local": "a7ab55b9e905c74631cf041122dcecd7d1f08838",
+      "remote": "3a3cfc4bacdd9ea370ab36e8c924d6566597a05f",
+      "tree": "82c9e4daf92fe8fb71c34b89ac4808489eb55245"
+    },
+    {
+      "role": "Browser navigation acceptance update",
+      "local": "bd30a70929f239f7a598a440329e3e6d076d14d0",
+      "remote": "ad32fde416383daf3e99c70f469ad1c2e282d8f2",
+      "tree": "407add37d6ee3e8cab59103ca8e4d2e2663aa5ae"
+    },
+    {
+      "role": "Relocated exam link acceptance update",
+      "local": "61f7e372257bd618758ba96f14d25d83a8a984eb",
+      "remote": "eb90039b83179af7c5a859111b43a76bbf296ae8",
+      "tree": "5b6a9681fc95ec1feaa92c069da82f23c0461fb2"
+    },
+    {
+      "role": "SVG accessibility correction and complete provider-neutral handoff",
+      "local": "2fce1561bc08d016a453b0229fbb46c60beebc70",
+      "remote": "035fc891681a27f115bbd4c4e46be18243700eb8",
+      "tree": "0b25b314e9592e127b3ebe871144c76139503d46"
+    }
+  ],
+  "localVerification": [
+    {
+      "status": "PASS",
+      "scope": "Focused Python resource, composition, study, export and rational-step tests",
+      "count": 36,
+      "tree": "edaa75c6e223f66c0755b8728260df5ddb34a71d"
+    },
+    {
+      "status": "PASS",
+      "scope": "JavaScript tests",
+      "count": 285,
+      "tree": "edaa75c6e223f66c0755b8728260df5ddb34a71d"
+    },
+    {
+      "status": "PASS",
+      "scope": "TypeScript compilation and platform contracts",
+      "count": 2,
+      "tree": "edaa75c6e223f66c0755b8728260df5ddb34a71d"
+    },
+    {
+      "status": "PASS",
+      "scope": "Exact scientific coexistence and legacy restart",
+      "record": "resource-learning-rehearsal-20261127.json"
+    },
+    {
+      "status": "PASS",
+      "scope": "Reproducible ZIP built twice and reopened",
+      "localCommit": "a7ab55b9e905c74631cf041122dcecd7d1f08838",
+      "sha256": "3606d2f882e5d14bec49f02fb732d32e0bbaa4f7fd574842bd3f85939cf85d0d"
+    },
+    {
+      "status": "BLOCKED_LOCAL_ENVIRONMENT",
+      "scope": "Local full Python discovery",
+      "passed": 100,
+      "failed": 1,
+      "reason": "PDF Chromium executable absent; same failure reproduced on unmodified canonical base. Remote CI subsequently passed all 102 top-level Python tests."
+    },
+    {
+      "status": "NOT_EXECUTED_LOCALLY",
+      "scope": "Browser UI",
+      "reason": "No usable local Chromium binary; downloaded browser unavailable in this environment. Browser evidence must come from the real remote CI run."
+    },
+    {
+      "status": "PASS",
+      "scope": "Composition and JavaScript syntax after SVG semantic correction on canonical and scientific exact refs",
+      "count": 4,
+      "sourceSha256": "4822dbcaeb1d07cbb7884a8f112c6183b6f5e848f5cfb143da5f7cb42ca185fc"
+    },
+    {
+      "status": "PASS",
+      "scope": "Repeated exact coexistence rehearsal after SVG correction",
+      "localCommit": "2fce1561bc08d016a453b0229fbb46c60beebc70",
+      "publishedSameTree": "035fc891681a27f115bbd4c4e46be18243700eb8",
+      "result": {
+        "base": "7c29ccc18ad3b42ceecfca509ef57f786bd2c496",
+        "platform": "2fce1561bc08d016a453b0229fbb46c60beebc70",
+        "scientific": "4e9a37eb120b2bd4a4c8876f5dc52d6471cfd7aa",
+        "platformPaths": 56,
+        "scientificProductPaths": 15908,
+        "identicalOverlaps": [],
+        "incompatiblePaths": [],
+        "runtimeExtraction": {
+          "method": "explicit-git-blobs",
+          "files": 95,
+          "sha256": "9b7459e7bc6c49bb075d26195d6269d5fdc5993f04440b41a5d3bcc2ce3e50bb"
+        },
+        "physicsRuntimeFilesChanged": 0,
+        "composedBrowserAssets": "verified",
+        "legacy": {
+          "heads": {
+            "count": 991,
+            "sha256": "d4e9ed3731b3bc21cbbb469801012ecd871e961f1be6e84522dda3e474d1107f"
+          },
+          "versions": {
+            "count": 991,
+            "sha256": "d03af2f98beb0fa88365f901e2ec05bfc1a7b16f6245b4ed5be7d15375bb7819"
+          },
+          "reads": {
+            "count": 1,
+            "sha256": "8583045ed922b71f0f1f0d7ce00ee4f94265ac2cb32f0a52a6baa1c60e302dd4"
+          },
+          "attempts": {
+            "count": 1,
+            "sha256": "c2c18d1999e0861fc8af50f6789ab8733519c17ae590f3f1263607705e008e7c"
+          },
+          "runs": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "access": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "reading_preferences": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "publishedExamItems": 93,
+          "schema": 4
+        },
+        "installReplay": "identical",
+        "oldReader": "identical",
+        "newAttemptAfterLegacyRestart": "identical",
+        "resourceCaseAndCollectionAfterLegacyRestart": "identical",
+        "resourceExplorationLeavesIndependentEvidence": "unchanged"
+      }
+    },
+    {
+      "status": "PASS",
+      "scope": "Reproducible ZIP built twice and reopened after SVG correction",
+      "localCommit": "2fce1561bc08d016a453b0229fbb46c60beebc70",
+      "publishedSameTree": "035fc891681a27f115bbd4c4e46be18243700eb8",
+      "sha256": "0a42a324371f78fde231f95a9249d00e54c28ffe51d23fd3fd92dc980956dbed"
+    }
+  ],
+  "ciHistory": [
+    {
+      "run": 46042099707,
+      "url": "https://github.com/AndreaMarro/ardesia/actions/runs/46042099707",
+      "head": "3a3cfc4bacdd9ea370ab36e8c924d6566597a05f",
+      "mainJob": 140652132389,
+      "mainConclusion": "failure",
+      "passed": {
+        "javascript": 285,
+        "platformContracts": 2,
+        "typescript": true,
+        "topLevelPython": 102,
+        "nativeSimulationJobs": 12
+      },
+      "failure": "Legacy browser.mjs expected the removed hero shortcut 'Prova un esperimento'.",
+      "fix": "ad32fde416383daf3e99c70f469ad1c2e282d8f2",
+      "scope": "Kept keyboard/physical-value assertions and followed the new composed cover. New resource/discipline browser step was skipped.",
+      "checkout": "72b1eaf0d3f96dd0a995ab726f6410edb3468410",
+      "checkoutTree": "82c9e4daf92fe8fb71c34b89ac4808489eb55245",
+      "checkoutTreeIdenticalToHead": true
+    },
+    {
+      "run": 46043139056,
+      "url": "https://github.com/AndreaMarro/ardesia/actions/runs/46043139056",
+      "head": "ad32fde416383daf3e99c70f469ad1c2e282d8f2",
+      "mainJob": 140655647232,
+      "mainConclusion": "failure",
+      "passed": {
+        "topLevelPython": 102,
+        "correctedInitialCoverJourney": true
+      },
+      "failure": "signedAreasFlow still expected old link text 'Preparazione rapida all’esame'.",
+      "fix": "eb90039b83179af7c5a859111b43a76bbf296ae8",
+      "scope": "Changed only the acceptance locator to current 'Preparazione all’esame'; same #sprint destination and exercise/figure assertions. New resource/discipline browser step was skipped.",
+      "checkout": "0c189ca254fa76b9ec4b5eff39dede4b562bdd91",
+      "checkoutTree": "407add37d6ee3e8cab59103ca8e4d2e2663aa5ae",
+      "checkoutTreeIdenticalToHead": true
+    },
+    {
+      "run": 46043517048,
+      "url": "https://github.com/AndreaMarro/ardesia/actions/runs/46043517048",
+      "head": "eb90039b83179af7c5a859111b43a76bbf296ae8",
+      "mainJob": 140657046216,
+      "mainConclusion": "failure",
+      "scope": "New resources journey passed free exploration, keyboard parameters, focus dialog, cross-context state reopening and guest access before the accessibility failure.",
+      "failure": "Axe aria-prohibited-attr on labelled SVG groups for capillary walls and probe tracer in the 2D view.",
+      "passed": {
+        "topLevelPython": 102,
+        "mainBrowserJourney": true,
+        "editor": true,
+        "architecturePages": 31,
+        "disciplineAudits": 20
+      },
+      "checkout": "06d39f9db4c02e8d277a3c9be7d2dc94c2a9d209",
+      "checkoutTree": "5b6a9681fc95ec1feaa92c069da82f23c0461fb2",
+      "checkoutTreeIdenticalToHead": true
+    },
+    {
+      "run": 46044379188,
+      "url": "https://github.com/AndreaMarro/ardesia/actions/runs/46044379188",
+      "head": "035fc891681a27f115bbd4c4e46be18243700eb8",
+      "mainJob": 140659940211,
+      "mainConclusion": "failure",
+      "passed": {
+        "mainBrowserJourney": true,
+        "editor": true,
+        "freeToolDesktopAxe": true,
+        "caseSaveAndReopen": true,
+        "privateCollectionCreated": true
+      },
+      "failure": "Exact label locator for Aggiungi un caso salvato included text of nested SELECT/OPTION elements and could not match the intended label alone.",
+      "scope": "The SVG accessibility correction passed. The browser reached collection creation, then stopped at the case selector. The exact label test remains unchanged; product markup now uses a separate label with for/id.",
+      "checkout": "86fc019e0cabe5ea61170bddf4fba50220beda55",
+      "checkoutTree": "0b25b314e9592e127b3ebe871144c76139503d46",
+      "checkoutTreeIdenticalToHead": true
+    }
+  ],
+  "independentReviewCorrections": [
+    "Saved-case and collection routes included in session-change invalidation so logout removes private DOM.",
+    "Physical case validation rejects values the actual slider cannot reproduce, with bounded floating-point tolerance.",
+    "Case snapshot uses the effective rendered view, including 2D fallback.",
+    "Guest login preserves the current case and collection-return context.",
+    "UUID fallback supports environments without crypto.randomUUID.",
+    "Personal-list limits are disclosed instead of silently implying a complete list.",
+    "Labelled SVG groups normalized to role=group after each redraw in the composed resource consumer; unmodified Axe audit subsequently passed.",
+    "Collection case selector has a separate explicitly associated label, independent of the available option titles."
+  ],
+  "limitations": [
+    "Complete persistence contract currently supports Poiseuille LAB3D-04 and standard views only.",
+    "Link from a resource to a lesson is implemented; retaining the originating case throughout every lesson/practice route remains a product target.",
+    "No broad claim of WCAG conformance, tested human usability or improved learning outcomes.",
+    "No new scientific checkpoint approval and no publication of DRAFT corpus.",
+    "No private Suria source archive or private Analisi corpus included.",
+    "CI results must be associated with the actual tested checkout/tree. A later documentation or code commit does not inherit a PASS automatically."
+  ],
+  "pendingVerification": {
+    "change": "Case selector label is explicitly associated by for/id and separated from option text; responsive field wrapper retains the layout.",
+    "required": "Rerun the unchanged full resource journey and candidate CI; inspect screenshots and package after completion.",
+    "status": "NOT_YET_VERIFIED_IN_BROWSER"
+  },
+  "knownNativeFinding": {
+    "path": "static/js/banchi/tavola.js",
+    "finding": "The two capillary SVG groups have aria-label without an explicit naming-compatible role.",
+    "resolutionScope": "The new composed resource consumer normalizes their role. The native scientific source remains untouched; coordinate any canonical source correction with its owner and repeat the native consumer evidence."
+  }
+}
