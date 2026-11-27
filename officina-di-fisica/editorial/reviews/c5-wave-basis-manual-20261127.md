@@ -58,4 +58,4 @@ Il primo contributo vale +2 cm. Impostando il secondo a +2 cm trovi +4 cm. Se il
 
 $$y_2=y-y_1$$
 
-Per ricavare la seconda onda da una lettura di +4 cm, togli il primo contributo di +2 cm e ritrovi +2 cm. La somma riguarda gli spostamenti con segno. L’ampiezza è la massima distanza dall’equilibrio e può essere zero se l’oscillazione è assente, quindi da sole non danno la lettura istantanea.
+Per ricavare la seconda onda da una lettura di +4 cm, togli il primo contributo di +2 cm e ritrovi +2 cm. La somma riguarda gli spostamenti con segno. L’ampiezza è la massima distanza dall’equilibrio e può essere zero se l’oscillazione è assente, quindi da sola non dà la lettura istantanea.
