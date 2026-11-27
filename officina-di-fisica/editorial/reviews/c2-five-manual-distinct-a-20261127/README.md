@@ -1,0 +1,5 @@
+# Distinct review of Root's five manual procedures
+
+All five sections were read in full against the already frozen source equations and the actual installed task pairs. The initial author snapshot9558cf1af7b2e6fabd90059655b9bea3186904c6f7379b47f7e24ba2fe95eda2 is preserved. Two concrete findings were returned toRoot: an upward dynamometer needsP>F_A, and the density-ratio denominator must carry its physical unit. Root authored both corrections. ReviewerA then reread both final paragraphs and the exactdiff; firstthree sections are byte-unchanged.
+
+The final snapshotSHA9ae73dfe54bd9faa10e1dac8421e4346af637e7c89d54c5b48f256125814f91d has explicitT=P−F_A, airbuoyancy-neglect condition, density-ratio units and cancellation. Allfive now receive local manualPASS. Actual arithmetic checks were independently rerun with exactFractions for the ten taskanswers, with hypotheses/units/inverses and neutral limit read individually. This report reviews an editorial manual, not a new browser run or consumer epoch. Original UInegatives and the independent pressrepair proof stay separate. Root alone integrates; credit0 and humanNOT_RUN.

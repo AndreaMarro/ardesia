@@ -1,0 +1,20 @@
+--- 
++++ 
+@@ -28,7 +28,7 @@
+ 
+ ## `SIM-C2-L004-02` · Confrontare la spinta in fluidi di densità diversa
+ 
+-Il corpo è completamente immerso e resta alla stessa quota. Tutti i confronti usano il medesimo volume spostato, 2 L. Cambiando fluido, cambia la massa che occupa quel volume. La spinta è maggiore nel fluido più denso e si può ricavare dalla diminuzione della lettura di un dinamometro che tiene il corpo sospeso.
++Il corpo è completamente immerso e resta alla stessa quota. Tutti i confronti usano il medesimo volume spostato, 2 L. Cambiando fluido, cambia la massa che occupa quel volume. La spinta è maggiore nel fluido più denso. Se il peso del corpo supera la spinta, un dinamometro a cui il corpo è appeso misura la tensione \(T=P-F_A\). La differenza tra la lettura in aria, trascurando la spinta dell’aria, e quella nel liquido dà \(F_A\).
+ 
+ Usa \(F_A=\rho g V\). Con \(g=10\,\mathrm{m/s^2}\) e \(V=2\cdot10^{-3}\,\mathrm{m^3}\), il fattore numerico è \(10\cdot2/1000=1/50\). Dividi per 100 e raddoppia. Con \(1000\,\mathrm{kg/m^3}\) ottieni **20 N**. Con \(900\,\mathrm{kg/m^3}\) ottieni **18 N**. Moltiplicando la lettura in newton per 50 puoi ritrovare il numero che esprime la densità in \(\mathrm{kg/m^3}\). Nel prodotto \(\rho g V\) restano \(\mathrm{kg\,m/s^2}\), cioè newton.
+ 
+@@ -36,7 +36,7 @@
+ 
+ ## `SIM-C2-L004-03` · Trovare la percentuale immersa in galleggiamento
+ 
+-Il corpo omogeneo galleggia liberamente in acqua di densità \(1000\,\mathrm{kg/m^3}\). In equilibrio il peso, calcolato sull’intero corpo, è bilanciato dalla spinta, calcolata solo sul volume immerso. Da \(\rho_{\mathrm{corpo}}gV_{\mathrm{tot}}=\rho_{\mathrm{acqua}}gV_{\mathrm{imm}}\), dividi per \(g\), per il volume totale e per la densità dell’acqua. Ottieni \(V_{\mathrm{imm}}/V_{\mathrm{tot}}=\rho_{\mathrm{corpo}}/1000\).
++Il corpo omogeneo galleggia liberamente in acqua di densità \(1000\,\mathrm{kg/m^3}\). In equilibrio il peso, calcolato sull’intero corpo, è bilanciato dalla spinta, calcolata solo sul volume immerso. Da \(\rho_{\mathrm{corpo}}gV_{\mathrm{tot}}=\rho_{\mathrm{acqua}}gV_{\mathrm{imm}}\), dividi per \(g\), per il volume totale e per la densità dell’acqua. Ottieni \(V_{\mathrm{imm}}/V_{\mathrm{tot}}=\rho_{\mathrm{corpo}}/\rho_{\mathrm{acqua}}\), con \(\rho_{\mathrm{acqua}}=1000\,\mathrm{kg/m^3}\). Le unità delle due densità si cancellano.
+ 
+ Per passare alla percentuale moltiplica per cento. Con densità in \(\mathrm{kg/m^3}\), il conto si riduce a dividere per dieci. Le densità 800 e 600 danno rispettivamente **80%** e **60%**. L’inversa moltiplica il numero percentuale per dieci. Per esempio, 60% significa \(600\,\mathrm{kg/m^3}\) nel fluido assegnato.
+ 

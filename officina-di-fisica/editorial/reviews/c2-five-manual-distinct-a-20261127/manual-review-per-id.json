@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "1.0.0",
+  "role": "DISTINCT_REVIEWER_A_ROOT_AUTHOR_RECUSED",
+  "source": "ROOT_EDITORIAL_MANUAL_NOT_CONSUMER_OR_BROWSER",
+  "initialSha256": "9558cf1af7b2e6fabd90059655b9bea3186904c6f7379b47f7e24ba2fe95eda2",
+  "finalSha256": "9ae73dfe54bd9faa10e1dac8421e4346af637e7c89d54c5b48f256125814f91d",
+  "actualWholeManualRead": true,
+  "finalTwoCorrectionsReread": true,
+  "firstThreeSectionsByteUnchanged": true,
+  "records": [
+    {
+      "id": "SIM-C2-L003-02",
+      "manualReview": "PASS",
+      "reason": "Incomprimibilità/circuito pieno, volumi e inverse, aree e corse corrette; direzioni schematiche distinte dalle forze.",
+      "actualInstalledTaskAnswersExact": [
+        "3/2",
+        "1"
+      ],
+      "unit": "cm",
+      "mathSourceModelReusedWithExposure": true,
+      "UI": "NOT_RUN_BY_THIS_MANUAL_REVIEW",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L003-03",
+      "manualReview": "PASS",
+      "reason": "Profondità fissa, somma20kPa+incremento e inversa corrette; totale distinto da incremento.",
+      "actualInstalledTaskAnswersExact": [
+        "28",
+        "26"
+      ],
+      "unit": "kPa",
+      "mathSourceModelReusedWithExposure": true,
+      "UI": "NOT_RUN_BY_THIS_MANUAL_REVIEW",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L004-01",
+      "manualReview": "PASS",
+      "reason": "Volume imposto e trattenuto, g10 e litri→m³ espliciti; spinta nulla aV0 e distinta dal peso del corpo.",
+      "actualInstalledTaskAnswersExact": [
+        "30",
+        "20"
+      ],
+      "unit": "N",
+      "mathSourceModelReusedWithExposure": true,
+      "UI": "NOT_RUN_BY_THIS_MANUAL_REVIEW",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L004-02",
+      "manualReview": "PASS",
+      "reason": "Riletto finale: condizione P>F_A e T=P−F_A ora esplicite; differenza aria/liquido con spinta aria trascurata è coerente.",
+      "actualInstalledTaskAnswersExact": [
+        "20",
+        "18"
+      ],
+      "unit": "N",
+      "mathSourceModelReusedWithExposure": true,
+      "UI": "NOT_RUN_BY_THIS_MANUAL_REVIEW",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L004-03",
+      "manualReview": "PASS",
+      "reason": "Riletto finale: rapporto fra densità con unità assegnata e cancellazione esplicita; percentuali,inversa e neutralità corretti.",
+      "actualInstalledTaskAnswersExact": [
+        "80",
+        "60"
+      ],
+      "unit": "%",
+      "mathSourceModelReusedWithExposure": true,
+      "UI": "NOT_RUN_BY_THIS_MANUAL_REVIEW",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    }
+  ],
+  "resolvedFindings": [
+    "DYNAMOMETER_UPWARD_SUPPORT_REQUIRES_P_GREATER_THAN_BUOYANCY",
+    "DENSITY_RATIO_REQUIRES_DIMENSIONED_DENOMINATOR"
+  ],
+  "previousFindingsPreserved": true,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN"
+}

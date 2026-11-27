@@ -1,0 +1,548 @@
+{
+  "schemaVersion": "1.0.0",
+  "role": "DISTINCT_REVIEWER_A_ROOT_AUTHOR_RECUSED",
+  "sourceCommit": "3d060603540c981bf641f776ca65fd3ef76106c3",
+  "runtimeSha256": "2096493ae86311ec459e012032cd1f8fe41293326cc5769d86376aa5a0b59635",
+  "artifactPins": {
+    "report.json": {
+      "path": "editorial/reviews/c3-capacity-2096-setup-distinct-a-20261127/report.json",
+      "sha256": "152432aa98c7e53045b1fd14adc8b1e511facddde7a348b1a44c9665c7af8840"
+    },
+    "prepared.json": {
+      "path": "editorial/reviews/c3-capacity-2096-setup-distinct-a-20261127/prepared.json",
+      "sha256": "13b5cf7e74c567d42091fac33ccd9632d9d72cdcbcf1d3d4b824a1131442af06"
+    },
+    "request.json": {
+      "path": "editorial/reviews/c3-capacity-2096-setup-distinct-a-20261127/request.json",
+      "sha256": "5ff1df03f06fadc750c293814eca268a1a71005c7330902b6330c9230191fdd4"
+    }
+  },
+  "producerAcquisitionRole": "ROOT_REPORTED_REAL_TERMINAL0; A_ONLY_REVIEWS_IMPORTED_RAW",
+  "canonicalProducerSha256": "2c48f62282d0db2a692f8a082902392d67e4d96a25d3fc0379478dda38b5fd61",
+  "ownerOnlyVerification": {
+    "method": "READ_VERBATIM_CANONICAL_ASSERTIONS_AND_PINNED_RECORDED_RESULTS_NOT_A_NEW_HTTP_SESSION",
+    "guestIsolation": "ORIGINAL_OR_DENIED_AND_DRAFT_ASSETS_403",
+    "fullNormalizedOwnerRecordScope": "All declared complete normalized owner records, no cross-language canonical digest",
+    "ownerRecordIdentity": {
+      "id": "SIM-C3-L03-02",
+      "version": 2,
+      "responseBytesSha256": "a985140cada30eb48fc391b03549ca69bb88396f5cc3a3dacf137810be033cdd"
+    },
+    "draftTokenIsOwnerOnlyTransport": true,
+    "publishedContentNeverOverwritten": true
+  },
+  "independentManualExactChecks": [
+    {
+      "claim": "C100",
+      "exact": "40",
+      "unit": "J/K"
+    },
+    {
+      "claim": "C250",
+      "exact": "100",
+      "unit": "J/K"
+    },
+    {
+      "claim": "C175",
+      "exact": "70",
+      "unit": "J/K"
+    },
+    {
+      "claim": "ratio",
+      "exact": "5/2",
+      "unit": "1"
+    },
+    {
+      "claim": "inverse",
+      "exact": "175",
+      "unit": "g"
+    }
+  ],
+  "records": [
+    {
+      "id": "SIM-C3-L03-02",
+      "variant": "published",
+      "sourceVersion": 1,
+      "sourceSha256": "c8f54de1efba88f0cb8bc8901a2650925c1b34786fa809c60469b5f072237eb2",
+      "candidateSha256": null,
+      "visualReview": "PASS",
+      "pedagogicalTextReview": "FAIL",
+      "reason": "All8instrumentsetup profiles read with readable gesture/legend and no observed graphical issue. Original statement raddoppia remains inconsistent with the assigned100g→250g/40J→100J comparison; this is a textual failure separate from graphical PASS.",
+      "scope": {
+        "setupOnly": true,
+        "profiles": [
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "setupCount": 8,
+        "acceptedAnswerEvents": 16,
+        "manualWholePngCount": 8,
+        "all192CasesScientificallyReviewed": false,
+        "newBrowserByReviewer": false,
+        "authoredFormulaRasterReview": "NOT_AVAILABLE_IN_INSTRUMENT_ONLY_SETUP_PNGS",
+        "formulaPayloadRead": false,
+        "authoredFormulaDomFitChecked": false,
+        "canonicalPreview3": "PENDING_SEPARATE_PROOF"
+      },
+      "readPngSha256": [
+        "72dbb3543fee2170a9a19d185bde9b8d40044e5647c26f5c68dc1b0010f79b86",
+        "d629424f53c1c27624cddca51b8c4b659e218aa69cc644e151cabbb73ecc809c",
+        "80cc6858c95e124c2e2ef8ef69befebf9e5f4d6ac2434ecb66c26cc95e6ec935",
+        "2af70243f3767d9495c107b9f480de06e016ed16cc2abe8bad0403aaf277b0da",
+        "1fc038fffe7ec3dcf152926095832fe87fbbbd4d10bf0672307de2fd995ff143",
+        "945c0775602beeefb907a64b95cc790b61f2ff6208eb2c77f6049ba6be633cad",
+        "69f716f586d78abfdf3a889aa8289025cd4eacf1a499086b209ae1703f7fbbf1",
+        "01bb38cc28c50e90ab7e83c95777407558a32a9cc8e98978b4d364901e319bb9"
+      ],
+      "readFiles": [
+        {
+          "path": "editorial/reviews/c3-capacity-2096-setup-distinct-a-20261127/screens/72dbb3543fee2170a9a19d185bde9b8d40044e5647c26f5c68dc1b0010f79b86.png",
+          "sha256": "72dbb3543fee2170a9a19d185bde9b8d40044e5647c26f5c68dc1b0010f79b86",
+          "caseKey": "SIM-C3-L03-02|published|320|orbit|setup",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c3-capacity-2096-setup-distinct-a-20261127/screens/d629424f53c1c27624cddca51b8c4b659e218aa69cc644e151cabbb73ecc809c.png",
+          "sha256": "d629424f53c1c27624cddca51b8c4b659e218aa69cc644e151cabbb73ecc809c",
+          "caseKey": "SIM-C3-L03-02|published|320|side|setup",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c3-capacity-2096-setup-distinct-a-20261127/screens/80cc6858c95e124c2e2ef8ef69befebf9e5f4d6ac2434ecb66c26cc95e6ec935.png",
+          "sha256": "80cc6858c95e124c2e2ef8ef69befebf9e5f4d6ac2434ecb66c26cc95e6ec935",
+          "caseKey": "SIM-C3-L03-02|published|320|top|setup",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c3-capacity-2096-setup-distinct-a-20261127/screens/2af70243f3767d9495c107b9f480de06e016ed16cc2abe8bad0403aaf277b0da.png",
+          "sha256": "2af70243f3767d9495c107b9f480de06e016ed16cc2abe8bad0403aaf277b0da",
+          "caseKey": "SIM-C3-L03-02|published|320|fixed_projection|setup",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c3-capacity-2096-setup-distinct-a-20261127/screens/1fc038fffe7ec3dcf152926095832fe87fbbbd4d10bf0672307de2fd995ff143.png",
+          "sha256": "1fc038fffe7ec3dcf152926095832fe87fbbbd4d10bf0672307de2fd995ff143",
+          "caseKey": "SIM-C3-L03-02|published|1280|orbit|setup",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c3-capacity-2096-setup-distinct-a-20261127/screens/945c0775602beeefb907a64b95cc790b61f2ff6208eb2c77f6049ba6be633cad.png",
+          "sha256": "945c0775602beeefb907a64b95cc790b61f2ff6208eb2c77f6049ba6be633cad",
+          "caseKey": "SIM-C3-L03-02|published|1280|side|setup",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c3-capacity-2096-setup-distinct-a-20261127/screens/69f716f586d78abfdf3a889aa8289025cd4eacf1a499086b209ae1703f7fbbf1.png",
+          "sha256": "69f716f586d78abfdf3a889aa8289025cd4eacf1a499086b209ae1703f7fbbf1",
+          "caseKey": "SIM-C3-L03-02|published|1280|top|setup",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c3-capacity-2096-setup-distinct-a-20261127/screens/01bb38cc28c50e90ab7e83c95777407558a32a9cc8e98978b4d364901e319bb9.png",
+          "sha256": "01bb38cc28c50e90ab7e83c95777407558a32a9cc8e98978b4d364901e319bb9",
+          "caseKey": "SIM-C3-L03-02|published|1280|fixed_projection|setup",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        }
+      ],
+      "actualPhasesRead": [
+        "OSSERVA · 2/5\nIndividua il fenomeno\n\nÈ sempre lo stesso materiale. Il calore specifico resta 0,4 J/(g·K), mentre raddoppia l’energia necessaria per aumentare di un kelvin la temperatura dell’intero campione.\n\nC = mc, con c = 0,4 J/(g·K)\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+        "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Massa del campione» e confronta la scena con il punto segnato sul grafico. Parti da 100 g, poi prova 250 g.\n\nMassa del campione = 100 g · Capacità termica = 40 J/K\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+        "COMPRENDI · 4/5\nOsserva la lettura del modello\n\nQuesta posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 250 g e 175 g.\n\nCapacità termica = 40 J/K\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+        "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Massa del campione» a 175 g. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nC = mc, con c = 0,4 J/(g·K)\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale"
+      ],
+      "actualAssignedTasksRead": [
+        {
+          "expectedAccepted": true,
+          "input": "100",
+          "prompt": "Imposta «Massa del campione» su 250 g. Quale valore ottieni per «Capacità termica»?",
+          "actualPrompt": "Imposta «Massa del campione» su 250 g. Quale valore ottieni per «Capacità termica»?",
+          "status": "Corretto. C = mc, con c = 0,4 J/(g·K). 0,4 × 250 = 100 J/K."
+        },
+        {
+          "expectedAccepted": true,
+          "input": "70",
+          "prompt": "Tagli un pezzo di massa 175 g da un materiale di calore specifico 0,4 J/(g·K). Qual è la capacità termica del pezzo?",
+          "actualPrompt": "Tagli un pezzo di massa 175 g da un materiale di calore specifico 0,4 J/(g·K). Qual è la capacità termica del pezzo?",
+          "status": "Corretto. C = mc, con c = 0,4 J/(g·K). 0,4 × 175 = 70 J/K."
+        }
+      ],
+      "wholeRecordRead": {
+        "anchor": "C è la capacità termica in J/K",
+        "apparatus": "calorimetro",
+        "blocks": [],
+        "control": {
+          "label": "Massa del campione",
+          "max": 300.0,
+          "min": 50.0,
+          "step": 25.0,
+          "unit": "g"
+        },
+        "course": "C3",
+        "formula": "C = mc, con c = 0,4 J/(g·K)",
+        "id": "SIM-C3-L03-02",
+        "interpretation": "È sempre lo stesso materiale. Il calore specifico resta 0,4 J/(g·K), mentre raddoppia l’energia necessaria per aumentare di un kelvin la temperatura dell’intero campione.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Capacità termica",
+          "unit": "J/K"
+        },
+        "order": 2,
+        "references": [
+          [
+            100.0,
+            40.0
+          ],
+          [
+            250.0,
+            100.0
+          ]
+        ],
+        "section": "Pesare il riscaldamento",
+        "skill": "C3-L03",
+        "substitution": "0,4 × {x}",
+        "summary": "Raddoppiando la massa raddoppia anche il calore specifico?",
+        "title": "Capacità termica e calore specifico",
+        "topic": "5.2 Capacità termica e calore specifico",
+        "transferPrompt": "Tagli un pezzo di massa {x} da un materiale di calore specifico 0,4 J/(g·K). Qual è la capacità termica del pezzo?",
+        "version": 1
+      },
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C3-L03-02",
+      "variant": "draft",
+      "sourceVersion": 2,
+      "sourceSha256": "c8f54de1efba88f0cb8bc8901a2650925c1b34786fa809c60469b5f072237eb2",
+      "candidateSha256": "54e65f2095ff5dc179514e0443e1db9d6819b9e087e0522494b91fddfc7dc01e",
+      "visualReview": "PASS",
+      "pedagogicalTextReview": "PASS",
+      "reason": "All8instrumentsetup profiles read with readable gesture/legend and no observed graphical issue. DRAFT explicitly corrects ratio5/2 and distinguishes total capacity from constant specific heat; all6blocks/3formula payloads read with exact units/manual inverse.",
+      "scope": {
+        "setupOnly": true,
+        "profiles": [
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "setupCount": 8,
+        "acceptedAnswerEvents": 16,
+        "manualWholePngCount": 8,
+        "all192CasesScientificallyReviewed": false,
+        "newBrowserByReviewer": false,
+        "authoredFormulaRasterReview": "NOT_AVAILABLE_IN_INSTRUMENT_ONLY_SETUP_PNGS",
+        "formulaPayloadRead": true,
+        "authoredFormulaDomFitChecked": true,
+        "canonicalPreview3": "PENDING_SEPARATE_PROOF"
+      },
+      "readPngSha256": [
+        "72dbb3543fee2170a9a19d185bde9b8d40044e5647c26f5c68dc1b0010f79b86",
+        "d629424f53c1c27624cddca51b8c4b659e218aa69cc644e151cabbb73ecc809c",
+        "80cc6858c95e124c2e2ef8ef69befebf9e5f4d6ac2434ecb66c26cc95e6ec935",
+        "2af70243f3767d9495c107b9f480de06e016ed16cc2abe8bad0403aaf277b0da",
+        "1fc038fffe7ec3dcf152926095832fe87fbbbd4d10bf0672307de2fd995ff143",
+        "945c0775602beeefb907a64b95cc790b61f2ff6208eb2c77f6049ba6be633cad",
+        "69f716f586d78abfdf3a889aa8289025cd4eacf1a499086b209ae1703f7fbbf1",
+        "01bb38cc28c50e90ab7e83c95777407558a32a9cc8e98978b4d364901e319bb9"
+      ],
+      "readFiles": [
+        {
+          "path": "editorial/reviews/c3-capacity-2096-setup-distinct-a-20261127/screens/72dbb3543fee2170a9a19d185bde9b8d40044e5647c26f5c68dc1b0010f79b86.png",
+          "sha256": "72dbb3543fee2170a9a19d185bde9b8d40044e5647c26f5c68dc1b0010f79b86",
+          "caseKey": "SIM-C3-L03-02|draft|320|orbit|setup",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c3-capacity-2096-setup-distinct-a-20261127/screens/d629424f53c1c27624cddca51b8c4b659e218aa69cc644e151cabbb73ecc809c.png",
+          "sha256": "d629424f53c1c27624cddca51b8c4b659e218aa69cc644e151cabbb73ecc809c",
+          "caseKey": "SIM-C3-L03-02|draft|320|side|setup",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c3-capacity-2096-setup-distinct-a-20261127/screens/80cc6858c95e124c2e2ef8ef69befebf9e5f4d6ac2434ecb66c26cc95e6ec935.png",
+          "sha256": "80cc6858c95e124c2e2ef8ef69befebf9e5f4d6ac2434ecb66c26cc95e6ec935",
+          "caseKey": "SIM-C3-L03-02|draft|320|top|setup",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c3-capacity-2096-setup-distinct-a-20261127/screens/2af70243f3767d9495c107b9f480de06e016ed16cc2abe8bad0403aaf277b0da.png",
+          "sha256": "2af70243f3767d9495c107b9f480de06e016ed16cc2abe8bad0403aaf277b0da",
+          "caseKey": "SIM-C3-L03-02|draft|320|fixed_projection|setup",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c3-capacity-2096-setup-distinct-a-20261127/screens/1fc038fffe7ec3dcf152926095832fe87fbbbd4d10bf0672307de2fd995ff143.png",
+          "sha256": "1fc038fffe7ec3dcf152926095832fe87fbbbd4d10bf0672307de2fd995ff143",
+          "caseKey": "SIM-C3-L03-02|draft|1280|orbit|setup",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c3-capacity-2096-setup-distinct-a-20261127/screens/945c0775602beeefb907a64b95cc790b61f2ff6208eb2c77f6049ba6be633cad.png",
+          "sha256": "945c0775602beeefb907a64b95cc790b61f2ff6208eb2c77f6049ba6be633cad",
+          "caseKey": "SIM-C3-L03-02|draft|1280|side|setup",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c3-capacity-2096-setup-distinct-a-20261127/screens/69f716f586d78abfdf3a889aa8289025cd4eacf1a499086b209ae1703f7fbbf1.png",
+          "sha256": "69f716f586d78abfdf3a889aa8289025cd4eacf1a499086b209ae1703f7fbbf1",
+          "caseKey": "SIM-C3-L03-02|draft|1280|top|setup",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c3-capacity-2096-setup-distinct-a-20261127/screens/01bb38cc28c50e90ab7e83c95777407558a32a9cc8e98978b4d364901e319bb9.png",
+          "sha256": "01bb38cc28c50e90ab7e83c95777407558a32a9cc8e98978b4d364901e319bb9",
+          "caseKey": "SIM-C3-L03-02|draft|1280|fixed_projection|setup",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        }
+      ],
+      "actualPhasesRead": [
+        "OSSERVA · 2/5\nIndividua il fenomeno\n\nStiamo confrontando due quantità dello stesso materiale. Il calore specifico resta 0,4 J/(g·K). Per aumentare la temperatura di 1 K occorrono 40 J con 100 g e 100 J con 250 g. La massa è diventata 5/2 di quella iniziale e l’energia necessaria cresce dello stesso fattore.\n\nC = mc, con c = 0,4 J/(g·K)\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+        "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Massa del campione» e confronta la scena con il punto segnato sul grafico. Parti da 100 g, poi prova 250 g.\n\nMassa del campione = 100 g · Capacità termica = 40 J/K\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+        "COMPRENDI · 4/5\nOsserva la lettura del modello\n\nQuesta posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 250 g e 175 g.\n\nCapacità termica = 40 J/K\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+        "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Massa del campione» a 175 g. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nC = mc, con c = 0,4 J/(g·K)\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale"
+      ],
+      "actualAssignedTasksRead": [
+        {
+          "expectedAccepted": true,
+          "input": "100",
+          "prompt": "Imposta «Massa del campione» su 250 g. Quale valore ottieni per «Capacità termica»?",
+          "actualPrompt": "Imposta «Massa del campione» su 250 g. Quale valore ottieni per «Capacità termica»?",
+          "status": "Corretto. C = mc, con c = 0,4 J/(g·K). 0,4 × 250 = 100 J/K."
+        },
+        {
+          "expectedAccepted": true,
+          "input": "70",
+          "prompt": "Tagli un pezzo di massa 175 g da un materiale di calore specifico 0,4 J/(g·K). Qual è la capacità termica del pezzo?",
+          "actualPrompt": "Tagli un pezzo di massa 175 g da un materiale di calore specifico 0,4 J/(g·K). Qual è la capacità termica del pezzo?",
+          "status": "Corretto. C = mc, con c = 0,4 J/(g·K). 0,4 × 175 = 70 J/K."
+        }
+      ],
+      "wholeRecordRead": {
+        "anchor": "C è la capacità termica in J/K",
+        "apparatus": "calorimetro",
+        "baseVersion": 1,
+        "blocks": [
+          {
+            "text": "Imposta 100 g nel calorimetro, poi porta il cursore a 250 g. In entrambe le prove il materiale è lo stesso. Il modello considera il calore assorbito dal campione e assume un calore specifico costante nel piccolo intervallo di temperatura. Per un intervallo di 1 K, il valore della capacità termica in J/K indica quanti joule servono al campione.",
+            "type": "text"
+          },
+          {
+            "text": "C=mc,\\qquad Q=C\\,\\Delta T",
+            "type": "formula"
+          },
+          {
+            "text": "Per il conto a mano scrivi 0,4 come due quinti. Dividi la massa per cinque e poi raddoppia. Con 100 g ottieni 20 e poi 40 J/K. Con 250 g ottieni 50 e poi 100 J/K. Nei prodotti si cancellano i grammi. A parità di aumento di temperatura il rapporto fra i calori è 100/40, cioè 5/2, come 250/100 per le masse.",
+            "type": "text"
+          },
+          {
+            "text": "\\frac{C_{250}}{C_{100}}=\\frac{250}{100}=\\frac52",
+            "type": "formula"
+          },
+          {
+            "text": "Ora sposta il cursore a 175 g. Un quinto è 35 g, quindi la capacità termica vale 70 J/K. Puoi risalire alla massa dividendo 70 J/K per 0,4 J/(g·K), cioè moltiplicando per 5/2. Ottieni 175 g, come indicava il cursore. Il valore per grammo resta 0,4 J/(g·K) anche quando cambia la capacità del pezzo intero.",
+            "type": "text"
+          },
+          {
+            "text": "m=\\frac{C}{c}=70\\cdot\\frac52\\,\\mathrm g=175\\,\\mathrm g",
+            "type": "formula"
+          }
+        ],
+        "control": {
+          "label": "Massa del campione",
+          "max": 300.0,
+          "min": 50.0,
+          "step": 25.0,
+          "unit": "g"
+        },
+        "course": "C3",
+        "formula": "C = mc, con c = 0,4 J/(g·K)",
+        "id": "SIM-C3-L03-02",
+        "interpretation": "Stiamo confrontando due quantità dello stesso materiale. Il calore specifico resta 0,4 J/(g·K). Per aumentare la temperatura di 1 K occorrono 40 J con 100 g e 100 J con 250 g. La massa è diventata 5/2 di quella iniziale e l’energia necessaria cresce dello stesso fattore.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Capacità termica",
+          "unit": "J/K"
+        },
+        "order": 2,
+        "references": [
+          [
+            100.0,
+            40.0
+          ],
+          [
+            250.0,
+            100.0
+          ]
+        ],
+        "review": "Bozza da verificare con un revisore distinto dall’autore.",
+        "section": "Pesare il riscaldamento",
+        "skill": "C3-L03",
+        "substitution": "0,4 × {x}",
+        "summary": "Raddoppiando la massa raddoppia anche il calore specifico?",
+        "title": "Capacità termica e calore specifico",
+        "topic": "5.2 Capacità termica e calore specifico",
+        "transferPrompt": "Tagli un pezzo di massa {x} da un materiale di calore specifico 0,4 J/(g·K). Qual è la capacità termica del pezzo?",
+        "version": 2
+      },
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    }
+  ],
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN"
+}
