@@ -19,3 +19,5 @@ Correzione sezione, 27 novembre: ciascun ID conserva ora esattamente la sezione 
 Rilettura distinta: Q089 conserva il valore numerico 49 e ora indica l’unità %, coerente con la percentuale richiesta. Separati soltanto parole, simboli e frasi numeriche nei punti indicati da A (Q076–080, Q082, Q085–086, Q088, Q091, Q093–095); TeX, dati, calcoli, chiavi e SVG invariati. L’edizione precedente e le ricevute autentiche sono archiviate. Nuova SCI e UI prodotto proprie NOT_RUN.
 
 Ultimo controllo della prosa: aggiunti soltanto gli spazi in «litro: 10⁻⁶» (Q076) e «corrispondente. 70%» (Q089). Tutti i contenuti non costituiti da spazi, l’unità % già corretta, le formule, le risposte e lo SVG restano identici. Vecchi byte e ricevute conservati; nessuna nuova firma propria.
+
+Tassonomia Q104: la consegna chiede il nome della capacità elettrica, non un’unità o una conversione. Solo error.category passa da unità a concetto, coerentemente con la fonte. Testo, formule, opzioni, chiave e SVG rimangono identici. Q103 chiede il kelvin e conserva la categoria unità. Nessuna propria firma scientifica.
