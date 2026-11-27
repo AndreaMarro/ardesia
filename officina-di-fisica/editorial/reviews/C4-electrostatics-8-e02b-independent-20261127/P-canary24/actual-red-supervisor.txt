@@ -1,0 +1,10 @@
+bounded local start; free bytes 2476072960
+{"observedExitCode": 1, "durationSeconds": 0.11911379100638442, "testModuleSha256": "746bf7f8b7e47a16e16adc880fe7bc380340ab1eaea64e5f9fecdd53fa92d78b", "rawSha256": "10a02399fb66c588077250cc2f428593319f805240e34e55f21b2704356565bb", "activityCredit": 0, "humanApproval": "NOT_RUN", "publicationAction": "NONE"}
+Traceback (most recent call last):
+  File "/private/tmp/cric-bounded-local.py", line 7, in <module>
+    subprocess.run(sys.argv[1:],check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py", line 579, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['/private/tmp/cric-recovery-venv/bin/python', '-B', 'editorial/reviews/C4-electrostatics-8-e02b-independent-20261127/P-canary24/run-red-target.py']' returned non-zero exit status 1.

@@ -1,0 +1,366 @@
+{
+  "schemaVersion": "1.0.0",
+  "reviewer": "author_vectors_b",
+  "consumerAuthor": "Root",
+  "candidateCommit": "e02b0a767097f22ed66b7240432fc30b206217fd",
+  "runtimeSha256": "980518b78d0767d90f16322539852e7e79360e20f05078ceb6e9b0425e805301",
+  "preparationCommit": "c4534dfd99a663cdce4696d98ea6af11095481ad",
+  "scope": "C4_L02_02_MIDPOINT_ONLY_CANARY24_BEFORE_EIGHT_ACTIVITY_CAMPAIGN",
+  "id": "SIM-C4-L02-02",
+  "verdict": "FAIL_DIRECTION_CUE_AND_LEGEND_ROLES; MATH_AND_ACTUAL_TASKS_CORRECT",
+  "actualProcess": {
+    "observedExitCode": 0,
+    "observedSignal": null,
+    "durationSeconds": 14.739525249984581,
+    "runtimeSha256": "980518b78d0767d90f16322539852e7e79360e20f05078ceb6e9b0425e805301",
+    "collectorSha256": "2c48f62282d0db2a692f8a082902392d67e4d96a25d3fc0379478dda38b5fd61",
+    "plannedCases": 24,
+    "reportSha256": "7febec20b81666598dc71bb106d7489ce06c3787017ccb6f2edfc6d2e667aaa9",
+    "activityCredit": 0,
+    "humanApproval": "NOT_RUN",
+    "publicationAction": "NONE"
+  },
+  "allActualImagesOpened": 24,
+  "coverage": "Top, Oblique and fallback at320/1280; each setup plus q_right=.5/1/1.5 nC. Lateral not observed.",
+  "canonicalValidation": {
+    "actualProcessExitCode": 0,
+    "canonicalReportAndPlannedInteractionValidation": "COMPLETE",
+    "exactNonzeroAndZeroStates": [
+      {
+        "caseKey": "SIM-C4-L02-02|published|320|top|grid|0",
+        "input": "0.5",
+        "independentExact": "45/4",
+        "unit": "kN/C"
+      },
+      {
+        "caseKey": "SIM-C4-L02-02|published|320|top|grid|1",
+        "input": "1",
+        "independentExact": "0",
+        "unit": "kN/C"
+      },
+      {
+        "caseKey": "SIM-C4-L02-02|published|320|top|grid|2",
+        "input": "1.5",
+        "independentExact": "-45/4",
+        "unit": "kN/C"
+      },
+      {
+        "caseKey": "SIM-C4-L02-02|published|320|orbit|grid|0",
+        "input": "0.5",
+        "independentExact": "45/4",
+        "unit": "kN/C"
+      },
+      {
+        "caseKey": "SIM-C4-L02-02|published|320|orbit|grid|1",
+        "input": "1",
+        "independentExact": "0",
+        "unit": "kN/C"
+      },
+      {
+        "caseKey": "SIM-C4-L02-02|published|320|orbit|grid|2",
+        "input": "1.5",
+        "independentExact": "-45/4",
+        "unit": "kN/C"
+      },
+      {
+        "caseKey": "SIM-C4-L02-02|published|320|fixed_projection|grid|0",
+        "input": "0.5",
+        "independentExact": "45/4",
+        "unit": "kN/C"
+      },
+      {
+        "caseKey": "SIM-C4-L02-02|published|320|fixed_projection|grid|1",
+        "input": "1",
+        "independentExact": "0",
+        "unit": "kN/C"
+      },
+      {
+        "caseKey": "SIM-C4-L02-02|published|320|fixed_projection|grid|2",
+        "input": "1.5",
+        "independentExact": "-45/4",
+        "unit": "kN/C"
+      },
+      {
+        "caseKey": "SIM-C4-L02-02|published|1280|top|grid|0",
+        "input": "0.5",
+        "independentExact": "45/4",
+        "unit": "kN/C"
+      },
+      {
+        "caseKey": "SIM-C4-L02-02|published|1280|top|grid|1",
+        "input": "1",
+        "independentExact": "0",
+        "unit": "kN/C"
+      },
+      {
+        "caseKey": "SIM-C4-L02-02|published|1280|top|grid|2",
+        "input": "1.5",
+        "independentExact": "-45/4",
+        "unit": "kN/C"
+      },
+      {
+        "caseKey": "SIM-C4-L02-02|published|1280|orbit|grid|0",
+        "input": "0.5",
+        "independentExact": "45/4",
+        "unit": "kN/C"
+      },
+      {
+        "caseKey": "SIM-C4-L02-02|published|1280|orbit|grid|1",
+        "input": "1",
+        "independentExact": "0",
+        "unit": "kN/C"
+      },
+      {
+        "caseKey": "SIM-C4-L02-02|published|1280|orbit|grid|2",
+        "input": "1.5",
+        "independentExact": "-45/4",
+        "unit": "kN/C"
+      },
+      {
+        "caseKey": "SIM-C4-L02-02|published|1280|fixed_projection|grid|0",
+        "input": "0.5",
+        "independentExact": "45/4",
+        "unit": "kN/C"
+      },
+      {
+        "caseKey": "SIM-C4-L02-02|published|1280|fixed_projection|grid|1",
+        "input": "1",
+        "independentExact": "0",
+        "unit": "kN/C"
+      },
+      {
+        "caseKey": "SIM-C4-L02-02|published|1280|fixed_projection|grid|2",
+        "input": "1.5",
+        "independentExact": "-45/4",
+        "unit": "kN/C"
+      }
+    ],
+    "currentRuntimeBeforeAfterIdentical": true,
+    "setupCasesWithTwoActualTasks": 6,
+    "UIAcceptance": "NOT_GRANTED; PNG reading and physical review pending",
+    "activityCredit": 0,
+    "humanApproval": "NOT_RUN",
+    "publicationAction": "NONE"
+  },
+  "actualIndependentTarget": {
+    "methods": 4,
+    "passedMethods": 2,
+    "failedMethods": 2,
+    "failedSubtests": 22,
+    "observedExitCode": 1,
+    "durationSeconds": 0.11911379100638442,
+    "testModuleSha256": "746bf7f8b7e47a16e16adc880fe7bc380340ab1eaea64e5f9fecdd53fa92d78b",
+    "rawSha256": "10a02399fb66c588077250cc2f428593319f805240e34e55f21b2704356565bb",
+    "activityCredit": 0,
+    "humanApproval": "NOT_RUN",
+    "publicationAction": "NONE"
+  },
+  "findings": [
+    {
+      "code": "FALLBACK_NONZERO_HEAD_FULLY_WITHIN_SHAFT",
+      "stateCount": 4,
+      "states": [
+        {
+          "caseKey": "SIM-C4-L02-02|published|320|fixed_projection|grid|0",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          "input": 0.5,
+          "field": 11.25,
+          "unit": "kN/C",
+          "legend": "Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P. Il punto P è a metà fra le due cariche. Resta fisso mentre si varia la carica a destra.",
+          "screenshots": [
+            {
+              "file": "screens/c7a91f002fd3f31364a663b221aff057b048cc4be49794088b88b0d590628cf8.png",
+              "sha256": "c7a91f002fd3f31364a663b221aff057b048cc4be49794088b88b0d590628cf8"
+            }
+          ],
+          "fallbackHeads": [
+            {
+              "axisIntrinsic": 6.344999999999999,
+              "headHalfWidthIntrinsic": 1.015199999999993,
+              "shaftHalfWidthIntrinsic": 1.35,
+              "headFullyWithinShaftStroke": true,
+              "sourcePath": {
+                "d": "M229 113.76 L235.345 113.76",
+                "fill": "none",
+                "stroke": "#147979",
+                "stroke-width": "2.7"
+              },
+              "sourcePolygon": {
+                "points": "235.345,113.76 233.23,112.74480000000001 233.23,114.7752",
+                "fill": "#147979"
+              }
+            }
+          ]
+        },
+        {
+          "caseKey": "SIM-C4-L02-02|published|320|fixed_projection|grid|2",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          "input": 1.5,
+          "field": -11.25,
+          "unit": "kN/C",
+          "legend": "Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P. Il punto P è a metà fra le due cariche. Resta fisso mentre si varia la carica a destra.",
+          "screenshots": [
+            {
+              "file": "screens/adfea3a19441129efbaa38b0038d58e9cdd5a1117aee8dd3470c037febdfff7f.png",
+              "sha256": "adfea3a19441129efbaa38b0038d58e9cdd5a1117aee8dd3470c037febdfff7f"
+            }
+          ],
+          "fallbackHeads": [
+            {
+              "axisIntrinsic": 6.344999999999999,
+              "headHalfWidthIntrinsic": 1.015199999999993,
+              "shaftHalfWidthIntrinsic": 1.35,
+              "headFullyWithinShaftStroke": true,
+              "sourcePath": {
+                "d": "M229 113.76 L222.655 113.76",
+                "fill": "none",
+                "stroke": "#147979",
+                "stroke-width": "2.7"
+              },
+              "sourcePolygon": {
+                "points": "222.655,113.76 224.77,114.7752 224.77,112.74480000000001",
+                "fill": "#147979"
+              }
+            }
+          ]
+        },
+        {
+          "caseKey": "SIM-C4-L02-02|published|1280|fixed_projection|grid|0",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          },
+          "input": 0.5,
+          "field": 11.25,
+          "unit": "kN/C",
+          "legend": "Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P. Il punto P è a metà fra le due cariche. Resta fisso mentre si varia la carica a destra.",
+          "screenshots": [
+            {
+              "file": "screens/c83218f48a7751e38b84eec705667541a549b8bd744ca3a46c25b1db765ad087.png",
+              "sha256": "c83218f48a7751e38b84eec705667541a549b8bd744ca3a46c25b1db765ad087"
+            }
+          ],
+          "fallbackHeads": [
+            {
+              "axisIntrinsic": 6.344999999999999,
+              "headHalfWidthIntrinsic": 1.015199999999993,
+              "shaftHalfWidthIntrinsic": 1.35,
+              "headFullyWithinShaftStroke": true,
+              "sourcePath": {
+                "d": "M229 113.76 L235.345 113.76",
+                "fill": "none",
+                "stroke": "#147979",
+                "stroke-width": "2.7"
+              },
+              "sourcePolygon": {
+                "points": "235.345,113.76 233.23,112.74480000000001 233.23,114.7752",
+                "fill": "#147979"
+              }
+            }
+          ]
+        },
+        {
+          "caseKey": "SIM-C4-L02-02|published|1280|fixed_projection|grid|2",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          },
+          "input": 1.5,
+          "field": -11.25,
+          "unit": "kN/C",
+          "legend": "Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P. Il punto P è a metà fra le due cariche. Resta fisso mentre si varia la carica a destra.",
+          "screenshots": [
+            {
+              "file": "screens/9d51c266434ac36f15164c226f71fbe34e84321680c1df8f0e72251944cce03b.png",
+              "sha256": "9d51c266434ac36f15164c226f71fbe34e84321680c1df8f0e72251944cce03b"
+            }
+          ],
+          "fallbackHeads": [
+            {
+              "axisIntrinsic": 6.344999999999999,
+              "headHalfWidthIntrinsic": 1.015199999999993,
+              "shaftHalfWidthIntrinsic": 1.35,
+              "headFullyWithinShaftStroke": true,
+              "sourcePath": {
+                "d": "M229 113.76 L222.655 113.76",
+                "fill": "none",
+                "stroke": "#147979",
+                "stroke-width": "2.7"
+              },
+              "sourcePolygon": {
+                "points": "222.655,113.76 224.77,114.7752 224.77,112.74480000000001",
+                "fill": "#147979"
+              }
+            }
+          ]
+        }
+      ],
+      "physicalValue": "E=+45/4 or-45/4 kN/C; neverzero in these four states",
+      "geometry": "Nominal axis6.345 intrinsic SVG units; head halfwidth1.0152, shaft halfwidth1.35. The polygon adds no outline beyond the shaft. This is invariant to responsive scale, not merely a320 overflow.",
+      "raster": "At both widths the fallback cue appears as a short bar beside the ochre probe, without a distinct arrowhead. No extra declared cue exists."
+    },
+    {
+      "code": "LOCAL_MIDPOINT_LEGEND_COLOURS_WRONG",
+      "actualLegend": "Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P. Il punto P è a metà fra le due cariche. Resta fisso mentre si varia la carica a destra.",
+      "actualProbeColour": "ocra #d49332",
+      "actualFieldColour": "verde #147979",
+      "wrongClaims": [
+        "il piccolo punto verde indica la posizione P della sonda",
+        "La freccia viola più vicina alla sonda rappresenta E"
+      ],
+      "raster": "All six full setup images with expanded legend were read; ochre P and green E are visible in the current scene while the legend assigns the field-demo colours of another branch."
+    }
+  ],
+  "nativeCaveat": "Nonzero native cue is present, not wholly absent. At320 only a minute green pointed cap is visible next to P and direction is not reliably readable. The wide frames show its short, broad cap. No claim of entire head hidden by the body: all34 source-derived head vertices lie outside the analytic P sphere (minradius≈.0918> .09). The source-derived analytic test is not a faceted-mesh occlusion proof; raster read independently.",
+  "physicalZero": "At q_right=+1 nC the two nonzero source contributions cancel, E_x=0 and no arrow is appropriate. All observed zero cases are correct.",
+  "manualArithmetic": {
+    "formula": "E_x=22.5(1-q_right_nC) kN/C from two centers each2cm away and workingk≈9e9",
+    "actualTasks": [
+      {
+        "q_right_nC": "1",
+        "exact": "0",
+        "unit": "kN/C"
+      },
+      {
+        "q_right_nC": "0",
+        "exact": "45/2",
+        "decimalInput": "22.5",
+        "unit": "kN/C"
+      }
+    ],
+    "nearZeroStates": [
+      {
+        "q_right_nC": ".5",
+        "exact": "45/4"
+      },
+      {
+        "q_right_nC": "1",
+        "exact": "0"
+      },
+      {
+        "q_right_nC": "1.5",
+        "exact": "-45/4"
+      }
+    ],
+    "actualUIAnswersAccepted": 12,
+    "interpretation": "Right positive; the right-source contribution points left for positive q_right. This is signed vector superposition, not addition of magnitudes."
+  },
+  "exposure": "Re-review: prior sources/geometry were known. The existing canonical partial verifier was read before the new manual derivation file was written; no new blind-primary claim. Historical primary and old negatives are separate immutable dependencies.",
+  "recusal": "Reviewer did not author these C4 consumer fixes. C6 overlay authored by reviewer is excluded.",
+  "sourceAndConsumerEdits": false,
+  "full448": "HELD_FOR_AUTHOR_CORRECTION_AND_DISTINCT_REREAD",
+  "remainingSevenActivitiesUI": "NOT_RUN",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
