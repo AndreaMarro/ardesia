@@ -62,5 +62,6 @@ test('the Pitot velocity arrows pass beside the probes with the same direction a
     const intake = scene.find(({kind, r}) => kind === 'rod' && r === 0.088);
     assert.deepEqual(intake.a, [1.4, 1.05, 0]);
     assert.deepEqual(intake.b, [1.02, 1.05, 0]);
+    if (vectors.length) assert.deepEqual(scene.slice(-2), vectors);
   }
 });

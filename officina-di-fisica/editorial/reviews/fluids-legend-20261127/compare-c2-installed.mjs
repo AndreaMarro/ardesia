@@ -35,9 +35,9 @@ for (const row of JSON.parse(originalSource)) {
     const old = before.elements(x,2,instant);
     let expected = old.filter(item => item.kind !== 'label' || !labels.has(item.text));
     if (row.id === 'SIM-C2-L006-02') {
-      expected = expected.map(item => item.kind === 'arrow'
-        ? {...item,a:[...item.a.slice(0,2),0.23],b:[...item.b.slice(0,2),0.23]}
-        : item);
+      const markers = expected.filter(item => item.kind === 'arrow')
+        .map(item => ({...item,a:[...item.a.slice(0,2),0.23],b:[...item.b.slice(0,2),0.23]}));
+      expected = [...expected.filter(item => item.kind !== 'arrow'), ...markers];
     }
     assert.deepEqual(after.elements(x,2,instant),expected);
     scenes += 1;

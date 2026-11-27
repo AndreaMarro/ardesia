@@ -172,8 +172,11 @@ export const fluidi = {
     tuboOrizz(b, 0.3, l, s.r2, s.r2);
     // Leave the Pitot intake and both risers on axis. Offset only the displayed vectors.
     const arrowDepth = s.pitot ? 0.23 : 0;
-    b.arrow([-l + 0.18, 1.05, arrowDepth], [-l + 0.18 + 0.8 * s.v1, 1.05, arrowDepth], c.verde);
-    b.arrow([0.44, 1.05, arrowDepth], [0.44 + 0.8 * s.v2, 1.05, arrowDepth], c.viola);
+    const velocita = () => {
+      b.arrow([-l + 0.18, 1.05, arrowDepth], [-l + 0.18 + 0.8 * s.v1, 1.05, arrowDepth], c.verde);
+      b.arrow([0.44, 1.05, arrowDepth], [0.44 + 0.8 * s.v2, 1.05, arrowDepth], c.viola);
+    };
+    if (!s.pitot) velocita();
     if (s.pressione || s.pitot || s.perdita !== undefined) {
       const v = s.v2 ?? 0,
         h1 = s.pitot ? 0.55 : 0.85,
@@ -207,6 +210,8 @@ export const fluidi = {
       b.box([l, 0.15 + 0.18 * s.raccolta, 0], [0.56, 0.08 + 0.32 * s.raccolta, 0.66], c.acqua, 0.72);
     b.label([-l + 0.55, 1.68 + s.r1, 0], 'Entrata');
     b.label([l - 0.5, 1.68 + s.r2, 0], 'Uscita');
+    // The 2D painter follows insertion order. Show the Pitot indicators above the probes.
+    if (s.pitot) velocita();
   },
   profilo(b, s) {
     const y = 1.2,
