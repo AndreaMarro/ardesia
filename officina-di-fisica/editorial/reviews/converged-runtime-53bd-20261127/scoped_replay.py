@@ -21,6 +21,8 @@ from tools.corpus_engineering.runtime_fingerprint import runtime_fingerprint
 
 CANDIDATE = '1b72b71a68a6023ab1c9fa189733947b03029914'
 RUNTIME = '53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a'
+CONTINUITY_PEER = '08a45e287e998f41d60a67f33c0ba46a7a5a7607'
+CONTINUITY_PATH = 'officina-di-fisica/editorial/reviews/c2-draft-browser719-preflight-b-20261127'
 C2_PEER = '89a653b76c5162442d9489f5f250aad6d7c116d0'
 C5_PEER = '5cba6bd89e20a4bdf3b973c732b3fc031a86b192'
 C2_PATH = 'officina-di-fisica/editorial/reviews/c2-c39-recovery-and-192-20261127'
@@ -30,6 +32,8 @@ PULSE_FIX = ('593c82a93a1dd635461a33297d84ee8634db3fcd',
              '6efcc26c2b698fd7c1c89bde711f568359ffd5d3465780f9e9c673deae7fdbb2')
 COLLECTOR = '719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15'
 C2_SCOPES = {'bernoulli-120': 120, 'continuity-32': 32, 'branches-40': 40}
+CONTINUITY_SCOPES = {'continuity-l00501-320': 320, 'continuity-l00501-1280': 1280}
+PITOT_SCOPE = 'pitot-targeted'
 C5_SCOPES = {'sound-01': 'SIM-C5-L05-01', 'sound-03': 'SIM-C5-L05-03'}
 
 
@@ -130,12 +134,74 @@ def c2_inputs(repo, directory, scope):
     return template, {**plan, 'inputFiles': files, 'packageFiles': [str(directory / (batch + '.json'))]}
 
 
+
+def continuity_inputs(repo, directory, scope):
+    width = CONTINUITY_SCOPES[scope]
+    template = git_blob(repo, CONTINUITY_PEER, f'{CONTINUITY_PATH}/blocks/01-{width}/prepared.json')
+    plan = json.loads(template)
+    assert len(plan['expectedCaseKeys']) == 80
+    assert all(row['id'] == 'SIM-C2-L005-01' for row in plan['records'])
+    originals = {Path(name).name: checksum for name, checksum in plan['inputFiles'].items()}
+    batch = 'experiment-c2-flow-continuity-reading-20261127'
+    files = {}
+    for suffix in ('', '-bindings'):
+        name = batch + suffix + '.json'
+        raw = git_blob(repo, CONTINUITY_PEER, f'{CONTINUITY_PATH}/inputs/{name}')
+        assert pin(raw) == originals[name]
+        file = directory / name
+        files[str(file)] = freeze(file, raw)
+    return template, {**plan, 'inputFiles': files, 'packageFiles': [str(directory / (batch + '.json'))]}
+
+
+def pitot_inputs(app, repo, directory):
+    template = git_blob(repo, C2_PEER, f'{C2_PATH}/bernoulli-120/prepared.json')
+    plan = json.loads(template)
+    package, bindings = [
+        json.loads(git_blob(repo, C2_PEER, f'{C2_PATH}/inputs/experiment-c2-bernoulli-reading-20261127{suffix}.json'))
+        for suffix in ('', '-bindings')
+    ]
+    key = 'SIM-C2-L006-02'
+    original, = [row for row in read(app / 'content/esperienze-C2.json') if row['id'] == key]
+    draft, = [row for row in package['records'] if row['id'] == key]
+    binding, = [row for row in bindings if row['id'] == key]
+    prepared_draft, = [row for row in plan['records'] if row['id'] == key]
+    assert prepared_draft['candidateSha256'] == binding['candidateSha256'] == digest(draft)
+    assert prepared_draft['sourceSha256'] == binding['sourceSha256'] == digest(original)
+    grid = [0, 0.25, 5]
+    base = {**prepared_draft, 'grid': grid, 'expectedValues': [0, 1 / 32, 25 / 2]}
+    published = {**base, 'variant': 'published', 'record': original, 'candidateSha256': None,
+                 'questions': [
+                     {'input': '8', 'expectedAccepted': True, 'sourceManualReadiness': 'MANUAL_EXACT_ORIGINAL',
+                      'prompt': 'Imposta «Velocità dell’acqua» su 4 m/s. Quale valore ottieni per «Pressione dinamica»?'},
+                     {'input': '3.125', 'expectedAccepted': True, 'sourceManualReadiness': 'MANUAL_EXACT_ORIGINAL',
+                      'prompt': 'Su un tubo di Pitot in acqua che scorre a 2,5 m/s, di quanti kPa la pressione di ristagno supera quella statica?'},
+                 ]}
+    keys = []
+    for row in (published, base):
+        for profile in plan['profiles']:
+            stem = '|'.join((key, row['variant'], str(profile['width']), profile['view']))
+            keys.extend([stem+'|setup', *(stem+f'|grid|{index}' for index in range(len(grid)))])
+    batch = 'experiment-c2-pitot-targeted-53bd-20261127'
+    package_file = directory / (batch + '.json')
+    bindings_file = directory / (batch + '-bindings.json')
+    files = {str(package_file): write(package_file, {**package, 'records': [draft]}),
+             str(bindings_file): write(bindings_file, [binding])}
+    return template, {**plan, 'records': [published, base], 'draftRecords': [draft],
+                      'expectedCaseKeys': keys, 'expectedOriginalGridInputs': len(grid),
+                      'expectedDraftGridInputs': len(grid), 'inputFiles': files, 'packageFiles': [str(package_file)]}
+
 def prepare(app, directory, repo, scope, candidate, runtime):
     directory.mkdir(parents=True, exist_ok=True)
     inputs = directory / 'inputs'
     inputs.mkdir(exist_ok=True)
     if scope in C2_SCOPES:
         template, plan = c2_inputs(repo, inputs, scope)
+        template_ref = C2_PEER
+    elif scope in CONTINUITY_SCOPES:
+        template, plan = continuity_inputs(repo, inputs, scope)
+        template_ref = CONTINUITY_PEER
+    elif scope == PITOT_SCOPE:
+        template, plan = pitot_inputs(app, repo, inputs)
         template_ref = C2_PEER
     else:
         template, plan = sound_inputs(app, repo, inputs, scope)
@@ -217,7 +283,7 @@ def run(app, directory, lock_file, candidate, runtime):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('phase', choices=('prepare', 'run'))
-    parser.add_argument('scope', choices=(*C2_SCOPES, *C5_SCOPES))
+    parser.add_argument('scope', choices=(*C2_SCOPES, *CONTINUITY_SCOPES, PITOT_SCOPE, *C5_SCOPES))
     parser.add_argument('app', type=Path)
     parser.add_argument('directory', type=Path)
     parser.add_argument('source', type=Path, help='Input Git repository for prepare, shared lock file for run')
