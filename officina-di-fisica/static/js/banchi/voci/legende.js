@@ -1,3 +1,6 @@
+const orientaLorentz = 'Per confrontare il modulo della forza scegli la vista Obliqua o Laterale.';
+const orientaOttica = 'Per confrontare gli angoli dei raggi scegli la vista Obliqua o Laterale: dall’alto il loro piano si vede di taglio.';
+
 export const legende = {
   calibro: 'Ganasce verdi · tratto ocra fra i due riferimenti',
   campione: 'Il bordo viola misura il lato · il materiale occupa tre dimensioni',
@@ -43,7 +46,7 @@ export const legende = {
   circuito: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale',
   condensatori: 'Ogni coppia di piastre è un condensatore. Segui i fili tra i terminali',
   bussola: 'Filo verticale · circonferenze del campo · sonda tangenziale',
-  lorentz: 'B · le tre frecce grigie parallele sotto la carica. v · la freccia verde sopra la carica. F · la freccia viola della forza sulla carica positiva, quando presente. La forza non nulla è perpendicolare sia a v sia a B; con velocità parallela o antiparallela al campo si annulla. v e F sono riportate accanto alla carica, conservando il verso e la propria scala. Per confrontare il modulo della forza scegli la vista Obliqua o Laterale.',
+  lorentz: `B · le tre frecce grigie parallele sotto la carica. v · la freccia verde sopra la carica. F · la freccia viola della forza sulla carica positiva, quando presente. La forza non nulla è perpendicolare sia a v sia a B; con velocità parallela o antiparallela al campo si annulla. v e F sono riportate accanto alla carica, conservando il verso e la propria scala. ${orientaLorentz}`,
   spira: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira',
   oscillatore: 'Riferimento centrale · equilibrio. Blocco ocra · posizione istantanea',
   onda: 'Il punto marcato segue il mezzo. La curva rappresenta il profilo nello spazio',
@@ -55,5 +58,16 @@ export const legende = {
   fotone: 'Onda viola · fotone incidente. Verde · elettrone del bersaglio',
   nucleo: 'Rosso · protone. Verde nel nucleo · neutrone',
   decadimento: 'Viola · nuclei iniziali ancora presenti. Grigio · nuclei decaduti',
-  ottica: 'All’interfaccia tra due mezzi o sullo specchio, la linea grigia tratteggiata è la normale: passa dal punto d’incontro dei raggi ed è perpendicolare alla superficie. Nel banco con la lente, la linea grigia tratteggiata è invece l’asse ottico. Per confrontare gli angoli dei raggi scegli la vista Obliqua o Laterale: dall’alto il loro piano si vede di taglio. All’interfaccia i segmenti hanno lunghezza schematica; mostrano direzioni e angoli, non un cammino ottico misurato.',
+  ottica: `All’interfaccia tra due mezzi o sullo specchio, la linea grigia tratteggiata è la normale: passa dal punto d’incontro dei raggi ed è perpendicolare alla superficie. Nel banco con la lente, la linea grigia tratteggiata è invece l’asse ottico. ${orientaOttica} All’interfaccia i segmenti hanno lunghezza schematica; mostrano direzioni e angoli, non un cammino ottico misurato.`,
 };
+
+export function legendaTavola(apparato) {
+  const testo = legende[apparato];
+  if (apparato === 'lorentz') {
+    return testo.replace(orientaLorentz, 'Per confrontare il modulo della forza usa la lettura numerica.');
+  }
+  if (apparato === 'ottica') {
+    return testo.replace(orientaOttica, 'La tavola mostra lo schema nel piano di misura.');
+  }
+  return testo;
+}

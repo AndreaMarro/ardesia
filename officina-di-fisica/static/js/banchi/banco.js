@@ -427,7 +427,7 @@ export async function benchPage(id, origin, topicIndex) {
       pilot === 'induzione'
         ? 'Viola · campo imposto / n · normale positiva / rosso · corrente nel circuito chiuso'
         : activity
-          ? activity.legend(stage)
+          ? activity.legend(stage, view)
           : stage < 0
             ? 'Apparato iniziale'
             : legends[r.model].slice(0, Math.min(sceneLevel() + 1, 3)).join(' · ');
