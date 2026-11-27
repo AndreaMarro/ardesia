@@ -1,0 +1,30 @@
+SHARED_LOCK_ACQUIRED; free bytes 3969155072; one child
+test_original_section_preserved (__main__.SourceSectionRegression.test_original_section_preserved) ... FAIL
+test_section_override_rejected (__main__.SourceSectionRegression.test_section_override_rejected) ... FAIL
+
+======================================================================
+FAIL: test_original_section_preserved (__main__.SourceSectionRegression.test_original_section_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/editorial/reviews/cric-assembler-section-independent-a-20261127/section-regression-negative.py", line 10, in test_original_section_preserved
+    self.assertEqual(package['records'][0]['section'],row['section'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'Wrong cohort section' != 'Original individual section'
+- Wrong cohort section
++ Original individual section
+
+
+======================================================================
+FAIL: test_section_override_rejected (__main__.SourceSectionRegression.test_section_override_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/editorial/reviews/cric-assembler-section-independent-a-20261127/section-regression-negative.py", line 13, in test_section_override_rejected
+    with self.assertRaises(ValueError):m.build([row],overrides={1:{'section':'Wrong override'}})
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.002s
+
+FAILED (failures=2)
+CHILD_EXIT 1; free bytes 3969069056

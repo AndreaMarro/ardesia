@@ -61,14 +61,18 @@ def assemble_family(repo, source_ref, family, tasks, choices, units, asset_name,
                    "family": original["family"], "difficulty": original["difficulty"],
                    "baseVersion": original["version"], "version": original["version"] + 1,
                    "prerequisites": deepcopy(original.get("prerequisites", [])) if prerequisites is None else prerequisites}
+            if "section" in original:
+                row["section"] = original["section"]
         row.update((overrides or {}).get(n, {}))
         if source_origin == "cric":
             identity = {"id": source_id, "kind": original["kind"], "course": original["course"],
                         "skill": original["skill"], "baseVersion": original["version"],
                         "version": original["version"] + 1, "exam": original.get("exam")}
+            if "section" in original:
+                identity["section"] = original["section"]
             if any(row.get(key) != value or type(row.get(key)) is not type(value)
                    for key, value in identity.items()):
-                raise ValueError("A Cric edition cannot rebind identity, version or protected exam: " + source_id)
+                raise ValueError("A Cric edition cannot rebind identity, section, version or protected exam: " + source_id)
         row["error"]["target"] = row["skill"]
         assets = {}
         if n in figures:

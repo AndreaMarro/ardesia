@@ -6,12 +6,16 @@ import json
 from pathlib import Path
 import subprocess
 import unittest
+import tempfile
+import importlib.util
 from unittest.mock import patch
 from tools.corpus_engineering import vector_geometry_authoring as assembly
 from tools.corpus_engineering.pipeline import digest
 APP=Path(__file__).resolve().parents[2]
 REF='5d1dc8dc7b601aef959d10d564c75462be74708d'
-PATCH_REF='23f3ff2bd9dfa5700f7e71acdd3a3d12c08fbab5'
+PATCH_REF='07c49c98221afb1f700f11a7e084450d076e536c'
+HISTORICAL_REF='23f3ff2bd9dfa5700f7e71acdd3a3d12c08fbab5'
+PROOF=Path(__file__).resolve().parents[2]/'editorial/reviews/cric-assembler-section-independent-a-20261127'
 ASSET='lens-magnification-progressive.svg'
 TASK=('Synthetic boundary fixture','Somma una unità e una unità.',2,'Sono due unità.','1+1=2','Tre non è la somma.','Conta le due unità.')
 COUNT={}
@@ -27,6 +31,46 @@ class IndependentCricAssemblyBoundary(unittest.TestCase):
     def test_canonical_bytes_are_exactly_the_read_followup(self):
         for name in['tools/corpus_engineering/vector_geometry_authoring.py','tests/corpus/test_cric_question_assembly.py']:
             raw=subprocess.check_output(['git','show',PATCH_REF+':officina-di-fisica/'+name],cwd=APP.parent);self.assertEqual(raw,(APP/name).read_bytes())
+
+    def test_historical_strict_byte_guard_executes_against_verbatim_historical_files(self):
+        # Run the untouched prior guard in a separate historical fixture, not
+        # against the new live assembler and not with an alternative hash.
+        path=PROOF/'historical-independent-target.py.txt'
+        spec=importlib.util.spec_from_loader('frozen_independent_boundary_a',loader=None)
+        old=importlib.util.module_from_spec(spec)
+        old.__file__=str(APP/'tests/corpus/test_independent_cric_assembler_boundary_a.py')
+        exec(compile(path.read_bytes(),str(APP/'tests/corpus/test_independent_cric_assembler_boundary_a.py'),'exec'),old.__dict__)
+        with tempfile.TemporaryDirectory(prefix='.historical-assembler-boundary-',dir=APP)as tmp:
+            shadow=Path(tmp)/'app'
+            for name in ['tools/corpus_engineering/vector_geometry_authoring.py','tests/corpus/test_cric_question_assembly.py']:
+                p=shadow/name;p.parent.mkdir(parents=True,exist_ok=True)
+                p.write_bytes((PROOF/('historical-'+p.name+'.txt')).read_bytes())
+            with patch.object(old,'APP',shadow):
+                old.IndependentCricAssemblyBoundary('test_canonical_bytes_are_exactly_the_read_followup').test_canonical_bytes_are_exactly_the_read_followup()
+        self.assertEqual(old.PATCH_REF,HISTORICAL_REF)
+
+    def test_individual_sections_preserved_and_no_source_field_invented(self):
+        originals=[source(1),source(2,2)];originals[0]['section']='Misure e riferimenti';originals[1]['section']='Moto e leggi'
+        snapshot=deepcopy(originals);p,b=build(originals,section='Wrong cohort heading')
+        self.assertEqual(originals,snapshot)
+        for old,row,link in zip(originals,p['records'],b):
+            self.assertEqual(row['section'],old['section']);self.assertEqual(link['sourceSha256'],digest(old));self.assertEqual(link['candidateSha256'],digest(row))
+        # Legacy synthetic sources lacking section keep the caller's normal
+        # heading; absence is not an invented identity requirement.
+        p,_=build([source(1)],section='Legacy synthetic heading')
+        self.assertEqual(p['records'][0]['section'],'Legacy synthetic heading')
+        p,_=build([source(1)],overrides={1:{'section':'Explicit synthetic heading'}})
+        self.assertEqual(p['records'][0]['section'],'Explicit synthetic heading')
+
+    def test_section_override_rejected_with_strict_type_but_same_value_allowed(self):
+        row=source(1);row['section']='Original section'
+        for wrong in ['Other section','',None,False,0,{},[]]:
+            with self.subTest(wrong=wrong),self.assertRaises(ValueError):build([row],overrides={1:{'section':wrong}})
+        p,_=build([row],overrides={1:{'section':row['section']}})
+        self.assertEqual(p['records'][0]['section'],row['section'])
+        typed=source(1);typed['section']=0
+        with self.assertRaises(ValueError):build([typed],overrides={1:{'section':False}})
+        COUNT['section_override_rejections']=8
 
     def test_mixed_versions_identity_family_difficulty_and_binding(self):
         originals=[source(1,1),source(2,2)];snapshot=deepcopy(originals);package,bindings=build(originals)
