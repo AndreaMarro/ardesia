@@ -24,7 +24,8 @@ from server.store import (
     published,
     require,
 )
-from server.web import Handler, ThreadingHTTPServer
+from http.server import ThreadingHTTPServer
+from multidiscipline.web import Handler
 
 
 def main():
@@ -33,7 +34,7 @@ def main():
         "action",
         nargs="?",
         default="serve",
-        choices=["serve", "autore", "password-autore", "pdf"],
+        choices=["serve", "autore", "password-autore", "pdf", "install-discipline"],
     )
     p.add_argument(
         "--port", type=int, default=int(os.environ.get("ASTRA_PORT", "8843"))
@@ -45,8 +46,26 @@ def main():
     p.add_argument(
         "--pack", action="store_true", help="Rigenera i PDF distribuibili dal seed"
     )
+    p.add_argument("catalog", nargs="?", help="Percorso locale del catalog.json di una disciplina")
+    p.add_argument("--publish-reviewed", action="store_true",
+                   help="Attesta l’approvazione editoriale e rende l’edizione visibile nel catalogo commerciale")
+    p.add_argument("--activate", action="store_true", help="Riattiva esplicitamente un’edizione già installata")
     args = p.parse_args()
+    if args.action == "install-discipline" and not args.catalog:
+        p.error("install-discipline richiede il percorso del catalog.json")
+    if args.action != "install-discipline" and (args.catalog or args.publish_reviewed or args.activate):
+        p.error("Le opzioni del catalogo si usano con install-discipline")
     initialize()
+    if args.action == "install-discipline":
+        from multidiscipline.editions import install
+        with connect() as db:
+            db.execute("BEGIN IMMEDIATE")
+            state = "published" if args.publish_reviewed else "preview"
+            result = install(db, args.catalog, state, args.activate)
+            if result["changed"]:
+                audit(db, "owner", "edizione disciplinare", result["id"], result["version"] + " " + state)
+        print(json.dumps(dict(result, status=state), ensure_ascii=False))
+        return
     url = "http://127.0.0.1:" + str(args.port) + "/"
     if args.action == "autore":
         try:
@@ -102,6 +121,7 @@ def main():
             list(workers.map(job, jobs))
         return
     service = ThreadingHTTPServer((args.host, args.port), Handler)
+    url = "http://127.0.0.1:" + str(service.server_port) + "/"
     print("Officina di Fisica · " + url, flush=True)
     if args.open:
         webbrowser.open(url)
