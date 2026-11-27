@@ -1,0 +1,35 @@
+TAP version 13
+# Subtest: the weight and normal keep their length and origin in the moving block frame
+ok 1 - the weight and normal keep their length and origin in the moving block frame
+  ---
+  duration_ms: 2.404792
+  ...
+# Subtest: field contributions and resultant share the probe, scale and annotation layer
+ok 2 - field contributions and resultant share the probe, scale and annotation layer
+  ---
+  duration_ms: 0.608084
+  ...
+# Subtest: the flight retains the origin marker and the apex guide without a covering label
+ok 3 - the flight retains the origin marker and the apex guide without a covering label
+  ---
+  duration_ms: 0.793541
+  ...
+# Subtest: small flight velocities retain their direction and get a separate 16× detail
+ok 4 - small flight velocities retain their direction and get a separate 16× detail
+  ---
+  duration_ms: 1.095542
+  ...
+# Subtest: the constant gravity arrow clears the launch and landing platform
+ok 5 - the constant gravity arrow clears the launch and landing platform
+  ---
+  duration_ms: 1.653083
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 157.348833

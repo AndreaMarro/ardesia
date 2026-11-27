@@ -427,7 +427,7 @@ export async function benchPage(id, origin, topicIndex) {
     if (pilot === 'onde' && view === 'section') {
       nativeLegend = ' · Linea scura · spostamento istantaneo lungo la sezione passante per P';
     } else if (view !== 'diagram' && pilot === 'volo') {
-      nativeLegend = ' · Il vettore velocità è di fianco alla sfera. Il dettaglio ocra appare per velocità piccole e ingrandisce la freccia 16 volte nello stesso verso. La freccia rossa indica l’accelerazione verticale e rimane sopra il piano mentre segue la sfera.';
+      nativeLegend = ' · Il vettore velocità è di fianco alla sfera. Il dettaglio ocra appare per velocità piccole e ingrandisce la freccia 16 volte nello stesso verso. La freccia rossa indica l’accelerazione verticale e rimane sopra il piano mentre segue la sfera. Sul piano del tavolo la freccia scura più lunga indica x e quella più corta indica z. Nella vista Alto puoi leggere entrambe le direzioni.';
       if (view === 'top') nativeLegend += ' Scegli Laterale per leggere l’altezza del culmine.';
     } else if (view !== 'diagram' && r.model === 'piano') {
       nativeLegend = ' · Il verso positivo della guida è verso monte. Le frecce delle forze sono in primo piano alla scala della guida.';

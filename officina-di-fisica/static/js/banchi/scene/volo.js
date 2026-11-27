@@ -36,9 +36,7 @@ export function build(b, p, s, stage) {
     const end = pos(s.duration);
     b.line([start, end], teal, undefined, true);
     b.arrow([-2.7, 0.05, 1.55], [-1.7, 0.05, 1.55], ink);
-    b.label([-1.55, 0.16, 1.55], 'x');
     b.arrow([-2.7, 0.05, 1.55], [-2.7, 0.05, 2.18], ink);
-    b.label([-2.7, 0.16, 2.23], 'z');
   }
   if (stage >= 1) {
     b.line(

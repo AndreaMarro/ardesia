@@ -63,6 +63,8 @@ test('the flight retains the origin marker and the apex guide without a covering
     assert.deepEqual(rings[0], { anchor: [-0, 0.17, -0], radius: 0.22 });
     assert.ok(!labels.includes('O'));
     assert.ok(!labels.includes('culmine'));
+    assert.ok(!labels.includes('x'));
+    assert.ok(!labels.includes('z'));
     assert.ok(guides.some(([apex, ground]) => apex[1] > 1 && ground[1] === 0.15));
   }
 });
