@@ -1,0 +1,75 @@
+import unittest,copy,json,hashlib
+from pathlib import Path
+from fractions import Fraction as F
+from decimal import Decimal
+import sympy as sp
+from independent_math import exact,value,inverse,SPECS,verify_record,scalar
+D=Path(__file__).resolve().parent
+class Review(unittest.TestCase):
+ def setUp(self):self.rs=json.loads((D/'package.json').read_text(),parse_float=Decimal)['records']
+ def test_01_all_five_records(self):
+  self.assertEqual(len(self.rs),5)
+  for r in self.rs:self.assertTrue(verify_record(r))
+ def test_02_ten_manual_forward_inverse(self):
+  for ident,(_,_,_,ps,ys,_)in SPECS.items():
+   for x,y in zip(ps,ys):self.assertEqual(value(ident,x,True),exact(y));self.assertEqual(inverse(ident,y),exact(x))
+ def test_03_all72_physical_grid_states(self):
+  count=0
+  for ident,(lo,hi,step,*_)in SPECS.items():
+   lo,hi,step=map(exact,(lo,hi,step))
+   for i in range(int((hi-lo)/step)+1):
+    x=lo+i*step;y=value(ident,x,True);self.assertTrue(sp.sympify(y).is_real);self.assertTrue(sp.sympify(y).is_finite);count+=1
+  self.assertEqual(count,72)
+ def test_04_wrong_references_and_points(self):
+  for s in self.rs:
+   for i in range(2):
+    r=copy.deepcopy(s);r['references'][i][1]=exact(r['references'][i][1])+1
+    with self.assertRaises(ValueError):verify_record(r)
+   r=copy.deepcopy(s);r['assessmentSelection']['points'][1]=r['assessmentSelection']['points'][0]
+   with self.assertRaises(ValueError):verify_record(r)
+ def test_05_units_lesson_typed_versions(self):
+  for s in self.rs:
+   for f,v in [('skill','C2-L009'),('baseVersion',True),('version',True)]:
+    r=copy.deepcopy(s);r[f]=v
+    with self.assertRaises(ValueError):verify_record(r)
+   r=copy.deepcopy(s);r['measure']['unit']='1'
+   with self.assertRaises(ValueError):verify_record(r)
+ def test_06_finite_exact_public_guards(self):
+  bad=[True,False,1.0,float('nan'),float('inf'),complex(1,1),'nan','oo','-oo','NaN','Infinity','I','1/0','1e999',Decimal('Infinity'),Decimal('NaN'),sp.oo,sp.nan,sp.I,sp.Float('1.5'),sp.Symbol('x',real=True,finite=True)]
+  for ident in SPECS:
+   for x in bad:
+    for fn in [value,inverse]:
+     with self.assertRaises(ValueError):fn(ident,x)
+ def test_07_bounds_and_off_grid(self):
+  for ident,(lo,hi,step,*_)in SPECS.items():
+   for x in [exact(lo)-1,exact(hi)+1]:
+    with self.assertRaises(ValueError):value(ident,x)
+   with self.assertRaises(ValueError):value(ident,exact(lo)+exact(step)/2,True)
+ def test_08_inverse_domains(self):
+  for ident,y in [(list(SPECS)[0],'0'),(list(SPECS)[1],'0'),(list(SPECS)[2],'-11'),(list(SPECS)[2],'11'),(list(SPECS)[3],'-1'),(list(SPECS)[4],'0')]:
+   with self.assertRaises(ValueError):inverse(ident,y)
+ def test_09_two_film_faces_and_units(self):
+  for x in ['1.5','4']:
+   l=exact(x)/100;Fsi=2*F(5,100)*l;self.assertEqual(Fsi*1000,value(list(SPECS)[0],x));self.assertNotEqual(F(5,100)*l*1000,value(list(SPECS)[0],x))
+ def test_10_sphere_area_volume_not_area_alone(self):
+  self.assertEqual(value(list(SPECS)[1],'.5'),6);self.assertEqual(value(list(SPECS)[1],'3'),1);self.assertEqual(value(list(SPECS)[1],'1'),2*value(list(SPECS)[1],'2'))
+ def test_11_capillary_height_coefficient_and_exact_cosines(self):
+  self.assertEqual(2*F(5,100)/(1000*10*F(1,1000)),F(1,100));self.assertEqual([value(list(SPECS)[2],x)for x in [0,60,90,120,180]],[10,5,0,-5,-10]);self.assertEqual([inverse(list(SPECS)[2],y)for y in [10,5,0,-5,-10]],[0,60,90,120,180])
+ def test_12_one_interface_two_curvatures_planar_limit(self):
+  self.assertEqual(value(list(SPECS)[3],'0'),0);self.assertEqual(2*F(5,100)*1500,value(list(SPECS)[3],'1.5'));self.assertNotEqual(4*F(5,100)*1500,value(list(SPECS)[3],'1.5'))
+ def test_13_two_bubble_faces_and_inverse_radius(self):
+  self.assertEqual([value(list(SPECS)[4],x)for x in [2,8]],[100,25]);self.assertEqual(value(list(SPECS)[4],2),4*value(list(SPECS)[4],8));self.assertEqual(4*F(5,100)/F(8,1000),25)
+ def test_14_immutable_source_and_prekey_hashes(self):
+  for e in json.loads((D/'git-inputs.json').read_text())['inputs']:self.assertEqual(hashlib.sha256((D/e['snapshot']).read_bytes()).hexdigest(),e['sha256'])
+  self.assertEqual(hashlib.sha256((D/'independent-ieee-before-blocks.mjs').read_bytes()).hexdigest(),'a9f065eb98df2c1483e0fcef73703ca07d4685577ad4bacef151799675fbd1dd')
+ def test_15_actual144_and_ten_literal_tasks(self):
+  a=json.loads((D/'actual-comparison.json').read_text());self.assertEqual(a['states'],144);self.assertEqual(a['actualDraftTasks'],10);self.assertEqual(a['literalServedDraftPromptsMatched'],10);self.assertEqual(a['Chrome'],'NOT_RUN')
+ def test_16_ieee_cos90_distinct_from_physical_zero(self):
+  refs=json.loads((D/'pre-key-ieee.json').read_text(),parse_float=Decimal)['results'];r=next(r for r in refs if r['id'].endswith('03'));z=next(s['y']for s in r['states']if s['x']==90);self.assertNotEqual(z,0);self.assertEqual(value('SIM-C2-L010-03',90),0)
+ def test_17_physical_zero_normalization_and_required_form_source(self):
+  src=(D/'consumer/static/js/banchi/voci/esperimento.js').read_text();self.assertIn('const stabile = (x) => (Math.abs(x) < 1e-11 ? 0 : x);',src)
+  raw=json.loads((D/'actual-code.json').read_text());zero=[s['solve']['y']for r in raw['results']if r['id'].endswith('03')for s in r['states']if s['x']==90];self.assertEqual(zero,[0,0])
+  self.assertIn('inputmode="decimal" required',(D/'consumer/static/js/banchi/banco.js').read_text())
+ def test_18_unchanged_grader_has_explicit_nonempty_guard(self):
+  block=(D/'actual-grader-block.js.txt').read_text();self.assertIn("form.elements.answer.value.trim() !== ''",block)
+if __name__=='__main__':unittest.main()

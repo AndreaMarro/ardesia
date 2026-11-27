@@ -1,0 +1,7 @@
+{
+  "observedExitCode": 1,
+  "actualComparisonPassed": true,
+  "actual17TestsPassed": true,
+  "cause": "Reviewer speculated blank Number() coercion could pass a zero target, before inspecting the whole extracted grader guard. Actual source explicitly rejects trimmed empty text.",
+  "fix": "Restore stronger assertion that all15invalid inputs fail, including blank zero-target; add source guard assertion. No consumer/model/key/tolerance changes."
+}

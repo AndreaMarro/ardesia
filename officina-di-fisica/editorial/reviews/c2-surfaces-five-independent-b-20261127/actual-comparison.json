@@ -1,0 +1,1478 @@
+{
+  "phase": "FIVE_SURFACES_CPU_COMPARISON",
+  "consumerCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "runtimeSha256": "53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a",
+  "candidateCommit": "6d814834668d6370094800f2d72ed2fe768903c9",
+  "records": [
+    {
+      "id": "SIM-C2-L010-01",
+      "variant": "published",
+      "states": [
+        {
+          "x": "1/2",
+          "physicalExact": "1/2",
+          "observedOutputLexeme": "0.5",
+          "prekeyIEEEOutputLexeme": "0.5",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "1",
+          "physicalExact": "1",
+          "observedOutputLexeme": "1",
+          "prekeyIEEEOutputLexeme": "1",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "3/2",
+          "physicalExact": "3/2",
+          "observedOutputLexeme": "1.5",
+          "prekeyIEEEOutputLexeme": "1.5",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "2",
+          "physicalExact": "2",
+          "observedOutputLexeme": "2",
+          "prekeyIEEEOutputLexeme": "2",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "5/2",
+          "physicalExact": "5/2",
+          "observedOutputLexeme": "2.5",
+          "prekeyIEEEOutputLexeme": "2.5",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "3",
+          "physicalExact": "3",
+          "observedOutputLexeme": "3",
+          "prekeyIEEEOutputLexeme": "3",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "7/2",
+          "physicalExact": "7/2",
+          "observedOutputLexeme": "3.5",
+          "prekeyIEEEOutputLexeme": "3.5",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "4",
+          "physicalExact": "4",
+          "observedOutputLexeme": "4",
+          "prekeyIEEEOutputLexeme": "4",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "9/2",
+          "physicalExact": "9/2",
+          "observedOutputLexeme": "4.5",
+          "prekeyIEEEOutputLexeme": "4.5",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "5",
+          "physicalExact": "5",
+          "observedOutputLexeme": "5",
+          "prekeyIEEEOutputLexeme": "5",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        }
+      ],
+      "manualPoints": [
+        "4",
+        "3"
+      ],
+      "manualPhysicalExactAnswers": [
+        "4",
+        "3"
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Lunghezza del bordo mobile» su 4 cm. Quale valore ottieni per «Forza sul bordo»?",
+          "value": 4,
+          "unit": "mN",
+          "worked": "F = 2γℓ, con γ = 0,05 N/m. 4 = 4 mN."
+        },
+        {
+          "prompt": "Una pellicola di sapone con due superfici trascina un bordo lungo 3 cm. Con γ = 0,05 N/m, quale forza in mN devi bilanciare?",
+          "value": 3,
+          "unit": "mN",
+          "worked": "F = 2γℓ, con γ = 0,05 N/m. 3 = 3 mN."
+        }
+      ],
+      "literalDraftPromptVerified": false,
+      "unit": "mN",
+      "clock": null
+    },
+    {
+      "id": "SIM-C2-L010-01",
+      "variant": "draft",
+      "states": [
+        {
+          "x": "1/2",
+          "physicalExact": "1/2",
+          "observedOutputLexeme": "0.5",
+          "prekeyIEEEOutputLexeme": "0.5",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "1",
+          "physicalExact": "1",
+          "observedOutputLexeme": "1",
+          "prekeyIEEEOutputLexeme": "1",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "3/2",
+          "physicalExact": "3/2",
+          "observedOutputLexeme": "1.5",
+          "prekeyIEEEOutputLexeme": "1.5",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "2",
+          "physicalExact": "2",
+          "observedOutputLexeme": "2",
+          "prekeyIEEEOutputLexeme": "2",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "5/2",
+          "physicalExact": "5/2",
+          "observedOutputLexeme": "2.5",
+          "prekeyIEEEOutputLexeme": "2.5",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "3",
+          "physicalExact": "3",
+          "observedOutputLexeme": "3",
+          "prekeyIEEEOutputLexeme": "3",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "7/2",
+          "physicalExact": "7/2",
+          "observedOutputLexeme": "3.5",
+          "prekeyIEEEOutputLexeme": "3.5",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "4",
+          "physicalExact": "4",
+          "observedOutputLexeme": "4",
+          "prekeyIEEEOutputLexeme": "4",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "9/2",
+          "physicalExact": "9/2",
+          "observedOutputLexeme": "4.5",
+          "prekeyIEEEOutputLexeme": "4.5",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "5",
+          "physicalExact": "5",
+          "observedOutputLexeme": "5",
+          "prekeyIEEEOutputLexeme": "5",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        }
+      ],
+      "manualPoints": [
+        "3/2",
+        "4"
+      ],
+      "manualPhysicalExactAnswers": [
+        "3/2",
+        "4"
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Lunghezza del bordo mobile» su 1,5 cm. Quale valore ottieni per «Forza sul bordo»?",
+          "value": "1.5",
+          "unit": "mN",
+          "worked": "F = 2γℓ, con γ = 0,05 N/m. 1,5 = 1,5 mN."
+        },
+        {
+          "prompt": "Una pellicola di sapone ha due facce e la tensione su ciascuna è 0,05 N/m. Il bordo mobile è lungo 4 cm. Quale forza in mN lo mantiene in equilibrio?",
+          "value": 4,
+          "unit": "mN",
+          "worked": "F = 2γℓ, con γ = 0,05 N/m. 4 = 4 mN."
+        }
+      ],
+      "literalDraftPromptVerified": true,
+      "unit": "mN",
+      "clock": null
+    },
+    {
+      "id": "SIM-C2-L010-02",
+      "variant": "published",
+      "states": [
+        {
+          "x": "1/2",
+          "physicalExact": "6",
+          "observedOutputLexeme": "6",
+          "prekeyIEEEOutputLexeme": "6",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "1",
+          "physicalExact": "3",
+          "observedOutputLexeme": "3",
+          "prekeyIEEEOutputLexeme": "3",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "3/2",
+          "physicalExact": "2",
+          "observedOutputLexeme": "2",
+          "prekeyIEEEOutputLexeme": "2",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "2",
+          "physicalExact": "3/2",
+          "observedOutputLexeme": "1.5",
+          "prekeyIEEEOutputLexeme": "1.5",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "5/2",
+          "physicalExact": "6/5",
+          "observedOutputLexeme": "1.2",
+          "prekeyIEEEOutputLexeme": "1.2",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "3",
+          "physicalExact": "1",
+          "observedOutputLexeme": "1",
+          "prekeyIEEEOutputLexeme": "1",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "7/2",
+          "physicalExact": "6/7",
+          "observedOutputLexeme": "0.8571428571428571",
+          "prekeyIEEEOutputLexeme": "0.8571428571428571",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "4",
+          "physicalExact": "3/4",
+          "observedOutputLexeme": "0.75",
+          "prekeyIEEEOutputLexeme": "0.75",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        }
+      ],
+      "manualPoints": [
+        "3",
+        "5/2"
+      ],
+      "manualPhysicalExactAnswers": [
+        "1",
+        "6/5"
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Raggio della goccia» su 3 mm. Quale valore ottieni per «Rapporto superficie/volume»?",
+          "value": 1,
+          "unit": "mm⁻¹",
+          "worked": "A/V = 4πr²/(4πr³/3) = 3/r. 3 / 3 = 1 mm⁻¹."
+        },
+        {
+          "prompt": "Suddividendo un liquido ottieni gocce sferiche di raggio 2,5 mm. Quanta area espongono per unità di volume, in mm⁻¹?",
+          "value": "1.2",
+          "unit": "mm⁻¹",
+          "worked": "A/V = 4πr²/(4πr³/3) = 3/r. 3 / 2,5 = 1,2 mm⁻¹."
+        }
+      ],
+      "literalDraftPromptVerified": false,
+      "unit": "mm⁻¹",
+      "clock": null
+    },
+    {
+      "id": "SIM-C2-L010-02",
+      "variant": "draft",
+      "states": [
+        {
+          "x": "1/2",
+          "physicalExact": "6",
+          "observedOutputLexeme": "6",
+          "prekeyIEEEOutputLexeme": "6",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "1",
+          "physicalExact": "3",
+          "observedOutputLexeme": "3",
+          "prekeyIEEEOutputLexeme": "3",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "3/2",
+          "physicalExact": "2",
+          "observedOutputLexeme": "2",
+          "prekeyIEEEOutputLexeme": "2",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "2",
+          "physicalExact": "3/2",
+          "observedOutputLexeme": "1.5",
+          "prekeyIEEEOutputLexeme": "1.5",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "5/2",
+          "physicalExact": "6/5",
+          "observedOutputLexeme": "1.2",
+          "prekeyIEEEOutputLexeme": "1.2",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "3",
+          "physicalExact": "1",
+          "observedOutputLexeme": "1",
+          "prekeyIEEEOutputLexeme": "1",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "7/2",
+          "physicalExact": "6/7",
+          "observedOutputLexeme": "0.8571428571428571",
+          "prekeyIEEEOutputLexeme": "0.8571428571428571",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "4",
+          "physicalExact": "3/4",
+          "observedOutputLexeme": "0.75",
+          "prekeyIEEEOutputLexeme": "0.75",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        }
+      ],
+      "manualPoints": [
+        "1/2",
+        "3"
+      ],
+      "manualPhysicalExactAnswers": [
+        "6",
+        "1"
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Raggio della goccia» su 0,5 mm. Quale valore ottieni per «Rapporto superficie/volume»?",
+          "value": 6,
+          "unit": "mm⁻¹",
+          "worked": "A/V = 4πr²/(4πr³/3) = 3/r. 3 / 0,5 = 6 mm⁻¹."
+        },
+        {
+          "prompt": "Per gocce sferiche di raggio 3 mm, quale superficie esposta per unità di volume ottieni in mm⁻¹?",
+          "value": 1,
+          "unit": "mm⁻¹",
+          "worked": "A/V = 4πr²/(4πr³/3) = 3/r. 3 / 3 = 1 mm⁻¹."
+        }
+      ],
+      "literalDraftPromptVerified": true,
+      "unit": "mm⁻¹",
+      "clock": null
+    },
+    {
+      "id": "SIM-C2-L010-03",
+      "variant": "published",
+      "states": [
+        {
+          "x": "0",
+          "physicalExact": "10",
+          "observedOutputLexeme": "10",
+          "prekeyIEEEOutputLexeme": "10",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "5",
+          "physicalExact": "10*cos(pi/36)",
+          "observedOutputLexeme": "9.961946980917455",
+          "prekeyIEEEOutputLexeme": "9.961946980917455",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "10",
+          "physicalExact": "10*cos(pi/18)",
+          "observedOutputLexeme": "9.84807753012208",
+          "prekeyIEEEOutputLexeme": "9.84807753012208",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "15",
+          "physicalExact": "5*sqrt(2)/2 + 5*sqrt(6)/2",
+          "observedOutputLexeme": "9.659258262890683",
+          "prekeyIEEEOutputLexeme": "9.659258262890683",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "20",
+          "physicalExact": "10*cos(pi/9)",
+          "observedOutputLexeme": "9.396926207859085",
+          "prekeyIEEEOutputLexeme": "9.396926207859085",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "25",
+          "physicalExact": "10*cos(5*pi/36)",
+          "observedOutputLexeme": "9.063077870366499",
+          "prekeyIEEEOutputLexeme": "9.063077870366499",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "30",
+          "physicalExact": "5*sqrt(3)",
+          "observedOutputLexeme": "8.660254037844387",
+          "prekeyIEEEOutputLexeme": "8.660254037844387",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "35",
+          "physicalExact": "10*cos(7*pi/36)",
+          "observedOutputLexeme": "8.191520442889917",
+          "prekeyIEEEOutputLexeme": "8.191520442889917",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "40",
+          "physicalExact": "10*cos(2*pi/9)",
+          "observedOutputLexeme": "7.66044443118978",
+          "prekeyIEEEOutputLexeme": "7.66044443118978",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "45",
+          "physicalExact": "5*sqrt(2)",
+          "observedOutputLexeme": "7.0710678118654755",
+          "prekeyIEEEOutputLexeme": "7.0710678118654755",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "50",
+          "physicalExact": "10*cos(5*pi/18)",
+          "observedOutputLexeme": "6.427876096865393",
+          "prekeyIEEEOutputLexeme": "6.427876096865393",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "55",
+          "physicalExact": "10*cos(11*pi/36)",
+          "observedOutputLexeme": "5.7357643635104605",
+          "prekeyIEEEOutputLexeme": "5.7357643635104605",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "60",
+          "physicalExact": "5",
+          "observedOutputLexeme": "5.000000000000001",
+          "prekeyIEEEOutputLexeme": "5.000000000000001",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "65",
+          "physicalExact": "10*cos(13*pi/36)",
+          "observedOutputLexeme": "4.2261826174069945",
+          "prekeyIEEEOutputLexeme": "4.2261826174069945",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "70",
+          "physicalExact": "10*sin(pi/9)",
+          "observedOutputLexeme": "3.4202014332566884",
+          "prekeyIEEEOutputLexeme": "3.4202014332566884",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "75",
+          "physicalExact": "-5*sqrt(2)/2 + 5*sqrt(6)/2",
+          "observedOutputLexeme": "2.5881904510252074",
+          "prekeyIEEEOutputLexeme": "2.5881904510252074",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "80",
+          "physicalExact": "10*sin(pi/18)",
+          "observedOutputLexeme": "1.7364817766693041",
+          "prekeyIEEEOutputLexeme": "1.7364817766693041",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "85",
+          "physicalExact": "10*sin(pi/36)",
+          "observedOutputLexeme": "0.8715574274765814",
+          "prekeyIEEEOutputLexeme": "0.8715574274765814",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "90",
+          "physicalExact": "0",
+          "observedOutputLexeme": "0",
+          "prekeyIEEEOutputLexeme": "6.123233995736766E-16",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": true
+        },
+        {
+          "x": "95",
+          "physicalExact": "-10*sin(pi/36)",
+          "observedOutputLexeme": "-0.8715574274765824",
+          "prekeyIEEEOutputLexeme": "-0.8715574274765824",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "100",
+          "physicalExact": "-10*sin(pi/18)",
+          "observedOutputLexeme": "-1.736481776669303",
+          "prekeyIEEEOutputLexeme": "-1.736481776669303",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "105",
+          "physicalExact": "-5*sqrt(6)/2 + 5*sqrt(2)/2",
+          "observedOutputLexeme": "-2.5881904510252083",
+          "prekeyIEEEOutputLexeme": "-2.5881904510252083",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "110",
+          "physicalExact": "-10*sin(pi/9)",
+          "observedOutputLexeme": "-3.420201433256687",
+          "prekeyIEEEOutputLexeme": "-3.420201433256687",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "115",
+          "physicalExact": "-10*cos(13*pi/36)",
+          "observedOutputLexeme": "-4.226182617406994",
+          "prekeyIEEEOutputLexeme": "-4.226182617406994",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "120",
+          "physicalExact": "-5",
+          "observedOutputLexeme": "-4.999999999999998",
+          "prekeyIEEEOutputLexeme": "-4.999999999999998",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "125",
+          "physicalExact": "-10*cos(11*pi/36)",
+          "observedOutputLexeme": "-5.735764363510459",
+          "prekeyIEEEOutputLexeme": "-5.735764363510459",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "130",
+          "physicalExact": "-10*cos(5*pi/18)",
+          "observedOutputLexeme": "-6.427876096865393",
+          "prekeyIEEEOutputLexeme": "-6.427876096865393",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "135",
+          "physicalExact": "-5*sqrt(2)",
+          "observedOutputLexeme": "-7.071067811865475",
+          "prekeyIEEEOutputLexeme": "-7.071067811865475",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "140",
+          "physicalExact": "-10*cos(2*pi/9)",
+          "observedOutputLexeme": "-7.660444431189779",
+          "prekeyIEEEOutputLexeme": "-7.660444431189779",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "145",
+          "physicalExact": "-10*cos(7*pi/36)",
+          "observedOutputLexeme": "-8.191520442889916",
+          "prekeyIEEEOutputLexeme": "-8.191520442889916",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "150",
+          "physicalExact": "-5*sqrt(3)",
+          "observedOutputLexeme": "-8.660254037844387",
+          "prekeyIEEEOutputLexeme": "-8.660254037844387",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "155",
+          "physicalExact": "-10*cos(5*pi/36)",
+          "observedOutputLexeme": "-9.063077870366499",
+          "prekeyIEEEOutputLexeme": "-9.063077870366499",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "160",
+          "physicalExact": "-10*cos(pi/9)",
+          "observedOutputLexeme": "-9.396926207859083",
+          "prekeyIEEEOutputLexeme": "-9.396926207859083",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "165",
+          "physicalExact": "-5*sqrt(6)/2 - 5*sqrt(2)/2",
+          "observedOutputLexeme": "-9.659258262890681",
+          "prekeyIEEEOutputLexeme": "-9.659258262890681",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "170",
+          "physicalExact": "-10*cos(pi/18)",
+          "observedOutputLexeme": "-9.84807753012208",
+          "prekeyIEEEOutputLexeme": "-9.84807753012208",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "175",
+          "physicalExact": "-10*cos(pi/36)",
+          "observedOutputLexeme": "-9.961946980917455",
+          "prekeyIEEEOutputLexeme": "-9.961946980917455",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "180",
+          "physicalExact": "-10",
+          "observedOutputLexeme": "-10",
+          "prekeyIEEEOutputLexeme": "-10",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        }
+      ],
+      "manualPoints": [
+        "120",
+        "90"
+      ],
+      "manualPhysicalExactAnswers": [
+        "-5",
+        "0"
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Angolo di contatto» su 120 °. Quale valore ottieni per «Salita con segno»?",
+          "value": "-4.999999999999998",
+          "unit": "mm",
+          "worked": "h = 2γ cos θ/(ρgr); qui h = 10 cos θ mm. 10 × cos(120°) ≈ -5 mm."
+        },
+        {
+          "prompt": "In un capillare una salita massima di 10 mm corrisponde ad angolo nullo. Se l’angolo di contatto diventa 90 °, quale dislivello con segno devi cercare?",
+          "value": 0,
+          "unit": "mm",
+          "worked": "h = 2γ cos θ/(ρgr); qui h = 10 cos θ mm. 10 × cos(90°) = 0 mm."
+        }
+      ],
+      "literalDraftPromptVerified": false,
+      "unit": "mm",
+      "clock": null
+    },
+    {
+      "id": "SIM-C2-L010-03",
+      "variant": "draft",
+      "states": [
+        {
+          "x": "0",
+          "physicalExact": "10",
+          "observedOutputLexeme": "10",
+          "prekeyIEEEOutputLexeme": "10",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "5",
+          "physicalExact": "10*cos(pi/36)",
+          "observedOutputLexeme": "9.961946980917455",
+          "prekeyIEEEOutputLexeme": "9.961946980917455",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "10",
+          "physicalExact": "10*cos(pi/18)",
+          "observedOutputLexeme": "9.84807753012208",
+          "prekeyIEEEOutputLexeme": "9.84807753012208",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "15",
+          "physicalExact": "5*sqrt(2)/2 + 5*sqrt(6)/2",
+          "observedOutputLexeme": "9.659258262890683",
+          "prekeyIEEEOutputLexeme": "9.659258262890683",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "20",
+          "physicalExact": "10*cos(pi/9)",
+          "observedOutputLexeme": "9.396926207859085",
+          "prekeyIEEEOutputLexeme": "9.396926207859085",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "25",
+          "physicalExact": "10*cos(5*pi/36)",
+          "observedOutputLexeme": "9.063077870366499",
+          "prekeyIEEEOutputLexeme": "9.063077870366499",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "30",
+          "physicalExact": "5*sqrt(3)",
+          "observedOutputLexeme": "8.660254037844387",
+          "prekeyIEEEOutputLexeme": "8.660254037844387",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "35",
+          "physicalExact": "10*cos(7*pi/36)",
+          "observedOutputLexeme": "8.191520442889917",
+          "prekeyIEEEOutputLexeme": "8.191520442889917",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "40",
+          "physicalExact": "10*cos(2*pi/9)",
+          "observedOutputLexeme": "7.66044443118978",
+          "prekeyIEEEOutputLexeme": "7.66044443118978",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "45",
+          "physicalExact": "5*sqrt(2)",
+          "observedOutputLexeme": "7.0710678118654755",
+          "prekeyIEEEOutputLexeme": "7.0710678118654755",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "50",
+          "physicalExact": "10*cos(5*pi/18)",
+          "observedOutputLexeme": "6.427876096865393",
+          "prekeyIEEEOutputLexeme": "6.427876096865393",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "55",
+          "physicalExact": "10*cos(11*pi/36)",
+          "observedOutputLexeme": "5.7357643635104605",
+          "prekeyIEEEOutputLexeme": "5.7357643635104605",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "60",
+          "physicalExact": "5",
+          "observedOutputLexeme": "5.000000000000001",
+          "prekeyIEEEOutputLexeme": "5.000000000000001",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "65",
+          "physicalExact": "10*cos(13*pi/36)",
+          "observedOutputLexeme": "4.2261826174069945",
+          "prekeyIEEEOutputLexeme": "4.2261826174069945",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "70",
+          "physicalExact": "10*sin(pi/9)",
+          "observedOutputLexeme": "3.4202014332566884",
+          "prekeyIEEEOutputLexeme": "3.4202014332566884",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "75",
+          "physicalExact": "-5*sqrt(2)/2 + 5*sqrt(6)/2",
+          "observedOutputLexeme": "2.5881904510252074",
+          "prekeyIEEEOutputLexeme": "2.5881904510252074",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "80",
+          "physicalExact": "10*sin(pi/18)",
+          "observedOutputLexeme": "1.7364817766693041",
+          "prekeyIEEEOutputLexeme": "1.7364817766693041",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "85",
+          "physicalExact": "10*sin(pi/36)",
+          "observedOutputLexeme": "0.8715574274765814",
+          "prekeyIEEEOutputLexeme": "0.8715574274765814",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "90",
+          "physicalExact": "0",
+          "observedOutputLexeme": "0",
+          "prekeyIEEEOutputLexeme": "6.123233995736766E-16",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": true
+        },
+        {
+          "x": "95",
+          "physicalExact": "-10*sin(pi/36)",
+          "observedOutputLexeme": "-0.8715574274765824",
+          "prekeyIEEEOutputLexeme": "-0.8715574274765824",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "100",
+          "physicalExact": "-10*sin(pi/18)",
+          "observedOutputLexeme": "-1.736481776669303",
+          "prekeyIEEEOutputLexeme": "-1.736481776669303",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "105",
+          "physicalExact": "-5*sqrt(6)/2 + 5*sqrt(2)/2",
+          "observedOutputLexeme": "-2.5881904510252083",
+          "prekeyIEEEOutputLexeme": "-2.5881904510252083",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "110",
+          "physicalExact": "-10*sin(pi/9)",
+          "observedOutputLexeme": "-3.420201433256687",
+          "prekeyIEEEOutputLexeme": "-3.420201433256687",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "115",
+          "physicalExact": "-10*cos(13*pi/36)",
+          "observedOutputLexeme": "-4.226182617406994",
+          "prekeyIEEEOutputLexeme": "-4.226182617406994",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "120",
+          "physicalExact": "-5",
+          "observedOutputLexeme": "-4.999999999999998",
+          "prekeyIEEEOutputLexeme": "-4.999999999999998",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "125",
+          "physicalExact": "-10*cos(11*pi/36)",
+          "observedOutputLexeme": "-5.735764363510459",
+          "prekeyIEEEOutputLexeme": "-5.735764363510459",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "130",
+          "physicalExact": "-10*cos(5*pi/18)",
+          "observedOutputLexeme": "-6.427876096865393",
+          "prekeyIEEEOutputLexeme": "-6.427876096865393",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "135",
+          "physicalExact": "-5*sqrt(2)",
+          "observedOutputLexeme": "-7.071067811865475",
+          "prekeyIEEEOutputLexeme": "-7.071067811865475",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "140",
+          "physicalExact": "-10*cos(2*pi/9)",
+          "observedOutputLexeme": "-7.660444431189779",
+          "prekeyIEEEOutputLexeme": "-7.660444431189779",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "145",
+          "physicalExact": "-10*cos(7*pi/36)",
+          "observedOutputLexeme": "-8.191520442889916",
+          "prekeyIEEEOutputLexeme": "-8.191520442889916",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "150",
+          "physicalExact": "-5*sqrt(3)",
+          "observedOutputLexeme": "-8.660254037844387",
+          "prekeyIEEEOutputLexeme": "-8.660254037844387",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "155",
+          "physicalExact": "-10*cos(5*pi/36)",
+          "observedOutputLexeme": "-9.063077870366499",
+          "prekeyIEEEOutputLexeme": "-9.063077870366499",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "160",
+          "physicalExact": "-10*cos(pi/9)",
+          "observedOutputLexeme": "-9.396926207859083",
+          "prekeyIEEEOutputLexeme": "-9.396926207859083",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "165",
+          "physicalExact": "-5*sqrt(6)/2 - 5*sqrt(2)/2",
+          "observedOutputLexeme": "-9.659258262890681",
+          "prekeyIEEEOutputLexeme": "-9.659258262890681",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "170",
+          "physicalExact": "-10*cos(pi/18)",
+          "observedOutputLexeme": "-9.84807753012208",
+          "prekeyIEEEOutputLexeme": "-9.84807753012208",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "175",
+          "physicalExact": "-10*cos(pi/36)",
+          "observedOutputLexeme": "-9.961946980917455",
+          "prekeyIEEEOutputLexeme": "-9.961946980917455",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "180",
+          "physicalExact": "-10",
+          "observedOutputLexeme": "-10",
+          "prekeyIEEEOutputLexeme": "-10",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        }
+      ],
+      "manualPoints": [
+        "60",
+        "120"
+      ],
+      "manualPhysicalExactAnswers": [
+        "5",
+        "-5"
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Angolo di contatto» su 60 °. Quale valore ottieni per «Salita con segno»?",
+          "value": "5.000000000000001",
+          "unit": "mm",
+          "worked": "h = 2γ cos θ/(ρgr); qui h = 10 cos θ mm. 10 × cos(60°) ≈ 5 mm."
+        },
+        {
+          "prompt": "Al contatto nullo il capillare ha un dislivello di +10 mm. Se l’angolo misurato nel liquido vale 120 °, quale dislivello con segno ottieni?",
+          "value": "-4.999999999999998",
+          "unit": "mm",
+          "worked": "h = 2γ cos θ/(ρgr); qui h = 10 cos θ mm. 10 × cos(120°) ≈ -5 mm."
+        }
+      ],
+      "literalDraftPromptVerified": true,
+      "unit": "mm",
+      "clock": null
+    },
+    {
+      "id": "SIM-C2-L010-04",
+      "variant": "published",
+      "states": [
+        {
+          "x": "0",
+          "physicalExact": "0",
+          "observedOutputLexeme": "0",
+          "prekeyIEEEOutputLexeme": "0",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "1/4",
+          "physicalExact": "25",
+          "observedOutputLexeme": "25",
+          "prekeyIEEEOutputLexeme": "25",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "1/2",
+          "physicalExact": "50",
+          "observedOutputLexeme": "50",
+          "prekeyIEEEOutputLexeme": "50",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "3/4",
+          "physicalExact": "75",
+          "observedOutputLexeme": "75",
+          "prekeyIEEEOutputLexeme": "75",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "1",
+          "physicalExact": "100",
+          "observedOutputLexeme": "100",
+          "prekeyIEEEOutputLexeme": "100",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "5/4",
+          "physicalExact": "125",
+          "observedOutputLexeme": "125",
+          "prekeyIEEEOutputLexeme": "125",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "3/2",
+          "physicalExact": "150",
+          "observedOutputLexeme": "150",
+          "prekeyIEEEOutputLexeme": "150",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "7/4",
+          "physicalExact": "175",
+          "observedOutputLexeme": "175",
+          "prekeyIEEEOutputLexeme": "175",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "2",
+          "physicalExact": "200",
+          "observedOutputLexeme": "200",
+          "prekeyIEEEOutputLexeme": "200",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        }
+      ],
+      "manualPoints": [
+        "1",
+        "5/4"
+      ],
+      "manualPhysicalExactAnswers": [
+        "100",
+        "125"
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Curvatura 1/r» su 1 mm⁻¹. Quale valore ottieni per «Eccesso di pressione»?",
+          "value": 100,
+          "unit": "Pa",
+          "worked": "Δp = 2γ/r = 100 × (1/r in mm⁻¹). 100 × 1 = 100 Pa."
+        },
+        {
+          "prompt": "Per una goccia con una sola interfaccia e γ = 0,05 N/m, la curvatura 1/r vale 1,25 mm⁻¹. Di quanti pascal la pressione interna supera quella esterna?",
+          "value": 125,
+          "unit": "Pa",
+          "worked": "Δp = 2γ/r = 100 × (1/r in mm⁻¹). 100 × 1,25 = 125 Pa."
+        }
+      ],
+      "literalDraftPromptVerified": false,
+      "unit": "Pa",
+      "clock": null
+    },
+    {
+      "id": "SIM-C2-L010-04",
+      "variant": "draft",
+      "states": [
+        {
+          "x": "0",
+          "physicalExact": "0",
+          "observedOutputLexeme": "0",
+          "prekeyIEEEOutputLexeme": "0",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "1/4",
+          "physicalExact": "25",
+          "observedOutputLexeme": "25",
+          "prekeyIEEEOutputLexeme": "25",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "1/2",
+          "physicalExact": "50",
+          "observedOutputLexeme": "50",
+          "prekeyIEEEOutputLexeme": "50",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "3/4",
+          "physicalExact": "75",
+          "observedOutputLexeme": "75",
+          "prekeyIEEEOutputLexeme": "75",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "1",
+          "physicalExact": "100",
+          "observedOutputLexeme": "100",
+          "prekeyIEEEOutputLexeme": "100",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "5/4",
+          "physicalExact": "125",
+          "observedOutputLexeme": "125",
+          "prekeyIEEEOutputLexeme": "125",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "3/2",
+          "physicalExact": "150",
+          "observedOutputLexeme": "150",
+          "prekeyIEEEOutputLexeme": "150",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "7/4",
+          "physicalExact": "175",
+          "observedOutputLexeme": "175",
+          "prekeyIEEEOutputLexeme": "175",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "2",
+          "physicalExact": "200",
+          "observedOutputLexeme": "200",
+          "prekeyIEEEOutputLexeme": "200",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        }
+      ],
+      "manualPoints": [
+        "0",
+        "3/2"
+      ],
+      "manualPhysicalExactAnswers": [
+        "0",
+        "150"
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Curvatura 1/r» su 0 mm⁻¹. Quale valore ottieni per «Eccesso di pressione»?",
+          "value": 0,
+          "unit": "Pa",
+          "worked": "Δp = 2γ/r = 2γκ, con κ = 1/r e γ = 0,05 N/m. 100 × 0 = 0 Pa."
+        },
+        {
+          "prompt": "Una goccia sferica ha una sola interfaccia, tensione 0,05 N/m e curvatura 1/r uguale a 1,5 mm⁻¹. Qual è il salto di pressione dall’esterno all’interno?",
+          "value": 150,
+          "unit": "Pa",
+          "worked": "Δp = 2γ/r = 2γκ, con κ = 1/r e γ = 0,05 N/m. 100 × 1,5 = 150 Pa."
+        }
+      ],
+      "literalDraftPromptVerified": true,
+      "unit": "Pa",
+      "clock": null
+    },
+    {
+      "id": "SIM-C2-L010-05",
+      "variant": "published",
+      "states": [
+        {
+          "x": "1",
+          "physicalExact": "200",
+          "observedOutputLexeme": "200",
+          "prekeyIEEEOutputLexeme": "200",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "2",
+          "physicalExact": "100",
+          "observedOutputLexeme": "100",
+          "prekeyIEEEOutputLexeme": "100",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "3",
+          "physicalExact": "200/3",
+          "observedOutputLexeme": "66.66666666666667",
+          "prekeyIEEEOutputLexeme": "66.66666666666667",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "4",
+          "physicalExact": "50",
+          "observedOutputLexeme": "50",
+          "prekeyIEEEOutputLexeme": "50",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "5",
+          "physicalExact": "40",
+          "observedOutputLexeme": "40",
+          "prekeyIEEEOutputLexeme": "40",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "6",
+          "physicalExact": "100/3",
+          "observedOutputLexeme": "33.333333333333336",
+          "prekeyIEEEOutputLexeme": "33.333333333333336",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "7",
+          "physicalExact": "200/7",
+          "observedOutputLexeme": "28.571428571428573",
+          "prekeyIEEEOutputLexeme": "28.571428571428573",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "8",
+          "physicalExact": "25",
+          "observedOutputLexeme": "25",
+          "prekeyIEEEOutputLexeme": "25",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        }
+      ],
+      "manualPoints": [
+        "5",
+        "6"
+      ],
+      "manualPhysicalExactAnswers": [
+        "40",
+        "100/3"
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Raggio della bolla di sapone» su 5 mm. Quale valore ottieni per «Pressione interna in eccesso»?",
+          "value": 40,
+          "unit": "Pa",
+          "worked": "Δp = 4γ/r; γ = 0,05 N/m. 200 / 5 = 40 Pa."
+        },
+        {
+          "prompt": "Una bolla di sapone ha due interfacce e raggio 6 mm. Con γ = 0,05 N/m, quale sovrapressione interna serve?",
+          "value": "33.333333333333336",
+          "unit": "Pa",
+          "worked": "Δp = 4γ/r; γ = 0,05 N/m. 200 / 6 ≈ 33,33 Pa."
+        }
+      ],
+      "literalDraftPromptVerified": false,
+      "unit": "Pa",
+      "clock": null
+    },
+    {
+      "id": "SIM-C2-L010-05",
+      "variant": "draft",
+      "states": [
+        {
+          "x": "1",
+          "physicalExact": "200",
+          "observedOutputLexeme": "200",
+          "prekeyIEEEOutputLexeme": "200",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "2",
+          "physicalExact": "100",
+          "observedOutputLexeme": "100",
+          "prekeyIEEEOutputLexeme": "100",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "3",
+          "physicalExact": "200/3",
+          "observedOutputLexeme": "66.66666666666667",
+          "prekeyIEEEOutputLexeme": "66.66666666666667",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "4",
+          "physicalExact": "50",
+          "observedOutputLexeme": "50",
+          "prekeyIEEEOutputLexeme": "50",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "5",
+          "physicalExact": "40",
+          "observedOutputLexeme": "40",
+          "prekeyIEEEOutputLexeme": "40",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "6",
+          "physicalExact": "100/3",
+          "observedOutputLexeme": "33.333333333333336",
+          "prekeyIEEEOutputLexeme": "33.333333333333336",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "7",
+          "physicalExact": "200/7",
+          "observedOutputLexeme": "28.571428571428573",
+          "prekeyIEEEOutputLexeme": "28.571428571428573",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        },
+        {
+          "x": "8",
+          "physicalExact": "25",
+          "observedOutputLexeme": "25",
+          "prekeyIEEEOutputLexeme": "25",
+          "strictEqualityToPhysicalZeroOrUnnormalizedPrekey": true,
+          "physicalZeroCase": false
+        }
+      ],
+      "manualPoints": [
+        "2",
+        "8"
+      ],
+      "manualPhysicalExactAnswers": [
+        "100",
+        "25"
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Raggio della bolla di sapone» su 2 mm. Quale valore ottieni per «Pressione interna in eccesso»?",
+          "value": 100,
+          "unit": "Pa",
+          "worked": "Δp = 4γ/r; γ = 0,05 N/m. 200 / 2 = 100 Pa."
+        },
+        {
+          "prompt": "Una bolla di sapone sottile ha raggio 8 mm e tensione 0,05 N/m su ciascuna faccia. Quale pressione interna in eccesso prevedi?",
+          "value": 25,
+          "unit": "Pa",
+          "worked": "Δp = 4γ/r; γ = 0,05 N/m. 200 / 8 = 25 Pa."
+        }
+      ],
+      "literalDraftPromptVerified": true,
+      "unit": "Pa",
+      "clock": null
+    }
+  ],
+  "states": 144,
+  "actualDraftTasks": 10,
+  "literalServedDraftPromptsMatched": 10,
+  "comparison": "All outputs strictly equal isolated pre-key Node reference except angle90, where they strictly equal independently derived physical zero. Existing consumer stabile() normalizes tiny values; frozen raw IEEE cos90 residual retained separately. No new epsilon.",
+  "editionSceneParity": "States/params/spec/clock strictly equal across original and draft, asserted in actual collector.",
+  "Chrome": "NOT_RUN",
+  "DBImport": "NOT_RUN",
+  "activityCredit": 0
+}

@@ -1,0 +1,6 @@
+{
+  "observedExitCode": 1,
+  "cause": "Isolated pre-key IEEE cos90 is6.123233995736766e-16, while unchanged consumer stabile() maps it to physical zero at90.",
+  "fix": "Compare only exact90 to independently derived physical zero, all other grid outputs remain strict pre-key IEEE identity. Frozen models unchanged; no epsilon added.",
+  "consumerStabileSource": "const stabile = (x) => (Math.abs(x) < 1e-11 ? 0 : x);"
+}

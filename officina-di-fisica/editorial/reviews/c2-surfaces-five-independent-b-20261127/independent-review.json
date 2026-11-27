@@ -1,0 +1,417 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "INDEPENDENT_EXPERIMENT_DRAFT_CPU_REVIEW",
+  "author": "root",
+  "independentReviewer": "author_vectors_b",
+  "recusalAudit": "Reviewer did not author these drafts, surface/capillary renderer or model. Own C6 overlay and unrelated C4 annotations excluded. No Root/candidate/registry/runtime edits.",
+  "candidateCommit": "6d814834668d6370094800f2d72ed2fe768903c9",
+  "consumerCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "runtimeSha256": "53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a",
+  "packageRawSha256": "833c41b1b3910e8f6585df551276f7615b7cde1697734bce33016fc05e79cd5f",
+  "bindingsRawSha256": "b1bb61a0c38b0c911a1cc4bbb368b8deab160dc857436b34869272b5ccb8cf9a",
+  "primaryFreezeCommit": "4ade641469e164dc74b19c3a0e2efa68dae89d8f",
+  "primarySha256": "6f11e7a4f21aa1c503e015d21f39667814240aaadd713462dd9c3144b94f660e",
+  "prekeyExactModelSha256": "4fc9f33003806eae9998a02b70bd5ef7ebdef11f25dece0570abb95ad178f467",
+  "prekeyIsolatedIEEEModelSha256": "a9f065eb98df2c1483e0fcef73703ca07d4685577ad4bacef151799675fbd1dd",
+  "prekeyRuns": {
+    "runs": [
+      {
+        "stage": "pre-key-model",
+        "observedExitCode": 0,
+        "elapsedSeconds": 0.9791698750004798,
+        "signal": null
+      },
+      {
+        "stage": "pre-key-ieee",
+        "observedExitCode": 0,
+        "elapsedSeconds": 0.1936013329996058,
+        "signal": null
+      }
+    ],
+    "Chrome": "NOT_RUN",
+    "consumerImports": []
+  },
+  "sourceOnlyDisclosure": "General historical C2 familiarity and course modules loaded for networks without requesting or inspecting any L010 outputs/functions; no current surface DRAFT keys/blocks.",
+  "lesson": "C2-L010 read completely; distinguish film two faces, sphere two curvatures, thin bubble two interfaces, capillary contact angle through liquid and equilibrium assumptions.",
+  "records": [
+    {
+      "id": "SIM-C2-L010-01",
+      "candidateSha256": "033abd3c17e8b9be57894610ddf415499b09d3b67c4582585fbba6b15759dda3",
+      "sourceSha256": "5a5c1b69ba3e8cae507782979d941352624f264e1d3738e3fba92f1564fde4b1",
+      "manualArithmetic": "PASS_EXACT_WITH_GIVEN_DATA",
+      "pedagogicalReview": "PASS_DISTINCT_COMPLETE_RECORD_READING",
+      "comments": "Two film interfaces sum to2gamma*l; cm→m and N→mN cancel in supplied coefficient.1.5/4cm give1.5/4mN. Inverse4mN→4cm exact.",
+      "actualDraftQuestions": [
+        {
+          "prompt": "Imposta «Lunghezza del bordo mobile» su 1,5 cm. Quale valore ottieni per «Forza sul bordo»?",
+          "value": "1.5",
+          "unit": "mN",
+          "worked": "F = 2γℓ, con γ = 0,05 N/m. 1,5 = 1,5 mN."
+        },
+        {
+          "prompt": "Una pellicola di sapone ha due facce e la tensione su ciascuna è 0,05 N/m. Il bordo mobile è lungo 4 cm. Quale forza in mN lo mantiene in equilibrio?",
+          "value": 4,
+          "unit": "mN",
+          "worked": "F = 2γℓ, con γ = 0,05 N/m. 4 = 4 mN."
+        }
+      ],
+      "physicalExactAnswers": [
+        "3/2",
+        "4"
+      ],
+      "modelVerification": "Both editions, all legal inputs; strict isolated pre-key IEEE equality except exact90 physical zero, with existing stable-zero consumer normalization separately preserved.",
+      "visualReview": "NOT_RUN",
+      "finding": null
+    },
+    {
+      "id": "SIM-C2-L010-02",
+      "candidateSha256": "73a223e693c454ddbf50088001fafc193969b2a8eefd066c5fed2c07edba3724",
+      "sourceSha256": "3448a2a8c4d6a9469e59b8042145f004f869bcbf11591c2fdc50a67c2db39a8f",
+      "manualArithmetic": "PASS_EXACT_WITH_GIVEN_DATA",
+      "pedagogicalReview": "PASS_DISTINCT_COMPLETE_RECORD_READING",
+      "comments": "Sphere area/volume3/r, reciprocal length.0.5/3mm give6/1mm^-1; subdivision at fixed total volume correctly increases exposed area.",
+      "actualDraftQuestions": [
+        {
+          "prompt": "Imposta «Raggio della goccia» su 0,5 mm. Quale valore ottieni per «Rapporto superficie/volume»?",
+          "value": 6,
+          "unit": "mm⁻¹",
+          "worked": "A/V = 4πr²/(4πr³/3) = 3/r. 3 / 0,5 = 6 mm⁻¹."
+        },
+        {
+          "prompt": "Per gocce sferiche di raggio 3 mm, quale superficie esposta per unità di volume ottieni in mm⁻¹?",
+          "value": 1,
+          "unit": "mm⁻¹",
+          "worked": "A/V = 4πr²/(4πr³/3) = 3/r. 3 / 3 = 1 mm⁻¹."
+        }
+      ],
+      "physicalExactAnswers": [
+        "6",
+        "1"
+      ],
+      "modelVerification": "Both editions, all legal inputs; strict isolated pre-key IEEE equality except exact90 physical zero, with existing stable-zero consumer normalization separately preserved.",
+      "visualReview": "NOT_RUN",
+      "finding": null
+    },
+    {
+      "id": "SIM-C2-L010-03",
+      "candidateSha256": "8b161f4a89465ce09089241e43556c4fb93608002cc4135fdb066c4b2f2c5ecc",
+      "sourceSha256": "0202092c21750466a79f5442db69e255d26063b2b7cd1d28cf4b4fd590a1e65c",
+      "manualArithmetic": "PASS_EXACT_WITH_GIVEN_DATA",
+      "pedagogicalReview": "PASS_DISTINCT_COMPLETE_RECORD_READING",
+      "comments": "Equilibrium head coefficient10mm; exact cos60=1/2 and cos120=-1/2 give+5/-5mm. Contact angle through liquid, signed level and inverse120 stated explicitly.",
+      "actualDraftQuestions": [
+        {
+          "prompt": "Imposta «Angolo di contatto» su 60 °. Quale valore ottieni per «Salita con segno»?",
+          "value": "5.000000000000001",
+          "unit": "mm",
+          "worked": "h = 2γ cos θ/(ρgr); qui h = 10 cos θ mm. 10 × cos(60°) ≈ 5 mm."
+        },
+        {
+          "prompt": "Al contatto nullo il capillare ha un dislivello di +10 mm. Se l’angolo misurato nel liquido vale 120 °, quale dislivello con segno ottieni?",
+          "value": "-4.999999999999998",
+          "unit": "mm",
+          "worked": "h = 2γ cos θ/(ρgr); qui h = 10 cos θ mm. 10 × cos(120°) ≈ -5 mm."
+        }
+      ],
+      "physicalExactAnswers": [
+        "5",
+        "-5"
+      ],
+      "modelVerification": "Both editions, all legal inputs; strict isolated pre-key IEEE equality except exact90 physical zero, with existing stable-zero consumer normalization separately preserved.",
+      "visualReview": "NOT_RUN",
+      "finding": null
+    },
+    {
+      "id": "SIM-C2-L010-04",
+      "candidateSha256": "14057b349d07be6dca3a0acf063a1c8d5049266c2134797c2ec8c9ab36e3deb8",
+      "sourceSha256": "5e83d0f1151cff064534575f479b28d8e1a0139e827586f029a316e0fdf9c182",
+      "manualArithmetic": "PASS_EXACT_WITH_GIVEN_DATA",
+      "pedagogicalReview": "PASS_DISTINCT_COMPLETE_RECORD_READING",
+      "comments": "One spherical interface has two principal curvatures, not two film interfaces. Curvature0/1.5mm^-1 gives0/150Pa; planar limit is infinite radius.",
+      "actualDraftQuestions": [
+        {
+          "prompt": "Imposta «Curvatura 1/r» su 0 mm⁻¹. Quale valore ottieni per «Eccesso di pressione»?",
+          "value": 0,
+          "unit": "Pa",
+          "worked": "Δp = 2γ/r = 2γκ, con κ = 1/r e γ = 0,05 N/m. 100 × 0 = 0 Pa."
+        },
+        {
+          "prompt": "Una goccia sferica ha una sola interfaccia, tensione 0,05 N/m e curvatura 1/r uguale a 1,5 mm⁻¹. Qual è il salto di pressione dall’esterno all’interno?",
+          "value": 150,
+          "unit": "Pa",
+          "worked": "Δp = 2γ/r = 2γκ, con κ = 1/r e γ = 0,05 N/m. 100 × 1,5 = 150 Pa."
+        }
+      ],
+      "physicalExactAnswers": [
+        "0",
+        "150"
+      ],
+      "modelVerification": "Both editions, all legal inputs; strict isolated pre-key IEEE equality except exact90 physical zero, with existing stable-zero consumer normalization separately preserved.",
+      "visualReview": "NOT_RUN",
+      "finding": null
+    },
+    {
+      "id": "SIM-C2-L010-05",
+      "candidateSha256": "19796d2cc3746d0731bbb818ae3970fbe015996eafbe15efdb991435e24dcf84",
+      "sourceSha256": "a5564f12b6ced7c4c43d7297762370ead5a970574d3c07a84f7c9943d83da467",
+      "manualArithmetic": "PASS_EXACT_WITH_GIVEN_DATA",
+      "pedagogicalReview": "PASS_DISTINCT_COMPLETE_RECORD_READING",
+      "comments": "Thin soap film has two interfaces and equal gamma:4gamma/r.2/8mm gives100/25Pa; inverse25Pa→8mm; comparison single droplet half-pressure is correct.",
+      "actualDraftQuestions": [
+        {
+          "prompt": "Imposta «Raggio della bolla di sapone» su 2 mm. Quale valore ottieni per «Pressione interna in eccesso»?",
+          "value": 100,
+          "unit": "Pa",
+          "worked": "Δp = 4γ/r; γ = 0,05 N/m. 200 / 2 = 100 Pa."
+        },
+        {
+          "prompt": "Una bolla di sapone sottile ha raggio 8 mm e tensione 0,05 N/m su ciascuna faccia. Quale pressione interna in eccesso prevedi?",
+          "value": 25,
+          "unit": "Pa",
+          "worked": "Δp = 4γ/r; γ = 0,05 N/m. 200 / 8 = 25 Pa."
+        }
+      ],
+      "physicalExactAnswers": [
+        "100",
+        "25"
+      ],
+      "modelVerification": "Both editions, all legal inputs; strict isolated pre-key IEEE equality except exact90 physical zero, with existing stable-zero consumer normalization separately preserved.",
+      "visualReview": "NOT_RUN",
+      "finding": null
+    }
+  ],
+  "completeDraftRecordsRead": 5,
+  "manualDraftTasks": 10,
+  "literalServedDraftPromptsChecked": 10,
+  "actualModelStatesBothEditions": 144,
+  "sourceAndDraftSceneClockParity": "STRICT_IDENTICAL_AT_ALL72_LEGAL_INPUTS; all five clocks null, not a claim about nonexistent clock interactions. No raster/occlusion conclusion.",
+  "representationWitnesses": {
+    "capillary60": "Physical+5mm, actual IEEE5.000000000000001; served worked display≈5mm.",
+    "capillary120": "Physical−5mm, actual IEEE−4.999999999999998; served worked display≈−5mm.",
+    "capillary90": "Physical exact0mm. Frozen isolated unnormalized cos90=6.123233995736766e-16. Existing consumer stabile(abs<1e-11) returns exact0 on both editions. No new epsilon; full comparison negative preserved.",
+    "manualInputs": "5 and−5 accepted by unchanged grader, exact elementary-angle reasoning supported; no inverse trig calculator needed."
+  },
+  "mathGuardAndMutationTests": 18,
+  "actualCpuTerminal": {
+    "stages": [
+      {
+        "stage": "actual-code",
+        "observedExitCode": 0,
+        "signal": null
+      },
+      {
+        "stage": "comparison",
+        "observedExitCode": 0,
+        "signal": null
+      },
+      {
+        "stage": "tests",
+        "observedExitCode": 0,
+        "signal": null
+      },
+      {
+        "stage": "grader",
+        "observedExitCode": 0,
+        "signal": null
+      }
+    ],
+    "elapsedSeconds": 4.008559875000174,
+    "executionEpoch": "FIVE_SURFACES_INDEPENDENT_REVIEW",
+    "Chrome": "NOT_RUN",
+    "activityCredit": 0
+  },
+  "actualUnchangedNumericGrader": {
+    "phase": "UNCHANGED_GRADER_BLOCK_CPU_ONLY",
+    "graderBlockSha256": "47873210c4ae3e5c412a9e9f5ed915534984f6639f1bc5c95017150df830d239",
+    "positiveManualInputs": 10,
+    "negativeInputs": 15,
+    "nonfiniteInputsRejected": 10,
+    "blankInputsRejectedByIsolatedBlock": 5,
+    "blankZeroCoercion": "Unchanged grader explicitly rejects trimmed empty text before numeric comparison, including zero target.",
+    "requiredAttributePresent": true,
+    "existingToleranceWindow": "UNCHANGED_SOURCE_BLOCK;NOT_NEW_REVIEW_TOLERANCE",
+    "results": [
+      {
+        "id": "SIM-C2-L010-01",
+        "positives": [
+          {
+            "input": "1.5",
+            "answer": 1.5,
+            "ok": true
+          },
+          {
+            "input": "4",
+            "answer": 4,
+            "ok": true
+          }
+        ],
+        "negatives": [
+          {
+            "input": "",
+            "answer": 0,
+            "ok": false
+          },
+          {
+            "input": "Infinity",
+            "answer": null,
+            "ok": false
+          },
+          {
+            "input": "NaN",
+            "answer": null,
+            "ok": false
+          }
+        ]
+      },
+      {
+        "id": "SIM-C2-L010-02",
+        "positives": [
+          {
+            "input": "6",
+            "answer": 6,
+            "ok": true
+          },
+          {
+            "input": "1",
+            "answer": 1,
+            "ok": true
+          }
+        ],
+        "negatives": [
+          {
+            "input": "",
+            "answer": 0,
+            "ok": false
+          },
+          {
+            "input": "Infinity",
+            "answer": null,
+            "ok": false
+          },
+          {
+            "input": "NaN",
+            "answer": null,
+            "ok": false
+          }
+        ]
+      },
+      {
+        "id": "SIM-C2-L010-03",
+        "positives": [
+          {
+            "input": "5",
+            "answer": 5,
+            "ok": true
+          },
+          {
+            "input": "-5",
+            "answer": -5,
+            "ok": true
+          }
+        ],
+        "negatives": [
+          {
+            "input": "",
+            "answer": 0,
+            "ok": false
+          },
+          {
+            "input": "Infinity",
+            "answer": null,
+            "ok": false
+          },
+          {
+            "input": "NaN",
+            "answer": null,
+            "ok": false
+          }
+        ]
+      },
+      {
+        "id": "SIM-C2-L010-04",
+        "positives": [
+          {
+            "input": "0",
+            "answer": 0,
+            "ok": true
+          },
+          {
+            "input": "150",
+            "answer": 150,
+            "ok": true
+          }
+        ],
+        "negatives": [
+          {
+            "input": "",
+            "answer": 0,
+            "ok": false
+          },
+          {
+            "input": "Infinity",
+            "answer": null,
+            "ok": false
+          },
+          {
+            "input": "NaN",
+            "answer": null,
+            "ok": false
+          }
+        ]
+      },
+      {
+        "id": "SIM-C2-L010-05",
+        "positives": [
+          {
+            "input": "100",
+            "answer": 100,
+            "ok": true
+          },
+          {
+            "input": "25",
+            "answer": 25,
+            "ok": true
+          }
+        ],
+        "negatives": [
+          {
+            "input": "",
+            "answer": 0,
+            "ok": false
+          },
+          {
+            "input": "Infinity",
+            "answer": null,
+            "ok": false
+          },
+          {
+            "input": "NaN",
+            "answer": null,
+            "ok": false
+          }
+        ]
+      }
+    ]
+  },
+  "negativeCheckerRunsPreserved": [
+    "negative-ieee90-vs-stable-physical-zero/actual-terminal.json",
+    "negative-checker-blank-zero-hypothesis/actual-terminal.json"
+  ],
+  "negativeDiagnoses": "Frozen raw cos90 expectation differs from existing consumer physical-zero normalization; changed only exact90 comparison to independent exact0, not model or epsilon. Reviewer blank-zero hypothesis was false: existing grader explicitly rejects trimmed empty text; strengthened final guard and all15invalid inputs rejected. No candidate defect inferred from either checker negative.",
+  "externalFrozenDependency": {
+    "commit": "b0651fedba093155e51a4308116601a92e76d83a",
+    "path": "officina-di-fisica/tools/corpus_engineering/exact_arithmetic_literals.py",
+    "sha256": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de",
+    "snapshot": "frozen_exact_arithmetic_literals.py",
+    "unchanged": true,
+    "authorship": "Existing canonical Root helper; not new reviewer implementation"
+  },
+  "openFindings": [],
+  "cpuVerdict": "FIVE_DRAFT_TEXT_MATH_MANUAL_READINGS_PASS",
+  "overallAcceptance": "NOT_GRANTED_UI_AND_OWNER_GUEST_GATES_REMAIN_OPEN",
+  "Chrome": "NOT_RUN",
+  "canonicalDBImport": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "activityCredit": 0
+}

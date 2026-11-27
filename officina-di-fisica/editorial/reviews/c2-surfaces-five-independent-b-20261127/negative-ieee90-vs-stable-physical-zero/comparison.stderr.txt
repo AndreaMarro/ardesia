@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-author-b-recovery-20261127/officina-di-fisica/editorial/reviews/c2-surfaces-five-independent-b-20261127/check_actual.py", line 16, in <module>
+    x=lo+i*step;ref=expected[i];want=value(ident,x,True);assert s['x']==ref['x'];assert s['solve']['y']==ref['y'],(ident,x,s['solve']['y'],ref['y']);states.append({'x':str(x),'physicalExact':str(want),'observedOutputLexeme':str(s['solve']['y']),'prekeyIEEEOutputLexeme':str(ref['y']),'strictEquality':True})
+                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('SIM-C2-L010-03', Fraction(90, 1), 0, Decimal('6.123233995736766E-16'))
