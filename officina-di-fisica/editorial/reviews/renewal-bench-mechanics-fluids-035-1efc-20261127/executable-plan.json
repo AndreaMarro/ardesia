@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "035",
+  "candidateCommit": "3abd7dce2c2d837c903c9e17ac1d7fd0aa08dcca",
+  "runtimeSha256": "1efcd26bbb078453b75be5fbd1502b95cf07c0ffabb4112a4e4cf78170ff46aa",
+  "executableSupervisor": "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-1efc-20261127/run-bounded.py",
+  "command": [
+    "/private/tmp/cric-recovery-venv/bin/python",
+    "-B",
+    "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-1efc-20261127/run-bounded.py"
+  ],
+  "chromeState": "FIRST_ATTEMPT_RESOURCE_FAIL_RETRY_WAITING_MORE_MARGIN",
+  "expectedBaseCases": 40,
+  "expectedBoundaryCases": 80,
+  "expectedWholeCases": 120,
+  "separateExpectedClockObservations": 64,
+  "profiles": [
+    {
+      "width": 320,
+      "view": "orbit",
+      "noWebGL": false
+    },
+    {
+      "width": 320,
+      "view": "side",
+      "noWebGL": false
+    },
+    {
+      "width": 320,
+      "view": "top",
+      "noWebGL": false
+    },
+    {
+      "width": 320,
+      "view": "diagram",
+      "noWebGL": true
+    },
+    {
+      "width": 1280,
+      "view": "orbit",
+      "noWebGL": false
+    },
+    {
+      "width": 1280,
+      "view": "side",
+      "noWebGL": false
+    },
+    {
+      "width": 1280,
+      "view": "top",
+      "noWebGL": false
+    },
+    {
+      "width": 1280,
+      "view": "diagram",
+      "noWebGL": true
+    }
+  ],
+  "ids": [
+    "LAB3D-01",
+    "LAB3D-02",
+    "LAB3D-03",
+    "LAB3D-04",
+    "LAB3D-05"
+  ],
+  "sourceTasks": "All source assessments and actual pilot-added assessments wrong/correct input tested, all four guide stages; manual-scope audit per ID separate.",
+  "visualReview": "New original PNG reading required after successful/diagnostic terminal. Existing negative epochs remain frozen.",
+  "uiStatus": "NOT_RUN",
+  "ok": false,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "ledgerAction": "NONE",
+  "collectorProvenance": {
+    "specificHistorical035Collector": true,
+    "priorCommit": "6efa87b28fbb3c7417be6fb5c1ec2b76eb9e8fff",
+    "priorPath": "editorial/reviews/renewal-bench-mechanics-fluids-035-3ed5-20261127/browser-bench-mechanics-fluids-3ed5.mjs",
+    "priorSha256": "90f39739a3efc90d56f78e92c200ca456def7bf4f2c8748b0d64cec9feafb608",
+    "newCollectorSha256": "75110cc4b35289d5d355abdbec81ae8a25dd88a5e364e37d86a7166c4c3e2f2d",
+    "doesNotImportOrUseCommon139Collector": true,
+    "common139CollectorFixNotSilentlyApplied": "e24c46b4c11403821b026c304875f68edc76b679aa6928b1716bd597c5d15e55 suppliedbyRoot; distinctcollector. Whole035rejectsduplicates/countmismatchandallrealerrorsterminally, no percaseerrorrecoverypushesduplicates."
+  },
+  "scope": "Actualnew120+64required; focused16doesnotreplace. Old0353ed5negativefrozen.",
+  "retryOutputDirectory": "/private/tmp/cric-bench035-1efc-actual-120-retry2",
+  "firstActualNegativeManifest": "attempt01-resource-negative/manifest.json",
+  "firstActualNegativeManifestSha256": "e60256b19eec275479f87fefc0277ef90c8de24f92675bc7b1333cb6726aadb4",
+  "retrySupervisorSha256": "1d058be0322c099bbca82e692193fb1428a42ffb8b2613d13c6b467ad27181a8"
+}
