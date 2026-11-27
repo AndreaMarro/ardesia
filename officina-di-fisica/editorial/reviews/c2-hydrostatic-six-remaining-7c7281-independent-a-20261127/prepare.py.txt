@@ -1,0 +1,48 @@
+from pathlib import Path
+import json,hashlib
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica')
+P=A/'editorial/reviews/c2-five-hydrostatic-drafts-7c7281-preflight-a-20261127'
+C=A/'editorial/reviews/c2-manometro-v3-7c7281-independent-a-20261127'
+D=A/'editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127'
+D.mkdir(exist_ok=True)
+sha=lambda b:hashlib.sha256(b).hexdigest()
+groups=['draft-l002-01','draft-l002-02','draft-l002-03','draft-l003-01','original-stevino-correct-physics-rejected','original-stevino-installed-grader-accepted']
+items=[]
+for group in groups:
+    F=D/'groups'/group
+    F.mkdir(parents=True,exist_ok=True)
+    p=json.loads((P/'plans'/group/'prepared.json').read_bytes())
+    m=json.loads((P/'plans'/group/'metadata.json').read_bytes())
+    p['scope']='DISTINCT_A_AUTHORIZED_SINGLE_SUBGROUP_'+group
+    m.update(scope=p['scope'],executionAuthorization='ROOT_EXPLICIT_REMAINING_SIX_SUBGROUPS_AFTER_SEPARATE_MANOMETRO_V3_20261127',browser='AUTHORIZED_REAL_EXECUTION_PENDING',collectorSha256='719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15',collectorCommit='d43240f5c5a3b37018248cf756454cd6841f46ef',collectorBlocker='OLD_E24C46_NEGATIVE_RETAINED;NEW_SUCCESSIVE_VERSION_COLLECTOR_ADOPTED',browserTimeoutSeconds=180)
+    raw=(json.dumps(m,ensure_ascii=False,indent=2)+'\n').encode()
+    (F/'metadata.json').write_bytes(raw)
+    p['requestFile']=str(F/'metadata.json')
+    p['requestSha256']=sha(raw)
+    (F/'prepared.json').write_text(json.dumps(p,ensure_ascii=False,indent=2)+'\n')
+    (F/'request.json').write_text(json.dumps(dict(candidateApp='/private/tmp/cric-midpoint-and-press-20261127/officina-di-fisica',prepared=str(F/'prepared.json'),output=str(F/'actual')),indent=2)+'\n')
+    script=(C/'run-actual.py').read_text().replace(str(C.relative_to(A)),str(F.relative_to(A)))
+    (F/'run-actual.py').write_text(script)
+    items.append(dict(group=group,folder=str(F),cases=len(p['expectedCaseKeys']),preparedSha256=sha((F/'prepared.json').read_bytes()),metadataSha256=sha(raw)))
+(D/'matrix-prepared.json').write_text(json.dumps(dict(schemaVersion='1.0.0',sourceCommit='b9994b9116e87478905191d85cca8037d17ae4bd',runtimeSha256='7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6',collectorSha256='719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15',groups=items,totalRemainingCases=264,alreadyExecutedSeparateManometroCases=48,browserExecution='NOT_STARTED_BY_PREPARATION',activityCredit=0,humanApproval='NOT_RUN'),indent=2)+'\n')
+(D/'prepare.py.txt').write_bytes(Path(__file__).read_bytes())
+(D/'run-sequential-groups.py').write_text('''from pathlib import Path
+import json,subprocess,sys,time,hashlib
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica')
+D=A/'editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127'
+plan=json.loads((D/'matrix-prepared.json').read_bytes())
+for group in plan['groups']:
+    folder=Path(group['folder'])
+    assert hashlib.sha256((folder/'prepared.json').read_bytes()).hexdigest()==group['preparedSha256']
+    command=['python3','/private/tmp/cric_a_bounded_local.py',sys.executable,'-B',str(folder/'run-actual.py')]
+    started=time.time()
+    with (folder/'wrapper.stdout.txt').open('wb') as out,(folder/'wrapper.stderr.txt').open('wb') as err:
+        result=subprocess.run(command,cwd=A,stdout=out,stderr=err)
+    receipt=dict(actualWrapperExitCode=result.returncode,elapsedSecondsIncludingMutex=time.time()-started,command=command,stdoutSha256=hashlib.sha256((folder/'wrapper.stdout.txt').read_bytes()).hexdigest(),stderrSha256=hashlib.sha256((folder/'wrapper.stderr.txt').read_bytes()).hexdigest(),activityCredit=0)
+    (folder/'wrapper-terminal.json').write_text(json.dumps(receipt,indent=2)+'\\n')
+    print(group['group'],receipt,flush=True)
+    if result.returncode!=0:
+        raise SystemExit(result.returncode)
+print('All six separate browser supervisors finished; manual review still required',flush=True)
+''')
+print('Prepared six single-Chrome groups, remaining264; none started')

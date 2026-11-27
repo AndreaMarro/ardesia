@@ -1,0 +1,234 @@
+{
+  "schemaVersion": "1.0.0",
+  "sourceCommit": "b9994b9116e87478905191d85cca8037d17ae4bd",
+  "runtimeSha256": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6",
+  "group": "original-stevino-installed-grader-accepted",
+  "artifactPins": {
+    "actual/report.json": {
+      "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/original-stevino-installed-grader-accepted/actual/report.json",
+      "sha256": "3c16b466e151904f8650b0755a9be49605c69b7d2bfc9814debd5f7fa2abac3b"
+    },
+    "prepared.json": {
+      "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/original-stevino-installed-grader-accepted/prepared.json",
+      "sha256": "a1d2b331eacf29a3e391024867d31e0acfd9c6fce220be6e055b22048c7f7547"
+    },
+    "actual-terminal.json": {
+      "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/original-stevino-installed-grader-accepted/actual-terminal.json",
+      "sha256": "214fbe6110838e57f9e91db88716fb76e2cd5aef4838532e7500eeead3b58e52"
+    }
+  },
+  "records": [
+    {
+      "id": "SIM-C2-L002-01",
+      "variant": "published",
+      "sourceVersion": 1,
+      "reviewedVersion": 1,
+      "candidateSha256": null,
+      "visualReview": "PASS",
+      "sourceScientificReview": "FAIL_ORIGINAL_TRANSFER_G10_VS_G9_81_GRADER_REPRODUCED;GRAPHICS_SEPARATE",
+      "scope": {
+        "profiles": [
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "gridValues": [
+          1.5,
+          2
+        ],
+        "actualCaseCount": 24,
+        "setupCount": 8,
+        "submittedAnswerEvents": 16,
+        "expectedAcceptedEvents": 16,
+        "expectedRejectedEvents": 0,
+        "readWholePngCount": 8,
+        "readState": 2,
+        "fullObservedCaseKeys": [
+          "SIM-C2-L002-01|published|320|orbit|setup",
+          "SIM-C2-L002-01|published|320|orbit|grid|0",
+          "SIM-C2-L002-01|published|320|orbit|grid|1",
+          "SIM-C2-L002-01|published|320|side|setup",
+          "SIM-C2-L002-01|published|320|side|grid|0",
+          "SIM-C2-L002-01|published|320|side|grid|1",
+          "SIM-C2-L002-01|published|320|top|setup",
+          "SIM-C2-L002-01|published|320|top|grid|0",
+          "SIM-C2-L002-01|published|320|top|grid|1",
+          "SIM-C2-L002-01|published|320|fixed_projection|setup",
+          "SIM-C2-L002-01|published|320|fixed_projection|grid|0",
+          "SIM-C2-L002-01|published|320|fixed_projection|grid|1",
+          "SIM-C2-L002-01|published|1280|orbit|setup",
+          "SIM-C2-L002-01|published|1280|orbit|grid|0",
+          "SIM-C2-L002-01|published|1280|orbit|grid|1",
+          "SIM-C2-L002-01|published|1280|side|setup",
+          "SIM-C2-L002-01|published|1280|side|grid|0",
+          "SIM-C2-L002-01|published|1280|side|grid|1",
+          "SIM-C2-L002-01|published|1280|top|setup",
+          "SIM-C2-L002-01|published|1280|top|grid|0",
+          "SIM-C2-L002-01|published|1280|top|grid|1",
+          "SIM-C2-L002-01|published|1280|fixed_projection|setup",
+          "SIM-C2-L002-01|published|1280|fixed_projection|grid|0",
+          "SIM-C2-L002-01|published|1280|fixed_projection|grid|1"
+        ]
+      },
+      "reason": "Eight current whole rasters at2m are clear; nativeTop does not show verticaldepth. Current original firsttask19.62 and installed secondkey14.715 are actually accepted in all8profiles. This reproduces the conflicting grader, not scientific correctness of14.715underexplicitg10. The original transfer would require15 and remainsFAIL. Its graphical sample and grading reproduction are separated from source acceptance.",
+      "readPngSha256": [
+        "8d9b528f17432aa7765b698e6899b99a5f3e492ad59043c3b1b7cccc9810d1b7",
+        "3dc1773e5a42114d8a8a1e189c4039e398e845ad5cecd983e7181b2e85f10056",
+        "892f50730d42f5d4de66c7935d5dace99be5927e0f9d2228afdc2cff06fa63dc",
+        "8e7af05a53e87cc8a2af9dda75328e6d4739a13c5004711315e59713c78ec764",
+        "a6ebe033717751f5d951aadb087922571b54c233d640459f8346139364e2dc72",
+        "23f0a7fd540f9010392931cfbc6c1a0439c0e40beb2509d407f59edf99d187d0",
+        "b4d5ee967f3c33b1bdc68395a80f5c5770a1d9963735df643365cd8c305bf62f",
+        "4f9088612122213733533e5eccc7c37151124746026572c3933f4af810c63261"
+      ],
+      "readFiles": [
+        {
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          "caseKey": "SIM-C2-L002-01|published|320|orbit|grid|1",
+          "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/original-stevino-installed-grader-accepted/actual/screens/8d9b528f17432aa7765b698e6899b99a5f3e492ad59043c3b1b7cccc9810d1b7.png",
+          "sha256": "8d9b528f17432aa7765b698e6899b99a5f3e492ad59043c3b1b7cccc9810d1b7"
+        },
+        {
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          "caseKey": "SIM-C2-L002-01|published|320|side|grid|1",
+          "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/original-stevino-installed-grader-accepted/actual/screens/3dc1773e5a42114d8a8a1e189c4039e398e845ad5cecd983e7181b2e85f10056.png",
+          "sha256": "3dc1773e5a42114d8a8a1e189c4039e398e845ad5cecd983e7181b2e85f10056"
+        },
+        {
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          "caseKey": "SIM-C2-L002-01|published|320|top|grid|1",
+          "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/original-stevino-installed-grader-accepted/actual/screens/892f50730d42f5d4de66c7935d5dace99be5927e0f9d2228afdc2cff06fa63dc.png",
+          "sha256": "892f50730d42f5d4de66c7935d5dace99be5927e0f9d2228afdc2cff06fa63dc"
+        },
+        {
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          "caseKey": "SIM-C2-L002-01|published|320|fixed_projection|grid|1",
+          "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/original-stevino-installed-grader-accepted/actual/screens/8e7af05a53e87cc8a2af9dda75328e6d4739a13c5004711315e59713c78ec764.png",
+          "sha256": "8e7af05a53e87cc8a2af9dda75328e6d4739a13c5004711315e59713c78ec764"
+        },
+        {
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          "caseKey": "SIM-C2-L002-01|published|1280|orbit|grid|1",
+          "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/original-stevino-installed-grader-accepted/actual/screens/a6ebe033717751f5d951aadb087922571b54c233d640459f8346139364e2dc72.png",
+          "sha256": "a6ebe033717751f5d951aadb087922571b54c233d640459f8346139364e2dc72"
+        },
+        {
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          "caseKey": "SIM-C2-L002-01|published|1280|side|grid|1",
+          "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/original-stevino-installed-grader-accepted/actual/screens/23f0a7fd540f9010392931cfbc6c1a0439c0e40beb2509d407f59edf99d187d0.png",
+          "sha256": "23f0a7fd540f9010392931cfbc6c1a0439c0e40beb2509d407f59edf99d187d0"
+        },
+        {
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          "caseKey": "SIM-C2-L002-01|published|1280|top|grid|1",
+          "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/original-stevino-installed-grader-accepted/actual/screens/b4d5ee967f3c33b1bdc68395a80f5c5770a1d9963735df643365cd8c305bf62f.png",
+          "sha256": "b4d5ee967f3c33b1bdc68395a80f5c5770a1d9963735df643365cd8c305bf62f"
+        },
+        {
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          },
+          "caseKey": "SIM-C2-L002-01|published|1280|fixed_projection|grid|1",
+          "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/original-stevino-installed-grader-accepted/actual/screens/4f9088612122213733533e5eccc7c37151124746026572c3933f4af810c63261.png",
+          "sha256": "4f9088612122213733533e5eccc7c37151124746026572c3933f4af810c63261"
+        }
+      ],
+      "actualPhaseText": [
+        "OSSERVA · 2/5\nIndividua il fenomeno\n\nAbbassa la sonda a partire dal pelo libero. L’altezza verticale determina il peso sovrastante per unità di superficie. Il manometro è azzerato alla superficie.\n\nΔp = ρgh, con ρ = 1000 kg/m³\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+        "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Profondità della sonda» e confronta la scena con il punto segnato sul grafico. Parti da 1 m, poi prova 2 m.\n\nProfondità della sonda = 1 m · Sovrapressione dell’acqua = 9,81 kPa\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+        "COMPRENDI · 4/5\nOsserva la lettura del modello\n\nQuesta posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 2 m e 1,5 m.\n\nSovrapressione dell’acqua = 9,81 kPa\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+        "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Profondità della sonda» a 1,5 m. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nΔp = ρgh, con ρ = 1000 kg/m³\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale"
+      ],
+      "actualInstalledAnswerExamples": [
+        {
+          "prompt": "Imposta «Profondità della sonda» su 2 m. Quale valore ottieni per «Sovrapressione dell’acqua»?",
+          "input": "19.62",
+          "expectedAccepted": true,
+          "sourceManualReadiness": "SEPARATE_FROZEN_MATH_TEXT_PREFLIGHT_ONLY",
+          "actualPrompt": "Imposta «Profondità della sonda» su 2 m. Quale valore ottieni per «Sovrapressione dell’acqua»?",
+          "status": "Corretto. Δp = ρgh, con ρ = 1000 kg/m³. 9,81 × 2 = 19,62 kPa."
+        },
+        {
+          "prompt": "Un sensore azzerato in superficie viene immerso a 1,5 m nell’acqua. Di quanti kPa sale la lettura usando g = 10 m/s²?",
+          "input": "14.715",
+          "expectedAccepted": true,
+          "sourceManualReadiness": "ORIGINAL_EXPLICIT_G10_REQUIRES15;INSTALLED_GRADER_IS_G9_81",
+          "actualPrompt": "Un sensore azzerato in superficie viene immerso a 1,5 m nell’acqua. Di quanti kPa sale la lettura usando g = 10 m/s²?",
+          "status": "Corretto. Δp = ρgh, con ρ = 1000 kg/m³. 9,81 × 1,5 ≈ 14,72 kPa."
+        }
+      ],
+      "sourceConflictRetained": true,
+      "humanApproval": "NOT_RUN",
+      "activityCredit": 0
+    }
+  ],
+  "humanApproval": "NOT_RUN",
+  "activityCredit": 0
+}

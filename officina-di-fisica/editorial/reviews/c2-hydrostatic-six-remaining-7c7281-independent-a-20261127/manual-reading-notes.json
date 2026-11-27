@@ -1,0 +1,38 @@
+{
+  "draft-l002-01": {
+    "rawWholePngRead": true,
+    "visualReview": "PASS",
+    "readState": 3,
+    "reason": "Fresh eight-profile maximum-depth rasters show both probes and their equal-height association unobscured; previous Sonda/Superficie sprites are absent. The source/manual and two actual draft answers use the same assignedg981/100. Surface zero and references1/1.5/2/3m are acquired as actual states. NativeTop cannot show vertical depth; no depth length is inferred there. Other state rasters are preserved but not all manually read. Authored formulas are checked by actual DOM metrics, not separately claimed as formula rasters. This verdict belongs only to owner DRAFTv2, not originalv1."
+  },
+  "draft-l002-02": {
+    "rawWholePngRead": true,
+    "visualReview": "PASS",
+    "readState": 3,
+    "reason": "Both probes are unobscured at maximum upward quota3m: their centres lie at the free-surface level and the numerical relative pressure is0. Original reference/assessment values are actual acquisitions. The authored text explicitly distinguishes upward quota from downward depth and the two tasks10/15kPa are accepted. Top collapses height; no vertical distance is inferred there. Eight whole maximum-state rasters were read, not every state raster."
+  },
+  "draft-l002-03": {
+    "rawWholePngRead": true,
+    "visualReview": "PASS",
+    "readState": 108.8,
+    "reason": "The mercury column remains inside its transparent tube with a visible upper vacuum space at the80cm maximum. Hg/Vuoto labels are readable and do not obscure the column in the reviewed transverse and fallback rasters. The reservoir free surface is the physical height origin in the text; assignedrho13600/g10 gives75/65cm in both accepted tasks. NativeTop is axial and cannot display column height. All8maximum-state rasters were read; other states are actual DOM/model observations."
+  },
+  "draft-l003-01": {
+    "rawWholePngRead": true,
+    "visualReview": "FAIL",
+    "readState": 10,
+    "reason": "Concrete text-to-figure mismatch: block0 instructs observing faces at the same height and interpretation also says samelevel, while actualSide1280 drawing and source primitives place leftface1.77→1.88 and rightface1.35→1.46 in drawing coordinates. Difference0.42 is a graphic-coordinate difference, not an inferred physicalhydrostatichead. Numerical incrementlawDeltaF=DeltapA and12/10Nanswers remain correct, but the source claim about drawn heights is false. All8maximum-state rasters read. Top is axial and not used to infer height. Root has accepted a text-only author correction; no patch is applied here."
+  },
+  "original-stevino-correct-physics-rejected": {
+    "rawWholePngRead": true,
+    "visualReview": "PASS",
+    "readState": 3,
+    "reason": "Graphical sample is unobscured and matches8current-epoch draft rasters byte-for-byte; those whole PNG contents were already read on thissame7c7281, with separate current original acquisitions pinned here. This is not a retag of historical UI. The original secondtask explicitly demandsg10, so15kPa is scientifically required and is actually rejected in all8profiles. Source science remainsFAIL despite positive graphics/technicalexpected-rejection results. Firsttask19.62 is separately accepted; no falsebroadenedfinding. NativeTop does not show depth."
+  },
+  "original-stevino-installed-grader-accepted": {
+    "rawWholePngRead": true,
+    "visualReview": "PASS",
+    "readState": 2,
+    "reason": "Eight current whole rasters at2m are clear; nativeTop does not show verticaldepth. Current original firsttask19.62 and installed secondkey14.715 are actually accepted in all8profiles. This reproduces the conflicting grader, not scientific correctness of14.715underexplicitg10. The original transfer would require15 and remainsFAIL. Its graphical sample and grading reproduction are separated from source acceptance."
+  }
+}

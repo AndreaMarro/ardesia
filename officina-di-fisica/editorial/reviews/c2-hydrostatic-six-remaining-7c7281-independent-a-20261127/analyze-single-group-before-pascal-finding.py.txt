@@ -1,0 +1,18 @@
+from pathlib import Path
+import sys,json,hashlib
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');sys.path.insert(0,str(A))
+from tools.corpus_engineering import c2_hydrostatic_draft_groups_7c7281_review_a as v
+M=A/'editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127'
+group=sys.argv[1];F=M/'groups'/group
+cases=v.actual(F);p=json.loads((F/'prepared.json').read_bytes());r=json.loads((F/'actual/report.json').read_bytes());selection=json.loads((F/'raw-reading-selection-pending.json').read_bytes())
+notes=json.loads((M/'manual-reading-notes.json').read_bytes())[group]
+assert notes['rawWholePngRead'] is True and len(selection)==8
+sha=lambda b:hashlib.sha256(b).hexdigest();row=p['records'][0]
+read=[]
+for x in selection:
+ path=F/'actual'/x['file'];assert sha(path.read_bytes())==x['sha256'];read.append(dict(profile=x['profile'],caseKey=x['caseKey'],path=path.relative_to(A).as_posix(),sha256=x['sha256']))
+assert {(x['profile']['width'],x['profile']['view'])for x in read}=={(x['width'],x['view'])for x in p['profiles']}
+setups=[c for c in cases if'phases'in c]
+source_state='PASS_DISTINCT_FROZEN_EXACT_MANUAL_AND_CURRENT_DRAFT' if row['variant']=='draft' else'FAIL_ORIGINAL_TRANSFER_G10_VS_G9_81_GRADER_REPRODUCED;GRAPHICS_SEPARATE'
+doc=dict(schemaVersion='1.0.0',sourceCommit=v.SOURCE,runtimeSha256=v.RUNTIME,group=group,artifactPins={n:dict(path=(F/n).relative_to(A).as_posix(),sha256=sha((F/n).read_bytes()))for n in ['actual/report.json','prepared.json','actual-terminal.json']},records=[dict(id=row['id'],variant=row['variant'],sourceVersion=row['record'].get('baseVersion',row['record']['version']),reviewedVersion=row['record']['version'],candidateSha256=row['candidateSha256'],visualReview=notes['visualReview'],sourceScientificReview=source_state,scope=dict(profiles=p['profiles'],gridValues=row['grid'],actualCaseCount=len(cases),setupCount=8,submittedAnswerEvents=sum(len(c['questions'])for c in setups),expectedAcceptedEvents=sum(q['expectedAccepted']for c in setups for q in c['questions']),expectedRejectedEvents=sum(not q['expectedAccepted']for c in setups for q in c['questions']),readWholePngCount=8,readState=notes['readState'],fullObservedCaseKeys=[c['caseKey']for c in cases]),reason=notes['reason'],readPngSha256=[x['sha256']for x in read],readFiles=read,actualPhaseText=setups[0]['phases'],actualInstalledAnswerExamples=setups[0]['questions'],sourceConflictRetained=row['variant']=='published',humanApproval='NOT_RUN',activityCredit=0)],humanApproval='NOT_RUN',activityCredit=0)
+(F/'visual-review-per-id.json').write_text(json.dumps(doc,ensure_ascii=False,indent=2)+'\n');print(group,':',len(cases),'actual cases verified,8wholePNGpins,source=',source_state,';credit0')
