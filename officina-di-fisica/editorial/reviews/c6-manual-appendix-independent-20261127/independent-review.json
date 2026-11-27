@@ -1,0 +1,210 @@
+{
+  "schemaVersion": "1.0.0",
+  "role": "INDEPENDENT_APPENDIX_CONTENT_REVIEW_ONLY",
+  "author": "root",
+  "reviewer": "author_vectors_b",
+  "appendixSha256": "9892804c57c0798c83656e3de5eef2a46550a54e2b3aaed73417c91509b8539e",
+  "rootAppendixWasUntrackedAtRead": true,
+  "rootContextHeadAtRead": "3097ddea36bdd0c8de4b20dd904302ee6940ff78",
+  "independentPrimarySha256": "254b754c7cc6ad9f0242fa392c68c1cbf3de3d065e23169fa1bf77b59710e625",
+  "actualInputFilePins": {
+    "content/esperienze-C6.json": "6e6877e96bd91712fbcc15e530486c31a4c8087227e1292b9093876b465c292c",
+    "static/js/banchi/voci/modelli/C6.js": "6e1af33f3af9fe5cc96b6216a110efe3123517e32c22c5dc856ac29d9b79129c",
+    "static/js/banchi/voci/esperimento.js": "20f0964d1db6ddad50fb850dce4586ebf4a2695a6d30e0c1f87281cf7628c300",
+    "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+    "static/js/banchi/banco.js": "756f4026f1e6aea49ba7635678f1f2406743c3b5b39685b18d60dfbb417074db"
+  },
+  "records": [
+    {
+      "id": "SIM-C6-L01-01",
+      "tasks": [
+        {
+          "inputExact": "10",
+          "expectedExact": "17/10",
+          "manualLiteral": "1.7",
+          "unit": "m",
+          "actualPrompt": "Imposta «Durata di andata e ritorno» su 10 ms. Quale valore ottieni per «Distanza del riflettore»?",
+          "actualValue": 1.7000000000000002,
+          "acceptedByUnchangedNumericRule": true
+        },
+        {
+          "inputExact": "11",
+          "expectedExact": "187/100",
+          "manualLiteral": "1.87",
+          "unit": "m",
+          "actualPrompt": "Il microfono registra l’eco 11 ms dopo l’impulso. Se il suono percorre 340 m ogni secondo, a quale distanza si trova il riflettore?",
+          "actualValue": 1.87,
+          "acceptedByUnchangedNumericRule": true
+        }
+      ],
+      "textArithmeticAndUnits": "CORRECT",
+      "assumptions": "Read against the frozen assigned model; no new physical law inferred from geometry"
+    },
+    {
+      "id": "SIM-C6-L02-01",
+      "tasks": [
+        {
+          "inputExact": "24",
+          "expectedExact": "3",
+          "manualLiteral": "3",
+          "unit": "cm/s",
+          "actualPrompt": "Imposta «Massa raccolta in 4 secondi» su 24 g. Quale valore ottieni per «Velocità media alla sezione»?",
+          "actualValue": 3,
+          "acceptedByUnchangedNumericRule": true
+        },
+        {
+          "inputExact": "20",
+          "expectedExact": "5/2",
+          "manualLiteral": "2.5",
+          "unit": "cm/s",
+          "actualPrompt": "In 4 s il recipiente raccoglie 20 g d’acqua, di densità 1 g/cm³. Quale velocità media ha l’acqua nel tubo di sezione 2 cm²?",
+          "actualValue": 2.5,
+          "acceptedByUnchangedNumericRule": true
+        }
+      ],
+      "textArithmeticAndUnits": "CORRECT",
+      "assumptions": "Read against the frozen assigned model; no new physical law inferred from geometry"
+    },
+    {
+      "id": "SIM-C6-L03-01",
+      "tasks": [
+        {
+          "inputExact": "80",
+          "expectedExact": "8/5",
+          "manualLiteral": "1.6",
+          "unit": "K",
+          "actualPrompt": "Imposta «Durata del riscaldamento» su 80 s. Quale valore ottieni per «Aumento di temperatura»?",
+          "actualValue": 1.6,
+          "acceptedByUnchangedNumericRule": true
+        },
+        {
+          "inputExact": "50",
+          "expectedExact": "1",
+          "manualLiteral": "1",
+          "unit": "K",
+          "actualPrompt": "Il riscaldatore da 5 V e 2 A lavora per 50 s. Se l’80% dell’energia scalda il calorimetro da 400 J/K, quanto aumenta la temperatura?",
+          "actualValue": 1,
+          "acceptedByUnchangedNumericRule": true
+        }
+      ],
+      "textArithmeticAndUnits": "CORRECT",
+      "assumptions": "Read against the frozen assigned model; no new physical law inferred from geometry"
+    },
+    {
+      "id": "SIM-C6-L04-01",
+      "tasks": [
+        {
+          "inputExact": "3",
+          "expectedExact": "15",
+          "manualLiteral": "15",
+          "unit": "unità",
+          "actualPrompt": "Imposta «Numero di strati identici» su 3. Quale valore ottieni per «Segnale trasmesso»?",
+          "actualValue": 15,
+          "acceptedByUnchangedNumericRule": true
+        },
+        {
+          "inputExact": "4",
+          "expectedExact": "15/2",
+          "manualLiteral": "7.5",
+          "unit": "unità",
+          "actualPrompt": "Il segnale iniziale è di 120 unità. Attraversa 4 strati, ciascuno dei quali ne dimezza l’intensità. Quale segnale dovrebbe restare?",
+          "actualValue": 7.5,
+          "acceptedByUnchangedNumericRule": true
+        }
+      ],
+      "textArithmeticAndUnits": "CORRECT",
+      "assumptions": "Read against the frozen assigned model; no new physical law inferred from geometry"
+    },
+    {
+      "id": "SIM-C6-L05-01",
+      "tasks": [
+        {
+          "inputExact": "4",
+          "expectedExact": "2",
+          "manualLiteral": "2",
+          "unit": "m",
+          "actualPrompt": "Imposta «Tempo dalla partenza» su 4 s. Quale valore ottieni per «Spostamento con segno»?",
+          "actualValue": 2,
+          "acceptedByUnchangedNumericRule": true
+        },
+        {
+          "inputExact": "7/4",
+          "expectedExact": "7/2",
+          "manualLiteral": "3.5",
+          "unit": "m",
+          "actualPrompt": "Dal via procedi a +2 m/s per 2 s, poi torni a −1 m/s. Quando il cronometro indica 1,75 s, quale spostamento con segno registra il quaderno?",
+          "actualValue": 3.5,
+          "acceptedByUnchangedNumericRule": true
+        }
+      ],
+      "textArithmeticAndUnits": "CORRECT",
+      "assumptions": "Read against the frozen assigned model; no new physical law inferred from geometry"
+    },
+    {
+      "id": "SIM-C6-L06-01",
+      "tasks": [
+        {
+          "inputExact": "2",
+          "expectedExact": "1/2",
+          "manualLiteral": "0.5",
+          "unit": "numero puro",
+          "actualPrompt": "Imposta «Distanza dell’oggetto in unità focali» su 2. Quale valore ottieni per «Vergenza normalizzata f/q»?",
+          "actualValue": 0.5,
+          "acceptedByUnchangedNumericRule": true
+        },
+        {
+          "inputExact": "7/4",
+          "expectedExact": "3/7",
+          "manualLiteral": "0.4286",
+          "unit": "numero puro",
+          "actualPrompt": "Porti l’oggetto alla distanza p/f = 1,75 da una lente sottile convergente. Quale valore di f/q prevedi, mantenendo il segno anche per un’immagine virtuale?",
+          "actualValue": 0.4285714285714286,
+          "acceptedByUnchangedNumericRule": true
+        }
+      ],
+      "textArithmeticAndUnits": "CORRECT",
+      "assumptions": "Read against the frozen assigned model; no new physical law inferred from geometry"
+    }
+  ],
+  "divisionBySeven": {
+    "fourDigits": [
+      4,
+      2,
+      8,
+      5
+    ],
+    "remainders": [
+      2,
+      6,
+      4,
+      5
+    ],
+    "residualAfter4285": "5/7 times10^-4",
+    "rounded": "0.4286",
+    "roundedErrorExact": "1/35000",
+    "correct": true
+  },
+  "cartInverseClarification": {
+    "previousTextClarificationRequested": true,
+    "currentTextRead": true,
+    "localElapsedSeconds": 2,
+    "globalStopwatchSeconds": 4,
+    "noResidualFinding": true
+  },
+  "reviewResult": "NO_RESIDUAL_SCIENTIFIC_OR_DIDACTIC_FINDING_IN_REVIEWED_APPENDIX",
+  "UI_C6": "NOT_REVIEWED_AUTHOR_RECUSED_FROM_OWN_OVERLAY_ACCEPTANCE",
+  "acceptanceOfActivityOrSourceEditionGranted": false,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "primaryReferenceAnchorsExactlyRechecked": 12,
+  "priorExposure": "The reviewer already had frozen independent C6 mathematics and read this appendix before the present check; no new blind-source claim. Reviewer authored the separate C6 label overlay, hence no UI acceptance here.",
+  "ownBootstrapNegative": "The first checker treated normalized display unit numero puro as literal source unit1; failed output and previous checker are retained. Explicit display normalization fixed this without changing any source, result or tolerance.",
+  "numberRepresentation": "Exact equality of independently reconstructed closed-form finite Number operators, separate from exact Fraction physics results; no new epsilon. Manual literals use the unchanged existing numeric-entry rule.",
+  "appendixStillMatchesAuthorFileAtFreeze": true,
+  "linkedFilesExist": {
+    "content/esperienze-C6.json": true,
+    "editorial/reviews/c4-c6-current-models-20261127/C6-cross-domain-comparison.json": true,
+    "editorial/reviews/visibility139-cb9-run45917299096-20261127/C6/receipt.json": true
+  }
+}
