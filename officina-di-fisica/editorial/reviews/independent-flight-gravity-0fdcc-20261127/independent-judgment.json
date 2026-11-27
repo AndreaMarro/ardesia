@@ -1,0 +1,49 @@
+{
+  "decision": "NOT_ACCEPTED_RESIDUAL_X_CART_MASK",
+  "ok": false,
+  "actualCases": 70,
+  "actualTechnicalExitCode": 0,
+  "all70FramesReadIn8ContactSheets": true,
+  "originalPngIndividuallyOpened": [
+    "axis-x-risk69-stage2-320-side.png",
+    "axis-x-risk69-stage3-320-side.png",
+    "axis-x-risk69-stage2-1280-side.png",
+    "axis-x-risk69-stage3-1280-side.png",
+    "vertical-apex-1280-orbit.png",
+    "vertical-late-1280-orbit.png",
+    "default-start-320-side.png"
+  ],
+  "id": "LAB3D-02",
+  "acquiredFinding": {
+    "parameters": {
+      "speed": 4,
+      "elevation": 69,
+      "azimuth": 15
+    },
+    "time": 0,
+    "actualStages": [
+      2,
+      3
+    ],
+    "view": "side",
+    "uiCaptures": 4,
+    "width320": "Tip projection111.052/585.240 lies inside1pixel-eroded opaque core[100,576,113,593].633/672cone-generator samples inside core;672inside integer pixel envelope. The integer envelope is not an exact continuous sprite quad or GPUcoverage certificate.",
+    "width1280": "182/672cone-generator samples inside conservative core; tip atcartedge is not certified, so only partial head mask claimed.",
+    "proof": "x-cart-observation.json",
+    "kind": "ACTUAL_UI_AND_PROJECTED_GEOMETRY_TEXT_MASK"
+  },
+  "resolvedPriorScope": [
+    "36native prior states plus18second-stage and4adversaries:58actual native Float32 builds, no base/particle ray overlaps or viewport clipping; explicitannotation depthTestfalse/renderOrder4 agrees with source-read policy.",
+    "Previous gravity particle mask atapex/near/late is visibly resolved in exact frames.",
+    "Previous defaultSide320 zrim mask is resolved in its exact original state.",
+    "Primary velocity/detail16xnonregression observed as appropriate; no false velocity atapex."
+  ],
+  "sourcePhysicsChanged": false,
+  "physicsInputHashesUnchanged": 13,
+  "scope": "70actual requested controls/time/view/stage cases, strict5decimalDOMtime and4significant-digit time/height/vy displays, axe0including keyboard-opened legends. Not whole035/036 or139/246renewal; no new Numbergrading/import991/93examsaudit. ActualGPU/raster inspection is bounded original PNG reading, not introspection. Own6vectorIDsrecused; adjacent C1/C4/C5/C6 changes disclosed but not approved.",
+  "priorExposure": "Prior independent source and negative91f reading disclosed; Root is distinct author. No author tests used as oracle.",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "registryOrLedgerAction": "NONE"
+}

@@ -1,0 +1,7 @@
+# Distinct70case peer:c3b03 /0fdcc
+
+**Not accepted** for a legal non-default axis-label collision:4m/s,69°elevation,15°azimuth,t0,Side320/1280 in Esplora and Comprendi. At320 the tip is safely in the1pixel-eroded opaque cart core;633samples of the cone surface also lie in that core. At1280 only a partial head mask is certified; a tip at the raster border remains ambiguous. All672projections in an integer pixel envelope do not prove everyGPUraster pixel is covered. This precision limit is explicit; no3Dwhole-cone containment claim.
+
+The old table/particle masks and olddefaultzcase are resolved in their exact bounded states. Actual70browser process exit0, complete runtime profile stable, selected view/stage/control/time assertions and axe0. All70frames read in eight contact sheets; seven originals separately opened. Actual installed-build Float32/CPUray has58native states, no base/particle overlap or viewport clipping. The annotation layer's depth policy is separately recorded. Graphic0.64world-unit length and modelg9.81m/s² remain distinct quantities.
+
+Prior91fnegative remains unchanged. No source/model/grader changes in13bench input files. Adjacent C1/C4/C5/C6 changes are disclosed but outside this peer; six own-authored vectors remain recused. No activity credit, human approval, app publication, registry or ledger action. This is not a whole035/036/139/246acceptance or an arbitrary-camera/gridcertificate.

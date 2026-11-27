@@ -1,0 +1,190 @@
+{
+  "results": [
+    {
+      "case": "axis-x-risk69-stage2-320-side",
+      "actualParameters": {
+        "speed": "4",
+        "elevation": "69",
+        "azimuth": "15"
+      },
+      "requestedTime": 0,
+      "actualPhase": 2,
+      "measuredOpaquePixelEnvelope": [
+        99,
+        575,
+        114,
+        594
+      ],
+      "conservativeOpaqueCore": [
+        100,
+        576,
+        113,
+        593
+      ],
+      "actualFloat32TipProjection": {
+        "x": 111.05224500983404,
+        "y": 585.2401837340551
+      },
+      "tipInsidePixelEnvelope": true,
+      "tipInsideConservativeOpaqueCore": true,
+      "coneProjectedBounds": [
+        108.24368017860522,
+        578.1565133247684,
+        113.86080984106286,
+        585.2401837340551
+      ],
+      "coneGeneratorSamples": 672,
+      "coneSamplesInsidePixelEnvelope": 672,
+      "coneSamplesInsideConservativeOpaqueCore": 633,
+      "wholeConeProjectionInsidePixelEnvelope": true,
+      "actualAnnotationPolicy": {
+        "shaftDepthTest": false,
+        "coneDepthTest": false,
+        "shaftRenderOrder": 4,
+        "coneRenderOrder": 4,
+        "shaftDepthWrite": false,
+        "coneDepthWrite": false
+      }
+    },
+    {
+      "case": "axis-x-risk69-stage3-320-side",
+      "actualParameters": {
+        "speed": "4",
+        "elevation": "69",
+        "azimuth": "15"
+      },
+      "requestedTime": 0,
+      "actualPhase": 3,
+      "measuredOpaquePixelEnvelope": [
+        99,
+        575,
+        114,
+        594
+      ],
+      "conservativeOpaqueCore": [
+        100,
+        576,
+        113,
+        593
+      ],
+      "actualFloat32TipProjection": {
+        "x": 111.05224500983404,
+        "y": 585.2401837340551
+      },
+      "tipInsidePixelEnvelope": true,
+      "tipInsideConservativeOpaqueCore": true,
+      "coneProjectedBounds": [
+        108.24368017860522,
+        578.1565133247684,
+        113.86080984106286,
+        585.2401837340551
+      ],
+      "coneGeneratorSamples": 672,
+      "coneSamplesInsidePixelEnvelope": 672,
+      "coneSamplesInsideConservativeOpaqueCore": 633,
+      "wholeConeProjectionInsidePixelEnvelope": true,
+      "actualAnnotationPolicy": {
+        "shaftDepthTest": false,
+        "coneDepthTest": false,
+        "shaftRenderOrder": 4,
+        "coneRenderOrder": 4,
+        "shaftDepthWrite": false,
+        "coneDepthWrite": false
+      }
+    },
+    {
+      "case": "axis-x-risk69-stage2-1280-side",
+      "actualParameters": {
+        "speed": "4",
+        "elevation": "69",
+        "azimuth": "15"
+      },
+      "requestedTime": 0,
+      "actualPhase": 2,
+      "measuredOpaquePixelEnvelope": [
+        302,
+        617,
+        326,
+        647
+      ],
+      "conservativeOpaqueCore": [
+        303,
+        618,
+        325,
+        646
+      ],
+      "actualFloat32TipProjection": {
+        "x": 325.82573969187507,
+        "y": 633.5615431297799
+      },
+      "tipInsidePixelEnvelope": true,
+      "tipInsideConservativeOpaqueCore": false,
+      "coneProjectedBounds": [
+        318.36859650191934,
+        614.7533803396079,
+        333.28288288183086,
+        633.5615431297799
+      ],
+      "coneGeneratorSamples": 672,
+      "coneSamplesInsidePixelEnvelope": 327,
+      "coneSamplesInsideConservativeOpaqueCore": 182,
+      "wholeConeProjectionInsidePixelEnvelope": false,
+      "actualAnnotationPolicy": {
+        "shaftDepthTest": false,
+        "coneDepthTest": false,
+        "shaftRenderOrder": 4,
+        "coneRenderOrder": 4,
+        "shaftDepthWrite": false,
+        "coneDepthWrite": false
+      }
+    },
+    {
+      "case": "axis-x-risk69-stage3-1280-side",
+      "actualParameters": {
+        "speed": "4",
+        "elevation": "69",
+        "azimuth": "15"
+      },
+      "requestedTime": 0,
+      "actualPhase": 3,
+      "measuredOpaquePixelEnvelope": [
+        302,
+        617,
+        326,
+        647
+      ],
+      "conservativeOpaqueCore": [
+        303,
+        618,
+        325,
+        646
+      ],
+      "actualFloat32TipProjection": {
+        "x": 325.82573969187507,
+        "y": 633.5615431297799
+      },
+      "tipInsidePixelEnvelope": true,
+      "tipInsideConservativeOpaqueCore": false,
+      "coneProjectedBounds": [
+        318.36859650191934,
+        614.7533803396079,
+        333.28288288183086,
+        633.5615431297799
+      ],
+      "coneGeneratorSamples": 672,
+      "coneSamplesInsidePixelEnvelope": 327,
+      "coneSamplesInsideConservativeOpaqueCore": 182,
+      "wholeConeProjectionInsidePixelEnvelope": false,
+      "actualAnnotationPolicy": {
+        "shaftDepthTest": false,
+        "coneDepthTest": false,
+        "shaftRenderOrder": 4,
+        "coneRenderOrder": 4,
+        "shaftDepthWrite": false,
+        "coneDepthWrite": false
+      }
+    }
+  ],
+  "method": "Actual original PNG opaque background bounds around source-projected xanchor. Orthographic projection of actual Float32 cone generators (all32end-ringvertices plus apex) bounds the convex cone projection. The integer pixel envelope is not an exact continuous sprite-quad boundary. Definitive tip-mask claims use its1pixel-eroded opaque core. At1280 the tip near the edge is not certified; only partial head masking is acquired. All cone projections in an integer envelope at320 do not certify every GPUraster pixel or3Dsolid containment. Original captures independently show lost head/tip at320. Counts are duplicate samples, not distinct UIcases.",
+  "activityCredit": 0
+}
