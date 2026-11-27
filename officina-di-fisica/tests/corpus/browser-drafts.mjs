@@ -12,8 +12,8 @@ import {createHash} from 'node:crypto';
 const sha=value=>createHash('sha256').update(value).digest('hex');
 
 const root=fileURLToPath(new URL('../../',import.meta.url));
-const batch=process.argv[2] || 'units-001';
-assert.match(batch,/^[a-z][a-z0-9-]{0,63}$/);
+const batch=process.argv[2];
+assert.match(batch ?? '',/^[a-z][a-z0-9-]{0,63}$/,'Pass the registered batch ID as the first argument');
 const packageFile=path.join(root,'editorial/batches',batch+'.json');
 const output=process.env.ASTRA_RESULTS || path.join(root,'var/corpus-browser',batch);
 const data=await mkdtemp(path.join(tmpdir(),'cric-draft-browser-'));

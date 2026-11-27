@@ -9,6 +9,16 @@ function bicchiere(b, x, h, r = 0.47) {
   b.rod([x, 0.13, 0], [x, h, 0], r, c.acqua, 0.18);
   b.ring([x, h, 0], r, 'xz', c.verde);
 }
+function frecciaTermica(b, inizio, fine, colore, spostamentoDettaglio, fattore = 32) {
+  b.arrow(inizio, fine, colore);
+  const componenti = fine.map((coordinata, indice) => coordinata - inizio[indice]);
+  const lunghezza = Math.hypot(...componenti);
+  if (lunghezza > 0 && lunghezza < 0.03) {
+    const origine = inizio.map((coordinata, indice) => coordinata + spostamentoDettaglio[indice]);
+    const punta = origine.map((coordinata, indice) => coordinata + fattore * componenti[indice]);
+    b.arrow(origine, punta, c.ocra, true);
+  }
+}
 export const termica = {
   pistone(b, s) {
     const h = 0.14 + 2.08 * s.volume,
@@ -127,7 +137,7 @@ export const termica = {
       b.label([x + 0.35, zero + 0.1, 0], '0 °C');
     }
     if (s.energia !== undefined)
-      b.arrow([-1.71, 0.75, 0], [-1.71 + (0.85 * s.energia) / 54, 0.75, 0], c.rosso);
+      frecciaTermica(b, [-1.71, 0.75, 0], [-1.71 + (0.85 * s.energia) / 54, 0.75, 0], c.rosso, [-0.85, 1.60, 1.05], 128);
     if (f > 0) b.label([-1.08, 0.64, 0.18], 'Liquido');
   },
   barra(b, s) {
@@ -260,10 +270,12 @@ export const termica = {
     const d = s.frigo ? -1 : 1;
     b.arrow([-1.03 - d * 0.58 * s.caldo, 1, 0.85], [-1.03 + d * 0.58 * s.caldo, 1, 0.85], c.rosso);
     b.arrow([1.03 - d * 0.58 * s.freddo, 1, 0.85], [1.03 + d * 0.58 * s.freddo, 1, 0.85], c.verde);
-    b.arrow(
+    frecciaTermica(
+      b,
       [0, 1 + 0.55 * (d < 0 ? s.lavoro : 0), 0.85],
       [0, 1 + 0.55 * (d > 0 ? s.lavoro : 0), 0.85],
       c.viola,
+      [0.55, 0, 0.5],
     );
     b.label([0, 1.96, 0], 'Lavoro', c.viola);
   },

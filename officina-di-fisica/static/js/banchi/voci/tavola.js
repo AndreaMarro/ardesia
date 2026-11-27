@@ -121,7 +121,8 @@ export function disegna2D(elementi, title, className = 'bench-diagram', visibleW
       if (e.kind === 'arrow') {
         const ux = (X - x) / len,
           uy = (Y - y) / len,
-          h = Math.min(8, len / 3);
+          h = Math.min(8, len / 3),
+          semilarghezza = e.dettaglio ? Math.max(4.5, 0.48 * h) : 0.48 * h;
         shapes.push(
           '<path d="M' +
             x +
@@ -136,8 +137,8 @@ export function disegna2D(elementi, title, className = 'bench-diagram', visibleW
             '" stroke-width="2.7"/><polygon points="' +
             [
               [X, Y],
-              [X - h * ux + 0.48 * h * uy, Y - h * uy - 0.48 * h * ux],
-              [X - h * ux - 0.48 * h * uy, Y - h * uy + 0.48 * h * ux],
+              [X - h * ux + semilarghezza * uy, Y - h * uy - semilarghezza * ux],
+              [X - h * ux - semilarghezza * uy, Y - h * uy + semilarghezza * ux],
             ]
               .map((p) => p.join(','))
               .join(' ') +

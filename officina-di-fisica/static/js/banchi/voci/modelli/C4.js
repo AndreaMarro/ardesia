@@ -12,7 +12,7 @@ export const experiments = {
   'SIM-C4-L01-02': {
     observe: "Raddoppia la distanza fra i centri. Guarda quanto si accorciano le frecce delle forze e confronta i loro versi.",
     measure: (x) => 90 / x ** 2,
-    apparatus: (x, y) => ({ qa: 1, qb: 1, distanza: x / 6, forza: y / 60 }),
+    apparatus: (x, y) => ({ qa: 1, qb: 1, distanza: x / 6, forza: y / 60, frecceSeparate: true }),
   },
   // Campo elettrico e linee di forza
   'SIM-C4-L02-01': {

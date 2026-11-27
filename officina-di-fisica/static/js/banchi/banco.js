@@ -28,8 +28,8 @@ const legends = {
     'Attrito · grafite / F · verde / a · lime',
   ],
   volo: [
-    'Proiezione orizzontale · verde',
-    'v · verde / g · rosso',
+    'Anello verde · origine O / Tratteggio verde · proiezione orizzontale',
+    'v · verde / g · rosso / Tratteggio verticale · culmine',
     'vx · viola / vy · ocra / vz · grafite',
   ],
   stevino: ['A · sonda mobile', 'B · presa alla stessa quota', 'Fondo · presa a 2 m'],
@@ -423,6 +423,21 @@ export async function benchPage(id, origin, topicIndex) {
   get('[data-reference]').ontoggle = references;
   function draw() {
     if (available && view !== 'diagram') gpu.rebuild(world.build, p, s, sceneLevel());
+    let nativeLegend = '';
+    if (pilot === 'onde' && view === 'section') {
+      nativeLegend = ' · Linea scura · spostamento istantaneo lungo la sezione passante per P';
+    } else if (view !== 'diagram' && pilot === 'volo') {
+      nativeLegend = ' · Il vettore velocità è di fianco alla sfera. Il dettaglio ocra appare per velocità piccole e ingrandisce la freccia 16 volte nello stesso verso.';
+      if (view === 'top') nativeLegend += ' Scegli Laterale per leggere l’altezza del culmine.';
+    } else if (view !== 'diagram' && r.model === 'piano') {
+      nativeLegend = ' · Il verso positivo della guida è verso monte. Le frecce delle forze sono in primo piano alla scala della guida.';
+    } else if (view !== 'diagram' && r.model === 'campo') {
+      const charges = s.sources.map(({q, pos: [x, y, z]}, i) => {
+        const symbol = i === 0 ? 'q₁' : 'q₂';
+        return q ? `${symbol} = ${n(q)} nC, con x ${n(x)}, y ${n(y)} e z ${n(z)} m.` : `${symbol} è spenta.`;
+      });
+      nativeLegend = ' · L’anello ocra indica la sonda P. Le frecce del campo sono in primo piano alla stessa scala. ' + charges.join(' ');
+    }
     get('[data-legend]').textContent =
       pilot === 'induzione'
         ? 'Viola · campo imposto / n · normale positiva / rosso · corrente nel circuito chiuso'
@@ -430,7 +445,7 @@ export async function benchPage(id, origin, topicIndex) {
           ? activity.legend(stage, view)
           : stage < 0
             ? 'Apparato iniziale'
-            : legends[r.model].slice(0, Math.min(sceneLevel() + 1, 3)).join(' · ');
+            : legends[r.model].slice(0, Math.min(sceneLevel() + 1, 3)).join(' · ') + nativeLegend;
     root.dataset.moment = momenti[stage + 1];
     segnaMomento(root, stage + 1, !answered);
     const caption = get('[data-caption]');

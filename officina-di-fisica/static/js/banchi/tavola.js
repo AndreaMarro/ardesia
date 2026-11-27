@@ -28,8 +28,12 @@ function capillaryPlate(p, s, t, stage, equations) {
   const radius = 17 * p.r;
   const y = (ratio) => axis - radius * ratio;
   const x = (ratio, initial = 0) => left + (right - left) * equations.tracerFraction(s, ratio, t, initial);
+  const description = stage >= 1 && s.laminar
+    ? 'Le due pareti delimitano il capillare. La curva descrive il profilo di velocità. Un tracciante scorre alla quota della sonda.'
+    : 'Le due pareti delimitano il capillare. Il segmento verticale indica il raggio interno.';
   let plate =
-    '<g aria-label="Pareti del capillare">' +
+    '<desc>' + description + '</desc>' +
+    '<g role="group" aria-label="Pareti del capillare">' +
     path(`M${left} ${y(1)} H${right} M${left} ${y(-1)} H${right}`, green) +
     '</g>' +
     path(`M33 ${y(1)} h10 M38 ${y(1)} V${axis} M33 ${axis} h10`, dark) +
@@ -59,7 +63,7 @@ function capillaryPlate(p, s, t, stage, equations) {
   }
   return (
     plate +
-    '<g aria-label="Tracciante della sonda">' +
+    '<g role="group" aria-label="Tracciante della sonda">' +
     dot(x(probe), y(probe), red, 5) +
     '</g>' +
     label(25, 188, 'Sonda · r/R = ' + n(probe) + ' · v = ' + n(equations.velocity(s, probe)) + ' m/s') +
