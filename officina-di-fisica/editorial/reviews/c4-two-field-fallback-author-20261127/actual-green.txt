@@ -1,0 +1,55 @@
+TAP version 13
+# Subtest: the 8 cm field detail has a readable head in both fallback widths
+ok 1 - the 8 cm field detail has a readable head in both fallback widths
+  ---
+  duration_ms: 10.136625
+  ...
+# Subtest: both midpoint extrema keep the displayed arrowhead clear of the charged spheres
+ok 2 - both midpoint extrema keep the displayed arrowhead clear of the charged spheres
+  ---
+  duration_ms: 1.238875
+  ...
+# Subtest: SIM-C4-L02-03: the moving point and plate labels cannot mask a field arrow
+ok 3 - SIM-C4-L02-03: the moving point and plate labels cannot mask a field arrow
+  ---
+  duration_ms: 14.533792
+  ...
+# Subtest: SIM-C4-L03-02: the moving point and plate labels cannot mask a field arrow
+ok 4 - SIM-C4-L03-02: the moving point and plate labels cannot mask a field arrow
+  ---
+  duration_ms: 1.105917
+  ...
+# Subtest: SIM-C4-L03-03: the moving point and plate labels cannot mask a field arrow
+ok 5 - SIM-C4-L03-03: the moving point and plate labels cannot mask a field arrow
+  ---
+  duration_ms: 0.490083
+  ...
+# Subtest: all eight observed positions preserve the field, moving point and scalar exactly
+ok 6 - all eight observed positions preserve the field, moving point and scalar exactly
+  ---
+  duration_ms: 2.465
+  ...
+# Subtest: all 29 C4 controls, teaching outputs, clocks, geometry and unrelated legends retain the frozen baseline
+ok 7 - all 29 C4 controls, teaching outputs, clocks, geometry and unrelated legends retain the frozen baseline
+  ---
+  duration_ms: 114.399208
+  ...
+# Subtest: the accessible descriptions identify the point without assigning a charge to the voltmeter probe
+ok 8 - the accessible descriptions identify the point without assigning a charge to the voltmeter probe
+  ---
+  duration_ms: 1.103958
+  ...
+# Subtest: zero displacement and zero energy gain leave the nonzero uniform field visible
+ok 9 - zero displacement and zero energy gain leave the nonzero uniform field visible
+  ---
+  duration_ms: 0.471916
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 269.555875

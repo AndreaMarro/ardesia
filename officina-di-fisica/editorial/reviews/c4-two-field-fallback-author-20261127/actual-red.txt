@@ -1,0 +1,44 @@
+TAP version 13
+# Subtest: the 8 cm field detail has a readable head in both fallback widths
+not ok 1 - the 8 cm field detail has a readable head in both fallback widths
+  ---
+  duration_ms: 15.3075
+  location: '/private/tmp/cric-midpoint-charge-labels-20261127/officina-di-fisica/tests/c4-field-fallback.test.js:21:1'
+  failureType: 'testCodeFailure'
+  error: 'arrowhead at 320px must extend beyond the 2.7px shaft'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/cric-midpoint-charge-labels-20261127/officina-di-fisica/tests/c4-field-fallback.test.js:31:12)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: both midpoint extrema keep the displayed arrowhead clear of the charged spheres
+not ok 2 - both midpoint extrema keep the displayed arrowhead clear of the charged spheres
+  ---
+  duration_ms: 1.286917
+  location: '/private/tmp/cric-midpoint-charge-labels-20261127/officina-di-fisica/tests/c4-field-fallback.test.js:35:1'
+  failureType: 'testCodeFailure'
+  error: 'arrowhead must clear the source silhouette at 320px, q=-3'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/cric-midpoint-charge-labels-20261127/officina-di-fisica/tests/c4-field-fallback.test.js:48:16)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 0
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 179.355167
