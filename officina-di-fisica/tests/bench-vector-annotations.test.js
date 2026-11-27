@@ -96,3 +96,34 @@ test('small flight velocities retain their direction and get a separate 16× det
   assert.equal(primary.visible, false);
   assert.equal(detail.visible, false);
 });
+
+test('the constant gravity arrow clears the launch and landing platform', () => {
+  for (const input of [
+    { speed: 4, elevation: 50, azimuth: 15 },
+    { speed: 5, elevation: 90, azimuth: 0 },
+    { speed: 3, elevation: 25, azimuth: -60 },
+  ]) {
+    const solved = projectile.solve(input);
+    const { board, arrows } = drawing();
+    board.T = T;
+    board.group = (parent) => {
+      const group = new T.Group();
+      parent?.add(group);
+      return group;
+    };
+    board.ball = () => new T.Object3D();
+    const update = flight(board, input, solved, 2, 'side');
+    const arrow = arrows.find(item => item.color === red);
+    assert.deepEqual(arrow.a, [0, 0, 0]);
+    assert.deepEqual(arrow.b, [0, -0.64, 0]);
+    for (const t of [0, solved.duration / 2, solved.duration]) {
+      update(t);
+      const tip = arrow.group.localToWorld(new T.Vector3(...arrow.b));
+      const tail = arrow.group.localToWorld(new T.Vector3(...arrow.a));
+      assert.ok(Math.abs(tip.y - tail.y + 0.64) < 1e-12);
+      assert.ok(tip.y >= 0.14 - 1e-12);
+      assert.equal(tip.x, tail.x);
+      assert.equal(tip.z, tail.z);
+    }
+  }
+});

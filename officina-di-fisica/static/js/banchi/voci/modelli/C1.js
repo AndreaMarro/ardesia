@@ -192,7 +192,7 @@ export const experiments = {
   'SIM-C1-L007-02': {
     observe: "Confronta la velocità del carrello all’inizio e più tardi. Con la stessa forza, la potenza istantanea segue la velocità.",
     measure: (x) => 6 * x,
-    apparatus: (x, y) => ({ pos: x * x, inizio: 0, min: 0, max: 16, freccia: x / 3 }),
+    apparatus: (x, y) => ({ pos: x * x, inizio: 0, min: 0, max: 16, freccia: x / 3, dettaglioVelocita: true }),
   },
   // Teorema dell’energia cinetica
   'SIM-C1-L007-03': {

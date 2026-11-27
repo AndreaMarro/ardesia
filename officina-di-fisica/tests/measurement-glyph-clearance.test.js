@@ -72,3 +72,46 @@ test('confirmed C1 and Doppler cartouches leave the geometry and the accessible 
     assert.match(activity.legend(2, 'top'), names);
   }
 });
+
+test('small gravitational attraction remains visible in both inward directions', async () => {
+  const activity = await experience('SIM-C1-L006-03');
+  for (let r = 1; r <= 4; r += 0.25) {
+    const arrows = activity.elements(r, 2).filter(element => element.kind === 'arrow');
+    const original = arrows.filter(element => element.c === colore.verde);
+    const details = arrows.filter(element => element.c === colore.ocra);
+    assert.equal(original.length, 2);
+    assert.equal(details.length, r >= 2.25 ? 2 : 0);
+    assert.equal(activity.model.solve({ x: r }).y, 1 / r ** 2);
+    for (const [index, arrow] of original.entries()) {
+      const towardOtherMass = 1 - 2 * index;
+      const delta = arrow.b[0] - arrow.a[0];
+      assert.ok(Math.abs(delta - towardOtherMass * 0.85 / r ** 2) < 1e-12);
+      if (details[index]) {
+        const detail = details[index];
+        assert.equal(detail.dettaglio, true);
+        assert.ok(Math.abs(detail.b[0] - detail.a[0] - 6 * delta) < 1e-12);
+        assert.ok(Math.abs(detail.a[2] - arrow.a[2]) > 0.7);
+        assert.equal(Math.sign(detail.a[0]), Math.sign(detail.b[0]));
+      }
+    }
+  }
+  assert.match(activity.legend(2, 'diagram'), /sei volte/);
+});
+
+test('the early cart velocity has a separate direction cue only above zero', async () => {
+  const activity = await experience('SIM-C1-L007-02');
+  for (const time of [0, 0.25, 0.5, 0.75, 1, 4]) {
+    const arrows = activity.elements(time, 2, time).filter(element => element.kind === 'arrow');
+    const original = arrows.filter(element => element.c === colore.viola);
+    const details = arrows.filter(element => element.c === colore.ocra);
+    assert.equal(original.length, time ? 1 : 0);
+    assert.equal(details.length, time > 0 && time < 1 ? 1 : 0);
+    assert.equal(activity.model.solve({ x: time }).y, 6 * time);
+    if (details.length) {
+      const [detail] = details;
+      assert.equal(detail.dettaglio, true);
+      assert.ok(Math.abs(detail.b[0] - detail.a[0] - 6 * 0.65 * time / 3) < 1e-12);
+    }
+  }
+  assert.match(activity.legend(2, 'diagram'), /sei volte/);
+});

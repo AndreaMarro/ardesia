@@ -1,0 +1,60 @@
+TAP version 13
+# Subtest: the weight and normal keep their length and origin in the moving block frame
+ok 1 - the weight and normal keep their length and origin in the moving block frame
+  ---
+  duration_ms: 1.735917
+  ...
+# Subtest: field contributions and resultant share the probe, scale and annotation layer
+ok 2 - field contributions and resultant share the probe, scale and annotation layer
+  ---
+  duration_ms: 0.731625
+  ...
+# Subtest: the flight retains the origin marker and the apex guide without a covering label
+ok 3 - the flight retains the origin marker and the apex guide without a covering label
+  ---
+  duration_ms: 0.835667
+  ...
+# Subtest: small flight velocities retain their direction and get a separate 16× detail
+ok 4 - small flight velocities retain their direction and get a separate 16× detail
+  ---
+  duration_ms: 1.153541
+  ...
+# Subtest: the constant gravity arrow clears the launch and landing platform
+ok 5 - the constant gravity arrow clears the launch and landing platform
+  ---
+  duration_ms: 1.623
+  ...
+# Subtest: both Coulomb forces keep the common gain clear of the charge spheres
+ok 6 - both Coulomb forces keep the common gain clear of the charge spheres
+  ---
+  duration_ms: 8.822458
+  ...
+# Subtest: the photoelectron inset preserves direction, gives its scale, and vanishes at zero excess
+ok 7 - the photoelectron inset preserves direction, gives its scale, and vanishes at zero excess
+  ---
+  duration_ms: 4.426167
+  ...
+# Subtest: confirmed C1 and Doppler cartouches leave the geometry and the accessible names legible
+ok 8 - confirmed C1 and Doppler cartouches leave the geometry and the accessible names legible
+  ---
+  duration_ms: 6.656209
+  ...
+# Subtest: small gravitational attraction remains visible in both inward directions
+ok 9 - small gravitational attraction remains visible in both inward directions
+  ---
+  duration_ms: 1.701166
+  ...
+# Subtest: the early cart velocity has a separate direction cue only above zero
+ok 10 - the early cart velocity has a separate direction cue only above zero
+  ---
+  duration_ms: 1.519417
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 114.097167

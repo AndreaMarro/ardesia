@@ -77,8 +77,9 @@ export function legendaTavola(apparato) {
 const annotazioniScene = new Map();
 const annotazioni = {
   C1: [
-    ['Distanza fra i centri', '', ['L006-03']],
-    ['Carrello', '', ['L007-02','L007-03']],
+    ['Distanza fra i centri', 'Le frecce verdi hanno la stessa lunghezza e puntano verso l’altra massa. Quando sono corte, le due frecce ocra le mostrano in una fascia separata, sei volte più lunghe e negli stessi versi.', ['L006-03']],
+    ['Carrello', 'All’inizio la velocità è nulla e la freccia scompare. Per le piccole velocità, il dettaglio ocra mostra la stessa freccia sei volte più lunga, lungo il binario e nello stesso verso.', ['L007-02']],
+    ['Carrello', '', ['L007-03']],
   ],
   C2: [
     ['Entrata', 'L’entrata è a sinistra e l’uscita a destra.', ['L005-01','L005-02','L005-03','L006-01','L006-02','L006-03','L006-04','L008-01','L008-02','L008-04']],

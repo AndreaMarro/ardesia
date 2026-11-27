@@ -153,7 +153,11 @@ export const meccanica = {
       old = at(s.inizio);
     b.rod([old, 0.06, 0.65], [old, 0.65, 0.65], 0.026, c.ocra);
     carrello(b, x, c.verde);
-    b.arrow([x, 0.95, 0], [x + (s.freccia ?? 0) * 0.65, 0.95, 0], c.viola);
+    const length = (s.freccia ?? 0) * 0.65;
+    b.arrow([x, 0.95, 0], [x + length, 0.95, 0], c.viola);
+    if (s.dettaglioVelocita && length > 0 && length < 0.18) {
+      b.arrow([x, 1.56, 0.80], [x + 6 * length, 1.56, 0.80], c.ocra, true);
+    }
     if (s.startLabel) b.label([old, 0.85, 0.72], s.startLabel, s.marks ? c.inchiostro : c.ocra);
     if (s.turn !== undefined) {
       b.arrow([old, 0.12, -1.15], [at(s.turn), 0.12, -1.15], c.verde);
@@ -293,7 +297,13 @@ export const meccanica = {
       c.metallo,
       true,
     );
-    for (const k of [-1, 1]) b.arrow([k * d, 1.36, 0], [k * (d - 0.85 * s.forza), 1.36, 0], c.verde);
+    const length = 0.85 * s.forza;
+    for (const k of [-1, 1]) {
+      b.arrow([k * d, 1.36, 0], [k * (d - length), 1.36, 0], c.verde);
+      if (length > 0 && length < 0.18) {
+        b.arrow([k * d, 1.90, 0.82], [k * (d - 6 * length), 1.90, 0.82], c.ocra, true);
+      }
+    }
     b.label([0, 1.95, 0], 'Distanza fra i centri');
   },
   percorso(b, s) {

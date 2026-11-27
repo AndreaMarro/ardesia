@@ -51,10 +51,12 @@ export function build(b, p, s, stage) {
   const ball = b.ball(start, 0.139, brass),
     moving = b.group();
   const previous = [];
-  let detail;
+  let detail, gravity;
   // Unit vectors rotate and scale without allocating geometry during playback.
   if (stage >= 1) {
-    b.arrow([0, 0, 0], [0, -0.64, 0], red, moving);
+    gravity = b.group(moving);
+    gravity.position.set(-0.34, 0, -0.46);
+    b.arrow([0, 0, 0], [0, -0.64, 0], red, gravity);
     for (let i = 0; i < (stage >= 2 ? 4 : 1); i++) {
       const g = b.group(moving);
       if (i === 0) g.position.set(0.21, 0.22, 0.28);
@@ -70,6 +72,7 @@ export function build(b, p, s, stage) {
       q = sample(s, t);
     ball.position.set(...a);
     moving.position.set(...a);
+    if (gravity) gravity.position.y = Math.max(0, 0.78 - a[1]);
     const vectors = [
       [s.vx, q.vy, s.vz],
       [s.vx, 0, 0],
