@@ -14,13 +14,14 @@
     "nextQuestionId": null,
     "protectedExamQuestions": 93,
     "registrationCommit": "90ac066dcd8fdb6db1fe3b4d89d5e46eb94ffe46",
-    "registrySha256": "a5228a2319967fa84e1c8cb379eb5c5d0f8bf2d13373abcd73e89cee770f5b68",
+    "registrySha256": "05c71babe91b61c292cf9175552944b785ddb216cd8909cace6296f265ecd213",
     "perIdStatus": "editorial/reviews/full-corpus-work-status-20261126.json",
     "scientificReplay": {
       "commit": "f72cfcf016c4e7d9cf28c331fcbccea3b6b22e5a",
       "sourceIds": 4606,
       "batches": 303,
-      "findings": 0
+      "findings": 0,
+      "inputRegistrySha256": "a5228a2319967fa84e1c8cb379eb5c5d0f8bf2d13373abcd73e89cee770f5b68"
     },
     "sectionReconciliation": {
       "correctedStagingDrafts": 250,
@@ -35,10 +36,10 @@
   },
   "otherActivities": {
     "total": 385,
-    "registered": 240,
-    "open": 145,
+    "registered": 244,
+    "open": 141,
     "newReviewsOpen": 139,
-    "explicitlyReopened": 6,
+    "explicitlyReopened": 2,
     "historicalClosuresNeedingCurrentRuntime": 6,
     "overlapBetweenHistoricalClosuresAndExplicitReopenings": 1,
     "independentFiveReplayCommit": "1ed3c13cebb8fe8b80dc997f8b6c9a6b0646f1e8",
@@ -125,6 +126,18 @@
         "SIM-C5-L01-02",
         "SIM-C5-L05-03"
       ]
+    },
+    "recentVectorFamilyClosure": {
+      "closedIds": [
+        "SIM-C1-L002-01",
+        "SIM-C1-L002-02",
+        "SIM-C1-L002-03",
+        "SIM-C1-L002-04"
+      ],
+      "runtimeSha256": "cb9fc66d96ecced2addff3df4dfbeb0b5834e73a13719a78ea964bc28a5ada49",
+      "receipt": "editorial/reviews/vector-family-four-current-closure-20261127/receipt.json",
+      "sha256": "64cffe8b86405b468e9fc11bdd8a7baadf753d8f33465d2e1bcbb5f6137369f6",
+      "requiresRenewalOnFinalRuntime": true
     }
   },
   "coexistence": {
@@ -183,7 +196,7 @@
   },
   "nextAction": [
     "Use five verified upstream archives to complete the individual visual assessments and verify the targeted corrections",
-    "Close six C1 reopenings beginning SIM-C1-L001-06 and 139 other open IDs via independent canonical reviews",
+    "Close the remaining C1 reopenings SIM-C1-L001-06 and SIM-C1-L007-01 and all 139 other open IDs",
     "Validate all groups on the exact integration runtime and rerun final previews and coexistence",
     "Open and validate canonical integration and document CI on the integrated SHA"
   ]
