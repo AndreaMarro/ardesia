@@ -110,8 +110,8 @@ const annotazioni = {
   ],
   C5: [
     ['Massa oscillante', 'Il blocco ocra è la massa oscillante. La freccia parte dall’equilibrio e arriva alla posizione della massa.', ['L01-02']],
-    ['Sorgente', '', ['L05-03']],
-    ['Ricevitore', '', ['L05-03']],
+    ['Sorgente', '', ['L05-01','L05-03']],
+    ['Ricevitore', '', ['L05-01','L05-03']],
     ['Elettrone libero', 'L’elettrone verde rimane legato sull’anello oppure compare all’esterno come elettrone libero. La freccia verde è spostata rispetto alla sfera e la sua lunghezza segue l’energia cinetica. Quando appare il dettaglio ocra scuro, conserva lo stesso verso e ha lunghezza quattro volte maggiore.', ['L07-03']],
     ['Elettrone legato', '', ['L07-03']],
   ],
@@ -159,6 +159,11 @@ export function legendaVoce(record, vista) {
   }
   if (record.id === 'SIM-C3-L10-01') {
     return 'Il serbatoio è a sinistra e il sistema a destra. La freccia viola punta verso il sistema quando entra calore, verso il serbatoio quando esce. A Q uguale a zero lo scambio è nullo.';
+  }
+  if (record.id === 'SIM-C5-L05-01') {
+    return 'La sfera ocra a sinistra è la sorgente. L’asta a destra è il ricevitore. '
+      + 'Il punto viola segue il segnale dalla sorgente al ricevitore. I cerchi verdi mostrano i fronti nel mezzo. '
+      + 'Il cronometro misura solo l’andata lungo i 150 m.';
   }
   if (record.id === 'SIM-C5-L05-03') {
     return 'Sfera ocra · sorgente. Punto viola · ricevitore. Gli archi verdi sono le creste emesse dalla sorgente. La freccia rossa indica il verso di moto della sorgente.';

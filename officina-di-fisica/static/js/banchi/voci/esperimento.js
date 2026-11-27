@@ -303,11 +303,13 @@ export async function esperienza(record) {
     'decadimento',
     'onde2',
   ].includes(record.apparatus);
+  const trasmissioneSuono = !record.engine && record.id === 'SIM-C5-L05-01';
   const spec = {
     target: [0, high ? 1.27 : 0.95, 0],
     // Native vector grids include full vertical components and the table feet.
     // Keep their complete opaque meshes in all three preset camera frames.
-    height: nativeVectorAxes ? 6 : high ? 4.65 : top ? 4.68 : 4.25,
+    // The sound fronts span 4.48 scene units at the largest setting.
+    height: nativeVectorAxes ? 6 : trasmissioneSuono ? 5 : high ? 4.65 : top ? 4.68 : 4.25,
     width: 8.1,
     // A lateral eye lets the opaque right plate hide the nearby probe. In these
     // three native activities, a raised frontal view keeps their x positions
