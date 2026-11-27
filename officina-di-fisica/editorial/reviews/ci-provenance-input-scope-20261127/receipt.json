@@ -1,0 +1,29 @@
+{
+  "activityCredit": 0,
+  "failedHead": "a66cbf53e19d1f409936782668e87a039b30d452",
+  "failedStep": "Sorgenti immutabili e strumenti solo editoriali",
+  "failedWorkflowRun": 45979340462,
+  "files": {
+    "actual-green.txt": "3ff026734d004e0e0517b5dd3737fbc21c8cd61f7bb6fe917eada12c9a507c16",
+    "actual-red.txt": "0c349080d4363809f2058b19dd8bb808a27b6910ebd881989391b563d9c1c841"
+  },
+  "humanApproval": "NOT_RUN",
+  "localRegressionAfter": {
+    "errors": 0,
+    "exitCode": 0,
+    "tests": 5
+  },
+  "localRegressionBefore": {
+    "errors": 1,
+    "exitCode": 1,
+    "tests": 5
+  },
+  "observedManifestSha256ByPath": {
+    "officina-di-fisica/editorial/reviews/renewal-bench-fields-optics-036-3ed5-20261127/runtime-git-inputs/git-inputs.json": "ff0ae03de31b98dd8a8664ae6b70e6063dfcb80379065ead606033f835fda2ec",
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-1efc-20261127/runtime-git-inputs/git-inputs.json": "cb8ec110da07d797e5e0e88b5ecafa9adc2028cea247dafe3ba81e702269f7c2"
+  },
+  "publicationAction": "NONE",
+  "rootCause": "Two historical Git input manifests include a descriptive scope field and 24 valid rows each. Decoder treated this annotation as a schema error.",
+  "schemaVersion": "1.0.0",
+  "scope": "Corpus engineering CI validation of source snapshot declarations"
+}

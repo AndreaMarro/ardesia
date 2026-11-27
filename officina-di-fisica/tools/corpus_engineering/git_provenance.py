@@ -16,10 +16,13 @@ def declared_blob_inputs(reviews_root):
     inputs = {}
     for manifest in sorted(Path(reviews_root).rglob("git-inputs.json")):
         data = json.loads(manifest.read_bytes())
-        if (not isinstance(data, dict) or set(data) != {"schemaVersion", "inputs"}
+        if (not isinstance(data, dict) or not {"schemaVersion", "inputs"} <= data.keys()
+            or data.keys() - {"schemaVersion", "inputs", "scope"}
             or data["schemaVersion"] != "1.0.0" or not isinstance(data["inputs"], list)
             or not 1 <= len(data["inputs"]) <= 100):
-            raise ValueError("Expected bounded versioned Git blob inputs")
+            raise ValueError(f"Expected bounded versioned Git blob inputs: {manifest}")
+        if "scope" in data and (not isinstance(data["scope"], str) or not data["scope"].strip()):
+            raise ValueError(f"Git blob input scope must be descriptive text: {manifest}")
         for item in data["inputs"]:
             if not isinstance(item, dict) or set(item) != {"commit", "path", "snapshot", "sha256"}:
                 raise ValueError("Incomplete Git blob input")

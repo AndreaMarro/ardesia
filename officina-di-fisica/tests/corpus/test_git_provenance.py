@@ -4,7 +4,7 @@ import subprocess
 import tempfile
 from pathlib import Path
 import unittest
-from tools.corpus_engineering.git_provenance import fixture_commit_refs, ensure_commits
+from tools.corpus_engineering.git_provenance import declared_blob_inputs, fixture_commit_refs, ensure_commits
 
 
 def fixture(root, name, ref):
@@ -57,6 +57,20 @@ class GitProvenance(unittest.TestCase):
             receipt.write_text(json.dumps(data))
             with self.assertRaises(FileNotFoundError):
                 fixture_commit_refs(root)
+
+    def test_runtime_blob_manifest_may_describe_its_scope(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            raw = b'known specimen\n'
+            (root / 'source.txt').write_bytes(raw)
+            pin = hashlib.sha256(raw).hexdigest()
+            manifest = root / 'git-inputs.json'
+            item = {'commit': 'a' * 40, 'path': 'officina-di-fisica/source.txt', 'snapshot': 'source.txt', 'sha256': pin}
+            manifest.write_text(json.dumps({'schemaVersion': '1.0.0', 'scope': 'Runtime observation', 'inputs': [item]}))
+            self.assertEqual(declared_blob_inputs(root), [{name: item[name] for name in ('commit', 'path', 'sha256')}])
+            (root / 'source.txt').write_bytes(b'different bytes\n')
+            with self.assertRaises(ValueError):
+                declared_blob_inputs(root)
 
     def test_real_missing_object_fetch_and_second_execution_are_idempotent(self):
         with tempfile.TemporaryDirectory() as folder:

@@ -1,0 +1,19 @@
+..warning: filtering not recognized by server, ignoring
+From /var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/tmp8xzx5xel/origin
+ * branch            1fb61c06d88a74e7f8be7bea9addc6b1e40302d0 -> FETCH_HEAD
+.E.
+======================================================================
+ERROR: test_runtime_blob_manifest_may_describe_its_scope (test_git_provenance.GitProvenance.test_runtime_blob_manifest_may_describe_its_scope)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-converged-runtime-20261127/officina-di-fisica/tests/corpus/test_git_provenance.py", line 70, in test_runtime_blob_manifest_may_describe_its_scope
+    self.assertEqual(declared_blob_inputs(root), [{name: item[name] for name in ('commit', 'path', 'sha256')}])
+                     ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-converged-runtime-20261127/officina-di-fisica/tools/corpus_engineering/git_provenance.py", line 22, in declared_blob_inputs
+    raise ValueError("Expected bounded versioned Git blob inputs")
+ValueError: Expected bounded versioned Git blob inputs
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.802s
+
+FAILED (errors=1)
