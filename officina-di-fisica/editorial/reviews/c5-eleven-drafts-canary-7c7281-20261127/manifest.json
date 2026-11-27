@@ -1,0 +1,2870 @@
+{
+  "role": "INDEPENDENT_AI_BOUNDED_UI_REVIEW",
+  "runtimeCommit": "b9994b9116e87478905191d85cca8037d17ae4bd",
+  "runtimeSha256": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6",
+  "draftCandidateCommit": "d20c200b8731739ef512f7e2820104a7bd755202",
+  "collectorSha256": "719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15",
+  "actualUIExitCode": 0,
+  "actualUIElapsedSecondsToReceipt": 214.20814108848572,
+  "technicalCases": 264,
+  "canonicalActivityAcceptance": "NOT_GRANTED",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "priorReviewDependencies": [
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-wave-basis-independent-20261127/manifest.json",
+      "sha256": "25071bfba2630b681df206cc5205e6b5df609a10382df119e01dbfd3ee52865d"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-wave-energy-sound-independent-20261127/manifest.json",
+      "sha256": "64188825b9bfa4ad2cd40e64731c7df64ecedf7272efdc3a3d96d2f517e33643"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-wave-wording-final-addendum-20261127/manifest.json",
+      "sha256": "06e4185ffa825f12128c10087820c9366e682374e4566a054d377ba09f185c84"
+    }
+  ],
+  "files": [
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/HANDOFF.md",
+      "sha256": "d0ba69db16c2d5e89c49da91fa83c39303481c74fe5c9b39d4094cfd42a92de2",
+      "bytes": 3256
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-authority-tests-process.txt",
+      "sha256": "3e7a6fb700f99b171f2dc0f0e2a1c2155bc879f1d0d80e24ab0995baeb2d454d",
+      "bytes": 103
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-evidence-analysis-process.txt",
+      "sha256": "472787feb5c6adc45bad3cd6f5495f90eb5250cbc2c00e3c2dd4fb87796c4820",
+      "bytes": 1265
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-evidence-analysis-repair-receipt.json",
+      "sha256": "5d08e2e147fb74eb751a36728c94b0fb1a2c9d1ee7a0e28471e05b66d3d2e897",
+      "bytes": 259
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-evidence-analysis.json",
+      "sha256": "ee283eb409cf152884958b9bec004103778504409d2e6793d398ded785228188",
+      "bytes": 4220
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-evidence-cpu-receipt.json",
+      "sha256": "9bdeadc1e22afa79dfdec43b1920a809c86088ddc2c90f77f9aef3456eb835ac",
+      "bytes": 341
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-preflight-receipt.json",
+      "sha256": "2cc3884aa2706d40a36151c8349a0d91c6d37877858a0a5c24fce2e18a4ccd1e",
+      "bytes": 532
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-preparation-node-process.txt",
+      "sha256": "90e9fd8dfcdf0c14e0dd4b674f491d314d206b8df6c0977e06a97ca68ecd6cde",
+      "bytes": 33
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-selected-state-compilation.json",
+      "sha256": "065f0ecbf37d754e35989809a5971b06ee2342ac88059c6526ff1db84d88ac04",
+      "bytes": 9054
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/0097ff2c6502f252c58e3c0beea9f8c65442da00d7d99ab7ddfbecea3141bf2d.json",
+      "sha256": "24a8e8542f8651cf22e9b8fb25afadf2c3a26974813fec8495e055c7308c12b7",
+      "bytes": 3793
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/00ff6fea897eae4484e87b3ee23aefd992ffd1069f0db748c77844af25596489.json",
+      "sha256": "3ecb950ec88dd9c19a7c8153ebd42979eac7f1cf6e7781f86ccb33e3ab183ffd",
+      "bytes": 3474
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/028510ed789a0c9f288415c54dea61ef3215cd0cca89e57f494db41b1a516849.json",
+      "sha256": "ce9b0460e1df522050224200eb8ef13f7cbc35ea1fe576812cf18be7bfb10dfe",
+      "bytes": 7162
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/02b628e2d1356ff96762927b49f23304e9273809ae0cfafc84b656d9015acd4c.json",
+      "sha256": "893474b1dd0db97ac0db74b97e6d62ec0dce995b39afe78c91641b19bd36907c",
+      "bytes": 17841
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/04732059eeccedc499db356dc5ec30fb9ff614c051f3152e5ee72cd48f2e23e0.json",
+      "sha256": "091c68a381475fd8a278f65c4821edb3c0369cf5ad0ff81828f8a6abdfb70d44",
+      "bytes": 18473
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/04fd251ac53d0e034cbaeb02bbc3f39f1d6c373433fae9fd938c3cd9a08bd52b.json",
+      "sha256": "29e3d0c88caf71271cb840adebf813d2c1432603396b3fbfca18b147de98441e",
+      "bytes": 15577
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/085c1e265c6e694bdd774c152ee88e0eba8190031db466a3a6ba8c8bcb2c6f67.json",
+      "sha256": "4d3a62caf6d034004aef35c15f99e52b829fb359789be8d1eb3e1df2154c4a8f",
+      "bytes": 8416
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/086e182e96af49cf540712f09d055db3d6ceed283c6a78c687d99c6a76091269.json",
+      "sha256": "9e8c7bdf6325c6b1053c830cf787a0f03cfd69b0e768b764d114d5e1aa6b6a12",
+      "bytes": 6882
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/0907719dc035d87d394553eedc55c26727bc7aa03472acd4c74959c8903fb945.json",
+      "sha256": "51fd11708d531259d2064cc9da9c2ee48063fa31bd4ccc9d866d358577d640cf",
+      "bytes": 7123
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/0da723403925cd37a9c004a81d9510608367e16b43ca98fe7b12294b4d9ce5c4.json",
+      "sha256": "2fc25ffe4099f98d6662ec8bf3da7a9c689d252472e844da9fdfd826730ec79f",
+      "bytes": 3297
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/0dadd4e12f8e6f72942474b3752c1c6391bebd094fd1a0b6cba38d3161375201.json",
+      "sha256": "0775f386729f2330f8b4bb1e8a100c6be560c5afce20e1fe1e6b8fd72671ddfa",
+      "bytes": 3373
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/0e3054c0b8c625bf520e52572f44c55e30c0737b8a2778919bcb3ab9a3fba955.json",
+      "sha256": "f34aab863f3c33c0677c386988c889934f90a26160b22ca2688e15b6f0e38641",
+      "bytes": 6970
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/0ee458e78d21655030cad9c9393c505826657a7f0d1a2c43464599e8764b5afa.json",
+      "sha256": "e04e843be6a70b4e56132f36901e73ffc03ec605cb761bc89570c3d68ea73c1f",
+      "bytes": 3354
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/0f1e804dbb022e273fcdfd8768c16233e60beaa4b32f75120421a481ee5aef72.json",
+      "sha256": "d3b3e9dabd37247964bf4c7ef9d8651db6564fb3391a5ac9151ea9508fcb8477",
+      "bytes": 3532
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/1095c5187b02ae3e6d6ba7660cf866ca755471a9711755aa4828456512301180.json",
+      "sha256": "68d673f6e696b14e50e3c8e69f31cc6deaea9a8837e96d3ecb70e58f57ab15b9",
+      "bytes": 7053
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/123301d5f59c0fd04da7c93ad0cf33abdf102666822e81d8e44d528d46c19f33.json",
+      "sha256": "becd5c1ed8981cbfd2a00bfaa2686e3859b99ea577ae718e7d4d667976ace1f2",
+      "bytes": 12309
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/12be31e14b9f68d4afd6f2f631ecbea0e1970c812b99fbc4162d368ff6258467.json",
+      "sha256": "10e669d5c74ed04bddd951342151531e8e65a6d1dcc6d168452be3aee8d910cf",
+      "bytes": 3497
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/1708fe87acd48e6752c1a857561e1971d0525a09429b51c667ecfa4482960feb.json",
+      "sha256": "55c5639cddad8ec003031b0cc63b2f999cf0376cdc0c016cd6601de6def45749",
+      "bytes": 6829
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/176f9f7dbc283c6ff138b61be60879f477b4d567d208fc59783bcc58507c9cc4.json",
+      "sha256": "30f995de252e0b06307aafcfb835b534f659945c8a51627c28739bb08759c75f",
+      "bytes": 17732
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/17a96b3b931f2a2e16d41bb0fa7c1708d8c81adb8f47f8d7ee2edcd719b79a93.json",
+      "sha256": "cbd41d1c84551930aa47a0f3fe3d4c33c05ab4cea913ed698feb0c829b611e50",
+      "bytes": 3768
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/18514ed40c826135370e1923f58b70e8879f41c0e40b8241f171607152032d6f.json",
+      "sha256": "b581708444bb60bcf201cc68fab11c88f3ca8e43fd954bebe3c38c5e5adb6a38",
+      "bytes": 3476
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/19c2694a4ea139418651223e7180329de865bd7ef437b678f08542eba0cb46fe.json",
+      "sha256": "81ec113b8a0909a15469f2663b0c1a8f5649840eaf06d3510e963a75c8b77592",
+      "bytes": 13337
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/1abcb8a068dd0bdbe5efa1672e3a57bb866fc013e3fc8480f147ffd49a67761e.json",
+      "sha256": "6e6e1e58932ca38f885099ca0e5d99818a8662b05701318ea8e9ec4272004be6",
+      "bytes": 3476
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/1b404d6084e03621da603667c9121ced8de4f4a775b7ab8bdd1318a3b09e7c09.json",
+      "sha256": "8352575b3af20885f191ff73fde4c10941e4849cb479d1a458243f69d45f7b27",
+      "bytes": 15030
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/1d00cf3889b03f70df7b99b760afdfe3109570ee3e67e7ba26c629bb97aeb08a.json",
+      "sha256": "b5fa87763759c7cd9fb9a12d71ee176fb34d931228b290d194df178ad7115c8b",
+      "bytes": 9216
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/1db97bb1c68da3ddbaf19e9345e698dcef1a4cea032a1aace6599755fe583d0e.json",
+      "sha256": "c13727e1b01b35443be87abc24428854f6fd765ab8827b8aad38c816f65f95a1",
+      "bytes": 3534
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/1fa43923948a94bd40c25731e77ac7b185207c894b0b4581db14dfa65267cb1d.json",
+      "sha256": "26aa64c492da7f751bfce5eb73b7349957ea878950f7d9050165406089e340b6",
+      "bytes": 22021
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/1fa53924648c4a4952e5444cb5121ce8814b3e8d556e30f7518afb5fa6aecf9e.json",
+      "sha256": "bf7cfcd7fa3e26c6d8b055a6b2aeeff52b63fe6505353991a7e4c2b13b4a988c",
+      "bytes": 7110
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/2118bd4fb6276af1ed9347197fbaba12a7d602aaec5dd5b32f2f486f58890d1b.json",
+      "sha256": "8b1485f4bfc578d3edb78a8cffcbd100d50d1c204eac71aeee448a4200984ca9",
+      "bytes": 3415
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/231951a14242c63a68b40edff6ee95f2b8b6759a0f0c0c9741b4f8ff53f20dfb.json",
+      "sha256": "7be19c044d9b7151923bc3b40ea58a9748b3eff88e3bd879178d4cbe085d2043",
+      "bytes": 3530
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/23577c299af126b724ac6d037c204ffaee4b7c8528734fa8132838e317a50f6a.json",
+      "sha256": "38ba31506b6d4aaaba1750233fde47fce99914da5c5a544be75c88a8d0a93d5a",
+      "bytes": 8450
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/236ca97eb5c24f34f44d5b065ad0842ad386e38ee4fffea38c85a62fcfc87bb3.json",
+      "sha256": "327d1466b50285047dd3497af6e7a024dbc76bf9ce4b37184db56de3b8672ad0",
+      "bytes": 16302
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/238b2c423c4b5d40bd1ac1720ea999cc10c55d4ddeca791dd6e3200590e50f1c.json",
+      "sha256": "924122162a556f18c93325e49f07f5c90959eae4080494ebfc6511753d72034a",
+      "bytes": 3528
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/23a6e460020bc10ad12e756a8caffa283cb1e7ea3f78f398c523686f9e15243b.json",
+      "sha256": "641f16c494b81df36feaf6efbf292412f25c74e4fa8a3309f4a53007a9b01bc2",
+      "bytes": 18566
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/23a769cea36abcb67a6700c216f4798e737e5d201fbcab355f7352178950eaa4.json",
+      "sha256": "83be9a86c9bec98f953a6077670203f0186b5157d1fbfe2f72d6746da6a83be8",
+      "bytes": 16590
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/249e1738f106d94e7d0d51a81688e50cb0d465053ad9864ac308e28c50e4a482.json",
+      "sha256": "dd5f383ca2c4f2b5bf73024dd2e37b6c5976008f577957145b9887ea29fda69a",
+      "bytes": 3507
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/251fa2975fab22098414c3f365e67e3c9d16605ea4d80f9a6e80aa74f8148225.json",
+      "sha256": "05908cf9cff8ac17169bc4769d4c0fa9726f8d4675ad0625d111e630451b0dea",
+      "bytes": 3369
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/27039be50ab0594b491531427eca9094f5eaf326467c541610d2d05950edf824.json",
+      "sha256": "072072ca1eba5713d37ca6257e5d6c471e720c8739c2fbb560c6f7cb7018ef76",
+      "bytes": 22171
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/2725ac346016706340bea2623ce647e499422a622f96175fb33043010969a106.json",
+      "sha256": "710ed880af7c312a4b1daebc53e579ca96b8edae9c6debd6f97a31f11d2507be",
+      "bytes": 3371
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/295d991059d5497a91ba382aa5ad5d4e90075ab912c0f615ad2f7f3ddf92dde2.json",
+      "sha256": "7936471da0dbe7826803f6ccafe6a52fbd8694659bfa5131e8cf381ed29863f4",
+      "bytes": 16711
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/298233b72e24780a95bc1d0a68365408342adb16229d2d804bfab27a9d1ca7b5.json",
+      "sha256": "e0abcc5541897348cfa0ecea699c096ba9c85412aed2866bbe3551241c4a47da",
+      "bytes": 8426
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/2a45fc6acb2fe17f585bdcd0dca9223c473610e06ede624b043b30d213767e8c.json",
+      "sha256": "80b26f8f982a18bb9a702aecb87dcd9ac7088710253eb3609e2ba8d72624191c",
+      "bytes": 3538
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/2df7db349d04a99432a99a5ca7c14a464476312cbe9ea4ab14c280c9691700f4.json",
+      "sha256": "2aba26c4113e02a22225997429f3bd7e7ef34e867055ef715b8a32c783bc9920",
+      "bytes": 7115
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/2e93ec5a1fa0b0917f3840277cfff6856180701f30c787f376fb61abda1d7b31.json",
+      "sha256": "11141160193f5085b4a7df8536fb8a9ceed08672b6baf5d0a190cca60ebff140",
+      "bytes": 13575
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/2eaa9e42964e28c1b8a67827b5e4ede75bff357ac42aa0f24df4bced13bf4eb9.json",
+      "sha256": "872bb1cb65499aac1297a8510da8dc3329f20027850b4ba10a5b84ee2ebca6d4",
+      "bytes": 3375
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/306e8d2b2a83e923c6124dbd4970e03e1cee73f3589ad68050bd7583c233b3e5.json",
+      "sha256": "fc5174c3ad3bd80c96d75183d16d72d7c51b75f19712618b84db6ad6dd3fd84e",
+      "bytes": 3766
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/33077f14b7a0f75fd77282757084d848d09b74b8d690439ef1921c017acc36bf.json",
+      "sha256": "c1ca842616ded97cdea136f89f453556fadb9f91a454af0805f6bf5cab2bf9ac",
+      "bytes": 14992
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/348eae67a381d48010ceef88c1c9262d7743ec5a9930321aa3526924416eb13f.json",
+      "sha256": "f765a9f5da56e66c345956f488153ffb221ef62723778edaf3b3590547842bb8",
+      "bytes": 3323
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/34c6de55283cd753039c6a3cbb829a6724c654d467679bbe54316540f3e6d365.json",
+      "sha256": "8874045733912263797c8cc06606cbaf85701a8db0bbaaa364fbd59bba106c8b",
+      "bytes": 17885
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/37367d585a643521123d82163d47089403ed8d95aee77a1cf2e3f2e7ffe5de05.json",
+      "sha256": "8bb024318ac046be4ae2f0309fca9f2111f5f2b77ec79417ce2873660770a61b",
+      "bytes": 18469
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/38f181bdba5806d5f9c2e4801f6625b08c8f156cba7f6ba256c7bd714bd94d82.json",
+      "sha256": "294db89c1fe39c1d18b894b12ff8e0bd9b9a6d4dc16f1348c2d89abe61306b69",
+      "bytes": 18558
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/39e5c68ba30a5d96111da0ed912c5f2731f0bc7de4014ab79bc982169ab792e4.json",
+      "sha256": "9ffa522f0f60eabba948299ef9678c1f20858dc52fbcadebc1e52d60d37702bf",
+      "bytes": 22011
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/3c00abceaf652d3da3b3135674690f2630940545b17bdfa4dd9a9e21f4aa7e71.json",
+      "sha256": "ce01f4139c6cd85ae8bc1f9866e9347c08501a6555d8d1fa3ac37f805bca8b8c",
+      "bytes": 15038
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/3cbf0221b5ecfbe734e7960386f7cb134cec57312dcf8d780f94a4ee5af00eaf.json",
+      "sha256": "39021865e711a1b817cd3438e00a95a846b969ae16edbe4e7a8c14c95935d3ad",
+      "bytes": 16332
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/3cfebd1aca4e4c5e917118a7ee88d3096dcefc693b742e04b54bc6d979cea2e9.json",
+      "sha256": "80c1a1d3c05f224f2f75f2107030728c144d7d0ffb64af6755891bbb040f837c",
+      "bytes": 3528
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/3e896892efe71d4d8d89d2df49e7cee6d7ed424da57c4e8509026a6ba40f89ca.json",
+      "sha256": "441f6543bc3f78695362ea131742941a3f3d8083c3778309bbd78144e1742273",
+      "bytes": 7173
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/3f1a3b5a4112d43ba78a6e0c8c60c0264aebed5c4d42a97c53ebd42d532b6c32.json",
+      "sha256": "bf21801e72d4dd506e940b4e156b4ba86213d82ef051e27ea2a27ba1b39cd247",
+      "bytes": 17776
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/40f511f9e61a302fe8c36b62194d67017db6598e47065b317b819117bc9c3b25.json",
+      "sha256": "6d3d2dbaba2ae5e134959cb3d2698c534a6196ad1e9a4c779a3e90d53a0c7652",
+      "bytes": 3392
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/41554328976c59a6f329052405dab2db8bb45c6514a77bf4dd632c0262bfd46f.json",
+      "sha256": "59c01679069415ad79dd8f6eeb06d6c96854f5241c7243e9fd8ef703279c96c5",
+      "bytes": 6978
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/416fcc83079f0148a5bb34870ac5166c402340bb49cdd67b3ff74c2a98762dff.json",
+      "sha256": "fae9abaa35458a3d3741a1ad76d119b9640a8a3706b87317dcc82876d99e0b5f",
+      "bytes": 3394
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/41702a535cd80005be8725af0e56c4533cba96f8c6d955685e494bcac88fdc83.json",
+      "sha256": "fe97c2b08e49cc7edd17ebf8791213f9ebc1db02718bad709915a46f36dca551",
+      "bytes": 17970
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/4264511038a70cb358364a4607c33405e7a675fb18c391007df2c9fd3418367a.json",
+      "sha256": "f0a1d540aca970ff67cb22a20367a8829a2ee0ff4e957bd43427d973560fab79",
+      "bytes": 6984
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/42dd02327f2bcdcdf85c21f515dd721bc32438b3d8afba61ea8ee3db4d09fd20.json",
+      "sha256": "da7f38699a9e5818a55cbf0e39bd1670396d59c41d79d03c91a475300ccabae9",
+      "bytes": 3791
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/4526f16c85520a1852cf8e028017fe0988c9d7e44723f9982f52ee10e4c77605.json",
+      "sha256": "9cf63a47d3a11fadc1df4960ef5c6dff9cfb4eb034028c81273a3fd267c5c7a3",
+      "bytes": 7142
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/474b0895f243480470771a0ae2a7ed84d814529c5fb7d3ecfb3a04b4b487177d.json",
+      "sha256": "00821d9b1ff5a0d184049643cdfc89f2ef63f4eb20144912229b73f563922e6e",
+      "bytes": 16442
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/476cd72f2150f8d42517c61b6028adb2d9cbe084e3b08ffbec30ae77abe28891.json",
+      "sha256": "5599be5116c08e2c71d7a16c6a1ef51607218b4bef99c8e0009a67646391f2ac",
+      "bytes": 3325
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/4817d99318abe8dbd5d1500d794885b5e4c5575ba10e97a8d488283ff64ad76e.json",
+      "sha256": "9a167c43b0727b6e226ea33acdfbfa3ade17a70840c1e06127c5abf4982b053f",
+      "bytes": 3551
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/4be066a95f4811d586221f314fdcdae6b8c7bf85f943071810e8398f71693cc7.json",
+      "sha256": "175debb2a378459bf43a73979b38774ddb4cc2a8f68e33fec6c5ce12c967c9f1",
+      "bytes": 13370
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/4d79adae4c68b57f926db5b6d9486431b909675cfbee2350b430b189c4746f89.json",
+      "sha256": "6081f2a649173760d62a31b61220d72ca1407bacecd0c14d41c4be2a0f9b8119",
+      "bytes": 18293
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/4ef99f8a632065a5d406e6d5ebd124c8ce0c24b1a198e773a2bd4980d26b0d52.json",
+      "sha256": "0d910c048310850d1052af2db5757bc0e3645b4f5fbac8b79b7de22918fb3f79",
+      "bytes": 9450
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/4f5ce6b4fd26d40b5ea3c141f958031e8a62ef99763edab6d3fe8fb699cd6fc4.json",
+      "sha256": "0b7a6e56d51810cee753eae3f9249b98056fab6fc96e66dc7e7443b031af0cd7",
+      "bytes": 15568
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/4fc7e1061a2104a3828e09c42d608a1a3290684604825a37d22a19b0bd4c42c1.json",
+      "sha256": "60ef228336ce2c050513bccdca0db66cb2c0cbcfe8901decde2c55406aba22a7",
+      "bytes": 6954
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/50192a2d911ed07a6062fbf5dff3c629922664a91f0e4773b6798b8f6c664808.json",
+      "sha256": "d26f22926e60498c739a6d0363959b85ba3f7d9ec2b5a5ff3b5eb1fbaa71eee2",
+      "bytes": 22301
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/5168fb7650cd2da27f6050fc4cb2c5c7a98730c0f03bce467c47c512419396ec.json",
+      "sha256": "85bbd30cea6d8531e579a5cfe97c283b2275cabd451026f5847a1faa4ce05072",
+      "bytes": 3352
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/519af2bcf989836a61ec589adf10bd18e7d9fd47e4660f099b6415a1113e0455.json",
+      "sha256": "8e210ea49dc6710882184d81ad73bf9e671dfef08d9ff3a977c044f5c443d5d9",
+      "bytes": 3321
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/51c2ecedffeded4356ab3fa272dd34f3b108a6b324776658e0bcd3f827299f3d.json",
+      "sha256": "352b1dabe18c684af631eabfae0f278466ca2344c710b4fc27dd39a0422c0bbc",
+      "bytes": 15069
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/53214b8c47471314b4b163183a19d5de49f2658f3b3cc0d8bfd85cc196dc836e.json",
+      "sha256": "d99249034fac904ba328ea3b1de4f82a88dab331078fbeabe69aa2fb97282cc7",
+      "bytes": 22017
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/539b89ae5c9cb2da8012e51ceba7e738ff6366e09038ca38ae61eae02eaaf442.json",
+      "sha256": "09d721ded8cecb9fee77b576485efadb6fa1a884ea0ece30ba5c69b9a9ba01df",
+      "bytes": 7109
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/53ddac3db7cf5e342be2cc9f06ac32b2c5427b926ceb708dbecb9f769754c76c.json",
+      "sha256": "51f6d25bc835a63a166e7aaef34048f562efc435fd747e0210c1bac40de6fbfc",
+      "bytes": 12439
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/5413a90e644470d9f44392a8453084076990d8292a13421627f4dcef189140d4.json",
+      "sha256": "bf05da5cace79c857f5d1acb4871009ae41ad552d9d50c6f3df008f2c8543342",
+      "bytes": 3488
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/5444828aec697b530302e4b13628868b5a21e4e89a9c349dcc8e1c197054cdaf.json",
+      "sha256": "3505758c3af2d4a57a3613042aa427793893eea1f24ec40841a9862c44abf9eb",
+      "bytes": 14790
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/547600962041150c052dbfe7ce525a994f9cb00ad41f9404007ef400c074c253.json",
+      "sha256": "ed9a4874d241d6cfe03b9696aa230dce997387af9ffcda19b609c6b00af0bd11",
+      "bytes": 3478
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/55286ff4a7cd0fd73f1d5513e6463e87ff598e1bc396bfc4ef4b30aeaa2d2c09.json",
+      "sha256": "a205500a79100cc64abd26ea8e656a32505590631ccccbb95666a1c4ebdac7f5",
+      "bytes": 17887
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/552f27b0f1beba78fee54bb2030c70002b98fad4db8e17c3c3721dc68247eb29.json",
+      "sha256": "dad878de4c04ff40df4459655bf2504a009fa82b6db503eba7324ced2bb76dc7",
+      "bytes": 3536
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/55a82986f429eb6f3f6f536b1ee25d8728b941ab3e8ab335c4a577823bf4f962.json",
+      "sha256": "09f3fa1a16c35fa63e417518b8896852a94d9d6a8ae0e21c9e23476c35687a12",
+      "bytes": 18562
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/565d6370c0986e2bc5d84fa0d19f9929bd9a95fa924002539036da0d99a3c707.json",
+      "sha256": "3a0feacb5991cccf0f28b173cdd104352e462d7ca6483f5eafee969f48630f6d",
+      "bytes": 3505
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/566f8354ea64cdb37708db49dd2f2b398b9fa7cae4081859e2052ea2de114ecb.json",
+      "sha256": "af2f8a12c8f3fdb902813871fef585bb2e909ae73f81be3d7e9e944c4ef8914f",
+      "bytes": 18010
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/57092a677e12fb9d4deba352fcdb448777eec0539cf6db458f390b4194755b80.json",
+      "sha256": "e6df77413491acdc9cfd3b9cf5a6dd666c19a14fad396e60506c40ec7b0295b6",
+      "bytes": 8372
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/57ad0b80bc4dfaee396714f7b85aaf5d5b700e95f5d0be2007d8b3035a14daeb.json",
+      "sha256": "b9fcda7c4b823907a5333f8a6ff2bac6ca1c1121e0ba6b4931190b9f77a8c4f4",
+      "bytes": 6910
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/59530212670fb1fdb07e06a6a07f87ef04658045c44e0bff6240f7208022786f.json",
+      "sha256": "ad43e283146771474f6372f3082065538525eee1e6bd383beccd112836e97fd3",
+      "bytes": 23424
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/59d9cf2b40e5d6a693a1b851e304455c945c6217f1d12bcac99d5e65d3f00b7f.json",
+      "sha256": "154adb501386ffdabd8b64a17da83f58c6803e6365b3f6a0153a68173ece95f5",
+      "bytes": 3507
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/59fb8881d94ceb35cc0e6060e1e942a92896473bfd45ad5169bd0c5e10d064df.json",
+      "sha256": "af3232fd9ddf54a33ee42b41d30f4d9ff239bae2dd62e12174a45d3cda44daca",
+      "bytes": 7095
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/5ac3b3942d904d10888acbd8774e17243a41866eeb429445775977c1320d7461.json",
+      "sha256": "fb2c24b8b7e1a7a6968880fc9093af8189d9f6134081e21fbaccd7b37590ba8c",
+      "bytes": 17953
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/5c876eb83bc2c0194a3a24b4275f71b9f96e823ef6417ea9cbd922e22c746449.json",
+      "sha256": "06f2f0570b37b3953934580347928863cdeacb0535c9b2b2d3c4cd6957684981",
+      "bytes": 23660
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/5cd4766c6f28302324633a1ecb4a3440422a2122f59f45384e963f0d7d5cb8d2.json",
+      "sha256": "57546722bba32d0101d4fa66355e0f4304b11398a005d2d133e369a035be4a6c",
+      "bytes": 18255
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/5daa15dd5e4656c0b7c510d4784f028fde89f8909d7f61de333d8a04a967f12c.json",
+      "sha256": "863654878f770a80066b219e66763535c7de8c2dcebefd97b96819ae7f827fb7",
+      "bytes": 15076
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/5de7fc9043fccc562f63977fd0991afde462afe955152ffe6b0baaa62d94d2ae.json",
+      "sha256": "83b1b87cf87f07c4e01ad8ca2efe5c242a86c79066573f8c1ee60af0fbb49fdd",
+      "bytes": 14947
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/5f695e3bc11316ff17c03fb04862553d200a46447fabe476e182ed4b342c4f99.json",
+      "sha256": "126dbc3d6069ec7c59958bb8c5c5d142f1ac2f5b60612e5bfb60da15d616b803",
+      "bytes": 8410
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/605bf9177fb81bf4a4790cc7eb7f1de0ee626cae25e5141a54781b1d3f99eb39.json",
+      "sha256": "315c62b4f85518a623efa017d47d8ff291ecbd99c3fddc5d434a5c20615af085",
+      "bytes": 3536
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/606ed13776741ed7d6dfbf4851cb61c1fd37eb91e6177926be62f1129c33a87c.json",
+      "sha256": "49502845ac7588202674f8d7098cc0cdc2987b4a518befabfe846a7746bcc148",
+      "bytes": 14863
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/607d6440c4832c2cea36de2239a7e03c512c26f74218c5b21d18bf0d90c3325a.json",
+      "sha256": "a22dd484e24ceea9c8ad3dd85809d649319e8d9a7ba35b8e7b068d32bbb9ef4d",
+      "bytes": 9464
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/6133b8046be254cdda11bb2f12af9d032d62bc86dddd63ba91dbd58a3f6b2011.json",
+      "sha256": "4911fdbde13a3f8abac1eb1b93faf97e4a693e77b2b6992505611a5fbc8603a7",
+      "bytes": 8415
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/619cc6f0c62470fe050e8b4d4e1f36bda0cd566d20accede4b1191c8b02f03e0.json",
+      "sha256": "d714873d113c4c9470eb96e3d68053c1e5cd548e060350bc1d5f31acd24e12db",
+      "bytes": 3534
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/626f95f9c810916bab5baaf1ec323ed084d7f3dfefb0cd0dcb1b7774ab6282da.json",
+      "sha256": "0b7d32bd51f5fdfe21b4c49b94bb51f1ee49924cb39c8a8a075d3169e61290df",
+      "bytes": 17882
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/6549725c11a682ac02e42c89b08ba20c82b1abdbd9a4e020a98697c202a2751e.json",
+      "sha256": "f66c36f4a35ef994161962e35350154af5d213455d05dd9fea63d500e2cfffb6",
+      "bytes": 25521
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/65cae25782d41be53ce63d2b9ee69698ba3448ed528ef544d096b07f265c7ead.json",
+      "sha256": "0af3ad182df07ffad6ccf79fc36ff483a3cda48f1fd345d54a2715585547fcfd",
+      "bytes": 8375
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/664d22b2960c280e2ed5b29b3dbb79cd032ef28eb6dec3ddec2c2035f6941e86.json",
+      "sha256": "fe69bcd4d1f2bc8d6f8f4018281392120ef56fe8bfee7a6f64762f08fef5fe04",
+      "bytes": 3494
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/66e590a9e68ffb76685fe4f3604569b01e611bc93e605bd4dac15aa612910ab4.json",
+      "sha256": "3e18f0b99e7e3eb02062494aea84050a98a03fd6f443f6ed13cf4ff52f79864e",
+      "bytes": 22171
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/67e4747152f0aace36ffa9fd00860db78f75899c8dd4441f33932482e21e04d2.json",
+      "sha256": "38ec659956c5518ba64c2a927973343e94614bf539a68d652c09e8905db8aaa5",
+      "bytes": 15831
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/68b241ce5f0ed6f4bdf9a48b9c7513e3b46779b151682e497bd3b3ee11700324.json",
+      "sha256": "ee4dd08697e220b7398fdf189412cf178910cadb363dacf0dfb305ead240e588",
+      "bytes": 18107
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/6979e89152f11b3d9538133998527417315a3d5b47cba34d2f427b4ee46e2847.json",
+      "sha256": "efc567a039d928a9676b78849e33064eddf8ab6b93d93897074ab5804c6f1d71",
+      "bytes": 6905
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/6a4a2c10dbf44eb3bc236659010edc272053ec698b411bb6e16fed07f1bb7237.json",
+      "sha256": "ae3b2b7d5b01ee3f5377912cbc1538ee3f266bfd18a790e15cfc59c9077f8868",
+      "bytes": 15047
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/6c4ed4748de250e28803b2f5cdb42fee5628c630ae010a8e9f9ba0131a348b4c.json",
+      "sha256": "697e4146733aff8bfb0ab12380f5ce560ae3f828929b41944f3bc32eb65c30e8",
+      "bytes": 3299
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/6c522f047e90d39465acd5074c7b70b4ea538ae155f9bd33e4d525eed4a96b88.json",
+      "sha256": "c508deeb0ed06ffddce75c758a12501466ae971b1da15a4dbb783d1ccb18ea12",
+      "bytes": 3515
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/6e2cdac386783dc62c675d458e4e380a098d6385cbff555e2296e51262c74e4b.json",
+      "sha256": "d9689efb2ae8283bcc2999f832c1fe6c1cfe6c7eaa50c0ea3def68442dfbf1d6",
+      "bytes": 3322
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/6e8d8b92f482cf6a5e33aa17d35daf3454fa94e62c7049d859568be14128d2db.json",
+      "sha256": "6f08b4c0e9c6469d4371f28b585687972f3970b3276b229b198dd6ea4c1422a3",
+      "bytes": 13319
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/6f5e7f3b472e8f1932210acda9a5faa8e39d9c3881ee447411ec673d9ba60c60.json",
+      "sha256": "95e4f8dfd1a578167795cc9b0a2455b79af72d502912da5f59fc592e20b2b997",
+      "bytes": 3321
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/729979c9650eea4814fddc45e200c4fe23ba8a769f3957ab4b638b96ff66f8fa.json",
+      "sha256": "497a6b33851f924336296e8041ef5994ef747feb34511cea5b2fea8f01699da4",
+      "bytes": 17996
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/72f310c78bd98a4aee92f16b903c7eaaea040b6d6be78d584610fcb982db72c5.json",
+      "sha256": "ed06e664e515b0fe84b76c2e03ecaa495849b9087a69e1ec71250b45c3088022",
+      "bytes": 17773
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/730995e4e06375973c7549d4a2b1285f52c55fe228e26b2b51f55361767f320b.json",
+      "sha256": "5560d803db9205333eaaa18dda222fef51f449a6154c1c0d0a0e0af80eba4154",
+      "bytes": 18010
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/735ba9e9bf57fb5d933708ba44f647661f0ac31afce3e710c38b53e919070867.json",
+      "sha256": "b594a3e79335ecf9127d47be4d1ebb4791932b4e2000d5c9f768c36a41d6f309",
+      "bytes": 3526
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/738becd4d482a094c46a5f96de5071d2cf65a8c916f7a883a750446133c3cc88.json",
+      "sha256": "80691017a147f5803fd547d3d38e16db86780043baa86e6f6456565859eb3f80",
+      "bytes": 18441
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/7751c03e6baa19e7b9d1f5b21d2701ee820cb53fab19fd7e8b82bf5d978d37cc.json",
+      "sha256": "5e42e4e5bd545c72215094a24fe6d722c8ecd0aac9f2ad7ab33c129f1fe579b9",
+      "bytes": 8447
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/77f7699be3ca5e55ce6517e953fb3cb19bd59346504575a9199edda4ec5d0820.json",
+      "sha256": "d6c73bab41ece0874818cd1af002aea5526e03a0d886997a54f6845a6e2b15a5",
+      "bytes": 13427
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/78b7fb22b629b9eb154409bb7f6d49485adb1982264e305cc888ed4c400c399e.json",
+      "sha256": "e06852ddb48ea4b5abbfbb301e07100d12e91a7d882279c613a7583d366fff46",
+      "bytes": 3530
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/790d5f09bf6fbd9094172b281313f5fe4b146b234665939ea81da855803c747b.json",
+      "sha256": "b20125e3fd0ec697dd4337b27a1b43f132b88aba545e8b53cdfb062611fcc8ea",
+      "bytes": 24357
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/7ad31ab45e0784c6b3a0548e012ac76c0ba926f18a9d2e4d1a9c71e1c145e203.json",
+      "sha256": "886b607073d50fd8f91870bb2d543e1e146c2ac7b1456eeb5f19c214dcf62f99",
+      "bytes": 18533
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/7af989edae48789dd9694f44ba08466a981167fcea756a69646ded6e4acbd369.json",
+      "sha256": "da29d4313133f1f40ca0b20dfaddbfff0143e750597e4a43d18865282fcda313",
+      "bytes": 3295
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/7b0ed88a8692f291c605a3819f98c04152d649b05d7abc6231e50077e83cf21a.json",
+      "sha256": "f8b4224c8a33fca5333627f823fc9da37e79af7dec806c55553e3f74b8259737",
+      "bytes": 6885
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/7b15c7390ee331a64cb2863cb2ef3b40872ac37f0c3b201ddd33c88729319ec9.json",
+      "sha256": "6d48700dd78fa1bddc6ae7f0abb5541938c646dfdf076cfb2e1ae20d81e28d49",
+      "bytes": 6941
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/7bb6c305c03013625c994b0deced976d2e1be325d8c1a33c51fe8ca05f288218.json",
+      "sha256": "ca8a185f8eb9437b1626e6ca7b34f8989f3aa978d379ac2b8701863964b6af30",
+      "bytes": 9272
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/7c0280b7dd94be1aa4a023311b6e1952f88425c14e5a8fc49b5763ae7e1cff50.json",
+      "sha256": "431d9165fb90cdd439af6f503e01abad7ffba6133aa6db2c0f0648539b6df24e",
+      "bytes": 17846
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/7d55a4c4790eee78868e63eff097141b7fe3c9a27d623c25c79f3bb3b430ca33.json",
+      "sha256": "4e9d47c32e66424632a9b2f238d7fd2c938a18fd6b8c08eed640394c7f852528",
+      "bytes": 3352
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/80060b92355bbab4e8baf4b8f0cd33c4af7d9b9ed97486d6f6bdfc1c74b5daa8.json",
+      "sha256": "97fb49f3dac969ca5baf132ee3cf14e8d4f5c9905111d8719e5074fcc6e0234a",
+      "bytes": 17776
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/80c48ae06ab0f25901f2863e7c10c29ab0ef9897e3e84358b1aad4cfc54fd860.json",
+      "sha256": "d830d2e0ad200bc0af638ea2c95b22e3855c45dbbd698c0a08b1ba2fb238bffb",
+      "bytes": 13384
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/81d46e39bff331affecdfcc9692b671e26124e32ee167115e71b6a5206fc4530.json",
+      "sha256": "bc10dade8d2e994ae1cd95cb9854f24c83e3f88e7d134186811eec6425ece2f7",
+      "bytes": 9176
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/823da488862ceb07668448f43fa6a5e0fcc8a3098cba2d1c07029db023459c09.json",
+      "sha256": "3d1430ff9159b48925eee11484cb2e3e1da86dbb60911dbc238ecad431df1ae1",
+      "bytes": 3505
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/82c99f0962d48ca88dbadf4de78c3e22d1a08e8a0ef2f76fa73857b2081eb5a2.json",
+      "sha256": "2541d1cfe6b41d7a99df1d47e801d0484f3b7602b6b42fcb9954a3213170dfe2",
+      "bytes": 23667
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/8612ec9a12ab03f27cb4be0dfb7c1348459675e82329aaf140a34732377c0d06.json",
+      "sha256": "0a4a50991b34a9965e10f626140ce2349b453055beca8fdf35355d88e48f4b17",
+      "bytes": 3356
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/875b6dbf13f9c9dbe560072ffb55d5119db47c3106b5e7409c2697843d54f04f.json",
+      "sha256": "dcdc0144a5742d8c5d4665e7a493de9fce02ec416fad7510f727b34a80a9df1d",
+      "bytes": 22141
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/87afa3e9b7c3aafc7a26f82116171e1343b9e27209e15cc68bb2ba7dc39ea838.json",
+      "sha256": "38c4dcbb1f58d99d699b2964489f45e86520e55b0ca3712b5f787697ced31c84",
+      "bytes": 14983
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/87d0931a423bff5cbd8bf3cfceeba1b0f0fcff9f01ee87220a13230b3159a0ac.json",
+      "sha256": "3ee519cf46df9642f385dfbf7fe6c8876c81d4534388dcec072fc471bb8b452d",
+      "bytes": 13557
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/8832c8dd11f3644d46b90b05660b8a96cc3e68e559f9e516d1e04f236d97e78e.json",
+      "sha256": "5ca832d647a0b5cfb90e90664228459ab4b7b1457c2d9412d9d79fca3774e9d4",
+      "bytes": 3371
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/8d0f9d2fd86fc3180cf4a268dd4663ba24efe16832e666254e8218e04d714ae5.json",
+      "sha256": "6562f40e710f5251b8054522f534ea569fae8ed016ad8014abd4e79473e0b5e0",
+      "bytes": 14874
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/8f91958ca5f0455ea6fd5206f1f90095215bed1d824bfc83ebfa84590b27dc1e.json",
+      "sha256": "09d36ccfd0cbdaeb04eeb1fda1aa1b65ccbbc940fc9fb7ed1c91c9d515536123",
+      "bytes": 18119
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/93f91aeb51ba2e27770c522f196d2fb59ece7fac12584d44902ed0fca0bbeb63.json",
+      "sha256": "cfbf37c6618b7789abdc4b8872615470c420f7252c36b4b82b60198990fc9eda",
+      "bytes": 3530
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/9542b755a07d359360f7f2cd57e9074ed4be433951314bbbf3c8c673e94a79f1.json",
+      "sha256": "d0e51d34781b1c40d83ab263f7c600b06b2775761632e3da8ea167c257784ca3",
+      "bytes": 7101
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/964de9927a22de227952694a3ca3fb7fad6f9ebb5c441563c6e4f862d50eb6a9.json",
+      "sha256": "7ab39179c1b4de4784843adfb28d734eac1a6f29bc058e7f16086551249b1a60",
+      "bytes": 6994
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/96af0a6887f92db9766b24896f77015876ba38fde43799c441fd4996f0087dce.json",
+      "sha256": "9fb398663778fc67e02d6a9fd6c23f110e4632482fe0f2151985072d802c76b2",
+      "bytes": 3396
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/975e577e241855c51be22ecfef8e95a880a2c3bfedd08d7dae193ea1748553f5.json",
+      "sha256": "17ea9b72968b3e22f2a86d4810724c8f6ee2a3ab9da0949ee9cd039dd2e0ec1f",
+      "bytes": 9430
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/986f4f25eca53a4f8686f9b05711176722eb05d29c11406ba5a11cf89ed39b27.json",
+      "sha256": "3ef136df8f8dec55d48c9407f933e138080f3761d2476941a6454daf6d305473",
+      "bytes": 16604
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/9aa9cfb09cb0618a6590046289f39318466d374feae5e7a6d351b810327044bb.json",
+      "sha256": "8721194274fbb7610d559c202db98c2ebadec2d67808c81e373d866a0b464b89",
+      "bytes": 3323
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/9f1891fe4f953a004765a9fd727f82fda83963d8c6653701def22dad7bcd6ac1.json",
+      "sha256": "d9915b6870872aa5ec26388cd74ff65db4f56a8433d63132bb60ebcff476be65",
+      "bytes": 18380
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/9f89e2a696e6bf3d1cd34de425702da13a57482e71d87cdb6773d9ddf0aed9d5.json",
+      "sha256": "4bb944620b6689e23f6963d56e4fa8d481b38eb0c0c6e4023edb85f1a2fc6db7",
+      "bytes": 13375
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/9fdc5b75709b96f8a7322584bdd2a3ae7dab1a424b2238f62200e99f0a92f412.json",
+      "sha256": "4f39337564e501d98733bc4a851b75d71bd4f78c19b4e09d332da9ffa804dbfc",
+      "bytes": 3509
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/a0992f659a4756b96726f9c11b4c95e3abcbf1a775a22c34b5a801a9c95ae935.json",
+      "sha256": "74d2499e70f291df3defa31b499d152c03401ed1a9ad4765433e2092ca69ba82",
+      "bytes": 3394
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/a191ea72ec75ffaa6f3617d6cd9863a0a89e171fcf86e66fc050ffa619c840b2.json",
+      "sha256": "de4521e8ac6895fd047e6757ac609919ae2987235820f41079e9959d6afff61a",
+      "bytes": 3490
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/a1a7d6f4b231d213b409400ac73f7dacdae11825e0c06a9bb5901d5f5796b395.json",
+      "sha256": "b2e916eb0f0a4de42c821498a95f4e516bb58d027785d10eeb32227b6e2b8c8f",
+      "bytes": 8400
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/a1d8f9a499888171f31e7dc0bae5621c12c164164eea1051cb0f78d4a0134356.json",
+      "sha256": "523d8c634701bd20a0637fcf32bb3ff4e951beaea1fa96d3d10a25a7133b1b2d",
+      "bytes": 7022
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/a3df412abaef1ccc3077ad867e2286d2bb2b4e59d513f7967b254eb21fa15f4a.json",
+      "sha256": "5d85a3a6b51c2271cbbf287d7e85ad203554e629d08560d56f7252d3dc1d28e1",
+      "bytes": 12457
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/a4e241670b81f40b42a6ef4d69e6dbb27d5b4213a87de5fd1ef64572e899b1e5.json",
+      "sha256": "2735b3c06bf3391bbb296a30efa710fcca25f89b41a30a846a9e3ce6baddc435",
+      "bytes": 3375
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/a6289654f353b9d977ac360a136b098e90d8daeb95fe86b4533d79fbf2b54496.json",
+      "sha256": "cf43533b6fc1357e3092ad68bde4839288767a057e5dbcf88f2d5133d907f207",
+      "bytes": 3390
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/a6613acc07c1b41566d39ba4e128cfec03c7dc8c9638b26047f9ae81850e3ac0.json",
+      "sha256": "54b37f3b160ba8bf4b5e999181235615fcf4d96d8ab6bed25fdf27645ceffa49",
+      "bytes": 7131
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/a74c2c85fc7359e5310e81cc7317bdfb7798bde63b3e0fc2166d31006a3e7af9.json",
+      "sha256": "28b9d3df84c4b2d7e6b4627388e1c68e5ae4d2848a04a66de25d01dd92800bca",
+      "bytes": 6861
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/a74e33f665f59a3513cde88195ea760a59ee8f72a896a91eea282dd5995d2e09.json",
+      "sha256": "4c981c140c39759e1e0e15050cbef58b93afa2dc90a8b61bf0dabf1ae319b73b",
+      "bytes": 18402
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/a752af43c451857b6486b100c287b34e80ccae1c4897e1f1d433958b967bc09c.json",
+      "sha256": "c29d8dce37d33fef6c0905e084336600f9f04c307b721bce32da3c1699a27420",
+      "bytes": 16570
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/a779557273baf2bb6dddd6429036fb97b0c3b77e362eb62ff4ca16c8cb726315.json",
+      "sha256": "c9974ea9b04ee8c195acd83c6c3a94f51bae46524a2a77235854dd034d320315",
+      "bytes": 3346
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/a8b71b2e7bc82cc3a516d97c9a43acf64cfbcddab98566ffc6d50ccd1ca6fce4.json",
+      "sha256": "f38c4d19aa63587e07cdc01c14550d63b65636c2b244883c1f50781cc92500b2",
+      "bytes": 16397
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/a960663b3f26792aa839ffadceba66a70f89afbc59ad74e6efef9ca513eb8a6b.json",
+      "sha256": "a48877a7b1a683264244392590a36f4578a7b4e4ad435b77055422ae2f44d78c",
+      "bytes": 16346
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/aa2af7185af880e0532e0897172862e35b022b7bf392204a883c5ed8f0ceeb26.json",
+      "sha256": "596addc15a0043a4487d97be29a60c57d7d8756bcfd8283201313b6a30885452",
+      "bytes": 18216
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/ab15495167afd597daafe59fe5aa3776b453c8c461891d8190ee8eca379bbcb5.json",
+      "sha256": "fdd212f8d332ab5b5c5229f024ac4b9bd03fdfd02075b1f45f80a2ce32f41dd9",
+      "bytes": 3319
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/ab4d8971e907e28b862cd034db25303ad890a1984703e8777b325fdea6c27f0a.json",
+      "sha256": "59dcdc2283f0c2ed80d4fc2d4b6cf0baf6722f4077542f96563706f8f546882f",
+      "bytes": 23663
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/ab75cacaf846c3bcfcdcbeadbe7dea5122c59e9bb835ea50b7bff9d8c7cb404b.json",
+      "sha256": "8a900a3081ae2f46c3e54f18cb74ebabd4d209c850c21b05a33bca661b3241dd",
+      "bytes": 23537
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/ad1ef0bab39205aea78b25789533acb08e5df0e469a17cea34f97ab2c32e516a.json",
+      "sha256": "56e20d6bc4a25a81ddf7f653a0f614926b518119fa0a4971b1badc3695c82b35",
+      "bytes": 24517
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/ad700750be387fd7e597c1d5f9d6a6541b83cd7969ffc4f4220741a44bc28bc9.json",
+      "sha256": "f53d4b4c2c089ddeec518474d749cb74239d17ad2a0f99abdd80a4e359598772",
+      "bytes": 3772
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/ae616ddb87956f63502fa139bcc2096d8d21bd3148695148a4dd5c1269bad15c.json",
+      "sha256": "d2a7ee862577076298fd328b76990f1a8e0c17aaa10217c92572380f8f807b86",
+      "bytes": 25681
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/af2eccff26596a891cd06b6720c82d98381ee5932bc68c61128c299af6fba64f.json",
+      "sha256": "6edad62f6e1f3171a6d7bdb9a2c7bbae412c31204a0360cf44fed107f0da4173",
+      "bytes": 3513
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/b1c09002c35f5be7abcc5b527884c2fed68ea3d365154acf46958ce18602894d.json",
+      "sha256": "9b19241cf8d6c2cb33830c7909c02f615f3a743cb1948891a3e4e754c2a86ab3",
+      "bytes": 17885
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/b25d982505730135d7abbf1f1358adaf23f066947aee68b4429a3f7d31800abb.json",
+      "sha256": "3a4f342bf05eb0cfb959ec1e8fc7b0b7a93ef92c8a9072cd821f271f41956db7",
+      "bytes": 3373
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/b2fa8b5e7f8d7a2547ce8374099cf8143bfb19bbf6df37f3b9329973537af188.json",
+      "sha256": "0b61725f1eb656279f2549198b14931a6dc31c3f69a2512b4a28b60609cfa310",
+      "bytes": 3394
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/b4e5343716a6c3d7015968dcb0803880be0702921f10b1cd55bf2c43aaca1e6b.json",
+      "sha256": "3257015cfe4094c2bd187a4b66a716609d6c394c50050b3efa8a515418286482",
+      "bytes": 3320
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/b5635157ccc487a84149f36109d616ad73eaa03e1a84c0999cb4a687a201efaa.json",
+      "sha256": "8472a7d84d23e2af61cde51ac257f882edb3c3b80e41a65a9e4865d12724d071",
+      "bytes": 15065
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/b56d7aac711b08a043cba0f420d5e59ba2cad0dd444a956b6dc48936925ab87e.json",
+      "sha256": "899f8c61446756b5f53d001e9e0821dd4e52bdba71f28a7b1a6e6d8fac9fe16c",
+      "bytes": 6865
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/b5adcb3be4315cd47c312922162c89336aca30c85f1853862fac9f4e734f0880.json",
+      "sha256": "e7dc55d940de0c2155b738cad91d89b9234beed616051dea8ebcccf538fe4b9c",
+      "bytes": 6893
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/b6444510b2bccc3a3fa6dba375c39825c9b8b0ce51a6dc31ba20b493bbfed13c.json",
+      "sha256": "1de9822990f7d7b6195fa00b3c50918b247bd418fa1655a5d0510dda9003103f",
+      "bytes": 3354
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/b71c3c87aea3399f23163ec4ae36c9add78d3cf7955112b1754c3b32528e181b.json",
+      "sha256": "b47a10e9a52c96351229af7beb62b2464410f8c4ab1f4fedcd18027e97277e9a",
+      "bytes": 8368
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/b7387cecd5863b081e3cb992a5428dde33eecb900f4d3336e25825c423823bda.json",
+      "sha256": "0700ff9a1dee9d1679ac50bda26e21489229911f461df0a72e0c6c8526f34b69",
+      "bytes": 3490
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/b7bb31746e7ec33ed5a56d7c284761220cf88c9ea8b37d6283c714a8fa1e2475.json",
+      "sha256": "9d7a57ea070f23294e2a091fb3e4158ad54f555634ce5e79e5f3aefb859f8e42",
+      "bytes": 13361
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/b7e9ccaf7a79ec7e0bb73bb647a152e0ca9938f0953739b34c5f0b461ba4bd82.json",
+      "sha256": "d2f523a696951520c1474b8508f57ff152502aabc6ec16f9773298240d6f6292",
+      "bytes": 16456
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/b94a3c129de5299b2be25bec2bc395f9651ffed1d4cc96dff7581fb998dbb4b4.json",
+      "sha256": "4c532aec382517d33d13fa59d7afe0d7f521a52d2320dd12a3962a83e9fc4abb",
+      "bytes": 7013
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/ba4b7d2aa538c7000fe210bc3e4cf9173b3eecf2e8ecdd0e9d6848c54fd3f80b.json",
+      "sha256": "0c593c11fb61a1fe1547ab90cffa108dd930ccf39ce55ff3c7835dc0b230db0e",
+      "bytes": 9162
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/bc60c96ba4d5f3524008590fbf715747c17d826b4f278dd9db727ffd12faccf4.json",
+      "sha256": "ca9845693371b67dd5f7b7f056b5653d2c4b3e1735ad883c9caab5e13798b4eb",
+      "bytes": 17977
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/bd2490fa333f59544b078b0d23bde549283d2d5eba5723feb6fda05e11e7c8ab.json",
+      "sha256": "e1d90704db6622fa785dc12655b9361e31c616ff65e0e8844757f093b7de513a",
+      "bytes": 12219
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/bec4b773d602726c93bf875b871fb70d6fc1078f6a332033c3e8e67e482b0d8d.json",
+      "sha256": "1dedbf6fd2a769ef37f54cf77ac01602db6ac842a123ed887dface561666b2aa",
+      "bytes": 18332
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/bf1e3e205ab16cb1ab01f8035c6adaef0d9c59febe989a0576aa2bc2ccfd8136.json",
+      "sha256": "d5421aa656091b628b7e1a4e01f69bfc0913daa10f5f6882585830a191c302ae",
+      "bytes": 16411
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/bf4a852fff1394808bd16f65bb4eeb080f31d4a7c484432a8c5e9f097c3a0153.json",
+      "sha256": "aff894f96fddb3ebfab87d60b37fc6cf207f4e8225e4cc311ae25ea8caeff30f",
+      "bytes": 17846
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/c1ff75c2acd48dbf5750cd7688e068df38d6a5d2d3a16bb5960af2ad927a885c.json",
+      "sha256": "f2dc9c31b51c23f3b0b9204041b7d3c212a65cacc771d2d26f9e8d303624b6bf",
+      "bytes": 23549
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/c5692432e1822baa61544fdad29ad732a8b1135cd665e356c6361cac4d5a8c99.json",
+      "sha256": "6c25fa8d31261c4ddaeeef4784ee82708813bbf3aafa6efd005a88cefaaea298",
+      "bytes": 3297
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/c62a18e6e0f5094d1a36ef6517368454ff3c767305c6b3abe230c8d59c7b7794.json",
+      "sha256": "a80545d8ebd5e9796a86aa9ad20568f4feb38f0f23389bcdbac99d98d1c1f155",
+      "bytes": 3553
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/c66751f63d6638418b9c83135e3050fc900b6301b1d7ae676ea59b6a10fd968b.json",
+      "sha256": "f78c7485119be7382a43c721091158140bdbd76d677f779b963c54b0b65524a8",
+      "bytes": 17737
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/c746082b24a83e31d527886cddfe9ec9528e57a480719a1d64cb81e654765623.json",
+      "sha256": "5f0fa9916e3e441202cb3405e575d0c92ef1a036e54ce61ba06f5d2df4a34a20",
+      "bytes": 18084
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/c87473fb858c4a33e68b033acb5e9d1639037ff02f1178929aebabba09e96e9b.json",
+      "sha256": "e8d54da04bd5abb57353eee806cbfa709bac84f2dfef98cb6b0f12ee2666b520",
+      "bytes": 3492
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/cc069bf593f9c23e8303ca996ed08cc24bbc3b2ff5edcb2057da588e8cd11240.json",
+      "sha256": "3e83fbe1b72142604f91b34364837107fa90488c3d3ceb71ea07fae2b9bf1e31",
+      "bytes": 22011
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/cc84335ec00fd54e3b74536af8e4e5cecdf6dcfe7a08c912f78530b2db493026.json",
+      "sha256": "442be0cbc1b030af8f0ce008b0181b29a8bd48b9c79304128d830a568a4d76ca",
+      "bytes": 16288
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/ccb076fba1c30afc4cdf14208dd2fbda5e1d8dd9bfcebdb704a0b5b071e8f0a3.json",
+      "sha256": "002e57b6c445fd78d5b53867b6c66c1147aefcaa8438717edd11aba5b5413611",
+      "bytes": 3770
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/cdb12714f04a52349583b3a37adb9ca17288bbeef18ae8f4616265caa5af6119.json",
+      "sha256": "b202e8cfad77ecf4b74ca46db76129e235fc4c087982c9c32e3e299f7434696d",
+      "bytes": 18146
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/cdd5145266f5bb9cfdaccf777578e2dbae80177afe84c6ee516e45cb87f21a10.json",
+      "sha256": "4e3d939e42603f5f352c6f9f86ee2fe44c3228ba6fcfe2509e420b62f8366a8a",
+      "bytes": 14754
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/cf2a9dc5405a957fced2cd3aa312dd9a3c47d45f88b90406a9597838d6211a18.json",
+      "sha256": "f4665066976b0c31edff6f34f9bafe4e8b3a07dc80d7cde5d7b751f9b25f244e",
+      "bytes": 13449
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/d02542ab72d45f8d8c08fbfb78de08a65edb9fc20251649ea2182ff27ceed91a.json",
+      "sha256": "3e2c09ca0d8cafe327cf455ae185b533b2313757f350bd16da3058d069931e82",
+      "bytes": 7002
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/d38193383ba6a7312cd8590fa669d2e2aece243a71caade0b8a3e689bb004c19.json",
+      "sha256": "476329498263d5729001fecbf0bc21b2f663325a99d285041eb65f46bf1545bc",
+      "bytes": 3557
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/d3f89e897aefdfe3111e927578473cf0144c62b10fff79fcef3db4da386aed92.json",
+      "sha256": "a1d49c124096f86fc6e6105f0149e2234d5878e31b596b57b4746a804aaced2c",
+      "bytes": 8379
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/d4a8b59c40bd6f859dd99667ff2bc235b2b3cde931eb9e74b8c714837de23307.json",
+      "sha256": "5643412795e3faa63d25aca358895ff4f52bf8271b45a37a088f908ddd682203",
+      "bytes": 3392
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/d54bbf5772608adde2bfda96e2fc9aae1f4a06b88676a40cfa168a782d17382d.json",
+      "sha256": "cde1ab9e4c39cd2ff6fabb26b98c8bceb3df04118996c0c4e5ede17c4cc8fc42",
+      "bytes": 3768
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/d8d146d670b4faffa9941d33bf0bcf074ed33d12ea6be82eb508cd549a1ddbdf.json",
+      "sha256": "add4ac8a719800300d6206818cbf4910f6f090d5cd778de7c07e4bb68138545f",
+      "bytes": 16925
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/d8f8e2a23f3c349766d3db41ded5de7e6faef4650a313a9ca6e69682aa3a4f55.json",
+      "sha256": "04cdc630f7135c6af290cad23d9500d35b05e3753d85bd4b78ee43a85d5bf3e1",
+      "bytes": 6869
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/daf545b0979c38b1b5217ba938b5dd7c107a9197732e4a5fa628416e55c3d6aa.json",
+      "sha256": "24dad2890c46d4450f0ac077d2653ee8a4964a02f36825138fbe9c64393e5b0a",
+      "bytes": 6977
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/dc70149221693ab3b4c0dc55e85ae97f9b0e13795018874b4acdedc216644a7d.json",
+      "sha256": "2cb00b0caf848b525b3db2de3e57f50efacf281450c1488c8adafedfc90fe7c4",
+      "bytes": 16584
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/dcf2c4503c1e04649007c808f6e1bf2d6aecd679dac4c0eaed5b53a24d31aa7c.json",
+      "sha256": "23cd9c16f5645520bda1ed2f4770cfb77e74daa665b28331156692588e2ff358",
+      "bytes": 7191
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/ddc4c09d9386b3c4c25a628389191852409691bd7793afa54558a2aa68d90539.json",
+      "sha256": "e06811224323870c98553707d12815871c5d480143591d8d193afbad46071028",
+      "bytes": 7132
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/de0cddf2f75d9aa1ab318961eaac90b2880ffeeb7f8b01e83ef8294388c89b93.json",
+      "sha256": "ecff06a68cb06316a5307da2a17447da6d7d60afa80d615f253163056fe256a8",
+      "bytes": 3350
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/de4d114226403e66353805fe91bfa71429081bd6ad5c5714103aa44b13d8c5e5.json",
+      "sha256": "e97cb7aaf056179f28b42c992315c8994280902a2ba6795a5a607a0b5dec2e0b",
+      "bytes": 9308
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/dfe8196c27711692bfc6e838edcd756a58116b2f24c691c04005b12da2e605a6.json",
+      "sha256": "291d0fd0a31dad53a5d91550eef764ded09b083b49429e8f8a648fce1eafda4f",
+      "bytes": 17737
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/e09365b037f824d7a99f77ad698d644c78ad9235de3c990654b934231832658c.json",
+      "sha256": "7ebe504e773250577eaee5ee984154a722e8e17435539875bc162f23086160c4",
+      "bytes": 9285
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/e0951195dcae4f2b6405bf1e933f421340d6573b4ab54516eb2df1a34518413e.json",
+      "sha256": "d0a8af6f1ba3b30d630b29ac2bf74968116e3967e8a6675838a961e87be7bcd4",
+      "bytes": 3301
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/e1dff366c7abe18008abd1bc09ee2b9f20e56ffe6cff26ea3ee8ecf4017b702b.json",
+      "sha256": "0b5c558c2ffe286630628edbad2c78fbb8b9d9409bc4eb66e3888f2f38b81dc6",
+      "bytes": 6844
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/e25394a1f0b00945cd843890546c998826c003c9ab5cc2353d0689e4f08e5ff6.json",
+      "sha256": "9e1636b27c4723e4b9e18aef99831ccedef53cf45da330dfbe7efb256ca04591",
+      "bytes": 18347
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/e2e936b0a9bcb732b27de6ace0606ce7229909fceadf18f84ca38836b49e726b.json",
+      "sha256": "12ecb70e9911423cea9c166d3aa5a38c31da221587db98f63e814cd946fe2e4e",
+      "bytes": 3472
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/e4caad089236b5a58b367fdb97d6d4c13467ed531752a16386707ca9c25cce71.json",
+      "sha256": "64097c19c5063596080d0335cedccb393d5ef6fee23c2dead21504b86f0fad96",
+      "bytes": 23792
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/e4e278edf166db65697b80b8b920f8141d569530d1d1ac806b9c921717184a4e.json",
+      "sha256": "4cc02207150ea994c01676d732f5f44d1d8e01961256363158023a0f03967fb8",
+      "bytes": 9325
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/e59051eb601e6b7de99398a5117ea5b28641e521663710e1625f9fefabd0beaa.json",
+      "sha256": "00e3a7698657bf0d5f580ec2beb477123a9b1814b1cc2b76bbcb84c1035bfae9",
+      "bytes": 9446
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/e64cce9d9428aac1fa31d8b9682a8e8039184b6007936974e9116744b79ef51a.json",
+      "sha256": "6598745ba6641a9c9992b45b26960222bbfc7446f70629e9f6e41e25130152a0",
+      "bytes": 16928
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/e6d2655cbd7e216e30a79a2369214a915e39a8f9f68479c94fca7276fcb6c23e.json",
+      "sha256": "5b33e5a4335297e63c79e7574a684b5e17beb68f378b3098d3c76ebdffdb3f0a",
+      "bytes": 12201
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/e6ead2cc819f73d3308a3fac4c03e65caccfcdd96a15ff836e4df6edbe0b8393.json",
+      "sha256": "adf6c8b8e26de6a91ca74ebaa18a2228f3afe0ec5250fbd878b5069ceda795ff",
+      "bytes": 6939
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/e77d08d4da73837ec047d4c5f9b993d1723c3278afbe2de0c4ef1d2edba159e2.json",
+      "sha256": "7e18508657ec4eac77e56c72f09f8e5510b9673c28b22cf3f3427338d9ffb550",
+      "bytes": 14899
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/ea5254cd9e009efb37212a6f6bac0ccf404a1fc9359b6c1ca5fda32a0715122e.json",
+      "sha256": "4502770c45139b95c1c1b07a489b04d585b5a71ee34ff132ebf6fdc3ae66beb7",
+      "bytes": 3499
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/eb89c0616157e358f361dcd9acf00ccae332c417ceb1b6b172f305e74d73568d.json",
+      "sha256": "783a092a0d73cbd5ad502441389623fd66be0c040516ba0b84890f4fa2420f8d",
+      "bytes": 3503
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/ebd01097c59567503eda062073e58ebce4bedf18e8d6528f8483ee69c1e24afa.json",
+      "sha256": "6d215a9237b00f93e5366637dda07791441bd7b22b5144219b01bc123f1cbcf3",
+      "bytes": 23786
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/ec85b099146e57fe1e7b64a2c8389ff334ffbe2ea009a370094e05be27afee67.json",
+      "sha256": "821a6aa2ee1499939e71b504992f80cc158584b98afae26ffd551cc3547dba3e",
+      "bytes": 17977
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/edde5da7a33bf418e4aa1e318838c3d9810b0abc752ac9a278ab70fb33f23ab2.json",
+      "sha256": "31162e8032eaa48e0ed775d8d11cd845a3df846d66d3d178aee6bb988cccab65",
+      "bytes": 12331
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/ee0ee0adbbeb7e34c19523834dadb685d7fb5aa158b602dca0d78e100afe529c.json",
+      "sha256": "e15a3662f2704103a457edbb040d68494918d205fff6d86c3d27ee5b4262a438",
+      "bytes": 9198
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/ef092d4c9212860c35f62d5bc7974b6c3530abe99b0193baaafe521e65555a11.json",
+      "sha256": "870eab2c66b7187e0dbc66fe9e4a31b52664ddac346dae3b778231601dd69033",
+      "bytes": 14838
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/f2ac3e614b0cc7cec7c0cdd32e590e4aa89069d82a8c934df3a05d9d43310756.json",
+      "sha256": "1b04cf5f5ae7e598b8732acebab63bd91e544c892a3d0b4db0b8a44b28786063",
+      "bytes": 18005
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/f30adf652579d274f10e616f343d39a0ab76e18b4ffa9bb2a7f79bf475d3f27f.json",
+      "sha256": "24a0ea8b8361a1a4988e69dba6012290c90b5d5cd9e6e50d32ce11170db57c9d",
+      "bytes": 15114
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/f39646ea510b92447f98542c1fb16457d236c6cdcd4fb0745c68c00a092691f3.json",
+      "sha256": "2a55f2b805eff1cb4c55fa2f6587f3c55e190c8f9e18f2bc0a216ef31f0d849b",
+      "bytes": 3770
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/f4294f2a546c1f22045d17c742f4c8be06d48c37882a5ef2de22d66257bd20c8.json",
+      "sha256": "a3be4590f937ea882a86b8d5e512a9be4ed1af98ce77fe7b8ed855c5b8cf130d",
+      "bytes": 17844
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/f54ad520ec3a3290de9fb70267db80b4214b93b06ad92d67ea4313c9262679cc.json",
+      "sha256": "522058e29c55cabdee0a61f531a1ec3a64f72768d9c4a6afc54fe6390082979b",
+      "bytes": 15828
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/f5d6a8fd7f9787d1baad3aba9cfa9431dbd0adeacacb3cbfc7ac0d65ea977e1d.json",
+      "sha256": "17a47fd53010ed792f47af52772125ec35d82fba7f70dcbc12b27bbc8f9ae0b2",
+      "bytes": 6992
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/f5e2de3e14664282a8273982d2647340e8ab83b7fe220a2b25a7db1dd16d3f4f.json",
+      "sha256": "b0113ab85122d7f3e6946e9ff1b0f2bf730ca4ea24b506b884ecdc1c7a919ff4",
+      "bytes": 3299
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/f6fe44dd96df83097e56a49e6c4be1793e833b3f31e9c29cf1bc29702cc4c603.json",
+      "sha256": "4fd7672cede40600425f181d854dfdbf69e00b795c247de950656ab5a8ea8f9d",
+      "bytes": 3396
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/f76b0a1335915434897f272348b2779648f1348ed57d537e3b1cdc4aa0ad0f9c.json",
+      "sha256": "78fa953c72d230bf2fb6e6b8f85fead51152bf8461c7b15a6fe20f26b1c2c024",
+      "bytes": 3532
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/f7747b4aea9155d8698b8165279184ad12323690e87887003847ebb8ead8e1f3.json",
+      "sha256": "d0cb39762fbaac502647090a53b2dd085d466b80e508df6a7fb34380ec16ef67",
+      "bytes": 23658
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/f7cfb307bad769a07adffdab8df05062d9c7e7e4f1fe7f81f3b1e5103e620983.json",
+      "sha256": "a1fd41050cd820c2b384ec675499ba433221e3d890a933076c6676f31c42d3db",
+      "bytes": 3528
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/f96a4362c09b580be5ae9c37b4bac88681e6999f74bb57a877a1dcf0b5435a24.json",
+      "sha256": "4b909f563f568f7c0cc6c286e7075bb15e153006943e72a45fcbb84289e8f5a6",
+      "bytes": 8424
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/f99e663f4c96cf6478d246318317b5dd4f57b537375032a3cfdc224b693182f5.json",
+      "sha256": "1222edb29cb25fe25be3e26e931249fdfe592fb03f07ebbfa65546024cbb5fcf",
+      "bytes": 23551
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/fa4cbfb86db6f3fcc0489ec9c3f31defc411ebf4ee533d456ef91787a1d78f7e.json",
+      "sha256": "07e70128d46de18868b0c3fc4272f156e5cb6c4bda8bb17796a0b3631acbb191",
+      "bytes": 3474
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/fa56fbc009109d4d786af53385fb2f18c93ec97a0156c0e84251403976f3da1e.json",
+      "sha256": "6b73f4b0654e460b35f2b9a842969784f7ac4d6607f0864803b3c040d4be00b4",
+      "bytes": 3344
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/fb31358d0ee43c49bc6eda8f9546abac9578e801a096ec31dab5221b4d2d6980.json",
+      "sha256": "0ca9f3f42401cb0c6db2a201e7f78d289fc3e80bbd5ab81ee70a7678a966c6e8",
+      "bytes": 23425
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/fc4bda6d17d5c6da4a7cd6261562bf7c4485ff07ddc696e47c67ac0efcee8b53.json",
+      "sha256": "61fb18a3541f010279c4fc59f25242ae3fe56dcc8a62e2e9ea8e9d67d03c43b5",
+      "bytes": 3559
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/fcb47c1f684041c1b7610bcb887c276564d7cef3216f4276fbc9d713dc50a4bd.json",
+      "sha256": "b07d78a564f2782eb4b8219ae01c83c2a8de7b3cfb61f1e74e0e9fc8e8d65b78",
+      "bytes": 3417
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/fd2325f7c87e1b9f94d179aeec0a832ee2c84268b12cd08685ea6d047ff1295a.json",
+      "sha256": "2afe94bb325f780fdcda80c411920ce7790fdb9def821d62d576087feeffff30",
+      "bytes": 3377
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/fdadbbf35a9255e27d454f920b7c33254ca49c53c67551091a617048252f2474.json",
+      "sha256": "85a64824070419d5539b84035172542237c1ae95ab9038ace5000e24fd9ac6cf",
+      "bytes": 23535
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/fe286406c107c2aa6fbd809965a01a82fc16cf2338bfe6d0672db7f3841941c3.json",
+      "sha256": "cb2093be19691525e237f238a0d6c1d69977480978746b333bd5539c2c64930c",
+      "bytes": 6874
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/ff4365b4e1525b618d1c24530e842a260e3acd509fea141ac444983a34aa4970.json",
+      "sha256": "ac013ca34e680b2a508e61943d27e2d519fcc34e4ac3f313dac00b5062341b28",
+      "bytes": 16720
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/cases/ff6e2dba6f046f29226bf49fe911f81cb9b606380930e68366b2b0f08af6f966.json",
+      "sha256": "f84c565c6b85a3a35fb3c4c6436e205565cc7594970a95ad8ec098abb7cee369",
+      "bytes": 3492
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/completed-cases.jsonl",
+      "sha256": "a5d54c72a6479b2ef5acdad37d36dd62cff0c07b466ca8d5c0af579132f2410a",
+      "bytes": 61556
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/report.json",
+      "sha256": "a084074931f845758d9159a86f8e011befd7b18a33efe1ecda91670f3bbc1cb7",
+      "bytes": 122360
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/00275d560ea7c0c0967d0e05f830af9d995d8d3b1a2b8da84af72db3a8aba1c7.png",
+      "sha256": "00275d560ea7c0c0967d0e05f830af9d995d8d3b1a2b8da84af72db3a8aba1c7",
+      "bytes": 4791
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/008c5c92d67aa015556e8d3b62a1cb11cbecc9dc4435ac4ea2fe63e6fa9b1000.png",
+      "sha256": "008c5c92d67aa015556e8d3b62a1cb11cbecc9dc4435ac4ea2fe63e6fa9b1000",
+      "bytes": 51632
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/01de44bbd89640c6d50a930788e409cc800876787800430abdd6764594a23977.png",
+      "sha256": "01de44bbd89640c6d50a930788e409cc800876787800430abdd6764594a23977",
+      "bytes": 4806
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/053b57f11339f7ce775c87ef4f34d3968de6d42123aa8a057b82a5aa97b3a3c3.png",
+      "sha256": "053b57f11339f7ce775c87ef4f34d3968de6d42123aa8a057b82a5aa97b3a3c3",
+      "bytes": 33835
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/068ba64814c5a1d1ea647c1187cb6ba80d4d781ee934d1cb6ee4f7efe10fff0b.png",
+      "sha256": "068ba64814c5a1d1ea647c1187cb6ba80d4d781ee934d1cb6ee4f7efe10fff0b",
+      "bytes": 4744
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/07a364ab5bc476b0b11b9a91746760a8d08b2ec6870a59df02d3561c910e3a2d.png",
+      "sha256": "07a364ab5bc476b0b11b9a91746760a8d08b2ec6870a59df02d3561c910e3a2d",
+      "bytes": 48899
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/083fb481381b644e65f16d1aa1631dde7063715c3629b80d7db7bfac71709756.png",
+      "sha256": "083fb481381b644e65f16d1aa1631dde7063715c3629b80d7db7bfac71709756",
+      "bytes": 42834
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/0897ec1f8966c36f3cc385592eb40642a305b095c6b455b594cb0d64df2ebdd0.png",
+      "sha256": "0897ec1f8966c36f3cc385592eb40642a305b095c6b455b594cb0d64df2ebdd0",
+      "bytes": 7476
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/09746e8bc81ff74bd2747819a7c0f562510c41191516df805e2626a7b23a351d.png",
+      "sha256": "09746e8bc81ff74bd2747819a7c0f562510c41191516df805e2626a7b23a351d",
+      "bytes": 4241
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/09b0975cb730a0b8387df839506ee852aad4197e57c616c2225cd9e3b38d6300.png",
+      "sha256": "09b0975cb730a0b8387df839506ee852aad4197e57c616c2225cd9e3b38d6300",
+      "bytes": 11379
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/0acb812f08f3d6c80d036861aedcad0b044f228d7b10b1776d9f54db35b95c4d.png",
+      "sha256": "0acb812f08f3d6c80d036861aedcad0b044f228d7b10b1776d9f54db35b95c4d",
+      "bytes": 45216
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/0b0eb1baa3593cbb837a895433a642f3263ad2abbba54b19150f3c1a10325833.png",
+      "sha256": "0b0eb1baa3593cbb837a895433a642f3263ad2abbba54b19150f3c1a10325833",
+      "bytes": 17228
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/0b27a550f7d5613654d5f7bbd536799e1850a23bd73c6a7b8dd578d5ec5c26dc.png",
+      "sha256": "0b27a550f7d5613654d5f7bbd536799e1850a23bd73c6a7b8dd578d5ec5c26dc",
+      "bytes": 50302
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/0b537aec478161a14d5012419a63e1c028c775df5d95a7637ac8ee24c9c7806c.png",
+      "sha256": "0b537aec478161a14d5012419a63e1c028c775df5d95a7637ac8ee24c9c7806c",
+      "bytes": 16557
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/0b756397d9dadfaae518c3971b9fb2b3f92bff8850db3cf0958c8d463b8415d0.png",
+      "sha256": "0b756397d9dadfaae518c3971b9fb2b3f92bff8850db3cf0958c8d463b8415d0",
+      "bytes": 16468
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/0b9f68b93695c7c53bcded838ce266cffa99082a97e672b5e9a9bf62905ead99.png",
+      "sha256": "0b9f68b93695c7c53bcded838ce266cffa99082a97e672b5e9a9bf62905ead99",
+      "bytes": 81891
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/0bb81a2f83527affda3b4b5fadc08c8d2cd3c4b8bbbfaae85f502851ffd3956e.png",
+      "sha256": "0bb81a2f83527affda3b4b5fadc08c8d2cd3c4b8bbbfaae85f502851ffd3956e",
+      "bytes": 44875
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/0c5088750395ed2c3c5c08ac4b7b015c7ff83137158cad5ce29172f346c0db7c.png",
+      "sha256": "0c5088750395ed2c3c5c08ac4b7b015c7ff83137158cad5ce29172f346c0db7c",
+      "bytes": 75708
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/0c5e1e8653db5fbb7b8bc0bd5aa9ef2d2591e488656d7b8ede9981b89552004f.png",
+      "sha256": "0c5e1e8653db5fbb7b8bc0bd5aa9ef2d2591e488656d7b8ede9981b89552004f",
+      "bytes": 43622
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/0c9aa119cb8c5cc6679b04ed915063f8b0e043a488c0a4da92d9d637c08bd873.png",
+      "sha256": "0c9aa119cb8c5cc6679b04ed915063f8b0e043a488c0a4da92d9d637c08bd873",
+      "bytes": 41958
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/0edfd6d6ba5020ce61acf95c9a0947e7900cd01085c9d5216bd5cd41f65ff6a6.png",
+      "sha256": "0edfd6d6ba5020ce61acf95c9a0947e7900cd01085c9d5216bd5cd41f65ff6a6",
+      "bytes": 41251
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/10e3da8b30145169916548d200c3b33412838853d444b3066a067eafe07910bc.png",
+      "sha256": "10e3da8b30145169916548d200c3b33412838853d444b3066a067eafe07910bc",
+      "bytes": 54423
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/115c799c3bac5181212283ee7cdf28626de9935aaef3a541cf85790df11f2656.png",
+      "sha256": "115c799c3bac5181212283ee7cdf28626de9935aaef3a541cf85790df11f2656",
+      "bytes": 52579
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/12fc4f3613f7d4c1b246bce5055cb118abc6b021b0c7c7ce455861ab72f29c80.png",
+      "sha256": "12fc4f3613f7d4c1b246bce5055cb118abc6b021b0c7c7ce455861ab72f29c80",
+      "bytes": 5488
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/1395477347849c73cec61dc07fd73568d46dac4685e76e2f353985bcce219bea.png",
+      "sha256": "1395477347849c73cec61dc07fd73568d46dac4685e76e2f353985bcce219bea",
+      "bytes": 38496
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/14388df464e5561e27129b28d87dde5133c32b9ffcc7ae12c8496d78dda11e96.png",
+      "sha256": "14388df464e5561e27129b28d87dde5133c32b9ffcc7ae12c8496d78dda11e96",
+      "bytes": 53933
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/1466a1196c0ad8cf081879068450fa6aa77440bb82b94e055f25872f83fade59.png",
+      "sha256": "1466a1196c0ad8cf081879068450fa6aa77440bb82b94e055f25872f83fade59",
+      "bytes": 76101
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/16e21726b473acc38dbb2a2c5f8c0295ded504332c0956ce8e833ea9f1cd0647.png",
+      "sha256": "16e21726b473acc38dbb2a2c5f8c0295ded504332c0956ce8e833ea9f1cd0647",
+      "bytes": 53574
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/17edbb34081b108c59ce562f6f1df954ebf7a2b67a24b5b38ce5fbd0a39ec4e4.png",
+      "sha256": "17edbb34081b108c59ce562f6f1df954ebf7a2b67a24b5b38ce5fbd0a39ec4e4",
+      "bytes": 5314
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/180dd7003b618c1f36ad02a6245c343f6a8daa8dbcfb7d322785bffb5fd6cc1f.png",
+      "sha256": "180dd7003b618c1f36ad02a6245c343f6a8daa8dbcfb7d322785bffb5fd6cc1f",
+      "bytes": 4224
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/1857de7a48525f25204df48b26ee77fa2510aa79242fdc970b4e78b82adfa61b.png",
+      "sha256": "1857de7a48525f25204df48b26ee77fa2510aa79242fdc970b4e78b82adfa61b",
+      "bytes": 42824
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/1e16773c6644307bc869eabd5901a57886ef910673279fbaa8e111b058b6daa5.png",
+      "sha256": "1e16773c6644307bc869eabd5901a57886ef910673279fbaa8e111b058b6daa5",
+      "bytes": 44730
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/1fefddfaaba4a071e1bf52b7efd88edbbdc3bf5c95c60fa057e4ae2dbd8c0e6b.png",
+      "sha256": "1fefddfaaba4a071e1bf52b7efd88edbbdc3bf5c95c60fa057e4ae2dbd8c0e6b",
+      "bytes": 7987
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/209d166f1667e1acd6a49d8299a173e9e7463657c8014482ac00632cbbcf417b.png",
+      "sha256": "209d166f1667e1acd6a49d8299a173e9e7463657c8014482ac00632cbbcf417b",
+      "bytes": 11726
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/2101544b017a529c0a0757805a872c529f1f75952af30fb21d831d8f650205cc.png",
+      "sha256": "2101544b017a529c0a0757805a872c529f1f75952af30fb21d831d8f650205cc",
+      "bytes": 49444
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/2322c473f86d369d7130fc42592665ca885550986896af5506001427c9962e10.png",
+      "sha256": "2322c473f86d369d7130fc42592665ca885550986896af5506001427c9962e10",
+      "bytes": 10308
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/26b3ba911660d6f1b6a11b7e79a5b679c14c44fa613145aec49399554fcceb75.png",
+      "sha256": "26b3ba911660d6f1b6a11b7e79a5b679c14c44fa613145aec49399554fcceb75",
+      "bytes": 5456
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/273e880c936291175f6c73e5cb0179d22c4fff3d376ab05bb31b20ffdcd7a00d.png",
+      "sha256": "273e880c936291175f6c73e5cb0179d22c4fff3d376ab05bb31b20ffdcd7a00d",
+      "bytes": 50048
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/27b9a6bd5b2402b2d3d9c171b2665a0bf029de4a1578fd8529f8f8b380c3e122.png",
+      "sha256": "27b9a6bd5b2402b2d3d9c171b2665a0bf029de4a1578fd8529f8f8b380c3e122",
+      "bytes": 77490
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/2a0fbb9f0a94e0fc8e4aa5e92381f0a7051a744d9193fa57e268177ba196c8ae.png",
+      "sha256": "2a0fbb9f0a94e0fc8e4aa5e92381f0a7051a744d9193fa57e268177ba196c8ae",
+      "bytes": 98432
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/2bb59e3d26725445586f08598d8e99cbdab26e8c121e6d62ba31501a27c93f26.png",
+      "sha256": "2bb59e3d26725445586f08598d8e99cbdab26e8c121e6d62ba31501a27c93f26",
+      "bytes": 106713
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/2d0511328ebecb0ffc26125adf3dea0c4fa7715574179691a758b61489bf847e.png",
+      "sha256": "2d0511328ebecb0ffc26125adf3dea0c4fa7715574179691a758b61489bf847e",
+      "bytes": 8778
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/2d6edd43c454fb177be3b5d65562bb7c081c428066937622100bce16934f2c8b.png",
+      "sha256": "2d6edd43c454fb177be3b5d65562bb7c081c428066937622100bce16934f2c8b",
+      "bytes": 9602
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/2dcec369c131f0aef8618c5283183ba35c52d1f05799e4dc4c153d3a8ad34cba.png",
+      "sha256": "2dcec369c131f0aef8618c5283183ba35c52d1f05799e4dc4c153d3a8ad34cba",
+      "bytes": 17037
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/30a16cb8f2dbb034ae7c3330ff115a87492406a070703a648569d78ad62e0565.png",
+      "sha256": "30a16cb8f2dbb034ae7c3330ff115a87492406a070703a648569d78ad62e0565",
+      "bytes": 11583
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/327c28cf303946bc432d40e9c52f510782c85e42e18a2868c4ae7fd906205278.png",
+      "sha256": "327c28cf303946bc432d40e9c52f510782c85e42e18a2868c4ae7fd906205278",
+      "bytes": 44974
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/331d757fa72b00f9c1a95d35ef82d3ec3beabbb8961abcc61f6961b07a5f2de6.png",
+      "sha256": "331d757fa72b00f9c1a95d35ef82d3ec3beabbb8961abcc61f6961b07a5f2de6",
+      "bytes": 6180
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/34609569b864081bc61bd27948b7c15b33c8ba285fdf423185afbfa46092514c.png",
+      "sha256": "34609569b864081bc61bd27948b7c15b33c8ba285fdf423185afbfa46092514c",
+      "bytes": 10769
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/3508e779febea1daf88f24d6fba3c0e6744fbd6c598a4ccdbd78960f564ddee1.png",
+      "sha256": "3508e779febea1daf88f24d6fba3c0e6744fbd6c598a4ccdbd78960f564ddee1",
+      "bytes": 58147
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/36ff563503e296dd38a614b2173fc3c234268851078d7dcbaa9ecdfa219ecd51.png",
+      "sha256": "36ff563503e296dd38a614b2173fc3c234268851078d7dcbaa9ecdfa219ecd51",
+      "bytes": 9552
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/38bc63dca143a04e0eb7c47544405d6f8e1b8a8d07a3b24d2b3178cc02fafbc8.png",
+      "sha256": "38bc63dca143a04e0eb7c47544405d6f8e1b8a8d07a3b24d2b3178cc02fafbc8",
+      "bytes": 5829
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/39f368ed20bdc781344411418fd8196aeb1e8bc42271674ea5ab46314ae7a599.png",
+      "sha256": "39f368ed20bdc781344411418fd8196aeb1e8bc42271674ea5ab46314ae7a599",
+      "bytes": 41081
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/3a6bc13dc30fb6cdbc8cf988cb85e797f90d78e64c2b74487eed51f7fe6ee440.png",
+      "sha256": "3a6bc13dc30fb6cdbc8cf988cb85e797f90d78e64c2b74487eed51f7fe6ee440",
+      "bytes": 34347
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/3b156dbe6eb0435995197f0360a7b835c108855295a7544584e64b938226300a.png",
+      "sha256": "3b156dbe6eb0435995197f0360a7b835c108855295a7544584e64b938226300a",
+      "bytes": 61157
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/3cc09e7526ed9a39afb5646433244e2bc9e78f24dfe2a4c28ff028ff24d3233d.png",
+      "sha256": "3cc09e7526ed9a39afb5646433244e2bc9e78f24dfe2a4c28ff028ff24d3233d",
+      "bytes": 17359
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/3e4f73c6e80b59c70e255c7c171fde7e450bb8a24eb15ae21671ded2492c7dea.png",
+      "sha256": "3e4f73c6e80b59c70e255c7c171fde7e450bb8a24eb15ae21671ded2492c7dea",
+      "bytes": 47105
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/3f8222cc6432d0ff3a1d4793169bd4161c2fe00daccb1206d92f8a7b5be90c42.png",
+      "sha256": "3f8222cc6432d0ff3a1d4793169bd4161c2fe00daccb1206d92f8a7b5be90c42",
+      "bytes": 96732
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/3f9aa892ac4052ab593db665cbb056b531d773e2951c6a681e5a8a666d136e09.png",
+      "sha256": "3f9aa892ac4052ab593db665cbb056b531d773e2951c6a681e5a8a666d136e09",
+      "bytes": 5862
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/40837108fdf3e4d989677fdad07ef97c0b6f7bf39c4d4ef9e1fc272688569d9d.png",
+      "sha256": "40837108fdf3e4d989677fdad07ef97c0b6f7bf39c4d4ef9e1fc272688569d9d",
+      "bytes": 58753
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/40922a580492ba008d90cf3330d18d24d83cc282ff0cbbcc3bb20e3396930fc0.png",
+      "sha256": "40922a580492ba008d90cf3330d18d24d83cc282ff0cbbcc3bb20e3396930fc0",
+      "bytes": 38949
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/40dd56e42884092dab80bcbec0dc6f6de78004ca38edb90ce8a650aa6211f501.png",
+      "sha256": "40dd56e42884092dab80bcbec0dc6f6de78004ca38edb90ce8a650aa6211f501",
+      "bytes": 32267
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/422d1560fcb0236f4b72d0e5215b3dfa1a9aaa418c0c4045275e488a5378eb87.png",
+      "sha256": "422d1560fcb0236f4b72d0e5215b3dfa1a9aaa418c0c4045275e488a5378eb87",
+      "bytes": 2600
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/42b6dc2932ad363a6584d532b2facd462cd42db50cb6dbf8e902c8143699597b.png",
+      "sha256": "42b6dc2932ad363a6584d532b2facd462cd42db50cb6dbf8e902c8143699597b",
+      "bytes": 38189
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/456b964b0e8b9040b64fd5215bac8315305993c250396dfa33cd448f8683439c.png",
+      "sha256": "456b964b0e8b9040b64fd5215bac8315305993c250396dfa33cd448f8683439c",
+      "bytes": 4187
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/4910ec1043b5bd23f9b1e1fc719584deef30c3d2d05ce324391b81259a50d84c.png",
+      "sha256": "4910ec1043b5bd23f9b1e1fc719584deef30c3d2d05ce324391b81259a50d84c",
+      "bytes": 11267
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/499cf49034931b6c67117879f49af17ff3da1f84821b49872ee7c2b6efe3d5ec.png",
+      "sha256": "499cf49034931b6c67117879f49af17ff3da1f84821b49872ee7c2b6efe3d5ec",
+      "bytes": 11142
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/4a00445e1107f8c732c666ca418a283a3fbe99760ff43ae8e6ae05a32300969d.png",
+      "sha256": "4a00445e1107f8c732c666ca418a283a3fbe99760ff43ae8e6ae05a32300969d",
+      "bytes": 19854
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/4b5f62326716c9d774fd264562d18cbb0edc079ba0bb91854977ad8a6a3cd6d7.png",
+      "sha256": "4b5f62326716c9d774fd264562d18cbb0edc079ba0bb91854977ad8a6a3cd6d7",
+      "bytes": 5069
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/4bb0f77f7cda256092676cd392a8c8d64f64d0976c1c7de7d0dca511e8e385d5.png",
+      "sha256": "4bb0f77f7cda256092676cd392a8c8d64f64d0976c1c7de7d0dca511e8e385d5",
+      "bytes": 15029
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/4c16aa68ee01fcf0e6522a2ab2842e551901d362266afe23d4d6915731bbcc52.png",
+      "sha256": "4c16aa68ee01fcf0e6522a2ab2842e551901d362266afe23d4d6915731bbcc52",
+      "bytes": 48484
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/4da0ad505f89c984bf195c085f86f3ebf3e660d67901f2621c240e6bbbeac0cc.png",
+      "sha256": "4da0ad505f89c984bf195c085f86f3ebf3e660d67901f2621c240e6bbbeac0cc",
+      "bytes": 41241
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/4f884a095f5ebc62b08c023ea924406945057b445cca866f9a71e777e16f5552.png",
+      "sha256": "4f884a095f5ebc62b08c023ea924406945057b445cca866f9a71e777e16f5552",
+      "bytes": 89075
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/5243ffdb4e406ec4f3db1fb8c51b769f913c86e8cd9a966f76bebc214a396b63.png",
+      "sha256": "5243ffdb4e406ec4f3db1fb8c51b769f913c86e8cd9a966f76bebc214a396b63",
+      "bytes": 52064
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/52b440907f8592a1d4fb2dc00657898e34a8796ed4f04309013b9da26ab30cb9.png",
+      "sha256": "52b440907f8592a1d4fb2dc00657898e34a8796ed4f04309013b9da26ab30cb9",
+      "bytes": 40669
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/53ff6712e7e6cb2464818abe633bf903d9fabc4b941eaf845f8beba19e052c64.png",
+      "sha256": "53ff6712e7e6cb2464818abe633bf903d9fabc4b941eaf845f8beba19e052c64",
+      "bytes": 4185
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/546b0dcc243e4050b3c191b16c67ec9b0c98786031859bd1a324902e1b4cea55.png",
+      "sha256": "546b0dcc243e4050b3c191b16c67ec9b0c98786031859bd1a324902e1b4cea55",
+      "bytes": 8134
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/54cc47a115f03ae8fc71f01b1da0203de621ab880919283e4c16a818b47baa81.png",
+      "sha256": "54cc47a115f03ae8fc71f01b1da0203de621ab880919283e4c16a818b47baa81",
+      "bytes": 79095
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/55ab594e4d9a567e959911dd0b2556bea5060c5bf5c59172ec78cad26a81fbc2.png",
+      "sha256": "55ab594e4d9a567e959911dd0b2556bea5060c5bf5c59172ec78cad26a81fbc2",
+      "bytes": 10106
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/56e0d92f4bf15ab190b2a82987e497ba2bb8766ac49a9c5d63444ad7152bda70.png",
+      "sha256": "56e0d92f4bf15ab190b2a82987e497ba2bb8766ac49a9c5d63444ad7152bda70",
+      "bytes": 2090
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/570fb418459ec7112c30042b9df74ee298f4aece74dfb2b5980c6193501bf486.png",
+      "sha256": "570fb418459ec7112c30042b9df74ee298f4aece74dfb2b5980c6193501bf486",
+      "bytes": 15055
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/5860c3b46c73c743cebc98785e5fd068f3f58cd895003778740cb9bd38a389b7.png",
+      "sha256": "5860c3b46c73c743cebc98785e5fd068f3f58cd895003778740cb9bd38a389b7",
+      "bytes": 34436
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/58c43da5a1224245a3872487fb3e84e746b7b10a5ca78e3f78f42de7acabb1b4.png",
+      "sha256": "58c43da5a1224245a3872487fb3e84e746b7b10a5ca78e3f78f42de7acabb1b4",
+      "bytes": 7476
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/5902ffec8f17178a0e61ed0942972bbbbe31975375e0b7b8a7f8a8120be08dda.png",
+      "sha256": "5902ffec8f17178a0e61ed0942972bbbbe31975375e0b7b8a7f8a8120be08dda",
+      "bytes": 48752
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/5ac1ac5fff648101e0c3d0fca6123611f97d9b05c556a57e3c87fa143e486e62.png",
+      "sha256": "5ac1ac5fff648101e0c3d0fca6123611f97d9b05c556a57e3c87fa143e486e62",
+      "bytes": 2122
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/5b6a6673aad73064266b8150df198ffd825457ee226c0c348a092bc33cf51314.png",
+      "sha256": "5b6a6673aad73064266b8150df198ffd825457ee226c0c348a092bc33cf51314",
+      "bytes": 44075
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/5bcce38e23cc5b7122c16c5eb52f03824787707da4f1ee6ba3b80bbaf40313e8.png",
+      "sha256": "5bcce38e23cc5b7122c16c5eb52f03824787707da4f1ee6ba3b80bbaf40313e8",
+      "bytes": 38218
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/5d89aff4e6e16439033f6df1c7255f221069783bf5fa6820c667de124305f93b.png",
+      "sha256": "5d89aff4e6e16439033f6df1c7255f221069783bf5fa6820c667de124305f93b",
+      "bytes": 9592
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/5e5d34592fbf837cdc54e323e1ef2ec4cc357b1e5c6a6850c1b55d05da3fe3b0.png",
+      "sha256": "5e5d34592fbf837cdc54e323e1ef2ec4cc357b1e5c6a6850c1b55d05da3fe3b0",
+      "bytes": 43420
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/5f7102a8e368098d7a9d78f971d634ab23e4beab146e2d7ab483333e0eca3b8c.png",
+      "sha256": "5f7102a8e368098d7a9d78f971d634ab23e4beab146e2d7ab483333e0eca3b8c",
+      "bytes": 52321
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/6187e4e1733bf3b113c15c2e1f6fa8b1a607bdb9a19d5fb7fc0aaf38cdd3ba00.png",
+      "sha256": "6187e4e1733bf3b113c15c2e1f6fa8b1a607bdb9a19d5fb7fc0aaf38cdd3ba00",
+      "bytes": 113703
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/61e682fa704e46b0755598c11499b0530574655f642747294427de27e7683ccf.png",
+      "sha256": "61e682fa704e46b0755598c11499b0530574655f642747294427de27e7683ccf",
+      "bytes": 2400
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/625726b721403f01a5b76398cbfc8fa0e500f2a81a0abaea3e24c7c7f9bb1b6e.png",
+      "sha256": "625726b721403f01a5b76398cbfc8fa0e500f2a81a0abaea3e24c7c7f9bb1b6e",
+      "bytes": 11898
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/62cd167cf2b96ea0bfad21953ef95add83bb21754c9eff2ad5380448490937d2.png",
+      "sha256": "62cd167cf2b96ea0bfad21953ef95add83bb21754c9eff2ad5380448490937d2",
+      "bytes": 11045
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/64e539b60f9d35d808c2cd211b95cca97b229b8ca509f4245d92f9a3ceb8a94d.png",
+      "sha256": "64e539b60f9d35d808c2cd211b95cca97b229b8ca509f4245d92f9a3ceb8a94d",
+      "bytes": 18669
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/65b0136967ace053f7a4e716772792adcf4fb65a302720d13c3c4ed82ac85ab7.png",
+      "sha256": "65b0136967ace053f7a4e716772792adcf4fb65a302720d13c3c4ed82ac85ab7",
+      "bytes": 37878
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/65c52baeaa184c8d50d6a5e91733e8a9ddb0775ca04ccdf14afb828be1b9dd2c.png",
+      "sha256": "65c52baeaa184c8d50d6a5e91733e8a9ddb0775ca04ccdf14afb828be1b9dd2c",
+      "bytes": 2695
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/65faa6ae9ea2991d91aedb7f0e787668aa842ea616739c73d112b733b880c0fd.png",
+      "sha256": "65faa6ae9ea2991d91aedb7f0e787668aa842ea616739c73d112b733b880c0fd",
+      "bytes": 8976
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/6a555f0d779d9c429181eadbf79dd5814da13c5819843c022c4ce79e6da57b9e.png",
+      "sha256": "6a555f0d779d9c429181eadbf79dd5814da13c5819843c022c4ce79e6da57b9e",
+      "bytes": 2515
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/6d71e256548fa7e7ad8112cbf9bfc4fd790b287d5a956d845c427c0f5c758130.png",
+      "sha256": "6d71e256548fa7e7ad8112cbf9bfc4fd790b287d5a956d845c427c0f5c758130",
+      "bytes": 11034
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/6e8264822972cd8c0987932f05357a01f4edea625ce76bc1bbc0c2c77bd99222.png",
+      "sha256": "6e8264822972cd8c0987932f05357a01f4edea625ce76bc1bbc0c2c77bd99222",
+      "bytes": 43639
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/6f5c8314c4afd6993bbf1594517a66edfe94580d0fd90745832bfd95220f772b.png",
+      "sha256": "6f5c8314c4afd6993bbf1594517a66edfe94580d0fd90745832bfd95220f772b",
+      "bytes": 9600
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/72526b47ffba83c70c3816ca4ef112b9b02ac5d887c2cb0458946bab70dac7c1.png",
+      "sha256": "72526b47ffba83c70c3816ca4ef112b9b02ac5d887c2cb0458946bab70dac7c1",
+      "bytes": 3660
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/7290b4f8dfd7a80513d891f11f1546a4b6d4118be4c097f47e7f1163db6cbfe0.png",
+      "sha256": "7290b4f8dfd7a80513d891f11f1546a4b6d4118be4c097f47e7f1163db6cbfe0",
+      "bytes": 11631
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/7292eec6a2c4957dc0be5ec0c578ce6a50a25f4a9843dbac487f269bf8a48495.png",
+      "sha256": "7292eec6a2c4957dc0be5ec0c578ce6a50a25f4a9843dbac487f269bf8a48495",
+      "bytes": 35619
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/736af44e971634d149d0522516f30f4f3abe4a5bfef49e6ee8761c74bafa6b53.png",
+      "sha256": "736af44e971634d149d0522516f30f4f3abe4a5bfef49e6ee8761c74bafa6b53",
+      "bytes": 139495
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/743c6c653ecac272a4b9d57e825f0732f66bb84fbf2bba9c9de243b36a47f72a.png",
+      "sha256": "743c6c653ecac272a4b9d57e825f0732f66bb84fbf2bba9c9de243b36a47f72a",
+      "bytes": 38566
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/74fb1295a4187c4eaf8922761759da868b86c03d6c9af57c35d9ad3189f4f52a.png",
+      "sha256": "74fb1295a4187c4eaf8922761759da868b86c03d6c9af57c35d9ad3189f4f52a",
+      "bytes": 47259
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/751461d7037d37835f99bf36c71e90cb2677edbf8fa746fa17cea7608d46f78f.png",
+      "sha256": "751461d7037d37835f99bf36c71e90cb2677edbf8fa746fa17cea7608d46f78f",
+      "bytes": 43320
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/77deda6aeef2fd1cecf5878b3d459db5fbafc6055d567901efdc6e7e7cd4fec9.png",
+      "sha256": "77deda6aeef2fd1cecf5878b3d459db5fbafc6055d567901efdc6e7e7cd4fec9",
+      "bytes": 10760
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/77f55212bd24b47427ae5d85d72724b823ca07e3ad10b7477a7cf1842af39589.png",
+      "sha256": "77f55212bd24b47427ae5d85d72724b823ca07e3ad10b7477a7cf1842af39589",
+      "bytes": 37491
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/78c79715c3ee88baecd5d9a7cd7d7503e9694e511a0ee3b122a4e2a3320cdc13.png",
+      "sha256": "78c79715c3ee88baecd5d9a7cd7d7503e9694e511a0ee3b122a4e2a3320cdc13",
+      "bytes": 39205
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/79685973b62640d59a5cbacf9072238605d6734c47a9f1c73757052a2ad91ec4.png",
+      "sha256": "79685973b62640d59a5cbacf9072238605d6734c47a9f1c73757052a2ad91ec4",
+      "bytes": 2133
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/79d9be1d04318a5e5df7cf42ee820eb6ad78b0ead001e478d7b5405a7a6b43a4.png",
+      "sha256": "79d9be1d04318a5e5df7cf42ee820eb6ad78b0ead001e478d7b5405a7a6b43a4",
+      "bytes": 17037
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/7a8e63cac552fd30b80c72852cfba84ba18894dfb7e8caba2fb24f37d035264d.png",
+      "sha256": "7a8e63cac552fd30b80c72852cfba84ba18894dfb7e8caba2fb24f37d035264d",
+      "bytes": 17429
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/7b9046ef303df1b3f91610e690045985d9a97f913c776a1a796524a630cf77fe.png",
+      "sha256": "7b9046ef303df1b3f91610e690045985d9a97f913c776a1a796524a630cf77fe",
+      "bytes": 2975
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/7bf1ebef79c18cc10e6f09d378f5f1eb02f98c61ad7ebbb96a5741a953f74fe4.png",
+      "sha256": "7bf1ebef79c18cc10e6f09d378f5f1eb02f98c61ad7ebbb96a5741a953f74fe4",
+      "bytes": 4142
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/7c57ea76ce00deea44ba0234ab830f5884ec8369f391aa03033342d9e08d0347.png",
+      "sha256": "7c57ea76ce00deea44ba0234ab830f5884ec8369f391aa03033342d9e08d0347",
+      "bytes": 40056
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/7d0f90d1f6afe029a6de1ce3508340b636431e31af296a82f30565fe70f20c45.png",
+      "sha256": "7d0f90d1f6afe029a6de1ce3508340b636431e31af296a82f30565fe70f20c45",
+      "bytes": 17265
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/7eeb2c01ffd7f3c8aae1a27353eee8b5abc7090a252ed082d64da704196577ca.png",
+      "sha256": "7eeb2c01ffd7f3c8aae1a27353eee8b5abc7090a252ed082d64da704196577ca",
+      "bytes": 103973
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/7f97572316afe9c30cb28430e1371ce587712754ef6d0ed17c61291b3fc6769a.png",
+      "sha256": "7f97572316afe9c30cb28430e1371ce587712754ef6d0ed17c61291b3fc6769a",
+      "bytes": 7219
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/81652270a11d3cb52e15c9acdd5da233e0fa2efeebecb9f0a02379f26652a32c.png",
+      "sha256": "81652270a11d3cb52e15c9acdd5da233e0fa2efeebecb9f0a02379f26652a32c",
+      "bytes": 1994
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/8167e174c751198ff62c75c8fdc84eaddabc32f8b081a662f700b004dcd7f441.png",
+      "sha256": "8167e174c751198ff62c75c8fdc84eaddabc32f8b081a662f700b004dcd7f441",
+      "bytes": 3858
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/823677d8459783b330b26418bfa76086472c89b1ee4236fe61ed42f113878272.png",
+      "sha256": "823677d8459783b330b26418bfa76086472c89b1ee4236fe61ed42f113878272",
+      "bytes": 31797
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/82385769a9c6e8bb9e8618b922853ddf382a18911ecf67c16785c52502f83d2a.png",
+      "sha256": "82385769a9c6e8bb9e8618b922853ddf382a18911ecf67c16785c52502f83d2a",
+      "bytes": 6600
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/8448d5e360752a0e03b2c68c3d6ca69c688c164c5e8861994dec42c7aeaa8a80.png",
+      "sha256": "8448d5e360752a0e03b2c68c3d6ca69c688c164c5e8861994dec42c7aeaa8a80",
+      "bytes": 38631
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/8516b65a59fab7cef9eda4eea8b20d82bde347763885a7e98dba48c81ecc69b6.png",
+      "sha256": "8516b65a59fab7cef9eda4eea8b20d82bde347763885a7e98dba48c81ecc69b6",
+      "bytes": 43427
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/854d126feab46628331006c36c50b16c62906353117a77838446f91eef3c4e2a.png",
+      "sha256": "854d126feab46628331006c36c50b16c62906353117a77838446f91eef3c4e2a",
+      "bytes": 55915
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/86b32d55702d724ec85f293c8fc827d53367743bc87e7ade0bbec62e56714383.png",
+      "sha256": "86b32d55702d724ec85f293c8fc827d53367743bc87e7ade0bbec62e56714383",
+      "bytes": 31659
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/87753e194ae6d8b2b125c2ebb15fefcb6fcaf2899a52c14163cf5b6c08d5dcd5.png",
+      "sha256": "87753e194ae6d8b2b125c2ebb15fefcb6fcaf2899a52c14163cf5b6c08d5dcd5",
+      "bytes": 98008
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/8c4d2225753d243fa4707b0c9a2480811edd9cbcaa601cdfad8f3c496707f840.png",
+      "sha256": "8c4d2225753d243fa4707b0c9a2480811edd9cbcaa601cdfad8f3c496707f840",
+      "bytes": 5049
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/8cd22b6ac4adb832e8833ebac2fa2a77746f47067a001633e10bae430439ecbf.png",
+      "sha256": "8cd22b6ac4adb832e8833ebac2fa2a77746f47067a001633e10bae430439ecbf",
+      "bytes": 9448
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/8f33a8b96c7c856b8f6acc9507f0cf568d116d80c00d0dc63cd6ccd01fa90e63.png",
+      "sha256": "8f33a8b96c7c856b8f6acc9507f0cf568d116d80c00d0dc63cd6ccd01fa90e63",
+      "bytes": 44584
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/8ffc5b8125fae9b8c2c4fac42352c7fa82dbac62154443db161df1425eb5a9fe.png",
+      "sha256": "8ffc5b8125fae9b8c2c4fac42352c7fa82dbac62154443db161df1425eb5a9fe",
+      "bytes": 7893
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/907e9d597595ac8e831d0adf6f4a7c7685cefec5d63a574a09b1811acd3c75fe.png",
+      "sha256": "907e9d597595ac8e831d0adf6f4a7c7685cefec5d63a574a09b1811acd3c75fe",
+      "bytes": 2411
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/9085397768fa4d693769be676904ea7694abeb94acc0b936c62102941757e73d.png",
+      "sha256": "9085397768fa4d693769be676904ea7694abeb94acc0b936c62102941757e73d",
+      "bytes": 72742
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/910af0255a06ba1fe4ef7c249c981290d2667579388a1548695b7b7716bba261.png",
+      "sha256": "910af0255a06ba1fe4ef7c249c981290d2667579388a1548695b7b7716bba261",
+      "bytes": 42481
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/91990ecbaa1e495620f41c6c0887bde787eec348cbe7c058a9fe77bf93dc116d.png",
+      "sha256": "91990ecbaa1e495620f41c6c0887bde787eec348cbe7c058a9fe77bf93dc116d",
+      "bytes": 2131
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/91b9db8d20f903b21a54f3d1bd976bd032029f7f951795d3b2d043dd8ee1ac38.png",
+      "sha256": "91b9db8d20f903b21a54f3d1bd976bd032029f7f951795d3b2d043dd8ee1ac38",
+      "bytes": 56420
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/9331c11bea30f51aa5f0fbfd65c20f1e52975ed0139af71bcf292f543b5a7ac2.png",
+      "sha256": "9331c11bea30f51aa5f0fbfd65c20f1e52975ed0139af71bcf292f543b5a7ac2",
+      "bytes": 4834
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/9365aa065aada898c02f1f5af5561a78c7b294c288a78a38f4280cfd00aeaa78.png",
+      "sha256": "9365aa065aada898c02f1f5af5561a78c7b294c288a78a38f4280cfd00aeaa78",
+      "bytes": 5389
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/9384ad93abe4b7fbf1bb704d1b26dc81f41cde08ce9e78f8f78f8f322d9df341.png",
+      "sha256": "9384ad93abe4b7fbf1bb704d1b26dc81f41cde08ce9e78f8f78f8f322d9df341",
+      "bytes": 6394
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/94d11e79644261587f15b8a7420b3c6febe81cb7b798bea6901b0107d3528873.png",
+      "sha256": "94d11e79644261587f15b8a7420b3c6febe81cb7b798bea6901b0107d3528873",
+      "bytes": 10294
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/94daa8707ba0c74efb6373073ecbddd52c7db15103c2a021c757e01311977552.png",
+      "sha256": "94daa8707ba0c74efb6373073ecbddd52c7db15103c2a021c757e01311977552",
+      "bytes": 10767
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/9518f79c05ebcf373540cf5f8923cd8b170989968dc680d859725fa6be687dc0.png",
+      "sha256": "9518f79c05ebcf373540cf5f8923cd8b170989968dc680d859725fa6be687dc0",
+      "bytes": 10297
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/955f020bbd512408304d6fc553f70652bde7d3b1037f94cfb200324d3b0de3b8.png",
+      "sha256": "955f020bbd512408304d6fc553f70652bde7d3b1037f94cfb200324d3b0de3b8",
+      "bytes": 4742
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/959fd3f11d97fa0049e7823ccc4bf239040d289a7cc4261cd631f0898fb9d15e.png",
+      "sha256": "959fd3f11d97fa0049e7823ccc4bf239040d289a7cc4261cd631f0898fb9d15e",
+      "bytes": 44440
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/95fce60bfb563fb8832577edb491bed343b1fd738c966131e83a1a1681851f8d.png",
+      "sha256": "95fce60bfb563fb8832577edb491bed343b1fd738c966131e83a1a1681851f8d",
+      "bytes": 16583
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/960d1a4c088a47b4536383efaa9785b7d9edf3c1f58c8a3a7761541b71416c74.png",
+      "sha256": "960d1a4c088a47b4536383efaa9785b7d9edf3c1f58c8a3a7761541b71416c74",
+      "bytes": 9845
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/9685c8fbc13d51ced6e287a58984d0c43289547013a518d34058c9a3f37f9732.png",
+      "sha256": "9685c8fbc13d51ced6e287a58984d0c43289547013a518d34058c9a3f37f9732",
+      "bytes": 7173
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/97806a8490290d187660488dcd7a7c1732fefb5afea0388fbabfbd402ca08262.png",
+      "sha256": "97806a8490290d187660488dcd7a7c1732fefb5afea0388fbabfbd402ca08262",
+      "bytes": 49090
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/97da94d7d155e6ad1b98afa825e152fd5871ce7ea0b7b2bf24da2e6df8a52e25.png",
+      "sha256": "97da94d7d155e6ad1b98afa825e152fd5871ce7ea0b7b2bf24da2e6df8a52e25",
+      "bytes": 88705
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/983412ef9f307b6cf6cf52871df73d6393826449fec52bc550a44098f4bf51e0.png",
+      "sha256": "983412ef9f307b6cf6cf52871df73d6393826449fec52bc550a44098f4bf51e0",
+      "bytes": 12077
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/98b18abfe7b49501baf7f3266d68733390f13f1d6f1761021caa21c8727f854a.png",
+      "sha256": "98b18abfe7b49501baf7f3266d68733390f13f1d6f1761021caa21c8727f854a",
+      "bytes": 84406
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/99aef6d8093d5e84a4f6bf791686545f197614c64af27d7a93cab182971df00d.png",
+      "sha256": "99aef6d8093d5e84a4f6bf791686545f197614c64af27d7a93cab182971df00d",
+      "bytes": 8246
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/9a0b77215afe6c418c7ba0530c490fae65757b8c041c26976374f1ce67204f3e.png",
+      "sha256": "9a0b77215afe6c418c7ba0530c490fae65757b8c041c26976374f1ce67204f3e",
+      "bytes": 4205
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/9a6cb532e32bafd7943bf933de707fe99dc00d153147da8df8d42114c6608186.png",
+      "sha256": "9a6cb532e32bafd7943bf933de707fe99dc00d153147da8df8d42114c6608186",
+      "bytes": 9362
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/9aaca09931ac4d7dcb81e88903d1fc563a88bf56d2b13162d78972df55b1309a.png",
+      "sha256": "9aaca09931ac4d7dcb81e88903d1fc563a88bf56d2b13162d78972df55b1309a",
+      "bytes": 2265
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/9ade09e88529055ec03459694fa0a5444fec6e8bc6a4db682ca70375824ebf42.png",
+      "sha256": "9ade09e88529055ec03459694fa0a5444fec6e8bc6a4db682ca70375824ebf42",
+      "bytes": 4275
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/9e06025d49f78be89a76c0b504a9f4f0cc83c6cab61a9fc5622dbd07e811e32e.png",
+      "sha256": "9e06025d49f78be89a76c0b504a9f4f0cc83c6cab61a9fc5622dbd07e811e32e",
+      "bytes": 6022
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/9eb8e852da59dc53f6ece56f4890ffea900c496b847ff2a35cd3edc4046354c4.png",
+      "sha256": "9eb8e852da59dc53f6ece56f4890ffea900c496b847ff2a35cd3edc4046354c4",
+      "bytes": 10519
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/9ed718035d0805df076b8eb3531affa82787cacff5b98ab97d9f6c6618df7763.png",
+      "sha256": "9ed718035d0805df076b8eb3531affa82787cacff5b98ab97d9f6c6618df7763",
+      "bytes": 78241
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/9f341deb2c31cc6e80217c5c18fe7875ea6dcec8283a724a124792b82adce960.png",
+      "sha256": "9f341deb2c31cc6e80217c5c18fe7875ea6dcec8283a724a124792b82adce960",
+      "bytes": 88682
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/9fc33feb52e1a17effcabe9ad817625d95b74595d964c4c9e4136a49ded238b4.png",
+      "sha256": "9fc33feb52e1a17effcabe9ad817625d95b74595d964c4c9e4136a49ded238b4",
+      "bytes": 17242
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/a077d3a64a6cfa1335bcc051e735d04551dab980b502655c6176d635c6a94b70.png",
+      "sha256": "a077d3a64a6cfa1335bcc051e735d04551dab980b502655c6176d635c6a94b70",
+      "bytes": 6819
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/a4ae63095eb4f08a585ee38646fec5e79b57e4be1bad92071819adb41708abd4.png",
+      "sha256": "a4ae63095eb4f08a585ee38646fec5e79b57e4be1bad92071819adb41708abd4",
+      "bytes": 15071
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/a4b5a2b8bce8df06860a1141f61c88dc323d11480c1379bc9afd8c3f6ca06430.png",
+      "sha256": "a4b5a2b8bce8df06860a1141f61c88dc323d11480c1379bc9afd8c3f6ca06430",
+      "bytes": 10752
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/a6113ab4eb608c0521da8035c972371bad97e9c9f31c8879da7d3705e97d1202.png",
+      "sha256": "a6113ab4eb608c0521da8035c972371bad97e9c9f31c8879da7d3705e97d1202",
+      "bytes": 90901
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/a63c7f6b64eee65b90d1e552bff02bd0c8f3e69bbad63a9d3e657f9ef5e594ef.png",
+      "sha256": "a63c7f6b64eee65b90d1e552bff02bd0c8f3e69bbad63a9d3e657f9ef5e594ef",
+      "bytes": 2159
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/a79f12fc2c313f2c8888f498e07a361f314c21290aad5cca2003f4fa41353fc5.png",
+      "sha256": "a79f12fc2c313f2c8888f498e07a361f314c21290aad5cca2003f4fa41353fc5",
+      "bytes": 84623
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/a891394084644e30de8902ce64bf1d6deefe950343a072385b27477349acd79e.png",
+      "sha256": "a891394084644e30de8902ce64bf1d6deefe950343a072385b27477349acd79e",
+      "bytes": 50068
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/aa713d2598bc8515becceaf1e1bc272543f632ad2c5e9b3bf17903eaf928537d.png",
+      "sha256": "aa713d2598bc8515becceaf1e1bc272543f632ad2c5e9b3bf17903eaf928537d",
+      "bytes": 6753
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/aebda27e165e76b43373adf38bf7811968239309bc2e4bd4a6190bfd64c86153.png",
+      "sha256": "aebda27e165e76b43373adf38bf7811968239309bc2e4bd4a6190bfd64c86153",
+      "bytes": 85421
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/aec15184bf14f3a276ba6d0771d44805bff05ee761884cea7479fa36cdedebe0.png",
+      "sha256": "aec15184bf14f3a276ba6d0771d44805bff05ee761884cea7479fa36cdedebe0",
+      "bytes": 85818
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/af5e0ed8e4ff053ae8b93af973cf0eee7871f9d0ed10b7cd1a2ea22c21c727f9.png",
+      "sha256": "af5e0ed8e4ff053ae8b93af973cf0eee7871f9d0ed10b7cd1a2ea22c21c727f9",
+      "bytes": 36805
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/b00f9fc619b8d126ce54567c8448124cc973727a8a1625ffaec8547ca1c62974.png",
+      "sha256": "b00f9fc619b8d126ce54567c8448124cc973727a8a1625ffaec8547ca1c62974",
+      "bytes": 86983
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/b071e865a5ac2e764c7af3b0988c27291e6517db0f2ea84cc84fc5116c4fc079.png",
+      "sha256": "b071e865a5ac2e764c7af3b0988c27291e6517db0f2ea84cc84fc5116c4fc079",
+      "bytes": 57964
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/b2456031f8f4d11e768ad4b725c3393dc055665fd5ba5e6f83bc4e8c2e1982d1.png",
+      "sha256": "b2456031f8f4d11e768ad4b725c3393dc055665fd5ba5e6f83bc4e8c2e1982d1",
+      "bytes": 38906
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/b375e7d148f11f4602c0f5325baafc056bd0ec3d7b0885317b2d2598dd02bf2c.png",
+      "sha256": "b375e7d148f11f4602c0f5325baafc056bd0ec3d7b0885317b2d2598dd02bf2c",
+      "bytes": 4858
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/b45b5d8d97603df7b4c67cf8c0ae46652df640831c311860086f502dc2af9a8d.png",
+      "sha256": "b45b5d8d97603df7b4c67cf8c0ae46652df640831c311860086f502dc2af9a8d",
+      "bytes": 10295
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/b50c718295b3d9f0d4e8e623c01292cd07211a68b0753ddc2bc8298552764dbe.png",
+      "sha256": "b50c718295b3d9f0d4e8e623c01292cd07211a68b0753ddc2bc8298552764dbe",
+      "bytes": 2009
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/b59143c306e8eb4adccb5152bdfddbd9e5673d187eee6b93195dad785ade6bd3.png",
+      "sha256": "b59143c306e8eb4adccb5152bdfddbd9e5673d187eee6b93195dad785ade6bd3",
+      "bytes": 51673
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/b67055edc3101d18ec823eea6ef63c1ca4a44da0cd50012f5eeca914322d6867.png",
+      "sha256": "b67055edc3101d18ec823eea6ef63c1ca4a44da0cd50012f5eeca914322d6867",
+      "bytes": 69355
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/b86a8d48c99b5604a05acfa8675d91151e97a1db597ee88a1e6fe37b08956ff6.png",
+      "sha256": "b86a8d48c99b5604a05acfa8675d91151e97a1db597ee88a1e6fe37b08956ff6",
+      "bytes": 127940
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/b8d74168857243730e7e4a06e5a8c541dcad512aaecdbce673d22b09c5057476.png",
+      "sha256": "b8d74168857243730e7e4a06e5a8c541dcad512aaecdbce673d22b09c5057476",
+      "bytes": 56751
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/bb0e05ddd2bb5367daf4547855327554f45a86213dbab8e6698657c180270c19.png",
+      "sha256": "bb0e05ddd2bb5367daf4547855327554f45a86213dbab8e6698657c180270c19",
+      "bytes": 66445
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/bc675af487fcb9c5eec88af0e4226d5a75f68a04514a05c11d7f3fb382c8fa8e.png",
+      "sha256": "bc675af487fcb9c5eec88af0e4226d5a75f68a04514a05c11d7f3fb382c8fa8e",
+      "bytes": 48982
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/bd631290a3602dc5929cc4e62e6bbbfcbfb79c3bc430abe3f1d3c15bd9728c2e.png",
+      "sha256": "bd631290a3602dc5929cc4e62e6bbbfcbfb79c3bc430abe3f1d3c15bd9728c2e",
+      "bytes": 9926
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/becf6c5e498123531d5c340de642ac33b19afb28ff8dfa66d7e3a68097205f02.png",
+      "sha256": "becf6c5e498123531d5c340de642ac33b19afb28ff8dfa66d7e3a68097205f02",
+      "bytes": 2717
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/bf61b76080714a3fc2d7a73dc014c17913b065a56f3f68212a2705278b82a480.png",
+      "sha256": "bf61b76080714a3fc2d7a73dc014c17913b065a56f3f68212a2705278b82a480",
+      "bytes": 60960
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/bffc285e75be2ecd4a558a7b8f197295f164018eed2ccb9b556df794a4bcd491.png",
+      "sha256": "bffc285e75be2ecd4a558a7b8f197295f164018eed2ccb9b556df794a4bcd491",
+      "bytes": 3656
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/bffde0257e3bcef4b18a87f5e5a272e529ed2950f195a15d10033233c56a30a7.png",
+      "sha256": "bffde0257e3bcef4b18a87f5e5a272e529ed2950f195a15d10033233c56a30a7",
+      "bytes": 9620
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/c0072bb931144b348acbd0ce0452b3b61db400b6a643b54be0bd7c80939f1008.png",
+      "sha256": "c0072bb931144b348acbd0ce0452b3b61db400b6a643b54be0bd7c80939f1008",
+      "bytes": 4218
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/c012b450e87b96ede2298665767dcdc42f4f64513b26ed39f3bfc003153b051e.png",
+      "sha256": "c012b450e87b96ede2298665767dcdc42f4f64513b26ed39f3bfc003153b051e",
+      "bytes": 38177
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/c020432c4cba65217b70e322a5b9b1e44547ac60b05647e76c06effa591ae935.png",
+      "sha256": "c020432c4cba65217b70e322a5b9b1e44547ac60b05647e76c06effa591ae935",
+      "bytes": 9259
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/c025098a76b03440855b7b38f00499d3bb973420991ae1090af300a93c254195.png",
+      "sha256": "c025098a76b03440855b7b38f00499d3bb973420991ae1090af300a93c254195",
+      "bytes": 2496
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/c096a4c4357de875122905c62bc6bbeb295d4d93966c30e9daad8d2e84fb9cc3.png",
+      "sha256": "c096a4c4357de875122905c62bc6bbeb295d4d93966c30e9daad8d2e84fb9cc3",
+      "bytes": 4660
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/c0b63dcb70d9ea89405ea5ff3b1edd41ef064ed803f61c0395df0b6b65e7f421.png",
+      "sha256": "c0b63dcb70d9ea89405ea5ff3b1edd41ef064ed803f61c0395df0b6b65e7f421",
+      "bytes": 10494
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/c0eb516c1fbabb50c069f466cf754b5a13f93d6e6148f6b33bfc29e501d59a5f.png",
+      "sha256": "c0eb516c1fbabb50c069f466cf754b5a13f93d6e6148f6b33bfc29e501d59a5f",
+      "bytes": 77748
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/c297d00d495adabbf4886fec146c7aa4102602be27983d70ff137bb95b0c9f19.png",
+      "sha256": "c297d00d495adabbf4886fec146c7aa4102602be27983d70ff137bb95b0c9f19",
+      "bytes": 48038
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/c4fc968bd8dd7f96c4db55cea567ee07356ae1d1f504c44e770355e0e29d1d0b.png",
+      "sha256": "c4fc968bd8dd7f96c4db55cea567ee07356ae1d1f504c44e770355e0e29d1d0b",
+      "bytes": 4155
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/c8ec1e7f0956f30c0dd46abcd2da1ce0447ae84a39a6852243ef6904f8f28950.png",
+      "sha256": "c8ec1e7f0956f30c0dd46abcd2da1ce0447ae84a39a6852243ef6904f8f28950",
+      "bytes": 44678
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/c9db78fe55520a92c22097f69d6503a05f8a9a361c81b88120289330087f2490.png",
+      "sha256": "c9db78fe55520a92c22097f69d6503a05f8a9a361c81b88120289330087f2490",
+      "bytes": 32834
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/ca5e71f6ddbc898c141be0d71f7133aeae6aad52981d40821114d8c473db7caf.png",
+      "sha256": "ca5e71f6ddbc898c141be0d71f7133aeae6aad52981d40821114d8c473db7caf",
+      "bytes": 69062
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/cb92bb9360c06318311043421007915fb04150e3d239f48c1935af0ef9edbec1.png",
+      "sha256": "cb92bb9360c06318311043421007915fb04150e3d239f48c1935af0ef9edbec1",
+      "bytes": 88700
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/cbed0fa1fd86f334d282ae008fedfdcade2d06f447d73555248ca933d6c714e8.png",
+      "sha256": "cbed0fa1fd86f334d282ae008fedfdcade2d06f447d73555248ca933d6c714e8",
+      "bytes": 80990
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/cd86fa8eb0cf54d5289c85da1b0ace89f7bd9eaedc919c16c151a0a9d1b1d723.png",
+      "sha256": "cd86fa8eb0cf54d5289c85da1b0ace89f7bd9eaedc919c16c151a0a9d1b1d723",
+      "bytes": 69795
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/cdb786e264a56228536841bd1a1c20ca41c68c240b867fcd024ce7e8d5a7041d.png",
+      "sha256": "cdb786e264a56228536841bd1a1c20ca41c68c240b867fcd024ce7e8d5a7041d",
+      "bytes": 62728
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/ce55759731eb1da7dd6453d67f97eeac21ab12f8ff39b0b9d3f59f33a41df43a.png",
+      "sha256": "ce55759731eb1da7dd6453d67f97eeac21ab12f8ff39b0b9d3f59f33a41df43a",
+      "bytes": 85063
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/cf5c6099938e04ad127ffa9faabdf7c35ead2f045eed32cf46a7e63b9d7ae845.png",
+      "sha256": "cf5c6099938e04ad127ffa9faabdf7c35ead2f045eed32cf46a7e63b9d7ae845",
+      "bytes": 38166
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/d02161ba6c92d38cfcfc94c1f4415cb68fce006dcff03b644b53c8cdffad8c6e.png",
+      "sha256": "d02161ba6c92d38cfcfc94c1f4415cb68fce006dcff03b644b53c8cdffad8c6e",
+      "bytes": 61842
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/d11d06194c2321d097f1f84f6e05995d18bb501747eca1aa4974e481d82e28fc.png",
+      "sha256": "d11d06194c2321d097f1f84f6e05995d18bb501747eca1aa4974e481d82e28fc",
+      "bytes": 58142
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/d298cc10b4b59ddb72d8becee029a529483cb44ecbdd1202fcd919fecd779c41.png",
+      "sha256": "d298cc10b4b59ddb72d8becee029a529483cb44ecbdd1202fcd919fecd779c41",
+      "bytes": 40039
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/d31c3b8f64aa1e31bc3b3772243f8d90d938bb599b4e61e813c229107c3d3218.png",
+      "sha256": "d31c3b8f64aa1e31bc3b3772243f8d90d938bb599b4e61e813c229107c3d3218",
+      "bytes": 16672
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/d47ab7cef164a54fbc0aa8426073558f13a60919f8abac19bacdd0a173cc45b5.png",
+      "sha256": "d47ab7cef164a54fbc0aa8426073558f13a60919f8abac19bacdd0a173cc45b5",
+      "bytes": 6045
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/d481945339da1ab411e0cb653442154256b6eb0b3c6fd6c78baa55ea493ced7e.png",
+      "sha256": "d481945339da1ab411e0cb653442154256b6eb0b3c6fd6c78baa55ea493ced7e",
+      "bytes": 38206
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/d490e83820c856cde7863db037ae4aaea128ad8e8958bba9a4246ea1ee2cea87.png",
+      "sha256": "d490e83820c856cde7863db037ae4aaea128ad8e8958bba9a4246ea1ee2cea87",
+      "bytes": 3868
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/d6c59b181d26dbf60d5cbed5ab5e7738b03e1fca9f7ffd26e64b382d549e705e.png",
+      "sha256": "d6c59b181d26dbf60d5cbed5ab5e7738b03e1fca9f7ffd26e64b382d549e705e",
+      "bytes": 9995
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/db578cea4916fb01284ea549251b8c6627bb7441fac68101613532b13401ef90.png",
+      "sha256": "db578cea4916fb01284ea549251b8c6627bb7441fac68101613532b13401ef90",
+      "bytes": 52150
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/dbb1e61ae4a3b237ebec075445ea6df4005dbfa354ed1a963cebbca06c98927d.png",
+      "sha256": "dbb1e61ae4a3b237ebec075445ea6df4005dbfa354ed1a963cebbca06c98927d",
+      "bytes": 15027
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/dc9351d644654afac593bfd14958a848960e041f94b263745c8a7c8016328179.png",
+      "sha256": "dc9351d644654afac593bfd14958a848960e041f94b263745c8a7c8016328179",
+      "bytes": 56326
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/dd52f93c7a900db2e4dbf4c85ca61eb1b46d8988947067c29cac6b2c14212747.png",
+      "sha256": "dd52f93c7a900db2e4dbf4c85ca61eb1b46d8988947067c29cac6b2c14212747",
+      "bytes": 4185
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/de3c0773528cfa286007272f47909b41796ecbb1e9f239501f6d2205bff780a9.png",
+      "sha256": "de3c0773528cfa286007272f47909b41796ecbb1e9f239501f6d2205bff780a9",
+      "bytes": 11388
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/dee1d84dee0e49dbc31efc06ba91dd6ffb63c16f64ec26cd73984e076895a9cc.png",
+      "sha256": "dee1d84dee0e49dbc31efc06ba91dd6ffb63c16f64ec26cd73984e076895a9cc",
+      "bytes": 15064
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/defa8dbcbb9d711f0433376aa5338c1a64436ea94895abffa7a4fc03bfcf9e96.png",
+      "sha256": "defa8dbcbb9d711f0433376aa5338c1a64436ea94895abffa7a4fc03bfcf9e96",
+      "bytes": 48775
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/df1845681a19af9cb2f038306178b979110e7ac81d319fc78291af9541791ab3.png",
+      "sha256": "df1845681a19af9cb2f038306178b979110e7ac81d319fc78291af9541791ab3",
+      "bytes": 61165
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/e3164d45d54a9f044f7c7034ee45594984ff82fa88b1f94c980a29923a8d2efa.png",
+      "sha256": "e3164d45d54a9f044f7c7034ee45594984ff82fa88b1f94c980a29923a8d2efa",
+      "bytes": 10692
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/e39ddb07797fba6e795e42658166eb0fcefcd4d23eeea8a0efc96a719cea12d7.png",
+      "sha256": "e39ddb07797fba6e795e42658166eb0fcefcd4d23eeea8a0efc96a719cea12d7",
+      "bytes": 93570
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/e5915690b6e0b1ea6b7d153e086d6f580d7e28496679e6f5ffc456c88bd24fdb.png",
+      "sha256": "e5915690b6e0b1ea6b7d153e086d6f580d7e28496679e6f5ffc456c88bd24fdb",
+      "bytes": 75976
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/e80f110638e72e25d66812301c24c5f49a6cc7b85b9978fdc87f280f73858eea.png",
+      "sha256": "e80f110638e72e25d66812301c24c5f49a6cc7b85b9978fdc87f280f73858eea",
+      "bytes": 13699
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/eae285563b26872b073d8e2d70228921321770221412ce69707998a6402b1d4b.png",
+      "sha256": "eae285563b26872b073d8e2d70228921321770221412ce69707998a6402b1d4b",
+      "bytes": 54038
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/eb6ee946d15d12c4b662f5f663456a6de11fd2af0a7015f63f3b8d33551b931d.png",
+      "sha256": "eb6ee946d15d12c4b662f5f663456a6de11fd2af0a7015f63f3b8d33551b931d",
+      "bytes": 56484
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/ece873faeb1103ee4487107868f4eed287d72576def91bfd955fdee516bb1c06.png",
+      "sha256": "ece873faeb1103ee4487107868f4eed287d72576def91bfd955fdee516bb1c06",
+      "bytes": 7456
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/ed0347df80894d74ad4d95c9b939356dfb0b557a1e21609b45fc6eb88349476e.png",
+      "sha256": "ed0347df80894d74ad4d95c9b939356dfb0b557a1e21609b45fc6eb88349476e",
+      "bytes": 34273
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/ed4d4d6ee127deae0a524c2668ea5435354c0dbb7fc7e56c6200d09bdee82c6c.png",
+      "sha256": "ed4d4d6ee127deae0a524c2668ea5435354c0dbb7fc7e56c6200d09bdee82c6c",
+      "bytes": 50175
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/edb0ba12fc4bc868541efdfb422075af2b43c8031b43073d23bd56d2b6dc3c98.png",
+      "sha256": "edb0ba12fc4bc868541efdfb422075af2b43c8031b43073d23bd56d2b6dc3c98",
+      "bytes": 39123
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/ee65e29ad279402ebb865bfa319c6e484974997f6c806b579fae180e9fdc4c32.png",
+      "sha256": "ee65e29ad279402ebb865bfa319c6e484974997f6c806b579fae180e9fdc4c32",
+      "bytes": 51885
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/eefb244199d518009e9f25db3eee71127d3f7c563bd754140059d8b99e50c3ea.png",
+      "sha256": "eefb244199d518009e9f25db3eee71127d3f7c563bd754140059d8b99e50c3ea",
+      "bytes": 55859
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/f005262951e86d0ecdd509aec5221c8bb01018cab50491d693540a93d1ee48bc.png",
+      "sha256": "f005262951e86d0ecdd509aec5221c8bb01018cab50491d693540a93d1ee48bc",
+      "bytes": 44191
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/f16b7aeb51f293175ce3b283013ea0b3efff1dacca4d66ad5ddc027d6b012cff.png",
+      "sha256": "f16b7aeb51f293175ce3b283013ea0b3efff1dacca4d66ad5ddc027d6b012cff",
+      "bytes": 6139
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/f1e05393c284100a7a0963b49fc442050f3c2c365f73fe6bc331df6485d09dcf.png",
+      "sha256": "f1e05393c284100a7a0963b49fc442050f3c2c365f73fe6bc331df6485d09dcf",
+      "bytes": 85359
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/f317938e03d4ee62fa6f347e95243f990af069307b32c8967048d9af72decb26.png",
+      "sha256": "f317938e03d4ee62fa6f347e95243f990af069307b32c8967048d9af72decb26",
+      "bytes": 42395
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/f3eb719dfea14dc14fad08afa1f5459f49cc793b28877c3ef23629d8c71cfcd4.png",
+      "sha256": "f3eb719dfea14dc14fad08afa1f5459f49cc793b28877c3ef23629d8c71cfcd4",
+      "bytes": 3778
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/f400ce96bdf299f19622e909b7714f72402787efe7621c8442611c441ccd3059.png",
+      "sha256": "f400ce96bdf299f19622e909b7714f72402787efe7621c8442611c441ccd3059",
+      "bytes": 5190
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/f6eca5643b11bfe723a6db9ab7168bba0af808594328f86fcc7be155b40bd802.png",
+      "sha256": "f6eca5643b11bfe723a6db9ab7168bba0af808594328f86fcc7be155b40bd802",
+      "bytes": 4255
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/f8eeaf6a82a01b4e21145ef78a0185e3b80c9b267369833dc46948915baa7e5f.png",
+      "sha256": "f8eeaf6a82a01b4e21145ef78a0185e3b80c9b267369833dc46948915baa7e5f",
+      "bytes": 44074
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/f9e2904e18f9cc716180d422101fbbb41b17cccc74a0b39963c95e73fb2c0e06.png",
+      "sha256": "f9e2904e18f9cc716180d422101fbbb41b17cccc74a0b39963c95e73fb2c0e06",
+      "bytes": 4810
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/fb3ad6755b8433c924b5094dca199aab19a25232fd70f1db4e1b4096d5a74418.png",
+      "sha256": "fb3ad6755b8433c924b5094dca199aab19a25232fd70f1db4e1b4096d5a74418",
+      "bytes": 16510
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/fbb527b28e0c2a94a342a98f31a7707de4336c34fb0df775ec6ef9361a4edb7e.png",
+      "sha256": "fbb527b28e0c2a94a342a98f31a7707de4336c34fb0df775ec6ef9361a4edb7e",
+      "bytes": 96894
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/fc40b981a08c832b5f0898f93fad36de90b3b096fb56810fdcbfa5fa23ff838d.png",
+      "sha256": "fc40b981a08c832b5f0898f93fad36de90b3b096fb56810fdcbfa5fa23ff838d",
+      "bytes": 34677
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/fdf7af1d2c2083610ab235381b0ffe2ef074afb394ad5ce2b3d99c26433d233e.png",
+      "sha256": "fdf7af1d2c2083610ab235381b0ffe2ef074afb394ad5ce2b3d99c26433d233e",
+      "bytes": 37893
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/fe86792b10fa323eb79377877685abd6a219bfc81e79b2af11f54e48eb57e97c.png",
+      "sha256": "fe86792b10fa323eb79377877685abd6a219bfc81e79b2af11f54e48eb57e97c",
+      "bytes": 5746
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/fed2bbe69f146a3a87da402030a06c6d04a99d85f53557de8fce7223ce2c671a.png",
+      "sha256": "fed2bbe69f146a3a87da402030a06c6d04a99d85f53557de8fce7223ce2c671a",
+      "bytes": 2968
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-264/screens/ffe461d2b4fa908215d0c6c4a44de83c422eab466cd2af0c9b21f5b6b4d36cbf.png",
+      "sha256": "ffe461d2b4fa908215d0c6c4a44de83c422eab466cd2af0c9b21f5b6b4d36cbf",
+      "bytes": 15051
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-process.txt",
+      "sha256": "06fdb37a140fc224ba01580541c1281e240ae7e271ef70ebd4bf2b4cb6389d80",
+      "bytes": 447
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/actual-ui-terminal.json",
+      "sha256": "3d806e4d5e18123f47935c6a44a28f61caa69cd29627071b3f354ab96177d155",
+      "bytes": 492
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/analyse-canary-evidence.py",
+      "sha256": "086ffd03bdfa5ba504695c607ca1e4519fb05a1280d78beb7381d142acad5898",
+      "bytes": 3993
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/analysis-harness-syntax-negative/actual-evidence-analysis-process.txt",
+      "sha256": "c615d5b05c2ac4e9acf2245ae83a65c1822f9ac415876f69a93ce3ffd9f85eba",
+      "bytes": 560
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/analysis-harness-syntax-negative/actual-evidence-cpu-receipt.json",
+      "sha256": "9bdeadc1e22afa79dfdec43b1920a809c86088ddc2c90f77f9aef3456eb835ac",
+      "bytes": 341
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/analysis-harness-syntax-negative/analyse-canary-evidence.py",
+      "sha256": "7e12220ee8603d22dca5f9a5c4f388e2b2ccfe6f718331947aa3ede05813e647",
+      "bytes": 3990
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/collector-719-source.mjs.txt",
+      "sha256": "719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15",
+      "bytes": 26773
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/compile-selected-states.mjs",
+      "sha256": "eda67dc68b008456fd9205f05973dfce0cc15cc7ec8e7c1020bde00a9f368c55",
+      "bytes": 1237
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/contact-sheets/1280-fixed_projection-grid.jpg",
+      "sha256": "244c6fd0f60cf7a51bc9643cae550dd2b09329de68686fcb82c3fe8e448c011f",
+      "bytes": 138508
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/contact-sheets/1280-fixed_projection-setup.jpg",
+      "sha256": "26123e1dd96d3bf0d7d96ee4565cd2891bf2d6c3cb0007bbf43b645cdea1ec92",
+      "bytes": 100173
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/contact-sheets/1280-orbit-grid.jpg",
+      "sha256": "00c59e306d139f44af4dbb7146078f617041d98228824dde0292df6be20cb6e2",
+      "bytes": 166778
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/contact-sheets/1280-orbit-setup.jpg",
+      "sha256": "dea4bb7b3e4bc36a41839bc2e916c71c7f40718c771f6ac7e7be380e98df99f4",
+      "bytes": 108617
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/contact-sheets/1280-side-grid.jpg",
+      "sha256": "e1869d7844ab45f7a63e306f50b9004066a077de4f8dbb5a5aad613b8abe2a28",
+      "bytes": 140186
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/contact-sheets/1280-side-setup.jpg",
+      "sha256": "0e38999f83c6ee0b31318e4645564edd3b043c5a08b062eb527e6996e0e939f3",
+      "bytes": 103563
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/contact-sheets/1280-top-grid.jpg",
+      "sha256": "86109388ffa1bddb77bb24fe476fe9d0dd1007bd7cf8c4eafabb06085caa13e6",
+      "bytes": 158307
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/contact-sheets/1280-top-setup.jpg",
+      "sha256": "1881a5817e13d1c2002875645d39b04ef69bdcb116230abe9a4849e7db63534e",
+      "bytes": 107104
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/contact-sheets/320-fixed_projection-grid.jpg",
+      "sha256": "462c15ec06088b58a7b7dfbf8f3f7bdc8a227be0141a770f57404230ae01b4fd",
+      "bytes": 107393
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/contact-sheets/320-fixed_projection-setup.jpg",
+      "sha256": "e147748f864555ac98e47107035ebd990bd534d7bd7cabc2ff474a47e9ce07c4",
+      "bytes": 73548
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/contact-sheets/320-orbit-grid.jpg",
+      "sha256": "4f3c2e80af2486778db9019c10807000049d3b1da5b52226cb840dae63f8c1e8",
+      "bytes": 118618
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/contact-sheets/320-orbit-setup.jpg",
+      "sha256": "901cc1b21d00d4e1f524b547855d35b248334339481c77d56e6fde769c26a2d3",
+      "bytes": 71181
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/contact-sheets/320-side-grid.jpg",
+      "sha256": "bbce907784bb77e517f6c9320a4d8bb52a7b593943bac0e1da42b4e78bcf7a79",
+      "bytes": 107043
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/contact-sheets/320-side-setup.jpg",
+      "sha256": "3740a44ab6d201edebc18479bd434c99aaa223ecb85feecde14c6ff497c1c3b5",
+      "bytes": 70043
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/contact-sheets/320-top-grid.jpg",
+      "sha256": "a9bffdefa6cbc6c7a711884b1f8730337e2b9a943d4cf9cb3d263f4009f72097",
+      "bytes": 121055
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/contact-sheets/320-top-setup.jpg",
+      "sha256": "d85a8707665970c9e1896ba2a8b673c39d5c59b84d4b6431ab90086cb8a71ed6",
+      "bytes": 71561
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/executed-post-UI-CPU-supervisor.py",
+      "sha256": "32e4cf82e67333feecc40224513f82ef8d93f69c66b7cb42b8f274ab7efe83e2",
+      "bytes": 1348
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/image-reading-scope.json",
+      "sha256": "0271651a25066d7507436a18992235a67a461769c63e6e136a3e87d5fb3a82ad",
+      "bytes": 2332
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/independent-canary-judgment.json",
+      "sha256": "667344cebabddda4ee2efebc28e5f5ff6332021645455356ba66481086116c03",
+      "bytes": 12490
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/inputs/experiment-c5-wave-basis-reading-20261127-bindings.json",
+      "sha256": "45643fbaaa1a56cae11e9d19a2055269d2b17d8675c34512fbcf6c26ae8716a4",
+      "bytes": 1673
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/inputs/experiment-c5-wave-basis-reading-20261127.json",
+      "sha256": "3099dde70e64158caed82aeb1f374e0a0ff406868cf50a440de2c57b10a5869d",
+      "bytes": 14204
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/inputs/experiment-c5-wave-energy-sound-reading-20261127-bindings.json",
+      "sha256": "e6973c70a4e2df28a0d37bf608cd7ed1039233690d2cb4e694c0e6a9d492a19a",
+      "bytes": 2007
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/inputs/experiment-c5-wave-energy-sound-reading-20261127.json",
+      "sha256": "7f0598a2af980d0c14ab992db07dc595293c5c6c2eea851b922fe06c4a637973",
+      "bytes": 17603
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/observed-consumer-limits.json",
+      "sha256": "fcf125fa2049d1bc2acae9d36d679ee9f99142728c56e3be9b752b2a14e6f04c",
+      "bytes": 1747
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/owner-record-canonical-authority.json",
+      "sha256": "63402b5d310a40e2205faace9ecf0cac13731681d7ce35480db6bbf3da46e3d0",
+      "bytes": 5074
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/prepare-and-prelaunch.py",
+      "sha256": "283f5cfeec53990aebd0b24e7646ffe150cbe58f8f589516645a41ed61db74f6",
+      "bytes": 7645
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/prepared.json",
+      "sha256": "d5658ff13d20a00acf558ad18ce0e0c332c2a8c4d33f4323be260eaa3899bd0b",
+      "bytes": 142188
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/request.json",
+      "sha256": "257e41d0c1cdb74d33a968f286ffb0541ce478b4a54daf4bf5591d0f2b5f3167",
+      "bytes": 1610
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/run-bounded-canary.py",
+      "sha256": "13296b2005edf8ff28644be9920e0b347101bfc7a0310606f9ba414a9c4aec23",
+      "bytes": 2396
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/run-info.json",
+      "sha256": "e92518d9ee1b297fcb152bcc9da3bdd0e6134a4b7d91bb10fb2cbe1282f8ff5b",
+      "bytes": 410
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/selected-fullsize-images.json",
+      "sha256": "60223fb884201ec3198d5ee1b237a8ae2adb00650a0ce2b61b807016e4141f4a",
+      "bytes": 1937
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c5-eleven-drafts-canary-7c7281-20261127/test-prelaunch-authority.py",
+      "sha256": "abab25cacfb286901680dcc13c3b44b16381a3e70019d3fa940db802bbaa9bff",
+      "bytes": 1741
+    }
+  ]
+}

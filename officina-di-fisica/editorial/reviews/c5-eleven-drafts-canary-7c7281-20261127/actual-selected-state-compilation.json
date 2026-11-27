@@ -1,0 +1,310 @@
+[
+  {
+    "id": "SIM-C5-L01-02",
+    "grid": [
+      2,
+      2.5
+    ],
+    "expectedValues": [
+      0.5,
+      0.4
+    ],
+    "questions": [
+      {
+        "input": "0.5",
+        "expectedAccepted": true,
+        "sourceManualReadiness": "INDEPENDENT_SCIENTIFIC_READING_CPU_PASS_UI_PENDING",
+        "prompt": "Imposta «Periodo» su 2 s. Quale valore ottieni per «Frequenza»?"
+      },
+      {
+        "input": "0.4",
+        "expectedAccepted": true,
+        "sourceManualReadiness": "INDEPENDENT_SCIENTIFIC_READING_CPU_PASS_UI_PENDING",
+        "prompt": "Un sensore rileva un’oscillazione completa ogni 2,5 s. Quanti cicli registra per secondo?"
+      }
+    ],
+    "sourcePrediction": 0,
+    "hasClock": true,
+    "clockInput": false
+  },
+  {
+    "id": "SIM-C5-L02-01",
+    "grid": [
+      2,
+      1.5
+    ],
+    "expectedValues": [
+      4,
+      3
+    ],
+    "questions": [
+      {
+        "input": "4",
+        "expectedAccepted": true,
+        "sourceManualReadiness": "INDEPENDENT_SCIENTIFIC_READING_CPU_PASS_UI_PENDING",
+        "prompt": "Imposta «Tempo di propagazione» su 2 s. Quale valore ottieni per «Posizione del centro dell’impulso»?"
+      },
+      {
+        "input": "3",
+        "expectedAccepted": true,
+        "sourceManualReadiness": "INDEPENDENT_SCIENTIFIC_READING_CPU_PASS_UI_PENDING",
+        "prompt": "Un impulso si propaga su una corda a 2 m/s. Dopo 1,5 s, quanto dista il centro dell’impulso dal punto di partenza?"
+      }
+    ],
+    "sourcePrediction": 2,
+    "hasClock": true,
+    "clockInput": true
+  },
+  {
+    "id": "SIM-C5-L02-02",
+    "grid": [
+      4,
+      3
+    ],
+    "expectedValues": [
+      1.5,
+      2
+    ],
+    "questions": [
+      {
+        "input": "1.5",
+        "expectedAccepted": true,
+        "sourceManualReadiness": "INDEPENDENT_SCIENTIFIC_READING_CPU_PASS_UI_PENDING",
+        "prompt": "Imposta «Frequenza della sorgente» su 4 Hz. Quale valore ottieni per «Lunghezza d’onda»?"
+      },
+      {
+        "input": "2",
+        "expectedAccepted": true,
+        "sourceManualReadiness": "INDEPENDENT_SCIENTIFIC_READING_CPU_PASS_UI_PENDING",
+        "prompt": "Su una corda le onde viaggiano a 6 m/s. Se il generatore oscilla a 3 Hz, quanto distano due creste consecutive?"
+      }
+    ],
+    "sourcePrediction": 0,
+    "hasClock": true,
+    "clockInput": false
+  },
+  {
+    "id": "SIM-C5-L02-04",
+    "grid": [
+      270,
+      180
+    ],
+    "expectedValues": [
+      -2,
+      0
+    ],
+    "questions": [
+      {
+        "input": "-2",
+        "expectedAccepted": true,
+        "sourceManualReadiness": "INDEPENDENT_SCIENTIFIC_READING_CPU_PASS_UI_PENDING",
+        "prompt": "Imposta «Fase del punto marcato» su 270 °. Quale valore ottieni per «Spostamento del punto lungo la sua oscillazione»?"
+      },
+      {
+        "input": "0",
+        "expectedAccepted": true,
+        "sourceManualReadiness": "INDEPENDENT_SCIENTIFIC_READING_CPU_PASS_UI_PENDING",
+        "prompt": "Il punto marcato ha ampiezza di 2 mm e fase 180 °. Misurando lungo la sua direzione di oscillazione, quale spostamento con segno trovi?"
+      }
+    ],
+    "sourcePrediction": 0,
+    "hasClock": false,
+    "clockInput": false
+  },
+  {
+    "id": "SIM-C5-L03-01",
+    "grid": [
+      2,
+      0
+    ],
+    "expectedValues": [
+      4,
+      2
+    ],
+    "questions": [
+      {
+        "input": "4",
+        "expectedAccepted": true,
+        "sourceManualReadiness": "INDEPENDENT_SCIENTIFIC_READING_CPU_PASS_UI_PENDING",
+        "prompt": "Imposta «Spostamento della seconda onda» su 2 cm. Quale valore ottieni per «Spostamento risultante alla sonda»?"
+      },
+      {
+        "input": "2",
+        "expectedAccepted": true,
+        "sourceManualReadiness": "INDEPENDENT_SCIENTIFIC_READING_CPU_PASS_UI_PENDING",
+        "prompt": "Alla sonda arrivano insieme una perturbazione di +2 cm e una di 0 cm. Di quanto si sposta in quell’istante il punto della corda?"
+      }
+    ],
+    "sourcePrediction": 2,
+    "hasClock": false,
+    "clockInput": false
+  },
+  {
+    "id": "SIM-C5-L04-01",
+    "grid": [
+      2,
+      1.5
+    ],
+    "expectedValues": [
+      4,
+      2.25
+    ],
+    "questions": [
+      {
+        "input": "4",
+        "expectedAccepted": true,
+        "sourceManualReadiness": "INDEPENDENT_SCIENTIFIC_READING_CPU_PASS_UI_PENDING",
+        "prompt": "Imposta «Ampiezza rispetto ad A₀» su 2. Quale valore ottieni per «Potenza media rispetto a P₀»?"
+      },
+      {
+        "input": "2.25",
+        "expectedAccepted": true,
+        "sourceManualReadiness": "INDEPENDENT_SCIENTIFIC_READING_CPU_PASS_UI_PENDING",
+        "prompt": "Sulla stessa corda mantieni invariata la frequenza e porti l’ampiezza a 1,5 volte quella iniziale. Per quale fattore cambia la potenza media?"
+      }
+    ],
+    "sourcePrediction": 2,
+    "hasClock": false,
+    "clockInput": false
+  },
+  {
+    "id": "SIM-C5-L04-02",
+    "grid": [
+      4,
+      3
+    ],
+    "expectedValues": [
+      8,
+      6
+    ],
+    "questions": [
+      {
+        "input": "8",
+        "expectedAccepted": true,
+        "sourceManualReadiness": "INDEPENDENT_SCIENTIFIC_READING_CPU_PASS_UI_PENDING",
+        "prompt": "Imposta «Area del ricevitore» su 4 cm². Quale valore ottieni per «Energia raccolta in 2 s»?"
+      },
+      {
+        "input": "6",
+        "expectedAccepted": true,
+        "sourceManualReadiness": "INDEPENDENT_SCIENTIFIC_READING_CPU_PASS_UI_PENDING",
+        "prompt": "Un ricevitore di area 3 cm² è investito perpendicolarmente da 10 W/m² per 2 s. Quanti millijoule intercetta?"
+      }
+    ],
+    "sourcePrediction": 2,
+    "hasClock": false,
+    "clockInput": false
+  },
+  {
+    "id": "SIM-C5-L04-03",
+    "grid": [
+      4,
+      3
+    ],
+    "expectedValues": [
+      0.0625,
+      0.1111111111111111
+    ],
+    "questions": [
+      {
+        "input": "0.0625",
+        "expectedAccepted": true,
+        "sourceManualReadiness": "INDEPENDENT_SCIENTIFIC_READING_CPU_PASS_UI_PENDING",
+        "prompt": "Imposta «Distanza dalla sorgente» su 4 m. Quale valore ottieni per «Intensità»?"
+      },
+      {
+        "input": "0.1111",
+        "expectedAccepted": true,
+        "sourceManualReadiness": "INDEPENDENT_SCIENTIFIC_READING_CPU_PASS_UI_PENDING",
+        "prompt": "Una sorgente isotropa irradia 4π W. Alla distanza di 3 m, quale intensità attraversa una piccola superficie perpendicolare ai raggi?"
+      }
+    ],
+    "sourcePrediction": 0,
+    "hasClock": false,
+    "clockInput": false
+  },
+  {
+    "id": "SIM-C5-L05-01",
+    "grid": [
+      3,
+      1
+    ],
+    "expectedValues": [
+      30,
+      441.1764705882353
+    ],
+    "questions": [
+      {
+        "input": "30",
+        "expectedAccepted": true,
+        "sourceManualReadiness": "INDEPENDENT_SCIENTIFIC_READING_CPU_PASS_UI_PENDING",
+        "prompt": "Imposta «Mezzo di propagazione» su Acciaio. Quale valore ottieni per «Tempo su 150 m»?"
+      },
+      {
+        "input": "441.2",
+        "expectedAccepted": true,
+        "sourceManualReadiness": "INDEPENDENT_SCIENTIFIC_READING_CPU_PASS_UI_PENDING",
+        "prompt": "Devi sincronizzare due sensori distanti 150 m nel mezzo «Aria». Usando la velocità indicata sul banco, quanti millisecondi impiega il suono?"
+      }
+    ],
+    "sourcePrediction": 0,
+    "hasClock": true,
+    "clockInput": false
+  },
+  {
+    "id": "SIM-C5-L05-02",
+    "grid": [
+      6,
+      4
+    ],
+    "expectedValues": [
+      60,
+      40
+    ],
+    "questions": [
+      {
+        "input": "60",
+        "expectedAccepted": true,
+        "sourceManualReadiness": "INDEPENDENT_SCIENTIFIC_READING_CPU_PASS_UI_PENDING",
+        "prompt": "Imposta «Esponente in I/I₀ = 10ⁿ» su 6. Quale valore ottieni per «Livello di intensità»?"
+      },
+      {
+        "input": "40",
+        "expectedAccepted": true,
+        "sourceManualReadiness": "INDEPENDENT_SCIENTIFIC_READING_CPU_PASS_UI_PENDING",
+        "prompt": "Il rapporto fra l’intensità misurata e quella di riferimento è 10ⁿ, con n = 4. Quale livello leggeresti sul fonometro in decibel?"
+      }
+    ],
+    "sourcePrediction": 2,
+    "hasClock": false,
+    "clockInput": false
+  },
+  {
+    "id": "SIM-C5-L05-03",
+    "grid": [
+      30,
+      -20
+    ],
+    "expectedValues": [
+      333.3333333333333,
+      281.25
+    ],
+    "questions": [
+      {
+        "input": "333.3",
+        "expectedAccepted": true,
+        "sourceManualReadiness": "INDEPENDENT_SCIENTIFIC_READING_CPU_PASS_UI_PENDING",
+        "prompt": "Imposta «Velocità della sorgente verso il ricevitore» su 30 m/s. Quale valore ottieni per «Frequenza ricevuta»?"
+      },
+      {
+        "input": "281.25",
+        "expectedAccepted": true,
+        "sourceManualReadiness": "INDEPENDENT_SCIENTIFIC_READING_CPU_PASS_UI_PENDING",
+        "prompt": "La sorgente emette 300 Hz e ha velocità con segno -20 m/s verso il ricevitore fermo. Se il suono viaggia a 300 m/s, quale frequenza riceve? Semplifica il rapporto tra le velocità."
+      }
+    ],
+    "sourcePrediction": 2,
+    "hasClock": true,
+    "clockInput": false
+  }
+]
