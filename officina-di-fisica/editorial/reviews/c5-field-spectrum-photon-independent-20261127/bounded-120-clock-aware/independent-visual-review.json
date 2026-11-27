@@ -1,0 +1,464 @@
+{
+  "role": "AI_INDEPENDENT_FROM_ROOT_AUTHOR",
+  "draftCommit": "8f29e69c1b43243666ba754c982bf89a90c26c2c",
+  "runtimeCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "runtimeSha256": "53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a",
+  "sourcePrimaryCommit": "b6ae0e38e982e0c6b5184b77494ac978538cafee",
+  "sourcePrimarySha256": "d56d775575ac5f71c17ee9ca5880c0eb016cf90ed5e376d8733f5b8bb92c0ecb",
+  "CPUHandoffSha256": "8cc19cb8fcbb2c80c6a8948cb07eaf8edca5c062cb74bacacce335f3c1490b0e",
+  "perID": [
+    {
+      "id": "SIM-C5-L06-01",
+      "sourceSha256": "52545bf8b79e0714ef7f0966bb456baa4b764c77f07f92e8a059ee67fc2f5770",
+      "candidateSha256": "9e71dad7fc9410ea066b524f1913ac58405d22e2e04b01c432a918370f15d81a",
+      "sourceVersion": 2,
+      "draftVersion": 3,
+      "sourceTextMathManualDecision": "PASS_INDEPENDENT_CPU_AND_READING",
+      "observedPoints": [
+        90,
+        270
+      ],
+      "observedOutputs": [
+        10,
+        -10
+      ],
+      "actualProfiles": [
+        {
+          "fallback": false,
+          "view": "orbit",
+          "width": 320
+        },
+        {
+          "fallback": false,
+          "view": "side",
+          "width": 320
+        },
+        {
+          "fallback": false,
+          "view": "top",
+          "width": 320
+        },
+        {
+          "fallback": true,
+          "view": "fixed_projection",
+          "width": 320
+        },
+        {
+          "fallback": false,
+          "view": "orbit",
+          "width": 1280
+        },
+        {
+          "fallback": false,
+          "view": "side",
+          "width": 1280
+        },
+        {
+          "fallback": false,
+          "view": "top",
+          "width": 1280
+        },
+        {
+          "fallback": true,
+          "view": "fixed_projection",
+          "width": 1280
+        }
+      ],
+      "actualCaseCount": 24,
+      "actualNumberSubmissions": 16,
+      "boundedVisualDecision": "POSITIVE_IN_ACTUALLY_READ_SELECTED_STATES",
+      "clockScope": "No clock in this record",
+      "overallActivityAcceptance": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C5-L06-02",
+      "sourceSha256": "32e538825e7d81fb03092e855f3ab69b962d5c56120fb209d1f2f42bf6d9c85c",
+      "candidateSha256": "199e4e8c7fda7d7131b9dceabca30c41d7587bd173480502a988c796100dc947",
+      "sourceVersion": 1,
+      "draftVersion": 2,
+      "sourceTextMathManualDecision": "PASS_INDEPENDENT_CPU_AND_READING",
+      "observedPoints": [
+        4,
+        3
+      ],
+      "observedOutputs": [
+        4,
+        2.25
+      ],
+      "actualProfiles": [
+        {
+          "fallback": false,
+          "view": "orbit",
+          "width": 320
+        },
+        {
+          "fallback": false,
+          "view": "side",
+          "width": 320
+        },
+        {
+          "fallback": false,
+          "view": "top",
+          "width": 320
+        },
+        {
+          "fallback": true,
+          "view": "fixed_projection",
+          "width": 320
+        },
+        {
+          "fallback": false,
+          "view": "orbit",
+          "width": 1280
+        },
+        {
+          "fallback": false,
+          "view": "side",
+          "width": 1280
+        },
+        {
+          "fallback": false,
+          "view": "top",
+          "width": 1280
+        },
+        {
+          "fallback": true,
+          "view": "fixed_projection",
+          "width": 1280
+        }
+      ],
+      "actualCaseCount": 24,
+      "actualNumberSubmissions": 16,
+      "boundedVisualDecision": "POSITIVE_IN_ACTUALLY_READ_SELECTED_STATES",
+      "clockScope": "Explicit t0 reset at each grid point; no clock sweep",
+      "overallActivityAcceptance": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C5-L06-03",
+      "sourceSha256": "8e8a5dcd204fe6de3fdd9e6d95a2b5b18b45c86a30874c04774afbba1341b5fe",
+      "candidateSha256": "5e3bea7cc1de32be4c0b99d024ecfd85819f3c578c5de7b6a22514ce7c90ee29",
+      "sourceVersion": 1,
+      "draftVersion": 2,
+      "sourceTextMathManualDecision": "PASS_INDEPENDENT_CPU_AND_READING",
+      "observedPoints": [
+        1,
+        6
+      ],
+      "observedOutputs": [
+        2,
+        -10
+      ],
+      "actualProfiles": [
+        {
+          "fallback": false,
+          "view": "orbit",
+          "width": 320
+        },
+        {
+          "fallback": false,
+          "view": "side",
+          "width": 320
+        },
+        {
+          "fallback": false,
+          "view": "top",
+          "width": 320
+        },
+        {
+          "fallback": true,
+          "view": "fixed_projection",
+          "width": 320
+        },
+        {
+          "fallback": false,
+          "view": "orbit",
+          "width": 1280
+        },
+        {
+          "fallback": false,
+          "view": "side",
+          "width": 1280
+        },
+        {
+          "fallback": false,
+          "view": "top",
+          "width": 1280
+        },
+        {
+          "fallback": true,
+          "view": "fixed_projection",
+          "width": 1280
+        }
+      ],
+      "actualCaseCount": 24,
+      "actualNumberSubmissions": 16,
+      "boundedVisualDecision": "POSITIVE_IN_ACTUALLY_READ_SELECTED_STATES",
+      "clockScope": "No clock in this record",
+      "overallActivityAcceptance": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C5-L07-01",
+      "sourceSha256": "ffffd7cbed5d697d9ff1f18ea4316288b24972b57437f9dd870db1fafe992614",
+      "candidateSha256": "0634d1367d9ce292a8f44e2bd3ae669860040c59dcddf64ec2c33133ec2cf613",
+      "sourceVersion": 1,
+      "draftVersion": 2,
+      "sourceTextMathManualDecision": "PASS_INDEPENDENT_CPU_AND_READING",
+      "observedPoints": [
+        250,
+        500
+      ],
+      "observedOutputs": [
+        1.034,
+        2.068
+      ],
+      "actualProfiles": [
+        {
+          "fallback": false,
+          "view": "orbit",
+          "width": 320
+        },
+        {
+          "fallback": false,
+          "view": "side",
+          "width": 320
+        },
+        {
+          "fallback": false,
+          "view": "top",
+          "width": 320
+        },
+        {
+          "fallback": true,
+          "view": "fixed_projection",
+          "width": 320
+        },
+        {
+          "fallback": false,
+          "view": "orbit",
+          "width": 1280
+        },
+        {
+          "fallback": false,
+          "view": "side",
+          "width": 1280
+        },
+        {
+          "fallback": false,
+          "view": "top",
+          "width": 1280
+        },
+        {
+          "fallback": true,
+          "view": "fixed_projection",
+          "width": 1280
+        }
+      ],
+      "actualCaseCount": 24,
+      "actualNumberSubmissions": 16,
+      "boundedVisualDecision": "POSITIVE_IN_ACTUALLY_READ_SELECTED_STATES",
+      "clockScope": "Explicit t0 reset at each grid point; no clock sweep",
+      "overallActivityAcceptance": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C5-L07-03",
+      "sourceSha256": "4400b2e879d2a547486214da98f9f5dc351c536f622d0caa26340bc1fffc589b",
+      "candidateSha256": "17eacd0fa88edac856913e8cbf654d1ff1c54408f4028b6370bffac3fc3c6e60",
+      "sourceVersion": 1,
+      "draftVersion": 2,
+      "sourceTextMathManualDecision": "PASS_INDEPENDENT_CPU_AND_READING",
+      "observedPoints": [
+        14,
+        19
+      ],
+      "observedOutputs": [
+        0,
+        5
+      ],
+      "actualProfiles": [
+        {
+          "fallback": false,
+          "view": "orbit",
+          "width": 320
+        },
+        {
+          "fallback": false,
+          "view": "side",
+          "width": 320
+        },
+        {
+          "fallback": false,
+          "view": "top",
+          "width": 320
+        },
+        {
+          "fallback": true,
+          "view": "fixed_projection",
+          "width": 320
+        },
+        {
+          "fallback": false,
+          "view": "orbit",
+          "width": 1280
+        },
+        {
+          "fallback": false,
+          "view": "side",
+          "width": 1280
+        },
+        {
+          "fallback": false,
+          "view": "top",
+          "width": 1280
+        },
+        {
+          "fallback": true,
+          "view": "fixed_projection",
+          "width": 1280
+        }
+      ],
+      "actualCaseCount": 24,
+      "actualNumberSubmissions": 16,
+      "boundedVisualDecision": "POSITIVE_IN_ACTUALLY_READ_SELECTED_STATES",
+      "clockScope": "No clock in this record",
+      "overallActivityAcceptance": false,
+      "activityCredit": 0
+    }
+  ],
+  "actualTerminal": {
+    "slice": "bounded-120-clock-aware",
+    "startedUnix": 1795769383.5526688,
+    "lock": "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/.cric-browser.lock",
+    "lockAcquired": true,
+    "activityCredit": 0,
+    "humanApproval": "NOT_RUN",
+    "publicationAction": "NONE",
+    "freeBefore": 15158300672,
+    "fingerprintBefore": "53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a",
+    "preflightAuthorityComplete": true,
+    "childPid": 13077,
+    "exitCode": 0,
+    "timeoutTriggered": false,
+    "freeAfter": 15089971200,
+    "elapsedSeconds": 63.95404124259949,
+    "terminalObserved": true,
+    "endedUnix": 1795769447.5067148
+  },
+  "actualSummary": {
+    "phase": "ACTUAL_UI_TECHNICAL_RESULTS_VISUAL_READING_SEPARATE",
+    "runtimeSha256": "53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a",
+    "collectorSha256": "719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15",
+    "expectedCases": 120,
+    "actualCases": 120,
+    "technicalPass": 120,
+    "technicalFailures": [],
+    "processExitCode": 0,
+    "timeoutTriggered": false,
+    "javascriptErrors": [],
+    "setupQuestions": 80,
+    "uniqueScreenshots": 120,
+    "contactSheets": [
+      {
+        "file": "contact-320-orbit.png",
+        "sha256": "283eda8628e57decdc12a94ea57f2e0dd1fbc273840631c3ca1a8ade526aa9ef",
+        "cases": 15
+      },
+      {
+        "file": "contact-320-side.png",
+        "sha256": "5be9edf3cb80840fc1fee6394c3c6b1b1583cc9e7f04b063d4a4eeb57db43bee",
+        "cases": 15
+      },
+      {
+        "file": "contact-320-top.png",
+        "sha256": "3c249b7624a27825f41fc0420e1089c22f1c9622929cce3893d93a8c630bf896",
+        "cases": 15
+      },
+      {
+        "file": "contact-320-fixed_projection.png",
+        "sha256": "ea716f6a126b2f125c7da1de6bed3bef1e1ee3f4c73de0238584b0f177d79332",
+        "cases": 15
+      },
+      {
+        "file": "contact-1280-orbit.png",
+        "sha256": "203bc791b11b1cbc44b2a9dd83a4fbab8590dd6495a2b9398e3f383f790144f7",
+        "cases": 15
+      },
+      {
+        "file": "contact-1280-side.png",
+        "sha256": "ffe56093e9385c2eeebfa89a2404cdd330669a405901a58012734962b68db332",
+        "cases": 15
+      },
+      {
+        "file": "contact-1280-top.png",
+        "sha256": "dfe0c52689be16445d86356c6ca7425d11db81979d2dc04a4bd79ba92a1f00a6",
+        "cases": 15
+      },
+      {
+        "file": "contact-1280-fixed_projection.png",
+        "sha256": "be674373d6d17ae2dc1ce01833a75b3a02fb46441bde8a38ca13718b79d72d29",
+        "cases": 15
+      }
+    ],
+    "activityCredit": 0,
+    "publicationAction": "NONE",
+    "humanApproval": "NOT_RUN",
+    "visualJudgment": "PENDING_INDEPENDENT_RASTER_READING"
+  },
+  "rasterReading": {
+    "all8ContactSheets120CellsActuallyRead": true,
+    "nativeSizeOriginalPNGsActuallyOpened": [
+      {
+        "path": "actual/screens/38f57c38c6135ac71cfe6218551f2604b57dac3b88bfff7c049e453dd5d3f1b7.png",
+        "sha256": "38f57c38c6135ac71cfe6218551f2604b57dac3b88bfff7c049e453dd5d3f1b7"
+      },
+      {
+        "path": "actual/screens/6a87afcfc7199bbcc0c8f7e98b485621151f19a3a923b121dfd27715e3815b57.png",
+        "sha256": "6a87afcfc7199bbcc0c8f7e98b485621151f19a3a923b121dfd27715e3815b57"
+      },
+      {
+        "path": "actual/screens/8184003d7825be11beef936293a88ed0814e51b051c1678f63174fa62f260088.png",
+        "sha256": "8184003d7825be11beef936293a88ed0814e51b051c1678f63174fa62f260088"
+      },
+      {
+        "path": "actual/screens/33c394eb49ac7cb7b86fc846db08ad7c5b1c55b516ffe57d35415558c2c3d3b8.png",
+        "sha256": "33c394eb49ac7cb7b86fc846db08ad7c5b1c55b516ffe57d35415558c2c3d3b8"
+      },
+      {
+        "path": "actual/screens/34028cabc9e243c5947b308c86384e4346a8b5f915fc50e2405a6c34cb9f2c6f.png",
+        "sha256": "34028cabc9e243c5947b308c86384e4346a8b5f915fc50e2405a6c34cb9f2c6f"
+      },
+      {
+        "path": "actual/screens/367c2d0947b54d20a25406355119de8d3371d1d905c208081649902cccaa6ce2.png",
+        "sha256": "367c2d0947b54d20a25406355119de8d3371d1d905c208081649902cccaa6ce2"
+      }
+    ]
+  },
+  "observations": [
+    "AtP,90/270 signed E and B directions invert together and preserve positive propagation. Side view resolves E and Top resolves B; projected collapse of the perpendicular component in those orthographic views is not confused with zero physical field.",
+    "No new mask of measured arrows atP observed in selected native/fallback frames.",
+    "Selected radio/X sample exponents2/-10 remain illustrative table values; crests explicitly schematic, not literal1e12 ratio drawn in space.",
+    "At250/500THz, same-space profiles show1/2cycles. Exact manual energy entries1.034/2.068 accepted; the field clock is a separate observable.",
+    "At14eV, electron marker is outside bound ring and no kinetic-energy arrow; at19eV, visible green arrow consistent withK5eV.",
+    "Authored reading delivery used existing native panel, all5formula blocks typeset/fit and setupaxe checks empty."
+  ],
+  "newFindings": [],
+  "evidenceTests": {
+    "count": 5,
+    "exitCode": 0,
+    "runtimeSeconds": 0.076,
+    "firstOwnTestSyntaxErrorPreservedSeparately": true
+  },
+  "limitations": [
+    "Selected2points perrecord and8profiles only, not full legal-grid/camera/clock acceptance.",
+    "Two clocks reset and verified0 in32selected states; CPU periods separately checked, no actual clock sweep claimed.",
+    "Package has no assets: draftasset403 portion is vacuous; guest original-version checks actually executed.",
+    "No new human approval, publication or canonical registration. OtherC5 IDs and sound/Doppler judgments are separate."
+  ],
+  "overallActivityAcceptance": false,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

@@ -1,0 +1,29 @@
+from pathlib import Path
+import unittest,json,hashlib
+F=Path(__file__).parent;D=F/'bounded-120-clock-aware';sha=lambda b:hashlib.sha256(b).hexdigest()
+class ActualFiveC5(unittest.TestCase):
+ @classmethod
+ def setUpClass(cls):
+  cls.plan=json.loads((D/'prepared.json').read_bytes());cls.report=json.loads((D/'actual/report.json').read_bytes());cls.rows=[]
+  for i in cls.report['cases']:
+   raw=(D/'actual'/i['file']).read_bytes();assert sha(raw)==i['sha256'];r=json.loads(raw)
+   for im in r['screenshots']:assert sha((D/'actual'/im['file']).read_bytes())==im['sha256']
+   cls.rows.append(r)
+ def test_actual120_unique_complete_and_terminal_zero(self):
+  self.assertEqual(len(self.rows),120);self.assertEqual({r['caseKey']for r in self.rows},set(self.plan['expectedCaseKeys']));self.assertTrue(all(r['technicalOk']for r in self.rows));self.assertEqual(self.report['errors'],[]);t=json.loads((D/'actual-terminal.json').read_bytes());self.assertEqual(t['exitCode'],0);self.assertFalse(t['timeoutTriggered']);self.assertEqual(t['fingerprintBefore'],'53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a')
+ def test_all80_number_answers_exact_bound_prompts(self):
+  questions=[q for r in self.rows for q in r.get('questions',[])];self.assertEqual(len(questions),80)
+  for q in questions:self.assertEqual(q['prompt'],q['actualPrompt']);self.assertTrue(q['status'].startswith('Corretto. '))
+ def test_two_clock_controls_reset_zero_all32_selected_states(self):
+  rows=[r for r in self.rows if r.get('interaction',{}).get('kind')=='grid'and r['id']in['SIM-C5-L06-02','SIM-C5-L07-01']];self.assertEqual(len(rows),32)
+  for r in rows:self.assertEqual(r['sourceReplayedClockTime'],0);self.assertEqual(float(r['clockReadout']),0);self.assertEqual(r['sourceReplayedX'],r['requestedX'])
+ def test_canonical_import_full_owner_identity_and991_retained(self):
+  c=self.report['canonicalImport'];self.assertEqual(c['publishedCount'],991);self.assertEqual(c['imports'][0]['first']['saved'],5);self.assertEqual(c['imports'][0]['second']['saved'],0);self.assertEqual(c['imports'][0]['second']['unchanged'],5);self.assertEqual(len(self.report['fullOwnerRecordIdentity']['records']),5)
+ def test_signed_fields_same_propagation_and_threshold_no_false_arrow(self):
+  fields=[r for r in self.rows if r['id']=='SIM-C5-L06-01'and'index'in r.get('interaction',{})];self.assertEqual(len(fields),16)
+  for r in fields:
+   es=[e for e in r['elements']if e['kind']=='arrow'and e['a']==[-2.56,1.28,0]];self.assertEqual(len(es),2);E=next(e for e in es if e['c']==7557296);B=next(e for e in es if e['c']==1341817);Ey=E['b'][1]-E['a'][1];Bz=B['b'][2]-B['a'][2];self.assertGreater(Ey*Bz,0);self.assertEqual(Ey>0,r['requestedX']==90);self.assertEqual(Bz>0,r['requestedX']==90)
+  for r in self.rows:
+   if r['id']=='SIM-C5-L07-03'and'index'in r.get('interaction',{}):
+    arrows=[e for e in r['elements']if e['kind']=='arrow'];self.assertEqual(len(arrows),0 if r['requestedX']==14 else1)
+if __name__=='__main__':unittest.main(verbosity=2)
