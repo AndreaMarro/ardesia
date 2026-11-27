@@ -49,6 +49,8 @@ export async function esperienza(record) {
     const board = tavolo(Math.max(stage, 0));
     const y = calc(x);
     const state = law.apparatus(x, y);
+    if (!record.engine && record.id === 'SIM-C2-L005-03') state.puntaVelocitaValleVisibile = true;
+    if (!record.engine && record.id === 'SIM-C2-L005-05') state.punteRamiVisibili = true;
     if (clock?.frame && time !== undefined) Object.assign(state, clock.frame(x, time, y));
     if (['SIM-C2-L009-01', 'SIM-C4-L06-01', 'SIM-C4-L08-01'].includes(record.id)) {
       for (const [side, series] of [
@@ -303,11 +305,13 @@ export async function esperienza(record) {
     'decadimento',
     'onde2',
   ].includes(record.apparatus);
+  const trasmissioneSuono = !record.engine && record.id === 'SIM-C5-L05-01';
   const spec = {
     target: [0, high ? 1.27 : 0.95, 0],
     // Native vector grids include full vertical components and the table feet.
     // Keep their complete opaque meshes in all three preset camera frames.
-    height: nativeVectorAxes ? 6 : high ? 4.65 : top ? 4.68 : 4.25,
+    // The sound fronts span 4.48 scene units at the largest setting.
+    height: nativeVectorAxes ? 6 : trasmissioneSuono ? 5 : high ? 4.65 : top ? 4.68 : 4.25,
     width: 8.1,
     // A lateral eye lets the opaque right plate hide the nearby probe. In these
     // three native activities, a raised frontal view keeps their x positions
