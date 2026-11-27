@@ -36,3 +36,21 @@ test('Doppler legends identify pressure and explain the top projection', async (
   }
   assert.match(bench.legend(2, 'top'), /dall’alto.*laterale/i);
 });
+
+test('the small pressure signal keeps a distinguishable head at the two fallback widths', async () => {
+  const bench = await esperienza(source);
+  for (const instant of [0, 5, 15]) {
+    const arrow = bench.elements(-20, 2, instant)
+      .find(element => element.kind === 'arrow' && element.c === colore.viola);
+    assert.ok(arrow);
+    assert.equal(arrow.a[0], arrow.b[0]);
+    assert.equal(arrow.a[2], arrow.b[2]);
+    for (const width of [320, 1280]) {
+      const svg = disegna2D([arrow], source.title, 'bench-diagram', width);
+      const [, points] = svg.match(/<polygon points="([^"]+)" fill="#7350b0"\/>/) ?? [];
+      assert.ok(points);
+      const [, baseA, baseB] = points.split(' ').map(point => point.split(',').map(Number));
+      assert.ok(Math.hypot(baseA[0] - baseB[0], baseA[1] - baseB[1]) > 2.7, `pressure tip at ${instant} ms and ${width}px`);
+    }
+  }
+});

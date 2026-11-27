@@ -187,7 +187,7 @@ export const ondulatoria = {
       b.rod([receiver, 0.1, 0], [receiver, 0.91, 0], 0.085, c.metallo);
       b.ball([receiver, 0.78, 0], 0.11, c.viola);
       if (s.pressioneRel !== undefined)
-        b.arrow([receiver, 1.18, 0.3], [receiver, 1.18 + 0.35 * s.pressioneRel, 0.3], c.viola);
+        b.arrow([receiver, 1.18, 0.3], [receiver, 1.18 + 0.35 * s.pressioneRel, 0.3], c.viola, true);
       b.label([sourceAt(time), 1.72, 0], 'Sorgente');
       b.label([receiver, 1.99, 0], 'Ricevitore');
       return;
