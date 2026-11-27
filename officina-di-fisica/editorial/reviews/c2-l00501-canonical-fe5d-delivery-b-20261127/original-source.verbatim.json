@@ -1,0 +1,42 @@
+[
+  {
+    "anchor": "Segna un piano immaginario di traverso a",
+    "apparatus": "condotto",
+    "blocks": [],
+    "control": {
+      "label": "Velocità media",
+      "max": 12.0,
+      "min": 0.0,
+      "step": 1.0,
+      "unit": "cm/s"
+    },
+    "course": "C2",
+    "formula": "Q = A v media; A = 4 cm²",
+    "id": "SIM-C2-L005-01",
+    "interpretation": "Immagina il cilindro che attraversa il piano durante un secondo. Ha volume area per distanza. Un centimetro cubo corrisponde a un millilitro.",
+    "kind": "experiment",
+    "measure": {
+      "label": "Portata volumetrica",
+      "unit": "mL/s"
+    },
+    "order": 1,
+    "references": [
+      [
+        2.0,
+        8.0
+      ],
+      [
+        6.0,
+        24.0
+      ]
+    ],
+    "section": "Fluidi in movimento",
+    "skill": "C2-L005",
+    "substitution": "4 × {x}",
+    "summary": "Quanto liquido varca la sezione colorata in un secondo?",
+    "title": "Flusso e portata volumetrica",
+    "topic": "Flusso e portata volumetrica",
+    "transferPrompt": "Un tubo di area 4 cm² porta un liquido a velocità media {x}. Quanti millilitri entrano nel recipiente ogni secondo?",
+    "version": 1
+  }
+]
