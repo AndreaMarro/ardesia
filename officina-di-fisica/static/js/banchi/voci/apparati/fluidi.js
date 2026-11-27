@@ -170,8 +170,10 @@ export const fluidi = {
     tuboOrizz(b, -l, -0.72, s.r1, s.r1);
     tuboOrizz(b, -0.72, 0.3, s.r1, s.r2);
     tuboOrizz(b, 0.3, l, s.r2, s.r2);
-    b.arrow([-l + 0.18, 1.05, 0], [-l + 0.18 + 0.8 * s.v1, 1.05, 0], c.verde);
-    b.arrow([0.44, 1.05, 0], [0.44 + 0.8 * s.v2, 1.05, 0], c.viola);
+    // Leave the Pitot intake and both risers on axis. Offset only the displayed vectors.
+    const arrowDepth = s.pitot ? 0.23 : 0;
+    b.arrow([-l + 0.18, 1.05, arrowDepth], [-l + 0.18 + 0.8 * s.v1, 1.05, arrowDepth], c.verde);
+    b.arrow([0.44, 1.05, arrowDepth], [0.44 + 0.8 * s.v2, 1.05, arrowDepth], c.viola);
     if (s.pressione || s.pitot || s.perdita !== undefined) {
       const v = s.v2 ?? 0,
         h1 = s.pitot ? 0.55 : 0.85,

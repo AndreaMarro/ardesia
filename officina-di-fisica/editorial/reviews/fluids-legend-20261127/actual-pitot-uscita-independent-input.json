@@ -1,0 +1,32 @@
+{
+  "commit": "bdd44ed8c91804c9640547e98301ae646515f17b",
+  "observations": [
+    {
+      "schemaVersion": "1.0.0",
+      "candidateCommit": "45c8c4bb42926e99b564bba697ed352bf7ee82d5",
+      "runtimeSha256": "3427e7b01ac90755c824e23fe0aca9b92ecf367528e39f078c977d16ff1559e2",
+      "id": "SIM-C2-L006-02",
+      "apparatus": "condotto",
+      "caseKey": "SIM-C2-L006-02|published|320|top|grid|1",
+      "caseFile": "editorial/reviews/c2-fluid-labels-final-independent-a-20261127/canary-actual/cases/0a65e422feaf900916c653ef7e83687059b6fff5b30cd1e038ce22e1b47fb6c2.json",
+      "caseSha256": "2e58c75377393c2ebce74f591024ca032ef7b87d99598174057788ab233095f2",
+      "screenshot": {
+        "file": "editorial/reviews/c2-fluid-labels-final-independent-a-20261127/canary-actual/screens/5306ea06f7a10a02d9838083a2fd11bc1b3d6ee5951d65a6e6c1939f5038fec0.png",
+        "sha256": "5306ea06f7a10a02d9838083a2fd11bc1b3d6ee5951d65a6e6c1939f5038fec0"
+      },
+      "actualWholePngOpenedAndRead": true,
+      "labelText": "Uscita",
+      "onlyRemainingNativeLabel": true,
+      "elementIndex": 14,
+      "partIndex": 1,
+      "coveredFractionExact": "2822844293713467022606211523446157381342207259690038050083449616/2964197398354242098189894466485597736407606702645741499685241409",
+      "coveredPercent": 95.23131945533532,
+      "storedVerticesInside": 1,
+      "storedVerticesTotal": 34,
+      "finding": "The last label is repositioned over95.2313% of the cone silhouette atTop320/max5; counting vertices alone understates this covered area.",
+      "physicalObjectQualification": "The probe and opaque liquid column also intersect this velocity glyph. That is a separate source/body relation, not attributed to label area or claimed as a newGPU readback.",
+      "scientificAcceptanceGranted": false,
+      "activityCredit": 0
+    }
+  ]
+}

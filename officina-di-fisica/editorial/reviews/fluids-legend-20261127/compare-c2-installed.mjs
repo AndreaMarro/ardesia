@@ -3,19 +3,18 @@ import {readFileSync} from 'node:fs';
 import path from 'node:path';
 import {pathToFileURL} from 'node:url';
 
-const [originalApp,candidateApp,reviewInput,canaryInput] = process.argv.slice(2);
+const [originalApp,candidateApp,...reviewInputs] = process.argv.slice(2);
 const openExperiment = app => import(pathToFileURL(path.join(app,'static/js/banchi/voci/esperimento.js')).href);
 const [original,candidate] = await Promise.all([openExperiment(originalApp),openExperiment(candidateApp)]);
-const review = JSON.parse(readFileSync(reviewInput));
-const canary = JSON.parse(readFileSync(canaryInput));
 const authorized = new Map();
-for (const {id,labelText} of [...review.observations,...canary.observations]) {
+const observations = reviewInputs.flatMap(file => JSON.parse(readFileSync(file)).observations);
+for (const {id,labelText} of observations) {
   const labels = authorized.get(id) ?? new Set();
   labels.add(labelText);
   authorized.set(id,labels);
 }
 assert.equal(authorized.size,20);
-assert.equal([...authorized.values()].reduce((count,labels) => count+labels.size,0),21);
+assert.equal([...authorized.values()].reduce((count,labels) => count+labels.size,0),22);
 const originalSource = readFileSync(path.join(originalApp,'content/esperienze-C2.json'));
 assert.ok(originalSource.equals(readFileSync(path.join(candidateApp,'content/esperienze-C2.json'))));
 
@@ -34,7 +33,12 @@ for (const row of JSON.parse(originalSource)) {
   }
   function verifyScene(x,instant) {
     const old = before.elements(x,2,instant);
-    const expected = old.filter(item => item.kind !== 'label' || !labels.has(item.text));
+    let expected = old.filter(item => item.kind !== 'label' || !labels.has(item.text));
+    if (row.id === 'SIM-C2-L006-02') {
+      expected = expected.map(item => item.kind === 'arrow'
+        ? {...item,a:[...item.a.slice(0,2),0.23],b:[...item.b.slice(0,2),0.23]}
+        : item);
+    }
     assert.deepEqual(after.elements(x,2,instant),expected);
     scenes += 1;
     removed += old.length-expected.length;
