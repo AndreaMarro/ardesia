@@ -62,6 +62,8 @@ END"""
 
 
 def prepare_stats(db):
+    db.execute("CREATE INDEX IF NOT EXISTS discipline_independent ON discipline_events(user,discipline,skill,seq) "
+               "WHERE kind='answer' AND correct=1 AND assisted=0")
     if db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='discipline_skill_stats'").fetchone():
         return
     db.execute("CREATE INDEX IF NOT EXISTS discipline_completions ON discipline_events(user,discipline,unit) WHERE kind='complete'")
@@ -73,6 +75,7 @@ def prepare_stats(db):
 
 def stable_ids(db, discipline, units):
     current = {a["id"]: u["id"] for u in units.values() for a in u["activities"]}
+    activities = {a["id"]: a for u in units.values() for a in u["activities"]}
     for row in db.execute("SELECT payload FROM discipline_units WHERE discipline=?", (discipline,)):
         old = json.loads(row[0])
         if old["id"] in units:
@@ -81,6 +84,9 @@ def stable_ids(db, discipline, units):
                     "Un’unità che cambia microcorso o competenza richiede un nuovo ID.", 409)
         for item in old["activities"]:
             require(current.get(item["id"], old["id"]) == old["id"], "Un quesito trasferito a un’altra unità richiede un nuovo ID.",409)
+            if item.get("familyId") and item["id"] in activities:
+                require(activities[item["id"]].get("familyId") == item["familyId"],
+                        "Un quesito che cambia famiglia richiede un nuovo ID.", 409)
 
 
 def install(db, catalog_path, status="preview", activate=False):

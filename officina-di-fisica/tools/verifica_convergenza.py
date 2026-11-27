@@ -1,18 +1,19 @@
 """Rehearse product coexistence from Git objects in a temporary directory, without moving any ref."""
 import argparse
-import io
+import hashlib
 import json
 import os
 from pathlib import Path
 import subprocess
 import sys
-import tarfile
 import tempfile
 
 APP = Path(__file__).resolve().parents[1]
 PRODUCT = APP.name
 ROOT = APP.parent
-CORE = ("app.py", "server", "migrations", "content", "contracts", "policies", "examples", "static/lab-models.json", "static/index.html", "static/js/app.js", "static/js/account.js")
+CORE = ("app.py", "server", "migrations", "content", "contracts", "policies", "examples",
+        "static/lab-models.json", "static/index.html", "static/js/app.js", "static/js/account.js",
+        "static/js/banchi/banco.js", "static/js/banchi/modelli/tubo.js", "static/js/banchi/misure.js")
 PROTECTED = ("server/", "static/", "content/", "contracts/", "migrations/", "policies/", "extensions/", "package.json", "package-lock.json", "editorial/", "tools/corpus_engineering/", "tests/corpus/", "materials/", "static/figures/")
 HISTORY = """
 import hashlib,json
@@ -47,6 +48,42 @@ def local_command(folder, database, *command):
     return subprocess.check_output([sys.executable, *command], cwd=folder, env=env, text=True)
 
 
+def materialize_runtime(ref, destinations):
+    """Read only the requested runtime blobs, including in a partial clone.
+
+    `git archive` may traverse/fetch unrelated objects in a large editorial
+    tree. The explicit list keeps the proof reproducible without checking out
+    scientific drafts or their image/archive evidence. Symlinks and executable
+    modes are handled deliberately, never by extracting untrusted paths.
+    """
+    prefix = PRODUCT + "/"
+    records = git("ls-tree", "-r", "-z", "--full-tree", ref, "--",
+                  *[prefix + component for component in CORE]).split(b"\0")
+    manifest = []
+    for record in filter(None, records):
+        metadata, raw_name = record.split(b"\t", 1)
+        mode, kind, object_id = metadata.decode("ascii").split()
+        name = raw_name.decode("utf-8")
+        relative = Path(name)
+        if (kind != "blob" or mode not in ("100644", "100755")
+                or relative.is_absolute() or not name.startswith(prefix)
+                or any(part in (".", "..") for part in relative.parts)):
+            raise RuntimeError("Unsupported runtime Git entry: " + name)
+        data = git("cat-file", "blob", object_id)
+        for destination in destinations:
+            target = destination / relative
+            if not target.resolve().is_relative_to(destination.resolve()):
+                raise RuntimeError("Runtime path escaped the temporary directory: " + name)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(data)
+            target.chmod(int(mode, 8) & 0o777)
+        manifest.append({"path": name, "mode": mode, "gitBlob": object_id,
+                         "sha256": hashlib.sha256(data).hexdigest()})
+    if not manifest:
+        raise RuntimeError("The selected Git commit contains no executable product surface.")
+    return manifest
+
+
 def rehearse(base, platform, scientific):
     base, platform, scientific = [git("rev-parse","--verify",ref+"^{commit}").decode().strip()
                                   for ref in (base,platform,scientific)]
@@ -65,15 +102,15 @@ def rehearse(base, platform, scientific):
         tmp = Path(tmp).resolve()
         # Only the executable product surface is needed to exercise the old notebook;
         # no scientific draft, working tree, unpublished figure or source archive is copied.
-        archive = git("archive",scientific, *[prefix+component for component in CORE])
+        destinations = []
         for name in ("old","composed"):
             destination=tmp/name; destination.mkdir()
-            with tarfile.open(fileobj=io.BytesIO(archive)) as tar:
-                for entry in tar:
-                    target = destination / entry.name
-                    if entry.isfile() and target.resolve().is_relative_to(destination):
-                        target.parent.mkdir(parents=True,exist_ok=True)
-                        target.write_bytes(tar.extractfile(entry).read())
+            destinations.append(destination)
+        manifest = materialize_runtime(scientific, destinations)
+        report["runtimeExtraction"] = {
+            "method": "explicit-git-blobs", "files": len(manifest),
+            "sha256": hashlib.sha256(json.dumps(manifest, sort_keys=True).encode()).hexdigest(),
+        }
         old, composed, database = tmp/"old"/PRODUCT, tmp/"composed"/PRODUCT, tmp/"notebook"
         before=json.loads(local_command(old,database,"-c",HISTORY))
         for record in sorted(own):
@@ -112,6 +149,32 @@ with store.connect() as db:
         local_command(old,database,"-c",HISTORY)
         local_command(composed,database,"-c",tx)
         report.update(legacy=before,installReplay="identical",oldReader="identical",newAttemptAfterLegacyRestart="identical")
+        if (composed / "multidiscipline/resource_cases.py").exists():
+            resource_tx = """import json
+from server import store
+from multidiscipline import resource_cases as r
+with store.connect() as db:
+ db.execute('BEGIN IMMEDIATE')
+ u=db.execute("SELECT * FROM users WHERE id='rehearsal'").fetchone()
+ state=r.specification(db,u,'LAB3D-04')['initialCase']
+ state.update(time=0.1,view='diagram'); state['parameters']['r']=2.2
+ saved=r.route(db,u,['cases'],dict(requestId='coexist-case',title='Portata',note='Nota privata',case=state),True)
+ collection=r.route(db,u,['collections'],dict(requestId='coexist-collection',title='Fluidi',caseIds=[saved['id']]),True)
+ shared=r.route(db,u,['collections',collection['id'],'share'],dict(revision=collection['revision'],shared=True),True)
+ opened=r.route(db,u,['shared',shared['shareToken']],{},False)
+ assert opened['cases'][0]['case']==state
+ assert 'note' not in opened['cases'][0]
+ print(json.dumps(dict(case=saved,collection=shared,shared=opened),sort_keys=True))
+"""
+            first = json.loads(local_command(composed, database, "-c", resource_tx))
+            if json.loads(local_command(old, database, "-c", HISTORY)) != before:
+                raise RuntimeError("Resource collection changed a legacy notebook table.")
+            reopened_resources = json.loads(local_command(composed, database, "-c", resource_tx))
+            if first != reopened_resources:
+                raise RuntimeError("Resource cases changed after restarting the legacy application.")
+            local_command(composed, database, "-c", tx)
+            report["resourceCaseAndCollectionAfterLegacyRestart"] = "identical"
+            report["resourceExplorationLeavesIndependentEvidence"] = "unchanged"
     return report
 
 

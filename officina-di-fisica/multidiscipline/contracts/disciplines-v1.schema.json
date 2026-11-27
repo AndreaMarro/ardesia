@@ -306,6 +306,22 @@
                   },
                   "title": {
                     "type": "string"
+                  },
+                  "skills": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+                    },
+                    "uniqueItems": true
+                  },
+                  "courses": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+                    },
+                    "uniqueItems": true
                   }
                 },
                 "required": [
@@ -486,6 +502,10 @@
               "type": "null"
             }
           ]
+        },
+        "legacyTransfer": {
+          "type": "integer",
+          "minimum": 0
         }
       },
       "required": [
@@ -550,11 +570,51 @@
                   "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
                 },
                 "activityId": {
-                  "type": "string",
-                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
                 },
                 "reason": {
                   "type": "string"
+                },
+                "action": {
+                  "enum": [
+                    "practice",
+                    "review-lesson"
+                  ]
+                },
+                "reasonCode": {
+                  "type": "string"
+                },
+                "freshEvidenceAvailable": {
+                  "type": "boolean"
+                },
+                "prerequisite": {
+                  "type": "boolean"
+                },
+                "limitation": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "missingPrerequisites": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+                  },
+                  "uniqueItems": true
                 }
               },
               "required": [
@@ -573,6 +633,40 @@
           "additionalProperties": {
             "$ref": "#/$defs/evidence"
           }
+        },
+        "policyVersion": {
+          "type": "string"
+        },
+        "scope": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "enum": [
+                    "syllabi",
+                    "courses"
+                  ]
+                },
+                "id": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+                },
+                "title": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "kind",
+                "id",
+                "title"
+              ],
+              "additionalProperties": false
+            }
+          ]
         }
       },
       "required": [
@@ -918,6 +1012,55 @@
       "required": [
         "verdict",
         "explanation"
+      ],
+      "additionalProperties": false
+    },
+    "storedReceipt": {
+      "type": "object",
+      "properties": {
+        "receipt": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/receipt"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "requestId": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+                    },
+                    "optionId": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+                    },
+                    "stamp": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "required": [
+                    "requestId",
+                    "optionId",
+                    "stamp"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "previousEdition": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "receipt",
+        "previousEdition"
       ],
       "additionalProperties": false
     }

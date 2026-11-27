@@ -77,6 +77,8 @@ def check_activity(activity, skill):
     require(isinstance(transfer, dict) and all(prose(transfer.get(k)) for k in ("prompt", "answer")),
             "Manca il problema di trasferimento svolto.")
     require(activity.get("assessmentRole", "practice") in ("practice", "transfer"), "Finalità non valida.")
+    if "familyId" in activity:
+        require(safe_key(activity["familyId"]), "Famiglia del quesito non valida.")
 
 
 def read_json(path):
@@ -108,6 +110,13 @@ def load_pack(catalog_path):
     require(isinstance(syllabi, list), "Elenco programmi non valido.")
     if syllabi:
         indexed(syllabi, "programmi")
+    for syllabus in syllabi:
+        require(prose(syllabus.get("title")), "Titolo del programma mancante.")
+        for field, available in (("skills", skills), ("courses", courses)):
+            selected = syllabus.get(field, [])
+            require(isinstance(selected, list) and all(safe_key(key) and key in available for key in selected)
+                    and len(selected) == len(set(selected)), "Riferimenti del programma assenti, non validi o duplicati.")
+        require(syllabus.get("skills") or syllabus.get("courses"), "Programma senza competenze o microcorsi.")
     result = fields(catalog, "id", "title", "summary", "schemaVersion")
     result.update(version=str(version), summary=catalog.get("summary", ""), courses=[], skills=[fields(s, "id", "title", "prerequisites") for s in skills.values()],
                   syllabi=[fields(s, "id", "title", "year", "url", "skills", "courses", "degree", "credits", "baseline", "accessed", "assessment", "coverage", "topics", "alignment") for s in syllabi])

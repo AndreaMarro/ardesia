@@ -324,5 +324,149 @@
         }
       }
     }
+  },
+  "/v1/disciplines/{discipline}/me/syllabi/{syllabus}": {
+    "get": {
+      "summary": "Proponi il prossimo passo nel programma universitario scelto",
+      "responses": {
+        "200": {
+          "description": "Risultato",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "/api/v1/schemas/disciplines-v1.schema.json#/$defs/notebook"
+              }
+            }
+          }
+        },
+        "default": {
+          "$ref": "#/components/responses/Problem"
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "discipline",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+          }
+        },
+        {
+          "in": "path",
+          "name": "syllabus",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+          }
+        }
+      ],
+      "security": [
+        {
+          "session": []
+        }
+      ]
+    }
+  },
+  "/v1/disciplines/{discipline}/me/courses/{course}": {
+    "get": {
+      "summary": "Proponi il prossimo passo nel microcorso scelto",
+      "responses": {
+        "200": {
+          "description": "Risultato",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "/api/v1/schemas/disciplines-v1.schema.json#/$defs/notebook"
+              }
+            }
+          }
+        },
+        "default": {
+          "$ref": "#/components/responses/Problem"
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "discipline",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+          }
+        },
+        {
+          "in": "path",
+          "name": "course",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+          }
+        }
+      ],
+      "security": [
+        {
+          "session": []
+        }
+      ]
+    }
+  },
+  "/v1/disciplines/{discipline}/units/{unit}/activities/{activity}/receipt": {
+    "get": {
+      "summary": "Riapri la tua ultima ricevuta di risposta nell’edizione corrente senza creare un nuovo tentativo",
+      "responses": {
+        "200": {
+          "description": "Risultato",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "/api/v1/schemas/disciplines-v1.schema.json#/$defs/storedReceipt"
+              }
+            }
+          }
+        },
+        "default": {
+          "$ref": "#/components/responses/Problem"
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "discipline",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+          }
+        },
+        {
+          "in": "path",
+          "name": "unit",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+          }
+        },
+        {
+          "in": "path",
+          "name": "activity",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+          }
+        }
+      ],
+      "security": [
+        {
+          "session": []
+        }
+      ]
+    }
   }
 }

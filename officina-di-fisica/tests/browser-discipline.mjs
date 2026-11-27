@@ -97,11 +97,17 @@ async function journey(browser, name, width, height) {
   const activate = async locator => desktop ? keyboardClick(page, locator) : locator.click();
   const begin = performance.now();
   await page.goto(url);
-  await page.locator('.hero-actions').getByRole('link', {name: catalog.title, exact: true}).waitFor();
+  // Subjects remain discoverable from the cover, while the primary actions are
+  // limited to study and resources. Reach the installed course through its real
+  // subject entry rather than restoring the old collection of hero buttons.
+  const subjectEntry = page.getByRole('region', {name:'Altre materie'}).getByRole('link', {name:catalog.title, exact:true});
+  await subjectEntry.waitFor();
+  assert.equal(await page.locator('.hero-actions a').count(),2);
+  assert.ok(await page.locator('.hero-actions').getByRole('link',{name:'Esplora le risorse',exact:true}).isVisible());
   await audit(page, name + '-copertina');
   await shot(page, 'dopo-' + name);
   const untilInteraction = performance.now();
-  await activate(page.locator('.hero-actions').getByRole('link', {name: catalog.title, exact: true}));
+  await activate(subjectEntry);
   await activate(page.locator('.discipline-course').getByRole('link', {name: course.title, exact: true}));
   await activate(page.getByRole('button', {name: 'Apri un quaderno di prova'}));
   await page.locator('.discipline-gate').waitFor({state: 'detached'});
@@ -159,9 +165,21 @@ async function journey(browser, name, width, height) {
   assert.equal(response.skills[first.skillId].errors, 1);
   assert.equal(response.skills[first.skillId].independent, 0);
   if (desktop) assert.equal(response.skills[first.skillId].completions, 1);
+  if (desktop) {
+    const anotherDevice = await browser.newContext({storageState: {cookies: await context.cookies(), origins: []}});
+    try {
+      const restored = await anotherDevice.newPage();
+      await restored.goto(url + route(course.id, first.id, quiz.id));
+      await restored.getByText('Tentativo ritrovato nel quaderno.').waitFor();
+      await restored.getByRole('heading', {name: 'Rivedi il passaggio'}).waitFor();
+      const preserved = await (await restored.request.get(url + scope + '/me')).json();
+      assert.equal(preserved.skills[first.skillId].errors, 1);
+      checks('Ricevuta riaperta dal server in un contesto senza storage del dispositivo, senza un nuovo tentativo');
+    } finally { await anotherDevice.close(); }
+  }
   await page.reload({waitUntil:'domcontentloaded'});
   await page.getByText('Tentativo ritrovato nel quaderno.').waitFor();
-  await activate(page.locator('.mast-tools').getByRole('link', {name:'Materie'}));
+  await activate(page.locator('.mast nav').getByRole('link', {name:'Percorsi',exact:true}));
   await activate(page.locator('.discipline-entry').filter({hasText: catalog.title}));
   const resume = page.getByRole('link', {name:'Riprendi · ' + first.title});
   assert.equal(await resume.getAttribute('href'), route(course.id, first.id, quiz.id));
@@ -244,13 +262,15 @@ async function studyTools(page) {
     await page.goto(url + route());
     await page.locator('.mast-search').click();
     await page.waitForFunction(() => document.activeElement?.matches('.discipline-filter input[type=search]'));
+    const planned = page.waitForResponse(response => response.url().endsWith('/me/syllabi/' + encodeURIComponent(catalog.syllabi[0].id)));
     await page.getByLabel('Programma universitario').selectOption(catalog.syllabi[0].id);
+    assert.equal((await (await planned).json()).scope.id, catalog.syllabi[0].id);
     await page.locator('[data-syllabus-source] a').waitFor();
     assert.equal(await page.locator('[data-syllabus-source] a').getAttribute('href'), catalog.syllabi[0].url);
     await page.getByRole('searchbox', {name:'Cerca un argomento'}).fill('ZZZ-argomento-assente');
     await page.getByRole('button', {name:'Applica'}).click();
     await page.getByText('0 microcorsi', {exact:true}).waitFor();
-    checks('Proiezione del programma, link ufficiale e filtro senza risultati');
+    checks('Programma universitario applicato alla decisione server, link ufficiale e filtro senza risultati');
   }
   if (catalog.exams?.length) {
     await page.goto(url + route());

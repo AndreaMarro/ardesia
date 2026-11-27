@@ -11,6 +11,7 @@ from server import store
 REVIEW_DELAY = 2 * 24 * 60 * 60
 RETAINED_DELAY = 7 * 24 * 60 * 60
 KINDS = {"open", "complete", "hint", "answer"}
+POLICY_VERSION = "cric-discipline-policy-2"
 
 
 def practice_history(db, uid, discipline):
@@ -18,16 +19,100 @@ def practice_history(db, uid, discipline):
     return {r["skill"]: dict(r) for r in rows}
 
 
-def notebook(db, user, pack, allowed, now):
+def family_evidence(db, uid, discipline, skill=None):
+    """Read families from the immutable edition actually answered, never today's pack.
+
+    Historical flags remain in the ledger. A flag is presented as verified transfer
+    only when the stored items support a first success in a genuinely new family.
+    Unclassified packs remain usable; absence of metadata is not evidence.
+    """
+    payloads = {}
+
+    def item(row):
+        items = payloads.get(row["payload"])
+        if items is None:
+            items = {a["id"]: a for a in json.loads(row["payload"])["activities"]}
+            payloads[row["payload"]] = items
+        return items[row["activity"]]
+
+    args = [uid, discipline]
+    skill_filter = " AND skill=?" if skill is not None else ""
+    if skill is not None:
+        args.append(skill)
+    first_seen = db.execute(
+        "WITH encounters AS (SELECT discipline,version,unit,activity,skill,MIN(seq) AS firstSeq "
+        "FROM discipline_events INDEXED BY discipline_seen WHERE user=? AND discipline=? "
+        "AND kind IN ('answer','hint')" + skill_filter + " GROUP BY discipline,version,unit,activity,skill) "
+        "SELECT e.skill,e.activity,e.firstSeq,u.payload FROM encounters e JOIN discipline_units u "
+        "ON u.discipline=e.discipline AND u.version=e.version AND u.unit=e.unit", args)
+    encountered = {}
+    for row in first_seen:
+        family = item(row).get("familyId")
+        if family:
+            earliest = encountered.setdefault(row["skill"], {})
+            earliest[family] = min(row["firstSeq"], earliest.get(family, row["firstSeq"]))
+    query = ("SELECT e.seq,e.skill,e.activity,e.transfer,u.payload FROM discipline_events e "
+             "JOIN discipline_units u ON u.discipline=e.discipline AND u.version=e.version AND u.unit=e.unit "
+             "WHERE e.user=? AND e.discipline=? AND e.kind='answer' AND e.correct=1 AND e.assisted=0")
+    if skill is not None:
+        query += " AND e.skill=?"
+    rows = db.execute(query + " ORDER BY e.seq", args)
+    families, verified, legacy = {}, {}, {}
+    for row in rows:
+        activity = item(row)
+        family = activity.get("familyId")
+        seen = families.setdefault(row["skill"], set())
+        novel = family and encountered[row["skill"]][family] == row["seq"]
+        supported = bool(novel and seen and family not in seen and activity.get("assessmentRole") == "transfer")
+        if row["transfer"]:
+            target = verified if supported else legacy
+            target[row["skill"]] = target.get(row["skill"], 0) + 1
+        if family:
+            seen.add(family)
+    return families, encountered, verified, legacy
+
+
+def selected_units(pack, units, scope):
+    """Resolve a program/course and its prerequisite closure without granting access."""
+    if not scope:
+        return units, {u["skillId"] for u in units}, None
+    kind, key = scope
+    if kind == "syllabi":
+        selected = next((s for s in pack["syllabi"] if s["id"] == key), None)
+        require(selected, "Programma universitario non disponibile.", 404)
+        target_units = [u for u in units if u["skillId"] in selected.get("skills", [])
+                        or u["courseId"] in selected.get("courses", [])]
+    else:
+        selected = next((c for c in pack["courses"] if c["id"] == key), None)
+        require(selected, "Microcorso non disponibile.", 404)
+        target_units = [u for u in units if u["courseId"] == key]
+    targets = {u["skillId"] for u in target_units}
+    prerequisites = {s["id"]: s.get("prerequisites", []) for s in pack["skills"]}
+    closure, pending = set(targets), list(targets)
+    while pending:
+        for dependency in prerequisites[pending.pop()]:
+            if dependency not in closure:
+                closure.add(dependency)
+                pending.append(dependency)
+    target_ids = {u["id"] for u in target_units}
+    return [u for u in units if u["id"] in target_ids or u["skillId"] in closure - targets], targets, {
+        "kind": kind, "id": key, "title": selected["title"]}
+
+
+def notebook(db, user, pack, allowed, now, scope=None):
     uid, discipline = user["id"], pack["id"]
     history = practice_history(db, uid, discipline)
     units = [dict(u, courseId=c["id"]) for c in pack["courses"] if c["id"] in allowed for u in c["units"]]
+    units, target_skills, scope_info = selected_units(pack, units, scope)
     by_id = {u["id"]: u for u in units}
     eligible_skills = {u["skillId"] for u in units}
+    _, _, verified, legacy = family_evidence(db, uid, discipline)
     model = {}
     for skill in eligible_skills:
         h = history.get(skill, {})
         model[skill] = {k: int(h.get(k, 0)) for k in ("exposures", "completions", "assisted", "independent", "transfer", "retention", "errors")}
+        model[skill]["transfer"] = verified.get(skill, 0)
+        model[skill]["legacyTransfer"] = legacy.get(skill, 0)
         last = h.get("lastIndependent")
         model[skill]["dueAt"] = last + (RETAINED_DELAY if h.get("retention") else REVIEW_DELAY) if last is not None else None
     attempted = {r[0] for r in db.execute("SELECT DISTINCT activity FROM discipline_events INDEXED BY discipline_seen WHERE user=? AND discipline=? "
@@ -38,26 +123,66 @@ def notebook(db, user, pack, allowed, now):
             resume = {"unitId": r[0], "activityId": r[1] if r[1] in by_id[r[0]]["activityIds"] else None}
             break
     prerequisites = {s["id"]: s.get("prerequisites", []) for s in pack["skills"]}
+    recovery_dependencies, pending = set(), []
+    for skill in eligible_skills:
+        h = history.get(skill, {})
+        if (h.get("lastError") or 0) > (h.get("lastSuccess") or 0):
+            pending.extend(prerequisites[skill])
+    while pending:
+        dependency = pending.pop()
+        if dependency not in recovery_dependencies and not model.get(dependency, {}).get("independent"):
+            recovery_dependencies.add(dependency)
+            pending.extend(prerequisites[dependency])
     choices = []
     for unit in units:
         skill = unit["skillId"]
         fresh = next((a for a in unit["activityIds"] if a not in attempted), None)
-        if fresh is None:
-            continue
         h, m = history.get(skill, {}), model[skill]
-        if (h.get("lastError") or 0) > (h.get("lastSuccess") or 0):
-            rank, why = 0, "Riprendi il passaggio in cui hai avuto una difficoltà e prova un quesito diverso."
-        elif m["dueAt"] is not None and m["dueAt"] <= now:
-            rank, why = 1, "È trascorso l’intervallo di ripasso. Prova un quesito nuovo senza indizi."
-        elif not m["independent"] and all(model.get(dep, {}).get("independent") for dep in prerequisites[skill]):
-            rank, why = 2, "Puoi affrontare questo obiettivo con i prerequisiti già documentati."
+        missing = [dep for dep in prerequisites[skill] if not model.get(dep, {}).get("independent")]
+        outside_scope = scope_info is not None and skill not in target_skills
+        error = (h.get("lastError") or 0) > (h.get("lastSuccess") or 0)
+        due = m["dueAt"] is not None and m["dueAt"] <= now
+        if outside_scope and m["independent"] and not error and not due:
+            continue
+        if error:
+            rank, code, why = 0, "recovery", "Riprendi il passaggio in cui hai avuto una difficoltà e prova un quesito diverso."
+        elif due:
+            rank, code, why = 1, "delayed-review", "È trascorso l’intervallo di ripasso. Prova un quesito nuovo senza indizi."
+        elif not m["independent"] and not missing:
+            rank, code, why = 2, "first-evidence", "Puoi affrontare questo obiettivo con i prerequisiti già documentati."
         elif not m["independent"]:
-            rank, why = 3, "Inizia dalla lezione e consulta i prerequisiti indicati."
+            rank, code, why = 3, "prerequisites", "Inizia dalla lezione e consulta i prerequisiti indicati."
         else:
-            rank, why = 4, "Applica la stessa competenza a un nuovo quesito."
-        choices.append((rank, {"unitId": unit["id"], "activityId": fresh, "reason": why}))
-    recommended = min(choices, key=lambda item: item[0])[1] if choices else None
-    return {"version": pack["version"], "skills": model, "resume": resume, "next": recommended}
+            rank, code, why = 4, "practice", "Applica la stessa competenza a un nuovo quesito."
+        if not h and not missing:
+            code, why = "first-step", "Non hai ancora una prova autonoma su questo obiettivo. Parti da un quesito o apri la lezione."
+        if outside_scope:
+            why = "Questo prerequisito sostiene il programma scelto. " + why
+        limitation = None
+        if fresh is None:
+            limitation = ("Hai già incontrato tutti i quesiti di questa unità. Puoi rivedere la spiegazione e riprovare con supporto; "
+                          "per una nuova verifica autonoma serve un quesito non ancora visto.")
+            if error:
+                why = "Riprendi la spiegazione e confronta i passaggi dei tentativi da rivedere."
+            elif due:
+                why = "È il momento del ripasso. Ricostruisci il procedimento prima di riaprire la spiegazione."
+            else:
+                rank, code, why = 5, "pool-exhausted", "Rivedi il procedimento o scegli un altro obiettivo del programma."
+            if outside_scope:
+                why = "Questo prerequisito sostiene il programma scelto. " + why
+        if skill in recovery_dependencies and not missing:
+            rank, code = -1, "recover-prerequisite"
+            why = "Riprendi questo prerequisito prima di tornare all’obiettivo in cui hai avuto una difficoltà."
+            if outside_scope:
+                why += " È collegato al programma scelto anche se ne precede gli argomenti."
+        target = fresh if not missing else None
+        choices.append((rank, target is None, {"unitId": unit["id"], "activityId": target, "reason": why,
+                               "action": "practice" if target is not None else "review-lesson", "reasonCode": code,
+                               "freshEvidenceAvailable": fresh is not None, "limitation": limitation,
+                               "prerequisite": outside_scope, "missingPrerequisites": missing}))
+    recommended = min(choices, key=lambda item: item[:2])[2] if choices else None
+    return {"version": pack["version"], "skills": model, "resume": resume, "next": recommended,
+            "policyVersion": POLICY_VERSION, "scope": scope_info}
 
 
 def response_for(row, unit):
@@ -111,7 +236,11 @@ def write_event(db, user, pack, allowed, data, now):
                           (user["id"], discipline, unit["skillId"])).fetchone()
         previous = stat[0] if stat else None
         independent = correct and not assisted
-        transfer = bool(independent and previous is not None and activity.get("assessmentRole") == "transfer")
+        successful, encountered, _, _ = family_evidence(db, user["id"], discipline, unit["skillId"])
+        known_families = successful.get(unit["skillId"], set())
+        family = activity.get("familyId")
+        transfer = bool(independent and family and known_families and family not in encountered.get(unit["skillId"], {})
+                        and activity.get("assessmentRole") == "transfer")
         retention = bool(independent and previous is not None and now - previous >= REVIEW_DELAY)
     db.execute("INSERT INTO discipline_events(user,request_id,discipline,version,unit,activity,skill,kind,request,correct,assisted,transfer,retention,stamp) "
                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)", (user["id"], key, discipline, data["version"], unit["id"], aid, unit["skillId"],
@@ -152,6 +281,20 @@ def route(db, user, parts, data, post, local):
         unit = ed.get_unit(db, discipline, pack["version"], tail[1])
         require(unit["courseId"] in allowed, "Accesso al microcorso richiesto.", 403)
         return student_unit(unit, pack["version"])
+    if len(tail) == 5 and tail[0] == "units" and tail[2] == "activities" and tail[4] == "receipt" and not post:
+        unit = ed.get_unit(db, discipline, pack["version"], tail[1])
+        require(unit["courseId"] in allowed, "Accesso al microcorso richiesto.", 403)
+        require(any(a["id"] == tail[3] for a in unit["activities"]), "Attività estranea all’unità.", 404)
+        row = db.execute("SELECT * FROM discipline_events WHERE user=? AND discipline=? AND version=? AND unit=? AND activity=? "
+                         "AND kind='answer' ORDER BY seq DESC LIMIT 1",
+                         (user["id"], discipline, pack["version"], unit["id"], tail[3])).fetchone()
+        if row:
+            request = json.loads(row["request"])
+            return {"receipt": dict(response_for(row, unit), requestId=row["request_id"], optionId=request["optionId"], stamp=row["stamp"]),
+                    "previousEdition": False}
+        previous = db.execute("SELECT 1 FROM discipline_events WHERE user=? AND discipline=? AND unit=? AND activity=? "
+                              "AND kind='answer' LIMIT 1", (user["id"], discipline, unit["id"], tail[3])).fetchone()
+        return {"receipt": None, "previousEdition": bool(previous)}
     if len(tail) == 3 and tail[0] == "courses" and tail[2] == "editorial-library" and not post:
         from server.editorial.service import editorial_library
         need_author(user)
@@ -186,6 +329,8 @@ def route(db, user, parts, data, post, local):
         return result
     if tail == ["me"] and not post:
         return notebook(db, user, pack, allowed, store.NOW())
+    if len(tail) == 3 and tail[0] == "me" and tail[1] in ("syllabi", "courses") and not post:
+        return notebook(db, user, pack, allowed, store.NOW(), (tail[1], tail[2]))
     if tail == ["events"] and post:
         return write_event(db, user, pack, allowed, data, store.NOW())
     raise Problem("Risorsa o metodo non disponibile.", 404)

@@ -8,7 +8,7 @@ function requestId() {
 // A failed transport keeps its request ID so manual retries can recover the receipt.
 export function eventsFor(endpoint, version, unitId, activityId) {
   const pending = new Map(), session = state.draftSession;
-  return async (kind, fields = {}, id) => {
+  const send = async (kind, fields = {}, id) => {
     const key = JSON.stringify([kind, fields]);
     const token = id || pending.get(key) || requestId();
     pending.set(key, token);
@@ -18,6 +18,9 @@ export function eventsFor(endpoint, version, unitId, activityId) {
     pending.delete(key);
     return receipt;
   };
+  send.lastReceipt = () => api(endpoint + '/units/' + encodeURIComponent(unitId) + '/activities/' + encodeURIComponent(activityId) + '/receipt');
+  send.nextStep = courseId => api(endpoint + '/me/courses/' + encodeURIComponent(courseId));
+  return send;
 }
 
 export function correction(activity, picked, result, headingId = 'disc-result') {
@@ -63,7 +66,7 @@ export async function activityPage(data, unit, activity, events, navigation, uni
        <div class="actions"><button class="solid">Verifica la risposta</button>
        ${activity.hintCount ? '<button type="button" data-hint>Chiedi un suggerimento</button>' : ''}</div>
     </form><div data-hints aria-live="polite"></div><p data-notice role="status"></p>
-    <div data-correction></div><div class="actions"><a class="button" href="#${esc(unitRoute)}">Torna alla lezione</a>
+    <div data-correction></div><div data-study-next></div><div class="actions"><a class="button" href="#${esc(unitRoute)}">Torna alla lezione</a>
     ${next ? `<a class="button" data-next-exercise hidden href="#${esc(unitRoute + '/' + encodeURIComponent(next.id))}">Esercizio successivo</a>` : ''}
     <button type="button" data-repeat hidden>Riprova il quesito</button>
     <button type="button" data-print hidden>Stampa lo svolgimento</button></div></div>`;
@@ -72,6 +75,23 @@ export async function activityPage(data, unit, activity, events, navigation, uni
   const notice = root.querySelector('[data-notice]'), printable = root.querySelector('[data-print]');
   const hintList = root.querySelector('[data-hints]'), repeat = root.querySelector('[data-repeat]');
   let hintIndex = 0, busy = false;
+  async function nextStep() {
+    const host = root.querySelector('[data-study-next]');
+    try {
+      const plan = await events.nextStep(unit.courseId);
+      if (!root.isConnected) return;
+      const point = plan.next;
+      const targetUnit = data.courses.find(course => course.id === unit.courseId)?.units.find(item => item.id === point?.unitId);
+      const targetCourse = data.courses.find(course => course.units.some(item => item.id === point?.unitId));
+      if (!point || !targetCourse) return;
+      const parts = ['disciplina', data.id, targetCourse.id, point.unitId, ...(point.activityId ? [point.activityId] : [])];
+      host.innerHTML = `<section class="discipline-next"><h2>Il prossimo passo</h2><p>${esc(point.reason)}</p>
+        <a class="button" href="#${esc(parts.map(encodeURIComponent).join('/'))}">${point.action === 'review-lesson' ? 'Riprendi la spiegazione' : 'Apri l’attività proposta'}${targetUnit ? ' · ' + esc(targetUnit.title) : ''}</a>
+        ${point.limitation ? `<p class="discipline-context">${esc(point.limitation)}</p>` : ''}</section>`;
+    } catch (error) {
+      if (root.isConnected) host.textContent = 'Prossimo passo non disponibile. Puoi tornare alla lezione. ' + error.message;
+    }
+  }
   function lock(value) {
     busy = value;
     form.querySelector('fieldset').disabled = value;
@@ -99,6 +119,20 @@ export async function activityPage(data, unit, activity, events, navigation, uni
     } catch (error) { notice.textContent = error.message; }
     finally { lock(false); }
   });
+  function showReceipt(option, result, restore) {
+    root.querySelector('[data-correction]').innerHTML = correction(activity, option, result);
+    root.querySelector('form').hidden = true;
+    hintList.hidden = true;
+    const nextLink = root.querySelector('[data-next-exercise]');
+    if (nextLink) nextLink.hidden = false;
+    printable.hidden = false;
+    repeat.hidden = false;
+    draft.submitted = true;
+    save();
+    notice.textContent = restore ? 'Tentativo ritrovato nel quaderno.' : 'Tentativo salvato nel quaderno.';
+    if (!restore) root.querySelector('#disc-result').focus();
+    return nextStep();
+  }
   async function submit(option, restore = false) {
     if (!option || busy) return;
     lock(true);
@@ -107,18 +141,8 @@ export async function activityPage(data, unit, activity, events, navigation, uni
     try {
       const result = await events('answer', {optionId: option.id}, draft.requestId);
       if (!root.isConnected) return;
-      root.querySelector('[data-correction]').innerHTML = correction(activity, option, result);
-      root.querySelector('form').hidden = true;
-      hintList.hidden = true;
-      const nextLink = root.querySelector('[data-next-exercise]');
-      if (nextLink) nextLink.hidden = false;
-      printable.hidden = false;
-      repeat.hidden = false;
       // Restore the learner's choice and response receipt ID without storing solutions on the device.
-      draft.submitted = true;
-      save();
-      notice.textContent = restore ? 'Tentativo ritrovato nel quaderno.' : 'Tentativo salvato nel quaderno.';
-      if (!restore) root.querySelector('#disc-result').focus();
+      await showReceipt(option, result, restore);
     } catch (error) {
       notice.textContent = error.message + ' Puoi riprovare la verifica.';
       lock(false);
@@ -140,11 +164,31 @@ export async function activityPage(data, unit, activity, events, navigation, uni
     hintList.hidden = false;
     printable.hidden = repeat.hidden = true;
     root.querySelector('[data-correction]').replaceChildren();
+    root.querySelector('[data-study-next]').replaceChildren();
     notice.textContent = 'Hai già letto lo svolgimento. Il quaderno terrà conto di questo aiuto.';
     form.elements.option[0].focus();
   });
   if (draft.submitted && typeof draft.requestId === 'string') {
     await submit(options.find(option => option.id === draft.optionId), true);
+  } else if (!draft.optionId) {
+    lock(true);
+    try {
+      const saved = await events.lastReceipt();
+      if (!root.isConnected) return notice;
+      const receipt = saved.receipt, option = receipt && options.find(item => item.id === receipt.optionId);
+      if (receipt && option) {
+        draft = {optionId: option.id, requestId: receipt.requestId, submitted: true};
+        await showReceipt(option, receipt, true);
+      } else {
+        lock(false);
+        if (saved.previousEdition) notice.textContent = 'I tentativi precedenti restano nel quaderno della loro edizione. Hai già incontrato questo quesito: la nuova risposta sarà registrata con supporto.';
+      }
+    } catch (error) {
+      if (root.isConnected) {
+        lock(false);
+        notice.textContent = 'Non è stato possibile riaprire il tentativo dal quaderno. ' + error.message;
+      }
+    }
   }
   return notice;
 }

@@ -3,6 +3,7 @@
 from functools import lru_cache
 from pathlib import Path
 import re
+from .resource_frontend import resource_bench_asset
 
 
 _STATIC = Path(__file__).resolve().parent.parent / "static"
@@ -14,24 +15,32 @@ _INDEX = (
      "Cric, l’officina di studio di Andrea Marro. Percorsi universitari, lezioni, problemi svolti e laboratori."),
     ("<title>Officina di Fisica ·", "<title>Cric ·"),
     ('    <script defer src="/vendor/katex.min.js">',
-     '    <link rel="stylesheet" href="/multidiscipline/discipline.css" />\n    <script defer src="/vendor/katex.min.js">'),
+     '    <link rel="stylesheet" href="/multidiscipline/discipline.css" />\n'
+     '    <link rel="stylesheet" href="/multidiscipline/risorse.css" />\n    <script defer src="/vendor/katex.min.js">'),
     ('type="module" src="/js/app.js"', 'type="module" src="/multidiscipline/js/app.js"'),
     ("<strong>Officina di Fisica</strong>", "<strong>Cric</strong>"),
     ('<a class="mast-search" href="#percorsi/cerca">Cerca</a>',
-     '<div class="mast-tools"><a href="#discipline">Materie</a>'
-     '<a class="mast-search" href="#percorsi/cerca" title="Cerca nei percorsi di Fisica">Cerca</a></div>'),
+     '<div class="mast-tools"><a class="mast-search" href="#percorsi/cerca" title="Cerca nei percorsi di Fisica">Cerca</a></div>'),
+    ('<a href="#percorsi">Percorsi</a><a href="#sprint">Esame rapido</a><a href="#laboratori">Simulazioni 3D</a\n          ><a href="#studio">Il mio studio</a>',
+     '<a href="#studio">Il mio studio</a><a href="#discipline">Percorsi</a><a href="#risorse">Risorse</a>'),
     ("<span>Officina di Fisica <i>/", "<span>Cric <i>/"),
 )
 _APP = (
-    ("    prova: 'studio', lab:", "    disciplina: 'discipline', prova: 'studio', lab:"),
+    ("    corso: 'percorsi', materiale: 'percorsi', acquisto: 'percorsi', allenamento: 'percorsi',",
+     "    percorsi: 'discipline', corso: 'discipline', materiale: 'discipline', acquisto: 'discipline', allenamento: 'discipline', laboratori: 'risorse',"),
+    ("    prova: 'studio', lab: 'laboratori', banco: 'laboratori',", "    disciplina: 'discipline', strumento: 'risorse', caso: 'risorse', raccolte: 'risorse', raccolta: 'risorse', condivisione: 'risorse', prova: 'studio', lab: 'risorse', banco: 'risorse',"),
     ("  for (const a of document.querySelectorAll('.mast nav a')) {",
      "  updateSearch(page, parts[0]);\n  for (const a of document.querySelectorAll('.mast nav a, .mast-tools a')) {"),
     ("    if (page === 'home') home();", """    if (page === 'home') {
       home();
       await updateCover();
     } else if (page === 'discipline') await (await import('/multidiscipline/js/discipline.js')).directoryPage();
-    else if (page === 'disciplina') focusOnArrival = await (await import('/multidiscipline/js/discipline.js')).disciplinePage(...parts);"""),
-    (r"^(?:materiale\/|prova\/|studio\/diario(?:\/|$))", r"^(?:disciplina\/|discipline$|materiale\/|prova\/|studio(?:\/|$))"),
+    else if (page === 'disciplina') focusOnArrival = await (await import('/multidiscipline/js/discipline.js')).disciplinePage(...parts);
+    else if (['risorse', 'strumento', 'caso', 'raccolte', 'raccolta', 'condivisione'].includes(page)) {
+      closePage = await (await import('/multidiscipline/js/risorse.js')).resourcePage(page, ...parts);
+    }"""),
+    (r"^(?:materiale\/|prova\/|studio\/diario(?:\/|$))",
+     r"^(?:disciplina\/|discipline$|materiale\/|prova\/|studio(?:\/|$)|caso\/|raccolte$|raccolta\/|strumento\/|condivisione\/)"),
 )
 _ACCOUNT = (
     ("  const recent = s.lastRuns.filter((r) => !r.finished);",
@@ -75,12 +84,14 @@ def compose_asset(name: str) -> bytes:
 
 
 # Only these browser assets are accessible on HTTP and included in the static hosting output.
-FILES = ("discipline.css", "js/discipline-ingresso.js", "js/discipline.js", "js/discipline-grafici.js",
-         "js/discipline-pratica.js", "js/discipline-esame.js")
-PUBLIC_ASSETS = (*_CHANGES, *FILES)
+FILES = ("discipline.css", "risorse.css", "js/discipline-ingresso.js", "js/discipline.js", "js/discipline-grafici.js",
+         "js/discipline-pratica.js", "js/discipline-esame.js", "js/risorse.js", "js/risorse-stato.js")
+PUBLIC_ASSETS = (*_CHANGES, *FILES, "js/risorse-banco.js")
 
 
 def public_asset(name: str) -> bytes:
+    if name == "js/risorse-banco.js":
+        return resource_bench_asset()
     if name in _CHANGES:
         return compose_asset(name)
     if name in FILES:

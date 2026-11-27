@@ -53,6 +53,16 @@ class Disciplines(unittest.TestCase):
             body["activityId"] = activity
         return self.call(["misure", "events"], body, self.reader)
 
+    def families(self, assignments):
+        """Metadata for an isolated fixture, never mutate the shipped edition."""
+        path = self.catalog.parent / "courses" / "rettangoli.json"
+        course = json.loads(path.read_text())
+        for unit in course["units"]:
+            for activity in unit["activities"]:
+                if activity["id"] in assignments:
+                    activity["familyId"] = assignments[activity["id"]]
+        path.write_text(json.dumps(course))
+
     def test_additive_install_legacy_rows_retry_reopen_and_rollback(self):
         def legacy():
             with store.connect() as db:
@@ -120,6 +130,7 @@ class Disciplines(unittest.TestCase):
         self.assertIsNone(self.call(["misure","me"], user=self.student)["next"])
 
     def test_evidence_concurrent_replays_and_delayed_novel_item(self):
+        self.families({"griglia": "count-grid", "lato": "inverse-area", "bordo": "area-difference"})
         self.install()
         self.event("open", "open")
         self.event("complete", "finish")
@@ -172,3 +183,179 @@ class Disciplines(unittest.TestCase):
         data["skills"][0]["prerequisites"]=[];data["courses"][0]["file"]="../outside.json"; self.catalog.write_text(json.dumps(data))
         with self.assertRaisesRegex(Problem,"Percorso"):
             load_pack(self.catalog)
+
+    def test_exhausted_errors_offer_recovery_without_fabricating_independence(self):
+        self.install()
+        for aid in ("griglia", "lato", "bordo"):
+            self.event("answer", "wrong-" + aid, aid, optionId="b")
+        notebook = self.call(["misure", "me"], user=self.reader)
+        self.assertEqual(notebook["policyVersion"], study.POLICY_VERSION)
+        self.assertEqual(notebook["next"]["action"], "review-lesson")
+        self.assertEqual(notebook["next"]["reasonCode"], "recovery")
+        self.assertIsNone(notebook["next"]["activityId"])
+        self.assertFalse(notebook["next"]["freshEvidenceAvailable"])
+        self.assertIn("non ancora visto", notebook["next"]["limitation"])
+        retry = self.event("answer", "recover", "griglia", optionId="a")
+        self.assertTrue(retry["assisted"])
+        self.assertEqual(self.call(["misure", "me"], user=self.reader)["skills"]["area"]["independent"], 0)
+
+    def test_exhausted_delayed_review_keeps_an_honest_next_step(self):
+        self.install()
+        with patch.object(store, "NOW", lambda: 100):
+            for aid in ("griglia", "lato", "bordo"):
+                self.event("answer", "answer-" + aid, aid, optionId="a")
+        with patch.object(store, "NOW", lambda: 100 + study.REVIEW_DELAY):
+            notebook = self.call(["misure", "me"], user=self.reader)
+        self.assertEqual(notebook["next"]["reasonCode"], "delayed-review")
+        self.assertEqual(notebook["next"]["action"], "review-lesson")
+        self.assertIn("ripasso", notebook["next"]["reason"])
+        self.assertIsNone(notebook["next"]["activityId"])
+        self.assertEqual(notebook["skills"]["area"]["retention"], 0)
+        self.assertEqual(notebook["skills"]["area"]["transfer"], 0)
+
+    def test_transfer_needs_an_unseen_family_and_unknown_metadata_is_not_evidence(self):
+        self.families({"griglia": "same-family", "lato": "same-family", "bordo": "same-family"})
+        self.install()
+        self.event("answer", "first", "griglia", optionId="a")
+        receipt = self.event("answer", "flag-only", "bordo", optionId="a")
+        self.assertFalse(receipt["evidence"]["transfer"])
+        self.assertEqual(self.call(["misure", "me"], user=self.reader)["skills"]["area"]["transfer"], 0)
+
+    def test_historical_transfer_flags_are_preserved_and_separated_from_verified_families(self):
+        self.install()
+        first = dict(kind="answer", requestId="old-first", unitId="tessere", version="1", activityId="lato", optionId="a")
+        second = dict(kind="answer", requestId="old-transfer", unitId="tessere", version="1", activityId="bordo", optionId="a")
+        with store.connect() as db:
+            for seq, data in enumerate((first, second)):
+                db.execute("INSERT INTO discipline_events(user,request_id,discipline,version,unit,activity,skill,kind,request,correct,assisted,transfer,retention,stamp) "
+                           "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)", (self.reader["id"], data["requestId"], "misure", "1", "tessere", data["activityId"],
+                             "area", "answer", json.dumps(data, ensure_ascii=False, separators=(",", ":"), sort_keys=True), 1, 0, seq, 0, 100 + seq))
+            before = [tuple(row) for row in db.execute("SELECT * FROM discipline_events ORDER BY seq")]
+        model = self.call(["misure", "me"], user=self.reader)["skills"]["area"]
+        self.assertEqual((model["transfer"], model["legacyTransfer"]), (0, 1))
+        replay = self.call(["misure", "events"], second, self.reader)
+        self.assertTrue(replay["evidence"]["transfer"])
+        with store.connect() as db:
+            self.assertEqual(before, [tuple(row) for row in db.execute("SELECT * FROM discipline_events ORDER BY seq")])
+
+    def test_family_identity_is_immutable_across_editions_and_metadata_is_validated(self):
+        self.families({"griglia": "grid"})
+        self.install()
+        data = json.loads(self.catalog.read_text()); data["version"] = "2"; self.catalog.write_text(json.dumps(data))
+        self.families({"griglia": "other"})
+        with self.assertRaisesRegex(Problem, "famiglia"):
+            self.install()
+        self.families({"griglia": "not/a/key"})
+        with self.assertRaisesRegex(Problem, "Famiglia"):
+            load_pack(self.catalog)
+
+    def test_syllabus_references_are_checked_and_program_controls_next_step(self):
+        data = json.loads(self.catalog.read_text())
+        data["syllabi"] = [{"id": "scope", "title": "Programma scelto", "skills": ["missing"]}]
+        self.catalog.write_text(json.dumps(data))
+        with self.assertRaisesRegex(Problem, "Riferimenti"):
+            load_pack(self.catalog)
+        data["syllabi"][0]["skills"] = ["area", "area"]
+        self.catalog.write_text(json.dumps(data))
+        with self.assertRaisesRegex(Problem, "Riferimenti"):
+            load_pack(self.catalog)
+        data["syllabi"][0]["skills"] = ["area"]
+        self.catalog.write_text(json.dumps(data))
+        self.install()
+        scoped = self.call(["misure", "me", "syllabi", "scope"], user=self.reader)
+        self.assertEqual(scoped["scope"], {"kind": "syllabi", "id": "scope", "title": "Programma scelto"})
+        self.assertEqual(scoped["next"]["unitId"], "tessere")
+        with self.assertRaises(Problem):
+            self.call(["misure", "me", "syllabi", "invented"], user=self.reader)
+
+    def test_receipt_is_read_only_isolated_and_reopens_without_device_storage(self):
+        self.install()
+        receipt = self.event("answer", "saved", "griglia", optionId="b")
+        path = ["misure", "units", "tessere", "activities", "griglia", "receipt"]
+        with store.connect() as db:
+            before = db.execute("SELECT COUNT(*) FROM discipline_events").fetchone()[0]
+        saved = self.call(path, user=self.reader)["receipt"]
+        self.assertEqual(saved["requestId"], "saved")
+        self.assertEqual(saved["optionId"], "b")
+        self.assertEqual({key: saved[key] for key in receipt}, receipt)
+        self.assertIsNone(self.call(path, user=self.student)["receipt"])
+        with self.assertRaises(Problem):
+            self.call(path)
+        with store.connect() as db:
+            self.assertEqual(before, db.execute("SELECT COUNT(*) FROM discipline_events").fetchone()[0])
+        data = json.loads(self.catalog.read_text()); data["version"] = "2"; self.catalog.write_text(json.dumps(data))
+        self.install()
+        old = self.call(path, user=self.reader)
+        self.assertIsNone(old["receipt"])
+        self.assertTrue(old["previousEdition"])
+        self.assertEqual(self.event("answer", "saved", "griglia", optionId="b"), receipt)
+
+    def test_selected_program_includes_relevant_prerequisites_and_excludes_other_courses(self):
+        data = json.loads(self.catalog.read_text())
+        original = json.loads((self.catalog.parent / "courses" / "rettangoli.json").read_text())
+        for cid, sid, deps in (("composizioni", "composition", ["area"]), ("estraneo", "unrelated", [])):
+            unit = json.loads(json.dumps(original["units"][0]))
+            unit["id"] = cid; unit["skillId"] = sid
+            for activity in unit["activities"]:
+                activity["id"] = cid + "-" + activity["id"]; activity["skillId"] = sid
+            path = self.catalog.parent / "courses" / (cid + ".json")
+            path.write_text(json.dumps({"id": cid, "units": [unit]}))
+            data["skills"].append({"id": sid, "title": sid, "prerequisites": deps})
+            data["courses"].append({"id": cid, "title": cid, "prerequisites": [], "skills": [sid], "file": "courses/" + cid + ".json"})
+        data["syllabi"] = [{"id": "avanzato", "title": "Programma avanzato", "skills": ["composition"]}]
+        self.catalog.write_text(json.dumps(data))
+        self.install()
+        route = ["misure", "me", "syllabi", "avanzato"]
+        start = self.call(route, user=self.reader)
+        self.assertEqual(set(start["skills"]), {"area", "composition"})
+        self.assertEqual(start["next"]["unitId"], "tessere")
+        self.assertTrue(start["next"]["prerequisite"])
+        self.call(["misure", "events"], {"requestId": "advanced-error", "version": "1", "kind": "answer",
+            "unitId": "composizioni", "activityId": "composizioni-griglia", "optionId": "b"}, self.reader)
+        recovery = self.call(route, user=self.reader)["next"]
+        self.assertEqual(recovery["unitId"], "tessere")
+        self.assertEqual(recovery["reasonCode"], "recover-prerequisite")
+        self.event("answer", "foundation", "griglia", optionId="a")
+        self.assertEqual(self.call(route, user=self.reader)["next"]["unitId"], "composizioni")
+
+    def test_a_second_new_item_in_an_already_solved_family_is_not_another_transfer(self):
+        self.families({"griglia": "base", "lato": "variation", "bordo": "variation"})
+        path = self.catalog.parent / "courses" / "rettangoli.json"
+        course = json.loads(path.read_text())
+        for activity in course["units"][0]["activities"]:
+            activity["assessmentRole"] = "transfer"
+        path.write_text(json.dumps(course))
+        self.install()
+        self.event("answer", "base", "griglia", optionId="a")
+        self.assertTrue(self.event("answer", "new-family", "lato", optionId="a")["evidence"]["transfer"])
+        last = self.event("answer", "new-item-same-family", "bordo", optionId="a")
+        self.assertFalse(last["assisted"])
+        self.assertFalse(last["evidence"]["transfer"])
+        self.assertEqual(self.call(["misure", "me"], user=self.reader)["skills"]["area"]["transfer"], 1)
+
+    def test_recovery_prefers_an_unseen_item_in_another_unit_of_the_same_skill(self):
+        path = self.catalog.parent / "courses" / "rettangoli.json"
+        course = json.loads(path.read_text())
+        unit = course["units"][0]
+        extra = dict(unit, id="altra-rappresentazione", activities=unit["activities"][1:])
+        unit["activities"] = unit["activities"][:1]
+        course["units"].append(extra)
+        path.write_text(json.dumps(course))
+        self.install()
+        self.event("answer", "difficulty", "griglia", optionId="b")
+        next_step = self.call(["misure", "me"], user=self.reader)["next"]
+        self.assertEqual(next_step["unitId"], "altra-rappresentazione")
+        self.assertEqual(next_step["activityId"], "bordo")
+        self.assertTrue(next_step["freshEvidenceAvailable"])
+
+    def test_help_on_one_item_prevents_claiming_transfer_on_a_same_family_variant(self):
+        self.families({"griglia": "base", "lato": "variation", "bordo": "variation"})
+        self.install()
+        self.event("answer", "base-success", "griglia", optionId="a")
+        self.event("hint", "variation-help", "lato", hintIndex=0)
+        variation = self.event("answer", "variant-answer", "bordo", optionId="a")
+        self.assertFalse(variation["assisted"])
+        self.assertFalse(variation["evidence"]["transfer"])
+        model = self.call(["misure", "me"], user=self.reader)["skills"]["area"]
+        self.assertEqual(model["independent"], 2)
+        self.assertEqual(model["transfer"], 0)

@@ -84,7 +84,9 @@ function notebook(data, me) {
   return `<section class="discipline-bookmark" aria-labelledby="bookmark-title">
     ${vignetta('riprendi')}<h2 id="bookmark-title">Il tuo quaderno</h2>
     ${last ? `<div><p>Ultimo punto di studio</p>${link('Riprendi · ' + last.title, last.route, true)}</div>` : ''}
-    ${next && (next.route !== last?.route || me.next.reason) ? `<div><p>${esc(me.next.reason)}</p>${link('Attività proposta · ' + next.title, next.route)}</div>` : ''}
+    ${next && (next.route !== last?.route || me.next.reason) ? `<div><p>${esc(me.next.reason)}</p>
+      ${link((me.next.action === 'review-lesson' ? 'Riprendi la spiegazione · ' : 'Attività proposta · ') + next.title, next.route)}
+      ${me.next.limitation ? `<p class="discipline-context">${esc(me.next.limitation)}</p>` : ''}</div>` : ''}
   </section>`;
 }
 
@@ -141,7 +143,7 @@ function courseRow(data, course, matchedUnits) {
 function renderCatalog(data, me) {
   const saved = history.state?.disciplineFilter;
   main.innerHTML = crumbs(data) + head(data.title, data.summary, data.status === 'preview' ? 'Edizione in revisione' : '') +
-    notebook(data, me) + `<section class="discipline-shelf" aria-labelledby="courses-title"><h2 id="courses-title">I microcorsi</h2>
+    `<div data-notebook>${notebook(data, me)}</div><section class="discipline-shelf" aria-labelledby="courses-title"><h2 id="courses-title">I microcorsi</h2>
     <form class="discipline-filter" role="search" aria-label="Cerca nei microcorsi">
       <label>Cerca un argomento<input type="search" name="topic" maxlength="100" autocomplete="off" placeholder="Per esempio, un teorema"></label>
       ${data.syllabi.length ? `<label>Programma universitario<select name="syllabus"><option value="">Tutti gli argomenti</option>
@@ -154,14 +156,18 @@ function renderCatalog(data, me) {
     form.elements.topic.value = saved.topic || '';
     if (form.elements.syllabus) form.elements.syllabus.value = saved.syllabus || '';
   }
-  const apply = () => {
+  const notebookHost = main.querySelector('[data-notebook]');
+  let generation = 0;
+  const apply = async () => {
+    const token = ++generation;
     const topic = form.elements.topic.value.trim(), syllabusId = form.elements.syllabus?.value || '';
     const syllabus = data.syllabi.find(item => item.id === syllabusId);
     const needle = normalized(topic);
-    const allow = syllabus && new Set(syllabus.skills);
+    const allow = syllabus && new Set(syllabus.skills || []);
+    const allowCourses = new Set(syllabus?.courses || []);
     let count = 0;
     const rows = data.courses.map(course => {
-      const units = course.units.filter(unit => (!allow || allow.has(unit.skillId)) &&
+      const units = course.units.filter(unit => (!allow || allow.has(unit.skillId) || allowCourses.has(course.id)) &&
         (!needle || normalized([course.title, unit.title, unit.objective].join(' ')).includes(needle)));
       if (!units.length) return '';
       count++;
@@ -174,6 +180,17 @@ function renderCatalog(data, me) {
     main.querySelector('.discipline-count').textContent = count === 1 ? '1 microcorso' : count + ' microcorsi';
     main.querySelector('.discipline-courses').innerHTML = count ? rows.join('') : '<p>Prova un altro termine o scegli tutti gli argomenti.</p>';
     history.replaceState({ ...history.state, disciplineFilter: { discipline: data.id, version: data.version, topic, syllabus: syllabusId } }, '');
+    if (state.user) {
+      notebookHost.innerHTML = '<p class="notice" role="status">Aggiornamento del prossimo passo…</p>';
+      try {
+        const selected = syllabusId ? await api(endpoint(data.id) + '/me/syllabi/' + encodeURIComponent(syllabusId)) : me;
+        if (token === generation && notebookHost.isConnected) notebookHost.innerHTML = notebook(data, selected);
+      } catch (error) {
+        if (token === generation && notebookHost.isConnected) {
+          notebookHost.innerHTML = `<p class="notice" role="status">Il prossimo passo non è disponibile: ${esc(error.message)} Puoi aprire i microcorsi qui sotto.</p>`;
+        }
+      }
+    }
   };
   form.addEventListener('submit', event => { event.preventDefault(); apply(); });
   form.elements.syllabus?.addEventListener('change', apply);
@@ -210,16 +227,18 @@ function evidence(me, skillId) {
   const labels = [
     ['exposures', 'Aperture'], ['completions', 'Letture concluse'], ['assisted', 'Risposte corrette con aiuto'],
     ['independent', 'Risposte corrette autonome'], ['transfer', 'Nuove famiglie risolte'],
-    ['retention', 'Richiami a distanza riusciti'], ['errors', 'Risposte da rivedere'],
+    ['retention', 'Quesiti nuovi riusciti a distanza'], ['errors', 'Risposte da rivedere'],
   ];
   return `<details class="discipline-evidence"><summary>Evidenze su questa competenza</summary><dl>
-    ${labels.map(([key, label]) => `<div><dt>${label}</dt><dd>${esc(values[key] ?? 0)}</dd></div>`).join('')}</dl></details>`;
+    ${labels.map(([key, label]) => `<div><dt>${label}</dt><dd>${esc(values[key] ?? 0)}</dd></div>`).join('')}</dl>
+    ${values.legacyTransfer ? `<p>${esc(values.legacyTransfer)} verifiche storiche di trasferimento conservate nel quaderno non hanno dati sufficienti per documentare una nuova famiglia.</p>` : ''}</details>`;
 }
 
 function renderCourse(data, course, me) {
   const route = pathTo(data.id, course.id);
   main.innerHTML = crumbs(data, course) + head(course.title, course.summary, data.title) +
     (course.accessible ? '' : gate(data, course, route)) +
+    (course.accessible ? notebook(data, me) : '') +
     prerequisites(data, course.prerequisites, true) + `<section class="discipline-shelf"><h2>Unità di studio</h2>
     <ol class="discipline-units">${course.units.map(unit => `<li>
       <a href="#${esc(pathTo(data.id, course.id, unit.id))}">${esc(unit.title)}</a>
@@ -312,7 +331,8 @@ export async function disciplinePage(id, courseId, unitId, activityId) {
   const route = location.hash;
   main.innerHTML = '<p class="notice" role="status">Apertura del percorso…</p>';
   const data = await api(endpoint(id));
-  const me = state.user && await api(endpoint(id) + '/me');
+  const meScope = courseId && !courseId.startsWith('@') ? '/me/courses/' + encodeURIComponent(courseId) : '/me';
+  const me = state.user && await api(endpoint(id) + meScope);
   if (location.hash !== route) return;
   if (!courseId || courseId === '@cerca') {
     renderCatalog(data, me);

@@ -58,6 +58,32 @@ test('Contratti HTTP, consenso sul quaderno e biblioteca MCP di una disciplina i
     const receipt = check('receipt',await (await api(subject + '/events', event, cookie)).json());
     assert.equal(receipt.correct,true);
     check('notebook',await (await api(subject + '/me',null,cookie)).json());
+    const savedPath = subject + '/units/tessere/activities/griglia/receipt';
+    const saved = check('storedReceipt', await (await api(savedPath, null, cookie)).json());
+    assert.equal(saved.receipt.requestId, event.requestId);
+    assert.equal(saved.receipt.optionId, 'a');
+    assert.equal(saved.receipt.correct, receipt.correct);
+    assert.equal((await api(savedPath)).status, 401);
+    const otherCookie = (await api('/demo', {})).headers.get('set-cookie').split(';')[0];
+    assert.equal(check('storedReceipt', await (await api(savedPath, null, otherCookie)).json()).receipt, null);
+    const priorScope = (await (await api('/state', null, cookie)).json()).draftSession;
+    const mismatched = await fetch(url + subject + '/events', {method:'POST',
+      headers:{'Content-Type':'application/json','X-Astra-Request':'1','Cookie':otherCookie,'X-Officina-Session':priorScope},
+      body:JSON.stringify({...event, requestId:'stale-context'})});
+    assert.equal(mismatched.status, 409);
+    const untouched = check('notebook', await (await api(subject + '/me', null, otherCookie)).json());
+    assert.equal(untouched.skills.area.independent, 0);
+    const scoped = check('notebook', await (await api(subject + '/me/courses/rettangoli', null, cookie)).json());
+    assert.equal(scoped.scope.id, 'rettangoli');
+    assert.equal((await api(subject + '/me/syllabi/missing', null, cookie)).status, 404);
+    for (const activityId of ['lato', 'bordo']) {
+      check('receipt', await (await api(subject + '/events', {...event, requestId:'exhaust-' + activityId, activityId}, cookie)).json());
+    }
+    const exhausted = check('notebook', await (await api(subject + '/me', null, cookie)).json());
+    assert.equal(exhausted.next.activityId, null);
+    assert.equal(exhausted.next.action, 'review-lesson');
+    assert.equal(exhausted.next.freshEvidenceAvailable, false);
+    assert.equal(exhausted.skills.area.transfer, 0);
     const context = {unitId:unit.id,version:unit.version,scopes:['objective']};
     check('contextRequest',context);
     const download = check('context',await (await api(subject+'/context',context,cookie)).json());

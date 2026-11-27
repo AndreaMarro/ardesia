@@ -276,3 +276,6 @@ try {
 
 // Run the composed product against a separate account, database and browser session.
 await import('./browser-discipline.mjs');
+// Resource reuse has its own disposable accounts and database. Its report and
+// screenshots are kept under var/arch/browser for the existing CI artifact.
+await import('./browser-resources.mjs');
