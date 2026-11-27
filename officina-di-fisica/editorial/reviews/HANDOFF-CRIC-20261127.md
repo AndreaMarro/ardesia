@@ -1,5 +1,21 @@
 # CRIC — handoff intermedio
 
+## Stato verificato del 27 novembre 2026
+
+**4.606/4.606 quesiti sorgente revisionati e registrati come bozze**, di cui 4.000 Ardesia e 606 Cric. Il registro non ha ID mancanti e il campo `nextQuestionId` è `null`. Il commit `90ac066dcd8fdb6db1fe3b4d89d5e46eb94ffe46` chiude il terzo lotto d’esame C6 con 18 test indipendenti riprodotti e importazione 31, poi zero salvataggi e 31 invariati. Tutti i 93 quesiti d’esame restano protetti nell’app.
+
+La prova di coesistenza `9c0eb3f59945321d4409d47485d9c92714d86775` usa un database SQLite temporaneo con tre tentativi sintetici preesistenti. Ha importato 4.628 bozze in 317 pacchetti, con zero salvataggi al secondo passaggio. I 991 contenuti pubblicati, i tre tentativi e le relative versioni sono rimasti identici. Le 4.628 bozze comprendono 4.606 quesiti sorgente, cinque esercizi supplementari e 17 revisioni di attività. La prova produce evidenze adattive per 4.611 ID. I cinque supplementari hanno revisione distinta e 15 anteprime protette effettive.
+
+Le altre attività contano **232/385 accettazioni registrate e 153 aperte**, così suddivise: 139 nuove revisioni e 14 riaperture esplicite. Sei chiusure storiche richiedono ancora adozione sul runtime corrente. Una coincide con una riapertura. Per cinque sono già state acquisite e ripetute nell’integratore le verifiche indipendenti con 576 casi UI reali. Le riproduzioni positive per ID attendono la validazione dei quattro lotti canonici completi. Le sezioni di 250 bozze sorgente in 25 lotti C1–C5 restano da riallineare all’originale con una prova di identità per tutti gli altri campi.
+
+Il runtime candidato è `cb9fc66d96ecced2addff3df4dfbeb0b5834e73a13719a78ea964bc28a5ada49`. I due workflow in corso sono le [anteprime riservate dell’intero registro](https://github.com/AndreaMarro/ardesia/actions/runs/45919159272) e il [collaudo delle 139 esperienze](https://github.com/AndreaMarro/ardesia/actions/runs/45917299096). La seconda corsa segue una correzione dell’ordine canonico con il preflight positivo per i cinque corsi. I risultati storici e i tentativi falliti restano archiviati.
+
+Il branch di lavoro GitHub è `feat/cric-experiment-manual-revisions`. Il canone remoto verificato è `officina-di-fisica` a `7c29ccc18ad3b42ceecfca509ef57f786bd2c496`. Il checkpoint compilato da 3.632 quesiti e 246 attività è storico. Restano da concludere il collaudo completo, la PR di integrazione e la CI sulla SHA canonica. Approvazioni umane e nuove pubblicazioni nell’app sono entrambe zero. Le 100 revisioni Pro restano non identificate. I 199 controlli tecnici recuperati hanno evidenze separate.
+
+[Handoff machine-readable](handoff-4606-20261127.json).
+
+### Snapshot precedenti
+
 ## Stato verificato del 27 novembre — 4.513 quesiti registrati
 
 Il registro conta **4.513/4.606 quesiti DRAFT verificati** e riconcilia tutti gli ID sorgente. Restano **93 quesiti**, tutti nelle tre simulazioni protette C6. Il prossimo ID nell’ordine del registro è `C6-Q013`. Le 385 attività non questionarie comprendono 232 accettazioni registrate e 153 aperte. Il collaudo delle attività sul runtime candidato è in corso.
