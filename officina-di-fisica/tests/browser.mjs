@@ -12,7 +12,7 @@ import net from 'node:net';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const scratch = await mkdtemp(path.join(tmpdir(), 'officina-qa-'));
-const env = { ...process.env, ASTRA_DATA: scratch };
+const env = { ...process.env, ASTRA_DATA: scratch, ASTRA_HOSTED: '0' };
 const listener = net.createServer();
 listener.listen(0, '127.0.0.1');
 await once(listener, 'listening');
@@ -155,12 +155,16 @@ async function runAcceptance() {
   await page.keyboard.press('Space');
   assert.equal(await portrait.getAttribute('aria-pressed'), 'false');
   assert.equal(await coverImage.getAttribute('src'), firstImage);
-  await page.getByRole('button', { name: 'Prova un esperimento' }).focus();
-  await page.keyboard.press('Enter');
-  assert.equal(await page.evaluate(() => document.activeElement.id), 'prova-titolo');
   const sample = page.locator('esperimento-portata');
+  // The composed cover has two primary actions. The existing public experiment
+  // remains in the document and must still be reachable using the keyboard.
+  const prediction = sample.getByRole('button', { name: 'Un sedicesimo' });
+  for (let tabs = 0; tabs < 40 && !await prediction.evaluate(el => el === document.activeElement); tabs++)
+    await page.keyboard.press('Tab');
+  assert.ok(await prediction.evaluate(el => el === document.activeElement), 'Esperimento raggiungibile con la tastiera');
+  assert.ok(await prediction.isVisible());
   assert.equal(await sample.locator('.misura-portata').isVisible(), false);
-  await sample.getByRole('button', { name: 'Un sedicesimo' }).click();
+  await page.keyboard.press('Enter');
   assert.equal(await sample.locator('#valore-portata').innerText(), '6,25 %');
   const radius = sample.getByRole('slider');
   await radius.focus();
@@ -176,10 +180,12 @@ async function runAcceptance() {
   await page.keyboard.press('Tab');
   assert.ok(
     await page
-      .getByRole('link', { name: 'Studio completo', exact: true })
+      .getByRole('link', { name: 'Scegli un percorso', exact: true })
       .evaluate((el) => el === document.activeElement && parseFloat(getComputedStyle(el).outlineWidth) >= 2),
   );
   await page.keyboard.press('Enter');
+  await page.locator('.discipline-entry[href="#percorsi"]').waitFor();
+  await page.locator('.discipline-entry[href="#percorsi"]').click();
   await page.locator('.catalog-row').first().waitFor();
   assert.equal(await page.locator('.catalog-row').count(), 6);
   await advance(page, page.locator('a[href="#corso/C1"]'), '.c1-paths');
@@ -232,11 +238,13 @@ async function runAcceptance() {
     const started = tab.waitForRequest(request => new URL(request.url()).pathname === '/api/owner');
     await tab.goto(url + '#autore-accesso/' + authorTicket());
     await started;
-    await tab.locator('.mast nav a[href="#percorsi"]').click();
+    await tab.locator('.mast nav a[href="#discipline"]').click();
     resume();
-    await tab.locator('.catalog-row').first().waitFor();
+    await tab.locator('.discipline-entry[href="#percorsi"]').waitFor();
     await tab.waitForFunction(() => !document.querySelector('main').hasAttribute('aria-busy'));
-    assert.equal(new URL(tab.url()).hash, '#percorsi');
+    assert.equal(new URL(tab.url()).hash, '#discipline');
+    await tab.locator('.discipline-entry[href="#percorsi"]').click();
+    await tab.locator('.catalog-row').first().waitFor();
     assert.equal(await tab.locator('.catalog-row').count(), 6);
   } finally {
     await otherWindow.close();
@@ -278,8 +286,9 @@ async function runAcceptance() {
   assert.equal(await phonePortrait.getAttribute('aria-pressed'), 'true');
   await phonePortrait.tap();
   assert.equal(await phonePortrait.getAttribute('aria-pressed'), 'false');
-  await p.getByRole('button', { name: 'Prova un esperimento' }).tap();
-  assert.equal(await p.evaluate(() => document.activeElement.id), 'prova-titolo');
+  const phoneSample = p.locator('esperimento-portata');
+  await phoneSample.getByRole('button', { name: 'Un sedicesimo' }).tap();
+  assert.equal(await phoneSample.locator('#valore-portata').innerText(), '6,25 %');
   await visit(p, 'accedi/entra/studio', '#auth');
   await p.getByLabel('Email', { exact: true }).fill('studente@example.invalid');
   await p.getByLabel('Password', { exact: true }).fill('Officina-verifica-2026!');
