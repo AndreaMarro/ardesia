@@ -41,7 +41,7 @@ test('all eight observed positions preserve the field, moving point and scalar e
   }
 });
 
-test('all 29 C4 physical and teaching outputs retain baseline except the explicit three native camera eyes',async()=>{
+test('all 29 C4 physical and teaching outputs retain baseline with the declared display differences',async()=>{
   assert.deepEqual(await contract({allowFrontalPlateView:true}),baseline.records);
 });
 

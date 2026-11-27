@@ -12,9 +12,11 @@ function normalize(id, elements) {
   if (affected.has(id)) return elements.filter(e => e.kind !== 'label' || !['Sonda','+','−'].includes(e.text));
   return elements.map(element => {
     if (element.kind !== 'arrow') return element;
-    if (id === 'SIM-C4-L02-01' && element.c === colore.ocra) {
+    if (id === 'SIM-C4-L02-01') {
       const { dettaglio, ...baseline } = element;
-      assert.equal(dettaglio, true);
+      const hasMagnifiedArrow = elements.some(item => item.kind === 'arrow' && item.c === colore.ocra);
+      if (element.c === colore.ocra) assert.equal(dettaglio, true);
+      if (element.c === colore.viola) assert.equal(dettaglio, hasMagnifiedArrow ? undefined : true);
       return baseline;
     }
     if (id === 'SIM-C4-L02-02' && element.c === colore.viola) {
