@@ -75,7 +75,7 @@ try {
         const legend = page.locator('.scene-key');
         if (!await legend.evaluate(element => element.open)) await legend.locator('summary').press('Enter');
         const legendText = await legend.innerText();
-        assert.match(legendText,/ocra.*32 volte/);
+        assert.match(legendText,id === 'SIM-C3-L04-03' ? /ocra.*128 volte/ : /ocra.*32 volte/);
         if (fallback) assert.doesNotMatch(legendText,/Obliqua o Laterale/);
         await page.addScriptTag({path:path.join(app,'node_modules/axe-core/axe.min.js')});
         const violations = await page.locator('.bench-room').evaluate(async element => (await window.axe.run(element,
@@ -110,6 +110,10 @@ try {
             for (const arrow of observed.colorArrows) {
               const [, high, low] = arrow.head.split(' ').map(point => point.split(',').map(Number));
               assert.ok(Math.hypot(high[0]-low[0],high[1]-low[1]) > 2.7);
+              if (id === 'SIM-C3-L04-03') {
+                const [x1,y1,x2,y2] = arrow.line.match(/-?\d+(?:\.\d+)?/g).map(Number);
+                assert.ok(x2-x1 >= 23 && Math.abs(y2-y1) < 1e-9);
+              }
             }
           } else {
             assert.equal(observed.canvasCount,1);

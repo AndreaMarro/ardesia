@@ -77,7 +77,7 @@ export function legendaTavola(apparato) {
 export function legendaVoce(record, vista) {
   const legenda = vista === 'diagram' ? legendaTavola(record.apparatus) : legende[record.apparatus];
   if (record.id === 'SIM-C3-L04-03') {
-    return legenda + '. La freccia rossa indica l’energia fornita.' + dettaglioTermico;
+    return legenda + '. La freccia rossa indica l’energia fornita. Il dettaglio in alto, in ocra, mantiene il verso e ingrandisce 128 volte le frecce più corte.';
   }
   if (lavoroTermico.has(record.id)) {
     const suggerimento = vista === 'diagram' ? '' : ' Per leggere la freccia verticale del lavoro scegli la vista Obliqua o Laterale.';
