@@ -202,7 +202,9 @@ def prepare(request_file,course,workspace):
     payload={'protocolSha256':sha(protocol),'files':runtime};fp={'sha256':digest(payload),**payload}
     if fp['sha256']!=r['runtimeSha256']:raise ValueError('Actual reconstructed runtime differs')
     packages=[];drafts={};input_files={}
-    for batch,pins in r['draftPackages'].items():
+    # JSON object order may change when the signed request is canonicalized.
+    for batch in PACKAGES:
+        pins=r['draftPackages'][batch]
         for suffix,key in (('.json','packageSha256'),('-bindings.json','bindingsSha256')):
             rel='editorial/batches/'+batch+suffix;blob=git_bytes(candidate,'officina-di-fisica/'+rel)
             if sha(blob)!=pins[key]:raise ValueError('Draft input changed')
