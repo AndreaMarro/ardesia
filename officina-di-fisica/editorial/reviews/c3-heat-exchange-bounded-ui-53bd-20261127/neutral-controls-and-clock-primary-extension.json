@@ -1,0 +1,174 @@
+{
+  "sourcePrimaryCommit": "fa8e94bd8e69842712b97dd8e3ada63c2cf6776a",
+  "sourcePrimarySha256": "582d7987da9640695396f371ee48e9b076be9a8b89e445f94a1285a14893107d",
+  "priorExposure": "Reuses previously disclosed source-only primary and independent selected-task solutions; candidate775 and installed source already read for the completed CPU/document review. This is a new neutral-boundary/time extension, not a claim of key-naive rederivation.",
+  "role": "AI_DISTINCT_FROM_ROOT_AUTHOR",
+  "runtimeSourceCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "runtimeSha256": "53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a",
+  "authorCommit": "77502640b902c17dcdfb2eb9d68ce97602995807",
+  "controlCases": [
+    {
+      "id": "SIM-C3-L05-01",
+      "inputs": [
+        1,
+        2,
+        8
+      ],
+      "unit": "cm",
+      "exactOutputs": [
+        "20",
+        "10",
+        "5/2"
+      ],
+      "expectedInstalledFloat64": [
+        20.0,
+        10.0,
+        2.5
+      ],
+      "resultUnit": "W",
+      "explanation": "P=20/L_cm;1,2,8cm produce20,10,2.5W with positive hot-to-cold direction."
+    },
+    {
+      "id": "SIM-C3-L05-02",
+      "inputs": [
+        0,
+        2,
+        3.5,
+        5
+      ],
+      "unit": "g/s",
+      "exactOutputs": [
+        "0",
+        "84",
+        "147",
+        "210"
+      ],
+      "expectedInstalledFloat64": [
+        0.0,
+        84.0,
+        147.0,
+        210.0
+      ],
+      "resultUnit": "W",
+      "explanation": "P=42*flow;0,2,3.5,5g/s produce0,84,147,210W."
+    },
+    {
+      "id": "SIM-C3-L05-03",
+      "inputs": [
+        200,
+        300,
+        400,
+        500
+      ],
+      "unit": "K",
+      "exactOutputs": [
+        "-7371/20",
+        "0",
+        "3969/4",
+        "77112/25"
+      ],
+      "expectedInstalledFloat64": [
+        -368.55,
+        0.0,
+        992.25,
+        3084.48
+      ],
+      "resultUnit": "W/m²",
+      "explanation": "sigma_work=567/10^10;200,300,400,500K produce-368.55,0,992.25,3084.48W/m2. Gross exchange persists at300 even when net arrows vanish."
+    }
+  ],
+  "clockCases": [
+    {
+      "id": "SIM-C3-L05-02",
+      "x": 2,
+      "t": 0,
+      "timeUnit": "s",
+      "exactMassPassed": "0",
+      "massUnit": "g",
+      "exactLoopTurns": "0",
+      "heatPowerW": "84",
+      "interpretation": "The10g loop repeats; accumulated crossed mass can exceed10g and does not represent added fluid. Ochre marker advances modulo one loop; phase positions rather than heat-power changes are inspected."
+    },
+    {
+      "id": "SIM-C3-L05-02",
+      "x": 2,
+      "t": 2.5,
+      "timeUnit": "s",
+      "exactMassPassed": "5",
+      "massUnit": "g",
+      "exactLoopTurns": "1/2",
+      "heatPowerW": "84",
+      "interpretation": "The10g loop repeats; accumulated crossed mass can exceed10g and does not represent added fluid. Ochre marker advances modulo one loop; phase positions rather than heat-power changes are inspected."
+    },
+    {
+      "id": "SIM-C3-L05-02",
+      "x": 2,
+      "t": 5,
+      "timeUnit": "s",
+      "exactMassPassed": "10",
+      "massUnit": "g",
+      "exactLoopTurns": "1",
+      "heatPowerW": "84",
+      "interpretation": "The10g loop repeats; accumulated crossed mass can exceed10g and does not represent added fluid. Ochre marker advances modulo one loop; phase positions rather than heat-power changes are inspected."
+    },
+    {
+      "id": "SIM-C3-L05-02",
+      "x": 2,
+      "t": 10,
+      "timeUnit": "s",
+      "exactMassPassed": "20",
+      "massUnit": "g",
+      "exactLoopTurns": "2",
+      "heatPowerW": "84",
+      "interpretation": "The10g loop repeats; accumulated crossed mass can exceed10g and does not represent added fluid. Ochre marker advances modulo one loop; phase positions rather than heat-power changes are inspected."
+    },
+    {
+      "id": "SIM-C3-L05-02",
+      "x": 3.5,
+      "t": 0,
+      "timeUnit": "s",
+      "exactMassPassed": "0",
+      "massUnit": "g",
+      "exactLoopTurns": "0",
+      "heatPowerW": "147",
+      "interpretation": "The10g loop repeats; accumulated crossed mass can exceed10g and does not represent added fluid. Ochre marker advances modulo one loop; phase positions rather than heat-power changes are inspected."
+    },
+    {
+      "id": "SIM-C3-L05-02",
+      "x": 3.5,
+      "t": 2.5,
+      "timeUnit": "s",
+      "exactMassPassed": "35/4",
+      "massUnit": "g",
+      "exactLoopTurns": "7/8",
+      "heatPowerW": "147",
+      "interpretation": "The10g loop repeats; accumulated crossed mass can exceed10g and does not represent added fluid. Ochre marker advances modulo one loop; phase positions rather than heat-power changes are inspected."
+    },
+    {
+      "id": "SIM-C3-L05-02",
+      "x": 3.5,
+      "t": 5,
+      "timeUnit": "s",
+      "exactMassPassed": "35/2",
+      "massUnit": "g",
+      "exactLoopTurns": "7/4",
+      "heatPowerW": "147",
+      "interpretation": "The10g loop repeats; accumulated crossed mass can exceed10g and does not represent added fluid. Ochre marker advances modulo one loop; phase positions rather than heat-power changes are inspected."
+    },
+    {
+      "id": "SIM-C3-L05-02",
+      "x": 3.5,
+      "t": 10,
+      "timeUnit": "s",
+      "exactMassPassed": "35",
+      "massUnit": "g",
+      "exactLoopTurns": "7/2",
+      "heatPowerW": "147",
+      "interpretation": "The10g loop repeats; accumulated crossed mass can exceed10g and does not represent added fluid. Ochre marker advances modulo one loop; phase positions rather than heat-power changes are inspected."
+    }
+  ],
+  "decision": "PREPARED_UI_NOT_RUN",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
