@@ -1,0 +1,33 @@
+bounded local start; free bytes 2455973888
+test_exact_plan_and_opened_images (__main__.CurrentCanaryBoundaries.test_exact_plan_and_opened_images) ... ok
+test_exact_runtime_and_actual_terminal (__main__.CurrentCanaryBoundaries.test_exact_runtime_and_actual_terminal) ... ok
+test_nondegenerate_arrowheads_not_covered_by_remaining_text (__main__.CurrentCanaryBoundaries.test_nondegenerate_arrowheads_not_covered_by_remaining_text) ... FAIL
+test_unchanged_56_sources_and_owned_scope (__main__.CurrentCanaryBoundaries.test_unchanged_56_sources_and_owned_scope) ... ok
+
+======================================================================
+FAIL: test_nondegenerate_arrowheads_not_covered_by_remaining_text (__main__.CurrentCanaryBoundaries.test_nondegenerate_arrowheads_not_covered_by_remaining_text)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/electric-wave-label-independent-20261127/test_remaining_label_visibility.py", line 41, in test_nondegenerate_arrowheads_not_covered_by_remaining_text
+    self.assertEqual(unexpected,[],[(c['key'],c['label'],c['parts'])for c in unexpected])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'key': 'SIM-C5-L05-03|320|top|40|20', 'i[554 chars]ly'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'key': 'SIM-C5-L05-03|320|top|40|20', 'id': 'SIM-C5-L05-03', 'width': 320, 'view': 'top', 'input': 40, 'time': 20, 'label': 'Ricevitore', 'elementIndex': 10, 'color': 12144456, 'wholeGlyphStrictlyInside': False, 'headStrictlyInside': True, 'tipStrictlyInside': True, 'parts': [{'vertices': 66, 'strictlyInside': 33, 'minMargin': -6.817080610021804}, {'vertices': 34, 'strictlyInside': 34, 'minMargin': 1.080993464052284}], 'imageSha256': '33316ceed7fe1e0ba0140586a8f3d24e76a7d9ff68b83e86bbe0ae19f46dcc87', 'scope': 'Source-derived projection of actual DOM state; raster must be read independently'}
+
+Diff is 755 characters long. Set self.maxDiff to None to see it. : [('SIM-C5-L05-03|320|top|40|20', 'Ricevitore', [{'vertices': 66, 'strictlyInside': 33, 'minMargin': -6.817080610021804}, {'vertices': 34, 'strictlyInside': 34, 'minMargin': 1.080993464052284}])]
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.053s
+
+FAILED (failures=1)
+Traceback (most recent call last):
+  File "/private/tmp/cric-bounded-local.py", line 7, in <module>
+    subprocess.run(sys.argv[1:],check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py", line 579, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['python3', '-B', 'editorial/reviews/electric-wave-label-independent-20261127/test_remaining_label_visibility.py']' returned non-zero exit status 1.

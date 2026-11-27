@@ -1,0 +1,4311 @@
+{
+  "candidateRef": "52c65641d61ecb327163bbd082821a31d2fd782a",
+  "runtimeSha256": "440d86b5a3d265139477abfc79276ecf979ea6f210f0e07bebc4a76473a47334",
+  "baselineRef": "e5e74638d1fcab1bc8ad3f98e4f745f7927689a5",
+  "plannedScope": "Exact recorded negative regimes plus1280, fallback and prioritized side canaries; not complete activity coverage",
+  "cases": [
+    {
+      "id": "SIM-C4-L01-02",
+      "negativeCaseKey": "SIM-C4-L01-02|published|320|top|grid|2",
+      "negativeView": "top",
+      "negativeLabel": "+1",
+      "kind": "grid",
+      "index": 2,
+      "x": 2,
+      "source": {
+        "id": "SIM-C4-L01-02",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L01",
+        "order": 2,
+        "section": "Cariche che si attraggono e si respingono",
+        "version": 1,
+        "title": "Interazione fra cariche puntiformi e legge di Coulomb",
+        "topic": "6.1 Interazione fra cariche puntiformi e legge di Coulomb",
+        "anchor": "Le cariche dello stesso segno si respingono",
+        "summary": "Quanto misura la repulsione fra due cariche positive da un nanocoulomb?",
+        "apparatus": "cariche",
+        "control": {
+          "label": "Distanza fra le cariche",
+          "unit": "cm",
+          "min": 1,
+          "max": 6,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Forza di repulsione",
+          "unit": "µN"
+        },
+        "formula": "F = kq²/r²; q = 1 nC, k ≈ 9×10⁹",
+        "interpretation": "Misura fra i centri e converti centimetri in metri. Il prodotto delle cariche rimane fisso; la forza diminuisce come il quadrato inverso della distanza.",
+        "references": [
+          [
+            2,
+            22.5
+          ],
+          [
+            3,
+            10
+          ]
+        ],
+        "blocks": [],
+        "substitution": "90 / ({x}²)",
+        "transferPrompt": "Due cariche di +1 nC sono ora distanti {x}. Usando k ≈ 9 × 10⁹, quale forza di repulsione prevedi in micronewton?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L01-02|320|top|2|",
+      "width": 320,
+      "view": "top",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L01-02|published|320|top|grid|2"
+      ]
+    },
+    {
+      "id": "SIM-C4-L01-02",
+      "negativeCaseKey": "SIM-C4-L01-02|published|320|top|grid|2",
+      "negativeView": "top",
+      "negativeLabel": "+1",
+      "kind": "grid",
+      "index": 2,
+      "x": 2,
+      "source": {
+        "id": "SIM-C4-L01-02",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L01",
+        "order": 2,
+        "section": "Cariche che si attraggono e si respingono",
+        "version": 1,
+        "title": "Interazione fra cariche puntiformi e legge di Coulomb",
+        "topic": "6.1 Interazione fra cariche puntiformi e legge di Coulomb",
+        "anchor": "Le cariche dello stesso segno si respingono",
+        "summary": "Quanto misura la repulsione fra due cariche positive da un nanocoulomb?",
+        "apparatus": "cariche",
+        "control": {
+          "label": "Distanza fra le cariche",
+          "unit": "cm",
+          "min": 1,
+          "max": 6,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Forza di repulsione",
+          "unit": "µN"
+        },
+        "formula": "F = kq²/r²; q = 1 nC, k ≈ 9×10⁹",
+        "interpretation": "Misura fra i centri e converti centimetri in metri. Il prodotto delle cariche rimane fisso; la forza diminuisce come il quadrato inverso della distanza.",
+        "references": [
+          [
+            2,
+            22.5
+          ],
+          [
+            3,
+            10
+          ]
+        ],
+        "blocks": [],
+        "substitution": "90 / ({x}²)",
+        "transferPrompt": "Due cariche di +1 nC sono ora distanti {x}. Usando k ≈ 9 × 10⁹, quale forza di repulsione prevedi in micronewton?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L01-02|320|fixed_projection|2|",
+      "width": 320,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L01-02|published|320|top|grid|2"
+      ]
+    },
+    {
+      "id": "SIM-C4-L01-02",
+      "negativeCaseKey": "SIM-C4-L01-02|published|320|top|grid|2",
+      "negativeView": "top",
+      "negativeLabel": "+1",
+      "kind": "grid",
+      "index": 2,
+      "x": 2,
+      "source": {
+        "id": "SIM-C4-L01-02",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L01",
+        "order": 2,
+        "section": "Cariche che si attraggono e si respingono",
+        "version": 1,
+        "title": "Interazione fra cariche puntiformi e legge di Coulomb",
+        "topic": "6.1 Interazione fra cariche puntiformi e legge di Coulomb",
+        "anchor": "Le cariche dello stesso segno si respingono",
+        "summary": "Quanto misura la repulsione fra due cariche positive da un nanocoulomb?",
+        "apparatus": "cariche",
+        "control": {
+          "label": "Distanza fra le cariche",
+          "unit": "cm",
+          "min": 1,
+          "max": 6,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Forza di repulsione",
+          "unit": "µN"
+        },
+        "formula": "F = kq²/r²; q = 1 nC, k ≈ 9×10⁹",
+        "interpretation": "Misura fra i centri e converti centimetri in metri. Il prodotto delle cariche rimane fisso; la forza diminuisce come il quadrato inverso della distanza.",
+        "references": [
+          [
+            2,
+            22.5
+          ],
+          [
+            3,
+            10
+          ]
+        ],
+        "blocks": [],
+        "substitution": "90 / ({x}²)",
+        "transferPrompt": "Due cariche di +1 nC sono ora distanti {x}. Usando k ≈ 9 × 10⁹, quale forza di repulsione prevedi in micronewton?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L01-02|1280|top|2|",
+      "width": 1280,
+      "view": "top",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L01-02|published|320|top|grid|2"
+      ]
+    },
+    {
+      "id": "SIM-C4-L01-02",
+      "negativeCaseKey": "SIM-C4-L01-02|published|320|top|grid|2",
+      "negativeView": "top",
+      "negativeLabel": "+1",
+      "kind": "grid",
+      "index": 2,
+      "x": 2,
+      "source": {
+        "id": "SIM-C4-L01-02",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L01",
+        "order": 2,
+        "section": "Cariche che si attraggono e si respingono",
+        "version": 1,
+        "title": "Interazione fra cariche puntiformi e legge di Coulomb",
+        "topic": "6.1 Interazione fra cariche puntiformi e legge di Coulomb",
+        "anchor": "Le cariche dello stesso segno si respingono",
+        "summary": "Quanto misura la repulsione fra due cariche positive da un nanocoulomb?",
+        "apparatus": "cariche",
+        "control": {
+          "label": "Distanza fra le cariche",
+          "unit": "cm",
+          "min": 1,
+          "max": 6,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Forza di repulsione",
+          "unit": "µN"
+        },
+        "formula": "F = kq²/r²; q = 1 nC, k ≈ 9×10⁹",
+        "interpretation": "Misura fra i centri e converti centimetri in metri. Il prodotto delle cariche rimane fisso; la forza diminuisce come il quadrato inverso della distanza.",
+        "references": [
+          [
+            2,
+            22.5
+          ],
+          [
+            3,
+            10
+          ]
+        ],
+        "blocks": [],
+        "substitution": "90 / ({x}²)",
+        "transferPrompt": "Due cariche di +1 nC sono ora distanti {x}. Usando k ≈ 9 × 10⁹, quale forza di repulsione prevedi in micronewton?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L01-02|1280|fixed_projection|2|",
+      "width": 1280,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L01-02|published|320|top|grid|2"
+      ]
+    },
+    {
+      "id": "SIM-C4-L02-02",
+      "negativeCaseKey": "SIM-C4-L02-02|published|320|top|grid|7",
+      "negativeView": "top",
+      "negativeLabel": "P",
+      "kind": "grid",
+      "index": 7,
+      "x": 0.5,
+      "source": {
+        "id": "SIM-C4-L02-02",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L02",
+        "order": 2,
+        "section": "Guardare il campo prima della forza",
+        "version": 1,
+        "title": "Campo di una o più cariche puntiformi",
+        "topic": "6.1 Campo di una o più cariche puntiformi",
+        "anchor": "Il versore radiale punta dalla sorgente al",
+        "summary": "Al punto medio i contributi delle due sorgenti si sommano o si cancellano?",
+        "apparatus": "cariche",
+        "control": {
+          "label": "Carica di destra",
+          "unit": "nC",
+          "min": -3,
+          "max": 3,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Campo al punto medio lungo x",
+          "unit": "kN/C"
+        },
+        "formula": "Eₓ = k(q₁−q₂)/r² = 22,5(1−q₂ in nC), r = 2 cm",
+        "interpretation": "Fissa +1 nC a sinistra. Calcola prima il verso di ogni contributo al centro e poi sommali con segno, usando destra come verso positivo.",
+        "references": [
+          [
+            -1,
+            45
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "blocks": [],
+        "substitution": "22,5 × (1 − {x})",
+        "transferPrompt": "Fra una carica sinistra da +1 nC e una destra da {x} poni la sonda a 2 cm da entrambe. Qual è la componente del campo, positiva verso destra?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L02-02|320|top|0.5|",
+      "width": 320,
+      "view": "top",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L02-02|published|320|top|grid|7"
+      ]
+    },
+    {
+      "id": "SIM-C4-L02-02",
+      "negativeCaseKey": "SIM-C4-L02-02|published|320|top|grid|7",
+      "negativeView": "top",
+      "negativeLabel": "P",
+      "kind": "grid",
+      "index": 7,
+      "x": 0.5,
+      "source": {
+        "id": "SIM-C4-L02-02",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L02",
+        "order": 2,
+        "section": "Guardare il campo prima della forza",
+        "version": 1,
+        "title": "Campo di una o più cariche puntiformi",
+        "topic": "6.1 Campo di una o più cariche puntiformi",
+        "anchor": "Il versore radiale punta dalla sorgente al",
+        "summary": "Al punto medio i contributi delle due sorgenti si sommano o si cancellano?",
+        "apparatus": "cariche",
+        "control": {
+          "label": "Carica di destra",
+          "unit": "nC",
+          "min": -3,
+          "max": 3,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Campo al punto medio lungo x",
+          "unit": "kN/C"
+        },
+        "formula": "Eₓ = k(q₁−q₂)/r² = 22,5(1−q₂ in nC), r = 2 cm",
+        "interpretation": "Fissa +1 nC a sinistra. Calcola prima il verso di ogni contributo al centro e poi sommali con segno, usando destra come verso positivo.",
+        "references": [
+          [
+            -1,
+            45
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "blocks": [],
+        "substitution": "22,5 × (1 − {x})",
+        "transferPrompt": "Fra una carica sinistra da +1 nC e una destra da {x} poni la sonda a 2 cm da entrambe. Qual è la componente del campo, positiva verso destra?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L02-02|320|fixed_projection|0.5|",
+      "width": 320,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L02-02|published|320|top|grid|7"
+      ]
+    },
+    {
+      "id": "SIM-C4-L02-02",
+      "negativeCaseKey": "SIM-C4-L02-02|published|320|top|grid|7",
+      "negativeView": "top",
+      "negativeLabel": "P",
+      "kind": "grid",
+      "index": 7,
+      "x": 0.5,
+      "source": {
+        "id": "SIM-C4-L02-02",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L02",
+        "order": 2,
+        "section": "Guardare il campo prima della forza",
+        "version": 1,
+        "title": "Campo di una o più cariche puntiformi",
+        "topic": "6.1 Campo di una o più cariche puntiformi",
+        "anchor": "Il versore radiale punta dalla sorgente al",
+        "summary": "Al punto medio i contributi delle due sorgenti si sommano o si cancellano?",
+        "apparatus": "cariche",
+        "control": {
+          "label": "Carica di destra",
+          "unit": "nC",
+          "min": -3,
+          "max": 3,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Campo al punto medio lungo x",
+          "unit": "kN/C"
+        },
+        "formula": "Eₓ = k(q₁−q₂)/r² = 22,5(1−q₂ in nC), r = 2 cm",
+        "interpretation": "Fissa +1 nC a sinistra. Calcola prima il verso di ogni contributo al centro e poi sommali con segno, usando destra come verso positivo.",
+        "references": [
+          [
+            -1,
+            45
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "blocks": [],
+        "substitution": "22,5 × (1 − {x})",
+        "transferPrompt": "Fra una carica sinistra da +1 nC e una destra da {x} poni la sonda a 2 cm da entrambe. Qual è la componente del campo, positiva verso destra?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L02-02|1280|top|0.5|",
+      "width": 1280,
+      "view": "top",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L02-02|published|320|top|grid|7"
+      ]
+    },
+    {
+      "id": "SIM-C4-L02-02",
+      "negativeCaseKey": "SIM-C4-L02-02|published|320|top|grid|7",
+      "negativeView": "top",
+      "negativeLabel": "P",
+      "kind": "grid",
+      "index": 7,
+      "x": 0.5,
+      "source": {
+        "id": "SIM-C4-L02-02",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L02",
+        "order": 2,
+        "section": "Guardare il campo prima della forza",
+        "version": 1,
+        "title": "Campo di una o più cariche puntiformi",
+        "topic": "6.1 Campo di una o più cariche puntiformi",
+        "anchor": "Il versore radiale punta dalla sorgente al",
+        "summary": "Al punto medio i contributi delle due sorgenti si sommano o si cancellano?",
+        "apparatus": "cariche",
+        "control": {
+          "label": "Carica di destra",
+          "unit": "nC",
+          "min": -3,
+          "max": 3,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Campo al punto medio lungo x",
+          "unit": "kN/C"
+        },
+        "formula": "Eₓ = k(q₁−q₂)/r² = 22,5(1−q₂ in nC), r = 2 cm",
+        "interpretation": "Fissa +1 nC a sinistra. Calcola prima il verso di ogni contributo al centro e poi sommali con segno, usando destra come verso positivo.",
+        "references": [
+          [
+            -1,
+            45
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "blocks": [],
+        "substitution": "22,5 × (1 − {x})",
+        "transferPrompt": "Fra una carica sinistra da +1 nC e una destra da {x} poni la sonda a 2 cm da entrambe. Qual è la componente del campo, positiva verso destra?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L02-02|1280|fixed_projection|0.5|",
+      "width": 1280,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L02-02|published|320|top|grid|7"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-01",
+      "negativeCaseKey": "SIM-C4-L05-01|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "Corrente convenzionale",
+      "kind": "grid",
+      "index": 0,
+      "x": 0.5,
+      "source": {
+        "id": "SIM-C4-L05-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 1,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Corrente continua e intensità",
+        "topic": "6.4 Corrente continua e intensità",
+        "anchor": "Immagina una sezione trasversale di un filo.",
+        "summary": "Quanta carica attraversa la sezione marcata del filo?",
+        "apparatus": "filo",
+        "control": {
+          "label": "Durata della misura",
+          "unit": "s",
+          "min": 0.5,
+          "max": 5,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Carica attraversata",
+          "unit": "C"
+        },
+        "formula": "Δq = IΔt, con I = 2 A",
+        "interpretation": "Ogni secondo passano 2 coulomb di carica convenzionale. Nel metallo gli elettroni derivano nel verso opposto alla corrente.",
+        "references": [
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            8
+          ]
+        ],
+        "blocks": [],
+        "substitution": "2 × {x}",
+        "transferPrompt": "Un filo porta una corrente stazionaria di 2 A per {x}. Quanti coulomb attraversano la stessa sezione?"
+      },
+      "hasClock": true,
+      "clockInput": false,
+      "key": "SIM-C4-L05-01|320|top|0.5|",
+      "width": 320,
+      "view": "top",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-01|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-01",
+      "negativeCaseKey": "SIM-C4-L05-01|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "Corrente convenzionale",
+      "kind": "grid",
+      "index": 0,
+      "x": 0.5,
+      "source": {
+        "id": "SIM-C4-L05-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 1,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Corrente continua e intensità",
+        "topic": "6.4 Corrente continua e intensità",
+        "anchor": "Immagina una sezione trasversale di un filo.",
+        "summary": "Quanta carica attraversa la sezione marcata del filo?",
+        "apparatus": "filo",
+        "control": {
+          "label": "Durata della misura",
+          "unit": "s",
+          "min": 0.5,
+          "max": 5,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Carica attraversata",
+          "unit": "C"
+        },
+        "formula": "Δq = IΔt, con I = 2 A",
+        "interpretation": "Ogni secondo passano 2 coulomb di carica convenzionale. Nel metallo gli elettroni derivano nel verso opposto alla corrente.",
+        "references": [
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            8
+          ]
+        ],
+        "blocks": [],
+        "substitution": "2 × {x}",
+        "transferPrompt": "Un filo porta una corrente stazionaria di 2 A per {x}. Quanti coulomb attraversano la stessa sezione?"
+      },
+      "hasClock": true,
+      "clockInput": false,
+      "key": "SIM-C4-L05-01|320|fixed_projection|0.5|",
+      "width": 320,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-01|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-01",
+      "negativeCaseKey": "SIM-C4-L05-01|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "Corrente convenzionale",
+      "kind": "grid",
+      "index": 0,
+      "x": 0.5,
+      "source": {
+        "id": "SIM-C4-L05-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 1,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Corrente continua e intensità",
+        "topic": "6.4 Corrente continua e intensità",
+        "anchor": "Immagina una sezione trasversale di un filo.",
+        "summary": "Quanta carica attraversa la sezione marcata del filo?",
+        "apparatus": "filo",
+        "control": {
+          "label": "Durata della misura",
+          "unit": "s",
+          "min": 0.5,
+          "max": 5,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Carica attraversata",
+          "unit": "C"
+        },
+        "formula": "Δq = IΔt, con I = 2 A",
+        "interpretation": "Ogni secondo passano 2 coulomb di carica convenzionale. Nel metallo gli elettroni derivano nel verso opposto alla corrente.",
+        "references": [
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            8
+          ]
+        ],
+        "blocks": [],
+        "substitution": "2 × {x}",
+        "transferPrompt": "Un filo porta una corrente stazionaria di 2 A per {x}. Quanti coulomb attraversano la stessa sezione?"
+      },
+      "hasClock": true,
+      "clockInput": false,
+      "key": "SIM-C4-L05-01|320|side|0.5|",
+      "width": 320,
+      "view": "side",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-01|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-01",
+      "negativeCaseKey": "SIM-C4-L05-01|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "Corrente convenzionale",
+      "kind": "grid",
+      "index": 0,
+      "x": 0.5,
+      "source": {
+        "id": "SIM-C4-L05-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 1,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Corrente continua e intensità",
+        "topic": "6.4 Corrente continua e intensità",
+        "anchor": "Immagina una sezione trasversale di un filo.",
+        "summary": "Quanta carica attraversa la sezione marcata del filo?",
+        "apparatus": "filo",
+        "control": {
+          "label": "Durata della misura",
+          "unit": "s",
+          "min": 0.5,
+          "max": 5,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Carica attraversata",
+          "unit": "C"
+        },
+        "formula": "Δq = IΔt, con I = 2 A",
+        "interpretation": "Ogni secondo passano 2 coulomb di carica convenzionale. Nel metallo gli elettroni derivano nel verso opposto alla corrente.",
+        "references": [
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            8
+          ]
+        ],
+        "blocks": [],
+        "substitution": "2 × {x}",
+        "transferPrompt": "Un filo porta una corrente stazionaria di 2 A per {x}. Quanti coulomb attraversano la stessa sezione?"
+      },
+      "hasClock": true,
+      "clockInput": false,
+      "key": "SIM-C4-L05-01|1280|top|0.5|",
+      "width": 1280,
+      "view": "top",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-01|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-01",
+      "negativeCaseKey": "SIM-C4-L05-01|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "Corrente convenzionale",
+      "kind": "grid",
+      "index": 0,
+      "x": 0.5,
+      "source": {
+        "id": "SIM-C4-L05-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 1,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Corrente continua e intensità",
+        "topic": "6.4 Corrente continua e intensità",
+        "anchor": "Immagina una sezione trasversale di un filo.",
+        "summary": "Quanta carica attraversa la sezione marcata del filo?",
+        "apparatus": "filo",
+        "control": {
+          "label": "Durata della misura",
+          "unit": "s",
+          "min": 0.5,
+          "max": 5,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Carica attraversata",
+          "unit": "C"
+        },
+        "formula": "Δq = IΔt, con I = 2 A",
+        "interpretation": "Ogni secondo passano 2 coulomb di carica convenzionale. Nel metallo gli elettroni derivano nel verso opposto alla corrente.",
+        "references": [
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            8
+          ]
+        ],
+        "blocks": [],
+        "substitution": "2 × {x}",
+        "transferPrompt": "Un filo porta una corrente stazionaria di 2 A per {x}. Quanti coulomb attraversano la stessa sezione?"
+      },
+      "hasClock": true,
+      "clockInput": false,
+      "key": "SIM-C4-L05-01|1280|fixed_projection|0.5|",
+      "width": 1280,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-01|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-01",
+      "negativeCaseKey": "SIM-C4-L05-01|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "Corrente convenzionale",
+      "kind": "grid",
+      "index": 0,
+      "x": 0.5,
+      "source": {
+        "id": "SIM-C4-L05-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 1,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Corrente continua e intensità",
+        "topic": "6.4 Corrente continua e intensità",
+        "anchor": "Immagina una sezione trasversale di un filo.",
+        "summary": "Quanta carica attraversa la sezione marcata del filo?",
+        "apparatus": "filo",
+        "control": {
+          "label": "Durata della misura",
+          "unit": "s",
+          "min": 0.5,
+          "max": 5,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Carica attraversata",
+          "unit": "C"
+        },
+        "formula": "Δq = IΔt, con I = 2 A",
+        "interpretation": "Ogni secondo passano 2 coulomb di carica convenzionale. Nel metallo gli elettroni derivano nel verso opposto alla corrente.",
+        "references": [
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            8
+          ]
+        ],
+        "blocks": [],
+        "substitution": "2 × {x}",
+        "transferPrompt": "Un filo porta una corrente stazionaria di 2 A per {x}. Quanti coulomb attraversano la stessa sezione?"
+      },
+      "hasClock": true,
+      "clockInput": false,
+      "key": "SIM-C4-L05-01|1280|side|0.5|",
+      "width": 1280,
+      "view": "side",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-01|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-02",
+      "negativeCaseKey": "SIM-C4-L05-02|published|320|orbit|grid|1",
+      "negativeView": "orbit",
+      "negativeLabel": "Pila",
+      "kind": "grid",
+      "index": 1,
+      "x": 3,
+      "source": {
+        "id": "SIM-C4-L05-02",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 2,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Generatore ideale",
+        "topic": "6.4 Generatore ideale",
+        "anchor": "Immagina una sezione trasversale di un filo.",
+        "summary": "Il generatore ideale mantiene la tensione o la corrente quando cambi il carico?",
+        "apparatus": "circuito",
+        "control": {
+          "label": "Resistenza del carico",
+          "unit": "Ω",
+          "min": 2,
+          "max": 12,
+          "step": 1
+        },
+        "measure": {
+          "label": "Corrente nel carico",
+          "unit": "A"
+        },
+        "formula": "I = V/R, con V = 12 V fissata dal generatore",
+        "interpretation": "Collega il resistore alla stessa batteria ideale da 12 V. Il voltmetro ai morsetti conserva la lettura e l’amperometro cambia con il carico.",
+        "references": [
+          [
+            3,
+            4
+          ],
+          [
+            6,
+            2
+          ]
+        ],
+        "blocks": [],
+        "substitution": "12 / {x}",
+        "transferPrompt": "Un alimentatore ideale da 12 V fa funzionare un carico da {x}. Quale corrente dovrebbe leggere l’amperometro in serie?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L05-02|320|orbit|3|",
+      "width": 320,
+      "view": "orbit",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-02|published|320|orbit|grid|1"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-02",
+      "negativeCaseKey": "SIM-C4-L05-02|published|320|orbit|grid|1",
+      "negativeView": "orbit",
+      "negativeLabel": "Pila",
+      "kind": "grid",
+      "index": 1,
+      "x": 3,
+      "source": {
+        "id": "SIM-C4-L05-02",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 2,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Generatore ideale",
+        "topic": "6.4 Generatore ideale",
+        "anchor": "Immagina una sezione trasversale di un filo.",
+        "summary": "Il generatore ideale mantiene la tensione o la corrente quando cambi il carico?",
+        "apparatus": "circuito",
+        "control": {
+          "label": "Resistenza del carico",
+          "unit": "Ω",
+          "min": 2,
+          "max": 12,
+          "step": 1
+        },
+        "measure": {
+          "label": "Corrente nel carico",
+          "unit": "A"
+        },
+        "formula": "I = V/R, con V = 12 V fissata dal generatore",
+        "interpretation": "Collega il resistore alla stessa batteria ideale da 12 V. Il voltmetro ai morsetti conserva la lettura e l’amperometro cambia con il carico.",
+        "references": [
+          [
+            3,
+            4
+          ],
+          [
+            6,
+            2
+          ]
+        ],
+        "blocks": [],
+        "substitution": "12 / {x}",
+        "transferPrompt": "Un alimentatore ideale da 12 V fa funzionare un carico da {x}. Quale corrente dovrebbe leggere l’amperometro in serie?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L05-02|320|fixed_projection|3|",
+      "width": 320,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-02|published|320|orbit|grid|1"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-02",
+      "negativeCaseKey": "SIM-C4-L05-02|published|320|orbit|grid|1",
+      "negativeView": "orbit",
+      "negativeLabel": "Pila",
+      "kind": "grid",
+      "index": 1,
+      "x": 3,
+      "source": {
+        "id": "SIM-C4-L05-02",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 2,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Generatore ideale",
+        "topic": "6.4 Generatore ideale",
+        "anchor": "Immagina una sezione trasversale di un filo.",
+        "summary": "Il generatore ideale mantiene la tensione o la corrente quando cambi il carico?",
+        "apparatus": "circuito",
+        "control": {
+          "label": "Resistenza del carico",
+          "unit": "Ω",
+          "min": 2,
+          "max": 12,
+          "step": 1
+        },
+        "measure": {
+          "label": "Corrente nel carico",
+          "unit": "A"
+        },
+        "formula": "I = V/R, con V = 12 V fissata dal generatore",
+        "interpretation": "Collega il resistore alla stessa batteria ideale da 12 V. Il voltmetro ai morsetti conserva la lettura e l’amperometro cambia con il carico.",
+        "references": [
+          [
+            3,
+            4
+          ],
+          [
+            6,
+            2
+          ]
+        ],
+        "blocks": [],
+        "substitution": "12 / {x}",
+        "transferPrompt": "Un alimentatore ideale da 12 V fa funzionare un carico da {x}. Quale corrente dovrebbe leggere l’amperometro in serie?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L05-02|1280|orbit|3|",
+      "width": 1280,
+      "view": "orbit",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-02|published|320|orbit|grid|1"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-02",
+      "negativeCaseKey": "SIM-C4-L05-02|published|320|orbit|grid|1",
+      "negativeView": "orbit",
+      "negativeLabel": "Pila",
+      "kind": "grid",
+      "index": 1,
+      "x": 3,
+      "source": {
+        "id": "SIM-C4-L05-02",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 2,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Generatore ideale",
+        "topic": "6.4 Generatore ideale",
+        "anchor": "Immagina una sezione trasversale di un filo.",
+        "summary": "Il generatore ideale mantiene la tensione o la corrente quando cambi il carico?",
+        "apparatus": "circuito",
+        "control": {
+          "label": "Resistenza del carico",
+          "unit": "Ω",
+          "min": 2,
+          "max": 12,
+          "step": 1
+        },
+        "measure": {
+          "label": "Corrente nel carico",
+          "unit": "A"
+        },
+        "formula": "I = V/R, con V = 12 V fissata dal generatore",
+        "interpretation": "Collega il resistore alla stessa batteria ideale da 12 V. Il voltmetro ai morsetti conserva la lettura e l’amperometro cambia con il carico.",
+        "references": [
+          [
+            3,
+            4
+          ],
+          [
+            6,
+            2
+          ]
+        ],
+        "blocks": [],
+        "substitution": "12 / {x}",
+        "transferPrompt": "Un alimentatore ideale da 12 V fa funzionare un carico da {x}. Quale corrente dovrebbe leggere l’amperometro in serie?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L05-02|1280|fixed_projection|3|",
+      "width": 1280,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-02|published|320|orbit|grid|1"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-03",
+      "negativeCaseKey": "SIM-C4-L05-03|published|320|orbit|grid|14",
+      "negativeView": "orbit",
+      "negativeLabel": "Pila",
+      "kind": "grid",
+      "index": 14,
+      "x": 6,
+      "source": {
+        "id": "SIM-C4-L05-03",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 3,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Conduzione ohmica",
+        "topic": "6.4 Conduzione ohmica",
+        "anchor": "Per un resistore ohmico R resta costante",
+        "summary": "Cosa fa un resistore ohmico quando inverti i morsetti?",
+        "apparatus": "circuito",
+        "control": {
+          "label": "Tensione al resistore",
+          "unit": "V",
+          "min": -8,
+          "max": 8,
+          "step": 1
+        },
+        "measure": {
+          "label": "Corrente con segno",
+          "unit": "A"
+        },
+        "formula": "I = V/R, con R = 4 Ω",
+        "interpretation": "La resistenza è costante a temperatura fissata. Invertendo la tensione si inverte la corrente. Il grafico è una retta passante per l’origine.",
+        "references": [
+          [
+            -4,
+            -1
+          ],
+          [
+            8,
+            2
+          ]
+        ],
+        "blocks": [],
+        "substitution": "{x} / 4",
+        "transferPrompt": "A un resistore di 4 Ω applichi la tensione con segno {x}. Quale lettura con segno dà l’amperometro col verso di riferimento del banco?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L05-03|320|orbit|6|",
+      "width": 320,
+      "view": "orbit",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-03|published|320|orbit|grid|14"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-03",
+      "negativeCaseKey": "SIM-C4-L05-03|published|320|orbit|grid|14",
+      "negativeView": "orbit",
+      "negativeLabel": "Pila",
+      "kind": "grid",
+      "index": 14,
+      "x": 6,
+      "source": {
+        "id": "SIM-C4-L05-03",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 3,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Conduzione ohmica",
+        "topic": "6.4 Conduzione ohmica",
+        "anchor": "Per un resistore ohmico R resta costante",
+        "summary": "Cosa fa un resistore ohmico quando inverti i morsetti?",
+        "apparatus": "circuito",
+        "control": {
+          "label": "Tensione al resistore",
+          "unit": "V",
+          "min": -8,
+          "max": 8,
+          "step": 1
+        },
+        "measure": {
+          "label": "Corrente con segno",
+          "unit": "A"
+        },
+        "formula": "I = V/R, con R = 4 Ω",
+        "interpretation": "La resistenza è costante a temperatura fissata. Invertendo la tensione si inverte la corrente. Il grafico è una retta passante per l’origine.",
+        "references": [
+          [
+            -4,
+            -1
+          ],
+          [
+            8,
+            2
+          ]
+        ],
+        "blocks": [],
+        "substitution": "{x} / 4",
+        "transferPrompt": "A un resistore di 4 Ω applichi la tensione con segno {x}. Quale lettura con segno dà l’amperometro col verso di riferimento del banco?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L05-03|320|fixed_projection|6|",
+      "width": 320,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-03|published|320|orbit|grid|14"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-03",
+      "negativeCaseKey": "SIM-C4-L05-03|published|320|orbit|grid|14",
+      "negativeView": "orbit",
+      "negativeLabel": "Pila",
+      "kind": "grid",
+      "index": 14,
+      "x": 6,
+      "source": {
+        "id": "SIM-C4-L05-03",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 3,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Conduzione ohmica",
+        "topic": "6.4 Conduzione ohmica",
+        "anchor": "Per un resistore ohmico R resta costante",
+        "summary": "Cosa fa un resistore ohmico quando inverti i morsetti?",
+        "apparatus": "circuito",
+        "control": {
+          "label": "Tensione al resistore",
+          "unit": "V",
+          "min": -8,
+          "max": 8,
+          "step": 1
+        },
+        "measure": {
+          "label": "Corrente con segno",
+          "unit": "A"
+        },
+        "formula": "I = V/R, con R = 4 Ω",
+        "interpretation": "La resistenza è costante a temperatura fissata. Invertendo la tensione si inverte la corrente. Il grafico è una retta passante per l’origine.",
+        "references": [
+          [
+            -4,
+            -1
+          ],
+          [
+            8,
+            2
+          ]
+        ],
+        "blocks": [],
+        "substitution": "{x} / 4",
+        "transferPrompt": "A un resistore di 4 Ω applichi la tensione con segno {x}. Quale lettura con segno dà l’amperometro col verso di riferimento del banco?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L05-03|1280|orbit|6|",
+      "width": 1280,
+      "view": "orbit",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-03|published|320|orbit|grid|14"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-03",
+      "negativeCaseKey": "SIM-C4-L05-03|published|320|orbit|grid|14",
+      "negativeView": "orbit",
+      "negativeLabel": "Pila",
+      "kind": "grid",
+      "index": 14,
+      "x": 6,
+      "source": {
+        "id": "SIM-C4-L05-03",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 3,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Conduzione ohmica",
+        "topic": "6.4 Conduzione ohmica",
+        "anchor": "Per un resistore ohmico R resta costante",
+        "summary": "Cosa fa un resistore ohmico quando inverti i morsetti?",
+        "apparatus": "circuito",
+        "control": {
+          "label": "Tensione al resistore",
+          "unit": "V",
+          "min": -8,
+          "max": 8,
+          "step": 1
+        },
+        "measure": {
+          "label": "Corrente con segno",
+          "unit": "A"
+        },
+        "formula": "I = V/R, con R = 4 Ω",
+        "interpretation": "La resistenza è costante a temperatura fissata. Invertendo la tensione si inverte la corrente. Il grafico è una retta passante per l’origine.",
+        "references": [
+          [
+            -4,
+            -1
+          ],
+          [
+            8,
+            2
+          ]
+        ],
+        "blocks": [],
+        "substitution": "{x} / 4",
+        "transferPrompt": "A un resistore di 4 Ω applichi la tensione con segno {x}. Quale lettura con segno dà l’amperometro col verso di riferimento del banco?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L05-03|1280|fixed_projection|6|",
+      "width": 1280,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-03|published|320|orbit|grid|14"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-04",
+      "negativeCaseKey": "SIM-C4-L05-04|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "Corrente convenzionale",
+      "kind": "grid",
+      "index": 0,
+      "x": 0.5,
+      "source": {
+        "id": "SIM-C4-L05-04",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 4,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Prima e seconda legge di Ohm",
+        "topic": "6.4 Prima e seconda legge di Ohm",
+        "anchor": "Per un resistore ohmico R resta costante",
+        "summary": "Come si combinano le due leggi di Ohm quando allunghi il filo?",
+        "apparatus": "filo",
+        "control": {
+          "label": "Lunghezza del filo",
+          "unit": "m",
+          "min": 0.5,
+          "max": 4,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Corrente a 4 V",
+          "unit": "A"
+        },
+        "formula": "R = ρL/A = 2L Ω; I = 4/R",
+        "interpretation": "Mantieni sezione e materiale fissi, con resistenza per metro di 2 Ω/m. Prima calcola la resistenza dal filo, poi usa la tensione ai morsetti per trovare la corrente.",
+        "references": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "blocks": [],
+        "substitution": "2 / {x}",
+        "transferPrompt": "Un filo presenta una resistenza di 2 Ω per metro e ne usi {x}. Alimentandolo a 4 V, quale corrente scorre?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L05-04|320|top|0.5|",
+      "width": 320,
+      "view": "top",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-04|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-04",
+      "negativeCaseKey": "SIM-C4-L05-04|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "Corrente convenzionale",
+      "kind": "grid",
+      "index": 0,
+      "x": 0.5,
+      "source": {
+        "id": "SIM-C4-L05-04",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 4,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Prima e seconda legge di Ohm",
+        "topic": "6.4 Prima e seconda legge di Ohm",
+        "anchor": "Per un resistore ohmico R resta costante",
+        "summary": "Come si combinano le due leggi di Ohm quando allunghi il filo?",
+        "apparatus": "filo",
+        "control": {
+          "label": "Lunghezza del filo",
+          "unit": "m",
+          "min": 0.5,
+          "max": 4,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Corrente a 4 V",
+          "unit": "A"
+        },
+        "formula": "R = ρL/A = 2L Ω; I = 4/R",
+        "interpretation": "Mantieni sezione e materiale fissi, con resistenza per metro di 2 Ω/m. Prima calcola la resistenza dal filo, poi usa la tensione ai morsetti per trovare la corrente.",
+        "references": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "blocks": [],
+        "substitution": "2 / {x}",
+        "transferPrompt": "Un filo presenta una resistenza di 2 Ω per metro e ne usi {x}. Alimentandolo a 4 V, quale corrente scorre?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L05-04|320|fixed_projection|0.5|",
+      "width": 320,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-04|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-04",
+      "negativeCaseKey": "SIM-C4-L05-04|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "Corrente convenzionale",
+      "kind": "grid",
+      "index": 0,
+      "x": 0.5,
+      "source": {
+        "id": "SIM-C4-L05-04",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 4,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Prima e seconda legge di Ohm",
+        "topic": "6.4 Prima e seconda legge di Ohm",
+        "anchor": "Per un resistore ohmico R resta costante",
+        "summary": "Come si combinano le due leggi di Ohm quando allunghi il filo?",
+        "apparatus": "filo",
+        "control": {
+          "label": "Lunghezza del filo",
+          "unit": "m",
+          "min": 0.5,
+          "max": 4,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Corrente a 4 V",
+          "unit": "A"
+        },
+        "formula": "R = ρL/A = 2L Ω; I = 4/R",
+        "interpretation": "Mantieni sezione e materiale fissi, con resistenza per metro di 2 Ω/m. Prima calcola la resistenza dal filo, poi usa la tensione ai morsetti per trovare la corrente.",
+        "references": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "blocks": [],
+        "substitution": "2 / {x}",
+        "transferPrompt": "Un filo presenta una resistenza di 2 Ω per metro e ne usi {x}. Alimentandolo a 4 V, quale corrente scorre?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L05-04|320|side|0.5|",
+      "width": 320,
+      "view": "side",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-04|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-04",
+      "negativeCaseKey": "SIM-C4-L05-04|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "Corrente convenzionale",
+      "kind": "grid",
+      "index": 0,
+      "x": 0.5,
+      "source": {
+        "id": "SIM-C4-L05-04",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 4,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Prima e seconda legge di Ohm",
+        "topic": "6.4 Prima e seconda legge di Ohm",
+        "anchor": "Per un resistore ohmico R resta costante",
+        "summary": "Come si combinano le due leggi di Ohm quando allunghi il filo?",
+        "apparatus": "filo",
+        "control": {
+          "label": "Lunghezza del filo",
+          "unit": "m",
+          "min": 0.5,
+          "max": 4,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Corrente a 4 V",
+          "unit": "A"
+        },
+        "formula": "R = ρL/A = 2L Ω; I = 4/R",
+        "interpretation": "Mantieni sezione e materiale fissi, con resistenza per metro di 2 Ω/m. Prima calcola la resistenza dal filo, poi usa la tensione ai morsetti per trovare la corrente.",
+        "references": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "blocks": [],
+        "substitution": "2 / {x}",
+        "transferPrompt": "Un filo presenta una resistenza di 2 Ω per metro e ne usi {x}. Alimentandolo a 4 V, quale corrente scorre?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L05-04|1280|top|0.5|",
+      "width": 1280,
+      "view": "top",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-04|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-04",
+      "negativeCaseKey": "SIM-C4-L05-04|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "Corrente convenzionale",
+      "kind": "grid",
+      "index": 0,
+      "x": 0.5,
+      "source": {
+        "id": "SIM-C4-L05-04",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 4,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Prima e seconda legge di Ohm",
+        "topic": "6.4 Prima e seconda legge di Ohm",
+        "anchor": "Per un resistore ohmico R resta costante",
+        "summary": "Come si combinano le due leggi di Ohm quando allunghi il filo?",
+        "apparatus": "filo",
+        "control": {
+          "label": "Lunghezza del filo",
+          "unit": "m",
+          "min": 0.5,
+          "max": 4,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Corrente a 4 V",
+          "unit": "A"
+        },
+        "formula": "R = ρL/A = 2L Ω; I = 4/R",
+        "interpretation": "Mantieni sezione e materiale fissi, con resistenza per metro di 2 Ω/m. Prima calcola la resistenza dal filo, poi usa la tensione ai morsetti per trovare la corrente.",
+        "references": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "blocks": [],
+        "substitution": "2 / {x}",
+        "transferPrompt": "Un filo presenta una resistenza di 2 Ω per metro e ne usi {x}. Alimentandolo a 4 V, quale corrente scorre?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L05-04|1280|fixed_projection|0.5|",
+      "width": 1280,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-04|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-04",
+      "negativeCaseKey": "SIM-C4-L05-04|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "Corrente convenzionale",
+      "kind": "grid",
+      "index": 0,
+      "x": 0.5,
+      "source": {
+        "id": "SIM-C4-L05-04",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 4,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Prima e seconda legge di Ohm",
+        "topic": "6.4 Prima e seconda legge di Ohm",
+        "anchor": "Per un resistore ohmico R resta costante",
+        "summary": "Come si combinano le due leggi di Ohm quando allunghi il filo?",
+        "apparatus": "filo",
+        "control": {
+          "label": "Lunghezza del filo",
+          "unit": "m",
+          "min": 0.5,
+          "max": 4,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Corrente a 4 V",
+          "unit": "A"
+        },
+        "formula": "R = ρL/A = 2L Ω; I = 4/R",
+        "interpretation": "Mantieni sezione e materiale fissi, con resistenza per metro di 2 Ω/m. Prima calcola la resistenza dal filo, poi usa la tensione ai morsetti per trovare la corrente.",
+        "references": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "blocks": [],
+        "substitution": "2 / {x}",
+        "transferPrompt": "Un filo presenta una resistenza di 2 Ω per metro e ne usi {x}. Alimentandolo a 4 V, quale corrente scorre?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L05-04|1280|side|0.5|",
+      "width": 1280,
+      "view": "side",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-04|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-05",
+      "negativeCaseKey": "SIM-C4-L05-05|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "Corrente convenzionale",
+      "kind": "grid",
+      "index": 0,
+      "x": 0.1,
+      "source": {
+        "id": "SIM-C4-L05-05",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 5,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Resistività",
+        "topic": "6.4 Resistività",
+        "anchor": "Una retta V(I) passante per l’origine indica",
+        "summary": "Due fili geometricamente identici presentano la stessa resistenza?",
+        "apparatus": "filo",
+        "control": {
+          "label": "Resistività",
+          "unit": "µΩ·m",
+          "min": 0.1,
+          "max": 1,
+          "step": 0.1
+        },
+        "measure": {
+          "label": "Resistenza del filo",
+          "unit": "Ω"
+        },
+        "formula": "R = ρL/A, con L = 2 m e A = 1 mm²",
+        "interpretation": "Sostituisci il materiale mantenendo lunghezza, area e temperatura. Converti µΩ·m e mm² in SI: i fattori dieci alla meno sei si semplificano.",
+        "references": [
+          [
+            0.2,
+            0.4
+          ],
+          [
+            0.8,
+            1.6
+          ]
+        ],
+        "blocks": [],
+        "substitution": "2 × {x}",
+        "transferPrompt": "Tagli un filo lungo 2 m di sezione 1 mm² in un materiale di resistività {x}. Quale resistenza misuri ai capi?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L05-05|320|top|0.1|",
+      "width": 320,
+      "view": "top",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-05|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-05",
+      "negativeCaseKey": "SIM-C4-L05-05|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "Corrente convenzionale",
+      "kind": "grid",
+      "index": 0,
+      "x": 0.1,
+      "source": {
+        "id": "SIM-C4-L05-05",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 5,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Resistività",
+        "topic": "6.4 Resistività",
+        "anchor": "Una retta V(I) passante per l’origine indica",
+        "summary": "Due fili geometricamente identici presentano la stessa resistenza?",
+        "apparatus": "filo",
+        "control": {
+          "label": "Resistività",
+          "unit": "µΩ·m",
+          "min": 0.1,
+          "max": 1,
+          "step": 0.1
+        },
+        "measure": {
+          "label": "Resistenza del filo",
+          "unit": "Ω"
+        },
+        "formula": "R = ρL/A, con L = 2 m e A = 1 mm²",
+        "interpretation": "Sostituisci il materiale mantenendo lunghezza, area e temperatura. Converti µΩ·m e mm² in SI: i fattori dieci alla meno sei si semplificano.",
+        "references": [
+          [
+            0.2,
+            0.4
+          ],
+          [
+            0.8,
+            1.6
+          ]
+        ],
+        "blocks": [],
+        "substitution": "2 × {x}",
+        "transferPrompt": "Tagli un filo lungo 2 m di sezione 1 mm² in un materiale di resistività {x}. Quale resistenza misuri ai capi?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L05-05|320|fixed_projection|0.1|",
+      "width": 320,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-05|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-05",
+      "negativeCaseKey": "SIM-C4-L05-05|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "Corrente convenzionale",
+      "kind": "grid",
+      "index": 0,
+      "x": 0.1,
+      "source": {
+        "id": "SIM-C4-L05-05",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 5,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Resistività",
+        "topic": "6.4 Resistività",
+        "anchor": "Una retta V(I) passante per l’origine indica",
+        "summary": "Due fili geometricamente identici presentano la stessa resistenza?",
+        "apparatus": "filo",
+        "control": {
+          "label": "Resistività",
+          "unit": "µΩ·m",
+          "min": 0.1,
+          "max": 1,
+          "step": 0.1
+        },
+        "measure": {
+          "label": "Resistenza del filo",
+          "unit": "Ω"
+        },
+        "formula": "R = ρL/A, con L = 2 m e A = 1 mm²",
+        "interpretation": "Sostituisci il materiale mantenendo lunghezza, area e temperatura. Converti µΩ·m e mm² in SI: i fattori dieci alla meno sei si semplificano.",
+        "references": [
+          [
+            0.2,
+            0.4
+          ],
+          [
+            0.8,
+            1.6
+          ]
+        ],
+        "blocks": [],
+        "substitution": "2 × {x}",
+        "transferPrompt": "Tagli un filo lungo 2 m di sezione 1 mm² in un materiale di resistività {x}. Quale resistenza misuri ai capi?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L05-05|320|side|0.1|",
+      "width": 320,
+      "view": "side",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-05|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-05",
+      "negativeCaseKey": "SIM-C4-L05-05|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "Corrente convenzionale",
+      "kind": "grid",
+      "index": 0,
+      "x": 0.1,
+      "source": {
+        "id": "SIM-C4-L05-05",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 5,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Resistività",
+        "topic": "6.4 Resistività",
+        "anchor": "Una retta V(I) passante per l’origine indica",
+        "summary": "Due fili geometricamente identici presentano la stessa resistenza?",
+        "apparatus": "filo",
+        "control": {
+          "label": "Resistività",
+          "unit": "µΩ·m",
+          "min": 0.1,
+          "max": 1,
+          "step": 0.1
+        },
+        "measure": {
+          "label": "Resistenza del filo",
+          "unit": "Ω"
+        },
+        "formula": "R = ρL/A, con L = 2 m e A = 1 mm²",
+        "interpretation": "Sostituisci il materiale mantenendo lunghezza, area e temperatura. Converti µΩ·m e mm² in SI: i fattori dieci alla meno sei si semplificano.",
+        "references": [
+          [
+            0.2,
+            0.4
+          ],
+          [
+            0.8,
+            1.6
+          ]
+        ],
+        "blocks": [],
+        "substitution": "2 × {x}",
+        "transferPrompt": "Tagli un filo lungo 2 m di sezione 1 mm² in un materiale di resistività {x}. Quale resistenza misuri ai capi?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L05-05|1280|top|0.1|",
+      "width": 1280,
+      "view": "top",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-05|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-05",
+      "negativeCaseKey": "SIM-C4-L05-05|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "Corrente convenzionale",
+      "kind": "grid",
+      "index": 0,
+      "x": 0.1,
+      "source": {
+        "id": "SIM-C4-L05-05",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 5,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Resistività",
+        "topic": "6.4 Resistività",
+        "anchor": "Una retta V(I) passante per l’origine indica",
+        "summary": "Due fili geometricamente identici presentano la stessa resistenza?",
+        "apparatus": "filo",
+        "control": {
+          "label": "Resistività",
+          "unit": "µΩ·m",
+          "min": 0.1,
+          "max": 1,
+          "step": 0.1
+        },
+        "measure": {
+          "label": "Resistenza del filo",
+          "unit": "Ω"
+        },
+        "formula": "R = ρL/A, con L = 2 m e A = 1 mm²",
+        "interpretation": "Sostituisci il materiale mantenendo lunghezza, area e temperatura. Converti µΩ·m e mm² in SI: i fattori dieci alla meno sei si semplificano.",
+        "references": [
+          [
+            0.2,
+            0.4
+          ],
+          [
+            0.8,
+            1.6
+          ]
+        ],
+        "blocks": [],
+        "substitution": "2 × {x}",
+        "transferPrompt": "Tagli un filo lungo 2 m di sezione 1 mm² in un materiale di resistività {x}. Quale resistenza misuri ai capi?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L05-05|1280|fixed_projection|0.1|",
+      "width": 1280,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-05|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-05",
+      "negativeCaseKey": "SIM-C4-L05-05|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "Corrente convenzionale",
+      "kind": "grid",
+      "index": 0,
+      "x": 0.1,
+      "source": {
+        "id": "SIM-C4-L05-05",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L05",
+        "order": 5,
+        "section": "Quanto vale una corrente",
+        "version": 1,
+        "title": "Resistività",
+        "topic": "6.4 Resistività",
+        "anchor": "Una retta V(I) passante per l’origine indica",
+        "summary": "Due fili geometricamente identici presentano la stessa resistenza?",
+        "apparatus": "filo",
+        "control": {
+          "label": "Resistività",
+          "unit": "µΩ·m",
+          "min": 0.1,
+          "max": 1,
+          "step": 0.1
+        },
+        "measure": {
+          "label": "Resistenza del filo",
+          "unit": "Ω"
+        },
+        "formula": "R = ρL/A, con L = 2 m e A = 1 mm²",
+        "interpretation": "Sostituisci il materiale mantenendo lunghezza, area e temperatura. Converti µΩ·m e mm² in SI: i fattori dieci alla meno sei si semplificano.",
+        "references": [
+          [
+            0.2,
+            0.4
+          ],
+          [
+            0.8,
+            1.6
+          ]
+        ],
+        "blocks": [],
+        "substitution": "2 × {x}",
+        "transferPrompt": "Tagli un filo lungo 2 m di sezione 1 mm² in un materiale di resistività {x}. Quale resistenza misuri ai capi?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L05-05|1280|side|0.1|",
+      "width": 1280,
+      "view": "side",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L05-05|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L06-01",
+      "negativeCaseKey": "SIM-C4-L06-01|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "In parallelo",
+      "kind": "grid",
+      "index": 0,
+      "x": 2,
+      "source": {
+        "id": "SIM-C4-L06-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L06",
+        "order": 1,
+        "section": "Seguire i nodi di un circuito",
+        "version": 1,
+        "title": "Resistenze in serie e in parallelo",
+        "topic": "6.4 Resistenze in serie e in parallelo",
+        "anchor": "In serie le cadute si sommano: ΔV",
+        "summary": "Come riconosci il parallelo seguendo i nodi e quale valore aspetti?",
+        "apparatus": "circuito",
+        "control": {
+          "label": "Seconda resistenza",
+          "unit": "Ω",
+          "min": 2,
+          "max": 12,
+          "step": 1
+        },
+        "measure": {
+          "label": "Resistenza in parallelo",
+          "unit": "Ω"
+        },
+        "formula": "R parallelo = 4R₂/(4+R₂); R serie = 4+R₂",
+        "interpretation": "Le due resistenze condividono i due terminali. Confronta il valore inferiore alla più piccola con il valore in serie, dove la corrente attraversa entrambe in successione.",
+        "references": [
+          [
+            4,
+            2
+          ],
+          [
+            12,
+            3
+          ]
+        ],
+        "blocks": [],
+        "substitution": "4 × {x} / (4 + {x})",
+        "transferPrompt": "Colleghi in parallelo un resistore da 4 Ω e uno da {x}. Che valore misurerebbe un ohmmetro fra i due nodi, a generatore scollegato?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L06-01|320|top|2|",
+      "width": 320,
+      "view": "top",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L06-01|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L06-01",
+      "negativeCaseKey": "SIM-C4-L06-01|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "In parallelo",
+      "kind": "grid",
+      "index": 0,
+      "x": 2,
+      "source": {
+        "id": "SIM-C4-L06-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L06",
+        "order": 1,
+        "section": "Seguire i nodi di un circuito",
+        "version": 1,
+        "title": "Resistenze in serie e in parallelo",
+        "topic": "6.4 Resistenze in serie e in parallelo",
+        "anchor": "In serie le cadute si sommano: ΔV",
+        "summary": "Come riconosci il parallelo seguendo i nodi e quale valore aspetti?",
+        "apparatus": "circuito",
+        "control": {
+          "label": "Seconda resistenza",
+          "unit": "Ω",
+          "min": 2,
+          "max": 12,
+          "step": 1
+        },
+        "measure": {
+          "label": "Resistenza in parallelo",
+          "unit": "Ω"
+        },
+        "formula": "R parallelo = 4R₂/(4+R₂); R serie = 4+R₂",
+        "interpretation": "Le due resistenze condividono i due terminali. Confronta il valore inferiore alla più piccola con il valore in serie, dove la corrente attraversa entrambe in successione.",
+        "references": [
+          [
+            4,
+            2
+          ],
+          [
+            12,
+            3
+          ]
+        ],
+        "blocks": [],
+        "substitution": "4 × {x} / (4 + {x})",
+        "transferPrompt": "Colleghi in parallelo un resistore da 4 Ω e uno da {x}. Che valore misurerebbe un ohmmetro fra i due nodi, a generatore scollegato?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L06-01|320|fixed_projection|2|",
+      "width": 320,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L06-01|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L06-01",
+      "negativeCaseKey": "SIM-C4-L06-01|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "In parallelo",
+      "kind": "grid",
+      "index": 0,
+      "x": 2,
+      "source": {
+        "id": "SIM-C4-L06-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L06",
+        "order": 1,
+        "section": "Seguire i nodi di un circuito",
+        "version": 1,
+        "title": "Resistenze in serie e in parallelo",
+        "topic": "6.4 Resistenze in serie e in parallelo",
+        "anchor": "In serie le cadute si sommano: ΔV",
+        "summary": "Come riconosci il parallelo seguendo i nodi e quale valore aspetti?",
+        "apparatus": "circuito",
+        "control": {
+          "label": "Seconda resistenza",
+          "unit": "Ω",
+          "min": 2,
+          "max": 12,
+          "step": 1
+        },
+        "measure": {
+          "label": "Resistenza in parallelo",
+          "unit": "Ω"
+        },
+        "formula": "R parallelo = 4R₂/(4+R₂); R serie = 4+R₂",
+        "interpretation": "Le due resistenze condividono i due terminali. Confronta il valore inferiore alla più piccola con il valore in serie, dove la corrente attraversa entrambe in successione.",
+        "references": [
+          [
+            4,
+            2
+          ],
+          [
+            12,
+            3
+          ]
+        ],
+        "blocks": [],
+        "substitution": "4 × {x} / (4 + {x})",
+        "transferPrompt": "Colleghi in parallelo un resistore da 4 Ω e uno da {x}. Che valore misurerebbe un ohmmetro fra i due nodi, a generatore scollegato?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L06-01|1280|top|2|",
+      "width": 1280,
+      "view": "top",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L06-01|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L06-01",
+      "negativeCaseKey": "SIM-C4-L06-01|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "In parallelo",
+      "kind": "grid",
+      "index": 0,
+      "x": 2,
+      "source": {
+        "id": "SIM-C4-L06-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L06",
+        "order": 1,
+        "section": "Seguire i nodi di un circuito",
+        "version": 1,
+        "title": "Resistenze in serie e in parallelo",
+        "topic": "6.4 Resistenze in serie e in parallelo",
+        "anchor": "In serie le cadute si sommano: ΔV",
+        "summary": "Come riconosci il parallelo seguendo i nodi e quale valore aspetti?",
+        "apparatus": "circuito",
+        "control": {
+          "label": "Seconda resistenza",
+          "unit": "Ω",
+          "min": 2,
+          "max": 12,
+          "step": 1
+        },
+        "measure": {
+          "label": "Resistenza in parallelo",
+          "unit": "Ω"
+        },
+        "formula": "R parallelo = 4R₂/(4+R₂); R serie = 4+R₂",
+        "interpretation": "Le due resistenze condividono i due terminali. Confronta il valore inferiore alla più piccola con il valore in serie, dove la corrente attraversa entrambe in successione.",
+        "references": [
+          [
+            4,
+            2
+          ],
+          [
+            12,
+            3
+          ]
+        ],
+        "blocks": [],
+        "substitution": "4 × {x} / (4 + {x})",
+        "transferPrompt": "Colleghi in parallelo un resistore da 4 Ω e uno da {x}. Che valore misurerebbe un ohmmetro fra i due nodi, a generatore scollegato?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L06-01|1280|fixed_projection|2|",
+      "width": 1280,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L06-01|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L06-02",
+      "negativeCaseKey": "SIM-C4-L06-02|published|320|orbit|grid|9",
+      "negativeView": "orbit",
+      "negativeLabel": "Pila",
+      "kind": "grid",
+      "index": 9,
+      "x": 2.25,
+      "source": {
+        "id": "SIM-C4-L06-02",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L06",
+        "order": 2,
+        "section": "Seguire i nodi di un circuito",
+        "version": 1,
+        "title": "Potenza elettrica ed effetto Joule",
+        "topic": "6.4 Potenza elettrica ed effetto Joule",
+        "anchor": "Per una differenza di potenziale V e",
+        "summary": "Perché una corrente doppia sviluppa quattro volte la potenza termica?",
+        "apparatus": "circuito",
+        "control": {
+          "label": "Corrente nel resistore",
+          "unit": "A",
+          "min": 0,
+          "max": 4,
+          "step": 0.25
+        },
+        "measure": {
+          "label": "Potenza dissipata",
+          "unit": "W"
+        },
+        "formula": "P = VI = RI²; R = 3 Ω",
+        "interpretation": "Nel resistore ohmico la tensione necessaria raddoppia insieme alla corrente. Il prodotto V per I quadruplica. Osserva l’energia ceduta ogni secondo.",
+        "references": [
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            27
+          ]
+        ],
+        "blocks": [],
+        "substitution": "3 × {x} × {x}",
+        "transferPrompt": "Un resistore da 3 Ω è attraversato da {x}. Quanti watt deve dissipare in calore?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L06-02|320|orbit|2.25|",
+      "width": 320,
+      "view": "orbit",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L06-02|published|320|orbit|grid|9"
+      ]
+    },
+    {
+      "id": "SIM-C4-L06-02",
+      "negativeCaseKey": "SIM-C4-L06-02|published|320|orbit|grid|9",
+      "negativeView": "orbit",
+      "negativeLabel": "Pila",
+      "kind": "grid",
+      "index": 9,
+      "x": 2.25,
+      "source": {
+        "id": "SIM-C4-L06-02",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L06",
+        "order": 2,
+        "section": "Seguire i nodi di un circuito",
+        "version": 1,
+        "title": "Potenza elettrica ed effetto Joule",
+        "topic": "6.4 Potenza elettrica ed effetto Joule",
+        "anchor": "Per una differenza di potenziale V e",
+        "summary": "Perché una corrente doppia sviluppa quattro volte la potenza termica?",
+        "apparatus": "circuito",
+        "control": {
+          "label": "Corrente nel resistore",
+          "unit": "A",
+          "min": 0,
+          "max": 4,
+          "step": 0.25
+        },
+        "measure": {
+          "label": "Potenza dissipata",
+          "unit": "W"
+        },
+        "formula": "P = VI = RI²; R = 3 Ω",
+        "interpretation": "Nel resistore ohmico la tensione necessaria raddoppia insieme alla corrente. Il prodotto V per I quadruplica. Osserva l’energia ceduta ogni secondo.",
+        "references": [
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            27
+          ]
+        ],
+        "blocks": [],
+        "substitution": "3 × {x} × {x}",
+        "transferPrompt": "Un resistore da 3 Ω è attraversato da {x}. Quanti watt deve dissipare in calore?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L06-02|320|fixed_projection|2.25|",
+      "width": 320,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L06-02|published|320|orbit|grid|9"
+      ]
+    },
+    {
+      "id": "SIM-C4-L06-02",
+      "negativeCaseKey": "SIM-C4-L06-02|published|320|orbit|grid|9",
+      "negativeView": "orbit",
+      "negativeLabel": "Pila",
+      "kind": "grid",
+      "index": 9,
+      "x": 2.25,
+      "source": {
+        "id": "SIM-C4-L06-02",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L06",
+        "order": 2,
+        "section": "Seguire i nodi di un circuito",
+        "version": 1,
+        "title": "Potenza elettrica ed effetto Joule",
+        "topic": "6.4 Potenza elettrica ed effetto Joule",
+        "anchor": "Per una differenza di potenziale V e",
+        "summary": "Perché una corrente doppia sviluppa quattro volte la potenza termica?",
+        "apparatus": "circuito",
+        "control": {
+          "label": "Corrente nel resistore",
+          "unit": "A",
+          "min": 0,
+          "max": 4,
+          "step": 0.25
+        },
+        "measure": {
+          "label": "Potenza dissipata",
+          "unit": "W"
+        },
+        "formula": "P = VI = RI²; R = 3 Ω",
+        "interpretation": "Nel resistore ohmico la tensione necessaria raddoppia insieme alla corrente. Il prodotto V per I quadruplica. Osserva l’energia ceduta ogni secondo.",
+        "references": [
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            27
+          ]
+        ],
+        "blocks": [],
+        "substitution": "3 × {x} × {x}",
+        "transferPrompt": "Un resistore da 3 Ω è attraversato da {x}. Quanti watt deve dissipare in calore?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L06-02|1280|orbit|2.25|",
+      "width": 1280,
+      "view": "orbit",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L06-02|published|320|orbit|grid|9"
+      ]
+    },
+    {
+      "id": "SIM-C4-L06-02",
+      "negativeCaseKey": "SIM-C4-L06-02|published|320|orbit|grid|9",
+      "negativeView": "orbit",
+      "negativeLabel": "Pila",
+      "kind": "grid",
+      "index": 9,
+      "x": 2.25,
+      "source": {
+        "id": "SIM-C4-L06-02",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L06",
+        "order": 2,
+        "section": "Seguire i nodi di un circuito",
+        "version": 1,
+        "title": "Potenza elettrica ed effetto Joule",
+        "topic": "6.4 Potenza elettrica ed effetto Joule",
+        "anchor": "Per una differenza di potenziale V e",
+        "summary": "Perché una corrente doppia sviluppa quattro volte la potenza termica?",
+        "apparatus": "circuito",
+        "control": {
+          "label": "Corrente nel resistore",
+          "unit": "A",
+          "min": 0,
+          "max": 4,
+          "step": 0.25
+        },
+        "measure": {
+          "label": "Potenza dissipata",
+          "unit": "W"
+        },
+        "formula": "P = VI = RI²; R = 3 Ω",
+        "interpretation": "Nel resistore ohmico la tensione necessaria raddoppia insieme alla corrente. Il prodotto V per I quadruplica. Osserva l’energia ceduta ogni secondo.",
+        "references": [
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            27
+          ]
+        ],
+        "blocks": [],
+        "substitution": "3 × {x} × {x}",
+        "transferPrompt": "Un resistore da 3 Ω è attraversato da {x}. Quanti watt deve dissipare in calore?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L06-02|1280|fixed_projection|2.25|",
+      "width": 1280,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L06-02|published|320|orbit|grid|9"
+      ]
+    },
+    {
+      "id": "SIM-C4-L07-01",
+      "negativeCaseKey": "SIM-C4-L07-01|published|320|orbit|grid|0",
+      "negativeView": "orbit",
+      "negativeLabel": "−",
+      "kind": "grid",
+      "index": 0,
+      "x": 1,
+      "source": {
+        "id": "SIM-C4-L07-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L07",
+        "order": 1,
+        "section": "Immagazzinare carica ed energia",
+        "version": 1,
+        "title": "Capacità elettrica e condensatore piano",
+        "topic": "6.5 Capacità elettrica e condensatore piano",
+        "anchor": "Per piastre parallele di area affacciata A,",
+        "summary": "Come cambia la capacità separando due piastre della stessa area?",
+        "apparatus": "piastre",
+        "control": {
+          "label": "Distanza tra le piastre",
+          "unit": "mm",
+          "min": 1,
+          "max": 8,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Capacità",
+          "unit": "pF"
+        },
+        "formula": "C = ε₀A/d; A = 0,01 m², ε₀ ≈ 8,854×10⁻¹² F/m",
+        "interpretation": "Si trascurano i bordi. A parità di carica, allontanare le piastre aumenta la tensione. La stessa carica divisa per una tensione maggiore dà meno capacità.",
+        "references": [
+          [
+            2,
+            44.27
+          ],
+          [
+            4,
+            22.135
+          ]
+        ],
+        "blocks": [],
+        "substitution": "88,54 / {x}",
+        "transferPrompt": "Due piastre di area 0,01 m² sono separate nel vuoto da {x}. Trascurando i bordi, quale capacità in pF trovi?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L07-01|320|orbit|1|",
+      "width": 320,
+      "view": "orbit",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L07-01|published|320|orbit|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L07-01",
+      "negativeCaseKey": "SIM-C4-L07-01|published|320|orbit|grid|0",
+      "negativeView": "orbit",
+      "negativeLabel": "−",
+      "kind": "grid",
+      "index": 0,
+      "x": 1,
+      "source": {
+        "id": "SIM-C4-L07-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L07",
+        "order": 1,
+        "section": "Immagazzinare carica ed energia",
+        "version": 1,
+        "title": "Capacità elettrica e condensatore piano",
+        "topic": "6.5 Capacità elettrica e condensatore piano",
+        "anchor": "Per piastre parallele di area affacciata A,",
+        "summary": "Come cambia la capacità separando due piastre della stessa area?",
+        "apparatus": "piastre",
+        "control": {
+          "label": "Distanza tra le piastre",
+          "unit": "mm",
+          "min": 1,
+          "max": 8,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Capacità",
+          "unit": "pF"
+        },
+        "formula": "C = ε₀A/d; A = 0,01 m², ε₀ ≈ 8,854×10⁻¹² F/m",
+        "interpretation": "Si trascurano i bordi. A parità di carica, allontanare le piastre aumenta la tensione. La stessa carica divisa per una tensione maggiore dà meno capacità.",
+        "references": [
+          [
+            2,
+            44.27
+          ],
+          [
+            4,
+            22.135
+          ]
+        ],
+        "blocks": [],
+        "substitution": "88,54 / {x}",
+        "transferPrompt": "Due piastre di area 0,01 m² sono separate nel vuoto da {x}. Trascurando i bordi, quale capacità in pF trovi?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L07-01|320|fixed_projection|1|",
+      "width": 320,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L07-01|published|320|orbit|grid|0",
+        "SIM-C4-L07-01|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L07-01",
+      "negativeCaseKey": "SIM-C4-L07-01|published|320|orbit|grid|0",
+      "negativeView": "orbit",
+      "negativeLabel": "−",
+      "kind": "grid",
+      "index": 0,
+      "x": 1,
+      "source": {
+        "id": "SIM-C4-L07-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L07",
+        "order": 1,
+        "section": "Immagazzinare carica ed energia",
+        "version": 1,
+        "title": "Capacità elettrica e condensatore piano",
+        "topic": "6.5 Capacità elettrica e condensatore piano",
+        "anchor": "Per piastre parallele di area affacciata A,",
+        "summary": "Come cambia la capacità separando due piastre della stessa area?",
+        "apparatus": "piastre",
+        "control": {
+          "label": "Distanza tra le piastre",
+          "unit": "mm",
+          "min": 1,
+          "max": 8,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Capacità",
+          "unit": "pF"
+        },
+        "formula": "C = ε₀A/d; A = 0,01 m², ε₀ ≈ 8,854×10⁻¹² F/m",
+        "interpretation": "Si trascurano i bordi. A parità di carica, allontanare le piastre aumenta la tensione. La stessa carica divisa per una tensione maggiore dà meno capacità.",
+        "references": [
+          [
+            2,
+            44.27
+          ],
+          [
+            4,
+            22.135
+          ]
+        ],
+        "blocks": [],
+        "substitution": "88,54 / {x}",
+        "transferPrompt": "Due piastre di area 0,01 m² sono separate nel vuoto da {x}. Trascurando i bordi, quale capacità in pF trovi?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L07-01|1280|orbit|1|",
+      "width": 1280,
+      "view": "orbit",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L07-01|published|320|orbit|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L07-01",
+      "negativeCaseKey": "SIM-C4-L07-01|published|320|orbit|grid|0",
+      "negativeView": "orbit",
+      "negativeLabel": "−",
+      "kind": "grid",
+      "index": 0,
+      "x": 1,
+      "source": {
+        "id": "SIM-C4-L07-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L07",
+        "order": 1,
+        "section": "Immagazzinare carica ed energia",
+        "version": 1,
+        "title": "Capacità elettrica e condensatore piano",
+        "topic": "6.5 Capacità elettrica e condensatore piano",
+        "anchor": "Per piastre parallele di area affacciata A,",
+        "summary": "Come cambia la capacità separando due piastre della stessa area?",
+        "apparatus": "piastre",
+        "control": {
+          "label": "Distanza tra le piastre",
+          "unit": "mm",
+          "min": 1,
+          "max": 8,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Capacità",
+          "unit": "pF"
+        },
+        "formula": "C = ε₀A/d; A = 0,01 m², ε₀ ≈ 8,854×10⁻¹² F/m",
+        "interpretation": "Si trascurano i bordi. A parità di carica, allontanare le piastre aumenta la tensione. La stessa carica divisa per una tensione maggiore dà meno capacità.",
+        "references": [
+          [
+            2,
+            44.27
+          ],
+          [
+            4,
+            22.135
+          ]
+        ],
+        "blocks": [],
+        "substitution": "88,54 / {x}",
+        "transferPrompt": "Due piastre di area 0,01 m² sono separate nel vuoto da {x}. Trascurando i bordi, quale capacità in pF trovi?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L07-01|1280|fixed_projection|1|",
+      "width": 1280,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L07-01|published|320|orbit|grid|0",
+        "SIM-C4-L07-01|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L07-01",
+      "negativeCaseKey": "SIM-C4-L07-01|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "+",
+      "kind": "grid",
+      "index": 0,
+      "x": 1,
+      "source": {
+        "id": "SIM-C4-L07-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L07",
+        "order": 1,
+        "section": "Immagazzinare carica ed energia",
+        "version": 1,
+        "title": "Capacità elettrica e condensatore piano",
+        "topic": "6.5 Capacità elettrica e condensatore piano",
+        "anchor": "Per piastre parallele di area affacciata A,",
+        "summary": "Come cambia la capacità separando due piastre della stessa area?",
+        "apparatus": "piastre",
+        "control": {
+          "label": "Distanza tra le piastre",
+          "unit": "mm",
+          "min": 1,
+          "max": 8,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Capacità",
+          "unit": "pF"
+        },
+        "formula": "C = ε₀A/d; A = 0,01 m², ε₀ ≈ 8,854×10⁻¹² F/m",
+        "interpretation": "Si trascurano i bordi. A parità di carica, allontanare le piastre aumenta la tensione. La stessa carica divisa per una tensione maggiore dà meno capacità.",
+        "references": [
+          [
+            2,
+            44.27
+          ],
+          [
+            4,
+            22.135
+          ]
+        ],
+        "blocks": [],
+        "substitution": "88,54 / {x}",
+        "transferPrompt": "Due piastre di area 0,01 m² sono separate nel vuoto da {x}. Trascurando i bordi, quale capacità in pF trovi?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L07-01|320|top|1|",
+      "width": 320,
+      "view": "top",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L07-01|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L07-01",
+      "negativeCaseKey": "SIM-C4-L07-01|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "+",
+      "kind": "grid",
+      "index": 0,
+      "x": 1,
+      "source": {
+        "id": "SIM-C4-L07-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L07",
+        "order": 1,
+        "section": "Immagazzinare carica ed energia",
+        "version": 1,
+        "title": "Capacità elettrica e condensatore piano",
+        "topic": "6.5 Capacità elettrica e condensatore piano",
+        "anchor": "Per piastre parallele di area affacciata A,",
+        "summary": "Come cambia la capacità separando due piastre della stessa area?",
+        "apparatus": "piastre",
+        "control": {
+          "label": "Distanza tra le piastre",
+          "unit": "mm",
+          "min": 1,
+          "max": 8,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Capacità",
+          "unit": "pF"
+        },
+        "formula": "C = ε₀A/d; A = 0,01 m², ε₀ ≈ 8,854×10⁻¹² F/m",
+        "interpretation": "Si trascurano i bordi. A parità di carica, allontanare le piastre aumenta la tensione. La stessa carica divisa per una tensione maggiore dà meno capacità.",
+        "references": [
+          [
+            2,
+            44.27
+          ],
+          [
+            4,
+            22.135
+          ]
+        ],
+        "blocks": [],
+        "substitution": "88,54 / {x}",
+        "transferPrompt": "Due piastre di area 0,01 m² sono separate nel vuoto da {x}. Trascurando i bordi, quale capacità in pF trovi?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L07-01|1280|top|1|",
+      "width": 1280,
+      "view": "top",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L07-01|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C4-L09-01",
+      "negativeCaseKey": "SIM-C4-L09-01|published|320|top|grid|9",
+      "negativeView": "top",
+      "negativeLabel": "Sonda B",
+      "kind": "grid",
+      "index": 9,
+      "x": -1.5,
+      "source": {
+        "id": "SIM-C4-L09-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L09",
+        "order": 1,
+        "section": "Correnti, bussole e traiettorie curve",
+        "version": 1,
+        "title": "Origine magnetica delle correnti ed esperimento di Oersted",
+        "topic": "6.6 Origine magnetica delle correnti ed esperimento di Oersted",
+        "anchor": "Una bussola vicino a un filo rettilineo",
+        "summary": "Come si orienta la bussola quando inverti la corrente nel filo?",
+        "apparatus": "bussola",
+        "control": {
+          "label": "Corrente verticale nel filo",
+          "unit": "A",
+          "min": -6,
+          "max": 6,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Campo tangenziale con segno",
+          "unit": "µT"
+        },
+        "formula": "B = μ₀I/(2πr), con r = 5 cm",
+        "interpretation": "Il filo rettilineo è lungo rispetto alla distanza della sonda. Guarda dall’alto e applica la mano destra. Nel modello si trascura il campo terrestre; a corrente nulla il filo non seleziona una direzione.",
+        "references": [
+          [
+            -2,
+            -8
+          ],
+          [
+            5,
+            20
+          ]
+        ],
+        "blocks": [],
+        "substitution": "4 × {x}",
+        "transferPrompt": "Una sonda resta a 5 cm dal filo rettilineo mentre la corrente vale {x}. Quale campo tangenziale con segno legge secondo il verso indicato?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L09-01|320|top|-1.5|",
+      "width": 320,
+      "view": "top",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L09-01|published|320|top|grid|9"
+      ]
+    },
+    {
+      "id": "SIM-C4-L09-01",
+      "negativeCaseKey": "SIM-C4-L09-01|published|320|top|grid|9",
+      "negativeView": "top",
+      "negativeLabel": "Sonda B",
+      "kind": "grid",
+      "index": 9,
+      "x": -1.5,
+      "source": {
+        "id": "SIM-C4-L09-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L09",
+        "order": 1,
+        "section": "Correnti, bussole e traiettorie curve",
+        "version": 1,
+        "title": "Origine magnetica delle correnti ed esperimento di Oersted",
+        "topic": "6.6 Origine magnetica delle correnti ed esperimento di Oersted",
+        "anchor": "Una bussola vicino a un filo rettilineo",
+        "summary": "Come si orienta la bussola quando inverti la corrente nel filo?",
+        "apparatus": "bussola",
+        "control": {
+          "label": "Corrente verticale nel filo",
+          "unit": "A",
+          "min": -6,
+          "max": 6,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Campo tangenziale con segno",
+          "unit": "µT"
+        },
+        "formula": "B = μ₀I/(2πr), con r = 5 cm",
+        "interpretation": "Il filo rettilineo è lungo rispetto alla distanza della sonda. Guarda dall’alto e applica la mano destra. Nel modello si trascura il campo terrestre; a corrente nulla il filo non seleziona una direzione.",
+        "references": [
+          [
+            -2,
+            -8
+          ],
+          [
+            5,
+            20
+          ]
+        ],
+        "blocks": [],
+        "substitution": "4 × {x}",
+        "transferPrompt": "Una sonda resta a 5 cm dal filo rettilineo mentre la corrente vale {x}. Quale campo tangenziale con segno legge secondo il verso indicato?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L09-01|320|fixed_projection|-1.5|",
+      "width": 320,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L09-01|published|320|top|grid|9"
+      ]
+    },
+    {
+      "id": "SIM-C4-L09-01",
+      "negativeCaseKey": "SIM-C4-L09-01|published|320|top|grid|9",
+      "negativeView": "top",
+      "negativeLabel": "Sonda B",
+      "kind": "grid",
+      "index": 9,
+      "x": -1.5,
+      "source": {
+        "id": "SIM-C4-L09-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L09",
+        "order": 1,
+        "section": "Correnti, bussole e traiettorie curve",
+        "version": 1,
+        "title": "Origine magnetica delle correnti ed esperimento di Oersted",
+        "topic": "6.6 Origine magnetica delle correnti ed esperimento di Oersted",
+        "anchor": "Una bussola vicino a un filo rettilineo",
+        "summary": "Come si orienta la bussola quando inverti la corrente nel filo?",
+        "apparatus": "bussola",
+        "control": {
+          "label": "Corrente verticale nel filo",
+          "unit": "A",
+          "min": -6,
+          "max": 6,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Campo tangenziale con segno",
+          "unit": "µT"
+        },
+        "formula": "B = μ₀I/(2πr), con r = 5 cm",
+        "interpretation": "Il filo rettilineo è lungo rispetto alla distanza della sonda. Guarda dall’alto e applica la mano destra. Nel modello si trascura il campo terrestre; a corrente nulla il filo non seleziona una direzione.",
+        "references": [
+          [
+            -2,
+            -8
+          ],
+          [
+            5,
+            20
+          ]
+        ],
+        "blocks": [],
+        "substitution": "4 × {x}",
+        "transferPrompt": "Una sonda resta a 5 cm dal filo rettilineo mentre la corrente vale {x}. Quale campo tangenziale con segno legge secondo il verso indicato?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L09-01|1280|top|-1.5|",
+      "width": 1280,
+      "view": "top",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L09-01|published|320|top|grid|9"
+      ]
+    },
+    {
+      "id": "SIM-C4-L09-01",
+      "negativeCaseKey": "SIM-C4-L09-01|published|320|top|grid|9",
+      "negativeView": "top",
+      "negativeLabel": "Sonda B",
+      "kind": "grid",
+      "index": 9,
+      "x": -1.5,
+      "source": {
+        "id": "SIM-C4-L09-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L09",
+        "order": 1,
+        "section": "Correnti, bussole e traiettorie curve",
+        "version": 1,
+        "title": "Origine magnetica delle correnti ed esperimento di Oersted",
+        "topic": "6.6 Origine magnetica delle correnti ed esperimento di Oersted",
+        "anchor": "Una bussola vicino a un filo rettilineo",
+        "summary": "Come si orienta la bussola quando inverti la corrente nel filo?",
+        "apparatus": "bussola",
+        "control": {
+          "label": "Corrente verticale nel filo",
+          "unit": "A",
+          "min": -6,
+          "max": 6,
+          "step": 0.5
+        },
+        "measure": {
+          "label": "Campo tangenziale con segno",
+          "unit": "µT"
+        },
+        "formula": "B = μ₀I/(2πr), con r = 5 cm",
+        "interpretation": "Il filo rettilineo è lungo rispetto alla distanza della sonda. Guarda dall’alto e applica la mano destra. Nel modello si trascura il campo terrestre; a corrente nulla il filo non seleziona una direzione.",
+        "references": [
+          [
+            -2,
+            -8
+          ],
+          [
+            5,
+            20
+          ]
+        ],
+        "blocks": [],
+        "substitution": "4 × {x}",
+        "transferPrompt": "Una sonda resta a 5 cm dal filo rettilineo mentre la corrente vale {x}. Quale campo tangenziale con segno legge secondo il verso indicato?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L09-01|1280|fixed_projection|-1.5|",
+      "width": 1280,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L09-01|published|320|top|grid|9"
+      ]
+    },
+    {
+      "id": "SIM-C4-L10-01",
+      "negativeCaseKey": "SIM-C4-L10-01|published|320|top|grid|18",
+      "negativeView": "top",
+      "negativeLabel": "Normale alla spira",
+      "kind": "grid",
+      "index": 18,
+      "x": 90,
+      "source": {
+        "id": "SIM-C4-L10-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L10",
+        "order": 1,
+        "section": "Indurre una tensione cambiando il flusso",
+        "version": 1,
+        "title": "Flusso magnetico",
+        "topic": "6.7 Flusso magnetico",
+        "anchor": "Una spira ferma può essere attraversata da",
+        "summary": "Quale angolo devi misurare per calcolare il flusso attraverso una spira?",
+        "apparatus": "spira",
+        "control": {
+          "label": "Angolo tra campo e normale",
+          "unit": "°",
+          "min": 0,
+          "max": 180,
+          "step": 5
+        },
+        "measure": {
+          "label": "Flusso magnetico",
+          "unit": "mWb"
+        },
+        "formula": "Φ = BA cos θ; B = 0,3 T, A = 0,02 m²",
+        "interpretation": "La freccia normale è perpendicolare alla superficie. Di taglio il flusso si annulla, anche se il campo rimane presente; invertendo la normale il flusso cambia segno.",
+        "references": [
+          [
+            0,
+            6
+          ],
+          [
+            120,
+            -3
+          ]
+        ],
+        "blocks": [],
+        "substitution": "6 × cos({x}°)",
+        "transferPrompt": "Una spira di area 0,02 m² è in un campo da 0,3 T. Se la normale orientata forma {x} con il campo, quale flusso con segno ottieni in mWb?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L10-01|320|top|90|",
+      "width": 320,
+      "view": "top",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L10-01|published|320|top|grid|18"
+      ]
+    },
+    {
+      "id": "SIM-C4-L10-01",
+      "negativeCaseKey": "SIM-C4-L10-01|published|320|top|grid|18",
+      "negativeView": "top",
+      "negativeLabel": "Normale alla spira",
+      "kind": "grid",
+      "index": 18,
+      "x": 90,
+      "source": {
+        "id": "SIM-C4-L10-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L10",
+        "order": 1,
+        "section": "Indurre una tensione cambiando il flusso",
+        "version": 1,
+        "title": "Flusso magnetico",
+        "topic": "6.7 Flusso magnetico",
+        "anchor": "Una spira ferma può essere attraversata da",
+        "summary": "Quale angolo devi misurare per calcolare il flusso attraverso una spira?",
+        "apparatus": "spira",
+        "control": {
+          "label": "Angolo tra campo e normale",
+          "unit": "°",
+          "min": 0,
+          "max": 180,
+          "step": 5
+        },
+        "measure": {
+          "label": "Flusso magnetico",
+          "unit": "mWb"
+        },
+        "formula": "Φ = BA cos θ; B = 0,3 T, A = 0,02 m²",
+        "interpretation": "La freccia normale è perpendicolare alla superficie. Di taglio il flusso si annulla, anche se il campo rimane presente; invertendo la normale il flusso cambia segno.",
+        "references": [
+          [
+            0,
+            6
+          ],
+          [
+            120,
+            -3
+          ]
+        ],
+        "blocks": [],
+        "substitution": "6 × cos({x}°)",
+        "transferPrompt": "Una spira di area 0,02 m² è in un campo da 0,3 T. Se la normale orientata forma {x} con il campo, quale flusso con segno ottieni in mWb?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L10-01|320|fixed_projection|90|",
+      "width": 320,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L10-01|published|320|top|grid|18"
+      ]
+    },
+    {
+      "id": "SIM-C4-L10-01",
+      "negativeCaseKey": "SIM-C4-L10-01|published|320|top|grid|18",
+      "negativeView": "top",
+      "negativeLabel": "Normale alla spira",
+      "kind": "grid",
+      "index": 18,
+      "x": 90,
+      "source": {
+        "id": "SIM-C4-L10-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L10",
+        "order": 1,
+        "section": "Indurre una tensione cambiando il flusso",
+        "version": 1,
+        "title": "Flusso magnetico",
+        "topic": "6.7 Flusso magnetico",
+        "anchor": "Una spira ferma può essere attraversata da",
+        "summary": "Quale angolo devi misurare per calcolare il flusso attraverso una spira?",
+        "apparatus": "spira",
+        "control": {
+          "label": "Angolo tra campo e normale",
+          "unit": "°",
+          "min": 0,
+          "max": 180,
+          "step": 5
+        },
+        "measure": {
+          "label": "Flusso magnetico",
+          "unit": "mWb"
+        },
+        "formula": "Φ = BA cos θ; B = 0,3 T, A = 0,02 m²",
+        "interpretation": "La freccia normale è perpendicolare alla superficie. Di taglio il flusso si annulla, anche se il campo rimane presente; invertendo la normale il flusso cambia segno.",
+        "references": [
+          [
+            0,
+            6
+          ],
+          [
+            120,
+            -3
+          ]
+        ],
+        "blocks": [],
+        "substitution": "6 × cos({x}°)",
+        "transferPrompt": "Una spira di area 0,02 m² è in un campo da 0,3 T. Se la normale orientata forma {x} con il campo, quale flusso con segno ottieni in mWb?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L10-01|320|side|90|",
+      "width": 320,
+      "view": "side",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L10-01|published|320|top|grid|18"
+      ]
+    },
+    {
+      "id": "SIM-C4-L10-01",
+      "negativeCaseKey": "SIM-C4-L10-01|published|320|top|grid|18",
+      "negativeView": "top",
+      "negativeLabel": "Normale alla spira",
+      "kind": "grid",
+      "index": 18,
+      "x": 90,
+      "source": {
+        "id": "SIM-C4-L10-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L10",
+        "order": 1,
+        "section": "Indurre una tensione cambiando il flusso",
+        "version": 1,
+        "title": "Flusso magnetico",
+        "topic": "6.7 Flusso magnetico",
+        "anchor": "Una spira ferma può essere attraversata da",
+        "summary": "Quale angolo devi misurare per calcolare il flusso attraverso una spira?",
+        "apparatus": "spira",
+        "control": {
+          "label": "Angolo tra campo e normale",
+          "unit": "°",
+          "min": 0,
+          "max": 180,
+          "step": 5
+        },
+        "measure": {
+          "label": "Flusso magnetico",
+          "unit": "mWb"
+        },
+        "formula": "Φ = BA cos θ; B = 0,3 T, A = 0,02 m²",
+        "interpretation": "La freccia normale è perpendicolare alla superficie. Di taglio il flusso si annulla, anche se il campo rimane presente; invertendo la normale il flusso cambia segno.",
+        "references": [
+          [
+            0,
+            6
+          ],
+          [
+            120,
+            -3
+          ]
+        ],
+        "blocks": [],
+        "substitution": "6 × cos({x}°)",
+        "transferPrompt": "Una spira di area 0,02 m² è in un campo da 0,3 T. Se la normale orientata forma {x} con il campo, quale flusso con segno ottieni in mWb?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L10-01|1280|top|90|",
+      "width": 1280,
+      "view": "top",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L10-01|published|320|top|grid|18"
+      ]
+    },
+    {
+      "id": "SIM-C4-L10-01",
+      "negativeCaseKey": "SIM-C4-L10-01|published|320|top|grid|18",
+      "negativeView": "top",
+      "negativeLabel": "Normale alla spira",
+      "kind": "grid",
+      "index": 18,
+      "x": 90,
+      "source": {
+        "id": "SIM-C4-L10-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L10",
+        "order": 1,
+        "section": "Indurre una tensione cambiando il flusso",
+        "version": 1,
+        "title": "Flusso magnetico",
+        "topic": "6.7 Flusso magnetico",
+        "anchor": "Una spira ferma può essere attraversata da",
+        "summary": "Quale angolo devi misurare per calcolare il flusso attraverso una spira?",
+        "apparatus": "spira",
+        "control": {
+          "label": "Angolo tra campo e normale",
+          "unit": "°",
+          "min": 0,
+          "max": 180,
+          "step": 5
+        },
+        "measure": {
+          "label": "Flusso magnetico",
+          "unit": "mWb"
+        },
+        "formula": "Φ = BA cos θ; B = 0,3 T, A = 0,02 m²",
+        "interpretation": "La freccia normale è perpendicolare alla superficie. Di taglio il flusso si annulla, anche se il campo rimane presente; invertendo la normale il flusso cambia segno.",
+        "references": [
+          [
+            0,
+            6
+          ],
+          [
+            120,
+            -3
+          ]
+        ],
+        "blocks": [],
+        "substitution": "6 × cos({x}°)",
+        "transferPrompt": "Una spira di area 0,02 m² è in un campo da 0,3 T. Se la normale orientata forma {x} con il campo, quale flusso con segno ottieni in mWb?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L10-01|1280|fixed_projection|90|",
+      "width": 1280,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L10-01|published|320|top|grid|18"
+      ]
+    },
+    {
+      "id": "SIM-C4-L10-01",
+      "negativeCaseKey": "SIM-C4-L10-01|published|320|top|grid|18",
+      "negativeView": "top",
+      "negativeLabel": "Normale alla spira",
+      "kind": "grid",
+      "index": 18,
+      "x": 90,
+      "source": {
+        "id": "SIM-C4-L10-01",
+        "kind": "experiment",
+        "course": "C4",
+        "skill": "C4-L10",
+        "order": 1,
+        "section": "Indurre una tensione cambiando il flusso",
+        "version": 1,
+        "title": "Flusso magnetico",
+        "topic": "6.7 Flusso magnetico",
+        "anchor": "Una spira ferma può essere attraversata da",
+        "summary": "Quale angolo devi misurare per calcolare il flusso attraverso una spira?",
+        "apparatus": "spira",
+        "control": {
+          "label": "Angolo tra campo e normale",
+          "unit": "°",
+          "min": 0,
+          "max": 180,
+          "step": 5
+        },
+        "measure": {
+          "label": "Flusso magnetico",
+          "unit": "mWb"
+        },
+        "formula": "Φ = BA cos θ; B = 0,3 T, A = 0,02 m²",
+        "interpretation": "La freccia normale è perpendicolare alla superficie. Di taglio il flusso si annulla, anche se il campo rimane presente; invertendo la normale il flusso cambia segno.",
+        "references": [
+          [
+            0,
+            6
+          ],
+          [
+            120,
+            -3
+          ]
+        ],
+        "blocks": [],
+        "substitution": "6 × cos({x}°)",
+        "transferPrompt": "Una spira di area 0,02 m² è in un campo da 0,3 T. Se la normale orientata forma {x} con il campo, quale flusso con segno ottieni in mWb?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C4-L10-01|1280|side|90|",
+      "width": 1280,
+      "view": "side",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C4-L10-01|published|320|top|grid|18"
+      ]
+    },
+    {
+      "id": "SIM-C5-L01-02",
+      "negativeCaseKey": "SIM-C5-L01-02|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "Massa oscillante",
+      "kind": "grid",
+      "index": 0,
+      "x": 0.5,
+      "source": {
+        "id": "SIM-C5-L01-02",
+        "kind": "experiment",
+        "course": "C5",
+        "skill": "C5-L01",
+        "order": 2,
+        "section": "Il tempo di un’oscillazione",
+        "version": 2,
+        "title": "Ampiezza, periodo, frequenza e pulsazione",
+        "topic": "UD4 · ampiezza, periodo, frequenza e pulsazione",
+        "anchor": "La pulsazione ω indica quanti radianti di",
+        "summary": "Come cambia il numero di ritorni in un secondo se allunghi il periodo?",
+        "apparatus": "oscillatore",
+        "control": {
+          "label": "Periodo",
+          "unit": "s",
+          "min": 0.5,
+          "max": 4,
+          "step": 0.25
+        },
+        "measure": {
+          "label": "Frequenza",
+          "unit": "Hz"
+        },
+        "formula": "f = 1/T; ω = 2π/T; ampiezza = 3 cm",
+        "interpretation": "La sorgente parte dal massimo, a 3 cm dall’equilibrio. Avvia il moto e conta i ritorni al massimo in due periodi. Nelle tavole A e B confronta la posizione a 0,5 s. Fra i due estremi ci sono 6 cm. La frequenza conta i cicli al secondo, la pulsazione i radianti al secondo.",
+        "references": [
+          [
+            0.5,
+            2
+          ],
+          [
+            2,
+            0.5
+          ]
+        ],
+        "blocks": [],
+        "substitution": "1 / {x}",
+        "transferPrompt": "Un sensore rileva un’oscillazione completa ogni {x}. Quanti cicli registra per secondo?"
+      },
+      "hasClock": true,
+      "clockInput": false,
+      "key": "SIM-C5-L01-02|320|top|0.5|",
+      "width": 320,
+      "view": "top",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C5-L01-02|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C5-L01-02",
+      "negativeCaseKey": "SIM-C5-L01-02|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "Massa oscillante",
+      "kind": "grid",
+      "index": 0,
+      "x": 0.5,
+      "source": {
+        "id": "SIM-C5-L01-02",
+        "kind": "experiment",
+        "course": "C5",
+        "skill": "C5-L01",
+        "order": 2,
+        "section": "Il tempo di un’oscillazione",
+        "version": 2,
+        "title": "Ampiezza, periodo, frequenza e pulsazione",
+        "topic": "UD4 · ampiezza, periodo, frequenza e pulsazione",
+        "anchor": "La pulsazione ω indica quanti radianti di",
+        "summary": "Come cambia il numero di ritorni in un secondo se allunghi il periodo?",
+        "apparatus": "oscillatore",
+        "control": {
+          "label": "Periodo",
+          "unit": "s",
+          "min": 0.5,
+          "max": 4,
+          "step": 0.25
+        },
+        "measure": {
+          "label": "Frequenza",
+          "unit": "Hz"
+        },
+        "formula": "f = 1/T; ω = 2π/T; ampiezza = 3 cm",
+        "interpretation": "La sorgente parte dal massimo, a 3 cm dall’equilibrio. Avvia il moto e conta i ritorni al massimo in due periodi. Nelle tavole A e B confronta la posizione a 0,5 s. Fra i due estremi ci sono 6 cm. La frequenza conta i cicli al secondo, la pulsazione i radianti al secondo.",
+        "references": [
+          [
+            0.5,
+            2
+          ],
+          [
+            2,
+            0.5
+          ]
+        ],
+        "blocks": [],
+        "substitution": "1 / {x}",
+        "transferPrompt": "Un sensore rileva un’oscillazione completa ogni {x}. Quanti cicli registra per secondo?"
+      },
+      "hasClock": true,
+      "clockInput": false,
+      "key": "SIM-C5-L01-02|320|fixed_projection|0.5|",
+      "width": 320,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C5-L01-02|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C5-L01-02",
+      "negativeCaseKey": "SIM-C5-L01-02|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "Massa oscillante",
+      "kind": "grid",
+      "index": 0,
+      "x": 0.5,
+      "source": {
+        "id": "SIM-C5-L01-02",
+        "kind": "experiment",
+        "course": "C5",
+        "skill": "C5-L01",
+        "order": 2,
+        "section": "Il tempo di un’oscillazione",
+        "version": 2,
+        "title": "Ampiezza, periodo, frequenza e pulsazione",
+        "topic": "UD4 · ampiezza, periodo, frequenza e pulsazione",
+        "anchor": "La pulsazione ω indica quanti radianti di",
+        "summary": "Come cambia il numero di ritorni in un secondo se allunghi il periodo?",
+        "apparatus": "oscillatore",
+        "control": {
+          "label": "Periodo",
+          "unit": "s",
+          "min": 0.5,
+          "max": 4,
+          "step": 0.25
+        },
+        "measure": {
+          "label": "Frequenza",
+          "unit": "Hz"
+        },
+        "formula": "f = 1/T; ω = 2π/T; ampiezza = 3 cm",
+        "interpretation": "La sorgente parte dal massimo, a 3 cm dall’equilibrio. Avvia il moto e conta i ritorni al massimo in due periodi. Nelle tavole A e B confronta la posizione a 0,5 s. Fra i due estremi ci sono 6 cm. La frequenza conta i cicli al secondo, la pulsazione i radianti al secondo.",
+        "references": [
+          [
+            0.5,
+            2
+          ],
+          [
+            2,
+            0.5
+          ]
+        ],
+        "blocks": [],
+        "substitution": "1 / {x}",
+        "transferPrompt": "Un sensore rileva un’oscillazione completa ogni {x}. Quanti cicli registra per secondo?"
+      },
+      "hasClock": true,
+      "clockInput": false,
+      "key": "SIM-C5-L01-02|320|side|0.5|",
+      "width": 320,
+      "view": "side",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C5-L01-02|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C5-L01-02",
+      "negativeCaseKey": "SIM-C5-L01-02|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "Massa oscillante",
+      "kind": "grid",
+      "index": 0,
+      "x": 0.5,
+      "source": {
+        "id": "SIM-C5-L01-02",
+        "kind": "experiment",
+        "course": "C5",
+        "skill": "C5-L01",
+        "order": 2,
+        "section": "Il tempo di un’oscillazione",
+        "version": 2,
+        "title": "Ampiezza, periodo, frequenza e pulsazione",
+        "topic": "UD4 · ampiezza, periodo, frequenza e pulsazione",
+        "anchor": "La pulsazione ω indica quanti radianti di",
+        "summary": "Come cambia il numero di ritorni in un secondo se allunghi il periodo?",
+        "apparatus": "oscillatore",
+        "control": {
+          "label": "Periodo",
+          "unit": "s",
+          "min": 0.5,
+          "max": 4,
+          "step": 0.25
+        },
+        "measure": {
+          "label": "Frequenza",
+          "unit": "Hz"
+        },
+        "formula": "f = 1/T; ω = 2π/T; ampiezza = 3 cm",
+        "interpretation": "La sorgente parte dal massimo, a 3 cm dall’equilibrio. Avvia il moto e conta i ritorni al massimo in due periodi. Nelle tavole A e B confronta la posizione a 0,5 s. Fra i due estremi ci sono 6 cm. La frequenza conta i cicli al secondo, la pulsazione i radianti al secondo.",
+        "references": [
+          [
+            0.5,
+            2
+          ],
+          [
+            2,
+            0.5
+          ]
+        ],
+        "blocks": [],
+        "substitution": "1 / {x}",
+        "transferPrompt": "Un sensore rileva un’oscillazione completa ogni {x}. Quanti cicli registra per secondo?"
+      },
+      "hasClock": true,
+      "clockInput": false,
+      "key": "SIM-C5-L01-02|1280|top|0.5|",
+      "width": 1280,
+      "view": "top",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C5-L01-02|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C5-L01-02",
+      "negativeCaseKey": "SIM-C5-L01-02|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "Massa oscillante",
+      "kind": "grid",
+      "index": 0,
+      "x": 0.5,
+      "source": {
+        "id": "SIM-C5-L01-02",
+        "kind": "experiment",
+        "course": "C5",
+        "skill": "C5-L01",
+        "order": 2,
+        "section": "Il tempo di un’oscillazione",
+        "version": 2,
+        "title": "Ampiezza, periodo, frequenza e pulsazione",
+        "topic": "UD4 · ampiezza, periodo, frequenza e pulsazione",
+        "anchor": "La pulsazione ω indica quanti radianti di",
+        "summary": "Come cambia il numero di ritorni in un secondo se allunghi il periodo?",
+        "apparatus": "oscillatore",
+        "control": {
+          "label": "Periodo",
+          "unit": "s",
+          "min": 0.5,
+          "max": 4,
+          "step": 0.25
+        },
+        "measure": {
+          "label": "Frequenza",
+          "unit": "Hz"
+        },
+        "formula": "f = 1/T; ω = 2π/T; ampiezza = 3 cm",
+        "interpretation": "La sorgente parte dal massimo, a 3 cm dall’equilibrio. Avvia il moto e conta i ritorni al massimo in due periodi. Nelle tavole A e B confronta la posizione a 0,5 s. Fra i due estremi ci sono 6 cm. La frequenza conta i cicli al secondo, la pulsazione i radianti al secondo.",
+        "references": [
+          [
+            0.5,
+            2
+          ],
+          [
+            2,
+            0.5
+          ]
+        ],
+        "blocks": [],
+        "substitution": "1 / {x}",
+        "transferPrompt": "Un sensore rileva un’oscillazione completa ogni {x}. Quanti cicli registra per secondo?"
+      },
+      "hasClock": true,
+      "clockInput": false,
+      "key": "SIM-C5-L01-02|1280|fixed_projection|0.5|",
+      "width": 1280,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C5-L01-02|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C5-L01-02",
+      "negativeCaseKey": "SIM-C5-L01-02|published|320|top|grid|0",
+      "negativeView": "top",
+      "negativeLabel": "Massa oscillante",
+      "kind": "grid",
+      "index": 0,
+      "x": 0.5,
+      "source": {
+        "id": "SIM-C5-L01-02",
+        "kind": "experiment",
+        "course": "C5",
+        "skill": "C5-L01",
+        "order": 2,
+        "section": "Il tempo di un’oscillazione",
+        "version": 2,
+        "title": "Ampiezza, periodo, frequenza e pulsazione",
+        "topic": "UD4 · ampiezza, periodo, frequenza e pulsazione",
+        "anchor": "La pulsazione ω indica quanti radianti di",
+        "summary": "Come cambia il numero di ritorni in un secondo se allunghi il periodo?",
+        "apparatus": "oscillatore",
+        "control": {
+          "label": "Periodo",
+          "unit": "s",
+          "min": 0.5,
+          "max": 4,
+          "step": 0.25
+        },
+        "measure": {
+          "label": "Frequenza",
+          "unit": "Hz"
+        },
+        "formula": "f = 1/T; ω = 2π/T; ampiezza = 3 cm",
+        "interpretation": "La sorgente parte dal massimo, a 3 cm dall’equilibrio. Avvia il moto e conta i ritorni al massimo in due periodi. Nelle tavole A e B confronta la posizione a 0,5 s. Fra i due estremi ci sono 6 cm. La frequenza conta i cicli al secondo, la pulsazione i radianti al secondo.",
+        "references": [
+          [
+            0.5,
+            2
+          ],
+          [
+            2,
+            0.5
+          ]
+        ],
+        "blocks": [],
+        "substitution": "1 / {x}",
+        "transferPrompt": "Un sensore rileva un’oscillazione completa ogni {x}. Quanti cicli registra per secondo?"
+      },
+      "hasClock": true,
+      "clockInput": false,
+      "key": "SIM-C5-L01-02|1280|side|0.5|",
+      "width": 1280,
+      "view": "side",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C5-L01-02|published|320|top|grid|0"
+      ]
+    },
+    {
+      "id": "SIM-C5-L05-03",
+      "negativeCaseKey": "SIM-C5-L05-03|published|320|top|clock|84",
+      "negativeView": "top",
+      "negativeLabel": "Sorgente",
+      "kind": "clock",
+      "index": 84,
+      "x": 40,
+      "time": 20,
+      "source": {
+        "id": "SIM-C5-L05-03",
+        "kind": "experiment",
+        "course": "C5",
+        "skill": "C5-L05",
+        "order": 3,
+        "section": "Suono e movimento relativo",
+        "version": 1,
+        "title": "Effetto Doppler qualitativo",
+        "topic": "UD4 · effetto Doppler qualitativo",
+        "anchor": "Un ricevitore fermo investito da fronti più",
+        "summary": "Che cosa vede il ricevitore quando la sorgente si avvicina e poi si allontana?",
+        "apparatus": "doppler",
+        "control": {
+          "label": "Velocità della sorgente verso il ricevitore",
+          "unit": "m/s",
+          "min": -40,
+          "max": 40,
+          "step": 5
+        },
+        "measure": {
+          "label": "Frequenza ricevuta",
+          "unit": "Hz"
+        },
+        "formula": "f ricevuta = f₀ v/(v−u); f₀ = 300 Hz, v = 300 m/s",
+        "interpretation": "I fronti partono a intervalli uguali da posizioni diverse. Davanti a una sorgente che avanza arrivano più ravvicinati. Il ricevitore è fermo nel mezzo e la sorgente è subsonica.",
+        "references": [
+          [
+            0,
+            300
+          ],
+          [
+            30,
+            333.333333
+          ]
+        ],
+        "blocks": [],
+        "substitution": "90000 / (300 − {x})",
+        "transferPrompt": "La sorgente emette 300 Hz e ha velocità con segno {x} verso il ricevitore fermo. Se il suono viaggia a 300 m/s, quale frequenza riceve?"
+      },
+      "hasClock": true,
+      "clockInput": false,
+      "key": "SIM-C5-L05-03|320|top|40|20",
+      "width": 320,
+      "view": "top",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C5-L05-03|published|320|top|clock|84"
+      ]
+    },
+    {
+      "id": "SIM-C5-L05-03",
+      "negativeCaseKey": "SIM-C5-L05-03|published|320|top|clock|84",
+      "negativeView": "top",
+      "negativeLabel": "Sorgente",
+      "kind": "clock",
+      "index": 84,
+      "x": 40,
+      "time": 20,
+      "source": {
+        "id": "SIM-C5-L05-03",
+        "kind": "experiment",
+        "course": "C5",
+        "skill": "C5-L05",
+        "order": 3,
+        "section": "Suono e movimento relativo",
+        "version": 1,
+        "title": "Effetto Doppler qualitativo",
+        "topic": "UD4 · effetto Doppler qualitativo",
+        "anchor": "Un ricevitore fermo investito da fronti più",
+        "summary": "Che cosa vede il ricevitore quando la sorgente si avvicina e poi si allontana?",
+        "apparatus": "doppler",
+        "control": {
+          "label": "Velocità della sorgente verso il ricevitore",
+          "unit": "m/s",
+          "min": -40,
+          "max": 40,
+          "step": 5
+        },
+        "measure": {
+          "label": "Frequenza ricevuta",
+          "unit": "Hz"
+        },
+        "formula": "f ricevuta = f₀ v/(v−u); f₀ = 300 Hz, v = 300 m/s",
+        "interpretation": "I fronti partono a intervalli uguali da posizioni diverse. Davanti a una sorgente che avanza arrivano più ravvicinati. Il ricevitore è fermo nel mezzo e la sorgente è subsonica.",
+        "references": [
+          [
+            0,
+            300
+          ],
+          [
+            30,
+            333.333333
+          ]
+        ],
+        "blocks": [],
+        "substitution": "90000 / (300 − {x})",
+        "transferPrompt": "La sorgente emette 300 Hz e ha velocità con segno {x} verso il ricevitore fermo. Se il suono viaggia a 300 m/s, quale frequenza riceve?"
+      },
+      "hasClock": true,
+      "clockInput": false,
+      "key": "SIM-C5-L05-03|320|fixed_projection|40|20",
+      "width": 320,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C5-L05-03|published|320|top|clock|84"
+      ]
+    },
+    {
+      "id": "SIM-C5-L05-03",
+      "negativeCaseKey": "SIM-C5-L05-03|published|320|top|clock|84",
+      "negativeView": "top",
+      "negativeLabel": "Sorgente",
+      "kind": "clock",
+      "index": 84,
+      "x": 40,
+      "time": 20,
+      "source": {
+        "id": "SIM-C5-L05-03",
+        "kind": "experiment",
+        "course": "C5",
+        "skill": "C5-L05",
+        "order": 3,
+        "section": "Suono e movimento relativo",
+        "version": 1,
+        "title": "Effetto Doppler qualitativo",
+        "topic": "UD4 · effetto Doppler qualitativo",
+        "anchor": "Un ricevitore fermo investito da fronti più",
+        "summary": "Che cosa vede il ricevitore quando la sorgente si avvicina e poi si allontana?",
+        "apparatus": "doppler",
+        "control": {
+          "label": "Velocità della sorgente verso il ricevitore",
+          "unit": "m/s",
+          "min": -40,
+          "max": 40,
+          "step": 5
+        },
+        "measure": {
+          "label": "Frequenza ricevuta",
+          "unit": "Hz"
+        },
+        "formula": "f ricevuta = f₀ v/(v−u); f₀ = 300 Hz, v = 300 m/s",
+        "interpretation": "I fronti partono a intervalli uguali da posizioni diverse. Davanti a una sorgente che avanza arrivano più ravvicinati. Il ricevitore è fermo nel mezzo e la sorgente è subsonica.",
+        "references": [
+          [
+            0,
+            300
+          ],
+          [
+            30,
+            333.333333
+          ]
+        ],
+        "blocks": [],
+        "substitution": "90000 / (300 − {x})",
+        "transferPrompt": "La sorgente emette 300 Hz e ha velocità con segno {x} verso il ricevitore fermo. Se il suono viaggia a 300 m/s, quale frequenza riceve?"
+      },
+      "hasClock": true,
+      "clockInput": false,
+      "key": "SIM-C5-L05-03|320|side|40|20",
+      "width": 320,
+      "view": "side",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C5-L05-03|published|320|top|clock|84"
+      ]
+    },
+    {
+      "id": "SIM-C5-L05-03",
+      "negativeCaseKey": "SIM-C5-L05-03|published|320|top|clock|84",
+      "negativeView": "top",
+      "negativeLabel": "Sorgente",
+      "kind": "clock",
+      "index": 84,
+      "x": 40,
+      "time": 20,
+      "source": {
+        "id": "SIM-C5-L05-03",
+        "kind": "experiment",
+        "course": "C5",
+        "skill": "C5-L05",
+        "order": 3,
+        "section": "Suono e movimento relativo",
+        "version": 1,
+        "title": "Effetto Doppler qualitativo",
+        "topic": "UD4 · effetto Doppler qualitativo",
+        "anchor": "Un ricevitore fermo investito da fronti più",
+        "summary": "Che cosa vede il ricevitore quando la sorgente si avvicina e poi si allontana?",
+        "apparatus": "doppler",
+        "control": {
+          "label": "Velocità della sorgente verso il ricevitore",
+          "unit": "m/s",
+          "min": -40,
+          "max": 40,
+          "step": 5
+        },
+        "measure": {
+          "label": "Frequenza ricevuta",
+          "unit": "Hz"
+        },
+        "formula": "f ricevuta = f₀ v/(v−u); f₀ = 300 Hz, v = 300 m/s",
+        "interpretation": "I fronti partono a intervalli uguali da posizioni diverse. Davanti a una sorgente che avanza arrivano più ravvicinati. Il ricevitore è fermo nel mezzo e la sorgente è subsonica.",
+        "references": [
+          [
+            0,
+            300
+          ],
+          [
+            30,
+            333.333333
+          ]
+        ],
+        "blocks": [],
+        "substitution": "90000 / (300 − {x})",
+        "transferPrompt": "La sorgente emette 300 Hz e ha velocità con segno {x} verso il ricevitore fermo. Se il suono viaggia a 300 m/s, quale frequenza riceve?"
+      },
+      "hasClock": true,
+      "clockInput": false,
+      "key": "SIM-C5-L05-03|1280|top|40|20",
+      "width": 1280,
+      "view": "top",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C5-L05-03|published|320|top|clock|84"
+      ]
+    },
+    {
+      "id": "SIM-C5-L05-03",
+      "negativeCaseKey": "SIM-C5-L05-03|published|320|top|clock|84",
+      "negativeView": "top",
+      "negativeLabel": "Sorgente",
+      "kind": "clock",
+      "index": 84,
+      "x": 40,
+      "time": 20,
+      "source": {
+        "id": "SIM-C5-L05-03",
+        "kind": "experiment",
+        "course": "C5",
+        "skill": "C5-L05",
+        "order": 3,
+        "section": "Suono e movimento relativo",
+        "version": 1,
+        "title": "Effetto Doppler qualitativo",
+        "topic": "UD4 · effetto Doppler qualitativo",
+        "anchor": "Un ricevitore fermo investito da fronti più",
+        "summary": "Che cosa vede il ricevitore quando la sorgente si avvicina e poi si allontana?",
+        "apparatus": "doppler",
+        "control": {
+          "label": "Velocità della sorgente verso il ricevitore",
+          "unit": "m/s",
+          "min": -40,
+          "max": 40,
+          "step": 5
+        },
+        "measure": {
+          "label": "Frequenza ricevuta",
+          "unit": "Hz"
+        },
+        "formula": "f ricevuta = f₀ v/(v−u); f₀ = 300 Hz, v = 300 m/s",
+        "interpretation": "I fronti partono a intervalli uguali da posizioni diverse. Davanti a una sorgente che avanza arrivano più ravvicinati. Il ricevitore è fermo nel mezzo e la sorgente è subsonica.",
+        "references": [
+          [
+            0,
+            300
+          ],
+          [
+            30,
+            333.333333
+          ]
+        ],
+        "blocks": [],
+        "substitution": "90000 / (300 − {x})",
+        "transferPrompt": "La sorgente emette 300 Hz e ha velocità con segno {x} verso il ricevitore fermo. Se il suono viaggia a 300 m/s, quale frequenza riceve?"
+      },
+      "hasClock": true,
+      "clockInput": false,
+      "key": "SIM-C5-L05-03|1280|fixed_projection|40|20",
+      "width": 1280,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C5-L05-03|published|320|top|clock|84"
+      ]
+    },
+    {
+      "id": "SIM-C5-L05-03",
+      "negativeCaseKey": "SIM-C5-L05-03|published|320|top|clock|84",
+      "negativeView": "top",
+      "negativeLabel": "Sorgente",
+      "kind": "clock",
+      "index": 84,
+      "x": 40,
+      "time": 20,
+      "source": {
+        "id": "SIM-C5-L05-03",
+        "kind": "experiment",
+        "course": "C5",
+        "skill": "C5-L05",
+        "order": 3,
+        "section": "Suono e movimento relativo",
+        "version": 1,
+        "title": "Effetto Doppler qualitativo",
+        "topic": "UD4 · effetto Doppler qualitativo",
+        "anchor": "Un ricevitore fermo investito da fronti più",
+        "summary": "Che cosa vede il ricevitore quando la sorgente si avvicina e poi si allontana?",
+        "apparatus": "doppler",
+        "control": {
+          "label": "Velocità della sorgente verso il ricevitore",
+          "unit": "m/s",
+          "min": -40,
+          "max": 40,
+          "step": 5
+        },
+        "measure": {
+          "label": "Frequenza ricevuta",
+          "unit": "Hz"
+        },
+        "formula": "f ricevuta = f₀ v/(v−u); f₀ = 300 Hz, v = 300 m/s",
+        "interpretation": "I fronti partono a intervalli uguali da posizioni diverse. Davanti a una sorgente che avanza arrivano più ravvicinati. Il ricevitore è fermo nel mezzo e la sorgente è subsonica.",
+        "references": [
+          [
+            0,
+            300
+          ],
+          [
+            30,
+            333.333333
+          ]
+        ],
+        "blocks": [],
+        "substitution": "90000 / (300 − {x})",
+        "transferPrompt": "La sorgente emette 300 Hz e ha velocità con segno {x} verso il ricevitore fermo. Se il suono viaggia a 300 m/s, quale frequenza riceve?"
+      },
+      "hasClock": true,
+      "clockInput": false,
+      "key": "SIM-C5-L05-03|1280|side|40|20",
+      "width": 1280,
+      "view": "side",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C5-L05-03|published|320|top|clock|84"
+      ]
+    },
+    {
+      "id": "SIM-C5-L07-03",
+      "negativeCaseKey": "SIM-C5-L07-03|published|320|top|grid|10",
+      "negativeView": "top",
+      "negativeLabel": "Elettrone libero",
+      "kind": "grid",
+      "index": 10,
+      "x": 15,
+      "source": {
+        "id": "SIM-C5-L07-03",
+        "kind": "experiment",
+        "course": "C5",
+        "skill": "C5-L07",
+        "order": 3,
+        "section": "Fotoni e attenuazione",
+        "version": 1,
+        "title": "Distinzione fra radiazioni ionizzanti e non ionizzanti",
+        "topic": "UD7 · distinzione fra radiazioni ionizzanti e non ionizzanti",
+        "anchor": "Un singolo fotone può ionizzare un atomo",
+        "summary": "Basta aumentare l’intensità se ogni fotone è sotto la soglia?",
+        "apparatus": "fotone",
+        "control": {
+          "label": "Energia del singolo fotone",
+          "unit": "eV",
+          "min": 5,
+          "max": 25,
+          "step": 1
+        },
+        "measure": {
+          "label": "Energia cinetica massima liberata",
+          "unit": "eV"
+        },
+        "formula": "K = max(0, E fotone − 14 eV)",
+        "interpretation": "Per questo bersaglio ideale servono 14 eV in un solo fotone. Sotto soglia non esce alcun elettrone; alla soglia esso può essere liberato con energia cinetica nulla. Il modello considera un assorbimento a singolo fotone.",
+        "references": [
+          [
+            8,
+            0
+          ],
+          [
+            20,
+            6
+          ]
+        ],
+        "blocks": [],
+        "substitution": "max(0; {x} − 14)",
+        "transferPrompt": "Un fotone da {x} incontra un bersaglio con energia di legame 14 eV. Qual è l’energia cinetica massima liberata, ponendo zero se il bersaglio resta legato?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C5-L07-03|320|top|15|",
+      "width": 320,
+      "view": "top",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C5-L07-03|published|320|top|grid|10"
+      ]
+    },
+    {
+      "id": "SIM-C5-L07-03",
+      "negativeCaseKey": "SIM-C5-L07-03|published|320|top|grid|10",
+      "negativeView": "top",
+      "negativeLabel": "Elettrone libero",
+      "kind": "grid",
+      "index": 10,
+      "x": 15,
+      "source": {
+        "id": "SIM-C5-L07-03",
+        "kind": "experiment",
+        "course": "C5",
+        "skill": "C5-L07",
+        "order": 3,
+        "section": "Fotoni e attenuazione",
+        "version": 1,
+        "title": "Distinzione fra radiazioni ionizzanti e non ionizzanti",
+        "topic": "UD7 · distinzione fra radiazioni ionizzanti e non ionizzanti",
+        "anchor": "Un singolo fotone può ionizzare un atomo",
+        "summary": "Basta aumentare l’intensità se ogni fotone è sotto la soglia?",
+        "apparatus": "fotone",
+        "control": {
+          "label": "Energia del singolo fotone",
+          "unit": "eV",
+          "min": 5,
+          "max": 25,
+          "step": 1
+        },
+        "measure": {
+          "label": "Energia cinetica massima liberata",
+          "unit": "eV"
+        },
+        "formula": "K = max(0, E fotone − 14 eV)",
+        "interpretation": "Per questo bersaglio ideale servono 14 eV in un solo fotone. Sotto soglia non esce alcun elettrone; alla soglia esso può essere liberato con energia cinetica nulla. Il modello considera un assorbimento a singolo fotone.",
+        "references": [
+          [
+            8,
+            0
+          ],
+          [
+            20,
+            6
+          ]
+        ],
+        "blocks": [],
+        "substitution": "max(0; {x} − 14)",
+        "transferPrompt": "Un fotone da {x} incontra un bersaglio con energia di legame 14 eV. Qual è l’energia cinetica massima liberata, ponendo zero se il bersaglio resta legato?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C5-L07-03|320|fixed_projection|15|",
+      "width": 320,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C5-L07-03|published|320|top|grid|10"
+      ]
+    },
+    {
+      "id": "SIM-C5-L07-03",
+      "negativeCaseKey": "SIM-C5-L07-03|published|320|top|grid|10",
+      "negativeView": "top",
+      "negativeLabel": "Elettrone libero",
+      "kind": "grid",
+      "index": 10,
+      "x": 15,
+      "source": {
+        "id": "SIM-C5-L07-03",
+        "kind": "experiment",
+        "course": "C5",
+        "skill": "C5-L07",
+        "order": 3,
+        "section": "Fotoni e attenuazione",
+        "version": 1,
+        "title": "Distinzione fra radiazioni ionizzanti e non ionizzanti",
+        "topic": "UD7 · distinzione fra radiazioni ionizzanti e non ionizzanti",
+        "anchor": "Un singolo fotone può ionizzare un atomo",
+        "summary": "Basta aumentare l’intensità se ogni fotone è sotto la soglia?",
+        "apparatus": "fotone",
+        "control": {
+          "label": "Energia del singolo fotone",
+          "unit": "eV",
+          "min": 5,
+          "max": 25,
+          "step": 1
+        },
+        "measure": {
+          "label": "Energia cinetica massima liberata",
+          "unit": "eV"
+        },
+        "formula": "K = max(0, E fotone − 14 eV)",
+        "interpretation": "Per questo bersaglio ideale servono 14 eV in un solo fotone. Sotto soglia non esce alcun elettrone; alla soglia esso può essere liberato con energia cinetica nulla. Il modello considera un assorbimento a singolo fotone.",
+        "references": [
+          [
+            8,
+            0
+          ],
+          [
+            20,
+            6
+          ]
+        ],
+        "blocks": [],
+        "substitution": "max(0; {x} − 14)",
+        "transferPrompt": "Un fotone da {x} incontra un bersaglio con energia di legame 14 eV. Qual è l’energia cinetica massima liberata, ponendo zero se il bersaglio resta legato?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C5-L07-03|1280|top|15|",
+      "width": 1280,
+      "view": "top",
+      "fallback": false,
+      "originalNegativeCaseKeys": [
+        "SIM-C5-L07-03|published|320|top|grid|10"
+      ]
+    },
+    {
+      "id": "SIM-C5-L07-03",
+      "negativeCaseKey": "SIM-C5-L07-03|published|320|top|grid|10",
+      "negativeView": "top",
+      "negativeLabel": "Elettrone libero",
+      "kind": "grid",
+      "index": 10,
+      "x": 15,
+      "source": {
+        "id": "SIM-C5-L07-03",
+        "kind": "experiment",
+        "course": "C5",
+        "skill": "C5-L07",
+        "order": 3,
+        "section": "Fotoni e attenuazione",
+        "version": 1,
+        "title": "Distinzione fra radiazioni ionizzanti e non ionizzanti",
+        "topic": "UD7 · distinzione fra radiazioni ionizzanti e non ionizzanti",
+        "anchor": "Un singolo fotone può ionizzare un atomo",
+        "summary": "Basta aumentare l’intensità se ogni fotone è sotto la soglia?",
+        "apparatus": "fotone",
+        "control": {
+          "label": "Energia del singolo fotone",
+          "unit": "eV",
+          "min": 5,
+          "max": 25,
+          "step": 1
+        },
+        "measure": {
+          "label": "Energia cinetica massima liberata",
+          "unit": "eV"
+        },
+        "formula": "K = max(0, E fotone − 14 eV)",
+        "interpretation": "Per questo bersaglio ideale servono 14 eV in un solo fotone. Sotto soglia non esce alcun elettrone; alla soglia esso può essere liberato con energia cinetica nulla. Il modello considera un assorbimento a singolo fotone.",
+        "references": [
+          [
+            8,
+            0
+          ],
+          [
+            20,
+            6
+          ]
+        ],
+        "blocks": [],
+        "substitution": "max(0; {x} − 14)",
+        "transferPrompt": "Un fotone da {x} incontra un bersaglio con energia di legame 14 eV. Qual è l’energia cinetica massima liberata, ponendo zero se il bersaglio resta legato?"
+      },
+      "hasClock": false,
+      "clockInput": false,
+      "key": "SIM-C5-L07-03|1280|fixed_projection|15|",
+      "width": 1280,
+      "view": "fixed_projection",
+      "fallback": true,
+      "originalNegativeCaseKeys": [
+        "SIM-C5-L07-03|published|320|top|grid|10"
+      ]
+    }
+  ],
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
