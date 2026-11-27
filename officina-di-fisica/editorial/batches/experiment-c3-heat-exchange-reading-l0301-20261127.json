@@ -1,0 +1,82 @@
+{
+  "assets": [],
+  "records": [
+    {
+      "anchor": "Un blocchetto e una vasca alla stessa",
+      "apparatus": "calorimetro",
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Considera il campione come un unico sistema con capacità termica C = 50 J/K, costante nell’intervallo studiato. Il riscaldamento non cambia la fase del materiale. Trascuriamo dispersioni e lavoro meccanico: l’energia trasferita come calore aumenta l’energia interna del campione.",
+          "type": "text"
+        },
+        {
+          "text": "Q=C\\,\\Delta T",
+          "type": "formula"
+        },
+        {
+          "text": "Il controllo assegna un aumento di temperatura, non la temperatura assoluta. Per ogni kelvin aggiunto occorrono 50 joule. Un aumento di 8 K richiede otto gruppi da 50: fai 5 per 8 e aggiungi lo zero, ottenendo 400 J.",
+          "type": "text"
+        },
+        {
+          "text": "Q(8\\,\\mathrm{K})=400\\,\\mathrm{J}",
+          "type": "formula"
+        },
+        {
+          "text": "Il secondo compito assegna 6 K: 50 per 6 dà 300 J. Puoi controllare anche per differenza: passando da 8 a 6 K togli due gruppi da 50 J, quindi 100 J. Le unità J/K per K restituiscono joule.",
+          "type": "text"
+        },
+        {
+          "text": "Q(6\\,\\mathrm{K})=300\\,\\mathrm{J}",
+          "type": "formula"
+        },
+        {
+          "text": "\\Delta T=\\frac{Q}{C}",
+          "type": "formula"
+        },
+        {
+          "text": "Per l’inversa dividi l’energia per 50 J/K: 300 J danno 6 K. La capacità termica riguarda tutto il campione; non va moltiplicata di nuovo per una massa. A variazione nulla il calore di questo modello è zero. La salita del termometro e il colore aiutano a confrontare gli stati; usa le letture per i valori numerici.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Aumento di temperatura",
+        "max": 12.0,
+        "min": 0.0,
+        "step": 1.0,
+        "unit": "K"
+      },
+      "course": "C3",
+      "formula": "Q = CΔT, con C = 50 J/K",
+      "id": "SIM-C3-L03-01",
+      "interpretation": "A capacità termica totale costante, senza cambiamenti di fase, dispersioni o lavoro meccanico, il calore assorbito è proporzionale all’aumento di temperatura. Confronta le letture dei diversi stati.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Energia assorbita",
+        "unit": "J"
+      },
+      "order": 1,
+      "prerequisites": [],
+      "references": [
+        [
+          2.0,
+          100.0
+        ],
+        [
+          8.0,
+          400.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Pesare il riscaldamento",
+      "skill": "C3-L03",
+      "substitution": "50 × {x}",
+      "summary": "Quanti joule servono per far salire il termometro del campione?",
+      "title": "Calore e scambio di energia",
+      "topic": "5.2 Calore e scambio di energia",
+      "transferPrompt": "Vuoi scaldare un campione con capacità termica 50 J/K di {x}. Quanti joule gli devi fornire?",
+      "version": 2
+    }
+  ],
+  "schema": "astra/1"
+}
