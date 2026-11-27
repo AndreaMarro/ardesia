@@ -1,0 +1,17 @@
+bounded local start; free bytes 2148864000
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C3-36-cb9-current-run45917299096-independent-20261127/read-shared-archive.py", line 37, in <module>
+    for name,raw in [('actual-report.json',report_raw),('actual-prepared.json',plan_raw)]:write(name,raw)
+                                                                                          ~~~~~^^^^^^^^^^
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C3-36-cb9-current-run45917299096-independent-20261127/read-shared-archive.py", line 34, in write
+    if shutil.disk_usage(OUT).free<2*1024**3+len(raw):raise ValueError('No safe disk reserve')
+                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: No safe disk reserve
+Traceback (most recent call last):
+  File "/private/tmp/cric-bounded-local.py", line 7, in <module>
+    subprocess.run(sys.argv[1:],check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py", line 579, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['/private/tmp/cric-recovery-venv/bin/python', '-B', 'editorial/reviews/C3-36-cb9-current-run45917299096-independent-20261127/read-shared-archive.py']' returned non-zero exit status 1.

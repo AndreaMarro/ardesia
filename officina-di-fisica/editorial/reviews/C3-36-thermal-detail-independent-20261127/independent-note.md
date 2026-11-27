@@ -1,0 +1,7 @@
+Independent thermal candidate 9e7676590983b2fb0a936567b8054ffb2b80592c
+
+Actual installed-consumer observations were freshly collected for all 36 original C3 models and 1,369 grid/clock states with the declared runtime before and after. Existing numerical models and existing elements are unchanged from cb9 after removing only explicitly marked detail arrows and legend text. The 22 detail arrows were checked against exact installed translation and positive scale operators, with the same tips and senses. Seven old nonzero primary-arrow omissions remain literal primary omissions; their separately declared representations are verified without retagging the old RED tests. Physical zero has no detail in all 61 zero states in the final differential check.
+
+The 3713 phase x32 minimum was too small for independent legibility; this epoch is historical and not promoted. The initial missing DOM stub and missing optional PIL module are genuine reviewer bootstrap failures, retained separately from the successful code and mathematical observations.
+
+The actual author browser report has 80 terminal-zero cases; hashes were verified for every image. Only the image list in raster-reading.json is claimed as manually opened. No new browser was started by this reviewer. Original prose/manual-support negatives remain separate, as do DRAFT263 and DRAFT264. No full activity acceptance, human approval or publication is granted by this bounded review.
