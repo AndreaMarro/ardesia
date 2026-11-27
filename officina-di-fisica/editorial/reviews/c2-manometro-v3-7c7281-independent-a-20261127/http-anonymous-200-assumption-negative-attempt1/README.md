@@ -1,0 +1,1 @@
+Actual HTTP probe exited1 because its own assumption anonymousC2mustreturn200 was stricter than the canonical policy. The real response was403; no DRAFT leak or product failure is asserted. The successful browser48 remains separate and unchanged. The corrected probe records guest403 and publishedLive2 separately.

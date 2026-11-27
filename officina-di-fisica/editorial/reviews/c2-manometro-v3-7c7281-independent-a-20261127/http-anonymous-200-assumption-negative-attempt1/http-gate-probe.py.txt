@@ -1,0 +1,34 @@
+from pathlib import Path
+import os,sys,tempfile,json,secrets,time,hashlib,threading,urllib.request,http.cookiejar,urllib.error
+A=Path('/private/tmp/cric-midpoint-and-press-20261127/officina-di-fisica')
+D=Path('/private/tmp/cric-author-a-resident/officina-di-fisica/editorial/reviews/c2-manometro-v3-7c7281-independent-a-20261127')
+package=json.loads(Path('/private/tmp/cric-author-a-resident/officina-di-fisica/editorial/reviews/c2-five-hydrostatic-drafts-7c7281-preflight-a-20261127/canonical-inputs/experiment-c2-five-hydrostatic-drafts.json').read_bytes())
+with tempfile.TemporaryDirectory(prefix='cric-a-manometro-http-') as tmp:
+ os.environ.update(ASTRA_DATA=tmp,ASTRA_HOSTED='0',ASTRA_HTTPS='0',ASTRA_EXTENSIONS=str(A/'extensions'))
+ sys.path.insert(0,str(A))
+ from server import store
+ from server.web import Handler,ThreadingHTTPServer
+ from tools.corpus_engineering.draft_import import import_drafts
+ store.initialize()
+ with store.connect() as db:
+  before=store.encode(store.published(db));first=import_drafts(db,{'id':'owner','role':'autore'},package);second=import_drafts(db,{'id':'owner','role':'autore'},package)
+  assert before==store.encode(store.published(db)) and first['saved']==5 and second['saved']==0
+  ticket=secrets.token_urlsafe(32);db.execute('INSERT INTO tickets VALUES(?,?)',(hashlib.sha256(ticket.encode()).hexdigest(),int(time.time())+600))
+ server=ThreadingHTTPServer(('127.0.0.1',0),Handler)
+ thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start();base='http://127.0.0.1:'+str(server.server_port)
+ def opener():return urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
+ guest=opener();owner=opener()
+ try:
+  with guest.open(base+'/api/item/SIM-C2-L002-04',timeout=10) as response:
+   guest_status=response.status;guest_raw=response.read()
+  g=json.loads(guest_raw);assert guest_status==200 and g['version']==2 and g.get('blocks',[])==[]
+  request=urllib.request.Request(base+'/api/owner',data=json.dumps({'ticket':ticket}).encode(),headers={'Content-Type':'application/json','X-Astra-Request':'1'},method='POST')
+  with owner.open(request,timeout=10) as response:assert response.status==200
+  with owner.open(base+'/api/author/item/SIM-C2-L002-04',timeout=10) as response:
+   owner_status=response.status;owner_raw=response.read()
+  o=json.loads(owner_raw)['record'];expected=dict(next(r for r in package['records']if r['id']=='SIM-C2-L002-04'),review='bozza');del expected['baseVersion'];assert owner_status==200 and o==expected and o['version']==3
+  for name,raw in [('actual-guest-live-v2.json',guest_raw),('actual-owner-draft-v3.json',owner_raw)]: (D/name).write_bytes(raw)
+  result=dict(schemaVersion='1.0.0',sourceCommit='b9994b9116e87478905191d85cca8037d17ae4bd',runtimeSha256='7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6',scope='Separate actual HTTP owner/guest probe, no Chrome',id='SIM-C2-L002-04',guest=dict(status=guest_status,version=g['version'],bodySha256=hashlib.sha256(guest_raw).hexdigest(),authoredBlocksReturned=len(g.get('blocks',[]))),owner=dict(status=owner_status,version=o['version'],bodySha256=hashlib.sha256(owner_raw).hexdigest(),completeNormalizedPayloadEqualsPrepared=True),canonicalImports=[first,second],publishedUnchanged=True,browser='NOT_RUN_IN_THIS_SUPPLEMENT',activityCredit=0,humanApproval='NOT_RUN')
+  (D/'actual-owner-guest-http.json').write_text(json.dumps(result,indent=2)+'\n');print('Actual separate HTTP:guest200/live2 with0draftblocks;owner200/full draft3;canonical5→0/5;no Chrome',flush=True)
+ finally:
+  server.shutdown();thread.join(timeout=3);server.server_close();assert not thread.is_alive()
