@@ -1,0 +1,96 @@
+{
+  "scope": "AUTHOR_ACTUAL_INSTALLED_TASKS",
+  "activityCredit": 0,
+  "rows": [
+    {
+      "id": "SIM-C2-L007-01",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Velocità media» su 0,15 m/s. Quale valore ottieni per «Numero di Reynolds»?",
+          "value": 1500,
+          "unit": "numero puro",
+          "worked": "Re = ρvD/η; acqua, D = 0,01 m, η = 0,001 Pa·s. 10000 × 0,15 = 1500."
+        },
+        {
+          "prompt": "Acqua di densità 1.000 kg/m³ e viscosità 0,001 Pa·s percorre un tubo di diametro 1 cm a 0,4 m/s. Quale numero di Reynolds ottieni?",
+          "value": 4000,
+          "unit": "numero puro",
+          "worked": "Re = ρvD/η; acqua, D = 0,01 m, η = 0,001 Pa·s. 10000 × 0,4 = 4000."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C2-L007-02",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Istante di osservazione» su 1 s. Quale valore ottieni per «Velocità a metà raggio»?",
+          "value": 6,
+          "unit": "cm/s",
+          "worked": "v(R/2) = 8[1−(1/2)²] = 6 cm/s. 8 × (1 − 0,5²) = 6 cm/s."
+        },
+        {
+          "prompt": "La sonda resta a metà raggio in un flusso laminare stazionario. Il profilo è parabolico e al centro l’acqua scorre a 8 cm/s. Al tempo 2 s, quale velocità locale misuri?",
+          "value": 6,
+          "unit": "cm/s",
+          "worked": "v(R/2) = 8[1−(1/2)²] = 6 cm/s. 8 × (1 − 0,5²) = 6 cm/s."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C2-L007-03",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Viscosità dinamica» su 0,5 Pa·s. Quale valore ottieni per «Sforzo di taglio»?",
+          "value": 2,
+          "unit": "Pa",
+          "worked": "τ = η dv/dy, con dv/dy = 4 s⁻¹. 4 × 0,5 = 2 Pa."
+        },
+        {
+          "prompt": "Il gradiente resta 4 s⁻¹ fra le lastre. Con una viscosità di 1,5 Pa·s, quale sforzo di taglio ottieni per il fluido newtoniano?",
+          "value": 6,
+          "unit": "Pa",
+          "worked": "τ = η dv/dy, con dv/dy = 4 s⁻¹. 4 × 1,5 = 6 Pa."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C2-L007-04",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Distanza fra le lastre» su 2 mm. Quale valore ottieni per «Gradiente di velocità»?",
+          "value": 20,
+          "unit": "s⁻¹",
+          "worked": "dv/dy = Δv/h, con Δv = 40 mm/s. 40 / 2 = 20 s⁻¹."
+        },
+        {
+          "prompt": "Le due lastre distano 5 mm. Quella superiore scorre a 40 mm/s e quella inferiore è ferma. Quale gradiente trovi per un profilo lineare?",
+          "value": 8,
+          "unit": "s⁻¹",
+          "worked": "dv/dy = Δv/h, con Δv = 40 mm/s. 40 / 5 = 8 s⁻¹."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C2-L007-05",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Raggio della sonda diviso R» su 0,5. Quale valore ottieni per «Velocità locale»?",
+          "value": 9,
+          "unit": "cm/s",
+          "worked": "v(r) = (12 cm/s) [1 − (r/R)²]. 12 × (1 − (0,5 × 0,5)) = 9 cm/s."
+        },
+        {
+          "prompt": "In un tubo con profilo laminare parabolico la velocità sull’asse è 12 cm/s. Se r/R vale 1, quale velocità locale misuri?",
+          "value": 0,
+          "unit": "cm/s",
+          "worked": "v(r) = (12 cm/s) [1 − (r/R)²]. 12 × (1 − (1 × 1)) = 0 cm/s."
+        }
+      ]
+    }
+  ]
+}

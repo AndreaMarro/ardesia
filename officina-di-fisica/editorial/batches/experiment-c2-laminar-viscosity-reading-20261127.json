@@ -1,0 +1,351 @@
+{
+  "assets": [],
+  "records": [
+    {
+      "anchor": "Un confronto di scala utile, come approfondimento,",
+      "apparatus": "profilo",
+      "assessmentSelection": {
+        "points": [
+          0.15,
+          0.4
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Il numero di Reynolds confronta gli effetti dell’inerzia con quelli della viscosità. Nel tubo si usa la velocità media sulla sezione e il diametro interno. Per l’acqua del modello prendi ρ = 1.000 kg/m³ ed η = 10⁻³ Pa·s. Il diametro è 1 cm = 10⁻² m.",
+          "type": "text"
+        },
+        {
+          "text": "\\mathrm{Re}=\\frac{\\rho vD}{\\eta}=(10^4\\ \\mathrm{s/m})v",
+          "type": "formula"
+        },
+        {
+          "text": "Per ritrovare il fattore, moltiplica le potenze 10³ e 10⁻², poi dividi per 10⁻³. L’esponente finale è 3 − 2 + 3 = 4. Le unità di ρvD sono kg/(m·s), le stesse di Pa·s, quindi Reynolds è adimensionale. A 0,15 m/s leggi 1.500 e a 0,40 m/s leggi 4.000.",
+          "type": "text"
+        },
+        {
+          "text": "Disegna il diametro e la freccia della velocità media. A 1.500 aggiungi un profilo laminare parabolico al banco. A 4.000 il banco ritira quel profilo perché sarebbe fuori dal dominio scelto. Dividendo 2.300 per 10.000 trovi 0,23 m/s, una soglia orientativa del modello per il tubo, sensibile alle condizioni di ingresso e alle perturbazioni.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Velocità media",
+        "max": 0.6,
+        "min": 0.0,
+        "step": 0.05,
+        "unit": "m/s"
+      },
+      "course": "C2",
+      "formula": "Re = ρvD/η; acqua, D = 0,01 m, η = 0,001 Pa·s",
+      "id": "SIM-C2-L007-01",
+      "interpretation": "Re confronta inerzia e viscosità. Nel tubo diritto, sopra circa 2300 la previsione laminare diventa incerta. Il banco ritira il profilo invece di inventare fluttuazioni turbolente.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Numero di Reynolds",
+        "unit": "1"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C2-L007"
+      ],
+      "references": [
+        [
+          0.1,
+          1000.0
+        ],
+        [
+          0.4,
+          4000.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in movimento",
+      "skill": "C2-L007",
+      "substitution": "10000 × {x}",
+      "summary": "Si può ancora disegnare una parabola per qualunque velocità?",
+      "title": "Flussi laminari e turbolenti",
+      "topic": "Flussi laminari e turbolenti",
+      "transferPrompt": "Acqua di densità 1.000 kg/m³ e viscosità 0,001 Pa·s percorre un tubo di diametro 1 cm a {x}. Quale numero di Reynolds ottieni?",
+      "version": 2
+    },
+    {
+      "anchor": "In un tubo diritto e circolare un",
+      "apparatus": "profilo",
+      "assessmentSelection": {
+        "points": [
+          1,
+          2
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Tieni fermo un punto nello spazio e confronta le sue letture in istanti diversi. Nel moto stazionario la velocità a quel punto resta costante nel tempo. In un profilo parabolico la velocità cambia da un raggio a un altro, quindi occorre fissare la sonda prima del confronto.",
+          "type": "text"
+        },
+        {
+          "text": "v(R/2)=v(0)\\left[1-(1/2)^2\\right]=(8\\ \\mathrm{cm/s})\\frac34=6\\ \\mathrm{cm/s}",
+          "type": "formula"
+        },
+        {
+          "text": "Disegna la sezione di misura con una tacca a metà raggio. Un mezzo al quadrato dà un quarto. Togli quel quarto dall’intero e rimangono tre quarti. Fai 8/4 = 2, poi 2 × 3 = 6. Leggi dunque 6 cm/s sia a un secondo sia a due secondi.",
+          "type": "text"
+        },
+        {
+          "text": "Nel disegno successivo la sonda è nello stesso punto e il tracciante rosso si è spostato. A metà raggio percorre altri 6 cm in un secondo, anche se la lettura locale resta uguale. Se conosci soltanto 6 cm/s a metà raggio, risali al valore sull’asse moltiplicando per 4/3 e torni a 8 cm/s.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Istante di osservazione",
+        "max": 4.0,
+        "min": 0.0,
+        "step": 0.25,
+        "unit": "s"
+      },
+      "course": "C2",
+      "formula": "v(R/2) = 8[1−(1/2)²] = 6 cm/s",
+      "id": "SIM-C2-L007-02",
+      "interpretation": "Il flusso è stazionario alla sezione fissata. Segui i traccianti, poi confronta la lettura della sonda in due istanti: il profilo resta lo stesso.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Velocità a metà raggio",
+        "unit": "cm/s"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C2-L007"
+      ],
+      "references": [
+        [
+          1.0,
+          6.0
+        ],
+        [
+          3.0,
+          6.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in movimento",
+      "skill": "C2-L007",
+      "substitution": "8 × (1 − 0,5²)",
+      "summary": "Le particelle possono cambiare posizione anche se la velocità locale resta costante?",
+      "title": "Regime stazionario",
+      "topic": "Regime stazionario",
+      "transferPrompt": "La sonda resta a metà raggio in un flusso laminare stazionario. Il profilo è parabolico e al centro l’acqua scorre a 8 cm/s. Al tempo {x}, quale velocità locale misuri?",
+      "version": 2
+    },
+    {
+      "anchor": "Fai scorrere lentamente una lastra sopra uno",
+      "apparatus": "strati",
+      "assessmentSelection": {
+        "points": [
+          0.5,
+          1.5
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Considera strati di fluido tra due lastre che scorrono l’una rispetto all’altra. Per un fluido newtoniano la forza tangenziale per area è proporzionale al gradiente di velocità. Il banco tiene fermo il gradiente e cambia soltanto la viscosità, come quando si mantiene la stessa pendenza ma il liquido oppone una resistenza diversa.",
+          "type": "text"
+        },
+        {
+          "text": "\\tau=\\eta\\frac{dv}{dy},\\qquad \\frac{dv}{dy}=4\\ \\mathrm{s^{-1}}",
+          "type": "formula"
+        },
+        {
+          "text": "Disegna le stesse frecce di velocità tra le lastre per entrambi i liquidi. Cambia la freccia dello sforzo. Per 0,5 Pa·s moltiplica 4 per un mezzo e trovi 2 Pa. Per 1,5 Pa·s moltiplica 4 per 1 + 1/2 e trovi 4 + 2 = 6 Pa. Nel prodotto Pa·s × s⁻¹ resta il pascal, uguale a N/m².",
+          "type": "text"
+        },
+        {
+          "text": "Per stimare η da uno sforzo di 6 Pa, dividi per 4 s⁻¹. Ottieni 6/4 Pa·s = 3/2 Pa·s. Le velocità degli strati possono essere uguali nei due esperimenti e gli sforzi diversi, perché è diversa la risposta viscosa del fluido.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Viscosità dinamica",
+        "max": 2.0,
+        "min": 0.1,
+        "step": 0.1,
+        "unit": "Pa·s"
+      },
+      "course": "C2",
+      "formula": "τ = η dv/dy, con dv/dy = 4 s⁻¹",
+      "id": "SIM-C2-L007-03",
+      "interpretation": "La lastra impone un gradiente di 4 s⁻¹. In un fluido newtoniano lo sforzo cresce linearmente con la viscosità. Lo sforzo si misura in N/m².",
+      "kind": "experiment",
+      "measure": {
+        "label": "Sforzo di taglio",
+        "unit": "Pa"
+      },
+      "order": 3,
+      "prerequisites": [
+        "C2-L007"
+      ],
+      "references": [
+        [
+          0.5,
+          2.0
+        ],
+        [
+          1.5,
+          6.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in movimento",
+      "skill": "C2-L007",
+      "substitution": "4 × {x}",
+      "summary": "Con la stessa differenza di velocità quale liquido richiede più forza tangenziale?",
+      "title": "Viscosità dinamica",
+      "topic": "Viscosità dinamica",
+      "transferPrompt": "Il gradiente resta 4 s⁻¹ fra le lastre. Con una viscosità di {x}, quale sforzo di taglio ottieni per il fluido newtoniano?",
+      "version": 2
+    },
+    {
+      "anchor": "Il gradiente dice quanto cambia la velocità",
+      "apparatus": "strati",
+      "assessmentSelection": {
+        "points": [
+          2,
+          5
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Usa l’asse y per misurare l’altezza dal basso verso l’alto e disegna la velocità orizzontale rispetto a quest’asse. Per un profilo lineare la pendenza è il salto di velocità fra le lastre diviso per la distanza. Il salto è 40 mm/s in entrambe le configurazioni.",
+          "type": "text"
+        },
+        {
+          "text": "\\frac{dv}{dy}=\\frac{\\Delta v}{h}=\\frac{40\\ \\mathrm{mm/s}}{h}",
+          "type": "formula"
+        },
+        {
+          "text": "Con le lastre a 2 mm, distribuisci il salto di 40 su due millimetri. Il gradiente vale 20 s⁻¹. A 5 mm, dividi 40 per 5 e trovi 8 s⁻¹. I millimetri si cancellano perché le due lunghezze usano la stessa unità. Traccia i due profili con lo stesso salto di velocità e altezze diverse per confrontare le pendenze.",
+          "type": "text"
+        },
+        {
+          "text": "Per calcolare la distanza necessaria a ottenere 8 s⁻¹, inverti il rapporto. Dividi 40 mm/s per 8 s⁻¹ e trovi 5 mm. Il gradiente positivo indica che la velocità cresce con y. Una lastra più lontana distribuisce lo stesso salto su più spazio.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Distanza fra le lastre",
+        "max": 8.0,
+        "min": 1.0,
+        "step": 1.0,
+        "unit": "mm"
+      },
+      "course": "C2",
+      "formula": "dv/dy = Δv/h, con Δv = 40 mm/s",
+      "id": "SIM-C2-L007-04",
+      "interpretation": "La lastra alta scorre a 40 mm/s, quella bassa è ferma. Nei profili lineari una distanza minore a parità di salto rende la pendenza maggiore.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Gradiente di velocità",
+        "unit": "s⁻¹"
+      },
+      "order": 4,
+      "prerequisites": [
+        "C2-L007"
+      ],
+      "references": [
+        [
+          2.0,
+          20.0
+        ],
+        [
+          4.0,
+          10.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in movimento",
+      "skill": "C2-L007",
+      "substitution": "40 / {x}",
+      "summary": "In quale intercapedine due strati vicini differiscono di più in velocità?",
+      "title": "Gradiente di velocità",
+      "topic": "Gradiente di velocità",
+      "transferPrompt": "Le due lastre distano {x}. Quella superiore scorre a 40 mm/s e quella inferiore è ferma. Quale gradiente trovi per un profilo lineare?",
+      "version": 2
+    },
+    {
+      "anchor": "In un tubo diritto e circolare un",
+      "apparatus": "profilo",
+      "assessmentSelection": {
+        "points": [
+          0.5,
+          1
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Nel tubo circolare con moto laminare pienamente sviluppato, la velocità va misurata a una distanza r dall’asse. Parti con la freccia più lunga sull’asse e riducila seguendo la parabola. Alla parete ferma la condizione di aderenza dà velocità nulla.",
+          "type": "text"
+        },
+        {
+          "text": "v(r)=12\\ \\mathrm{cm/s}\\left[1-(r/R)^2\\right]",
+          "type": "formula"
+        },
+        {
+          "text": "A r/R = 1/2 la parte sottratta vale 1/4. Rimangono 3/4 della velocità di asse. Dividi 12 per 4, poi moltiplica 3 per 3. Leggi 9 cm/s. Alla parete r/R = 1 e la parentesi vale 1 − 1 = 0. Nella figura segna i tre raggi 0, R/2 e R prima di unire le punte delle frecce.",
+          "type": "text"
+        },
+        {
+          "text": "Se trovi 9 cm/s, separa il profilo dal fattore 12. Hai v/12 = 3/4, quindi (r/R)² = 1 − 3/4 = 1/4. La distanza radiale è positiva o nulla e la radice dà r/R = 1/2. A metà raggio la velocità è quindi tre quarti di quella sull’asse, come mostra il profilo curvo.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Raggio della sonda diviso R",
+        "max": 1.0,
+        "min": 0.0,
+        "step": 0.05,
+        "unit": "1"
+      },
+      "course": "C2",
+      "formula": "v(r) = (12 cm/s) [1 − (r/R)²]",
+      "id": "SIM-C2-L007-05",
+      "interpretation": "In regime laminare pienamente sviluppato la velocità è massima al centro. Alla parete la condizione di aderenza impone velocità nulla.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Velocità locale",
+        "unit": "cm/s"
+      },
+      "order": 5,
+      "prerequisites": [
+        "C2-L007"
+      ],
+      "references": [
+        [
+          0.0,
+          12.0
+        ],
+        [
+          0.5,
+          9.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in movimento",
+      "skill": "C2-L007",
+      "substitution": "12 × (1 − ({x} × {x}))",
+      "summary": "Che cosa legge una sonda che si sposta dall’asse alla parete?",
+      "title": "Profilo parabolico laminare",
+      "topic": "Profilo parabolico laminare",
+      "transferPrompt": "In un tubo con profilo laminare parabolico la velocità sull’asse è 12 cm/s. Se r/R vale {x}, quale velocità locale misuri?",
+      "version": 2
+    }
+  ],
+  "schema": "astra/1"
+}
