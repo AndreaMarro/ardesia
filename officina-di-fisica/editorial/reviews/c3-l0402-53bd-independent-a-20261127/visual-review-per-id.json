@@ -1,0 +1,488 @@
+{
+  "schemaVersion": "1.0.0",
+  "sourceCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "candidateCommit": "6ae3c2a177bcde74b2bebf8f22c1fa50850b0413",
+  "runtimeSha256": "53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a",
+  "protocolSha256": "719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15",
+  "artifactPins": [
+    {
+      "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/prepared.json",
+      "sha256": "09e906cff4f38b8faa7c00dcecce1acb050fc56029517a5369e4185cda48c9c9"
+    },
+    {
+      "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/report.json",
+      "sha256": "a88a23bb0c074454d189102911e293899370405a10e608a99c603c3d306c2b9a"
+    },
+    {
+      "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual-terminal.json",
+      "sha256": "e98d1fdbefb2597ab6519b2f4c0ba96536b0623063066d0c938a8898c387c27c"
+    },
+    {
+      "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/prepared.json",
+      "sha256": "0f80c5a38d2869e1c8239605649228366f09be5fa71afe30a4d4151fa2d6e478"
+    },
+    {
+      "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/report.json",
+      "sha256": "5ee441dd2ae8d779e9d7cd116694554f94ebe438942484660046e02562bff13d"
+    },
+    {
+      "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual-terminal.json",
+      "sha256": "6209c9d4ee23744104b69f1cecd59974d1509e2d9db7ae7173464d1c26140b96"
+    }
+  ],
+  "records": [
+    {
+      "id": "SIM-C3-L04-02",
+      "version": 2,
+      "baseVersion": 1,
+      "variant": "draft",
+      "visualReview": "PASS",
+      "scientificReview": "PASS_WITHIN_DECLARED_MODEL",
+      "reason": "All48fresh53bdwhole raster cases read. Signed latent heat,zero,condensation/evaporation endpoints and two actual answers6.78/0kJ agree with independent exact model; no new finding within schematic/axial scope.",
+      "scope": {
+        "profiles": [
+          {
+            "width": 320,
+            "view": "orbit"
+          },
+          {
+            "width": 320,
+            "view": "side"
+          },
+          {
+            "width": 320,
+            "view": "top"
+          },
+          {
+            "width": 320,
+            "view": "fixed_projection"
+          },
+          {
+            "width": 1280,
+            "view": "orbit"
+          },
+          {
+            "width": 1280,
+            "view": "side"
+          },
+          {
+            "width": 1280,
+            "view": "top"
+          },
+          {
+            "width": 1280,
+            "view": "fixed_projection"
+          }
+        ],
+        "gridSignedMassG": [
+          -5,
+          -2,
+          0,
+          3,
+          5
+        ],
+        "browserCases": 48,
+        "setupCases": 8,
+        "acceptedAnswers": 16,
+        "limits": [
+          "DRAFT2/base1 only; no new interactive original replay.",
+          "Signed transformed amount is separate from positive total material inventory. Zero transformed amount means zero latent transfer in this model, not absence of both phases.",
+          "Particles and liquid level are schematic, not a calibrated molecule count or absolute phase inventory.",
+          "Alto is axial to liquid depth/vertical separation; nonaxial native and fallback were read.",
+          "Bench PNGs do not capture every scrolling explanatory paragraph; all authored formulas checked in setupDOM.",
+          "No L04-03heat-arrow, arbitrarycamera/privateGPU,human approval or registry credit."
+        ]
+      },
+      "readPngSha256": [
+        "2d319317c5daa5684efa67e32d094ea98a94e0026d084b4d7f896d1183e15a43",
+        "b0b6e0cd67675ab6162a5ecf846d56ba1d307fc91f74efd664521bbcc6028827",
+        "047297c73ef9e0dd027fecbc11befbb96a035737c43187ffe92c3a301258dfc9",
+        "d69472dee2d7da46ec31da3eabda11a7da770f2fa02252dd9d09915554e390f0",
+        "ecac38e2f8044aeb36332df935ead9291af3bda5b95b320d67e14dd161c3b37a",
+        "fa507b04fceac95e7b3354bb3c64307b466819705eb3c10bac5da34f01c2b992",
+        "866d1ef712967f3aa9de926f2804bf0bbdac68bf60536069c6b9138209a2e3ed",
+        "daeb6f1afe3a859cee0199e768f0fcb38c03f2a9a2cdbe8d3a1cf2b541ff147f",
+        "36ff16683a958faabf5da4ce2b93b446eca2a45b92f1e6d4a02c1ea2689c060f",
+        "83786bb843b154a4cebae7850f4978af2953643d228439d39a0b34e851edd23e",
+        "3f60e0303da92f0d6742cb2bd6f240708634bf606b702ba2819dbb619e7097ee",
+        "fb8e400c1911ac8a06c3f648367d3a8e213de1f405f96dbb21799e74cc61c4fd",
+        "8ff70f548b5be5c18fc54ed7720d9f4d88792e9c1ed3c4943e92670fb01a8ee5",
+        "f9f9d4e68a4d420b97c5343bb55666706dbeb7bb8023ffb3a234da933a40b0c5",
+        "013162a6c43545c2c3b4797fdc5ebcdf2eeb7685f70a779fb025c04a45af728c",
+        "55763a82661e17451e8b0a39de5dbe35a1afa5efb8a8dc26558e5096e35c1341",
+        "ed9bb205515a5d65c19341a79bc8579f3c4f8bc1fbf436a8085a785c89669c09",
+        "a2403ed2d526d1da9eaccacbbf1991ecdba37ae6a24414055ce8bb9d185f94ee",
+        "689ec0f3cdcd2cdd4d5753ee205b18067513ce351fc8a824d211ef7437b6a115",
+        "1f1f45a57b8cdec588c05181dd36877434a6fd54c6bc329067ab254282df6810",
+        "a3069556e1928295159f643569778ed04d73fab00b19159c0c96eb9e1a856dae",
+        "ab0bf9968688a8e20b58e3987ed4c289123eb17703cbb00056e8cacfcd7d20d9",
+        "b96f310112c7e441d131906ef1dd6c088add5c1defddaebad93156b25c281280",
+        "5f6ed3f828972e6dd63811de9302d7d64fd0bd3e8b2a1e93bdb73620b06e216e",
+        "45ceba85dfb671aacb127193a915a818bf73ac5bb9717b5747f1fca925c6e0df",
+        "73042d733b409fffc1eb10380f94ce9b1e86ceb51ddb7ff89edb9d6e4810235c",
+        "8326f0cde043ead95fe3b3a53fa25352bda93023f65f4b5950fd8a1ac52048df",
+        "5a1b87fc39f6850d19ffd3d47da6762c3f5afddb77610d61275c973ff358bb67",
+        "b8a06d27a081133e6b2c0847322a241d4a453b03118e47d5d3bd9295db2d007d",
+        "8e72faf5701f224196d5ba3dacb65e1fce3487482d3dd7742e909d16ae137b44",
+        "451f556bf7714639f6ea86b2a46cc1dbd2bfddcc738b4ba17ac6eaa1185c92d1",
+        "562e3273e65ba689078d7dbeb6f132293adf707e51c3fa5175ee52445f7667b8",
+        "6e50c9b40d04d2006adaebec376cb4916aaf9bb5dee241b12d4ed2292651bbbb",
+        "8237c0163167f92f50cdddad63c7897f6899341324779465ee7ef391e64646fb",
+        "c64ab5f09770900b1afca75f5de46c6881626088ff62e945d59ac34cc1a3d17b",
+        "1daad10547c08efa1fcb3181e7987cdc34adddd72b551749d248789791f06d0d",
+        "ebb94dd2135b1cc02396de544c5ddc364c43ea7a70958990031ec02f7f49401f",
+        "b63138ed32a133671931ad8bc2f5df1a8e2db6949b327aa1974bce26dac29c23",
+        "abfc501f1e7cca44fa9d0e973da47af8ec84705a1e7732cad76426a50be480c8",
+        "61ba7a9c6ce02e4cfecfb9e8041360d640609b8ae5762e3d03e33270f8120325",
+        "71cc67a369c7fa2eb4aa90550a64e56ded6cf0a23cc0ad86ea35620d49578729",
+        "1925d93ce4c49f836116894933dbbf998f9e2f346d3c30dbbe7f97000b93e279",
+        "57a3dd8d670475644ec1e5da29c1b94a9a05de7ef15b3d111e86d62436599891",
+        "4080953011dcd1acb79a5d3a238c614431034772752794565f694c4344e480eb",
+        "21267dcf4e419acade74bbb25fc6a42e1a8ddbd45c309ff73c17874a5bf58174",
+        "f1ed90848a5a8c5e5fd863bc13d7282a5d6d17c43dd673901ec65351a77cc660",
+        "0ad4ae24097914528c69d4db854c078779b41def31766199bd56ea21ae10cc39",
+        "20394ee7396b93c63e790a01805ac24e08146303396352603998cecef99a8544"
+      ],
+      "readFiles": [
+        {
+          "caseKey": "SIM-C3-L04-02|draft|320|orbit|setup",
+          "width": 320,
+          "view": "orbit",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/screens/2d319317c5daa5684efa67e32d094ea98a94e0026d084b4d7f896d1183e15a43.png",
+          "sha256": "2d319317c5daa5684efa67e32d094ea98a94e0026d084b4d7f896d1183e15a43"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|320|orbit|grid|0",
+          "width": 320,
+          "view": "orbit",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/screens/b0b6e0cd67675ab6162a5ecf846d56ba1d307fc91f74efd664521bbcc6028827.png",
+          "sha256": "b0b6e0cd67675ab6162a5ecf846d56ba1d307fc91f74efd664521bbcc6028827"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|320|orbit|grid|1",
+          "width": 320,
+          "view": "orbit",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/screens/047297c73ef9e0dd027fecbc11befbb96a035737c43187ffe92c3a301258dfc9.png",
+          "sha256": "047297c73ef9e0dd027fecbc11befbb96a035737c43187ffe92c3a301258dfc9"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|320|orbit|grid|2",
+          "width": 320,
+          "view": "orbit",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/screens/d69472dee2d7da46ec31da3eabda11a7da770f2fa02252dd9d09915554e390f0.png",
+          "sha256": "d69472dee2d7da46ec31da3eabda11a7da770f2fa02252dd9d09915554e390f0"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|320|orbit|grid|3",
+          "width": 320,
+          "view": "orbit",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/screens/ecac38e2f8044aeb36332df935ead9291af3bda5b95b320d67e14dd161c3b37a.png",
+          "sha256": "ecac38e2f8044aeb36332df935ead9291af3bda5b95b320d67e14dd161c3b37a"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|320|orbit|grid|4",
+          "width": 320,
+          "view": "orbit",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/screens/fa507b04fceac95e7b3354bb3c64307b466819705eb3c10bac5da34f01c2b992.png",
+          "sha256": "fa507b04fceac95e7b3354bb3c64307b466819705eb3c10bac5da34f01c2b992"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|320|side|setup",
+          "width": 320,
+          "view": "side",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/screens/866d1ef712967f3aa9de926f2804bf0bbdac68bf60536069c6b9138209a2e3ed.png",
+          "sha256": "866d1ef712967f3aa9de926f2804bf0bbdac68bf60536069c6b9138209a2e3ed"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|320|side|grid|0",
+          "width": 320,
+          "view": "side",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/screens/daeb6f1afe3a859cee0199e768f0fcb38c03f2a9a2cdbe8d3a1cf2b541ff147f.png",
+          "sha256": "daeb6f1afe3a859cee0199e768f0fcb38c03f2a9a2cdbe8d3a1cf2b541ff147f"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|320|side|grid|1",
+          "width": 320,
+          "view": "side",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/screens/36ff16683a958faabf5da4ce2b93b446eca2a45b92f1e6d4a02c1ea2689c060f.png",
+          "sha256": "36ff16683a958faabf5da4ce2b93b446eca2a45b92f1e6d4a02c1ea2689c060f"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|320|side|grid|2",
+          "width": 320,
+          "view": "side",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/screens/83786bb843b154a4cebae7850f4978af2953643d228439d39a0b34e851edd23e.png",
+          "sha256": "83786bb843b154a4cebae7850f4978af2953643d228439d39a0b34e851edd23e"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|320|side|grid|3",
+          "width": 320,
+          "view": "side",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/screens/3f60e0303da92f0d6742cb2bd6f240708634bf606b702ba2819dbb619e7097ee.png",
+          "sha256": "3f60e0303da92f0d6742cb2bd6f240708634bf606b702ba2819dbb619e7097ee"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|320|side|grid|4",
+          "width": 320,
+          "view": "side",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/screens/fb8e400c1911ac8a06c3f648367d3a8e213de1f405f96dbb21799e74cc61c4fd.png",
+          "sha256": "fb8e400c1911ac8a06c3f648367d3a8e213de1f405f96dbb21799e74cc61c4fd"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|320|top|setup",
+          "width": 320,
+          "view": "top",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/screens/8ff70f548b5be5c18fc54ed7720d9f4d88792e9c1ed3c4943e92670fb01a8ee5.png",
+          "sha256": "8ff70f548b5be5c18fc54ed7720d9f4d88792e9c1ed3c4943e92670fb01a8ee5"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|320|top|grid|0",
+          "width": 320,
+          "view": "top",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/screens/f9f9d4e68a4d420b97c5343bb55666706dbeb7bb8023ffb3a234da933a40b0c5.png",
+          "sha256": "f9f9d4e68a4d420b97c5343bb55666706dbeb7bb8023ffb3a234da933a40b0c5"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|320|top|grid|1",
+          "width": 320,
+          "view": "top",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/screens/013162a6c43545c2c3b4797fdc5ebcdf2eeb7685f70a779fb025c04a45af728c.png",
+          "sha256": "013162a6c43545c2c3b4797fdc5ebcdf2eeb7685f70a779fb025c04a45af728c"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|320|top|grid|2",
+          "width": 320,
+          "view": "top",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/screens/55763a82661e17451e8b0a39de5dbe35a1afa5efb8a8dc26558e5096e35c1341.png",
+          "sha256": "55763a82661e17451e8b0a39de5dbe35a1afa5efb8a8dc26558e5096e35c1341"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|320|top|grid|3",
+          "width": 320,
+          "view": "top",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/screens/ed9bb205515a5d65c19341a79bc8579f3c4f8bc1fbf436a8085a785c89669c09.png",
+          "sha256": "ed9bb205515a5d65c19341a79bc8579f3c4f8bc1fbf436a8085a785c89669c09"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|320|top|grid|4",
+          "width": 320,
+          "view": "top",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/screens/a2403ed2d526d1da9eaccacbbf1991ecdba37ae6a24414055ce8bb9d185f94ee.png",
+          "sha256": "a2403ed2d526d1da9eaccacbbf1991ecdba37ae6a24414055ce8bb9d185f94ee"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|320|fixed_projection|setup",
+          "width": 320,
+          "view": "fixed_projection",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/screens/689ec0f3cdcd2cdd4d5753ee205b18067513ce351fc8a824d211ef7437b6a115.png",
+          "sha256": "689ec0f3cdcd2cdd4d5753ee205b18067513ce351fc8a824d211ef7437b6a115"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|320|fixed_projection|grid|0",
+          "width": 320,
+          "view": "fixed_projection",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/screens/1f1f45a57b8cdec588c05181dd36877434a6fd54c6bc329067ab254282df6810.png",
+          "sha256": "1f1f45a57b8cdec588c05181dd36877434a6fd54c6bc329067ab254282df6810"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|320|fixed_projection|grid|1",
+          "width": 320,
+          "view": "fixed_projection",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/screens/a3069556e1928295159f643569778ed04d73fab00b19159c0c96eb9e1a856dae.png",
+          "sha256": "a3069556e1928295159f643569778ed04d73fab00b19159c0c96eb9e1a856dae"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|320|fixed_projection|grid|2",
+          "width": 320,
+          "view": "fixed_projection",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/screens/ab0bf9968688a8e20b58e3987ed4c289123eb17703cbb00056e8cacfcd7d20d9.png",
+          "sha256": "ab0bf9968688a8e20b58e3987ed4c289123eb17703cbb00056e8cacfcd7d20d9"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|320|fixed_projection|grid|3",
+          "width": 320,
+          "view": "fixed_projection",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/screens/b96f310112c7e441d131906ef1dd6c088add5c1defddaebad93156b25c281280.png",
+          "sha256": "b96f310112c7e441d131906ef1dd6c088add5c1defddaebad93156b25c281280"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|320|fixed_projection|grid|4",
+          "width": 320,
+          "view": "fixed_projection",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/320/actual/screens/5f6ed3f828972e6dd63811de9302d7d64fd0bd3e8b2a1e93bdb73620b06e216e.png",
+          "sha256": "5f6ed3f828972e6dd63811de9302d7d64fd0bd3e8b2a1e93bdb73620b06e216e"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|1280|orbit|setup",
+          "width": 1280,
+          "view": "orbit",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/screens/45ceba85dfb671aacb127193a915a818bf73ac5bb9717b5747f1fca925c6e0df.png",
+          "sha256": "45ceba85dfb671aacb127193a915a818bf73ac5bb9717b5747f1fca925c6e0df"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|1280|orbit|grid|0",
+          "width": 1280,
+          "view": "orbit",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/screens/73042d733b409fffc1eb10380f94ce9b1e86ceb51ddb7ff89edb9d6e4810235c.png",
+          "sha256": "73042d733b409fffc1eb10380f94ce9b1e86ceb51ddb7ff89edb9d6e4810235c"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|1280|orbit|grid|1",
+          "width": 1280,
+          "view": "orbit",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/screens/8326f0cde043ead95fe3b3a53fa25352bda93023f65f4b5950fd8a1ac52048df.png",
+          "sha256": "8326f0cde043ead95fe3b3a53fa25352bda93023f65f4b5950fd8a1ac52048df"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|1280|orbit|grid|2",
+          "width": 1280,
+          "view": "orbit",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/screens/5a1b87fc39f6850d19ffd3d47da6762c3f5afddb77610d61275c973ff358bb67.png",
+          "sha256": "5a1b87fc39f6850d19ffd3d47da6762c3f5afddb77610d61275c973ff358bb67"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|1280|orbit|grid|3",
+          "width": 1280,
+          "view": "orbit",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/screens/b8a06d27a081133e6b2c0847322a241d4a453b03118e47d5d3bd9295db2d007d.png",
+          "sha256": "b8a06d27a081133e6b2c0847322a241d4a453b03118e47d5d3bd9295db2d007d"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|1280|orbit|grid|4",
+          "width": 1280,
+          "view": "orbit",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/screens/8e72faf5701f224196d5ba3dacb65e1fce3487482d3dd7742e909d16ae137b44.png",
+          "sha256": "8e72faf5701f224196d5ba3dacb65e1fce3487482d3dd7742e909d16ae137b44"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|1280|side|setup",
+          "width": 1280,
+          "view": "side",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/screens/451f556bf7714639f6ea86b2a46cc1dbd2bfddcc738b4ba17ac6eaa1185c92d1.png",
+          "sha256": "451f556bf7714639f6ea86b2a46cc1dbd2bfddcc738b4ba17ac6eaa1185c92d1"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|1280|side|grid|0",
+          "width": 1280,
+          "view": "side",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/screens/562e3273e65ba689078d7dbeb6f132293adf707e51c3fa5175ee52445f7667b8.png",
+          "sha256": "562e3273e65ba689078d7dbeb6f132293adf707e51c3fa5175ee52445f7667b8"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|1280|side|grid|1",
+          "width": 1280,
+          "view": "side",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/screens/6e50c9b40d04d2006adaebec376cb4916aaf9bb5dee241b12d4ed2292651bbbb.png",
+          "sha256": "6e50c9b40d04d2006adaebec376cb4916aaf9bb5dee241b12d4ed2292651bbbb"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|1280|side|grid|2",
+          "width": 1280,
+          "view": "side",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/screens/8237c0163167f92f50cdddad63c7897f6899341324779465ee7ef391e64646fb.png",
+          "sha256": "8237c0163167f92f50cdddad63c7897f6899341324779465ee7ef391e64646fb"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|1280|side|grid|3",
+          "width": 1280,
+          "view": "side",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/screens/c64ab5f09770900b1afca75f5de46c6881626088ff62e945d59ac34cc1a3d17b.png",
+          "sha256": "c64ab5f09770900b1afca75f5de46c6881626088ff62e945d59ac34cc1a3d17b"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|1280|side|grid|4",
+          "width": 1280,
+          "view": "side",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/screens/1daad10547c08efa1fcb3181e7987cdc34adddd72b551749d248789791f06d0d.png",
+          "sha256": "1daad10547c08efa1fcb3181e7987cdc34adddd72b551749d248789791f06d0d"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|1280|top|setup",
+          "width": 1280,
+          "view": "top",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/screens/ebb94dd2135b1cc02396de544c5ddc364c43ea7a70958990031ec02f7f49401f.png",
+          "sha256": "ebb94dd2135b1cc02396de544c5ddc364c43ea7a70958990031ec02f7f49401f"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|1280|top|grid|0",
+          "width": 1280,
+          "view": "top",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/screens/b63138ed32a133671931ad8bc2f5df1a8e2db6949b327aa1974bce26dac29c23.png",
+          "sha256": "b63138ed32a133671931ad8bc2f5df1a8e2db6949b327aa1974bce26dac29c23"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|1280|top|grid|1",
+          "width": 1280,
+          "view": "top",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/screens/abfc501f1e7cca44fa9d0e973da47af8ec84705a1e7732cad76426a50be480c8.png",
+          "sha256": "abfc501f1e7cca44fa9d0e973da47af8ec84705a1e7732cad76426a50be480c8"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|1280|top|grid|2",
+          "width": 1280,
+          "view": "top",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/screens/61ba7a9c6ce02e4cfecfb9e8041360d640609b8ae5762e3d03e33270f8120325.png",
+          "sha256": "61ba7a9c6ce02e4cfecfb9e8041360d640609b8ae5762e3d03e33270f8120325"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|1280|top|grid|3",
+          "width": 1280,
+          "view": "top",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/screens/71cc67a369c7fa2eb4aa90550a64e56ded6cf0a23cc0ad86ea35620d49578729.png",
+          "sha256": "71cc67a369c7fa2eb4aa90550a64e56ded6cf0a23cc0ad86ea35620d49578729"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|1280|top|grid|4",
+          "width": 1280,
+          "view": "top",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/screens/1925d93ce4c49f836116894933dbbf998f9e2f346d3c30dbbe7f97000b93e279.png",
+          "sha256": "1925d93ce4c49f836116894933dbbf998f9e2f346d3c30dbbe7f97000b93e279"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|1280|fixed_projection|setup",
+          "width": 1280,
+          "view": "fixed_projection",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/screens/57a3dd8d670475644ec1e5da29c1b94a9a05de7ef15b3d111e86d62436599891.png",
+          "sha256": "57a3dd8d670475644ec1e5da29c1b94a9a05de7ef15b3d111e86d62436599891"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|1280|fixed_projection|grid|0",
+          "width": 1280,
+          "view": "fixed_projection",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/screens/4080953011dcd1acb79a5d3a238c614431034772752794565f694c4344e480eb.png",
+          "sha256": "4080953011dcd1acb79a5d3a238c614431034772752794565f694c4344e480eb"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|1280|fixed_projection|grid|1",
+          "width": 1280,
+          "view": "fixed_projection",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/screens/21267dcf4e419acade74bbb25fc6a42e1a8ddbd45c309ff73c17874a5bf58174.png",
+          "sha256": "21267dcf4e419acade74bbb25fc6a42e1a8ddbd45c309ff73c17874a5bf58174"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|1280|fixed_projection|grid|2",
+          "width": 1280,
+          "view": "fixed_projection",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/screens/f1ed90848a5a8c5e5fd863bc13d7282a5d6d17c43dd673901ec65351a77cc660.png",
+          "sha256": "f1ed90848a5a8c5e5fd863bc13d7282a5d6d17c43dd673901ec65351a77cc660"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|1280|fixed_projection|grid|3",
+          "width": 1280,
+          "view": "fixed_projection",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/screens/0ad4ae24097914528c69d4db854c078779b41def31766199bd56ea21ae10cc39.png",
+          "sha256": "0ad4ae24097914528c69d4db854c078779b41def31766199bd56ea21ae10cc39"
+        },
+        {
+          "caseKey": "SIM-C3-L04-02|draft|1280|fixed_projection|grid|4",
+          "width": 1280,
+          "view": "fixed_projection",
+          "path": "editorial/reviews/c3-l0402-53bd-independent-a-20261127/1280/actual/screens/20394ee7396b93c63e790a01805ac24e08146303396352603998cecef99a8544.png",
+          "sha256": "20394ee7396b93c63e790a01805ac24e08146303396352603998cecef99a8544"
+        }
+      ]
+    }
+  ],
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN"
+}

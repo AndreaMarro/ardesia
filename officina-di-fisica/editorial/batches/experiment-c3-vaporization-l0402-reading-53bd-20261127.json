@@ -1,0 +1,86 @@
+{
+  "assets": [],
+  "records": [
+    {
+      "anchor": "L è il calore latente specifico in",
+      "apparatus": "fase",
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Fissa il sistema nell’acqua che cambia fase. Alla temperatura di coesistenza e alla pressione scelta, evaporare richiede calore entrante, condensare cede calore all’esterno. Nel banco la massa trasformata ha segno: positiva verso il vapore, negativa verso il liquido. Il calore Q è positivo quando l’acqua lo assorbe.",
+          "type": "text"
+        },
+        {
+          "text": "Q=m_s L_v",
+          "type": "formula"
+        },
+        {
+          "text": "Il valore di lavoro assegnato è Lv = 2,26 kJ/g, approssimazione del calore latente dell’acqua vicino all’ebollizione atmosferica. Nella moltiplicazione i grammi si cancellano. Per il primo compito, +3 g, fai 2 per 3 = 6 e 0,26 per 3 = 0,78; la somma dà +6,78 kJ.",
+          "type": "text"
+        },
+        {
+          "text": "Q(+3\\,\\mathrm g)=+6{,}78\\,\\mathrm{kJ}",
+          "type": "formula"
+        },
+        {
+          "text": "Il secondo compito assegna massa trasformata zero: nessuna acqua cambia fase e il calore latente scambiato è 0 kJ. Questa conclusione riguarda il cambio di fase del modello; non afferma che qualunque processo con massa trasformata nulla abbia calore nullo.",
+          "type": "text"
+        },
+        {
+          "text": "Q(0\\,\\mathrm g)=0\\,\\mathrm{kJ}",
+          "type": "formula"
+        },
+        {
+          "text": "Per interpretare il riferimento negativo, −2 g corrispondono a condensazione e Q = −4,52 kJ: l’acqua cede 4,52 kJ all’ambiente. Scrivere +4,52 darebbe il modulo, perdendo il verso dello scambio. La massa fisica totale rimane positiva; il segno riguarda soltanto la quantità trasformata nel verso convenzionale.",
+          "type": "text"
+        },
+        {
+          "text": "m_s=\\frac{Q}{L_v}",
+          "type": "formula"
+        },
+        {
+          "text": "Nell’inversa −4,52 kJ divisi per 2,26 kJ/g danno −2 g. La rappresentazione delle particelle aiuta a distinguere le fasi; usa il segno del controllo e il bilancio per stabilire se l’acqua assorbe o cede energia.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Massa che diventa vapore con segno",
+        "max": 5.0,
+        "min": -5.0,
+        "step": 0.5,
+        "unit": "g"
+      },
+      "course": "C3",
+      "formula": "Q = m con segno × Lᵥ; Lᵥ ≈ 2,26 kJ/g",
+      "id": "SIM-C3-L04-02",
+      "interpretation": "Il sistema è l’acqua alla temperatura di coesistenza. La massa trasformata è positiva per evaporazione e negativa per condensazione; Q è positivo se l’acqua assorbe calore. Il valore di lavoro del calore latente è 2,26 kJ/g.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Calore assorbito dall’acqua",
+        "unit": "kJ"
+      },
+      "order": 2,
+      "prerequisites": [],
+      "references": [
+        [
+          -2.0,
+          -4.52
+        ],
+        [
+          3.0,
+          6.78
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Quando la temperatura si ferma",
+      "skill": "C3-L04",
+      "substitution": "2,26 × {x}",
+      "summary": "Che segno ha il calore quando il vapore si condensa?",
+      "title": "Evaporazione e condensazione",
+      "topic": "5.2 Evaporazione e condensazione",
+      "transferPrompt": "Nel cambio di fase la massa trasformata, con il segno scelto nel banco, è {x}. Quale calore scambia l’acqua con l’esterno, usando 2,26 kJ/g?",
+      "version": 2
+    }
+  ],
+  "schema": "astra/1"
+}
