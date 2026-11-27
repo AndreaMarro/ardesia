@@ -28,8 +28,8 @@ const legends = {
     'Attrito · grafite / F · verde / a · lime',
   ],
   volo: [
-    'Proiezione orizzontale · verde',
-    'v · verde / g · rosso',
+    'Anello verde · origine O / Tratteggio verde · proiezione orizzontale',
+    'v · verde / g · rosso / Tratteggio verticale · culmine',
     'vx · viola / vy · ocra / vz · grafite',
   ],
   stevino: ['A · sonda mobile', 'B · presa alla stessa quota', 'Fondo · presa a 2 m'],
@@ -425,6 +425,8 @@ export async function benchPage(id, origin, topicIndex) {
     if (available && view !== 'diagram') gpu.rebuild(world.build, p, s, sceneLevel());
     const nativeLegend = pilot === 'onde' && view === 'section'
       ? ' · Linea scura · spostamento istantaneo lungo la sezione passante per P'
+      : pilot === 'volo' && view === 'top'
+        ? ' · Scegli Laterale per leggere l’altezza del culmine.'
       : view !== 'diagram' && (pilot === 'piano' || r.model === 'campo')
         ? ' · Le frecce in primo piano rappresentano vettori; la loro lunghezza segue la scala indicata nella guida.'
       : '';

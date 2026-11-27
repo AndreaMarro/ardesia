@@ -2,8 +2,10 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { build as plane } from '../static/js/banchi/scene/piano.js';
 import { build as field } from '../static/js/banchi/scene/campo.js';
+import { build as flight } from '../static/js/banchi/scene/volo.js';
 import * as forces from '../static/js/banchi/modelli/piano.js';
 import * as electrostatics from '../static/js/banchi/modelli/campo.js';
+import * as projectile from '../static/js/banchi/modelli/volo.js';
 import { red, teal } from '../static/js/banchi/scena.js';
 
 function drawing() {
@@ -45,4 +47,19 @@ test('field contributions and resultant share the probe, scale and annotation la
     assert.deepEqual(glyph.a, [0, 0, 0]);
   }
   assert.deepEqual(arrows.map(({ b }) => b), [18, 9, 27].map(component => [component * (1.25 / 27), 0, 0]));
+});
+
+test('the flight origin retains its marker and the top view leaves the apex unoccluded', () => {
+  const input = { speed: 5, elevation: 90, azimuth: 0 };
+  for (const view of ['side', 'top']) {
+    const { board } = drawing();
+    const rings = [], labels = [];
+    board.ring = (anchor, radius) => rings.push({ anchor, radius });
+    board.label = (_anchor, title) => labels.push(title);
+    flight(board, input, projectile.solve(input), 1, view);
+    assert.equal(rings.length, 1);
+    assert.deepEqual(rings[0], { anchor: [-0, 0.17, -0], radius: 0.22 });
+    assert.ok(!labels.includes('O'));
+    assert.equal(labels.includes('culmine'), view === 'side');
+  }
 });
