@@ -1,0 +1,41 @@
+from pathlib import Path
+from fractions import Fraction as F
+import hashlib,json
+D=Path(__file__).resolve().parent;ROOT=Path('/private/tmp/cric-resident-integrator/officina-di-fisica/editorial/reviews/c1-work-energy-manual-20261127.md')
+SHA='dd74d8d9ad00a493ac6c55299cede147bc40526a4194d077bcb45056b866286d';H=lambda b:hashlib.sha256(b).hexdigest()
+assert H(ROOT.read_bytes())==H((D/'final-author-manual.verbatim.md').read_bytes())==SHA
+alltasks=json.loads((D/'actual-twelve-tasks.json').read_text())['tasks'];rows=[]
+checks={
+'SIM-C1-L006-01':([F(3),F(6)],'N',{'10N_minus_dynamic3N':F(10)-3,'threshold_equilibrium_net':F(6)-6}),
+'SIM-C1-L006-02':([-50*F(4,100),-50*F(1,100)],'N',{'compression_minus2cm':-50*F(-2,100),'inverse_minus2N_to_m':-F(-2,50)}),
+'SIM-C1-L006-03':([1/F(2)**2,1/F(11,4)**2],'1',{'division_integer_identity':F(121*1322+38),'decimal_relative_error':abs(F(16,121)-F(1322,10000))/F(16,121)}),
+'SIM-C1-L007-01':([F(4)*3*F(-1,2),F(0)],'J',{'aligned0degrees':F(12),'opposed180degrees':F(-12)}),
+'SIM-C1-L007-02':([F(3)*(F(3)/F(3,2))*3,F(3)*(F(3)/F(3,2))*2],'W',{'acceleration':F(3)/F(3,2),'displacement_t_squared_coefficient':(F(3)/F(3,2))/2,'work_t_squared_coefficient':F(3),'positive_duration_mean_t_coefficient':F(3)}),
+'SIM-C1-L007-03':([F(3),'2sqrt(2)'],'m/s',{'mass_half_factor':F(1,2)*2,'lower_square':F(282,100)**2,'upper_square':F(283,100)**2,'relative_error_bound':F(1,100)/F(282,100)})}
+expected={'SIM-C1-L006-01':[F(3),F(6)],'SIM-C1-L006-02':[F(-2),F(-1,2)],'SIM-C1-L006-03':[F(1,4),F(16,121)],'SIM-C1-L007-01':[F(-6),F(0)],'SIM-C1-L007-02':[F(18),F(12)],'SIM-C1-L007-03':[F(3),'2sqrt(2)']}
+for row in alltasks:
+ ident=row['id'];answers,unit,extra=checks[ident];assert answers==expected[ident]
+ assert len(row['actualQuestions'])==2
+ for i,q in enumerate(row['actualQuestions']):
+  assert q['status'].startswith('Corretto.')and q['actualPrompt']
+  literal=F(q['input'])
+  if ident=='SIM-C1-L007-03'and i==1:
+   assert literal==F(283,100);assert F(282,100)**2<8<literal**2;assert F(1,100)/F(282,100)<F(5,1000)
+  else:assert abs(literal-answers[i])<=max(F(1,1000000),abs(answers[i])*F(5,1000))
+ rows.append({'id':ident,'actualInstalledTaskAnswersExact':[str(a)for a in answers],'unit':unit,'literalInputs':[q['input']for q in row['actualQuestions']],'additionalExactChecks':{k:str(v)for k,v in extra.items()},'actualTaskMatch':True})
+assert [160-121,390-3*121,270-2*121,280-2*121]==[39,27,28,38]
+assert 121*1322+38==160000
+assert F(16,121)-F(1322,10000)==F(19,605000)
+assert abs(F(16,121)-F(1322,10000))/F(16,121)==F(19,80000)<F(5,1000)
+assert 282**2==79524 and283**2==80089
+initial=(D/'initial-author-manual.verbatim.md').read_text();final=(D/'final-author-manual.verbatim.md').read_text()
+for ident in ['SIM-C1-L006-01','SIM-C1-L006-02','SIM-C1-L006-03']:
+ section=lambda s:s.split('## `'+ident+'`',1)[1].split('\n## ',1)[0]
+ assert section(initial)==section(final)
+assert 'Nella prova a 120°, il contributo'in final
+assert 'indica il valore numerico del tempo in secondi'in final
+assert r'\sqrt8\,\mathrm{m/s}=2\sqrt2\,\mathrm{m/s}'in final
+assert 'eleva al quadrato due numeri vicini'in final
+assert H(ROOT.read_bytes())==SHA
+out={'finalManualSha256':SHA,'records':rows,'actualWholeManualReading':'Performed by distinct reviewer before this calculation; this script validates exact arithmetic/identity, not prose comprehension','resolvedFindings':4,'firstThreeSectionsByteUnchanged':True,'actualQuestionsCount':12,'sourceUIProofCommit':'602c7b2622f5c13a1015240857cb1826b42edf5a','newBrowser':'NOT_RUN','activityCredit':0,'humanApproval':'NOT_RUN','publicationAction':'NONE'}
+(D/'review-analysis.json').write_text(json.dumps(out,indent=2)+'\n');print(json.dumps(out))

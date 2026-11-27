@@ -1,0 +1,138 @@
+{
+  "sourceEvidenceCommit": "602c7b2622f5c13a1015240857cb1826b42edf5a",
+  "sourceReportSha256": "553061adb4408d61445612398a8df3d28d109d9ba89860b49d0ee1790fe025d2",
+  "tasks": [
+    {
+      "id": "SIM-C1-L006-01",
+      "caseKey": "SIM-C1-L006-01|published|320|orbit|setup",
+      "caseSha256": "d6dee3aa1161d79dd65fece91ab6440ff178c4d477111d76bfc89b44a4327c9b",
+      "actualQuestions": [
+        {
+          "expectedAccepted": true,
+          "input": "3",
+          "prompt": null,
+          "actualPrompt": "Imposta «Spinta su un blocco fermo» su 10 N. Quale valore ottieni per «Attrito in modulo»?",
+          "status": "Corretto. fₛ = F fino a 6 N; superata la soglia f𝒹 = 3 N. μ dinamico × N = 3 = 3 N."
+        },
+        {
+          "expectedAccepted": true,
+          "input": "6",
+          "prompt": null,
+          "actualPrompt": "Parti con il blocco fermo e applichi 6 N. L’attrito statico arriva a 6 N e quello durante lo scorrimento vale 3 N. Quale modulo dell’attrito misuri?",
+          "status": "Corretto. fₛ = F fino a 6 N; superata la soglia f𝒹 = 3 N. F applicata = 6 = 6 N."
+        }
+      ],
+      "sourceSha256": "444a3d9fe8c31446e477dd3d72c9af784c84b1060678c31679f8ac3f1227c263"
+    },
+    {
+      "id": "SIM-C1-L006-02",
+      "caseKey": "SIM-C1-L006-02|published|320|orbit|setup",
+      "caseSha256": "a9fd11db3d037877cbe1ee754a322532d72fdf0b0e03890e53978e5187fc73d8",
+      "actualQuestions": [
+        {
+          "expectedAccepted": true,
+          "input": "-2",
+          "prompt": null,
+          "actualPrompt": "Imposta «Allungamento» su 4 cm. Quale valore ottieni per «Forza elastica»?",
+          "status": "Corretto. F = −kx; k = 50 N/m; x(m) = x(cm)/100. −0,5 × 4 = -2 N."
+        },
+        {
+          "expectedAccepted": true,
+          "input": "-0.5",
+          "prompt": null,
+          "actualPrompt": "Sposti la punta di una molla di 1 cm rispetto al riposo. Con k = 50 N/m, quale forza con segno esercita la molla lungo l’asse?",
+          "status": "Corretto. F = −kx; k = 50 N/m; x(m) = x(cm)/100. −0,5 × 1 = -0,5 N."
+        }
+      ],
+      "sourceSha256": "3dd3ca74965f5e0fa3ce70272105418d5c1db2642f893da0ec77c1edd4632582"
+    },
+    {
+      "id": "SIM-C1-L006-03",
+      "caseKey": "SIM-C1-L006-03|published|320|orbit|setup",
+      "caseSha256": "7dc7dd8279dced698ed7dd1bdbf51d331299cb24efc8f04df9a31b7ca4fa788d",
+      "actualQuestions": [
+        {
+          "expectedAccepted": true,
+          "input": "0.25",
+          "prompt": null,
+          "actualPrompt": "Imposta «Distanza fra i centri in raggi di riferimento» su 2. Quale valore ottieni per «Forza rispetto a F₀»?",
+          "status": "Corretto. F/F₀ = (r₀/r)². 1 / (2²) = 0,25."
+        },
+        {
+          "expectedAccepted": true,
+          "input": "0.1322",
+          "prompt": null,
+          "actualPrompt": "Fra due masse la distanza diventa 2,75 volte quella di riferimento. Quale frazione della forza originaria resta?",
+          "status": "Corretto. F/F₀ = (r₀/r)². 1 / (2,75²) ≈ 0,1322."
+        }
+      ],
+      "sourceSha256": "e44f957cf45b4effcd3f36f85850c95a04ffd10871075e7c2f6fe54a7b94ac43"
+    },
+    {
+      "id": "SIM-C1-L007-01",
+      "caseKey": "SIM-C1-L007-01|published|320|orbit|setup",
+      "caseSha256": "a51194293a2114c8fdc2eeeb8a508bea73654c1d4e4c4bc5467d5087f982ee48",
+      "actualQuestions": [
+        {
+          "expectedAccepted": true,
+          "input": "-6",
+          "prompt": null,
+          "actualPrompt": "Imposta «Angolo tra forza e spostamento» su 120 °. Quale valore ottieni per «Lavoro della forza»?",
+          "status": "Corretto. W = Fs cos θ = (4 N)(3 m)cos θ. 12 × cos(120°) ≈ -6 J."
+        },
+        {
+          "expectedAccepted": true,
+          "input": "0",
+          "prompt": null,
+          "actualPrompt": "Una forza di 4 N agisce durante uno spostamento di 3 m con angolo di 90 °. Quanti joule trasferisce al corpo?",
+          "status": "Corretto. W = Fs cos θ = (4 N)(3 m)cos θ. 12 × cos(90°) = 0 J."
+        }
+      ],
+      "sourceSha256": "f85003b40a9ad21a9aebb9d5568a2bbc15664d957dddf4dd47473d4e9182ad5c"
+    },
+    {
+      "id": "SIM-C1-L007-02",
+      "caseKey": "SIM-C1-L007-02|published|320|orbit|setup",
+      "caseSha256": "bdd475d37ac09cd72de16d3bd43240c2e28a46fdb1c7a77eeb2b0b3d30cbe2f4",
+      "actualQuestions": [
+        {
+          "expectedAccepted": true,
+          "input": "18",
+          "prompt": null,
+          "actualPrompt": "Imposta «Istante della lettura» su 3 s. Quale valore ottieni per «Potenza istantanea»?",
+          "status": "Corretto. F = 3 N; v = 2t; P = Fv = 6t. 6 × 3 = 18 W."
+        },
+        {
+          "expectedAccepted": true,
+          "input": "12",
+          "prompt": null,
+          "actualPrompt": "La trazione è 3 N e la velocità cresce come v = 2t in m/s. All’istante 2 s, quale potenza eroga la trazione?",
+          "status": "Corretto. F = 3 N; v = 2t; P = Fv = 6t. 6 × 2 = 12 W."
+        }
+      ],
+      "sourceSha256": "fca8abba8445694bc3af22eef6156a0c96916efe31b4c2a752aab49043bdbe09"
+    },
+    {
+      "id": "SIM-C1-L007-03",
+      "caseKey": "SIM-C1-L007-03|published|320|orbit|setup",
+      "caseSha256": "b7bc8fcd3e496d6df6220286542d0fc48760b212723d2ac14fc45ff4c40da0b1",
+      "actualQuestions": [
+        {
+          "expectedAccepted": true,
+          "input": "3",
+          "prompt": null,
+          "actualPrompt": "Imposta «Lavoro netto» su 9 J. Quale valore ottieni per «Velocità finale»?",
+          "status": "Corretto. W = ΔK. Da fermo v = √(2W/m), con m = 2 kg.. √(9) = 3 m/s."
+        },
+        {
+          "expectedAccepted": true,
+          "input": "2.83",
+          "prompt": null,
+          "actualPrompt": "Un carrello di 2 kg parte da fermo e riceve un lavoro netto di 8 J. A quale velocità taglia il traguardo?",
+          "status": "Corretto. W = ΔK. Da fermo v = √(2W/m), con m = 2 kg.. √(8) ≈ 2,828 m/s."
+        }
+      ],
+      "sourceSha256": "6729a0318bbef2a6dabc6febcddd78b6cb95c3a086105947cea3744c43c77cc9"
+    }
+  ]
+}

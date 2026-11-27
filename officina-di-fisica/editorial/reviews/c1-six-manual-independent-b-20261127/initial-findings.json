@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "1.0.0",
+  "initialSha256": "24cd7ad5571fc1fe08bdc6ea0eb4c6f040385f840f6551d824afa4dc3358b479",
+  "reviewer": "author_vectors_b",
+  "author": "Root",
+  "findings": [
+    {
+      "id": "SIM-C1-L007-01",
+      "code": "NEGATIVE_CONTRIBUTION_NEEDS_120_DEGREE_SCOPE",
+      "initial": "Negative contribution stated after90degree zero case.",
+      "resolution": "Explicitly scoped to120degree trial."
+    },
+    {
+      "id": "SIM-C1-L007-02",
+      "code": "TIME_DISPLAY_NORMALIZATION_MISSING",
+      "initial": "Displayed2t m/s,6t W,3t² J used time symbol without numeric normalization.",
+      "resolution": "t explicitly means numerical time value inseconds."
+    },
+    {
+      "id": "SIM-C1-L007-03",
+      "code": "RADICAL_FIRST_MEMBER_MISSING_UNIT",
+      "initial": "sqrt8 dimensionless equated to2sqrt2m/s.",
+      "resolution": "m/s on both members."
+    },
+    {
+      "id": "SIM-C1-L007-03",
+      "code": "MINOR_IMPERATIVE_CLARITY",
+      "initial": "quadrati due numeri vicini",
+      "resolution": "eleva al quadrato due numeri vicini"
+    }
+  ],
+  "initialPendingIds": [
+    "SIM-C1-L007-01",
+    "SIM-C1-L007-02",
+    "SIM-C1-L007-03"
+  ],
+  "initialNoFindingIds": [
+    "SIM-C1-L006-01",
+    "SIM-C1-L006-02",
+    "SIM-C1-L006-03"
+  ],
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN"
+}

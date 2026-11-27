@@ -1,0 +1,120 @@
+{
+  "finalManualSha256": "dd74d8d9ad00a493ac6c55299cede147bc40526a4194d077bcb45056b866286d",
+  "records": [
+    {
+      "id": "SIM-C1-L006-01",
+      "actualInstalledTaskAnswersExact": [
+        "3",
+        "6"
+      ],
+      "unit": "N",
+      "literalInputs": [
+        "3",
+        "6"
+      ],
+      "additionalExactChecks": {
+        "10N_minus_dynamic3N": "7",
+        "threshold_equilibrium_net": "0"
+      },
+      "actualTaskMatch": true
+    },
+    {
+      "id": "SIM-C1-L006-02",
+      "actualInstalledTaskAnswersExact": [
+        "-2",
+        "-1/2"
+      ],
+      "unit": "N",
+      "literalInputs": [
+        "-2",
+        "-0.5"
+      ],
+      "additionalExactChecks": {
+        "compression_minus2cm": "1",
+        "inverse_minus2N_to_m": "1/25"
+      },
+      "actualTaskMatch": true
+    },
+    {
+      "id": "SIM-C1-L006-03",
+      "actualInstalledTaskAnswersExact": [
+        "1/4",
+        "16/121"
+      ],
+      "unit": "1",
+      "literalInputs": [
+        "0.25",
+        "0.1322"
+      ],
+      "additionalExactChecks": {
+        "division_integer_identity": "160000",
+        "decimal_relative_error": "19/80000"
+      },
+      "actualTaskMatch": true
+    },
+    {
+      "id": "SIM-C1-L007-01",
+      "actualInstalledTaskAnswersExact": [
+        "-6",
+        "0"
+      ],
+      "unit": "J",
+      "literalInputs": [
+        "-6",
+        "0"
+      ],
+      "additionalExactChecks": {
+        "aligned0degrees": "12",
+        "opposed180degrees": "-12"
+      },
+      "actualTaskMatch": true
+    },
+    {
+      "id": "SIM-C1-L007-02",
+      "actualInstalledTaskAnswersExact": [
+        "18",
+        "12"
+      ],
+      "unit": "W",
+      "literalInputs": [
+        "18",
+        "12"
+      ],
+      "additionalExactChecks": {
+        "acceleration": "2",
+        "displacement_t_squared_coefficient": "1",
+        "work_t_squared_coefficient": "3",
+        "positive_duration_mean_t_coefficient": "3"
+      },
+      "actualTaskMatch": true
+    },
+    {
+      "id": "SIM-C1-L007-03",
+      "actualInstalledTaskAnswersExact": [
+        "3",
+        "2sqrt(2)"
+      ],
+      "unit": "m/s",
+      "literalInputs": [
+        "3",
+        "2.83"
+      ],
+      "additionalExactChecks": {
+        "mass_half_factor": "1",
+        "lower_square": "19881/2500",
+        "upper_square": "80089/10000",
+        "relative_error_bound": "1/282"
+      },
+      "actualTaskMatch": true
+    }
+  ],
+  "actualWholeManualReading": "Performed by distinct reviewer before this calculation; this script validates exact arithmetic/identity, not prose comprehension",
+  "resolvedFindings": 4,
+  "firstThreeSectionsByteUnchanged": true,
+  "actualQuestionsCount": 12,
+  "sourceUIProofCommit": "602c7b2622f5c13a1015240857cb1826b42edf5a",
+  "newBrowser": "NOT_RUN",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

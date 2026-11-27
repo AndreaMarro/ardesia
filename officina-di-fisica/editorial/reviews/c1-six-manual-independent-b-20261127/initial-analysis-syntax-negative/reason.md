@@ -1,0 +1,1 @@
+First calculation child really exited1 with SyntaxError: a missing space in and283. No arithmetic was executed and no positive result was claimed. Only that Python lexical typo is corrected; expectations and author manual remain unchanged.
