@@ -8,6 +8,7 @@ export function build(b, p, s, stage, view) {
     section = view === 'section',
     Nx = 64,
     Nz = section ? 1 : 42;
+  const xAt = (i) => -1.24 + (2.48 * i) / Nx;
   b.base(5.65, 3.91);
   const positions = [],
     colors = [],
@@ -15,7 +16,7 @@ export function build(b, p, s, stage, view) {
     coefs = [];
   for (let j = 0; j <= Nz; j++)
     for (let i = 0; i <= Nx; i++) {
-      const x = -1.24 + (2.48 * i) / Nx,
+      const x = xAt(i),
         z = section ? p.z + (j - 0.5) * 0.025 : -0.84 + (1.68 * j) / Nz;
       positions.push(x * scale, level, z * scale);
       colors.push(0.2, 0.55, 0.62);
@@ -35,6 +36,11 @@ export function build(b, p, s, stage, view) {
     b.label([x * scale, level + 0.64, 0], i ? 'S₂' : 'S₁', i ? violet : ink);
   }
   if (stage < 0) return;
+  // In a head-on section both rows of the sheet can project to the same curve.
+  // Evaluate the centre plane itself and draw it just in front of the strip.
+  const profile = section ? Array.from({ length: Nx + 1 }, (_, i) => coefficients(s, xAt(i), p.z)) : [];
+  const trace = section ? b.line(profile.map((_, i) => [xAt(i) * scale, level, (p.z + 0.025) * scale]), ink) : null;
+  if (trace) trace.frustumCulled = false;
   const loc = [p.x * scale, level, p.z * scale],
     probe = b.ball(loc, 0.09, ivory),
     ring = b.ring(loc, 0.13, 'xz', teal);
@@ -94,6 +100,13 @@ export function build(b, p, s, stage, view) {
     const c = Math.cos(s.omega * t),
       sn = Math.sin(s.omega * t);
     for (const update of fronts) update(t);
+    if (trace) {
+      const points = trace.geometry.attributes.position;
+      for (const [i, { c: cosine, s: sine }] of profile.entries()) {
+        points.setY(i, level + gain * 0.004 * (cosine * c + sine * sn) / 2);
+      }
+      points.needsUpdate = true;
+    }
     for (let i = 0; i < coefs.length; i++) {
       const u = (coefs[i].c * c + coefs[i].s * sn) / 2;
       verts.setY(i, level + gain * 0.004 * u);
