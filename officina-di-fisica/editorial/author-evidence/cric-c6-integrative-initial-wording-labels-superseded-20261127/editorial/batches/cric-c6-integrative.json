@@ -1,0 +1,893 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C6-Q001",
+      "kind": "question",
+      "course": "C6",
+      "section": "Problemi integrativi",
+      "order": 1,
+      "title": "Un solo tragitto fra due sensori",
+      "skill": "C6-L01",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003"
+      ],
+      "version": 2,
+      "prompt": "Due sensori fermi sono distanti 30 cm lungo un tratto rettilineo d’acqua. Un segnale acustico lo percorre a velocità uniforme 1500 m/s. Il primo sensore avvia il cronometro e il secondo lo ferma; trascura i ritardi degli strumenti. Qual è il tempo in microsecondi?",
+      "family": "il-passaggio-tra-due-strumenti",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il tratto è un percorso diretto, non un’eco. Converto prima 30 cm in 3/10 m e divido per 1500 m/s. Ottengo 1/5000 s; poiché un secondo contiene un milione di microsecondi, sono 1000000/5000=200 μs. La verifica inversa usa 1500 m/s per 200/1000000 s e ricostruisce 3/10 m."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d8f32fb6242266835538f2f611e74505ef055a3c6d79a06afc23e1b86cd1932c",
+          "text": "Il primo pannello distingue due sensori: il segnale percorre soltanto i 30 cm fra il primo e il secondo, in 200 μs. Non compare un tratto di ritorno."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta t=\\frac{s}{v}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta t=\\frac1{5000}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta t=200\\,\\mathrm{\\mu s}"
+        },
+        {
+          "type": "text",
+          "text": "100 μs introdurrebbe una divisione per due da eco, ma qui non c’è ritorno. 20000 μs tratterebbe 30 cm come 30 m. 0,2 è il valore numerico del tempo in millisecondi, da non copiare con l’unità microsecondi."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 200,
+        "unit": "μs",
+        "tolerance": 0
+      },
+      "hints": [
+        "Segui gli istanti di avvio e arresto: quale cammino è davvero compreso?",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "testo",
+        "message": "100 μs introdurrebbe una divisione per due da eco, ma qui non c’è ritorno. 20000 μs tratterebbe 30 cm come 30 m. 0,2 è il valore numerico del tempo in millisecondi, da non copiare con l’unità microsecondi.",
+        "target": "C6-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Un solo tragitto fra due sensori"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q002",
+      "kind": "question",
+      "course": "C6",
+      "section": "Problemi integrativi",
+      "order": 2,
+      "title": "Dalla differenza di pressione a una massa",
+      "skill": "C6-L01",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003"
+      ],
+      "version": 2,
+      "prompt": "Una differenza di pressione uniforme di 25 kPa agisce normalmente su un pistone di area 2,0 cm². Quale massa avrebbe un peso uguale al modulo della forza netta di pressione? Usa g=10 m/s² e trascura altre forze.",
+      "family": "un-ordine-di-grandezza",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un centimetro quadrato è 1/10000 m², quindi l’area vale 2/10000 m². Il prodotto con 25000 Pa dà 5 N. Per avere lo stesso peso pongo mg=5 N e divido per g: m=1/2 kg. Uso la differenza di pressione, che già rappresenta il contributo netto delle due facce, senza aggiungere l’atmosfera."
+        },
+        {
+          "type": "formula",
+          "text": "A=\\frac2{10000}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " F=\\Delta p A"
+        },
+        {
+          "type": "formula",
+          "text": " F=5\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac12\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "5 kg copierebbe il numero della forza senza dividerlo per 10 m/s²; il suo peso sarebbe 50 N. 5000 kg richiederebbe un peso di 50000 N e una diversa conversione dell’area. 1/20 kg darebbe soltanto 1/2 N."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 kg",
+          "1/2 kg",
+          "5 kg",
+          "1/20 kg",
+          "5000 kg"
+        ],
+        "value": "1/2 kg"
+      },
+      "hints": [
+        "Trova prima la forza in newton, poi usa la relazione fra massa e peso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "5 kg copierebbe il numero della forza senza dividerlo per 10 m/s²; il suo peso sarebbe 50 N. 5000 kg richiederebbe un peso di 50000 N e una diversa conversione dell’area. 1/20 kg darebbe soltanto 1/2 N.",
+        "target": "C6-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Dalla differenza di pressione a una massa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q003",
+      "kind": "question",
+      "course": "C6",
+      "section": "Problemi integrativi",
+      "order": 3,
+      "title": "Un raccordo che alimenta anche un accumulo",
+      "skill": "C6-L02",
+      "prerequisites": [
+        "C6-L01",
+        "C2-L001",
+        "C4-L05",
+        "C5-L04"
+      ],
+      "version": 2,
+      "prompt": "Una pompa immette 90 mL/min di un liquido incomprimibile in un raccordo. Un ramo scarica 30 mL/min; un serbatoio laterale trattiene 12 mL/min. Nell’intervallo considerato non ci sono altre entrate, uscite o perdite. Quanto scorre nel terzo ramo, in mL/min?",
+      "family": "un-nodo-con-memoria",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scelgo come volume di controllo il raccordo insieme al serbatoio. Per ogni minuto le 90 unità entranti si dividono fra 30 uscenti nel primo ramo, la portata cercata e 12 che rimangono nel sistema. Sottraggo entrambe le quote note: 90−30−12=48 mL/min. Ricomponendo 30+48+12 ritrovo esattamente l’ingresso."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d8f32fb6242266835538f2f611e74505ef055a3c6d79a06afc23e1b86cd1932c",
+          "text": "Le quattro barre usano la stessa scala di portata: 90 mL/min entranti si ripartiscono in 30 e 48 mL/min uscenti e 12 mL/min trattenuti. Il serbatoio accumula volume."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{\\rm in}=Q_1+Q_3+\\dot V_{\\rm accumulo}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_3=48\\,\\mathrm{mL/min}"
+        },
+        {
+          "type": "text",
+          "text": "60 mL/min trascurerebbe l’accumulo; 72 mL/min aggiungerebbe invece le 12 unità trattenute alla disponibilità in uscita. 90 mL/min assegnerebbe al terzo ramo tutto l’ingresso. Il sistema non è in regime senza accumulo anche se le portate indicate sono costanti."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 48,
+        "unit": "mL/min",
+        "tolerance": 0
+      },
+      "hints": [
+        "Disegna il confine includendo il serbatoio e distingue ciò che esce da ciò che resta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "60 mL/min trascurerebbe l’accumulo; 72 mL/min aggiungerebbe invece le 12 unità trattenute alla disponibilità in uscita. 90 mL/min assegnerebbe al terzo ramo tutto l’ingresso. Il sistema non è in regime senza accumulo anche se le portate indicate sono costanti.",
+        "target": "C6-L02"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Un raccordo che alimenta anche un accumulo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q004",
+      "kind": "question",
+      "course": "C6",
+      "section": "Problemi integrativi",
+      "order": 4,
+      "title": "La potenza media da un passaggio di carica",
+      "skill": "C6-L02",
+      "prerequisites": [
+        "C6-L01",
+        "C2-L001",
+        "C4-L05",
+        "C5-L04"
+      ],
+      "version": 2,
+      "prompt": "Nel verso della corrente, un tratto di filo mantiene una caduta di tensione di 5,0 V. In un minuto passa una carica netta di 12 C in quel verso. Qual è la potenza elettrica media ricevuta dal tratto, in watt?",
+      "family": "una-misura-su-metallo",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni coulomb perde 5 J di energia potenziale elettrica, ricevuti dal tratto. In tutto sono 12×5=60 J durante 60 s. Dividendo energia per durata ottengo 1 W. In modo equivalente la corrente media è 12/60=1/5 A, e il prodotto di tensione costante per corrente media dà la stessa potenza."
+        },
+        {
+          "type": "formula",
+          "text": "E=Vq"
+        },
+        {
+          "type": "formula",
+          "text": " E=60\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline I=\\frac15\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline P=1\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "60 W copierebbe l’energia numerica senza dividerla per 60 s. 0,2 W copierebbe il numero della corrente in ampere come se fosse una potenza. Usare un minuto come un secondo moltiplicherebbe il risultato per sessanta."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "hints": [
+        "Puoi calcolare prima l’energia totale oppure la corrente media, mantenendo la stessa durata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "60 W copierebbe l’energia numerica senza dividerla per 60 s. 0,2 W copierebbe il numero della corrente in ampere come se fosse una potenza. Usare un minuto come un secondo moltiplicherebbe il risultato per sessanta.",
+        "target": "C6-L02"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "La potenza media da un passaggio di carica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q005",
+      "kind": "question",
+      "course": "C6",
+      "section": "Problemi integrativi",
+      "order": 5,
+      "title": "Dove vanno i sei joule mancanti",
+      "skill": "C6-L03",
+      "prerequisites": [
+        "C6-L01",
+        "C6-L02",
+        "C1-L007",
+        "C3-L06",
+        "C4-L05"
+      ],
+      "version": 2,
+      "prompt": "Un blocco scende perdendo 30 J di energia potenziale gravitazionale. La sua velocità resta costante e un calorimetro collegato riceve 24 J. Nel bilancio dell’intero dispositivo non ci sono altre sorgenti di energia. Quanti joule sono trasferiti o accumulati negli altri canali?",
+      "family": "due-letture-sul-calorimetro",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità costante rende nulla la variazione dell’energia cinetica del blocco. I 30 J disponibili devono quindi ritrovarsi nei 24 J misurati dal calorimetro e nel resto del dispositivo o nell’ambiente. La differenza 30−24=6 J misura questi altri canali. Non significa che l’energia scompaia, né determina da sola quale componente si scaldi."
+        },
+        {
+          "type": "formula",
+          "text": "30\\,\\mathrm J=24\\,\\mathrm J+E_{\\rm altri}"
+        },
+        {
+          "type": "formula",
+          "text": " E_{\\rm altri}=6\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "54 J sommerebbe due destinazioni della stessa energia anziché chiudere il bilancio. Zero imporrebbe che tutta la perdita fosse nel calorimetro, contro la misura. 24 J è il calore già registrato, non la quota residua."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "hints": [
+        "Se l’energia cinetica non cambia, quali destinazioni devono sommare alla perdita disponibile?",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "54 J sommerebbe due destinazioni della stessa energia anziché chiudere il bilancio. Zero imporrebbe che tutta la perdita fosse nel calorimetro, contro la misura. 24 J è il calore già registrato, non la quota residua.",
+        "target": "C6-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Dove vanno i sei joule mancanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q006",
+      "kind": "question",
+      "course": "C6",
+      "section": "Problemi integrativi",
+      "order": 6,
+      "title": "Due conversioni in sequenza",
+      "skill": "C6-L03",
+      "prerequisites": [
+        "C6-L01",
+        "C6-L02",
+        "C1-L007",
+        "C3-L06",
+        "C4-L05"
+      ],
+      "version": 2,
+      "prompt": "In un ciclo una macchina riceve 900 J di calore e ne cede 600 J, tornando allo stato iniziale. Non ci sono altri scambi energetici salvo il lavoro all’albero. Un generatore ne trasforma l’80% in energia elettrica. Quanti joule elettrici si ottengono per ciclo?",
+      "family": "un-generatore-e-un-carico",
+      "difficulty": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La macchina torna allo stesso stato, quindi la sua variazione interna netta è zero. Il lavoro disponibile all’albero è 900−600=300 J. Il generatore riceve questi 300 J, non tutti i 900 J termici; ne converte quattro quinti, pari a 240 J. Gli altri 60 J del generatore si aggiungono ai 600 J già ceduti dalla macchina, chiudendo il bilancio totale."
+        },
+        {
+          "type": "formula",
+          "text": "W=Q_{\\rm ricevuto}-Q_{\\rm ceduto}"
+        },
+        {
+          "type": "formula",
+          "text": " W=300\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_{\\rm el}=\\frac45W"
+        },
+        {
+          "type": "formula",
+          "text": " E_{\\rm el}=240\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "720 J applicherebbe l’80% al calore in ingresso anziché al lavoro. 300 J ignorerebbe le perdite del generatore. Dividere per 4/5 darebbe 375 J elettrici da 300 J meccanici, incompatibile con il rendimento dichiarato."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 240,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "hints": [
+        "Identifica l’ingresso di ciascun dispositivo prima di applicarne la frazione utile.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "720 J applicherebbe l’80% al calore in ingresso anziché al lavoro. 300 J ignorerebbe le perdite del generatore. Dividere per 4/5 darebbe 375 J elettrici da 300 J meccanici, incompatibile con il rendimento dichiarato.",
+        "target": "C6-L03"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Due conversioni in sequenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q007",
+      "kind": "question",
+      "course": "C6",
+      "section": "Problemi integrativi",
+      "order": 7,
+      "title": "Allargare il tubo a portata fissata",
+      "skill": "C6-L04",
+      "prerequisites": [
+        "C6-L01",
+        "C5-L07",
+        "C5-L08"
+      ],
+      "version": 2,
+      "prompt": "Confronta due tubi circolari rigidi, lunghi, con stesso liquido newtoniano e stessa lunghezza. Il moto è laminare stazionario sviluppato, con aderenza alle pareti ferme. La portata positiva è la stessa e il secondo raggio è il doppio del primo. Qual è il rapporto Δp₂/Δp₁ fra i moduli delle cadute di pressione?",
+      "family": "sostituire-solo-il-tratto",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nella legge di Poiseuille la portata è proporzionale al prodotto Δp r⁴, a viscosità e lunghezza fissate. Qui è la portata a rimanere costante. Raddoppiare il raggio moltiplica r⁴ per sedici, quindi la caduta deve diventare un sedicesimo. Il rapporto è definito perché portata e resistenze sono positive; non si confrontano due cadute nulle."
+        },
+        {
+          "type": "formula",
+          "text": "Q=\\frac{\\pi r^4\\Delta p}{8\\eta L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta p_2}{\\Delta p_1}=\\left(\\frac{r_1}{r_2}\\right)^4"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta p_2}{\\Delta p_1}=\\frac1{16}"
+        },
+        {
+          "type": "text",
+          "text": "Sedici userebbe la variazione di portata a pressione fissata, che è un esperimento diverso. Un quarto applicherebbe soltanto il quadrato del raggio, non la quarta potenza. Un mezzo assumerebbe una legge lineare col raggio."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "1/16",
+          "16",
+          "1/4",
+          "4"
+        ],
+        "value": "1/16"
+      },
+      "hints": [
+        "Isola la caduta di pressione mantenendo costante la portata positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Sedici userebbe la variazione di portata a pressione fissata, che è un esperimento diverso. Un quarto applicherebbe soltanto il quadrato del raggio, non la quarta potenza. Un mezzo assumerebbe una legge lineare col raggio.",
+        "target": "C6-L04"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Allargare il tubo a portata fissata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q008",
+      "kind": "question",
+      "course": "C6",
+      "section": "Problemi integrativi",
+      "order": 8,
+      "title": "Dimezzamento e distanza tripla",
+      "skill": "C6-L04",
+      "prerequisites": [
+        "C6-L01",
+        "C5-L07",
+        "C5-L08"
+      ],
+      "version": 2,
+      "prompt": "Una sorgente puntiforme emette isotropicamente con lo stesso numero medio di segnali per decadimento. La sua attività positiva si dimezza. Lo stesso piccolo rivelatore, normale ai raggi e con efficienza invariata, passa da distanza r>0 a 3r. Trascura fondo e assorbimento. Quanto vale il rapporto fra tasso iniziale e finale?",
+      "family": "il-rivelatore-guarda-piu-lontano",
+      "difficulty": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A parità di rivelatore il tasso è proporzionale all’attività e inversamente al quadrato della distanza. Il dimezzamento fornisce 1/2 e lo spostamento fornisce 1/9: il tasso finale è 1/18 di quello iniziale. È richiesto il rapporto opposto, iniziale su finale, quindi il fattore di riduzione è 18. La sorgente resta puntiforme rispetto alle distanze e il rivelatore intercetta una piccola porzione della superficie sferica."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{R_f}{R_i}=\\frac12\\left(\\frac13\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{R_f}{R_i}=\\frac1{18}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{R_i}{R_f}=18"
+        },
+        {
+          "type": "text",
+          "text": "1/18 è la frazione finale rimasta, non il rapporto chiesto. Sei combinerebbe il dimezzamento con una distanza lineare; nove trascurerebbe il decadimento e due trascurerebbe la geometria."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 18,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "hints": [
+        "Forma prima il rapporto finale su iniziale e poi verifica se devi invertirlo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "testo",
+        "message": "1/18 è la frazione finale rimasta, non il rapporto chiesto. Sei combinerebbe il dimezzamento con una distanza lineare; nove trascurerebbe il decadimento e due trascurerebbe la geometria.",
+        "target": "C6-L04"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Dimezzamento e distanza tripla"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q009",
+      "kind": "question",
+      "course": "C6",
+      "section": "Problemi integrativi",
+      "order": 9,
+      "title": "Una carica netta da due versi",
+      "skill": "C6-L05",
+      "prerequisites": [
+        "C6-L01",
+        "C6-L02",
+        "C1-L003",
+        "C3-L07"
+      ],
+      "version": 2,
+      "prompt": "In un filo la corrente convenzionale è +0,30 A per 4 s e poi −0,10 A per 5 s, rispetto allo stesso verso positivo. Qual è la carica netta passata in quel verso nell’intero intervallo?",
+      "family": "un-rettangolo-orientato",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La carica netta è l’area orientata del grafico corrente–tempo. Il primo rettangolo contribuisce (3/10 A)(4 s)=6/5 C; il secondo (−1/10 A)(5 s)=−1/2 C. Porto al denominatore dieci: 12/10−5/10=7/10 C. Il segno positivo indica che prevale il trasferimento nel verso convenzionale scelto."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d8f32fb6242266835538f2f611e74505ef055a3c6d79a06afc23e1b86cd1932c",
+          "text": "Nel grafico corrente–tempo i due rettangoli hanno basi 4 s e 5 s e altezze +0,30 A e −0,10 A. Le aree orientate sono +1,2 C e −0,5 C: il netto è +0,7 C."
+        },
+        {
+          "type": "formula",
+          "text": "q_1=\\frac65\\,\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " q_2=-\\frac12\\,\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " q_{\\rm netto}=\\frac7{10}\\,\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "17/10 C somma i moduli e descrive la quantità transitata nei due versi, non il netto. 6/5 C considera solo il primo tratto e −1/2 C solo il secondo. Il risultato −7/10 C invertirebbe il verso positivo assegnato."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "+6/5 C",
+          "−1/2 C",
+          "−7/10 C",
+          "+7/10 C",
+          "+17/10 C"
+        ],
+        "value": "+7/10 C"
+      },
+      "hints": [
+        "Scrivi il segno di ciascuna area prima di sommare le due cariche.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "17/10 C somma i moduli e descrive la quantità transitata nei due versi, non il netto. 6/5 C considera solo il primo tratto e −1/2 C solo il secondo. Il risultato −7/10 C invertirebbe il verso positivo assegnato.",
+        "target": "C6-L05"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Una carica netta da due versi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q010",
+      "kind": "question",
+      "course": "C6",
+      "section": "Problemi integrativi",
+      "order": 10,
+      "title": "Due pressioni nello stesso liquido fermo",
+      "skill": "C6-L05",
+      "prerequisites": [
+        "C6-L01",
+        "C6-L02",
+        "C1-L003",
+        "C3-L07"
+      ],
+      "version": 2,
+      "prompt": "Un tubo è pieno di un liquido omogeneo in quiete, di densità costante. Due prese hanno dislivello verticale 0,25 m; la pressione inferiore supera la superiore di 2,0 kPa. Con g=10 m/s², quale densità in kg/m³ ricavi?",
+      "family": "due-livelli-in-quiete",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In quiete la differenza di pressione fra i due livelli è ρgΔh. Converto 2 kPa in 2000 Pa e isolo ρ. Il prodotto gΔh è (10 m/s²)(1/4 m)=5/2 m²/s²; 2000 diviso 5/2 è 800 kg/m³. La pressione di riferimento si cancella nella differenza, perciò non devo aggiungere la pressione atmosferica."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p=\\rho g\\Delta h"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=\\frac{\\Delta p}{g\\Delta h}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=800\\,\\mathrm{kg/m^3}"
+        },
+        {
+          "type": "text",
+          "text": "0,8 kg/m³ userebbe 2 come se fossero pascal anziché kilopascal. 500 kg/m³ moltiplicherebbe 2000 per 0,25 senza dividere per gΔh; con quella densità il modello darebbe 1250 Pa. Lungo un flusso generico la sola differenza di quota non basterebbe: qui la quiete è dichiarata."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 800,
+        "unit": "kg/m³",
+        "tolerance": 0
+      },
+      "hints": [
+        "Usa la differenza verticale e converti i kilopascal prima di dividere.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "0,8 kg/m³ userebbe 2 come se fossero pascal anziché kilopascal. 500 kg/m³ moltiplicherebbe 2000 per 0,25 senza dividere per gΔh; con quella densità il modello darebbe 1250 Pa. Lungo un flusso generico la sola differenza di quota non basterebbe: qui la quiete è dichiarata.",
+        "target": "C6-L05"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Due pressioni nello stesso liquido fermo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q011",
+      "kind": "question",
+      "course": "C6",
+      "section": "Problemi integrativi",
+      "order": 11,
+      "title": "Separare energia unitaria e numero di fotoni",
+      "skill": "C6-L06",
+      "prerequisites": [
+        "C6-L01",
+        "C6-L02",
+        "C6-L03",
+        "C6-L04",
+        "C6-L05",
+        "C5-L10",
+        "C4-L06"
+      ],
+      "version": 2,
+      "prompt": "Un fascio monocromatico investe interamente un sensore. Vuoi attribuire un aumento della potenza ottica incidente al numero medio di fotoni al secondo, invece che all’energia di ciascuno. Quale insieme di misure lo permette?",
+      "family": "una-misura-che-non-basta",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel modello monocromatico ogni fotone porta hf. Se misuro che f resta uguale, l’energia unitaria non cambia. Se cresce anche la potenza ottica incidente P, dalla relazione P=Ṅhf segue che deve crescere il tasso medio Ṅ. Misurare la potenza incidente evita di scambiare una variazione della risposta elettrica non calibrata del sensore con un vero aumento dell’energia ricevuta."
+        },
+        {
+          "type": "formula",
+          "text": "P=\\dot N h f"
+        },
+        {
+          "type": "formula",
+          "text": " \\dot N=\\frac P{hf}"
+        },
+        {
+          "type": "text",
+          "text": "La sola temperatura ambiente non determina hf. La sola distanza o l’area illuminata non fissano la potenza totale intercettata. Una lettura elettrica non calibrata può cambiare per ragioni strumentali: la conclusione riguarda qui frequenza e potenza ottica misurate."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Frequenza invariata e potenza ottica incidente maggiore",
+          "Solo temperatura ambiente invariata",
+          "Sensore più lontano, senza altre misure",
+          "Area illuminata diversa, senza misura della potenza totale",
+          "Solo una lettura elettrica del sensore non calibrato più grande"
+        ],
+        "value": "Frequenza invariata e potenza ottica incidente maggiore"
+      },
+      "hints": [
+        "Quale misura fissa l’energia di un fotone e quale misura l’energia totale per secondo?",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "La sola temperatura ambiente non determina hf. La sola distanza o l’area illuminata non fissano la potenza totale intercettata. Una lettura elettrica non calibrata può cambiare per ragioni strumentali: la conclusione riguarda qui frequenza e potenza ottica misurate.",
+        "target": "C6-L06"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Separare energia unitaria e numero di fotoni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q012",
+      "kind": "question",
+      "course": "C6",
+      "section": "Problemi integrativi",
+      "order": 12,
+      "title": "Dall’elettricità alla luce ricevuta",
+      "skill": "C6-L06",
+      "prerequisites": [
+        "C6-L01",
+        "C6-L02",
+        "C6-L03",
+        "C6-L04",
+        "C6-L05",
+        "C5-L10",
+        "C4-L06"
+      ],
+      "version": 2,
+      "prompt": "Una lampada assorbe costantemente 5 W elettrici e ne trasforma il 20% in luce. Un rivelatore intercetta il 2% di tutta la potenza luminosa emessa e mantiene questa frazione per 3 s. Quanti millijoule di energia ottica riceve?",
+      "family": "ripensare-una-previsione",
+      "difficulty": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza luminosa emessa è un quinto di 5 W, quindi 1 W. Il rivelatore riceve un cinquantesimo di questo watt: 1/50 W. In 3 s ottiene 3/50 J; moltiplicando per 1000 trovo 60 mJ. Il controllo complessivo mostra che 60 mJ sono soltanto il 20% del 2% dei 15 J elettrici iniziali."
+        },
+        {
+          "type": "formula",
+          "text": "P_{\\rm luce}=1\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm ricevuta}=\\frac1{50}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " E_{\\rm ricevuta}=\\frac3{50}\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_{\\rm ricevuta}=60\\,\\mathrm{mJ}"
+        },
+        {
+          "type": "text",
+          "text": "3000 mJ ignorerebbe la frazione intercettata; 300 mJ ignorerebbe la conversione elettricità–luce. 0,06 mJ copierebbe il valore numerico in joule senza convertire il prefisso. Le due percentuali si applicano a stadi successivi."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 60,
+        "unit": "mJ",
+        "tolerance": 0
+      },
+      "hints": [
+        "Procedi da potenza elettrica a luce emessa, poi a luce intercettata e infine a energia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "3000 mJ ignorerebbe la frazione intercettata; 300 mJ ignorerebbe la conversione elettricità–luce. 0,06 mJ copierebbe il valore numerico in joule senza convertire il prefisso. Le due percentuali si applicano a stadi successivi.",
+        "target": "C6-L06"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Dall’elettricità alla luce ricevuta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "mL/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni chilogrammo che attraversa il banco richiede cΔT=(4000 J/(kg K))(1/2 K)=2000 J/kg. Con 8 J disponibili ogni secondo la portata massica è 8/2000=1/250 kg/s, cioè 4 g/s. Divido per la densità per ricavare 1/250000 m³/s; un metro cubo contiene un milione di millilitri, quindi sono 4 mL/s. Quattro millilitri hanno massa 4 g e richiedono proprio 8 J per scaldarsi di mezzo kelvin."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d8f32fb6242266835538f2f611e74505ef055a3c6d79a06afc23e1b86cd1932c",
+          "text": "L’ultimo pannello segue una massa che attraversa il banco ogni secondo: 4 g d’acqua, cioè 4 mL alla densità assegnata, ricevono 8 J e aumentano la temperatura di 0,50 K. Le caselle rappresentano un bilancio, non volumi in scala."
+        },
+        {
+          "type": "formula",
+          "text": "P=\\dot m c\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " \\dot m=\\frac1{250}\\,\\mathrm{kg/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_V=\\frac{\\dot m}{\\rho}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_V=4\\,\\mathrm{mL/s}"
+        },
+        {
+          "type": "text",
+          "text": "0,004 mL/s copierebbe il numero della portata massica in kg/s con un’unità volumica diversa. 4000 mL/s trascurerebbe il rapporto fra chilogrammi e grammi a densità assegnata. La densità serve dopo il bilancio termico, per trasformare massa al secondo in volume al secondo."
+        }
+      ],
+      "course": "C6",
+      "difficulty": 3,
+      "error": {
+        "category": "modello",
+        "message": "0,004 mL/s copierebbe il numero della portata massica in kg/s con un’unità volumica diversa. 4000 mL/s trascurerebbe il rapporto fra chilogrammi e grammi a densità assegnata. La densità serve dopo il bilancio termico, per trasformare massa al secondo in volume al secondo.",
+        "target": "C6-L01"
+      },
+      "family": "portata-da-potenza-termica-e-salto-di-temperatura",
+      "hints": [
+        "Trova prima quanti chilogrammi si possono scaldare ogni secondo, poi convertili in volume.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "id": "C6-AQ01",
+      "kind": "question",
+      "order": 302,
+      "prerequisites": [
+        "C2-L005",
+        "C3-L03"
+      ],
+      "prompt": "Un riscaldatore trasferisce costantemente 8,0 W a un flusso d’acqua in regime stazionario. L’uscita è 0,50 K più calda dell’ingresso. Trascura dispersioni, cambiamenti di fase e variazioni di quota e velocità. Con c=4000 J/(kg K) e ρ=1000 kg/m³ costanti, trova la portata volumica in mL/s.",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "section": "Problemi integrativi",
+      "skill": "C6-L01",
+      "title": "La portata da potenza e due termometri",
+      "version": 2,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "La portata da potenza e due termometri"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "d8f32fb6242266835538f2f611e74505ef055a3c6d79a06afc23e1b86cd1932c",
+      "name": "cric-c6-integrative-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMjEyMCIgdmlld0JveD0iMCAwIDY0MCAyMTIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMyNzI1MzYiPgo8dGl0bGUgaWQ9InRpdGxlIj5RdWF0dHJvIGJpbGFuY2kgaW50ZWdyYXRpdmkgZGlzdGludGk8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5EdWUgc2Vuc29yaSBkZWxpbWl0YW5vIHVuIHNvbG8gdHJhZ2l0dG8gZGkgdHJlbnRhIGNlbnRpbWV0cmkgaW4gZHVlY2VudG8gbWljcm9zZWNvbmRpLiBQb3J0YXRlIGRpIG5vdmFudGEgdW5pdMOgIGFsbOKAmWluZ3Jlc3NvIGUgdHJlbnRhIGUgcXVhcmFudG90dG8gaW4gdXNjaXRhLCBjb24gZG9kaWNpIHRyYXR0ZW51dGUgbmVsIHNlcmJhdG9pby4gRHVlIGFyZWUgb3JpZW50YXRlIGNvcnJlbnRlLXRlbXBvLCBwacO5IHVuIHZpcmdvbGEgZHVlIGUgbWVubyB6ZXJvIHZpcmdvbGEgY2lucXVlIGNvdWxvbWIsIGRhbm5vIHBpw7kgemVybyB2aXJnb2xhIHNldHRlIGNvdWxvbWIuIFVuIGJpbGFuY2lvIHNlcGFyYXRvIHNjYWxkYSBxdWF0dHJvIGdyYW1taSBk4oCZYWNxdWEgZGkgbWV6em8ga2VsdmluIGNvbiBvdHRvIGpvdWxlIG9nbmkgc2Vjb25kby48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9ImdyZWVuIiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI4IiByZWZYPSI4IiByZWZZPSI0IiBvcmllbnQ9ImF1dG8iIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgMEw4IDRMMCA4WiIgZmlsbD0iIzE0N2M3NiIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjIxMjAiIGZpbGw9IiNmZmZkZjciLz4KPHRleHQgeD0iNDAiIHk9IjU1IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBVbiBzb2xvIHRyYXR0byBmcmEgZHVlIHNlbnNvcmk8L3RleHQ+PHRleHQgeD0iNDAiIHk9IjEwOCI+QWNxdWE6IHYgPSAxNTAwIG0vcyA7IHN0cnVtZW50aSBmZXJtaS48L3RleHQ+CjxyZWN0IHg9IjkwIiB5PSIxNzUiIHdpZHRoPSI1MCIgaGVpZ2h0PSIxNjAiIGZpbGw9IiNlZWU5ZGEiIHN0cm9rZT0iIzg4OCIvPjxyZWN0IHg9IjUwMCIgeT0iMTc1IiB3aWR0aD0iNTAiIGhlaWdodD0iMTYwIiBmaWxsPSIjZWVlOWRhIiBzdHJva2U9IiM4ODgiLz48cGF0aCBkPSJNMTQwIDI1NUg1MDAiIHN0cm9rZT0iIzE0N2M3NiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2dyZWVuKSIvPgo8dGV4dCB4PSIxMTUiIHk9IjE1NSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QXZ2aW88L3RleHQ+PHRleHQgeD0iNTI1IiB5PSIxNTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkFycmVzdG88L3RleHQ+PHBhdGggZD0iTTE0MCAzNTBWMzc1SDUwMFYzNTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzg4OCIvPjx0ZXh0IHg9IjMyMCIgeT0iNDIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4zMCBjbSA7IM6UdCA9IDIwMCDOvHM8L3RleHQ+PHBhdGggZD0iTTQwIDQ3NUg2MDAiIHN0cm9rZT0iI2NiYzZiYyIvPgo8dGV4dCB4PSI0MCIgeT0iNTMwIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBFbnRyYXRhLCB1c2NpdGUgZSBhY2N1bXVsbzwvdGV4dD48dGV4dCB4PSI0MCIgeT0iNTgwIj5Qb3J0YXRlIGluIG1ML21pbiwgc3VsbGEgc3Rlc3NhIHNjYWxhLjwvdGV4dD4KPHRleHQgeD0iNTAiIHk9IjY1MCI+RW50cmF0YTwvdGV4dD48cmVjdCB4PSIxNjAiIHk9IjYyNSIgd2lkdGg9IjQwNSIgaGVpZ2h0PSIzNSIgZmlsbD0iIzY4NTJhMyIvPjx0ZXh0IHg9IjU3NSIgeT0iNjUwIj45MDwvdGV4dD4KPHRleHQgeD0iNTAiIHk9Ijc0MCI+UmFtbyAxPC90ZXh0PjxyZWN0IHg9IjE2MCIgeT0iNzE1IiB3aWR0aD0iMTM1IiBoZWlnaHQ9IjM1IiBmaWxsPSIjMTQ3Yzc2Ii8+PHRleHQgeD0iMzEwIiB5PSI3NDAiPjMwPC90ZXh0Pgo8dGV4dCB4PSI1MCIgeT0iODMwIj5SYW1vIDM8L3RleHQ+PHJlY3QgeD0iMTYwIiB5PSI4MDUiIHdpZHRoPSIyMTYiIGhlaWdodD0iMzUiIGZpbGw9IiMxNDdjNzYiLz48dGV4dCB4PSIzOTAiIHk9IjgzMCI+NDg8L3RleHQ+Cjx0ZXh0IHg9IjQwIiB5PSI5MjAiIGZvbnQtc2l6ZT0iMTgiPlRyYXR0ZW51dG88L3RleHQ+PHJlY3QgeD0iMTYwIiB5PSI4OTUiIHdpZHRoPSI1NCIgaGVpZ2h0PSIzNSIgZmlsbD0iIzk0NjMxZSIvPjx0ZXh0IHg9IjIzMCIgeT0iOTIwIj4xMjwvdGV4dD48dGV4dCB4PSIzMjAiIHk9Ijk4NSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+OTAgPSAzMCArIDQ4ICsgMTI8L3RleHQ+PHBhdGggZD0iTTQwIDEwMzBINjAwIiBzdHJva2U9IiNjYmM2YmMiLz4KPHRleHQgeD0iNDAiIHk9IjEwODUiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IExhIGNhcmljYSDDqCB1buKAmWFyZWEgb3JpZW50YXRhPC90ZXh0Pjx0ZXh0IHg9IjQwIiB5PSIxMTQwIj5pIChBKTwvdGV4dD48dGV4dCB4PSI1MzAiIHk9IjEzODUiPnQgKHMpPC90ZXh0Pgo8cGF0aCBkPSJNMTAwIDE0MDBWMTE2ME0xMDAgMTI5MEg1NzUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzg4OCIvPjxyZWN0IHg9IjEwMCIgeT0iMTIwMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI5MCIgZmlsbD0iI2RjZWVlOSIvPjxyZWN0IHg9IjMwMCIgeT0iMTI5MCIgd2lkdGg9IjI1MCIgaGVpZ2h0PSIzMCIgZmlsbD0iI2VlZTFjOCIvPjxwYXRoIGQ9Ik0xMDAgMTIwMEgzMDBWMTMyMEg1NTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE0N2M3NiIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxwYXRoIGQ9Ik0xMDAgMTIwMEg4NU0xMDAgMTMyMEg4NU0zMDAgMTI5MFYxMzUwTTU1MCAxMjkwVjEzNTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2FhYSIgc3Ryb2tlLWRhc2hhcnJheT0iNCA0Ii8+Cjx0ZXh0IHg9IjgwIiB5PSIxMjA4IiB0ZXh0LWFuY2hvcj0iZW5kIj4rMCwzMDwvdGV4dD48dGV4dCB4PSI4MCIgeT0iMTMyOCIgdGV4dC1hbmNob3I9ImVuZCI+4oiSMCwxMDwvdGV4dD48dGV4dCB4PSI4MCIgeT0iMTI4NSIgdGV4dC1hbmNob3I9ImVuZCI+MDwvdGV4dD48dGV4dCB4PSIxMDAiIHk9IjEzODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjA8L3RleHQ+PHRleHQgeD0iMzAwIiB5PSIxMzgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj40PC90ZXh0Pjx0ZXh0IHg9IjU1MCIgeT0iMTM1NSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+OTwvdGV4dD4KPHRleHQgeD0iMjAwIiB5PSIxMjQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4rMSwyIEM8L3RleHQ+PHRleHQgeD0iNDMwIiB5PSIxMjcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7iiJIwLDUgQzwvdGV4dD48dGV4dCB4PSIzMjAiIHk9IjE0ODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPnEgbmV0dG8gPSArMCw3IEM8L3RleHQ+PHBhdGggZD0iTTQwIDE1MzBINjAwIiBzdHJva2U9IiNjYmM2YmMiLz4KPHRleHQgeD0iNDAiIHk9IjE1ODUiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj40IMK3IExhIHN0ZXNzYSBhY3F1YSBhdHRyYXZlcnNhIGlsIGJhbmNvPC90ZXh0Pjx0ZXh0IHg9IjQwIiB5PSIxNjQwIiBmb250LXNpemU9IjE4Ij5SZWdpbWUgc3RhemlvbmFyaW8gOyBuaWVudGUgZGlzcGVyc2lvbmkgbyBmYXNlLjwvdGV4dD4KPHJlY3QgeD0iNTUiIHk9IjE3MTAiIHdpZHRoPSIyMjAiIGhlaWdodD0iMTQ1IiByeD0iOCIgZmlsbD0iI2VlZTlkYSIgc3Ryb2tlPSIjODg4Ii8+PHJlY3QgeD0iMzY1IiB5PSIxNzEwIiB3aWR0aD0iMjIwIiBoZWlnaHQ9IjE0NSIgcng9IjgiIGZpbGw9IiNkY2VlZTkiIHN0cm9rZT0iIzg4OCIvPgo8dGV4dCB4PSIxNjUiIHk9IjE3NTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkluZ3Jlc3NvPC90ZXh0Pjx0ZXh0IHg9IjE2NSIgeT0iMTc5NSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NCBnIG9nbmkgc2Vjb25kbzwvdGV4dD48dGV4dCB4PSI0NzUiIHk9IjE3NTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlVzY2l0YTwvdGV4dD48dGV4dCB4PSI0NzUiIHk9IjE3OTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlN0ZXNzYSBtYXNzYTwvdGV4dD48dGV4dCB4PSI0NzUiIHk9IjE4MzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPiswLDUwIEs8L3RleHQ+PHBhdGggZD0iTTI4MCAxNzgwSDM2MCIgc3Ryb2tlPSIjMTQ3Yzc2IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjZ3JlZW4pIi8+Cjx0ZXh0IHg9IjMyMCIgeT0iMTkyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SWwgcmlzY2FsZGF0b3JlIGZvcm5pc2NlIDggSiBvZ25pIHNlY29uZG8uPC90ZXh0Pjx0ZXh0IHg9IjMyMCIgeT0iMTk4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+z4EgPSAxMDAwIGtnL23CsyA7IGMgPSA0MDAwIEovKGtnIEspPC90ZXh0Pjx0ZXh0IHg9IjMyMCIgeT0iMjA0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UG9ydGF0YTogNCBnL3MgPSA0IG1ML3M8L3RleHQ+Cjwvc3ZnPgo="
+    }
+  ]
+}

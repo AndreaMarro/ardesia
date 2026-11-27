@@ -1,0 +1,393 @@
+{
+  "scope": "Exact bounded delivery from declared immutable C6 owner or independent reviewer",
+  "deliveries": [
+    [
+      "a",
+      "7e29200577107eba178bbf54be775ec69628a5c2",
+      "editorial/author-notes/cric-c6-integrative-handoff-20261127.json",
+      "e05f2c4c50b1015abc173063668d1bf5be2717cdc0392c683dab0d85ca18f54c"
+    ],
+    [
+      "a",
+      "7e29200577107eba178bbf54be775ec69628a5c2",
+      "editorial/author-notes/cric-c6-protected-exam-02-handoff-20261127.json",
+      "3e9c1d59dc5f4cfb257078dd71df2348c82c281ae60303ddf270aeb839745df2"
+    ]
+  ],
+  "replacedPreviouslyRecoveredPaths": {
+    "editorial/author-notes/cric-c6-integrative-handoff-20261127.json": {
+      "sourceCommit": "49b0a0c587dd9cc139e8ffff7d895650b4108695",
+      "sha256": "94be875ec4d5778a2c4ed87edd705294214f347084a52d5251a38951c343da4a"
+    },
+    "editorial/author-evidence/cric-c6-integrative-asset-only/actual-final-assembly-import-terminal.txt": {
+      "sourceCommit": "49b0a0c587dd9cc139e8ffff7d895650b4108695",
+      "sha256": "643aacbd771b46c44b6cfcddc4cf9f5a36e492e512f3c5883d31cb9b7fcc8241"
+    },
+    "editorial/author-evidence/cric-c6-integrative-structural.json": {
+      "sourceCommit": "49b0a0c587dd9cc139e8ffff7d895650b4108695",
+      "sha256": "ca1934e95730f24b40c2f4fb70adaf1c4cdd13a2bf68db544afcfbca93b3faec"
+    },
+    "editorial/author-notes/cric-c6-integrative.md": {
+      "sourceCommit": "49b0a0c587dd9cc139e8ffff7d895650b4108695",
+      "sha256": "c9bd4141118ab2e0b7184c68e2bd046d135dfb42ac678f2bec7b0c3430f847a7"
+    },
+    "editorial/batches/cric-c6-integrative-bindings.json": {
+      "sourceCommit": "49b0a0c587dd9cc139e8ffff7d895650b4108695",
+      "sha256": "64bb5daa999e37d0a3be53ad0fc7db7c8f79fdeb920e7c147d804e3cce0e82a9"
+    },
+    "editorial/batches/cric-c6-integrative.json": {
+      "sourceCommit": "49b0a0c587dd9cc139e8ffff7d895650b4108695",
+      "sha256": "adac6850f8c2d634c6fa738fa7198f3e35ed2294813b3d655f9b0d09f3268750"
+    },
+    "tools/corpus_engineering/cric_c6_integrative_authoring.py": {
+      "sourceCommit": "49b0a0c587dd9cc139e8ffff7d895650b4108695",
+      "sha256": "fd98e9764960dd9131a0c00f21f197485023bd979bba0442de74ec5d0a22b7ed"
+    }
+  },
+  "files": {
+    "editorial/assets/cric-c6-integrative-progressive.svg": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "01c8ebe0a7729860e10c09047f720bea5dfb9dd1859f9424d695c2a052b33ef3"
+    },
+    "editorial/assets/cric-c6-protected-exam-02-progressive.svg": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "b5e528a19cd41392fb81522e826780255efdfc50078abdb4e4bc11dcee6e5120"
+    },
+    "editorial/author-evidence/cric-c6-integrative-asset-only/actual-canonical-assembly-import-instrument.py.txt": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "06a27ee3b51a10561bb640b3d0ec311b4c3aa22bb2689077b7ad778e68183731"
+    },
+    "editorial/author-evidence/cric-c6-integrative-asset-only/actual-final-assembly-import-terminal.txt": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "72168e84a813fa863b3a8cb2ff57330cba79f3b2f9bff3c307909ea8ce33c240"
+    },
+    "editorial/author-evidence/cric-c6-integrative-asset-only/actual-final-bounded-packaging-terminal.txt": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "3f0b535291734353816e70577a7a68f1818fac8f9048144a3ad4dab9709a8a3a"
+    },
+    "editorial/author-evidence/cric-c6-integrative-asset-only/actual-final-native-terminal.txt": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "fd312eaa127cdf57e6734235c372d5b683863ef94b9b9baac2da894f49543d4b"
+    },
+    "editorial/author-evidence/cric-c6-integrative-asset-only/actual-finalizer-terminal.txt": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "4e4f894e36b8e30146746cb9d8d6dcef627cdafb25c9794682a4c56c96a69e0a"
+    },
+    "editorial/author-evidence/cric-c6-integrative-asset-only/actual-finalizer.py.txt": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "5a8a354dcd51793ca3f4cb5e6895b53c8c698465c3a47ac977bc49c5c2d54c56"
+    },
+    "editorial/author-evidence/cric-c6-integrative-asset-only/actual-stdlib-packaging-exit0.txt": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "1ac6a6aff774ec719e006704ec384e23c1ff82b5b501b5b35ea48e56d1d24791"
+    },
+    "editorial/author-evidence/cric-c6-integrative-asset-only/actual-stdlib-packaging-instrument.py.txt": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "8870d83b423510426a6b11bff21f92ff04a6e6dd1334fc34f25fe625268a8dba"
+    },
+    "editorial/author-evidence/cric-c6-integrative-asset-only/actual-svg-render-instrument.mjs.txt": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "4efb8ed9e55d135b419ad631f9475bab568f0a9ae04abfc609e9fb2796293474"
+    },
+    "editorial/author-evidence/cric-c6-integrative-asset-only/author-visual-reading.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "63c3b20f99707a55b64c7a8b79feffe60524dbacf2901fc177bf3088d57644f4"
+    },
+    "editorial/author-evidence/cric-c6-integrative-asset-only/full-native.png": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "be630487dbe124c02d04ba9a8ad11a2967dcb4947ecc24847a7294e2f2f6df5f"
+    },
+    "editorial/author-evidence/cric-c6-integrative-asset-only/render.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "5ee05da918c9daa4cfa58da2e241a545007d4a493f5051217045573ea3bf5c29"
+    },
+    "editorial/author-evidence/cric-c6-integrative-asset-only/section-restoration-strictdiff.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "50294c0808289d00130a1d0cfc3c8165e9ba635e9753d3a8314e4b11c9a633bd"
+    },
+    "editorial/author-evidence/cric-c6-integrative-asset-only/section-strictdiff-instrument.py.txt": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "7aee712e7ee04ec5986bbbf1ee048d37b697289e1dd9fdad6fb53eaa16e5fa86"
+    },
+    "editorial/author-evidence/cric-c6-integrative-finalizer-disk-guard-negative-20261127/README.md": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "e263304b0fade020e760e7d085ac1fcf56430e8eeeba22e671f32cee176f7de3"
+    },
+    "editorial/author-evidence/cric-c6-integrative-finalizer-disk-guard-negative-20261127/actual-terminal-child-not-run.txt": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "4ea61f20abe7b6f8c711e698e9384d1c1a1ce4ad771f0605256cb6330e71ab7f"
+    },
+    "editorial/author-evidence/cric-c6-integrative-initial-wording-labels-superseded-20261127/actual-first-native-exit0.txt": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "3c80cf96c29ecde47775a6376aeb3ea986a1c98ee1645717b28f7ff21761ecc4"
+    },
+    "editorial/author-evidence/cric-c6-integrative-initial-wording-labels-superseded-20261127/actual-first-technical-exit0.txt": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "e2be910c1bc149e87265ef49cba7e4f9c815b5b1512eaa2eb26b33e4eebcc5f7"
+    },
+    "editorial/author-evidence/cric-c6-integrative-initial-wording-labels-superseded-20261127/editorial/assets/cric-c6-integrative-progressive.svg": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "d8f32fb6242266835538f2f611e74505ef055a3c6d79a06afc23e1b86cd1932c"
+    },
+    "editorial/author-evidence/cric-c6-integrative-initial-wording-labels-superseded-20261127/editorial/author-evidence/cric-c6-integrative-structural.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "8b58a0b0a631afd7a730c0813d762beb48480a3c48ad5f4eda048c76c34367fb"
+    },
+    "editorial/author-evidence/cric-c6-integrative-initial-wording-labels-superseded-20261127/editorial/batches/cric-c6-integrative-bindings.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "532aabfd76a3abb38824057e934845056c93060669417a5b490636ee41d04054"
+    },
+    "editorial/author-evidence/cric-c6-integrative-initial-wording-labels-superseded-20261127/editorial/batches/cric-c6-integrative.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "5fd6d06ef818629671748888b6606f1e4c3a927cec17c6866c5ce71fc3d3bba0"
+    },
+    "editorial/author-evidence/cric-c6-integrative-initial-wording-labels-superseded-20261127/manifest.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "f32129d5ffb73a354acdcdf9c3b3502ae4ec1b5b58d99136e6fc341ad1d6b75f"
+    },
+    "editorial/author-evidence/cric-c6-integrative-initial-wording-labels-superseded-20261127/output/playwright/cric-author-c4-a/cric-c6-integrative/full-native.png": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "dadf34eb7360aafff30f6656a9dc4b5335aba7a3696e145f66d7a33e31540089"
+    },
+    "editorial/author-evidence/cric-c6-integrative-initial-wording-labels-superseded-20261127/output/playwright/cric-author-c4-a/cric-c6-integrative/render.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "6836575e226d21416172216573aba2213e176252f143a4b5e96db37340d04d4e"
+    },
+    "editorial/author-evidence/cric-c6-integrative-initial-wording-labels-superseded-20261127/tools/corpus_engineering/cric_c6_integrative_authoring.py": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "b4db03fee061a030d8ab250276807c81303358b5225ddbaf79b50d95ab2d5984"
+    },
+    "editorial/author-evidence/cric-c6-integrative-section-superseded-20261127/0-cric_c6_integrative_authoring.py": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "fd98e9764960dd9131a0c00f21f197485023bd979bba0442de74ec5d0a22b7ed"
+    },
+    "editorial/author-evidence/cric-c6-integrative-section-superseded-20261127/1-cric-c6-integrative.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "adac6850f8c2d634c6fa738fa7198f3e35ed2294813b3d655f9b0d09f3268750"
+    },
+    "editorial/author-evidence/cric-c6-integrative-section-superseded-20261127/2-cric-c6-integrative-bindings.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "64bb5daa999e37d0a3be53ad0fc7db7c8f79fdeb920e7c147d804e3cce0e82a9"
+    },
+    "editorial/author-evidence/cric-c6-integrative-section-superseded-20261127/3-cric-c6-integrative-structural.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "ca1934e95730f24b40c2f4fb70adaf1c4cdd13a2bf68db544afcfbca93b3faec"
+    },
+    "editorial/author-evidence/cric-c6-integrative-section-superseded-20261127/4-cric-c6-integrative.md": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "c9bd4141118ab2e0b7184c68e2bd046d135dfb42ac678f2bec7b0c3430f847a7"
+    },
+    "editorial/author-evidence/cric-c6-integrative-section-superseded-20261127/5-cric-c6-integrative-handoff-20261127.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "94be875ec4d5778a2c4ed87edd705294214f347084a52d5251a38951c343da4a"
+    },
+    "editorial/author-evidence/cric-c6-integrative-section-superseded-20261127/manifest.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "ed9dc8aec9f80ef6968a300921c9580269470a4c417008b6938ed241f31f0c67"
+    },
+    "editorial/author-evidence/cric-c6-integrative-source-reading-20261127/C6-corrente.svg": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "97ebf0678d685bb2a3ec149960ab9be197ffcd6847ac648792cabdd4efdd8ac8"
+    },
+    "editorial/author-evidence/cric-c6-integrative-source-reading-20261127/C6-original-verbatim.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "3f39318c261ec6ed7e68e06f2776dbfb6bce847ccd71cef6354cc5554699ac0c"
+    },
+    "editorial/author-evidence/cric-c6-integrative-source-reading-20261127/C6-pendenza.svg": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "adbf3c8b52ee4e4104d7ac77f4502f118fd40d0c8b928fbf1fe819ee5a807aff"
+    },
+    "editorial/author-evidence/cric-c6-integrative-source-reading-20261127/C6-raccordo.svg": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "2af815dc5eb5d0c9c8803de72877aa6d9e4583cf9477053f097f025c4f5892ed"
+    },
+    "editorial/author-evidence/cric-c6-integrative-source-reading-20261127/README.md": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "3de6ebbfdbe9e20a6251088e3030a6ef3c02a559d004d70897b01ca42019ac0c"
+    },
+    "editorial/author-evidence/cric-c6-integrative-source-reading-20261127/git-inputs.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "eb0063726083fb21be62318905a249de1993d0729606c98dce96ae8b94f88dde"
+    },
+    "editorial/author-evidence/cric-c6-integrative-source-reading-20261127/lotto-001-original-verbatim.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "71c563d3ea98f92602f04d1956df968bf125b85fad72521bd6742d8070e53e2a"
+    },
+    "editorial/author-evidence/cric-c6-integrative-structural.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "2555a1ddf7f161935abbbce209b0ba1ca18b48a92b89677d0fe4d8d456ef5cd5"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-asset-only/actual-canonical-assembly-import-instrument.py.txt": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "06a27ee3b51a10561bb640b3d0ec311b4c3aa22bb2689077b7ad778e68183731"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-asset-only/actual-final-assembly-import-terminal.txt": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "6ed6cfdc90a9ac0a4e333b096f1b0869168cc68c0997a7be95c67d11ed5f95c0"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-asset-only/actual-final-native-terminal.txt": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "176492c42a13f556e38e9d8924a9f00095bd90c51d4dfb6d323abe3259fd919d"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-asset-only/actual-finalizer-terminal.txt": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "30aea81273c16a0a93d5da4b98783dcfeeba6a3569b43bbfe3c01f932ab0b13d"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-asset-only/actual-finalizer.py.txt": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "b888c5353c3fffa0174b713c534f2c3dbc9475b262e7db1964717eb27c43ff74"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-asset-only/actual-svg-render-instrument.mjs.txt": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "4efb8ed9e55d135b419ad631f9475bab568f0a9ae04abfc609e9fb2796293474"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-asset-only/author-visual-reading.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "8dcd08728649b62cd33bc4e1ff407919a75b414154736c9240899cdc6d248ac4"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-asset-only/full-native.png": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "e91691f8514bf6429e76c8d62de4bfe42c6b6acf34468a1c38d39dd1797a4f70"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-asset-only/render.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "d471da64293b47ac2a9b8062251e75c688df2992fb00775aa086437349a2d282"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-asset-only/section-restoration-strictdiff.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "41b7a6b32edd5f5a9e398125d48b40b92dbcbbfcaa93c84676439601f23fa591"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-asset-only/section-strictdiff-instrument.py.txt": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "7aee712e7ee04ec5986bbbf1ee048d37b697289e1dd9fdad6fb53eaa16e5fa86"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-before-short-momentum-step-20261127/actual-prior-technical-exit0.txt": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "2cf8d5f484b953cc81e0edc6cc13a286996cc45e69afb1a6166441e3427635d6"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-before-short-momentum-step-20261127/editorial/author-evidence/cric-c6-protected-exam-02-structural.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "a9555a6f9bd1b42f7a6831721137422b6d8a562f786e6559cd9348dbd28861c9"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-before-short-momentum-step-20261127/editorial/batches/cric-c6-protected-exam-02-bindings.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "2bfc002c154ca0b282d9131e37e6683be177ed4b96c47399de049ad4c14238f0"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-before-short-momentum-step-20261127/editorial/batches/cric-c6-protected-exam-02.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "128893d4b4e08fcb2da53fe7b3bb56c2a9d0fb1e6604c820f676c492ea6975ef"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-before-short-momentum-step-20261127/manifest.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "30edc6987c64a81198f70800901d2febc3b873c3a432e23ede345185c6d86bbf"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-before-short-momentum-step-20261127/tools/corpus_engineering/cric_c6_protected_exam_02_authoring.py": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "b9a88315da8031df3e103a00f5be3db0423138256f30eac9a06cd7be26ba825c"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-initial-axis-superseded-20261127/actual-initial-technical-exit0.txt": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "939823e73ba272cb65fb8e2349376cddbd9ec468fa73f30df452037c3bbe8f7f"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-initial-axis-superseded-20261127/editorial/assets/cric-c6-protected-exam-02-progressive.svg": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "7b459e587e2b9d09fa991aa22f487b6d9cafe166e1c8f59852886e091417b845"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-initial-axis-superseded-20261127/editorial/author-evidence/cric-c6-protected-exam-02-structural.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "999a47b9ca6c4caf4873bcd51bcd01c08c1e9e253635366c5a058dda02644761"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-initial-axis-superseded-20261127/editorial/batches/cric-c6-protected-exam-02-bindings.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "20a29ab22cc38b91959e5bddc2ee58f019232b4968a66817d2f67d83f2f8ae81"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-initial-axis-superseded-20261127/editorial/batches/cric-c6-protected-exam-02.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "66c129139ed689677ed367a4b2d03897b34e95758b1af252e65c2ea68a8ad7b0"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-initial-axis-superseded-20261127/manifest.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "477527310792c713f0b15dc3738b2b430b30ae762a6ecffaf8e2a9ee40d4263a"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-section-superseded-20261127/0-cric_c6_protected_exam_02_authoring.py": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "c01b03fd7adef25fea0d1b946ad1226e40fe7923abe414b8557e14f0452b12e0"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-section-superseded-20261127/1-cric-c6-protected-exam-02.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "4f98cb6315bae671426b7434bd8c3015d9298f50d5564820c7ed50586ba21404"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-section-superseded-20261127/2-cric-c6-protected-exam-02-bindings.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "ef590c36e741754b4afab31e45a480fc0cc15ef226cda4248f30cad81607fe7a"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-section-superseded-20261127/3-cric-c6-protected-exam-02-structural.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "2086c386777bbf2904cca9d14c6d0de55e148bc75d1e6358d4da20c071e036d2"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-section-superseded-20261127/manifest.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "dcabfb133f2f21e8b4ea7f5f18677f68fa3e4afa6e393043e98871a213325dac"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-source-reading-20261127/C6-ciclo.svg": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "48b3a84e6157c63e2da70b85bb2465ebf97366494256da54713eaea3e83e0206"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-source-reading-20261127/C6-original-verbatim.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "3f39318c261ec6ed7e68e06f2776dbfb6bce847ccd71cef6354cc5554699ac0c"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-source-reading-20261127/README.md": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "fdb89f46802fee099db69ffb23f02826f712dc92434033b4bfd9665afc0233a9"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-source-reading-20261127/git-inputs.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "48adb87dd4818613f95038c4a426de45e1799ef7de7cb151e450b9714ded9ec0"
+    },
+    "editorial/author-evidence/cric-c6-protected-exam-02-structural.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "2086c386777bbf2904cca9d14c6d0de55e148bc75d1e6358d4da20c071e036d2"
+    },
+    "editorial/author-notes/cric-c6-integrative-handoff-20261127.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "e05f2c4c50b1015abc173063668d1bf5be2717cdc0392c683dab0d85ca18f54c"
+    },
+    "editorial/author-notes/cric-c6-integrative.md": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "13e4ba52c9e2ae769a3b0c6cd66e12555ab6abf683d55b605ada0b18e1fdcb42"
+    },
+    "editorial/author-notes/cric-c6-protected-exam-02-handoff-20261127.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "3e9c1d59dc5f4cfb257078dd71df2348c82c281ae60303ddf270aeb839745df2"
+    },
+    "editorial/author-notes/cric-c6-protected-exam-02.md": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "218a123d5133c470d0a0e5807f214ba53535682c88afedec278466d73990e009"
+    },
+    "editorial/batches/cric-c6-integrative-bindings.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "95aa19433fb16a620ddff543e41a7e7b423b2bfe2c3f379bbbe818781414d3a8"
+    },
+    "editorial/batches/cric-c6-integrative.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "f2de090d9b60cb2ac864bff32141998c46614df76d0028a2dc1a8e9368220963"
+    },
+    "editorial/batches/cric-c6-protected-exam-02-bindings.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "ef590c36e741754b4afab31e45a480fc0cc15ef226cda4248f30cad81607fe7a"
+    },
+    "editorial/batches/cric-c6-protected-exam-02.json": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "4f98cb6315bae671426b7434bd8c3015d9298f50d5564820c7ed50586ba21404"
+    },
+    "tools/corpus_engineering/cric_c6_integrative_authoring.py": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "cbd6865320879d8a0781e2f09bd98b95dbea69096c925c6ce508cfda2d526031"
+    },
+    "tools/corpus_engineering/cric_c6_protected_exam_02_authoring.py": {
+      "sourceCommit": "7e29200577107eba178bbf54be775ec69628a5c2",
+      "sha256": "88e3d94530f0d68cb342b586eaa64b963e39e3db1bf70fc00d7beb28a7349f95"
+    }
+  }
+}

@@ -1,0 +1,106 @@
+[
+  {
+    "blocks": [
+      {
+        "src": "/figures/C6-galleggiante.svg",
+        "text": "La sezione orizzontale resta A. Nella configurazione a destra la fascia tratteggiata misura l’aumento di volume immerso.",
+        "type": "figure"
+      },
+      {
+        "text": "Scegliamo verso il basso come direzione positiva. In equilibrio la spinta e il peso hanno lo stesso modulo. Convertiamo l’area prima di valutare la profondità iniziale.",
+        "type": "text"
+      },
+      {
+        "text": "A=20(10^{-2}\\,\\mathrm m)^2=2{,}0\\times10^{-3}\\,\\mathrm{m^2},\\qquad h_0=\\frac{m}{\\rho A}=0{,}16\\,\\mathrm m",
+        "type": "formula"
+      },
+      {
+        "text": "L’altezza immersa passa da 16 a 17 cm: il cilindro continua a tagliare la superficie. Il peso resta uguale. Aumenta invece la spinta verso l’alto, perché il volume spostato aumenta di A volte lo spostamento x.",
+        "type": "text"
+      },
+      {
+        "text": "F_{\\rm ris}=mg-\\rho gA(h_0+x)=-\\rho gA x,\\qquad k=\\rho gA=19{,}62\\,\\mathrm{N/m}",
+        "type": "formula"
+      },
+      {
+        "text": "Per uno spostamento di +0,010 m la risultante è −0,196 N. Il segno indica che la forza riporta il sistema verso l’equilibrio. Riconosciamo la stessa proporzionalità del modello massa–molla e possiamo usarne il periodo.",
+        "type": "text"
+      },
+      {
+        "text": "T=2\\pi\\sqrt{\\frac{m}{k}}=2\\pi\\sqrt{\\frac{0{,}32\\,\\mathrm{kg}}{19{,}62\\,\\mathrm{N/m}}}\\simeq0{,}80\\,\\mathrm s",
+        "type": "formula"
+      },
+      {
+        "text": "Il rapporto m/k ha unità s². Qui il periodo non dipende dall’ampiezza perché la sezione è costante lungo tutto lo spostamento. Un galleggiante rastremato o completamente sommerso richiederebbe un altro modello.",
+        "type": "text"
+      }
+    ],
+    "course": "C6",
+    "difficulty": 3,
+    "family": "spinta-di-richiamo-e-periodo",
+    "id": "C6-AE01",
+    "kind": "example",
+    "order": 301,
+    "prerequisites": [
+      "C2-L004",
+      "C5-L01"
+    ],
+    "prompt": "Un galleggiante cilindrico di massa 0,32 kg e sezione 20 cm² si muove verticalmente in acqua di densità 1 000 kg/m³. È alto 30 cm. Lo abbassiamo di 1,0 cm rispetto all’equilibrio e lo lasciamo. Quale periodo prevede il modello senza attrito e senza inerzia dell’acqua trascinata?",
+    "review": "controlli strutturali e ricalcolo del lotto 001",
+    "section": "Approfondimenti trasversali",
+    "skill": "C6-L01",
+    "title": "Il periodo di un galleggiante",
+    "version": 1
+  },
+  {
+    "answer": {
+      "tolerance": 0.05,
+      "type": "numeric",
+      "unit": "mL/s",
+      "value": 4
+    },
+    "blocks": [
+      {
+        "text": "Scegliamo come sistema il tratto di condotto riscaldato. Ogni secondo entra ed esce la stessa massa d’acqua. L’energia ricevuta al secondo innalza la temperatura della massa che esce.",
+        "type": "text"
+      },
+      {
+        "text": "P=\\dot m c\\Delta T,\\qquad \\dot m=\\frac{P}{c\\Delta T}=\\frac{8{,}0}{4000\\cdot0{,}50}\\,\\mathrm{kg/s}=0{,}0040\\,\\mathrm{kg/s}",
+        "type": "formula"
+      },
+      {
+        "text": "Q_V=\\frac{\\dot m}{\\rho}=\\frac{0{,}0040}{1000}\\,\\mathrm{m^3/s}=4{,}0\\times10^{-6}\\,\\mathrm{m^3/s}=4{,}0\\,\\mathrm{mL/s}",
+        "type": "formula"
+      },
+      {
+        "text": "Quattro millilitri d’acqua hanno massa 4 g. Per elevarli di mezzo kelvin occorrono 8 J: esattamente l’energia fornita in un secondo. Una perdita di calore verso l’esterno cambierebbe il bilancio.",
+        "type": "text"
+      }
+    ],
+    "course": "C6",
+    "difficulty": 3,
+    "error": {
+      "category": "modello",
+      "message": "Scrivi quanta energia riceve la massa che attraversa il banco in un secondo. Individua dove usare la densità per passare dalla massa al volume.",
+      "target": "C6-L02"
+    },
+    "family": "portata-da-potenza-termica-e-salto-di-temperatura",
+    "hints": [
+      "Quanti joule servono a un chilogrammo per attraversare la differenza di temperatura misurata?",
+      "Dividi la potenza per cΔT per ottenere la portata massica. Poi ricava un volume per secondo."
+    ],
+    "id": "C6-AQ01",
+    "kind": "question",
+    "order": 302,
+    "prerequisites": [
+      "C2-L005",
+      "C3-L03"
+    ],
+    "prompt": "In un banco ad acqua un riscaldatore trasferisce 8,0 W al liquido. In regime stazionario l’acqua esce 0,50 K più calda. Trascurando dispersioni e variazioni di quota e velocità, calcola la portata in mL/s. Usa c = 4 000 J/(kg K) e ρ = 1 000 kg/m³.",
+    "review": "controlli strutturali e ricalcolo del lotto 001",
+    "section": "Approfondimenti trasversali",
+    "skill": "C6-L01",
+    "title": "Una portata letta da due termometri",
+    "version": 1
+  }
+]

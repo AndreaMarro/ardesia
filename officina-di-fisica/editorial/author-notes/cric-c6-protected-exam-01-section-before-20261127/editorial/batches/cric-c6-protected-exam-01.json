@@ -1,0 +1,1934 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C6-Q013",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 1,
+      "title": "Uno spostamento netto in quattro secondi",
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L003"
+      ],
+      "version": 2,
+      "prompt": "Un carrello percorre 12 m verso destra in 3 s, poi 4 m verso sinistra in 1 s. La destra è il verso positivo. Qual è la velocità media orientata sull’intero intervallo, in m/s?",
+      "family": "un-nastro-che-torna-indietro",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il tratto di ritorno ha spostamento −4 m. Lo spostamento totale è quindi 12−4=8 m, mentre il tempo totale è 3+1=4 s. La velocità media orientata è 8/4=+2 m/s. Non occorre supporre velocità costanti all’interno di ciascun tratto: bastano gli spostamenti e le durate assegnati."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/5b6105adbd52e10e63c86c65466bc689a94750c036ef80758c0fac97b9b06ffc",
+          "text": "Il primo pannello usa lo stesso asse spaziale: +12 m di andata e −4 m di ritorno lasciano +8 m. Le durate sono indicate separatamente; le frecce descrivono spostamenti, non velocità."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta x=+8\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta t=4\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline v=+2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "4 m/s sarebbe la distanza totale 16 m divisa per 4 s, cioè la rapidità media, non la velocità media orientata. Fare la media semplice delle velocità dei due tratti ignorerebbe le durate diverse. Lo spostamento positivo fissa il segno del risultato."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "hints": [
+        "Somma separatamente gli spostamenti con segno e le durate positive.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "4 m/s sarebbe la distanza totale 16 m divisa per 4 s, cioè la rapidità media, non la velocità media orientata. Fare la media semplice delle velocità dei due tratti ignorerebbe le durate diverse. Lo spostamento positivo fissa il segno del risultato.",
+        "target": "C1-L003"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q014",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 2,
+      "title": "La forma del recipiente non cambia la quota",
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L002"
+      ],
+      "version": 2,
+      "prompt": "Due recipienti aperti alla stessa atmosfera contengono la stessa acqua ferma alla stessa altezza h. Hanno basi orizzontali uguali; il primo si allarga salendo e il secondo si restringe. Trascurando capillarità, come si confrontano le pressioni sul fondo?",
+      "family": "pressione-sulla-base-comune",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In equilibrio idrostatico la pressione al fondo è la pressione atmosferica più ρgh. Il liquido, la gravità, la quota della superficie e il riferimento atmosferico sono gli stessi. Le pressioni sono quindi uguali. Pareti inclinate possono esercitare componenti verticali di forza: il peso totale dell’acqua non va identificato automaticamente con la sola forza sul fondo."
+        },
+        {
+          "type": "formula",
+          "text": "p_f=p_{\\rm atm}+\\rho gh"
+        },
+        {
+          "type": "text",
+          "text": "La forma e il volume possono cambiare il peso d’acqua senza cambiare ρgh. Aperto significa pressione atmosferica alla superficie, non pressione assoluta nulla sul fondo. Le basi uguali rendono uguali anche le forze di pressione corrispondenti, ma non sono necessarie all’uguaglianza delle pressioni."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Sono uguali",
+          "È maggiore nel recipiente che si allarga",
+          "È maggiore nel recipiente che si restringe",
+          "Sono entrambe nulle perché i recipienti sono aperti",
+          "Dipendono soltanto dal volume totale d’acqua"
+        ],
+        "value": "Sono uguali"
+      },
+      "hints": [
+        "Confronta i termini della legge idrostatica a uguale profondità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La forma e il volume possono cambiare il peso d’acqua senza cambiare ρgh. Aperto significa pressione atmosferica alla superficie, non pressione assoluta nulla sul fondo. Le basi uguali rendono uguali anche le forze di pressione corrispondenti, ma non sono necessarie all’uguaglianza delle pressioni.",
+        "target": "C2-L002"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q015",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 3,
+      "title": "Calore entrante e lavoro ricevuto",
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C3-L06"
+      ],
+      "version": 2,
+      "prompt": "Un gas riceve 60 J di calore e viene compresso: l’esterno compie sul gas 25 J di lavoro. Trascurando variazioni di energia cinetica e potenziale macroscopiche, quanto vale ΔU in joule?",
+      "family": "primo-bilancio-con-pistone",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Uso Q>0 per il calore che entra e W_g>0 per il lavoro svolto dal gas. La compressione comporta W_g=−25 J. Il primo principio dà ΔU=Q−W_g=60−(−25)=85 J. In modo equivalente, il lavoro ricevuto si somma al calore ricevuto. Q e lavoro sono trasferimenti, non energie contenute nel gas."
+        },
+        {
+          "type": "formula",
+          "text": "Q=+60\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_g=-25\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U=85\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "35 J sottrarrebbe il modulo del lavoro ricevuto come se fosse lavoro ceduto. 60 J omette il trasferimento meccanico e 25 J omette il calore. Non si assegna il segno dal solo verbo lavoro: conta chi lo compie su chi."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 85,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "hints": [
+        "Scrivi prima la convenzione per il lavoro, poi attribuisci il segno alla compressione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "35 J sottrarrebbe il modulo del lavoro ricevuto come se fosse lavoro ceduto. 60 J omette il trasferimento meccanico e 25 J omette il calore. Non si assegna il segno dal solo verbo lavoro: conta chi lo compie su chi.",
+        "target": "C3-L06"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q016",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 4,
+      "title": "Lo stesso aumento di potenziale per cariche opposte",
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C4-L03"
+      ],
+      "version": 2,
+      "prompt": "Una particella ha carica +e e l’altra −e, con e>0. Entrambe passano fra gli stessi due punti di un campo elettrostatico con ΔV=+3 V. Come sono le variazioni di energia potenziale elettrica?",
+      "family": "energia-per-cariche-di-segno-opposto",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La variazione di energia potenziale è qΔV. Il salto di potenziale è una proprietà dei due punti e resta +3 V in entrambi i confronti. Cambia il segno della carica: la positiva guadagna 3 eV di energia potenziale e la negativa ne perde 3 eV. L’elettronvolt è un’unità di energia, non un segno di carica."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U=q\\Delta V"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U_+=+3\\,\\mathrm{eV}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U_-=-3\\,\\mathrm{eV}"
+        },
+        {
+          "type": "text",
+          "text": "Il lavoro del campo ha segno opposto a ΔU e non è la grandezza richiesta. Stessi punti significano stesso ΔV, non stessa ΔU per cariche opposte. I moduli sono uguali perché anche i moduli delle cariche sono uguali."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "+3 eV per +e e −3 eV per −e",
+          "−3 eV per +e e +3 eV per −e",
+          "+3 eV per entrambe",
+          "−3 eV per entrambe",
+          "Nulle per entrambe perché i punti sono gli stessi"
+        ],
+        "value": "+3 eV per +e e −3 eV per −e"
+      },
+      "hints": [
+        "Mantieni ΔV fisso e cambia soltanto q nella moltiplicazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il lavoro del campo ha segno opposto a ΔU e non è la grandezza richiesta. Stessi punti significano stesso ΔV, non stessa ΔU per cariche opposte. I moduli sono uguali perché anche i moduli delle cariche sono uguali.",
+        "target": "C4-L03"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q017",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 5,
+      "title": "Una mezza lunghezza d’onda in più",
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L03"
+      ],
+      "version": 2,
+      "prompt": "Due sorgenti coerenti inizialmente in fase emettono onde con λ=0,60 m nello stesso mezzo. Al ricevitore i contributi hanno uguali ampiezze non nulle e stessa polarizzazione. Quale differenza di cammino fra queste produce un minimo completo?",
+      "family": "il-minimo-con-due-cammini",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I minimi richiedono multipli dispari della mezza lunghezza d’onda. Il rapporto 0,90/0,60 è 3/2: il cammino extra introduce tre mezzi giri di fase, cioè 3π radianti. È opposizione modulo un giro e, con ampiezze uguali, cancellazione. Anche 0,30 m sarebbe un minimo, ma non è fra le alternative: qui soltanto 0,90 m è un multiplo dispari di λ/2."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta s=\\frac32\\lambda"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta s=0{,}90\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta\\varphi=3\\pi"
+        },
+        {
+          "type": "text",
+          "text": "0 m, 0,60 m, 1,20 m e 1,80 m corrispondono a un numero intero di lunghezze d’onda e conservano la fase concorde. Non basta una distanza maggiore per ottenere un minimo: conta il resto rispetto al ciclo. Le condizioni sulle ampiezze e sulla polarizzazione sono necessarie per annullare la somma."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "0,90 m",
+          "0 m",
+          "0,60 m",
+          "1,20 m",
+          "1,80 m"
+        ],
+        "value": "0,90 m"
+      },
+      "hints": [
+        "Cerca fra le distanze un multiplo dispari della mezza lunghezza d’onda.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "0 m, 0,60 m, 1,20 m e 1,80 m corrispondono a un numero intero di lunghezze d’onda e conservano la fase concorde. Non basta una distanza maggiore per ottenere un minimo: conta il resto rispetto al ciclo. Le condizioni sulle ampiezze e sulla polarizzazione sono necessarie per annullare la somma.",
+        "target": "C5-L03"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q018",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 6,
+      "title": "Un triangolo cinque-dodici-tredici",
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L002"
+      ],
+      "version": 2,
+      "prompt": "Due forze applicate allo stesso corpo sono perpendicolari e hanno moduli 5 N e 12 N. Qual è il modulo della risultante, in newton?",
+      "family": "direzioni-ortogonali-sul-foglio",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le componenti sono ortogonali, perciò il quadrato del modulo risultante è 5²+12²=25+144=169 N². La radice positiva di 169 è 13: il modulo è 13 N. È il triangolo rettangolo 5–12–13, riconoscibile senza approssimazioni."
+        },
+        {
+          "type": "formula",
+          "text": "R^2=(5\\,\\mathrm N)^2+(12\\,\\mathrm N)^2"
+        },
+        {
+          "type": "formula",
+          "text": " R=13\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "17 N somma i moduli come per forze concordi sulla stessa retta. 7 N sarebbe la differenza per forze collineari opposte. 169 N copia il valore numerico del quadrato senza estrarre la radice e senza mantenerne le unità N²."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 13,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "hints": [
+        "Usa l’angolo retto prima di scegliere fra somma, differenza e teorema di Pitagora.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "17 N somma i moduli come per forze concordi sulla stessa retta. 7 N sarebbe la differenza per forze collineari opposte. 169 N copia il valore numerico del quadrato senza estrarre la radice e senza mantenerne le unità N².",
+        "target": "C1-L002"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q019",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 7,
+      "title": "Un filo deve trattenere il corpo verso il basso",
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L004"
+      ],
+      "version": 2,
+      "prompt": "Un blocco interamente immerso sposta acqua di peso 9 N e ha peso proprio 6 N. Rimane fermo, lontano da pareti e fondo, trattenuto da un filo verticale fissato sotto di esso. Qual è la forza del filo sul blocco?",
+      "family": "un-corpo-trattenuto-sottacqua",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La spinta di Archimede vale il peso del liquido spostato: 9 N verso l’alto. Il peso del blocco è 6 N verso il basso. Senza filo resterebbero 3 N verso l’alto; per l’equilibrio il filo esercita proprio 3 N verso il basso. Il fissaggio inferiore rende fisicamente possibile questa tensione, che tira e non spinge."
+        },
+        {
+          "type": "formula",
+          "text": "F_A-P-T=0"
+        },
+        {
+          "type": "formula",
+          "text": " T=3\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Una forza del filo verso l’alto aumenterebbe lo squilibrio invece di compensarlo. 15 N è la somma dei due moduli, ma peso e spinta sono opposti. Il peso del corpo non sostituisce il peso d’acqua spostata nella legge di Archimede."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 N verso il basso",
+          "3 N verso l’alto",
+          "15 N verso il basso",
+          "9 N verso l’alto",
+          "6 N verso il basso"
+        ],
+        "value": "3 N verso il basso"
+      },
+      "hints": [
+        "Disegna prima la spinta e il peso, poi trova il verso della forza mancante.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una forza del filo verso l’alto aumenterebbe lo squilibrio invece di compensarlo. 15 N è la somma dei due moduli, ma peso e spinta sono opposti. Il peso del corpo non sostituisce il peso d’acqua spostata nella legge di Archimede.",
+        "target": "C2-L004"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q020",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 8,
+      "title": "Due rami da sei ohm",
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C4-L06"
+      ],
+      "version": 2,
+      "prompt": "Fra A e B c’è un ramo da 6 Ω. Il secondo ramo contiene due resistori da 3 Ω in serie. Qual è la resistenza equivalente fra A e B in ohm?",
+      "family": "una-rete-tra-due-morsetti",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel secondo ramo i due resistori in serie sommano 3+3=6 Ω. Ci sono dunque due rami da 6 Ω collegati alla stessa coppia di nodi. Il parallelo di due resistenze uguali vale metà di ciascuna: 3 Ω. Il risultato è minore della resistenza di ogni ramo, come deve essere per due rami finiti positivi in parallelo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/5b6105adbd52e10e63c86c65466bc689a94750c036ef80758c0fac97b9b06ffc",
+          "text": "Nel pannello centrale entrambi i rami collegano gli stessi nodi A e B. Il secondo contiene due resistori da 3 Ω in serie: i due rami equivalgono ciascuno a 6 Ω."
+        },
+        {
+          "type": "formula",
+          "text": "R_2=(3+3)\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_2=6\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}=3\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "12 Ω tratterebbe i due rami come se fossero in serie. 6 Ω considera un solo ramo e ignora il percorso aggiuntivo per la corrente. I resistori da 3 Ω non sono direttamente in parallelo perché non condividono entrambi i nodi."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "hints": [
+        "Riduci prima la serie interna al secondo ramo, poi confronta i nodi dei due rami.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "12 Ω tratterebbe i due rami come se fossero in serie. 6 Ω considera un solo ramo e ignora il percorso aggiuntivo per la corrente. I resistori da 3 Ω non sono direttamente in parallelo perché non condividono entrambi i nodi.",
+        "target": "C4-L06"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q021",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 9,
+      "title": "Energia durante la fusione",
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C3-L04"
+      ],
+      "version": 2,
+      "prompt": "Una sostanza pura fonde all’equilibrio a pressione costante. Il riscaldatore continua a fornire energia e coesistono solido e liquido. Quale previsione vale in questa fase?",
+      "family": "un-plateau-mentre-entra-energia",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Alla pressione fissata le due fasi della sostanza pura coesistono alla temperatura di fusione. L’energia fornita trasforma una parte del solido in liquido, senza aumentare la temperatura finché il cambiamento di fase è in corso. Qui L_f è il calore latente specifico di fusione e m_fusa la massa trasformata. Quando una fase scompare, il comportamento può cambiare: il tratto a temperatura costante ha un dominio preciso."
+        },
+        {
+          "type": "formula",
+          "text": "Q=m_{\\rm fusa}L_f"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=0"
+        },
+        {
+          "type": "text",
+          "text": "Temperatura costante non significa trasferimento energetico nullo. La legge Q=mcΔT da sola non descrive il calore latente durante la coesistenza. Non si estende il tratto a temperatura costante a ogni successivo riscaldamento del liquido."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La temperatura resta costante mentre aumenta la frazione liquida",
+          "La temperatura deve salire linearmente con il calore fornito",
+          "La temperatura diventa nulla",
+          "La massa totale aumenta per effetto del solo riscaldamento",
+          "Il riscaldatore smette necessariamente di trasferire energia"
+        ],
+        "value": "La temperatura resta costante mentre aumenta la frazione liquida"
+      },
+      "hints": [
+        "Distingui l’aumento della temperatura dal cambiamento della frazione di fase.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Temperatura costante non significa trasferimento energetico nullo. La legge Q=mcΔT da sola non descrive il calore latente durante la coesistenza. Non si estende il tratto a temperatura costante a ogni successivo riscaldamento del liquido.",
+        "target": "C3-L04"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q022",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 10,
+      "title": "Tre dimezzamenti in quindici ore",
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C5-L08"
+      ],
+      "version": 2,
+      "prompt": "L’attività di una singola specie radioattiva, senza produzione di nuovi genitori, scende da 960 Bq a 120 Bq in 15 h. Qual è l’emivita in ore?",
+      "family": "nuclei-residui-al-terzo-controllo",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto finale su iniziale è 120/960=1/8. Si passa da 960 a 480, poi a 240 e infine a 120: servono tre dimezzamenti. Le 15 h comprendono quindi tre emivite, ciascuna di 15/3=5 h. Per una sola specie con costante di decadimento invariata l’attività ha la stessa dipendenza temporale del numero atteso di genitori."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{A_f}{A_i}=\\frac18"
+        },
+        {
+          "type": "formula",
+          "text": " 15\\,\\mathrm h=3T_{1/2}"
+        },
+        {
+          "type": "formula",
+          "text": " T_{1/2}=5\\,\\mathrm h"
+        },
+        {
+          "type": "text",
+          "text": "15 h è il tempo totale per tre dimezzamenti, non per uno. Dividere il tempo per otto confonde il fattore di diminuzione con il numero di emivite. I becquerel misurano un’attività, non un conteggio cumulativo di decadimenti."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "h",
+        "tolerance": 0
+      },
+      "hints": [
+        "Conta i passaggi da un valore al successivo dimezzato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "15 h è il tempo totale per tre dimezzamenti, non per uno. Dividere il tempo per otto confonde il fattore di diminuzione con il numero di emivite. I becquerel misurano un’attività, non un conteggio cumulativo di decadimenti.",
+        "target": "C5-L08"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q023",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 11,
+      "title": "Dall’altezza alla rapidità di caduta",
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L008"
+      ],
+      "version": 2,
+      "prompt": "Una biglia parte da ferma a 1,8 m dal suolo. Agisce solo il peso e si trascurano le perdite. Con g=10 m/s², qual è la rapidità poco prima dell’arrivo, in m/s?",
+      "family": "energia-fra-piattaforma-e-suolo",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La diminuzione di energia potenziale mg h diventa energia cinetica mv²/2. La massa positiva si semplifica e resta v²=2gh=2×10×1,8=36 m²/s². La rapidità è la radice non negativa: 6 m/s. Il moto è verso il basso, ma il modulo chiesto non è negativo."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac12mv^2=mgh"
+        },
+        {
+          "type": "formula",
+          "text": " v^2=36\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v=6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "36 copia il valore numerico di v² senza estrarre la radice. Usare solo gh ometterebbe il fattore due del bilancio cinetico. Una velocità orientata richiederebbe anche una convenzione per l’asse, mentre la rapidità è un modulo."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "hints": [
+        "Cancella la massa dal bilancio e solo dopo estrai la radice fisica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "36 copia il valore numerico di v² senza estrarre la radice. Usare solo gh ometterebbe il fattore due del bilancio cinetico. Una velocità orientata richiederebbe anche una convenzione per l’asse, mentre la rapidità è un modulo.",
+        "target": "C1-L008"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q024",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 12,
+      "title": "Aggiungere un capillare in parallelo",
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L009"
+      ],
+      "version": 2,
+      "prompt": "Una pompa mantiene una differenza di pressione positiva e costante ai capi di un capillare rigido in moto laminare stazionario. Si aggiunge un secondo capillare identico in parallelo, con lo stesso fluido e viscosità. Come varia la portata totale?",
+      "family": "capillari-affiancati",
+      "difficulty": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni capillare vede la stessa differenza di pressione di prima, perché la pompa la mantiene e i due rami condividono i nodi d’ingresso e d’uscita. Ogni ramo trasporta quindi la stessa portata Q₁. Le due portate si sommano e la totale diventa 2Q₁. Non è il caso di una pompa che imponga una portata totale fissa."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{\\rm tot}=Q_1+Q_1"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{\\rm tot}=2Q_1"
+        },
+        {
+          "type": "text",
+          "text": "Lasciare invariata la totale richiederebbe modificare il vincolo di pressione o le resistenze. Quadruplicare confonderebbe l’aggiunta di un ramo con una diversa variazione della geometria di ciascun capillare. Qui ogni ramo è identico e la pressione comune resta assegnata."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Raddoppia",
+          "Si dimezza",
+          "Resta invariata",
+          "Quadruplica",
+          "Diventa nulla"
+        ],
+        "value": "Raddoppia"
+      },
+      "hints": [
+        "Prima identifica che cosa mantiene la pompa: pressione o portata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Lasciare invariata la totale richiederebbe modificare il vincolo di pressione o le resistenze. Quadruplicare confonderebbe l’aggiunta di un ramo con una diversa variazione della geometria di ciascun capillare. Qui ogni ramo è identico e la pressione comune resta assegnata.",
+        "target": "C2-L009"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q025",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 13,
+      "title": "Il ritmo attraverso un’interfaccia ferma",
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C5-L09"
+      ],
+      "version": 2,
+      "prompt": "Una luce monocromatica attraversa un’interfaccia fissa e lineare fra due mezzi trasparenti. Considerando l’onda trasmessa, quale grandezza fra queste resta necessariamente uguale a quella incidente?",
+      "family": "due-mezzi-e-uno-stesso-ritmo",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’interfaccia ferma deve rispondere allo stesso ritmo temporale imposto dall’onda incidente. La frequenza trasmessa è quindi la stessa. La diversa velocità di fase può modificare la lunghezza d’onda; direzione e ampiezza dipendono inoltre dalle proprietà dei mezzi e dall’incidenza."
+        },
+        {
+          "type": "formula",
+          "text": "f_{\\rm trasmessa}=f_{\\rm incidente}"
+        },
+        {
+          "type": "text",
+          "text": "L’uguaglianza delle velocità non è imposta se cambiano gli indici. A frequenza uguale, una diversa velocità richiede una diversa λ. La direzione può restare invariata a incidenza normale, ma questa è una condizione particolare, non una necessità a ogni incidenza."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La frequenza",
+          "La velocità di fase",
+          "La lunghezza d’onda",
+          "La direzione di propagazione a ogni incidenza",
+          "L’ampiezza del campo elettrico"
+        ],
+        "value": "La frequenza"
+      },
+      "hints": [
+        "Separa il ritmo temporale della sorgente dalla distanza percorsa in un periodo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "L’uguaglianza delle velocità non è imposta se cambiano gli indici. A frequenza uguale, una diversa velocità richiede una diversa λ. La direzione può restare invariata a incidenza normale, ma questa è una condizione particolare, non una necessità a ogni incidenza.",
+        "target": "C5-L09"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q026",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 14,
+      "title": "Una spira che resta tutta nel campo",
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C4-L10"
+      ],
+      "version": 2,
+      "prompt": "Una spira rigida trasla con velocità costante restando interamente in un campo magnetico uniforme e costante. Area e orientazione restano fisse. Qual è la fem totale indotta lungo la spira chiusa, in volt?",
+      "family": "una-spira-senza-variazione-netta",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il flusso magnetico è BA cosθ e nessuno dei tre fattori cambia durante la traslazione descritta. La sua derivata temporale è quindi nulla e anche la fem totale lungo la spira è nulla. Possono esserci forze magnetiche locali sui portatori in moto: non basta questo a ottenere una circuitazione totale non nulla."
+        },
+        {
+          "type": "formula",
+          "text": "\\Phi=BA\\cos\\theta"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta\\Phi=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathcal E=0\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Una spira che entra o esce dalla regione di campo sarebbe un’altra preparazione, esclusa qui dal vincolo interamente nel campo uniforme. Anche una rotazione o una variazione di B potrebbe cambiare il flusso, ma nessuna è presente."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 0,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "hints": [
+        "Controlla i fattori del flusso prima di introdurre una fem di movimento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "Una spira che entra o esce dalla regione di campo sarebbe un’altra preparazione, esclusa qui dal vincolo interamente nel campo uniforme. Anche una rotazione o una variazione di B potrebbe cambiare il flusso, ma nessuna è presente.",
+        "target": "C4-L10"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q027",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 15,
+      "title": "Equilibrare i momenti al gomito",
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L010"
+      ],
+      "version": 2,
+      "prompt": "In un modello statico ideale dell’avambraccio, il peso di 18 N ha braccio perpendicolare di 30 cm rispetto al gomito. Un tendine esercita il momento opposto con braccio perpendicolare di 3 cm. Trascurando altri pesi, qual è la tensione in newton?",
+      "family": "rotazione-intorno-al-gomito",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prendo il gomito come polo: la reazione nel polo non dà momento. L’equilibrio richiede T×3 cm=18 N×30 cm. Divido per 3 cm e ottengo T=18×10=180 N. I centimetri si cancellano nel rapporto dei bracci. Questo è un modello meccanico idealizzato, non una misura individuale di una forza biologica."
+        },
+        {
+          "type": "formula",
+          "text": "Tb_T=Pb_P"
+        },
+        {
+          "type": "formula",
+          "text": " T=18\\,\\mathrm N\\frac{30\\,\\mathrm{cm}}{3\\,\\mathrm{cm}}"
+        },
+        {
+          "type": "formula",
+          "text": " T=180\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "18 N ignorerebbe i bracci diversi. 1,8 N userebbe il rapporto dei bracci al contrario. Una tensione maggiore del peso è coerente con il braccio del tendine dieci volte più corto: equilibrio dei momenti non significa uguaglianza di queste due forze."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 180,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "hints": [
+        "Usa direttamente i bracci perpendicolari, senza aggiungere seni non assegnati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "18 N ignorerebbe i bracci diversi. 1,8 N userebbe il rapporto dei bracci al contrario. Una tensione maggiore del peso è coerente con il braccio del tendine dieci volte più corto: equilibrio dei momenti non significa uguaglianza di queste due forze.",
+        "target": "C1-L010"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q028",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 16,
+      "title": "Il limite reversibile fra due sorgenti",
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L09"
+      ],
+      "version": 2,
+      "prompt": "Una macchina termica reversibile compie cicli fra due sorgenti ideali a 500 K e 300 K, costanti. Qual è il rendimento massimo fra queste temperature, espresso in percentuale?",
+      "family": "una-macchina-e-i-serbatoi",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il limite di Carnot è 1−T_c/T_h con temperature assolute. Il rapporto è 300/500=3/5 e resta 2/5=40%. Il risultato è minore di uno perché la sorgente fredda ha temperatura positiva. La reversibilità permette di raggiungere il limite del modello ideale, non di trasformare tutto il calore assorbito in lavoro."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta_{\\max}=1-\\frac{T_c}{T_h}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_{\\max}=\\frac25"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_{\\max}=40\\%"
+        },
+        {
+          "type": "text",
+          "text": "60% è il rapporto T_c/T_h, non il suo complemento. 200 K è una differenza di temperature e non un rendimento. Usare temperature Celsius nel rapporto non conserva il bilancio reversibile."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 40,
+        "unit": "%",
+        "tolerance": 0
+      },
+      "hints": [
+        "Forma il rapporto delle temperature in kelvin e poi sottrailo da uno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "60% è il rapporto T_c/T_h, non il suo complemento. 200 K è una differenza di temperature e non un rendimento. Usare temperature Celsius nel rapporto non conserva il bilancio reversibile.",
+        "target": "C3-L09"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q029",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 17,
+      "title": "Velocità maggiore nello stesso tratto orizzontale",
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L006"
+      ],
+      "version": 2,
+      "prompt": "Un fluido ideale incomprimibile scorre in regime stazionario lungo una stessa linea di corrente orizzontale, senza perdite. La rapidità aumenta da A a B. Come cambia la pressione statica?",
+      "family": "un-condotto-orizzontale-ideale",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Alla stessa quota Bernoulli conserva p+ρv²/2. Poiché il termine cinetico aumenta da A a B e la densità è positiva, il termine di pressione deve diminuire. Si confrontano pressioni statiche lungo la stessa linea, con le ipotesi dichiarate. Non si afferma che la pressione assoluta diventi nulla o negativa."
+        },
+        {
+          "type": "formula",
+          "text": "p+\\frac12\\rho v^2=\\text{costante}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B<p_A"
+        },
+        {
+          "type": "text",
+          "text": "La sola uguaglianza delle quote non rende costante la pressione se cambia la velocità. Conservare la portata è una condizione di continuità e non sostituisce il bilancio di energia. In presenza di perdite o macchine occorrerebbero termini aggiuntivi, assenti dal modello."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Diminuisce",
+          "Aumenta necessariamente",
+          "Resta uguale perché la quota è uguale",
+          "Diventa necessariamente nulla",
+          "Diventa maggiore solo perché la portata si conserva"
+        ],
+        "value": "Diminuisce"
+      },
+      "hints": [
+        "Confronta quali termini di Bernoulli restano uguali e quale aumenta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La sola uguaglianza delle quote non rende costante la pressione se cambia la velocità. Conservare la portata è una condizione di continuità e non sostituisce il bilancio di energia. In presenza di perdite o macchine occorrerebbero termini aggiuntivi, assenti dal modello.",
+        "target": "C2-L006"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q030",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 18,
+      "title": "Energia del condensatore isolato",
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C4-L07"
+      ],
+      "version": 2,
+      "prompt": "Un condensatore inizialmente carico, con carica non nulla, è scollegato dal generatore e isolato. Un dielettrico ideale inserito completamente raddoppia la capacità, senza trasferire carica libera alle armature. Come cambia l’energia elettrostatica immagazzinata?",
+      "family": "energia-dopo-scollegamento",
+      "difficulty": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’isolamento conserva la carica libera Q. La forma utile dell’energia è U=Q²/(2C): al raddoppio della capacità, con numeratore invariato, l’energia diventa U_i/2. L’assenza di dissipazione non impone energia del campo costante: durante l’inserimento può esserci scambio di lavoro meccanico con il dielettrico e l’apparato."
+        },
+        {
+          "type": "formula",
+          "text": "Q_f=Q_i"
+        },
+        {
+          "type": "formula",
+          "text": " C_f=2C_i"
+        },
+        {
+          "type": "formula",
+          "text": " U_f=\\frac12U_i"
+        },
+        {
+          "type": "text",
+          "text": "Usare U=CV²/2 mantenendo anche V costante descriverebbe il collegamento a un generatore, non l’isolamento. La carica non nulla e la capacità finita mantengono energia positiva, quindi non si annulla."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Diventa la metà",
+          "Raddoppia",
+          "Resta invariata",
+          "Quadruplica",
+          "Diventa nulla"
+        ],
+        "value": "Diventa la metà"
+      },
+      "hints": [
+        "Scegli la formula dell’energia che contiene la grandezza conservata, Q.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Usare U=CV²/2 mantenendo anche V costante descriverebbe il collegamento a un generatore, non l’isolamento. La carica non nulla e la capacità finita mantengono energia positiva, quindi non si annulla.",
+        "target": "C4-L07"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q031",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 19,
+      "title": "Energia doppia di un fotone nel vuoto",
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C5-L07"
+      ],
+      "version": 2,
+      "prompt": "Due fotoni viaggiano nel vuoto. Il primo ha energia doppia del secondo. Come si confronta la sua lunghezza d’onda con quella del secondo?",
+      "family": "un-fotone-oltre-il-visibile",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per ogni fotone nel vuoto E=hc/λ. Il prodotto Eλ=hc resta lo stesso: raddoppiare l’energia dimezza la lunghezza d’onda. La frequenza invece raddoppia, perché E=hf. Non si attribuisce al fotone una rapidità doppia di c."
+        },
+        {
+          "type": "formula",
+          "text": "E_1=2E_2"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\lambda_1}{\\lambda_2}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Una lunghezza d’onda doppia darebbe energia dimezzata, al contrario del dato. Stessa velocità di propagazione nel vuoto non significa stessa frequenza o λ. Un’energia finita positiva non corrisponde a λ nulla."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "È la metà",
+          "È doppia",
+          "È uguale",
+          "È quattro volte maggiore",
+          "È nulla"
+        ],
+        "value": "È la metà"
+      },
+      "hints": [
+        "Usa la proporzionalità inversa fra E e λ prima di fare qualsiasi conversione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una lunghezza d’onda doppia darebbe energia dimezzata, al contrario del dato. Stessa velocità di propagazione nel vuoto non significa stessa frequenza o λ. Un’energia finita positiva non corrisponde a λ nulla.",
+        "target": "C5-L07"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q032",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 20,
+      "title": "L’area di un impulso triangolare",
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L009"
+      ],
+      "version": 2,
+      "prompt": "Una forza mantiene un verso fisso: parte da zero, cresce linearmente fino a 12 N e torna linearmente a zero in un tempo totale di 0,50 s. Qual è il modulo dell’impulso, in N·s?",
+      "family": "larea-di-un-impulso-triangolare",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’impulso è l’area sotto il grafico della forza con segno. Il profilo triangolare ha base 0,50 s e altezza 12 N: area uguale a metà del prodotto, cioè 12×0,50/2=3 N·s. Non serve sapere in quale istante interno avvenga il massimo, purché i due lati siano lineari e coprano l’intero intervallo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/5b6105adbd52e10e63c86c65466bc689a94750c036ef80758c0fac97b9b06ffc",
+          "text": "L’ultimo pannello è forza-tempo: il triangolo ha altezza 12 N e durata totale 0,50 s. La posizione interna del massimo è una scelta illustrativa e non cambia l’area 3 N·s."
+        },
+        {
+          "type": "formula",
+          "text": "J=\\frac12F_{\\max}\\Delta t"
+        },
+        {
+          "type": "formula",
+          "text": " J=3\\,\\mathrm{N\\,s}"
+        },
+        {
+          "type": "text",
+          "text": "6 N·s sarebbe l’area del rettangolo che mantiene 12 N per tutta la durata. La forza media è 6 N, ma il suo valore numerico non è l’impulso: va ancora moltiplicato per 0,50 s. Il grafico forza-tempo non è una traiettoria."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "N·s",
+        "tolerance": 0
+      },
+      "hints": [
+        "Identifica base e altezza dell’area triangolare, con le rispettive unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "6 N·s sarebbe l’area del rettangolo che mantiene 12 N per tutta la durata. La forza media è 6 N, ma il suo valore numerico non è l’impulso: va ancora moltiplicato per 0,50 s. Il grafico forza-tempo non è una traiettoria.",
+        "target": "C1-L009"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q033",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 21,
+      "title": "Due capacità uguali, una temperatura comune",
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L03"
+      ],
+      "version": 2,
+      "prompt": "Due blocchi sono isolati dall’esterno, senza cambiamenti di fase. Hanno la stessa capacità termica totale positiva e costante; il contatto termico e il contenitore non aggiungono capacità apprezzabile. Partono da 15 °C e 45 °C. Qual è la temperatura finale in °C?",
+      "family": "due-corpi-verso-la-stessa-temperatura",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La perdita del blocco caldo uguaglia il guadagno di quello freddo. Chiamo θ_f la lettura numerica finale in gradi Celsius. Le capacità uguali si semplificano: 45−θ_f=θ_f−15. Ne segue 2θ_f=60 e θ_f=30 °C. Si fa la media delle letture Celsius perché i pesi sono uguali e il bilancio usa differenze di temperatura, uguali numericamente in kelvin."
+        },
+        {
+          "type": "formula",
+          "text": "45-\\theta_f=\\theta_f-15"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_f=30"
+        },
+        {
+          "type": "formula",
+          "text": " T_f=30\\,^\\circ\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "60 °C è la somma delle letture, non una temperatura d’equilibrio compatibile con due corpi inizialmente più freddi. Le sole masse uguali non sarebbero sufficienti se i calori specifici fossero diversi: il dato usato qui è l’uguaglianza delle capacità totali."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 30,
+        "unit": "°C",
+        "tolerance": 0
+      },
+      "hints": [
+        "Imponi uguali variazioni in valore assoluto perché le due capacità sono uguali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "60 °C è la somma delle letture, non una temperatura d’equilibrio compatibile con due corpi inizialmente più freddi. Le sole masse uguali non sarebbero sufficienti se i calori specifici fossero diversi: il dato usato qui è l’uguaglianza delle capacità totali.",
+        "target": "C3-L03"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q034",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 22,
+      "title": "Sommare due volumi materiali disgiunti",
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "version": 2,
+      "prompt": "Il volume materiale di due campioni disgiunti si ottiene sommando i loro volumi, senza trasformazioni o sovrapposizioni. Come si classifica questa grandezza rispetto alla dimensione del sistema?",
+      "family": "grandezze-additive",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In questa descrizione il volume totale è V₁+V₂. Raddoppiando la quantità di due copie disgiunte del sistema si raddoppia il volume: è una grandezza estensiva. Non si sta assumendo additività dei volumi dopo una miscela con possibili contrazioni, perché i campioni restano disgiunti."
+        },
+        {
+          "type": "formula",
+          "text": "V_{\\rm tot}=V_1+V_2"
+        },
+        {
+          "type": "text",
+          "text": "Una grandezza intensiva non cresce nello stesso modo aggiungendo copie del sistema. Estensiva non significa priva di unità: il volume ha unità m³. La classificazione non riguarda un verso vettoriale o la conservatività di una forza."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Estensiva",
+          "Intensiva",
+          "Adimensionale",
+          "Vettoriale",
+          "Necessariamente conservativa"
+        ],
+        "value": "Estensiva"
+      },
+      "hints": [
+        "Controlla che cosa succede aggiungendo una copia disgiunta dello stesso campione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una grandezza intensiva non cresce nello stesso modo aggiungendo copie del sistema. Estensiva non significa priva di unità: il volume ha unità m³. La classificazione non riguarda un verso vettoriale o la conservatività di una forza.",
+        "target": "C1-L001"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q035",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 23,
+      "title": "Sottrarre il riferimento atmosferico",
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L002"
+      ],
+      "version": 2,
+      "prompt": "Come si chiama la pressione ottenuta sottraendo la pressione atmosferica dalla pressione assoluta?",
+      "family": "pressione-rispetto-allambiente",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La pressione relativa, detta anche manometrica, è p_ass−p_atm. Il riferimento è la pressione atmosferica, quindi un valore relativo nullo significa p_ass=p_atm. Un valore relativo negativo può rappresentare una pressione assoluta positiva ma inferiore all’atmosfera."
+        },
+        {
+          "type": "formula",
+          "text": "p_{\\rm rel}=p_{\\rm ass}-p_{\\rm atm}"
+        },
+        {
+          "type": "text",
+          "text": "La pressione assoluta non sottrae questo riferimento. Il termine idrostatico descrive una variazione con la profondità e non è il nome della scelta di zero. Pressione e tensione superficiale hanno unità diverse."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Relativa o manometrica",
+          "Assoluta",
+          "Idrostatica necessariamente nulla",
+          "Tensione superficiale",
+          "Portata"
+        ],
+        "value": "Relativa o manometrica"
+      },
+      "hints": [
+        "Identifica il riferimento sottratto prima di interpretare lo zero.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La pressione assoluta non sottrae questo riferimento. Il termine idrostatico descrive una variazione con la profondità e non è il nome della scelta di zero. Pressione e tensione superficiale hanno unità diverse.",
+        "target": "C2-L002"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q036",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 24,
+      "title": "Una carica divisa per un tempo",
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C4-L05"
+      ],
+      "version": 2,
+      "prompt": "Qual è il nome SI dell’unità coulomb al secondo?",
+      "family": "unita-di-corrente",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La corrente media è carica netta trasferita divisa per durata. Il coulomb al secondo prende il nome di ampere: 1 A=1 C/s. Questa identità di unità vale senza richiedere corrente istantanea costante; la distinzione fra media e valore istantaneo riguarda la misura, non il nome SI."
+        },
+        {
+          "type": "formula",
+          "text": "1\\,\\mathrm A=1\\,\\mathrm{C/s}"
+        },
+        {
+          "type": "text",
+          "text": "Volt misura differenza di potenziale, ohm resistenza, farad capacità e joule energia. Nessuno di questi nomi sostituisce C/s. Una carica totale è in coulomb e non va confusa con la corrente."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Ampere",
+          "Volt",
+          "Ohm",
+          "Farad",
+          "Joule"
+        ],
+        "value": "Ampere"
+      },
+      "hints": [
+        "Riconosci quale grandezza è carica trasferita per unità di tempo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Volt misura differenza di potenziale, ohm resistenza, farad capacità e joule energia. Nessuno di questi nomi sostituisce C/s. Una carica totale è in coulomb e non va confusa con la corrente.",
+        "target": "C4-L05"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q037",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 25,
+      "title": "Dal numero di cicli alla fase angolare",
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C5-L01"
+      ],
+      "version": 2,
+      "prompt": "Come si chiama la grandezza ω=2πf espressa in rad/s?",
+      "family": "girare-di-due-pi-greco",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni ciclo completo contiene 2π radianti di fase. Se f conta i cicli al secondo, ω conta i radianti al secondo e si chiama pulsazione, o frequenza angolare. Il fattore 2π cambia la misura della fase, non aggiunge una nuova oscillazione fisica."
+        },
+        {
+          "type": "formula",
+          "text": "\\omega=2\\pi f"
+        },
+        {
+          "type": "text",
+          "text": "Il periodo è un tempo e vale 1/f. Il numero d’onda spaziale k è in rad/m, non rad/s. L’ampiezza misura una grandezza oscillante massima e non la rapidità con cui cresce la fase."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Pulsazione",
+          "Periodo",
+          "Lunghezza d’onda",
+          "Ampiezza",
+          "Numero d’onda spaziale"
+        ],
+        "value": "Pulsazione"
+      },
+      "hints": [
+        "Leggi il secondo al denominatore e distinguilo dal metro di k.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il periodo è un tempo e vale 1/f. Il numero d’onda spaziale k è in rad/m, non rad/s. L’ampiezza misura una grandezza oscillante massima e non la rapidità con cui cresce la fase.",
+        "target": "C5-L01"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q038",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 26,
+      "title": "Il nome del vincolo sul volume",
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L07"
+      ],
+      "version": 2,
+      "prompt": "Come si chiama una trasformazione termodinamica a volume costante?",
+      "family": "volume-che-non-cambia",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La trasformazione è isocora. Il nome specifica che il volume non cambia; non impone da solo temperatura costante, pressione costante o assenza di calore. Nel modello di lavoro di frontiera p_ext dV, il volume fisso rende nullo quel lavoro, ma non esclude altri trasferimenti o forme di lavoro."
+        },
+        {
+          "type": "formula",
+          "text": "V=\\text{costante}"
+        },
+        {
+          "type": "text",
+          "text": "Isobara mantiene la pressione e isoterma la temperatura. Adiabatica riguarda il calore scambiato. Tornare allo stato iniziale è una proprietà di un ciclo, non una conseguenza del solo volume costante."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Isocora",
+          "Isobara",
+          "Isoterma",
+          "Adiabatica necessariamente",
+          "Ciclica necessariamente"
+        ],
+        "value": "Isocora"
+      },
+      "hints": [
+        "Distingui quale grandezza viene mantenuta fissa dal nome della trasformazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Isobara mantiene la pressione e isoterma la temperatura. Adiabatica riguarda il calore scambiato. Tornare allo stato iniziale è una proprietà di un ciclo, non una conseguenza del solo volume costante.",
+        "target": "C3-L07"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q039",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 27,
+      "title": "Il salto attraverso una superficie sferica",
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L010"
+      ],
+      "version": 2,
+      "prompt": "Una goccia sferica di liquido in equilibrio ha una sola interfaccia con il gas. Quale legge lega il salto di pressione interno–esterno alla tensione superficiale e al raggio?",
+      "family": "curvatura-e-salto-di-pressione",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "È la legge di Laplace. Per una goccia sferica con una sola interfaccia il salto interno meno esterno è 2γ/R. La curvatura e la tensione superficiale richiedono una sovrapressione interna. Un film saponoso con due interfacce avrebbe un fattore diverso e non è il sistema dichiarato."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p=\\frac{2\\gamma}{R}"
+        },
+        {
+          "type": "text",
+          "text": "Ohm riguarda un legame elettrico, Hooke una risposta elastica, Faraday l’induzione e Snell la rifrazione. Il fattore 4γ/R appartiene al modello di una bolla con due superfici, non alla goccia con una sola interfaccia."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Legge di Laplace",
+          "Legge di Ohm",
+          "Legge di Hooke",
+          "Legge di Faraday",
+          "Legge di Snell"
+        ],
+        "value": "Legge di Laplace"
+      },
+      "hints": [
+        "Conta le interfacce fisiche prima di associare il fattore geometrico al nome.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Ohm riguarda un legame elettrico, Hooke una risposta elastica, Faraday l’induzione e Snell la rifrazione. Il fattore 4γ/R appartiene al modello di una bolla con due superfici, non alla goccia con una sola interfaccia.",
+        "target": "C2-L010"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q040",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 28,
+      "title": "La forza reciproca agisce su un altro corpo",
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L005"
+      ],
+      "version": 2,
+      "prompt": "La terza legge di Newton associa a ogni forza di azione quale forza reciproca?",
+      "family": "la-coppia-su-corpi-distinti",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza di reazione ha uguale modulo e verso opposto, ma agisce sull’altro corpo dell’interazione. Le due forze sono contemporanee. Non si annullano nel diagramma delle forze di un singolo corpo perché appartengono a due corpi diversi; possono essere interne al sistema che li comprende entrambi."
+        },
+        {
+          "type": "formula",
+          "text": "\\mathbf F_{A\\to B}=-\\mathbf F_{B\\to A}"
+        },
+        {
+          "type": "text",
+          "text": "Stesso corpo o ritardo temporale non descrivono la terza legge. Le accelerazioni dei due corpi possono differire se le masse differiscono, senza violare l’uguaglianza dei moduli delle forze reciproche."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Una forza di reazione uguale in modulo e opposta in verso sull’altro corpo",
+          "Una forza uguale sullo stesso corpo",
+          "Una forza necessariamente minore sull’altro corpo",
+          "Una forza che compare solo dopo la fine dell’azione",
+          "Una forza sempre perpendicolare all’azione"
+        ],
+        "value": "Una forza di reazione uguale in modulo e opposta in verso sull’altro corpo"
+      },
+      "hints": [
+        "Indica esplicitamente su quale corpo agisce ciascuna forza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Stesso corpo o ritardo temporale non descrivono la terza legge. Le accelerazioni dei due corpi possono differire se le masse differiscono, senza violare l’uguaglianza dei moduli delle forze reciproche.",
+        "target": "C1-L005"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q041",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 29,
+      "title": "Un esponente senza unità",
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C5-L07"
+      ],
+      "version": 2,
+      "prompt": "Nella legge I=I₀ exp(−μx), x è una lunghezza. Come deve essere il prodotto μx?",
+      "family": "luce-che-attraversa-uno-spessore",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’argomento di un’esponenziale deve essere un numero puro. Quindi μx è adimensionale e μ ha dimensione inversa di una lunghezza. Se x è espresso in metri, una scelta coerente è μ in m⁻¹. I e I₀ devono invece avere le stesse unità d’intensità."
+        },
+        {
+          "type": "formula",
+          "text": "[\\mu]=\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\mu x]=1"
+        },
+        {
+          "type": "text",
+          "text": "Il coefficiente μ non ha le stesse unità di x: le deve cancellare nel prodotto. Adimensionale non significa che μ sia zero o che l’intensità non diminuisca. L’unità di I non entra nell’esponente."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Adimensionale",
+          "Una lunghezza",
+          "Una pressione",
+          "Un’intensità",
+          "Un’energia"
+        ],
+        "value": "Adimensionale"
+      },
+      "hints": [
+        "Imponi che l’unità di μ cancelli quella della lunghezza moltiplicata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Il coefficiente μ non ha le stesse unità di x: le deve cancellare nel prodotto. Adimensionale non significa che μ sia zero o che l’intensità non diminuisca. L’unità di I non entra nell’esponente.",
+        "target": "C5-L07"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q042",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 30,
+      "title": "La forza per carica di prova",
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C4-L02"
+      ],
+      "version": 2,
+      "prompt": "Come si chiama il vettore definito dalla forza elettrica su una carica di prova positiva non perturbante, divisa per quella carica?",
+      "family": "campo-dalla-carica-di-prova",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto vettoriale F/q definisce il campo elettrico nel punto, nelle condizioni di prova non perturbante. La carica positiva fissa lo stesso verso per forza e campo. Il campo è attribuito alle sorgenti; cambiando il segno della carica di prova cambia il verso della forza, non quello del campo imposto."
+        },
+        {
+          "type": "formula",
+          "text": "\\mathbf E=\\frac{\\mathbf F}{q}"
+        },
+        {
+          "type": "formula",
+          "text": " q>0"
+        },
+        {
+          "type": "text",
+          "text": "Il potenziale è energia per carica e ha natura scalare, mentre qui si divide una forza vettoriale. N/C è l’unità del campo; J/C sarebbe invece il volt del potenziale. Una prova che perturba le sorgenti richiederebbe un diverso modello."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Campo elettrico",
+          "Potenziale elettrico",
+          "Energia potenziale",
+          "Flusso magnetico",
+          "Resistenza elettrica"
+        ],
+        "value": "Campo elettrico"
+      },
+      "hints": [
+        "Confronta la natura vettoriale e le unità della quantità al numeratore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il potenziale è energia per carica e ha natura scalare, mentre qui si divide una forza vettoriale. N/C è l’unità del campo; J/C sarebbe invece il volt del potenziale. Una prova che perturba le sorgenti richiederebbe un diverso modello.",
+        "target": "C4-L02"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C6-Q043",
+      "kind": "question",
+      "course": "C6",
+      "section": "Esame protetto 1",
+      "order": 31,
+      "title": "La funzione di stato indicata con S",
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C3-L10"
+      ],
+      "version": 2,
+      "prompt": "Quale funzione di stato termodinamica è indicata con S e misurata in J/K?",
+      "family": "la-funzione-di-stato-simbolo-s",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La funzione di stato è l’entropia. La sua variazione può essere calcolata tramite un percorso reversibile con dS=δQ_rev/T, anche quando il processo reale fra gli stati non è reversibile. T è la temperatura assoluta positiva lungo il percorso reversibile. L’unità J/K da sola non basta a definire ogni grandezza termica: qui sono determinanti anche il simbolo S e il carattere di funzione di stato."
+        },
+        {
+          "type": "formula",
+          "text": "dS=\\frac{\\delta Q_{\\rm rev}}T"
+        },
+        {
+          "type": "text",
+          "text": "Energia interna, lavoro e calore hanno unità joule; temperatura assoluta kelvin. Calore e lavoro sono trasferimenti e non funzioni di stato del sistema. Non si identifica S con Q/T per qualunque processo reale senza controllare le ipotesi."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Entropia",
+          "Energia interna",
+          "Temperatura assoluta",
+          "Lavoro",
+          "Calore"
+        ],
+        "value": "Entropia"
+      },
+      "hints": [
+        "Usa insieme il simbolo, l’unità e il carattere di funzione di stato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Energia interna, lavoro e calore hanno unità joule; temperatura assoluta kelvin. Calore e lavoro sono trasferimenti e non funzioni di stato del sistema. Non si identifica S con Q/T per qualunque processo reale senza controllare le ipotesi.",
+        "target": "C3-L10"
+      },
+      "exam": 1,
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Trentuno problemi distinti di sintesi fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "5b6105adbd52e10e63c86c65466bc689a94750c036ef80758c0fac97b9b06ffc",
+      "name": "cric-c6-protected-exam-01-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTc0MCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNzQwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPlNwb3N0YW1lbnRvIG5ldHRvLCBub2RpIGVsZXR0cmljaSBlIGltcHVsc288L3RpdGxlPgo8ZGVzYyBpZD0iZGVzYyI+TmVsIHByaW1vIHBhbm5lbGxvIGlsIGNhcnJlbGxvIHZhIGRhIHplcm8gYSBkb2RpY2kgbWV0cmkgZSByaXRvcm5hIGEgb3R0bzsgbGUgZHVlIGR1cmF0ZSBzb25vIHRyZSBlIHVuIHNlY29uZG8uIE5lbCBzZWNvbmRvIGR1ZSByYW1pIGNvbmRpdmlkb25vIGkgbm9kaSBBIGUgQjogc2VpIG9obSBzb3ByYSBlIGR1ZSByZXNpc3RvcmkgZGEgdHJlIG9obSBzb3R0by4gTmVsIHRlcnpvIGzigJlhcmVhIHRyaWFuZ29sYXJlIHNvdHRvIGxhIGZvcnphIGRpIG1hc3NpbW8gZG9kaWNpIG5ld3RvbiBpbiBtZXp6byBzZWNvbmRvIHZhbGUgdHJlIG5ld3RvbiBzZWNvbmRvLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0idGlwIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI1IiBtYXJrZXJIZWlnaHQ9IjUiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSJjb250ZXh0LXN0cm9rZSIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNzQwIiBmaWxsPSIjZmZmZGY3Ii8+CjxnIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZmlsbD0iIzIwMmMzOSI+Cjx0ZXh0IHg9IjMyIiB5PSI1MiIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9ImJvbGQiPjEuIENvbnRhIGxvIHNwb3N0YW1lbnRvIGNvbiBzZWdubzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijk1IiBmb250LXNpemU9IjIzIj5MZSBkdWUgZnJlY2NlIHVzYW5vIGxvIHN0ZXNzbyBhc3NlIHNwYXppYWxlLjwvdGV4dD4KPHBhdGggZD0iTTE0MCAyMDBINTAwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNjcyOGQiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCN0aXApIi8+Cjx0ZXh0IHg9IjIzOCIgeT0iMTY3IiBmb250LXNpemU9IjIzIj4rMTIgbSBpbiAzIHM8L3RleHQ+CjxwYXRoIGQ9Ik01MDAgMjg1SDM4MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTg2YzM1IiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjdGlwKSIvPgo8dGV4dCB4PSIzNTUiIHk9IjMzMCIgZm9udC1zaXplPSIyMyI+4oiSNCBtIGluIDEgczwvdGV4dD4KPHBhdGggZD0iTTE0MCAzODBINTU1TTE0MCAzNjVWMzk1TTM4MCAzNjVWMzk1TTUwMCAzNjVWMzk1IiBmaWxsPSJub25lIiBzdHJva2U9IiMzMDRkNjMiIHN0cm9rZS13aWR0aD0iMyIvPgo8dGV4dCB4PSIxMjkiIHk9IjQyMCIgZm9udC1zaXplPSIyMyI+MDwvdGV4dD4KPHRleHQgeD0iMzcwIiB5PSI0MjAiIGZvbnQtc2l6ZT0iMjMiPjg8L3RleHQ+Cjx0ZXh0IHg9IjQ4NiIgeT0iNDIwIiBmb250LXNpemU9IjIzIj4xMjwvdGV4dD4KPHRleHQgeD0iNTIyIiB5PSI0NTgiIGZvbnQtc2l6ZT0iMjMiPnggKG0pPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNTAwIiBmb250LXNpemU9IjIzIj5Ub3RhbGU6ICs4IG0gaW4gNCBzLCBxdWluZGkgKzIgbS9zLjwvdGV4dD4KPGxpbmUgeDE9IjMyIiB5MT0iNTM1IiB4Mj0iNjA4IiB5Mj0iNTM1IiBzdHJva2U9IiNiOGM0Y2EiLz4KPHRleHQgeD0iMzIiIHk9IjU5MCIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9ImJvbGQiPjIuIEdsaSBzdGVzc2kgZHVlIG5vZGksIGR1ZSByYW1pPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNjMzIiBmb250LXNpemU9IjIzIj5MYSBmb3JtYSBkZWwgZGlzZWdubyBub24gY2FtYmlhIGkgbm9kaS48L3RleHQ+CjxwYXRoIGQ9Ik0xMDAgODMwSDE2MFY3MzBIMjcwTTM3MCA3MzBINTAwVjgzMEg1NTBNMTYwIDgzMFY5NDBIMjIwTTMwMCA5NDBIMzUwTTQzMCA5NDBINTAwVjgzMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA0ZDYzIiBzdHJva2Utd2lkdGg9IjMiLz4KPHJlY3QgeD0iMjcwIiB5PSI3MTAiIHdpZHRoPSIxMDAiIGhlaWdodD0iNDAiIGZpbGw9IiNkY2VhZjAiIHN0cm9rZT0iIzMwNGQ2MyIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxyZWN0IHg9IjIyMCIgeT0iOTIwIiB3aWR0aD0iODAiIGhlaWdodD0iNDAiIGZpbGw9IiNlOWQ5YzAiIHN0cm9rZT0iIzMwNGQ2MyIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxyZWN0IHg9IjM1MCIgeT0iOTIwIiB3aWR0aD0iODAiIGhlaWdodD0iNDAiIGZpbGw9IiNlOWQ5YzAiIHN0cm9rZT0iIzMwNGQ2MyIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxjaXJjbGUgY3g9IjE2MCIgY3k9IjgzMCIgcj0iNSIgZmlsbD0iIzMwNGQ2MyIvPjxjaXJjbGUgY3g9IjUwMCIgY3k9IjgzMCIgcj0iNSIgZmlsbD0iIzMwNGQ2MyIvPgo8dGV4dCB4PSI3NSIgeT0iODE1IiBmb250LXNpemU9IjIzIj5BPC90ZXh0Pjx0ZXh0IHg9IjU1NCIgeT0iODE1IiBmb250LXNpemU9IjIzIj5CPC90ZXh0Pgo8dGV4dCB4PSIyOTkiIHk9IjY5NSIgZm9udC1zaXplPSIyMyI+NiDOqTwvdGV4dD4KPHRleHQgeD0iMjQwIiB5PSIxMDAwIiBmb250LXNpemU9IjIzIj4zIM6pPC90ZXh0Pjx0ZXh0IHg9IjM2NyIgeT0iMTAwMCIgZm9udC1zaXplPSIyMyI+MyDOqTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEwNTAiIGZvbnQtc2l6ZT0iMjMiPk9nbmkgcmFtbzogNiDOqS4gSWwgcGFyYWxsZWxvOiAzIM6pLjwvdGV4dD4KPGxpbmUgeDE9IjMyIiB5MT0iMTA5MCIgeDI9IjYwOCIgeTI9IjEwOTAiIHN0cm9rZT0iI2I4YzRjYSIvPgo8dGV4dCB4PSIzMiIgeT0iMTE0NSIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9ImJvbGQiPjMuIEzigJlpbXB1bHNvIMOoIHVu4oCZYXJlYSBmb3J6YS10ZW1wbzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjExODgiIGZvbnQtc2l6ZT0iMjMiPklsIG1hc3NpbW8gaW50ZXJubyDDqCBzY2VsdG8gcGVyIGlsbHVzdHJhcmUuPC90ZXh0Pgo8cGF0aCBkPSJNMTQwIDEyNDBWMTU4MEg1NjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMwNGQ2MyIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxwYXRoIGQ9Ik0xNDAgMTU4MEwzMjAgMTI4MEw1MDAgMTU4MFoiIGZpbGw9IiNkY2VhZjAiIHN0cm9rZT0iIzI2NzI4ZCIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxwYXRoIGQ9Ik0xNDAgMTI4MEgzMjBWMTU4MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA0ZDYzIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjcgNyIvPgo8dGV4dCB4PSIzMiIgeT0iMTI0NSIgZm9udC1zaXplPSIyMyI+RiAoTik8L3RleHQ+Cjx0ZXh0IHg9IjkzIiB5PSIxMjg5IiBmb250LXNpemU9IjIzIj4xMjwvdGV4dD4KPHRleHQgeD0iMTA4IiB5PSIxNjIwIiBmb250LXNpemU9IjIzIj4wPC90ZXh0Pgo8dGV4dCB4PSIzMDMiIHk9IjE2MjAiIGZvbnQtc2l6ZT0iMjMiPjAsMjU8L3RleHQ+Cjx0ZXh0IHg9IjQ3OSIgeT0iMTYyMCIgZm9udC1zaXplPSIyMyI+MCw1MDwvdGV4dD4KPHRleHQgeD0iNTE3IiB5PSIxNjYwIiBmb250LXNpemU9IjIzIj50IChzKTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjE3MTIiIGZvbnQtc2l6ZT0iMjMiPkFyZWE6IDEyIE4gw5cgMCw1MCBzIC8gMiA9IDMgTsK3cy48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}
