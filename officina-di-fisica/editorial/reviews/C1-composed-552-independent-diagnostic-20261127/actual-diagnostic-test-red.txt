@@ -1,0 +1,69 @@
+bounded local start; free bytes 2423889920
+test_actual_terminal_and_all_selected_identity (__main__.C1Diagnostic.test_actual_terminal_and_all_selected_identity) ... ok
+test_four_id_before_after_nonlabel_invariants (__main__.C1Diagnostic.test_four_id_before_after_nonlabel_invariants) ... ok
+test_nonzero_fallback_direction_has_exposed_head (__main__.C1Diagnostic.test_nonzero_fallback_direction_has_exposed_head) ... 
+  test_nonzero_fallback_direction_has_exposed_head (__main__.C1Diagnostic.test_nonzero_fallback_direction_has_exposed_head) (caseKey='SIM-C1-L006-03|published|320|fixed_projection|grid|2', polygon=5) ... FAIL
+  test_nonzero_fallback_direction_has_exposed_head (__main__.C1Diagnostic.test_nonzero_fallback_direction_has_exposed_head) (caseKey='SIM-C1-L006-03|published|320|fixed_projection|grid|2', polygon=7) ... FAIL
+  test_nonzero_fallback_direction_has_exposed_head (__main__.C1Diagnostic.test_nonzero_fallback_direction_has_exposed_head) (caseKey='SIM-C1-L006-03|published|320|fixed_projection|grid|3', polygon=5) ... FAIL
+  test_nonzero_fallback_direction_has_exposed_head (__main__.C1Diagnostic.test_nonzero_fallback_direction_has_exposed_head) (caseKey='SIM-C1-L006-03|published|320|fixed_projection|grid|3', polygon=7) ... FAIL
+  test_nonzero_fallback_direction_has_exposed_head (__main__.C1Diagnostic.test_nonzero_fallback_direction_has_exposed_head) (caseKey='SIM-C1-L007-02|published|320|fixed_projection|clock|0', polygon=23) ... FAIL
+test_physical_zeros_are_not_omissions (__main__.C1Diagnostic.test_physical_zeros_are_not_omissions) ... ok
+test_raster_read_is_explicit_and_covers_selected_images (__main__.C1Diagnostic.test_raster_read_is_explicit_and_covers_selected_images) ... ok
+
+======================================================================
+FAIL: test_nonzero_fallback_direction_has_exposed_head (__main__.C1Diagnostic.test_nonzero_fallback_direction_has_exposed_head) (caseKey='SIM-C1-L006-03|published|320|fixed_projection|grid|2', polygon=5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C1-composed-552-independent-diagnostic-20261127/test_c1_diagnostic.py", line 47, in test_nonzero_fallback_direction_has_exposed_head
+    with self.subTest(caseKey=r['key'],polygon=i):self.assertFalse(buried,{'axisLength':L,'headHalfWidth':max(perpendicular),'shaftHalfWidth':half})
+                                                  ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false : {'axisLength': 5.282644628099206, 'headHalfWidth': 0.8452231404958752, 'shaftHalfWidth': 1.35}
+
+======================================================================
+FAIL: test_nonzero_fallback_direction_has_exposed_head (__main__.C1Diagnostic.test_nonzero_fallback_direction_has_exposed_head) (caseKey='SIM-C1-L006-03|published|320|fixed_projection|grid|2', polygon=7)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C1-composed-552-independent-diagnostic-20261127/test_c1_diagnostic.py", line 47, in test_nonzero_fallback_direction_has_exposed_head
+    with self.subTest(caseKey=r['key'],polygon=i):self.assertFalse(buried,{'axisLength':L,'headHalfWidth':max(perpendicular),'shaftHalfWidth':half})
+                                                  ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false : {'axisLength': 5.282644628099206, 'headHalfWidth': 0.8452231404958752, 'shaftHalfWidth': 1.35}
+
+======================================================================
+FAIL: test_nonzero_fallback_direction_has_exposed_head (__main__.C1Diagnostic.test_nonzero_fallback_direction_has_exposed_head) (caseKey='SIM-C1-L006-03|published|320|fixed_projection|grid|3', polygon=5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C1-composed-552-independent-diagnostic-20261127/test_c1_diagnostic.py", line 47, in test_nonzero_fallback_direction_has_exposed_head
+    with self.subTest(caseKey=r['key'],polygon=i):self.assertFalse(buried,{'axisLength':L,'headHalfWidth':max(perpendicular),'shaftHalfWidth':half})
+                                                  ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false : {'axisLength': 2.496875000000003, 'headHalfWidth': 0.3995000000000033, 'shaftHalfWidth': 1.35}
+
+======================================================================
+FAIL: test_nonzero_fallback_direction_has_exposed_head (__main__.C1Diagnostic.test_nonzero_fallback_direction_has_exposed_head) (caseKey='SIM-C1-L006-03|published|320|fixed_projection|grid|3', polygon=7)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C1-composed-552-independent-diagnostic-20261127/test_c1_diagnostic.py", line 47, in test_nonzero_fallback_direction_has_exposed_head
+    with self.subTest(caseKey=r['key'],polygon=i):self.assertFalse(buried,{'axisLength':L,'headHalfWidth':max(perpendicular),'shaftHalfWidth':half})
+                                                  ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false : {'axisLength': 2.4968749999999886, 'headHalfWidth': 0.3995000000000033, 'shaftHalfWidth': 1.35}
+
+======================================================================
+FAIL: test_nonzero_fallback_direction_has_exposed_head (__main__.C1Diagnostic.test_nonzero_fallback_direction_has_exposed_head) (caseKey='SIM-C1-L007-02|published|320|fixed_projection|clock|0', polygon=23)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C1-composed-552-independent-diagnostic-20261127/test_c1_diagnostic.py", line 47, in test_nonzero_fallback_direction_has_exposed_head
+    with self.subTest(caseKey=r['key'],polygon=i):self.assertFalse(buried,{'axisLength':L,'headHalfWidth':max(perpendicular),'shaftHalfWidth':half})
+                                                  ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false : {'axisLength': 5.091666666666669, 'headHalfWidth': 0.8146666666666675, 'shaftHalfWidth': 1.35}
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.104s
+
+FAILED (failures=5)
+Traceback (most recent call last):
+  File "/private/tmp/cric-bounded-local.py", line 7, in <module>
+    subprocess.run(sys.argv[1:],check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py", line 579, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['python3', '-B', 'editorial/reviews/C1-composed-552-independent-diagnostic-20261127/test_c1_diagnostic.py']' returned non-zero exit status 1.

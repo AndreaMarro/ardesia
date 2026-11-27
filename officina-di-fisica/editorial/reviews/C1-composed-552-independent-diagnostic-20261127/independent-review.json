@@ -1,0 +1,203 @@
+{
+  "schemaVersion": "1.0.0",
+  "reviewer": "author_vectors_b",
+  "authorOfReviewedC1Corrections": "Root",
+  "recusal": "C6 overlay authored by reviewer; no C6 assessment in this review",
+  "scope": "INITIAL_INDEPENDENT_C1_VISUAL_DIAGNOSTIC_FROM_EXISTING_CURRENT_BROWSER_ARTIFACTS",
+  "sourceCommit": "03f9634d7d6a8dcfe9161990c4d5dbc62e3773f5",
+  "runtimeSha256": "4e753b9dbfa1f0062cdcc10d7a6f6f9ec83c4bd69bda9e4f276c3757e8dbba3b",
+  "priorEpoch": {
+    "sourceCommit": "aea9bf814e68a5c9340d930dd0698e7f12251d8b",
+    "runtimeSha256": "cb9fc66d96ecced2addff3df4dfbeb0b5834e73a13719a78ea964bc28a5ada49",
+    "archiveSha256": "e1658f324c99c92a6a3ec6fb14f23b4d61def6e22020357d78ec6c0fd23731e3"
+  },
+  "currentTerminalExit": 0,
+  "all552CaseMetadataAndArtifactHashesChecked": true,
+  "currentRasterCaseCoverage": 72,
+  "oldRasterCaseCoverage": 42,
+  "uniqueActuallyOpenedImages": 110,
+  "coverageLimit": "12 initial grid states at320 Top/fallback, all four reopened bounded grids and power clock states at320 Top/fallback, four reopened initial/physical-zero states at1280 Top/fallback. The other480 current case images were not opened. These bounded grids are not the complete legal slider grid.",
+  "perId": [
+    {
+      "id": "SIM-C1-L006-03",
+      "priorNegative": "Three selected Top320 distances 1,2,2.75 had label covering both whole glyphs. r4 was not a whole-label-negative.",
+      "currentLabels": "Distanza fra i centri removed; physical green attraction pair retained and legend explicit.",
+      "remaining": "Fallback at r2.75 and4 has each head fully inside shaft stroke. Native Top320 at r4 has only approximately1.92824CSSpx axis; direction is minute. Not accepted as closed over the full range.",
+      "zero": "No physical zero within selected/legal r1..4, force ratio remains positive."
+    },
+    {
+      "id": "SIM-C1-L007-01",
+      "priorNegative": "Separate history. None of the three newly proposed label-negative IDs.",
+      "currentComparison": "All8 selected320 PNG byte-identical to the old artifact. Two differently colored arrows remain nonzero; perpendicular at90 degrees. Top and fallback read on both widths; generic vector legend remains.",
+      "zero": "Work zero at90 degrees is a scalar/product zero, not vanishing force or displacement. Side projection was not separately read here."
+    },
+    {
+      "id": "SIM-C1-L007-02",
+      "priorNegative": "Carrello covered nonzero Top320 velocity glyphs at selected grid/clock positions.",
+      "currentLabels": "Carrello removed, no replacement label observed on glyph. Purple arrow indicates velocity, not force/power; ochre starting tick retained.",
+      "remaining": "Fallback clock t0.5 has head fully within shaft stroke; source-observed time/input0.5 is correct, requested grid anchor1 is not a mismatch.",
+      "zero": "t0: v0/P0 and no arrow, both320/1280, nativeTop/fallback."
+    },
+    {
+      "id": "SIM-C1-L007-03",
+      "priorNegative": "Carrello covered nonzero Top320 velocity glyphs.",
+      "currentLabels": "Carrello removed; no replacement label observed on glyph. Arrow above green cart retained; atmaximum16J tip stays within scene.",
+      "remaining": "No further occlusion found in the actually read states. No full-grid acceptance.",
+      "zero": "W0 from rest: v0 and no arrow, both320/1280 nativeTop/fallback."
+    }
+  ],
+  "fallbackFiveBuriedHeadsInThreeCases": [
+    {
+      "caseKey": "SIM-C1-L006-03|published|320|fixed_projection|grid|2",
+      "input": 2.75,
+      "color": "#147979",
+      "axisLengthIntrinsic": 5.282644628099206,
+      "maxHeadHalfWidthIntrinsic": 0.8452231404958752,
+      "strokeHalfWidthIntrinsic": 1.35,
+      "headEntirelyInsideShaftStroke": true,
+      "svgAttributesExact": {
+        "path": {
+          "d": "M151.45 96.16 L156.7326446280992 96.16",
+          "fill": "none",
+          "stroke": "#147979",
+          "stroke-width": "2.7"
+        },
+        "polygon": {
+          "points": "156.7326446280992,96.16 154.97176308539946,95.31477685950412 154.97176308539946,97.00522314049587",
+          "fill": "#147979"
+        }
+      },
+      "screenshots": [
+        {
+          "file": "screens/b46974fb3c0dafd1126baaf9adf1c892f3f1d3b440015d87efe369c14513bc22.png",
+          "sha256": "b46974fb3c0dafd1126baaf9adf1c892f3f1d3b440015d87efe369c14513bc22"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C1-L006-03|published|320|fixed_projection|grid|2",
+      "input": 2.75,
+      "color": "#147979",
+      "axisLengthIntrinsic": 5.282644628099206,
+      "maxHeadHalfWidthIntrinsic": 0.8452231404958752,
+      "strokeHalfWidthIntrinsic": 1.35,
+      "headEntirelyInsideShaftStroke": true,
+      "svgAttributesExact": {
+        "path": {
+          "d": "M306.55 96.16 L301.2673553719008 96.16",
+          "fill": "none",
+          "stroke": "#147979",
+          "stroke-width": "2.7"
+        },
+        "polygon": {
+          "points": "301.2673553719008,96.16 303.02823691460054,97.00522314049587 303.02823691460054,95.31477685950412",
+          "fill": "#147979"
+        }
+      },
+      "screenshots": [
+        {
+          "file": "screens/b46974fb3c0dafd1126baaf9adf1c892f3f1d3b440015d87efe369c14513bc22.png",
+          "sha256": "b46974fb3c0dafd1126baaf9adf1c892f3f1d3b440015d87efe369c14513bc22"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C1-L006-03|published|320|fixed_projection|grid|3",
+      "input": 4,
+      "color": "#147979",
+      "axisLengthIntrinsic": 2.496875000000003,
+      "maxHeadHalfWidthIntrinsic": 0.3995000000000033,
+      "strokeHalfWidthIntrinsic": 1.35,
+      "headEntirelyInsideShaftStroke": true,
+      "svgAttributesExact": {
+        "path": {
+          "d": "M116.2 96.16 L118.696875 96.16",
+          "fill": "none",
+          "stroke": "#147979",
+          "stroke-width": "2.7"
+        },
+        "polygon": {
+          "points": "118.696875,96.16 117.86458333333334,95.7605 117.86458333333334,96.5595",
+          "fill": "#147979"
+        }
+      },
+      "screenshots": [
+        {
+          "file": "screens/0c651678b9f8a5da2af5a6dcc4fbb1baf4202653dddc7e91296934cfaab18ab8.png",
+          "sha256": "0c651678b9f8a5da2af5a6dcc4fbb1baf4202653dddc7e91296934cfaab18ab8"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C1-L006-03|published|320|fixed_projection|grid|3",
+      "input": 4,
+      "color": "#147979",
+      "axisLengthIntrinsic": 2.4968749999999886,
+      "maxHeadHalfWidthIntrinsic": 0.3995000000000033,
+      "strokeHalfWidthIntrinsic": 1.35,
+      "headEntirelyInsideShaftStroke": true,
+      "svgAttributesExact": {
+        "path": {
+          "d": "M341.8 96.16 L339.303125 96.16",
+          "fill": "none",
+          "stroke": "#147979",
+          "stroke-width": "2.7"
+        },
+        "polygon": {
+          "points": "339.303125,96.16 340.1354166666667,96.5595 340.1354166666667,95.7605",
+          "fill": "#147979"
+        }
+      },
+      "screenshots": [
+        {
+          "file": "screens/0c651678b9f8a5da2af5a6dcc4fbb1baf4202653dddc7e91296934cfaab18ab8.png",
+          "sha256": "0c651678b9f8a5da2af5a6dcc4fbb1baf4202653dddc7e91296934cfaab18ab8"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C1-L007-02|published|320|fixed_projection|clock|0",
+      "input": 0.5,
+      "color": "#7350b0",
+      "axisLengthIntrinsic": 5.091666666666669,
+      "maxHeadHalfWidthIntrinsic": 0.8146666666666675,
+      "strokeHalfWidthIntrinsic": 1.35,
+      "headEntirelyInsideShaftStroke": true,
+      "svgAttributesExact": {
+        "path": {
+          "d": "M120.635625 114.2 L125.72729166666667 114.2",
+          "fill": "none",
+          "stroke": "#7350b0",
+          "stroke-width": "2.7"
+        },
+        "polygon": {
+          "points": "125.72729166666667,114.2 124.03006944444445,113.38533333333334 124.03006944444445,115.01466666666667",
+          "fill": "#7350b0"
+        }
+      },
+      "screenshots": [
+        {
+          "file": "screens/fc2b9eedcf7046922836eb914377e0cc7b98140d4286613681f54263a3bb4ae8.png",
+          "sha256": "fc2b9eedcf7046922836eb914377e0cc7b98140d4286613681f54263a3bb4ae8"
+        }
+      ]
+    }
+  ],
+  "actualIndependentTests": {
+    "methods": 5,
+    "passedMethods": 4,
+    "failedSubtests": 5,
+    "exitCode": 1,
+    "raw": "actual-diagnostic-test-red.txt",
+    "meaning": "Preserved real RED for direction-cue criterion, not an exception waived because raw SVG includes polygons."
+  },
+  "historicalComparison": "42 paired source records and nonlabel primitives/model outputs exactly equal; explicit label removal only in these pairs. Old images and audit remain separate.",
+  "exposure": "Read Root request/negative audit, then actual current records and source. No claim of blind discovery of the three reported label occlusions. The short-head residuals were independently checked from current SVG attributes and actual PNGs.",
+  "freshBrowserLaunched": false,
+  "full552VisualReview": false,
+  "scientificApproval": false,
+  "uiAcceptance": "NOT_GRANTED",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
