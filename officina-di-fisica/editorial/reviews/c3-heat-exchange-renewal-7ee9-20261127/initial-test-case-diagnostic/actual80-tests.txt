@@ -1,0 +1,19 @@
+test_every_actual_byte_and_32_accepted_number_inputs (__main__.Actual80Independent.test_every_actual_byte_and_32_accepted_number_inputs) ... ok
+test_exact_old_confirmed_tips_have_no_old_masking_labels (__main__.Actual80Independent.test_exact_old_confirmed_tips_have_no_old_masking_labels) ... FAIL
+test_real_terminal_complete80_and_privacy (__main__.Actual80Independent.test_real_terminal_complete80_and_privacy) ... ok
+test_remaining_tail_mask_is_distinct_from_apex (__main__.Actual80Independent.test_remaining_tail_mask_is_distinct_from_apex) ... ok
+test_source_replay_model_and_all_nonlabel_primitives_equal_old_epoch (__main__.Actual80Independent.test_source_replay_model_and_all_nonlabel_primitives_equal_old_epoch) ... ok
+
+======================================================================
+FAIL: test_exact_old_confirmed_tips_have_no_old_masking_labels (__main__.Actual80Independent.test_exact_old_confirmed_tips_have_no_old_masking_labels)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-review-c2-resume-20261127/officina-di-fisica/editorial/reviews/c3-heat-exchange-renewal-7ee9-20261127/test_actual80.py", line 19, in test_exact_old_confirmed_tips_have_no_old_masking_labels
+    row=rows[key];self.assertFalse(any(e['kind']=='label'and e['text']==name for e in row['elements']));self.assertIn('La freccia'if name=='Ritorno'else'L’ambiente',row['legend'])
+                                                                                                        ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'La freccia' not found in 'Rosso · tratto caldo. Azzurro · ritorno del liquido. Il ritorno percorre il ramo azzurro. Il fluido scende a destra e la freccia viola ne indica il verso.'
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.031s
+
+FAILED (failures=1)

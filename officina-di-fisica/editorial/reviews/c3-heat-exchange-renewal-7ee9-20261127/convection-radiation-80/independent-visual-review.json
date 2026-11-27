@@ -1,0 +1,59 @@
+{
+  "role": "AI_DISTINCT_FROM_ROOT_AUTHOR",
+  "runtimeSourceCommit": "8b4621fe75fdb0b1a029b4989b78668efe90a220",
+  "runtimeSha256": "7ee9c627d6845f3da1a7eeb5449447bd325fd64236aa112679dcfdc512bc1f20",
+  "draftCommit": "1413e2c41a8c7fec6b2a5ff421685dbed4e3ab8b",
+  "actualTerminalExitCode": 0,
+  "elapsedSeconds": 80.2498459815979,
+  "technicalCases": 80,
+  "technicalPass": 80,
+  "actualNumberSubmissions": 32,
+  "javascriptErrors": [],
+  "rasterReading": {
+    "contactSheetsRead": [
+      "contact-320-orbit.png",
+      "contact-320-side.png",
+      "contact-320-top.png",
+      "contact-320-fixed_projection.png",
+      "contact-1280-orbit.png",
+      "contact-1280-side.png",
+      "contact-1280-top.png",
+      "contact-1280-fixed_projection.png"
+    ],
+    "cellsRead": 80,
+    "actualScreenshots": 79,
+    "fullOriginalPNGRead": "screens/e4b30e681abb6c94081d8c3ccde0bf22315c0ce283dbd91c72f7d702e4e4d77a.png"
+  },
+  "perID": [
+    {
+      "id": "SIM-C3-L05-02",
+      "boundedVisualDecision": "POSITIVE_IN_ACTUALLY_READ_CONTROLS_ZERO_ASSIGNED_AND_UPPER_BOUND",
+      "inputFlowGs": [
+        0,
+        2,
+        3.5,
+        5
+      ],
+      "heatPowerW": [
+        0,
+        84,
+        147,
+        210
+      ],
+      "oldRitornoFinding": "RESOLVED_IN_EXACT320SIDE3.5_AND1280ORBIT5; marker names and direction remain in accessible legend.",
+      "limitation": "Top looks along vertical flow arrows and collapses the loop height; arrows must be interpreted in Orbit/Side/fixed projection. No assertion of whole-arrow visible length in end-on projection. Clock72 not executed."
+    },
+    {
+      "id": "SIM-C3-L05-03",
+      "boundedVisualDecision": "FAIL_REMAINING_TAIL_LABEL_MASK_AT320TOP500",
+      "positiveScope": "200K inward/-368.55,300K no net arrows/0,400K outward/992.25 observed all8profiles;500K3084.48. Old Ambiente apex obstruction fixed, but Sistema hides central tail at500Top320.",
+      "originalSourceReadingCorrection": "First112 review focused on tips and omitted this tail; old screenshot3f0e7a82 also contains the same Sistema tail overlap, now explicitly separated from successful Ambiente removal."
+    }
+  ],
+  "overallActivityAccepted": false,
+  "clock72": "NOT_RUN_WAITING_COMPOSED_AUTHOR_CORRECTION",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "newOtherAcquiredFindings": []
+}

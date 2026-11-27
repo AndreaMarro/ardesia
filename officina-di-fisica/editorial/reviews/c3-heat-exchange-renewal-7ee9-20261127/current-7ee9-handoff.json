@@ -1,0 +1,1420 @@
+{
+  "phase": "CURRENT7EE9_112ACTUAL_WITH_REMAINING_SYSTEM_TAIL_NEGATIVE",
+  "runtimeSourceCommit": "8b4621fe75fdb0b1a029b4989b78668efe90a220",
+  "runtimeSha256": "7ee9c627d6845f3da1a7eeb5449447bd325fd64236aa112679dcfdc512bc1f20",
+  "candidateCommit": "1413e2c41a8c7fec6b2a5ff421685dbed4e3ab8b",
+  "old53bdNegativeCommit": "7a4b2521d74fdf1b1ad42d2ce393167e32324e82",
+  "actualSlices": {
+    "conduction-32": {
+      "exitCode": 0,
+      "visualDecision": "BOUNDED_POSITIVE"
+    },
+    "convection-radiation-80": {
+      "exitCode": 0,
+      "technicalOk": 80,
+      "radiationDecision": "FAIL_REMAINING_TAIL_MASK"
+    }
+  },
+  "clock72": "PREPARED_NOT_RUN",
+  "overallActivityAccepted": false,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "files": [
+    {
+      "path": "actual-private-runtime-adoption.json",
+      "bytes": 93341,
+      "sha256": "b8aa4c62e3e259f2a5c0260f4e7e206bf9ac4d71848ece4e0ed484184caec6dd"
+    },
+    {
+      "path": "actual80-tests-receipt.json",
+      "bytes": 206,
+      "sha256": "085cc789ae7b0841d2cd72be9c5915733ff3032de6cce902298e809033fac58d"
+    },
+    {
+      "path": "actual80-tests.txt",
+      "bytes": 824,
+      "sha256": "2c9fb737ac859a4e3d8192d8d40317fb6711bb632c963d72160458c0dd865f57"
+    },
+    {
+      "path": "analyze-bounded.py",
+      "bytes": 2620,
+      "sha256": "de51099260e1c5e8f08a817b6c9fb348b2dccedf47cb3e2d86f5021bbfdc4957"
+    },
+    {
+      "path": "candidate-7ee9-legende.js.txt",
+      "bytes": 17830,
+      "sha256": "d89bf8aa5b5050d9fd5789524f58e86c92d919b97cbd38923d8ad1f9a65488a6"
+    },
+    {
+      "path": "collector-719.mjs",
+      "bytes": 26773,
+      "sha256": "719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15"
+    },
+    {
+      "path": "conduction-32/actual/cases/01324a6c918b4ad39212b2b940ac741fa1ac7aec93937faaf300043ade6898d0.json",
+      "bytes": 11625,
+      "sha256": "08b3c0e734eef1c96cb433bcbf50ef765a3d9e1803ec5c2aa9bf33fc2a59f991"
+    },
+    {
+      "path": "conduction-32/actual/cases/014441b1b7a734dca820b89709fe4890dcfa0df7dbe15fd335f6f5600b1a82b7.json",
+      "bytes": 11571,
+      "sha256": "b1a778f863cc771f08f31d742a1addb702af19ce31e7839d11b55d907b990401"
+    },
+    {
+      "path": "conduction-32/actual/cases/0545d7b8a8460b31f47af1d74f1d876e9faa9cbf8213bb65ff0a7592f7c742ba.json",
+      "bytes": 11789,
+      "sha256": "249420c10067c0f2c16902083ada44db46f2945943b3bd9be99eee205f082183"
+    },
+    {
+      "path": "conduction-32/actual/cases/073b7931bdf064225201b63b0e356b083762060b329bfe8e45137678f7762f9d.json",
+      "bytes": 14790,
+      "sha256": "1b51959aee6554637914f40948d09b2015499e77fdff874fcd15af44040ff09a"
+    },
+    {
+      "path": "conduction-32/actual/cases/07ada1968cee95e84f0db53d1553e1ba08cc876f8bfa000ae7afde1db39e334f.json",
+      "bytes": 14804,
+      "sha256": "a7080b8243e37ac0972d5b23bc3b53dae53044e258db7f693d94147bb65f5b13"
+    },
+    {
+      "path": "conduction-32/actual/cases/0e18320ac1cd94131b5b5b4791ceb479be4971598cdea248e165f572fe168d86.json",
+      "bytes": 11686,
+      "sha256": "89d6d75c8052ef6ea9c479eeecc9dbf2e1eeece4d2d9118add8f8294d470b9c0"
+    },
+    {
+      "path": "conduction-32/actual/cases/159105568b7cc683d48e867c7d1b8dd7cb153f8d50796174ca1958911a47bcf7.json",
+      "bytes": 3409,
+      "sha256": "034ea31ef4b11a62811f0ac34f83b262d524cb44c7121c06f62daa2e213570ed"
+    },
+    {
+      "path": "conduction-32/actual/cases/1ed72a64651fd1b0846303835d8f70c020818e4ef47c8392601d3f0dd595d979.json",
+      "bytes": 11813,
+      "sha256": "e2e069677a71f58e5acdd6e5218c0abed2c9bb0333a718fc66d3bf5d1adf2dce"
+    },
+    {
+      "path": "conduction-32/actual/cases/30462d4cc591288fbf8d87b8c7b7ed2fa07d1d74f209cf305222649aea665f5c.json",
+      "bytes": 3411,
+      "sha256": "49b76e0d2d2e1b942c6b06e9436fe62987b27ba4d615277afd4fc6f162a196b1"
+    },
+    {
+      "path": "conduction-32/actual/cases/3376e929494c167cac523f0c72002ef1aea219d5dda272bf058284028fdb4d02.json",
+      "bytes": 11577,
+      "sha256": "7dd2f09e5b0dc51fb399e28add9f6c8d5684f5d364bf5df49f6bfa2266c9d423"
+    },
+    {
+      "path": "conduction-32/actual/cases/357be60ab5e595227b9371af61635c04b15ae0757d1075ac8cd5e83344793d93.json",
+      "bytes": 11619,
+      "sha256": "3d40a7f467a8767f41f665f0f037e4eb5d5f650e2822e8d599bedb84a4741f57"
+    },
+    {
+      "path": "conduction-32/actual/cases/60917d273ff041bdc92a12a1a2564ca4a9d50dcbc13970938c9ffaab969f4dc3.json",
+      "bytes": 11680,
+      "sha256": "0c41f6750745368541c60a75c12b117f6bfda8596d1f0f8ed4944c0f475c378d"
+    },
+    {
+      "path": "conduction-32/actual/cases/655a3fee4d45c71985f4fdd7231126a3cf81a35169e5920815e2386b440129e5.json",
+      "bytes": 14811,
+      "sha256": "c06625186cfb6ff8aa2e0965f8885c10bff8bcac53c65cbe238a5ac190d90126"
+    },
+    {
+      "path": "conduction-32/actual/cases/6c8a756b1805d34bddbdc72ee8004cc6aa1d06dbb0ee523aacf92f980033f255.json",
+      "bytes": 11856,
+      "sha256": "811f762bd439ebbd67c418f1a94f2c4c8bec2f4ff611cd3d2ab0cf27e3c0556e"
+    },
+    {
+      "path": "conduction-32/actual/cases/7d9fe6fa812bfca3742eb882853a702dddcd1235ad0c0a13f140d71b29d71cbb.json",
+      "bytes": 11728,
+      "sha256": "18446dab3e579bf5457423e30915d012ec688d6b52a6066c945f14517a9ea3d5"
+    },
+    {
+      "path": "conduction-32/actual/cases/8b049a7e0fc763deab72961f82fae99e885dc13c4391655ad27296e3ece2b4cb.json",
+      "bytes": 3413,
+      "sha256": "d966b31d60059267d9c13a62f24110c6be72982e3fa78502ea21b24cc25eabdb"
+    },
+    {
+      "path": "conduction-32/actual/cases/916dbcee9d228c8f8a24abc436dde2fc76494e736e6ff8844657eab050b94543.json",
+      "bytes": 11918,
+      "sha256": "04bb1f375a3967986ef567f6131828789f4b32842d80b4178e4fe102c4c962f4"
+    },
+    {
+      "path": "conduction-32/actual/cases/91825b29c311ba6778460f4a1a7aa685657196fbd6b17c588babe6e997c90816.json",
+      "bytes": 11794,
+      "sha256": "6e1a149cbbbd64c0efad4e6a17bbc2f6c3a8fe2c5332261607415720c3e0c723"
+    },
+    {
+      "path": "conduction-32/actual/cases/9547b4bb2bbe5e321a1b86357650f4e9aaf999f68d7915f6432015dbc48b02f1.json",
+      "bytes": 11733,
+      "sha256": "edde53b87d6a6a9760734cb3468bc1923d3f4bb1bfd04bd435dd9fc5a4360ab2"
+    },
+    {
+      "path": "conduction-32/actual/cases/9bc0c2eb780084f054db56354839a50f9b0ba6de1ef11bb933ece07ec5f8cb1b.json",
+      "bytes": 11861,
+      "sha256": "5b10414cc61644f168b9a4db3ef49d126d247f220e4b3f0e5df90ff4b003ac40"
+    },
+    {
+      "path": "conduction-32/actual/cases/af611c6ccfdd7e93cba16acd6f5463557d185754223a6f5ae6098dde97c6978f.json",
+      "bytes": 14795,
+      "sha256": "294be15bfc8c7f70441418f399e5385076270cf277d5879c028cf77cc7a9e1f1"
+    },
+    {
+      "path": "conduction-32/actual/cases/b28d1cd517123c652e152e721088d4d33c8e2741ced746fe2d0197336b09dc85.json",
+      "bytes": 3407,
+      "sha256": "4d610eb33b37c5e412814a7eea5c85acb5cf24b81f5e0a7aae40c99b80ceda46"
+    },
+    {
+      "path": "conduction-32/actual/cases/b86371cf1be22d82ef2c3a65e40a2e83176154405d36c2ef94445ceb3408d39f.json",
+      "bytes": 11921,
+      "sha256": "d73acd3a92feda583043f9e14c36e9d59163c79309f4897c2791cb1011a9123c"
+    },
+    {
+      "path": "conduction-32/actual/cases/bacac3ac8eff057c52eba3789bdd3f2224fef8eb69a056653dca87d65e1ce888.json",
+      "bytes": 11680,
+      "sha256": "a2ec280de42c6754fd13e7474ece42d872e7750171fbe11becbfb108ee0c6bfc"
+    },
+    {
+      "path": "conduction-32/actual/cases/bb577729976dda62a743d52003aa875bf81a1d126567a11e9bccbc3df3c74d7e.json",
+      "bytes": 3411,
+      "sha256": "578dff01cf02a5db8df18ad0313865c3aa5a9196108ba0c997d411d4c796aa20"
+    },
+    {
+      "path": "conduction-32/actual/cases/bd14e03f8c0e861ced9e88f210ca7ee2bfd607d76eba8e01239685cda024ba1a.json",
+      "bytes": 14802,
+      "sha256": "4fc81037bae3b796dac62036e30ee523983b36d541e306a5d2c25430aeff8210"
+    },
+    {
+      "path": "conduction-32/actual/cases/ca5ae9975d985d866a842ae8a70b2d07b5b2971009b7883f3d74cec776283430.json",
+      "bytes": 3409,
+      "sha256": "2075316630677ac9f27b437e30bc828995ce39d6db0eeea15c82cf75b7bbb682"
+    },
+    {
+      "path": "conduction-32/actual/cases/d9aa5257a2d4d33124ed573bdff0f442f0e95d0bee613e31713a726af9a012b5.json",
+      "bytes": 11685,
+      "sha256": "c189326343247a3c58742560c5d2eb582cc6dd3c17d0b9436da87da67274868b"
+    },
+    {
+      "path": "conduction-32/actual/cases/e054dda138b3fc5e06996ef968fec438c0e99688133c907a16eda2ecf9468473.json",
+      "bytes": 3434,
+      "sha256": "d4f8362590aafd2c9cb00571c33d561435bf1b5b79baf1ce4bd02dfb11edbb83"
+    },
+    {
+      "path": "conduction-32/actual/cases/e0706086badc318733ac046336825659259a899dfc05c7df8c3b155c6409bb32.json",
+      "bytes": 14799,
+      "sha256": "7375af263bf438b05cc0c7f03b1503b4449249c441c22d26c39768ba85e5bcf9"
+    },
+    {
+      "path": "conduction-32/actual/cases/e4a40120bdcfd8277e4a095dc1372c470f0ce7927649de60fed4860fec77f629.json",
+      "bytes": 11807,
+      "sha256": "fa815bff7a5c016c20dd348789ce5685ee90f1cd949a9f79f1878eb26c6e666d"
+    },
+    {
+      "path": "conduction-32/actual/cases/e92dcf7996bed70d1bb449d94771b989ac5ef47f43b6a7ec275ceafcc0d1f945.json",
+      "bytes": 3432,
+      "sha256": "90157902c2fa6460db77970349194304a89ee27e5c89f318cec0a8bef85343b9"
+    },
+    {
+      "path": "conduction-32/actual/completed-cases.jsonl",
+      "bytes": 7464,
+      "sha256": "82ba7f5c0f9be1f663e60a43b68a66478bed8d3ca71dc8e99141708b8d181992"
+    },
+    {
+      "path": "conduction-32/actual/report.json",
+      "bytes": 56941,
+      "sha256": "4f70a07a805412c60eb396747c5938a5e2aaec69d45524fea59e56c905a59830"
+    },
+    {
+      "path": "conduction-32/actual/screens/0934a993548be82857d153490622bce06d7649d31b56694d6044b5f6026ea493.png",
+      "bytes": 3334,
+      "sha256": "0934a993548be82857d153490622bce06d7649d31b56694d6044b5f6026ea493"
+    },
+    {
+      "path": "conduction-32/actual/screens/1671d1e2ccd057ebcc82e8baec2ecbdd506516624569aa2ea1de1eb62e26423f.png",
+      "bytes": 6490,
+      "sha256": "1671d1e2ccd057ebcc82e8baec2ecbdd506516624569aa2ea1de1eb62e26423f"
+    },
+    {
+      "path": "conduction-32/actual/screens/1ec13f1b7f2dc1294cfcd17827b8171e50689079b94f1c7b6dc48a25e091c8f3.png",
+      "bytes": 49894,
+      "sha256": "1ec13f1b7f2dc1294cfcd17827b8171e50689079b94f1c7b6dc48a25e091c8f3"
+    },
+    {
+      "path": "conduction-32/actual/screens/2e3fac47c54960a4275755ea5527038b9d02d606f006c21008801d23673d674f.png",
+      "bytes": 15431,
+      "sha256": "2e3fac47c54960a4275755ea5527038b9d02d606f006c21008801d23673d674f"
+    },
+    {
+      "path": "conduction-32/actual/screens/3b5110ab6be996dd2de83fd6fa43a654d7aa94aa7336f9366f3d4e16179a251e.png",
+      "bytes": 2862,
+      "sha256": "3b5110ab6be996dd2de83fd6fa43a654d7aa94aa7336f9366f3d4e16179a251e"
+    },
+    {
+      "path": "conduction-32/actual/screens/41f961b8d4cee7cbdaac4e3018eea36e48dd4e55d59abb1170b1eeb2d86aed5a.png",
+      "bytes": 7834,
+      "sha256": "41f961b8d4cee7cbdaac4e3018eea36e48dd4e55d59abb1170b1eeb2d86aed5a"
+    },
+    {
+      "path": "conduction-32/actual/screens/4211af801291e83cfeab3c584afbfbca1114330b8e005213ec4eb7ec08f9d525.png",
+      "bytes": 45507,
+      "sha256": "4211af801291e83cfeab3c584afbfbca1114330b8e005213ec4eb7ec08f9d525"
+    },
+    {
+      "path": "conduction-32/actual/screens/4600a122d90f6e8c215cebae0a12dadd2621ab7582103b95b2d82ea41915ee42.png",
+      "bytes": 52334,
+      "sha256": "4600a122d90f6e8c215cebae0a12dadd2621ab7582103b95b2d82ea41915ee42"
+    },
+    {
+      "path": "conduction-32/actual/screens/4774369e8692fc2a9144e460d3f030dd90d87b3b9a9ecd4a9b24bbfed635b7d8.png",
+      "bytes": 3229,
+      "sha256": "4774369e8692fc2a9144e460d3f030dd90d87b3b9a9ecd4a9b24bbfed635b7d8"
+    },
+    {
+      "path": "conduction-32/actual/screens/5b3cf430d6a9105d7afba3c242e9155fbd5bc21c7b22bb8f0144d32913064525.png",
+      "bytes": 1665,
+      "sha256": "5b3cf430d6a9105d7afba3c242e9155fbd5bc21c7b22bb8f0144d32913064525"
+    },
+    {
+      "path": "conduction-32/actual/screens/5f1eef46f24161cc1f56fde845fd8d3f04c2a3a5ca567987d75d020fd0dfdf83.png",
+      "bytes": 15312,
+      "sha256": "5f1eef46f24161cc1f56fde845fd8d3f04c2a3a5ca567987d75d020fd0dfdf83"
+    },
+    {
+      "path": "conduction-32/actual/screens/67f8211af62e238f4454efc3d4b0a9f621f06827c9157188cc5561894489b36f.png",
+      "bytes": 2389,
+      "sha256": "67f8211af62e238f4454efc3d4b0a9f621f06827c9157188cc5561894489b36f"
+    },
+    {
+      "path": "conduction-32/actual/screens/69be97791c362e8ba9e48de0ea82bd67c232c92c3a6ab96e3b4bc296d0b01048.png",
+      "bytes": 38631,
+      "sha256": "69be97791c362e8ba9e48de0ea82bd67c232c92c3a6ab96e3b4bc296d0b01048"
+    },
+    {
+      "path": "conduction-32/actual/screens/6ac80dc9c07219e20b7a4d6d173a6eb2a8ecaea4ab44ef1caeb9d0dda911ee61.png",
+      "bytes": 38704,
+      "sha256": "6ac80dc9c07219e20b7a4d6d173a6eb2a8ecaea4ab44ef1caeb9d0dda911ee61"
+    },
+    {
+      "path": "conduction-32/actual/screens/6b71409be7de5e8ccd37a42bc2fb8b08711abb7371c1140daf993fb18de58783.png",
+      "bytes": 29448,
+      "sha256": "6b71409be7de5e8ccd37a42bc2fb8b08711abb7371c1140daf993fb18de58783"
+    },
+    {
+      "path": "conduction-32/actual/screens/80c42a5811cd4c7625304d5e190e2b794e172bfecb47fe7a4da2e2ece03fecd6.png",
+      "bytes": 15428,
+      "sha256": "80c42a5811cd4c7625304d5e190e2b794e172bfecb47fe7a4da2e2ece03fecd6"
+    },
+    {
+      "path": "conduction-32/actual/screens/81d6ee4b726ac9e126504e75514418b7377033f9428e604863c743bfe1f41953.png",
+      "bytes": 1594,
+      "sha256": "81d6ee4b726ac9e126504e75514418b7377033f9428e604863c743bfe1f41953"
+    },
+    {
+      "path": "conduction-32/actual/screens/83b163fda5ad7bc24fe3c555351a364c54ab426b67e9cb0902a43b03f5635f62.png",
+      "bytes": 60235,
+      "sha256": "83b163fda5ad7bc24fe3c555351a364c54ab426b67e9cb0902a43b03f5635f62"
+    },
+    {
+      "path": "conduction-32/actual/screens/aec5193abe7e482dfd83a9f20e3813490766a0b78eea54d060fadf00f811316c.png",
+      "bytes": 30842,
+      "sha256": "aec5193abe7e482dfd83a9f20e3813490766a0b78eea54d060fadf00f811316c"
+    },
+    {
+      "path": "conduction-32/actual/screens/b6c7f11f7b7944db4357b1b3ae4220ae2e89ae10c073ef276f90fd60ad5c4cda.png",
+      "bytes": 3132,
+      "sha256": "b6c7f11f7b7944db4357b1b3ae4220ae2e89ae10c073ef276f90fd60ad5c4cda"
+    },
+    {
+      "path": "conduction-32/actual/screens/b6f9f69a31d3c314113612fae988f06ecfca83a40c413bb4350b05109a4ce1f0.png",
+      "bytes": 84530,
+      "sha256": "b6f9f69a31d3c314113612fae988f06ecfca83a40c413bb4350b05109a4ce1f0"
+    },
+    {
+      "path": "conduction-32/actual/screens/bd410ef931bac22aa81d2dd238289a50d9536bf7432c4c7c35a37cfe2935b7d1.png",
+      "bytes": 7588,
+      "sha256": "bd410ef931bac22aa81d2dd238289a50d9536bf7432c4c7c35a37cfe2935b7d1"
+    },
+    {
+      "path": "conduction-32/actual/screens/c5548fb98d20a745c5dd1f7235210b71f1b603040a5fe101277cd0013b5fe049.png",
+      "bytes": 3292,
+      "sha256": "c5548fb98d20a745c5dd1f7235210b71f1b603040a5fe101277cd0013b5fe049"
+    },
+    {
+      "path": "conduction-32/actual/screens/c5c4783224fa3801a3e332938cdf17b00ad3b2df793019b7dbe8aafc5a85b1c7.png",
+      "bytes": 43522,
+      "sha256": "c5c4783224fa3801a3e332938cdf17b00ad3b2df793019b7dbe8aafc5a85b1c7"
+    },
+    {
+      "path": "conduction-32/actual/screens/cb5867016652eaa246ab7cf31642188f277800c0366b3f83e3d3154d4a2e5590.png",
+      "bytes": 6779,
+      "sha256": "cb5867016652eaa246ab7cf31642188f277800c0366b3f83e3d3154d4a2e5590"
+    },
+    {
+      "path": "conduction-32/actual/screens/d92004e5ccea0d34ec74f35e45b7c8afe9ac74c3fc25dc265e84d823d95ca1a7.png",
+      "bytes": 1699,
+      "sha256": "d92004e5ccea0d34ec74f35e45b7c8afe9ac74c3fc25dc265e84d823d95ca1a7"
+    },
+    {
+      "path": "conduction-32/actual/screens/debd9b5588db30cb4f560920050fa1b363fb7a225cd1ca79f203b4890b56e291.png",
+      "bytes": 50774,
+      "sha256": "debd9b5588db30cb4f560920050fa1b363fb7a225cd1ca79f203b4890b56e291"
+    },
+    {
+      "path": "conduction-32/actual/screens/e9fa5c10ec6b357b2a2a09218250c1c887dc229625dacb60e373e6b8e523a1ba.png",
+      "bytes": 38284,
+      "sha256": "e9fa5c10ec6b357b2a2a09218250c1c887dc229625dacb60e373e6b8e523a1ba"
+    },
+    {
+      "path": "conduction-32/actual/screens/ec036b8501b4e9df56948489a6c87de1f01ca28d7a66eeafa22d9dcf7971a05e.png",
+      "bytes": 30358,
+      "sha256": "ec036b8501b4e9df56948489a6c87de1f01ca28d7a66eeafa22d9dcf7971a05e"
+    },
+    {
+      "path": "conduction-32/actual/screens/f2d30aa6c7f117c21fdc73e5681e1a891ee01dd60fb17d3151d45a1de135efd5.png",
+      "bytes": 76715,
+      "sha256": "f2d30aa6c7f117c21fdc73e5681e1a891ee01dd60fb17d3151d45a1de135efd5"
+    },
+    {
+      "path": "conduction-32/actual/screens/f7ca7eaa5f29877a30e8798d6983887cb46ad2b62787451a62ea816553c1daa7.png",
+      "bytes": 7881,
+      "sha256": "f7ca7eaa5f29877a30e8798d6983887cb46ad2b62787451a62ea816553c1daa7"
+    },
+    {
+      "path": "conduction-32/actual/screens/ffe38178f9ad8c5ef08d52e01846678080b4de6fba69e3f3dc9db4b447d630ee.png",
+      "bytes": 7661,
+      "sha256": "ffe38178f9ad8c5ef08d52e01846678080b4de6fba69e3f3dc9db4b447d630ee"
+    },
+    {
+      "path": "conduction-32/actual-process.log",
+      "bytes": 43,
+      "sha256": "9f7f55800a341b0c7d902e6b2fbc26def062d0692432d3f7d90888542d0364a3"
+    },
+    {
+      "path": "conduction-32/actual-terminal.json",
+      "bytes": 660,
+      "sha256": "419934e850e74a5201b4c2439117adddd80fd51e66c190bb0301406fb4a52a84"
+    },
+    {
+      "path": "conduction-32/contact-1280-fixed_projection.png",
+      "bytes": 55541,
+      "sha256": "ad182253e2ddade59dce49ae9d9d993ca0fab7f8d147765fe37c973fe4206e3d"
+    },
+    {
+      "path": "conduction-32/contact-1280-orbit.png",
+      "bytes": 99655,
+      "sha256": "179a230615801261ceb68b90a816cf7ba866f36e9395485763d91eb6a0e90c4b"
+    },
+    {
+      "path": "conduction-32/contact-1280-side.png",
+      "bytes": 45965,
+      "sha256": "00b547baa0fbf9ddb1406784627af30ba244cf3da5dd5e65185af7ef4df3a6b3"
+    },
+    {
+      "path": "conduction-32/contact-1280-top.png",
+      "bytes": 96106,
+      "sha256": "86439d6d78e3d460d002f1785947c99a00fac2c330971fd37cd1a4c19b6d9644"
+    },
+    {
+      "path": "conduction-32/contact-320-fixed_projection.png",
+      "bytes": 46823,
+      "sha256": "adeb2112bf966f85f2b68723c4688f58c62a45a7bc2c9fdf550a1e3eec0fc2b5"
+    },
+    {
+      "path": "conduction-32/contact-320-orbit.png",
+      "bytes": 72043,
+      "sha256": "ae0c4f16fbcc1658aac4405a908d679b7620084c4c2e9f9d9256e6f625371fab"
+    },
+    {
+      "path": "conduction-32/contact-320-side.png",
+      "bytes": 41973,
+      "sha256": "6f35885f39e5ef4a63abc7d4db9fb04724caeef2dab02604e038cf341ef942a5"
+    },
+    {
+      "path": "conduction-32/contact-320-top.png",
+      "bytes": 82680,
+      "sha256": "51d88e3ce3dad505949b0683d3b06be328fec6fa782c14cb83accbe2cf6b911d"
+    },
+    {
+      "path": "conduction-32/independent-visual-review.json",
+      "bytes": 1539,
+      "sha256": "7abf0850fcf56b363946a72948f25298696f17675aac11a0893d347e8b46f01e"
+    },
+    {
+      "path": "conduction-32/info.json",
+      "bytes": 660,
+      "sha256": "24cab01e93774c835b14734450b91d6670e17fd65b664e70991fd9c62d0ad32f"
+    },
+    {
+      "path": "conduction-32/prepared.json",
+      "bytes": 64475,
+      "sha256": "992bb3ba3d731ff53f26c4d1bb84d548ae2d18ec89f4fdff588d0f62a60201d6"
+    },
+    {
+      "path": "conduction-32/slice-handoff.json",
+      "bytes": 16591,
+      "sha256": "4e45e590f62935e46e114c4fb8ebab0b5c071affbf7346c3bed65ec59fab5267"
+    },
+    {
+      "path": "conduction-32/technical-summary.json",
+      "bytes": 1880,
+      "sha256": "64d7c5054e63aebb847cdf63f23404eacd17fe812bf3281cc51f95c4aa897bf6"
+    },
+    {
+      "path": "conduction-32-request.json",
+      "bytes": 645,
+      "sha256": "5f35047c555ff7be0cc2b9da9d8cbc7418ff3dd7be0451a71be1490c88a26a50"
+    },
+    {
+      "path": "convection-clock-72/info.json",
+      "bytes": 672,
+      "sha256": "3b590540712cf4f5a1ad259f0f8558f5e8b7409a9387021d3ef03b10e65fbb97"
+    },
+    {
+      "path": "convection-clock-72/prepared.json",
+      "bytes": 66484,
+      "sha256": "f2809840426bc3d0eede310d8709b82ae1e25cf5f5611afe62cb6c1b0d1d34c2"
+    },
+    {
+      "path": "convection-clock-72-request.json",
+      "bytes": 651,
+      "sha256": "04e8357d59a16201a792d2d93ef1c0b47f55766aecf1dec07fcff85e5026a391"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/019c42376e63b703800478fe8c6771808c27a1f60990b5718ccba38db4370102.json",
+      "bytes": 30702,
+      "sha256": "0e8770105490e9e14d99fc93e12786c9cd4732fedbd6f169f2efe129593b37b6"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/030b9ab1bcf439763088bc40b47b38351b68bc3a5c90cbc3d8717a3dde476dc5.json",
+      "bytes": 3691,
+      "sha256": "85704f43c98d14e5040c59afd743dd42f4e7469650a045c192ab4f7bb6a1549a"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/07fff334480c74b863e6d283048c2dcc0e9bd297b7134290e1bf30c9ba483b89.json",
+      "bytes": 14547,
+      "sha256": "89fc95b88de14d9ae02e317d0628ab7913067aa832ee038e6b8c6b6b608cbe50"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/08bb03d045473eebca4a5ed11dfc3a8f01e86f15ee2b85ebd826916cd697662c.json",
+      "bytes": 3691,
+      "sha256": "35b546fd6a49fc8be75cd32ba2e50bf4a1e69f583962827eadcd39b001c5abfb"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/09e8339ad8a5ca53449dc828bd586dd4b4b35e1a2b76b80b2f5e6d6ab20c10b9.json",
+      "bytes": 16781,
+      "sha256": "a3ea8447fa1aa0a72568ee48858879bb9d51e7db836209a60b0b7397fbee62e4"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/0a3fa16223b56f5bf673de6f6196957590678ab2afad955e0d29e441bcb1b9e2.json",
+      "bytes": 3286,
+      "sha256": "8df49327ef7a5eeaffd659839723222cd6fcf5ae82b9c20d81f08016d2ddb5d5"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/0ae3c9569de0a29ff5f394f1cddad6625e593e8a9e1cd80eb851763f20b01df1.json",
+      "bytes": 15630,
+      "sha256": "729751fc89c7e4e9cecd83db5f391133cba76326423eef78e4fb275656ae7bd4"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/0be577155558293ffe1cea6bd91b4b8d6a227149d8b53f84caea4948c5779d7e.json",
+      "bytes": 15209,
+      "sha256": "cfb725d0fafaef2c295066359cfac5e7374d10f81c12b27aa38862cdbe30336d"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/0cecb411da6c6d9761d6e06b1dd41929ee48ab0f620cbaf2a1b7f7b609fecc09.json",
+      "bytes": 30411,
+      "sha256": "6e4b1477ecf6820ebb6ddf6f8302ea59f42ee375eabdefba96a50dd7af69916a"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/0e23ac2ef400f7709c63a1b1135af7a1fe603eb6c48c5ed42bc35673734a5661.json",
+      "bytes": 4548,
+      "sha256": "17aba0951cd15eb649fc83bb7e795ef59afb2a1e8850d5593ba083d1a8f4b6c9"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/1f016cef072c4e2013b9ca2390221398669a1d5f090d0fd8efbaf3a894316de3.json",
+      "bytes": 3716,
+      "sha256": "c81e41bb37fe3d032f8b81a3ecc711141e4cab808398c954154286c5e2eaeb1d"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/20adadbefae6070d3a06b57b74849a0c4700eb239e9e7d1a08adaa2429a80b14.json",
+      "bytes": 30339,
+      "sha256": "66f1d8a5f2daa06c9a7eb6df999c0c4f8df39c14e27b7781a54c66a44e8ed785"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/24dc9c6949c588ed0ef07fc2ca4f67ec344c43a93fb09d7f9db70e24dc9c71af.json",
+      "bytes": 3265,
+      "sha256": "8f0c9ec9071f2a2df448d5b1278e734b9ccf754123d5665ae1254f8303bd208e"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/27393cb476419fe8f037b7a45df9c6ac16344c73738f2e09b3e40a3925c7dd00.json",
+      "bytes": 14610,
+      "sha256": "dc84322f3121cbdc8d7b5c81b8900b76ef235023fc808a930f967fbaa7bdfdad"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/2c12a33a647a98ef26f5e8b7e5e42b6612437953143beac23622802a3fb39a02.json",
+      "bytes": 14603,
+      "sha256": "683f42c6f4fb66a06f3d210e6cd0c7305019fa0c828992e0f32d054eccbf20da"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/335f0d157cf3f33e2c9e95854b76abde89b0ab6909a6c3ff17e41ddd00087c19.json",
+      "bytes": 7229,
+      "sha256": "743be5021fd35163dbe86807582ca9a3dcbadf7fbb5f56ee7c6e7e124c315e46"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/35b9801771e487e9c06c474b9c6910fd137b209a0f6b91f7911eaf2edeef13f8.json",
+      "bytes": 7897,
+      "sha256": "01e6c1329920d61a92e65e7564ae2d042b524a2d03a3b5ae280efe7030e1722d"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/38c0c7fffb116a46a0d0b3ef8dfd282b5851e8c09d071045c6a8cff51a85e31a.json",
+      "bytes": 4650,
+      "sha256": "3ec1beb64f8137e99a4bea517618816534c1399be00c2fb15e3f88ada59454ab"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/43a54138bd593e43b71cd974387baecdc9ce5975fdea45bdb21a2e34d1981a4f.json",
+      "bytes": 30808,
+      "sha256": "ef1a93510598ebf4f06331a5813e8f371365ee1b99392aaacef09b1ab8fbe592"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/471b6ecbfbe9f90706d3bf502982cce9344da54d9a146bdbf6bd71acdc289cd1.json",
+      "bytes": 3261,
+      "sha256": "dc1b205e932b2efd53412c8ab02b8172dff293154fc71728c07a69ef26eda15e"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/475ee627b8f8abf339ab086120c49490c742c9bfa65c706fcb1b9acd6a950970.json",
+      "bytes": 14519,
+      "sha256": "a4287c443c4516d3ff5f2629b3ee35df385114a4812100c480443ca9d090133e"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/48a3fc381f427b50ce499b3d13677f8503c4ee1d836690c872e034f1865a7966.json",
+      "bytes": 3265,
+      "sha256": "fe520270684f4215cf0e40f2e46597cb7d43142ce4104a291b0e54777da9b672"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/48fca40dedea4e8be5449b00788a1654a97c4c1b7c04bb5c356eb10ac6c19b78.json",
+      "bytes": 14927,
+      "sha256": "5ee96979a183ba6cbc35b949991a1681a0e8014c9f11ddf31e423905683e1499"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/5720d60b66f66a38b508bfde60e2863b006c28fd1bf3dc1a92ce0074dabc4e8a.json",
+      "bytes": 30445,
+      "sha256": "4cdab00945fcfadbd1130ef49ecce0952de7a06611c4304e3a020c2170047c2f"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/5e4d618c1bac32b0ee470d86f126f09205baab8fc88cca5ab71abc005b3e664b.json",
+      "bytes": 15190,
+      "sha256": "20243d27265fbeacead78057389bb71a59da0e32396de412f866a736682ab26b"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/6248b97ad4c6aadcd03aa63ca28432d7909eb01aa0e25c6ba52f0129f9974712.json",
+      "bytes": 10433,
+      "sha256": "c1b5e7d8bd7b17ae2f6622f5aa22c6cc2345a525f8dedc9eb47fc9aeeb91f1c0"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/65cc27c2b8c94b7a9928acfbd7b12efa2b834150ca26cda24b4d8e03334811e7.json",
+      "bytes": 30157,
+      "sha256": "8766fdbff1ae44337c40005e5cf0a46b46522797e91e5da23a10b534386d5260"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/68e84a8ca2fb55ea4d7c45d05348db4cf87d80ae60ec502b6725c536b8e42c25.json",
+      "bytes": 30389,
+      "sha256": "57ae767f94f35e2d468d71fbfbb16837ba24ce51b2ded256db5867ca07c54b95"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/6c6a5f72a01e9aa6e822892c459c061ab93c5456151115e82989b2b550f8d688.json",
+      "bytes": 7239,
+      "sha256": "51e1a65c03831104c7e1dc5f4599c8644c3e88ef76d779d4746de00e2d090393"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/6d3b57abf2a0e92614cb986ac82d453b152051379c2405ffe1b6ba1f6306ced7.json",
+      "bytes": 30681,
+      "sha256": "95111e99b4f04aaf5da087eba6ac978ecacdaa3b4e58f3198ad9dc6b1344502a"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/71d5bd01b6fa33b42f8593e875635f3d86cad93617c670fa642533fb766ef588.json",
+      "bytes": 10321,
+      "sha256": "fab28c59b78007d1d83cef4ebe4a315f535b5aeedbb884252cc345e2e2523d5e"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/71f67db722625a799fb8a76b14eb4e01c98879413b5c4385e522cb376b9ce69f.json",
+      "bytes": 10410,
+      "sha256": "a78b776fa49fe94207775485f27080dc5953fd489e56d1610da135660e693929"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/74a6661da9b48325802835849e22a04f62bb33c596ea926e67441ca07c554efc.json",
+      "bytes": 15663,
+      "sha256": "7a12b01940c15ea867c49f8e023fac0a98899d0ceedf07d893379e1cbd5f82af"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/798d915fd58e3949a673d6232bb62672e21d502e1a8bff45ae211213a8b84a51.json",
+      "bytes": 30574,
+      "sha256": "f60b504d4d2d86c88144ed62e88fc729e85a1fa0307c6e9c5e994caa175c8b72"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/7b5b8dd2feb1d50a065589130f597143b7b7a29df99ad4f5db5bc17e125778a2.json",
+      "bytes": 16590,
+      "sha256": "68f2c725a39be8c39aa01a5701566800b0d6a767f47422789217159acf1d1102"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/8029c5d36739779763c6682d314ecfff8857246e9553a6ba58b498e052a649fd.json",
+      "bytes": 3695,
+      "sha256": "c96bd523f9acf6671fb3358e22e0dfac89a8c7376da9ad31220343b7966c0095"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/824e8e71daeb20dfd5bdaa8dbe529d69e9c65870b60685ba1e679d73d0b499e4.json",
+      "bytes": 3693,
+      "sha256": "2de29bdec3892ba7aa2fb5657f174dd57f5c9599a5007c9eb4c66102a4f34837"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/87605a863629233aba711c7a8aaaacff7cb1204f20cf1d2c20edc69608988ff3.json",
+      "bytes": 13470,
+      "sha256": "355765cf383039f72681807bf0c6c67eb7e46f2986920acc2cdfaf811b9842dc"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/878f9041c5109b22ae5df68b445e2e1ec505da506a75228fdef13a66d0292480.json",
+      "bytes": 15447,
+      "sha256": "374a33edc8cd8e20203acfe655407197e77d94204d879b516e225a76d20e8c93"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/88874e87ed60ac3d67fa932b9a9af3b454dfdfcad1863b43f02fc1b2d158cc35.json",
+      "bytes": 10561,
+      "sha256": "71271314a7f6b423ef060d4a56189b7adfd3941261c7f4504d514f66d8c4f809"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/8aa5fbf1c10c8968a1d54da7f9edb0845004ccbc52bad464fcb8ac018049c7a5.json",
+      "bytes": 10300,
+      "sha256": "116357144a159b5692c1a36292c9c47ea7e6e30e82623efd1d457726655c54c3"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/8c5b1c80aefb9aeaf1d15e724741fafc863aeda08e415e7e3719374237f5a12f.json",
+      "bytes": 7825,
+      "sha256": "34521948c26cebc92cb751133de646f024f913dfcfed2e098f0dfa5b2e691403"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/8dd484f9dc22b5c9a9283fc5f76ff178f8c30de7b420009baa1fea5531ce7c2a.json",
+      "bytes": 3263,
+      "sha256": "fcbd50477be6db39ee9a7726f0482521883af67031e4f0f48ee1b47c48d97a58"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/92ca4cbe8d7dba61b96a5978db9245a0b8c254322a1da838eb100709ee7f2ad6.json",
+      "bytes": 4436,
+      "sha256": "0c53d1358f5dd2a6568f73ef8cb8bd0efed81f1116a9d96229e1fb06e98e2c01"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/9b717c1a0e27e265ed6c03fee7d924424e99c1799c2bf48fe1e43168b16ae405.json",
+      "bytes": 3716,
+      "sha256": "0292bd479280793524336d88885a9f5e4cbd77aebf7a1b26d48668188ace8a0d"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/9cae0541632732f2d01c57363ecbe2d5e0b90fbe9654e84f2fed2417b1597940.json",
+      "bytes": 10538,
+      "sha256": "8a4ffc857f488a4787b39b629b15fbef330198f7a707740daa4622d4b713e3be"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/9f72fb2eac28e6bff1e505040fc5b5a1e4bcfc3f6f0614b1e2c4058ee3b5ad72.json",
+      "bytes": 30267,
+      "sha256": "30bd5402833f3f48e180d3240829781939a9cdff5eaca34ac56cde27382929af"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/9feef4614afa8e0a995ce1625644469e4e324c87ee474ac17dfe06589837c31a.json",
+      "bytes": 15158,
+      "sha256": "76bf7279a2b08d3f7df6ddad26454a11f7e4604fd2729ab2aac655aa2f0e6979"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/a2938d52e5055b05b0802cba64397dd3279f8cf26dcc4a921bf4f21882662e5e.json",
+      "bytes": 30910,
+      "sha256": "5d62df49a465161759b8c3cc02d2be115d627d71128b67ee25f1a8dde354a304"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/a688e828951aa1c4ea0a7abf2f55a4b5b86010df20b973f782f328e3cfb7ff91.json",
+      "bytes": 3263,
+      "sha256": "dde8fa3b2f11f4f68ae681ce58af8947314c4ba60481859f4d6ee1b872890db5"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/a69c34f6b43851b75397138dafc5a68061eb8906baeabbfc95e1c259203c8af3.json",
+      "bytes": 7799,
+      "sha256": "1603ee4fd4641f1d558cba0125818715f93d76f9510d0ab3e5baf624ef53d875"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/aa90df69c221dbba90956e4e88a79086d537a681f5622cc012cf0588967cf160.json",
+      "bytes": 14540,
+      "sha256": "8646bb1a6794956262dd3b525d69c4293e1d5683e668df08465555076a95ee0b"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/ab3210698ec6a7b0d848f08e7d5d7ecbe7e1aa27b530a89abaaebc630613b7df.json",
+      "bytes": 4523,
+      "sha256": "ad0acd7cb7f61c998faae80f1139849b29913fa89607d5b2a36d5da597f9655d"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/b7328e3bccc168d8f1adad5f19c3b071dce63923a8cad49f22f15fcddd8fae61.json",
+      "bytes": 16811,
+      "sha256": "3561757d4f399063280fec6b59a1bc27f2238bfddbf8eaf613cb77a4f735a479"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/be300ea7f4cad4210fb86301b250190f26dc21f6b1f5e8a8d787884970cf28fe.json",
+      "bytes": 15560,
+      "sha256": "86e92df55045bb3d987fafb80e54785ff0aaef315982257d26b458e9ad70bc2a"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/c1190e6334d99fe699e3cd03dbafaf89328228fab2c964cf625cf36aba7ce355.json",
+      "bytes": 13477,
+      "sha256": "3faacbb1e2d34d38c582cdc161f7773e02ad4a9140f22ef98fee3bbba302b093"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/c26c89248cb630be5baba67684aef5b821c51badbc57795bd20f6a7acac3f9f0.json",
+      "bytes": 16562,
+      "sha256": "b1c1bf2360c11ce39de798a2be90c61c415470ffdf117eb7414223b8d9bafddb"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/c63927f3cb490fc0f147a890b334e4105744a81254a0d690b405da0c0748a31a.json",
+      "bytes": 3693,
+      "sha256": "4f034287c107f305a67f3c8b5d8b5448fc3c4485d4ddee7c8bf6002a8f3fe2f6"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/c8975f42042dc668b84aa2cda8bac88e28156a3e0fe4bfed21f78df26c1a3c13.json",
+      "bytes": 7887,
+      "sha256": "bd87e34dc7adf09389733dff7f72ea8a0f03b3030a453446156423640a8f976e"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/c91383db70247877ee54782216c0fb12c219a20522ba2a45389b401e19a7b3cd.json",
+      "bytes": 30791,
+      "sha256": "d4aabfc22ee70b4689a4de165b3d934c662d72f3f317bf1ebf1a93c5e1a6dc9c"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/c9cc0f8338d73d675c090192773d8fe1c3489a27e39991213fc93b2c9d60ada1.json",
+      "bytes": 4673,
+      "sha256": "d19c5a9c3f7f47b32d98782ea86b2e41616aa416fb9802dedb41f96441180fac"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/cb0a330d3282e5fe21e53bb83287f174b4bf4c3bd7daa992a3af7ec33b669b11.json",
+      "bytes": 15086,
+      "sha256": "ee8110c22dcf53d47080500c21ac3977950598a768989ed14d95e6c5fb18a181"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/ccc7501828b58b9642ca38975a6f16bfd2593b2ae0e1d234ef4430297d8f2418.json",
+      "bytes": 30425,
+      "sha256": "62cb68e0e98641643c99feb42e7339890e7d1d2481cd3dba0a2a851e2ae4876d"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/cf50efdf595b4840ea409b36e2407dadbf50a7444537e1ab07f575b3c953c1c8.json",
+      "bytes": 14526,
+      "sha256": "e37d64b9fa29c492ef067f5ca00d79121e0f5e1711655f933d65f8b5aca08f7d"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/d300d958fca17f0f5c698270a12492942dad4f4bb3c0138ec3e907e489830945.json",
+      "bytes": 16710,
+      "sha256": "9dcd3f376a0d94ce43c4f6bbad84285979af60df717c5870d86a33e385fe90db"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/d69dac16bdc02487baf43e7ac347f9d4ca14ff5a605526a850d283bcc9d60d88.json",
+      "bytes": 14965,
+      "sha256": "92ef1b6b206f0027c8826094dd3d0790adab3c26e0bdd7a4f9c32a54dc26dfc8"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/dd73cfdc6a83dbb2fcbe5718d84b9c944eed7ec1fa73178c7e304fcf6f85a3d8.json",
+      "bytes": 7815,
+      "sha256": "bbb0d7aa6b54466b80a287f1a45f461ee5aaaeadc032386c4eaf719a3dedcffd"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/df048ac554080bb1e03a552dc0357e3f9df5317c46b87804ac1301650f0b2a0f.json",
+      "bytes": 15683,
+      "sha256": "9d167bb077afec607910930eb501543d5fd5248dec8cb5749361729818185bc7"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/e024ce205bae2ea4a25ceee105d66716e8addb464b5bfcbee42023c37d04030d.json",
+      "bytes": 7809,
+      "sha256": "934494ad5a127be0ed07a728a324bb34221c184a585ff16828ca63b364d410d8"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/e04c913ce15cc28c17019451206bb741973df3ca7b5b1abf97b70829e3ca8189.json",
+      "bytes": 4413,
+      "sha256": "5351fb3d9a2d18193a59e1a45d0aeecb2f9f16b9f4a7d4d2b6ba8b6bf5e6ada7"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/e0d369607a34d9ce4f4c733644e8db1471963bf5dd9896f4521bf2d3212d6b0f.json",
+      "bytes": 3695,
+      "sha256": "a54cb7d6f520efe2146d8f2844bd5a78a004b0f16b503d57891408624589859d"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/e2fe27b15119471f8e129705e21ef1bd09f49643fbb7059f1c4f84fc0458bfa1.json",
+      "bytes": 3261,
+      "sha256": "cddbbefa7e18435b03cb0051742ffe6ade2f477d338b4d6ee9c21d7327031f19"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/e3be51573b341f20a66b62711045ced660319a37a6bbeecb013f16d37d6be944.json",
+      "bytes": 30938,
+      "sha256": "668cd7d74753e6269640b89a6419c76baa51fd6e30540d1fa55aae591fd9dcc3"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/ea1ca9a1be53c4d67ce65cb5dd22c342230301fb6e82b7d1070a84842bcae5ce.json",
+      "bytes": 30175,
+      "sha256": "3b4e5c5722d6650a73923964194da7b67448f63c91f344e4407a45b4f615acb4"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/ed4e0081a5a2952ea16fab923f3ab2324c5a864ea0fc780c3f87831d3981966a.json",
+      "bytes": 30553,
+      "sha256": "ebdfd61201d128d93a0950cb7f3ae2a9a1c2e145ded00e032ebda30556e0fd37"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/ed85e34006959dd0383b46b22584c5cf8600c170f0f092265ab9454e9efef54e.json",
+      "bytes": 30315,
+      "sha256": "fae30daf545c60a752315ac5497769408bda59ec991e5b1c9143042bb0d71fda"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/ef243f6998ee5c9e9200439600a8f5c4e26baf41723f690501cdce4bf0930fba.json",
+      "bytes": 30281,
+      "sha256": "06cbb93f04c1d3ba8fb858e2200d2c7a7cbae427462bc2d8f05a9ae054b6dbb6"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/f11eb26f49468e9fbbd698950ee8cb999f8054814d405fc38a3cf95430a6bea9.json",
+      "bytes": 16833,
+      "sha256": "3880890ab19830b53d027d561150cc97aa1924534e82307c1d2b55bc790f8985"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/fa21ef49331b53bea4981e18cbcf60f6434559ddb9be94b9a6dd443a0c088a85.json",
+      "bytes": 3286,
+      "sha256": "61a1cec604e9672474f5510515262d7fdd739d251254cc693e06bbcba10f4dd5"
+    },
+    {
+      "path": "convection-radiation-80/actual/cases/fa3e7ecdfe4e7e7c303f433cdfb839e3a96a0d209df2d8a0a3c49141f7b4cef6.json",
+      "bytes": 15401,
+      "sha256": "88bf57efd0537058e1cd7f772ca7d6b5ad544d232eb2828de28f25f9c7e6234b"
+    },
+    {
+      "path": "convection-radiation-80/actual/completed-cases.jsonl",
+      "bytes": 18664,
+      "sha256": "7a783998a70c76f88fa2878486f77af8429cc037ff6a86fe168cff9fa4f1fb29"
+    },
+    {
+      "path": "convection-radiation-80/actual/report.json",
+      "bytes": 70157,
+      "sha256": "2b17fb6a662db7e2be0008c926dce08190520dce1d02707d4723732a8f8aaabe"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/0717c3e905eb4ff3b9740f77b854eb0ee0018d34ef5cf08b40af29b69ef5eb6d.png",
+      "bytes": 46039,
+      "sha256": "0717c3e905eb4ff3b9740f77b854eb0ee0018d34ef5cf08b40af29b69ef5eb6d"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/1271c694b800ef45ca5e176e47d18645f03ffd3ff93d22262c6189ce6ef5ea7e.png",
+      "bytes": 2934,
+      "sha256": "1271c694b800ef45ca5e176e47d18645f03ffd3ff93d22262c6189ce6ef5ea7e"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/1527eb5aa43c8fd7214ece9e554daa053db1b59ee51af5dcc2d7ed86a9e1b518.png",
+      "bytes": 16848,
+      "sha256": "1527eb5aa43c8fd7214ece9e554daa053db1b59ee51af5dcc2d7ed86a9e1b518"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/1bd401f3a35b646fd38aefa290806c806e124418f86cee7258e23ca8b15d126f.png",
+      "bytes": 66564,
+      "sha256": "1bd401f3a35b646fd38aefa290806c806e124418f86cee7258e23ca8b15d126f"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/1fc83aca4854f00eabd1a03addbe8c10b3353f834ce192788255f432c676c554.png",
+      "bytes": 6205,
+      "sha256": "1fc83aca4854f00eabd1a03addbe8c10b3353f834ce192788255f432c676c554"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/203ff4d7ff167cc8066df0df7881dd3322abe96ba76e9783eabaf9a240c35d99.png",
+      "bytes": 4405,
+      "sha256": "203ff4d7ff167cc8066df0df7881dd3322abe96ba76e9783eabaf9a240c35d99"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/24db43e7c2893f05b0eb5b4ae6495ddb16756b24abd1f2aff90835a6e40a8311.png",
+      "bytes": 8790,
+      "sha256": "24db43e7c2893f05b0eb5b4ae6495ddb16756b24abd1f2aff90835a6e40a8311"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/281740f6bc286bd7cfe32b5e1f8d3ae5c01e6ee8b7eb8c1fbc964b899b9bb658.png",
+      "bytes": 17071,
+      "sha256": "281740f6bc286bd7cfe32b5e1f8d3ae5c01e6ee8b7eb8c1fbc964b899b9bb658"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/290384a540ccb1195cb3504333628765a5c8f1115ff83e71f177affa3e4907ed.png",
+      "bytes": 9597,
+      "sha256": "290384a540ccb1195cb3504333628765a5c8f1115ff83e71f177affa3e4907ed"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/29b7c1e9896e195b93ab387de6f572756a3c5072c941337f376b6fb84e5f420b.png",
+      "bytes": 44886,
+      "sha256": "29b7c1e9896e195b93ab387de6f572756a3c5072c941337f376b6fb84e5f420b"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/32ee0e17d9568dfb62a2563d5aece6791343ef52330234b6fcedb18184a617cc.png",
+      "bytes": 9179,
+      "sha256": "32ee0e17d9568dfb62a2563d5aece6791343ef52330234b6fcedb18184a617cc"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/339cc534885e98512d01e7ea35eff56177d082c2711dfd26312e3a81bca03840.png",
+      "bytes": 90717,
+      "sha256": "339cc534885e98512d01e7ea35eff56177d082c2711dfd26312e3a81bca03840"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/33b336d4df431834f5171e98886ed3354efc21de574c738624dc3ff5f7ac7dc7.png",
+      "bytes": 4533,
+      "sha256": "33b336d4df431834f5171e98886ed3354efc21de574c738624dc3ff5f7ac7dc7"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/3442838ab3dcde048b35b149fe8551173d0becdde7e0152526136bc7f99188ea.png",
+      "bytes": 5037,
+      "sha256": "3442838ab3dcde048b35b149fe8551173d0becdde7e0152526136bc7f99188ea"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/371dee3b262a3a8d473494977b0a65b427ee41e899574e50e932d82cfb23fba5.png",
+      "bytes": 2923,
+      "sha256": "371dee3b262a3a8d473494977b0a65b427ee41e899574e50e932d82cfb23fba5"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/39a5becb20499f27a01fb9c77d155a570ec93854226cbfeb35370f07d5a4d62e.png",
+      "bytes": 4931,
+      "sha256": "39a5becb20499f27a01fb9c77d155a570ec93854226cbfeb35370f07d5a4d62e"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/3aa3e1d4d960a5fb719279a3f19d98779f9155c25da1fbc626c8e1505ca65a5f.png",
+      "bytes": 6547,
+      "sha256": "3aa3e1d4d960a5fb719279a3f19d98779f9155c25da1fbc626c8e1505ca65a5f"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/3e5363169090655038d79f6007e13770c4699123410fbaa5987661dd8f0629ce.png",
+      "bytes": 64004,
+      "sha256": "3e5363169090655038d79f6007e13770c4699123410fbaa5987661dd8f0629ce"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/3fa734881ecd699e1c9f1edb82714606a9313f60943535d0ae05802559880f50.png",
+      "bytes": 13446,
+      "sha256": "3fa734881ecd699e1c9f1edb82714606a9313f60943535d0ae05802559880f50"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/451bf3ee5cb7e3102ca0c8bfc746118e688728a19c07d5665e68168cfdb3d032.png",
+      "bytes": 83560,
+      "sha256": "451bf3ee5cb7e3102ca0c8bfc746118e688728a19c07d5665e68168cfdb3d032"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/47cfda1d1e1ba97cba71876a278016b3da42d516e98d6261e3367182e38c9847.png",
+      "bytes": 11892,
+      "sha256": "47cfda1d1e1ba97cba71876a278016b3da42d516e98d6261e3367182e38c9847"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/4e4362650971517bf66ede9f6bb9631cf4d48d42e7d09b60365a0534b306e411.png",
+      "bytes": 33601,
+      "sha256": "4e4362650971517bf66ede9f6bb9631cf4d48d42e7d09b60365a0534b306e411"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/4f072f5f8a3896f29de6a87c3a0aae953c15ada4d3304caffbbeef22a14f1658.png",
+      "bytes": 56507,
+      "sha256": "4f072f5f8a3896f29de6a87c3a0aae953c15ada4d3304caffbbeef22a14f1658"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/509de08fca946e2423599ecac586ed71616b6aa022fa02ead7c120ba8782eef7.png",
+      "bytes": 44879,
+      "sha256": "509de08fca946e2423599ecac586ed71616b6aa022fa02ead7c120ba8782eef7"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/51993a483133e61cac43c1c2613ae23556a870455097733475d6a4edf2bfd09a.png",
+      "bytes": 9940,
+      "sha256": "51993a483133e61cac43c1c2613ae23556a870455097733475d6a4edf2bfd09a"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/58f9dad78e9f30a981e788bd959448474b19cd9e87b44a30989e41d3e17bbca9.png",
+      "bytes": 48749,
+      "sha256": "58f9dad78e9f30a981e788bd959448474b19cd9e87b44a30989e41d3e17bbca9"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/5ac1c3144a3c3d95c1c56f2b17e2ef91137f271665ce5d01082c9c62c5ecfef0.png",
+      "bytes": 61125,
+      "sha256": "5ac1c3144a3c3d95c1c56f2b17e2ef91137f271665ce5d01082c9c62c5ecfef0"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/5cf8cfc764c5e8fa4dddb0322fdc09549f25ab9cbecfcb8f9f64e2afab5a3164.png",
+      "bytes": 77160,
+      "sha256": "5cf8cfc764c5e8fa4dddb0322fdc09549f25ab9cbecfcb8f9f64e2afab5a3164"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/5ebb82cb69e4fb08046e2dc174e1fe7341030991f51dec781088761992495f45.png",
+      "bytes": 56175,
+      "sha256": "5ebb82cb69e4fb08046e2dc174e1fe7341030991f51dec781088761992495f45"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/5ee3229f9307867f3973c95e77a55ed6160875bd3c6234459722c1f8aebe1e7d.png",
+      "bytes": 11472,
+      "sha256": "5ee3229f9307867f3973c95e77a55ed6160875bd3c6234459722c1f8aebe1e7d"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/643051ffddeac2b570a4e55425d00325f8f2de708a95119912d0c02983da17d0.png",
+      "bytes": 42767,
+      "sha256": "643051ffddeac2b570a4e55425d00325f8f2de708a95119912d0c02983da17d0"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/65d276c4e23a5d9e08c7582cc7994724f2715c41cb22d339a6be8a6830a7c938.png",
+      "bytes": 4831,
+      "sha256": "65d276c4e23a5d9e08c7582cc7994724f2715c41cb22d339a6be8a6830a7c938"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/678f2a84671ada1d34a6e3983bd8bde64e740754384da3bcf737576fabc71656.png",
+      "bytes": 41985,
+      "sha256": "678f2a84671ada1d34a6e3983bd8bde64e740754384da3bcf737576fabc71656"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/6e08082685590a5e1e7a547f76af1494b0a0427ee4a042e21de1c6bca9038408.png",
+      "bytes": 10089,
+      "sha256": "6e08082685590a5e1e7a547f76af1494b0a0427ee4a042e21de1c6bca9038408"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/79793c2f03a34f667bb8db4902b64a0e0ccec1fb9081a7f3626c51be1695699d.png",
+      "bytes": 37530,
+      "sha256": "79793c2f03a34f667bb8db4902b64a0e0ccec1fb9081a7f3626c51be1695699d"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/7c09db2e71f25dfbbd44ad6314837123ae63d59f06e4047ec7d8814ea84149bd.png",
+      "bytes": 40857,
+      "sha256": "7c09db2e71f25dfbbd44ad6314837123ae63d59f06e4047ec7d8814ea84149bd"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/7e994155821e28c9ec8b11a1ca6d41f26695e80f03aec6e26c74266fa422b891.png",
+      "bytes": 4765,
+      "sha256": "7e994155821e28c9ec8b11a1ca6d41f26695e80f03aec6e26c74266fa422b891"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/7f648bcd6e5b177b0322e9e9c14c707c6e2ea2d71c9e2d7e1aa70dc84929f668.png",
+      "bytes": 11803,
+      "sha256": "7f648bcd6e5b177b0322e9e9c14c707c6e2ea2d71c9e2d7e1aa70dc84929f668"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/7f69d78399e45e9697bdc2d32452493ba37546f8da967216e0d9566e6aab46ff.png",
+      "bytes": 11283,
+      "sha256": "7f69d78399e45e9697bdc2d32452493ba37546f8da967216e0d9566e6aab46ff"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/7f9f17ee46c54fd2ae054c78864afa40fd5aaaa826c042847024b559ffbf4a37.png",
+      "bytes": 65339,
+      "sha256": "7f9f17ee46c54fd2ae054c78864afa40fd5aaaa826c042847024b559ffbf4a37"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/7fab4caf1da9a8cb78e6154caf9c77e1cae2c1018efb14b8bc8e9159758f1d03.png",
+      "bytes": 44433,
+      "sha256": "7fab4caf1da9a8cb78e6154caf9c77e1cae2c1018efb14b8bc8e9159758f1d03"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/7fe674d9521b36947c04f66681cffb47ce0c6af1c90650033ca51ce09305a567.png",
+      "bytes": 16602,
+      "sha256": "7fe674d9521b36947c04f66681cffb47ce0c6af1c90650033ca51ce09305a567"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/8e60b46732529aaf89ebb3d9f9f09cc220dbc2c2c008f35d9afa361e6807ec9f.png",
+      "bytes": 12989,
+      "sha256": "8e60b46732529aaf89ebb3d9f9f09cc220dbc2c2c008f35d9afa361e6807ec9f"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/904195190d1bb51028c6d536978e4e77f7da5a24f396236ba1e38f1b46f08519.png",
+      "bytes": 12528,
+      "sha256": "904195190d1bb51028c6d536978e4e77f7da5a24f396236ba1e38f1b46f08519"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/91156ab56995d2207d305b1060b232da9d6b9608abbbe00642b7f457feef2b63.png",
+      "bytes": 9864,
+      "sha256": "91156ab56995d2207d305b1060b232da9d6b9608abbbe00642b7f457feef2b63"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/945656877f9ef69c645c67c061d5fc3f9b21a5047dc97d94c0acb4126b29f538.png",
+      "bytes": 103686,
+      "sha256": "945656877f9ef69c645c67c061d5fc3f9b21a5047dc97d94c0acb4126b29f538"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/97d51aa81ea41a7a89d45ff2d8147a21572fe0f0bd8871cc890c2d0af388c747.png",
+      "bytes": 104450,
+      "sha256": "97d51aa81ea41a7a89d45ff2d8147a21572fe0f0bd8871cc890c2d0af388c747"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/9e4b536057cbcac41c920e313cb8c778a7084862b913b86c00c47b88ffecf319.png",
+      "bytes": 57735,
+      "sha256": "9e4b536057cbcac41c920e313cb8c778a7084862b913b86c00c47b88ffecf319"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/9f69ca57f0fd3c690208eef9852fe698e62b985d52af43d1642b5a2788ea751b.png",
+      "bytes": 17084,
+      "sha256": "9f69ca57f0fd3c690208eef9852fe698e62b985d52af43d1642b5a2788ea751b"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/a9ddc252964b1447a8cb1dd66acf790930a5d81a17d9fbde42be655c30ecd589.png",
+      "bytes": 16278,
+      "sha256": "a9ddc252964b1447a8cb1dd66acf790930a5d81a17d9fbde42be655c30ecd589"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/b8bd4b3fd8421db018c60e9a25f39e92e4f45d1fd71f46567452c7bd6f987439.png",
+      "bytes": 35184,
+      "sha256": "b8bd4b3fd8421db018c60e9a25f39e92e4f45d1fd71f46567452c7bd6f987439"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/bbc8d5fe159a90347f90f73375b5933fc7e1137f8ba1debee11a80292b11b20b.png",
+      "bytes": 50860,
+      "sha256": "bbc8d5fe159a90347f90f73375b5933fc7e1137f8ba1debee11a80292b11b20b"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/be3424f4192a3a568240b87edf331d71a7e5cd80ef754fa00ffdc8082030c440.png",
+      "bytes": 11609,
+      "sha256": "be3424f4192a3a568240b87edf331d71a7e5cd80ef754fa00ffdc8082030c440"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/bea9fe33e432396e112f3b66eeae24c7d41b151a1bc9d5579a06a9c17d675f88.png",
+      "bytes": 4195,
+      "sha256": "bea9fe33e432396e112f3b66eeae24c7d41b151a1bc9d5579a06a9c17d675f88"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/c7970901dadb5066a30349a86a3f2a42b51aefd26b2d6b2d90528596709a970e.png",
+      "bytes": 46264,
+      "sha256": "c7970901dadb5066a30349a86a3f2a42b51aefd26b2d6b2d90528596709a970e"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/c8cb591f37041f42fe1e8148886d46fea7262e0cb9f77a089519cb58ffab5e8c.png",
+      "bytes": 11843,
+      "sha256": "c8cb591f37041f42fe1e8148886d46fea7262e0cb9f77a089519cb58ffab5e8c"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/c906a6a6f95f883b850573983ee20371c2a00d4707eb054c1a25f2300a034cee.png",
+      "bytes": 42958,
+      "sha256": "c906a6a6f95f883b850573983ee20371c2a00d4707eb054c1a25f2300a034cee"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/c9a490fad329c505f1e4b5c3f1e0f31d8bf5fd80ff808c26759516330b68e6d2.png",
+      "bytes": 17084,
+      "sha256": "c9a490fad329c505f1e4b5c3f1e0f31d8bf5fd80ff808c26759516330b68e6d2"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/cc0e0121ab13440f504bda2da831d3862107ca5111b15e745e7dac83b7564550.png",
+      "bytes": 71744,
+      "sha256": "cc0e0121ab13440f504bda2da831d3862107ca5111b15e745e7dac83b7564550"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/d138ff4db0e3d5de91026977ca40f9288403b03e05628d68cf2bbfd1b52f3dbb.png",
+      "bytes": 46084,
+      "sha256": "d138ff4db0e3d5de91026977ca40f9288403b03e05628d68cf2bbfd1b52f3dbb"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/d15fa75acf313f8a89ef463889b1e2fa7692d504446456e322d64ecaf5ead3fb.png",
+      "bytes": 2733,
+      "sha256": "d15fa75acf313f8a89ef463889b1e2fa7692d504446456e322d64ecaf5ead3fb"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/d30246cf1a20f7d0f6b095ff1d194c637840f7285a55df01c7297191646f4713.png",
+      "bytes": 4623,
+      "sha256": "d30246cf1a20f7d0f6b095ff1d194c637840f7285a55df01c7297191646f4713"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/d3d8848ffc1a0c01f3f728713e2d2374af93d30ae90e33757c2ee991a92a3d5a.png",
+      "bytes": 45225,
+      "sha256": "d3d8848ffc1a0c01f3f728713e2d2374af93d30ae90e33757c2ee991a92a3d5a"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/d6c992cb9742632aeed8bf4640c1fcfb1bdd608e1f957becec13ab8c889fb1a4.png",
+      "bytes": 10075,
+      "sha256": "d6c992cb9742632aeed8bf4640c1fcfb1bdd608e1f957becec13ab8c889fb1a4"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/db4c8c13d5f21395e13fbddadaa7607c5253022ef35ad3b0174b0f9997769947.png",
+      "bytes": 6841,
+      "sha256": "db4c8c13d5f21395e13fbddadaa7607c5253022ef35ad3b0174b0f9997769947"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/dd5463ca1cd9a8e378e0ce517b1188c40377876fc575ae97a04d20e686b428f0.png",
+      "bytes": 71990,
+      "sha256": "dd5463ca1cd9a8e378e0ce517b1188c40377876fc575ae97a04d20e686b428f0"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/e21b151d06412091a6b3fdadfe9a465a685e70a04e2ccb4dc601ca5726d25c12.png",
+      "bytes": 9543,
+      "sha256": "e21b151d06412091a6b3fdadfe9a465a685e70a04e2ccb4dc601ca5726d25c12"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/e4b30e681abb6c94081d8c3ccde0bf22315c0ce283dbd91c72f7d702e4e4d77a.png",
+      "bytes": 16833,
+      "sha256": "e4b30e681abb6c94081d8c3ccde0bf22315c0ce283dbd91c72f7d702e4e4d77a"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/e4b889817fa05d06fdc1c7046ef48cbcf21006536bb68834b3e5ac1cf1e4304b.png",
+      "bytes": 2837,
+      "sha256": "e4b889817fa05d06fdc1c7046ef48cbcf21006536bb68834b3e5ac1cf1e4304b"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/e52d42a649d5e293f8375bfa5478eb20e9f6285c28d21155f7f7bb26bba58c0e.png",
+      "bytes": 4833,
+      "sha256": "e52d42a649d5e293f8375bfa5478eb20e9f6285c28d21155f7f7bb26bba58c0e"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/e73bf9c44ccd48c1a8eee2276b03100a81df77db9edd872dda39eabd8338e487.png",
+      "bytes": 36234,
+      "sha256": "e73bf9c44ccd48c1a8eee2276b03100a81df77db9edd872dda39eabd8338e487"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/eadf2a47a32d7fe589372a8ffbf7ef8ba8ca8e9efd9383634e0a80e55b3fab48.png",
+      "bytes": 4497,
+      "sha256": "eadf2a47a32d7fe589372a8ffbf7ef8ba8ca8e9efd9383634e0a80e55b3fab48"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/f0f7bcc1e37b9600d19bd582d930dcecfee2d566ea97cd87209b430fcd6ca6eb.png",
+      "bytes": 11582,
+      "sha256": "f0f7bcc1e37b9600d19bd582d930dcecfee2d566ea97cd87209b430fcd6ca6eb"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/f1d6fd7217974a91c14c5218e6f7b91ea2791cae32109a2094bc038d54c230d4.png",
+      "bytes": 11370,
+      "sha256": "f1d6fd7217974a91c14c5218e6f7b91ea2791cae32109a2094bc038d54c230d4"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/f29124b52944fccec163aae132cade46c96e040a5748f95d0692c1aee8e3a1b5.png",
+      "bytes": 4498,
+      "sha256": "f29124b52944fccec163aae132cade46c96e040a5748f95d0692c1aee8e3a1b5"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/f66e2eaf56fad00519f14009b8c0bfeaabe588d82647a1b1e29292da54db69fc.png",
+      "bytes": 44859,
+      "sha256": "f66e2eaf56fad00519f14009b8c0bfeaabe588d82647a1b1e29292da54db69fc"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/f7e7048f4faca1cf063174748a46a58eb5ed89aaafc93a51f7dcd0023baeb977.png",
+      "bytes": 4996,
+      "sha256": "f7e7048f4faca1cf063174748a46a58eb5ed89aaafc93a51f7dcd0023baeb977"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/fb41910bdffe0a98664208d5529e7f6db6cdb5d39c389cbb237bdb75e7a7c471.png",
+      "bytes": 13299,
+      "sha256": "fb41910bdffe0a98664208d5529e7f6db6cdb5d39c389cbb237bdb75e7a7c471"
+    },
+    {
+      "path": "convection-radiation-80/actual/screens/ff284bd5028993c81e0fda486b6cbf686eba9ff2e58b8a4d5309d2147f315c12.png",
+      "bytes": 6757,
+      "sha256": "ff284bd5028993c81e0fda486b6cbf686eba9ff2e58b8a4d5309d2147f315c12"
+    },
+    {
+      "path": "convection-radiation-80/actual-process.log",
+      "bytes": 129,
+      "sha256": "9a8087a9d55c0ee3b23b1ff7ebc58fd8e97454dae8b4d22071fcca22fdb72aa3"
+    },
+    {
+      "path": "convection-radiation-80/actual-terminal.json",
+      "bytes": 668,
+      "sha256": "05527046598ecee66fab2ec849d2a9fd248c438114a3c2b44e3c3f3cb2ba3dd3"
+    },
+    {
+      "path": "convection-radiation-80/confirmed-system-tail-negative.json",
+      "bytes": 15205,
+      "sha256": "a269c16e737e0e6adca29f7418dd03d808acffb8fcd67cc936807aa6cf14bf0c"
+    },
+    {
+      "path": "convection-radiation-80/contact-1280-fixed_projection.png",
+      "bytes": 128555,
+      "sha256": "3cc2c044888ae246846a1ab23a148e9b3796f845c95da0846beb48a2e16a5401"
+    },
+    {
+      "path": "convection-radiation-80/contact-1280-orbit.png",
+      "bytes": 233062,
+      "sha256": "97eed367aa5660af070013862f9a735759f7932631d8ece0f5f97cf9375cfa90"
+    },
+    {
+      "path": "convection-radiation-80/contact-1280-side.png",
+      "bytes": 114886,
+      "sha256": "1a8531754e929f63d85747a902471db8783ce885a31711c65b293439246f9e83"
+    },
+    {
+      "path": "convection-radiation-80/contact-1280-top.png",
+      "bytes": 203928,
+      "sha256": "a9026260d44c38c7f800af988ec0529da170ca97cf4c23fe9195f7cce91111f6"
+    },
+    {
+      "path": "convection-radiation-80/contact-320-fixed_projection.png",
+      "bytes": 102704,
+      "sha256": "a81c10b7cdcb6c821efa1eeb762b89e28870b38fe857f7078e2f0c79a21a148d"
+    },
+    {
+      "path": "convection-radiation-80/contact-320-orbit.png",
+      "bytes": 161112,
+      "sha256": "5763bd2a39cc48edee33b06957b95d8c3b1980589435e5424db2350d8380c0a3"
+    },
+    {
+      "path": "convection-radiation-80/contact-320-side.png",
+      "bytes": 97220,
+      "sha256": "ccbac21c94e88f5c7685825dce41f4e2b67573a741b0fa41f1f2283548db595f"
+    },
+    {
+      "path": "convection-radiation-80/contact-320-top.png",
+      "bytes": 169953,
+      "sha256": "9f3e5528f54a460ec95bffaef2492ce3f893b37c9f4c521efd4b4fd2aec916d4"
+    },
+    {
+      "path": "convection-radiation-80/independent-visual-review.json",
+      "bytes": 2359,
+      "sha256": "6aa8d3e15c61257cf44510adde624b98cf083cc3eff2ded56c302e43591b60ea"
+    },
+    {
+      "path": "convection-radiation-80/info.json",
+      "bytes": 680,
+      "sha256": "866497081e6b079a178dad3d3ac9d3bbd1736b36262a5a53c251bb89e7f401db"
+    },
+    {
+      "path": "convection-radiation-80/prepared.json",
+      "bytes": 71479,
+      "sha256": "f1290a86ffdafe382d8772d107c178e4188fe28dc2e913d3d5d285dbaa29fa18"
+    },
+    {
+      "path": "convection-radiation-80/technical-summary.json",
+      "bytes": 1888,
+      "sha256": "6062f485b09609ec5be9949283d813e0a216220637419d3af48a804599d12eb4"
+    },
+    {
+      "path": "convection-radiation-80-request.json",
+      "bytes": 655,
+      "sha256": "fa206c4c67069d308ebc190dac328fc7063740729570d65f0a5cad3e81aa1448"
+    },
+    {
+      "path": "independent-preliminary-delta-review.json",
+      "bytes": 972,
+      "sha256": "f814e082eec2fe5ba6d43f2f75f02e36826ea0e8c470f9a3c0abdc09d4f0607b"
+    },
+    {
+      "path": "initial-test-case-diagnostic/actual80-tests-receipt.json",
+      "bytes": 205,
+      "sha256": "3d03198339102d9d38a022a5badfa5501134bbf41a08ba8ecb682d02d1549786"
+    },
+    {
+      "path": "initial-test-case-diagnostic/actual80-tests.txt",
+      "bytes": 2035,
+      "sha256": "b1fb5d5622fb2ef1fab88fda3002d290ff84007a5f5dff2fde98720a93596c52"
+    },
+    {
+      "path": "initial-test-case-diagnostic/test_actual80.py",
+      "bytes": 3101,
+      "sha256": "1b3271b42e93ee0fac6c89b8f4199a1a922fe1e8cf2260229e8fe5bc7184b037"
+    },
+    {
+      "path": "inputs/experiment-c3-heat-exchange-reading-20261127-bindings.json",
+      "bytes": 1005,
+      "sha256": "9c90a8b19a04cc9e866def0f278510950dc391641d7ff82bd5cf23a7d1c7ae46"
+    },
+    {
+      "path": "inputs/experiment-c3-heat-exchange-reading-20261127.json",
+      "bytes": 9382,
+      "sha256": "59ced7b0c3a789667477731d46a39c3d5f2dde79484047af257c95f2a74636a8"
+    },
+    {
+      "path": "neutral-controls-and-clock-primary-extension.json",
+      "bytes": 5657,
+      "sha256": "16d3b69eaf499476d3d60c18e90bf48c89a48a11c65e8edf9f26199bc99007fe"
+    },
+    {
+      "path": "pre-browser-plan-handoff.json",
+      "bytes": 3284,
+      "sha256": "48c5c6cd29f5be841032e2f021d656c1cacfe19f4f0c1d4b2f99c48ed8a775fb"
+    },
+    {
+      "path": "previous-53bd-legende.js.txt",
+      "bytes": 17325,
+      "sha256": "97a4e012a2d763e1e921837497e944a04755519297fe93850c2650454da2dc6d"
+    },
+    {
+      "path": "run-bounded.py",
+      "bytes": 3890,
+      "sha256": "2b24e7bac04ffaacac4ac2bc0635637c31fe03056e7ec2405a2efab3c1e06eaa"
+    },
+    {
+      "path": "test_actual80.py",
+      "bytes": 3126,
+      "sha256": "d3f28fc65f2b6e217d29f1a43229e017e1f6cf201ff822963635fe77947c9f4f"
+    }
+  ]
+}
