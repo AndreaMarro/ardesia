@@ -1,0 +1,75 @@
+{
+  "id": "SIM-C4-L02-01",
+  "author": "Root",
+  "reviewer": "author_vectors_b",
+  "candidateCommit": "1dbd137840444b5a38ae49f17b00b6591f27f7d0",
+  "runtimeSha256": "f357b970906cb827c8e8046a42e45b35d8745179752f2a756b2affdf56bbe5f4",
+  "collectorSha256": "719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "browserTerminal": {
+    "activityCredit": 0,
+    "browserElapsedSeconds": 47.65372624999145,
+    "collectorSha256": "719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15",
+    "freeBytesBeforeBrowser": 2963750912,
+    "fullElapsedSeconds": 48.32780216599349,
+    "humanApproval": "NOT_RUN",
+    "observedExitCode": 0,
+    "plannedCases": 56,
+    "publicationAction": "NONE",
+    "reportSha256": "1b1ac768fcea38035d195f8de0a6665a0145a1fc9521d9402d697ebe00b585ce",
+    "runtimeSha256": "f357b970906cb827c8e8046a42e45b35d8745179752f2a756b2affdf56bbe5f4",
+    "signal": null,
+    "sourceCommit": "1dbd137840444b5a38ae49f17b00b6591f27f7d0"
+  },
+  "actualControlsCompared": 15,
+  "browserCasesObserved": 56,
+  "freshStatesIndependentlyChecked": 48,
+  "realManualSubmissionsAccepted": 16,
+  "tasks": [
+    {
+      "r_cm": 3,
+      "E_kN_per_C": "10"
+    },
+    {
+      "r_cm": 5,
+      "E_kN_per_C": "18/5"
+    }
+  ],
+  "scientificReasoning": "E=kq/r²=90/r_cm² kN/C per k=9×10⁹ e q=+1nC; r>0. La direzione è radiale uscente; gli ingrandimenti non cambiano la lettura.",
+  "rasterReading": {
+    "uniqueFullFramesRead": 32,
+    "selectedStates_cm": [
+      2.5,
+      3,
+      8
+    ],
+    "statesInAllEightProfilesRead": 24,
+    "setupFramesRead": 8,
+    "panelsOpened": 12,
+    "directFallbackReopens": 6,
+    "cropped": false,
+    "resized": false,
+    "other24ObservedCasePNGsNotVisuallyCertified": true
+  },
+  "oldFindingResolution": {
+    "r3fallback320": "RESOLVED_IN_OBSERVED_RASTER",
+    "r3fallback1280": "RESOLVED_IN_OBSERVED_RASTER",
+    "r2_5fallback320": "NO_FINDING_IN_OBSERVED_RASTER",
+    "r2_5fallback1280": "NO_FINDING_IN_OBSERVED_RASTER",
+    "r8detailBothWidths": "REMAINS_VISIBLE",
+    "negative1209Unmodified": true
+  },
+  "nativeScope": "Orbit/Side/Top at2.5/3/8 and setup,320/1280; expected projection proximity in Side recorded, no full448claim.",
+  "sourceComparison": "Only six dichiarato dettaglio:true markers added to primary arrow elements for1≤r≤3.5. After removing exactly those six audited flags, full15state code row equals1209, including model/readings/questions/spec/endpoints. Original strict whole-row comparison failed and is preserved as an overbroad-checker negative.",
+  "legend": "Letta in tutti8setup: E fisico nella lettura, viola scala primaria, ocra×10 distinto quando compare, Pverde sonda. Nessuna lettura della lunghezza minima come nuova scala quantitativa.",
+  "verdict": "NO_RESIDUAL_IN_SELECTED_CANARIES",
+  "scopeLimit": "One published ID only; otherC4/C2/C5 and unobserved regimes not accepted. NozeroEcaseexistsinthisfixedpositivechargestudy.",
+  "externalFrozenDependency": {
+    "commit": "08a45e28",
+    "path": "officina-di-fisica/editorial/reviews/visibility-protocol719-b-preflight-20261127",
+    "canonicalCollectorCommit": "d43240f5c5a3b37018248cf756454cd6841f46ef",
+    "sha256": "719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15"
+  }
+}
