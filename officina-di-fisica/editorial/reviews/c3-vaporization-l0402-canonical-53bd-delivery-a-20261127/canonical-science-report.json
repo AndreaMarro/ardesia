@@ -1,0 +1,110 @@
+{
+  "acceptedCount": 1,
+  "activityCredit": 0,
+  "archiveSha256": "3db44bb9c58ac0753daa5a707bf9a4623934ee064dd82a36163c4a79364a5f4c",
+  "evidenceManifestSha256": "b766dcc6341c85241219fa8e17b483e23a928c7b4566a6eca884cc7e61231417",
+  "humanApproval": "NOT_RUN",
+  "phaseGuardSha256": "22f61c635a0a0cf51a4aa619ad9ccdedc2bdb20154ab08bd238ebc9a9b67e179",
+  "publicationAction": "NONE",
+  "records": [
+    {
+      "actualAnswerSubmissions": 16,
+      "actualBrowserCases": 48,
+      "baseVersion": 1,
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "a7268eadc74f1819f3bd2798d03b1209207492502f9491fabb30c0f8f414c466",
+      "candidateVersion": 2,
+      "failedPublishedEdition": false,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C3-L04-02",
+      "manualArithmetic": "Q=m_sLv,conLv2.26kJ/g=(113/50)kJ/g. Per+3g:2×3=6 e0.26×3=0.78,totale+6.78kJ. Per0g,Qlatente0. Per−2g,−4.52kJ:calore ceduto dall’acqua. L’inversaQ/Lv mantiene il segno; non si tratta di massa fisica totale negativa.",
+      "ok": true,
+      "originalEditionRetained": true,
+      "pedagogicalReview": "Source-first exact model before Core6ae3,full authored text/manual read,48fresh53bd cases and all48wholePNG read.8 canonical examples explicitly subset48. Actual signed endpoints,zero,phase representation,readout signs/units and16 actual correct submissions checked. Alto axial and schematic limitations retained; private preview separate. No L04-03heat-arrow judgment here.",
+      "physicalAssumptions": "Acqua alle condizioni di coesistenza e pressione scelte;Lv2.26kJ/g assegnato come valore arrotondato vicino all’ebollizione atmosferica. Massa trasformata con segno−5..5g,totale materiale positivo. Qpositivo entrante nell’acqua. Zero trasferimento latente non afferma zero calore per qualunque altro processo. Particelle/livello schematici,non inventario assoluto o conteggio molecole. Non si identifica automaticamenteQcon solaDeltaU.",
+      "publicationAction": "DRAFT",
+      "publishedEditionReview": {
+        "actualAssignedTasks": [
+          {
+            "prompt": "Imposta «Massa che diventa vapore con segno» su 3 g. Quale valore ottieni per «Calore assorbito dall’acqua»?",
+            "unit": "kJ",
+            "value": 6.779999999999999,
+            "worked": "Q = m con segno × Lᵥ; Lᵥ ≈ 2,26 kJ/g. 2,26 × 3 ≈ 6,78 kJ."
+          },
+          {
+            "prompt": "Nel cambio di fase la massa trasformata, con il segno scelto nel banco, è 0 g. Quale calore scambia l’acqua con l’esterno, usando 2,26 kJ/g?",
+            "unit": "kJ",
+            "value": 0,
+            "worked": "Q = m con segno × Lᵥ; Lᵥ ≈ 2,26 kJ/g. 2,26 × 0 ≈ 0 kJ."
+          }
+        ],
+        "humanApproval": "NOT_RUN",
+        "judgmentScope": "Retained original assigned arithmetic only; no new original interactive replay",
+        "ok": true,
+        "publicationAction": "NONE",
+        "sourceSha256": "54420428cc7e93d78fdaed52ee0a282cf50ffccd0808d8bcdaca65af4803c42c"
+      },
+      "reviewedSignature": "09e7f23c0a8cc3bca40ac651448089b14c934a42ed07265463f61e35ee26274e",
+      "sourceSha256": "54420428cc7e93d78fdaed52ee0a282cf50ffccd0808d8bcdaca65af4803c42c",
+      "sourceVersion": 1,
+      "visualScope": {
+        "acceptedAnswers": 16,
+        "browserCases": 48,
+        "gridSignedMassG": [
+          -5,
+          -2,
+          0,
+          3,
+          5
+        ],
+        "limits": [
+          "DRAFT2/base1 only; no new interactive original replay.",
+          "Signed transformed amount is separate from positive total material inventory. Zero transformed amount means zero latent transfer in this model, not absence of both phases.",
+          "Particles and liquid level are schematic, not a calibrated molecule count or absolute phase inventory.",
+          "Alto is axial to liquid depth/vertical separation; nonaxial native and fallback were read.",
+          "Bench PNGs do not capture every scrolling explanatory paragraph; all authored formulas checked in setupDOM.",
+          "No L04-03heat-arrow, arbitrarycamera/privateGPU,human approval or registry credit."
+        ],
+        "profiles": [
+          {
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "view": "side",
+            "width": 320
+          },
+          {
+            "view": "top",
+            "width": 320
+          },
+          {
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "setupCases": 8
+      }
+    }
+  ],
+  "runtimeSha256": "53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a",
+  "schemaVersion": "1.0.0",
+  "sourceCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "verifierSha256": "a449b9d3a7ae051f2f4bcdc6bdd6a731ea18cfb6b55cf6e34ed9d8bfa5b444ed"
+}
