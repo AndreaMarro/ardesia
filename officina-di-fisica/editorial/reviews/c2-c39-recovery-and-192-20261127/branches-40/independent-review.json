@@ -1,0 +1,122 @@
+{
+  "reviewerRole": "AI_INDEPENDENT_NOT_RUNTIME_AUTHOR",
+  "runtimeCommit": "cbf7792f872caf575d58acd28cc7ace1ada14169",
+  "runtimeSha256": "c39f7cdf31e4443059614bac79e7e27c6399c1cfc6fe3dcd1bfdb6b9c3db027e",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "id": "SIM-C2-L005-05",
+  "sourceSha256": "32c452afc5a7c3b8570e77d9ac0bafb12d51f6d61d2f80226a4ff823926d5b95",
+  "edition": 1,
+  "variant": "publishedOriginalOnly",
+  "processExitCode": 0,
+  "elapsedSeconds": 20.532002925872803,
+  "cases": 40,
+  "NumberSubmissions": 16,
+  "modelLaw": "Qin=Qupper+Qlower;Qin12mL/s;Qlower=12-x",
+  "gridAndExactOutputs": [
+    [
+      0,
+      12
+    ],
+    [
+      1,
+      11
+    ],
+    [
+      11,
+      1
+    ],
+    [
+      12,
+      0
+    ]
+  ],
+  "actualAssignedInputs": [
+    8,
+    6
+  ],
+  "actualAssignedEntries": [
+    4,
+    6
+  ],
+  "sourceHypotheses": "Steady incompressible flow, no leakage or storage at branch; positive values denote assigned directions.",
+  "visualReading": {
+    "contactSheets": [
+      {
+        "file": "contact-320-orbit.png",
+        "sha256": "021ed28445cf96157ce785bb1fb375d0cdee45e110ef1bf521ae3e3d9715084a",
+        "cases": 5
+      },
+      {
+        "file": "contact-320-side.png",
+        "sha256": "8c05269f2d852359c97a8cd579aea7fe1a4b917ac410eae2b98f0de14e2ccd08",
+        "cases": 5
+      },
+      {
+        "file": "contact-320-top.png",
+        "sha256": "2fbe71ed96058e920c272764764f650f1c60b69d5b6588ede3cc4a6392ec2f80",
+        "cases": 5
+      },
+      {
+        "file": "contact-320-fixed_projection.png",
+        "sha256": "abe32c30890d3fa3ccd31ad820efe9863ab89eae08f758afd1ce67dc8e48db54",
+        "cases": 5
+      },
+      {
+        "file": "contact-1280-orbit.png",
+        "sha256": "3d3bbdce1b7291fb9aca4bc378e2dc976dbd73c0067242cb6f2671b6076d3ac4",
+        "cases": 5
+      },
+      {
+        "file": "contact-1280-side.png",
+        "sha256": "358e54defba58e7419f2fa2a9556d9e20c7c687b50ae0b2ff878ff0c4dc6d254",
+        "cases": 5
+      },
+      {
+        "file": "contact-1280-top.png",
+        "sha256": "601e26a3203afea29631b266e33c93a34f03bdb6737d68007b4ed8e4e8f8ae92",
+        "cases": 5
+      },
+      {
+        "file": "contact-1280-fixed_projection.png",
+        "sha256": "e9366a36d67e2ce84a63e6c0df83bdcd6f91fd9d2213f736d863dc7da95187d4",
+        "cases": 5
+      }
+    ],
+    "all40CellsRead": true,
+    "nativeSizeOriginalPNGs": [
+      {
+        "file": "actual/screens/cf91b3221d9e7d8f45a93bd57e1938f3d40ee3ddc7f2b22a0d2937ae9c6fcdbf.png",
+        "sha256": "cf91b3221d9e7d8f45a93bd57e1938f3d40ee3ddc7f2b22a0d2937ae9c6fcdbf"
+      },
+      {
+        "file": "actual/screens/917c06562ba2677e470184131a44e5118d6d3b58dc1df041ca48747f03939700.png",
+        "sha256": "917c06562ba2677e470184131a44e5118d6d3b58dc1df041ca48747f03939700"
+      },
+      {
+        "file": "actual/screens/56a75c2934665818d5209ea0b0ea15491c8b9d9a8e6ba1d2f4405f997c1e5a94.png",
+        "sha256": "56a75c2934665818d5209ea0b0ea15491c8b9d9a8e6ba1d2f4405f997c1e5a94"
+      },
+      {
+        "file": "actual/screens/1a429e65f45ecd0e635848661f431e15410f75c47c83ef1b216cd880899e66b1.png",
+        "sha256": "1a429e65f45ecd0e635848661f431e15410f75c47c83ef1b216cd880899e66b1"
+      }
+    ]
+  },
+  "boundedVisualDecision": "POSITIVE_IN_ACTUAL_8PROFILE_0_1_11_12_STATES",
+  "observations": [
+    "Zero branch arrows are absent, not a minimum nonzero display. Short1mL/s heads are visible at320 in native and fixed projection.",
+    "In side view the two branches overlap; the actual native side legend explicitly says this and directs to Alto to distinguish them. This is not asserted as side-view separation.",
+    "The common arrow scale remains1.1world for12mL/s, with1/12 of that at1mL/s; inlet equals sum of branch flows, as actual readouts and CPU law.",
+    "HTML names associate the ochre inlet, violet upper branch and green lower branch; no canvas text observed over selected arrowheads."
+  ],
+  "limitations": [
+    "No full legal grid/camera sweep or GPU introspection.",
+    "Original-v1 text only; no opinion here on separate later L005 DRAFT texts.",
+    "No automatic canonical registration or withdrawal closure."
+  ],
+  "newFindings": [],
+  "overallActivityAcceptance": false,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
