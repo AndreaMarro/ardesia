@@ -1,0 +1,51 @@
+{
+  "activityCredit": 0,
+  "baseCommit": "a9bb897388c7f03e84df6edf7276bde179fb93f7",
+  "baseRuntimeSha256": "53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a",
+  "codePins": {
+    "static/js/banchi/voci/apparati/fluidi.js": {
+      "after": "a2ca8d82818033b0a64759fcfc8e3bde831c0a94addd53e329dd025a1acf480f",
+      "before": "6faf0e94d26620dca5288633c55e7acb842cc7c3f849d4ccfb9fa796e802d4c5"
+    },
+    "static/js/banchi/voci/legende.js": {
+      "after": "c9867ef51048e537e2b2bc60c32cda08e9dbcccc4d5f3bbd74ca01238aea3a1a",
+      "before": "97a4e012a2d763e1e921837497e944a04755519297fe93850c2650454da2dc6d"
+    },
+    "static/js/banchi/voci/modelli/C2.js": {
+      "after": "d44d7fe21cedc2749dc1062b7b6991b3facbf5080a097e0c65fe456ae0bedfff",
+      "before": "a747ffb8336a479f4a42959e734f377f8960cfdf32261d90499deca3cadd59e0"
+    }
+  },
+  "decodedFailureLogSha256": {
+    "actual-first-full-regression.txt": "1f7c2f1f2c966afe0e7335f830ab5d17122ca22e82e6f088235064f1e5f5dc68",
+    "actual-red.txt": "dcc94da877d57772ffebfa82a5dace504d26666ab5d014cfd13dcbb5a99d5009",
+    "actual-tracer-addendum-red.txt": "15d38a41480e18acd153107804ead5162f5c2b2871b9056f31d5a8332effecb5"
+  },
+  "earlierFullSuiteFailure": "The earlier main-vector test counted the new separately colored Pitot details. Its per-vector direction and ordering assertions were retained, and the details are covered by a separate test.",
+  "filePins": {
+    "actual-contract-tests.txt": "da37d43712c586635744b818f2ed65b2e9142348f65a9a88e44daef450153fd1",
+    "actual-first-full-regression.txt.gz": "b8e59ff55b9945a969b7388902f3806791cfc0765a86a6cd96d22168d91733a4",
+    "actual-green.txt": "f2fbcdeb391e735a5a1e0e92ca1eb961f9f3dd6b20e136f4413b9ec73bfe80c4",
+    "actual-node-tests.txt": "276ad2676b8a7163130c792c9410d5861dd300927151809a616f6410d09ce3d4",
+    "actual-red.txt.gz": "4a5f6d28ad1e1bab990ef6d29ac3f0c12d18478dece7552822f005edefd5fb96",
+    "actual-tracer-addendum-red.txt.gz": "2b451b9e5d64f95e66eac900d7bdfc3fe0e5e0c817234df83e75323472b37eda"
+  },
+  "focusedGreenTests": 3,
+  "humanApproval": "NOT_RUN",
+  "ids": [
+    "SIM-C2-L005-01",
+    "SIM-C2-L006-02"
+  ],
+  "localContractsPass": 2,
+  "localNodePass": 339,
+  "observedNewRuntimeCases": 0,
+  "oldJointStatus": {
+    "L00501": "DRAFT_AND_PUBLISHED_OBSERVED_160_PENDING_PEER_FINAL",
+    "L00602": "TARGETED_64_ORIGINAL_AND_DRAFT_OBSERVED_OWN_REREAD_NOT_INDEPENDENT"
+  },
+  "phase": "AUTHOR_C2_DIRECTION_AND_OCCLUSION_DISPLAY_FIX",
+  "publicationAction": "NONE",
+  "redTests": 3,
+  "runtimeSha256": "fe5d26413e1aeb59987cc3fd6040adde3b01952b6e5e5c3951695b2e64d9166b",
+  "schemaVersion": "1.0.0"
+}

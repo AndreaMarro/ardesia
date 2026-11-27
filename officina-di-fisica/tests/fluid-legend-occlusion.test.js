@@ -3,6 +3,7 @@ import {readFileSync} from 'node:fs';
 import test from 'node:test';
 
 import {esperienza} from '../static/js/banchi/voci/esperimento.js';
+import {colore} from '../static/js/banchi/voci/geometria.js';
 
 const sources = JSON.parse(readFileSync(new URL('../content/esperienze-C2.json',import.meta.url)));
 const transfers = {
@@ -50,7 +51,8 @@ test('the Pitot velocity arrows pass beside the probes with the same direction a
   const { min, max, step } = row.control;
   for (let speed = min; speed <= max; speed += step) {
     const scene = bench.elements(speed, 2);
-    const vectors = scene.filter(element => element.kind === 'arrow');
+    const arrows = scene.filter(element => element.kind === 'arrow');
+    const vectors = arrows.filter(arrow => arrow.c === colore.verde || arrow.c === colore.viola);
     assert.equal(vectors.length, speed === 0 ? 0 : 2);
     for (const {a, b} of vectors) {
       assert.equal(a[1], 1.05);
@@ -62,7 +64,7 @@ test('the Pitot velocity arrows pass beside the probes with the same direction a
     const intake = scene.find(({kind, r}) => kind === 'rod' && r === 0.088);
     assert.deepEqual(intake.a, [1.4, 1.05, 0]);
     assert.deepEqual(intake.b, [1.02, 1.05, 0]);
-    if (vectors.length) assert.deepEqual(scene.slice(-2), vectors);
+    if (vectors.length) assert.deepEqual(scene.slice(-arrows.length), arrows);
   }
 });
 

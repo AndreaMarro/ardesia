@@ -171,16 +171,27 @@ export const fluidi = {
     tuboOrizz(b, -l, -0.72, s.r1, s.r1);
     tuboOrizz(b, -0.72, 0.3, s.r1, s.r2);
     tuboOrizz(b, 0.3, l, s.r2, s.r2);
-    // Leave the Pitot intake and both risers on axis. Offset only the displayed vectors.
-    const arrowDepth = s.pitot ? 0.23 : 0;
+    // Keep readings in the measuring plane and draw the direction marks clear of the tracers and probes.
+    const arrowDepth = s.pitot ? 0.23 : s.punteVelocitaVisibili ? 0.4 : 0;
     const velocita = () => {
-      b.arrow([-l + 0.18, 1.05, arrowDepth], [-l + 0.18 + 0.8 * s.v1, 1.05, arrowDepth], c.verde);
+      const punteVisibili = s.pitot || s.punteVelocitaVisibili;
+      b.arrow(
+        [-l + 0.18, 1.05, arrowDepth],
+        [-l + 0.18 + 0.8 * s.v1, 1.05, arrowDepth],
+        c.verde,
+        punteVisibili,
+      );
       b.arrow(
         [0.44, 1.05, arrowDepth],
         [0.44 + 0.8 * s.v2, 1.05, arrowDepth],
         c.viola,
-        s.puntaVelocitaValleVisibile,
+        punteVisibili || s.puntaVelocitaValleVisibile,
       );
+      if (s.pitot && s.v1 > 0 && s.v1 <= 1 / 8) {
+        // A separate detail leaves the main arrows and their common scale intact.
+        b.arrow([-1.58, 0.8, 1.15], [-1.58 + 6.4 * s.v1, 0.8, 1.15], c.ocraScuro, true);
+        b.arrow([0.60, 0.8, 1.15], [0.60 + 6.4 * s.v2, 0.8, 1.15], c.ocraScuro, true);
+      }
     };
     if (!s.pitot) velocita();
     if (s.pressione || s.pitot || s.perdita !== undefined) {
