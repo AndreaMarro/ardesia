@@ -37,18 +37,19 @@
         "inputCommit": "728474c72f069e87ab8528549bb31f172ed5608a",
         "requiresExactRuntimeIntegrationCheck": true
       }
-    }
+    },
+    "perIdStatusCommit": "1ca9dcad9f7d2ca2281ddf056c317e163d00d1e1"
   },
   "otherActivities": {
     "total": 385,
-    "registered": 257,
-    "open": 128,
-    "newReviewsOpen": 127,
-    "explicitlyReopened": 1,
-    "nextReopenedId": "LAB3D-03",
-    "nextNewOriginalId": "SIM-C2-L001-01",
-    "candidateCommit": "7b05fd3a9cc3b0463c1b2d32015e41cca56e8b73",
-    "registrySha256": "d6161e87211198a9516d023f347bc8f8cdc6cc03da0beb129b7557b9b221d2e5",
+    "registered": 263,
+    "open": 122,
+    "newReviewsOpen": 122,
+    "explicitlyReopened": 0,
+    "nextReopenedId": null,
+    "nextNewOriginalId": "SIM-C2-L002-01",
+    "candidateCommit": "1ca9dcad9f7d2ca2281ddf056c317e163d00d1e1",
+    "registrySha256": "8e0435b4a5a9535705de76d03d2817534b01fe934b26a1dddf5a3d2155f1e592",
     "completedOnUnifiedRuntime": false,
     "historical242Snapshot": {
       "registered": 242,
@@ -559,7 +560,13 @@
       "fullFirstAttemptExitCode": 1,
       "fullFirstAttemptPng": 59,
       "fullFirstAttemptFailure": "LOCAL_DISK_CAPACITY",
-      "activityCredit": 0
+      "activityCredit": 0,
+      "secondActualExitCode": 0,
+      "secondActualCases": 120,
+      "secondActualClockObservations": 64,
+      "secondActualPng": 184,
+      "wholeScopePeerCommit": "76edf024abf52865a91ee2c48eeb6e1aa6a20d5f",
+      "standaloneFocusedUnitMetadataCorrection": "original expected results 5 kPa and 2 m, not bar"
     },
     "collectorCapacityInterruption": {
       "commit": "9e3f6fbdb6b49762372114849ac08907e63cdedb",
@@ -569,7 +576,11 @@
       "simulatedLowCapacity": true,
       "terminalCode": 1,
       "fixtureArchiveSha256": "cdb61d61b8d070913de0f2c4ce43a1671c2482c7bbe717871170632254a5c9d5",
-      "completePositiveReplay": "PENDING",
+      "completePositiveReplay": {
+        "status": "PASS_C2_224",
+        "producerCommit": "f6df39eb0b3bd610227e380fff84d782dfe528a5",
+        "actualCases": 224
+      },
       "activityCredit": 0
     },
     "hydrostaticReadingDrafts": {
@@ -594,12 +605,85 @@
         "publishedRecordsByteEquivalent": 991,
         "liveAndDraftVersionsConfirmed": 4
       },
-      "independentCheck": "IN_PROGRESS",
+      "independentCheck": "PASS_MATH_TEXT_AND_INSTALLED_CODE",
       "actualOwnerPreview": "NOT_RUN",
       "activityCredit": 0,
       "humanApproval": "NOT_RUN",
       "publicationAction": "NONE",
-      "manifest": "editorial/reviews/c2-hydrostatic-reading-author-20261127.json"
+      "manifest": "editorial/reviews/c2-hydrostatic-reading-author-20261127.json",
+      "independentCommit": "39b82327267ef8576049848aa32965df61efd786",
+      "actualAssignedTasks": 8
+    },
+    "currentSourceActivityRegister": {
+      "branch": "review/cric-wave-current-integration",
+      "commit": "1ca9dcad9f7d2ca2281ddf056c317e163d00d1e1",
+      "registrySha256": "8e0435b4a5a9535705de76d03d2817534b01fe934b26a1dddf5a3d2155f1e592",
+      "runtimeSha256": "1efcd26bbb078453b75be5fbd1502b95cf07c0ffabb4112a4e4cf78170ff46aa",
+      "registeredAcrossEvidenceEpochs": 263,
+      "activeAlreadyRegisteredWithdrawals": 0,
+      "nextNewOriginalId": "SIM-C2-L002-01",
+      "canonicalIntegration": "PENDING",
+      "previous257Candidate": "7b05fd3a9cc3b0463c1b2d32015e41cca56e8b73",
+      "whole035Closure": {
+        "id": "LAB3D-03",
+        "commit": "8141ef50c6648aef188f5d8bf502a4fad5c98d48",
+        "actualCases": 120,
+        "actualClockObservations": 64,
+        "manuallyReadRasters": 184,
+        "canonicalFirstPlus": 1,
+        "canonicalRepeatPlus": 0,
+        "reportSha256": "049548d6504770622312d7c93674894923d7796f615df07176f291b062bf9e56",
+        "independentCommit": "76edf024abf52865a91ee2c48eeb6e1aa6a20d5f",
+        "unitMetadataAddendum": "1e50bb93919fdce6eabe05b83153a176e388869fa6bd2c9fe15c0ae12362fe7e"
+      },
+      "densityPressureClosure": {
+        "ids": [
+          "SIM-C2-L001-01",
+          "SIM-C2-L001-02",
+          "SIM-C2-L001-03",
+          "SIM-C2-L001-04",
+          "SIM-C2-L001-05"
+        ],
+        "commit": "568a5db0ce71b45bf1efea40c3ed47ea228d4891",
+        "distinctVisualReviewerCommit": "f6df39eb0b3bd610227e380fff84d782dfe528a5",
+        "actualCases": 224,
+        "actualAssignedAnswerEvents": 80,
+        "canonicalFirstPlus": 5,
+        "canonicalRepeatPlus": 0,
+        "reportSha256": "3c2c6e39a801800c32559f6f0fb73c4959cc969472069ca0780456c383054515"
+      }
+    },
+    "continuityReadingDrafts": {
+      "authorCommit": "4690ac2e82670bdc19aa37eaeb3fabd6b729801d",
+      "manualClarificationCommit": "3ac8647a7ad412518cc4cd2ced1838a498809a19",
+      "independentCommit": "820f32eb94aeab1c4abbec24264d9ede8847d2c4",
+      "ids": [
+        "SIM-C2-L005-01",
+        "SIM-C2-L005-02",
+        "SIM-C2-L005-03",
+        "SIM-C2-L005-04",
+        "SIM-C2-L005-05"
+      ],
+      "actualAssignedTasks": 10,
+      "actualControls": 68,
+      "independentTestsPassed": 7,
+      "actualOwnerPreview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    "c4ComposedInterruptionAndRetry": {
+      "sourceCommit": "b9994b9116e87478905191d85cca8037d17ae4bd",
+      "runtimeSha256": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6",
+      "appNodePass": 323,
+      "contractPass": 2,
+      "priorReproduction": "a5462a49273508ec5f603fe51f1615c56b8ee372",
+      "authorAlphabetAndProbeChange": "0387b946e225dd20c7d11c28e2af002bd9c94993",
+      "wholeAttemptObservedExit": 1,
+      "actualUniqueCasesBeforeDiskGuard": 225,
+      "plannedCases": 448,
+      "archiveSha256": "0896b5e0787b954fd7c074376b93f0d4057e925c31ccbbef7abca42aa29c4a10",
+      "archive": "editorial/reviews/c4-composed-7c72-browser-interruption-20261127/actual-prefix.zip",
+      "nextPlan": "FOUR_DISJOINT_SLICES_EACH_112_WITH_IDENTICAL_CANDIDATE_AND_REQUEST",
+      "activityCredit": 0
     }
   },
   "coexistence": {
@@ -709,11 +793,11 @@
     }
   },
   "nextAction": [
-    "Repeat the complete LAB3D-03 family 035 browser proof on 1efcd after the measured capacity failure, then submit the scoped closure to the canonical validator.",
-    "Continue original C2-L001-01 through C2-L001-05, where separate review already covered all 10 manual tasks.",
-    "Complete the C4 diagnosis of the three reported label collisions, verify the repairs independently and rerun full448 with the fixed collector.",
-    "Continue the remaining C2–C5 activities and renew scoped evidence and complete CI on the final canonical integration SHA.",
-    "Retain the separate human science approval and publication gates."
+    "Replay the first open original SIM-C2-L002-01 and DRAFT047 with separate original and draft decisions, then validate the other four hydrostatic drafts in the same review scope.",
+    "Run owner-only and per-ID runtime checks for the five C2 continuity drafts. Retain the earlier geometry findings until evidence on the composed candidate exists.",
+    "Complete the four disjoint exact C4 browser slices and independently judge the eight IDs including the three corrected field probes.",
+    "Continue all 122 open C2–C5 IDs. Renew the full candidate runtime evidence and execute CI on the integrated canonical SHA.",
+    "Record human scientific approval and publication separately."
   ],
   "composedCandidate": {
     "branch": "feat/cric-composed-runtime",
@@ -880,7 +964,16 @@
       "nodePass": 316,
       "contractPass": 2,
       "separatedProbeRasterCanary": "ACTUAL16_TERMINAL0_INDEPENDENT_RASTER_REVIEW_PASS_FOCUSED"
+    },
+    "privatePreviewExplicitBatch": {
+      "phase": "PARAMETRIC_PRIVATE_PREVIEW",
+      "protocolSha256": "c4a0e65ba720355d77077b295bf174063c210f2151e4e8d917e8a3373be89839",
+      "syntaxCheck": "PASS",
+      "missingBatchId": "REJECTED_BEFORE_PREVIEW",
+      "browserBatchResumeTestsPassed": 36,
+      "previousPreviewProtocolEvidence": "PRESERVED_AS_HISTORICAL",
+      "fullPreviewReplayOnFinalCandidate": "PENDING"
     }
   },
-  "activityCandidateRuntimeSha256": "3ed5bc77d8320230b62e1c3e6ca3bdd00f240cc64ec236b10fe55a306ca79251"
+  "activityCandidateRuntimeSha256": "1efcd26bbb078453b75be5fbd1502b95cf07c0ffabb4112a4e4cf78170ff46aa"
 }
