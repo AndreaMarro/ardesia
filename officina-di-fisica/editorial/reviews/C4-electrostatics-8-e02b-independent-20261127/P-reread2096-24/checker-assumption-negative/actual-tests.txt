@@ -1,0 +1,317 @@
+test_actual24_identity_and_all_images_read (__main__.MidpointReread.test_actual24_identity_and_all_images_read) ... ok
+test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) ... 
+  test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|320|top|grid|0') ... FAIL
+  test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|320|top|grid|1') ... FAIL
+  test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|320|top|grid|2') ... FAIL
+  test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|320|orbit|grid|0') ... FAIL
+  test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|320|orbit|grid|1') ... FAIL
+  test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|320|orbit|grid|2') ... FAIL
+  test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|320|fixed_projection|grid|0') ... FAIL
+  test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|320|fixed_projection|grid|1') ... FAIL
+  test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|320|fixed_projection|grid|2') ... FAIL
+  test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|1280|top|grid|0') ... FAIL
+  test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|1280|top|grid|1') ... FAIL
+  test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|1280|top|grid|2') ... FAIL
+  test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|1280|orbit|grid|0') ... FAIL
+  test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|1280|orbit|grid|1') ... FAIL
+  test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|1280|orbit|grid|2') ... FAIL
+  test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|1280|fixed_projection|grid|0') ... FAIL
+  test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|1280|fixed_projection|grid|1') ... FAIL
+  test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|1280|fixed_projection|grid|2') ... FAIL
+test_exact_field_tasks_zero_and_tenfold_operator (__main__.MidpointReread.test_exact_field_tasks_zero_and_tenfold_operator) ... ok
+test_fallback_has_exposed_separate_head_and_declared_gain (__main__.MidpointReread.test_fallback_has_exposed_separate_head_and_declared_gain) ... ok
+test_legend_matches_changed_probe_and_arrow_colours (__main__.MidpointReread.test_legend_matches_changed_probe_and_arrow_colours) ... ok
+test_primitives_models_inputs_unchanged_except_labels (__main__.MidpointReread.test_primitives_models_inputs_unchanged_except_labels) ... ok
+
+======================================================================
+FAIL: test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|320|top|grid|0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C4-electrostatics-8-e02b-independent-20261127/P-reread2096-24/test_reread.py", line 69, in test_charge_labels_are_off_geometry_and_accessible
+    self.assertEqual(labels,['P'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['P']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'P'
+
+- []
++ ['P']
+
+======================================================================
+FAIL: test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|320|top|grid|1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C4-electrostatics-8-e02b-independent-20261127/P-reread2096-24/test_reread.py", line 69, in test_charge_labels_are_off_geometry_and_accessible
+    self.assertEqual(labels,['P'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['P']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'P'
+
+- []
++ ['P']
+
+======================================================================
+FAIL: test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|320|top|grid|2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C4-electrostatics-8-e02b-independent-20261127/P-reread2096-24/test_reread.py", line 69, in test_charge_labels_are_off_geometry_and_accessible
+    self.assertEqual(labels,['P'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['P']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'P'
+
+- []
++ ['P']
+
+======================================================================
+FAIL: test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|320|orbit|grid|0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C4-electrostatics-8-e02b-independent-20261127/P-reread2096-24/test_reread.py", line 69, in test_charge_labels_are_off_geometry_and_accessible
+    self.assertEqual(labels,['P'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['P']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'P'
+
+- []
++ ['P']
+
+======================================================================
+FAIL: test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|320|orbit|grid|1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C4-electrostatics-8-e02b-independent-20261127/P-reread2096-24/test_reread.py", line 69, in test_charge_labels_are_off_geometry_and_accessible
+    self.assertEqual(labels,['P'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['P']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'P'
+
+- []
++ ['P']
+
+======================================================================
+FAIL: test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|320|orbit|grid|2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C4-electrostatics-8-e02b-independent-20261127/P-reread2096-24/test_reread.py", line 69, in test_charge_labels_are_off_geometry_and_accessible
+    self.assertEqual(labels,['P'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['P']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'P'
+
+- []
++ ['P']
+
+======================================================================
+FAIL: test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|320|fixed_projection|grid|0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C4-electrostatics-8-e02b-independent-20261127/P-reread2096-24/test_reread.py", line 69, in test_charge_labels_are_off_geometry_and_accessible
+    self.assertEqual(labels,['P'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['P']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'P'
+
+- []
++ ['P']
+
+======================================================================
+FAIL: test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|320|fixed_projection|grid|1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C4-electrostatics-8-e02b-independent-20261127/P-reread2096-24/test_reread.py", line 69, in test_charge_labels_are_off_geometry_and_accessible
+    self.assertEqual(labels,['P'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['P']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'P'
+
+- []
++ ['P']
+
+======================================================================
+FAIL: test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|320|fixed_projection|grid|2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C4-electrostatics-8-e02b-independent-20261127/P-reread2096-24/test_reread.py", line 69, in test_charge_labels_are_off_geometry_and_accessible
+    self.assertEqual(labels,['P'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['P']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'P'
+
+- []
++ ['P']
+
+======================================================================
+FAIL: test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|1280|top|grid|0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C4-electrostatics-8-e02b-independent-20261127/P-reread2096-24/test_reread.py", line 69, in test_charge_labels_are_off_geometry_and_accessible
+    self.assertEqual(labels,['P'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['P']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'P'
+
+- []
++ ['P']
+
+======================================================================
+FAIL: test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|1280|top|grid|1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C4-electrostatics-8-e02b-independent-20261127/P-reread2096-24/test_reread.py", line 69, in test_charge_labels_are_off_geometry_and_accessible
+    self.assertEqual(labels,['P'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['P']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'P'
+
+- []
++ ['P']
+
+======================================================================
+FAIL: test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|1280|top|grid|2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C4-electrostatics-8-e02b-independent-20261127/P-reread2096-24/test_reread.py", line 69, in test_charge_labels_are_off_geometry_and_accessible
+    self.assertEqual(labels,['P'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['P']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'P'
+
+- []
++ ['P']
+
+======================================================================
+FAIL: test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|1280|orbit|grid|0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C4-electrostatics-8-e02b-independent-20261127/P-reread2096-24/test_reread.py", line 69, in test_charge_labels_are_off_geometry_and_accessible
+    self.assertEqual(labels,['P'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['P']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'P'
+
+- []
++ ['P']
+
+======================================================================
+FAIL: test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|1280|orbit|grid|1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C4-electrostatics-8-e02b-independent-20261127/P-reread2096-24/test_reread.py", line 69, in test_charge_labels_are_off_geometry_and_accessible
+    self.assertEqual(labels,['P'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['P']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'P'
+
+- []
++ ['P']
+
+======================================================================
+FAIL: test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|1280|orbit|grid|2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C4-electrostatics-8-e02b-independent-20261127/P-reread2096-24/test_reread.py", line 69, in test_charge_labels_are_off_geometry_and_accessible
+    self.assertEqual(labels,['P'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['P']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'P'
+
+- []
++ ['P']
+
+======================================================================
+FAIL: test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|1280|fixed_projection|grid|0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C4-electrostatics-8-e02b-independent-20261127/P-reread2096-24/test_reread.py", line 69, in test_charge_labels_are_off_geometry_and_accessible
+    self.assertEqual(labels,['P'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['P']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'P'
+
+- []
++ ['P']
+
+======================================================================
+FAIL: test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|1280|fixed_projection|grid|1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C4-electrostatics-8-e02b-independent-20261127/P-reread2096-24/test_reread.py", line 69, in test_charge_labels_are_off_geometry_and_accessible
+    self.assertEqual(labels,['P'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['P']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'P'
+
+- []
++ ['P']
+
+======================================================================
+FAIL: test_charge_labels_are_off_geometry_and_accessible (__main__.MidpointReread.test_charge_labels_are_off_geometry_and_accessible) (case='SIM-C4-L02-02|published|1280|fixed_projection|grid|2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C4-electrostatics-8-e02b-independent-20261127/P-reread2096-24/test_reread.py", line 69, in test_charge_labels_are_off_geometry_and_accessible
+    self.assertEqual(labels,['P'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['P']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'P'
+
+- []
++ ['P']
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.046s
+
+FAILED (failures=18)
