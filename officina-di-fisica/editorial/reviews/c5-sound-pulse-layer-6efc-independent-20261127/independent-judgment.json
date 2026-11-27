@@ -1,0 +1,127 @@
+{
+  "role": "AI_INDEPENDENT_REVIEW_OF_ROOT_AUTHORED_CORRECTION",
+  "id": "SIM-C5-L05-01",
+  "runtimeCommit": "593c82a93a1dd635461a33297d84ee8634db3fcd",
+  "runtimeSha256": "6efcc26c2b698fd7c1c89bde711f568359ffd5d3465780f9e9c673deae7fdbb2",
+  "sourceReportSha256": "d0a304fdea50d6745fff12d11df7e87ed9b4ac1d8b58d695a6f9b0f68a4b4bfb",
+  "producerTerminal": {
+    "observedExitCode": 0,
+    "seconds": 25.225727707999795,
+    "startingFreeBytes": 13745123328,
+    "timeoutTriggered": false
+  },
+  "reviewerStartedChrome": false,
+  "negativeHistoryPreserved": [
+    {
+      "commit": "f51caac6bf1ed75a1a6caf9426a8f84be1ca044c",
+      "manifestSha256": "c61f58ad6468b830f4499b865b72cc59091f8a6fb57d615959510aa942a9b13b",
+      "failure": "Fallbackreceiver t30diskfill63.13%covered on53bd"
+    },
+    {
+      "commit": "6430b7bd63a88e83d915be6ea9257899201348b6",
+      "manifestSha256": "29d04b7048e7db4117e7e61dc26d63a1f99d2716e0deeb14ffa734940ff45a40",
+      "failure": "Fallbacksource t0diskfill21.63%covered on53bd"
+    }
+  ],
+  "actuallyReadScope": {
+    "nativeSizeOriginalPNGs": [
+      {
+        "caseKey": "SIM-C5-L05-01|draft|320|fixed_projection|clock|0",
+        "PNGFile": "84debe0d19d08af54783498b8636ec6006722adfce3dbb62d905663dd23791fe.png",
+        "PNGsha256": "84debe0d19d08af54783498b8636ec6006722adfce3dbb62d905663dd23791fe",
+        "pulseElementIndex": 7,
+        "sourceElementIndex": 6,
+        "receiverElementIndex": 5,
+        "pulseAttributesUnchanged": true,
+        "pulsePaintedAfterBothOccludents": true,
+        "caseFile": "actual-producer-320-clock0.json"
+      },
+      {
+        "caseKey": "SIM-C5-L05-01|draft|320|fixed_projection|clock|2",
+        "PNGFile": "ad18b87332dc6fdb62037a16d6fb2114cf8905967f203df877ffd181a57fe77e.png",
+        "PNGsha256": "ad18b87332dc6fdb62037a16d6fb2114cf8905967f203df877ffd181a57fe77e",
+        "pulseElementIndex": 7,
+        "sourceElementIndex": 6,
+        "receiverElementIndex": 5,
+        "pulseAttributesUnchanged": true,
+        "pulsePaintedAfterBothOccludents": true,
+        "caseFile": "actual-producer-320-clock2.json"
+      },
+      {
+        "caseKey": "SIM-C5-L05-01|draft|1280|fixed_projection|clock|0",
+        "PNGFile": "193245ae4572c678154c9c63220a127b6fe070b0cdb2fcfb0c6a858af015b1cc.png",
+        "PNGsha256": "193245ae4572c678154c9c63220a127b6fe070b0cdb2fcfb0c6a858af015b1cc",
+        "pulseElementIndex": 7,
+        "sourceElementIndex": 6,
+        "receiverElementIndex": 5,
+        "pulseAttributesUnchanged": true,
+        "pulsePaintedAfterBothOccludents": true,
+        "caseFile": "actual-producer-1280-clock0.json"
+      },
+      {
+        "caseKey": "SIM-C5-L05-01|draft|1280|fixed_projection|clock|2",
+        "PNGFile": "33e794b24129b829e35cd9a980f79f63f2433e8236ffd08d91d6f49cbb79ce5e.png",
+        "PNGsha256": "33e794b24129b829e35cd9a980f79f63f2433e8236ffd08d91d6f49cbb79ce5e",
+        "pulseElementIndex": 7,
+        "sourceElementIndex": 6,
+        "receiverElementIndex": 5,
+        "pulseAttributesUnchanged": true,
+        "pulsePaintedAfterBothOccludents": true,
+        "caseFile": "actual-producer-1280-clock2.json"
+      },
+      {
+        "caseKey": "SIM-C5-L05-01|draft|1280|top|clock|0",
+        "PNGFile": "f0854d79ae8fa450da19f030925fbbb60822eacedf1b224c6455e0842d52b6c8.png",
+        "PNGsha256": "f0854d79ae8fa450da19f030925fbbb60822eacedf1b224c6455e0842d52b6c8"
+      },
+      {
+        "caseKey": "SIM-C5-L05-01|draft|1280|top|clock|1",
+        "PNGFile": "1146cf430869682d8510e66829c80aa5e8c60127804b980fad67be2218d9f08d.png",
+        "PNGsha256": "1146cf430869682d8510e66829c80aa5e8c60127804b980fad67be2218d9f08d"
+      },
+      {
+        "caseKey": "SIM-C5-L05-01|draft|1280|top|clock|2",
+        "PNGFile": "306b6d250156de81c424c585c52a0dd7d77aa7bcf6bdd2adbe626011b82c99d8.png",
+        "PNGsha256": "306b6d250156de81c424c585c52a0dd7d77aa7bcf6bdd2adbe626011b82c99d8"
+      }
+    ],
+    "newFallbackContactSheets": [
+      {
+        "path": "fallback-all8-320.png",
+        "sha256": "fd68b82334a587e0bd5050fecf8b44ad3775c7e7ed8355ecd8f0eda79fc2fa02",
+        "cells": 8
+      },
+      {
+        "path": "fallback-all8-1280.png",
+        "sha256": "fbd1c63f4527eb3affaf468bff001c04adb507e420532790bd8e7ce7c04e1c5b",
+        "cells": 8
+      }
+    ],
+    "sourceAndArrivalCapsAll4ActuallyReread": true,
+    "topSteel0_15_30ActuallyReread": true,
+    "reuseOfIdenticalRasters": {
+      "count": 50,
+      "previouslyActuallyReadPeer": "f51caac6bf1ed75a1a6caf9426a8f84be1ca044c",
+      "method": "Currentactual64producer cases/PNG bytes checked;50rasters exactly match previousindependently read53bd originals,14changedfallbackrasters reread onnew2sheets. This does not retag oldtechnicalmetadata."
+    }
+  },
+  "observations": [
+    "New SVG paints violet signal after both ochre sourceball andgrayreceiverpolygon;circlecx/cy/r/color/stroke unchanged in4exactcounterexamples.",
+    "Atsteel0/30ms,320/1280fallback violet disks are whole in actually openedPNG;no cap hidden behindsource/receiver.",
+    "NativeTop1280steel0/15/30 contours are complete, contained inviewport;marker starts atsource, is halfway at15ms andarrives atreceiver30ms.",
+    "All64pairedid/source/candidate/model/input/time/readout fields areidentical before/after;camera/spec/canvas/renderer equal; no numerical/manual law or inputchange observed.",
+    "Threefocusedtests pass;technical producer terminal0/25.226s isseparate fromthisindependentvisualjudgment."
+  ],
+  "boundedDecision": "POSITIVE_FOR_ACQUIRED64_SOUND_STATES_WITH_FOCUSED4_ENDPOINT_AND_TOP_REREAD",
+  "newFindings": [],
+  "limitations": [
+    "No new reviewer browser run; distinct reading of Root actual newartifact.",
+    "No arbitrary camera/full legal time grid or global385/139acceptance.",
+    "DopplerL05-03 is a separatepreparedcohort and not approvedhere.",
+    "No automatic registry/withdrawalclosure or humanpublication."
+  ],
+  "overallActivityAcceptance": false,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
