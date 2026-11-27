@@ -1,0 +1,648 @@
+{
+  "runtimeSha256": "20472044aa6ff10eb8d1b062517cab50f5fa30c5db5765683568d7a9c6bad811",
+  "cases": [
+    {
+      "caseKey": "SIM-C2-L006-02|published|320|fixed_projection|grid|0",
+      "caseFile": "editorial/reviews/c2-fluid-labels-2047-independent-a-20261127/canary-actual/cases/b15ac5f04d422d2e5a9fa61d90aa1cbe79d65ff3a275da04ad6a71b829cf28c7.json",
+      "caseSha256": "dc903b6bf909f98c666b070ec04bf9d7bc603a07fe668ff584c08ed7741fbda0",
+      "control": 0.25,
+      "screenshot": {
+        "file": "screens/d5aa96e6f0de4e35560ac51b594b8bc81bbf87f7f2504124f59df7d79e81ce2e.png",
+        "sha256": "d5aa96e6f0de4e35560ac51b594b8bc81bbf87f7f2504124f59df7d79e81ce2e"
+      },
+      "violetHeadCount": 1,
+      "metalIntersections": []
+    },
+    {
+      "caseKey": "SIM-C2-L006-02|published|320|fixed_projection|grid|1",
+      "caseFile": "editorial/reviews/c2-fluid-labels-2047-independent-a-20261127/canary-actual/cases/e2f23382ff065ba83ee1fd150a185779091453cfe5ccdbbd9fdfc08889aaa3b0.json",
+      "caseSha256": "2a5d1d1ceb3cfbaae9b317c9880c54420547c7f595bafc996b0f80b1c4bd8bdf",
+      "control": 5,
+      "screenshot": {
+        "file": "screens/0159cb6b457ecfe0de615e84298146e6f68102e0958f6c75e2662ade28d9f528.png",
+        "sha256": "0159cb6b457ecfe0de615e84298146e6f68102e0958f6c75e2662ade28d9f528"
+      },
+      "violetHeadCount": 1,
+      "metalIntersections": [
+        {
+          "headPolygonOrder": 12,
+          "occludingPolygonOrder": 17,
+          "headPoints": [
+            [
+              "7509/25",
+              "11233/100"
+            ],
+            [
+              "7309/25",
+              "10849/100"
+            ],
+            [
+              "7309/25",
+              "11617/100"
+            ]
+          ],
+          "opaqueMetalPoints": [
+            [
+              "1474/5",
+              "13263/125"
+            ],
+            [
+              "13847/50",
+              "13263/125"
+            ],
+            [
+              "13847/50",
+              "14187/125"
+            ],
+            [
+              "1474/5",
+              "14187/125"
+            ]
+          ],
+          "intersectionPoints": [
+            [
+              "7309/25",
+              "14187/125"
+            ],
+            [
+              "7309/25",
+              "10849/100"
+            ],
+            [
+              "1474/5",
+              "274153/2500"
+            ],
+            [
+              "1474/5",
+              "14187/125"
+            ]
+          ],
+          "headAreaExact": "768/25",
+          "coveredAreaExact": "674111/62500",
+          "coveredFractionExact": "674111/1920000",
+          "coveredPercent": 35.10994791666667,
+          "headApexUnderLaterMetalFill": false,
+          "qualification": "Later opaque SVG fill; excludes its stroke and other bodies, so conservative partial-cone coverage. No new whole-arrow assertion."
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C2-L006-02|published|320|fixed_projection|grid|2",
+      "caseFile": "editorial/reviews/c2-fluid-labels-2047-independent-a-20261127/canary-actual/cases/03d858ede72bc8e30ae00026f8b560d8051fcc3b75c554d425aff34127b015e1.json",
+      "caseSha256": "55e0c2aa79d142e096020032d1cc6acc4b7dcdad6a479d453b76049861603a08",
+      "control": 0,
+      "screenshot": {
+        "file": "screens/fdd9236fd09b27e508b2f4355a5d1b7d3f2bc833a9616090399ba262d5e1f57d.png",
+        "sha256": "fdd9236fd09b27e508b2f4355a5d1b7d3f2bc833a9616090399ba262d5e1f57d"
+      },
+      "violetHeadCount": 0,
+      "metalIntersections": []
+    },
+    {
+      "caseKey": "SIM-C2-L006-02|published|320|fixed_projection|grid|3",
+      "caseFile": "editorial/reviews/c2-fluid-labels-2047-independent-a-20261127/canary-actual/cases/9846d9c38d758d39fc1c75a83e93f9a3f351dbf6ef741b39ab10589055ea4cf4.json",
+      "caseSha256": "bfaaec037ac070952d2d0c2c3584d9a4caac6c2819181c71e19508e4c93c6361",
+      "control": 4.25,
+      "screenshot": {
+        "file": "screens/8f327f45f4fd9bc6b55870b21be008b6359bf4687047d9158bc172d11569daab.png",
+        "sha256": "8f327f45f4fd9bc6b55870b21be008b6359bf4687047d9158bc172d11569daab"
+      },
+      "violetHeadCount": 1,
+      "metalIntersections": [
+        {
+          "headPolygonOrder": 12,
+          "occludingPolygonOrder": 17,
+          "headPoints": [
+            [
+              "29331/100",
+              "11233/100"
+            ],
+            [
+              "28531/100",
+              "10849/100"
+            ],
+            [
+              "28531/100",
+              "11617/100"
+            ]
+          ],
+          "opaqueMetalPoints": [
+            [
+              "1474/5",
+              "13263/125"
+            ],
+            [
+              "13847/50",
+              "13263/125"
+            ],
+            [
+              "13847/50",
+              "14187/125"
+            ],
+            [
+              "1474/5",
+              "14187/125"
+            ]
+          ],
+          "intersectionPoints": [
+            [
+              "28531/100",
+              "14187/125"
+            ],
+            [
+              "28531/100",
+              "10849/100"
+            ],
+            [
+              "29331/100",
+              "11233/100"
+            ],
+            [
+              "349057/1200",
+              "14187/125"
+            ]
+          ],
+          "headAreaExact": "768/25",
+          "coveredAreaExact": "5585231/240000",
+          "coveredFractionExact": "5585231/7372800",
+          "coveredPercent": 75.75454372829861,
+          "headApexUnderLaterMetalFill": true,
+          "qualification": "Later opaque SVG fill; excludes its stroke and other bodies, so conservative partial-cone coverage. No new whole-arrow assertion."
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C2-L006-02|published|320|fixed_projection|grid|4",
+      "caseFile": "editorial/reviews/c2-fluid-labels-2047-independent-a-20261127/canary-actual/cases/ad686faf352976de1b2d848781072813f1e6ef30d34dd65eac5dd2e3e2098201.json",
+      "caseSha256": "cc683ec72cbbf9ab8cd6a83bd527ba63f63dd2abb0d0461d92a88ce13cf97df2",
+      "control": 4.5,
+      "screenshot": {
+        "file": "screens/0ef94a13c64c1870546d841d48f42d0dc951d528f6c8fa6e0a2c36a1c65f03e4.png",
+        "sha256": "0ef94a13c64c1870546d841d48f42d0dc951d528f6c8fa6e0a2c36a1c65f03e4"
+      },
+      "violetHeadCount": 1,
+      "metalIntersections": [
+        {
+          "headPolygonOrder": 12,
+          "occludingPolygonOrder": 17,
+          "headPoints": [
+            [
+              "14783/50",
+              "11233/100"
+            ],
+            [
+              "14383/50",
+              "10849/100"
+            ],
+            [
+              "14383/50",
+              "11617/100"
+            ]
+          ],
+          "opaqueMetalPoints": [
+            [
+              "1474/5",
+              "13263/125"
+            ],
+            [
+              "13847/50",
+              "13263/125"
+            ],
+            [
+              "13847/50",
+              "14187/125"
+            ],
+            [
+              "1474/5",
+              "14187/125"
+            ]
+          ],
+          "intersectionPoints": [
+            [
+              "14383/50",
+              "14187/125"
+            ],
+            [
+              "14383/50",
+              "10849/100"
+            ],
+            [
+              "1474/5",
+              "279793/2500"
+            ],
+            [
+              "1474/5",
+              "281857/2500"
+            ],
+            [
+              "351877/1200",
+              "14187/125"
+            ]
+          ],
+          "headAreaExact": "768/25",
+          "coveredAreaExact": "137500727/6000000",
+          "coveredFractionExact": "137500727/184320000",
+          "coveredPercent": 74.59891872829861,
+          "headApexUnderLaterMetalFill": false,
+          "qualification": "Later opaque SVG fill; excludes its stroke and other bodies, so conservative partial-cone coverage. No new whole-arrow assertion."
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C2-L006-02|published|320|fixed_projection|grid|5",
+      "caseFile": "editorial/reviews/c2-fluid-labels-2047-independent-a-20261127/canary-actual/cases/a122df2a606a42fe7d42370c6feafed6e2b74f76b60d12a64e157298a22d5a1f.json",
+      "caseSha256": "2bf43cb566d9039a434250e23994972e2b164295a35e5f73779005de1d559c25",
+      "control": 4.75,
+      "screenshot": {
+        "file": "screens/dbb5a55f9c2236acf56dce22158ee1ba9a67c1cbdcf0fce469a7c5c2d11d3554.png",
+        "sha256": "dbb5a55f9c2236acf56dce22158ee1ba9a67c1cbdcf0fce469a7c5c2d11d3554"
+      },
+      "violetHeadCount": 1,
+      "metalIntersections": [
+        {
+          "headPolygonOrder": 12,
+          "occludingPolygonOrder": 17,
+          "headPoints": [
+            [
+              "5960200000000001/20000000000000",
+              "11233/100"
+            ],
+            [
+              "5800200000000001/20000000000000",
+              "10849/100"
+            ],
+            [
+              "5800200000000001/20000000000000",
+              "11617/100"
+            ]
+          ],
+          "opaqueMetalPoints": [
+            [
+              "1474/5",
+              "13263/125"
+            ],
+            [
+              "13847/50",
+              "13263/125"
+            ],
+            [
+              "13847/50",
+              "14187/125"
+            ],
+            [
+              "1474/5",
+              "14187/125"
+            ]
+          ],
+          "intersectionPoints": [
+            [
+              "5800200000000001/20000000000000",
+              "14187/125"
+            ],
+            [
+              "5800200000000001/20000000000000",
+              "10849/100"
+            ],
+            [
+              "1474/5",
+              "13848649999999997/125000000000000"
+            ],
+            [
+              "1474/5",
+              "14187/125"
+            ]
+          ],
+          "headAreaExact": "768/25",
+          "coveredAreaExact": "92360779999999323299999999997/5000000000000000000000000000",
+          "coveredFractionExact": "30786926666666441099999999999/51200000000000000000000000000",
+          "coveredPercent": 60.13071614583289,
+          "headApexUnderLaterMetalFill": false,
+          "qualification": "Later opaque SVG fill; excludes its stroke and other bodies, so conservative partial-cone coverage. No new whole-arrow assertion."
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C2-L006-02|published|1280|fixed_projection|grid|0",
+      "caseFile": "editorial/reviews/c2-fluid-labels-2047-independent-a-20261127/canary-actual/cases/e5cb3eee03bae1681c61262b129f8a54ff6d9853ec424ee77aa1cabd27a306cf.json",
+      "caseSha256": "7bb290e97363058409d3b8a702d6b99cbc7fbf6c7a015ad1627d1730cc3d02bc",
+      "control": 0.25,
+      "screenshot": {
+        "file": "screens/995a28f04cd3edd91f3621932c275dc6ed6f6785e8ee91e2f41f1f27cc37bb2d.png",
+        "sha256": "995a28f04cd3edd91f3621932c275dc6ed6f6785e8ee91e2f41f1f27cc37bb2d"
+      },
+      "violetHeadCount": 1,
+      "metalIntersections": []
+    },
+    {
+      "caseKey": "SIM-C2-L006-02|published|1280|fixed_projection|grid|1",
+      "caseFile": "editorial/reviews/c2-fluid-labels-2047-independent-a-20261127/canary-actual/cases/4cd3c07ed4f9c16cb444c21b1947b692a48c3b5691b0f55d04fc777c509e197e.json",
+      "caseSha256": "00d567f14ef25a0b52ff6f9c6656812050d240d53a77c2545bb081be8dbf7b0c",
+      "control": 5,
+      "screenshot": {
+        "file": "screens/61cf30aae1c7ad65d81356678fa21c5a2466999148fb4a47570b48d0d3f2ee5c.png",
+        "sha256": "61cf30aae1c7ad65d81356678fa21c5a2466999148fb4a47570b48d0d3f2ee5c"
+      },
+      "violetHeadCount": 1,
+      "metalIntersections": [
+        {
+          "headPolygonOrder": 12,
+          "occludingPolygonOrder": 17,
+          "headPoints": [
+            [
+              "7509/25",
+              "11233/100"
+            ],
+            [
+              "7309/25",
+              "10849/100"
+            ],
+            [
+              "7309/25",
+              "11617/100"
+            ]
+          ],
+          "opaqueMetalPoints": [
+            [
+              "1474/5",
+              "13263/125"
+            ],
+            [
+              "13847/50",
+              "13263/125"
+            ],
+            [
+              "13847/50",
+              "14187/125"
+            ],
+            [
+              "1474/5",
+              "14187/125"
+            ]
+          ],
+          "intersectionPoints": [
+            [
+              "7309/25",
+              "14187/125"
+            ],
+            [
+              "7309/25",
+              "10849/100"
+            ],
+            [
+              "1474/5",
+              "274153/2500"
+            ],
+            [
+              "1474/5",
+              "14187/125"
+            ]
+          ],
+          "headAreaExact": "768/25",
+          "coveredAreaExact": "674111/62500",
+          "coveredFractionExact": "674111/1920000",
+          "coveredPercent": 35.10994791666667,
+          "headApexUnderLaterMetalFill": false,
+          "qualification": "Later opaque SVG fill; excludes its stroke and other bodies, so conservative partial-cone coverage. No new whole-arrow assertion."
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C2-L006-02|published|1280|fixed_projection|grid|2",
+      "caseFile": "editorial/reviews/c2-fluid-labels-2047-independent-a-20261127/canary-actual/cases/a3a61cd39d963dc853ec0f21d8fd14af04998c333f2f9cf66d5cc3299b77b8b9.json",
+      "caseSha256": "038f9025f3feb71f505582270757e9c5664498c21e5d8e37ed8dae7e96c33621",
+      "control": 0,
+      "screenshot": {
+        "file": "screens/dc7c43b5f2a9d33bba20e38dd691332fb1af027f530fcc99fd79449909f091e8.png",
+        "sha256": "dc7c43b5f2a9d33bba20e38dd691332fb1af027f530fcc99fd79449909f091e8"
+      },
+      "violetHeadCount": 0,
+      "metalIntersections": []
+    },
+    {
+      "caseKey": "SIM-C2-L006-02|published|1280|fixed_projection|grid|3",
+      "caseFile": "editorial/reviews/c2-fluid-labels-2047-independent-a-20261127/canary-actual/cases/e81da48432916a63f15c8a8a88a552b347e5e922b34adf1547359b307d0a7c61.json",
+      "caseSha256": "ae7c0335017c0d6220bf6df9c0608fe2d46fd01eaadb0c8f937f2826bd353532",
+      "control": 4.25,
+      "screenshot": {
+        "file": "screens/354f4e4f3064a7c737edebeb8600692c8357b61c453ad3290d35ee6186130a8d.png",
+        "sha256": "354f4e4f3064a7c737edebeb8600692c8357b61c453ad3290d35ee6186130a8d"
+      },
+      "violetHeadCount": 1,
+      "metalIntersections": [
+        {
+          "headPolygonOrder": 12,
+          "occludingPolygonOrder": 17,
+          "headPoints": [
+            [
+              "29331/100",
+              "11233/100"
+            ],
+            [
+              "28531/100",
+              "10849/100"
+            ],
+            [
+              "28531/100",
+              "11617/100"
+            ]
+          ],
+          "opaqueMetalPoints": [
+            [
+              "1474/5",
+              "13263/125"
+            ],
+            [
+              "13847/50",
+              "13263/125"
+            ],
+            [
+              "13847/50",
+              "14187/125"
+            ],
+            [
+              "1474/5",
+              "14187/125"
+            ]
+          ],
+          "intersectionPoints": [
+            [
+              "28531/100",
+              "14187/125"
+            ],
+            [
+              "28531/100",
+              "10849/100"
+            ],
+            [
+              "29331/100",
+              "11233/100"
+            ],
+            [
+              "349057/1200",
+              "14187/125"
+            ]
+          ],
+          "headAreaExact": "768/25",
+          "coveredAreaExact": "5585231/240000",
+          "coveredFractionExact": "5585231/7372800",
+          "coveredPercent": 75.75454372829861,
+          "headApexUnderLaterMetalFill": true,
+          "qualification": "Later opaque SVG fill; excludes its stroke and other bodies, so conservative partial-cone coverage. No new whole-arrow assertion."
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C2-L006-02|published|1280|fixed_projection|grid|4",
+      "caseFile": "editorial/reviews/c2-fluid-labels-2047-independent-a-20261127/canary-actual/cases/3506b18b208cf84760531a58cb67329fffc522b4606977fae91f290f55828d03.json",
+      "caseSha256": "f94ac17be239db10f80fd5b08303151eb4d0120dcce98a65dc4ecba5b6c7182e",
+      "control": 4.5,
+      "screenshot": {
+        "file": "screens/78ca912880f1666b9a0b8ce7593e30dbf51553a6ebbad6ef9b6968ec62dbe626.png",
+        "sha256": "78ca912880f1666b9a0b8ce7593e30dbf51553a6ebbad6ef9b6968ec62dbe626"
+      },
+      "violetHeadCount": 1,
+      "metalIntersections": [
+        {
+          "headPolygonOrder": 12,
+          "occludingPolygonOrder": 17,
+          "headPoints": [
+            [
+              "14783/50",
+              "11233/100"
+            ],
+            [
+              "14383/50",
+              "10849/100"
+            ],
+            [
+              "14383/50",
+              "11617/100"
+            ]
+          ],
+          "opaqueMetalPoints": [
+            [
+              "1474/5",
+              "13263/125"
+            ],
+            [
+              "13847/50",
+              "13263/125"
+            ],
+            [
+              "13847/50",
+              "14187/125"
+            ],
+            [
+              "1474/5",
+              "14187/125"
+            ]
+          ],
+          "intersectionPoints": [
+            [
+              "14383/50",
+              "14187/125"
+            ],
+            [
+              "14383/50",
+              "10849/100"
+            ],
+            [
+              "1474/5",
+              "279793/2500"
+            ],
+            [
+              "1474/5",
+              "281857/2500"
+            ],
+            [
+              "351877/1200",
+              "14187/125"
+            ]
+          ],
+          "headAreaExact": "768/25",
+          "coveredAreaExact": "137500727/6000000",
+          "coveredFractionExact": "137500727/184320000",
+          "coveredPercent": 74.59891872829861,
+          "headApexUnderLaterMetalFill": false,
+          "qualification": "Later opaque SVG fill; excludes its stroke and other bodies, so conservative partial-cone coverage. No new whole-arrow assertion."
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C2-L006-02|published|1280|fixed_projection|grid|5",
+      "caseFile": "editorial/reviews/c2-fluid-labels-2047-independent-a-20261127/canary-actual/cases/93c6ae604c6f3b385aa086463f79f71a4b14ad74148690f8da49baf0da8254e9.json",
+      "caseSha256": "c45b720ed3bbae5365bf19a5d1686386c3d19ac67d480c2ae65aa1c03dd369f6",
+      "control": 4.75,
+      "screenshot": {
+        "file": "screens/2305e7f66f4e604e9655b87c5e188fc588c6a342fdea4549142456c2a1574e51.png",
+        "sha256": "2305e7f66f4e604e9655b87c5e188fc588c6a342fdea4549142456c2a1574e51"
+      },
+      "violetHeadCount": 1,
+      "metalIntersections": [
+        {
+          "headPolygonOrder": 12,
+          "occludingPolygonOrder": 17,
+          "headPoints": [
+            [
+              "5960200000000001/20000000000000",
+              "11233/100"
+            ],
+            [
+              "5800200000000001/20000000000000",
+              "10849/100"
+            ],
+            [
+              "5800200000000001/20000000000000",
+              "11617/100"
+            ]
+          ],
+          "opaqueMetalPoints": [
+            [
+              "1474/5",
+              "13263/125"
+            ],
+            [
+              "13847/50",
+              "13263/125"
+            ],
+            [
+              "13847/50",
+              "14187/125"
+            ],
+            [
+              "1474/5",
+              "14187/125"
+            ]
+          ],
+          "intersectionPoints": [
+            [
+              "5800200000000001/20000000000000",
+              "14187/125"
+            ],
+            [
+              "5800200000000001/20000000000000",
+              "10849/100"
+            ],
+            [
+              "1474/5",
+              "13848649999999997/125000000000000"
+            ],
+            [
+              "1474/5",
+              "14187/125"
+            ]
+          ],
+          "headAreaExact": "768/25",
+          "coveredAreaExact": "92360779999999323299999999997/5000000000000000000000000000",
+          "coveredFractionExact": "30786926666666441099999999999/51200000000000000000000000000",
+          "coveredPercent": 60.13071614583289,
+          "headApexUnderLaterMetalFill": false,
+          "qualification": "Later opaque SVG fill; excludes its stroke and other bodies, so conservative partial-cone coverage. No new whole-arrow assertion."
+        }
+      ]
+    }
+  ],
+  "method": "Verbatim actual SVG DOM polygon coordinates as exact Fractions; rectangular metal probe polygon occurs after velocity head in DOM paint order. Exact polygon intersection is a lower bound, excluding strokes and other opaque bodies.",
+  "noCandidateChange": true,
+  "activityCredit": 0
+}

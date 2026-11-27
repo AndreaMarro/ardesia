@@ -1,0 +1,13 @@
+# Independent Pitot2047 native clearance and SVG fallback negative
+
+Candidatee5e74638d1fcab1bc8ad3f98e4f745f7927689a5, actual runtime20472044aa6ff10eb8d1b062517cab50f5fa30c5db5765683568d7a9c6bad811. New canonical canary56 actually completed0 in26.507s. It includes the identical previous12caseKeysubset, plus velocity0,4.25,4.5,4.75 in every native/fallback profile at320/1280. Eight whole overview sheets containing48uncropped grid frames were opened/read, plus six separate fullPNG checks (three native/fallbackmax1280, two320legendsetups, fallback1280at4.25). This does not claim individual opening of all56rawPNGs.
+
+The complete current Node comparison is41originals/555controls/875states/4375five-stage arrays. Records, numbers, graphs, readings and calculations remain exact. Geometry changes only by22authorized label removals and the two Pitot arrows' commonz0.23translation; x/y positions, height1.05, vector differences and lengths are preserved. Native retained meshes are separated from probe/column axis. Native whole frames show heads/shafts at the demonstrated inputs and all8zero cases have no directed velocity arrows. Names and explicit graphical-offset explanation are preserved in keyboard-opened readable native/fallback legends, with actualaxe0/overflowchecks.
+
+## Actual remaining SVG failure
+
+fallback-confirmed-witness.json binds the actual4.25m/s1280case, original PNG and raw DOMSVG. The later opaque metal probe fill covers75.7545437% of the purple head and its apex; at4.5it covers74.5989%,4.75 60.1307%,max5 35.1099%, atboth320and1280. Atminimum0.25 the head is not intersected. The exact rational calculation uses the actual serialized SVG polygon coordinates and their DOM paint order. It excludes strokes and other bodies, so it is a conservative partial-head coverage, not a raster-pixel percentage or whole-arrow claim. The full original PNG confirms the missing apex at4.25.
+
+The3Ddepth separation works, but SVGshapes are painted in primitive-list order; the probe is still appended after the two velocity indicators. This is separate from the now-resolved native label/surface obstruction. The proposed624renewal remains suspended on2047 by the parent, pending an immutable author correction. No acceptance, retagging or production mutation by this reviewer.
+
+All prior cb9/1674/3427negative stages remain immutable. Package inputs are the same explicitly frozen private canonical imports as the preceding canary; the own current requestmetadata separately binds the new56plan rather than claiming the old7440request as the new request. Canonicalserver/browser actually terminated; no process remains. HumanNOT_RUN/activityCredit0.

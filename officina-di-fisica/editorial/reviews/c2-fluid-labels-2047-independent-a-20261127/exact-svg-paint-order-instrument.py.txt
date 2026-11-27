@@ -1,0 +1,21 @@
+from pathlib import Path
+from fractions import Fraction as Q
+import json,hashlib,sys,xml.etree.ElementTree as ET
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');sys.path.insert(0,str(A));from tools.corpus_engineering.c2_pitot_label_geometry_a import hull,clip,area
+D=A/'editorial/reviews/c2-fluid-labels-2047-independent-a-20261127';P=D/'canary-actual';report=json.loads((P/'report.json').read_bytes());rows=[]
+for item in report['cases']:
+ raw=(P/item['file']).read_bytes();assert hashlib.sha256(raw).hexdigest()==item['sha256'];c=json.loads(raw)
+ if 'interaction'not in c or not c['profile']['fallback']:continue
+ polygons=[e for e in ET.fromstring(c['svg']).iter()if e.tag.split('}')[-1]=='polygon'];heads=[(i,e)for i,e in enumerate(polygons)if e.get('fill')=='#7350b0'];row={'caseKey':c['caseKey'],'caseFile':str((P/item['file']).relative_to(A)),'caseSha256':item['sha256'],'control':c['sourceReplayedX'],'screenshot':c['screenshots'][0],'violetHeadCount':len(heads),'metalIntersections':[]}
+ for index,head in heads:
+  points=[tuple(Q(x)for x in pair.split(','))for pair in head.get('points').split()];subject=hull(points);total=area(subject)
+  for later,body in enumerate(polygons[index+1:],start=index+1):
+   if body.get('fill')!='#726d81'or Q(body.get('opacity','1'))!=1:continue
+   rectpoints=[tuple(Q(x)for x in pair.split(','))for pair in body.get('points').split()];xs=[x for x,y in rectpoints];ys=[y for x,y in rectpoints];b={'x':(min(xs)+max(xs))/2,'y':(min(ys)+max(ys))/2,'w':max(xs)-min(xs),'h':max(ys)-min(ys)}
+   if len(set(xs))!=2 or len(set(ys))!=2:continue
+   intersect=clip(subject,b);covered=area(intersect)
+   if covered:
+    apex=points[0];row['metalIntersections'].append({'headPolygonOrder':index,'occludingPolygonOrder':later,'headPoints':[[str(v)for v in p]for p in points],'opaqueMetalPoints':[[str(v)for v in p]for p in rectpoints],'intersectionPoints':[[str(v)for v in p]for p in intersect],'headAreaExact':str(total),'coveredAreaExact':str(covered),'coveredFractionExact':str(covered/total),'coveredPercent':float(100*covered/total),'headApexUnderLaterMetalFill':min(xs)<=apex[0]<=max(xs)and min(ys)<=apex[1]<=max(ys),'qualification':'Later opaque SVG fill; excludes its stroke and other bodies, so conservative partial-cone coverage. No new whole-arrow assertion.'})
+ rows.append(row)
+(D/'fallback-probe-paint-order-witnesses.json').write_text(json.dumps({'runtimeSha256':'20472044aa6ff10eb8d1b062517cab50f5fa30c5db5765683568d7a9c6bad811','cases':rows,'method':'Verbatim actual SVG DOM polygon coordinates as exact Fractions; rectangular metal probe polygon occurs after velocity head in DOM paint order. Exact polygon intersection is a lower bound, excluding strokes and other opaque bodies.','noCandidateChange':True,'activityCredit':0},indent=2)+'\n')
+for r in rows:print(r['caseKey'],'heads',r['violetHeadCount'],[(x['coveredPercent'],x['headApexUnderLaterMetalFill'])for x in r['metalIntersections']])

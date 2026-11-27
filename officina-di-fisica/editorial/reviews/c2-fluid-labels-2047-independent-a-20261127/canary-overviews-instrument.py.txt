@@ -1,0 +1,15 @@
+from pathlib import Path
+import json,hashlib
+from PIL import Image,ImageDraw
+D=Path('/private/tmp/cric-author-a-resident/officina-di-fisica/editorial/reviews/c2-fluid-labels-2047-independent-a-20261127');P=D/'canary-actual';r=json.loads((P/'report.json').read_bytes());groups={};out=D/'canary-whole-frame-overviews';out.mkdir(exist_ok=True)
+for item in r['cases']:
+ raw=(P/item['file']).read_bytes();assert hashlib.sha256(raw).hexdigest()==item['sha256'];c=json.loads(raw)
+ if 'interaction'not in c:continue
+ groups.setdefault((c['profile']['width'],c['profile']['view']),[]).append(c)
+index=[]
+for(width,view),cases in groups.items():
+ canvas=Image.new('RGB',(900,770),'#f2f1ec');draw=ImageDraw.Draw(canvas);tiles=[]
+ for k,c in enumerate(cases):
+  p=c['screenshots'][0];raw=(P/p['file']).read_bytes();assert hashlib.sha256(raw).hexdigest()==p['sha256'];im=Image.open(P/p['file']).convert('RGB');sw,sh=im.size;scale=min(294/sw,341/sh);dw,dh=round(sw*scale),round(sh*scale);im=im.resize((dw,dh));x=k%3*300;y=k//3*380;draw.text((x+2,y+5),f'{view}{width} x={c["sourceReplayedX"]} index={c["interaction"]["index"]}',fill='black');canvas.paste(im,(x+(300-dw)//2,y+30));tiles.append({'caseKey':c['caseKey'],'sourcePng':p,'sourceDimensions':[sw,sh],'displayDimensions':[dw,dh],'wholeCanvasNoCrop':True})
+ name=f'{width}-{view}.png';canvas.save(out/name);index.append({'file':str(out/name),'sha256':hashlib.sha256((out/name).read_bytes()).hexdigest(),'tiles':tiles,'wholeOpenedAndRead':False})
+(D/'canary-overview-index.json').write_text(json.dumps(index,indent=2)+'\n');print('OVERVIEWS',len(index),'whole frame tiles',sum(len(x['tiles'])for x in index))

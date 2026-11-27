@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "1.0.0",
+  "candidateCommit": "e5e74638d1fcab1bc8ad3f98e4f745f7927689a5",
+  "runtimeSha256": "20472044aa6ff10eb8d1b062517cab50f5fa30c5db5765683568d7a9c6bad811",
+  "caseKey": "SIM-C2-L006-02|published|1280|fixed_projection|grid|3",
+  "caseFile": "editorial/reviews/c2-fluid-labels-2047-independent-a-20261127/canary-actual/cases/e81da48432916a63f15c8a8a88a552b347e5e922b34adf1547359b307d0a7c61.json",
+  "caseSha256": "ae7c0335017c0d6220bf6df9c0608fe2d46fd01eaadb0c8f937f2826bd353532",
+  "screenshot": {
+    "file": "editorial/reviews/c2-fluid-labels-2047-independent-a-20261127/canary-actual/screens/354f4e4f3064a7c737edebeb8600692c8357b61c453ad3290d35ee6186130a8d.png",
+    "sha256": "354f4e4f3064a7c737edebeb8600692c8357b61c453ad3290d35ee6186130a8d"
+  },
+  "actualWholeOriginalPngOpenedAndRead": true,
+  "actualSvgFromDomIncludedInRawCase": true,
+  "controlMetresPerSecond": 4.25,
+  "paintOrderProof": [
+    {
+      "headPolygonOrder": 12,
+      "occludingPolygonOrder": 17,
+      "headPoints": [
+        [
+          "29331/100",
+          "11233/100"
+        ],
+        [
+          "28531/100",
+          "10849/100"
+        ],
+        [
+          "28531/100",
+          "11617/100"
+        ]
+      ],
+      "opaqueMetalPoints": [
+        [
+          "1474/5",
+          "13263/125"
+        ],
+        [
+          "13847/50",
+          "13263/125"
+        ],
+        [
+          "13847/50",
+          "14187/125"
+        ],
+        [
+          "1474/5",
+          "14187/125"
+        ]
+      ],
+      "intersectionPoints": [
+        [
+          "28531/100",
+          "14187/125"
+        ],
+        [
+          "28531/100",
+          "10849/100"
+        ],
+        [
+          "29331/100",
+          "11233/100"
+        ],
+        [
+          "349057/1200",
+          "14187/125"
+        ]
+      ],
+      "headAreaExact": "768/25",
+      "coveredAreaExact": "5585231/240000",
+      "coveredFractionExact": "5585231/7372800",
+      "coveredPercent": 75.75454372829861,
+      "headApexUnderLaterMetalFill": true,
+      "qualification": "Later opaque SVG fill; excludes its stroke and other bodies, so conservative partial-cone coverage. No new whole-arrow assertion."
+    }
+  ],
+  "interpretation": "The metal probe polygon is painted after the velocity head; its fill alone covers75.7545% of the SVG head including the apex. This is a partial-head/apex failure, not whole-arrow disappearance.",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN"
+}
