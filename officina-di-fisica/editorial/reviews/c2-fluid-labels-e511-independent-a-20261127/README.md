@@ -1,0 +1,25 @@
+# Independent C2 e511: Pitot cleared, remaining exit-label negatives
+
+Candidate338be5246e0c74d348cf5f905e83c7957dd9441a, runtimee511baf54338ccddf47934fc2a580027effb94162f2146d4c4e74912b90d24f9. Both actual runs ended0: new56case Pitot canary28.212s and targeted624case run336.732s. These are separately bound own current requests, never retagged older evidence. The56 includes prior exact12case keys plus all8profiles at0,4.25,4.5,4.75. The624covers25originals and the separate StevinoDRAFT, two selected controls and8profiles. It is not an all41/all-controls UI renewal.
+
+## Current positive Pitot scope
+
+The two indicators are the final scene primitives. Nativeheads retain the verified parallelz0.23offset and have no oldopaque labels. The fallback now paints them after the probe: the exact previous SVGnegative at4.25 is resolved and the full original1280PNG shows the complete head. Zero has no directed velocity arrows in all8profiles. Eight whole overview sheets/48canary gridframes were opened/read, plus the decisive fullPNG. The source Node comparison is41records,555controls,875states,4375five-stage arrays: models, readings, graphs, calculations and all remaining geometry are exact, apart from22named label removals and the two Pitot arrows' declared parallel translation and paint-order move. No changing of velocity-vector differences or displayed numbers.
+
+## Targeted624 review and actual residuals
+
+All624case hashes and588uniquePNG hashes verified;416grid states have exact same-browser isolated-baseline model/input/clock parity. The canonical isolated reference contract is unchanged:80verbatim modules from immutableeb51d0e9bdc3f992e9ae0ae76810098376e2ab79, dependency closure/parser pins and distinct context/origin. It is technical reference parity with scientificAuthorityNONE, not a replacement for science. Recovered independent exact C2equations were also evaluated at the actual inputs using their original unchanged scalar observation comparator; no tolerance was added or enlarged.
+
+All26wholeoverview sheets,416uncropped selected gridframes, and8separate fullPNGwitnesses were opened/read. The208setup cases include actual keyboard legend/axe/overflow/normalization checks, but this is not a claim every rawsetupPNG was manually opened. Per-edition conclusions preserve actual scope and question outcomes.
+
+Six IDs have a complete cone hidden by Uscita atTop320: L005-01,L005-02,L005-03,L006-01,L006-03,L008-01. Their actual wholePNG, caseKey, source/case/PNGhash, exact area ratio, separate shaft/cone vertex counts and rectangle are in targeted-residual-witnesses.json and author-residual-exit-label-input.json. At1280 the coverage differs:53.661% forL005-01;100% forL005-02/L005-03/L006-01;3.132% forL006-03/L008-01. Do not generalize320whole-head coverage to1280. L008-02 is a separate2.032%apex contact; most head remains visible. L001-02 has only the previously known0.341%base contact, with the tip free: not a new whole-glyph defect. Raw23intersection candidates are not23accepted findings. Zero viewport candidates for retained whole glyph parts.
+
+ProfileTopviews naturally collapse vertical quote differences; vertical force viewing along its axis is not classified as missing force. Out-of-laminar-domain Reynolds profiles are withdrawn with explicit text, not silently drawn as laminar. SourceStevino1 still rejects the correct15kPa transfer requested withg10; separateDRAFT2 explicitly uses9.81 and accepts19.62/14.715. All16setup cases retain that distinction. Original math/source conflict is not silently replaced by bozza success.
+
+## Checks and provenance
+
+14new independent tests actually passed, including finite/selector guards before casts, physical-equation refusal even if both technicalmodels are altered together, exact old/current source identity, typed distinct original/DRAFT, exact geometry ratios, moved-label falsification, all26manual reading entries and the cleared Pitot paint-order/zero checks. Existing source math/Pint/Hypothesis work is reused with exposure disclosed, not counted as newly blind work. Every imported own module and recovered model is transported in the manifest, as are the80immutable baseline modules with per-folder git-inputs. Sourceproducer snapshots bind the current candidate.
+
+The first post-acquisition analysis attempt failed before validation because the mathvenv lackedPillow. Its script/error is preserved; correct sequential math-validation/system-Pillow composition then really completed0 in14.812s. No browser rerun was used to cover that utility failure. A read-only progressquery had a syntax typo; it did not affect the actual process or observations and no consumerfailure is inferred.
+
+All oldcb9/1674/3427/2047negatives and calculation stages remain immutable. No production, candidate, Root, registry or ledger changes. Pitot positive is bounded by its actual cases; remaining exit-label negatives prevent macro acceptance. ActivityCredit0/humanNOT_RUN. Parent alone integrates and determines subsequent corrected-runtime renewal.
