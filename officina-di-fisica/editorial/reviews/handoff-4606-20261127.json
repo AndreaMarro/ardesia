@@ -402,14 +402,14 @@
     },
     "currentIntegratedEvidenceCandidate": {
       "branch": "review/cric-current-activity-integration",
-      "observedCommit": "6745dd13acfc1896b8fba141e801a2ce2dc38e31",
+      "observedCommit": "1b46231ffcedf3a544368d032e10dac01c4e7bb2",
       "runtimeSha256": "2096493ae86311ec459e012032cd1f8fe41293326cc5769d86376aa5a0b59635",
-      "registrySha256": "cc0ffecabb5b4a3952d2f09b9e2aa61d2482fcc3f0ab03739c451ce64d01a52b",
-      "registeredAcrossEvidenceEpochs": 248,
-      "open": 137,
-      "explicitlyReopened": 5,
+      "registrySha256": "07a83db56ea7ba2426f263d2b6062825fba207c973d0a24ab156242e0362fe5e",
+      "registeredAcrossEvidenceEpochs": 252,
+      "open": 133,
+      "explicitlyReopened": 1,
       "newReviewsStillOpen": 132,
-      "nextActivityId": "SIM-C1-L006-03",
+      "nextActivityId": "LAB3D-10",
       "unifiedFullGate": "PENDING",
       "c6SameRuntimeRenewal": "CANONICAL_VALIDATOR_PASSED_TWICE_CURRENT_ORIGINALS",
       "waveWithdrawal": {
@@ -421,9 +421,18 @@
       "c1SameRuntimeReview": {
         "actualCases": 296,
         "terminalExit": 0,
-        "independentVisualReading": "POSITIVE_IN_FOUR_REOPENED_BOUNDED_STATES_GATE_PENDING",
+        "independentVisualReading": "CURRENT_WHOLE_048_CANONICAL_PASS",
         "independentCommit": "602c7b2622f5c13a1015240857cb1826b42edf5a",
-        "manualPeerCommit": "642ca1c24dc07ca4710aef655ddc168166f3b9f3"
+        "manualPeerCommit": "642ca1c24dc07ca4710aef655ddc168166f3b9f3",
+        "closureCommit": "1b46231ffcedf3a544368d032e10dac01c4e7bb2",
+        "reopenedIdsClosed": [
+          "SIM-C1-L006-03",
+          "SIM-C1-L007-01",
+          "SIM-C1-L007-02",
+          "SIM-C1-L007-03"
+        ],
+        "currentScientificReportSha256": "3fd6921ea8586cf51fe0a27926dde5ac5e32157a849c577db462649b0460d005",
+        "closureReceipt": "editorial/reviews/c1-work-energy-2096-acceptance-20261127/registration-receipt.json"
       },
       "c4MidpointReview": {
         "actualCases": 24,
@@ -436,7 +445,8 @@
         "fieldsAndOptics": "4_OF_5_PASS_LAB3D_10_WITHDRAWN",
         "activityCredit": 0
       },
-      "c6RenewalReceipt": "editorial/reviews/c6-2096-existing-register-renewal-20261127.json"
+      "c6RenewalReceipt": "editorial/reviews/c6-2096-existing-register-renewal-20261127.json",
+      "nextNewOriginalId": "SIM-C2-L001-01"
     },
     "C2FiveManualAppendix": {
       "file": "editorial/reviews/c2-hydraulics-five-exact-manual-20261127.md",
@@ -552,11 +562,10 @@
     }
   },
   "nextAction": [
-    "Close the four explicitly reopened C1 records beginning SIM-C1-L006-03 only after the full family passes the existing validator.",
-    "Validate the same-runtime C6 renewal and retain the six earlier verified original decisions with their old evidence.",
-    "Verify LAB3D-10 on the actual correction and repeat the full 036 group before closing the withdrawal.",
-    "Finish the remaining C2–C5 activities and reproduce the full corpus and CI on the exact canonical integration SHA.",
-    "Retain the human scientific approval queue and the publication gate as separate states."
+    "Integrate the verified LAB3D-10 whole-group renewal once its fresh scientific report and signed evidence are available.",
+    "Continue the open original C2 families beginning SIM-C2-L001-01, then the other C2–C5 groups by family.",
+    "Renew candidate proofs after each relevant runtime change and complete the exact canonical CI on the final registered SHA.",
+    "Preserve the human scientific approval queue and application publication as separate pending gates."
   ],
   "composedCandidate": {
     "branch": "feat/cric-composed-runtime",
@@ -702,10 +711,19 @@
       "runtimeSha256": "3ed5bc77d8320230b62e1c3e6ca3bdd00f240cc64ec236b10fe55a306ca79251",
       "nodePass": 315,
       "contractPass": 2,
-      "browserAndWholeBatchRenewal": "FOCUSED_BROWSER_PASS_WHOLE_GROUP_RUNNING",
+      "browserAndWholeBatchRenewal": "WHOLE_036_TECHNICAL_204_TERMINAL0_INDEPENDENT_REPORT_PENDING",
       "focusedPeerCommit": "b4813dab9a6f63fa79874074364c21ac38ed18bc",
       "actualFocusedCases": 98,
-      "profiles": 14
+      "profiles": 14,
+      "latestExperimentReplay": {
+        "runId": 45945853585,
+        "requestCommit": "3ad480c1cccf476275c0723a14932a5d819dd3bf",
+        "requestSha256": "e4a2ed79feef09351989271d5e55f4d1645e083ae7ea5616bf7267e1258a1edc",
+        "observedStatus": "QUEUED",
+        "plannedCases": 45576,
+        "sourceIds": 139,
+        "activityCredit": 0
+      }
     }
   }
 }
