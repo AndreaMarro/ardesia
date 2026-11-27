@@ -1,0 +1,92 @@
+{
+  "status": "PREPARATION_ONLY_FULL_CAMPAIGN_HELD_FOR_CANARY24",
+  "candidateCommit": "e02b0a767097f22ed66b7240432fc30b206217fd",
+  "runtimeSha256": "980518b78d0767d90f16322539852e7e79360e20f05078ceb6e9b0425e805301",
+  "grid": {
+    "SIM-C4-L01-01": [
+      0,
+      2,
+      4,
+      6,
+      8
+    ],
+    "SIM-C4-L01-02": [
+      1,
+      1.5,
+      2,
+      3,
+      4,
+      6
+    ],
+    "SIM-C4-L02-01": [
+      1,
+      2,
+      3,
+      5,
+      8
+    ],
+    "SIM-C4-L02-02": [
+      -3,
+      -1,
+      0,
+      0.5,
+      1,
+      1.5,
+      3
+    ],
+    "SIM-C4-L02-03": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "SIM-C4-L03-01": [
+      -2,
+      -1,
+      -0.5,
+      0,
+      0.5,
+      2,
+      3
+    ],
+    "SIM-C4-L03-02": [
+      -4,
+      -2,
+      0,
+      3,
+      4
+    ],
+    "SIM-C4-L03-03": [
+      0,
+      2,
+      4,
+      5,
+      8
+    ]
+  },
+  "clock": [
+    {
+      "id": "SIM-C4-L02-03",
+      "anchor": 1,
+      "time": 0.5
+    },
+    {
+      "id": "SIM-C4-L02-03",
+      "anchor": 1,
+      "time": 1.5
+    },
+    {
+      "id": "SIM-C4-L02-03",
+      "anchor": 1,
+      "time": 3.5
+    }
+  ],
+  "profiles": 8,
+  "setupCases": 64,
+  "expectedCases": 448,
+  "browser": "NOT_RUN",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
