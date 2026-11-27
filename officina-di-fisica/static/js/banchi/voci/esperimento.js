@@ -1,5 +1,5 @@
 import { chart, curve, n, param, select } from '../misure.js';
-import { legende, legendaTavola } from './legende.js';
+import { legende, legendaVoce } from './legende.js';
 import { confronti } from './confronti.js';
 import { orologioVoce } from './orologi.js';
 import { disegna3D, scenaMobile, tavolo } from './geometria.js';
@@ -329,6 +329,6 @@ export async function esperienza(record) {
     legend: (_stage, view) => legend ?? (nativeVectorAxes
       ? legende.vettori.replace('Gli assi x e y sono indicati sulla tavola.',
         'L’asse x è etichettato. L’asse y passa per la coda del primo vettore ed è perpendicolare a x nel piano dei vettori. Nella tavola 2D è l’altra retta grigia; in una vista 3D di taglio può apparire come un punto. Usa i controlli e le letture numeriche per confrontare i risultati.')
-      : view === 'diagram' ? legendaTavola(record.apparatus) : legende[record.apparatus]),
+      : legendaVoce(record, view)),
   };
 }
