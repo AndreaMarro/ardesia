@@ -1,0 +1,456 @@
+{
+  "assets": [],
+  "records": [
+    {
+      "anchor": "Nell’onda armonica su una corda ideale le",
+      "apparatus": "onda",
+      "assessmentSelection": {
+        "points": [
+          2,
+          1.5
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Confronta due onde sulla stessa corda. La densità lineare, la tensione e la frequenza sono fissate, così la velocità di propagazione e la pulsazione restano uguali. Nel modello lineare una maggiore ampiezza aumenta dello stesso fattore la velocità trasversale dei punti. L’energia associata al moto dipende dal quadrato della velocità.",
+          "type": "text"
+        },
+        {
+          "text": "P_{\\rm media}=\\tfrac12\\mu v\\omega^2 A^2",
+          "type": "formula"
+        },
+        {
+          "text": "Dividi la potenza nuova per quella di riferimento. Tutti i fattori fissati si cancellano e resta il quadrato del rapporto delle ampiezze. Raddoppiando l’ampiezza ottieni un rapporto di 4. Con ampiezza 3/2 della precedente, il quadrato dà 9/4, cioè 2,25.",
+          "type": "text"
+        },
+        {
+          "text": "\\frac{P}{P_0}=\\left(\\frac{A}{A_0}\\right)^2",
+          "type": "formula"
+        },
+        {
+          "text": "Se conosci il rapporto delle potenze, prendi la radice positiva per tornare al rapporto delle ampiezze. Quattro volte la potenza significano due volte l’ampiezza a parità di corda e frequenza. La lettura è un fattore adimensionale.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Ampiezza rispetto ad A₀",
+        "max": 3.0,
+        "min": 0.0,
+        "step": 0.25,
+        "unit": "1"
+      },
+      "course": "C5",
+      "formula": "P media = ½μvω²A²; P/P₀ = (A/A₀)²",
+      "id": "SIM-C5-L04-01",
+      "interpretation": "La corda mantiene la stessa densità lineare, tensione e frequenza. Aumenta di pari fattore la velocità oscillatoria dei punti. Nel regime lineare la potenza media cresce come il quadrato dell’ampiezza.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Potenza media rispetto a P₀",
+        "unit": "1"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C5-L02"
+      ],
+      "references": [
+        [
+          0.5,
+          0.25
+        ],
+        [
+          2.0,
+          4.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Energia, potenza e intensità",
+      "skill": "C5-L04",
+      "substitution": "{x} × {x}",
+      "summary": "Raddoppiare l’ampiezza raddoppia anche la potenza trasportata?",
+      "title": "Energia e potenza di un’onda meccanica in un mezzo elastico",
+      "topic": "UD4 · energia e potenza di un’onda meccanica in un mezzo elastico",
+      "transferPrompt": "Sulla stessa corda mantieni invariata la frequenza e porti l’ampiezza a {x} volte quella iniziale. Per quale fattore cambia la potenza media?",
+      "version": 2
+    },
+    {
+      "anchor": "Una sonda di area piccola e perpendicolare",
+      "apparatus": "sorgente",
+      "assessmentSelection": {
+        "points": [
+          4,
+          3
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Immagina un ricevitore piatto perpendicolare alla direzione dell’onda. L’intensità costante di 10 W/m² indica quanta energia passa ogni secondo per metro quadrato. Moltiplicando per l’area trovi la potenza intercettata, poi moltiplicando per il tempo trovi l’energia.",
+          "type": "text"
+        },
+        {
+          "text": "E=IAt",
+          "type": "formula"
+        },
+        {
+          "text": "Se a conta i centimetri quadrati, l’area fisica vale a/10 000 m². Per 2 s, il prodotto è 20a/10 000 J, cioè 2a/1000 J. Un millijoule è un millesimo di joule. Ogni centimetro quadrato raccoglie così 2 mJ nel tempo dato.",
+          "type": "text"
+        },
+        {
+          "text": "E=(2a)\\,\\mathrm{mJ}",
+          "type": "formula"
+        },
+        {
+          "text": "Con 4 cm² ottieni 8 mJ. Con 3 cm² ottieni 6 mJ. Se misuri 6 mJ puoi risalire a 3 cm² dividendo per la raccolta per unità di area. Il modello assume intensità uniforme sulla piccola superficie normale al fronte.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Area del ricevitore",
+        "max": 5.0,
+        "min": 0.5,
+        "step": 0.5,
+        "unit": "cm²"
+      },
+      "course": "C5",
+      "formula": "E = I A t, con I = 10 W/m² e t = 2 s",
+      "id": "SIM-C5-L04-02",
+      "interpretation": "La piccola superficie è perpendicolare a un fronte localmente piano. Converti cm² in m² prima di moltiplicare per intensità e durata.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Energia raccolta in 2 s",
+        "unit": "mJ"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C5-L02"
+      ],
+      "references": [
+        [
+          1.0,
+          2.0
+        ],
+        [
+          4.0,
+          8.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Energia, potenza e intensità",
+      "skill": "C5-L04",
+      "substitution": "2 × {x}",
+      "summary": "Quanta energia intercetta una sonda più grande nello stesso intervallo?",
+      "title": "Intensità come energia per area e tempo",
+      "topic": "UD4 · intensità come energia per area e tempo",
+      "transferPrompt": "Un ricevitore di area {x} è investito perpendicolarmente da 10 W/m² per 2 s. Quanti millijoule intercetta?",
+      "version": 2
+    },
+    {
+      "anchor": "Per una sorgente puntiforme isotropa in un",
+      "apparatus": "sorgente",
+      "assessmentSelection": {
+        "points": [
+          4,
+          3
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Disegna due sfere concentriche intorno alla sorgente puntiforme. In assenza di assorbimento e riflessioni, la stessa potenza attraversa entrambe. Poiché la sorgente è isotropa, quella potenza si distribuisce uniformemente sull’area 4πr² di ogni sfera.",
+          "type": "text"
+        },
+        {
+          "text": "I=\\frac{P}{4\\pi r^2}",
+          "type": "formula"
+        },
+        {
+          "text": "Con P = 4π W puoi semplificare 4π subito. A 4 m rimane 1/16 W/m². Dimezza quattro volte l’unità, passando per 0,5, 0,25 e 0,125. Ottieni 0,0625 W/m². A 3 m il risultato esatto è 1/9 W/m². La divisione in colonna ripete sempre la cifra 1, perciò puoi inserire 0,1111 W/m².",
+          "type": "text"
+        },
+        {
+          "text": "r=\\sqrt{\\frac{P}{4\\pi I}}",
+          "type": "formula"
+        },
+        {
+          "text": "La relazione inversa restituisce il raggio quando la potenza è nota e l’intensità è positiva. A distanza doppia la superficie è quattro volte più grande, quindi per unità di area passa un quarto della potenza.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Distanza dalla sorgente",
+        "max": 5.0,
+        "min": 1.0,
+        "step": 0.25,
+        "unit": "m"
+      },
+      "course": "C5",
+      "formula": "I = P/(4πr²); P = 4π W",
+      "id": "SIM-C5-L04-03",
+      "interpretation": "La sorgente puntiforme irradia in tutte le direzioni. Confronta le superfici sferiche attraversate dalla stessa potenza. Il modello trascura assorbimento e riflessioni.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Intensità",
+        "unit": "W/m²"
+      },
+      "order": 3,
+      "prerequisites": [
+        "C5-L02"
+      ],
+      "references": [
+        [
+          2.0,
+          0.25
+        ],
+        [
+          4.0,
+          0.0625
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Energia, potenza e intensità",
+      "skill": "C5-L04",
+      "substitution": "1 / ({x}²)",
+      "summary": "Perché raddoppiando la distanza ricevi un quarto dell’intensità?",
+      "title": "Legge dell’inverso del quadrato della distanza",
+      "topic": "UD4 · legge dell’inverso del quadrato della distanza",
+      "transferPrompt": "Una sorgente isotropa irradia 4π W. Alla distanza di {x}, quale intensità attraversa una piccola superficie perpendicolare ai raggi?",
+      "version": 2
+    },
+    {
+      "anchor": "Un’eco percorre il tratto fra sorgente e",
+      "apparatus": "doppler",
+      "assessmentSelection": {
+        "points": [
+          3,
+          1
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Indica il tempo tra l’emissione e la ricezione sul tratto orizzontale di 150 m. La distanza è il prodotto della velocità per il tempo. I valori indicati per aria, acqua e acciaio rappresentano condizioni fissate del modello. Confronta il tragitto di sola andata.",
+          "type": "text"
+        },
+        {
+          "text": "t=\\frac{L}{v}",
+          "type": "formula"
+        },
+        {
+          "text": "Nell’acciaio, dividi 150 per 5000: ottieni 3/100 s. Moltiplica per 1000 per ottenere 30 ms. In aria, moltiplica prima 150 per 1000 e dividi per 340, cioè 7500/17 ms dopo la semplificazione. Poiché 17 per 441 fa 7497, il risultato è 441 ms più 3/17 ms. Dividi 30 per 17 e ottieni la prima cifra 1 con resto 13. Poi dividi 130 per 17 e ottieni 7. A un decimale puoi scrivere 441,2 ms.",
+          "type": "text"
+        },
+        {
+          "text": "v=\\frac{L}{t}",
+          "type": "formula"
+        },
+        {
+          "text": "Per ricavare la velocità da 30 ms, converti in 3/100 s e dividi 150 m per 3/100 s. Ritrovi 5000 m/s. Un’eco che percorra lo stesso tratto al ritorno impiegherebbe due volte il tempo di andata.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "choices": [
+          "Aria",
+          "Acqua",
+          "Acciaio"
+        ],
+        "label": "Mezzo di propagazione",
+        "max": 3.0,
+        "min": 1.0,
+        "step": 1.0,
+        "unit": "1"
+      },
+      "course": "C5",
+      "formula": "t = L/v; v = 340, 1500 o 5000 m/s secondo il mezzo",
+      "id": "SIM-C5-L05-01",
+      "interpretation": "Le velocità assegnate sono valori illustrativi per condizioni fissate. Un microfono si trova a 150 m. Per un’eco sullo stesso tragitto bisogna contare anche il ritorno.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Tempo su 150 m",
+        "unit": "ms"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04"
+      ],
+      "references": [
+        [
+          2.0,
+          100.0
+        ],
+        [
+          3.0,
+          30.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Suono e movimento relativo",
+      "skill": "C5-L05",
+      "substitution": [
+        "150 000 / 340",
+        "150 000 / 1500",
+        "150 000 / 5000"
+      ],
+      "summary": "Lo stesso impulso arriva contemporaneamente attraverso aria, acqua e metallo?",
+      "title": "Velocità del suono nei mezzi",
+      "topic": "UD4 · velocità del suono nei mezzi",
+      "transferPrompt": "Devi sincronizzare due sensori distanti 150 m nel mezzo «{x}». Usando la velocità indicata sul banco, quanti millisecondi impiega il suono?",
+      "version": 2
+    },
+    {
+      "anchor": "Il livello di intensità sonora L confronta",
+      "apparatus": "sorgente",
+      "assessmentSelection": {
+        "points": [
+          6,
+          4
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Il livello confronta l’intensità I con un’intensità di riferimento. Entrambe hanno le stesse unità, così il rapporto è un numero puro. Nel banco il rapporto è già scritto come una potenza di dieci. Il logaritmo in base dieci restituisce l’esponente.",
+          "type": "text"
+        },
+        {
+          "text": "L=10\\log_{10}\\left(\\frac{I}{I_0}\\right)=10n",
+          "type": "formula"
+        },
+        {
+          "text": "Con esponente 6 moltiplica 10 per 6 e ottieni 60 dB. Con esponente 4 ottieni 40 dB. In senso inverso, da 40 dB ricavi n = 4 dividendo per 10. Il rapporto di intensità vale quindi diecimila.",
+          "type": "text"
+        },
+        {
+          "text": "\\frac{I}{I_0}=10^{L/10}",
+          "type": "formula"
+        },
+        {
+          "text": "Un aumento di 10 dB moltiplica per dieci l’intensità, dato che corrisponde a un esponente aumentato di un’unità. Il livello è una misura fisica. La percezione dipende anche dalla frequenza e dall’ascoltatore.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Esponente in I/I₀ = 10ⁿ",
+        "max": 8.0,
+        "min": 0.0,
+        "step": 1.0,
+        "unit": "1"
+      },
+      "course": "C5",
+      "formula": "L = 10 log₁₀(I/I₀) = 10n; I₀ = 10⁻¹² W/m²",
+      "id": "SIM-C5-L05-02",
+      "interpretation": "Il fonometro riporta il logaritmo di un rapporto. Ogni salto di un esponente aggiunge 10 dB. La sensazione soggettiva dipende anche da frequenza e ascoltatore.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Livello di intensità",
+        "unit": "dB"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04"
+      ],
+      "references": [
+        [
+          2.0,
+          20.0
+        ],
+        [
+          6.0,
+          60.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Suono e movimento relativo",
+      "skill": "C5-L05",
+      "substitution": "10 × {x}",
+      "summary": "Di quanti decibel cresce il livello moltiplicando l’intensità per dieci?",
+      "title": "Intensità, percezione e livello sonoro in decibel",
+      "topic": "UD4 · intensità, percezione e livello sonoro in decibel",
+      "transferPrompt": "Il rapporto fra l’intensità misurata e quella di riferimento è 10ⁿ, con n = {x}. Quale livello leggeresti sul fonometro in decibel?",
+      "version": 2
+    },
+    {
+      "anchor": "Un ricevitore fermo investito da fronti più",
+      "apparatus": "doppler",
+      "assessmentSelection": {
+        "points": [
+          30,
+          -20
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Segna due posizioni consecutive della sorgente quando emette le creste. Nel periodo T₀ la prima cresta avanza di vT₀. La sorgente si è spostata di uT₀ verso il ricevitore, dove u ha segno positivo in avvicinamento. La nuova distanza tra le creste è quindi (v−u)T₀. Il ricevitore fermo nel mezzo riceve le creste alla velocità v.",
+          "type": "text"
+        },
+        {
+          "text": "f_{\\rm ric}=f_0\\,\\frac{v}{v-u}",
+          "type": "formula"
+        },
+        {
+          "text": "Con v = 300 m/s e u = +30 m/s il rapporto è 300/270 = 10/9. Moltiplicando per 300 Hz ottieni 1000/3 Hz. La divisione dà 333 con resto uno, quindi 333,3 Hz è una lettura decimale. Con u = −20 m/s il denominatore diventa 320 m/s. Semplifica 90 000 diviso 320 a 9000/32. Dividi sopra e sotto per 8 e ottieni 1125/4 Hz, cioè 281,25 Hz esatti.",
+          "type": "text"
+        },
+        {
+          "text": "u=v\\left(1-\\frac{f_0}{f_{\\rm ric}}\\right)",
+          "type": "formula"
+        },
+        {
+          "text": "In senso inverso puoi dedurre la velocità con segno dal rapporto tra frequenza emessa e ricevuta. Quando la sorgente si allontana, le creste arrivano più distanziate e la frequenza scende sotto 300 Hz. Il modello usa una sorgente subsonica e un ricevitore fermo rispetto al mezzo.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Velocità della sorgente verso il ricevitore",
+        "max": 40.0,
+        "min": -40.0,
+        "step": 5.0,
+        "unit": "m/s"
+      },
+      "course": "C5",
+      "formula": "f ricevuta = f₀ v/(v−u); f₀ = 300 Hz, v = 300 m/s",
+      "id": "SIM-C5-L05-03",
+      "interpretation": "I fronti partono a intervalli uguali da posizioni diverse. Davanti a una sorgente che avanza arrivano più ravvicinati. Il ricevitore è fermo nel mezzo e la sorgente è subsonica.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Frequenza ricevuta",
+        "unit": "Hz"
+      },
+      "order": 3,
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04"
+      ],
+      "references": [
+        [
+          0.0,
+          300.0
+        ],
+        [
+          30.0,
+          333.333333
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Suono e movimento relativo",
+      "skill": "C5-L05",
+      "substitution": "90000 / (300 − {x})",
+      "summary": "Che cosa vede il ricevitore quando la sorgente si avvicina e poi si allontana?",
+      "title": "Effetto Doppler qualitativo",
+      "topic": "UD4 · effetto Doppler qualitativo",
+      "transferPrompt": "La sorgente emette 300 Hz e ha velocità con segno {x} verso il ricevitore fermo. Se il suono viaggia a 300 m/s, quale frequenza riceve? Semplifica il rapporto tra le velocità.",
+      "version": 2
+    }
+  ],
+  "schema": "astra/1"
+}
