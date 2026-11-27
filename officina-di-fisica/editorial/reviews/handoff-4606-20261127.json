@@ -921,6 +921,44 @@
       "canonicalIntegration": "PENDING",
       "humanApproval": "NOT_RUN",
       "publicationAction": "NONE"
+    },
+    "preparedAfter285": {
+      "c2IndependentBounded": {
+        "commit": "89a653b76c5162442d9489f5f250aad6d7c116d0",
+        "runtimeSha256": "c39f7cdf31e4443059614bac79e7e27c6399c1cfc6fe3dcd1bfdb6b9c3db027e",
+        "cases": 192,
+        "answers": 96,
+        "credit": 0
+      },
+      "c3L0301Fresh": {
+        "commit": "84fb26a262df26138a3c3eb879ee402473977f55",
+        "cases": 48,
+        "answers": 16,
+        "credit": 0
+      },
+      "c4CapacitorFreshCPU": {
+        "commit": "1155d1d0f3cd423ab2c2b24c1b2c0722930dbc77",
+        "states": 176,
+        "generatedPrompts": 14,
+        "credit": 0
+      },
+      "c5DraftedFieldsAndPhotons": {
+        "commit": "8f29e69c1b43243666ba754c982bf89a90c26c2c",
+        "records": 5,
+        "credit": 0
+      },
+      "c5DraftedNucleiAndOptics": {
+        "commit": "d345b689567ce73da192b44d855c48d94f654c03",
+        "records": 5,
+        "credit": 0
+      },
+      "recoveredPackage263": {
+        "proofCommit": "ce411b3cf35e0ddc1284dbf6f92031d336b3e929",
+        "proofSha256": "8488a1c56e6576e96aaa38d814a182e18bf8e983d732b1e287961ca7948944c8",
+        "reuseLorentzCandidateFrom263": true,
+        "openConsumerGeometryOnLorentz": true,
+        "credit": 0
+      }
     }
   },
   "coexistence": {
@@ -1095,9 +1133,10 @@
     }
   },
   "nextAction": [
-    "Resume the open C2 activity queue from SIM-C2-L005-01. Complete independent browser evidence for the current combined continuity and Bernoulli correction scope.",
-    "Recover the two C3 L03-01 browser segments. Continue the other heat and phase IDs.",
-    "Complete the distinct review of the 21 authored C4 drafts and remaining C5 source families. Reconcile 100 open records and run the unified runtime gates, canonical PR and exact-SHA CI.",
+    "Resume the open C2 activity queue from SIM-C2-L005-01. Run the prepared C2 scopes on 53bd and carry over only independently verified exact content and read visuals.",
+    "Reconcile the new L03-01 browser evidence and finish the C3 heat/phase sequence beginning with L03-03.",
+    "Complete independent C5 visual review for L05-01 and observe L05-03 clocks. Reuse package 263 and review the ten new C5 drafts.",
+    "Complete C4 visual checks; use the recoverable Lorentz 263 record. Reconcile 100 open records, unified runtime gates, canonical PR and exact-SHA CI.",
     "Record human approval and app publication separately."
   ],
   "composedCandidate": {
@@ -1274,6 +1313,30 @@
       "browserBatchResumeTestsPassed": 36,
       "previousPreviewProtocolEvidence": "PRESERVED_AS_HISTORICAL",
       "fullPreviewReplayOnFinalCandidate": "PENDING"
+    },
+    "runtimeConvergence": {
+      "branch": "review/cric-converged-runtime",
+      "sourceCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+      "runtimeSha256": "53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a",
+      "localNodePass": 336,
+      "localContractsPass": 2,
+      "canonicalIntegration": "PENDING",
+      "activeRecordRegisterRemains": "fe3f1b774faced60f82baa20f980b9d6dfb19302",
+      "sound01": {
+        "evidenceCommit": "296e98ffe5771b9dedb1adab1280268a2f350baf",
+        "manifestSha256": "d690d28829368554341fbce50a5f13f8ba4a99360f8a7162fc9ad3bb6babd4e8",
+        "cases": 64,
+        "answers": 16,
+        "independentVisualReview": "PENDING"
+      },
+      "sound03": {
+        "expectedCases": 64,
+        "status": "PREPARED_NOT_RUN"
+      },
+      "c2Replay": {
+        "expectedCases": 192,
+        "status": "PREPARED_NOT_RUN"
+      }
     }
   },
   "activityCandidateRuntimeSha256": "f357b970906cb827c8e8046a42e45b35d8745179752f2a756b2affdf56bbe5f4",
