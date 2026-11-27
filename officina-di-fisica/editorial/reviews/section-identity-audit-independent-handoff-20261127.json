@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "independent-technical-section-audit-handoff",
+  "reviewer": "author_vectors_b",
+  "toolCommit": "6d45a94652de118c61d85ec524f85317de9fc60e",
+  "auditCommit": "6b746e3dafc8e86d6671865644c1e57fe1868f46",
+  "result": {
+    "questionDeltas": 250,
+    "minimumExistingPackages": 25,
+    "prospectiveIdentityChecks": 250,
+    "actualCandidateWrites": 0,
+    "rootInputsUnchanged": true,
+    "tests": {
+      "red": {
+        "tests": 21,
+        "failures": 44,
+        "errors": 0
+      },
+      "green": {
+        "tests": 21,
+        "failures": 0,
+        "errors": 0
+      }
+    }
+  },
+  "scientificApproval": "NOT_RUN",
+  "canonicalBridgeReview": "PENDING_IMMUTABLE_ROOT_SHA",
+  "newImportAndPreview": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "files": [
+    {
+      "path": "officina-di-fisica/tools/corpus_engineering/section_identity_audit.py",
+      "sha256": "27e0010b963f0483d143cd96e03da271de2d957cc73fee4d776dd530e96e2c47"
+    },
+    {
+      "path": "officina-di-fisica/tests/corpus/test_section_identity_audit.py",
+      "sha256": "2ca388b74d9f3565ca89b952cd15179cce3cff6b54a00d55b8b1fdd4997cdaab"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/section-identity-audit-independent-20261127/actual-green.txt",
+      "sha256": "c626b395e9b2a174abb2cbd0171484dbfca67d797997d70e3d4215a9d5b7c759"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/section-identity-audit-independent-20261127/actual-plan-dry-run.json",
+      "sha256": "fdcd356252b03efd5e23d86275ed0d2966daeecd77b092c29bc35543717b74c4"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/section-identity-audit-independent-20261127/actual-plan-run.txt",
+      "sha256": "d48f06c06b7119f4bfbb62dd86986cd2e5ec3d97a674b4c084bf6cb73cad95e0"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/section-identity-audit-independent-20261127/actual-red.txt",
+      "sha256": "f6b65e21529014edd7df5c61ab90e0a698714f47f085aec141b3632b8654c366"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/section-identity-audit-independent-20261127/api-and-bridge-proposal.md",
+      "sha256": "e6df14a6deff1ef048b1c0e50f244b8f6a17cc88090767b6e78351e37a4c38e9"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/section-identity-audit-independent-20261127/frozen-root-audit.json",
+      "sha256": "86ab6e7daa49ee7a1dbf41b8d2cdd5efe6836a37c800ea01a6e3b0f125574ca3"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/section-identity-audit-independent-20261127/git-inputs.json",
+      "sha256": "10430adb90d3b82ca875f485f42e59377453373d308215011d9aefde305d5e6c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/section-identity-audit-independent-20261127/pinned-source-C1.json",
+      "sha256": "0a79b1212adbef650733d655d1de2d5ffd7af5eb2be2bde50710a0a1721ab0cf"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/section-identity-audit-independent-20261127/pinned-source-C2.json",
+      "sha256": "7f2d3cf84a46d5d0086fd9cd6318b923ee073febc110a52fbc8f682edd995b23"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/section-identity-audit-independent-20261127/pinned-source-C3.json",
+      "sha256": "44cb7679671a99a5da654133d4f1c12a542acf1a4688987121bcd5a776a262e0"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/section-identity-audit-independent-20261127/pinned-source-C4.json",
+      "sha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/section-identity-audit-independent-20261127/pinned-source-C5.json",
+      "sha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/section-identity-audit-independent-20261127/readonly-real-plan.py",
+      "sha256": "d2ced9e62a2bd40a8fd321d9430497cf6d77cfb01506ec38d4bbe78c3bf7df59"
+    }
+  ]
+}
