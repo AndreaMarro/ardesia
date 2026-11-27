@@ -1,0 +1,10 @@
+from pathlib import Path
+import json,sys
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');sys.path.insert(0,str(A));from tools.corpus_engineering import c6_family_six_2096_review_a as v
+D=v.BASE;D.joinpath('original-source.json').write_bytes((v.foundational.BASE/'original-source.json').read_bytes());cases=v.actual();states=[c for c in cases if'interaction'in c];assert len(states)==264;previous=v.exact_prior_observations();proof=[];read=[];selection={'SIM-C6-L01-01':('clock',1),'SIM-C6-L02-01':('clock',1),'SIM-C6-L03-01':('grid',4),'SIM-C6-L04-01':('grid',2),'SIM-C6-L05-01':('grid',3),'SIM-C6-L06-01':('grid',0)}
+for c in states:
+ old=next(o for o in previous if o['id']==c['id']and o['profile']==c['profile']and o['sourceReplayedX']==c['sourceReplayedX']and o['sourceReplayedClockTime']==c['sourceReplayedClockTime']);v.compare_unchanged(c,old);proof.append(dict(caseKey=c['caseKey'],sourceScalarAndClockAndShapeAccepted=True,exactCurrentIsolatedNumericalParity=True,exactPhysicalComparisonToPriorCase=old['caseKey'],priorRuntime=old['runtimeSha256'],oldRasterNotRetagged=True))
+ kind,index=selection[c['id']]
+ if c['interaction']['kind']==kind and c['interaction']['index']==index:
+  png=c['screenshots'][0];read.append(dict(id=c['id'],caseKey=c['caseKey'],profile=c['profile'],observedX=c['sourceReplayedX'],observedClockTime=c['sourceReplayedClockTime'],file=str((D/'actual'/png['file']).relative_to(A)),sha256=png['sha256'],wholeRawPngOpenedAndRead=False))
+assert len(read)==48 and all(sum(r['id']==id_ for r in read)==8 for id_ in v.IDS);D.joinpath('all264-independent-physical-comparison.json').write_text(json.dumps(proof,indent=2)+'\n');D.joinpath('raw-png-reading-selection.json').write_text(json.dumps(read,indent=2)+'\n');print('FAMILY312_264_CURRENT_STATES_PHYSICALLY_CHECKED; SELECTED48_RAW_PNGS_PENDING_READING')

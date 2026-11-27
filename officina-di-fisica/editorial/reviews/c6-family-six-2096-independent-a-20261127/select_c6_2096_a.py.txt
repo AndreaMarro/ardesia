@@ -1,0 +1,10 @@
+from pathlib import Path
+import json,hashlib
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c6-family-six-2096-independent-a-20261127';r=json.loads((D/'actual/report.json').read_bytes());selection={'SIM-C6-L01-01':('clock',1),'SIM-C6-L02-01':('clock',1),'SIM-C6-L03-01':('grid',4),'SIM-C6-L04-01':('grid',2),'SIM-C6-L05-01':('grid',3),'SIM-C6-L06-01':('grid',0)};read=[]
+for q in r['cases']:
+ c=json.loads((D/'actual'/q['file']).read_bytes())
+ if'interaction'not in c:continue
+ kind,index=selection[c['id']]
+ if c['interaction']['kind']==kind and c['interaction']['index']==index:
+  png=c['screenshots'][0];assert hashlib.sha256((D/'actual'/png['file']).read_bytes()).hexdigest()==png['sha256'];read.append(dict(id=c['id'],caseKey=c['caseKey'],profile=c['profile'],observedX=c['sourceReplayedX'],observedClockTime=c['sourceReplayedClockTime'],file=str((D/'actual'/png['file']).relative_to(A)),sha256=png['sha256'],wholeRawPngOpenedAndRead=False))
+assert len(read)==48;(D/'raw-png-reading-selection.json').write_text(json.dumps(read,indent=2)+'\n');print('CURRENT48_PNGS_SELECTED_PENDING_READING')

@@ -1,0 +1,2065 @@
+{
+  "schemaVersion": "1.0.0",
+  "role": "DISTINCT_REVIEWER_A_LOCAL_VISUAL_SCOPE_NOT_GATE_CREDIT",
+  "sourceCommit": "3d060603540c981bf641f776ca65fd3ef76106c3",
+  "runtimeSha256": "2096493ae86311ec459e012032cd1f8fe41293326cc5769d86376aa5a0b59635",
+  "artifactPins": {
+    "actual/report.json": {
+      "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/report.json",
+      "sha256": "58bc6779a5d228cc41bcabdc873e7d33fdf1e0caf24f47169f65dec642b04a6d"
+    },
+    "prepared.json": {
+      "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/prepared.json",
+      "sha256": "efd8169b5e07fb8c8d49baf357522ea5e586e45b2a995dad35335ce3326d1584"
+    },
+    "actual-terminal.json": {
+      "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual-terminal.json",
+      "sha256": "a7569a1d887f0c73960c1e1235d309e73fdf99090f5e283006e97a010a051abf"
+    }
+  },
+  "records": [
+    {
+      "id": "SIM-C6-L01-01",
+      "sourceCommit": "3d060603540c981bf641f776ca65fd3ef76106c3",
+      "runtimeSha256": "2096493ae86311ec459e012032cd1f8fe41293326cc5769d86376aa5a0b59635",
+      "sourceRecordSha256": "2bbdd1248ea1b154915420dbfe0147d72dea0e90a96b40e92d35ccc748c33f0f",
+      "sourceVersion": 1,
+      "visualReview": "PASS",
+      "scope": {
+        "kind": "BOUNDED_CURRENT_ORIGINAL_SOURCE_NATIVE_FALLBACK",
+        "profiles": [
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "gridValues": [
+          0,
+          2,
+          10,
+          20
+        ],
+        "clockCases": [
+          {
+            "gridIndex": 3,
+            "time": 5,
+            "duration": 20
+          },
+          {
+            "gridIndex": 3,
+            "time": 10,
+            "duration": 20
+          },
+          {
+            "gridIndex": 3,
+            "time": 15,
+            "duration": 20
+          },
+          {
+            "gridIndex": 3,
+            "time": 20,
+            "duration": 20
+          }
+        ],
+        "actualCaseCount": 72,
+        "gridClockCaseCount": 64,
+        "setupCount": 8,
+        "acceptedAnswerEvents": 16,
+        "phaseTextVariantsRead": 1,
+        "phasesPerSetup": 4,
+        "authoredReadingPanel": "ABSENT_ORIGINAL_BLOCKS_EMPTY_READING_NULL",
+        "manualWholeRawPngCount": 8,
+        "all264FramesManuallyOpened": false,
+        "manualReadCaseKeys": [
+          "SIM-C6-L01-01|published|320|orbit|clock|1",
+          "SIM-C6-L01-01|published|320|side|clock|1",
+          "SIM-C6-L01-01|published|320|top|clock|1",
+          "SIM-C6-L01-01|published|320|fixed_projection|clock|1",
+          "SIM-C6-L01-01|published|1280|orbit|clock|1",
+          "SIM-C6-L01-01|published|1280|side|clock|1",
+          "SIM-C6-L01-01|published|1280|top|clock|1",
+          "SIM-C6-L01-01|published|1280|fixed_projection|clock|1"
+        ],
+        "fullObservedCaseKeys": [
+          "SIM-C6-L01-01|published|320|orbit|setup",
+          "SIM-C6-L01-01|published|320|orbit|grid|0",
+          "SIM-C6-L01-01|published|320|orbit|grid|1",
+          "SIM-C6-L01-01|published|320|orbit|grid|2",
+          "SIM-C6-L01-01|published|320|orbit|grid|3",
+          "SIM-C6-L01-01|published|320|orbit|clock|0",
+          "SIM-C6-L01-01|published|320|orbit|clock|1",
+          "SIM-C6-L01-01|published|320|orbit|clock|2",
+          "SIM-C6-L01-01|published|320|orbit|clock|3",
+          "SIM-C6-L01-01|published|320|side|setup",
+          "SIM-C6-L01-01|published|320|side|grid|0",
+          "SIM-C6-L01-01|published|320|side|grid|1",
+          "SIM-C6-L01-01|published|320|side|grid|2",
+          "SIM-C6-L01-01|published|320|side|grid|3",
+          "SIM-C6-L01-01|published|320|side|clock|0",
+          "SIM-C6-L01-01|published|320|side|clock|1",
+          "SIM-C6-L01-01|published|320|side|clock|2",
+          "SIM-C6-L01-01|published|320|side|clock|3",
+          "SIM-C6-L01-01|published|320|top|setup",
+          "SIM-C6-L01-01|published|320|top|grid|0",
+          "SIM-C6-L01-01|published|320|top|grid|1",
+          "SIM-C6-L01-01|published|320|top|grid|2",
+          "SIM-C6-L01-01|published|320|top|grid|3",
+          "SIM-C6-L01-01|published|320|top|clock|0",
+          "SIM-C6-L01-01|published|320|top|clock|1",
+          "SIM-C6-L01-01|published|320|top|clock|2",
+          "SIM-C6-L01-01|published|320|top|clock|3",
+          "SIM-C6-L01-01|published|320|fixed_projection|setup",
+          "SIM-C6-L01-01|published|320|fixed_projection|grid|0",
+          "SIM-C6-L01-01|published|320|fixed_projection|grid|1",
+          "SIM-C6-L01-01|published|320|fixed_projection|grid|2",
+          "SIM-C6-L01-01|published|320|fixed_projection|grid|3",
+          "SIM-C6-L01-01|published|320|fixed_projection|clock|0",
+          "SIM-C6-L01-01|published|320|fixed_projection|clock|1",
+          "SIM-C6-L01-01|published|320|fixed_projection|clock|2",
+          "SIM-C6-L01-01|published|320|fixed_projection|clock|3",
+          "SIM-C6-L01-01|published|1280|orbit|setup",
+          "SIM-C6-L01-01|published|1280|orbit|grid|0",
+          "SIM-C6-L01-01|published|1280|orbit|grid|1",
+          "SIM-C6-L01-01|published|1280|orbit|grid|2",
+          "SIM-C6-L01-01|published|1280|orbit|grid|3",
+          "SIM-C6-L01-01|published|1280|orbit|clock|0",
+          "SIM-C6-L01-01|published|1280|orbit|clock|1",
+          "SIM-C6-L01-01|published|1280|orbit|clock|2",
+          "SIM-C6-L01-01|published|1280|orbit|clock|3",
+          "SIM-C6-L01-01|published|1280|side|setup",
+          "SIM-C6-L01-01|published|1280|side|grid|0",
+          "SIM-C6-L01-01|published|1280|side|grid|1",
+          "SIM-C6-L01-01|published|1280|side|grid|2",
+          "SIM-C6-L01-01|published|1280|side|grid|3",
+          "SIM-C6-L01-01|published|1280|side|clock|0",
+          "SIM-C6-L01-01|published|1280|side|clock|1",
+          "SIM-C6-L01-01|published|1280|side|clock|2",
+          "SIM-C6-L01-01|published|1280|side|clock|3",
+          "SIM-C6-L01-01|published|1280|top|setup",
+          "SIM-C6-L01-01|published|1280|top|grid|0",
+          "SIM-C6-L01-01|published|1280|top|grid|1",
+          "SIM-C6-L01-01|published|1280|top|grid|2",
+          "SIM-C6-L01-01|published|1280|top|grid|3",
+          "SIM-C6-L01-01|published|1280|top|clock|0",
+          "SIM-C6-L01-01|published|1280|top|clock|1",
+          "SIM-C6-L01-01|published|1280|top|clock|2",
+          "SIM-C6-L01-01|published|1280|top|clock|3",
+          "SIM-C6-L01-01|published|1280|fixed_projection|setup",
+          "SIM-C6-L01-01|published|1280|fixed_projection|grid|0",
+          "SIM-C6-L01-01|published|1280|fixed_projection|grid|1",
+          "SIM-C6-L01-01|published|1280|fixed_projection|grid|2",
+          "SIM-C6-L01-01|published|1280|fixed_projection|grid|3",
+          "SIM-C6-L01-01|published|1280|fixed_projection|clock|0",
+          "SIM-C6-L01-01|published|1280|fixed_projection|clock|1",
+          "SIM-C6-L01-01|published|1280|fixed_projection|clock|2",
+          "SIM-C6-L01-01|published|1280|fixed_projection|clock|3"
+        ]
+      },
+      "reason": "Current whole raw PNG at20ms/clock10ms in all8profiles shows complete separated outward/return indicators and pulse at reflector. All72current cases, including degenerate zero and quarter-clock return, pass independent exact scalar/path checks. No new finding in the observed scope.",
+      "readPngSha256": [
+        "8dfc2a2cd2ab73694600cf18d0d3e689ff138d911f15569987a4742df3ebf09f",
+        "0c273274eccb910f096535b8bd8ec50c0002d065c568bba39dca9529a09d53d1",
+        "19c0ed1ed380aac94b165cbb366fc14df99664e4b523061e051479f668525fd0",
+        "77509884ded6aedb3a86bda9b6ff48f59babee54a003c06b7f95274d5ae6adc8",
+        "d0965ba25a302c76b0bcf59dda0a58a8298135890708af88232f638762c57944",
+        "ddcc0c8ecfbbf0e4e650c0e8c6f1c53859a28e8e739a2b78a5b5a9c2e9831341",
+        "a3aa352f875f96893657947e600db858c25d82359a1d87949b7925ba4fd2b291",
+        "51ba6f05b2e774fab19db7b78032cdbbb06862cc51508c5638741c61c436cf28"
+      ],
+      "readFiles": [
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/8dfc2a2cd2ab73694600cf18d0d3e689ff138d911f15569987a4742df3ebf09f.png",
+          "sha256": "8dfc2a2cd2ab73694600cf18d0d3e689ff138d911f15569987a4742df3ebf09f",
+          "caseKey": "SIM-C6-L01-01|published|320|orbit|clock|1",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/0c273274eccb910f096535b8bd8ec50c0002d065c568bba39dca9529a09d53d1.png",
+          "sha256": "0c273274eccb910f096535b8bd8ec50c0002d065c568bba39dca9529a09d53d1",
+          "caseKey": "SIM-C6-L01-01|published|320|side|clock|1",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/19c0ed1ed380aac94b165cbb366fc14df99664e4b523061e051479f668525fd0.png",
+          "sha256": "19c0ed1ed380aac94b165cbb366fc14df99664e4b523061e051479f668525fd0",
+          "caseKey": "SIM-C6-L01-01|published|320|top|clock|1",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/77509884ded6aedb3a86bda9b6ff48f59babee54a003c06b7f95274d5ae6adc8.png",
+          "sha256": "77509884ded6aedb3a86bda9b6ff48f59babee54a003c06b7f95274d5ae6adc8",
+          "caseKey": "SIM-C6-L01-01|published|320|fixed_projection|clock|1",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/d0965ba25a302c76b0bcf59dda0a58a8298135890708af88232f638762c57944.png",
+          "sha256": "d0965ba25a302c76b0bcf59dda0a58a8298135890708af88232f638762c57944",
+          "caseKey": "SIM-C6-L01-01|published|1280|orbit|clock|1",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/ddcc0c8ecfbbf0e4e650c0e8c6f1c53859a28e8e739a2b78a5b5a9c2e9831341.png",
+          "sha256": "ddcc0c8ecfbbf0e4e650c0e8c6f1c53859a28e8e739a2b78a5b5a9c2e9831341",
+          "caseKey": "SIM-C6-L01-01|published|1280|side|clock|1",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/a3aa352f875f96893657947e600db858c25d82359a1d87949b7925ba4fd2b291.png",
+          "sha256": "a3aa352f875f96893657947e600db858c25d82359a1d87949b7925ba4fd2b291",
+          "caseKey": "SIM-C6-L01-01|published|1280|top|clock|1",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/51ba6f05b2e774fab19db7b78032cdbbb06862cc51508c5638741c61c436cf28.png",
+          "sha256": "51ba6f05b2e774fab19db7b78032cdbbb06862cc51508c5638741c61c436cf28",
+          "caseKey": "SIM-C6-L01-01|published|1280|fixed_projection|clock|1",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        }
+      ],
+      "readCaseFiles": [
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/4a51adbe744014f92b469c7fe4d91b34c70e9d9e1977fe2bdd529bb142eeac2f.json",
+          "sha256": "1aafa62170490c9e882f053e4b5d7debf1ba9b3a0d84a6ae0eb56631a6f7ec3f"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/7bcbf8f0db95e10c42b87adc4681c3c4ebfcc19205179ba6553b1e89abd36dc2.json",
+          "sha256": "8ff297f7fe665e33094529c88dac5f2a6dea2b045a93adbaac7b55ec7509ad2c"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/ea7e8c67ecde84f9e227dbf881875a3a2f39d8c64a50fbf74df18c36d0436538.json",
+          "sha256": "db27dddfdeca72e4912ea0dfd1c2b520f49fa8e59de441a3668c1db4056ca040"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/f0e53af8ec264de35d7be3d2b1b6e2f4343257a1a4932ac89114640d2c091e09.json",
+          "sha256": "fe310245a164d7a81b6b2a5ec8b9fadaa4cc826b1c2de696ddde0d91b2dce41c"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/cd3fcb8dc3113c6781f5d65c956a0ff07d2e92ecb5dc41299d3ab4a484a5d672.json",
+          "sha256": "40282e22a69a68b3ce1d65f6a4c6a9a4d499869d0b36ae9a444e6186b21cfb06"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/eac919ed80d66763aa6c936111eb1426b28ea6a068232b80e47987da43ab7747.json",
+          "sha256": "c0a40799e223313f1967c41b5e499d47c39dd3ef1428521d0dcb0efa61550889"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/75947a0735ddb3b3dffcfa5a5721a00459fd551024757a69354ce6bffa5f95fb.json",
+          "sha256": "5cea3539e3231d569f8c76f614083f5fb43a1171f370222b781ae046946b5daf"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/6e06f6f09ceb7237e227fae843c17d913a539693861888ad87a21ccdb815f2d7.json",
+          "sha256": "e736e54dd64215ea07ac13efb1de657820667e5cfe40d03452ed01d7f056bdc8"
+        }
+      ],
+      "actualPhaseText": [
+        "OSSERVA · 2/5\nIndividua il fenomeno\n\nIdentifica emissione e ricezione nello stesso punto. Il suono percorre due volte la distanza. Converti il tempo in secondi, moltiplica per la velocità e dividi per due.\n\nd = vΔt/2, con v = 340 m/s\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+        "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Durata di andata e ritorno» e confronta la scena con il punto segnato sul grafico. Parti da 2 ms, poi prova 10 ms.\n\nDurata di andata e ritorno = 2 ms · Distanza del riflettore = 0,34 m\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+        "COMPRENDI · 4/5\nOsserva la lettura del modello\n\nQuesta posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 10 ms e 11 ms.\n\nDistanza del riflettore = 0,34 m\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+        "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Durata di andata e ritorno» a 11 ms. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nd = vΔt/2, con v = 340 m/s\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale"
+      ],
+      "installedAnswerExamples": [
+        {
+          "expectedAccepted": true,
+          "input": "1.7",
+          "prompt": "Imposta «Durata di andata e ritorno» su 10 ms. Quale valore ottieni per «Distanza del riflettore»?",
+          "sourceManualReadiness": true,
+          "actualPrompt": "Imposta «Durata di andata e ritorno» su 10 ms. Quale valore ottieni per «Distanza del riflettore»?",
+          "status": "Corretto. d = vΔt/2, con v = 340 m/s. 0,17 × 10 ≈ 1,7 m."
+        },
+        {
+          "expectedAccepted": true,
+          "input": "1.87",
+          "prompt": "Il microfono registra l’eco 11 ms dopo l’impulso. Se il suono percorre 340 m ogni secondo, a quale distanza si trova il riflettore?",
+          "sourceManualReadiness": true,
+          "actualPrompt": "Il microfono registra l’eco 11 ms dopo l’impulso. Se il suono percorre 340 m ogni secondo, a quale distanza si trova il riflettore?",
+          "status": "Corretto. d = vΔt/2, con v = 340 m/s. 0,17 × 11 = 1,87 m."
+        }
+      ],
+      "sourceOriginalRecord": {
+        "anchor": "Per un’eco su un riflettore fermo, se",
+        "apparatus": "doppler",
+        "blocks": [],
+        "control": {
+          "label": "Durata di andata e ritorno",
+          "max": 20.0,
+          "min": 0.0,
+          "step": 1.0,
+          "unit": "ms"
+        },
+        "course": "C6",
+        "formula": "d = vΔt/2, con v = 340 m/s",
+        "id": "SIM-C6-L01-01",
+        "interpretation": "Identifica emissione e ricezione nello stesso punto. Il suono percorre due volte la distanza. Converti il tempo in secondi, moltiplica per la velocità e dividi per due.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Distanza del riflettore",
+          "unit": "m"
+        },
+        "order": 1,
+        "references": [
+          [
+            2.0,
+            0.34
+          ],
+          [
+            10.0,
+            1.7
+          ]
+        ],
+        "section": "Orientarsi tra le misure",
+        "skill": "C6-L01",
+        "substitution": "0,17 × {x}",
+        "summary": "Come passi dai millisecondi di un’eco alla distanza fisica?",
+        "title": "Misurare una distanza con l’eco",
+        "topic": "Collegamento U1, U2, U3, U4, U5, U6 e U7 · sistemi, grandezze, unità e scale",
+        "transferPrompt": "Il microfono registra l’eco {x} dopo l’impulso. Se il suono percorre 340 m ogni secondo, a quale distanza si trova il riflettore?",
+        "version": 1
+      },
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C6-L02-01",
+      "sourceCommit": "3d060603540c981bf641f776ca65fd3ef76106c3",
+      "runtimeSha256": "2096493ae86311ec459e012032cd1f8fe41293326cc5769d86376aa5a0b59635",
+      "sourceRecordSha256": "cf214dceab29392eb81395ac0f9ff7a3fbd721114a1039fab7fab372e4bae2c3",
+      "sourceVersion": 1,
+      "visualReview": "PASS",
+      "scope": {
+        "kind": "BOUNDED_CURRENT_ORIGINAL_SOURCE_NATIVE_FALLBACK",
+        "profiles": [
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "gridValues": [
+          0,
+          8,
+          24,
+          40
+        ],
+        "clockCases": [
+          {
+            "gridIndex": 3,
+            "time": 2,
+            "duration": 4
+          },
+          {
+            "gridIndex": 3,
+            "time": 4,
+            "duration": 4
+          }
+        ],
+        "actualCaseCount": 56,
+        "gridClockCaseCount": 48,
+        "setupCount": 8,
+        "acceptedAnswerEvents": 16,
+        "phaseTextVariantsRead": 1,
+        "phasesPerSetup": 4,
+        "authoredReadingPanel": "ABSENT_ORIGINAL_BLOCKS_EMPTY_READING_NULL",
+        "manualWholeRawPngCount": 8,
+        "all264FramesManuallyOpened": false,
+        "manualReadCaseKeys": [
+          "SIM-C6-L02-01|published|320|orbit|clock|1",
+          "SIM-C6-L02-01|published|320|side|clock|1",
+          "SIM-C6-L02-01|published|320|top|clock|1",
+          "SIM-C6-L02-01|published|320|fixed_projection|clock|1",
+          "SIM-C6-L02-01|published|1280|orbit|clock|1",
+          "SIM-C6-L02-01|published|1280|side|clock|1",
+          "SIM-C6-L02-01|published|1280|top|clock|1",
+          "SIM-C6-L02-01|published|1280|fixed_projection|clock|1"
+        ],
+        "fullObservedCaseKeys": [
+          "SIM-C6-L02-01|published|320|orbit|setup",
+          "SIM-C6-L02-01|published|320|orbit|grid|0",
+          "SIM-C6-L02-01|published|320|orbit|grid|1",
+          "SIM-C6-L02-01|published|320|orbit|grid|2",
+          "SIM-C6-L02-01|published|320|orbit|grid|3",
+          "SIM-C6-L02-01|published|320|orbit|clock|0",
+          "SIM-C6-L02-01|published|320|orbit|clock|1",
+          "SIM-C6-L02-01|published|320|side|setup",
+          "SIM-C6-L02-01|published|320|side|grid|0",
+          "SIM-C6-L02-01|published|320|side|grid|1",
+          "SIM-C6-L02-01|published|320|side|grid|2",
+          "SIM-C6-L02-01|published|320|side|grid|3",
+          "SIM-C6-L02-01|published|320|side|clock|0",
+          "SIM-C6-L02-01|published|320|side|clock|1",
+          "SIM-C6-L02-01|published|320|top|setup",
+          "SIM-C6-L02-01|published|320|top|grid|0",
+          "SIM-C6-L02-01|published|320|top|grid|1",
+          "SIM-C6-L02-01|published|320|top|grid|2",
+          "SIM-C6-L02-01|published|320|top|grid|3",
+          "SIM-C6-L02-01|published|320|top|clock|0",
+          "SIM-C6-L02-01|published|320|top|clock|1",
+          "SIM-C6-L02-01|published|320|fixed_projection|setup",
+          "SIM-C6-L02-01|published|320|fixed_projection|grid|0",
+          "SIM-C6-L02-01|published|320|fixed_projection|grid|1",
+          "SIM-C6-L02-01|published|320|fixed_projection|grid|2",
+          "SIM-C6-L02-01|published|320|fixed_projection|grid|3",
+          "SIM-C6-L02-01|published|320|fixed_projection|clock|0",
+          "SIM-C6-L02-01|published|320|fixed_projection|clock|1",
+          "SIM-C6-L02-01|published|1280|orbit|setup",
+          "SIM-C6-L02-01|published|1280|orbit|grid|0",
+          "SIM-C6-L02-01|published|1280|orbit|grid|1",
+          "SIM-C6-L02-01|published|1280|orbit|grid|2",
+          "SIM-C6-L02-01|published|1280|orbit|grid|3",
+          "SIM-C6-L02-01|published|1280|orbit|clock|0",
+          "SIM-C6-L02-01|published|1280|orbit|clock|1",
+          "SIM-C6-L02-01|published|1280|side|setup",
+          "SIM-C6-L02-01|published|1280|side|grid|0",
+          "SIM-C6-L02-01|published|1280|side|grid|1",
+          "SIM-C6-L02-01|published|1280|side|grid|2",
+          "SIM-C6-L02-01|published|1280|side|grid|3",
+          "SIM-C6-L02-01|published|1280|side|clock|0",
+          "SIM-C6-L02-01|published|1280|side|clock|1",
+          "SIM-C6-L02-01|published|1280|top|setup",
+          "SIM-C6-L02-01|published|1280|top|grid|0",
+          "SIM-C6-L02-01|published|1280|top|grid|1",
+          "SIM-C6-L02-01|published|1280|top|grid|2",
+          "SIM-C6-L02-01|published|1280|top|grid|3",
+          "SIM-C6-L02-01|published|1280|top|clock|0",
+          "SIM-C6-L02-01|published|1280|top|clock|1",
+          "SIM-C6-L02-01|published|1280|fixed_projection|setup",
+          "SIM-C6-L02-01|published|1280|fixed_projection|grid|0",
+          "SIM-C6-L02-01|published|1280|fixed_projection|grid|1",
+          "SIM-C6-L02-01|published|1280|fixed_projection|grid|2",
+          "SIM-C6-L02-01|published|1280|fixed_projection|grid|3",
+          "SIM-C6-L02-01|published|1280|fixed_projection|clock|0",
+          "SIM-C6-L02-01|published|1280|fixed_projection|clock|1"
+        ]
+      },
+      "reason": "Current whole raw PNG at40g/clock4s in all8profiles shows both complete velocity indicators and the final collection. All56current cases include zero/8/24/40g and collectionclock2/4s; entry/exit names remain accessible and removed opaque labels do not return. No new finding in the observed scope.",
+      "readPngSha256": [
+        "3e60d0ac4d3972a916c470d1812d6afdcd6f0cdf2dee59686eb1dee160bf9abe",
+        "dff8d4501bf2c0a10b4211cee8a2c3804a8cb0ef3a5bddd8b418098e5e9e7eda",
+        "94ba4792216229c31c569c3d3cba125ad654b915cb88a2c8ea7d8f8519b127f0",
+        "e1e8e771083dfd70e7884488ffe332ce9ee21a453eb5ae57a6c44237d2c7b152",
+        "79de591af3c3b1f3be0b727164941feb1cee5b2e560f8906a841e76d40c04e40",
+        "3b75473fa138de57e7573beae28e107ae7d8b6f8ae84d0b45229c440b8c0b072",
+        "67411c55a64bed26b045cf2c5775bef7d7e105f6fd1cffdb3390b7d0bdc9af1b",
+        "52c06f83d35c0e0d59fe4488c5236ff16b1fe69dae7637a2a9ce811d777665fd"
+      ],
+      "readFiles": [
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/3e60d0ac4d3972a916c470d1812d6afdcd6f0cdf2dee59686eb1dee160bf9abe.png",
+          "sha256": "3e60d0ac4d3972a916c470d1812d6afdcd6f0cdf2dee59686eb1dee160bf9abe",
+          "caseKey": "SIM-C6-L02-01|published|320|orbit|clock|1",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/dff8d4501bf2c0a10b4211cee8a2c3804a8cb0ef3a5bddd8b418098e5e9e7eda.png",
+          "sha256": "dff8d4501bf2c0a10b4211cee8a2c3804a8cb0ef3a5bddd8b418098e5e9e7eda",
+          "caseKey": "SIM-C6-L02-01|published|320|side|clock|1",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/94ba4792216229c31c569c3d3cba125ad654b915cb88a2c8ea7d8f8519b127f0.png",
+          "sha256": "94ba4792216229c31c569c3d3cba125ad654b915cb88a2c8ea7d8f8519b127f0",
+          "caseKey": "SIM-C6-L02-01|published|320|top|clock|1",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/e1e8e771083dfd70e7884488ffe332ce9ee21a453eb5ae57a6c44237d2c7b152.png",
+          "sha256": "e1e8e771083dfd70e7884488ffe332ce9ee21a453eb5ae57a6c44237d2c7b152",
+          "caseKey": "SIM-C6-L02-01|published|320|fixed_projection|clock|1",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/79de591af3c3b1f3be0b727164941feb1cee5b2e560f8906a841e76d40c04e40.png",
+          "sha256": "79de591af3c3b1f3be0b727164941feb1cee5b2e560f8906a841e76d40c04e40",
+          "caseKey": "SIM-C6-L02-01|published|1280|orbit|clock|1",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/3b75473fa138de57e7573beae28e107ae7d8b6f8ae84d0b45229c440b8c0b072.png",
+          "sha256": "3b75473fa138de57e7573beae28e107ae7d8b6f8ae84d0b45229c440b8c0b072",
+          "caseKey": "SIM-C6-L02-01|published|1280|side|clock|1",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/67411c55a64bed26b045cf2c5775bef7d7e105f6fd1cffdb3390b7d0bdc9af1b.png",
+          "sha256": "67411c55a64bed26b045cf2c5775bef7d7e105f6fd1cffdb3390b7d0bdc9af1b",
+          "caseKey": "SIM-C6-L02-01|published|1280|top|clock|1",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/52c06f83d35c0e0d59fe4488c5236ff16b1fe69dae7637a2a9ce811d777665fd.png",
+          "sha256": "52c06f83d35c0e0d59fe4488c5236ff16b1fe69dae7637a2a9ce811d777665fd",
+          "caseKey": "SIM-C6-L02-01|published|1280|fixed_projection|clock|1",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        }
+      ],
+      "readCaseFiles": [
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/3f6813f7b3a556429d40ab0cbfe31e9d5296340d343cb5fbb82f9035c5538503.json",
+          "sha256": "1c56f15b0d613564a7cf403c85ae7cf53fa973eadf7d63242a1eedbdbadc4955"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/f0c3cde2281b4fb17a7519505a05ceb56c5df88f9fab650be5452f96c06ff20a.json",
+          "sha256": "3f093f1e3b3f5d6628e25ca47c0e65486fc225918b580ebdba21241d60ec97f8"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/089430396a657ce170440c73f8946780001bf8f09cf77853894d13b6e756c874.json",
+          "sha256": "30abfe4768f7e423efb429f7c61aedcfc813f0ba30442b76ed2f08f6a8a05b26"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/d2fb143f1d0f9d1bbeeee8d337524acee88f1e42d1f225504b6a70c2f9623bbf.json",
+          "sha256": "370b7c68efe3a226cb946e85c67b5fee673cd3b414d444f6c917ba1a063328cb"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/725b948695b1da8973fc6fcf818ae83c4ade13c2582e239ae30e3ee204ca07ae.json",
+          "sha256": "9e9f8c04b7d3958cdd2338ac04e65c9450c47b267c515215523b6e9f9e45f57b"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/dc9a3edfe0be986813f04e383a39d2b191357e5a28a481ec075e95bab217c5df.json",
+          "sha256": "6bcb2968f45c236048e0ae2d66038f53e9832406ce89d890ed5b7c1ddf66f5a8"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/97e36f60bc389c51d47fcab31734ff45ac8ea98a45acc7fd67fb34eb9b4dac94.json",
+          "sha256": "f931294a9293b1037665c4087c38aa542f0ddc0ca564d3d049a7ac65f9bbecc6"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/4ece1dc13225c07182db443aabf03daf905027eb232fb006a27c1cf3331dfb9c.json",
+          "sha256": "cccc0f651c693d4178062cfc97041bbd7834f503ce638d6bdc083338fc70aefc"
+        }
+      ],
+      "actualPhaseText": [
+        "OSSERVA · 2/5\nIndividua il fenomeno\n\nRaccogli tutto ciò che attraversa la superficie. La massa divisa per la densità dà il volume. Dividi ancora per la durata e per l’area. La stessa idea di bilancio vale per carica ed energia.\n\nQ = m/(ρΔt); v = Q/A; ρ = 1 g/cm³, A = 2 cm²\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+        "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Massa raccolta in 4 secondi» e confronta la scena con il punto segnato sul grafico. Parti da 8 g, poi prova 24 g.\n\nMassa raccolta in 4 secondi = 8 g · Velocità media alla sezione = 1 cm/s\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+        "COMPRENDI · 4/5\nOsserva la lettura del modello\n\nQuesta posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 24 g e 20 g.\n\nVelocità media alla sezione = 1 cm/s\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+        "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Massa raccolta in 4 secondi» a 20 g. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nQ = m/(ρΔt); v = Q/A; ρ = 1 g/cm³, A = 2 cm²\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale"
+      ],
+      "installedAnswerExamples": [
+        {
+          "expectedAccepted": true,
+          "input": "3",
+          "prompt": "Imposta «Massa raccolta in 4 secondi» su 24 g. Quale valore ottieni per «Velocità media alla sezione»?",
+          "sourceManualReadiness": true,
+          "actualPrompt": "Imposta «Massa raccolta in 4 secondi» su 24 g. Quale valore ottieni per «Velocità media alla sezione»?",
+          "status": "Corretto. Q = m/(ρΔt); v = Q/A; ρ = 1 g/cm³, A = 2 cm². 24 / 8 = 3 cm/s."
+        },
+        {
+          "expectedAccepted": true,
+          "input": "2.5",
+          "prompt": "In 4 s il recipiente raccoglie 20 g d’acqua, di densità 1 g/cm³. Quale velocità media ha l’acqua nel tubo di sezione 2 cm²?",
+          "sourceManualReadiness": true,
+          "actualPrompt": "In 4 s il recipiente raccoglie 20 g d’acqua, di densità 1 g/cm³. Quale velocità media ha l’acqua nel tubo di sezione 2 cm²?",
+          "status": "Corretto. Q = m/(ρΔt); v = Q/A; ρ = 1 g/cm³, A = 2 cm². 20 / 8 = 2,5 cm/s."
+        }
+      ],
+      "sourceOriginalRecord": {
+        "anchor": "Una bilancia misura la massa raccolta all’uscita",
+        "apparatus": "condotto",
+        "blocks": [],
+        "control": {
+          "label": "Massa raccolta in 4 secondi",
+          "max": 40.0,
+          "min": 0.0,
+          "step": 2.0,
+          "unit": "g"
+        },
+        "course": "C6",
+        "formula": "Q = m/(ρΔt); v = Q/A; ρ = 1 g/cm³, A = 2 cm²",
+        "id": "SIM-C6-L02-01",
+        "interpretation": "Raccogli tutto ciò che attraversa la superficie. La massa divisa per la densità dà il volume. Dividi ancora per la durata e per l’area. La stessa idea di bilancio vale per carica ed energia.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Velocità media alla sezione",
+          "unit": "cm/s"
+        },
+        "order": 1,
+        "references": [
+          [
+            8.0,
+            1.0
+          ],
+          [
+            24.0,
+            3.0
+          ]
+        ],
+        "section": "Portate, correnti e intensità",
+        "skill": "C6-L02",
+        "substitution": "{x} / 8",
+        "summary": "Come ricostruisci una velocità a partire da una bilancia e un cronometro?",
+        "title": "Dalla massa raccolta alla velocità del fluido",
+        "topic": "Collegamento U3, U4 e U6 · trasporti, densità di flusso e bilanci in regime stazionario",
+        "transferPrompt": "In 4 s il recipiente raccoglie {x} d’acqua, di densità 1 g/cm³. Quale velocità media ha l’acqua nel tubo di sezione 2 cm²?",
+        "version": 1
+      },
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C6-L03-01",
+      "sourceCommit": "3d060603540c981bf641f776ca65fd3ef76106c3",
+      "runtimeSha256": "2096493ae86311ec459e012032cd1f8fe41293326cc5769d86376aa5a0b59635",
+      "sourceRecordSha256": "d8ed0deff12aed8cc14f5ec7bc13ed8cc747b1c6e955827793a874e767fe54ac",
+      "sourceVersion": 1,
+      "visualReview": "PASS",
+      "scope": {
+        "kind": "BOUNDED_CURRENT_ORIGINAL_SOURCE_NATIVE_FALLBACK",
+        "profiles": [
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "gridValues": [
+          0,
+          20,
+          50,
+          80,
+          100
+        ],
+        "clockCases": [],
+        "actualCaseCount": 48,
+        "gridClockCaseCount": 40,
+        "setupCount": 8,
+        "acceptedAnswerEvents": 16,
+        "phaseTextVariantsRead": 1,
+        "phasesPerSetup": 4,
+        "authoredReadingPanel": "ABSENT_ORIGINAL_BLOCKS_EMPTY_READING_NULL",
+        "manualWholeRawPngCount": 8,
+        "all264FramesManuallyOpened": false,
+        "manualReadCaseKeys": [
+          "SIM-C6-L03-01|published|320|orbit|grid|4",
+          "SIM-C6-L03-01|published|320|side|grid|4",
+          "SIM-C6-L03-01|published|320|top|grid|4",
+          "SIM-C6-L03-01|published|320|fixed_projection|grid|4",
+          "SIM-C6-L03-01|published|1280|orbit|grid|4",
+          "SIM-C6-L03-01|published|1280|side|grid|4",
+          "SIM-C6-L03-01|published|1280|top|grid|4",
+          "SIM-C6-L03-01|published|1280|fixed_projection|grid|4"
+        ],
+        "fullObservedCaseKeys": [
+          "SIM-C6-L03-01|published|320|orbit|setup",
+          "SIM-C6-L03-01|published|320|orbit|grid|0",
+          "SIM-C6-L03-01|published|320|orbit|grid|1",
+          "SIM-C6-L03-01|published|320|orbit|grid|2",
+          "SIM-C6-L03-01|published|320|orbit|grid|3",
+          "SIM-C6-L03-01|published|320|orbit|grid|4",
+          "SIM-C6-L03-01|published|320|side|setup",
+          "SIM-C6-L03-01|published|320|side|grid|0",
+          "SIM-C6-L03-01|published|320|side|grid|1",
+          "SIM-C6-L03-01|published|320|side|grid|2",
+          "SIM-C6-L03-01|published|320|side|grid|3",
+          "SIM-C6-L03-01|published|320|side|grid|4",
+          "SIM-C6-L03-01|published|320|top|setup",
+          "SIM-C6-L03-01|published|320|top|grid|0",
+          "SIM-C6-L03-01|published|320|top|grid|1",
+          "SIM-C6-L03-01|published|320|top|grid|2",
+          "SIM-C6-L03-01|published|320|top|grid|3",
+          "SIM-C6-L03-01|published|320|top|grid|4",
+          "SIM-C6-L03-01|published|320|fixed_projection|setup",
+          "SIM-C6-L03-01|published|320|fixed_projection|grid|0",
+          "SIM-C6-L03-01|published|320|fixed_projection|grid|1",
+          "SIM-C6-L03-01|published|320|fixed_projection|grid|2",
+          "SIM-C6-L03-01|published|320|fixed_projection|grid|3",
+          "SIM-C6-L03-01|published|320|fixed_projection|grid|4",
+          "SIM-C6-L03-01|published|1280|orbit|setup",
+          "SIM-C6-L03-01|published|1280|orbit|grid|0",
+          "SIM-C6-L03-01|published|1280|orbit|grid|1",
+          "SIM-C6-L03-01|published|1280|orbit|grid|2",
+          "SIM-C6-L03-01|published|1280|orbit|grid|3",
+          "SIM-C6-L03-01|published|1280|orbit|grid|4",
+          "SIM-C6-L03-01|published|1280|side|setup",
+          "SIM-C6-L03-01|published|1280|side|grid|0",
+          "SIM-C6-L03-01|published|1280|side|grid|1",
+          "SIM-C6-L03-01|published|1280|side|grid|2",
+          "SIM-C6-L03-01|published|1280|side|grid|3",
+          "SIM-C6-L03-01|published|1280|side|grid|4",
+          "SIM-C6-L03-01|published|1280|top|setup",
+          "SIM-C6-L03-01|published|1280|top|grid|0",
+          "SIM-C6-L03-01|published|1280|top|grid|1",
+          "SIM-C6-L03-01|published|1280|top|grid|2",
+          "SIM-C6-L03-01|published|1280|top|grid|3",
+          "SIM-C6-L03-01|published|1280|top|grid|4",
+          "SIM-C6-L03-01|published|1280|fixed_projection|setup",
+          "SIM-C6-L03-01|published|1280|fixed_projection|grid|0",
+          "SIM-C6-L03-01|published|1280|fixed_projection|grid|1",
+          "SIM-C6-L03-01|published|1280|fixed_projection|grid|2",
+          "SIM-C6-L03-01|published|1280|fixed_projection|grid|3",
+          "SIM-C6-L03-01|published|1280|fixed_projection|grid|4"
+        ]
+      },
+      "reason": "Current whole raw PNG at100s in all8profiles shows the upper temperature column clear of its label in nonaxial views and the intended sample color. All48current cases preserve useful8W/400JperK and t/50K. Top naturally collapses the vertical column; no unsupported Topheight measurement claim. No new finding in the observed scope.",
+      "readPngSha256": [
+        "60a9a2bfade61caa41844c01e69e1c1b83f917cb4694f32e8dbf9767c1fdb509",
+        "f17442ff128a6354af3ddbc8542b5168fbea085d080ddab25f138a23c57ceaf8",
+        "daf1ca5b37f81679ad775f7d5672b558cd4b99b461b93553d2e1364d86af2bb0",
+        "6bec7912e3fe8eb6069a1ed30f84af5949f255b14f1cbb59adc3b9e4eef95463",
+        "5ee0d9d5d3b0ec6e4d0938a59b2fccf9e1400a1e51d510fd6a92cc2818c742e8",
+        "fd616aadcf4addd9d15e453d2c70a569ed369800c56ef50ff3724e2d9d76d132",
+        "cce6f63d7cbda1ff6efdc1e1c182ba8a4ddc37030d793a6819f3a7607381e956",
+        "d53d8f618e002c2fe09676975477e739c6d4e6c17b62dc7444e77b003997ce23"
+      ],
+      "readFiles": [
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/60a9a2bfade61caa41844c01e69e1c1b83f917cb4694f32e8dbf9767c1fdb509.png",
+          "sha256": "60a9a2bfade61caa41844c01e69e1c1b83f917cb4694f32e8dbf9767c1fdb509",
+          "caseKey": "SIM-C6-L03-01|published|320|orbit|grid|4",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/f17442ff128a6354af3ddbc8542b5168fbea085d080ddab25f138a23c57ceaf8.png",
+          "sha256": "f17442ff128a6354af3ddbc8542b5168fbea085d080ddab25f138a23c57ceaf8",
+          "caseKey": "SIM-C6-L03-01|published|320|side|grid|4",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/daf1ca5b37f81679ad775f7d5672b558cd4b99b461b93553d2e1364d86af2bb0.png",
+          "sha256": "daf1ca5b37f81679ad775f7d5672b558cd4b99b461b93553d2e1364d86af2bb0",
+          "caseKey": "SIM-C6-L03-01|published|320|top|grid|4",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/6bec7912e3fe8eb6069a1ed30f84af5949f255b14f1cbb59adc3b9e4eef95463.png",
+          "sha256": "6bec7912e3fe8eb6069a1ed30f84af5949f255b14f1cbb59adc3b9e4eef95463",
+          "caseKey": "SIM-C6-L03-01|published|320|fixed_projection|grid|4",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/5ee0d9d5d3b0ec6e4d0938a59b2fccf9e1400a1e51d510fd6a92cc2818c742e8.png",
+          "sha256": "5ee0d9d5d3b0ec6e4d0938a59b2fccf9e1400a1e51d510fd6a92cc2818c742e8",
+          "caseKey": "SIM-C6-L03-01|published|1280|orbit|grid|4",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/fd616aadcf4addd9d15e453d2c70a569ed369800c56ef50ff3724e2d9d76d132.png",
+          "sha256": "fd616aadcf4addd9d15e453d2c70a569ed369800c56ef50ff3724e2d9d76d132",
+          "caseKey": "SIM-C6-L03-01|published|1280|side|grid|4",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/cce6f63d7cbda1ff6efdc1e1c182ba8a4ddc37030d793a6819f3a7607381e956.png",
+          "sha256": "cce6f63d7cbda1ff6efdc1e1c182ba8a4ddc37030d793a6819f3a7607381e956",
+          "caseKey": "SIM-C6-L03-01|published|1280|top|grid|4",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/d53d8f618e002c2fe09676975477e739c6d4e6c17b62dc7444e77b003997ce23.png",
+          "sha256": "d53d8f618e002c2fe09676975477e739c6d4e6c17b62dc7444e77b003997ce23",
+          "caseKey": "SIM-C6-L03-01|published|1280|fixed_projection|grid|4",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        }
+      ],
+      "readCaseFiles": [
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/ffd421970738166e9dbc70fb1bbb760a4980dc937d9a5b9b14dcc0ab8654bdc4.json",
+          "sha256": "81b3c365f255b51f8721ee40cffbf6cd128c22765d295342b5af1f36bd41c8d1"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/bbc4cedc5114b1fe414c242830bc238c8210b8b760f022a5f50013694dbd2d21.json",
+          "sha256": "2b87b6989376b1c8f1abaf452ce4d04b870bb561ce5c4f4e7abb7c2cdd1b5ace"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/651b3f06f21ddd69b6239c85e3ce3a0f46c69f87f868f6db34d22ba5b49c055a.json",
+          "sha256": "0b06c3b6e0fa0279945949da7eb965e6ae03b6ef8c1a7a569e020d9fff14e0a5"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/de9f9423f28088e50ca9c00aa57e40bec37cabec52d8e79efdf5828c5bd2d282.json",
+          "sha256": "c98e7d8fee786104809f2761d885d3b704981f251712005771b9a1b7f9f2bfe3"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/de1b320747e6e593ad56aeb94578a330e5d6a5cfd172781f2d48861fe4d5e273.json",
+          "sha256": "3ef05e0c6537ed5e7c434a2d328e996fd985dd42638387db6a3e76e82c6e1f37"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/9a839009684c5a249cbc7d805f67510253137656930f5124d453e997df0ba2b6.json",
+          "sha256": "972144df9df96afe3bc14b0ed703b8eaed10281765e0972d5d0133428b5a27d2"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/3f3ec62d77d6637dc219522df40f7525b6e74f659b0c32d9bf6129eecfced1fc.json",
+          "sha256": "a46eb11b79a5aaf8f8e1a1d2372351ee29c0b9071ee2189375f4cbd392bdd421"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/1549dd7b60edf040f5feb8d09e82b0d6570672c383ce89448a5758ef04d8f212.json",
+          "sha256": "30b597185b71e127f38ff20bc568e254edbee70768319a3aa7f3df25299d6a5a"
+        }
+      ],
+      "actualPhaseText": [
+        "OSSERVA · 2/5\nIndividua il fenomeno\n\nSegui l’energia attraverso resistenza e liquido. Entrano 10 J elettrici ogni secondo, 8 raggiungono il campione. Il bilancio distingue potenza fornita, perdite e aumento di energia interna.\n\nΔT = ηVIt/C; V = 5 V, I = 2 A, η = 0,8, C = 400 J/K\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+        "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Durata del riscaldamento» e confronta la scena con il punto segnato sul grafico. Parti da 20 s, poi prova 80 s.\n\nDurata del riscaldamento = 20 s · Aumento di temperatura = 0,4 K\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+        "COMPRENDI · 4/5\nOsserva la lettura del modello\n\nQuesta posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 80 s e 50 s.\n\nAumento di temperatura = 0,4 K\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+        "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Durata del riscaldamento» a 50 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nΔT = ηVIt/C; V = 5 V, I = 2 A, η = 0,8, C = 400 J/K\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale"
+      ],
+      "installedAnswerExamples": [
+        {
+          "expectedAccepted": true,
+          "input": "1.6",
+          "prompt": "Imposta «Durata del riscaldamento» su 80 s. Quale valore ottieni per «Aumento di temperatura»?",
+          "sourceManualReadiness": true,
+          "actualPrompt": "Imposta «Durata del riscaldamento» su 80 s. Quale valore ottieni per «Aumento di temperatura»?",
+          "status": "Corretto. ΔT = ηVIt/C; V = 5 V, I = 2 A, η = 0,8, C = 400 J/K. 0,02 × 80 = 1,6 K."
+        },
+        {
+          "expectedAccepted": true,
+          "input": "1",
+          "prompt": "Il riscaldatore da 5 V e 2 A lavora per 50 s. Se l’80% dell’energia scalda il calorimetro da 400 J/K, quanto aumenta la temperatura?",
+          "sourceManualReadiness": true,
+          "actualPrompt": "Il riscaldatore da 5 V e 2 A lavora per 50 s. Se l’80% dell’energia scalda il calorimetro da 400 J/K, quanto aumenta la temperatura?",
+          "status": "Corretto. ΔT = ηVIt/C; V = 5 V, I = 2 A, η = 0,8, C = 400 J/K. 0,02 × 50 = 1 K."
+        }
+      ],
+      "sourceOriginalRecord": {
+        "anchor": "Una batteria alimenta una resistenza immersa in",
+        "apparatus": "calorimetro",
+        "blocks": [],
+        "control": {
+          "label": "Durata del riscaldamento",
+          "max": 100.0,
+          "min": 0.0,
+          "step": 5.0,
+          "unit": "s"
+        },
+        "course": "C6",
+        "formula": "ΔT = ηVIt/C; V = 5 V, I = 2 A, η = 0,8, C = 400 J/K",
+        "id": "SIM-C6-L03-01",
+        "interpretation": "Segui l’energia attraverso resistenza e liquido. Entrano 10 J elettrici ogni secondo, 8 raggiungono il campione. Il bilancio distingue potenza fornita, perdite e aumento di energia interna.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Aumento di temperatura",
+          "unit": "K"
+        },
+        "order": 1,
+        "references": [
+          [
+            20.0,
+            0.4
+          ],
+          [
+            80.0,
+            1.6
+          ]
+        ],
+        "section": "Bilanci e trasformazioni",
+        "skill": "C6-L03",
+        "substitution": "0,02 × {x}",
+        "summary": "Quanta energia della batteria ritrovi nel campione misurando la temperatura?",
+        "title": "Dalla batteria al calorimetro",
+        "topic": "Collegamento U2, U3, U5, U6 e U7 · potenza meccanica, termica, elettrica e ottica",
+        "transferPrompt": "Il riscaldatore da 5 V e 2 A lavora per {x}. Se l’80% dell’energia scalda il calorimetro da 400 J/K, quanto aumenta la temperatura?",
+        "version": 1
+      },
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C6-L04-01",
+      "sourceCommit": "3d060603540c981bf641f776ca65fd3ef76106c3",
+      "runtimeSha256": "2096493ae86311ec459e012032cd1f8fe41293326cc5769d86376aa5a0b59635",
+      "sourceRecordSha256": "17204d9bce6855e74c0c90d22ef1866548811e1d7205d2c3813314629ef0f70f",
+      "sourceVersion": 1,
+      "visualReview": "PASS",
+      "scope": {
+        "kind": "BOUNDED_CURRENT_ORIGINAL_SOURCE_NATIVE_FALLBACK",
+        "profiles": [
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "gridValues": [
+          0,
+          3,
+          5
+        ],
+        "clockCases": [],
+        "actualCaseCount": 32,
+        "gridClockCaseCount": 24,
+        "setupCount": 8,
+        "acceptedAnswerEvents": 16,
+        "phaseTextVariantsRead": 1,
+        "phasesPerSetup": 4,
+        "authoredReadingPanel": "ABSENT_ORIGINAL_BLOCKS_EMPTY_READING_NULL",
+        "manualWholeRawPngCount": 8,
+        "all264FramesManuallyOpened": false,
+        "manualReadCaseKeys": [
+          "SIM-C6-L04-01|published|320|orbit|grid|2",
+          "SIM-C6-L04-01|published|320|side|grid|2",
+          "SIM-C6-L04-01|published|320|top|grid|2",
+          "SIM-C6-L04-01|published|320|fixed_projection|grid|2",
+          "SIM-C6-L04-01|published|1280|orbit|grid|2",
+          "SIM-C6-L04-01|published|1280|side|grid|2",
+          "SIM-C6-L04-01|published|1280|top|grid|2",
+          "SIM-C6-L04-01|published|1280|fixed_projection|grid|2"
+        ],
+        "fullObservedCaseKeys": [
+          "SIM-C6-L04-01|published|320|orbit|setup",
+          "SIM-C6-L04-01|published|320|orbit|grid|0",
+          "SIM-C6-L04-01|published|320|orbit|grid|1",
+          "SIM-C6-L04-01|published|320|orbit|grid|2",
+          "SIM-C6-L04-01|published|320|side|setup",
+          "SIM-C6-L04-01|published|320|side|grid|0",
+          "SIM-C6-L04-01|published|320|side|grid|1",
+          "SIM-C6-L04-01|published|320|side|grid|2",
+          "SIM-C6-L04-01|published|320|top|setup",
+          "SIM-C6-L04-01|published|320|top|grid|0",
+          "SIM-C6-L04-01|published|320|top|grid|1",
+          "SIM-C6-L04-01|published|320|top|grid|2",
+          "SIM-C6-L04-01|published|320|fixed_projection|setup",
+          "SIM-C6-L04-01|published|320|fixed_projection|grid|0",
+          "SIM-C6-L04-01|published|320|fixed_projection|grid|1",
+          "SIM-C6-L04-01|published|320|fixed_projection|grid|2",
+          "SIM-C6-L04-01|published|1280|orbit|setup",
+          "SIM-C6-L04-01|published|1280|orbit|grid|0",
+          "SIM-C6-L04-01|published|1280|orbit|grid|1",
+          "SIM-C6-L04-01|published|1280|orbit|grid|2",
+          "SIM-C6-L04-01|published|1280|side|setup",
+          "SIM-C6-L04-01|published|1280|side|grid|0",
+          "SIM-C6-L04-01|published|1280|side|grid|1",
+          "SIM-C6-L04-01|published|1280|side|grid|2",
+          "SIM-C6-L04-01|published|1280|top|setup",
+          "SIM-C6-L04-01|published|1280|top|grid|0",
+          "SIM-C6-L04-01|published|1280|top|grid|1",
+          "SIM-C6-L04-01|published|1280|top|grid|2",
+          "SIM-C6-L04-01|published|1280|fixed_projection|setup",
+          "SIM-C6-L04-01|published|1280|fixed_projection|grid|0",
+          "SIM-C6-L04-01|published|1280|fixed_projection|grid|1",
+          "SIM-C6-L04-01|published|1280|fixed_projection|grid|2"
+        ]
+      },
+      "reason": "Current whole raw PNG at5layers in all8profiles shows the faint outgoing bundle without the old opaque Rivelatore cover; fullTop320 and1280 pictures read. All32current cases preserve nonzero1/32 opacity at5layers, section and signal120/2^n. No new finding in the observed scope.",
+      "readPngSha256": [
+        "bb52424cea51eca2e3a0616e319dc78bb9400202aa3d166e1abcc46adb178e61",
+        "ccf8502c722d779e460eebe2d13316305dd863a52793af6af7af9de852a70c23",
+        "308b1e4198907c5e08101003e23990571757b5bb095b1bfe91025582dcf44df7",
+        "784b7d5bfc4f69eeef3c54be57a7b9ea0da5514e7b464a40c1fe3d3460baafff",
+        "5b8e954c312ae36f27f39ca171e9ca9fdc83b08d7188356cb32628824c7582bf",
+        "555339782d67dc72d4092de192d3bffb9f5d49a7971269e08fb781cb7d6f7a83",
+        "e202af2b77aadeb909587198263affc25fefed6590a20a8dc69f4b3442d39bd5",
+        "44575e3143d2ffe2d1162005c7edb43538e5885077714f86eccd6a3a7580e404"
+      ],
+      "readFiles": [
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/bb52424cea51eca2e3a0616e319dc78bb9400202aa3d166e1abcc46adb178e61.png",
+          "sha256": "bb52424cea51eca2e3a0616e319dc78bb9400202aa3d166e1abcc46adb178e61",
+          "caseKey": "SIM-C6-L04-01|published|320|orbit|grid|2",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/ccf8502c722d779e460eebe2d13316305dd863a52793af6af7af9de852a70c23.png",
+          "sha256": "ccf8502c722d779e460eebe2d13316305dd863a52793af6af7af9de852a70c23",
+          "caseKey": "SIM-C6-L04-01|published|320|side|grid|2",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/308b1e4198907c5e08101003e23990571757b5bb095b1bfe91025582dcf44df7.png",
+          "sha256": "308b1e4198907c5e08101003e23990571757b5bb095b1bfe91025582dcf44df7",
+          "caseKey": "SIM-C6-L04-01|published|320|top|grid|2",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/784b7d5bfc4f69eeef3c54be57a7b9ea0da5514e7b464a40c1fe3d3460baafff.png",
+          "sha256": "784b7d5bfc4f69eeef3c54be57a7b9ea0da5514e7b464a40c1fe3d3460baafff",
+          "caseKey": "SIM-C6-L04-01|published|320|fixed_projection|grid|2",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/5b8e954c312ae36f27f39ca171e9ca9fdc83b08d7188356cb32628824c7582bf.png",
+          "sha256": "5b8e954c312ae36f27f39ca171e9ca9fdc83b08d7188356cb32628824c7582bf",
+          "caseKey": "SIM-C6-L04-01|published|1280|orbit|grid|2",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/555339782d67dc72d4092de192d3bffb9f5d49a7971269e08fb781cb7d6f7a83.png",
+          "sha256": "555339782d67dc72d4092de192d3bffb9f5d49a7971269e08fb781cb7d6f7a83",
+          "caseKey": "SIM-C6-L04-01|published|1280|side|grid|2",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/e202af2b77aadeb909587198263affc25fefed6590a20a8dc69f4b3442d39bd5.png",
+          "sha256": "e202af2b77aadeb909587198263affc25fefed6590a20a8dc69f4b3442d39bd5",
+          "caseKey": "SIM-C6-L04-01|published|1280|top|grid|2",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/44575e3143d2ffe2d1162005c7edb43538e5885077714f86eccd6a3a7580e404.png",
+          "sha256": "44575e3143d2ffe2d1162005c7edb43538e5885077714f86eccd6a3a7580e404",
+          "caseKey": "SIM-C6-L04-01|published|1280|fixed_projection|grid|2",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        }
+      ],
+      "readCaseFiles": [
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/b0098b58d457544870c102f6d002e5821b83fab4d6282c8401e45b8abe529975.json",
+          "sha256": "6a46bb494229acca7636f86b210f64844a54d213857c1c1198594b1a2f63c2c4"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/28521b42aa6350724b411459b64b2cf6904e99a9e10ac8e13bcb4a336b80b37a.json",
+          "sha256": "012d9369f15480cb6ed1c95c643176e9227b2674fd41f0e06337b884d5afd263"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/7e7b036d50b6105c912b42171f6a1dbe27a34c5c19c6619f13dda5e123164ad6.json",
+          "sha256": "df4f334399fd6dbdd062f28c9fea2a4940bffc756f28baaa026dbe8d5ae840cf"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/9fd73267437e00d0e9898dd752f12989951dbb25721d241c18a218d075c96134.json",
+          "sha256": "746466bd419f2034ce81cbcbef8aae8475a793f51c1543243dd0023e647b2e48"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/e482c52960b86de9ceb4f9b33cf176325761d998b3152961b6bbb03c15cba113.json",
+          "sha256": "5cc631125256e468b0137ac0ede3c98bf095aec8517352f028454207f2bbd263"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/6e233e78f62179f6a9f4948fe8e13ccccdd47f78184348fe51459b1daa6a01f2.json",
+          "sha256": "8cd7435266595cae033a3c8061a0e7415884cca665fd0e4dfa5bf1db117e1654"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/4604e3053f1e4d3a21d89cde878a9b93ed21c9c5d4551d517f4d8b3387a96d12.json",
+          "sha256": "8683c29f1a088ac214ea74c28d46b22c9efe742a4b54fb9a3acc6dd3f754150d"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/c19075f51069f2dc2bae8b02eb123b763be2e0eb0bca0d6a95ed7498c924ccf4.json",
+          "sha256": "38ed88db7b67c3e6813b08b48001997968003d1d568bb07b2fe9224c5ede92d1"
+        }
+      ],
+      "actualPhaseText": [
+        "OSSERVA · 2/5\nIndividua il fenomeno\n\nLeggi il segnale dopo zero, uno, due e tre strati. Il rapporto fra letture consecutive è costante. Per una legge lineare controlleresti la differenza e per una potenza il fattore prodotto raddoppiando l’ingresso.\n\nSₙ = 120 × (½)ⁿ\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+        "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Numero di strati identici» e confronta la scena con il punto segnato sul grafico. Parti da 1, poi prova 3.\n\nNumero di strati identici = 1 · Segnale trasmesso = 60 unità\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+        "COMPRENDI · 4/5\nOsserva la lettura del modello\n\nQuesta posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 3 e 4.\n\nSegnale trasmesso = 60 unità\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+        "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Numero di strati identici» a 4. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nSₙ = 120 × (½)ⁿ\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale"
+      ],
+      "installedAnswerExamples": [
+        {
+          "expectedAccepted": true,
+          "input": "15",
+          "prompt": "Imposta «Numero di strati identici» su 3. Quale valore ottieni per «Segnale trasmesso»?",
+          "sourceManualReadiness": true,
+          "actualPrompt": "Imposta «Numero di strati identici» su 3. Quale valore ottieni per «Segnale trasmesso»?",
+          "status": "Corretto. Sₙ = 120 × (½)ⁿ. 120 × 0,5^(3) = 15 unità."
+        },
+        {
+          "expectedAccepted": true,
+          "input": "7.5",
+          "prompt": "Il segnale iniziale è di 120 unità. Attraversa 4 strati, ciascuno dei quali ne dimezza l’intensità. Quale segnale dovrebbe restare?",
+          "sourceManualReadiness": true,
+          "actualPrompt": "Il segnale iniziale è di 120 unità. Attraversa 4 strati, ciascuno dei quali ne dimezza l’intensità. Quale segnale dovrebbe restare?",
+          "status": "Corretto. Sₙ = 120 × (½)ⁿ. 120 × 0,5^(4) = 7,5 unità."
+        }
+      ],
+      "sourceOriginalRecord": {
+        "anchor": "Prova a distinguere queste leggi da tre",
+        "apparatus": "assorbitore",
+        "blocks": [],
+        "control": {
+          "label": "Numero di strati identici",
+          "max": 5.0,
+          "min": 0.0,
+          "step": 1.0,
+          "unit": "1"
+        },
+        "course": "C6",
+        "discrete": true,
+        "formula": "Sₙ = 120 × (½)ⁿ",
+        "id": "SIM-C6-L04-01",
+        "interpretation": "Leggi il segnale dopo zero, uno, due e tre strati. Il rapporto fra letture consecutive è costante. Per una legge lineare controlleresti la differenza e per una potenza il fattore prodotto raddoppiando l’ingresso.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Segnale trasmesso",
+          "unit": "unità"
+        },
+        "order": 1,
+        "references": [
+          [
+            1.0,
+            60.0
+          ],
+          [
+            3.0,
+            15.0
+          ]
+        ],
+        "section": "Rapporti e variazioni successive",
+        "skill": "C6-L04",
+        "substitution": "120 × 0,5^({x})",
+        "summary": "Da tre letture come distingui una legge esponenziale da una lineare o di potenza?",
+        "title": "Riconoscere una legge di attenuazione",
+        "topic": "Collegamento U2, U3, U4 e U7 · proporzioni, leggi di potenza, esponenziali",
+        "transferPrompt": "Il segnale iniziale è di 120 unità. Attraversa {x} strati, ciascuno dei quali ne dimezza l’intensità. Quale segnale dovrebbe restare?",
+        "version": 1
+      },
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C6-L05-01",
+      "sourceCommit": "3d060603540c981bf641f776ca65fd3ef76106c3",
+      "runtimeSha256": "2096493ae86311ec459e012032cd1f8fe41293326cc5769d86376aa5a0b59635",
+      "sourceRecordSha256": "94621d9e810b668a73a9d9bfaddb954f3322b0e0cd141efd96c3d019f0cdaa88",
+      "sourceVersion": 1,
+      "visualReview": "PASS",
+      "scope": {
+        "kind": "BOUNDED_CURRENT_ORIGINAL_SOURCE_NATIVE_FALLBACK",
+        "profiles": [
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "gridValues": [
+          0,
+          1.75,
+          2,
+          2.25,
+          4
+        ],
+        "clockCases": [],
+        "actualCaseCount": 48,
+        "gridClockCaseCount": 40,
+        "setupCount": 8,
+        "acceptedAnswerEvents": 16,
+        "phaseTextVariantsRead": 1,
+        "phasesPerSetup": 4,
+        "authoredReadingPanel": "ABSENT_ORIGINAL_BLOCKS_EMPTY_READING_NULL",
+        "manualWholeRawPngCount": 8,
+        "all264FramesManuallyOpened": false,
+        "manualReadCaseKeys": [
+          "SIM-C6-L05-01|published|320|orbit|grid|3",
+          "SIM-C6-L05-01|published|320|side|grid|3",
+          "SIM-C6-L05-01|published|320|top|grid|3",
+          "SIM-C6-L05-01|published|320|fixed_projection|grid|3",
+          "SIM-C6-L05-01|published|1280|orbit|grid|3",
+          "SIM-C6-L05-01|published|1280|side|grid|3",
+          "SIM-C6-L05-01|published|1280|top|grid|3",
+          "SIM-C6-L05-01|published|1280|fixed_projection|grid|3"
+        ],
+        "fullObservedCaseKeys": [
+          "SIM-C6-L05-01|published|320|orbit|setup",
+          "SIM-C6-L05-01|published|320|orbit|grid|0",
+          "SIM-C6-L05-01|published|320|orbit|grid|1",
+          "SIM-C6-L05-01|published|320|orbit|grid|2",
+          "SIM-C6-L05-01|published|320|orbit|grid|3",
+          "SIM-C6-L05-01|published|320|orbit|grid|4",
+          "SIM-C6-L05-01|published|320|side|setup",
+          "SIM-C6-L05-01|published|320|side|grid|0",
+          "SIM-C6-L05-01|published|320|side|grid|1",
+          "SIM-C6-L05-01|published|320|side|grid|2",
+          "SIM-C6-L05-01|published|320|side|grid|3",
+          "SIM-C6-L05-01|published|320|side|grid|4",
+          "SIM-C6-L05-01|published|320|top|setup",
+          "SIM-C6-L05-01|published|320|top|grid|0",
+          "SIM-C6-L05-01|published|320|top|grid|1",
+          "SIM-C6-L05-01|published|320|top|grid|2",
+          "SIM-C6-L05-01|published|320|top|grid|3",
+          "SIM-C6-L05-01|published|320|top|grid|4",
+          "SIM-C6-L05-01|published|320|fixed_projection|setup",
+          "SIM-C6-L05-01|published|320|fixed_projection|grid|0",
+          "SIM-C6-L05-01|published|320|fixed_projection|grid|1",
+          "SIM-C6-L05-01|published|320|fixed_projection|grid|2",
+          "SIM-C6-L05-01|published|320|fixed_projection|grid|3",
+          "SIM-C6-L05-01|published|320|fixed_projection|grid|4",
+          "SIM-C6-L05-01|published|1280|orbit|setup",
+          "SIM-C6-L05-01|published|1280|orbit|grid|0",
+          "SIM-C6-L05-01|published|1280|orbit|grid|1",
+          "SIM-C6-L05-01|published|1280|orbit|grid|2",
+          "SIM-C6-L05-01|published|1280|orbit|grid|3",
+          "SIM-C6-L05-01|published|1280|orbit|grid|4",
+          "SIM-C6-L05-01|published|1280|side|setup",
+          "SIM-C6-L05-01|published|1280|side|grid|0",
+          "SIM-C6-L05-01|published|1280|side|grid|1",
+          "SIM-C6-L05-01|published|1280|side|grid|2",
+          "SIM-C6-L05-01|published|1280|side|grid|3",
+          "SIM-C6-L05-01|published|1280|side|grid|4",
+          "SIM-C6-L05-01|published|1280|top|setup",
+          "SIM-C6-L05-01|published|1280|top|grid|0",
+          "SIM-C6-L05-01|published|1280|top|grid|1",
+          "SIM-C6-L05-01|published|1280|top|grid|2",
+          "SIM-C6-L05-01|published|1280|top|grid|3",
+          "SIM-C6-L05-01|published|1280|top|grid|4",
+          "SIM-C6-L05-01|published|1280|fixed_projection|setup",
+          "SIM-C6-L05-01|published|1280|fixed_projection|grid|0",
+          "SIM-C6-L05-01|published|1280|fixed_projection|grid|1",
+          "SIM-C6-L05-01|published|1280|fixed_projection|grid|2",
+          "SIM-C6-L05-01|published|1280|fixed_projection|grid|3",
+          "SIM-C6-L05-01|published|1280|fixed_projection|grid|4"
+        ]
+      },
+      "reason": "Current whole raw PNG at2.25s in all8profiles shows the complete leftward return arrow. All48current cases cover0/1.75/2/2.25/4s with signed-displacement versus path checks and no unique velocity arrow at ideal instantaneous turn2s. Carrello remains identified in readable legend. No new finding in the observed scope.",
+      "readPngSha256": [
+        "a17d818de891a2ad27e526e8015812447b60c89fd70f4507c6a59316934682b8",
+        "6741ba6ef7a1c06b598094bce4d3d4a742a506c56ad815e28acdf318ca57bc52",
+        "46a6bad7a6841a451983051eb931ead468c3f3cda5012b137eec7c541166d628",
+        "9f10a6193d35186f534c51d49947f9e16f4cb2ffcda580ea33a16030a09aa441",
+        "d8c9c28178d7da24d2306d84a91f7641cef16c75d5f4f230974ddfa169538d32",
+        "4d040f11c19304f481e54fe2262c1f3aec86133a431b33eff71fedf849b7f55d",
+        "f0519d32c346d64b2392652d3178e44db2838360f5751e33804ae2f1dca376d3",
+        "029043751b74106ccfb285775772b028ca2f7e4ad4f5a6abf59e52c24f84ea94"
+      ],
+      "readFiles": [
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/a17d818de891a2ad27e526e8015812447b60c89fd70f4507c6a59316934682b8.png",
+          "sha256": "a17d818de891a2ad27e526e8015812447b60c89fd70f4507c6a59316934682b8",
+          "caseKey": "SIM-C6-L05-01|published|320|orbit|grid|3",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/6741ba6ef7a1c06b598094bce4d3d4a742a506c56ad815e28acdf318ca57bc52.png",
+          "sha256": "6741ba6ef7a1c06b598094bce4d3d4a742a506c56ad815e28acdf318ca57bc52",
+          "caseKey": "SIM-C6-L05-01|published|320|side|grid|3",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/46a6bad7a6841a451983051eb931ead468c3f3cda5012b137eec7c541166d628.png",
+          "sha256": "46a6bad7a6841a451983051eb931ead468c3f3cda5012b137eec7c541166d628",
+          "caseKey": "SIM-C6-L05-01|published|320|top|grid|3",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/9f10a6193d35186f534c51d49947f9e16f4cb2ffcda580ea33a16030a09aa441.png",
+          "sha256": "9f10a6193d35186f534c51d49947f9e16f4cb2ffcda580ea33a16030a09aa441",
+          "caseKey": "SIM-C6-L05-01|published|320|fixed_projection|grid|3",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/d8c9c28178d7da24d2306d84a91f7641cef16c75d5f4f230974ddfa169538d32.png",
+          "sha256": "d8c9c28178d7da24d2306d84a91f7641cef16c75d5f4f230974ddfa169538d32",
+          "caseKey": "SIM-C6-L05-01|published|1280|orbit|grid|3",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/4d040f11c19304f481e54fe2262c1f3aec86133a431b33eff71fedf849b7f55d.png",
+          "sha256": "4d040f11c19304f481e54fe2262c1f3aec86133a431b33eff71fedf849b7f55d",
+          "caseKey": "SIM-C6-L05-01|published|1280|side|grid|3",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/f0519d32c346d64b2392652d3178e44db2838360f5751e33804ae2f1dca376d3.png",
+          "sha256": "f0519d32c346d64b2392652d3178e44db2838360f5751e33804ae2f1dca376d3",
+          "caseKey": "SIM-C6-L05-01|published|1280|top|grid|3",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/029043751b74106ccfb285775772b028ca2f7e4ad4f5a6abf59e52c24f84ea94.png",
+          "sha256": "029043751b74106ccfb285775772b028ca2f7e4ad4f5a6abf59e52c24f84ea94",
+          "caseKey": "SIM-C6-L05-01|published|1280|fixed_projection|grid|3",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        }
+      ],
+      "readCaseFiles": [
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/5ca147b6cb2541b7cf9d8423e2a5eeeca3e85d8d9fe78439e978e18750cef2b3.json",
+          "sha256": "9c0e4568aa46cde53898abe65ff7ffc6ec37d54ffcd9abf1ca6c855c53cf58cf"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/fa4bea3cb1696769a76080bb8758318a92284a0fb825af0f94f63b2879b5d1b0.json",
+          "sha256": "d37f2d802693910028487878a9adfa87fdf79e017e227e28d56a7203e1308eb4"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/acaeeffc3dce293aa3d3e9b2bb6cf03424bfa490d5b5688d2925c990cb80d271.json",
+          "sha256": "425008038980aa4428dce1107178dbfacfefa6d05dad13418dd6dea72468345d"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/b2c92fa47bab05a1622c7577dc261f8c04764aa52ab42a6a577b77ed4947ca6a.json",
+          "sha256": "7ddd0527687e3d4e92ca440fbd721aa14ab9042b5d271b6be507a56e42026b84"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/5ceb6be8fc66221e69a3211254bea3d233d16882bf4bd676d8f33c26e73417a0.json",
+          "sha256": "26bd994e7cc9da75aba4085290fd41282b3dc72f6c6b1dbed1d97e0fbb333d56"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/24a613a7a39250bdabbcac176d7352bf4a21f66a2750e66f05a214875498d5f7.json",
+          "sha256": "46e3be56a06d46348ec6c5aae45a8e60730bcbbf92c4efac66928ef28bb735ca"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/8414c12977e2b01dc484cc7a3234013b271f9cc2e27f286a739e559b9a2e5ee5.json",
+          "sha256": "0946821612d32017478a1f65d66efb115f2f4046663f518c937b3eebd7b38926"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/491b21a863d4363ce6b9925a7f3440adb53d18062aa5844ea4981670c6b39de7.json",
+          "sha256": "1b19f8d52bdd67172fc9b61bafed1d098feb521f1302ae09a46de71e9a57396f"
+        }
+      ],
+      "actualPhaseText": [
+        "OSSERVA · 2/5\nIndividua il fenomeno\n\nIl carrello procede a +2 m/s per 2 s, poi a −1 m/s. Somma le aree con segno del grafico velocità-tempo. Leggi sul righello lo spostamento finale; il cammino totale a 4 s è 6 m.\n\nΔx = 2t fino a 2 s; poi Δx = 4 − (t−2)\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+        "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Tempo dalla partenza» e confronta la scena con il punto segnato sul grafico. Parti da 2 s, poi prova 4 s.\n\nTempo dalla partenza = 2 s · Spostamento con segno = 4 m\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+        "COMPRENDI · 4/5\nOsserva la lettura del modello\n\nQuesta posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 4 s e 1,75 s.\n\nSpostamento con segno = 4 m\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+        "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Tempo dalla partenza» a 1,75 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nΔx = 2t fino a 2 s; poi Δx = 4 − (t−2)\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale"
+      ],
+      "installedAnswerExamples": [
+        {
+          "expectedAccepted": true,
+          "input": "2",
+          "prompt": "Imposta «Tempo dalla partenza» su 4 s. Quale valore ottieni per «Spostamento con segno»?",
+          "sourceManualReadiness": true,
+          "actualPrompt": "Imposta «Tempo dalla partenza» su 4 s. Quale valore ottieni per «Spostamento con segno»?",
+          "status": "Corretto. Δx = 2t fino a 2 s; poi Δx = 4 − (t−2). 4 − (4 − 2) = 2 m."
+        },
+        {
+          "expectedAccepted": true,
+          "input": "3.5",
+          "prompt": "Dal via procedi a +2 m/s per 2 s, poi torni a −1 m/s. Quando il cronometro indica 1,75 s, quale spostamento con segno registra il quaderno?",
+          "sourceManualReadiness": true,
+          "actualPrompt": "Dal via procedi a +2 m/s per 2 s, poi torni a −1 m/s. Quando il cronometro indica 1,75 s, quale spostamento con segno registra il quaderno?",
+          "status": "Corretto. Δx = 2t fino a 2 s; poi Δx = 4 − (t−2). 2 × 1,75 = 3,5 m."
+        }
+      ],
+      "sourceOriginalRecord": {
+        "anchor": "L’area usa invece il prodotto delle unità",
+        "apparatus": "binario",
+        "blocks": [],
+        "control": {
+          "label": "Tempo dalla partenza",
+          "max": 4.0,
+          "min": 0.0,
+          "step": 0.25,
+          "unit": "s"
+        },
+        "course": "C6",
+        "formula": "Δx = 2t fino a 2 s; poi Δx = 4 − (t−2)",
+        "id": "SIM-C6-L05-01",
+        "interpretation": "Il carrello procede a +2 m/s per 2 s, poi a −1 m/s. Somma le aree con segno del grafico velocità-tempo. Leggi sul righello lo spostamento finale; il cammino totale a 4 s è 6 m.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Spostamento con segno",
+          "unit": "m"
+        },
+        "order": 1,
+        "references": [
+          [
+            2.0,
+            4.0
+          ],
+          [
+            4.0,
+            2.0
+          ]
+        ],
+        "section": "Leggere le rappresentazioni",
+        "skill": "C6-L05",
+        "substitution": "ritorno",
+        "summary": "Il tratto di ritorno fa aumentare la distanza percorsa o lo spostamento?",
+        "title": "Sommare aree con segno",
+        "topic": "Collegamento U1, U2, U3, U5 e U6 · lettura di grafici, segni, pendenze e aree",
+        "transferPrompt": "Dal via procedi a +2 m/s per 2 s, poi torni a −1 m/s. Quando il cronometro indica {x}, quale spostamento con segno registra il quaderno?",
+        "version": 1
+      },
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C6-L06-01",
+      "sourceCommit": "3d060603540c981bf641f776ca65fd3ef76106c3",
+      "runtimeSha256": "2096493ae86311ec459e012032cd1f8fe41293326cc5769d86376aa5a0b59635",
+      "sourceRecordSha256": "ffbf5e98a3a03b5503d739dcce640bfea82e604bd600cda6f27c89e287957f21",
+      "sourceVersion": 1,
+      "visualReview": "PASS",
+      "scope": {
+        "kind": "BOUNDED_CURRENT_ORIGINAL_SOURCE_NATIVE_FALLBACK",
+        "profiles": [
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "gridValues": [
+          0.5,
+          0.75,
+          1,
+          1.25,
+          2,
+          3
+        ],
+        "clockCases": [],
+        "actualCaseCount": 56,
+        "gridClockCaseCount": 48,
+        "setupCount": 8,
+        "acceptedAnswerEvents": 16,
+        "phaseTextVariantsRead": 1,
+        "phasesPerSetup": 4,
+        "authoredReadingPanel": "ABSENT_ORIGINAL_BLOCKS_EMPTY_READING_NULL",
+        "manualWholeRawPngCount": 8,
+        "all264FramesManuallyOpened": false,
+        "manualReadCaseKeys": [
+          "SIM-C6-L06-01|published|320|orbit|grid|0",
+          "SIM-C6-L06-01|published|320|side|grid|0",
+          "SIM-C6-L06-01|published|320|top|grid|0",
+          "SIM-C6-L06-01|published|320|fixed_projection|grid|0",
+          "SIM-C6-L06-01|published|1280|orbit|grid|0",
+          "SIM-C6-L06-01|published|1280|side|grid|0",
+          "SIM-C6-L06-01|published|1280|top|grid|0",
+          "SIM-C6-L06-01|published|1280|fixed_projection|grid|0"
+        ],
+        "fullObservedCaseKeys": [
+          "SIM-C6-L06-01|published|320|orbit|setup",
+          "SIM-C6-L06-01|published|320|orbit|grid|0",
+          "SIM-C6-L06-01|published|320|orbit|grid|1",
+          "SIM-C6-L06-01|published|320|orbit|grid|2",
+          "SIM-C6-L06-01|published|320|orbit|grid|3",
+          "SIM-C6-L06-01|published|320|orbit|grid|4",
+          "SIM-C6-L06-01|published|320|orbit|grid|5",
+          "SIM-C6-L06-01|published|320|side|setup",
+          "SIM-C6-L06-01|published|320|side|grid|0",
+          "SIM-C6-L06-01|published|320|side|grid|1",
+          "SIM-C6-L06-01|published|320|side|grid|2",
+          "SIM-C6-L06-01|published|320|side|grid|3",
+          "SIM-C6-L06-01|published|320|side|grid|4",
+          "SIM-C6-L06-01|published|320|side|grid|5",
+          "SIM-C6-L06-01|published|320|top|setup",
+          "SIM-C6-L06-01|published|320|top|grid|0",
+          "SIM-C6-L06-01|published|320|top|grid|1",
+          "SIM-C6-L06-01|published|320|top|grid|2",
+          "SIM-C6-L06-01|published|320|top|grid|3",
+          "SIM-C6-L06-01|published|320|top|grid|4",
+          "SIM-C6-L06-01|published|320|top|grid|5",
+          "SIM-C6-L06-01|published|320|fixed_projection|setup",
+          "SIM-C6-L06-01|published|320|fixed_projection|grid|0",
+          "SIM-C6-L06-01|published|320|fixed_projection|grid|1",
+          "SIM-C6-L06-01|published|320|fixed_projection|grid|2",
+          "SIM-C6-L06-01|published|320|fixed_projection|grid|3",
+          "SIM-C6-L06-01|published|320|fixed_projection|grid|4",
+          "SIM-C6-L06-01|published|320|fixed_projection|grid|5",
+          "SIM-C6-L06-01|published|1280|orbit|setup",
+          "SIM-C6-L06-01|published|1280|orbit|grid|0",
+          "SIM-C6-L06-01|published|1280|orbit|grid|1",
+          "SIM-C6-L06-01|published|1280|orbit|grid|2",
+          "SIM-C6-L06-01|published|1280|orbit|grid|3",
+          "SIM-C6-L06-01|published|1280|orbit|grid|4",
+          "SIM-C6-L06-01|published|1280|orbit|grid|5",
+          "SIM-C6-L06-01|published|1280|side|setup",
+          "SIM-C6-L06-01|published|1280|side|grid|0",
+          "SIM-C6-L06-01|published|1280|side|grid|1",
+          "SIM-C6-L06-01|published|1280|side|grid|2",
+          "SIM-C6-L06-01|published|1280|side|grid|3",
+          "SIM-C6-L06-01|published|1280|side|grid|4",
+          "SIM-C6-L06-01|published|1280|side|grid|5",
+          "SIM-C6-L06-01|published|1280|top|setup",
+          "SIM-C6-L06-01|published|1280|top|grid|0",
+          "SIM-C6-L06-01|published|1280|top|grid|1",
+          "SIM-C6-L06-01|published|1280|top|grid|2",
+          "SIM-C6-L06-01|published|1280|top|grid|3",
+          "SIM-C6-L06-01|published|1280|top|grid|4",
+          "SIM-C6-L06-01|published|1280|top|grid|5",
+          "SIM-C6-L06-01|published|1280|fixed_projection|setup",
+          "SIM-C6-L06-01|published|1280|fixed_projection|grid|0",
+          "SIM-C6-L06-01|published|1280|fixed_projection|grid|1",
+          "SIM-C6-L06-01|published|1280|fixed_projection|grid|2",
+          "SIM-C6-L06-01|published|1280|fixed_projection|grid|3",
+          "SIM-C6-L06-01|published|1280|fixed_projection|grid|4",
+          "SIM-C6-L06-01|published|1280|fixed_projection|grid|5"
+        ]
+      },
+      "reason": "Current whole raw PNG at p/f0.5 in all8profiles shows the complete red virtual-image head after Oggetto removal, including both previously failing320nonaxial profiles. All56current cases include below-focus/exactfocus/above-focus branches; geometry, magnification and vergence are checked. Top is edge-on, not an independent image-height reading. No new finding in the observed scope.",
+      "readPngSha256": [
+        "6ebbd79cfef1d5e96c358a60e91a468461f987d99bdb90eaa6ed64cf73b6418e",
+        "49b27d6f3cec7f40b9590a0fc74fd9d21d6983a77c7f6e73be08d36564a374c9",
+        "0ac1e36adfdd5c8d3e18446ba7b77b98e7a035aabe80c1e1e098201c8ec051a1",
+        "1a3124733f9315648071ad5b18d41847a704a5c3f24c74e0b3bf18cd34d87bed",
+        "5fbb3469af2d1301a9ce9ac5e2d6987152573cc63c17925dcd8ec0ee847a3fbd",
+        "e43357360a000db05776d31cb5e50c2b3973b49f3c12a413e15eed15bcf1bb86",
+        "9b01b2f83d70eff17eca65b9ff3a2d516b5619ad0f9e6f05845a538e26c23ea4",
+        "e359f3635326d690a4128e16e269fcbf7b499fb959cecffa94b5097c852b35f3"
+      ],
+      "readFiles": [
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/6ebbd79cfef1d5e96c358a60e91a468461f987d99bdb90eaa6ed64cf73b6418e.png",
+          "sha256": "6ebbd79cfef1d5e96c358a60e91a468461f987d99bdb90eaa6ed64cf73b6418e",
+          "caseKey": "SIM-C6-L06-01|published|320|orbit|grid|0",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/49b27d6f3cec7f40b9590a0fc74fd9d21d6983a77c7f6e73be08d36564a374c9.png",
+          "sha256": "49b27d6f3cec7f40b9590a0fc74fd9d21d6983a77c7f6e73be08d36564a374c9",
+          "caseKey": "SIM-C6-L06-01|published|320|side|grid|0",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/0ac1e36adfdd5c8d3e18446ba7b77b98e7a035aabe80c1e1e098201c8ec051a1.png",
+          "sha256": "0ac1e36adfdd5c8d3e18446ba7b77b98e7a035aabe80c1e1e098201c8ec051a1",
+          "caseKey": "SIM-C6-L06-01|published|320|top|grid|0",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/1a3124733f9315648071ad5b18d41847a704a5c3f24c74e0b3bf18cd34d87bed.png",
+          "sha256": "1a3124733f9315648071ad5b18d41847a704a5c3f24c74e0b3bf18cd34d87bed",
+          "caseKey": "SIM-C6-L06-01|published|320|fixed_projection|grid|0",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/5fbb3469af2d1301a9ce9ac5e2d6987152573cc63c17925dcd8ec0ee847a3fbd.png",
+          "sha256": "5fbb3469af2d1301a9ce9ac5e2d6987152573cc63c17925dcd8ec0ee847a3fbd",
+          "caseKey": "SIM-C6-L06-01|published|1280|orbit|grid|0",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/e43357360a000db05776d31cb5e50c2b3973b49f3c12a413e15eed15bcf1bb86.png",
+          "sha256": "e43357360a000db05776d31cb5e50c2b3973b49f3c12a413e15eed15bcf1bb86",
+          "caseKey": "SIM-C6-L06-01|published|1280|side|grid|0",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/9b01b2f83d70eff17eca65b9ff3a2d516b5619ad0f9e6f05845a538e26c23ea4.png",
+          "sha256": "9b01b2f83d70eff17eca65b9ff3a2d516b5619ad0f9e6f05845a538e26c23ea4",
+          "caseKey": "SIM-C6-L06-01|published|1280|top|grid|0",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/screens/e359f3635326d690a4128e16e269fcbf7b499fb959cecffa94b5097c852b35f3.png",
+          "sha256": "e359f3635326d690a4128e16e269fcbf7b499fb959cecffa94b5097c852b35f3",
+          "caseKey": "SIM-C6-L06-01|published|1280|fixed_projection|grid|0",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        }
+      ],
+      "readCaseFiles": [
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/89998a8ebd26f9575fd742a50f0565f0a4d144c270c7025a94b1c7c7ac2a9a0c.json",
+          "sha256": "60251d9ba9eacd26631b9fa44ad7e4adc32b1994aaf8e1d8b64ebd86f4f00520"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/5eb167ad8b25d9d2b98dce37248c2a6d221d60e7014440685497bf7274b969d8.json",
+          "sha256": "8a108ea9e169552b3118406aaf0b1a8bc260c0fcf36a612f40cdf5a1cb86420c"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/5da1138a97e8d96168869c9756a01b440adc1581158ee7aa20d99cd0dfabe68a.json",
+          "sha256": "f6b29f460a39e38fd9810bb4e3e1c56d1e9a802803f242d67ee35f6a68ecca66"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/d99bdf7bd7f6c0948e4c5d4b79a6d273992245601ae496bc0a4d6a9001677d15.json",
+          "sha256": "d5b2d92f128b1be358726b50b3161f8f424269125130071f96282c17b22bb532"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/8136f158ab82724d6dc5fe616fae0d124ee3a671579a821a87147999538c7c77.json",
+          "sha256": "8ab6a5c8fd7cb01c377b522597ec3f9fca1431110fbf16da16a135571cf9fc22"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/6a1508108242ad22286a8e94552a38d5f96faced6a7c575ee45e2266d1d474ba.json",
+          "sha256": "482437de30e88689461f4a51db31a3f3b5e6b3cf25875b07ef005dcfc914dde3"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/9ad4cbddd11e3dfab8ab2f4ee4140ed5ccfdc52095b2f9f8f6d405861fed713b.json",
+          "sha256": "5af1437e26b27640e73de76db63735c4661e1b4a011647bc9b8ec748074531b3"
+        },
+        {
+          "path": "editorial/reviews/c6-family-six-2096-independent-a-20261127/actual/cases/323988f8d78c65efa84efa6b87482f9a1f226463ceb027d7cecdb773c2307b3a.json",
+          "sha256": "433e50e4c138c0b39dc0498b87e13fddbbf4be51d9176bef5d6a860bcf3daae6"
+        }
+      ],
+      "actualPhaseText": [
+        "OSSERVA · 2/5\nIndividua il fenomeno\n\nPrima prevedi il segno del risultato, poi sposta l’oggetto fino al fuoco. La vergenza tende a zero dai due lati. Controlla con i raggi e ripeti il disegno dalla memoria.\n\nf/q = 1 − f/p\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+        "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Distanza dell’oggetto in unità focali» e confronta la scena con il punto segnato sul grafico. Parti da 0,5, poi prova 2.\n\nDistanza dell’oggetto in unità focali = 0,5 · Vergenza normalizzata f/q = -1\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+        "COMPRENDI · 4/5\nOsserva la lettura del modello\n\nQuesta posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 2 e 1,75.\n\nVergenza normalizzata f/q = -1\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+        "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Distanza dell’oggetto in unità focali» a 1,75. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nf/q = 1 − f/p\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale"
+      ],
+      "installedAnswerExamples": [
+        {
+          "expectedAccepted": true,
+          "input": ".5",
+          "prompt": "Imposta «Distanza dell’oggetto in unità focali» su 2. Quale valore ottieni per «Vergenza normalizzata f/q»?",
+          "sourceManualReadiness": true,
+          "actualPrompt": "Imposta «Distanza dell’oggetto in unità focali» su 2. Quale valore ottieni per «Vergenza normalizzata f/q»?",
+          "status": "Corretto. f/q = 1 − f/p. 1 − (1 / 2) = 0,5."
+        },
+        {
+          "expectedAccepted": true,
+          "input": ".4286",
+          "prompt": "Porti l’oggetto alla distanza p/f = 1,75 da una lente sottile convergente. Quale valore di f/q prevedi, mantenendo il segno anche per un’immagine virtuale?",
+          "sourceManualReadiness": true,
+          "actualPrompt": "Porti l’oggetto alla distanza p/f = 1,75 da una lente sottile convergente. Quale valore di f/q prevedi, mantenendo il segno anche per un’immagine virtuale?",
+          "status": "Corretto. f/q = 1 − f/p. 1 − (1 / 1,75) ≈ 0,4286."
+        }
+      ],
+      "sourceOriginalRecord": {
+        "anchor": "Un ultimo controllo consiste nel modificare un",
+        "apparatus": "ottica",
+        "blocks": [],
+        "control": {
+          "label": "Distanza dell’oggetto in unità focali",
+          "max": 3.0,
+          "min": 0.5,
+          "step": 0.25,
+          "unit": "1"
+        },
+        "course": "C6",
+        "formula": "f/q = 1 − f/p",
+        "id": "SIM-C6-L06-01",
+        "interpretation": "Prima prevedi il segno del risultato, poi sposta l’oggetto fino al fuoco. La vergenza tende a zero dai due lati. Controlla con i raggi e ripeti il disegno dalla memoria.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Vergenza normalizzata f/q",
+          "unit": "1"
+        },
+        "order": 1,
+        "references": [
+          [
+            0.5,
+            -1.0
+          ],
+          [
+            2.0,
+            0.5
+          ]
+        ],
+        "section": "Ripasso e trasferimento",
+        "skill": "C6-L06",
+        "substitution": "1 − (1 / {x})",
+        "summary": "Come controlli il modello della lente avvicinandoti alla distanza critica dai due lati?",
+        "title": "Verificare la lente intorno alla distanza focale",
+        "topic": "Collegamento cumulativo U1–U7 · scelta del modello, controllo dei limiti, ripresa distribuita",
+        "transferPrompt": "Porti l’oggetto alla distanza p/f = {x} da una lente sottile convergente. Quale valore di f/q prevedi, mantenendo il segno anche per un’immagine virtuale?",
+        "version": 1
+      },
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    }
+  ],
+  "completeAllControlRasterReview": false,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN"
+}
