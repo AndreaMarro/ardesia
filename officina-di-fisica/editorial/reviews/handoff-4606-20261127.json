@@ -251,6 +251,14 @@
           "finalRuntimeRenewal": "PENDING"
         },
         "activityCredit": 0
+      },
+      "gravityFollowup": {
+        "earlierActualCases": 48,
+        "originalTestedCandidate": "4cce177d6b73ec58bfd265ff164424226501bcff",
+        "confirmedFinding": "A portion of the gravity shaft lies behind the sphere in orbit at the apex.",
+        "refinedCandidate": "c3b03eb98cdafd706499ee64d6b3f5e356f27da8",
+        "independentDisposition": "PENDING",
+        "activityCredit": 0
       }
     },
     "c6ScopedVisualObservation": {
@@ -271,6 +279,32 @@
         }
       ],
       "correctionCandidate": "ad00ccac9e1d0839c45bd1880cb344b9334f2ae1",
+      "activityCredit": 0,
+      "originalFourArchivedCommit": "6e652ba940197b1b7a257bddb8baaa1a7053c313",
+      "originalFourIndependentReportSha256": "fd855aef36afa867fe4c4412cdc9f0428606410adc2eecc9ab5a01c1b449841a",
+      "correctedScope": {
+        "actualCases": 88,
+        "actualExitCode": 0,
+        "visualReview": "PENDING",
+        "candidate": "ad00ccac9e1d0839c45bd1880cb344b9334f2ae1"
+      }
+    },
+    "c1CurrentMatrix": {
+      "sourceCommit": "ad00ccac9e1d0839c45bd1880cb344b9334f2ae1",
+      "runtimeSha256": "0818bc9e4051c7533a27688f784c46fa283928209f37b80870086fa4b20dc440",
+      "archiveCommit": "18de84f0cff9d7162ca820ddce837d7b549ed840",
+      "receipt": "editorial/reviews/c1-two-families-0818-552-20261127/receipt.json",
+      "receiptSha256": "c852e4e9075511b421138da1c0a26292066f19b4cfd048f5278b9fbbb53f1769",
+      "actualCases": 552,
+      "uniqueScreenshots": 530,
+      "scientificActivityCredit": 0
+    },
+    "c1AndElectricDirectionObservation": {
+      "ownerCandidate": "4cce177d6b73ec58bfd265ff164424226501bcff",
+      "independentCommit": "2dbd53184f98a2c9a969ca7f957a18f5955af52f",
+      "actualCases": 110,
+      "visualFinding": "Previously completely obscured directions are visible on the focus cases. Native scale at the transition still reads weakly for r=2 and t=1.",
+      "correctionCandidate": "25151fb1c38b4b859d49e02a9255fdd83bcf4341",
       "activityCredit": 0
     }
   },
@@ -453,6 +487,14 @@
       "canonicalIntegration": "PENDING"
     },
     "newestSourceForBoundedReview": {
+      "commit": "c3b03eb98cdafd706499ee64d6b3f5e356f27da8",
+      "branch": "review/cric-flight-gravity-annotation",
+      "runtimeSha256": "0fdcc3b04c869d75811a4e07b7b8d1d87210869d6087e12e01ee70b6c370e1d4",
+      "nodePass": 311,
+      "contractPass": 2,
+      "candidateStatus": "SCOPED_INDEPENDENT_VERIFICATION_PENDING"
+    },
+    "priorOpticalCandidate": {
       "commit": "ad00ccac9e1d0839c45bd1880cb344b9334f2ae1",
       "branch": "review/cric-c6-optical-annotation",
       "runtimeSha256": "0818bc9e4051c7533a27688f784c46fa283928209f37b80870086fa4b20dc440",
