@@ -258,7 +258,10 @@
         "confirmedFinding": "A portion of the gravity shaft lies behind the sphere in orbit at the apex.",
         "refinedCandidate": "c3b03eb98cdafd706499ee64d6b3f5e356f27da8",
         "independentDisposition": "PENDING",
-        "activityCredit": 0
+        "activityCredit": 0,
+        "wholeFocusedFollowupCases": 70,
+        "laterFinding": "Native Side at 320 CSS px, legal elevation 69 degrees: x label covers the tip",
+        "axesAnnotationCandidate": "e02b0a767097f22ed66b7240432fc30b206217fd"
       }
     },
     "c6ScopedVisualObservation": {
@@ -287,6 +290,15 @@
         "actualExitCode": 0,
         "visualReview": "PENDING",
         "candidate": "ad00ccac9e1d0839c45bd1880cb344b9334f2ae1"
+      },
+      "currentWholeFamily": {
+        "actualBrowserCases": 312,
+        "actualSetups": 48,
+        "actualSubmittedAnswers": 96,
+        "sourceCommit": "c3b03eb98cdafd706499ee64d6b3f5e356f27da8",
+        "runtimeSha256": "0fdcc3b04c869d75811a4e07b7b8d1d87210869d6087e12e01ee70b6c370e1d4",
+        "independentVisualDisposition": "AWAITING_FROZEN_DELIVERY",
+        "activityCredit": 0
       }
     },
     "c1CurrentMatrix": {
@@ -305,6 +317,33 @@
       "actualCases": 110,
       "visualFinding": "Previously completely obscured directions are visible on the focus cases. Native scale at the transition still reads weakly for r=2 and t=1.",
       "correctionCandidate": "25151fb1c38b4b859d49e02a9255fdd83bcf4341",
+      "activityCredit": 0
+    },
+    "currentOriginalCodeReplay": {
+      "runtimeSha256": "0fdcc3b04c869d75811a4e07b7b8d1d87210869d6087e12e01ee70b6c370e1d4",
+      "total": 139,
+      "scope": "ORIGINAL_INSTALLED_CODE_AND_INDEPENDENT_MODEL_ONLY",
+      "C2": {
+        "commit": "8792c3aae0ed362535ea0a25562d3a954b0e2bc0",
+        "records": 41,
+        "receipt": "editorial/reviews/c2-current-models-0fdcc-20261127/receipt.json",
+        "originalAssessmentMismatch": "SIM-C2-L002-01"
+      },
+      "C3ToC6": {
+        "commit": "c5f4f51463444258c872fb51b498b65f4d39edd1",
+        "records": 98,
+        "receipt": "editorial/reviews/c3-c6-current-models-0fdcc-20261127/receipt.json"
+      },
+      "activityCredit": 0
+    },
+    "eightManualDraftsCurrentReplay": {
+      "runtimeSha256": "0fdcc3b04c869d75811a4e07b7b8d1d87210869d6087e12e01ee70b6c370e1d4",
+      "commit": "6eeafb9fff0f9dc0f8055bb6ce1fdb0f758ed8ed",
+      "receipt": "editorial/reviews/263-actual-assigned-tasks-0fdcc-20261127/receipt.json",
+      "records": 8,
+      "actualAssignedTasks": 16,
+      "actualBrowserCases": 0,
+      "editorialBoundaryTestsPassed": 7,
       "activityCredit": 0
     }
   },
@@ -501,6 +540,14 @@
       "nodePass": 310,
       "contractPass": 2,
       "candidateStatus": "SCOPED_INDEPENDENT_VERIFICATION_PENDING"
+    },
+    "newestFlightAnnotationSource": {
+      "commit": "e02b0a767097f22ed66b7240432fc30b206217fd",
+      "branch": "review/cric-flight-axis-legend",
+      "runtimeSha256": "980518b78d0767d90f16322539852e7e79360e20f05078ceb6e9b0425e805301",
+      "nodePass": 311,
+      "contractPass": 2,
+      "independentConsumerReview": "PENDING"
     }
   }
 }
