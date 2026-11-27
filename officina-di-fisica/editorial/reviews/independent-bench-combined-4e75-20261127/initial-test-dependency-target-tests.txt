@@ -1,0 +1,25 @@
+test_actual_complete_run_stays_scientifically_negative (test_bench_combined_4e75_review.IndependentCombinedBenchPeer.test_actual_complete_run_stays_scientifically_negative) ... ok
+test_measurement_is_reproduced_from_original_png (test_bench_combined_4e75_review.IndependentCombinedBenchPeer.test_measurement_is_reproduced_from_original_png) ... ERROR
+test_missing_actual_image_fails_closed (test_bench_combined_4e75_review.IndependentCombinedBenchPeer.test_missing_actual_image_fails_closed) ... ok
+test_source_or_negative_decision_cannot_be_rebound (test_bench_combined_4e75_review.IndependentCombinedBenchPeer.test_source_or_negative_decision_cannot_be_rebound) ... ok
+
+======================================================================
+ERROR: test_measurement_is_reproduced_from_original_png (test_bench_combined_4e75_review.IndependentCombinedBenchPeer.test_measurement_is_reproduced_from_original_png)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_bench_combined_4e75_review.py", line 12, in test_measurement_is_reproduced_from_original_png
+    actual=module('bench4e75png',B/'observe-png-cart-rectangle.py').observe(B)
+           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_bench_combined_4e75_review.py", line 6, in module
+    spec=importlib.util.spec_from_file_location(name,path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+                                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/independent-bench-combined-4e75-20261127/observe-png-cart-rectangle.py", line 4, in <module>
+    from PIL import Image
+ModuleNotFoundError: No module named 'PIL'
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.128s
+
+FAILED (errors=1)

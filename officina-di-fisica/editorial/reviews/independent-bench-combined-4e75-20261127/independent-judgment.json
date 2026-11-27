@@ -1,0 +1,188 @@
+{
+  "decision": "NOT_ACCEPTED_RESIDUAL_FLIGHT_AND_PLANE_LEGEND",
+  "ok": false,
+  "actualTechnicalExitCode": 0,
+  "actualCases": 22,
+  "sourceCommit": "03f9634d7d6a8dcfe9161990c4d5dbc62e3773f5",
+  "runtimeSha256": "4e753b9dbfa1f0062cdcc10d7a6f6f9ec83c4bd69bda9e4f276c3757e8dbba3b",
+  "all22OriginalPngIndividuallyOpened": true,
+  "unresolvedIds": [
+    "LAB3D-01",
+    "LAB3D-02"
+  ],
+  "findings": [
+    {
+      "id": "LAB3D-01",
+      "kind": "ACTUAL_DOM_MISSING_NATIVE_LEGEND_ASSOCIATION",
+      "source": "static/js/banchi/banco.js:432",
+      "actualCases": [
+        "plane-old-tip-320",
+        "plane-old-tip-1280"
+      ],
+      "finding": "The removed monte sprite has no promised HTML replacement. Both actual DOM legends contain only colour identities, no uphill-positive or foreground/common-scale wording. The branch tests pilot===piano, but LAB3D-01 is a non-pilot native model piano. Arrows now clear former base/cart obstruction in these captures.",
+      "actionableCorrection": "Use the actually installed model identity in the existing native branch, preserving diagram/fallback qualification; rerun actual legend controls."
+    },
+    {
+      "id": "LAB3D-02",
+      "kind": "ACTUAL_UI_LABEL_MASK_AND_DETAIL_VIEWPORT_CLIP",
+      "source": "static/js/banchi/scene/volo.js:51,65,70",
+      "actualCases": [
+        "flight-side-0.5-320",
+        "flight-side-0.5-1280"
+      ],
+      "finding": "At speed5m/s vertical and t=.5s, vy=.095m/s is positive. Primary velocity is beside the sphere, but every constructed primary shaft/cone Float32 vertex projects inside the opaque culmine cart in both actual views. The enlarged detail tip is visible at320 with a partly covered body; at1280 its tip and229/327 constructed vertices are outside the actual canvas, with remaining body partly under the cart. Counts are duplicated primitive vertices, not distinct observations.",
+      "sourceSampleExact": "vy=5-(981/100)(1/2)=19/200m/s; |v|/v0=19/1000; detail factor16 gives38/125world",
+      "geometry": "flight-label-framing-geometry.json",
+      "imageRectangleObservation": "flight-label-framing-summary.json",
+      "limits": "Actual source build and Float32 primitive/camera projection, plus original PNG readings. No GPUreadback or assertion that whole cone is inside a3Dsolid. No historic1a preexistence inferred.",
+      "actionableCorrection": "Keep nonzero velocity and its declared detail fully readable within the native view, separate from opaque culmine label; preserve direction,16x ratio and true zero hiding."
+    }
+  ],
+  "scopedPositiveChanges": {
+    "LAB3D-01": "Former weight tip now readable in the two Side cases; Top min-normal retained. Legend replacement remains deficient.",
+    "LAB3D-07": "All q1/q2/P opaque carts gone; Side and Top contribution heads now readable at320/1280, current charge values/coordinates and P identity present in actual keyboard-opened HTML legend. Zero-field case has no false nonzero arrow. This is bounded3cases×2widths scope, not full grid approval.",
+    "LAB3D-04": "Actual forcedfallback both wall-zero cases have role=group for both labelled SVG groups and axe0; v(R)=0 preserved.",
+    "LAB3D-10": "Actual native section trace nonflat and visible at0/.5 both widths, opposite sample displacement; model/source/pilot bytes unchanged.",
+    "LAB3D-02": "Late1s primary green velocity now beside sphere and visible; near-peak enlarged detail still fails as specified."
+  },
+  "priorExposure": "Prior source physics and cb9/7102 adverse cases known. Root is distinct author.7102 negative was committed before candidate03f review. No author tests imported as oracle.",
+  "scope": "Targeted22actual cases, not full bench renewal or139/246 approval.13bench model/source/pilot/format inputs byte-identical.12production delta files disclosed, including unrelated voci and CSS. No new graded responses, imports/991history or93exam audit in this canary. Browser DOM legends were genuinely opened by keyboard; axe0 both instrument and opened legend.",
+  "images": [
+    {
+      "case": "plane-old-tip-320",
+      "file": "actual-ui-22/plane-old-tip-320.png",
+      "sha256": "215c5fd520c10203e5fc95c24012f79cd0de631018c3fd91a2138f9ebcc37ffd",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "case": "plane-min-normal-320",
+      "file": "actual-ui-22/plane-min-normal-320.png",
+      "sha256": "dedb36e29325742da2e5069ec21d32df87f4bcaa09d8912bbc72d7396a3bace1",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "case": "flight-side-1-320",
+      "file": "actual-ui-22/flight-side-1-320.png",
+      "sha256": "72d2bdcf348de897b5e307e8f1377cd9941bc2aa991a68448e85a1b8e0f4dbfb",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "case": "flight-side-0.5-320",
+      "file": "actual-ui-22/flight-side-0.5-320.png",
+      "sha256": "790f2b72d02b2746900fc0a5136a41ba85f40a0ebe8192250d6aa95ca02d8350",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "case": "flight-top-near-peak-320",
+      "file": "actual-ui-22/flight-top-near-peak-320.png",
+      "sha256": "abcffcd8fed0a0494158bef9ab8832034d276c8c6372de971da4d0c3c468d751",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "case": "capillary-wall-320",
+      "file": "actual-ui-22/capillary-wall-320.png",
+      "sha256": "197e59d9e70339cd24d0ef7ba1aaa5756135ea9cb3cd24ae8b971a713d4291c1",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "case": "field-old-head-side-320",
+      "file": "actual-ui-22/field-old-head-side-320.png",
+      "sha256": "4f68c5c696d8472ab6993c1e882a5c706db7ab4e1f23c17d7f7d480d99ac7bf3",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "case": "field-old-head-top-320",
+      "file": "actual-ui-22/field-old-head-top-320.png",
+      "sha256": "ecb73b47a3200cfb86931dfac22f66dd370af384871284537ba48b0cc5866077",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "case": "field-zero-320",
+      "file": "actual-ui-22/field-zero-320.png",
+      "sha256": "3d53255f73ecc4389a4e57a601af6071534af116e58ea8f4164c769c9535d097",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "case": "wave-section-0-320",
+      "file": "actual-ui-22/wave-section-0-320.png",
+      "sha256": "e046b194f20edd054c6181028d8250181de302d6f1ec0c3c9d63877c74294d85",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "case": "wave-section-0.5-320",
+      "file": "actual-ui-22/wave-section-0.5-320.png",
+      "sha256": "381417a8295eca569d3283490a59297eebc0f2e5981dc046c55faa8f2f7a8d07",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "case": "plane-old-tip-1280",
+      "file": "actual-ui-22/plane-old-tip-1280.png",
+      "sha256": "e9cbf664aa651bf66d841f5736f9a4c87ac32c35b95fa998b4fa7aaf2e1ee1fa",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "case": "plane-min-normal-1280",
+      "file": "actual-ui-22/plane-min-normal-1280.png",
+      "sha256": "4e0d01797b033bceae19d322d0c0c581c832ba97a53669b23b74bc4003c43721",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "case": "flight-side-1-1280",
+      "file": "actual-ui-22/flight-side-1-1280.png",
+      "sha256": "6a9eadd27a19a2d947b9015f5e13e6c07a4d54e412ad8a63b7ac5bf14be3abba",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "case": "flight-side-0.5-1280",
+      "file": "actual-ui-22/flight-side-0.5-1280.png",
+      "sha256": "6b7bafadbf8f1462aa60f0933cdef9d0f96c4877c6997d24765c5dd5706ef0c7",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "case": "flight-top-near-peak-1280",
+      "file": "actual-ui-22/flight-top-near-peak-1280.png",
+      "sha256": "1dcf41b9681c2922226969eee542f1283d71a63f3d20b19010356d6bee6fcb87",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "case": "capillary-wall-1280",
+      "file": "actual-ui-22/capillary-wall-1280.png",
+      "sha256": "c2599f4339262c2a3a78d1c1d0bb32034270fa02932041ad95535479b0b1bc73",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "case": "field-old-head-side-1280",
+      "file": "actual-ui-22/field-old-head-side-1280.png",
+      "sha256": "4ff4518478a9eecf40135ae963cbef3a0aad60272e737f0f70743012fb848504",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "case": "field-old-head-top-1280",
+      "file": "actual-ui-22/field-old-head-top-1280.png",
+      "sha256": "08418c9d008f1a2a09165a5cfb269763a288f4dfee4f5aed2bcc59d5c83c7c02",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "case": "field-zero-1280",
+      "file": "actual-ui-22/field-zero-1280.png",
+      "sha256": "ea48af58ae46a39a2a78752d8fb0b738fff6f10ab76785c739f2b6efcdb9e928",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "case": "wave-section-0-1280",
+      "file": "actual-ui-22/wave-section-0-1280.png",
+      "sha256": "018f068847184d46dbc23d99e5a41f2b9bdce23ed5cb2b446c28a1faf8f9955d",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    },
+    {
+      "case": "wave-section-0.5-1280",
+      "file": "actual-ui-22/wave-section-0.5-1280.png",
+      "sha256": "3770a6f71711c58bfff9c21a0de20d24a43d43e79da1341ca0a0c85d1aa2035b",
+      "reading": "INDIVIDUAL_FULL_IMAGE"
+    }
+  ],
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "registryOrLedgerAction": "NONE"
+}

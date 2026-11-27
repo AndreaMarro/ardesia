@@ -1,0 +1,9 @@
+# Distinct targeted peer of03f9634d /4e75
+
+Reviewer AI separate from author Root. **Not accepted**: LAB3D-01 has no actual replacement for the removed monte identity because the native legend branch uses an absent pilot; LAB3D-02 primary nonzero velocity remains under the opaque culmine cart, and its16× detail clips above the1280 canvas. Full details, exact manual values, measured original-image bounds and actual Float32 geometry are in the individual judgment and witnesses.
+
+The22-case browser process actually exited0, with matching complete runtime fingerprints before/after, empty JS errors, actual controls/time/view assertions and axe0 including keyboard-opened HTML legends. This technical terminal does not override the two scientific delivery findings. All22 original screenshots were individually read. LAB3D-07 contribution heads and charge/P HTML identities are positive in the bounded cases;04 wall-zero accessibility and10 nonflat section also pass their targeted cases. No full grid or grading campaign is claimed.
+
+The immutable negative7102 delivery01f3f971 remains unchanged. No Root/runtime/registry/ledger edits, activity credit, human approval or application publication. Twelve actual production delta files are archived and disclosed; the thirteen benchmark model/source/pilot/format files remain byte-identical. This receipt is not blanket approval of the additional voci/CSS changes. All old epochs remain independent artifacts.
+
+Target integrity tests: four pass in1.650s. First target had a test-environment dependency error (PIL absent in recovery venv); original log/receipt retained. Reproduction now uses a strict stdlib8bitRGB PNG decoder with CRC checks, and reproduces the previously measured rectangle bytes/results exactly. No browser rerun, scientific witness change or gate relaxation.
