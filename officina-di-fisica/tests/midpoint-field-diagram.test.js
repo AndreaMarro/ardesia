@@ -16,6 +16,7 @@ test('the midpoint probe marks signed superposition and a separate visible detai
     const arrows = scene.filter(({kind}) => kind === 'arrow');
     assert.equal(probe.c, colore.verde);
     assert.deepEqual(probe.p, [0, 0.96, 0]);
+    assert.ok(!scene.some(({kind, text}) => kind === 'label' && /^(?:[+−-]\d|0$)/.test(text)));
     assert.equal(bench.measurement(charge).value, field);
     if (field === 0) {
       assert.deepEqual(arrows, []);
@@ -36,6 +37,13 @@ test('the midpoint probe marks signed superposition and a separate visible detai
     }
   }
   for (const view of ['orbit', 'side', 'top', 'diagram']) {
+    assert.match(bench.legend(2, view), /sinistra è fissa a \+1 nC.*a destra mostra il valore con segno/);
     assert.match(bench.legend(2, view), /punto verde P.*freccia viola.*ocra scuro.*dieci volte.*zero/);
   }
+});
+
+test('the single-source field keeps the numerical charge label', async () => {
+  const records = JSON.parse(readFileSync(new URL('../content/esperienze-C4.json', import.meta.url)));
+  const bench = await esperienza(records.find(({id}) => id === 'SIM-C4-L02-01'));
+  assert.ok(bench.elements(2, 2).some(({kind, text}) => kind === 'label' && text === '+1'));
 });

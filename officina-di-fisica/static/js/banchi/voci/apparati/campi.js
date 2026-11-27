@@ -43,8 +43,8 @@ export const campi = {
       return;
     }
     const d = s.distanza === undefined ? 1.35 : 0.23 + 1.64 * s.distanza;
-    sfera(b, -d, y, 0, s.qa);
-    sfera(b, d, y, 0, s.qb);
+    sfera(b, -d, y, 0, s.qa, !s.mezzo);
+    sfera(b, d, y, 0, s.qb, !s.mezzo);
     b.line(
       [
         [-d, y, 0],
