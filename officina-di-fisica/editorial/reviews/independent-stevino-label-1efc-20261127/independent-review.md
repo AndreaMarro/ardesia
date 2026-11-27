@@ -1,0 +1,7 @@
+Root author distinct from independent AI reviewer. Immutable3abd7dce/runtime1efc only. Original5dsource/math/model and prior20964/3ed5negative exposure disclosed; noauthor testusedasoracle. The only productiondiff is probeA SVGbaseline y−7→y+17. Solver,inputs,physicalgeometry,pressureunits andsourcequestions unchanged.
+
+One actualChrome completed16newstates terminal0/22.724s, fingerprintfullbefore/after identical. Fallback320/1280 at h0,.05,1,1.95,2 andnativeorbit/side/Toph0 controls; all8profiles have fourstagereading andwrong/right sourceanswers5bar/2bar actuallytested. Pressures recomputed from p=p0+ρgh,g981/100. ActualDOMcontrolvaluesreadback.100000Pa,200981/2Pa,109810Pa,238259/2Pa,119620Pa for selecteddepths; readouts useactual4sigformatter.
+
+All16PNGread via2wholeelementinspection sheets,4criticaloriginalPNGopened. Surfaceword/Aclearat0/.05; depths1.95/2wereexplicitlycheckedtoavoidmovingcollisiondownstream. Nativeh0 unchanged. At1.95/2SVGgetBBoxrectangles intersectbetweenAandhcaption in4cases: theseconservativefontrectangles includeunuseddescent/whitespace. Originalpixelimages showseparatelegiblepaintedglyphs, notanobservednewcollision; donotclaimBBoxdisjointor turnrectangleintersectionaloneintoocclusion. Thisboundedvisualjudgmentrequiresimages, notonlymetadata.
+
+Positivefocusedonly, notwhole035. Anewcomplete035proofonthisruntime remainsrequired beforegroupclosure;036hasnotbeenretagged. Old20964/3ed5actualnegative andsourceprotectedhistorystayunchanged. NoRoot/production/registry/ledger edits,nohumanapproval/publication/activitycredit.

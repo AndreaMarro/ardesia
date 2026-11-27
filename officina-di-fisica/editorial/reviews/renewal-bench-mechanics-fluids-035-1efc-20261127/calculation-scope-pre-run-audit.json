@@ -1,0 +1,151 @@
+{
+  "records": [
+    {
+      "id": "LAB3D-01",
+      "sourceVersion": 1,
+      "sourceSha256": "02561ad5fb3eb45a6a7eb10577cca8313cad8e5628726071dacb1d1f01a330cc",
+      "kind": "bench",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Assigned checks: (2/5)·20=8N; (9−3)/2=3m/s². Dynamic observations may keep mg sinθ and mg cosθ symbolic; no trig lookup is required. From a valid default/reset, the actual input handler maintains 0≤μd≤μs, so departure implies |drive|>μsN≥μdN; the rejected raw-solver counterexample is outside the consumer domain. Static friction takes the needed value, not always its maximum.",
+      "physicalAssumptions": "Rigid plane, gravitational field constant, no normal component of applied traction; initial rest, Coulomb static bound, nonnegative kinetic coefficient no larger than static, enforced by caller. Positive tangent uphill; friction opposes departure.",
+      "pedagogicalReview": "Original mandatory source/pilot tasks independently solved. Arbitrary trig/log readouts are observations, not additional mandatory numeric calculations. Current UI failures remain separate.",
+      "sourceMandatoryTasks": [
+        {
+          "prompt": "Su un piano orizzontale N = 20 N e μs = 0,4. Quanto vale la massima trazione equilibrabile?",
+          "unit": "N"
+        },
+        {
+          "prompt": "Un blocco di 2 kg sta già scivolando sul piano orizzontale. Tiri con 9 N e l’attrito si oppone con 3 N. Qual è l’accelerazione nel verso della trazione?",
+          "unit": "m/s²"
+        }
+      ],
+      "sourceAssignedTaskCount": 2,
+      "disclosure": "Previously independently read source/manual derivations reused; pre-run classification, not fresh engine/UI PASS. Arbitrary readouts are observations unless source assigns them.",
+      "ok": false,
+      "consumerUI": "NOT_RUN_CURRENT_WHOLE_COHORT",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "LAB3D-02",
+      "sourceVersion": 1,
+      "sourceSha256": "649e40da9db08811c5eca8802457d1baf078f6020b76abaae09a414b6a16c6ea",
+      "kind": "bench",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Assigned checks:10/10=1s;3·(6/5)=18/5m. Pilot checks:6/5−5/25=1m;10·(4/5)/2=4m/s. Arbitrary angle readouts are observations, not requests for decimal trigonometry; exact v0 sinα/cosα is sufficient. Zero elevation is a degenerate zero-flight model; the oblique-flight prediction does not assert a horizontal velocity for a vertical shot.",
+      "physicalAssumptions": "Point particle, uniform downward gravity, no air, launch/return at same elevation; independent horizontal components. Azimuth rotates the horizontal vector; vertical and zero-elevation limits treated separately.",
+      "pedagogicalReview": "Original mandatory source/pilot tasks independently solved. Arbitrary trig/log readouts are observations, not additional mandatory numeric calculations. Current UI failures remain separate.",
+      "sourceMandatoryTasks": [
+        {
+          "prompt": "Con vy iniziale = 10 m/s e g = 10 m/s², dopo quanti secondi si raggiunge il culmine?",
+          "unit": "s"
+        },
+        {
+          "prompt": "La pallina torna alla quota di partenza dopo 1,2 s. Se la velocità orizzontale è 3 m/s, quanto avanza?",
+          "unit": "m"
+        }
+      ],
+      "sourceAssignedTaskCount": 2,
+      "disclosure": "Previously independently read source/manual derivations reused; pre-run classification, not fresh engine/UI PASS. Arbitrary readouts are observations unless source assigns them.",
+      "ok": false,
+      "consumerUI": "NOT_RUN_CURRENT_WHOLE_COHORT",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "LAB3D-03",
+      "sourceVersion": 1,
+      "sourceSha256": "b43f6b283b507f060eae8fabada2beddb3ab48ba2f3b52a70deb2b9094833b74",
+      "kind": "bench",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Assigned checks:1000·10·(1/2)=5000Pa=5kPa;16000/(800·10)=2m. Surface pressure is subtracted before inverse depth. Consumer g=981/100 is separate from the assigned g=10; use exact rational ρ(981/100)h or compare displayed readings. Pa/m is the pressure-depth slope unit.",
+      "physicalAssumptions": "Connected homogeneous liquid at rest, uniform surface pressure and constant gravity. Depth measured positively downward; absolute and gauge pressure separated. Equal-depth comparison is scoped to this medium.",
+      "pedagogicalReview": "Original mandatory source/pilot tasks independently solved. Arbitrary trig/log readouts are observations, not additional mandatory numeric calculations. Current UI failures remain separate.",
+      "sourceMandatoryTasks": [
+        {
+          "prompt": "Con ρ = 1000 kg/m³ e g = 10 m/s², quanto aumenta la pressione scendendo di 0,5 m?",
+          "unit": "kPa"
+        },
+        {
+          "prompt": "In un olio di densità 800 kg/m³ misuri 16 kPa oltre la pressione superficiale. A quale profondità ti trovi con g = 10 m/s²?",
+          "unit": "m"
+        }
+      ],
+      "sourceAssignedTaskCount": 2,
+      "disclosure": "Previously independently read source/manual derivations reused; pre-run classification, not fresh engine/UI PASS. Arbitrary readouts are observations unless source assigns them.",
+      "ok": false,
+      "consumerUI": "NOT_RUN_CURRENT_WHOLE_COHORT",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "LAB3D-04",
+      "sourceVersion": 1,
+      "sourceSha256": "4a5fac945bd40cc7c651b1059fc9e21193941e2e46898eecbd9c3b1554619f51",
+      "kind": "bench",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Assigned checks:32/16=2mL/s and160/16=10Pa; pilot8(1−1/4)·2=12mm and96/16=6Pa. Ratios cancel π and common parameters. General Q and hydraulic resistance remain exact symbolic π expressions; optional decimal readouts are computed observations. Reynolds warning and suspended tracer/profile distinguish an extrapolated formula from a valid developed laminar model.",
+      "physicalAssumptions": "Newtonian incompressible fluid, rigid straight circular tube, no-slip, stationary developed profile. Pump can fix pressure or flow; other variables held when comparing radii. Reynolds2300 is indicative; off-domain displayed values are labeled extrapolation and profile/tracers suspended.",
+      "pedagogicalReview": "Original mandatory source/pilot tasks independently solved. Arbitrary trig/log readouts are observations, not additional mandatory numeric calculations. Current UI failures remain separate.",
+      "sourceMandatoryTasks": [
+        {
+          "prompt": "Un tubo porta 32 mL/s. A pressione fissata dimezzi il raggio mantenendo valide le ipotesi. Qual è la nuova portata?",
+          "unit": "mL/s"
+        },
+        {
+          "prompt": "La pompa mantiene Q costante. Se raddoppi il raggio di un capillare che richiedeva 160 Pa, quanti pascal servono?",
+          "unit": "Pa"
+        }
+      ],
+      "sourceAssignedTaskCount": 2,
+      "disclosure": "Previously independently read source/manual derivations reused; pre-run classification, not fresh engine/UI PASS. Arbitrary readouts are observations unless source assigns them.",
+      "ok": false,
+      "consumerUI": "NOT_RUN_CURRENT_WHOLE_COHORT",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "LAB3D-05",
+      "sourceVersion": 1,
+      "sourceSha256": "c08f92d0f42c22a5704e434842bfbad73c085d2890eec7ca0075dcd4c245be5c",
+      "kind": "bench",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Assigned checks:90·4/2=180kPa and100·450/300=150kPa. Pilot60·4/3=80kPa and W=Q=+45J from ΔU=0. Ratios cancel nR, with absolute temperature. Optional isothermal work may remain nRT ln(Vf/Vi); no numerical logarithm is assigned. Model R=8.314462618 is a numerical approximation, not the exact SI product. The display uses four significant digits.",
+      "physicalAssumptions": "Fixed amount of ideal dilute gas, equilibrium states, positive absolute T/V/p, thermostatic quasistatic isotherm; six-second animation is a parametrization of states, not a dynamical piston law. Work sign is work by gas; no temperature change or internal-energy change on the isotherm.",
+      "pedagogicalReview": "Original mandatory source/pilot tasks independently solved. Arbitrary trig/log readouts are observations, not additional mandatory numeric calculations. Current UI failures remain separate.",
+      "sourceMandatoryTasks": [
+        {
+          "prompt": "Un gas occupa 4 L a 90 kPa. A temperatura e quantità costanti lo porti a 2 L. Quanto vale la pressione?",
+          "unit": "kPa"
+        },
+        {
+          "prompt": "In un cilindro bloccato a 3 L misuri 100 kPa a 300 K. Scaldi fino a 450 K. Quale pressione misuri?",
+          "unit": "kPa"
+        }
+      ],
+      "sourceAssignedTaskCount": 2,
+      "disclosure": "Previously independently read source/manual derivations reused; pre-run classification, not fresh engine/UI PASS. Arbitrary readouts are observations unless source assigns them.",
+      "ok": false,
+      "consumerUI": "NOT_RUN_CURRENT_WHOLE_COHORT",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "runtimeSha256": "3ed5bc77d8320230b62e1c3e6ca3bdd00f240cc64ec236b10fe55a306ca79251",
+  "requiredCanonicalCalculationScopeOnEveryFreshResult": true,
+  "legacy036MissingScopeRemainsFrozenAndNotAdmissionReady": false,
+  "plan": {
+    "baseCases": 40,
+    "boundaryCases": 80,
+    "actualClockObservationCount": 64,
+    "installedNodeCasesPerFreshReport": 378
+  },
+  "freshScienceAndUi": "PENDING",
+  "activityCredit": 0,
+  "runtimeSourceCommit": "375faa7a90f5f643840aabb8cc3076f9a2d5f5de"
+}

@@ -5,9 +5,9 @@
   "sourceQuestionCount": 4606,
   "reviewedQuestions": 4606,
   "remainingQuestions": 0,
-  "reviewedActivities": 257,
-  "remainingActivities": 128,
-  "registrySha256": "d6161e87211198a9516d023f347bc8f8cdc6cc03da0beb129b7557b9b221d2e5",
+  "reviewedActivities": 258,
+  "remainingActivities": 127,
+  "registrySha256": "2b4484f5dc42de5529390eaa9e82c05b430c64b39b94d035afb5184fab7d73b5",
   "questions": [
     {
       "id": "AR-u1-area-conversion-01",
@@ -23819,24 +23819,28 @@
     },
     {
       "id": "LAB3D-01",
-      "state": "REVIEWED_PENDING_CURRENT_FULL_INTEGRATION"
+      "state": "REVIEWED_ORIGINAL_ON_1EFC_PENDING_CANONICAL",
+      "evidence": "editorial/reviews/bench-mechanics-fluids-035.json"
     },
     {
       "id": "LAB3D-02",
-      "state": "REVIEWED_PENDING_CURRENT_FULL_INTEGRATION"
+      "state": "REVIEWED_ORIGINAL_ON_1EFC_PENDING_CANONICAL",
+      "evidence": "editorial/reviews/bench-mechanics-fluids-035.json"
     },
     {
       "id": "LAB3D-03",
-      "state": "EXPLICITLY_REOPENED_REQUIRES_FRESH_CLOSURE",
-      "evidence": "editorial/reviews/lab3d03-surface-label-withdrawal-20261127/actual-hydrostatic-surface-label-negative.json"
+      "state": "REVIEWED_ORIGINAL_ON_1EFC_PENDING_CANONICAL",
+      "evidence": "editorial/reviews/bench-mechanics-fluids-035.json"
     },
     {
       "id": "LAB3D-04",
-      "state": "REVIEWED_PENDING_CURRENT_FULL_INTEGRATION"
+      "state": "REVIEWED_ORIGINAL_ON_1EFC_PENDING_CANONICAL",
+      "evidence": "editorial/reviews/bench-mechanics-fluids-035.json"
     },
     {
       "id": "LAB3D-05",
-      "state": "REVIEWED_PENDING_CURRENT_FULL_INTEGRATION"
+      "state": "REVIEWED_ORIGINAL_ON_1EFC_PENDING_CANONICAL",
+      "evidence": "editorial/reviews/bench-mechanics-fluids-035.json"
     },
     {
       "id": "LAB3D-06",
@@ -24616,9 +24620,7 @@
   ],
   "nextRootQuestionId": null,
   "missingQuestionIds": [],
-  "blockedActivityIds": [
-    "LAB3D-03"
-  ],
+  "blockedActivityIds": [],
   "fullSnapshotGate": "BLOCKED_BY_OPEN_SCIENTIFIC_WITHDRAWAL; no gate change and no stale3792 adoption",
   "humanApproval": "NOT_RUN",
   "publicationAction": "NONE",
@@ -24721,12 +24723,13 @@
     },
     {
       "id": "lab3d03-surface-probe-label-20261127",
-      "state": "OPEN",
+      "state": "CLOSED_ON_1EFC_PENDING_CANONICAL_INTEGRATION",
       "affectedIds": [
         "LAB3D-03"
       ],
       "evidence": "editorial/acceptance/withdrawals-v1.json",
-      "resolution": "Verify the corrected legend at the surface and across actual widths. Replay the complete 035 group."
+      "resolution": "Verify the corrected legend at the surface and across actual widths. Replay the complete 035 group.",
+      "resolvedOnCurrentRuntime": "1efcd26bbb078453b75be5fbd1502b95cf07c0ffabb4112a4e4cf78170ff46aa"
     }
   ]
 }

@@ -1,0 +1,13 @@
+diff --git a/officina-di-fisica/static/js/banchi/tavola.js b/officina-di-fisica/static/js/banchi/tavola.js
+index 80aca785..ff4ba4b2 100644
+--- a/officina-di-fisica/static/js/banchi/tavola.js
++++ b/officina-di-fisica/static/js/banchi/tavola.js
+@@ -132,7 +132,7 @@ export function drawing(model, p, s, t, stage, title, projection = 'top', equati
+     if (reveal)
+       d +=
+         dot(151, y, gold) +
+-        label(132, y - 7, 'A') +
++        label(132, y + 17, 'A') +
+         dot(279, y, purple) +
+         label(286, y - 5, 'B') +
+         path(`M151 ${y} H279`, green, true) +

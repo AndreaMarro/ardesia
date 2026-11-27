@@ -1,0 +1,10 @@
+file:///private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-1efc-20261127/browser-bench-mechanics-fluids-1efc.mjs:18
+async function guardDisk(){const st=await fs.statfs(outdir);const free=BigInt(st.bavail)*BigInt(st.bsize);report.resourceObservations??=[];report.resourceObservations.push({beforeCapture:report.resourceObservations.length,freeBytes:Number(free),minimumFreeBytes:2147483648});if(free<2147483648n)throw Error('RESOURCE_GUARD before actual capture freeBytes='+free);}
+                                                                                                                                                                                                                                                                                                             ^
+
+Error: RESOURCE_GUARD before actual capture freeBytes=2126008320
+    at guardDisk (file:///private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-1efc-20261127/browser-bench-mechanics-fluids-1efc.mjs:18:302)
+    at async boundaries (file:///private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-1efc-20261127/browser-bench-mechanics-fluids-1efc.mjs:98:98)
+    at async file:///private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-1efc-20261127/browser-bench-mechanics-fluids-1efc.mjs:68:4
+
+Node.js v22.14.0

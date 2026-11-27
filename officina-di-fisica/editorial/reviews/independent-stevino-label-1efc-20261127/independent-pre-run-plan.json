@@ -1,0 +1,108 @@
+{
+  "sourceReadingDisclosure": "Prior original5d source, independent manual oracles and20964/3ed5actualnegative exposure retained. Not a blind new review. No author test imported.",
+  "scope": "Focused16 new actual cases on immutable1efc; not whole035or036renewal.",
+  "sourceCalculations": {
+    "formula": "p=p0+rho*g*h",
+    "units": "Pa=kg/m3*m/s2*m; absoluteandgauge distinguished",
+    "g": "981/100m/s2",
+    "p0": "100000Pa",
+    "rho": "1000kg/m3",
+    "expectedExactAbsolutePa": {
+      "0": "100000",
+      ".05": "200981/2",
+      "1": "109810",
+      "1.95": "238259/2",
+      "2": "119620"
+    },
+    "sameDepthPressureEquality": true,
+    "sourceMandatoryManualAnswersReusedWithPriorDisclosure": [
+      {
+        "value": 5,
+        "unit": "bar"
+      },
+      {
+        "value": 2,
+        "unit": "bar"
+      }
+    ]
+  },
+  "actualRequiredProfiles": [
+    {
+      "width": 320,
+      "view": "orbit",
+      "heights": [
+        0
+      ]
+    },
+    {
+      "width": 320,
+      "view": "side",
+      "heights": [
+        0
+      ]
+    },
+    {
+      "width": 320,
+      "view": "top",
+      "heights": [
+        0
+      ]
+    },
+    {
+      "width": 320,
+      "view": "diagram",
+      "heights": [
+        0,
+        0.05,
+        1,
+        1.95,
+        2
+      ]
+    },
+    {
+      "width": 1280,
+      "view": "orbit",
+      "heights": [
+        0
+      ]
+    },
+    {
+      "width": 1280,
+      "view": "side",
+      "heights": [
+        0
+      ]
+    },
+    {
+      "width": 1280,
+      "view": "top",
+      "heights": [
+        0
+      ]
+    },
+    {
+      "width": 1280,
+      "view": "diagram",
+      "heights": [
+        0,
+        0.05,
+        1,
+        1.95,
+        2
+      ]
+    }
+  ],
+  "assumptions": [
+    "homogeneous stationary liquid",
+    "uniformgravity",
+    "constantassignedsurfacepressure",
+    "depthpositivebelowfree surface",
+    "AandBsameh"
+  ],
+  "boundaries": "Toph0/.05pluslowercontainerlimit1.95/2; collectingbottomlabel too instead of assuming surfacefixpreservesotherlabels.",
+  "recordedGeometry": "AllactualSVGtextBBox+screenrect, outerHTML, positions ofA/B/surface/depth. BBoxintersection diagnostic requires actualPNGreading; not equivalent to paintedglyphoverlap.",
+  "actualControls": "Readbackrho/p0/h, renderingmodeandviewaria-pressed; actualgradeswrongandright perprofile.",
+  "publications": "NONE",
+  "humanApproval": "NOT_RUN",
+  "activityCredit": 0
+}
