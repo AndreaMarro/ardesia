@@ -138,6 +138,22 @@
       "receipt": "editorial/reviews/vector-family-four-current-closure-20261127/receipt.json",
       "sha256": "64cffe8b86405b468e9fc11bdd8a7baadf753d8f33465d2e1bcbb5f6137369f6",
       "requiresRenewalOnFinalRuntime": true
+    },
+    "actualNativeVisualRepresentatives": {
+      "cases": 18,
+      "sourceIds": 17,
+      "sha256": "e8b608dfde1ad29d81afa150cdd0014c949c30b611c01ca08ee016676de854fc",
+      "path": "editorial/reviews/geometry-candidates-45917299096-20261127/root-current-18-representatives-visual-observation.json",
+      "candidateReview": "PENDING"
+    },
+    "pendingC6AuthorOverlay": {
+      "source": "8ba299bddb4ad42e2fd7fead4afe02e7664022f9",
+      "authorHandoffSha256": "15cd50767de18533e84a87dd51c6696aec9fa4285a1cc5f67325b39b2f073ee1",
+      "ids": [
+        "SIM-C6-L02-01",
+        "SIM-C6-L05-01"
+      ],
+      "exactComposedBrowser": "PENDING"
     }
   },
   "coexistence": {
@@ -199,5 +215,16 @@
     "Close the remaining C1 reopenings SIM-C1-L001-06 and SIM-C1-L007-01 and all 139 other open IDs",
     "Validate all groups on the exact integration runtime and rerun final previews and coexistence",
     "Open and validate canonical integration and document CI on the integrated SHA"
-  ]
+  ],
+  "composedCandidate": {
+    "branch": "feat/cric-composed-runtime",
+    "previewCommit": "728474c72f069e87ab8528549bb31f172ed5608a",
+    "runtimeSha256": "62a266d24545e83f48b3c812ab885881795c13de5276b1ebc080f6443a2763dd",
+    "nodePass": 301,
+    "contractPass": 2,
+    "privatePreviewRun": 45929961994,
+    "privatePreviewObservedStatus": "in_progress",
+    "privatePreviewObservedConclusion": "",
+    "canonicalIntegration": "PENDING"
+  }
 }

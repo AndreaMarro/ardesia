@@ -18,6 +18,8 @@ I cinque job della campagna interattiva sono terminati con esito tecnico positiv
 
 La riproduzione dei lettori sullo stesso runtime ha confermato 189 record già registrati in 33 gruppi. Nessun nuovo ID è contato sulla base di queste riproduzioni. Il prossimo ID esplicitamente riaperto resta `SIM-C1-L001-06`.
 
+Il candidato composto riunisce le correzioni al lettore e ai banchi e contiene le nuove annotazioni per C2–C6. Ha superato 301 test Node e due test dei contratti. Le anteprime riservate sull’intero registro sono in esecuzione sul commit `728474c72f069e87ab8528549bb31f172ed5608a`. Le prove distinte sulle correzioni rimangono vincolate alle revisioni effettivamente eseguite. [Anteprime del candidato composto](https://github.com/AndreaMarro/ardesia/actions/runs/45929961994).
+
 Il branch di lavoro GitHub è `feat/cric-experiment-manual-revisions`. Il canone remoto verificato è `officina-di-fisica` a `7c29ccc18ad3b42ceecfca509ef57f786bd2c496`. Il checkpoint compilato da 3.632 quesiti e 246 attività è storico. PR canonica, CI integrata, approvazione umana e pubblicazione nell’app restano aperte. Le 100 revisioni Pro restano non identificate. I 199 controlli tecnici recuperati sono documentati separatamente.
 
 [Stato per la ripresa e ricevute](../../officina-di-fisica/editorial/reviews/handoff-4606-20261127.json).
