@@ -1,0 +1,243 @@
+[
+  {
+    "id": "SIM-C6-L01-01",
+    "kind": "experiment",
+    "course": "C6",
+    "skill": "C6-L01",
+    "order": 1,
+    "section": "Orientarsi tra le misure",
+    "version": 1,
+    "title": "Misurare una distanza con l’eco",
+    "topic": "Collegamento U1, U2, U3, U4, U5, U6 e U7 · sistemi, grandezze, unità e scale",
+    "anchor": "Per un’eco su un riflettore fermo, se",
+    "summary": "Come passi dai millisecondi di un’eco alla distanza fisica?",
+    "apparatus": "doppler",
+    "control": {
+      "label": "Durata di andata e ritorno",
+      "unit": "ms",
+      "min": 0.0,
+      "max": 20.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Distanza del riflettore",
+      "unit": "m"
+    },
+    "formula": "d = vΔt/2, con v = 340 m/s",
+    "interpretation": "Identifica emissione e ricezione nello stesso punto. Il suono percorre due volte la distanza. Converti il tempo in secondi, moltiplica per la velocità e dividi per due.",
+    "references": [
+      [
+        2.0,
+        0.34
+      ],
+      [
+        10.0,
+        1.7
+      ]
+    ],
+    "blocks": [],
+    "substitution": "0,17 × {x}",
+    "transferPrompt": "Il microfono registra l’eco {x} dopo l’impulso. Se il suono percorre 340 m ogni secondo, a quale distanza si trova il riflettore?"
+  },
+  {
+    "id": "SIM-C6-L02-01",
+    "kind": "experiment",
+    "course": "C6",
+    "skill": "C6-L02",
+    "order": 1,
+    "section": "Portate, correnti e intensità",
+    "version": 1,
+    "title": "Dalla massa raccolta alla velocità del fluido",
+    "topic": "Collegamento U3, U4 e U6 · trasporti, densità di flusso e bilanci in regime stazionario",
+    "anchor": "Una bilancia misura la massa raccolta all’uscita",
+    "summary": "Come ricostruisci una velocità a partire da una bilancia e un cronometro?",
+    "apparatus": "condotto",
+    "control": {
+      "label": "Massa raccolta in 4 secondi",
+      "unit": "g",
+      "min": 0.0,
+      "max": 40.0,
+      "step": 2.0
+    },
+    "measure": {
+      "label": "Velocità media alla sezione",
+      "unit": "cm/s"
+    },
+    "formula": "Q = m/(ρΔt); v = Q/A; ρ = 1 g/cm³, A = 2 cm²",
+    "interpretation": "Raccogli tutto ciò che attraversa la superficie. La massa divisa per la densità dà il volume. Dividi ancora per la durata e per l’area. La stessa idea di bilancio vale per carica ed energia.",
+    "references": [
+      [
+        8.0,
+        1.0
+      ],
+      [
+        24.0,
+        3.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} / 8",
+    "transferPrompt": "In 4 s il recipiente raccoglie {x} d’acqua, di densità 1 g/cm³. Quale velocità media ha l’acqua nel tubo di sezione 2 cm²?"
+  },
+  {
+    "id": "SIM-C6-L03-01",
+    "kind": "experiment",
+    "course": "C6",
+    "skill": "C6-L03",
+    "order": 1,
+    "section": "Bilanci e trasformazioni",
+    "version": 1,
+    "title": "Dalla batteria al calorimetro",
+    "topic": "Collegamento U2, U3, U5, U6 e U7 · potenza meccanica, termica, elettrica e ottica",
+    "anchor": "Una batteria alimenta una resistenza immersa in",
+    "summary": "Quanta energia della batteria ritrovi nel campione misurando la temperatura?",
+    "apparatus": "calorimetro",
+    "control": {
+      "label": "Durata del riscaldamento",
+      "unit": "s",
+      "min": 0.0,
+      "max": 100.0,
+      "step": 5.0
+    },
+    "measure": {
+      "label": "Aumento di temperatura",
+      "unit": "K"
+    },
+    "formula": "ΔT = ηVIt/C; V = 5 V, I = 2 A, η = 0,8, C = 400 J/K",
+    "interpretation": "Segui l’energia attraverso resistenza e liquido. Entrano 10 J elettrici ogni secondo, 8 raggiungono il campione. Il bilancio distingue potenza fornita, perdite e aumento di energia interna.",
+    "references": [
+      [
+        20.0,
+        0.4
+      ],
+      [
+        80.0,
+        1.6
+      ]
+    ],
+    "blocks": [],
+    "substitution": "0,02 × {x}",
+    "transferPrompt": "Il riscaldatore da 5 V e 2 A lavora per {x}. Se l’80% dell’energia scalda il calorimetro da 400 J/K, quanto aumenta la temperatura?"
+  },
+  {
+    "id": "SIM-C6-L04-01",
+    "kind": "experiment",
+    "course": "C6",
+    "skill": "C6-L04",
+    "order": 1,
+    "section": "Rapporti e variazioni successive",
+    "version": 1,
+    "title": "Riconoscere una legge di attenuazione",
+    "topic": "Collegamento U2, U3, U4 e U7 · proporzioni, leggi di potenza, esponenziali",
+    "anchor": "Prova a distinguere queste leggi da tre",
+    "summary": "Da tre letture come distingui una legge esponenziale da una lineare o di potenza?",
+    "apparatus": "assorbitore",
+    "control": {
+      "label": "Numero di strati identici",
+      "unit": "1",
+      "min": 0.0,
+      "max": 5.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Segnale trasmesso",
+      "unit": "unità"
+    },
+    "formula": "Sₙ = 120 × (½)ⁿ",
+    "interpretation": "Leggi il segnale dopo zero, uno, due e tre strati. Il rapporto fra letture consecutive è costante. Per una legge lineare controlleresti la differenza e per una potenza il fattore prodotto raddoppiando l’ingresso.",
+    "references": [
+      [
+        1.0,
+        60.0
+      ],
+      [
+        3.0,
+        15.0
+      ]
+    ],
+    "blocks": [],
+    "discrete": true,
+    "substitution": "120 × 0,5^({x})",
+    "transferPrompt": "Il segnale iniziale è di 120 unità. Attraversa {x} strati, ciascuno dei quali ne dimezza l’intensità. Quale segnale dovrebbe restare?"
+  },
+  {
+    "id": "SIM-C6-L05-01",
+    "kind": "experiment",
+    "course": "C6",
+    "skill": "C6-L05",
+    "order": 1,
+    "section": "Leggere le rappresentazioni",
+    "version": 1,
+    "title": "Sommare aree con segno",
+    "topic": "Collegamento U1, U2, U3, U5 e U6 · lettura di grafici, segni, pendenze e aree",
+    "anchor": "L’area usa invece il prodotto delle unità",
+    "summary": "Il tratto di ritorno fa aumentare la distanza percorsa o lo spostamento?",
+    "apparatus": "binario",
+    "control": {
+      "label": "Tempo dalla partenza",
+      "unit": "s",
+      "min": 0.0,
+      "max": 4.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Spostamento con segno",
+      "unit": "m"
+    },
+    "formula": "Δx = 2t fino a 2 s; poi Δx = 4 − (t−2)",
+    "interpretation": "Il carrello procede a +2 m/s per 2 s, poi a −1 m/s. Somma le aree con segno del grafico velocità-tempo. Leggi sul righello lo spostamento finale; il cammino totale a 4 s è 6 m.",
+    "references": [
+      [
+        2.0,
+        4.0
+      ],
+      [
+        4.0,
+        2.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "ritorno",
+    "transferPrompt": "Dal via procedi a +2 m/s per 2 s, poi torni a −1 m/s. Quando il cronometro indica {x}, quale spostamento con segno registra il quaderno?"
+  },
+  {
+    "id": "SIM-C6-L06-01",
+    "kind": "experiment",
+    "course": "C6",
+    "skill": "C6-L06",
+    "order": 1,
+    "section": "Ripasso e trasferimento",
+    "version": 1,
+    "title": "Verificare la lente intorno alla distanza focale",
+    "topic": "Collegamento cumulativo U1–U7 · scelta del modello, controllo dei limiti, ripresa distribuita",
+    "anchor": "Un ultimo controllo consiste nel modificare un",
+    "summary": "Come controlli il modello della lente avvicinandoti alla distanza critica dai due lati?",
+    "apparatus": "ottica",
+    "control": {
+      "label": "Distanza dell’oggetto in unità focali",
+      "unit": "1",
+      "min": 0.5,
+      "max": 3.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Vergenza normalizzata f/q",
+      "unit": "1"
+    },
+    "formula": "f/q = 1 − f/p",
+    "interpretation": "Prima prevedi il segno del risultato, poi sposta l’oggetto fino al fuoco. La vergenza tende a zero dai due lati. Controlla con i raggi e ripeti il disegno dalla memoria.",
+    "references": [
+      [
+        0.5,
+        -1.0
+      ],
+      [
+        2.0,
+        0.5
+      ]
+    ],
+    "blocks": [],
+    "substitution": "1 − (1 / {x})",
+    "transferPrompt": "Porti l’oggetto alla distanza p/f = {x} da una lente sottile convergente. Quale valore di f/q prevedi, mantenendo il segno anche per un’immagine virtuale?"
+  }
+]
