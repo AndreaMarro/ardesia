@@ -32,6 +32,8 @@ PULSE_FIX = ('593c82a93a1dd635461a33297d84ee8634db3fcd',
              '6efcc26c2b698fd7c1c89bde711f568359ffd5d3465780f9e9c673deae7fdbb2')
 DOPPLER_FIX = ('f1fdd0dae20e03fba233a9ee6e0425f1f3197bae',
                'ca17f5b64aadd1923922854e22281f83e4dce1dbcdbbb4bbacf514a33b6d4ea3')
+FLUID_FIX = ('8de7bd774c71841c4b744485b012abd6506f3645',
+             'fe5d26413e1aeb59987cc3fd6040adde3b01952b6e5e5c3951695b2e64d9166b')
 COLLECTOR = '719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15'
 C2_SCOPES = {'bernoulli-120': 120, 'continuity-32': 32, 'branches-40': 40}
 CONTINUITY_SCOPES = {
@@ -298,6 +300,7 @@ if __name__ == '__main__':
     epoch = parser.add_mutually_exclusive_group()
     epoch.add_argument('--pulse-layer-fix', action='store_true', help='Use the exact acoustic endpoint correction')
     epoch.add_argument('--doppler-fix', action='store_true', help='Use the exact direction and pressure-legend correction')
+    epoch.add_argument('--fluid-direction-fix', action='store_true', help='Use the exact C2 probe and tracer direction correction')
     args = parser.parse_args()
     candidate, runtime = CANDIDATE, RUNTIME
     if args.pulse_layer_fix:
@@ -308,6 +311,10 @@ if __name__ == '__main__':
         if args.scope != 'sound-03':
             parser.error('The direction and legend correction replay applies only to sound-03')
         candidate, runtime = DOPPLER_FIX
+    if args.fluid_direction_fix:
+        if args.scope not in (*CONTINUITY_SCOPES, PITOT_SCOPE):
+            parser.error('The fluid direction correction replay requires a continuity or targeted Pitot scope')
+        candidate, runtime = FLUID_FIX
     if args.phase == 'prepare':
         prepare(args.app.resolve(), args.directory.resolve(), args.source.resolve(), args.scope, candidate, runtime)
     else:
