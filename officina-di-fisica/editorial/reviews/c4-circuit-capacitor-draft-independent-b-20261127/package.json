@@ -1,0 +1,493 @@
+{
+  "assets": [],
+  "records": [
+    {
+      "anchor": "In serie le cadute si sommano: ΔV",
+      "apparatus": "circuito",
+      "assessmentSelection": {
+        "points": [
+          4,
+          12
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Segui i conduttori a partire dai due morsetti. In parallelo i rami collegano gli stessi nodi: hanno quindi la stessa tensione e le correnti dei due rami si sommano. In serie il percorso è unico: la stessa corrente attraversa entrambe le resistenze e si sommano le cadute di tensione.",
+          "type": "text"
+        },
+        {
+          "text": "\\frac{1}{R_\\mathrm{par}}=\\frac{1}{4\\ \\mathrm{\\Omega}}+\\frac{1}{R_2},\\qquad R_\\mathrm{ser}=4\\ \\mathrm{\\Omega}+R_2",
+          "type": "formula"
+        },
+        {
+          "text": "Con due resistenze uguali da 4 Ω, ciascun ramo porta la stessa corrente. La corrente totale è doppia e la resistenza equivalente è 2 Ω. Con 4 Ω e 12 Ω, usa un denominatore comune: 1/4 + 1/12 = 3/12 + 1/12 = 1/3, con unità Ω⁻¹. Invertendo trovi 3 Ω.",
+          "type": "text"
+        },
+        {
+          "text": "Il parallelo offre un secondo percorso e presenta una resistenza inferiore a 4 Ω. La serie darebbe invece 8 Ω o 16 Ω. Se misuri 3 Ω a generatore scollegato, sottrai 1/4 da 1/3: rimane 1/12 Ω⁻¹ per il secondo ramo, quindi 12 Ω.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Seconda resistenza",
+        "max": 12.0,
+        "min": 2.0,
+        "step": 1.0,
+        "unit": "Ω"
+      },
+      "course": "C4",
+      "formula": "R parallelo = (4 Ω)R₂/(4 Ω + R₂); R serie = 4 Ω + R₂",
+      "id": "SIM-C4-L06-01",
+      "interpretation": "Le due resistenze condividono i due terminali. Confronta il valore inferiore alla più piccola con il valore in serie, dove la corrente attraversa entrambe in successione.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Resistenza in parallelo",
+        "unit": "Ω"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C4-L05"
+      ],
+      "references": [
+        [
+          4.0,
+          2.0
+        ],
+        [
+          12.0,
+          3.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Seguire i nodi di un circuito",
+      "skill": "C4-L06",
+      "substitution": "4 × {x} / (4 + {x})",
+      "summary": "Come riconosci il parallelo seguendo i nodi e quale valore aspetti?",
+      "title": "Resistenze in serie e in parallelo",
+      "topic": "6.4 Resistenze in serie e in parallelo",
+      "transferPrompt": "Colleghi in parallelo un resistore da 4 Ω e uno da {x}. Che valore misurerebbe un ohmmetro fra i due nodi, a generatore scollegato?",
+      "version": 2
+    },
+    {
+      "anchor": "Per una differenza di potenziale V e",
+      "apparatus": "circuito",
+      "assessmentSelection": {
+        "points": [
+          1,
+          3
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Un ampere porta un coulomb al secondo. La tensione del resistore misura l’energia ceduta per ogni coulomb. Il loro prodotto dice quanta energia viene trasferita ogni secondo. Per questo si usa prima P = VI e poi la legge di Ohm per sostituire V, dato che il resistore del banco è ohmico.",
+          "type": "text"
+        },
+        {
+          "text": "P=VI=(RI)I=RI^2,\\qquad R=3\\ \\mathrm{\\Omega}",
+          "type": "formula"
+        },
+        {
+          "text": "Con 1 A, calcola 3 × 1² = 3 W. Con 3 A, fai prima il quadrato: 3² = 9. Il prodotto 3 × 9 dà 27 W. Le unità V·A sono J/s, cioè watt.",
+          "type": "text"
+        },
+        {
+          "text": "Partendo da 27 W, dividi per 3 Ω: I² = 9 A². La corrente impostata è non negativa, quindi I = 3 A. Moltiplicare la corrente per tre moltiplica per nove la potenza. L’energia dissipata in un tempo più lungo richiederebbe anche la durata.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Corrente nel resistore",
+        "max": 4.0,
+        "min": 0.0,
+        "step": 0.25,
+        "unit": "A"
+      },
+      "course": "C4",
+      "formula": "P = VI = RI²; R = 3 Ω",
+      "id": "SIM-C4-L06-02",
+      "interpretation": "Nel resistore ohmico la tensione necessaria raddoppia insieme alla corrente. Il prodotto V per I quadruplica. Osserva l’energia ceduta ogni secondo.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Potenza dissipata",
+        "unit": "W"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C4-L05"
+      ],
+      "references": [
+        [
+          1.0,
+          3.0
+        ],
+        [
+          3.0,
+          27.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Seguire i nodi di un circuito",
+      "skill": "C4-L06",
+      "substitution": "3 × {x} × {x}",
+      "summary": "Perché una corrente doppia sviluppa quattro volte la potenza termica?",
+      "title": "Potenza elettrica ed effetto Joule",
+      "topic": "6.4 Potenza elettrica ed effetto Joule",
+      "transferPrompt": "Un resistore da 3 Ω è attraversato da {x}. Quanti watt deve dissipare in calore?",
+      "version": 2
+    },
+    {
+      "anchor": "Per piastre parallele di area affacciata A,",
+      "apparatus": "piastre",
+      "assessmentSelection": {
+        "points": [
+          2,
+          4
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Nel modello di piastre piane nel vuoto le armature sono parallele e il campo nella zona interna è uniforme. Trascuriamo gli effetti ai bordi. In queste condizioni, a parità di carica, una distanza doppia raddoppia la tensione tra le piastre. Poiché C = Q/V, la capacità si dimezza.",
+          "type": "text"
+        },
+        {
+          "text": "C=\\frac{\\varepsilon_0 A}{d},\\qquad A=10^{-2}\\ \\mathrm{m^2},\\quad \\varepsilon_0\\simeq 8{,}854\\times10^{-12}\\ \\mathrm{F/m}",
+          "type": "formula"
+        },
+        {
+          "text": "Per usare la distanza numerica in mm scrivi d = d_mm × 10⁻³ m. Convertendo da farad a picofarad compare il fattore 10¹². Rimane quindi 8,854 × 10⁻² / 10⁻³ = 88,54 al numeratore, da dividere per d_mm. Le unità (F/m)·m²/m si riducono a F prima della conversione.",
+          "type": "text"
+        },
+        {
+          "text": "C[\\mathrm{pF}]\\simeq\\frac{88{,}54}{d[\\mathrm{mm}]}",
+          "type": "formula"
+        },
+        {
+          "text": "Per 2 mm dimezza 88,54 e ottieni 44,27 pF. Per 4 mm dimezza ancora: 22,135 pF. Sono conti esatti con il valore di ε₀ fornito, che è arrotondato. Se l’interfaccia arrotonda ulteriormente la lettura, conserva 22,135 nel procedimento. Inversamente, 88,54 diviso 44,27 restituisce 2 mm nel modello.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Distanza tra le piastre",
+        "max": 8.0,
+        "min": 1.0,
+        "step": 0.5,
+        "unit": "mm"
+      },
+      "course": "C4",
+      "formula": "C = ε₀A/d; A = 0,01 m², ε₀ ≈ 8,854×10⁻¹² F/m",
+      "id": "SIM-C4-L07-01",
+      "interpretation": "Si trascurano i bordi. A parità di carica, allontanare le piastre aumenta la tensione. La stessa carica divisa per una tensione maggiore dà meno capacità.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Capacità",
+        "unit": "pF"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C4-L06"
+      ],
+      "references": [
+        [
+          2.0,
+          44.27
+        ],
+        [
+          4.0,
+          22.135
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Immagazzinare carica ed energia",
+      "skill": "C4-L07",
+      "substitution": "88,54 / {x}",
+      "summary": "Come cambia la capacità separando due piastre della stessa area?",
+      "title": "Capacità elettrica e condensatore piano",
+      "topic": "6.5 Capacità elettrica e condensatore piano",
+      "transferPrompt": "Due piastre di area 0,01 m² sono separate nel vuoto da {x}. Trascurando i bordi, quale capacità in pF trovi?",
+      "version": 2
+    },
+    {
+      "anchor": "Introducendo un dielettrico, determina prima se il",
+      "apparatus": "piastre",
+      "assessmentSelection": {
+        "points": [
+          2,
+          5
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Il dielettrico riempie tutto lo spazio tra le piastre. La batteria resta collegata, quindi fissa la tensione ai morsetti. Quando la capacità cresce, il generatore trasferisce più carica alle armature per rispettare la stessa tensione.",
+          "type": "text"
+        },
+        {
+          "text": "C=\\varepsilon_r C_0,\\qquad Q=CV,\\qquad C_0=1\\ \\mathrm{nF},\\quad V=2\\ \\mathrm V",
+          "type": "formula"
+        },
+        {
+          "text": "Per εᵣ = 2, la capacità diventa 2 nF e 2 × 2 dà 4 nC su un’armatura in modulo. Per εᵣ = 5, ottieni 5 nF e 5 × 2 = 10 nC. Il prefisso nano resta perché F·V è C.",
+          "type": "text"
+        },
+        {
+          "text": "Una lettura di 10 nC permette di risalire alla capacità: 10÷2 = 5 nF. Dividendo per 1 nF si ritrova il rapporto adimensionale 5. L’altra armatura porta una carica opposta. Con la batteria scollegata la carica fissata condurrebbe a un ragionamento diverso.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Permittività relativa",
+        "max": 7.0,
+        "min": 1.0,
+        "step": 1.0,
+        "unit": "1"
+      },
+      "course": "C4",
+      "formula": "C = εᵣC₀; Q = CV; C₀ = 1 nF, V = 2 V",
+      "id": "SIM-C4-L07-02",
+      "interpretation": "Il materiale riempie tutto l’intervallo e la batteria resta connessa. La capacità aumenta e il generatore fornisce carica supplementare per tenere la tensione a 2 V.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Carica a tensione fissata",
+        "unit": "nC"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C4-L06"
+      ],
+      "references": [
+        [
+          2.0,
+          4.0
+        ],
+        [
+          5.0,
+          10.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Immagazzinare carica ed energia",
+      "skill": "C4-L07",
+      "substitution": "2 × {x}",
+      "summary": "Cosa fa la batteria quando inserisci un dielettrico fra le armature?",
+      "title": "Effetto del dielettrico",
+      "topic": "6.5 Effetto del dielettrico",
+      "transferPrompt": "Un condensatore da 1 nF resta collegato a 2 V mentre inserisci un dielettrico di permittività relativa {x}. Quanti nanocoulomb si accumulano su un’armatura?",
+      "version": 2
+    },
+    {
+      "anchor": "Caricare le piastre richiede lavoro per aggiungere",
+      "apparatus": "piastre",
+      "assessmentSelection": {
+        "points": [
+          2,
+          5
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Caricando un condensatore lineare, la tensione cresce in proporzione alla carica da zero al suo valore finale. Nel grafico con la carica in orizzontale e la tensione in verticale, il lavoro accumulato è l’area sotto quella retta. Si legge come un triangolo di base Q e altezza V.",
+          "type": "text"
+        },
+        {
+          "text": "U=\\frac{QV}{2}=\\frac{CV^2}{2},\\qquad C=2\\ \\mathrm{\\mu F}",
+          "type": "formula"
+        },
+        {
+          "text": "Il 2 della capacità si semplifica con il 2 al denominatore. In microjoule resta il quadrato del numero di volt. Con 2 V vale 2² = 4 µJ. Con 5 V vale 5² = 25 µJ. Le unità F·V² sono C·V, cioè joule, e il prefisso micro passa al risultato.",
+          "type": "text"
+        },
+        {
+          "text": "Se la lettura è 25 µJ, la tensione non negativa impostata nel banco è 5 V. Raddoppiare la tensione porta a quattro volte l’energia accumulata. Il valore riguarda il condensatore appena caricato, prima della sua eventuale scarica.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Tensione di carica",
+        "max": 8.0,
+        "min": 0.0,
+        "step": 0.5,
+        "unit": "V"
+      },
+      "course": "C4",
+      "formula": "U = ½CV², con C = 2 µF",
+      "id": "SIM-C4-L07-03",
+      "interpretation": "All’inizio la tensione è zero, poi sale fino al valore finale. Il lavoro è l’area del triangolo nel piano tensione-carica, pari a metà del prodotto fra carica e tensione finali.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Energia immagazzinata",
+        "unit": "µJ"
+      },
+      "order": 3,
+      "prerequisites": [
+        "C4-L06"
+      ],
+      "references": [
+        [
+          2.0,
+          4.0
+        ],
+        [
+          5.0,
+          25.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Immagazzinare carica ed energia",
+      "skill": "C4-L07",
+      "substitution": "{x} × {x}",
+      "summary": "Quanto lavoro occorre per caricare il condensatore?",
+      "title": "Energia immagazzinata",
+      "topic": "6.5 Energia immagazzinata",
+      "transferPrompt": "Carichi un condensatore da 2 µF a {x}. Quanti microjoule contiene prima della scarica?",
+      "version": 2
+    },
+    {
+      "anchor": "In serie, se il nodo intermedio isolato",
+      "apparatus": "condensatori",
+      "assessmentSelection": {
+        "points": [
+          2,
+          6
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "In serie le piastre interne appartengono a un conduttore intermedio isolato, inizialmente neutro. Sulle due capacità compare lo stesso modulo di carica. Segui il circuito fra i morsetti esterni: le due tensioni si sommano perché ciascuna è Q diviso la propria capacità.",
+          "type": "text"
+        },
+        {
+          "text": "\\frac{1}{C_\\mathrm{ser}}=\\frac{1}{2\\ \\mathrm{\\mu F}}+\\frac{1}{C_2},\\qquad C_\\mathrm{par}=2\\ \\mathrm{\\mu F}+C_2",
+          "type": "formula"
+        },
+        {
+          "text": "Con due capacità da 2 µF la somma dei reciproci è 1/2 + 1/2 = 1, in µF⁻¹. Quindi C_serie vale 1 µF. Con 2 e 6 µF, 1/2 + 1/6 = 3/6 + 1/6 = 2/3. Invertendo ottieni 3/2 µF, cioè 1,5 µF.",
+          "type": "text"
+        },
+        {
+          "text": "I valori in serie sono minori di 2 µF. In parallelo, a tensione comune, si sommano le cariche e le capacità diventano 4 o 8 µF. Da 1,5 µF in serie ricavi il secondo valore sottraendo 1/2 da 2/3: rimane 1/6 µF⁻¹, quindi 6 µF.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Seconda capacità",
+        "max": 8.0,
+        "min": 1.0,
+        "step": 1.0,
+        "unit": "µF"
+      },
+      "course": "C4",
+      "formula": "C serie = (2 µF)C₂/(2 µF + C₂); C parallelo = 2 µF + C₂",
+      "id": "SIM-C4-L08-01",
+      "interpretation": "Il conduttore intermedio è neutro e isolato. Le cariche sulle capacità in serie hanno lo stesso modulo e le tensioni si sommano. In parallelo, invece, si sommano le cariche a tensione comune.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Capacità equivalente in serie",
+        "unit": "µF"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C4-L07"
+      ],
+      "references": [
+        [
+          2.0,
+          1.0
+        ],
+        [
+          6.0,
+          1.5
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Mettere insieme i condensatori",
+      "skill": "C4-L08",
+      "substitution": "2 × {x} / (2 + {x})",
+      "summary": "Perché la serie di due condensatori immagazzina meno carica a uguale tensione?",
+      "title": "Condensatori in serie e in parallelo",
+      "topic": "6.5 Condensatori in serie e in parallelo",
+      "transferPrompt": "Colleghi un condensatore da 2 µF in serie con uno da {x}. Quale capacità equivalente vedresti dai morsetti esterni?",
+      "version": 2
+    },
+    {
+      "anchor": "Quando si collegano fra loro due condensatori",
+      "apparatus": "condensatori",
+      "assessmentSelection": {
+        "points": [
+          3,
+          9
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Prima del collegamento il secondo condensatore è scarico. Unisci i morsetti omologhi e lascia il gruppo isolato dall’esterno. La carica sulle armature collegate a un nodo si conserva, mentre si ridistribuisce fra i due condensatori. All’equilibrio entrambi vedono la stessa tensione.",
+          "type": "text"
+        },
+        {
+          "text": "Q_\\mathrm{iniz}=(C_1+C_2)V_\\mathrm f,\\qquad V_\\mathrm f=\\frac{Q_\\mathrm{iniz}}{1\\ \\mathrm{\\mu F}+2\\ \\mathrm{\\mu F}}",
+          "type": "formula"
+        },
+        {
+          "text": "Somma prima 1 e 2 µF: ottieni 3 µF. Con 3 µC iniziali, 3÷3 dà 1 V. Con 9 µC, 9÷3 dà 3 V. Il prefisso micro si cancella nella divisione e C/F è V.",
+          "type": "text"
+        },
+        {
+          "text": "Usa il valore finale per controllare il bilancio. A 3 V, le due capacità portano rispettivamente 3 µC e 6 µC sul nodo considerato. La somma restituisce 9 µC. Il condensatore da 2 µF accoglie il doppio della carica perché la tensione è comune.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Carica iniziale sul primo",
+        "max": 12.0,
+        "min": 0.0,
+        "step": 1.0,
+        "unit": "µC"
+      },
+      "course": "C4",
+      "formula": "V finale = Q totale/(C₁+C₂); C₁ = 1 µF, C₂ = 2 µF",
+      "id": "SIM-C4-L08-02",
+      "interpretation": "Il secondo condensatore parte scarico. Collega fra loro i terminali omologhi. La carica totale si conserva e si divide in proporzione alle capacità, fino all’uguaglianza delle tensioni.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Tensione comune finale",
+        "unit": "V"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C4-L07"
+      ],
+      "references": [
+        [
+          3.0,
+          1.0
+        ],
+        [
+          9.0,
+          3.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Mettere insieme i condensatori",
+      "skill": "C4-L08",
+      "substitution": "{x} / 3",
+      "summary": "Dove va la carica collegando due condensatori isolati dalla batteria?",
+      "title": "Conservazione di carica nei collegamenti",
+      "topic": "6.5 Conservazione di carica nei collegamenti",
+      "transferPrompt": "Il primo condensatore da 1 µF porta {x}, il secondo da 2 µF è scarico. Li colleghi in parallelo isolati dall’esterno. A quale tensione comune arrivano?",
+      "version": 2
+    }
+  ],
+  "schema": "astra/1"
+}

@@ -1,0 +1,269 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "INDEPENDENT_CPU_AND_TEXT_DRAFT_REVIEW",
+  "author": "Root",
+  "reviewer": "B",
+  "candidateCommit": "6ec47222918635ae3ee38a11f4f5b3cbc9ccd5fa",
+  "rawPackageSha256": "cb5181fe29afab4c23f9515361a01e4b25e6fa866e1bdb8830001d74a297a2b7",
+  "bindingsSha256": "31ac49d69f129912517b873e4450463f2a64186e354ddb3d8badfbdf3fd111d4",
+  "manualActuallyReadSha256": "0d0641608911fc69fc75a6e6f2af43c8104f9cb07380177309e0d1441ae49964",
+  "primaryBeforeExplanations": {
+    "commit": "8ea0638907d90fb27e416c0474c32ccf0974ff63",
+    "path": "officina-di-fisica/editorial/reviews/c4-circuit-capacitor-draft-independent-b-20261127/primary-before-blocks.md",
+    "sha256": "8acd982398a3596bf0b825f0e9aac5db071d45b9cb64f8d5c692d16395d0ef99",
+    "disclosure": "Seven original prompts/data and proposed assessment points only, plus the author-supplied epsilon0 input. No candidate blocks/manual or assessment values opened before14manual derivations. General C4 physics already known; B authored no correction to these7IDs."
+  },
+  "perId": [
+    {
+      "id": "SIM-C4-L06-01",
+      "candidateSha256": "4b4f6c6b8ecd47af8daca43a97b89a5e209c3b40f4f079cd2f524ca4b1886b2f",
+      "sourceSha256": "186a7c9714cb04406d2b2963ebdf4ca4ed4ca994f48b6cbd63e542106c49b98e",
+      "inputs": [
+        "4",
+        "12"
+      ],
+      "independentExactResults": [
+        "2",
+        "3"
+      ],
+      "unit": "Ω",
+      "manualArithmetic": "PASS",
+      "pedagogicalReading": "PASS",
+      "bindingsAndSourceIdentity": "PASS",
+      "actualServedPrompts": "LITERAL_MATCH_TO_FROZEN_PROMPT_DATA",
+      "allLegalControlStatesCompared": 11,
+      "display": [
+        "2",
+        "3"
+      ],
+      "physicalApproximation": null,
+      "UI": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C4-L06-02",
+      "candidateSha256": "e69726c15ba07e7adf895cc9fd2e7fdc91157d3998a3edee1d8e236622ffd51e",
+      "sourceSha256": "17398784ea071bcaf3b28f04742d43f65cd2f004abcad24a2bb021196ce30c85",
+      "inputs": [
+        "1",
+        "3"
+      ],
+      "independentExactResults": [
+        "3",
+        "27"
+      ],
+      "unit": "W",
+      "manualArithmetic": "PASS",
+      "pedagogicalReading": "PASS",
+      "bindingsAndSourceIdentity": "PASS",
+      "actualServedPrompts": "LITERAL_MATCH_TO_FROZEN_PROMPT_DATA",
+      "allLegalControlStatesCompared": 17,
+      "display": [
+        "3",
+        "27"
+      ],
+      "physicalApproximation": null,
+      "UI": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C4-L07-01",
+      "candidateSha256": "c9878afedb8095c07f5028427d3c95c6ef0c395f5cef2662fffc42f7f43e184a",
+      "sourceSha256": "20052a4a18b7eb8c378d6f928c6eff3ecfc484e070b0d58c5715c5ffbf9a60d6",
+      "inputs": [
+        "2",
+        "4"
+      ],
+      "independentExactResults": [
+        "44.27",
+        "22.135"
+      ],
+      "unit": "pF",
+      "manualArithmetic": "PASS",
+      "pedagogicalReading": "PASS",
+      "bindingsAndSourceIdentity": "PASS",
+      "actualServedPrompts": "LITERAL_MATCH_TO_FROZEN_PROMPT_DATA",
+      "allLegalControlStatesCompared": 15,
+      "display": [
+        "44,27",
+        "22,14"
+      ],
+      "physicalApproximation": "epsilon0 prescribed approximately8.854e-12F/m; exact nominal arithmetic conditional on provided datum",
+      "UI": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C4-L07-02",
+      "candidateSha256": "d4e4cf3de2ae7c1f8b625469dc157e17426ab0641efc1f7972231a3d9753f435",
+      "sourceSha256": "f14b5f737bf919865f84451a7eb3b1ab707431a5f9b6577478db18cc36be034c",
+      "inputs": [
+        "2",
+        "5"
+      ],
+      "independentExactResults": [
+        "4",
+        "10"
+      ],
+      "unit": "nC",
+      "manualArithmetic": "PASS",
+      "pedagogicalReading": "PASS",
+      "bindingsAndSourceIdentity": "PASS",
+      "actualServedPrompts": "LITERAL_MATCH_TO_FROZEN_PROMPT_DATA",
+      "allLegalControlStatesCompared": 7,
+      "display": [
+        "4",
+        "10"
+      ],
+      "physicalApproximation": null,
+      "UI": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C4-L07-03",
+      "candidateSha256": "93ad25bc5e063e58cdabd983efb5fcc1e9f0249ecaa0cfb6f8e746582bcffbb0",
+      "sourceSha256": "ce86d937772ade213db1240f42b21ffc97f2df902c56b247fe6809f54878b89b",
+      "inputs": [
+        "2",
+        "5"
+      ],
+      "independentExactResults": [
+        "4",
+        "25"
+      ],
+      "unit": "µJ",
+      "manualArithmetic": "PASS",
+      "pedagogicalReading": "PASS",
+      "bindingsAndSourceIdentity": "PASS",
+      "actualServedPrompts": "LITERAL_MATCH_TO_FROZEN_PROMPT_DATA",
+      "allLegalControlStatesCompared": 17,
+      "display": [
+        "4",
+        "25"
+      ],
+      "physicalApproximation": null,
+      "UI": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C4-L08-01",
+      "candidateSha256": "9f2a906e062b1ff42870702a640d30d1ef223c076aefe6d6e77b9688d079838c",
+      "sourceSha256": "985c776da23f12d5593f5f6bae8955c0ff6991561b6a5545453d7139d543fb9b",
+      "inputs": [
+        "2",
+        "6"
+      ],
+      "independentExactResults": [
+        "1",
+        "1.5"
+      ],
+      "unit": "µF",
+      "manualArithmetic": "PASS",
+      "pedagogicalReading": "PASS",
+      "bindingsAndSourceIdentity": "PASS",
+      "actualServedPrompts": "LITERAL_MATCH_TO_FROZEN_PROMPT_DATA",
+      "allLegalControlStatesCompared": 8,
+      "display": [
+        "1",
+        "1,5"
+      ],
+      "physicalApproximation": null,
+      "UI": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C4-L08-02",
+      "candidateSha256": "0ba98e9d7d472895404d10ce424d67b4e53b1eea34c2d0d971d98e33f9067cad",
+      "sourceSha256": "8d98a3482d7583ccad6d33235c0b4ea917ffe7ac218160c96e6fafd9f8d03b9c",
+      "inputs": [
+        "3",
+        "9"
+      ],
+      "independentExactResults": [
+        "1",
+        "3"
+      ],
+      "unit": "V",
+      "manualArithmetic": "PASS",
+      "pedagogicalReading": "PASS",
+      "bindingsAndSourceIdentity": "PASS",
+      "actualServedPrompts": "LITERAL_MATCH_TO_FROZEN_PROMPT_DATA",
+      "allLegalControlStatesCompared": 13,
+      "display": [
+        "1",
+        "3"
+      ],
+      "physicalApproximation": null,
+      "UI": "NOT_RUN"
+    }
+  ],
+  "actualCPU": {
+    "terminal": {
+      "stages": [
+        {
+          "stage": "actual-code",
+          "observedExitCode": 0,
+          "signal": null
+        },
+        {
+          "stage": "comparison",
+          "observedExitCode": 0,
+          "signal": null
+        },
+        {
+          "stage": "tests",
+          "observedExitCode": 0,
+          "signal": null
+        },
+        {
+          "stage": "grader",
+          "observedExitCode": 0,
+          "signal": null
+        }
+      ],
+      "elapsedSeconds": 0.9301339589999316,
+      "executionEpoch": "POST_REBOOT_PERSISTENT_WORKTREE",
+      "Chrome": "NOT_RUN",
+      "activityCredit": 0
+    },
+    "actualLegalStatesBothVariants": 176,
+    "originalAndDraftModelsAndScenesIdentical": true,
+    "actualClockFrames": 0,
+    "actualDraftManualTasks": 14,
+    "literalServedPromptMatches": 14,
+    "realTests": 9,
+    "realTestExitCode": 0,
+    "wrongReferenceMutations": 14,
+    "retargetedPointMutations": 7,
+    "unitOrTypedVersionMutations": 21,
+    "finiteExactNegativeInputs": 112,
+    "domainOrOffGridNegatives": 21,
+    "actualUnchangedGraderPositiveInputs": 14,
+    "actualUnchangedGraderNegativeInputs": 21,
+    "graderBlockSha256": "47873210c4ae3e5c412a9e9f5ed915534984f6639f1bc5c95017150df830d239",
+    "numericTolerance": "Existing grader block unchanged. All fourteen DRAFT values first checked against exact nominal rational derivations, no new tolerance.",
+    "epsilon0AndFormatting": "epsilon0 is author-prescribed rounded input. Nominal44.27/22.135pF derive exactly within that datum. Actual formatter44,27/22,14 is separate; inputs44.27/22.135 accepted in unchanged grader block. Not a physical exactness or UI event claim.",
+    "sourceModelFloatRepresentation": "Raw JSON lexemes preserved with Decimal and exact nominal Fraction. IEEE division of given88.54 coefficient checked strictly, no epsilon; nominal rational remains separately recorded."
+  },
+  "resolvedFindings": [
+    {
+      "id": "SIM-C4-L06-01",
+      "field": "formula",
+      "new": "Rpar=(4Ω)R₂/(4Ω+R₂);Rser=4Ω+R₂",
+      "reread": "PASS"
+    },
+    {
+      "id": "SIM-C4-L08-01",
+      "field": "formula",
+      "new": "Cser=(2µF)C₂/(2µF+C₂);Cpar=2µF+C₂",
+      "reread": "PASS"
+    }
+  ],
+  "findings": [],
+  "equilibriumScope": "L08-02 reads the final equilibrium stipulated by the task; charge conservation is used, energy conservation is not assumed. No transient settling simulation claimed.",
+  "exactLiteralExternalFrozenDependency": {
+    "commit": "b0651fedba093155e51a4308116601a92e76d83a",
+    "path": "officina-di-fisica/tools/corpus_engineering/exact_arithmetic_literals.py",
+    "snapshot": "frozen_exact_arithmetic_literals.py",
+    "sha256": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "recovery": "Prior second7raws disappeared with reboot before any commit/push. Final raw collection, comparisons,9tests and grader executions were newly run in the persistent worktree. No lost PASS relabelled or reconstructed.",
+  "UI": "NOT_RUN",
+  "canonicalDBImport": "NOT_RUN_BY_REVIEWER",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

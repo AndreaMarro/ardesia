@@ -1,0 +1,1726 @@
+{
+  "phase": "NEW_POST_REBOOT_CPU_SCIENTIFIC_COMPARISON",
+  "candidateCommit": "6ec47222918635ae3ee38a11f4f5b3cbc9ccd5fa",
+  "states": 176,
+  "records": [
+    {
+      "id": "SIM-C4-L06-01",
+      "variant": "published",
+      "manualPoints": [
+        "12",
+        "7"
+      ],
+      "manualNominalExactAnswers": [
+        "3",
+        "28/11"
+      ],
+      "sourceUnit": "Ω",
+      "states": [
+        {
+          "gridIndex": 0,
+          "input": "2",
+          "nominalExactGivenData": "4/3",
+          "actualOutputLexeme": "1.3333333333333333",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "input": "3",
+          "nominalExactGivenData": "12/7",
+          "actualOutputLexeme": "1.7142857142857142",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "input": "4",
+          "nominalExactGivenData": "2",
+          "actualOutputLexeme": "2",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "input": "5",
+          "nominalExactGivenData": "20/9",
+          "actualOutputLexeme": "2.2222222222222223",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "input": "6",
+          "nominalExactGivenData": "12/5",
+          "actualOutputLexeme": "2.4",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "input": "7",
+          "nominalExactGivenData": "28/11",
+          "actualOutputLexeme": "2.5454545454545454",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "input": "8",
+          "nominalExactGivenData": "8/3",
+          "actualOutputLexeme": "2.6666666666666665",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "input": "9",
+          "nominalExactGivenData": "36/13",
+          "actualOutputLexeme": "2.769230769230769",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "input": "10",
+          "nominalExactGivenData": "20/7",
+          "actualOutputLexeme": "2.857142857142857",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "input": "11",
+          "nominalExactGivenData": "44/15",
+          "actualOutputLexeme": "2.933333333333333",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "input": "12",
+          "nominalExactGivenData": "3",
+          "actualOutputLexeme": "3",
+          "strictIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Seconda resistenza» su 12 Ω. Quale valore ottieni per «Resistenza in parallelo»?",
+          "value": 3,
+          "unit": "Ω",
+          "worked": "R parallelo = 4R₂/(4+R₂); R serie = 4+R₂. 4 × 12 / (4 + 12) = 3 Ω."
+        },
+        {
+          "prompt": "Colleghi in parallelo un resistore da 4 Ω e uno da 7 Ω. Che valore misurerebbe un ohmmetro fra i due nodi, a generatore scollegato?",
+          "value": "2.5454545454545454",
+          "unit": "Ω",
+          "worked": "R parallelo = 4R₂/(4+R₂); R serie = 4+R₂. 4 × 7 / (4 + 7) ≈ 2,545 Ω."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "3",
+        "2,545"
+      ],
+      "literalPromptsMatchFrozenData": false
+    },
+    {
+      "id": "SIM-C4-L06-01",
+      "variant": "draft",
+      "manualPoints": [
+        "4",
+        "12"
+      ],
+      "manualNominalExactAnswers": [
+        "2",
+        "3"
+      ],
+      "sourceUnit": "Ω",
+      "states": [
+        {
+          "gridIndex": 0,
+          "input": "2",
+          "nominalExactGivenData": "4/3",
+          "actualOutputLexeme": "1.3333333333333333",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "input": "3",
+          "nominalExactGivenData": "12/7",
+          "actualOutputLexeme": "1.7142857142857142",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "input": "4",
+          "nominalExactGivenData": "2",
+          "actualOutputLexeme": "2",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "input": "5",
+          "nominalExactGivenData": "20/9",
+          "actualOutputLexeme": "2.2222222222222223",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "input": "6",
+          "nominalExactGivenData": "12/5",
+          "actualOutputLexeme": "2.4",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "input": "7",
+          "nominalExactGivenData": "28/11",
+          "actualOutputLexeme": "2.5454545454545454",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "input": "8",
+          "nominalExactGivenData": "8/3",
+          "actualOutputLexeme": "2.6666666666666665",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "input": "9",
+          "nominalExactGivenData": "36/13",
+          "actualOutputLexeme": "2.769230769230769",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "input": "10",
+          "nominalExactGivenData": "20/7",
+          "actualOutputLexeme": "2.857142857142857",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "input": "11",
+          "nominalExactGivenData": "44/15",
+          "actualOutputLexeme": "2.933333333333333",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "input": "12",
+          "nominalExactGivenData": "3",
+          "actualOutputLexeme": "3",
+          "strictIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Seconda resistenza» su 4 Ω. Quale valore ottieni per «Resistenza in parallelo»?",
+          "value": 2,
+          "unit": "Ω",
+          "worked": "R parallelo = (4 Ω)R₂/(4 Ω + R₂); R serie = 4 Ω + R₂. 4 × 4 / (4 + 4) = 2 Ω."
+        },
+        {
+          "prompt": "Colleghi in parallelo un resistore da 4 Ω e uno da 12 Ω. Che valore misurerebbe un ohmmetro fra i due nodi, a generatore scollegato?",
+          "value": 3,
+          "unit": "Ω",
+          "worked": "R parallelo = (4 Ω)R₂/(4 Ω + R₂); R serie = 4 Ω + R₂. 4 × 12 / (4 + 12) = 3 Ω."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "2",
+        "3"
+      ],
+      "literalPromptsMatchFrozenData": true
+    },
+    {
+      "id": "SIM-C4-L06-02",
+      "variant": "published",
+      "manualPoints": [
+        "3",
+        "2"
+      ],
+      "manualNominalExactAnswers": [
+        "27",
+        "12"
+      ],
+      "sourceUnit": "W",
+      "states": [
+        {
+          "gridIndex": 0,
+          "input": "0",
+          "nominalExactGivenData": "0",
+          "actualOutputLexeme": "0",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "input": "1/4",
+          "nominalExactGivenData": "3/16",
+          "actualOutputLexeme": "0.1875",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "input": "1/2",
+          "nominalExactGivenData": "3/4",
+          "actualOutputLexeme": "0.75",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "input": "3/4",
+          "nominalExactGivenData": "27/16",
+          "actualOutputLexeme": "1.6875",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "input": "1",
+          "nominalExactGivenData": "3",
+          "actualOutputLexeme": "3",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "input": "5/4",
+          "nominalExactGivenData": "75/16",
+          "actualOutputLexeme": "4.6875",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "input": "3/2",
+          "nominalExactGivenData": "27/4",
+          "actualOutputLexeme": "6.75",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "input": "7/4",
+          "nominalExactGivenData": "147/16",
+          "actualOutputLexeme": "9.1875",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "input": "2",
+          "nominalExactGivenData": "12",
+          "actualOutputLexeme": "12",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "input": "9/4",
+          "nominalExactGivenData": "243/16",
+          "actualOutputLexeme": "15.1875",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "input": "5/2",
+          "nominalExactGivenData": "75/4",
+          "actualOutputLexeme": "18.75",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 11,
+          "input": "11/4",
+          "nominalExactGivenData": "363/16",
+          "actualOutputLexeme": "22.6875",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 12,
+          "input": "3",
+          "nominalExactGivenData": "27",
+          "actualOutputLexeme": "27",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 13,
+          "input": "13/4",
+          "nominalExactGivenData": "507/16",
+          "actualOutputLexeme": "31.6875",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 14,
+          "input": "7/2",
+          "nominalExactGivenData": "147/4",
+          "actualOutputLexeme": "36.75",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 15,
+          "input": "15/4",
+          "nominalExactGivenData": "675/16",
+          "actualOutputLexeme": "42.1875",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 16,
+          "input": "4",
+          "nominalExactGivenData": "48",
+          "actualOutputLexeme": "48",
+          "strictIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Corrente nel resistore» su 3 A. Quale valore ottieni per «Potenza dissipata»?",
+          "value": 27,
+          "unit": "W",
+          "worked": "P = VI = RI²; R = 3 Ω. 3 × 3 × 3 = 27 W."
+        },
+        {
+          "prompt": "Un resistore da 3 Ω è attraversato da 2 A. Quanti watt deve dissipare in calore?",
+          "value": 12,
+          "unit": "W",
+          "worked": "P = VI = RI²; R = 3 Ω. 3 × 2 × 2 = 12 W."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "27",
+        "12"
+      ],
+      "literalPromptsMatchFrozenData": false
+    },
+    {
+      "id": "SIM-C4-L06-02",
+      "variant": "draft",
+      "manualPoints": [
+        "1",
+        "3"
+      ],
+      "manualNominalExactAnswers": [
+        "3",
+        "27"
+      ],
+      "sourceUnit": "W",
+      "states": [
+        {
+          "gridIndex": 0,
+          "input": "0",
+          "nominalExactGivenData": "0",
+          "actualOutputLexeme": "0",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "input": "1/4",
+          "nominalExactGivenData": "3/16",
+          "actualOutputLexeme": "0.1875",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "input": "1/2",
+          "nominalExactGivenData": "3/4",
+          "actualOutputLexeme": "0.75",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "input": "3/4",
+          "nominalExactGivenData": "27/16",
+          "actualOutputLexeme": "1.6875",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "input": "1",
+          "nominalExactGivenData": "3",
+          "actualOutputLexeme": "3",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "input": "5/4",
+          "nominalExactGivenData": "75/16",
+          "actualOutputLexeme": "4.6875",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "input": "3/2",
+          "nominalExactGivenData": "27/4",
+          "actualOutputLexeme": "6.75",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "input": "7/4",
+          "nominalExactGivenData": "147/16",
+          "actualOutputLexeme": "9.1875",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "input": "2",
+          "nominalExactGivenData": "12",
+          "actualOutputLexeme": "12",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "input": "9/4",
+          "nominalExactGivenData": "243/16",
+          "actualOutputLexeme": "15.1875",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "input": "5/2",
+          "nominalExactGivenData": "75/4",
+          "actualOutputLexeme": "18.75",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 11,
+          "input": "11/4",
+          "nominalExactGivenData": "363/16",
+          "actualOutputLexeme": "22.6875",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 12,
+          "input": "3",
+          "nominalExactGivenData": "27",
+          "actualOutputLexeme": "27",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 13,
+          "input": "13/4",
+          "nominalExactGivenData": "507/16",
+          "actualOutputLexeme": "31.6875",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 14,
+          "input": "7/2",
+          "nominalExactGivenData": "147/4",
+          "actualOutputLexeme": "36.75",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 15,
+          "input": "15/4",
+          "nominalExactGivenData": "675/16",
+          "actualOutputLexeme": "42.1875",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 16,
+          "input": "4",
+          "nominalExactGivenData": "48",
+          "actualOutputLexeme": "48",
+          "strictIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Corrente nel resistore» su 1 A. Quale valore ottieni per «Potenza dissipata»?",
+          "value": 3,
+          "unit": "W",
+          "worked": "P = VI = RI²; R = 3 Ω. 3 × 1 × 1 = 3 W."
+        },
+        {
+          "prompt": "Un resistore da 3 Ω è attraversato da 3 A. Quanti watt deve dissipare in calore?",
+          "value": 27,
+          "unit": "W",
+          "worked": "P = VI = RI²; R = 3 Ω. 3 × 3 × 3 = 27 W."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "3",
+        "27"
+      ],
+      "literalPromptsMatchFrozenData": true
+    },
+    {
+      "id": "SIM-C4-L07-01",
+      "variant": "published",
+      "manualPoints": [
+        "4",
+        "5"
+      ],
+      "manualNominalExactAnswers": [
+        "4427/200",
+        "4427/250"
+      ],
+      "sourceUnit": "pF",
+      "states": [
+        {
+          "gridIndex": 0,
+          "input": "1",
+          "nominalExactGivenData": "4427/50",
+          "actualOutputLexeme": "88.54",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "input": "3/2",
+          "nominalExactGivenData": "4427/75",
+          "actualOutputLexeme": "59.02666666666667",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "input": "2",
+          "nominalExactGivenData": "4427/100",
+          "actualOutputLexeme": "44.27",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "input": "5/2",
+          "nominalExactGivenData": "4427/125",
+          "actualOutputLexeme": "35.416000000000004",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "input": "3",
+          "nominalExactGivenData": "4427/150",
+          "actualOutputLexeme": "29.513333333333335",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "input": "7/2",
+          "nominalExactGivenData": "4427/175",
+          "actualOutputLexeme": "25.29714285714286",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "input": "4",
+          "nominalExactGivenData": "4427/200",
+          "actualOutputLexeme": "22.135",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "input": "9/2",
+          "nominalExactGivenData": "4427/225",
+          "actualOutputLexeme": "19.675555555555558",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "input": "5",
+          "nominalExactGivenData": "4427/250",
+          "actualOutputLexeme": "17.708000000000002",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "input": "11/2",
+          "nominalExactGivenData": "4427/275",
+          "actualOutputLexeme": "16.098181818181818",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "input": "6",
+          "nominalExactGivenData": "4427/300",
+          "actualOutputLexeme": "14.756666666666668",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 11,
+          "input": "13/2",
+          "nominalExactGivenData": "4427/325",
+          "actualOutputLexeme": "13.621538461538462",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 12,
+          "input": "7",
+          "nominalExactGivenData": "4427/350",
+          "actualOutputLexeme": "12.64857142857143",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 13,
+          "input": "15/2",
+          "nominalExactGivenData": "4427/375",
+          "actualOutputLexeme": "11.805333333333333",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 14,
+          "input": "8",
+          "nominalExactGivenData": "4427/400",
+          "actualOutputLexeme": "11.0675",
+          "strictIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Distanza tra le piastre» su 4 mm. Quale valore ottieni per «Capacità»?",
+          "value": "22.135",
+          "unit": "pF",
+          "worked": "C = ε₀A/d; A = 0,01 m², ε₀ ≈ 8,854×10⁻¹² F/m. 88,54 / 4 ≈ 22,14 pF."
+        },
+        {
+          "prompt": "Due piastre di area 0,01 m² sono separate nel vuoto da 5 mm. Trascurando i bordi, quale capacità in pF trovi?",
+          "value": "17.708000000000002",
+          "unit": "pF",
+          "worked": "C = ε₀A/d; A = 0,01 m², ε₀ ≈ 8,854×10⁻¹² F/m. 88,54 / 5 ≈ 17,71 pF."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "22,14",
+        "17,71"
+      ],
+      "literalPromptsMatchFrozenData": false
+    },
+    {
+      "id": "SIM-C4-L07-01",
+      "variant": "draft",
+      "manualPoints": [
+        "2",
+        "4"
+      ],
+      "manualNominalExactAnswers": [
+        "44.27",
+        "22.135"
+      ],
+      "sourceUnit": "pF",
+      "states": [
+        {
+          "gridIndex": 0,
+          "input": "1",
+          "nominalExactGivenData": "4427/50",
+          "actualOutputLexeme": "88.54",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "input": "3/2",
+          "nominalExactGivenData": "4427/75",
+          "actualOutputLexeme": "59.02666666666667",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "input": "2",
+          "nominalExactGivenData": "4427/100",
+          "actualOutputLexeme": "44.27",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "input": "5/2",
+          "nominalExactGivenData": "4427/125",
+          "actualOutputLexeme": "35.416000000000004",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "input": "3",
+          "nominalExactGivenData": "4427/150",
+          "actualOutputLexeme": "29.513333333333335",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "input": "7/2",
+          "nominalExactGivenData": "4427/175",
+          "actualOutputLexeme": "25.29714285714286",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "input": "4",
+          "nominalExactGivenData": "4427/200",
+          "actualOutputLexeme": "22.135",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "input": "9/2",
+          "nominalExactGivenData": "4427/225",
+          "actualOutputLexeme": "19.675555555555558",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "input": "5",
+          "nominalExactGivenData": "4427/250",
+          "actualOutputLexeme": "17.708000000000002",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "input": "11/2",
+          "nominalExactGivenData": "4427/275",
+          "actualOutputLexeme": "16.098181818181818",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "input": "6",
+          "nominalExactGivenData": "4427/300",
+          "actualOutputLexeme": "14.756666666666668",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 11,
+          "input": "13/2",
+          "nominalExactGivenData": "4427/325",
+          "actualOutputLexeme": "13.621538461538462",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 12,
+          "input": "7",
+          "nominalExactGivenData": "4427/350",
+          "actualOutputLexeme": "12.64857142857143",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 13,
+          "input": "15/2",
+          "nominalExactGivenData": "4427/375",
+          "actualOutputLexeme": "11.805333333333333",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 14,
+          "input": "8",
+          "nominalExactGivenData": "4427/400",
+          "actualOutputLexeme": "11.0675",
+          "strictIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Distanza tra le piastre» su 2 mm. Quale valore ottieni per «Capacità»?",
+          "value": "44.27",
+          "unit": "pF",
+          "worked": "C = ε₀A/d; A = 0,01 m², ε₀ ≈ 8,854×10⁻¹² F/m. 88,54 / 2 ≈ 44,27 pF."
+        },
+        {
+          "prompt": "Due piastre di area 0,01 m² sono separate nel vuoto da 4 mm. Trascurando i bordi, quale capacità in pF trovi?",
+          "value": "22.135",
+          "unit": "pF",
+          "worked": "C = ε₀A/d; A = 0,01 m², ε₀ ≈ 8,854×10⁻¹² F/m. 88,54 / 4 ≈ 22,14 pF."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "44,27",
+        "22,14"
+      ],
+      "literalPromptsMatchFrozenData": true
+    },
+    {
+      "id": "SIM-C4-L07-02",
+      "variant": "published",
+      "manualPoints": [
+        "5",
+        "4"
+      ],
+      "manualNominalExactAnswers": [
+        "10",
+        "8"
+      ],
+      "sourceUnit": "nC",
+      "states": [
+        {
+          "gridIndex": 0,
+          "input": "1",
+          "nominalExactGivenData": "2",
+          "actualOutputLexeme": "2",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "input": "2",
+          "nominalExactGivenData": "4",
+          "actualOutputLexeme": "4",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "input": "3",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "input": "4",
+          "nominalExactGivenData": "8",
+          "actualOutputLexeme": "8",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "input": "5",
+          "nominalExactGivenData": "10",
+          "actualOutputLexeme": "10",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "input": "6",
+          "nominalExactGivenData": "12",
+          "actualOutputLexeme": "12",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "input": "7",
+          "nominalExactGivenData": "14",
+          "actualOutputLexeme": "14",
+          "strictIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Permittività relativa» su 5. Quale valore ottieni per «Carica a tensione fissata»?",
+          "value": 10,
+          "unit": "nC",
+          "worked": "C = εᵣC₀; Q = CV; C₀ = 1 nF, V = 2 V. 2 × 5 = 10 nC."
+        },
+        {
+          "prompt": "Un condensatore da 1 nF resta collegato a 2 V mentre inserisci un dielettrico di permittività relativa 4. Quanti nanocoulomb si accumulano su un’armatura?",
+          "value": 8,
+          "unit": "nC",
+          "worked": "C = εᵣC₀; Q = CV; C₀ = 1 nF, V = 2 V. 2 × 4 = 8 nC."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "10",
+        "8"
+      ],
+      "literalPromptsMatchFrozenData": false
+    },
+    {
+      "id": "SIM-C4-L07-02",
+      "variant": "draft",
+      "manualPoints": [
+        "2",
+        "5"
+      ],
+      "manualNominalExactAnswers": [
+        "4",
+        "10"
+      ],
+      "sourceUnit": "nC",
+      "states": [
+        {
+          "gridIndex": 0,
+          "input": "1",
+          "nominalExactGivenData": "2",
+          "actualOutputLexeme": "2",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "input": "2",
+          "nominalExactGivenData": "4",
+          "actualOutputLexeme": "4",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "input": "3",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "input": "4",
+          "nominalExactGivenData": "8",
+          "actualOutputLexeme": "8",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "input": "5",
+          "nominalExactGivenData": "10",
+          "actualOutputLexeme": "10",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "input": "6",
+          "nominalExactGivenData": "12",
+          "actualOutputLexeme": "12",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "input": "7",
+          "nominalExactGivenData": "14",
+          "actualOutputLexeme": "14",
+          "strictIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Permittività relativa» su 2. Quale valore ottieni per «Carica a tensione fissata»?",
+          "value": 4,
+          "unit": "nC",
+          "worked": "C = εᵣC₀; Q = CV; C₀ = 1 nF, V = 2 V. 2 × 2 = 4 nC."
+        },
+        {
+          "prompt": "Un condensatore da 1 nF resta collegato a 2 V mentre inserisci un dielettrico di permittività relativa 5. Quanti nanocoulomb si accumulano su un’armatura?",
+          "value": 10,
+          "unit": "nC",
+          "worked": "C = εᵣC₀; Q = CV; C₀ = 1 nF, V = 2 V. 2 × 5 = 10 nC."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "4",
+        "10"
+      ],
+      "literalPromptsMatchFrozenData": true
+    },
+    {
+      "id": "SIM-C4-L07-03",
+      "variant": "published",
+      "manualPoints": [
+        "5",
+        "4"
+      ],
+      "manualNominalExactAnswers": [
+        "25",
+        "16"
+      ],
+      "sourceUnit": "µJ",
+      "states": [
+        {
+          "gridIndex": 0,
+          "input": "0",
+          "nominalExactGivenData": "0",
+          "actualOutputLexeme": "0",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "input": "1/2",
+          "nominalExactGivenData": "1/4",
+          "actualOutputLexeme": "0.25",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "input": "1",
+          "nominalExactGivenData": "1",
+          "actualOutputLexeme": "1",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "input": "3/2",
+          "nominalExactGivenData": "9/4",
+          "actualOutputLexeme": "2.25",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "input": "2",
+          "nominalExactGivenData": "4",
+          "actualOutputLexeme": "4",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "input": "5/2",
+          "nominalExactGivenData": "25/4",
+          "actualOutputLexeme": "6.25",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "input": "3",
+          "nominalExactGivenData": "9",
+          "actualOutputLexeme": "9",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "input": "7/2",
+          "nominalExactGivenData": "49/4",
+          "actualOutputLexeme": "12.25",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "input": "4",
+          "nominalExactGivenData": "16",
+          "actualOutputLexeme": "16",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "input": "9/2",
+          "nominalExactGivenData": "81/4",
+          "actualOutputLexeme": "20.25",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "input": "5",
+          "nominalExactGivenData": "25",
+          "actualOutputLexeme": "25",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 11,
+          "input": "11/2",
+          "nominalExactGivenData": "121/4",
+          "actualOutputLexeme": "30.25",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 12,
+          "input": "6",
+          "nominalExactGivenData": "36",
+          "actualOutputLexeme": "36",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 13,
+          "input": "13/2",
+          "nominalExactGivenData": "169/4",
+          "actualOutputLexeme": "42.25",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 14,
+          "input": "7",
+          "nominalExactGivenData": "49",
+          "actualOutputLexeme": "49",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 15,
+          "input": "15/2",
+          "nominalExactGivenData": "225/4",
+          "actualOutputLexeme": "56.25",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 16,
+          "input": "8",
+          "nominalExactGivenData": "64",
+          "actualOutputLexeme": "64",
+          "strictIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Tensione di carica» su 5 V. Quale valore ottieni per «Energia immagazzinata»?",
+          "value": 25,
+          "unit": "µJ",
+          "worked": "U = ½CV², con C = 2 µF. 5 × 5 = 25 µJ."
+        },
+        {
+          "prompt": "Carichi un condensatore da 2 µF a 4 V. Quanti microjoule contiene prima della scarica?",
+          "value": 16,
+          "unit": "µJ",
+          "worked": "U = ½CV², con C = 2 µF. 4 × 4 = 16 µJ."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "25",
+        "16"
+      ],
+      "literalPromptsMatchFrozenData": false
+    },
+    {
+      "id": "SIM-C4-L07-03",
+      "variant": "draft",
+      "manualPoints": [
+        "2",
+        "5"
+      ],
+      "manualNominalExactAnswers": [
+        "4",
+        "25"
+      ],
+      "sourceUnit": "µJ",
+      "states": [
+        {
+          "gridIndex": 0,
+          "input": "0",
+          "nominalExactGivenData": "0",
+          "actualOutputLexeme": "0",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "input": "1/2",
+          "nominalExactGivenData": "1/4",
+          "actualOutputLexeme": "0.25",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "input": "1",
+          "nominalExactGivenData": "1",
+          "actualOutputLexeme": "1",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "input": "3/2",
+          "nominalExactGivenData": "9/4",
+          "actualOutputLexeme": "2.25",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "input": "2",
+          "nominalExactGivenData": "4",
+          "actualOutputLexeme": "4",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "input": "5/2",
+          "nominalExactGivenData": "25/4",
+          "actualOutputLexeme": "6.25",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "input": "3",
+          "nominalExactGivenData": "9",
+          "actualOutputLexeme": "9",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "input": "7/2",
+          "nominalExactGivenData": "49/4",
+          "actualOutputLexeme": "12.25",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "input": "4",
+          "nominalExactGivenData": "16",
+          "actualOutputLexeme": "16",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "input": "9/2",
+          "nominalExactGivenData": "81/4",
+          "actualOutputLexeme": "20.25",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "input": "5",
+          "nominalExactGivenData": "25",
+          "actualOutputLexeme": "25",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 11,
+          "input": "11/2",
+          "nominalExactGivenData": "121/4",
+          "actualOutputLexeme": "30.25",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 12,
+          "input": "6",
+          "nominalExactGivenData": "36",
+          "actualOutputLexeme": "36",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 13,
+          "input": "13/2",
+          "nominalExactGivenData": "169/4",
+          "actualOutputLexeme": "42.25",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 14,
+          "input": "7",
+          "nominalExactGivenData": "49",
+          "actualOutputLexeme": "49",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 15,
+          "input": "15/2",
+          "nominalExactGivenData": "225/4",
+          "actualOutputLexeme": "56.25",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 16,
+          "input": "8",
+          "nominalExactGivenData": "64",
+          "actualOutputLexeme": "64",
+          "strictIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Tensione di carica» su 2 V. Quale valore ottieni per «Energia immagazzinata»?",
+          "value": 4,
+          "unit": "µJ",
+          "worked": "U = ½CV², con C = 2 µF. 2 × 2 = 4 µJ."
+        },
+        {
+          "prompt": "Carichi un condensatore da 2 µF a 5 V. Quanti microjoule contiene prima della scarica?",
+          "value": 25,
+          "unit": "µJ",
+          "worked": "U = ½CV², con C = 2 µF. 5 × 5 = 25 µJ."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "4",
+        "25"
+      ],
+      "literalPromptsMatchFrozenData": true
+    },
+    {
+      "id": "SIM-C4-L08-01",
+      "variant": "published",
+      "manualPoints": [
+        "6",
+        "5"
+      ],
+      "manualNominalExactAnswers": [
+        "3/2",
+        "10/7"
+      ],
+      "sourceUnit": "µF",
+      "states": [
+        {
+          "gridIndex": 0,
+          "input": "1",
+          "nominalExactGivenData": "2/3",
+          "actualOutputLexeme": "0.6666666666666666",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "input": "2",
+          "nominalExactGivenData": "1",
+          "actualOutputLexeme": "1",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "input": "3",
+          "nominalExactGivenData": "6/5",
+          "actualOutputLexeme": "1.2",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "input": "4",
+          "nominalExactGivenData": "4/3",
+          "actualOutputLexeme": "1.3333333333333333",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "input": "5",
+          "nominalExactGivenData": "10/7",
+          "actualOutputLexeme": "1.4285714285714286",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "input": "6",
+          "nominalExactGivenData": "3/2",
+          "actualOutputLexeme": "1.5",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "input": "7",
+          "nominalExactGivenData": "14/9",
+          "actualOutputLexeme": "1.5555555555555556",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "input": "8",
+          "nominalExactGivenData": "8/5",
+          "actualOutputLexeme": "1.6",
+          "strictIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Seconda capacità» su 6 µF. Quale valore ottieni per «Capacità equivalente in serie»?",
+          "value": "1.5",
+          "unit": "µF",
+          "worked": "C serie = 2C₂/(2+C₂); C parallelo = 2+C₂. 2 × 6 / (2 + 6) = 1,5 µF."
+        },
+        {
+          "prompt": "Colleghi un condensatore da 2 µF in serie con uno da 5 µF. Quale capacità equivalente vedresti dai morsetti esterni?",
+          "value": "1.4285714285714286",
+          "unit": "µF",
+          "worked": "C serie = 2C₂/(2+C₂); C parallelo = 2+C₂. 2 × 5 / (2 + 5) ≈ 1,429 µF."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "1,5",
+        "1,429"
+      ],
+      "literalPromptsMatchFrozenData": false
+    },
+    {
+      "id": "SIM-C4-L08-01",
+      "variant": "draft",
+      "manualPoints": [
+        "2",
+        "6"
+      ],
+      "manualNominalExactAnswers": [
+        "1",
+        "1.5"
+      ],
+      "sourceUnit": "µF",
+      "states": [
+        {
+          "gridIndex": 0,
+          "input": "1",
+          "nominalExactGivenData": "2/3",
+          "actualOutputLexeme": "0.6666666666666666",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "input": "2",
+          "nominalExactGivenData": "1",
+          "actualOutputLexeme": "1",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "input": "3",
+          "nominalExactGivenData": "6/5",
+          "actualOutputLexeme": "1.2",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "input": "4",
+          "nominalExactGivenData": "4/3",
+          "actualOutputLexeme": "1.3333333333333333",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "input": "5",
+          "nominalExactGivenData": "10/7",
+          "actualOutputLexeme": "1.4285714285714286",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "input": "6",
+          "nominalExactGivenData": "3/2",
+          "actualOutputLexeme": "1.5",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "input": "7",
+          "nominalExactGivenData": "14/9",
+          "actualOutputLexeme": "1.5555555555555556",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "input": "8",
+          "nominalExactGivenData": "8/5",
+          "actualOutputLexeme": "1.6",
+          "strictIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Seconda capacità» su 2 µF. Quale valore ottieni per «Capacità equivalente in serie»?",
+          "value": 1,
+          "unit": "µF",
+          "worked": "C serie = (2 µF)C₂/(2 µF + C₂); C parallelo = 2 µF + C₂. 2 × 2 / (2 + 2) = 1 µF."
+        },
+        {
+          "prompt": "Colleghi un condensatore da 2 µF in serie con uno da 6 µF. Quale capacità equivalente vedresti dai morsetti esterni?",
+          "value": "1.5",
+          "unit": "µF",
+          "worked": "C serie = (2 µF)C₂/(2 µF + C₂); C parallelo = 2 µF + C₂. 2 × 6 / (2 + 6) = 1,5 µF."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "1",
+        "1,5"
+      ],
+      "literalPromptsMatchFrozenData": true
+    },
+    {
+      "id": "SIM-C4-L08-02",
+      "variant": "published",
+      "manualPoints": [
+        "9",
+        "6"
+      ],
+      "manualNominalExactAnswers": [
+        "3",
+        "2"
+      ],
+      "sourceUnit": "V",
+      "states": [
+        {
+          "gridIndex": 0,
+          "input": "0",
+          "nominalExactGivenData": "0",
+          "actualOutputLexeme": "0",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "input": "1",
+          "nominalExactGivenData": "1/3",
+          "actualOutputLexeme": "0.3333333333333333",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "input": "2",
+          "nominalExactGivenData": "2/3",
+          "actualOutputLexeme": "0.6666666666666666",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "input": "3",
+          "nominalExactGivenData": "1",
+          "actualOutputLexeme": "1",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "input": "4",
+          "nominalExactGivenData": "4/3",
+          "actualOutputLexeme": "1.3333333333333333",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "input": "5",
+          "nominalExactGivenData": "5/3",
+          "actualOutputLexeme": "1.6666666666666667",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "input": "6",
+          "nominalExactGivenData": "2",
+          "actualOutputLexeme": "2",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "input": "7",
+          "nominalExactGivenData": "7/3",
+          "actualOutputLexeme": "2.3333333333333335",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "input": "8",
+          "nominalExactGivenData": "8/3",
+          "actualOutputLexeme": "2.6666666666666665",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "input": "9",
+          "nominalExactGivenData": "3",
+          "actualOutputLexeme": "3",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "input": "10",
+          "nominalExactGivenData": "10/3",
+          "actualOutputLexeme": "3.3333333333333335",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 11,
+          "input": "11",
+          "nominalExactGivenData": "11/3",
+          "actualOutputLexeme": "3.6666666666666665",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 12,
+          "input": "12",
+          "nominalExactGivenData": "4",
+          "actualOutputLexeme": "4",
+          "strictIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Carica iniziale sul primo» su 9 µC. Quale valore ottieni per «Tensione comune finale»?",
+          "value": 3,
+          "unit": "V",
+          "worked": "V finale = Q totale/(C₁+C₂); C₁ = 1 µF, C₂ = 2 µF. 9 / 3 = 3 V."
+        },
+        {
+          "prompt": "Il primo condensatore da 1 µF porta 6 µC, il secondo da 2 µF è scarico. Li colleghi in parallelo isolati dall’esterno. A quale tensione comune arrivano?",
+          "value": 2,
+          "unit": "V",
+          "worked": "V finale = Q totale/(C₁+C₂); C₁ = 1 µF, C₂ = 2 µF. 6 / 3 = 2 V."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "3",
+        "2"
+      ],
+      "literalPromptsMatchFrozenData": false
+    },
+    {
+      "id": "SIM-C4-L08-02",
+      "variant": "draft",
+      "manualPoints": [
+        "3",
+        "9"
+      ],
+      "manualNominalExactAnswers": [
+        "1",
+        "3"
+      ],
+      "sourceUnit": "V",
+      "states": [
+        {
+          "gridIndex": 0,
+          "input": "0",
+          "nominalExactGivenData": "0",
+          "actualOutputLexeme": "0",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "input": "1",
+          "nominalExactGivenData": "1/3",
+          "actualOutputLexeme": "0.3333333333333333",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "input": "2",
+          "nominalExactGivenData": "2/3",
+          "actualOutputLexeme": "0.6666666666666666",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "input": "3",
+          "nominalExactGivenData": "1",
+          "actualOutputLexeme": "1",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "input": "4",
+          "nominalExactGivenData": "4/3",
+          "actualOutputLexeme": "1.3333333333333333",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "input": "5",
+          "nominalExactGivenData": "5/3",
+          "actualOutputLexeme": "1.6666666666666667",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "input": "6",
+          "nominalExactGivenData": "2",
+          "actualOutputLexeme": "2",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "input": "7",
+          "nominalExactGivenData": "7/3",
+          "actualOutputLexeme": "2.3333333333333335",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "input": "8",
+          "nominalExactGivenData": "8/3",
+          "actualOutputLexeme": "2.6666666666666665",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "input": "9",
+          "nominalExactGivenData": "3",
+          "actualOutputLexeme": "3",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "input": "10",
+          "nominalExactGivenData": "10/3",
+          "actualOutputLexeme": "3.3333333333333335",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 11,
+          "input": "11",
+          "nominalExactGivenData": "11/3",
+          "actualOutputLexeme": "3.6666666666666665",
+          "strictIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 12,
+          "input": "12",
+          "nominalExactGivenData": "4",
+          "actualOutputLexeme": "4",
+          "strictIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Carica iniziale sul primo» su 3 µC. Quale valore ottieni per «Tensione comune finale»?",
+          "value": 1,
+          "unit": "V",
+          "worked": "V finale = Q totale/(C₁+C₂); C₁ = 1 µF, C₂ = 2 µF. 3 / 3 = 1 V."
+        },
+        {
+          "prompt": "Il primo condensatore da 1 µF porta 9 µC, il secondo da 2 µF è scarico. Li colleghi in parallelo isolati dall’esterno. A quale tensione comune arrivano?",
+          "value": 3,
+          "unit": "V",
+          "worked": "V finale = Q totale/(C₁+C₂); C₁ = 1 µF, C₂ = 2 µF. 9 / 3 = 3 V."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "1",
+        "3"
+      ],
+      "literalPromptsMatchFrozenData": true
+    }
+  ],
+  "epsilon0": "Author-prescribed approximate8.854e-12F/m; exact nominal arithmetic is not exact physical constant.",
+  "capacityIEEE": "Given88.54 divided by actual x, strict equality; nominal rational tracked separately.",
+  "bindingIdentity": "ALL7_SOURCE_AND_CANDIDATE_CANONICAL_HASHES_MATCH",
+  "actualDraftManualTasks": 14,
+  "literalServedPromptsMatched": 14,
+  "originalAndDraftStates": "IDENTICAL_ASSERTED_BY_PRODUCER",
+  "Chrome": "NOT_RUN",
+  "canonicalDBImport": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "activityCredit": 0
+}
