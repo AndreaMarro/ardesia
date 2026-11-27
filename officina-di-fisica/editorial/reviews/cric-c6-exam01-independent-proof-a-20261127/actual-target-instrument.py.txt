@@ -1,0 +1,9 @@
+from pathlib import Path
+import sys,json,unittest,time,hashlib
+A=Path.cwd();sys.path.insert(0,str(A));from tools.corpus_engineering import cric_c6_protected_exam_01_verifier as v
+from tools.corpus_engineering.batches import assert_record_identity
+D=A/'editorial/reviews/cric-c6-exam01-independent-proof-a-20261127';F=D/'fixtures';batch='cric-c6-protected-exam-01';p=json.loads((F/(batch+'.json')).read_text());b=json.loads((F/(batch+'-bindings.json')).read_text());report=v.report(p,b,F/'assets');(D/'first-actual-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');bad=[(r['id'],r['errors'])for r in report['records']if not r['ok']];print('FIRST_REAL_ORACLE',len(report['records']),bad,flush=True)
+if bad:raise SystemExit(1)
+(A/f'editorial/reviews/{batch}.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');assert_record_identity(report['records'],v.EXPECTED_IDS,p,b)
+sys.path.insert(0,str(A/'tests/corpus'));import test_cross_review_cric_c6_exam01_a as tests
+start=time.monotonic();result=unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.loadTestsFromModule(tests));receipt={'actualObservedExit':0 if result.wasSuccessful()else 1,'testsRun':result.testsRun,'failures':len(result.failures),'errors':len(result.errors),'durationSeconds':time.monotonic()-start,'stats':tests.SeparateC6Exam01.stats,'scope':'DISTINCT_REVIEW_CANDIDATES_NOT_PRODUCT_UI_OR_HUMAN','candidateRef':v.CANDIDATE_REF,'sourceFirstPrimary':'cae5a46d52ef45ccf19388fd36655cc61d07f3e0','humanApproval':'NOT_RUN','publicationAction':'NONE'};(D/'actual-target-result.json').write_text(json.dumps(receipt,indent=2)+'\n');print(json.dumps(receipt),flush=True);raise SystemExit(receipt['actualObservedExit'])
