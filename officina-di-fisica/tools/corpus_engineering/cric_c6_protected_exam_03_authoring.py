@@ -350,5 +350,5 @@ def assemble(repo,source_ref):
  from .pipeline import git_bytes
  import json
  source={r['id']:r for r in json.loads(git_bytes(repo,source_ref,'officina-di-fisica/content/C6.json'))}
- return assemble_family(repo,source_ref,'cric-c6-protected-exam-03',TASKS,CHOICES,UNITS,'cric-c6-protected-exam-03-progressive.svg',FIGURES,0,course='C6',source_origin='cric',source_ids=SOURCE_IDS,source_path='officina-di-fisica/content/C6.json',section='Esame protetto 3',coverage=['Trentuno problemi distinti di sintesi fisica'],overrides={n:{'error':{'category':('unità'if n in(2,29,30)else'concetto'if isinstance(t[2],list)else'calcolo'),'message':t[5],'target':source[SOURCE_IDS[n-1]]['skill']}}for n,t in enumerate(TASKS,1)})
+ return assemble_family(repo,source_ref,'cric-c6-protected-exam-03',TASKS,CHOICES,UNITS,'cric-c6-protected-exam-03-progressive.svg',FIGURES,0,course='C6',source_origin='cric',source_ids=SOURCE_IDS,source_path='officina-di-fisica/content/C6.json',section='Esame protetto 3',coverage=['Trentuno problemi distinti di sintesi fisica'],overrides={n:{'section':source[SOURCE_IDS[n-1]]['section'],'error':{'category':('unità'if n in(2,29,30)else'concetto'if isinstance(t[2],list)else'calcolo'),'message':t[5],'target':source[SOURCE_IDS[n-1]]['skill']}}for n,t in enumerate(TASKS,1)})
 if __name__=='__main__':write_family(assemble,'cric-c6-protected-exam-03')
