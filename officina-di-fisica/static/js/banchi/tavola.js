@@ -132,7 +132,7 @@ export function drawing(model, p, s, t, stage, title, projection = 'top', equati
     if (reveal)
       d +=
         dot(151, y, gold) +
-        label(132, y - 7, 'A') +
+        label(132, y + 17, 'A') +
         dot(279, y, purple) +
         label(286, y - 5, 'B') +
         path(`M151 ${y} H279`, green, true) +
