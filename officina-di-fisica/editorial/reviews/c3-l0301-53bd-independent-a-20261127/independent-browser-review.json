@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "SIM-C3-L03-01",
+  "candidateCommit": "6ae3c2a177bcde74b2bebf8f22c1fa50850b0413",
+  "sourceCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "runtimeSha256": "53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a",
+  "browserCases": 48,
+  "setupCases": 8,
+  "acceptedAnswers": 16,
+  "profiles": 8,
+  "scientificReview": "POSITIVE_WITHIN_FROZEN_ASSUMPTIONS_AND_ACTUAL_TWO_TASKS",
+  "visualReview": "PASS",
+  "limits": [
+    "Only DRAFT version2/baseVersion1 for this ID was observed in the new browser; the original edition was not interactively replayed.",
+    "Native Alto is axial to the vertical thermometer: it does not provide a readable quantitative column height. Height comparison was read in Obliqua/Laterale and fallback; no whole-height visibility claim is made for Alto.",
+    "The thermometer and color are schematic indications; no Celsius/absolute-temperature calibration is inferred from drawing coordinates. \u0394T=0 does not imply zero absolute temperature.",
+    "Five selected slider values per profile were actually replayed, not every slider value. Source-only CPU checks covered the entire legal grid earlier.",
+    "All four authored formulas were opened and measured in DOM for every setup. These screenshots show the bench and legend, not complete raster captures of every explanatory paragraph.",
+    "No arbitrary camera, hardware GPU introspection, human approval or other five C3 UI activity is covered."
+  ],
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "comparisonWith7c": {
+    "pairedCases": 48,
+    "equalFields": 48,
+    "equalRasterPairs": 48
+  },
+  "legacyModuleDependencySha256": "20a408c56410aec0fd4c925a7d6772b53798f8508a4608dd1f8c63cf929370a1",
+  "historicalExposure": "Own7c proof and source-first model reused, disclosed"
+}

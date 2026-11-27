@@ -1,0 +1,70 @@
+from pathlib import Path
+import json,hashlib
+T=Path('/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical');A=T/'work/cric-author-a-resident-20261127/officina-di-fisica';D=A/'editorial/reviews/c3-l0301-53bd-independent-a-20261127';O=A/'editorial/reviews/c3-l0301-recovery-preflight-a-20261127';sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();v=json.loads((O/'visual-review-per-id.json').read_bytes());v['sourceCommit']='1b72b71a68a6023ab1c9fa189733947b03029914';v['runtimeSha256']='53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a';v['artifactPins']=[];reads=[]
+for width in (320,1280):
+ G=D/str(width);r=json.loads((G/'actual/report.json').read_bytes())
+ for name in ('prepared.json','actual/report.json','actual-terminal.json'):
+  p=G/name;v['artifactPins'].append(dict(path=str(p.relative_to(A)),sha256=sha(p)))
+ for e in r['cases']:
+  c=json.loads((G/'actual'/e['file']).read_bytes())
+  for image in c['screenshots']:
+   p=G/'actual'/image['file'];assert sha(p)==image['sha256'];reads.append(dict(caseKey=c['caseKey'],width=width,view=c['profile']['view'],path=str(p.relative_to(A)),sha256=image['sha256'],readMethod='Whole new53bd raster at native resolution in newly opened indexed contact page; no crop/resize'))
+v['records'][0]['readFiles']=reads;v['records'][0]['readPngSha256']=sorted({r['sha256']for r in reads});v['records'][0]['reason']='Fresh53bd48case observations and readings agree with exact source-first capacity model. All48new rasters read, and every paired model/primitive/setup field and PNG byte matches the separately frozen7c evidence. Explicit axial/schematic limits remain; old proof is not retagged.';v['exposure']='Own historical7c review and source-first primary/model reused with disclosure; no claim of new blindness';(D/'visual-review-per-id.json').write_text(json.dumps(v,ensure_ascii=False,indent=2)+'\n')
+common=A/'tools/corpus_engineering/c3_draft_bounded_browser_review_a.py';pin=sha(common)
+(A/'tools/corpus_engineering/c3_l0301_53bd_browser_a.py').write_text('''"""Explicit53bd epoch adapter; legacy7c module/globals are immutable."""
+from types import FunctionType,SimpleNamespace
+import hashlib,json
+from . import c3_draft_bounded_browser_review_a as legacy
+APP=legacy.APP
+BASE=APP/'editorial/reviews/c3-l0301-53bd-independent-a-20261127'
+OLD=APP/'editorial/reviews/c3-l0301-recovery-preflight-a-20261127'
+ID='SIM-C3-L03-01'
+SOURCE='1b72b71a68a6023ab1c9fa189733947b03029914'
+RUNTIME='53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a'
+COMMON_SHA256='''+repr(pin)+'''
+def bind():
+ if hashlib.sha256((APP/'tools/corpus_engineering/c3_draft_bounded_browser_review_a.py').read_bytes()).hexdigest()!=COMMON_SHA256:raise ValueError('Reviewed legacy boundary function source changed')
+ cpu=SimpleNamespace(**vars(legacy.cpu));cpu.SOURCE=SOURCE;cpu.RUNTIME=RUNTIME
+ actual=FunctionType(legacy.actual.__code__,{**legacy.actual.__globals__,'cpu':cpu},'actual_53bd',legacy.actual.__defaults__)
+ report=FunctionType(legacy.report.__code__,{**legacy.report.__globals__,'cpu':cpu,'actual':actual},'report_53bd',legacy.report.__defaults__)
+ return actual,report
+
+def compare():
+ actual,_=bind();rows=[]
+ for width in (320,1280):
+  old={c['caseKey']:c for c in legacy.actual(OLD/str(width),ID)};new={c['caseKey']:c for c in actual(BASE/str(width),ID)}
+  if old.keys()!=new.keys():raise ValueError('Exact same bounded case coverage required')
+  for key in old:
+   a,b=old[key],new[key];fields=('model','elements','spec','sourceReplayedX','actualDOMControls','legend','readings')if'interaction'in a else('phases','questions','reading','axe')
+   if any(a.get(f)!=b.get(f)for f in fields):raise ValueError('Observed physical/setup delta requires independent investigation')
+   rows.append(dict(caseKey=key,rasterBytesEqual=[x['sha256']for x in a['screenshots']]==[x['sha256']for x in b['screenshots']]))
+ return dict(pairedCases=len(rows),equalFields=len(rows),equalRasterPairs=sum(r['rasterBytesEqual']for r in rows))
+
+def report():
+ _,fn=bind();visual=json.loads((BASE/'visual-review-per-id.json').read_bytes())
+ if visual['sourceCommit']!=SOURCE or visual['runtimeSha256']!=RUNTIME:raise ValueError('New epoch visual verdict must be explicit')
+ r=fn(BASE,ID);r['comparisonWith7c']=compare();r['legacyModuleDependencySha256']=COMMON_SHA256;r['historicalExposure']='Own7c proof and source-first model reused, disclosed';return r
+''')
+(A/'tests/corpus/test_c3_l0301_53bd_browser_a.py').write_text('''import json,unittest
+from tools.corpus_engineering import c3_l0301_53bd_browser_a as v
+class NewEpoch(unittest.TestCase):
+ def test_fresh_saved(self):self.assertEqual(v.report(),json.loads((v.BASE/'independent-browser-review.json').read_bytes()))
+ def test_all48_pairs_same_fields_and_raster(self):self.assertEqual(v.compare(),{'pairedCases':48,'equalFields':48,'equalRasterPairs':48})
+ def test_legacy_globals_remain_separate(self):
+  before=(v.legacy.cpu.SOURCE,v.legacy.cpu.RUNTIME);v.report();self.assertEqual(before,(v.legacy.cpu.SOURCE,v.legacy.cpu.RUNTIME));self.assertNotEqual(v.SOURCE,before[0]);self.assertNotEqual(v.RUNTIME,before[1])
+ def test_new_epoch_exact_source_and_no_credit(self):
+  r=v.report();self.assertEqual(r['sourceCommit'],v.SOURCE);self.assertEqual(r['runtimeSha256'],v.RUNTIME);self.assertEqual(r['activityCredit'],0);self.assertEqual(r['humanApproval'],'NOT_RUN')
+if __name__=='__main__':unittest.main(verbosity=2)
+''')
+s=(O/'run-browser-review-target.py').read_text().replace('from tools.corpus_engineering import c3_draft_bounded_browser_review_a as v','from tools.corpus_engineering import c3_l0301_53bd_browser_a as v').replace("report=v.report(D,'SIM-C3-L03-01')",'report=v.report()').replace("'tests.corpus.test_c3_l0301_persistent_browser_a','-v'","'tests.corpus.test_c3_l0301_53bd_browser_a','tests.corpus.test_c3_l0301_persistent_browser_a','tests.corpus.test_c3_l0303_persistent_browser_a','-v'")
+(D/'run-browser-review-target.py').write_text(s)
+(D/'epoch-review-notes.md').write_text('''# L03-01 sul composto53bd: prova nuova distinta
+
+Due nuovi processi da24casi, terminali effettivi0/null,11,806s e12,094s, timeout180 non scattato e nessun intervento. Runtime completo421file53bd verificato prima e dopo dal collector719; app Root composta usata in sola lettura. I record/risposte e gli8profili sono quelli già congelati, ma prepared/request/report/terminal nuovi sono riferiti a1b72/53bd. I precedenti raw7c e i loro giudizi non sono modificati.
+
+Letti nuovamente tutti48raster interi tramite sei nuove pagine native senza crop/resize. Nessun nuovo finding visivo: colonna/colore e legenda coerenti nelle viste non assiali, limite Alto invariato e dichiarato. Confronto per caseKey:48/48 identità del modello, primitive, specifica di scena, controlli effettivi, letture/legenda oppure setup/formule/task;48/48 coppiePNG byte-identiche. L'identità delle immagini è attestata sui nuovi raw e non sostituisce un nuovo terminale o autorizza altri stati. Il modello source-first indipendenteQ=50ΔT resta immutato e i due ingressi400/300J sono nuovamente accettati negli8setup.
+
+Il nuovo wrapper non modifica i verificatori storici: riusa esattamente i loro code object e globals copiati, sostituendo soltanto SOURCE/RUNTIME in un namespace privato per l'unica nuova epoca. Il modulo di boundary è fissato perSHA; vecchi globals e prove7c restano separati e sono rieseguiti come regressione. Nessuna tolleranza, chiave, dominio o guardia viene allargata. Esposizione alla propria revisione7c dichiarata: non si rivendica nuova cecità.
+
+Sono coperti soltanto questoDRAFTv2, gli8setup/16risposte, i40stati osservati e la leggibilità indicata. Non si afferma lettura raster di tutto lo svolgimento (apertura e metricheDOM delle4formule sì), altezza leggibile inAlto o controllo di camere arbitrarie. Nessun'altra attività C3 e nessun negativo storico sono chiusi. activityCredit0,humanApprovalNOT_RUN; Root rimane unico integratore.
+''');(D/'finalize.py.txt').write_bytes(Path(__file__).read_bytes())

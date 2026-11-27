@@ -1,0 +1,9 @@
+# L03-01 sul composto53bd: prova nuova distinta
+
+Due nuovi processi da24casi, terminali effettivi0/null,11,806s e12,094s, timeout180 non scattato e nessun intervento. Runtime completo421file53bd verificato prima e dopo dal collector719; app Root composta usata in sola lettura. I record/risposte e gli8profili sono quelli già congelati, ma prepared/request/report/terminal nuovi sono riferiti a1b72/53bd. I precedenti raw7c e i loro giudizi non sono modificati.
+
+Letti nuovamente tutti48raster interi tramite sei nuove pagine native senza crop/resize. Nessun nuovo finding visivo: colonna/colore e legenda coerenti nelle viste non assiali, limite Alto invariato e dichiarato. Confronto per caseKey:48/48 identità del modello, primitive, specifica di scena, controlli effettivi, letture/legenda oppure setup/formule/task;48/48 coppiePNG byte-identiche. L'identità delle immagini è attestata sui nuovi raw e non sostituisce un nuovo terminale o autorizza altri stati. Il modello source-first indipendenteQ=50ΔT resta immutato e i due ingressi400/300J sono nuovamente accettati negli8setup.
+
+Il nuovo wrapper non modifica i verificatori storici: riusa esattamente i loro code object e globals copiati, sostituendo soltanto SOURCE/RUNTIME in un namespace privato per l'unica nuova epoca. Il modulo di boundary è fissato perSHA; vecchi globals e prove7c restano separati e sono rieseguiti come regressione. Nessuna tolleranza, chiave, dominio o guardia viene allargata. Esposizione alla propria revisione7c dichiarata: non si rivendica nuova cecità.
+
+Sono coperti soltanto questoDRAFTv2, gli8setup/16risposte, i40stati osservati e la leggibilità indicata. Non si afferma lettura raster di tutto lo svolgimento (apertura e metricheDOM delle4formule sì), altezza leggibile inAlto o controllo di camere arbitrarie. Nessun'altra attività C3 e nessun negativo storico sono chiusi. activityCredit0,humanApprovalNOT_RUN; Root rimane unico integratore.
