@@ -5,9 +5,9 @@
   "sourceQuestionCount": 4606,
   "reviewedQuestions": 4606,
   "remainingQuestions": 0,
-  "reviewedActivities": 249,
-  "remainingActivities": 136,
-  "registrySha256": "6668ed29c5e04a16f43b5c75dd685766fa6305bf0ca086564e8f604c8b977cac",
+  "reviewedActivities": 248,
+  "remainingActivities": 137,
+  "registrySha256": "cc0ffecabb5b4a3952d2f09b9e2aa61d2482fcc3f0ab03739c451ce64d01a52b",
   "questions": [
     {
       "id": "AR-u1-area-conversion-01",
@@ -23855,7 +23855,8 @@
     },
     {
       "id": "LAB3D-10",
-      "state": "REVIEWED_PENDING_CURRENT_FULL_INTEGRATION"
+      "state": "EXPLICITLY_REOPENED_REQUIRES_FRESH_CLOSURE",
+      "evidence": "editorial/reviews/lab3d10-oscillating-zero-withdrawal-20261127/independent-original-observations.json"
     },
     {
       "id": "SIM-C1-L001-01",
@@ -24609,7 +24610,8 @@
     "SIM-C1-L006-03",
     "SIM-C1-L007-01",
     "SIM-C1-L007-02",
-    "SIM-C1-L007-03"
+    "SIM-C1-L007-03",
+    "LAB3D-10"
   ],
   "fullSnapshotGate": "BLOCKED_BY_OPEN_SCIENTIFIC_WITHDRAWAL; no gate change and no stale3792 adoption",
   "humanApproval": "NOT_RUN",
@@ -24699,6 +24701,15 @@
       ],
       "evidence": "editorial/reviews/c1-foundation-work-current-audit-20261127/foundation-closure-and-force-work-reopening-receipt.json",
       "resolution": "Current native 320 px evidence shows label occlusion; the independent remake must pass with stable vector geometry."
+    },
+    {
+      "id": "lab3d10-oscillating-zero-display-20261127",
+      "state": "OPEN",
+      "affectedIds": [
+        "LAB3D-10"
+      ],
+      "evidence": "editorial/acceptance/withdrawals-v1.json",
+      "resolution": "Reprove the exact display, both neighboring signs, and whole 036 on the selected runtime."
     }
   ]
 }
