@@ -446,13 +446,96 @@
         "activityCredit": 0
       },
       "c6RenewalReceipt": "editorial/reviews/c6-2096-existing-register-renewal-20261127.json",
-      "nextNewOriginalId": "SIM-C2-L001-01"
+      "nextNewOriginalId": "SIM-C2-L001-01",
+      "coexistence318": {
+        "commit": "952c00c457d5557a1ce36c398266850cdc314a6d",
+        "inputCommit": "1b46231ffcedf3a544368d032e10dac01c4e7bb2",
+        "privateDrafts": 4629,
+        "packages": 318,
+        "repeatedWrites": 0,
+        "publishedVersionsPreserved": 991,
+        "syntheticAttemptsPreserved": 3,
+        "receipt": "editorial/reviews/current-activity-candidate-coexistence-20261127/result.json"
+      }
     },
     "C2FiveManualAppendix": {
       "file": "editorial/reviews/c2-hydraulics-five-exact-manual-20261127.md",
       "sha256": "9ae73dfe54bd9faa10e1dac8421e4346af637e7c89d54c5b48f256125814f91d",
       "peerCommit": "5cdd98b4c56e0d83ed7632195200f6f9c181a249",
       "status": "ALL_FIVE_DISTINCT_MANUAL_REVIEW_PASS_NOT_REGISTRATION"
+    },
+    "waveIntegrationCandidate": {
+      "branch": "review/cric-wave-current-integration",
+      "commit": "7b05fd3a9cc3b0463c1b2d32015e41cca56e8b73",
+      "runtimeSha256": "3ed5bc77d8320230b62e1c3e6ca3bdd00f240cc64ec236b10fe55a306ca79251",
+      "registrySha256": "d6161e87211198a9516d023f347bc8f8cdc6cc03da0beb129b7557b9b221d2e5",
+      "registeredAcrossEvidenceEpochs": 257,
+      "open": 128,
+      "explicitlyReopened": 1,
+      "newReviewsStillOpen": 127,
+      "nextReopenedId": "LAB3D-03",
+      "nextNewOriginalId": "SIM-C2-L001-01",
+      "canonicalIntegration": "PENDING",
+      "waveClosure": {
+        "commit": "497584f4392c7cbf95c5501e67ddd6fa7312bfab",
+        "wholeGroup": 5,
+        "browserCases": 148,
+        "clockObservations": 56,
+        "exactZeroProfiles": 14
+      },
+      "hydraulicsRegistration": {
+        "reportSha256": "6187876933d45f4dc011051613d9b4076b2c4f5ba8b2eb0426e8d9061f06f618",
+        "ids": [
+          "SIM-C2-L003-02",
+          "SIM-C2-L003-03",
+          "SIM-C2-L004-01",
+          "SIM-C2-L004-02",
+          "SIM-C2-L004-03"
+        ],
+        "firstAdded": 5,
+        "repeatAdded": 0,
+        "actualCases": 240,
+        "adversarialRejections": 4,
+        "independentCommit": "b07b2e8d3ac04136167f9c601f75e442495eefce"
+      },
+      "hydrostaticWithdrawal": {
+        "id": "LAB3D-03",
+        "commit": "19fc04ea8d3ce2dbdd6d72c53cec2e95d9d0e939",
+        "peerCommit": "6efa87b28fbb3c7417be6fb5c1ec2b76eb9e8fff",
+        "historicalCaptureEpochsCompared": [
+          "2096",
+          "3ed5"
+        ],
+        "widths": [
+          320,
+          1280
+        ]
+      }
+    },
+    "nextC2Family": {
+      "ids": [
+        "SIM-C2-L001-01",
+        "SIM-C2-L001-02",
+        "SIM-C2-L001-03",
+        "SIM-C2-L001-04",
+        "SIM-C2-L001-05"
+      ],
+      "manual": "editorial/reviews/c2-density-pressure-manual-20261127.md",
+      "manualSha256": "d8ae8d076a9f734a5681ff22d42d66722265f1c15d21286636169d25df03d126",
+      "manualPeerCommit": "cfd6312aacf96b878ad0ab6ac32077a7193317c4",
+      "actualManualExercisesVerified": 10,
+      "humanApproval": "NOT_RUN",
+      "activityCredit": 0,
+      "nextBrowserPlan": "PREPARING_ON_1EFCD"
+    },
+    "C4EightExperimentActualReplay": {
+      "status": "FAIL_RESOURCE_CAPACITY_REPORT_DUPLICATES_RETAINED",
+      "plannedCases": 448,
+      "platformExit": 1,
+      "duplicateReportEntries": 3,
+      "Runtime": "3ed5bc77d8320230b62e1c3e6ca3bdd00f240cc64ec236b10fe55a306ca79251",
+      "independentEvidenceCommit": "34233eef99a913151be4badf5451a86472043d9a",
+      "activityCredit": 0
     }
   },
   "coexistence": {
@@ -562,10 +645,11 @@
     }
   },
   "nextAction": [
-    "Integrate the verified LAB3D-10 whole-group renewal once its fresh scientific report and signed evidence are available.",
-    "Continue the open original C2 families beginning SIM-C2-L001-01, then the other C2–C5 groups by family.",
-    "Renew candidate proofs after each relevant runtime change and complete the exact canonical CI on the final registered SHA.",
-    "Preserve the human scientific approval queue and application publication as separate pending gates."
+    "Finish the independent LAB3D-03 focused and full 035 review on the corrected runtime, then close the single current withdrawal.",
+    "Continue original C2-L001-01 through C2-L001-05, where separate review already covered all 10 manual tasks.",
+    "Repeat C4 full448 with a clean resource stop protocol, preserving the original raw failed replay and its checksums.",
+    "Continue the remaining C2–C5 activities and renew scoped evidence and complete CI on the final canonical integration SHA.",
+    "Retain the separate human science approval and publication gates."
   ],
   "composedCandidate": {
     "branch": "feat/cric-composed-runtime",
@@ -711,7 +795,7 @@
       "runtimeSha256": "3ed5bc77d8320230b62e1c3e6ca3bdd00f240cc64ec236b10fe55a306ca79251",
       "nodePass": 315,
       "contractPass": 2,
-      "browserAndWholeBatchRenewal": "WHOLE_036_TECHNICAL_204_TERMINAL0_INDEPENDENT_REPORT_PENDING",
+      "browserAndWholeBatchRenewal": "CANONICAL_VALIDATOR_PASSED_FOR_WHOLE_036_ON_3ED5",
       "focusedPeerCommit": "b4813dab9a6f63fa79874074364c21ac38ed18bc",
       "actualFocusedCases": 98,
       "profiles": 14,
@@ -719,11 +803,19 @@
         "runId": 45945853585,
         "requestCommit": "3ad480c1cccf476275c0723a14932a5d819dd3bf",
         "requestSha256": "e4a2ed79feef09351989271d5e55f4d1645e083ae7ea5616bf7267e1258a1edc",
-        "observedStatus": "QUEUED",
+        "observedStatus": "C2_C3_C4_C5_BROWSER_STEP_OBSERVED_C6_WAITING",
         "plannedCases": 45576,
         "sourceIds": 139,
         "activityCredit": 0
       }
+    },
+    "hydrostaticLabelSource": {
+      "commit": "3abd7dce2c2d837c903c9e17ac1d7fd0aa08dcca",
+      "branch": "review/cric-stevino-probe-label",
+      "runtimeSha256": "1efcd26bbb078453b75be5fbd1502b95cf07c0ffabb4112a4e4cf78170ff46aa",
+      "nodePass": 316,
+      "contractPass": 2,
+      "separatedProbeRasterCanary": "ACTUAL16_TERMINAL0_INDEPENDENT_RASTER_REVIEW_PENDING"
     }
   }
 }
