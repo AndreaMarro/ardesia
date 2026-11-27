@@ -1,5 +1,23 @@
 # Cric — ripresa operativa
 
+## Stato verificato del 27 novembre — 4.513 quesiti registrati
+
+Il registro conta **4.513/4.606 quesiti DRAFT verificati** e riconcilia tutti gli ID sorgente. Restano **93 quesiti**, tutti nelle tre simulazioni protette C6. Il prossimo ID nell’ordine del registro è `C6-Q013`. Le 385 attività non questionarie comprendono 232 accettazioni registrate e 153 aperte. Il collaudo delle attività sul runtime candidato è in corso.
+
+I 13 quesiti integrativi C6 sono nel commit `2c28547929f407876ff54b15fa9dabfa158b905a`. L’integratore ha ripetuto i 20 test della verifica distinta e importato i record in SQLite temporaneo. L’import ha salvato 13 bozze, poi zero con tutte e 13 invariate. I 991 contenuti pubblicati e lo storico sono rimasti identici. Il controllo delle fonti legge `C6-AQ01` dal file assegnato e preserva sezione, prerequisiti, famiglia, ordine e identificatori. I tre lotti d’esame sono scritti. Le loro verifiche distinte e il collaudo finale restano in corso. I feedback di `C6-Q029` e `C6-Q057` sono stati corretti su segnalazione dei verificatori. Le edizioni precedenti sono archiviate.
+
+Il controllo di coesistenza del registro 4.500 ha importato 4.517 bozze in 312 pacchetti, con zero salvataggi alla ripetizione e 991 pubblicati identici. Ha esercitato i 4.500 record del registro con fixture sintetiche di grading e adattività. La ricevuta è nel commit `be790f93c84c88b5bc6c02a20ed13242ff1f3ee3`. Il controllo documenta un registro e un runtime precedenti ai 13 quesiti integrativi e alla correzione finale del lettore.
+
+Il test del lettore su `34d3de9…` ha passato 358 casi a 320 e 1.280 px. Una verifica distinta ha poi rilevato sei casi che sforavano alle larghezze intermedie. La successiva correzione guidata dalla larghezza disponibile li ha fatti passare in due esecuzioni distinte. Nelle tavole 2D di Lorentz e Snell sono rimaste istruzioni che indicavano viste 3D disabilitate. La sorgente `cf3d8774ea4eb2f5287b7d7b890d9be0bf8bc8bc`, runtime `cb9fc66d96ecced2addff3df4dfbeb0b5834e73a13719a78ea964bc28a5ada49`, usa le istruzioni della vista attiva. Quattro casi 2D e sei del lettore sono passati nella prova d’autore, insieme ai 279 test Node. La verifica tecnica distinta e il replay di tutte le attività proseguono. Le prove precedenti restano fissate ai propri runtime.
+
+La verifica indipendente del protocollo numerico V2 è acquisita nel commit `be790f93c84c88b5bc6c02a20ed13242ff1f3ee3`. Ha confermato l’isolamento a parità di browser e l’esclusione di richieste estranee. L’ultimo piano completo precedente ha validato 45.576 interazioni previste per 139 attività. È in preparazione la stessa campagna sulla sorgente `cf3d8774`. Il preflight da solo non dà credito di revisione.
+
+Il pacchetto con cinque esercizi supplementari è stato provato nell’importatore e nell’anteprima proprietario. Resta fuori dal conteggio 4.606 e attende revisione scientifica distinta. Il registro supporta ora questi pacchetti con hash e revisione indipendente obbligatori. La copertura completa va provata sul registro finale. Un audit separato ha trovato 250 bozze C1–C5 con una sezione diversa dall’originale. Il raggruppamento è usato anche nell’indice e nei PDF. La riconciliazione prima della promozione resta da chiudere. Le edizioni pubblicate storiche sono state conservate.
+
+Il canone remoto rimane `officina-di-fisica` a `7c29ccc18ad3b42ceecfca509ef57f786bd2c496`. Nessuna nuova pubblicazione nell’app o approvazione umana. Il checkpoint compilato 3.632/246 è storico. Le 100 revisioni Pro restano non identificate. I 199 controlli tecnici recuperati sono conservati separatamente. Il mandato rimane incompleto fino al consolidamento del corpus, alla validazione completa delle attività e alla CI sulla SHA canonica.
+
+## Snapshot precedente
+
 ## Stato verificato del 27 novembre — mandato incompleto
 
 Il registro contiene **4.500/4.606 quesiti DRAFT verificati**, pari al 97,7% del corpus sorgente. Restano i **106 quesiti C6**. Il primo ID mancante è `C6-AQ01`. Il registro delle attività conta **232/385 accettazioni** e **153 aperte**, con 14 riaperture esplicite. Le 385 attività restano soggette alla rivalidazione sul runtime finale. Il precedente checkpoint compilato 3.632/246 resta uno snapshot storico.
