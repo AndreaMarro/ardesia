@@ -5,9 +5,9 @@
   "sourceQuestionCount": 4606,
   "reviewedQuestions": 4606,
   "remainingQuestions": 0,
-  "reviewedActivities": 248,
-  "remainingActivities": 137,
-  "registrySha256": "cc0ffecabb5b4a3952d2f09b9e2aa61d2482fcc3f0ab03739c451ce64d01a52b",
+  "reviewedActivities": 252,
+  "remainingActivities": 133,
+  "registrySha256": "07a83db56ea7ba2426f263d2b6062825fba207c973d0a24ab156242e0362fe5e",
   "questions": [
     {
       "id": "AR-u1-area-conversion-01",
@@ -23982,23 +23982,27 @@
     },
     {
       "id": "SIM-C1-L006-03",
-      "state": "EXPLICITLY_REOPENED_REQUIRES_FRESH_CLOSURE",
-      "withdrawalId": "observed-top-label-c1-l006-03-20261127"
+      "state": "REVIEWED_ORIGINAL_ON_2096_PENDING_CANONICAL",
+      "withdrawalId": "observed-top-label-c1-l006-03-20261127",
+      "evidence": "editorial/reviews/experiments-force-work-corrected-048.json"
     },
     {
       "id": "SIM-C1-L007-01",
-      "state": "EXPLICITLY_REOPENED_REQUIRES_FRESH_CLOSURE",
-      "withdrawalId": "work-axis-shaft-side-root-20261126"
+      "state": "REVIEWED_ORIGINAL_ON_2096_PENDING_CANONICAL",
+      "withdrawalId": "work-axis-shaft-side-root-20261126",
+      "evidence": "editorial/reviews/experiments-force-work-corrected-048.json"
     },
     {
       "id": "SIM-C1-L007-02",
-      "state": "EXPLICITLY_REOPENED_REQUIRES_FRESH_CLOSURE",
-      "withdrawalId": "observed-top-label-c1-l007-02-20261127"
+      "state": "REVIEWED_ORIGINAL_ON_2096_PENDING_CANONICAL",
+      "withdrawalId": "observed-top-label-c1-l007-02-20261127",
+      "evidence": "editorial/reviews/experiments-force-work-corrected-048.json"
     },
     {
       "id": "SIM-C1-L007-03",
-      "state": "EXPLICITLY_REOPENED_REQUIRES_FRESH_CLOSURE",
-      "withdrawalId": "observed-top-label-c1-l007-03-20261127"
+      "state": "REVIEWED_ORIGINAL_ON_2096_PENDING_CANONICAL",
+      "withdrawalId": "observed-top-label-c1-l007-03-20261127",
+      "evidence": "editorial/reviews/experiments-force-work-corrected-048.json"
     },
     {
       "id": "SIM-C1-L008-01",
@@ -24607,10 +24611,6 @@
   "nextRootQuestionId": null,
   "missingQuestionIds": [],
   "blockedActivityIds": [
-    "SIM-C1-L006-03",
-    "SIM-C1-L007-01",
-    "SIM-C1-L007-02",
-    "SIM-C1-L007-03",
     "LAB3D-10"
   ],
   "fullSnapshotGate": "BLOCKED_BY_OPEN_SCIENTIFIC_WITHDRAWAL; no gate change and no stale3792 adoption",
@@ -24619,7 +24619,7 @@
   "integrationOpenItems": [
     {
       "id": "work-axis-shaft-side-root-20261126",
-      "state": "OPEN",
+      "state": "CLOSED_ON_2096_PENDING_CANONICAL_INTEGRATION",
       "affectedIds": [
         "SIM-C1-L007-01"
       ],
@@ -24631,7 +24631,8 @@
         "SIM-C1-L002-03",
         "SIM-C1-L002-04",
         "SIM-C1-L001-06"
-      ]
+      ],
+      "resolvedOnCurrentRuntime": "2096493ae86311ec459e012032cd1f8fe41293326cc5769d86376aa5a0b59635"
     },
     {
       "id": "c6-adaptive-transfer-family-coverage-20261126",
