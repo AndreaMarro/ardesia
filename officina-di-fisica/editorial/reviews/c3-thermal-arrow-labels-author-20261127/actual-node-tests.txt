@@ -1,0 +1,1710 @@
+
+> officina-di-fisica@1.1.0 test
+> node --test tests/*.test.js
+
+TAP version 13
+# Subtest: Piano2D: normale e peso nella stessa scala su tutta la griglia angolare e di massa
+ok 1 - Piano2D: normale e peso nella stessa scala su tutta la griglia angolare e di massa
+  ---
+  duration_ms: 214.394083
+  ...
+# Subtest: Piano2D: normale opposta a Pperp e Ppar ricostruiscono il peso vettorialmente
+ok 2 - Piano2D: normale opposta a Pperp e Ppar ricostruiscono il peso vettorialmente
+  ---
+  duration_ms: 0.73875
+  ...
+# Subtest: Una componente piccola mantiene una punta più corta della freccia
+ok 3 - Una componente piccola mantiene una punta più corta della freccia
+  ---
+  duration_ms: 1.379208
+  ...
+# Subtest: Il bordo del piano segue la tangente fisica e vettori restano nel viewport
+ok 4 - Il bordo del piano segue la tangente fisica e vettori restano nel viewport
+  ---
+  duration_ms: 7.726375
+  ...
+# Subtest: Stevino · the surface and the two probes keep separate labels at every depth
+ok 5 - Stevino · the surface and the two probes keep separate labels at every depth
+  ---
+  duration_ms: 34.754916
+  ...
+# Subtest: 01 · contatto statico, soglia, distacco e forza inversa
+ok 6 - 01 · contatto statico, soglia, distacco e forza inversa
+  ---
+  duration_ms: 6.643167
+  ...
+# Subtest: 02 · gravità, tempi, gittata, energia e rotazione del piano di volo
+ok 7 - 02 · gravità, tempi, gittata, energia e rotazione del piano di volo
+  ---
+  duration_ms: 8.615375
+  ...
+# Subtest: 03 · pressione di superficie, incremento, indipendenza da p₀ e inversione SI
+ok 8 - 03 · pressione di superficie, incremento, indipendenza da p₀ e inversione SI
+  ---
+  duration_ms: 1.177333
+  ...
+# Subtest: 04 · profilo integrato, portata, unità, r⁴ reciproco e validità
+ok 9 - 04 · profilo integrato, portata, unità, r⁴ reciproco e validità
+  ---
+  duration_ms: 3.614375
+  ...
+# Subtest: 05 · Boyle, isocora, moli, equivalenza kPa·L = J
+ok 10 - 05 · Boyle, isocora, moli, equivalenza kPa·L = J
+  ---
+  duration_ms: 1.044042
+  ...
+# Subtest: 06 · segno, potenza conservata tra facce, area, isolamento e inversa
+ok 11 - 06 · segno, potenza conservata tra facce, area, isolamento e inversa
+  ---
+  duration_ms: 0.614375
+  ...
+# Subtest: 07 · segno, sovrapposizione, V scalare, rotazione 3D, singolarità
+ok 12 - 07 · segno, sovrapposizione, V scalare, rotazione 3D, singolarità
+  ---
+  duration_ms: 2.784917
+  ...
+# Subtest: 08 · Kirchhoff, bilancio di potenza, formula inversa e generatore a tensione nulla
+ok 13 - 08 · Kirchhoff, bilancio di potenza, formula inversa e generatore a tensione nulla
+  ---
+  duration_ms: 0.505375
+  ...
+# Subtest: 09 · raggi coniugati, reale, virtuale, infinito e fuoco sullo schermo
+ok 14 - 09 · raggi coniugati, reale, virtuale, infinito e fuoco sullo schermo
+  ---
+  duration_ms: 1.386917
+  ...
+# Subtest: 10 · nodi, ventri, periodicità, cammino e ampiezza RMS
+ok 15 - 10 · nodi, ventri, periodicità, cammino e ampiezza RMS
+  ---
+  duration_ms: 2.955291
+  ...
+# Subtest: LAB3D-01 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+ok 16 - LAB3D-01 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+  ---
+  duration_ms: 6.715583
+  ...
+# Subtest: LAB3D-02 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+ok 17 - LAB3D-02 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+  ---
+  duration_ms: 5.195291
+  ...
+# Subtest: LAB3D-03 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+ok 18 - LAB3D-03 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+  ---
+  duration_ms: 0.941959
+  ...
+# Subtest: LAB3D-04 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+ok 19 - LAB3D-04 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+  ---
+  duration_ms: 1.392625
+  ...
+# Subtest: LAB3D-05 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+ok 20 - LAB3D-05 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+  ---
+  duration_ms: 1.333292
+  ...
+# Subtest: LAB3D-06 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+ok 21 - LAB3D-06 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+  ---
+  duration_ms: 0.592083
+  ...
+# Subtest: LAB3D-07 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+ok 22 - LAB3D-07 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+  ---
+  duration_ms: 1.334667
+  ...
+# Subtest: LAB3D-08 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+ok 23 - LAB3D-08 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+  ---
+  duration_ms: 2.718791
+  ...
+# Subtest: LAB3D-09 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+ok 24 - LAB3D-09 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+  ---
+  duration_ms: 2.075375
+  ...
+# Subtest: LAB3D-10 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+ok 25 - LAB3D-10 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+  ---
+  duration_ms: 1.504666
+  ...
+# Subtest: the weight and normal keep their length and origin in the moving block frame
+ok 26 - the weight and normal keep their length and origin in the moving block frame
+  ---
+  duration_ms: 5.647958
+  ...
+# Subtest: field contributions and resultant share the probe, scale and annotation layer
+ok 27 - field contributions and resultant share the probe, scale and annotation layer
+  ---
+  duration_ms: 1.617833
+  ...
+# Subtest: the flight retains the origin marker and the apex guide without a covering label
+ok 28 - the flight retains the origin marker and the apex guide without a covering label
+  ---
+  duration_ms: 2.811375
+  ...
+# Subtest: small flight velocities retain their direction and get a separate 16× detail
+ok 29 - small flight velocities retain their direction and get a separate 16× detail
+  ---
+  duration_ms: 3.939666
+  ...
+# Subtest: the constant gravity arrow clears the launch and landing platform
+ok 30 - the constant gravity arrow clears the launch and landing platform
+  ---
+  duration_ms: 17.016583
+  ...
+# Subtest: every reachable nonzero spring force keeps its full signed scale outside the opaque endpoint
+ok 31 - every reachable nonzero spring force keeps its full signed scale outside the opaque endpoint
+  ---
+  duration_ms: 31.501083
+  ...
+# Subtest: rigid rod and its endpoints stay in front of the support across the complete angle grid
+ok 32 - rigid rod and its endpoints stay in front of the support across the complete angle grid
+  ---
+  duration_ms: 7.084834
+  ...
+# Subtest: lever arrows preserve force ratios and lines of action while clearing opaque markers and pivot
+ok 33 - lever arrows preserve force ratios and lines of action while clearing opaque markers and pivot
+  ---
+  duration_ms: 12.318166
+  ...
+# Subtest: zero-duration mean power is distinguished from its zero limit and instantaneous power
+ok 34 - zero-duration mean power is distinguished from its zero limit and instantaneous power
+  ---
+  duration_ms: 1.404459
+  ...
+# Subtest: the complete lever force glyph stays above the opaque table at every reachable input
+ok 35 - the complete lever force glyph stays above the opaque table at every reachable input
+  ---
+  duration_ms: 5.062875
+  ...
+# Subtest: fulcrum and elbow names remain in the existing HTML legend without covering the rod markers
+ok 36 - fulcrum and elbow names remain in the existing HTML legend without covering the rod markers
+  ---
+  duration_ms: 1.391625
+  ...
+# Subtest: incline normals keep the complete common-scale vector outside the opaque body on the full angle grid
+ok 37 - incline normals keep the complete common-scale vector outside the opaque body on the full angle grid
+  ---
+  duration_ms: 5.795959
+  ...
+# Subtest: incline weight stays above the table and separate from the normal without moving its line of action
+ok 38 - incline weight stays above the table and separate from the normal without moving its line of action
+  ---
+  duration_ms: 2.044166
+  ...
+# Subtest: incline force names and fixed weight remain readable in the HTML legend instead of covering the glyphs
+ok 39 - incline force names and fixed weight remain readable in the HTML legend instead of covering the glyphs
+  ---
+  duration_ms: 1.572667
+  ...
+# Subtest: the complete constant weight remains above its body and tabletop over every falling height
+ok 40 - the complete constant weight remains above its body and tabletop over every falling height
+  ---
+  duration_ms: 14.488458
+  ...
+# Subtest: complete circular velocity and acceleration glyphs clear the body at unchanged exact scales over the orbit
+ok 41 - complete circular velocity and acceleration glyphs clear the body at unchanged exact scales over the orbit
+  ---
+  duration_ms: 83.920333
+  ...
+# Subtest: collinear translational force glyphs retain their common scale in front of the complete opaque block
+ok 42 - collinear translational force glyphs retain their common scale in front of the complete opaque block
+  ---
+  duration_ms: 8.360709
+  ...
+# Subtest: moving endpoint and mass vector names remain in HTML without sprites covering their physical tips
+ok 43 - moving endpoint and mass vector names remain in HTML without sprites covering their physical tips
+  ---
+  duration_ms: 0.866583
+  ...
+# Subtest: vector names remain in the HTML legend with no opaque name sprite over a or b tips
+ok 44 - vector names remain in the HTML legend with no opaque name sprite over a or b tips
+  ---
+  duration_ms: 0.989333
+  ...
+# Subtest: default start name stays readable in the legend while custom coordinate names are retained
+ok 45 - default start name stays readable in the legend while custom coordinate names are retained
+  ---
+  duration_ms: 0.733958
+  ...
+# Subtest: the 8 cm field detail has a readable head in both fallback widths
+ok 46 - the 8 cm field detail has a readable head in both fallback widths
+  ---
+  duration_ms: 62.028708
+  ...
+# Subtest: both midpoint extrema keep the displayed arrowhead clear of the charged spheres
+ok 47 - both midpoint extrema keep the displayed arrowhead clear of the charged spheres
+  ---
+  duration_ms: 24.153083
+  ...
+# Subtest: the primary field arrow keeps a visible point where no magnified detail is shown
+ok 48 - the primary field arrow keeps a visible point where no magnified detail is shown
+  ---
+  duration_ms: 14.519291
+  ...
+# Subtest: SIM-C4-L02-03: the moving point and plate labels cannot mask a field arrow
+ok 49 - SIM-C4-L02-03: the moving point and plate labels cannot mask a field arrow
+  ---
+  duration_ms: 88.926709
+  ...
+# Subtest: SIM-C4-L03-02: the moving point and plate labels cannot mask a field arrow
+ok 50 - SIM-C4-L03-02: the moving point and plate labels cannot mask a field arrow
+  ---
+  duration_ms: 2.159583
+  ...
+# Subtest: SIM-C4-L03-03: the moving point and plate labels cannot mask a field arrow
+ok 51 - SIM-C4-L03-03: the moving point and plate labels cannot mask a field arrow
+  ---
+  duration_ms: 1.447292
+  ...
+# Subtest: all eight observed positions preserve the field, moving point and scalar exactly
+ok 52 - all eight observed positions preserve the field, moving point and scalar exactly
+  ---
+  duration_ms: 7.399291
+  ...
+# Subtest: all 29 C4 physical and teaching outputs retain baseline with the declared display differences
+ok 53 - all 29 C4 physical and teaching outputs retain baseline with the declared display differences
+  ---
+  duration_ms: 590.209333
+  ...
+# Subtest: the accessible descriptions identify the point without assigning a charge to the voltmeter probe
+ok 54 - the accessible descriptions identify the point without assigning a charge to the voltmeter probe
+  ---
+  duration_ms: 12.456125
+  ...
+# Subtest: zero displacement and zero energy gain leave the nonzero uniform field visible
+ok 55 - zero displacement and zero energy gain leave the nonzero uniform field visible
+  ---
+  duration_ms: 5.139
+  ...
+# Subtest: the capillary image describes only the parts visible in each stage
+ok 56 - the capillary image describes only the parts visible in each stage
+  ---
+  duration_ms: 6.310875
+  ...
+# Subtest: isolated zero segments disappear, a closed path keeps its final edge
+ok 57 - isolated zero segments disappear, a closed path keeps its final edge
+  ---
+  duration_ms: 4.751042
+  ...
+# Subtest: all published topics produce finite, nondegenerate geometry over the common sampling grid
+ok 58 - all published topics produce finite, nondegenerate geometry over the common sampling grid
+  ---
+  duration_ms: 847.129584
+  ...
+# Subtest: a vacuum wave keeps transverse fields in phase and carries energy along the optical axis
+ok 59 - a vacuum wave keeps transverse fields in phase and carries energy along the optical axis
+  ---
+  duration_ms: 6.895459
+  ...
+# Subtest: integrating signed velocity recovers the track and distinguishes outward and return readings
+ok 60 - integrating signed velocity recovers the track and distinguishes outward and return readings
+  ---
+  duration_ms: 16.380542
+  ...
+# Subtest: transparent lens sections meet without internal faces and parallel rays cross at the marked focus
+ok 61 - transparent lens sections meet without internal faces and parallel rays cross at the marked focus
+  ---
+  duration_ms: 3.084083
+  ...
+# Subtest: continuity keeps the downstream direction legible at every allowed area
+ok 62 - continuity keeps the downstream direction legible at every allowed area
+  ---
+  duration_ms: 37.861459
+  ...
+# Subtest: bifurcation maintains proportional, distinguishable arrows and drops only zero flow
+ok 63 - bifurcation maintains proportional, distinguishable arrows and drops only zero flow
+  ---
+  duration_ms: 5.110792
+  ...
+# Subtest: equal sections give equal speeds and static head in the ideal narrowed tube
+ok 64 - equal sections give equal speeds and static head in the ideal narrowed tube
+  ---
+  duration_ms: 14.848083
+  ...
+# Subtest: il grafico della posizione e l’impulso triangolare ricostruiscono i risultati degli esempi
+ok 65 - il grafico della posizione e l’impulso triangolare ricostruiscono i risultati degli esempi
+  ---
+  duration_ms: 3.919375
+  ...
+# Subtest: una somma di anelli sferici verifica il campo interno ed esterno e la soglia per il coefficiente riguarda |a|
+ok 66 - una somma di anelli sferici verifica il campo interno ed esterno e la soglia per il coefficiente riguarda |a|
+  ---
+  duration_ms: 56.141709
+  ...
+# Subtest: il verso delle forze nella tavola determina il lavoro sul blocco
+ok 67 - il verso delle forze nella tavola determina il lavoro sul blocco
+  ---
+  duration_ms: 1.5455
+  ...
+# Subtest: equazione radiale, quantità di moto e momento di una coppia reggono i cambi di massa e di polo
+ok 68 - equazione radiale, quantità di moto e momento di una coppia reggono i cambi di massa e di polo
+  ---
+  duration_ms: 1.811
+  ...
+# Subtest: le sette misure pubblicate e le unità delle secanti sono riproducibili in tutte le posizioni del controllo
+ok 69 - le sette misure pubblicate e le unità delle secanti sono riproducibili in tutte le posizioni del controllo
+  ---
+  duration_ms: 50.416417
+  ...
+# Subtest: la sezione illustrata e la media per unità di area riproducono la lettura della sonda
+ok 70 - la sezione illustrata e la media per unità di area riproducono la lettura della sonda
+  ---
+  duration_ms: 41.903
+  ...
+# Subtest: il lavoro sulla piastra bilancia la dissipazione e il flusso ricostruisce la viscosità inversa
+ok 71 - il lavoro sulla piastra bilancia la dissipazione e il flusso ricostruisce la viscosità inversa
+  ---
+  duration_ms: 388.275791
+  ...
+# Subtest: pressioni, forze e portate restituiscono le chiavi con il segno e le unità del sistema
+ok 72 - pressioni, forze e portate restituiscono le chiavi con il segno e le unità del sistema
+  ---
+  duration_ms: 0.934792
+  ...
+# Subtest: il manometro ricompone la pressione nelle due colonne a ogni posizione e a pressione uguale
+ok 73 - il manometro ricompone la pressione nelle due colonne a ogni posizione e a pressione uguale
+  ---
+  duration_ms: 34.49475
+  ...
+# Subtest: la geometria del galleggiante dà il volume che equilibra il peso, anche a densità uguale
+ok 74 - la geometria del galleggiante dà il volume che equilibra il peso, anche a densità uguale
+  ---
+  duration_ms: 34.444583
+  ...
+# Subtest: C4 · misura virtuale della forza su due prove opposte, a 1 e 2 m
+ok 75 - C4 · misura virtuale della forza su due prove opposte, a 1 e 2 m
+  ---
+  duration_ms: 2.265042
+  ...
+# Subtest: C4 · flusso da una superficie orientata e dalla geometria della figura
+ok 76 - C4 · flusso da una superficie orientata e dalla geometria della figura
+  ---
+  duration_ms: 1.390625
+  ...
+# Subtest: C4 · raggio positivo per entrambe le polarità e per tutto il controllo magnetico
+ok 77 - C4 · raggio positivo per entrambe le polarità e per tutto il controllo magnetico
+  ---
+  duration_ms: 35.825041
+  ...
+# Subtest: il segnale attraversa il centro ogni 18 ms e la densità di energia della corda scala con la massa per metro
+ok 78 - il segnale attraversa il centro ogni 18 ms e la densità di energia della corda scala con la massa per metro
+  ---
+  duration_ms: 29.45
+  ...
+# Subtest: la geometria della figura predice la potenza intercettata e l’angolo solido verifica l’esempio
+ok 79 - la geometria della figura predice la potenza intercettata e l’angolo solido verifica l’esempio
+  ---
+  duration_ms: 1.953333
+  ...
+# Subtest: la conversione acustica, il passo della radioonda e la rifrazione superano il controllo inverso
+ok 80 - la conversione acustica, il passo della radioonda e la rifrazione superano il controllo inverso
+  ---
+  duration_ms: 0.464833
+  ...
+# Subtest: la componente magnetica e la direzione dei vettori nel banco attraversano lo zero insieme
+ok 81 - la componente magnetica e la direzione dei vettori nel banco attraversano lo zero insieme
+  ---
+  duration_ms: 97.406083
+  ...
+# Subtest: Ogni voce pubblicata ha esattamente una simulazione con ID, domanda e paragrafo propri
+ok 82 - Ogni voce pubblicata ha esattamente una simulazione con ID, domanda e paragrafo propri
+  ---
+  duration_ms: 33.806125
+  ...
+# Subtest: SIM-C1-L001-01 · Notazione scientifica
+ok 83 - SIM-C1-L001-01 · Notazione scientifica
+  ---
+  duration_ms: 160.245459
+  ...
+# Subtest: SIM-C1-L001-02 · Grandezze fisiche, dimensioni e SI
+ok 84 - SIM-C1-L001-02 · Grandezze fisiche, dimensioni e SI
+  ---
+  duration_ms: 32.420583
+  ...
+# Subtest: SIM-C1-L001-03 · Conversioni tra unità
+ok 85 - SIM-C1-L001-03 · Conversioni tra unità
+  ---
+  duration_ms: 4.994459
+  ...
+# Subtest: SIM-C1-L001-04 · Stima di ordine di grandezza
+ok 86 - SIM-C1-L001-04 · Stima di ordine di grandezza
+  ---
+  duration_ms: 8.042834
+  ...
+# Subtest: SIM-C1-L001-05 · Grandezze intensive ed estensive
+ok 87 - SIM-C1-L001-05 · Grandezze intensive ed estensive
+  ---
+  duration_ms: 1.78575
+  ...
+# Subtest: SIM-C1-L001-06 · Scalari e vettori
+ok 88 - SIM-C1-L001-06 · Scalari e vettori
+  ---
+  duration_ms: 10.9555
+  ...
+# Subtest: SIM-C1-L002-01 · Funzioni trigonometriche elementari
+ok 89 - SIM-C1-L002-01 · Funzioni trigonometriche elementari
+  ---
+  duration_ms: 4.308084
+  ...
+# Subtest: SIM-C1-L002-02 · Definizione, componenti e modulo dei vettori
+ok 90 - SIM-C1-L002-02 · Definizione, componenti e modulo dei vettori
+  ---
+  duration_ms: 8.1635
+  ...
+# Subtest: SIM-C1-L002-03 · Somma e differenza
+ok 91 - SIM-C1-L002-03 · Somma e differenza
+  ---
+  duration_ms: 6.67475
+  ...
+# Subtest: SIM-C1-L002-04 · Prodotto scalare e vettoriale
+ok 92 - SIM-C1-L002-04 · Prodotto scalare e vettoriale
+  ---
+  duration_ms: 3.313625
+  ...
+# Subtest: SIM-C1-L003-01 · Posizione e spostamento
+ok 93 - SIM-C1-L003-01 · Posizione e spostamento
+  ---
+  duration_ms: 7.268792
+  ...
+# Subtest: SIM-C1-L003-02 · Traiettoria e legge oraria
+ok 94 - SIM-C1-L003-02 · Traiettoria e legge oraria
+  ---
+  duration_ms: 7.112708
+  ...
+# Subtest: SIM-C1-L003-03 · Velocità media e istantanea
+ok 95 - SIM-C1-L003-03 · Velocità media e istantanea
+  ---
+  duration_ms: 5.080417
+  ...
+# Subtest: SIM-C1-L003-04 · Accelerazione media e istantanea
+ok 96 - SIM-C1-L003-04 · Accelerazione media e istantanea
+  ---
+  duration_ms: 4.140542
+  ...
+# Subtest: SIM-C1-L003-05 · Moto rettilineo uniforme
+ok 97 - SIM-C1-L003-05 · Moto rettilineo uniforme
+  ---
+  duration_ms: 5.302375
+  ...
+# Subtest: SIM-C1-L003-06 · Grafici cinematici
+ok 98 - SIM-C1-L003-06 · Grafici cinematici
+  ---
+  duration_ms: 1.803041
+  ...
+# Subtest: SIM-C1-L004-01 · Moto uniformemente accelerato
+ok 99 - SIM-C1-L004-01 · Moto uniformemente accelerato
+  ---
+  duration_ms: 1.736875
+  ...
+# Subtest: SIM-C1-L004-02 · Caduta libera
+ok 100 - SIM-C1-L004-02 · Caduta libera
+  ---
+  duration_ms: 3.562791
+  ...
+# Subtest: SIM-C1-L004-03 · Moto parabolico
+ok 101 - SIM-C1-L004-03 · Moto parabolico
+  ---
+  duration_ms: 5.397583
+  ...
+# Subtest: SIM-C1-L004-04 · Moto circolare uniforme e accelerazione centripeta
+ok 102 - SIM-C1-L004-04 · Moto circolare uniforme e accelerazione centripeta
+  ---
+  duration_ms: 4.558417
+  ...
+# Subtest: SIM-C1-L005-01 · Sistemi inerziali e primo principio
+ok 103 - SIM-C1-L005-01 · Sistemi inerziali e primo principio
+  ---
+  duration_ms: 1.932583
+  ...
+# Subtest: SIM-C1-L005-02 · Equilibrio traslazionale e statico
+ok 104 - SIM-C1-L005-02 · Equilibrio traslazionale e statico
+  ---
+  duration_ms: 1.328292
+  ...
+# Subtest: SIM-C1-L005-03 · Secondo principio della dinamica
+ok 105 - SIM-C1-L005-03 · Secondo principio della dinamica
+  ---
+  duration_ms: 1.39275
+  ...
+# Subtest: SIM-C1-L005-04 · Azione e reazione
+ok 106 - SIM-C1-L005-04 · Azione e reazione
+  ---
+  duration_ms: 2.122875
+  ...
+# Subtest: SIM-C1-L005-05 · Forza peso e normale
+ok 107 - SIM-C1-L005-05 · Forza peso e normale
+  ---
+  duration_ms: 2.127083
+  ...
+# Subtest: SIM-C1-L005-06 · Tensione in un filo
+ok 108 - SIM-C1-L005-06 · Tensione in un filo
+  ---
+  duration_ms: 1.14825
+  ...
+# Subtest: SIM-C1-L006-01 · Attrito statico e dinamico
+ok 109 - SIM-C1-L006-01 · Attrito statico e dinamico
+  ---
+  duration_ms: 1.468958
+  ...
+# Subtest: SIM-C1-L006-02 · Forza elastica e legge di Hooke
+ok 110 - SIM-C1-L006-02 · Forza elastica e legge di Hooke
+  ---
+  duration_ms: 3.704958
+  ...
+# Subtest: SIM-C1-L006-03 · Forza gravitazionale
+ok 111 - SIM-C1-L006-03 · Forza gravitazionale
+  ---
+  duration_ms: 2.397875
+  ...
+# Subtest: SIM-C1-L007-01 · Lavoro di una forza
+ok 112 - SIM-C1-L007-01 · Lavoro di una forza
+  ---
+  duration_ms: 2.685292
+  ...
+# Subtest: SIM-C1-L007-02 · Potenza media e istantanea
+ok 113 - SIM-C1-L007-02 · Potenza media e istantanea
+  ---
+  duration_ms: 1.51825
+  ...
+# Subtest: SIM-C1-L007-03 · Teorema dell’energia cinetica
+ok 114 - SIM-C1-L007-03 · Teorema dell’energia cinetica
+  ---
+  duration_ms: 3.038583
+  ...
+# Subtest: SIM-C1-L008-01 · Forze conservative e non conservative
+ok 115 - SIM-C1-L008-01 · Forze conservative e non conservative
+  ---
+  duration_ms: 3.236542
+  ...
+# Subtest: SIM-C1-L008-02 · Energia potenziale gravitazionale ed elastica
+ok 116 - SIM-C1-L008-02 · Energia potenziale gravitazionale ed elastica
+  ---
+  duration_ms: 3.013917
+  ...
+# Subtest: SIM-C1-L008-03 · Energia meccanica e conservazione
+ok 117 - SIM-C1-L008-03 · Energia meccanica e conservazione
+  ---
+  duration_ms: 1.412709
+  ...
+# Subtest: SIM-C1-L009-01 · Quantità di moto e impulso
+ok 118 - SIM-C1-L009-01 · Quantità di moto e impulso
+  ---
+  duration_ms: 4.930125
+  ...
+# Subtest: SIM-C1-L009-02 · Conservazione della quantità di moto nei sistemi isolati
+ok 119 - SIM-C1-L009-02 · Conservazione della quantità di moto nei sistemi isolati
+  ---
+  duration_ms: 3.64325
+  ...
+# Subtest: SIM-C1-L010-01 · Centro di massa e suo moto
+ok 120 - SIM-C1-L010-01 · Centro di massa e suo moto
+  ---
+  duration_ms: 1.788917
+  ...
+# Subtest: SIM-C1-L010-02 · Corpo rigido
+ok 121 - SIM-C1-L010-02 · Corpo rigido
+  ---
+  duration_ms: 1.527833
+  ...
+# Subtest: SIM-C1-L010-03 · Momento torcente
+ok 122 - SIM-C1-L010-03 · Momento torcente
+  ---
+  duration_ms: 1.651042
+  ...
+# Subtest: SIM-C1-L010-04 · Equilibrio rotazionale
+ok 123 - SIM-C1-L010-04 · Equilibrio rotazionale
+  ---
+  duration_ms: 3.7065
+  ...
+# Subtest: SIM-C1-L010-05 · Leve nel corpo umano
+ok 124 - SIM-C1-L010-05 · Leve nel corpo umano
+  ---
+  duration_ms: 1.312417
+  ...
+# Subtest: SIM-C2-L001-01 · Stati di aggregazione
+ok 125 - SIM-C2-L001-01 · Stati di aggregazione
+  ---
+  duration_ms: 125.567917
+  ...
+# Subtest: SIM-C2-L001-02 · Fluidi e solidi
+ok 126 - SIM-C2-L001-02 · Fluidi e solidi
+  ---
+  duration_ms: 12.481958
+  ...
+# Subtest: SIM-C2-L001-03 · Densità
+ok 127 - SIM-C2-L001-03 · Densità
+  ---
+  duration_ms: 11.49475
+  ...
+# Subtest: SIM-C2-L001-04 · Pressione e forza normale
+ok 128 - SIM-C2-L001-04 · Pressione e forza normale
+  ---
+  duration_ms: 6.006875
+  ...
+# Subtest: SIM-C2-L001-05 · Pressione assoluta e relativa
+ok 129 - SIM-C2-L001-05 · Pressione assoluta e relativa
+  ---
+  duration_ms: 1.692667
+  ...
+# Subtest: SIM-C2-L002-01 · Legge di Stevino
+ok 130 - SIM-C2-L002-01 · Legge di Stevino
+  ---
+  duration_ms: 7.794167
+  ...
+# Subtest: SIM-C2-L002-02 · Pressione con la profondità
+ok 131 - SIM-C2-L002-02 · Pressione con la profondità
+  ---
+  duration_ms: 2.329375
+  ...
+# Subtest: SIM-C2-L002-03 · Esperimento di Torricelli
+ok 132 - SIM-C2-L002-03 · Esperimento di Torricelli
+  ---
+  duration_ms: 3.561208
+  ...
+# Subtest: SIM-C2-L002-04 · Manometro a U
+ok 133 - SIM-C2-L002-04 · Manometro a U
+  ---
+  duration_ms: 2.451959
+  ...
+# Subtest: SIM-C2-L003-01 · Principio di Pascal
+ok 134 - SIM-C2-L003-01 · Principio di Pascal
+  ---
+  duration_ms: 9.198625
+  ...
+# Subtest: SIM-C2-L003-02 · Pressa idraulica
+ok 135 - SIM-C2-L003-02 · Pressa idraulica
+  ---
+  duration_ms: 3.388291
+  ...
+# Subtest: SIM-C2-L003-03 · Trasmissione dell’incremento di pressione in un liquido confinato
+ok 136 - SIM-C2-L003-03 · Trasmissione dell’incremento di pressione in un liquido confinato
+  ---
+  duration_ms: 2.677417
+  ...
+# Subtest: SIM-C2-L004-01 · Principio di Archimede
+ok 137 - SIM-C2-L004-01 · Principio di Archimede
+  ---
+  duration_ms: 7.2755
+  ...
+# Subtest: SIM-C2-L004-02 · Spinta idrostatica
+ok 138 - SIM-C2-L004-02 · Spinta idrostatica
+  ---
+  duration_ms: 1.620625
+  ...
+# Subtest: SIM-C2-L004-03 · Condizioni di galleggiamento e immersione
+ok 139 - SIM-C2-L004-03 · Condizioni di galleggiamento e immersione
+  ---
+  duration_ms: 2.909375
+  ...
+# Subtest: SIM-C2-L005-01 · Flusso e portata volumetrica
+ok 140 - SIM-C2-L005-01 · Flusso e portata volumetrica
+  ---
+  duration_ms: 16.077125
+  ...
+# Subtest: SIM-C2-L005-02 · Conservazione della massa
+ok 141 - SIM-C2-L005-02 · Conservazione della massa
+  ---
+  duration_ms: 7.790208
+  ...
+# Subtest: SIM-C2-L005-03 · Equazione di continuità
+ok 142 - SIM-C2-L005-03 · Equazione di continuità
+  ---
+  duration_ms: 31.597542
+  ...
+# Subtest: SIM-C2-L005-04 · Velocità media di sezione
+ok 143 - SIM-C2-L005-04 · Velocità media di sezione
+  ---
+  duration_ms: 5.972709
+  ...
+# Subtest: SIM-C2-L005-05 · Biforcazioni
+ok 144 - SIM-C2-L005-05 · Biforcazioni
+  ---
+  duration_ms: 1.562
+  ...
+# Subtest: SIM-C2-L006-01 · Teorema di Bernoulli
+ok 145 - SIM-C2-L006-01 · Teorema di Bernoulli
+  ---
+  duration_ms: 6.319583
+  ...
+# Subtest: SIM-C2-L006-02 · Pressione statica e dinamica
+ok 146 - SIM-C2-L006-02 · Pressione statica e dinamica
+  ---
+  duration_ms: 29.6745
+  ...
+# Subtest: SIM-C2-L006-03 · Stenosi e aneurisma in modello ideale
+ok 147 - SIM-C2-L006-03 · Stenosi e aneurisma in modello ideale
+  ---
+  duration_ms: 11.155792
+  ...
+# Subtest: SIM-C2-L006-04 · Condizioni di validità
+ok 148 - SIM-C2-L006-04 · Condizioni di validità
+  ---
+  duration_ms: 3.679459
+  ...
+# Subtest: SIM-C2-L007-01 · Flussi laminari e turbolenti
+ok 149 - SIM-C2-L007-01 · Flussi laminari e turbolenti
+  ---
+  duration_ms: 15.396416
+  ...
+# Subtest: SIM-C2-L007-02 · Regime stazionario
+ok 150 - SIM-C2-L007-02 · Regime stazionario
+  ---
+  duration_ms: 13.693333
+  ...
+# Subtest: SIM-C2-L007-03 · Viscosità dinamica
+ok 151 - SIM-C2-L007-03 · Viscosità dinamica
+  ---
+  duration_ms: 2.396833
+  ...
+# Subtest: SIM-C2-L007-04 · Gradiente di velocità
+ok 152 - SIM-C2-L007-04 · Gradiente di velocità
+  ---
+  duration_ms: 26.205375
+  ...
+# Subtest: SIM-C2-L007-05 · Profilo parabolico laminare
+ok 153 - SIM-C2-L007-05 · Profilo parabolico laminare
+  ---
+  duration_ms: 8.52525
+  ...
+# Subtest: SIM-C2-L008-01 · Legge di Hagen–Poiseuille
+ok 154 - SIM-C2-L008-01 · Legge di Hagen–Poiseuille
+  ---
+  duration_ms: 12.019083
+  ...
+# Subtest: SIM-C2-L008-02 · Ruolo di raggio, lunghezza, viscosità e salto di pressione
+ok 155 - SIM-C2-L008-02 · Ruolo di raggio, lunghezza, viscosità e salto di pressione
+  ---
+  duration_ms: 7.444
+  ...
+# Subtest: SIM-C2-L008-03 · Resistenza idraulica
+ok 156 - SIM-C2-L008-03 · Resistenza idraulica
+  ---
+  duration_ms: 3.685333
+  ...
+# Subtest: SIM-C2-L008-04 · Limiti dei modelli fisiologici
+ok 157 - SIM-C2-L008-04 · Limiti dei modelli fisiologici
+  ---
+  duration_ms: 8.721792
+  ...
+# Subtest: SIM-C2-L009-01 · Resistenze idrauliche in serie e in parallelo
+ok 158 - SIM-C2-L009-01 · Resistenze idrauliche in serie e in parallelo
+  ---
+  duration_ms: 12.7785
+  ...
+# Subtest: SIM-C2-L009-02 · Portata nei rami
+ok 159 - SIM-C2-L009-02 · Portata nei rami
+  ---
+  duration_ms: 3.10475
+  ...
+# Subtest: SIM-C2-L009-03 · Resistenze e pressioni nei sistemi biologici
+ok 160 - SIM-C2-L009-03 · Resistenze e pressioni nei sistemi biologici
+  ---
+  duration_ms: 6.99075
+  ...
+# Subtest: SIM-C2-L010-01 · Tensione superficiale
+ok 161 - SIM-C2-L010-01 · Tensione superficiale
+  ---
+  duration_ms: 1.054125
+  ...
+# Subtest: SIM-C2-L010-02 · Piccole quantità di liquido
+ok 162 - SIM-C2-L010-02 · Piccole quantità di liquido
+  ---
+  duration_ms: 3.039
+  ...
+# Subtest: SIM-C2-L010-03 · Bagnabilità e capillarità
+ok 163 - SIM-C2-L010-03 · Bagnabilità e capillarità
+  ---
+  duration_ms: 2.826916
+  ...
+# Subtest: SIM-C2-L010-04 · Interfacce piane e curve
+ok 164 - SIM-C2-L010-04 · Interfacce piane e curve
+  ---
+  duration_ms: 3.39725
+  ...
+# Subtest: SIM-C2-L010-05 · Legge di Laplace e pressione di curvatura
+ok 165 - SIM-C2-L010-05 · Legge di Laplace e pressione di curvatura
+  ---
+  duration_ms: 4.216375
+  ...
+# Subtest: SIM-C3-L01-01 · Sistema e ambiente
+ok 166 - SIM-C3-L01-01 · Sistema e ambiente
+  ---
+  duration_ms: 41.667083
+  ...
+# Subtest: SIM-C3-L01-02 · Stato termodinamico e variabili p, V, T
+ok 167 - SIM-C3-L01-02 · Stato termodinamico e variabili p, V, T
+  ---
+  duration_ms: 3.471958
+  ...
+# Subtest: SIM-C3-L01-03 · Funzioni di stato
+ok 168 - SIM-C3-L01-03 · Funzioni di stato
+  ---
+  duration_ms: 2.810042
+  ...
+# Subtest: SIM-C3-L01-04 · Temperatura e scale
+ok 169 - SIM-C3-L01-04 · Temperatura e scale
+  ---
+  duration_ms: 2.573208
+  ...
+# Subtest: SIM-C3-L02-01 · Gas perfetti
+ok 170 - SIM-C3-L02-01 · Gas perfetti
+  ---
+  duration_ms: 2.14575
+  ...
+# Subtest: SIM-C3-L02-02 · Equazione di stato e variabili assolute
+ok 171 - SIM-C3-L02-02 · Equazione di stato e variabili assolute
+  ---
+  duration_ms: 2.125292
+  ...
+# Subtest: SIM-C3-L03-01 · Calore e scambio di energia
+ok 172 - SIM-C3-L03-01 · Calore e scambio di energia
+  ---
+  duration_ms: 3.036458
+  ...
+# Subtest: SIM-C3-L03-02 · Capacità termica e calore specifico
+ok 173 - SIM-C3-L03-02 · Capacità termica e calore specifico
+  ---
+  duration_ms: 3.333584
+  ...
+# Subtest: SIM-C3-L03-03 · Capacità termiche dei gas ideali
+ok 174 - SIM-C3-L03-03 · Capacità termiche dei gas ideali
+  ---
+  duration_ms: 3.23225
+  ...
+# Subtest: SIM-C3-L03-04 · Calorimetria
+ok 175 - SIM-C3-L03-04 · Calorimetria
+  ---
+  duration_ms: 4.912667
+  ...
+# Subtest: SIM-C3-L04-01 · Fusione
+ok 176 - SIM-C3-L04-01 · Fusione
+  ---
+  duration_ms: 3.835583
+  ...
+# Subtest: SIM-C3-L04-02 · Evaporazione e condensazione
+ok 177 - SIM-C3-L04-02 · Evaporazione e condensazione
+  ---
+  duration_ms: 2.982375
+  ...
+# Subtest: SIM-C3-L04-03 · Calore latente e bilanci a tratti
+ok 178 - SIM-C3-L04-03 · Calore latente e bilanci a tratti
+  ---
+  duration_ms: 5.3655
+  ...
+# Subtest: SIM-C3-L05-01 · Conduzione
+ok 179 - SIM-C3-L05-01 · Conduzione
+  ---
+  duration_ms: 2.569875
+  ...
+# Subtest: SIM-C3-L05-02 · Convezione
+ok 180 - SIM-C3-L05-02 · Convezione
+  ---
+  duration_ms: 3.102709
+  ...
+# Subtest: SIM-C3-L05-03 · Irraggiamento
+ok 181 - SIM-C3-L05-03 · Irraggiamento
+  ---
+  duration_ms: 7.595708
+  ...
+# Subtest: SIM-C3-L06-01 · Primo principio
+ok 182 - SIM-C3-L06-01 · Primo principio
+  ---
+  duration_ms: 5.4385
+  ...
+# Subtest: SIM-C3-L06-02 · Energia interna
+ok 183 - SIM-C3-L06-02 · Energia interna
+  ---
+  duration_ms: 4.108083
+  ...
+# Subtest: SIM-C3-L06-03 · Calore e lavoro
+ok 184 - SIM-C3-L06-03 · Calore e lavoro
+  ---
+  duration_ms: 4.105708
+  ...
+# Subtest: SIM-C3-L06-04 · Interpretazione del lavoro su un diagramma p–V
+ok 185 - SIM-C3-L06-04 · Interpretazione del lavoro su un diagramma p–V
+  ---
+  duration_ms: 1.693333
+  ...
+# Subtest: SIM-C3-L07-01 · Trasformazioni reversibili e irreversibili
+ok 186 - SIM-C3-L07-01 · Trasformazioni reversibili e irreversibili
+  ---
+  duration_ms: 56.175959
+  ...
+# Subtest: SIM-C3-L07-02 · Isoterma
+ok 187 - SIM-C3-L07-02 · Isoterma
+  ---
+  duration_ms: 11.222125
+  ...
+# Subtest: SIM-C3-L07-03 · Isocora
+ok 188 - SIM-C3-L07-03 · Isocora
+  ---
+  duration_ms: 19.407833
+  ...
+# Subtest: SIM-C3-L07-04 · Isobara
+ok 189 - SIM-C3-L07-04 · Isobara
+  ---
+  duration_ms: 9.807083
+  ...
+# Subtest: SIM-C3-L07-05 · Adiabatica e confronto qualitativo
+ok 190 - SIM-C3-L07-05 · Adiabatica e confronto qualitativo
+  ---
+  duration_ms: 5.206333
+  ...
+# Subtest: SIM-C3-L08-01 · Ciclo termodinamico
+ok 191 - SIM-C3-L08-01 · Ciclo termodinamico
+  ---
+  duration_ms: 3.560666
+  ...
+# Subtest: SIM-C3-L08-02 · Bilancio energetico di un ciclo
+ok 192 - SIM-C3-L08-02 · Bilancio energetico di un ciclo
+  ---
+  duration_ms: 2.43
+  ...
+# Subtest: SIM-C3-L08-03 · Funzionamento ciclico
+ok 193 - SIM-C3-L08-03 · Funzionamento ciclico
+  ---
+  duration_ms: 1.007125
+  ...
+# Subtest: SIM-C3-L09-01 · Secondo principio, enunciati di Kelvin–Planck e Clausius
+ok 194 - SIM-C3-L09-01 · Secondo principio, enunciati di Kelvin–Planck e Clausius
+  ---
+  duration_ms: 1.932458
+  ...
+# Subtest: SIM-C3-L09-02 · Macchine termiche
+ok 195 - SIM-C3-L09-02 · Macchine termiche
+  ---
+  duration_ms: 4.359833
+  ...
+# Subtest: SIM-C3-L09-03 · Rendimento
+ok 196 - SIM-C3-L09-03 · Rendimento
+  ---
+  duration_ms: 2.539209
+  ...
+# Subtest: SIM-C3-L09-04 · Ciclo di Carnot
+ok 197 - SIM-C3-L09-04 · Ciclo di Carnot
+  ---
+  duration_ms: 6.352958
+  ...
+# Subtest: SIM-C3-L10-01 · Entropia funzione di stato
+ok 198 - SIM-C3-L10-01 · Entropia funzione di stato
+  ---
+  duration_ms: 2.03025
+  ...
+# Subtest: SIM-C3-L10-02 · Implicazioni macroscopiche
+ok 199 - SIM-C3-L10-02 · Implicazioni macroscopiche
+  ---
+  duration_ms: 4.820292
+  ...
+# Subtest: SIM-C3-L10-03 · Interpretazione statistica
+ok 200 - SIM-C3-L10-03 · Interpretazione statistica
+  ---
+  duration_ms: 3.0325
+  ...
+# Subtest: SIM-C3-L10-04 · Direzione naturale dei processi
+ok 201 - SIM-C3-L10-04 · Direzione naturale dei processi
+  ---
+  duration_ms: 4.907417
+  ...
+# Subtest: SIM-C4-L01-01 · Carica elettrica, segno, unità e conservazione
+ok 202 - SIM-C4-L01-01 · Carica elettrica, segno, unità e conservazione
+  ---
+  duration_ms: 29.708458
+  ...
+# Subtest: SIM-C4-L01-02 · Interazione fra cariche puntiformi e legge di Coulomb
+ok 203 - SIM-C4-L01-02 · Interazione fra cariche puntiformi e legge di Coulomb
+  ---
+  duration_ms: 1.55925
+  ...
+# Subtest: SIM-C4-L02-01 · Campo elettrico e linee di forza
+ok 204 - SIM-C4-L02-01 · Campo elettrico e linee di forza
+  ---
+  duration_ms: 2.164292
+  ...
+# Subtest: SIM-C4-L02-02 · Campo di una o più cariche puntiformi
+ok 205 - SIM-C4-L02-02 · Campo di una o più cariche puntiformi
+  ---
+  duration_ms: 10.3685
+  ...
+# Subtest: SIM-C4-L02-03 · Moto in un campo elettrico uniforme
+ok 206 - SIM-C4-L02-03 · Moto in un campo elettrico uniforme
+  ---
+  duration_ms: 9.349958
+  ...
+# Subtest: SIM-C4-L03-01 · Energia potenziale di una distribuzione di cariche
+ok 207 - SIM-C4-L03-01 · Energia potenziale di una distribuzione di cariche
+  ---
+  duration_ms: 1.174167
+  ...
+# Subtest: SIM-C4-L03-02 · Potenziale e differenza di potenziale
+ok 208 - SIM-C4-L03-02 · Potenziale e differenza di potenziale
+  ---
+  duration_ms: 0.7375
+  ...
+# Subtest: SIM-C4-L03-03 · Conservazione dell’energia in un campo elettrico
+ok 209 - SIM-C4-L03-03 · Conservazione dell’energia in un campo elettrico
+  ---
+  duration_ms: 2.152084
+  ...
+# Subtest: SIM-C4-L04-01 · Conduttori e induzione elettrostatica
+ok 210 - SIM-C4-L04-01 · Conduttori e induzione elettrostatica
+  ---
+  duration_ms: 3.633625
+  ...
+# Subtest: SIM-C4-L04-02 · Dielettrici e polarizzazione
+ok 211 - SIM-C4-L04-02 · Dielettrici e polarizzazione
+  ---
+  duration_ms: 1.016959
+  ...
+# Subtest: SIM-C4-L05-01 · Corrente continua e intensità
+ok 212 - SIM-C4-L05-01 · Corrente continua e intensità
+  ---
+  duration_ms: 2.374375
+  ...
+# Subtest: SIM-C4-L05-02 · Generatore ideale
+ok 213 - SIM-C4-L05-02 · Generatore ideale
+  ---
+  duration_ms: 44.514791
+  ...
+# Subtest: SIM-C4-L05-03 · Conduzione ohmica
+ok 214 - SIM-C4-L05-03 · Conduzione ohmica
+  ---
+  duration_ms: 4.623334
+  ...
+# Subtest: SIM-C4-L05-04 · Prima e seconda legge di Ohm
+ok 215 - SIM-C4-L05-04 · Prima e seconda legge di Ohm
+  ---
+  duration_ms: 11.452916
+  ...
+# Subtest: SIM-C4-L05-05 · Resistività
+ok 216 - SIM-C4-L05-05 · Resistività
+  ---
+  duration_ms: 9.576291
+  ...
+# Subtest: SIM-C4-L06-01 · Resistenze in serie e in parallelo
+ok 217 - SIM-C4-L06-01 · Resistenze in serie e in parallelo
+  ---
+  duration_ms: 1.456041
+  ...
+# Subtest: SIM-C4-L06-02 · Potenza elettrica ed effetto Joule
+ok 218 - SIM-C4-L06-02 · Potenza elettrica ed effetto Joule
+  ---
+  duration_ms: 23.356875
+  ...
+# Subtest: SIM-C4-L07-01 · Capacità elettrica e condensatore piano
+ok 219 - SIM-C4-L07-01 · Capacità elettrica e condensatore piano
+  ---
+  duration_ms: 1.476958
+  ...
+# Subtest: SIM-C4-L07-02 · Effetto del dielettrico
+ok 220 - SIM-C4-L07-02 · Effetto del dielettrico
+  ---
+  duration_ms: 1.03025
+  ...
+# Subtest: SIM-C4-L07-03 · Energia immagazzinata
+ok 221 - SIM-C4-L07-03 · Energia immagazzinata
+  ---
+  duration_ms: 2.788333
+  ...
+# Subtest: SIM-C4-L08-01 · Condensatori in serie e in parallelo
+ok 222 - SIM-C4-L08-01 · Condensatori in serie e in parallelo
+  ---
+  duration_ms: 8.084708
+  ...
+# Subtest: SIM-C4-L08-02 · Conservazione di carica nei collegamenti
+ok 223 - SIM-C4-L08-02 · Conservazione di carica nei collegamenti
+  ---
+  duration_ms: 2.775
+  ...
+# Subtest: SIM-C4-L09-01 · Origine magnetica delle correnti ed esperimento di Oersted
+ok 224 - SIM-C4-L09-01 · Origine magnetica delle correnti ed esperimento di Oersted
+  ---
+  duration_ms: 9.124459
+  ...
+# Subtest: SIM-C4-L09-02 · Forza di Lorentz su una carica in moto e su un filo
+ok 225 - SIM-C4-L09-02 · Forza di Lorentz su una carica in moto e su un filo
+  ---
+  duration_ms: 2.537459
+  ...
+# Subtest: SIM-C4-L09-03 · Moto circolare in campo magnetico uniforme
+ok 226 - SIM-C4-L09-03 · Moto circolare in campo magnetico uniforme
+  ---
+  duration_ms: 5.152667
+  ...
+# Subtest: SIM-C4-L10-01 · Flusso magnetico
+ok 227 - SIM-C4-L10-01 · Flusso magnetico
+  ---
+  duration_ms: 4.450583
+  ...
+# Subtest: SIM-C4-L10-02 · Forza elettromotrice indotta
+ok 228 - SIM-C4-L10-02 · Forza elettromotrice indotta
+  ---
+  duration_ms: 1.600958
+  ...
+# Subtest: SIM-C4-L10-03 · Legge di Faraday–Neumann–Lenz
+ok 229 - SIM-C4-L10-03 · Legge di Faraday–Neumann–Lenz
+  ---
+  duration_ms: 2.373083
+  ...
+# Subtest: SIM-C4-L10-04 · Correnti indotte e loro verso
+ok 230 - SIM-C4-L10-04 · Correnti indotte e loro verso
+  ---
+  duration_ms: 4.559209
+  ...
+# Subtest: SIM-C5-L01-01 · Oscillatore armonico come sorgente
+ok 231 - SIM-C5-L01-01 · Oscillatore armonico come sorgente
+  ---
+  duration_ms: 25.779166
+  ...
+# Subtest: SIM-C5-L01-02 · Ampiezza, periodo, frequenza e pulsazione
+ok 232 - SIM-C5-L01-02 · Ampiezza, periodo, frequenza e pulsazione
+  ---
+  duration_ms: 8.160541
+  ...
+# Subtest: SIM-C5-L02-01 · Perturbazione, energia e mezzo materiale
+ok 233 - SIM-C5-L02-01 · Perturbazione, energia e mezzo materiale
+  ---
+  duration_ms: 5.593625
+  ...
+# Subtest: SIM-C5-L02-02 · Velocità, frequenza e lunghezza d’onda
+ok 234 - SIM-C5-L02-02 · Velocità, frequenza e lunghezza d’onda
+  ---
+  duration_ms: 26.736083
+  ...
+# Subtest: SIM-C5-L02-03 · Equazione armonica di propagazione
+ok 235 - SIM-C5-L02-03 · Equazione armonica di propagazione
+  ---
+  duration_ms: 48.057333
+  ...
+# Subtest: SIM-C5-L02-04 · Onde trasversali su corda e longitudinali nei fluidi
+ok 236 - SIM-C5-L02-04 · Onde trasversali su corda e longitudinali nei fluidi
+  ---
+  duration_ms: 4.89075
+  ...
+# Subtest: SIM-C5-L03-01 · Principio di sovrapposizione
+ok 237 - SIM-C5-L03-01 · Principio di sovrapposizione
+  ---
+  duration_ms: 4.329208
+  ...
+# Subtest: SIM-C5-L03-02 · Interferenza costruttiva e distruttiva
+ok 238 - SIM-C5-L03-02 · Interferenza costruttiva e distruttiva
+  ---
+  duration_ms: 28.525375
+  ...
+# Subtest: SIM-C5-L04-01 · Energia e potenza di un’onda meccanica in un mezzo elastico
+ok 239 - SIM-C5-L04-01 · Energia e potenza di un’onda meccanica in un mezzo elastico
+  ---
+  duration_ms: 24.985833
+  ...
+# Subtest: SIM-C5-L04-02 · Intensità come energia per area e tempo
+ok 240 - SIM-C5-L04-02 · Intensità come energia per area e tempo
+  ---
+  duration_ms: 41.424541
+  ...
+# Subtest: SIM-C5-L04-03 · Legge dell’inverso del quadrato della distanza
+ok 241 - SIM-C5-L04-03 · Legge dell’inverso del quadrato della distanza
+  ---
+  duration_ms: 10.5185
+  ...
+# Subtest: SIM-C5-L05-01 · Velocità del suono nei mezzi
+ok 242 - SIM-C5-L05-01 · Velocità del suono nei mezzi
+  ---
+  duration_ms: 13.327375
+  ...
+# Subtest: SIM-C5-L05-02 · Intensità, percezione e livello sonoro in decibel
+ok 243 - SIM-C5-L05-02 · Intensità, percezione e livello sonoro in decibel
+  ---
+  duration_ms: 13.390208
+  ...
+# Subtest: SIM-C5-L05-03 · Effetto Doppler qualitativo
+ok 244 - SIM-C5-L05-03 · Effetto Doppler qualitativo
+  ---
+  duration_ms: 8.017083
+  ...
+# Subtest: SIM-C5-L06-01 · Onde elettromagnetiche e campi ortogonali
+ok 245 - SIM-C5-L06-01 · Onde elettromagnetiche e campi ortogonali
+  ---
+  duration_ms: 9.775292
+  ...
+# Subtest: SIM-C5-L06-02 · Velocità, frequenza, lunghezza d’onda, ampiezza e intensità
+ok 246 - SIM-C5-L06-02 · Velocità, frequenza, lunghezza d’onda, ampiezza e intensità
+  ---
+  duration_ms: 8.698792
+  ...
+# Subtest: SIM-C5-L06-03 · Spettro: radio, microonde, infrarosso, visibile, UV, X e gamma
+ok 247 - SIM-C5-L06-03 · Spettro: radio, microonde, infrarosso, visibile, UV, X e gamma
+  ---
+  duration_ms: 7.004458
+  ...
+# Subtest: SIM-C5-L07-01 · Quantizzazione dell’energia e relazione di Planck
+ok 248 - SIM-C5-L07-01 · Quantizzazione dell’energia e relazione di Planck
+  ---
+  duration_ms: 6.663875
+  ...
+# Subtest: SIM-C5-L07-02 · Assorbimento e legge di Lambert–Beer
+ok 249 - SIM-C5-L07-02 · Assorbimento e legge di Lambert–Beer
+  ---
+  duration_ms: 6.43575
+  ...
+# Subtest: SIM-C5-L07-03 · Distinzione fra radiazioni ionizzanti e non ionizzanti
+ok 250 - SIM-C5-L07-03 · Distinzione fra radiazioni ionizzanti e non ionizzanti
+  ---
+  duration_ms: 5.231917
+  ...
+# Subtest: SIM-C5-L08-01 · Nucleo instabile, nuclidi e isotopi radioattivi
+ok 251 - SIM-C5-L08-01 · Nucleo instabile, nuclidi e isotopi radioattivi
+  ---
+  duration_ms: 1.850125
+  ...
+# Subtest: SIM-C5-L08-02 · Attività, legge di decadimento e tempo di dimezzamento
+ok 252 - SIM-C5-L08-02 · Attività, legge di decadimento e tempo di dimezzamento
+  ---
+  duration_ms: 2.987666
+  ...
+# Subtest: SIM-C5-L08-03 · Decadimenti α, β e transizioni γ
+ok 253 - SIM-C5-L08-03 · Decadimenti α, β e transizioni γ
+  ---
+  duration_ms: 1.230167
+  ...
+# Subtest: SIM-C5-L09-01 · Legge della riflessione
+ok 254 - SIM-C5-L09-01 · Legge della riflessione
+  ---
+  duration_ms: 1.129458
+  ...
+# Subtest: SIM-C5-L09-02 · Indice di rifrazione e legge di Snell
+ok 255 - SIM-C5-L09-02 · Indice di rifrazione e legge di Snell
+  ---
+  duration_ms: 0.677125
+  ...
+# Subtest: SIM-C5-L10-01 · Lenti sottili convergenti
+ok 256 - SIM-C5-L10-01 · Lenti sottili convergenti
+  ---
+  duration_ms: 2.221458
+  ...
+# Subtest: SIM-C5-L10-02 · Legge dei punti coniugati e formazione di immagini
+ok 257 - SIM-C5-L10-02 · Legge dei punti coniugati e formazione di immagini
+  ---
+  duration_ms: 1.717167
+  ...
+# Subtest: SIM-C6-L01-01 · Misurare una distanza con l’eco
+ok 258 - SIM-C6-L01-01 · Misurare una distanza con l’eco
+  ---
+  duration_ms: 51.038333
+  ...
+# Subtest: SIM-C6-L02-01 · Dalla massa raccolta alla velocità del fluido
+ok 259 - SIM-C6-L02-01 · Dalla massa raccolta alla velocità del fluido
+  ---
+  duration_ms: 36.454208
+  ...
+# Subtest: SIM-C6-L03-01 · Dalla batteria al calorimetro
+ok 260 - SIM-C6-L03-01 · Dalla batteria al calorimetro
+  ---
+  duration_ms: 3.7545
+  ...
+# Subtest: SIM-C6-L04-01 · Riconoscere una legge di attenuazione
+ok 261 - SIM-C6-L04-01 · Riconoscere una legge di attenuazione
+  ---
+  duration_ms: 7.466292
+  ...
+# Subtest: SIM-C6-L05-01 · Sommare aree con segno
+ok 262 - SIM-C6-L05-01 · Sommare aree con segno
+  ---
+  duration_ms: 6.720625
+  ...
+# Subtest: SIM-C6-L06-01 · Verificare la lente intorno alla distanza focale
+ok 263 - SIM-C6-L06-01 · Verificare la lente intorno alla distanza focale
+  ---
+  duration_ms: 6.652084
+  ...
+# Subtest: Invarianti fra strumenti indipendenti e vincoli di validità
+ok 264 - Invarianti fra strumenti indipendenti e vincoli di validità
+  ---
+  duration_ms: 79.442791
+  ...
+# Subtest: Le indicazioni sperimentali sono specifiche per ciascuna delle 181 voci
+ok 265 - Le indicazioni sperimentali sono specifiche per ciascuna delle 181 voci
+  ---
+  duration_ms: 68.434375
+  ...
+# Subtest: Orologio, corpi e misure soddisfano gli stessi vincoli fisici nei sei corsi
+ok 266 - Orologio, corpi e misure soddisfano gli stessi vincoli fisici nei sei corsi
+  ---
+  duration_ms: 101.827834
+  ...
+# Subtest: Inquadratura stretta con etichette vicine e confine della tavola
+ok 267 - Inquadratura stretta con etichette vicine e confine della tavola
+  ---
+  duration_ms: 1.691292
+  ...
+# Subtest: Entrata stays in the accessible legend and off the measured glyphs
+ok 268 - Entrata stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 173.478208
+  ...
+# Subtest: Presa frontale stays in the accessible legend and off the measured glyphs
+ok 269 - Presa frontale stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 9.400958
+  ...
+# Subtest: Uscita stays in the accessible legend and off the measured glyphs
+ok 270 - Uscita stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 48.94975
+  ...
+# Subtest: Sezione di misura stays in the accessible legend and off the measured glyphs
+ok 271 - Sezione di misura stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 23.678583
+  ...
+# Subtest: Sforzo sulla lastra stays in the accessible legend and off the measured glyphs
+ok 272 - Sforzo sulla lastra stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 1.400958
+  ...
+# Subtest: Presa intermedia stays in the accessible legend and off the measured glyphs
+ok 273 - Presa intermedia stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 4.2325
+  ...
+# Subtest: In parallelo stays in the accessible legend and off the measured glyphs
+ok 274 - In parallelo stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 5.66875
+  ...
+# Subtest: Goccia stays in the accessible legend and off the measured glyphs
+ok 275 - Goccia stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 3.340417
+  ...
+# Subtest: Film a due facce stays in the accessible legend and off the measured glyphs
+ok 276 - Film a due facce stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 6.931291
+  ...
+# Subtest: unrelated labels keep their existing anchors
+ok 277 - unrelated labels keep their existing anchors
+  ---
+  duration_ms: 4.956625
+  ...
+# Subtest: the Pitot velocity arrows pass beside the probes with the same direction and scale
+ok 278 - the Pitot velocity arrows pass beside the probes with the same direction and scale
+  ---
+  duration_ms: 31.751875
+  ...
+# Subtest: press arrows show motion direction and disappear at zero stroke
+ok 279 - press arrows show motion direction and disappear at zero stroke
+  ---
+  duration_ms: 2.281083
+  ...
+# Subtest: Il lettore ricompone ogni lezione ed esempio dalle stesse unità editoriali
+ok 280 - Il lettore ricompone ogni lezione ed esempio dalle stesse unità editoriali
+  ---
+  duration_ms: 38.433291
+  ...
+# Subtest: Le voci tardive o remote lasciano sempre sotto controllo l’ascolto
+ok 281 - Le voci tardive o remote lasciano sempre sotto controllo l’ascolto
+  ---
+  duration_ms: 1.152417
+  ...
+# Subtest: Il pacchetto italiano offline rispetta impronte e budget della distribuzione verificata
+ok 282 - Il pacchetto italiano offline rispetta impronte e budget della distribuzione verificata
+  ---
+  duration_ms: 47.911459
+  ...
+# Verificati 117 esempi e 8 lezioni a più figure.
+# Subtest: Ogni blocco del manoscritto resta nello stesso ordine e con la relativa didascalia
+ok 283 - Ogni blocco del manoscritto resta nello stesso ordine e con la relativa didascalia
+  ---
+  duration_ms: 82.13875
+  ...
+# Subtest: Un breve blocco indivisibile e i quesiti si leggono in forma integrale
+ok 284 - Un breve blocco indivisibile e i quesiti si leggono in forma integrale
+  ---
+  duration_ms: 2.310333
+  ...
+# Subtest: Lo svolgimento di un quesito espanso è navigabile un passaggio alla volta dopo la risposta
+ok 285 - Lo svolgimento di un quesito espanso è navigabile un passaggio alla volta dopo la risposta
+  ---
+  duration_ms: 0.305833
+  ...
+# Subtest: both Coulomb forces keep the common gain clear of the charge spheres
+ok 286 - both Coulomb forces keep the common gain clear of the charge spheres
+  ---
+  duration_ms: 55.157292
+  ...
+# Subtest: the photoelectron inset preserves direction, gives its scale, and vanishes at zero excess
+ok 287 - the photoelectron inset preserves direction, gives its scale, and vanishes at zero excess
+  ---
+  duration_ms: 91.817958
+  ...
+# Subtest: confirmed C1 and Doppler cartouches leave the geometry and the accessible names legible
+ok 288 - confirmed C1 and Doppler cartouches leave the geometry and the accessible names legible
+  ---
+  duration_ms: 65.594166
+  ...
+# Subtest: small gravitational attraction remains visible in both inward directions
+ok 289 - small gravitational attraction remains visible in both inward directions
+  ---
+  duration_ms: 11.45075
+  ...
+# Subtest: the early cart velocity has a separate direction cue only above zero
+ok 290 - the early cart velocity has a separate direction cue only above zero
+  ---
+  duration_ms: 14.314583
+  ...
+# Subtest: the virtual image stays clear of the object label in the C6 lens
+ok 291 - the virtual image stays clear of the object label in the C6 lens
+  ---
+  duration_ms: 40.053917
+  ...
+# Subtest: the C6 attenuation detector label leaves the transmitted beam unobstructed
+ok 292 - the C6 attenuation detector label leaves the transmitted beam unobstructed
+  ---
+  duration_ms: 25.86125
+  ...
+# Subtest: the kinetic-energy cart keeps its original speed and adds a visible short-vector detail
+ok 293 - the kinetic-energy cart keeps its original speed and adds a visible short-vector detail
+  ---
+  duration_ms: 26.908584
+  ...
+# Subtest: Dieci chiavi indipendenti, una competenza per soluzione e due tavole consecutive
+ok 294 - Dieci chiavi indipendenti, una competenza per soluzione e due tavole consecutive
+  ---
+  duration_ms: 36.32625
+  ...
+# Subtest: Cinque derivazioni equivalenti, controlli numerici e tre fasi per grafico
+ok 295 - Cinque derivazioni equivalenti, controlli numerici e tre fasi per grafico
+  ---
+  duration_ms: 11.109084
+  ...
+# Subtest: Parentesi, segno, potenze e limiti espliciti del correttore
+ok 296 - Parentesi, segno, potenze e limiti espliciti del correttore
+  ---
+  duration_ms: 4.552916
+  ...
+# Subtest: ogni microcorso presenta formule inverse, tre disegni successivi e esercizio senza calcolatrice
+ok 297 - ogni microcorso presenta formule inverse, tre disegni successivi e esercizio senza calcolatrice
+  ---
+  duration_ms: 16.1595
+  ...
+# Subtest: le cinque pagine trattano aspetti fisici distinti e controlli non confondibili
+ok 298 - le cinque pagine trattano aspetti fisici distinti e controlli non confondibili
+  ---
+  duration_ms: 5.444792
+  ...
+# Subtest: l’indice C6 collega tutti i cinque microcorsi senza duplicarne le schede
+ok 299 - l’indice C6 collega tutti i cinque microcorsi senza duplicarne le schede
+  ---
+  duration_ms: 0.762291
+  ...
+# Subtest: l’ingresso sprint distingue diagnosi, allenamento e simulazione normativa
+ok 300 - l’ingresso sprint distingue diagnosi, allenamento e simulazione normativa
+  ---
+  duration_ms: 1.154458
+  ...
+# Subtest: the midpoint probe marks signed superposition and a separate visible detail
+ok 301 - the midpoint probe marks signed superposition and a separate visible detail
+  ---
+  duration_ms: 123.61875
+  ...
+# Subtest: the single-source field keeps the numerical charge label
+ok 302 - the single-source field keeps the numerical charge label
+  ---
+  duration_ms: 5.965125
+  ...
+# Subtest: C1 · soglia, quiete, attrito nullo, distacco e bilancio verticale
+ok 303 - C1 · soglia, quiete, attrito nullo, distacco e bilancio verticale
+  ---
+  duration_ms: 2.723834
+  ...
+# Subtest: C2 · raggio dimezzato, proporzionalità, regime laminare
+ok 304 - C2 · raggio dimezzato, proporzionalità, regime laminare
+  ---
+  duration_ms: 1.180875
+  ...
+# Subtest: C3 · stati, area, lavoro di compressione, primo principio
+ok 305 - C3 · stati, area, lavoro di compressione, primo principio
+  ---
+  duration_ms: 1.220792
+  ...
+# Subtest: C4 · nodi, maglia, potenza e tensione nulla
+ok 306 - C4 · nodi, maglia, potenza e tensione nulla
+  ---
+  duration_ms: 0.484917
+  ...
+# Subtest: C5 · due raggi si intersecano nel punto coniugato
+ok 307 - C5 · due raggi si intersecano nel punto coniugato
+  ---
+  duration_ms: 0.307333
+  ...
+# Subtest: Lancio · differenze centrate, energia e radici anche nel lancio verticale
+ok 308 - Lancio · differenze centrate, energia e radici anche nel lancio verticale
+  ---
+  duration_ms: 3.790375
+  ...
+# Subtest: Capillare · integrazione sugli anelli, moto locale e dominio di Reynolds
+ok 309 - Capillare · integrazione sugli anelli, moto locale e dominio di Reynolds
+  ---
+  duration_ms: 3.806417
+  ...
+# Subtest: Pistone · pV costante e quadratura indipendente del lavoro con entrambi i segni
+ok 310 - Pistone · pV costante e quadratura indipendente del lavoro con entrambi i segni
+  ---
+  duration_ms: 16.56575
+  ...
+# Subtest: Faraday e Lenz · derivata del flusso, campo nullo istantaneo, circuito aperto e carico resistivo
+ok 311 - Faraday e Lenz · derivata del flusso, campo nullo istantaneo, circuito aperto e carico resistivo
+  ---
+  duration_ms: 1.359
+  ...
+# Subtest: Onde · traslazione delle creste, somma puntuale e nodi per fase o cammino
+ok 312 - Onde · traslazione delle creste, somma puntuale e nodi per fase o cammino
+  ---
+  duration_ms: 14.688042
+  ...
+# Subtest: Onde · lettura dello zero istantaneo e degli spostamenti prima e dopo
+ok 313 - Onde · lettura dello zero istantaneo e degli spostamenti prima e dopo
+  ---
+  duration_ms: 1.753917
+  ...
+# Subtest: Orologio · stesso istante a 24, 60, 120 fps, arresto e riavvio del ciclo
+ok 314 - Orologio · stesso istante a 24, 60, 120 fps, arresto e riavvio del ciclo
+  ---
+  duration_ms: 4.854542
+  ...
+# Subtest: SIM-C4-L02-03 · whole marker and three field heads are clear of plate silhouettes in initial framing
+ok 315 - SIM-C4-L02-03 · whole marker and three field heads are clear of plate silhouettes in initial framing
+  ---
+  duration_ms: 577.227792
+  ...
+# Subtest: SIM-C4-L03-02 · whole marker and three field heads are clear of plate silhouettes in initial framing
+ok 316 - SIM-C4-L03-02 · whole marker and three field heads are clear of plate silhouettes in initial framing
+  ---
+  duration_ms: 233.296083
+  ...
+# Subtest: SIM-C4-L03-03 · whole marker and three field heads are clear of plate silhouettes in initial framing
+ok 317 - SIM-C4-L03-03 · whole marker and three field heads are clear of plate silhouettes in initial framing
+  ---
+  duration_ms: 220.60425
+  ...
+# Subtest: target camera keeps all actual opaque mesh supports and table corners inside both recorded frames
+ok 318 - target camera keeps all actual opaque mesh supports and table corners inside both recorded frames
+  ---
+  duration_ms: 336.87525
+  ...
+# Subtest: native alternative views are taught without directing fallback users to disabled controls
+ok 319 - native alternative views are taught without directing fallback users to disabled controls
+  ---
+  duration_ms: 12.507958
+  ...
+# Subtest: I contratti pubblicati accettano il pacchetto di geometria e respingono una legge incompleta
+ok 320 - I contratti pubblicati accettano il pacchetto di geometria e respingono una legge incompleta
+  ---
+  duration_ms: 1104.927041
+  ...
+# Subtest: Il client MCP ufficiale negozia il protocollo e invoca solo gli strumenti autorizzati
+ok 321 - Il client MCP ufficiale negozia il protocollo e invoca solo gli strumenti autorizzati
+  ---
+  duration_ms: 441.304166
+  ...
+# Subtest: Entrambe le durate. Inversione, zero e distanza coincidono con una somma indipendente a passi di mezzo secondo
+ok 322 - Entrambe le durate. Inversione, zero e distanza coincidono con una somma indipendente a passi di mezzo secondo
+  ---
+  duration_ms: 4.139
+  ...
+# Subtest: Il modello accetta altri tratti, una sosta e un’origine traslata e rifiuta tempi o dati fuori dominio
+ok 323 - Il modello accetta altri tratti, una sosta e un’origine traslata e rifiuta tempi o dati fuori dominio
+  ---
+  duration_ms: 6.053916
+  ...
+# Subtest: Il feedback e l’aiuto sono indipendenti. Anche ripristinare lo stesso testo richiede un nuovo invio
+ok 324 - Il feedback e l’aiuto sono indipendenti. Anche ripristinare lo stesso testo richiede un nuovo invio
+  ---
+  duration_ms: 1.667833
+  ...
+# Subtest: Le prime cinque risoluzioni editoriali mantengono i risultati e mostrano il ragionamento
+ok 325 - Le prime cinque risoluzioni editoriali mantengono i risultati e mostrano il ragionamento
+  ---
+  duration_ms: 35.814
+  ...
+# Subtest: L’accelerazione centripeta include correttamente il raggio al denominatore
+ok 326 - L’accelerazione centripeta include correttamente il raggio al denominatore
+  ---
+  duration_ms: 3.927625
+  ...
+# Subtest: Ogni file JSON mantiene gli identificatori unici nella propria banca
+ok 327 - Ogni file JSON mantiene gli identificatori unici nella propria banca
+  ---
+  duration_ms: 21.543125
+  ...
+# Subtest: the top view frames every circular front across the three media
+ok 328 - the top view frames every circular front across the three media
+  ---
+  duration_ms: 104.175292
+  ...
+# Subtest: one-way transmission identifies the pulse without labels on its path
+ok 329 - one-way transmission identifies the pulse without labels on its path
+  ---
+  duration_ms: 6.761542
+  ...
+# Subtest: conduction keeps the hot and cold names off the heat-flow arrow
+ok 330 - conduction keeps the hot and cold names off the heat-flow arrow
+  ---
+  duration_ms: 112.093834
+  ...
+# Subtest: convection return stays in the legend and clears the downward arrow
+ok 331 - convection return stays in the legend and clears the downward arrow
+  ---
+  duration_ms: 9.354958
+  ...
+# Subtest: the ambient label clears the net radiation indicator in the top view
+ok 332 - the ambient label clears the net radiation indicator in the top view
+  ---
+  duration_ms: 15.110625
+  ...
+# Subtest: the smallest positive work is represented with its true sense in both thermal machines
+ok 333 - the smallest positive work is represented with its true sense in both thermal machines
+  ---
+  duration_ms: 105.385041
+  ...
+# Subtest: five early fusion frames retain a directional indicator for supplied energy
+ok 334 - five early fusion frames retain a directional indicator for supplied energy
+  ---
+  duration_ms: 5.431125
+  ...
+# Subtest: larger transfers keep their existing scale and no magnified arrow
+ok 335 - larger transfers keep their existing scale and no magnified arrow
+  ---
+  duration_ms: 8.427416
+  ...
+# Subtest: legends explain the active view and distinguish heat from work
+ok 336 - legends explain the active view and distinguish heat from work
+  ---
+  duration_ms: 4.783417
+  ...
+# Subtest: the fallback arrowhead extends beyond the shaft without moving its tip
+ok 337 - the fallback arrowhead extends beyond the shaft without moving its tip
+  ---
+  duration_ms: 33.542875
+  ...
+# Subtest: the native wave section follows the centre plane even when the projected sheet degenerates
+ok 338 - the native wave section follows the centre plane even when the projected sheet degenerates
+  ---
+  duration_ms: 128.320833
+  ...
+# Subtest: the trace belongs only to the section view
+ok 339 - the trace belongs only to the section view
+  ---
+  duration_ms: 28.517125
+  ...
+1..339
+# tests 339
+# suites 0
+# pass 339
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5041.301709

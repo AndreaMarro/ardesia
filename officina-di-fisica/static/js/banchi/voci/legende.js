@@ -92,6 +92,12 @@ const annotazioni = {
     ['Goccia', 'La sfera azzurra è la goccia. La freccia ocra va dal centro alla superficie.', ['L010-02']],
     ['Film a due facce', 'I due contorni schematici indicano le superfici del film a due facce. La freccia ocra indica il raggio di riferimento.', ['L010-05']],
   ],
+  C3: [
+    ['Calda', 'La faccia calda della parete è a sinistra. La faccia fredda è a destra. La freccia indica il flusso dalla faccia calda a quella fredda.', ['L05-01']],
+    ['Fredda', '', ['L05-01']],
+    ['Ritorno', 'Il ritorno percorre il ramo azzurro. Il fluido scende a destra e la freccia viola ne indica il verso.', ['L05-02']],
+    ['Ambiente', 'L’ambiente è la piastra azzurra a destra mantenuta a 300 K. Le frecce viola mostrano il verso dello stesso scambio netto.', ['L05-03']],
+  ],
   C4: [
     ['+1', 'Le due sfere rosse hanno ciascuna carica +1 nC. Le frecce viola sono riportate accanto alle sfere alla stessa scala, parallele alla retta che unisce i centri. Il dettaglio ocra scuro conserva i versi e ingrandisce di otto volte le frecce più corte.', ['L01-02']],
     ['P', 'Il punto P è a metà fra le due cariche. Resta fisso mentre si varia la carica a destra.', ['L02-02']],
