@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-author-b-recovery-20261127/officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/check_actual.py", line 24, in <module>
+    s=stimuli[ident];assert list(map(exact,s['proposedPointsOnly']))==list(map(exact,points))
+                            ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-author-b-recovery-20261127/officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/independent_math.py", line 14, in exact
+    if type(x)is bool or type(x)is float:raise ValueError('Exact literal required; no binary float or bool')
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Exact literal required; no binary float or bool

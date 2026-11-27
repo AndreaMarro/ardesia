@@ -1,0 +1,528 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "INDEPENDENT_SIX_DRAFT_CPU_TEXT_REVIEW",
+  "candidateCommit": "43083298dea4d10c37bc8940069e98ba66c464ce",
+  "rawAuthorPackageSha256": "a852b724ca591ad590e2911704bbe609ccbb2cc233e5fd03b94b7176dfd44e51",
+  "rawReviewFixtureSha256": "21bfc5b613ac838bc76e8efd7d9f5c0b304e6aee7dc1c19f896df969ad431e07",
+  "reviewSha256": "4196a4365163e9eef2b5116aec3804b688868249a3b429d0de7791979125bcee",
+  "authorRecords": 7,
+  "reviewedRecords": 6,
+  "excludedID": "SIM-C4-L09-02",
+  "tasks": 12,
+  "realTests": 14,
+  "realTestExitCode": 0,
+  "actualSourceModulesPinned": 52,
+  "findings": [],
+  "UI": "NOT_RUN",
+  "canonicalDBImport": "NOT_RUN",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "ownedRepositoryFiles": [
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/actual-code.json",
+      "sha256": "20aca32cf266ff3c019ea613284b4148139d786d15713028b0732d99a5037e46",
+      "bytes": 230913
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/actual-code.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/actual-code.stdout.txt",
+      "sha256": "20aca32cf266ff3c019ea613284b4148139d786d15713028b0732d99a5037e46",
+      "bytes": 230913
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/actual-comparison.json",
+      "sha256": "80159512b519b9a00b9e8e4187604e03568cf7056b01d7237b72feeb01786e44",
+      "bytes": 66637
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/actual-grader-block.js.txt",
+      "sha256": "47873210c4ae3e5c412a9e9f5ed915534984f6639f1bc5c95017150df830d239",
+      "bytes": 356
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/actual-terminal.json",
+      "sha256": "9b196b67887eed78076ebeeb5f8ef3dd8ec76321106aad03ec65dfde36f1213f",
+      "bytes": 524
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/author-manual-full-not-reviewed.md",
+      "sha256": "69b1c29af749a9ff0135ad739e951c5ae8d6ec7e0d102341af23893a71e1ce79",
+      "bytes": 6226
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/author-manual-six-excerpt.md",
+      "sha256": "515ec7a7210826bb028220a63a0154befda2d603b8ef3d133152df6ad4eba467",
+      "bytes": 5235
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/author-package-bindings.json",
+      "sha256": "61b1d2e4da2b5f701489b984ca5ce2de44238863e92f43310817cbd4d18a0478",
+      "bytes": 2341
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/author-package.json",
+      "sha256": "a852b724ca591ad590e2911704bbe609ccbb2cc233e5fd03b94b7176dfd44e51",
+      "bytes": 19508
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/check_actual.py",
+      "sha256": "75391353f454f65a7ca3a9fc036b8f24de8fab9cd1c470d70075bd171d2f0ba3",
+      "bytes": 4976
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/collect-actual.mjs",
+      "sha256": "b7921bc31dedda97124267afe7056cb9e8592e771c89ca086d23ac4cc28e1d5c",
+      "bytes": 2415
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/comparison.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/comparison.stdout.txt",
+      "sha256": "d356d17fd82df14894b19f5e2e597a2e6ce0c7b024cd89654b5ea8eb6ecf0af5",
+      "bytes": 60
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/content/esperienze-C4.json",
+      "sha256": "b56b6df61c44009e1508cf0e2cb7992b936db985e37f8c21fc9afd51b811e58d",
+      "bytes": 36805
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/package.json",
+      "sha256": "1ceaf4e9313cebcd296324a6ee48eeb0dfd858e20fe0ff8efb4d97d0e90f76f9",
+      "bytes": 535
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/aula.js",
+      "sha256": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+      "bytes": 4885
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/banco.js",
+      "sha256": "756f4026f1e6aea49ba7635678f1f2406743c3b5b39685b18d60dfbb417074db",
+      "bytes": 34411
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/catalogo.js",
+      "sha256": "4aa0261293b98126c06c6af91ce27c2dd32e214856b04d488e3662e040d36a95",
+      "bytes": 4099
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/collegamenti.js",
+      "sha256": "23755d6085231531bab2cd86c9791e307e7cad132c96be4f6fdcbaabe6f0e5b7",
+      "bytes": 1481
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/etichette.js",
+      "sha256": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+      "bytes": 778
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/grafici.js",
+      "sha256": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+      "bytes": 5880
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/misure.js",
+      "sha256": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+      "bytes": 1512
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/modelli/calore.js",
+      "sha256": "83c89a3140ba5a3386eff0cff54a1aa2575c26ea1e973779b19303026c13bc23",
+      "bytes": 2236
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/modelli/campo.js",
+      "sha256": "3750efefa281d28712a973bea921544fb83dc5ad9eb2da7e0c09fe6fac6d50c3",
+      "bytes": 3362
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/modelli/circuito.js",
+      "sha256": "107b9e8defed3aaa6d04883442951ed20b7b2cdfdefb658f3ef746c24185a757",
+      "bytes": 2686
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/modelli/gas.js",
+      "sha256": "7981d292be241bb3c7921f755072bda44ab52e5be92f9ae203958a19b7ec1a6d",
+      "bytes": 2335
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/modelli/induzione.js",
+      "sha256": "14bec092bcfb1d23b0c5ad97426b75c003f56bd427ce30c6d65c0859319f48bc",
+      "bytes": 2454
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/modelli/lente.js",
+      "sha256": "5488291f98987538c4fc8483a61e2c058e45605c66391a7ccbdd2b9fb8787566",
+      "bytes": 3787
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/modelli/onde.js",
+      "sha256": "3fb789376d62279c115c5facf666c10c39160068210585a5755ee86daa2dbb7c",
+      "bytes": 3734
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/modelli/piano.js",
+      "sha256": "0575020da70a7759527f307b6ba291777f79ff0a710e313b1a4cb7ee012de6e2",
+      "bytes": 2826
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/modelli/stevino.js",
+      "sha256": "620d9363d38867ce854c0f9c567bc8c63d5519a44f1ce1dfd0dddf1f315da0af",
+      "bytes": 2066
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/modelli/tubo.js",
+      "sha256": "ebe96bda5301f124182d7bd6ee3042b9ecad61b46689ea26a093deac784c3cd6",
+      "bytes": 3958
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/modelli/volo.js",
+      "sha256": "bb6280ec67bca5f07e80aa382b6a45c72717189887561090f9807493e1912713",
+      "bytes": 3301
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/quaderno.js",
+      "sha256": "ecc32226e0fa1781b36cac952fa926a2ac17be6b4eae491ef6ef5744fcd8885a",
+      "bytes": 15609
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/scena.js",
+      "sha256": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+      "bytes": 13180
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/scene/calore.js",
+      "sha256": "80272a42fbf7edd5a130df801c3819482aaca55471ed992e5fb411085f897f4e",
+      "bytes": 1337
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/scene/campo.js",
+      "sha256": "cd1728f04b9bb954c15bd555eec5c0958d96bf166f498d68d2fcb1ee051f18c4",
+      "bytes": 4665
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/scene/circuito.js",
+      "sha256": "049ed16c1cc2bd6d2c2662c4de38399d3b1bb00a5adabeb17bed06780df49701",
+      "bytes": 2179
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/scene/gas.js",
+      "sha256": "c39a13bb813bd6f2602a767cbf6e1e42f954092291ca320d3a61352491953223",
+      "bytes": 1817
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/scene/induzione.js",
+      "sha256": "b7b69747eae9b3941fc8db44047faa5ebad34e49d0a0b924b6765f4b4ec252a2",
+      "bytes": 2017
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/scene/lente.js",
+      "sha256": "8a238ff78b82cdd796b796691e147128c00a5a0f9d089d2398896c92a4c104b5",
+      "bytes": 2738
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/scene/onde.js",
+      "sha256": "082076476beef18b03506417958bbec7f5d1e75c9278f8824cfde68cdf0ed139",
+      "bytes": 4278
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/scene/piano.js",
+      "sha256": "a0a2eb65280c953bd0084e6daafcfaf20e369832f59cf0df68350af7cbd8eab2",
+      "bytes": 2042
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/scene/stevino.js",
+      "sha256": "75836bd9014a1b8b23278efd3be3482dcecea533abf9c9a9d6ff3c71b9581c0c",
+      "bytes": 1731
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/scene/tubo.js",
+      "sha256": "a401bc41dbd89e106e01adefcec9298dabae15ad552992eef8f55e8364225667",
+      "bytes": 2295
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/scene/volo.js",
+      "sha256": "11f7d3a7935596f7064fa91067ff837e3ca2469d178040c22e6531e86d28cc37",
+      "bytes": 2711
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/tavola.js",
+      "sha256": "9082781b0fbf88f421742cf8f10f3f098f51e9aac131118a5691e1b6e11cc4a8",
+      "bytes": 20492
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/voci/apparati/campi.js",
+      "sha256": "0f408830b38f2b806ed128d5d26f73b675a587cab8e884ff710d34a157a636c6",
+      "bytes": 9387
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/voci/apparati/fluidi.js",
+      "sha256": "a4cd4d9f6a061b9077e2406bbde2d95296a313ec7b7c69f8f5d68cd26fadb8fc",
+      "bytes": 11505
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/voci/apparati/meccanica.js",
+      "sha256": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+      "bytes": 12886
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/voci/apparati/onde.js",
+      "sha256": "b17ef99bd386c0faed820e87b2f4ca476e4cd99597b76ae403c1c38ebe7b1f8c",
+      "bytes": 14634
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/voci/apparati/termica.js",
+      "sha256": "71e362248e122dc8086c65d69476fc813982262cbb3126ebfe15f242a60e2cc5",
+      "bytes": 9826
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/voci/assessment-selection.js",
+      "sha256": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+      "bytes": 1102
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/voci/confronti.js",
+      "sha256": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+      "bytes": 4981
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/voci/engines.js",
+      "sha256": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+      "bytes": 2692
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/voci/esperimento.js",
+      "sha256": "20f0964d1db6ddad50fb850dce4586ebf4a2695a6d30e0c1f87281cf7628c300",
+      "bytes": 12715
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/voci/geometria.js",
+      "sha256": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+      "bytes": 6738
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/voci/legende.js",
+      "sha256": "82c074e977f890627c815e104a691aef94344d8aade4f3e3dead4e492739b943",
+      "bytes": 8681
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/voci/misure-affiancate.js",
+      "sha256": "2f3d2c629fdd4cced15556b49608b40e171d6c41468e29b8cbcdf34cb09be8a8",
+      "bytes": 2822
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/voci/modelli/C1.js",
+      "sha256": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+      "bytes": 12953
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/voci/modelli/C2.js",
+      "sha256": "7e4db74e7c1e969bfdc5411af5e64cdb012427a6b4433add2d996a64e9b8fc7d",
+      "bytes": 12575
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/voci/modelli/C3.js",
+      "sha256": "b01a2fd9b40c4ebefa7a124d543ba6933708d95a7bd95e4e613dca88a05e53cd",
+      "bytes": 10928
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/voci/modelli/C4.js",
+      "sha256": "5d99d0015d7ae1807ad5167cf510a5e51f6fad4011caa0ba9a6c04ebff8d5941",
+      "bytes": 8894
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/voci/modelli/C5.js",
+      "sha256": "a26080aaa5f08bbdac7b9615b8e97b6d7b01cbb0ec418b5d295249cdb1077b86",
+      "bytes": 8791
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/voci/modelli/C6.js",
+      "sha256": "6e1af33f3af9fe5cc96b6216a110efe3123517e32c22c5dc856ac29d9b79129c",
+      "bytes": 2374
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/voci/orologi.js",
+      "sha256": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+      "bytes": 9914
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer/static/js/banchi/voci/tavola.js",
+      "sha256": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+      "bytes": 4953
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/consumer-source-verification.json",
+      "sha256": "8461bc7fd951606b1813a6e4b48898473416a2c70b0a44bbdb597c4b832971b4",
+      "bytes": 19425
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/frozen_exact_arithmetic_literals.py",
+      "sha256": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de",
+      "bytes": 2372
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/git-inputs.json",
+      "sha256": "e48dee37db778ebc1a707f1d180bd10753cb80d8b0e398077baa47434ac37a16",
+      "bytes": 17234
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/grade-actual.mjs",
+      "sha256": "147e757e0cb89db6402a80cf0dabb472ed363179e6f1ce6c4f35755ed32594b1",
+      "bytes": 1629
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/grader.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/grader.stdout.txt",
+      "sha256": "f848e493e13215d662a2251f51b4e2564330fbd5ff12b798736eeed72a193e5b",
+      "bytes": 1743
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/historical-provenance/lorentz-provenance-only.json",
+      "sha256": "e68b8a1b1d4174f6d790b68ff1d8861548e668c3ac91d2b697fbd601b63f1309",
+      "bytes": 765
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/historical-provenance/review263-final.json",
+      "sha256": "8488a1c56e6576e96aaa38d814a182e18bf8e983d732b1e287961ca7948944c8",
+      "bytes": 66194
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/independent-model-before-blocks.mjs",
+      "sha256": "7a1e9a1aad911493c4c5b5d2f61653e076c7426c8a47f17c33a4ff19ce496959",
+      "bytes": 1817
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/independent-review.json",
+      "sha256": "4196a4365163e9eef2b5116aec3804b688868249a3b429d0de7791979125bcee",
+      "bytes": 8805
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/independent_math.py",
+      "sha256": "9f509940e1c90ec8bf3594f760e702402ba3dfa6d189a3c025b160b785d6abd0",
+      "bytes": 3471
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/negative-checker-binary-json-load/actual-code.json",
+      "sha256": "20aca32cf266ff3c019ea613284b4148139d786d15713028b0732d99a5037e46",
+      "bytes": 230913
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/negative-checker-binary-json-load/actual-code.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/negative-checker-binary-json-load/actual-code.stdout.txt",
+      "sha256": "20aca32cf266ff3c019ea613284b4148139d786d15713028b0732d99a5037e46",
+      "bytes": 230913
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/negative-checker-binary-json-load/actual-terminal.json",
+      "sha256": "c1129891a3af2b5a316c8b435167ca2df6657092ba0bf0b4e639c262fc26b974",
+      "bytes": 348
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/negative-checker-binary-json-load/check_actual.py",
+      "sha256": "f264075c8b436e163cfc01269656817ecc5c4dd85a6a21b5184124488f6ab569",
+      "bytes": 4976
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/negative-checker-binary-json-load/comparison.stderr.txt",
+      "sha256": "913658e5fdf5d2107877086fd695bcbfd7a3be98f274e2f01b3b1a6096e8738f",
+      "bytes": 1003
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/negative-checker-binary-json-load/comparison.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/negative-checker-binary-json-load/diagnosis.json",
+      "sha256": "4e302c4857344454d43cf657c4fd71765085ff4da6c7a4e140e37c957b088635",
+      "bytes": 1049
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/package-bindings.json",
+      "sha256": "f3e528dad31cad5b37a8beff6f904382a65dfe13af71850d79122f1184c9c9e0",
+      "bytes": 2007
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/package.json",
+      "sha256": "21bfc5b613ac838bc76e8efd7d9f5c0b304e6aee7dc1c19f896df969ad431e07",
+      "bytes": 16572
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/pre-key-model-terminal.json",
+      "sha256": "53491fb5d29c7468a6f18ae440e85ed52d9f4dbd9cb9537cd594e44e08195109",
+      "bytes": 406
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/pre-key-model-with-lock-log.txt",
+      "sha256": "7048a909dcefef61ec91f6460257decae5ef12513271b08be3427e1ff40f5608",
+      "bytes": 5918
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/pre-key-model.json",
+      "sha256": "739f5271b838573ae65452790acab876f81b312b7fe3eec068f189746bdd85f5",
+      "bytes": 12149
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/primary-before-blocks.md",
+      "sha256": "c039d58631fc38fd2984530169cdaeaace4e21930ac0ad7c2fef53acfd048499",
+      "bytes": 4536
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/primary-freeze.json",
+      "sha256": "3061e5e42270137030bea3f8b6d6d743ae32c4b8ff02fe058f84f9d0ea795e24",
+      "bytes": 407
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/review-note.md",
+      "sha256": "8e789023b40851f2dc272be631236daddc472d5b6418b1e0302e57ae83a767f3",
+      "bytes": 2821
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/run_review.py",
+      "sha256": "3d94025b4cc68aa4bf98fac2614d3fee89eed6818da3f3cb893018650b820fa1",
+      "bytes": 1268
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/six-record-fixture-provenance.json",
+      "sha256": "8b1d5da2eb3047d15ff2062429559f6f04184174351a7af5882c9a4ba28ceeef",
+      "bytes": 602
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/stimuli-prompt-data-only.json",
+      "sha256": "47b7b25d4638723ba20799f9681304f5bd384a76eb93f0ba113598c67197323f",
+      "bytes": 5461
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/test_review.py",
+      "sha256": "d698a7d8e2bc91ccd94454a8cf7dd40f1e3e5135e77a5169db455cde046ad6e5",
+      "bytes": 3687
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/tests.stderr.txt",
+      "sha256": "be4089726286c7ca36d1d1279bff50f768fe1c6fcf19e003bf98e5f7017414d8",
+      "bytes": 113
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-magnetism-induction-six-independent-b-20261127/tests.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  ]
+}

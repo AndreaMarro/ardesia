@@ -1,0 +1,22 @@
+{
+  "cause": "Checker loaded prompt-only point0.5 through default JSON binary float before exact guard. Correctly rejected. Use Decimal JSON parsing for stimuli; no scientific function or expectation changes.",
+  "observedStages": [
+    {
+      "stage": "actual-code",
+      "exitCode": 0
+    },
+    {
+      "stage": "comparison",
+      "exitCode": 1
+    }
+  ],
+  "files": {
+    "actual-code.json": "20aca32cf266ff3c019ea613284b4148139d786d15713028b0732d99a5037e46",
+    "actual-code.stdout.txt": "20aca32cf266ff3c019ea613284b4148139d786d15713028b0732d99a5037e46",
+    "actual-code.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "comparison.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "comparison.stderr.txt": "913658e5fdf5d2107877086fd695bcbfd7a3be98f274e2f01b3b1a6096e8738f",
+    "actual-terminal.json": "c1129891a3af2b5a316c8b435167ca2df6657092ba0bf0b4e639c262fc26b974",
+    "check_actual.py": "f264075c8b436e163cfc01269656817ecc5c4dd85a6a21b5184124488f6ab569"
+  }
+}

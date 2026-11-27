@@ -1,0 +1,224 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "INDEPENDENT_SIX_DRAFT_CPU_TEXT_MATH_MANUAL_REVIEW",
+  "author": "root",
+  "independentReviewer": "author_vectors_b",
+  "candidateCommit": "43083298dea4d10c37bc8940069e98ba66c464ce",
+  "authorRawPackageSha256": "a852b724ca591ad590e2911704bbe609ccbb2cc233e5fd03b94b7176dfd44e51",
+  "reviewFixtureRawPackageSha256": "21bfc5b613ac838bc76e8efd7d9f5c0b304e6aee7dc1c19f896df969ad431e07",
+  "authorRecordCount": 7,
+  "reviewedRecordCount": 6,
+  "reviewedRecords": [
+    {
+      "id": "SIM-C4-L09-01",
+      "candidateSha256": "941bc7d4ee315ed04021116574d1b90069425fe17bca9e5d62a417531207b141",
+      "version": 2,
+      "baseVersion": 1,
+      "textMathManualReview": {
+        "ok": true,
+        "assumptionsAndDimensions": "µ₀≈4π×10⁻⁷ T·m/A is the stated model datum, not an exact physical constant; r=5cm=1/20m. The π cancels, giving4µT/A. Signed tangential component tracks current sign. Earth/other fields excluded; zero current selects no wire-field direction.",
+        "independentManualCalculation": "+5A→+20µT; −2A→−8µT. Inverse −8/(4µT/A)=−2A.",
+        "manualArithmeticAndPedagogy": "Manual multiplication by4. A negative sign denotes direction; the magnitude at−2A is8µT.",
+        "servedPoints": [
+          "5",
+          "-2"
+        ],
+        "exactAnswers": [
+          "20",
+          "-8"
+        ],
+        "unit": "µT",
+        "literalServedPromptsVerified": true
+      },
+      "modelStatesEachEdition": 25,
+      "visualReview": "NOT_RUN",
+      "humanApproval": "NOT_RUN",
+      "findings": []
+    },
+    {
+      "id": "SIM-C4-L09-03",
+      "candidateSha256": "8bc10ead1db79384f9b2da812499a839bdb99080281cd999b12bd791b16e8962",
+      "version": 3,
+      "baseVersion": 2,
+      "textMathManualReview": {
+        "ok": true,
+        "assumptionsAndDimensions": "Classical fixed-momentum perpendicular motion; |q|vB=mv²/r and mv/|q|=.12T·m. Positive B domain prevents division by zero; speed unchanged by magnetic force. Sign of q changes curvature sense, not radius.",
+        "independentManualCalculation": "3T→4cm;1T→12cm. Inverse12cm/(4cm) gives3T.",
+        "manualArithmeticAndPedagogy": "Divide12 by1 or3; .12m=12cm. Original published version2 maps to new version3/base2, independently checked.",
+        "servedPoints": [
+          "3",
+          "1"
+        ],
+        "exactAnswers": [
+          "4",
+          "12"
+        ],
+        "unit": "cm",
+        "literalServedPromptsVerified": true
+      },
+      "modelStatesEachEdition": 15,
+      "visualReview": "NOT_RUN",
+      "humanApproval": "NOT_RUN",
+      "findings": []
+    },
+    {
+      "id": "SIM-C4-L10-01",
+      "candidateSha256": "119b8456235a118f15000c5b26ae72c8bb3bc8b82e68aba1291371e27d278222",
+      "version": 2,
+      "baseVersion": 1,
+      "textMathManualReview": {
+        "ok": true,
+        "assumptionsAndDimensions": "Angle is between B and oriented surface normal. BA=.3T×.02m²=.006Wb=6mWb. cos120°=−1/2 and cos60°=+1/2. Flux is signed;90° gives0.",
+        "independentManualCalculation": "120°→−3mWb;60°→+3mWb. Inverse +3/6=cosθ=1/2 uniquely gives60° on[0°,180°].",
+        "manualArithmeticAndPedagogy": "Exact known-angle arithmetic requires no calculator. Machine answers−2.9999999999999987/+3.000000000000001 are separately compared to a frozen, consumer-free Node process, never equated exactly to the rational−3/+3.",
+        "servedPoints": [
+          "120",
+          "60"
+        ],
+        "exactAnswers": [
+          "-3",
+          "3"
+        ],
+        "unit": "mWb",
+        "literalServedPromptsVerified": true
+      },
+      "modelStatesEachEdition": 37,
+      "visualReview": "NOT_RUN",
+      "humanApproval": "NOT_RUN",
+      "findings": []
+    },
+    {
+      "id": "SIM-C4-L10-02",
+      "candidateSha256": "fa5c0194c7a07ec6b36ff77af1d5e95c5fd2b992d72fcf4ca3f43a44e2f80f34",
+      "version": 2,
+      "baseVersion": 1,
+      "textMathManualReview": {
+        "ok": true,
+        "assumptionsAndDimensions": "Stationary10-turn coil, fixed area.05m², fixed normal parallel to reference field; NA=.5m². ε=−NA dB/dt, and T·m²/s=Wb/s=V. Open circuit can show emf without current.",
+        "independentManualCalculation": "+3T/s→−1.5V;−2T/s→+1V. Inverse+1V/(−.5m²)=−2T/s.",
+        "manualArithmeticAndPedagogy": "Halving and signed multiplication. Existing numeric grader accepts−1.5; no new tolerance supplied.",
+        "servedPoints": [
+          "3",
+          "-2"
+        ],
+        "exactAnswers": [
+          "-1.5",
+          "1"
+        ],
+        "unit": "V",
+        "literalServedPromptsVerified": true
+      },
+      "modelStatesEachEdition": 17,
+      "visualReview": "NOT_RUN",
+      "humanApproval": "NOT_RUN",
+      "findings": []
+    },
+    {
+      "id": "SIM-C4-L10-03",
+      "candidateSha256": "8f9a3ec8013504b4a9441f9b83a4b66c3e3ded18f6c6eb8523dc0ee9dc521eb1",
+      "version": 2,
+      "baseVersion": 1,
+      "textMathManualReview": {
+        "ok": true,
+        "assumptionsAndDimensions": "Already-linked flux Ψ=NΦ changes by+2Wb; fixed orientation and strictly positive interval. Average emf−ΔΨ/Δt; no second multiplication byN.",
+        "independentManualCalculation": "2s→−1V;.5s→−4V. Inverse from−4V yields.5s.",
+        "manualArithmeticAndPedagogy": "Division by2 or1/2 is exact. Average is distinguished from instantaneous value; the supplied interval does not determine arbitrary instantaneous emf.",
+        "servedPoints": [
+          "2",
+          "0.5"
+        ],
+        "exactAnswers": [
+          "-1",
+          "-4"
+        ],
+        "unit": "V",
+        "literalServedPromptsVerified": true
+      },
+      "modelStatesEachEdition": 16,
+      "visualReview": "NOT_RUN",
+      "humanApproval": "NOT_RUN",
+      "findings": []
+    },
+    {
+      "id": "SIM-C4-L10-04",
+      "candidateSha256": "6750a360d826b59273881f7a22b74bc937b95875c3f10283ba252076feb7a5f0",
+      "version": 2,
+      "baseVersion": 1,
+      "textMathManualReview": {
+        "ok": true,
+        "assumptionsAndDimensions": "Closed2Ω circuit with self-inductance neglected; orient current consistently with the normal. ε=−dΨ/dt andI=ε/R. Lenz opposes the change, not invariably the external field.",
+        "independentManualCalculation": "+6Wb/s→−3A;−4Wb/s→+2A. Inverse+2A gives+4V and−4Wb/s.",
+        "manualArithmeticAndPedagogy": "Signed division by2, with Wb/s=V andV/Ω=A. Zero variation correctly returns zero in the model.",
+        "servedPoints": [
+          "6",
+          "-4"
+        ],
+        "exactAnswers": [
+          "-3",
+          "2"
+        ],
+        "unit": "A",
+        "literalServedPromptsVerified": true
+      },
+      "modelStatesEachEdition": 13,
+      "visualReview": "NOT_RUN",
+      "humanApproval": "NOT_RUN",
+      "findings": []
+    }
+  ],
+  "excludedID": "SIM-C4-L09-02",
+  "excludedReason": "Use historical independent263 content review only; no re-signing of430Lorentz and no duplicate credit. Consumer geometry remains open.",
+  "primary": {
+    "commit": "99efe6a9a26870a341468d304e4c731052b94ca4",
+    "sha256": "c039d58631fc38fd2984530169cdaeaace4e21930ac0ad7c2fef53acfd048499"
+  },
+  "preKeyModel": {
+    "commit": "eb5a0f236b098ec70efb515eb1f2b11bcda2347d",
+    "sha256": "7a1e9a1aad911493c4c5b5d2f61653e076c7426c8a47f17c33a4ff19ce496959",
+    "consumerImports": [],
+    "execution": "REAL_EXIT0_BEFORE_FIRST_CANDIDATE_BLOCKS_READ"
+  },
+  "automation": {
+    "realTests": 14,
+    "testsExitCode": 0,
+    "actualModelStatesBothEditions": 246,
+    "manualTasks": 12,
+    "manualInputsAcceptedByUnchangedGrader": 12,
+    "negativeInputsRejected": 18,
+    "exactComparison": "All actual outputs strictly equal the isolated pre-key IEEE table; exact symbolic/manual results retained separately. No epsilon.",
+    "sameInputClockAndSceneParity": true,
+    "stages": [
+      {
+        "stage": "actual-code",
+        "observedExitCode": 0,
+        "signal": null
+      },
+      {
+        "stage": "comparison",
+        "observedExitCode": 0,
+        "signal": null
+      },
+      {
+        "stage": "tests",
+        "observedExitCode": 0,
+        "signal": null
+      },
+      {
+        "stage": "grader",
+        "observedExitCode": 0,
+        "signal": null
+      }
+    ]
+  },
+  "negativeHistory": [
+    "negative-checker-binary-json-load: actual-code0/comparison1; checker stimuli parser corrected to Decimal, exact math guard unchanged."
+  ],
+  "sourceAndCandidateIdentities": "ALL6_CANONICAL_BINDINGS_VERIFIED_AND_ALL_GIT_SNAPSHOTS_BYTE_EXACT",
+  "findings": [],
+  "Chrome": "NOT_RUN",
+  "canonicalDBImport": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "activityCredit": 0,
+  "timestamp": "2026-11-27T08:40:55.747452+00:00"
+}

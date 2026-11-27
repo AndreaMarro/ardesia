@@ -1,0 +1,420 @@
+{
+  "assets": [],
+  "records": [
+    {
+      "anchor": "Una bussola vicino a un filo rettilineo",
+      "apparatus": "bussola",
+      "assessmentSelection": {
+        "points": [
+          5,
+          -2
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Immagina di guardare il filo lungo il suo asse. Il campo magnetico gira intorno al filo, perché la corrente rettilinea produce circonferenze di campo. Il pollice della mano destra indica il verso della corrente convenzionale, le dita piegate indicano il verso del campo. La sonda confronta questo verso con la tangente positiva fissata dal banco.",
+          "type": "text"
+        },
+        {
+          "text": "B_{\\mathrm{tang}}=\\frac{\\mu_0 I}{2\\pi r},\\qquad r=5\\ \\mathrm{cm}=\\frac{1}{20}\\ \\mathrm m",
+          "type": "formula"
+        },
+        {
+          "text": "Per il filo lungo ideale usa il valore di modello μ₀ ≃ 4π × 10⁻⁷ T·m/A. Il π si cancella. Dividere per 2πr lascia 2 × 10⁻⁷ T·m/A diviso 1/20 m, cioè 4 × 10⁻⁶ T/A. In microtesla basta moltiplicare la corrente per quattro.",
+          "type": "text"
+        },
+        {
+          "text": "A +5 A leggi +20 µT. A −2 A leggi −8 µT. Il segno descrive un verso, mentre il modulo vale 8 µT nel secondo caso. Se misuri −8 µT, dividendo per 4 µT/A ricavi −2 A. Il banco isola il contributo del filo e trascura altri campi ambientali.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Corrente verticale nel filo",
+        "max": 6.0,
+        "min": -6.0,
+        "step": 0.5,
+        "unit": "A"
+      },
+      "course": "C4",
+      "formula": "B = μ₀I/(2πr), con r = 5 cm",
+      "id": "SIM-C4-L09-01",
+      "interpretation": "Il filo rettilineo è lungo rispetto alla distanza della sonda. Guarda dall’alto e applica la mano destra. Nel modello si trascura il campo terrestre; a corrente nulla il filo non seleziona una direzione.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Campo tangenziale con segno",
+        "unit": "µT"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C4-L08"
+      ],
+      "references": [
+        [
+          -2.0,
+          -8.0
+        ],
+        [
+          5.0,
+          20.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Correnti, bussole e traiettorie curve",
+      "skill": "C4-L09",
+      "substitution": "4 × {x}",
+      "summary": "Come si orienta la bussola quando inverti la corrente nel filo?",
+      "title": "Origine magnetica delle correnti ed esperimento di Oersted",
+      "topic": "6.6 Origine magnetica delle correnti ed esperimento di Oersted",
+      "transferPrompt": "Una sonda resta a 5 cm dal filo rettilineo mentre la corrente vale {x}. Quale campo tangenziale con segno legge secondo il verso indicato?",
+      "version": 2
+    },
+    {
+      "anchor": "La forza magnetica è perpendicolare alla velocità",
+      "apparatus": "cerchio",
+      "assessmentSelection": {
+        "points": [
+          3,
+          1
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 2,
+      "blocks": [
+        {
+          "text": "La velocità è perpendicolare al campo uniforme. La forza magnetica è quindi perpendicolare al moto: cambia la direzione della velocità, mentre il suo modulo resta costante. Per descrivere la traiettoria circolare, uguaglia il modulo della forza magnetica a mv²/r, la forza radiale richiesta.",
+          "type": "text"
+        },
+        {
+          "text": "|q|vB=\\frac{mv^2}{r},\\qquad r=\\frac{mv}{|q|B},\\quad \\frac{mv}{|q|}=0{,}12\\ \\mathrm{T\\,m}",
+          "type": "formula"
+        },
+        {
+          "text": "Semplifica una v, che nel banco è diversa da zero. Dividere T·m per T lascia metri. Con 3 T dividi 12 centimetri per 3 e ottieni 4 cm. Con 1 T il raggio è 12 cm. Per passare da 0,12 m a 12 cm basta moltiplicare per cento.",
+          "type": "text"
+        },
+        {
+          "text": "Se leggi 4 cm, la relazione inversa restituisce 12÷4=3 T. Triplicare B a velocità fissata stringe l’orbita a un terzo. Il segno di q determina il senso della curva, mentre il suo valore assoluto determina il raggio.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Campo magnetico",
+        "max": 4.0,
+        "min": 0.5,
+        "step": 0.25,
+        "unit": "T"
+      },
+      "course": "C4",
+      "formula": "r = mv/(|q|B), con mv/|q| = 0,12 T·m",
+      "id": "SIM-C4-L09-03",
+      "interpretation": "La velocità iniziale è perpendicolare a un campo magnetico uniforme. La forza fornisce l’accelerazione centripeta senza compiere lavoro. Il modulo della velocità resta costante.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Raggio dell’orbita",
+        "unit": "cm"
+      },
+      "order": 3,
+      "prerequisites": [
+        "C4-L08"
+      ],
+      "references": [
+        [
+          1.0,
+          12.0
+        ],
+        [
+          3.0,
+          4.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Correnti, bussole e traiettorie curve",
+      "skill": "C4-L09",
+      "substitution": "12 / {x}",
+      "summary": "Perché un campo più intenso incurva di più la traiettoria?",
+      "title": "Moto circolare in campo magnetico uniforme",
+      "topic": "6.6 Moto circolare in campo magnetico uniforme",
+      "transferPrompt": "In un’orbita perpendicolare al campo, mv/|q| vale 0,12 T·m. Se il campo diventa {x}, quale raggio misuri in centimetri?",
+      "version": 3
+    },
+    {
+      "anchor": "Una spira ferma può essere attraversata da",
+      "apparatus": "spira",
+      "assessmentSelection": {
+        "points": [
+          120,
+          60
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Per contare il flusso scegli la normale orientata alla superficie della spira. L’angolo del controllo è quello fra campo e normale. In un campo uniforme, la componente che attraversa il piano vale B cos θ. Il segno indica se questa componente concorda con la normale.",
+          "type": "text"
+        },
+        {
+          "text": "\\Phi=\\vec B\\cdot\\vec A=BA\\cos\\theta",
+          "type": "formula"
+        },
+        {
+          "text": "Moltiplica 0,3 T per 0,02 m²: 3 × 2 × 10⁻³ dà 6 milliweber. A 120°, il coseno è −1/2 perché 120° supplementa 60°. Ottieni −3 mWb. Ruotando fino a 60°, il coseno diventa +1/2 e ottieni +3 mWb.",
+          "type": "text"
+        },
+        {
+          "text": "Dalla misura +3 mWb, dividi per 6 mWb e ritrovi cos θ = 1/2. Nel dominio da 0° a 180° ciò individua 60°. A 90° il campo è parallelo alla superficie e il flusso si annulla, anche con campo diverso da zero.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Angolo tra campo e normale",
+        "max": 180.0,
+        "min": 0.0,
+        "step": 5.0,
+        "unit": "°"
+      },
+      "course": "C4",
+      "formula": "Φ = BA cos θ; B = 0,3 T, A = 0,02 m²",
+      "id": "SIM-C4-L10-01",
+      "interpretation": "La freccia normale è perpendicolare alla superficie. Di taglio il flusso si annulla, anche se il campo rimane presente; invertendo la normale il flusso cambia segno.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Flusso magnetico",
+        "unit": "mWb"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C4-L09"
+      ],
+      "references": [
+        [
+          0.0,
+          6.0
+        ],
+        [
+          120.0,
+          -3.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Indurre una tensione cambiando il flusso",
+      "skill": "C4-L10",
+      "substitution": "6 × cos({x}°)",
+      "summary": "Quale angolo devi misurare per calcolare il flusso attraverso una spira?",
+      "title": "Flusso magnetico",
+      "topic": "6.7 Flusso magnetico",
+      "transferPrompt": "Una spira di area 0,02 m² è in un campo da 0,3 T. Se la normale orientata forma {x} con il campo, quale flusso con segno ottieni in mWb?",
+      "version": 2
+    },
+    {
+      "anchor": "Cambiando l’intensità del campo, ruotando la spira",
+      "apparatus": "spira",
+      "assessmentSelection": {
+        "points": [
+          3,
+          -2
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "La bobina nel banco resta ferma col piano perpendicolare al campo di riferimento. La normale orientata è parallela al suo verso positivo. Cambia soltanto la componente di campo lungo quella normale. Il flusso di ogni spira è quindi AB e quello concatenato vale NAB.",
+          "type": "text"
+        },
+        {
+          "text": "\\varepsilon=-\\frac{d(NAB)}{dt}=-NA\\frac{dB}{dt}",
+          "type": "formula"
+        },
+        {
+          "text": "Dieci spire da 0,05 m² danno un fattore di area 0,5 m². Con una variazione di +3 T/s, fai −3/2 = −1,5 V. Con −2 T/s, fai −(−2)/2 = +1 V. Il prodotto T·m²/s è Wb/s, cioè volt.",
+          "type": "text"
+        },
+        {
+          "text": "A partire da +1 V, dividi per −0,5 m² e ritrovi −2 T/s. Il segno meno collega la fem alla variazione di flusso: invertire la variazione inverte la polarità rispetto allo stesso riferimento. Se il campo è costante, il modello dà fem nulla.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Velocità di variazione del campo",
+        "max": 4.0,
+        "min": -4.0,
+        "step": 0.5,
+        "unit": "T/s"
+      },
+      "course": "C4",
+      "formula": "ε = −NA dB/dt con N = 10, A = 0,05 m² e la normale parallela al campo",
+      "id": "SIM-C4-L10-02",
+      "interpretation": "Sì, se il campo concatenato cambia. Qui le spire sono fisse e la normale è parallela al campo. Con il circuito aperto puoi misurare una fem senza corrente.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Fem indotta",
+        "unit": "V"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C4-L09"
+      ],
+      "references": [
+        [
+          -2.0,
+          1.0
+        ],
+        [
+          3.0,
+          -1.5
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Indurre una tensione cambiando il flusso",
+      "skill": "C4-L10",
+      "substitution": "−0,5 × {x}",
+      "summary": "Una bobina immobile può generare una tensione?",
+      "title": "Forza elettromotrice indotta",
+      "topic": "6.7 Forza elettromotrice indotta",
+      "transferPrompt": "Una bobina da 10 spire di 0,05 m² è perpendicolare al campo, che varia al ritmo con segno di {x}. Quale fem compare secondo il verso orientato?",
+      "version": 2
+    },
+    {
+      "anchor": "Il verso positivo di percorrenza della spira",
+      "apparatus": "spira",
+      "assessmentSelection": {
+        "points": [
+          2,
+          0.5
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "La bobina mantiene lo stesso orientamento. La grandezza data è già il flusso concatenato Ψ, somma dei contributi delle spire. Usa direttamente la differenza fra il suo valore finale e quello iniziale. La fem media è il rapporto di questa variazione per la durata, con il segno di Lenz.",
+          "type": "text"
+        },
+        {
+          "text": "\\bar\\varepsilon=-\\frac{\\Delta\\Psi}{\\Delta t},\\qquad \\Psi=N\\Phi",
+          "type": "formula"
+        },
+        {
+          "text": "In 2 s la variazione +2 Wb dà −2/2 = −1 V. In mezzo secondo, dividere 2 per 1/2 significa raddoppiare: ottieni −4 V. La fem resta negativa in entrambe le prove perché il flusso concatenato aumenta nello stesso orientamento.",
+          "type": "text"
+        },
+        {
+          "text": "A −4 V puoi risalire al tempo facendo 2÷4=1/2 s. Il voltmetro misura una media sull’intervallo. Non moltiplicare ancora per N, perché il dato iniziale include già tutte le spire.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Tempo per la stessa variazione di flusso",
+        "max": 4.0,
+        "min": 0.25,
+        "step": 0.25,
+        "unit": "s"
+      },
+      "course": "C4",
+      "formula": "ε media = −ΔΨ/Δt, con Ψ = NΦ e ΔΨ = +2 Wb",
+      "id": "SIM-C4-L10-03",
+      "interpretation": "Mantieni fisso l’aumento di flusso concatenato di 2 Wb. Distribuendolo su più tempo diminuisce il modulo della fem. Il segno è riferito al verso positivo fissato dalla normale.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Fem media",
+        "unit": "V"
+      },
+      "order": 3,
+      "prerequisites": [
+        "C4-L09"
+      ],
+      "references": [
+        [
+          0.5,
+          -4.0
+        ],
+        [
+          2.0,
+          -1.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Indurre una tensione cambiando il flusso",
+      "skill": "C4-L10",
+      "substitution": "−2 / {x}",
+      "summary": "Che cosa cambia se la stessa variazione di flusso avviene più lentamente?",
+      "title": "Legge di Faraday–Neumann–Lenz",
+      "topic": "6.7 Legge di Faraday–Neumann–Lenz",
+      "transferPrompt": "Il flusso concatenato aumenta di 2 Wb durante {x}. Con l’orientazione della bobina fissata, quale fem media misura il voltmetro?",
+      "version": 2
+    },
+    {
+      "anchor": "Una forza elettromotrice può esistere anche a",
+      "apparatus": "spira",
+      "assessmentSelection": {
+        "points": [
+          6,
+          -4
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Fissa una normale e il verso positivo lungo la spira che le corrisponde. La legge di Faraday lega la fem alla variazione di flusso concatenato. Assumendo resistenza di 2 Ω e autoinduzione trascurabile, la legge di Ohm trasforma la fem orientata nella corrente orientata.",
+          "type": "text"
+        },
+        {
+          "text": "I=\\frac{\\varepsilon}{R}=-\\frac{1}{R}\\frac{d\\Psi}{dt},\\qquad R=2\\ \\mathrm{\\Omega}",
+          "type": "formula"
+        },
+        {
+          "text": "Con +6 Wb/s la fem è −6 V e −6÷2 dà −3 A. Con −4 Wb/s la fem è +4 V e 4÷2 dà +2 A. Il passaggio da Wb/s a V mantiene il valore numerico, e V/Ω dà ampere.",
+          "type": "text"
+        },
+        {
+          "text": "Se il banco mostra +2 A, ricostruisci la fem +4 V e quindi una variazione di flusso pari a −4 Wb/s. La risposta positiva indica corrente nel verso scelto, non un aumento del flusso. Il campo della corrente indotta tende a opporsi alla variazione che la produce.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Variazione del flusso concatenato",
+        "max": 6.0,
+        "min": -6.0,
+        "step": 1.0,
+        "unit": "Wb/s"
+      },
+      "course": "C4",
+      "formula": "I = ε/R = −(dΦ concatenato/dt)/(2 Ω)",
+      "id": "SIM-C4-L10-04",
+      "interpretation": "Chiudi il circuito su 2 Ω e trascura l’autoinduzione. Invertendo la variazione si inverte la corrente. Il suo campo si oppone all’aumento oppure sostiene il campo che sta diminuendo.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Corrente indotta con segno",
+        "unit": "A"
+      },
+      "order": 4,
+      "prerequisites": [
+        "C4-L09"
+      ],
+      "references": [
+        [
+          -4.0,
+          2.0
+        ],
+        [
+          6.0,
+          -3.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Indurre una tensione cambiando il flusso",
+      "skill": "C4-L10",
+      "substitution": "−{x} / 2",
+      "summary": "Il verso della corrente si oppone al campo o al suo cambiamento?",
+      "title": "Correnti indotte e loro verso",
+      "topic": "6.7 Correnti indotte e loro verso",
+      "transferPrompt": "In una spira da 2 Ω il flusso concatenato varia a {x}. Quale corrente orientata prevede la legge di Lenz?",
+      "version": 2
+    }
+  ],
+  "schema": "astra/1"
+}
