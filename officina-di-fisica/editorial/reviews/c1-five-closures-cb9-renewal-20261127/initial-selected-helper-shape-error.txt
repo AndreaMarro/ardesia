@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/c1-five-closures-cb9-renewal-20261127/generate-fresh-reports.py", line 10, in <module>
+    first=m.report(sources,app=CURRENT);second=m.report(sources,app=CURRENT);assert canonical(first)==canonical(second);assert first['acceptedIndividualCount']==5
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tools/corpus_engineering/c1_closure_renewal_cb9_verifier.py", line 98, in report
+    summaries=bind(m.compare_runtime,app,specs)(actual);math=m.independent_checks();extras=bind(m.corrected_scene_checks,app,specs)(actual)if hasattr(m,'corrected_scene_checks')else m.force_diagram_checks(actual)if hasattr(m,'force_diagram_checks')else{}
+                                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tools/corpus_engineering/experiments_force_work_corrected_048_verifier.py", line 252, in corrected_scene_checks
+    out['SIM-C1-L007-02'].append({'claim':'mean over zero duration explicitly undefined and not0W','ok':bool(mean and mean[1]=='Non definita (intervallo nullo)' and mean[2]==''),'actual':mean,'dimension':{},'independentExact':'W(0)/0 undefined; positive-domain right limit0 does not define mean'})
+    ~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'SIM-C1-L007-02'
