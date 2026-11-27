@@ -1,0 +1,6 @@
+from pathlib import Path
+import subprocess,time,json,hashlib,sys,os
+D=Path('/private/tmp/cric-author-a-resident/officina-di-fisica/editorial/reviews/c2-hydraulics-five-3ed5-independent-a-20261127')
+for name,cmd in [('analysis',[sys.executable,'/private/tmp/analyze_c2_hydro_3ed5_a.py']),('per-id',[sys.executable,'/private/tmp/produce_c2_hydro_3ed5_per_id_a.py']),('target',[sys.executable,'-B','-m','unittest','tests.corpus.test_c2_hydraulics_five_3ed5_independent_a','-v'])]:
+ t=time.time();r=subprocess.run(cmd,capture_output=True,timeout=60,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'});(D/(name+'.stdout.txt')).write_bytes(r.stdout);(D/(name+'.stderr.txt')).write_bytes(r.stderr);rec=dict(actualObservedExitCode=r.returncode,signal=None if r.returncode>=0 else-r.returncode,elapsedSeconds=time.time()-t,timeoutSeconds=60,command=cmd,stdoutSha256=hashlib.sha256(r.stdout).hexdigest(),stderrSha256=hashlib.sha256(r.stderr).hexdigest());(D/(name+'-terminal.json')).write_text(json.dumps(rec,indent=2)+'\n');print(name,r.stdout.decode()[-1000:],r.stderr.decode()[-1200:],rec,flush=True)
+ if r.returncode:sys.exit(r.returncode)

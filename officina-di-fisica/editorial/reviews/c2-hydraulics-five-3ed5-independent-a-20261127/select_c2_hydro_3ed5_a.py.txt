@@ -1,0 +1,8 @@
+from pathlib import Path
+import json,hashlib
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c2-hydraulics-five-3ed5-independent-a-20261127';r=json.loads((D/'actual/report.json').read_bytes());out=[];sel={'SIM-C2-L003-02':4,'SIM-C2-L003-03':3,'SIM-C2-L004-01':1,'SIM-C2-L004-02':2,'SIM-C2-L004-03':4}
+for item in r['cases']:
+ c=json.loads((D/'actual'/item['file']).read_bytes());toppress=c['id']=='SIM-C2-L003-02'and c['profile']['view']=='top';chosen=('interaction'not in c)if toppress else('interaction'in c and c['interaction']['index']==sel[c['id']])
+ if chosen:
+  png=c['screenshots'][0];out.append(dict(id=c['id'],caseKey=c['caseKey'],profile=c['profile'],observedX=c.get('sourceReplayedX'),file=str((D/'actual'/png['file']).relative_to(A)),sha256=png['sha256'],wholeRawPngOpenedAndRead=False,caseFile=str((D/'actual'/item['file']).relative_to(A)),caseFileSha256=item['sha256']))
+assert len(out)==40;(D/'raw-png-reading-selection.json').write_text(json.dumps(out,indent=2)+'\n');print('40 current raw PNGs selected; reading pending, including both nativeTop press setups')

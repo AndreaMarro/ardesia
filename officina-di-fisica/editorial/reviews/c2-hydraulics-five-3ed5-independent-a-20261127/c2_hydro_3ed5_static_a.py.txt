@@ -1,0 +1,5 @@
+from pathlib import Path
+import json,sys
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c2-hydraulics-five-3ed5-independent-a-20261127';sys.path.insert(0,str(A));from tools.corpus_engineering import c2_hydraulics_five_3ed5_review_a as v
+m=v.frozen.model_for(v.IDS[0]);p=json.loads((D/'current-node.json').read_bytes());exact=m.exact_checks();code=m.compare_installed(p);assert all(x['ok']for xs in exact.values()for x in xs);assert all(x['ok']for x in code.values());assert p['comparisonTo77c']=='ALL_RECORDS_TASKS_MODELS_GRAPHS_STEPS_LEGENDS_AND_ALL385SCENES_EXACTLY_EQUAL'
+(D/'independent-math-and-installed-code.json').write_text(json.dumps(dict(role='DISTINCT_REVIEWER_A_NEW_3ED5_STATIC',exactChecks=exact,installedCode=code,exposure='REUSED_FROZEN_SOURCE_FIRST_MODELS_WITH_CURRENT_REEXECUTION',UI='NOT_RUN',activityCredit=0,humanApproval='NOT_RUN'),ensure_ascii=False,indent=2)+'\n');print('29 exact SymPy/Pint checks and all77 installed states PASS; UI pending')

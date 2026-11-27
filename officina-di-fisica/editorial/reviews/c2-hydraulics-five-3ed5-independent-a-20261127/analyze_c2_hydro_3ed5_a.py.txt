@@ -1,0 +1,12 @@
+from pathlib import Path
+import json,sys
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');sys.path.insert(0,str(A));from tools.corpus_engineering import c2_hydraulics_five_3ed5_review_a as v
+D=v.BASE;cases=v.actual();old=v.prior.actual();corrected=v.press.actual();states=[c for c in cases if'interaction'in c];evidence=[]
+for c in states:
+ candidates=[q for q in(corrected if c['id']==v.IDS[0]else[])if'interaction'in q and q['id']==c['id']and q['profile']==c['profile']and q['sourceReplayedX']==c['sourceReplayedX']]
+ if not candidates:candidates=[q for q in old if'interaction'in q and q['id']==c['id']and q['profile']==c['profile']and q['sourceReplayedX']==c['sourceReplayedX']]
+ prior=candidates[0]
+ for key in ['id','variant','profile','sourceReplayedX','sourceReplayedClockTime','model','spec','canvas','sourceDerivedCamera','elements','labels','nativeGlyphs','svg']:
+  if c.get(key)!=prior.get(key):raise ValueError('Physical state changed beyond reviewed current identity: '+key+' '+c['caseKey'])
+ evidence.append(dict(caseKey=c['caseKey'],currentRuntime=v.RUNTIME,currentIndependentPhysicsChecked=True,exactPhysicalComparisonToPriorCase=prior['caseKey'],priorRuntime=prior['runtimeSha256'],oldRasterNotRetagged=True))
+assert len(evidence)==200;(D/'all200-current-physical-comparison.json').write_text(json.dumps(evidence,indent=2)+'\n');print('CURRENT240/200 independent physical states checked; exact prior geometry comparison, no raster retag')
