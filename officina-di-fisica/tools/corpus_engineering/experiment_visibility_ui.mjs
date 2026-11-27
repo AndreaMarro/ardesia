@@ -10,8 +10,10 @@ import path from 'node:path';
 import {chromium} from 'playwright';
 
 export function assertOwnerRecord(saved,prepared){
- const expected={...prepared,version:2,review:'bozza'};delete expected.baseVersion;
- assert.deepEqual(saved,expected,'Full normalized owner record differs from prepared candidate');
+ const {baseVersion,...expected}=prepared;
+ assert.ok(Number.isSafeInteger(baseVersion)&&baseVersion>=1&&Number.isSafeInteger(expected.version)
+  &&expected.version===baseVersion+1,'Prepared candidate must be the next live edition');
+ assert.deepEqual(saved,{...expected,review:'bozza'},'Full normalized owner record differs from prepared candidate');
 }
 
 export function assertObservedControls(measured,state,row){
@@ -43,6 +45,8 @@ export function assertObservedControls(measured,state,row){
 async function main(){
 const info=JSON.parse(await fs.readFile(process.argv[2])),app=info.candidateApp,out=info.output;
 const preparedBytes=await fs.readFile(info.prepared),plan=JSON.parse(preparedBytes);
+const expectedCases=new Set(plan.expectedCaseKeys);
+assert.equal(expectedCases.size,plan.expectedCaseKeys.length,'Duplicate planned case identity');
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const protocolSha=sha(await fs.readFile(fileURLToPath(import.meta.url)));
 let baseline=null,baselineRealm,assertBaselineParity,createBaselineRealm;
@@ -97,16 +101,21 @@ const report={schemaVersion:'1.0.0',phase:'PREPARATORY_REAL_UI_EVIDENCE_REQUIRES
  cases:[],errors:[],activityCredit:0,humanApproval:'NOT_RUN',publicationAction:'NONE'};
 const key=(r,p,kind,index)=>[r.id,r.variant,p.width,p.view,kind,...(index===undefined?[]:[index])].join('|');
 await fs.mkdir(path.join(out,'cases'),{recursive:true});await fs.mkdir(path.join(out,'screens'),{recursive:true});
+async function checkCapacity(){
+ if(report.cases.length%25!==0)return;
+ const stat=await fs.statfs(out);
+ assert.ok(stat.bavail*stat.bsize>=2*1024**3,'Free disk below2GiB');
+}
 async function image(bytes){const h=sha(bytes),rel='screens/'+h+'.png';try{await fs.writeFile(path.join(out,rel),bytes,{flag:'wx'});}catch(e){if(e.code!=='EEXIST')throw e;assert.equal(sha(await fs.readFile(path.join(out,rel))),h);}return{file:rel,sha256:h};}
 async function save(caseKey,value){
- assert.ok(plan.expectedCaseKeys.includes(caseKey),'Unknown planned case');
+ assert.ok(expectedCases.has(caseKey),'Unknown planned case');
  const record={schemaVersion:'1.0.0',caseKey,sourceCommit:plan.sourceCommit,runtimeSha256:plan.runtimeFingerprint.sha256,
   requestSha256:plan.requestSha256,protocolSha256:protocolSha,...value,
   evidenceScope:plan.scope??'COMPLETE_REQUESTED_COURSE',scientificApproval:false,activityCredit:0,humanApproval:'NOT_RUN',publicationAction:'NONE'};
  const raw=Buffer.from(JSON.stringify(record)+'\n'),rel='cases/'+sha(Buffer.from(caseKey))+'.json';
- await fs.writeFile(path.join(out,rel),raw);report.cases.push({caseKey,file:rel,sha256:sha(raw),technicalOk:record.technicalOk});
+ await fs.writeFile(path.join(out,rel),raw,{flag:'wx'});report.cases.push({caseKey,file:rel,sha256:sha(raw),technicalOk:record.technicalOk});
  await fs.appendFile(path.join(out,'completed-cases.jsonl'),JSON.stringify(report.cases.at(-1))+'\n');
- if(report.cases.length%25===0){const stat=await fs.statfs(out);assert.ok(stat.bavail*stat.bsize>=2*1024**3,'Free disk below2GiB');console.log(JSON.stringify({course:plan.course,observed:report.cases.length,planned:plan.expectedCaseKeys.length}));}
+ if(report.cases.length%25===0)console.log(JSON.stringify({course:plan.course,observed:report.cases.length,planned:expectedCases.size}));
 }
 
 // This source-replay observes the model associated with the actual DOM input.
@@ -204,12 +213,13 @@ try{
   if(profile.fallback)await context.addInitScript(()=>{const get=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(k,...a){return k.includes('webgl')?null:get.call(this,k,...a);};});
   if(!ownerState){
    assert.ok((await context.request.post(base+'/api/owner',{headers:{'X-Astra-Request':'1'},data:{ticket}})).ok());ownerState=await context.storageState();
-   const checked=[];for(const expected of plan.draftRecords){const response=await context.request.get(base+'/api/author/item/'+expected.id);assert.ok(response.ok());const text=await response.text();assertOwnerRecord(JSON.parse(text).record,expected);checked.push({id:expected.id,version:2,responseBytesSha256:sha(Buffer.from(text))});}
+   const checked=[];for(const expected of plan.draftRecords){const response=await context.request.get(base+'/api/author/item/'+expected.id);assert.ok(response.ok());const text=await response.text();const {record}=JSON.parse(text);assertOwnerRecord(record,expected);checked.push({id:expected.id,version:record.version,responseBytesSha256:sha(Buffer.from(text))});}
    assert.equal(checked.length,plan.draftRecords.length);
    report.fullOwnerRecordIdentity={scope:'All declared complete normalized owner records, no cross-language canonical digest',records:checked};
   }
   const page=await context.newPage();page.setDefaultTimeout(15000);page.on('pageerror',e=>report.errors.push(String(e)));
   for(const r of plan.records){
+   await checkCapacity();
    let loaded=false;const common={id:r.id,variant:r.variant,profile,sourceSha256:r.sourceSha256,candidateSha256:r.candidateSha256,originalJudgment:r.originalJudgment};
    const live=await context.request.get(base+'/api/item/'+r.id);assert.ok(live.ok());
    const published=await live.json();for(const field of ['control','measure','references','apparatus','course','kind','engine'])assert.deepEqual(published[field],r.record[field],'Published physical identity drift: '+field);
@@ -248,7 +258,9 @@ try{
    }catch(error){await save(key(r,profile,'setup'),{...common,technicalOk:false,error:String(error),screenshots:[]});}
    const states=[...r.grid.map((x,i)=>({kind:'grid',index:i,x})),...r.clockCases.map((c,i)=>({kind:'clock',index:i,x:r.grid[c.gridIndex],time:c.time})),...r.auxiliaryCases.map((c,i)=>({kind:'auxiliary',index:i,...c}))];
    for(const state of states){
-    if(stopping)throw Error('Interrupted; no complete evidence');const caseKey=key(r,profile,state.kind,state.index);
+    if(stopping)throw Error('Interrupted; no complete evidence');
+    await checkCapacity();
+    const caseKey=key(r,profile,state.kind,state.index);
     if(!loaded){await save(caseKey,{...common,technicalOk:false,error:'Setup failed; state not observed',screenshots:[]});continue;}
     let measured;
     try{
