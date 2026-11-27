@@ -1,0 +1,152 @@
+{
+  "role": "INDEPENDENT_AI_CPU_SCIENTIFIC_REVIEW",
+  "candidateCommit": "93ee5b5acf91de1030dbeb33f962252acb9ba34f",
+  "runtimeCommit": "b9994b9116e87478905191d85cca8037d17ae4bd",
+  "primarySha256": "977bc103137deb9e16ed794d1773ab9f06ae14103fcad72487c040a0821600d8",
+  "records": [
+    {
+      "id": "SIM-C2-L006-01",
+      "candidateSha256": "52b5286cab0964c438baa916f705c138de102a2f0af4b49a3f606cf093bc6efe",
+      "sourceSha256": "a8641f475c5461bd70081f0e1f75f7e6399ce44c1a4a1fa689c2c8f7e58445c3",
+      "scientificTextManualUnitsAndHypotheses": "PASS",
+      "tasks": [
+        {
+          "inputExact": "3",
+          "inputUnit": "m/s",
+          "independentExact": "16",
+          "outputUnit": "kPa",
+          "numericEntry": 16.0,
+          "actualNumberAccepted": true
+        },
+        {
+          "inputExact": "2",
+          "inputUnit": "m/s",
+          "independentExact": "37/2",
+          "outputUnit": "kPa",
+          "numericEntry": 18.5,
+          "actualNumberAccepted": true
+        }
+      ],
+      "hypotheses": "Steadyincompressible inviscidliquid,samestreamline/horizontal,noexternalshaftwork;density1000assigned,phasestable/nocavitation;upstreamboundarygivenv1p1 andthroatareaadjustscontinuity. Staticpressuresmustusesamereference.",
+      "representationStatus": "NO_NEW_CPU_FAILURE_IN_CHECKED_SCOPE",
+      "PitotVisualStatus": "NOT_CLOSED_BY_THIS_CPU_REVIEW",
+      "UI": "NOT_RUN",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L006-02",
+      "candidateSha256": "0d818189045b4bb173250da4dcac0bdae0376b6203e3280ed06e9bb416ebf290",
+      "sourceSha256": "3eb95d73c097bd1e2f86fe4bf933ed1e2e983a91b5657e6be4e007aacc5585b8",
+      "scientificTextManualUnitsAndHypotheses": "PASS",
+      "tasks": [
+        {
+          "inputExact": "2",
+          "inputUnit": "m/s",
+          "independentExact": "2",
+          "outputUnit": "kPa",
+          "numericEntry": 2.0,
+          "actualNumberAccepted": true
+        },
+        {
+          "inputExact": "4",
+          "inputUnit": "m/s",
+          "independentExact": "8",
+          "outputUnit": "kPa",
+          "numericEntry": 8.0,
+          "actualNumberAccepted": true
+        }
+      ],
+      "hypotheses": "IdealalignedPitot/stagnationdeceleration onstreamline,sameheight,steadyincompressible rho,noheadlossbetweenports. qnonnegative;v0=>q0. Staticpressureandstagnationpressurearenotinterchangeable.",
+      "representationStatus": "NO_NEW_CPU_FAILURE_IN_CHECKED_SCOPE",
+      "PitotVisualStatus": "OPEN_NO_NEW_UI",
+      "UI": "NOT_RUN",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L006-03",
+      "candidateSha256": "75709288fb0abf5bdd1653c90c5e79e7722a03377a234b5cb13a8bd73f558948",
+      "sourceSha256": "9c5c80d7f2f0d324fc23bcaab1e9c658a43e6b279b1e9c747811ef98233201cc",
+      "scientificTextManualUnitsAndHypotheses": "PASS",
+      "tasks": [
+        {
+          "inputExact": "1/2",
+          "inputUnit": "1",
+          "independentExact": "4",
+          "outputUnit": "m/s",
+          "numericEntry": 4.0,
+          "actualNumberAccepted": true
+        },
+        {
+          "inputExact": "2",
+          "inputUnit": "1",
+          "independentExact": "1",
+          "outputUnit": "m/s",
+          "numericEntry": 1.0,
+          "actualNumberAccepted": true
+        }
+      ],
+      "hypotheses": "Stationaryincompressibleflux,rigidcrosssections,sectionmeanvelocities;noaccumulation/leak. Ratio0.5..2strictlypositive. Stenosis/aneurysmisanalogyonly,notclinicalprediction: viscosity,compliance,pulsatilitynotmodeled.",
+      "representationStatus": "CPU_FAILURE_DIFFERENT_VISUAL_GAINS_EQUAL_AREA",
+      "PitotVisualStatus": "NOT_CLOSED_BY_THIS_CPU_REVIEW",
+      "UI": "NOT_RUN",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L006-04",
+      "candidateSha256": "58b85a52cf85f20793b09e41df8b861ae75ad107929c13f0fec587dca099ed8e",
+      "sourceSha256": "b03e54d1553407d7135907a2bd3c436b01d0ebf4e4f805feab3ab6e7140bd437",
+      "scientificTextManualUnitsAndHypotheses": "PASS",
+      "tasks": [
+        {
+          "inputExact": "6",
+          "inputUnit": "kPa",
+          "independentExact": "9",
+          "outputUnit": "kPa",
+          "numericEntry": 9.0,
+          "actualNumberAccepted": true
+        },
+        {
+          "inputExact": "4",
+          "inputUnit": "kPa",
+          "independentExact": "11",
+          "outputUnit": "kPa",
+          "numericEntry": 11.0,
+          "actualNumberAccepted": true
+        }
+      ],
+      "hypotheses": "Extendedmechanicalenergybalancewithassignedpositiveenergylosspervolume,constantarea/height;massfluxsame,mechanicalenergyconversionnotannihilationoftotalenergy. dp0..8kPa=>p2[7,15]kPa.",
+      "representationStatus": "NO_NEW_CPU_FAILURE_IN_CHECKED_SCOPE",
+      "PitotVisualStatus": "NOT_CLOSED_BY_THIS_CPU_REVIEW",
+      "UI": "NOT_RUN",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "gridChecks": 58,
+  "formulaSyntaxChecks": 4,
+  "mathAndManualPass": 4,
+  "sourceCandidateTextFailures": 0,
+  "consumerCodeRepresentationFailures": [
+    "SIM-C2-L006-03"
+  ],
+  "consumerFailureExactWitness": {
+    "areaRatio": "1",
+    "physicalSpeedBoth": "2m/s",
+    "displayArrowRatio": "40/39",
+    "pressureColumnDifferenceWorld": "-79/15000",
+    "noUIObserved": true
+  },
+  "PitotExistingVisualLimits": "RETAINED_NO_NEW_RASTER_OR_FULL_GEOMETRY_ACCEPTANCE",
+  "UI": "NOT_RUN",
+  "canonicalRegistration": "NOT_RUN",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

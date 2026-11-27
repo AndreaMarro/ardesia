@@ -1,0 +1,162 @@
+[
+  {
+    "id": "SIM-C2-L006-01",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L006",
+    "order": 1,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Teorema di Bernoulli",
+    "topic": "Teorema di Bernoulli",
+    "anchor": "Quando un liquido accelera in un restringimento,",
+    "summary": "Dove si ritrova l’energia quando la corrente accelera?",
+    "apparatus": "condotto",
+    "control": {
+      "label": "Velocità nella gola",
+      "unit": "m/s",
+      "min": 1.0,
+      "max": 4.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Pressione statica nella gola",
+      "unit": "kPa"
+    },
+    "formula": "p₂ = p₁ + ½ρ(v₁²−v₂²); p₁ = 20 kPa, v₁ = 1 m/s",
+    "interpretation": "Segui la stessa linea di corrente orizzontale in acqua ideale. All’aumento dell’energia cinetica per unità di volume corrisponde un calo della pressione statica.",
+    "references": [
+      [
+        1.0,
+        20.0
+      ],
+      [
+        3.0,
+        16.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "20,5 − (0,5 × {x} × {x})",
+    "transferPrompt": "In un Venturi orizzontale ideale entrano acqua a 1 m/s e pressione statica di 20 kPa. Se nella gola l’acqua scorre a {x}, quale pressione statica vi leggi?"
+  },
+  {
+    "id": "SIM-C2-L006-02",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L006",
+    "order": 2,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Pressione statica e dinamica",
+    "topic": "Pressione statica e dinamica",
+    "anchor": "Ogni termine si misura in pascal: pressione",
+    "summary": "Quale differenza leggerebbero una presa frontale e una laterale?",
+    "apparatus": "condotto",
+    "control": {
+      "label": "Velocità dell’acqua",
+      "unit": "m/s",
+      "min": 0.0,
+      "max": 5.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Pressione dinamica",
+      "unit": "kPa"
+    },
+    "formula": "q = ½ρv², con ρ = 1000 kg/m³",
+    "interpretation": "La presa frontale arresta il fluido idealmente; quella laterale legge la pressione statica. La differenza è la pressione dinamica, che quadruplica se raddoppia la velocità.",
+    "references": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        4.0,
+        8.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "0,5 × {x} × {x}",
+    "transferPrompt": "Su un tubo di Pitot in acqua che scorre a {x}, di quanti kPa la pressione di ristagno supera quella statica?"
+  },
+  {
+    "id": "SIM-C2-L006-03",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L006",
+    "order": 3,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Stenosi e aneurisma in modello ideale",
+    "topic": "Stenosi e aneurisma in modello ideale",
+    "anchor": "Per una stenosi idealizzata, la continuità prevede",
+    "summary": "In quale tratto il flusso accelera e in quale rallenta?",
+    "apparatus": "condotto",
+    "control": {
+      "label": "Area locale rispetto a quella iniziale",
+      "unit": "1",
+      "min": 0.5,
+      "max": 2.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Velocità locale",
+      "unit": "m/s"
+    },
+    "formula": "v₂ = v₁ A₁/A₂; v₁ = 2 m/s",
+    "interpretation": "Restringi o allarga il tratto centrale. Il modello mantiene la portata in un condotto rigido orizzontale con fluido incomprimibile. Un vaso reale è pulsatile e può dissipare energia.",
+    "references": [
+      [
+        0.5,
+        4.0
+      ],
+      [
+        2.0,
+        1.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2 / {x}",
+    "transferPrompt": "Un condotto trasporta acqua a 2 m/s all’ingresso. Se l’area locale diventa {x} volte quella iniziale, quale velocità trovi?"
+  },
+  {
+    "id": "SIM-C2-L006-04",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L006",
+    "order": 4,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Condizioni di validità",
+    "topic": "Condizioni di validità",
+    "anchor": "Ogni termine si misura in pascal: pressione",
+    "summary": "Quando la somma ideale di Bernoulli sovrastima la pressione a valle?",
+    "apparatus": "condotto",
+    "control": {
+      "label": "Perdita di energia per volume",
+      "unit": "kPa",
+      "min": 0.0,
+      "max": 8.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Pressione statica in uscita",
+      "unit": "kPa"
+    },
+    "formula": "A e quota costanti: p₂ = p₁ − Δp perdita",
+    "interpretation": "Le sezioni e le velocità coincidono. Senza dissipazione le due prese coincidono; introducendo una perdita prescritta la pressione cala pur restando invariata la velocità.",
+    "references": [
+      [
+        0.0,
+        15.0
+      ],
+      [
+        6.0,
+        9.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "15 − {x}",
+    "transferPrompt": "L’acqua entra in un tubo orizzontale a 15 kPa. A sezione costante perde {x} di energia per volume. Quale pressione statica rimane in uscita?"
+  }
+]

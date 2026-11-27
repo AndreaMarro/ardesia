@@ -1,0 +1,791 @@
+{
+  "consumerRef": "b9994b9116e87478905191d85cca8037d17ae4bd",
+  "records": [
+    {
+      "id": "SIM-C2-L006-01",
+      "tasks": [
+        {
+          "input": 3,
+          "inputUnit": "m/s",
+          "modelOutput": 16,
+          "outputUnit": "kPa",
+          "prompt": "Imposta «Velocità nella gola» su 3 m/s. Quale valore ottieni per «Pressione statica nella gola»?",
+          "worked": "p₂ = p₁ + ½ρ(v₁²−v₂²); p₁ = 20 kPa, v₁ = 1 m/s. 20,5 − (0,5 × 3 × 3) = 16 kPa.",
+          "manualNumericEntry": 16,
+          "NumberAccepted": true
+        },
+        {
+          "input": 2,
+          "inputUnit": "m/s",
+          "modelOutput": 18.5,
+          "outputUnit": "kPa",
+          "prompt": "In un Venturi orizzontale ideale entrano acqua a 1 m/s e pressione statica di 20 kPa. Se nella gola l’acqua scorre a 2 m/s, quale pressione statica vi leggi?",
+          "worked": "p₂ = p₁ + ½ρ(v₁²−v₂²); p₁ = 20 kPa, v₁ = 1 m/s. 20,5 − (0,5 × 2 × 2) = 18,5 kPa.",
+          "manualNumericEntry": 18.5,
+          "NumberAccepted": true
+        }
+      ],
+      "controls": [
+        {
+          "x": 1,
+          "output": 20,
+          "apparatus": {
+            "r1": 0.65,
+            "r2": 0.65,
+            "v1": 0.4,
+            "v2": 0.4,
+            "pressione": true
+          }
+        },
+        {
+          "x": 1.25,
+          "output": 19.71875,
+          "apparatus": {
+            "r1": 0.65,
+            "r2": 0.5813776741499453,
+            "v1": 0.4,
+            "v2": 0.5,
+            "pressione": true
+          }
+        },
+        {
+          "x": 1.5,
+          "output": 19.375,
+          "apparatus": {
+            "r1": 0.65,
+            "r2": 0.530722777603022,
+            "v1": 0.4,
+            "v2": 0.6000000000000001,
+            "pressione": true
+          }
+        },
+        {
+          "x": 1.75,
+          "output": 18.96875,
+          "apparatus": {
+            "r1": 0.65,
+            "r2": 0.49135381491199537,
+            "v1": 0.4,
+            "v2": 0.7000000000000001,
+            "pressione": true
+          }
+        },
+        {
+          "x": 2,
+          "output": 18.5,
+          "apparatus": {
+            "r1": 0.65,
+            "r2": 0.4596194077712559,
+            "v1": 0.4,
+            "v2": 0.8,
+            "pressione": true
+          }
+        },
+        {
+          "x": 2.25,
+          "output": 17.96875,
+          "apparatus": {
+            "r1": 0.65,
+            "r2": 0.43333333333333335,
+            "v1": 0.4,
+            "v2": 0.9,
+            "pressione": true
+          }
+        },
+        {
+          "x": 2.5,
+          "output": 17.375,
+          "apparatus": {
+            "r1": 0.65,
+            "r2": 0.41109609582188933,
+            "v1": 0.4,
+            "v2": 1,
+            "pressione": true
+          }
+        },
+        {
+          "x": 2.75,
+          "output": 16.71875,
+          "apparatus": {
+            "r1": 0.65,
+            "r2": 0.3919647479510927,
+            "v1": 0.4,
+            "v2": 1.1,
+            "pressione": true
+          }
+        },
+        {
+          "x": 3,
+          "output": 16,
+          "apparatus": {
+            "r1": 0.65,
+            "r2": 0.37527767497325676,
+            "v1": 0.4,
+            "v2": 1.2000000000000002,
+            "pressione": true
+          }
+        },
+        {
+          "x": 3.25,
+          "output": 15.21875,
+          "apparatus": {
+            "r1": 0.65,
+            "r2": 0.36055512754639896,
+            "v1": 0.4,
+            "v2": 1.3,
+            "pressione": true
+          }
+        },
+        {
+          "x": 3.5,
+          "output": 14.375,
+          "apparatus": {
+            "r1": 0.65,
+            "r2": 0.34743961448615174,
+            "v1": 0.4,
+            "v2": 1.4000000000000001,
+            "pressione": true
+          }
+        },
+        {
+          "x": 3.75,
+          "output": 13.46875,
+          "apparatus": {
+            "r1": 0.65,
+            "r2": 0.33565855667130945,
+            "v1": 0.4,
+            "v2": 1.5,
+            "pressione": true
+          }
+        },
+        {
+          "x": 4,
+          "output": 12.5,
+          "apparatus": {
+            "r1": 0.65,
+            "r2": 0.325,
+            "v1": 0.4,
+            "v2": 1.6,
+            "pressione": true
+          }
+        }
+      ],
+      "hasClock": false,
+      "legend": "Verde a monte · viola a valle. Le frecce rappresentano le velocità di sezione. L’entrata è a sinistra e l’uscita a destra."
+    },
+    {
+      "id": "SIM-C2-L006-02",
+      "tasks": [
+        {
+          "input": 2,
+          "inputUnit": "m/s",
+          "modelOutput": 2,
+          "outputUnit": "kPa",
+          "prompt": "Imposta «Velocità dell’acqua» su 2 m/s. Quale valore ottieni per «Pressione dinamica»?",
+          "worked": "q = ½ρv², con ρ = 1000 kg/m³. 0,5 × 2 × 2 = 2 kPa.",
+          "manualNumericEntry": 2,
+          "NumberAccepted": true
+        },
+        {
+          "input": 4,
+          "inputUnit": "m/s",
+          "modelOutput": 8,
+          "outputUnit": "kPa",
+          "prompt": "Su un tubo di Pitot in acqua che scorre a 4 m/s, di quanti kPa la pressione di ristagno supera quella statica?",
+          "worked": "q = ½ρv², con ρ = 1000 kg/m³. 0,5 × 4 × 4 = 8 kPa.",
+          "manualNumericEntry": 8,
+          "NumberAccepted": true
+        }
+      ],
+      "controls": [
+        {
+          "x": 0,
+          "output": 0,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0,
+            "v2": 0,
+            "pitot": true
+          }
+        },
+        {
+          "x": 0.25,
+          "output": 0.03125,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.0625,
+            "v2": 0.0625,
+            "pitot": true
+          }
+        },
+        {
+          "x": 0.5,
+          "output": 0.125,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.125,
+            "v2": 0.125,
+            "pitot": true
+          }
+        },
+        {
+          "x": 0.75,
+          "output": 0.28125,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.1875,
+            "v2": 0.1875,
+            "pitot": true
+          }
+        },
+        {
+          "x": 1,
+          "output": 0.5,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.25,
+            "v2": 0.25,
+            "pitot": true
+          }
+        },
+        {
+          "x": 1.25,
+          "output": 0.78125,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.3125,
+            "v2": 0.3125,
+            "pitot": true
+          }
+        },
+        {
+          "x": 1.5,
+          "output": 1.125,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.375,
+            "v2": 0.375,
+            "pitot": true
+          }
+        },
+        {
+          "x": 1.75,
+          "output": 1.53125,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.4375,
+            "v2": 0.4375,
+            "pitot": true
+          }
+        },
+        {
+          "x": 2,
+          "output": 2,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.5,
+            "v2": 0.5,
+            "pitot": true
+          }
+        },
+        {
+          "x": 2.25,
+          "output": 2.53125,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.5625,
+            "v2": 0.5625,
+            "pitot": true
+          }
+        },
+        {
+          "x": 2.5,
+          "output": 3.125,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.625,
+            "v2": 0.625,
+            "pitot": true
+          }
+        },
+        {
+          "x": 2.75,
+          "output": 3.78125,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.6875,
+            "v2": 0.6875,
+            "pitot": true
+          }
+        },
+        {
+          "x": 3,
+          "output": 4.5,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.75,
+            "v2": 0.75,
+            "pitot": true
+          }
+        },
+        {
+          "x": 3.25,
+          "output": 5.28125,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.8125,
+            "v2": 0.8125,
+            "pitot": true
+          }
+        },
+        {
+          "x": 3.5,
+          "output": 6.125,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.875,
+            "v2": 0.875,
+            "pitot": true
+          }
+        },
+        {
+          "x": 3.75,
+          "output": 7.03125,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.9375,
+            "v2": 0.9375,
+            "pitot": true
+          }
+        },
+        {
+          "x": 4,
+          "output": 8,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 1,
+            "v2": 1,
+            "pitot": true
+          }
+        },
+        {
+          "x": 4.25,
+          "output": 9.03125,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 1.0625,
+            "v2": 1.0625,
+            "pitot": true
+          }
+        },
+        {
+          "x": 4.5,
+          "output": 10.125,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 1.125,
+            "v2": 1.125,
+            "pitot": true
+          }
+        },
+        {
+          "x": 4.75,
+          "output": 11.28125,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 1.1875,
+            "v2": 1.1875,
+            "pitot": true
+          }
+        },
+        {
+          "x": 5,
+          "output": 12.5,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 1.25,
+            "v2": 1.25,
+            "pitot": true
+          }
+        }
+      ],
+      "hasClock": false,
+      "legend": "Verde a monte · viola a valle. Le frecce rappresentano le velocità di sezione. L’entrata è a sinistra e l’uscita a destra. La presa frontale del tubo di Pitot è a destra. È rivolta contro il flusso e misura la pressione di ristagno. Le frecce di velocità sono spostate di lato nel disegno per lasciare visibile la presa. La loro lunghezza segue la velocità lungo il tubo."
+    },
+    {
+      "id": "SIM-C2-L006-03",
+      "tasks": [
+        {
+          "input": 0.5,
+          "inputUnit": "1",
+          "modelOutput": 4,
+          "outputUnit": "m/s",
+          "prompt": "Imposta «Area locale rispetto a quella iniziale» su 0,5. Quale valore ottieni per «Velocità locale»?",
+          "worked": "v₂ = v₁ A₁/A₂; v₁ = 2 m/s. 2 / 0,5 = 4 m/s.",
+          "manualNumericEntry": 4,
+          "NumberAccepted": true
+        },
+        {
+          "input": 2,
+          "inputUnit": "1",
+          "modelOutput": 1,
+          "outputUnit": "m/s",
+          "prompt": "Un condotto trasporta acqua a 2 m/s all’ingresso. Se l’area locale diventa 2 volte quella iniziale, quale velocità trovi?",
+          "worked": "v₂ = v₁ A₁/A₂; v₁ = 2 m/s. 2 / 2 = 1 m/s.",
+          "manualNumericEntry": 1,
+          "NumberAccepted": true
+        }
+      ],
+      "controls": [
+        {
+          "x": 0.5,
+          "output": 4,
+          "apparatus": {
+            "r1": 0.57,
+            "r2": 0.4030508652763321,
+            "v1": 0.65,
+            "v2": 1.3333333333333333,
+            "pressione": true
+          }
+        },
+        {
+          "x": 0.75,
+          "output": 2.6666666666666665,
+          "apparatus": {
+            "r1": 0.57,
+            "r2": 0.49363448015712996,
+            "v1": 0.65,
+            "v2": 0.8888888888888888,
+            "pressione": true
+          }
+        },
+        {
+          "x": 1,
+          "output": 2,
+          "apparatus": {
+            "r1": 0.57,
+            "r2": 0.57,
+            "v1": 0.65,
+            "v2": 0.6666666666666666,
+            "pressione": true
+          }
+        },
+        {
+          "x": 1.25,
+          "output": 1.6,
+          "apparatus": {
+            "r1": 0.57,
+            "r2": 0.63727937358744,
+            "v1": 0.65,
+            "v2": 0.5333333333333333,
+            "pressione": true
+          }
+        },
+        {
+          "x": 1.5,
+          "output": 1.3333333333333333,
+          "apparatus": {
+            "r1": 0.57,
+            "r2": 0.6981045766932057,
+            "v1": 0.65,
+            "v2": 0.4444444444444444,
+            "pressione": true
+          }
+        },
+        {
+          "x": 1.75,
+          "output": 1.1428571428571428,
+          "apparatus": {
+            "r1": 0.57,
+            "r2": 0.7540391236534083,
+            "v1": 0.65,
+            "v2": 0.38095238095238093,
+            "pressione": true
+          }
+        },
+        {
+          "x": 2,
+          "output": 1,
+          "apparatus": {
+            "r1": 0.57,
+            "r2": 0.8061017305526642,
+            "v1": 0.65,
+            "v2": 0.3333333333333333,
+            "pressione": true
+          }
+        }
+      ],
+      "hasClock": false,
+      "legend": "Verde a monte · viola a valle. Le frecce rappresentano le velocità di sezione. L’entrata è a sinistra e l’uscita a destra."
+    },
+    {
+      "id": "SIM-C2-L006-04",
+      "tasks": [
+        {
+          "input": 6,
+          "inputUnit": "kPa",
+          "modelOutput": 9,
+          "outputUnit": "kPa",
+          "prompt": "Imposta «Perdita di energia per volume» su 6 kPa. Quale valore ottieni per «Pressione statica in uscita»?",
+          "worked": "A e quota costanti: p₂ = p₁ − Δp perdita. 15 − 6 = 9 kPa.",
+          "manualNumericEntry": 9,
+          "NumberAccepted": true
+        },
+        {
+          "input": 4,
+          "inputUnit": "kPa",
+          "modelOutput": 11,
+          "outputUnit": "kPa",
+          "prompt": "L’acqua entra in un tubo orizzontale a 15 kPa. A sezione costante perde 4 kPa di energia per volume. Quale pressione statica rimane in uscita?",
+          "worked": "A e quota costanti: p₂ = p₁ − Δp perdita. 15 − 4 = 11 kPa.",
+          "manualNumericEntry": 11,
+          "NumberAccepted": true
+        }
+      ],
+      "controls": [
+        {
+          "x": 0,
+          "output": 15,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.7,
+            "v2": 0.7,
+            "perdita": 0
+          }
+        },
+        {
+          "x": 0.5,
+          "output": 14.5,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.7,
+            "v2": 0.7,
+            "perdita": 0.0625
+          }
+        },
+        {
+          "x": 1,
+          "output": 14,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.7,
+            "v2": 0.7,
+            "perdita": 0.125
+          }
+        },
+        {
+          "x": 1.5,
+          "output": 13.5,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.7,
+            "v2": 0.7,
+            "perdita": 0.1875
+          }
+        },
+        {
+          "x": 2,
+          "output": 13,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.7,
+            "v2": 0.7,
+            "perdita": 0.25
+          }
+        },
+        {
+          "x": 2.5,
+          "output": 12.5,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.7,
+            "v2": 0.7,
+            "perdita": 0.3125
+          }
+        },
+        {
+          "x": 3,
+          "output": 12,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.7,
+            "v2": 0.7,
+            "perdita": 0.375
+          }
+        },
+        {
+          "x": 3.5,
+          "output": 11.5,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.7,
+            "v2": 0.7,
+            "perdita": 0.4375
+          }
+        },
+        {
+          "x": 4,
+          "output": 11,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.7,
+            "v2": 0.7,
+            "perdita": 0.5
+          }
+        },
+        {
+          "x": 4.5,
+          "output": 10.5,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.7,
+            "v2": 0.7,
+            "perdita": 0.5625
+          }
+        },
+        {
+          "x": 5,
+          "output": 10,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.7,
+            "v2": 0.7,
+            "perdita": 0.625
+          }
+        },
+        {
+          "x": 5.5,
+          "output": 9.5,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.7,
+            "v2": 0.7,
+            "perdita": 0.6875
+          }
+        },
+        {
+          "x": 6,
+          "output": 9,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.7,
+            "v2": 0.7,
+            "perdita": 0.75
+          }
+        },
+        {
+          "x": 6.5,
+          "output": 8.5,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.7,
+            "v2": 0.7,
+            "perdita": 0.8125
+          }
+        },
+        {
+          "x": 7,
+          "output": 8,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.7,
+            "v2": 0.7,
+            "perdita": 0.875
+          }
+        },
+        {
+          "x": 7.5,
+          "output": 7.5,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.7,
+            "v2": 0.7,
+            "perdita": 0.9375
+          }
+        },
+        {
+          "x": 8,
+          "output": 7,
+          "apparatus": {
+            "r1": 0.55,
+            "r2": 0.55,
+            "v1": 0.7,
+            "v2": 0.7,
+            "perdita": 1
+          }
+        }
+      ],
+      "hasClock": false,
+      "legend": "Verde a monte · viola a valle. Le frecce rappresentano le velocità di sezione. L’entrata è a sinistra e l’uscita a destra."
+    }
+  ],
+  "gridCount": 58,
+  "katexFormulaCount": 4,
+  "witness": {
+    "id": "SIM-C2-L006-03",
+    "inputAreaRatio": 1,
+    "physicalUpstreamSpeed": 2,
+    "physicalDownstreamSpeed": 2,
+    "physicalAreaRatio": 1,
+    "sourceApparatus": {
+      "r1": 0.57,
+      "r2": 0.57,
+      "v1": 0.65,
+      "v2": 0.6666666666666666,
+      "pressione": true
+    },
+    "arrowLengths": [
+      0.52,
+      0.5333333333333334
+    ],
+    "arrowRatio": 1.0256410256410258,
+    "pressureColumnTopY": [
+      2.4899999999999998,
+      2.4847333333333332
+    ],
+    "columnHeightDifference": -0.005266666666666531,
+    "expectedArrowRatio": 1,
+    "expectedColumnHeightDifference": 0,
+    "UIObserved": false,
+    "classification": "CODE_REPRESENTATION_FAILURE_NOT_SCALAR_ANSWER_FAILURE"
+  },
+  "productUI": "NOT_RUN",
+  "activityCredit": 0
+}

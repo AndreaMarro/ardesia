@@ -1,0 +1,117 @@
+{
+  "scope": "LIMITED_PREPARATION_NOT_EXECUTED",
+  "draftCandidateCommit": "93ee5b5acf91de1030dbeb33f962252acb9ba34f",
+  "oldRuntimeCommit": "b9994b9116e87478905191d85cca8037d17ae4bd",
+  "oldRuntimeSha256": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6",
+  "collectorSha256": "719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15",
+  "profiles": [
+    {
+      "width": 320,
+      "fallback": false,
+      "view": "orbit"
+    },
+    {
+      "width": 320,
+      "fallback": false,
+      "view": "side"
+    },
+    {
+      "width": 320,
+      "fallback": false,
+      "view": "top"
+    },
+    {
+      "width": 320,
+      "fallback": true,
+      "view": "fixed_projection"
+    },
+    {
+      "width": 1280,
+      "fallback": false,
+      "view": "orbit"
+    },
+    {
+      "width": 1280,
+      "fallback": false,
+      "view": "side"
+    },
+    {
+      "width": 1280,
+      "fallback": false,
+      "view": "top"
+    },
+    {
+      "width": 1280,
+      "fallback": true,
+      "view": "fixed_projection"
+    }
+  ],
+  "records": [
+    {
+      "id": "SIM-C2-L006-01",
+      "candidateSha256": "52b5286cab0964c438baa916f705c138de102a2f0af4b49a3f606cf093bc6efe",
+      "assignedInputs": [
+        "3",
+        "2"
+      ],
+      "setupAndAssignedCases": 24
+    },
+    {
+      "id": "SIM-C2-L006-02",
+      "candidateSha256": "0d818189045b4bb173250da4dcac0bdae0376b6203e3280ed06e9bb416ebf290",
+      "assignedInputs": [
+        "2",
+        "4"
+      ],
+      "setupAndAssignedCases": 24
+    },
+    {
+      "id": "SIM-C2-L006-03",
+      "candidateSha256": "75709288fb0abf5bdd1653c90c5e79e7722a03377a234b5cb13a8bd73f558948",
+      "assignedInputs": [
+        "1/2",
+        "2"
+      ],
+      "setupAndAssignedCases": 24
+    },
+    {
+      "id": "SIM-C2-L006-04",
+      "candidateSha256": "58b85a52cf85f20793b09e41df8b861ae75ad107929c13f0fec587dca099ed8e",
+      "assignedInputs": [
+        "6",
+        "4"
+      ],
+      "setupAndAssignedCases": 24
+    }
+  ],
+  "supplementalProposed": [
+    {
+      "id": "SIM-C2-L006-03",
+      "input": 1,
+      "reason": "Equalareas/speeds zero-drop regression",
+      "cases": 8
+    },
+    {
+      "id": "SIM-C2-L006-02",
+      "input": 0,
+      "reason": "Zero dynamics",
+      "cases": 8
+    },
+    {
+      "id": "SIM-C2-L006-02",
+      "input": 5,
+      "reason": "Maximum probe/column/fullglyph bounds",
+      "cases": 8
+    }
+  ],
+  "plannedTotal": 120,
+  "launchAllowed": false,
+  "blockingReasons": [
+    "C4 holds browser priority",
+    "Root distinct representation correction and fresh runtime authority required before launch"
+  ],
+  "UI": "NOT_RUN",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
