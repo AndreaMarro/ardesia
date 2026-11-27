@@ -1,0 +1,11 @@
+# Distinct L04-03 current-temperature correction canary on0c9
+
+New runtime a57cb902/0c9 and explanatory candidate0867 are independently pinned. All amended blocks were reread before acquisition: water specific heat4.2J/(gK), capacity0.42kJ/K,43kJ→50/3°C and explicit task points19/28 are consistent with exact arithmetic. Other five candidate records are byte-identical to Core6ae3. Existing pre-key phase model remains frozen; this is an exposed but distinct subsequent review, not a new blind claim. No author/app/registry edit, credit0/human NOT_RUN.
+
+Two fresh undisturbed real0/null groups:20/320 in20.422s and20/1280 in17.047s. All40 whole PNGs were independently read on six uncropped/unscaled indexed pages;8 profiles,8setup with16 actual accepted answers,32 controlled grid/clock scenes. Both five-test CPU runs really pass. The previous53bd FAIL and7diagnostic tests stay historical in3aa1e7cd and are not retagged.
+
+At selected1kJ, clock0,1/8,1/4,3/8s now displays−10,−8.75,−7.5,−6.25°C, respectively, and the thermometer heights agree with the independent relation E=min(1,2t), T=−10+5E. Both mass readings remain0g and distinguish final from current amount. Detail ocra128× remains visible for all three nonzero instants in every read profile and is explained in actual legend; no false arrow at zero. The32 physical primitive lists are exactly unchanged from the previous source at these states. Detailed old/new raw and PNG hashes, including differences, are in the comparison JSON; no equality is presumed from a summary.
+
+The scientific UI verdict is local to this tiny-energy correction canary. The extended phase112 is not yet run: neither plateau nor full-melt/water-warming graphic acceptance follows from this40. CPU exact transition examples do verify2/36kJ and43→50/3°C using the newly declared heat capacity. The source mesh/DOM replay is distinguished from observed rasters; arbitrary cameras/GPU-state clearance are not asserted. Axial Alto cannot quantify a vertical thermometer.
+
+The old incremental320 handoff is retained as it was before the1280 acquisition. This full40 handoff supersedes its remaining-width status without rewriting its earlier receipt. The next112 plan lives separately and is not included as executed evidence.
