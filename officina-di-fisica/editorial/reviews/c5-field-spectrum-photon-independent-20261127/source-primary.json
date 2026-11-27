@@ -1,0 +1,322 @@
+{
+  "phase": "FROZEN_BEFORE_OPENING_NEW_DRAFT_JSON_OR_AUTHOR_RECEIPT",
+  "reviewerRole": "AI_DISTINCT_FROM_ROOT_AUTHOR",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/esperienze-C5.json",
+  "sourceFileSha256": "7fff6e6703886003c45695e95b3361f8e09875da4b080ae17e6aa26d33f9bd84",
+  "sourceGitBlobComputed": "370e90e0a313381adc59b81a66e67f00680536f5",
+  "inputProjectionSha256": "e2077369a5c5b8aca36e124a4a6abb69e59764b32cf2813abb53686c108616d5",
+  "exposureDisclosure": "Previously reviewed the original139 source/model families including C5. This is not a key-naive first encounter with historic source. For this five-record review I have read the original selected problem/formula/interpretation/control/unit/reference-input projection only. Original interpretations contain worked signs/numbers and are disclosed as prior source support. I have not opened any new future-author8f29 JSON, receipt, module or values. Historical generic selection rule is known.",
+  "records": [
+    {
+      "id": "SIM-C5-L06-01",
+      "sourceVersion": 2,
+      "expectedNextEdition": 3,
+      "model": "E=3sin(phi)V/m;B=E/c;c_work=300000000m/s;B_nT=10sin(phi)",
+      "exactStandardStates": {
+        "0": {
+          "E_V_per_m": "0",
+          "B_nT": "0"
+        },
+        "90": {
+          "E_V_per_m": "3",
+          "B_nT": "10"
+        },
+        "180": {
+          "E_V_per_m": "0",
+          "B_nT": "0"
+        },
+        "270": {
+          "E_V_per_m": "-3",
+          "B_nT": "-10"
+        },
+        "360": {
+          "E_V_per_m": "0",
+          "B_nT": "0"
+        }
+      },
+      "originalTasksDerivedFromReferenceInputsAndInstalledGenericSelection": {
+        "input270": "-10nT",
+        "input180": "0nT"
+      },
+      "manualMethod": "sin90=1,sin180=0,sin270=-1. Divide3 by3*10^8 and multiply10^9 nT/T:10. Simultaneously reversing E and B preserves E cross B; zero field has no nonzero vector direction.",
+      "hypotheses": "Plane progressive vacuum EM wave, orthogonal fields and propagation; c=3e8 is assigned rounded working constant. B=E/c relates signed orthogonal components in a fixed oriented basis; not arbitrary static fields.",
+      "domains": "phase real, source0..360step15; standard assigned phases manually exact. Other phases observational unless supported by explicit manual data."
+    },
+    {
+      "id": "SIM-C5-L06-02",
+      "sourceVersion": 1,
+      "expectedNextEdition": 2,
+      "model": "I/Iref=(E0/(2V/m))^2;lambda=c/f;f=100MHz",
+      "exactLawTable": [
+        [
+          "0",
+          "0"
+        ],
+        [
+          "1/2",
+          "1/16"
+        ],
+        [
+          "1",
+          "1/4"
+        ],
+        [
+          "3/2",
+          "9/16"
+        ],
+        [
+          "2",
+          "1"
+        ],
+        [
+          "5/2",
+          "25/16"
+        ],
+        [
+          "3",
+          "9/4"
+        ],
+        [
+          "7/2",
+          "49/16"
+        ],
+        [
+          "4",
+          "4"
+        ],
+        [
+          "9/2",
+          "81/16"
+        ],
+        [
+          "5",
+          "25/4"
+        ],
+        [
+          "11/2",
+          "121/16"
+        ],
+        [
+          "6",
+          "9"
+        ]
+      ],
+      "originalTasksDerivedFromReferenceInputsAndInstalledGenericSelection": {
+        "input4": "4",
+        "input3": "9/4"
+      },
+      "manualMethod": "Square the ratio E0/2; at4V/m get4 and at3V/m get9/4=2.25. 100MHz=10^8Hz, assigned c3e8m/s gives lambda_work3m; amplitude changes intensity, not frequency/wavelength in this linear vacuum model.",
+      "hypotheses": "Same medium/vacuum and fixedfrequency; time-average intensity proportional E0^2; no nonlinear refractive response.",
+      "domains": "E0>=0; positive reference amplitude2V/m. At0 intensity0 and no nonzero field, nominal source frequency still specified."
+    },
+    {
+      "id": "SIM-C5-L06-03",
+      "sourceVersion": 1,
+      "expectedNextEdition": 2,
+      "model": "log10(lambda/m)=log10(c/(m/s))-log10(f/Hz)",
+      "sourceOnlyIdentifiability": "Band names and ordinal1..7 do not uniquely determine a representative numerical frequency/wavelength. Primary source input-only projection does not supply a representative table. Do not infer exact numeric keys from band labels alone. Installed model/data must be treated as assigned illustrative representatives and checked independently before candidate review.",
+      "independentRelations": {
+        "lambda": "c/f, positive f and lambda",
+        "ratio": "f2/f1=lambda1/lambda2",
+        "logRule": "If lambda=10^k m, plotted scalar is k; a factor10 increase in wavelength adds1; frequency ordering is reversed."
+      },
+      "manualMethod": "Read an explicitly assigned power-of-ten representative if supplied; exact powers avoid calculator log. A non-power-ten logarithm needs a provided bound/table or explicit Number-compatible manual approximation.",
+      "hypotheses": "Bands have conventional overlapping endpoints, not universal sharply disjoint physical cutoffs; scene crests schematic, positive vacuum c/f, ordinate dimensionless logarithm of numerical metres.",
+      "domains": "Choice index1..7 only. No logarithm of nonpositive or dimensionful unnormalized value."
+    },
+    {
+      "id": "SIM-C5-L07-01",
+      "sourceVersion": 1,
+      "expectedNextEdition": 2,
+      "model": "E_eV=(517/125000)*f_THz from assigned h=4.136e-15eV*s",
+      "exactLawTable": [
+        [
+          "100",
+          "517/1250"
+        ],
+        [
+          "150",
+          "1551/2500"
+        ],
+        [
+          "200",
+          "517/625"
+        ],
+        [
+          "250",
+          "517/500"
+        ],
+        [
+          "300",
+          "1551/1250"
+        ],
+        [
+          "350",
+          "3619/2500"
+        ],
+        [
+          "400",
+          "1034/625"
+        ],
+        [
+          "450",
+          "4653/2500"
+        ],
+        [
+          "500",
+          "517/250"
+        ],
+        [
+          "550",
+          "5687/2500"
+        ],
+        [
+          "600",
+          "1551/625"
+        ],
+        [
+          "650",
+          "6721/2500"
+        ],
+        [
+          "700",
+          "3619/1250"
+        ],
+        [
+          "750",
+          "1551/500"
+        ],
+        [
+          "800",
+          "2068/625"
+        ],
+        [
+          "850",
+          "8789/2500"
+        ],
+        [
+          "900",
+          "4653/1250"
+        ],
+        [
+          "950",
+          "9823/2500"
+        ],
+        [
+          "1000",
+          "517/125"
+        ]
+      ],
+      "originalTasksDerivedFromReferenceInputsAndInstalledGenericSelection": {
+        "input750": "1551/500=3.102eV",
+        "input550": "5687/2500=2.2748eV"
+      },
+      "manualMethod": "THz=10^12Hz, so h*f=4.136*10^-3*f_THz. Multiply integers then place decimal. Working h is rounded: finite decimal products exact relative to assigned model, physical SI constant approximation remains qualified.",
+      "hypotheses": "Single-photon energy; increasing photon count increases total energy at fixed single-photon energy, not changing E=hf. Vacuum f positive.",
+      "domains": "Source100..1000step50THz, all inputs positive. Unit eV*s times s^-1 gives eV."
+    },
+    {
+      "id": "SIM-C5-L07-03",
+      "sourceVersion": 1,
+      "expectedNextEdition": 2,
+      "model": "K_eV=max(0,E_eV-14)",
+      "exactLawTable": [
+        [
+          5,
+          0
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          9,
+          0
+        ],
+        [
+          10,
+          0
+        ],
+        [
+          11,
+          0
+        ],
+        [
+          12,
+          0
+        ],
+        [
+          13,
+          0
+        ],
+        [
+          14,
+          0
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          16,
+          2
+        ],
+        [
+          17,
+          3
+        ],
+        [
+          18,
+          4
+        ],
+        [
+          19,
+          5
+        ],
+        [
+          20,
+          6
+        ],
+        [
+          21,
+          7
+        ],
+        [
+          22,
+          8
+        ],
+        [
+          23,
+          9
+        ],
+        [
+          24,
+          10
+        ],
+        [
+          25,
+          11
+        ]
+      ],
+      "originalTasksDerivedFromReferenceInputsAndInstalledGenericSelection": {
+        "input20": "6eV",
+        "input15": "1eV"
+      },
+      "manualMethod": "Subtract assigned threshold14eV only once photon reaches threshold. Below14 no electron is emitted, so plotted0 does not mean a detected resting electron. At14 liberation at threshold with zero kinetic energy in ideal model.",
+      "hypotheses": "Fixed ideal target threshold14eV, single-photon absorption; ordinary intensity changes alone below threshold do not change each photon energy. Multiphoton, thermal, material and other channels outside assigned model.",
+      "domains": "Source5..25step1eV; K>=0, threshold at14, physical emission flag distinct from clamped readout."
+    }
+  ],
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
