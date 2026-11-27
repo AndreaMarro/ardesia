@@ -1,0 +1,225 @@
+{
+  "assets": [],
+  "records": [
+    {
+      "anchor": "La conducibilità λ si misura in W/(m·K),",
+      "apparatus": "barra",
+      "assessmentSelection": {
+        "points": [
+          2,
+          8
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Segna la faccia calda e quella fredda dello stesso materiale. Nella conduzione stazionaria monodimensionale, con conducibilità costante e perdite laterali trascurate, la temperatura cambia linearmente nello spessore. La pendenza del profilo vale ΔT/L in modulo. Il flusso di calore va dalla faccia più calda a quella più fredda.",
+          "type": "text"
+        },
+        {
+          "text": "P=kA\\frac{\\Delta T}{L}",
+          "type": "formula"
+        },
+        {
+          "text": "Calcola prima il prodotto kAΔT. Moltiplica 1 per 0,01 e poi per 20. Riunendo W/(m·K), m² e K, rimangono W·m.",
+          "type": "text"
+        },
+        {
+          "text": "kA\\Delta T=0{,}20\\ \\mathrm{W\\,m}",
+          "type": "formula"
+        },
+        {
+          "text": "Disegna i due profili con la stessa differenza di temperatura. A 2 cm, cioè 0,02 m, il conto è 0,20/0,02 = 20/2 = 10 W. Con 8 cm, cioè 0,08 m, dividi 20 per 8 e ottieni 5/2 = 2,5 W. La seconda pendenza è un quarto della prima perché lo spessore è quadruplicato.",
+          "type": "text"
+        },
+        {
+          "text": "Per risalire allo spessore inverti la legge. Con P = 2,5 W, dividi 0,20 W·m per 2,5 W e trovi 0,08 m, pari a 8 cm. La misura è in watt perché il kelvin si cancella nella legge e dopo la divisione dei metri rimane soltanto la potenza.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Spessore della parete",
+        "max": 8.0,
+        "min": 1.0,
+        "step": 0.5,
+        "unit": "cm"
+      },
+      "course": "C3",
+      "formula": "P = kAΔT/L; k = 1 W/(m·K), A = 0,01 m², ΔT = 20 K",
+      "id": "SIM-C3-L05-01",
+      "interpretation": "Le facce sono mantenute a due temperature fisse. Segui il gradiente dalla calda alla fredda. Nella conduzione stazionaria monodimensionale la stessa differenza si distribuisce su una distanza maggiore.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Potenza condotta",
+        "unit": "W"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C3-L05"
+      ],
+      "references": [
+        [
+          2.0,
+          10.0
+        ],
+        [
+          5.0,
+          4.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Tre vie per trasferire energia",
+      "skill": "C3-L05",
+      "substitution": "20 / {x}",
+      "summary": "Una parete due volte più spessa lascia passare la stessa potenza?",
+      "title": "Conduzione",
+      "topic": "5.3 Conduzione",
+      "transferPrompt": "Una parete di spessore {x} e area 0,01 m² ha k = 1 W/(m·K). Le due facce differiscono di 20 K. Quale potenza termica attraversa la parete?",
+      "version": 2
+    },
+    {
+      "anchor": "Se una corrente di fluido trasporta con",
+      "apparatus": "convezione",
+      "assessmentSelection": {
+        "points": [
+          2,
+          3.5
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Segui una piccola massa d’acqua dall’ingresso caldo all’uscita più fredda. La portata dice quanti grammi attraversano la sezione ogni secondo. Se ciascun grammo si raffredda di 10 K, cede 4,2 J/(g·K) × 10 K = 42 J/g. Il conto vale per un flusso stazionario senza cambiamento di fase e con calore specifico preso costante.",
+          "type": "text"
+        },
+        {
+          "text": "P=\\dot m c\\Delta T=\\dot m(42\\ \\mathrm{J/g})",
+          "type": "formula"
+        },
+        {
+          "text": "Disegna una freccia per il flusso d’acqua e una seconda dal circuito caldo a quello freddo per il calore ceduto. A 2 g/s transitano due porzioni da un grammo ogni secondo. Due volte 42 danno 84 J/s, cioè 84 W. A 3,5 g/s moltiplica per 3 + 1/2 e somma 126 + 21 = 147 W.",
+          "type": "text"
+        },
+        {
+          "text": "Per ricavare la portata da una potenza di 147 W, dividi 147 J/s per 42 J/g. Ne risultano 7/2 g/s. Il grammo si cancella nella legge diretta e ricompare in quella inversa. A pari raffreddamento, il maggior trasferimento deriva da più acqua che attraversa il circuito nello stesso tempo.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Portata di massa",
+        "max": 5.0,
+        "min": 0.0,
+        "step": 0.25,
+        "unit": "g/s"
+      },
+      "course": "C3",
+      "formula": "P = ṁcΔT; c = 4,2 J/(g·K), ΔT = 10 K",
+      "id": "SIM-C3-L05-02",
+      "interpretation": "Segui il fluido nel circuito. Ogni grammo cede 42 J mentre si raffredda di 10 K. Aumentando i grammi che passano ogni secondo aumenta la potenza trasportata.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Potenza termica trasportata",
+        "unit": "W"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C3-L05"
+      ],
+      "references": [
+        [
+          1.0,
+          42.0
+        ],
+        [
+          3.0,
+          126.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Tre vie per trasferire energia",
+      "skill": "C3-L05",
+      "substitution": "42 × {x}",
+      "summary": "Come trasporta energia un liquido che entra caldo ed esce più freddo?",
+      "title": "Convezione",
+      "topic": "5.3 Convezione",
+      "transferPrompt": "Nello scambiatore passano {x} d’acqua. Ogni grammo cede 42 J all’altro circuito. Quanti watt trasferisce l’acqua?",
+      "version": 2
+    },
+    {
+      "anchor": "L’irraggiamento avviene mediante onde elettromagnetiche e attraversa",
+      "apparatus": "radiazione",
+      "assessmentSelection": {
+        "points": [
+          200,
+          400
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Disegna due frecce opposte. La piastra emette verso l’ambiente e l’ambiente stesso irradia verso la piastra. Nel modello nero e con tutta la vista occupata da un ambiente uniforme, il flusso netto uscente è la differenza fra quei due contributi. Usa temperature assolute in kelvin e trascura gli altri canali di scambio.",
+          "type": "text"
+        },
+        {
+          "text": "j=\\sigma(T^4-T_a^4),\\qquad T_a=300\\ \\mathrm K,\\qquad \\sigma\\simeq5{,}67\\times10^{-8}\\ \\mathrm{W\\,m^{-2}\\,K^{-4}}",
+          "type": "formula"
+        },
+        {
+          "text": "A 200 K raccogli (100 K)⁴ = 10⁸ K⁴. Rimane 2⁴ − 3⁴ = 16 − 81 = −65. Il fattore 10⁸ cancella quello nella costante. Per moltiplicare 5,67 per 65, somma 5,67 × 60 = 340,2 e 5,67 × 5 = 28,35. Con il segno ottieni −368,55 W/m². Nel tuo disegno prevale la freccia entrante. Il banco mostra il risultato netto, anch’esso entrante.",
+          "type": "text"
+        },
+        {
+          "text": "A 400 K il fattore intero diventa 4⁴ − 3⁴ = 256 − 81 = 175. Fai 5,67 × (200 − 25). Da 1.134 togli 141,75, che è un quarto di 567. Rimangono 992,25 W/m² e nel tuo disegno prevale la freccia uscente. A 300 K le due frecce del tuo disegno hanno uguale modulo. Nel banco scompare la freccia del flusso netto. Entrambi gli scambi continuano.",
+          "type": "text"
+        },
+        {
+          "text": "Per isolare la temperatura, somma Tₐ⁴ a j/σ e prendi la radice quarta positiva. Per trovare l’equilibrio basta porre j = 0. Ottieni T⁴ = Tₐ⁴ e quindi T = 300 K, senza calcolare alcuna radice numerica.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Temperatura della superficie",
+        "max": 500.0,
+        "min": 200.0,
+        "step": 10.0,
+        "unit": "K"
+      },
+      "course": "C3",
+      "formula": "P/A = εσ(T⁴ − Tₐ⁴), con ε = 1, Tₐ = 300 K e σ ≃ 5,67 × 10⁻⁸ W/(m²·K⁴)",
+      "id": "SIM-C3-L05-03",
+      "interpretation": "La piastra nera scambia radiazione con un grande ambiente a 300 K. Confronta emissione e assorbimento. La freccia netta si inverte passando per l’equilibrio.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Flusso radiativo netto",
+        "unit": "W/m²"
+      },
+      "order": 3,
+      "prerequisites": [
+        "C3-L05"
+      ],
+      "references": [
+        [
+          300.0,
+          0.0
+        ],
+        [
+          400.0,
+          992.25
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Tre vie per trasferire energia",
+      "skill": "C3-L05",
+      "substitution": "5,67 × 10⁻⁸ × ({x}⁴ − 300⁴)",
+      "summary": "Quale superficie perde energia quando la tua piastra è più fredda dell’ambiente?",
+      "title": "Irraggiamento",
+      "topic": "5.3 Irraggiamento",
+      "transferPrompt": "Una piastra nera a {x} scambia radiazione con un grande ambiente nero a 300 K. Qual è il flusso radiativo netto per metro quadrato, positivo se esce dalla piastra?",
+      "version": 2
+    }
+  ],
+  "schema": "astra/1"
+}
