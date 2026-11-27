@@ -4,13 +4,11 @@ import argparse
 import hashlib
 import json
 import re
-import shutil
 import stat
-import tempfile
 from pathlib import Path, PurePosixPath
 from zipfile import ZipFile
 
-from tools.corpus_engineering.experiment_visibility_request import verify_report
+from tools.corpus_engineering.experiment_visibility_request import verify_report_bytes
 
 
 COURSES = {'C2': 7440, 'C3': 11808, 'C4': 7872, 'C5': 14464, 'C6': 3992}
@@ -29,7 +27,8 @@ def sha(data):
 
 def safe_member(name):
     path = PurePosixPath(name)
-    require(not path.is_absolute() and '..' not in path.parts and '\\' not in name, name)
+    require(not path.is_absolute() and '..' not in path.parts and '\\' not in name
+            and ':' not in name and all(ord(char) >= 32 for char in name), name)
     require(name.rstrip('/') == str(path), name)
     return path
 
@@ -45,7 +44,7 @@ def inspect_members(archive):
     return names
 
 
-def evidence(archive, names, workspace, course, request, request_sha, run_id, head, protocol_sha):
+def evidence(archive, names, course, request, request_sha, run_id, head, protocol_sha):
     directory = f'_temp/experiment-{course}/evidence/'
     prepared_raw = archive.read(directory + 'prepared.json')
     plan = json.loads(prepared_raw)
@@ -83,8 +82,6 @@ def evidence(archive, names, workspace, course, request, request_sha, run_id, he
     require(all(report.get(k) == v for k, v in expected.items()), 'Wrong report provenance')
     seen, images, failures = set(), {}, []
     positive = result['terminalStatus'] == 'COMPLETE_TECHNICAL_EVIDENCE_REQUIRES_SCI_REVIEW'
-    if positive:
-        (workspace / 'report.json').write_bytes(raw)
     for item in report['cases']:
         key = item['caseKey']
         filename = safe_member(item['file'])
@@ -99,10 +96,6 @@ def evidence(archive, names, workspace, course, request, request_sha, run_id, he
         require(sha(payload) == item['sha256'] and type(item['technicalOk']) is bool
                 and all(case.get(k) == v for k, v in case_expected.items()), 'Case provenance: ' + key)
         seen.add(key)
-        if positive:
-            target = workspace / filename
-            target.parent.mkdir(parents=True, exist_ok=True)
-            target.write_bytes(payload)
         if item['technicalOk']:
             require(bool(case.get('screenshots')), 'Observed case without PNG: ' + key)
         else:
@@ -113,14 +106,10 @@ def evidence(archive, names, workspace, course, request, request_sha, run_id, he
                 png = archive.read(directory + str(relative))
                 require(sha(png) == image['sha256'] and png.startswith(b'\x89PNG\r\n\x1a\n'), str(relative))
                 images[relative] = image['sha256']
-                if positive:
-                    target = workspace / relative
-                    target.parent.mkdir(parents=True, exist_ok=True)
-                    target.write_bytes(png)
             require(images[relative] == image['sha256'], str(relative))
     if positive:
         require(result['observedExitCode'] == 0 and seen == planned_cases and not failures, 'Incomplete successful run')
-        verify_report(workspace, plan, protocol_sha)
+        verify_report_bytes(lambda name: archive.read(directory + str(safe_member(name))), plan, protocol_sha)
     result.update(observedCases=len(seen), technicalPass=len(seen) - len(failures), technicalFail=len(failures),
                   caseAndPngHashesVerified=True, fullCanonicalTechnicalVerification=positive,
                   reportSha256=sha(raw), failures=failures, verifiedPngCount=len(images))
@@ -134,14 +123,12 @@ def archive_course(args):
     request_raw = args.request.read_bytes()
     request = json.loads(request_raw)
     require(request['protocolFiles'][COLLECTOR] == args.protocol_sha256, 'Collector differs from declared request')
-    with ZipFile(args.zip) as archive, tempfile.TemporaryDirectory(prefix='cric-archive-course-') as workspace:
+    with ZipFile(args.zip) as archive:
         names = inspect_members(archive)
-        require(shutil.disk_usage(workspace).free >= sum(part.file_size for part in archive.infolist()),
-                'Insufficient space to revalidate actual evidence')
         request_name = '.github/cric-experiment-visibility-request.json'
         matches = [name for name in names if name == request_name or name.endswith('/' + request_name)]
         require(len(matches) == 1 and archive.read(matches[0]) == request_raw, 'Wrong upstream request')
-        result, summaries = evidence(archive, names, Path(workspace), args.course, request,
+        result, summaries = evidence(archive, names, args.course, request,
                                      sha(request_raw), args.run, args.head, args.protocol_sha256)
     args.output.mkdir(parents=True, exist_ok=True)
     for name, raw in summaries.items():

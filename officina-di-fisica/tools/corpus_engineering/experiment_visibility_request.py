@@ -339,8 +339,12 @@ def verify_planned_interaction(case,row,state):
 
 
 def verify_report(out,prepared,protocol_sha):
+    return verify_report_bytes(lambda name: safe(out,name).read_bytes(),prepared,protocol_sha)
+
+
+def verify_report_bytes(read,prepared,protocol_sha):
     """Fail closed on omitted/duplicated states or byte/provenance drift."""
-    out=Path(out);report=load(out/'report.json')
+    report=json.loads(read('report.json'))
     if report.get('technicalStatus')!='ALL_PLANNED_CASES_OBSERVED_REVIEW_NOT_GRANTED':raise ValueError('No complete technical report')
     for name,value in {'sourceCommit':prepared['sourceCommit'],'requestSha256':prepared['requestSha256'],
                        'runtimeFingerprint':prepared['runtimeFingerprint'],'protocolSha256':protocol_sha,
@@ -369,7 +373,7 @@ def verify_report(out,prepared,protocol_sha):
     cases=report['cases'];expected=prepared['expectedCaseKeys']
     if len(cases)!=len(expected)or len({c['caseKey']for c in cases})!=len(cases)or {c['caseKey']for c in cases}!=set(expected):raise ValueError('Missing/duplicate UI cases')
     for item in cases:
-        case_bytes=safe(out,item['file']).read_bytes()
+        case_bytes=read(item['file'])
         if sha(case_bytes)!=item['sha256']:raise ValueError('Case bytes drift')
         case=json.loads(case_bytes)
         expected_fields={'caseKey':item['caseKey'],'technicalOk':True,'sourceCommit':prepared['sourceCommit'],
@@ -393,7 +397,7 @@ def verify_report(out,prepared,protocol_sha):
             if any(type(v)not in(int,float)or not math.isfinite(v)for v in values):raise ValueError('Nonfinite baseline case')
         if not case.get('screenshots'):raise ValueError('Observed UI case has no actual PNG')
         for image in case['screenshots']:
-            if sha(safe(out,image['file']).read_bytes())!=image['sha256']:raise ValueError('PNG bytes drift')
+            if sha(read(image['file']))!=image['sha256']:raise ValueError('PNG bytes drift')
     return report
 
 

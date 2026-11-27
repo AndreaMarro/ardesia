@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 import shutil
+import signal
 import subprocess
 
 from tools.corpus_engineering import experiment_heat_capacity_264_independent_verifier as science
@@ -87,16 +88,29 @@ def prepare(app, commit, runtime, output):
 
 
 def observe(app, plan, protocol, output):
+    timed_out = False
     with (output / 'actual-process.txt').open('wb') as log:
-        result = subprocess.run(['node', str(COLLECTOR), str(output / 'info.json')], cwd=APP,
-                                env=os.environ.copy(), stdout=log, stderr=subprocess.STDOUT, timeout=480)
+        with subprocess.Popen(['node', str(COLLECTOR), str(output / 'info.json')], cwd=APP,
+                              stdout=log, stderr=subprocess.STDOUT, start_new_session=True) as process:
+            try:
+                exit_code = process.wait(timeout=480)
+            except subprocess.TimeoutExpired:
+                timed_out = True
+                try:
+                    os.killpg(process.pid, signal.SIGKILL)
+                except ProcessLookupError:
+                    pass
+                exit_code = process.wait()
     report_file = output / 'report.json'
-    write(output / 'terminal-receipt.json', {'observedExitCode':result.returncode,
+    write(output / 'terminal-receipt.json', {'observedExitCode':exit_code, 'supervisorTimedOut':timed_out,
           'sourceCommit':plan['sourceCommit'], 'runtimeSha256':plan['runtimeFingerprint']['sha256'],
           'collectorSha256':protocol, 'preparedSha256':ui.sha((output / 'prepared.json').read_bytes()),
           'plannedCases':len(plan['expectedCaseKeys']), 'reportSha256':ui.sha(report_file.read_bytes()) if report_file.exists() else None,
           'activityCredit':0, 'humanApproval':'NOT_RUN', 'publicationAction':'NONE'})
-    result.check_returncode()
+    if timed_out:
+        raise TimeoutError('Browser process did not exit by the supervised deadline')
+    if exit_code:
+        raise subprocess.CalledProcessError(exit_code, process.args)
     if runtime_fingerprint(app) != plan['runtimeFingerprint']:
         raise ValueError('Actual runtime changed during collection')
     report = ui.verify_report(output, plan, protocol)
