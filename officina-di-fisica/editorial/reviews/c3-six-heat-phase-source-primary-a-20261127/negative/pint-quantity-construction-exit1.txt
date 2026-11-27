@@ -1,0 +1,32 @@
+SHARED_LOCK_ACQUIRED; free bytes 2868121600; one child
+test_12_frozen_original_references (test_c3_six_source_only_models_a.SourceModels.test_12_frozen_original_references) ... ok
+test_all_142_grid_values_and_inverse (test_c3_six_source_only_models_a.SourceModels.test_all_142_grid_values_and_inverse) ... ok
+test_countermodels_are_distinguished (test_c3_six_source_only_models_a.SourceModels.test_countermodels_are_distinguished) ... ok
+test_hypothesis_exact_grid_inverse (test_c3_six_source_only_models_a.SourceModels.test_hypothesis_exact_grid_inverse) ... ok
+test_pint_dimensions (test_c3_six_source_only_models_a.SourceModels.test_pint_dimensions) ... ERROR
+test_reject_nonexact_nonfinite_complex_and_invalid_domains (test_c3_six_source_only_models_a.SourceModels.test_reject_nonexact_nonfinite_complex_and_invalid_domains) ... ok
+test_symbolic_balances (test_c3_six_source_only_models_a.SourceModels.test_symbolic_balances) ... ok
+
+======================================================================
+ERROR: test_pint_dimensions (test_c3_six_source_only_models_a.SourceModels.test_pint_dimensions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tests/corpus/test_c3_six_source_only_models_a.py", line 46, in test_pint_dimensions
+    ((s.Rational(4157,500)*u.joule/u.mol/u.kelvin)*u.mol*2*u.kelvin,'joule',s.Rational(4157,250)),
+      ~~~~~~~~~~~~~~~~~~~~^~~~~~~~
+  File "/private/tmp/cric-recovery-venv/lib/python3.13/site-packages/sympy/core/decorators.py", line 75, in __sympifyit_wrapper
+    b = sympify(b, strict=True)
+  File "/private/tmp/cric-recovery-venv/lib/python3.13/site-packages/sympy/core/sympify.py", line 475, in sympify
+    return sympify(float(a))
+                   ~~~~~^^^
+  File "/private/tmp/cric-recovery-venv/lib/python3.13/site-packages/pint/facets/plain/unit.py", line 232, in __float__
+    return float(self._REGISTRY.Quantity(1, self._units))
+  File "/private/tmp/cric-recovery-venv/lib/python3.13/site-packages/pint/facets/plain/quantity.py", line 599, in __float__
+    raise DimensionalityError(self._units, "dimensionless")
+pint.errors.DimensionalityError: Cannot convert from 'joule' to 'dimensionless'
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.550s
+
+FAILED (errors=1)
+CHILD_EXIT 1; free bytes 2867466240
