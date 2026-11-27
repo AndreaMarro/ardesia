@@ -81,7 +81,7 @@ TASKS = [
         number=4, title='Due strati uguali in serie', family='trasmissione-singola-da-prodotto-strati',
         prompt='Un fascio attraversa due filtri identici in serie. Si trascurano riflessioni multiple e ciascun filtro lascia passare una frazione costante dell’intensità che riceve. Dopo entrambi rimane 1/16 dell’intensità iniziale. Quale frazione passa attraverso un solo filtro?',
         options=['1/4', '1/8', '1/16', '3/4'],
-        reason='1/8 dividerebbe per due la frazione finale, come se i filtri contribuissero in modo additivo. 1/16 è la frazione composta. 3/4 è la frazione tolta da un filtro, non quella trasmessa.',
+        reason='Con T = 1/8, due filtri lascerebbero passare (1/8)² = 1/64, mentre l’osservazione dà 1/16. 1/16 è la frazione composta. 3/4 è la frazione tolta da un filtro, non quella trasmessa.',
         hint='All’uscita del primo filtro c’è già meno intensità. Applica la stessa frazione alla nuova intensità.',
         blocks=[
             text('Chiamiamo T la frazione trasmessa da un filtro. Il fascio entra nel secondo strato con l’intensità già ridotta dal primo. Nelle ipotesi della consegna, il secondo opera con lo stesso T sulla propria intensità in ingresso.'),
@@ -98,7 +98,7 @@ TASKS = [
         number=5, title='Lavoro sotto un tratto inclinato', family='lavoro-forza-posizione-trapezio',
         prompt='Tra x = 0 m e x = 6 m, la componente della forza lungo il moto cresce linearmente da 2 N a 6 N. Il corpo si sposta nel verso positivo. Quanto lavoro compie questa forza nel tratto?',
         options=['24 J', '36 J', '12 J', '4 J'],
-        reason='36 J userebbe per tutto il percorso la forza misurata alla fine. 12 J è la sola area del rettangolo da 2 N e manca la parte crescente. 4 N è la forza media, non un lavoro espresso in joule.',
+        reason='36 J userebbe per tutto il percorso la forza misurata alla fine. 12 J è la sola area del rettangolo da 2 N e manca la parte crescente. 4 J copia il valore numerico della forza media, 4 N, senza moltiplicarlo per i 6 m percorsi.',
         hint='In un grafico forza-posizione ciascuna striscia ha unità N·m. Che figura formano tutte le strisce?',
         blocks=[
             text('La forza è positiva e varia con la posizione. Il lavoro lungo il tratto è l’area sotto il grafico di quella componente, perché somma prodotti forza per piccoli spostamenti. L’area qui è un trapezio.'),
