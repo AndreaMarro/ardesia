@@ -1,0 +1,27 @@
+Traceback (most recent call last):
+  File "/private/tmp/cric-canonical-integration-candidate-20261127/officina-di-fisica/tools/corpus_engineering/acceptance_withdrawals.py", line 38, in _pinned_file
+    resolved=file.resolve(strict=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py", line 670, in resolve
+    return self.with_segments(os.path.realpath(self, strict=strict))
+                              ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen posixpath>", line 445, in realpath
+FileNotFoundError: [Errno 2] No such file or directory: '/private/tmp/cric-canonical-integration-candidate-20261127/officina-di-fisica/editorial/reviews/normal-visibility-a-20261125'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/private/tmp/cric-canonical-integration-candidate-20261127/officina-di-fisica/editorial/reviews/canonical-candidate-full-coexistence-20261127/reproduce.py", line 78, in <module>
+    verify()
+    ~~~~~~^^
+  File "/private/tmp/cric-canonical-integration-candidate-20261127/officina-di-fisica/editorial/reviews/canonical-candidate-full-coexistence-20261127/reproduce.py", line 23, in verify
+    question_batches = load_registry(registry_file)
+  File "/private/tmp/cric-canonical-integration-candidate-20261127/officina-di-fisica/tools/corpus_engineering/batches.py", line 67, in load_registry
+    load_ledger(ledger_app,registry)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/cric-canonical-integration-candidate-20261127/officina-di-fisica/tools/corpus_engineering/acceptance_withdrawals.py", line 61, in load_ledger
+    seen.add(row['withdrawalId']);_pinned_file(app,row['evidence'])
+                                  ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/cric-canonical-integration-candidate-20261127/officina-di-fisica/tools/corpus_engineering/acceptance_withdrawals.py", line 41, in _pinned_file
+    except OSError as error:raise ValueError('Missing or unreadable acceptance file: '+name) from error
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Missing or unreadable acceptance file: editorial/reviews/normal-visibility-a-20261125/manifest.json
