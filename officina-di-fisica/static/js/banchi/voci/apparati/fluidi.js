@@ -133,6 +133,7 @@ export const fluidi = {
       b.rod([x, 0.3, 0], [x, h, 0], r, c.acqua, 0.55);
       b.rod([x, h, 0], [x, h + 0.11, 0], r, c.metallo);
       b.rod([x, h + 0.1, 0], [x, h + 0.38, 0], 0.06, c.metallo);
+      if (s.corsa === 0) continue;
       b.arrow(
         [x, h + (i ? 0.4 : 0.9), 0],
         [x, h + (i ? 0.4 + 0.7 * (s.forza ?? 1) : 0.9 - 0.36 * (s.forza ?? 1)), 0],

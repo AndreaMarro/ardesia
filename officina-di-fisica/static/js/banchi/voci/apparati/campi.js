@@ -54,8 +54,14 @@ export const campi = {
       true,
     );
     if (s.mezzo) {
-      b.ball([0, y, 0], 0.09, c.ocra);
-      b.arrow([0, y, 0], [0.78 * s.campo, y, 0], c.verde);
+      const length = 0.78 * s.campo;
+      b.ball([0, y, 0], 0.09, c.verde);
+      if (length !== 0) {
+        b.arrow([0, y, 0.3], [length, y, 0.3], c.viola);
+        if (Math.abs(length) < 0.2) {
+          b.arrow([0, 1.57, 0.95], [10 * length, 1.57, 0.95], c.ocraScuro);
+        }
+      }
       b.label([0, 1.45, 0], 'P');
     }
     if (s.forza !== undefined) {

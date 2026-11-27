@@ -65,3 +65,21 @@ test('the Pitot velocity arrows pass beside the probes with the same direction a
     if (vectors.length) assert.deepEqual(scene.slice(-2), vectors);
   }
 });
+
+test('press arrows show motion direction and disappear at zero stroke', async () => {
+  const row = sources.find(({id}) => id === 'SIM-C2-L003-02');
+  const bench = await esperienza(row);
+  const arrows = x => bench.elements(x, 2).filter(({kind}) => kind === 'arrow');
+
+  assert.deepEqual(arrows(0), []);
+  for (const input of [0.5, 4, 8]) {
+    const [down, up] = arrows(input);
+    assert.equal(arrows(input).length, 2);
+    assert.ok(down.a[0] < up.a[0] && down.b[1] < down.a[1] && up.b[1] > up.a[1]);
+    assert.equal(bench.measurement(input).value, input / 4);
+  }
+  for (const view of ['orbit', 'side', 'top', 'diagram']) {
+    assert.match(bench.legend(2, view), /solo i versi.*corsa zero.*un quarto/);
+  }
+  assert.match(bench.legend(2, 'top'), /vista Laterale/);
+});

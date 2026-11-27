@@ -134,6 +134,13 @@ export const annotazioneScena = (record) => annotazioniScene.get(record.id);
 
 export function legendaVoce(record, vista) {
   const legenda = vista === 'diagram' ? legendaTavola(record.apparatus) : legende[record.apparatus];
+  if (record.id === 'SIM-C2-L003-02') {
+    const orientamento = vista === 'top' ? ' Con la vista Laterale puoi confrontare le quote dei pistoni.' : '';
+    return legenda + ' La freccia rossa indica la discesa a sinistra, la verde la salita a destra. Le frecce indicano solo i versi e scompaiono a corsa zero. Usa le quote e le letture per confrontare le corse: a destra la corsa è un quarto di quella a sinistra.' + orientamento;
+  }
+  if (record.id === 'SIM-C4-L02-02') {
+    return 'Le sfere mostrano cariche positive in rosso, negative in viola e nulle in grigio. Il punto verde P è a metà tra le cariche. La freccia viola è spostata accanto a P per renderla visibile e mostra il campo risultante lungo la retta delle cariche. Il dettaglio ocra scuro ingrandisce di dieci volte le frecce corte e ne conserva il verso. Quando i due campi si annullano, la freccia scompare e la lettura vale zero.';
+  }
   if (record.id === 'SIM-C3-L04-03') {
     return legenda + '. La freccia rossa indica l’energia fornita. Il dettaglio in alto, in ocra, mantiene il verso e ingrandisce 128 volte le frecce più corte.';
   }
