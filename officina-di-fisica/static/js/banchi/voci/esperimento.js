@@ -1,5 +1,5 @@
 import { chart, curve, n, param, select } from '../misure.js';
-import { annotazioneFluido, legende, legendaVoce } from './legende.js';
+import { annotazioneScena, legende, legendaVoce } from './legende.js';
 import { confronti } from './confronti.js';
 import { orologioVoce } from './orologi.js';
 import { disegna3D, scenaMobile, tavolo } from './geometria.js';
@@ -40,7 +40,7 @@ export async function esperienza(record) {
   const calc = (x) => stabile(law.measure(x));
   const clock = record.engine ? null : orologioVoce(record, law);
   const nativeVectorAxes = !record.engine && record.apparatus === 'vettori';
-  const etichetteFuoriScena = nativeVectorAxes ? ['y'] : !record.engine && annotazioneFluido(record)?.etichette;
+  const etichetteFuoriScena = nativeVectorAxes ? ['y'] : !record.engine && annotazioneScena(record)?.etichette;
   function elements(x, stage, time) {
     if (clock?.input && time !== undefined) x = time;
     const board = tavolo(Math.max(stage, 0));
