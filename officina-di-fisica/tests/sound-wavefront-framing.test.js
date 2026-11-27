@@ -42,3 +42,20 @@ test('one-way transmission identifies the pulse without labels on its path', asy
     assert.doesNotMatch(legend, /eco|pressione|rifless/i);
   }
 });
+
+test('the fixed drawing keeps the pulse above the source and receiver markers', async () => {
+  const bench = await esperienza(source);
+  for (const [medium, speed] of [[1, 340], [2, 1500], [3, 5000]]) {
+    const duration = 150000 / speed;
+    const arrival = bench.elements(medium, 2, duration);
+    const receiver = arrival.findIndex(element => element.kind === 'rod' &&
+      element.c === colore.metallo && element.a[0] === 2.55);
+    const pulse = arrival.findIndex(element => element.kind === 'ball' && element.c === colore.viola);
+    assert.ok(receiver >= 0 && pulse > receiver, 'the receiver must precede the pulse in the flat drawing');
+    assert.deepEqual(arrival[pulse].p, [2.55, 0.85, 0.15]);
+    const departure = bench.elements(medium, 2, 0);
+    const sourceBall = departure.findIndex(element => element.kind === 'ball' && element.c === colore.ocra);
+    const departurePulse = departure.findIndex(element => element.kind === 'ball' && element.c === colore.viola);
+    assert.ok(sourceBall >= 0 && departurePulse > sourceBall, 'the source must precede the pulse in the flat drawing');
+  }
+});

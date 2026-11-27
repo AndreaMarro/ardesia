@@ -183,11 +183,11 @@ export const ondulatoria = {
         }
       }
       b.ball([sourceAt(time), 0.78, 0], 0.145, c.ocra);
-      b.arrow([sourceAt(time), 1.06, 0], [sourceAt(time) + 2.4 * s.moto, 1.06, 0], c.rosso);
+      b.arrow([sourceAt(time), 1.06, 0], [sourceAt(time) + 2.4 * s.moto, 1.06, 0], c.rosso, true);
       b.rod([receiver, 0.1, 0], [receiver, 0.91, 0], 0.085, c.metallo);
       b.ball([receiver, 0.78, 0], 0.11, c.viola);
       if (s.pressioneRel !== undefined)
-        b.arrow([receiver, 1.18, 0.3], [receiver, 1.18 + 0.35 * s.pressioneRel, 0.3], c.viola);
+        b.arrow([receiver, 1.18, 0.3], [receiver, 1.18 + 0.35 * s.pressioneRel, 0.3], c.viola, true);
       b.label([sourceAt(time), 1.72, 0], 'Sorgente');
       b.label([receiver, 1.99, 0], 'Ricevitore');
       return;
@@ -198,10 +198,11 @@ export const ondulatoria = {
       const r = (s.velocita === undefined ? 0.46 : 0.26 + 0.3 * s.velocita) * j;
       b.ring([source, 0.62, 0], r, 'xz', c.verde);
     }
+    // The flat view paints in insertion order. Keep the pulse visible at both ends.
+    b.rod([receiver, 0.1, 0], [receiver, 1.26, 0], 0.08, c.metallo);
+    b.ball([source, 0.62, 0], 0.16, c.ocra);
     if (s.frazioneViaggio !== undefined)
       b.ball([source + (receiver - source) * s.frazioneViaggio, 0.85, 0.15], 0.105, c.viola);
-    b.ball([source, 0.62, 0], 0.16, c.ocra);
-    b.rod([receiver, 0.1, 0], [receiver, 1.26, 0], 0.08, c.metallo);
     b.label([source, 1.53, 0], 'Sorgente');
     b.label([receiver, 1.6, 0], 'Ricevitore');
   },

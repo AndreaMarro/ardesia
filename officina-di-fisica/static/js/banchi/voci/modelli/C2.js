@@ -95,7 +95,7 @@ export const experiments = {
   'SIM-C2-L005-01': {
     observe: "Raddoppia la velocità alla stessa sezione. Immagina il cilindro di liquido che la attraversa in un secondo e leggi il suo volume.",
     measure: (x) => 4 * x,
-    apparatus: (x, y) => ({ r1: 0.5, r2: 0.5, v1: x / 8, v2: x / 8 }),
+    apparatus: (x, y) => ({ r1: 0.5, r2: 0.5, v1: x / 8, v2: x / 8, punteVelocitaVisibili: true }),
   },
   // Conservazione della massa
   'SIM-C2-L005-02': {

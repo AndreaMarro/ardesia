@@ -83,14 +83,22 @@ const annotazioni = {
   C2: [
     ['Entrata', 'L’entrata è a sinistra e l’uscita a destra.', ['L005-01','L005-02','L005-03','L006-01','L006-02','L006-03','L006-04','L008-01','L008-02','L008-04']],
     ['Presa frontale', 'La presa frontale del tubo di Pitot è a destra. È rivolta contro il flusso e misura la pressione di ristagno.', ['L006-02']],
-    ['Uscita', 'Le frecce di velocità sono spostate di lato nel disegno per lasciare visibile la presa. La loro lunghezza segue la velocità lungo il tubo.', ['L006-02']],
-    ['Uscita', '', ['L005-01','L005-02','L005-03','L006-01','L006-03','L008-01']],
+    ['Uscita', 'Le frecce di velocità sono spostate di lato nel disegno per lasciare visibile la presa. La loro lunghezza segue la velocità lungo il tubo. Il dettaglio ocra davanti al tubo ingrandisce di otto volte le due frecce più corte e ne conserva il verso.', ['L006-02']],
+    ['Uscita', 'Le frecce di velocità sono spostate di lato per restare distinguibili dai traccianti. Il verso e la scala sono quelli della velocità nel tubo.', ['L005-01']],
+    ['Uscita', '', ['L005-02','L005-03','L006-01','L006-03','L008-01']],
     ['Sezione di misura', 'Quando è valido il profilo laminare, le frecce viola mostrano la velocità alle varie quote nella sezione di misura. Il profilo verde ne congiunge le punte.', ['L005-04','L007-01','L007-02','L007-05']],
     ['Sforzo sulla lastra', 'Lo sforzo sulla lastra mobile è rappresentato dalla freccia viola sopra la lastra.', ['L007-03']],
     ['Presa intermedia', 'La presa intermedia è tra i due tratti del condotto, al centro della tavola.', ['L008-03','L009-03']],
     ['In parallelo', 'Il collegamento in serie è a sinistra e quello in parallelo è a destra.', ['L009-01']],
     ['Goccia', 'La sfera azzurra è la goccia. La freccia ocra va dal centro alla superficie.', ['L010-02']],
     ['Film a due facce', 'I due contorni schematici indicano le superfici del film a due facce. La freccia ocra indica il raggio di riferimento.', ['L010-05']],
+  ],
+  C3: [
+    ['Calda', 'La faccia calda della parete è a sinistra. La faccia fredda è a destra. La freccia indica il flusso dalla faccia calda a quella fredda.', ['L05-01']],
+    ['Fredda', '', ['L05-01']],
+    ['Ritorno', 'Il ritorno percorre il ramo azzurro. Il fluido scende a destra e la freccia viola ne indica il verso.', ['L05-02']],
+    ['Sistema', 'Il sistema è la piastra a sinistra. L’ambiente è la piastra azzurra a destra mantenuta a 300 K. Le frecce viola mostrano il verso dello stesso scambio netto.', ['L05-03']],
+    ['Ambiente', '', ['L05-03']],
   ],
   C4: [
     ['+1', 'Le due sfere rosse hanno ciascuna carica +1 nC. Le frecce viola sono riportate accanto alle sfere alla stessa scala, parallele alla retta che unisce i centri. Il dettaglio ocra scuro conserva i versi e ingrandisce di otto volte le frecce più corte.', ['L01-02']],
@@ -171,7 +179,12 @@ export function legendaVoce(record, vista) {
       + 'Il cronometro misura solo l’andata lungo i 150 m.';
   }
   if (record.id === 'SIM-C5-L05-03') {
-    return 'Sfera ocra · sorgente. Punto viola · ricevitore. Gli archi verdi sono le creste emesse dalla sorgente. La freccia rossa indica il verso di moto della sorgente.';
+    const proiezione = vista === 'top'
+      ? ' Dall’alto la freccia verticale appare come un punto. Usa la vista Laterale per leggerne il verso.'
+      : '';
+    return 'Sfera ocra · sorgente. Punto viola · ricevitore. Gli archi verdi sono le creste emesse dalla sorgente. '
+      + 'La freccia rossa indica il verso di moto della sorgente. La freccia viola verticale, quando appare, '
+      + 'rappresenta la pressione relativa al ricevitore con una scala propria. Il ricevitore resta fermo.' + proiezione;
   }
   const descrizioni = annotazioneScena(record)?.descrizioni;
   if (descrizioni?.length) return legenda.replace(/\.$/,'') + '. ' + descrizioni.join(' ');
