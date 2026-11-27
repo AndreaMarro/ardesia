@@ -1,0 +1,21 @@
+from pathlib import Path
+import sys,subprocess,json,hashlib,ast,pprint
+A=Path.cwd();ref=sys.argv[1];F=A/'editorial/reviews/cric-c6-exam03-independent-proof-a-20261127/fixtures';batch='cric-c6-protected-exam-03';old=json.loads((F/(batch+'.json')).read_text());raw=subprocess.check_output(['git','show',ref+':officina-di-fisica/editorial/batches/'+batch+'.json']);new=json.loads(raw);changes={}
+for x,y in zip(old['records'],new['records']):
+ if x!=y:
+  n=int(x['id'][-3:]);assert {k:v for k,v in x.items()if k not in ['prompt','blocks','error','answer']}=={k:v for k,v in y.items()if k not in ['prompt','blocks','error','answer']}
+  assert ''.join(x['prompt'].split())==''.join(y['prompt'].split())
+  assert len(x['blocks'])==len(y['blocks'])
+  for a,b in zip(x['blocks'],y['blocks']):
+   if a!=b:
+    assert a['type']==b['type']=='text';assert ''.join(a['text'].split())==''.join(b['text'].split())
+  assert {k:v for k,v in x['error'].items()if k!='message'}=={k:v for k,v in y['error'].items()if k!='message'};assert ''.join(x['error']['message'].split())==''.join(y['error']['message'].split())
+  if n==89 and x['answer']!=y['answer']:
+   assert x['answer']['unit']=='1'and y['answer']['unit']=='%';assert {k:v for k,v in x['answer'].items()if k!='unit'}=={k:v for k,v in y['answer'].items()if k!='unit'}
+  else:assert x['answer']==y['answer']
+  changes[x['id']]=[k for k in x if x[k]!=y[k]];print('REREAD CHANGED RECORD',json.dumps(y,ensure_ascii=False))
+assert old['assets']==new['assets'];assert new['records'][14]['answer']['unit']=='%'
+D=F.parent;
+if not (D/'initial-before-percent-spacing.json').exists():(D/'initial-before-percent-spacing.json').write_text(json.dumps(old,ensure_ascii=False,indent=2)+'\n')
+(D/'final-delta-strictdiff.json').write_text(json.dumps({'finalCandidateCommit':ref,'changedFieldsById':changes,'allAnswerNumbersKeysAndFormulasUnchanged':True,'onlyPhysicalUnitChange':'Q089 numeric49 unit1 to percent','otherEditsWhitespaceOnly':True,'allSvgByteIdentical':True,'wholeChangedRecordsReread':'PENDING_ACTUAL_READING_OF_THIS_OUTPUT'},indent=2)+'\n');(F/(batch+'.json')).write_bytes(raw);(F/(batch+'-bindings.json')).write_bytes(subprocess.check_output(['git','show',ref+':officina-di-fisica/editorial/batches/'+batch+'-bindings.json']))
+p=A/'tools/corpus_engineering/cric_c6_exam03_review_evidence_a.py';text=p.read_text();tree=ast.parse(text);node=next(n for n in tree.body if isinstance(n,ast.Assign)and n.targets[0].id=='DISTRACTORS');lines=text.splitlines(True);lines[node.lineno-1:node.end_lineno]=['DISTRACTORS='+pprint.pformat({int(r['id'][-3:]):'Alternative lette individualmente. '+r['error']['message']for r in new['records']},width=110)+'\n'];p.write_text(''.join(lines));q=Path('/private/tmp/freeze_c6_exam03_verifier_a.py');import re;q.write_text(re.sub(r"ref='[0-9a-f]{40}'","ref='"+ref+"'",q.read_text(),count=1));print('Strictdiff only; READING_COMPLETE remains false until actual final rereading')

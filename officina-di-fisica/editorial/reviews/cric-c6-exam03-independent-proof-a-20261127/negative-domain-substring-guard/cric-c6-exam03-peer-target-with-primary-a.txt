@@ -1,0 +1,35 @@
+SHARED_LOCK_ACQUIRED; free bytes 4153831424; one child
+FIRST_REAL_ORACLE 31 []
+test_01_fresh_saved_identity_original_versions_and_git (test_cross_review_cric_c6_exam03_a.SeparateC6Exam03.test_01_fresh_saved_identity_original_versions_and_git) ... ok
+test_02_wrong_keys_with_all_integrity_pins_rebound (test_cross_review_cric_c6_exam03_a.SeparateC6Exam03.test_02_wrong_keys_with_all_integrity_pins_rebound) ... ok
+test_03_every_section_and_protected_exam_metadata_rebound (test_cross_review_cric_c6_exam03_a.SeparateC6Exam03.test_03_every_section_and_protected_exam_metadata_rebound) ... ok
+test_04_numeric_units_and_tolerance (test_cross_review_cric_c6_exam03_a.SeparateC6Exam03.test_04_numeric_units_and_tolerance) ... ok
+test_05_constitutive_faults_reject_without_edition_change (test_cross_review_cric_c6_exam03_a.SeparateC6Exam03.test_05_constitutive_faults_reject_without_edition_change) ... ok
+test_06_finite_real_exact_before_all_casts (test_cross_review_cric_c6_exam03_a.SeparateC6Exam03.test_06_finite_real_exact_before_all_casts) ... ok
+test_07_domain_backslides_rebound (test_cross_review_cric_c6_exam03_a.SeparateC6Exam03.test_07_domain_backslides_rebound) ... FAIL
+test_08_exact_lexemes_phases_and_si_equivalence (test_cross_review_cric_c6_exam03_a.SeparateC6Exam03.test_08_exact_lexemes_phases_and_si_equivalence) ... ok
+test_09_identity_rejects_ok_key_and_false_human (test_cross_review_cric_c6_exam03_a.SeparateC6Exam03.test_09_identity_rejects_ok_key_and_false_human) ... ok
+test_10_accessible_assets_rebound (test_cross_review_cric_c6_exam03_a.SeparateC6Exam03.test_10_accessible_assets_rebound) ... ok
+test_11_actual_native_and_geometric_dimensions (test_cross_review_cric_c6_exam03_a.SeparateC6Exam03.test_11_actual_native_and_geometric_dimensions) ... ok
+test_12_pint_and_symbolic_source_models (test_cross_review_cric_c6_exam03_a.SeparateC6Exam03.test_12_pint_and_symbolic_source_models) ... ok
+test_13_default_deny_reading_and_dependencies (test_cross_review_cric_c6_exam03_a.SeparateC6Exam03.test_13_default_deny_reading_and_dependencies) ... ok
+test_14_hyp_conduction (test_cross_review_cric_c6_exam03_a.SeparateC6Exam03.test_14_hyp_conduction) ... ok
+test_15_hyp_reflections (test_cross_review_cric_c6_exam03_a.SeparateC6Exam03.test_15_hyp_reflections) ... ok
+test_16_hyp_balanced_bridge (test_cross_review_cric_c6_exam03_a.SeparateC6Exam03.test_16_hyp_balanced_bridge) ... ok
+test_17_percent_unit_backslide_after_full_rebinding (test_cross_review_cric_c6_exam03_a.SeparateC6Exam03.test_17_percent_unit_backslide_after_full_rebinding) ... ok
+
+======================================================================
+FAIL: test_07_domain_backslides_rebound (test_cross_review_cric_c6_exam03_a.SeparateC6Exam03.test_07_domain_backslides_rebound)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tests/corpus/test_cross_review_cric_c6_exam03_a.py", line 81, in test_07_domain_backslides_rebound
+    self.assertFalse(row['ok']);self.assertTrue(any('domain not explicit'in e for e in row['errors']));self.stats['domainBackslides']+=1
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 17 tests in 7.512s
+
+FAILED (failures=1)
+{"actualObservedExit": 1, "testsRun": 17, "failures": 1, "errors": 0, "durationSeconds": 7.5123912919953, "stats": {"packetWrongKeys": 102, "metadata": 163, "unitTolerance": 22, "mathFaults": 16, "finiteExact": 495, "domainBackslides": 2, "accessibleAssets": 2, "hypothesis": 120, "equivalentDuplicates": 4}, "scope": "DISTINCT_REVIEW_CANDIDATES_NOT_PRODUCT_UI_OR_HUMAN", "candidateRef": "e8eb2df71e06b1ee0bc9ea34d01f22136d5bcbd7", "sourceFirstPrimary": "24b38b91afd6c83ca2afef1a23f3b82c2fe6333f", "humanApproval": "NOT_RUN", "publicationAction": "NONE"}
+CHILD_EXIT 1; free bytes 4156215296
