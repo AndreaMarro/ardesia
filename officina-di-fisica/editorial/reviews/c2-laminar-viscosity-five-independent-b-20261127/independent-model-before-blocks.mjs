@@ -1,0 +1,6 @@
+// Isolated model from frozen prompt/data primary. No consumer import.
+import {readFileSync} from 'node:fs';import {createHash} from 'node:crypto';
+const D=new URL('.',import.meta.url),s=JSON.parse(readFileSync(new URL('stimuli-prompt-data-only.json',D)));
+const value=(id,x)=>({'SIM-C2-L007-01':()=>10000*x,'SIM-C2-L007-02':()=>6,'SIM-C2-L007-03':()=>4*x,'SIM-C2-L007-04':()=>40/x,'SIM-C2-L007-05':()=>12*(1-x*x)}[id]());
+const tasks=[['1500','4000'],['6','6'],['2','6'],['20','8'],['9','0']];
+console.log(JSON.stringify({phase:'SOURCE_PRIMARY_MODEL_BEFORE_CANDIDATE_BLOCKS',primarySha256:createHash('sha256').update(readFileSync(new URL('primary-before-blocks.md',D))).digest('hex'),candidateImports:[],isolation:'FRESH_NODE_PROCESS_NO_CONSUMER_MODULES',conditionalData:['Water nominal density1000kg/m³ must be explicit in draft','Stationary half-radius value assumes fully developed parabolic profile'],records:s.records.map((r,i)=>({id:r.id,states:Array.from({length:Math.round((r.control.max-r.control.min)/r.control.step)+1},(_,j)=>{const x=r.control.min+j*r.control.step;return{gridIndex:j,x,independentIEEE:value(r.id,x)}}),tasks:r.proposedPointsOnly.map((x,j)=>({x,exact:tasks[i][j],unit:r.measure.unit,independentIEEE:value(r.id,x)}))}))}));
