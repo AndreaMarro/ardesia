@@ -5,9 +5,9 @@
   "sourceQuestionCount": 4606,
   "reviewedQuestions": 4606,
   "remainingQuestions": 0,
-  "reviewedActivities": 253,
-  "remainingActivities": 132,
-  "registrySha256": "c2b3c316b342471e9d6d0e7c7df1ff5453142909fb2481f04a82ae87bee38dfc",
+  "reviewedActivities": 252,
+  "remainingActivities": 133,
+  "registrySha256": "44ec5aee9252fe44c3d077fc19795fac234547af2cecef8c68abbc0f5dec130c",
   "questions": [
     {
       "id": "AR-u1-area-conversion-01",
@@ -23827,7 +23827,8 @@
     },
     {
       "id": "LAB3D-03",
-      "state": "REVIEWED_PENDING_CURRENT_FULL_INTEGRATION"
+      "state": "EXPLICITLY_REOPENED_REQUIRES_FRESH_CLOSURE",
+      "evidence": "editorial/reviews/lab3d03-surface-label-withdrawal-20261127/actual-hydrostatic-surface-label-negative.json"
     },
     {
       "id": "LAB3D-04",
@@ -24610,7 +24611,9 @@
   ],
   "nextRootQuestionId": null,
   "missingQuestionIds": [],
-  "blockedActivityIds": [],
+  "blockedActivityIds": [
+    "LAB3D-03"
+  ],
   "fullSnapshotGate": "BLOCKED_BY_OPEN_SCIENTIFIC_WITHDRAWAL; no gate change and no stale3792 adoption",
   "humanApproval": "NOT_RUN",
   "publicationAction": "NONE",
@@ -24710,6 +24713,15 @@
       "evidence": "editorial/acceptance/withdrawals-v1.json",
       "resolution": "Reprove the exact display, both neighboring signs, and whole 036 on the selected runtime.",
       "resolvedOnCurrentRuntime": "3ed5bc77d8320230b62e1c3e6ca3bdd00f240cc64ec236b10fe55a306ca79251"
+    },
+    {
+      "id": "lab3d03-surface-probe-label-20261127",
+      "state": "OPEN",
+      "affectedIds": [
+        "LAB3D-03"
+      ],
+      "evidence": "editorial/acceptance/withdrawals-v1.json",
+      "resolution": "Verify the corrected legend at the surface and across actual widths. Replay the complete 035 group."
     }
   ]
 }
