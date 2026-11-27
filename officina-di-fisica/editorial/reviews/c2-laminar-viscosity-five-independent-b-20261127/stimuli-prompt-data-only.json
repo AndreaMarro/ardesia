@@ -1,0 +1,153 @@
+{
+  "sourceCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+  "sourceRawSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+  "allowlist": [
+    "id",
+    "version",
+    "title",
+    "summary",
+    "interpretation",
+    "control",
+    "measure",
+    "transferPrompt",
+    "apparatus",
+    "skill",
+    "section",
+    "prerequisites"
+  ],
+  "records": [
+    {
+      "id": "SIM-C2-L007-01",
+      "version": 1,
+      "title": "Flussi laminari e turbolenti",
+      "summary": "Si può ancora disegnare una parabola per qualunque velocità?",
+      "interpretation": "Re confronta inerzia e viscosità. Nel tubo diritto, sopra circa 2300 la previsione laminare diventa incerta. Il banco ritira il profilo invece di inventare fluttuazioni turbolente.",
+      "control": {
+        "label": "Velocità media",
+        "unit": "m/s",
+        "min": 0.0,
+        "max": 0.6,
+        "step": 0.05
+      },
+      "measure": {
+        "label": "Numero di Reynolds",
+        "unit": "1"
+      },
+      "transferPrompt": "Acqua con viscosità 0,001 Pa·s percorre un tubo di diametro 1 cm a {x}. Quale numero di Reynolds useresti per valutare il regime?",
+      "apparatus": "profilo",
+      "skill": "C2-L007",
+      "section": "Fluidi in movimento",
+      "proposedPointsOnly": [
+        0.15,
+        0.4
+      ]
+    },
+    {
+      "id": "SIM-C2-L007-02",
+      "version": 1,
+      "title": "Regime stazionario",
+      "summary": "Le particelle possono cambiare posizione anche se la velocità locale resta costante?",
+      "interpretation": "Il flusso è stazionario alla sezione fissata. Segui i traccianti, poi confronta la lettura della sonda in due istanti: il profilo resta lo stesso.",
+      "control": {
+        "label": "Istante di osservazione",
+        "unit": "s",
+        "min": 0.0,
+        "max": 4.0,
+        "step": 0.25
+      },
+      "measure": {
+        "label": "Velocità a metà raggio",
+        "unit": "cm/s"
+      },
+      "transferPrompt": "Lasci la sonda a metà raggio in un moto stazionario con velocità sull’asse di 8 cm/s. Al tempo {x}, quale velocità locale dovrebbe ancora segnalare?",
+      "apparatus": "profilo",
+      "skill": "C2-L007",
+      "section": "Fluidi in movimento",
+      "proposedPointsOnly": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "SIM-C2-L007-03",
+      "version": 1,
+      "title": "Viscosità dinamica",
+      "summary": "Con la stessa differenza di velocità quale liquido richiede più forza tangenziale?",
+      "interpretation": "La lastra impone un gradiente di 4 s⁻¹. In un fluido newtoniano lo sforzo cresce linearmente con la viscosità. Lo sforzo si misura in N/m².",
+      "control": {
+        "label": "Viscosità dinamica",
+        "unit": "Pa·s",
+        "min": 0.1,
+        "max": 2.0,
+        "step": 0.1
+      },
+      "measure": {
+        "label": "Sforzo di taglio",
+        "unit": "Pa"
+      },
+      "transferPrompt": "Mantieni un gradiente di velocità di 4 s⁻¹ e usi un liquido con viscosità {x}. Quale sforzo tangenziale si esercita?",
+      "apparatus": "strati",
+      "skill": "C2-L007",
+      "section": "Fluidi in movimento",
+      "proposedPointsOnly": [
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "SIM-C2-L007-04",
+      "version": 1,
+      "title": "Gradiente di velocità",
+      "summary": "In quale intercapedine due strati vicini differiscono di più in velocità?",
+      "interpretation": "La lastra alta scorre a 40 mm/s, quella bassa è ferma. Nei profili lineari una distanza minore a parità di salto rende la pendenza maggiore.",
+      "control": {
+        "label": "Distanza fra le lastre",
+        "unit": "mm",
+        "min": 1.0,
+        "max": 8.0,
+        "step": 1.0
+      },
+      "measure": {
+        "label": "Gradiente di velocità",
+        "unit": "s⁻¹"
+      },
+      "transferPrompt": "Due piastre distano {x} e differiscono in velocità di 40 mm/s. Quale gradiente misura lo strumento fra le due?",
+      "apparatus": "strati",
+      "skill": "C2-L007",
+      "section": "Fluidi in movimento",
+      "proposedPointsOnly": [
+        2,
+        5
+      ]
+    },
+    {
+      "id": "SIM-C2-L007-05",
+      "version": 1,
+      "title": "Profilo parabolico laminare",
+      "summary": "Che cosa legge una sonda che si sposta dall’asse alla parete?",
+      "interpretation": "In regime laminare pienamente sviluppato la velocità è massima al centro. Alla parete la condizione di aderenza impone velocità nulla.",
+      "control": {
+        "label": "Raggio della sonda diviso R",
+        "unit": "1",
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.05
+      },
+      "measure": {
+        "label": "Velocità locale",
+        "unit": "cm/s"
+      },
+      "transferPrompt": "In un tubo laminare la velocità sull’asse è 12 cm/s. Se r/R vale {x}, quale velocità locale ti aspetti?",
+      "apparatus": "profilo",
+      "skill": "C2-L007",
+      "section": "Fluidi in movimento",
+      "proposedPointsOnly": [
+        0.5,
+        1
+      ]
+    }
+  ],
+  "candidateBlocksRead": false,
+  "authorReceiptRead": false
+}
