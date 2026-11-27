@@ -38,7 +38,7 @@ class CricQuestionAssembly(unittest.TestCase):
             old = originals[key]
             self.assertEqual(row['id'], key)
             self.assertEqual((row['baseVersion'], row['version']), (old['version'], old['version'] + 1))
-            for field in ['course', 'skill', 'order', 'prerequisites', 'family', 'difficulty']:
+            for field in ['course', 'section', 'skill', 'order', 'prerequisites', 'family', 'difficulty']:
                 self.assertEqual(row[field], old[field])
             self.assertEqual(binding['sourceId'], key)
             self.assertEqual(binding['sourceSha256'], digest(old))
@@ -62,7 +62,7 @@ class CricQuestionAssembly(unittest.TestCase):
         self.assertEqual(package['records'][0]['exam'], old['exam'])
         for change in [{'exam': None}, {'exam': {'id': 'other'}}, {'id': 'C6-Q999'},
                        {'version': 999}, {'baseVersion': 0}, {'kind': 'lesson'},
-                       {'course': 'C1'}, {'skill': 'C1-L001'}]:
+                       {'course': 'C1'}, {'skill': 'C1-L001'}, {'section': 'Altra sezione'}]:
             with self.subTest(change=change), self.assertRaises(ValueError):
                 build([old['id']], 'C6', {1: change})
 
