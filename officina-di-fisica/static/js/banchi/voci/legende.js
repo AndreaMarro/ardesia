@@ -171,7 +171,12 @@ export function legendaVoce(record, vista) {
       + 'Il cronometro misura solo l’andata lungo i 150 m.';
   }
   if (record.id === 'SIM-C5-L05-03') {
-    return 'Sfera ocra · sorgente. Punto viola · ricevitore. Gli archi verdi sono le creste emesse dalla sorgente. La freccia rossa indica il verso di moto della sorgente.';
+    const proiezione = vista === 'top'
+      ? ' Dall’alto la freccia verticale appare come un punto. Usa la vista Laterale per leggerne il verso.'
+      : '';
+    return 'Sfera ocra · sorgente. Punto viola · ricevitore. Gli archi verdi sono le creste emesse dalla sorgente. '
+      + 'La freccia rossa indica il verso di moto della sorgente. La freccia viola verticale, quando appare, '
+      + 'rappresenta la pressione relativa al ricevitore con una scala propria. Il ricevitore resta fermo.' + proiezione;
   }
   const descrizioni = annotazioneScena(record)?.descrizioni;
   if (descrizioni?.length) return legenda.replace(/\.$/,'') + '. ' + descrizioni.join(' ');

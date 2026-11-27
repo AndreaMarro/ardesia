@@ -183,7 +183,7 @@ export const ondulatoria = {
         }
       }
       b.ball([sourceAt(time), 0.78, 0], 0.145, c.ocra);
-      b.arrow([sourceAt(time), 1.06, 0], [sourceAt(time) + 2.4 * s.moto, 1.06, 0], c.rosso);
+      b.arrow([sourceAt(time), 1.06, 0], [sourceAt(time) + 2.4 * s.moto, 1.06, 0], c.rosso, true);
       b.rod([receiver, 0.1, 0], [receiver, 0.91, 0], 0.085, c.metallo);
       b.ball([receiver, 0.78, 0], 0.11, c.viola);
       if (s.pressioneRel !== undefined)
