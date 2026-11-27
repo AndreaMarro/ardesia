@@ -86,7 +86,7 @@ async function guidedReading(page, id, course, expected, screenshot = '') {
 }
 async function signedAreasFlow(page, device) {
   await visit(page, 'home', '.hero');
-  await advance(page, page.getByRole('link', { name: 'Preparazione rapida all’esame', exact: true }), '.method-intro');
+  await advance(page, page.getByRole('link', { name: 'Preparazione all’esame', exact: true }), '.method-intro');
   await advance(page, page.getByRole('link', { name: 'Esercizi prioritari C1' }).first(), '.c1-index');
   await page.getByRole('link', { name: 'Diagnosi e simulazioni · C6' }).waitFor();
   await visit(page, 'corso/C1', '.c1-paths');
