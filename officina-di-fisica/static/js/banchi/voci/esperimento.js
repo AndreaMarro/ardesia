@@ -152,7 +152,7 @@ export async function esperienza(record) {
       const readings = [
         [a.label, choices ? fmt(s.x) : s.x, choices || a.unit === '1' ? '' : a.unit],
         [clock?.finalReading ? m.label + ' (a fine prova)' : m.label, s.y, m.unit === '1' ? '' : m.unit],
-        confronti[record.id]?.(s.x, s.y) ?? [
+        confronti[record.id]?.(s.x, s.y, clock?.inputAt?.(s.x, t)) ?? [
           'Variazione dal riferimento',
           stabile(s.y - y0),
           m.unit === '1' ? '' : m.unit,

@@ -1,0 +1,38 @@
+{
+  "activityCredit": 0,
+  "authorCandidateRuntimeSha256": "0c9d80d28945a62b6e125dd97f55b08de1ac17eabd75e5ff86e05b0a17e0c576",
+  "caseMatrixIncludesMeltBoundariesAndLiquidWarming": true,
+  "change": "Thermometer and numeric temperature use the same three-stage law and actual delivered energy. The endpoint quantity is still a separate reading.",
+  "contractsPassed": 2,
+  "files": {
+    "actual-contracts.txt": "adbbc6a06b8d4193d7d61b4e38b11a63c61b11d5d547c1762d7e5bb149c9c40b",
+    "actual-node-tests.txt": "80bff85a23c7f9f72bf73db51eb9e093668a6dad4a2ce037cd7dfc70e54b9b73",
+    "actual-red.txt": "605ff7be5e07cc582366dba932f6d95d785a48182d90f8c997c1e69a3491ceb9"
+  },
+  "humanApproval": "NOT_RUN",
+  "id": "SIM-C3-L04-03",
+  "independentBrowserReading": "PENDING",
+  "nodeTestsPassed": 349,
+  "observedTemperatureAtPartialClock": {
+    "elapsedSeconds": [
+      0,
+      0.125,
+      0.25,
+      0.375,
+      0.5
+    ],
+    "expectedCelsius": [
+      -10,
+      -8.75,
+      -7.5,
+      -6.25,
+      -5
+    ],
+    "priorReadoutCelsius": -5,
+    "targetEnergyKJ": 1
+  },
+  "publicationAction": "NONE",
+  "schemaVersion": "1.0.0",
+  "sourceObservationCommit": "1a6cd15f84359f6847c34030cf17e1840b0539c3",
+  "sourceObservationRuntimeSha256": "53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a"
+}

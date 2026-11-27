@@ -1,3 +1,5 @@
+import { temperaturaRiscaldamento } from './modelli/C3.js';
+
 const rad = (x) => (Math.PI * x) / 180;
 // Geometric zeros at exact quadrant angles, without suppressing small nonzero quantities.
 const sin = (x) => x % 180 === 0 ? 0 : Math.sin(rad(x));
@@ -39,9 +41,9 @@ export const confronti = {
   'SIM-C2-L010-05': (x) => ['Una sola interfaccia', 100 / x, 'Pa'],
   'SIM-C3-L02-01': (x) => ['Prodotto pV', 240, 'kPa·L'],
   'SIM-C3-L04-01': (x) => ['Temperatura nella coesistenza', 0, '°C'],
-  'SIM-C3-L04-03': (x) => [
+  'SIM-C3-L04-03': (x, _y, energiaCorrente = x) => [
     'Temperatura del campione',
-    x < 2 ? -10 + 5 * x : x <= 36 ? 0 : (x - 36) / 0.42,
+    temperaturaRiscaldamento(energiaCorrente),
     '°C',
   ],
   'SIM-C3-L06-02': (x) => ['Lavoro di volume', 0, 'J'],

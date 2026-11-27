@@ -1,3 +1,6 @@
+export const temperaturaRiscaldamento = (energia) =>
+  energia < 2 ? -10 + 5 * energia : Math.max(0, (energia - 36) / 0.42);
+
 export const experiments = {
   // Sistema e ambiente
   'SIM-C3-L01-01': {

@@ -1,4 +1,5 @@
 import { colore as c, punti, limita } from '../geometria.js';
+import { temperaturaRiscaldamento } from '../modelli/C3.js';
 export function tinta(f) {
   const cold = [45, 134, 162],
     hot = [207, 90, 54],
@@ -120,7 +121,7 @@ export const termica = {
     if (!s.vapore) {
       const q = s.energia;
       // Q in kJ for 100 g. The temperature is constant while both phases coexist.
-      const temperature = q === undefined ? 0 : q < 2 ? -10 + 5 * q : Math.max(0, (q - 36) / 0.42);
+      const temperature = q === undefined ? 0 : temperaturaRiscaldamento(q);
       const x = 1.4,
         zero = 0.88,
         height = zero + 0.026 * temperature;
