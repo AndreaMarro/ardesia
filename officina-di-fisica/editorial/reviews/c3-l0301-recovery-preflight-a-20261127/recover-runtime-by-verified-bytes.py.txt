@@ -1,0 +1,18 @@
+from pathlib import Path
+import hashlib,json,subprocess,base64
+T=Path('/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical');A=T/'work/cric-author-a-resident-20261127/officina-di-fisica';D=A/'editorial/reviews/c3-l0301-recovery-preflight-a-20261127';old=A/'editorial/reviews/c3-six-heat-phase-core6ae3-independent-a-20261127';expected=json.loads((old/'actual-current-runtime-fingerprint.json').read_bytes());R=T/'work/cric-a-c3-b999-runtime-20261127/officina-di-fisica';S=T/'work/cric-resume-276/officina-di-fisica';R.mkdir(parents=True,exist_ok=True);sha=lambda b:hashlib.sha256(b).hexdigest();records=[];ref='b9994b9116e87478905191d85cca8037d17ae4bd'
+for name,pin in expected['files'].items():
+ if name.startswith('node_modules/'):continue
+ source=S/name;raw=source.read_bytes()if source.is_file()else b''
+ if sha(raw)==pin:origin='PERSISTENT_EXISTING_BYTES_HASH_IDENTICAL'
+ else:
+  response=subprocess.check_output(['gh','api','repos/AndreaMarro/ardesia/contents/officina-di-fisica/'+name+'?ref='+ref]);data=json.loads(response);assert data['encoding']=='base64';raw=base64.b64decode(data['content']);assert sha(raw)==pin,name;origin='GITHUB_IMMUTABLE_CONTENTS_API'
+ target=R/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(raw);records.append({'path':name,'sha256':pin,'origin':origin})
+helper=R/'tools/corpus_engineering/runtime_fingerprint.py';raw=(old/'runtime-fingerprint-canonical.verbatim.py').read_bytes();assert sha(raw)==expected['protocolSha256'];helper.write_bytes(raw)
+for app in [R,A]:
+ p=app/'node_modules';deps=S/'node_modules'
+ if not p.exists():p.symlink_to(deps,target_is_directory=True)
+ else:assert p.resolve()==deps.resolve()
+for name,pin in expected['files'].items():assert sha((R/name).read_bytes())==pin,name
+(D/'runtime-file-recovery-provenance.json').write_text(json.dumps({'sourceCommit':ref,'expectedRuntime':expected['sha256'],'files':records,'nodeDependencyFiles':{p:h for p,h in expected['files'].items()if p.startswith('node_modules/')},'runtimeProtocolSha256':expected['protocolSha256'],'browser':'NOT_RUN'},indent=2)+'\n')
+(D/'recover-runtime-by-verified-bytes.py.txt').write_bytes(Path(__file__).read_bytes());print('all421runtime filepins verified; content API2; browser NOT_RUN')

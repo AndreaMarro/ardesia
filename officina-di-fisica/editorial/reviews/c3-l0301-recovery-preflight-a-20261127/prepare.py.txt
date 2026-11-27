@@ -1,0 +1,21 @@
+from pathlib import Path
+import json,copy,hashlib
+TASK=Path('/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical');APP=TASK/'work/cric-author-a-resident-20261127/officina-di-fisica';OLD=APP/'editorial/reviews/c3-six-heat-phase-core6ae3-independent-a-20261127';D=APP/'editorial/reviews/c3-l0301-recovery-preflight-a-20261127';D.mkdir(exist_ok=True);F=D/'canonical-inputs';F.mkdir(exist_ok=True)
+sha=lambda b:hashlib.sha256(b).hexdigest()
+for name in ['experiment-c3-heat-transformations-reading-20261127.json','experiment-c3-heat-transformations-reading-20261127-bindings.json']:(F/name).write_bytes((OLD/'canonical-inputs'/name).read_bytes())
+base=json.loads((OLD/'groups/sim-c3-l03-01-320/prepared.json').read_bytes());inputs={str(p):sha(p.read_bytes())for p in F.iterdir()}
+for width in (320,1280):
+ G=D/str(width);G.mkdir(exist_ok=True);p=copy.deepcopy(base)
+ p['profiles']=[dict(width=width,fallback=profile['fallback'],view=profile['view'])for profile in p['profiles']]
+ metadata=dict(schemaVersion='1.0.0',phase='POST_REBOOT_RECOVERY_PREFLIGHT_ONLY',scope='DISTINCT_A_C3_L0301_DRAFT_'+str(width)+'_24_FRESH_CASES_REQUIRED',authorization='CHROME_NOT_AUTHORIZED_DURING_CORE_C2',preRebootRaw='LOST_UNPUSHED_TEMPORARY_OUTPUTS',preRebootPublishedHead='060153c771d88039109c8fba0d38507d7be50473',candidateCommit='6ae3c2a177bcde74b2bebf8f22c1fa50850b0413',sourceCommit=base['sourceCommit'],runtimeSha256=base['runtimeFingerprint']['sha256'],protocolSha256='719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15',activityCredit=0,humanApproval='NOT_RUN')
+ raw=(json.dumps(metadata,ensure_ascii=False,indent=2)+'\n').encode();(G/'metadata.json').write_bytes(raw)
+ p['scope']=metadata['scope'];p['requestFile']=str(G/'metadata.json');p['requestSha256']=sha(raw);p['packageFiles']=[str(F/'experiment-c3-heat-transformations-reading-20261127.json')];p['inputFiles']=inputs
+ keys=[]
+ for profile in p['profiles']:
+  stem='|'.join(('SIM-C3-L03-01','draft',str(width),profile['view']));keys.append(stem+'|setup');keys.extend(stem+'|grid|'+str(i)for i in range(5))
+ p['expectedCaseKeys']=keys;assert len(keys)==24 and len(set(keys))==24
+ (G/'prepared.json').write_text(json.dumps(p,ensure_ascii=False,indent=2)+'\n')
+ (G/'request.json').write_text(json.dumps(dict(candidateApp=str(TASK/'work/cric-a-c3-b999-runtime-20261127/officina-di-fisica'),prepared=str(G/'prepared.json'),output=str(G/'actual')),indent=2)+'\n')
+(D/'prepare.py.txt').write_bytes(Path(__file__).read_bytes())
+(D/'pre-reboot-loss-declaration.json').write_text(json.dumps(dict(schemaVersion='1.0.0',event='MAC_REBOOT_20261127_0900_TEMPORARY_DIRECTORY_LOST',lastRemoteHead='060153c771d88039109c8fba0d38507d7be50473',preRebootReportedProcesses=[dict(width=320,cases=24,reportedExit=0,reportedSeconds=32.422420024871826),dict(width=1280,cases=24,reportedExit=0,reportedSeconds=33.25283598899841)],actualRawAvailable=False,pushedBrowserProof=False,reportedTerminalFacts='Conversation only; not reproducible raw evidence after restart',readRasterCopiesAvailable=False,scientificVerdictRecovery='NO_BROWSER_CREDIT; require genuinely new two processes and readings',browserAfterRecovery='NOT_RUN',activityCredit=0,humanApproval='NOT_RUN'),indent=2)+'\n')
+print('Two persistent prepared24 groups; previous Git files unchanged; no browser')

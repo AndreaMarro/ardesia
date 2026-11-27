@@ -1,0 +1,20 @@
+from pathlib import Path
+import json,subprocess,tarfile,io,hashlib,os
+TASK=Path('/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical');REPO=TASK/'work/cric-author-a-resident-20261127';APP=REPO/'officina-di-fisica';BASE=APP/'editorial/reviews/c3-six-heat-phase-core6ae3-independent-a-20261127';TARGET=TASK/'work/cric-a-c3-b999-runtime-20261127';TARGET.mkdir(exist_ok=True)
+expected=json.loads((BASE/'actual-current-runtime-fingerprint.json').read_bytes());ref='b9994b9116e87478905191d85cca8037d17ae4bd'
+paths=['officina-di-fisica/'+p for p in expected['files']if not p.startswith('node_modules/')]+['officina-di-fisica/tools/corpus_engineering/runtime_fingerprint.py']
+raw=subprocess.check_output(['git','-c','gc.auto=0','archive',ref,'--',*paths],cwd=REPO)
+count=0
+with tarfile.open(fileobj=io.BytesIO(raw))as archive:
+ for item in archive:
+  if item.isdir():continue
+  path=Path(item.name);assert item.isfile() and '..'not in path.parts and not path.is_absolute()
+  file=TARGET/path;file.parent.mkdir(parents=True,exist_ok=True);content=archive.extractfile(item).read();file.write_bytes(content);count+=1
+runtime=TARGET/'officina-di-fisica';deps=TASK/'work/cric-resume-276/officina-di-fisica/node_modules'
+for folder in (runtime,APP):
+ link=folder/'node_modules'
+ if not link.exists():link.symlink_to(deps,target_is_directory=True)
+ else:assert link.resolve()==deps.resolve()
+for name,pin in expected['files'].items():assert hashlib.sha256((runtime/name).read_bytes()).hexdigest()==pin,name
+assert hashlib.sha256((runtime/'tools/corpus_engineering/runtime_fingerprint.py').read_bytes()).hexdigest()==expected['protocolSha256']
+print(json.dumps({'filesRecovered':count,'runtimeFilePinsVerified':len(expected['files']),'sourceCommit':ref,'runtimeApp':str(runtime),'nodeDependencies':str(deps),'browser':'NOT_RUN'}))
