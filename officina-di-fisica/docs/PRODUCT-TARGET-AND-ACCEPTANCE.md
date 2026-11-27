@@ -52,6 +52,14 @@ Il recupero collega la difficoltà osservata a una spiegazione, a un prerequisit
 
 **Prova richiesta.** Completare prima un percorso reale di Fluidi con caso preparato dal docente, spiegazione, pratica, errore, recupero e ripresa. Ripetere il medesimo contratto su una rappresentazione di Analisi, usando materiali disponibili e autorizzati. Verificare i collegamenti con un revisore dei contenuti e i comportamenti con test del consumer; nessuna delle due prove sostituisce l’altra.
 
+### Nuovi quesiti e soluzioni commentate
+
+Il mandato comprende usare i quiz Suria disponibili privatamente per studiare strutture, difficoltà e difetti, e produrre nuovi quesiti originali con soluzioni commentate. Questa consegna di piattaforma non contiene quell’archivio né dichiara di aver completato tale lavoro editoriale. Il successore deve ottenere la fonte privata effettivamente autorizzata e riconciliare il registro dell’altra sessione prima di scrivere un nuovo lotto; la copia pubblica del repository non basta a ricostruirla.
+
+Ogni nuovo quesito deve dichiarare obiettivo, prerequisiti, ipotesi e dominio; la soluzione deve spiegare i passaggi e il motivo delle scelte, con figure progressive quando chiariscono il ragionamento. Verificare tutte le alternative, l’eventuale presenza di più risposte vere, le ambiguità e le condizioni mancanti. Separare esempi svolti, pratica assistita e prove autonome; assegnare famiglie coerenti invece di qualificare come trasferimento una semplice variazione numerica. I collegamenti devono raggiungere la lezione pertinente e gli strumenti utilizzabili nella spiegazione.
+
+La produzione mantiene provenienza e verifiche, conserva i nuovi materiali di Analisi separati dal corpus di Medicina e passa da bozza a materiale accettato soltanto dopo verifica indipendente e collaudo nell’app. Le fonti private e i materiali non autorizzati alla divulgazione restano fuori dal repository pubblico. La pubblicazione nell’app conserva il gate umano, distinto dalla mera scrittura o dall’importazione riuscita.
+
 ## 6. Qualità degli oggetti e dei modelli interattivi
 
 **Accettazione tecnica e scientifica.** Ogni strumento dichiara dominio, ipotesi, unità, grandezze controllabili e limiti del modello. Gli stati fuori dominio producono una spiegazione utile; valori non validi e versioni incompatibili non sono corretti silenziosamente. Parametri visualizzati, valori del solver e stato riaperto coincidono, comprese le griglie ammesse dai controlli.

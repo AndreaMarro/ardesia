@@ -87,6 +87,8 @@ Gli asset scientifici in `static/`, i modelli, il corpus, le edizioni pubblicate
 
 I punti d’innesto falliscono se un’ancora non compare esattamente una volta. Non convertirli in sostituzioni permissive per far passare una nuova revisione. Se cambia il runtime scientifico, verificare gli hook e ripetere le prove del consumer composto.
 
+Questa composizione isola il lavoro durante la revisione parallela, ma resta accoppiata alla forma esatta dei sorgenti nativi. È un vincolo di manutenzione dichiarato. Quando la proprietà dei file e la revisione permetteranno un intervento coordinato, valutare punti di estensione espliciti nel modulo canonico, preservando gli stessi contratti, le prove dei consumer e il modello condiviso. La rimozione degli hook non giustifica una riscrittura indiscriminata o la riattribuzione di vecchie prove a un runtime nuovo.
+
 ## 5. Avvio riproducibile e dati di prova
 
 Da un clone del repository, controllare prima `git status`, worktree e PR. Aggiornare le ref e creare un proprio branch, senza riusare o cancellare il worktree di un’altra sessione:

@@ -216,8 +216,8 @@ async function collection(id, shared = false) {
     <form data-collection-edit><label>Nome della raccolta<input name="title" required maxlength="120" value="${esc(data.title)}"></label>
     <label>Obiettivo o istruzione<textarea name="note" maxlength="2000" rows="2">${esc(data.note || '')}</textarea></label>
     <h3>Ordine dei casi</h3><ol data-collection-order class="resource-order"></ol>
-    <div class="resource-add"><label>Aggiungi un caso salvato<select data-add-case><option value="">Scegli un caso</option>${notebook.cases.map(c =>
-      `<option value="${esc(c.id)}">${esc(c.title)}</option>`).join('')}</select></label><button type="button" data-add-button>Aggiungi</button></div>
+    <div class="resource-add"><div class="resource-case-picker"><label for="resource-add-case">Aggiungi un caso salvato</label><select id="resource-add-case" data-add-case><option value="">Scegli un caso</option>${notebook.cases.map(c =>
+      `<option value="${esc(c.id)}">${esc(c.title)}</option>`).join('')}</select></div><button type="button" data-add-button>Aggiungi</button></div>
     <button class="solid">Salva raccolta</button><p data-edit-status role="status"></p></form></details>
     <section class="resource-sharing" aria-labelledby="share-collection-title"><h2 id="share-collection-title">Collegamento per gli studenti</h2>
     <p>Attivandolo, chi riceve il collegamento può leggere il titolo e le istruzioni della raccolta, i nomi dei casi e le condizioni del modello. Le note personali dei casi restano nel tuo quaderno. L’accesso ai materiali segue i permessi della risorsa.</p>
