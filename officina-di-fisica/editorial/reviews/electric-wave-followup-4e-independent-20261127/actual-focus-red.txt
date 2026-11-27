@@ -1,0 +1,108 @@
+bounded local start; free bytes 2324819968
+test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail (__main__.FocusEvidence.test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail) ...
+  test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail (__main__.FocusEvidence.test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail) (key='SIM-C4-L01-02|320|fixed_projection|2.5|') ... FAIL
+  test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail (__main__.FocusEvidence.test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail) (key='SIM-C4-L01-02|320|fixed_projection|3|') ... FAIL
+  test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail (__main__.FocusEvidence.test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail) (key='SIM-C4-L01-02|320|fixed_projection|3.5|') ... FAIL
+  test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail (__main__.FocusEvidence.test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail) (key='SIM-C4-L01-02|320|fixed_projection|4|') ... FAIL
+  test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail (__main__.FocusEvidence.test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail) (key='SIM-C4-L01-02|320|fixed_projection|4.5|') ... FAIL
+  test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail (__main__.FocusEvidence.test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail) (key='SIM-C4-L01-02|320|fixed_projection|5|') ... FAIL
+  test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail (__main__.FocusEvidence.test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail) (key='SIM-C4-L01-02|320|fixed_projection|5.5|') ... FAIL
+  test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail (__main__.FocusEvidence.test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail) (key='SIM-C4-L01-02|320|fixed_projection|6|') ... FAIL
+  test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail (__main__.FocusEvidence.test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail) (key='SIM-C4-L01-02|1280|fixed_projection|6|') ... FAIL
+test_current_identity_54_and_read_images (__main__.FocusEvidence.test_current_identity_54_and_read_images) ... ok
+test_doppler_remaining_label_mask_resolved (__main__.FocusEvidence.test_doppler_remaining_label_mask_resolved) ... ok
+test_electron_zero_threshold_and_declared_factor_four (__main__.FocusEvidence.test_electron_zero_threshold_and_declared_factor_four) ... ok
+
+======================================================================
+FAIL: test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail (__main__.FocusEvidence.test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail) (key='SIM-C4-L01-02|320|fixed_projection|2.5|')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/electric-wave-followup-4e-independent-20261127/test_focus_evidence.py", line 56, in test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail
+    self.assertTrue(primary_readable or declared_detail,{'input':c['input'],'width':c['width'],'primaryHeads':primary,'detailHeads':detail})
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : {'input': 2.5, 'width': 320, 'primaryHeads': [{'axis': 6.9935999999999865, 'headHalfwidth': 1.1189760000000035, 'shaftHalfwidth': 1.35, 'headEscapesShaft': False}, {'axis': 6.993600000000015, 'headHalfwidth': 1.1189760000000035, 'shaftHalfwidth': 1.35, 'headEscapesShaft': False}], 'detailHeads': []}
+
+======================================================================
+FAIL: test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail (__main__.FocusEvidence.test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail) (key='SIM-C4-L01-02|320|fixed_projection|3|')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/electric-wave-followup-4e-independent-20261127/test_focus_evidence.py", line 56, in test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail
+    self.assertTrue(primary_readable or declared_detail,{'input':c['input'],'width':c['width'],'primaryHeads':primary,'detailHeads':detail})
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : {'input': 3, 'width': 320, 'primaryHeads': [{'axis': 4.856666666666655, 'headHalfwidth': 0.7770666666666557, 'shaftHalfwidth': 1.35, 'headEscapesShaft': False}, {'axis': 4.8566666666666265, 'headHalfwidth': 0.7770666666666557, 'shaftHalfwidth': 1.35, 'headEscapesShaft': False}], 'detailHeads': []}
+
+======================================================================
+FAIL: test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail (__main__.FocusEvidence.test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail) (key='SIM-C4-L01-02|320|fixed_projection|3.5|')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/electric-wave-followup-4e-independent-20261127/test_focus_evidence.py", line 56, in test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail
+    self.assertTrue(primary_readable or declared_detail,{'input':c['input'],'width':c['width'],'primaryHeads':primary,'detailHeads':detail})
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : {'input': 3.5, 'width': 320, 'primaryHeads': [{'axis': 3.5681632653061115, 'headHalfwidth': 0.5709061224489744, 'shaftHalfwidth': 1.35, 'headEscapesShaft': False}, {'axis': 3.5681632653061683, 'headHalfwidth': 0.5709061224489744, 'shaftHalfwidth': 1.35, 'headEscapesShaft': False}], 'detailHeads': []}
+
+======================================================================
+FAIL: test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail (__main__.FocusEvidence.test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail) (key='SIM-C4-L01-02|320|fixed_projection|4|')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/electric-wave-followup-4e-independent-20261127/test_focus_evidence.py", line 56, in test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail
+    self.assertTrue(primary_readable or declared_detail,{'input':c['input'],'width':c['width'],'primaryHeads':primary,'detailHeads':detail})
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : {'input': 4, 'width': 320, 'primaryHeads': [{'axis': 2.7318750000000023, 'headHalfwidth': 0.4370999999999867, 'shaftHalfwidth': 1.35, 'headEscapesShaft': False}, {'axis': 2.7318750000000023, 'headHalfwidth': 0.4370999999999867, 'shaftHalfwidth': 1.35, 'headEscapesShaft': False}], 'detailHeads': []}
+
+======================================================================
+FAIL: test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail (__main__.FocusEvidence.test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail) (key='SIM-C4-L01-02|320|fixed_projection|4.5|')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/electric-wave-followup-4e-independent-20261127/test_focus_evidence.py", line 56, in test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail
+    self.assertTrue(primary_readable or declared_detail,{'input':c['input'],'width':c['width'],'primaryHeads':primary,'detailHeads':detail})
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : {'input': 4.5, 'width': 320, 'primaryHeads': [{'axis': 2.1585185185185196, 'headHalfwidth': 0.34536296296295177, 'shaftHalfwidth': 1.35, 'headEscapesShaft': False}, {'axis': 2.1585185185185196, 'headHalfwidth': 0.34536296296295177, 'shaftHalfwidth': 1.35, 'headEscapesShaft': False}], 'detailHeads': []}
+
+======================================================================
+FAIL: test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail (__main__.FocusEvidence.test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail) (key='SIM-C4-L01-02|320|fixed_projection|5|')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/electric-wave-followup-4e-independent-20261127/test_focus_evidence.py", line 56, in test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail
+    self.assertTrue(primary_readable or declared_detail,{'input':c['input'],'width':c['width'],'primaryHeads':primary,'detailHeads':detail})
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : {'input': 5, 'width': 320, 'primaryHeads': [{'axis': 1.7483999999999753, 'headHalfwidth': 0.2797439999999938, 'shaftHalfwidth': 1.35, 'headEscapesShaft': False}, {'axis': 1.7484000000000037, 'headHalfwidth': 0.2797439999999938, 'shaftHalfwidth': 1.35, 'headEscapesShaft': False}], 'detailHeads': []}
+
+======================================================================
+FAIL: test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail (__main__.FocusEvidence.test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail) (key='SIM-C4-L01-02|320|fixed_projection|5.5|')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/electric-wave-followup-4e-independent-20261127/test_focus_evidence.py", line 56, in test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail
+    self.assertTrue(primary_readable or declared_detail,{'input':c['input'],'width':c['width'],'primaryHeads':primary,'detailHeads':detail})
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : {'input': 5.5, 'width': 320, 'primaryHeads': [{'axis': 1.4449586776859746, 'headHalfwidth': 0.23119338842974457, 'shaftHalfwidth': 1.35, 'headEscapesShaft': False}, {'axis': 1.4449586776859746, 'headHalfwidth': 0.23119338842974457, 'shaftHalfwidth': 1.35, 'headEscapesShaft': False}], 'detailHeads': []}
+
+======================================================================
+FAIL: test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail (__main__.FocusEvidence.test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail) (key='SIM-C4-L01-02|320|fixed_projection|6|')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/electric-wave-followup-4e-independent-20261127/test_focus_evidence.py", line 56, in test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail
+    self.assertTrue(primary_readable or declared_detail,{'input':c['input'],'width':c['width'],'primaryHeads':primary,'detailHeads':detail})
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : {'input': 6, 'width': 320, 'primaryHeads': [{'axis': 1.2141666666666708, 'headHalfwidth': 0.19426666666666392, 'shaftHalfwidth': 1.35, 'headEscapesShaft': False}, {'axis': 1.2141666666666424, 'headHalfwidth': 0.19426666666666392, 'shaftHalfwidth': 1.35, 'headEscapesShaft': False}], 'detailHeads': []}
+
+======================================================================
+FAIL: test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail (__main__.FocusEvidence.test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail) (key='SIM-C4-L01-02|1280|fixed_projection|6|')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/electric-wave-followup-4e-independent-20261127/test_focus_evidence.py", line 56, in test_coulomb_nonzero_fallback_has_directional_head_or_declared_detail
+    self.assertTrue(primary_readable or declared_detail,{'input':c['input'],'width':c['width'],'primaryHeads':primary,'detailHeads':detail})
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : {'input': 6, 'width': 1280, 'primaryHeads': [{'axis': 1.2141666666666708, 'headHalfwidth': 0.19426666666666392, 'shaftHalfwidth': 1.35, 'headEscapesShaft': False}, {'axis': 1.2141666666666424, 'headHalfwidth': 0.19426666666666392, 'shaftHalfwidth': 1.35, 'headEscapesShaft': False}], 'detailHeads': []}
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.079s
+
+FAILED (failures=9)
+Traceback (most recent call last):
+  File "/private/tmp/cric-bounded-local.py", line 7, in <module>
+    subprocess.run(sys.argv[1:],check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py", line 579, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['python3', '-B', 'editorial/reviews/electric-wave-followup-4e-independent-20261127/test_focus_evidence.py']' returned non-zero exit status 1.
