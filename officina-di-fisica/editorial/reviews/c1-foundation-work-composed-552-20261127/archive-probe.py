@@ -73,5 +73,7 @@ def archive_probe(source, output):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('source', type=Path)
+    parser.add_argument('--output', type=Path, default=Path(__file__).resolve().parent)
     params = parser.parse_args()
-    archive_probe(params.source, Path(__file__).resolve().parent)
+    params.output.mkdir(parents=True, exist_ok=True)
+    archive_probe(params.source, params.output)

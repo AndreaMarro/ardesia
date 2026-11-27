@@ -24626,7 +24626,7 @@
     },
     {
       "id": "c6-adaptive-transfer-family-coverage-20261126",
-      "state": "OPEN",
+      "state": "VERIFIED_ON_COMPOSED_PRIVATE_DRAFT_FIXTURE",
       "affectedSkills": [
         "C6-L02",
         "C6-L03",
@@ -24635,7 +24635,17 @@
         "C6-L06"
       ],
       "evidence": "editorial/reviews/c6-adaptive-pool-preflight-20261126/report.json",
-      "resolution": "Each has only2 eligible nonexam families; delayed consolidation requires a distinct third. Supply scientifically verified competency/family coverage without relabelling repetitions or using protected exams; do not weaken adaptive gate."
+      "resolution": "Each has only2 eligible nonexam families; delayed consolidation requires a distinct third. Supply scientifically verified competency/family coverage without relabelling repetitions or using protected exams; do not weaken adaptive gate.",
+      "supplementalIds": [
+        "C6-TR02",
+        "C6-TR03",
+        "C6-TR04",
+        "C6-TR05",
+        "C6-TR06"
+      ],
+      "proofCommit": "e3f4f6e09f3dea4246127ebabf47811e0baad6c7",
+      "proofPath": "editorial/reviews/cric-composed-coexistence-20261127/actual-full-coexistence.json",
+      "finalRuntimeRecheckRequired": true
     },
     {
       "id": "actual139-experiment-ui-evidence-20261126",
@@ -24648,7 +24658,7 @@
     },
     {
       "id": "method-worksheet-mobile-layout-root-20261126",
-      "state": "OPEN",
+      "state": "WITHDRAWALS_CLOSED_ON_CB9_RENEWAL_REQUIRED",
       "affectedIds": [
         "C1-M-formula",
         "C1-M-graph",
@@ -24660,13 +24670,17 @@
         "C5-M-graph"
       ],
       "evidence": "editorial/reviews/method-layout-root-reopening-20261126/verified-pairs.json",
-      "resolution": "Fix visible grid/card and formula layout on320; distinct review and all20sequences/98steps plus each formula layout, current source math, progress/state and a11y; preserve all negatives. No overflow hiding or report retag."
+      "resolution": "Fix visible grid/card and formula layout on320; distinct review and all20sequences/98steps plus each formula layout, current source math, progress/state and a11y; preserve all negatives. No overflow hiding or report retag.",
+      "closureCommit": "6b3eb8ba422ca76548021d557d1d54da22d8c098"
     },
     {
       "id": "baseline-shared-realm-intrinsics-20261127",
-      "state": "OPEN",
+      "state": "ISOLATED_PROTOCOL_V2_VERIFIED",
       "evidence": "editorial/reviews/shared-realm-root-recovery-20261127.json",
-      "resolution": "Isolated baseline browser context, explicit version and distinct adversarial review before new full139 campaign; zero automatic scientific credit"
+      "resolution": "Isolated baseline browser context, explicit version and distinct adversarial review before new full139 campaign; zero automatic scientific credit",
+      "protocolCommit": "da6c179fc382865e26a33e3fc6d410350c4c2509",
+      "independentVerificationCommit": "be790f93c84c88b5bc6c02a20ed13242ff1f3ee3",
+      "newReplayRunId": 45935050054
     },
     {
       "id": "force-work-top-label-reopening-20261127",

@@ -200,9 +200,16 @@
       "receipt": "editorial/reviews/c1-foundation-work-composed-552-20261127/receipt.json",
       "actualCases": 552,
       "uniqueScreenshots": 530,
-      "independentVisualReview": "PENDING",
+      "independentVisualReview": "POSITIVE_LABEL_REMOVALS_WITH_SHORT_ARROW_FAILURES",
       "activityCredit": 0,
-      "nextReopenedId": "SIM-C1-L006-03"
+      "nextReopenedId": "SIM-C1-L006-03",
+      "independentDiagnosticCommit": "751e34d67ec47835ac27d31cc38e8da96c8a70cf",
+      "independentUniqueScreenshotsRead": 110,
+      "affectedIds": [
+        "SIM-C1-L006-03",
+        "SIM-C1-L007-02"
+      ],
+      "newCorrectionCommit": "4cce177d6b73ec58bfd265ff164424226501bcff"
     },
     "c2IndependentSixOutletsAndPitot": {
       "commit": "c8f1d20af2c336bc2d1bfe03f018bdf8ecb68dd8",
@@ -220,7 +227,170 @@
     "benchConsumerFollowup": {
       "previousNegativeCommit": "cac719403c2b59a9e837d8f3474a515217b869d5",
       "testedCandidate": "0184b146513e024d99ce8391fb0a5f4892f79e7e",
-      "pending": "Signed evidence and complete cohorts 035 and 036",
+      "pending": "Complete cohorts 035 and 036",
+      "activityCredit": 0,
+      "independentProofCommitPrefix": "aca2a238",
+      "positiveFocusedCases": 22,
+      "wholeGroups": {
+        "commit": "68e821d7eea971ab11065cd70ce21eaeacb61c8c",
+        "035": {
+          "cases": 120,
+          "clockCases": 64,
+          "scientificRows": 5,
+          "consumerPositiveRows": 4,
+          "canonicalGate": "REJECT",
+          "reason": "LAB3D-02 gravity shaft intersects base at launch",
+          "correctiveCandidate": "4cce177d6b73ec58bfd265ff164424226501bcff"
+        },
+        "036": {
+          "cases": 148,
+          "clockCases": 56,
+          "scientificRows": 5,
+          "consumerPositiveRows": 5,
+          "canonicalIdentityGate": "PASS",
+          "finalRuntimeRenewal": "PENDING"
+        },
+        "activityCredit": 0
+      },
+      "gravityFollowup": {
+        "earlierActualCases": 48,
+        "originalTestedCandidate": "4cce177d6b73ec58bfd265ff164424226501bcff",
+        "confirmedFinding": "A portion of the gravity shaft lies behind the sphere in orbit at the apex.",
+        "refinedCandidate": "c3b03eb98cdafd706499ee64d6b3f5e356f27da8",
+        "independentDisposition": "PENDING",
+        "activityCredit": 0,
+        "wholeFocusedFollowupCases": 70,
+        "laterFinding": "Native Side at 320 CSS px, legal elevation 69 degrees: x label covers the tip",
+        "axesAnnotationCandidate": "e02b0a767097f22ed66b7240432fc30b206217fd"
+      }
+    },
+    "c6ScopedVisualObservation": {
+      "twoPositiveAnnotationsCommit": "46cdfcfc295994599c463a578b599c54531d2698",
+      "cases": 104,
+      "otherFourIdsAfterActualTechnicalCases": 216,
+      "scope": "VISUAL_REVIEW_IN_PROGRESS_WITH_CONFIRMED_FINDINGS",
+      "confirmedFindings": [
+        {
+          "activityId": "SIM-C6-L04-01",
+          "state": "Top 320px with five layers",
+          "finding": "Opaque detector label covers weak transmitted beam"
+        },
+        {
+          "activityId": "SIM-C6-L06-01",
+          "state": "p/f=1/2 Orbit and Side at 320px and 1280px",
+          "finding": "Opaque object label covers the red virtual image arrowhead"
+        }
+      ],
+      "correctionCandidate": "ad00ccac9e1d0839c45bd1880cb344b9334f2ae1",
+      "activityCredit": 0,
+      "originalFourArchivedCommit": "6e652ba940197b1b7a257bddb8baaa1a7053c313",
+      "originalFourIndependentReportSha256": "fd855aef36afa867fe4c4412cdc9f0428606410adc2eecc9ab5a01c1b449841a",
+      "correctedScope": {
+        "actualCases": 88,
+        "actualExitCode": 0,
+        "visualReview": "PENDING",
+        "candidate": "ad00ccac9e1d0839c45bd1880cb344b9334f2ae1"
+      },
+      "currentWholeFamily": {
+        "actualBrowserCases": 312,
+        "actualSetups": 48,
+        "actualSubmittedAnswers": 96,
+        "sourceCommit": "c3b03eb98cdafd706499ee64d6b3f5e356f27da8",
+        "runtimeSha256": "0fdcc3b04c869d75811a4e07b7b8d1d87210869d6087e12e01ee70b6c370e1d4",
+        "independentVisualDisposition": "SIX_BOUNDED_VISUAL_POSITIVES_REGISTERED_ON_CURRENT_CANDIDATE",
+        "activityCredit": 6,
+        "independentReviewCommit": "3d5d0e6c16928ae82ab4c5fdc2a58d1e944e88f7",
+        "verifiedIndividualVisualRecords": 6,
+        "manuallyReadImages": 48,
+        "sourceControls": 97,
+        "sourceClockSamples": 400,
+        "distinctAssignedTasks": 12,
+        "registrationCommit": "0be84bc345eb5da07798531e203fabf907c049b5",
+        "canonicalValidatorReceipt": "editorial/reviews/c6-whole-activity-candidate-20261127/actual-register.txt",
+        "scienceReportSha256": "440191454e38e9eb7d129e308e1c434001d3fe999eb34f22862d8c5ecefe82f9",
+        "repeatAdded": 0,
+        "negativeChecksRejected": 4
+      }
+    },
+    "c1CurrentMatrix": {
+      "sourceCommit": "ad00ccac9e1d0839c45bd1880cb344b9334f2ae1",
+      "runtimeSha256": "0818bc9e4051c7533a27688f784c46fa283928209f37b80870086fa4b20dc440",
+      "archiveCommit": "18de84f0cff9d7162ca820ddce837d7b549ed840",
+      "receipt": "editorial/reviews/c1-two-families-0818-552-20261127/receipt.json",
+      "receiptSha256": "c852e4e9075511b421138da1c0a26292066f19b4cfd048f5278b9fbbb53f1769",
+      "actualCases": 552,
+      "uniqueScreenshots": 530,
+      "scientificActivityCredit": 0
+    },
+    "c1AndElectricDirectionObservation": {
+      "ownerCandidate": "4cce177d6b73ec58bfd265ff164424226501bcff",
+      "independentCommit": "2dbd53184f98a2c9a969ca7f957a18f5955af52f",
+      "actualCases": 110,
+      "visualFinding": "Previously completely obscured directions are visible on the focus cases. Native scale at the transition still reads weakly for r=2 and t=1.",
+      "correctionCandidate": "25151fb1c38b4b859d49e02a9255fdd83bcf4341",
+      "activityCredit": 0
+    },
+    "currentOriginalCodeReplay": {
+      "runtimeSha256": "0fdcc3b04c869d75811a4e07b7b8d1d87210869d6087e12e01ee70b6c370e1d4",
+      "total": 139,
+      "scope": "ORIGINAL_INSTALLED_CODE_AND_INDEPENDENT_MODEL_ONLY",
+      "C2": {
+        "commit": "8792c3aae0ed362535ea0a25562d3a954b0e2bc0",
+        "records": 41,
+        "receipt": "editorial/reviews/c2-current-models-0fdcc-20261127/receipt.json",
+        "originalAssessmentMismatch": "SIM-C2-L002-01"
+      },
+      "C3ToC6": {
+        "commit": "c5f4f51463444258c872fb51b498b65f4d39edd1",
+        "records": 98,
+        "receipt": "editorial/reviews/c3-c6-current-models-0fdcc-20261127/receipt.json"
+      },
+      "activityCredit": 0
+    },
+    "eightManualDraftsCurrentReplay": {
+      "runtimeSha256": "0fdcc3b04c869d75811a4e07b7b8d1d87210869d6087e12e01ee70b6c370e1d4",
+      "commit": "6eeafb9fff0f9dc0f8055bb6ce1fdb0f758ed8ed",
+      "receipt": "editorial/reviews/263-actual-assigned-tasks-0fdcc-20261127/receipt.json",
+      "records": 8,
+      "actualAssignedTasks": 16,
+      "actualBrowserCases": 0,
+      "editorialBoundaryTestsPassed": 7,
+      "activityCredit": 0
+    },
+    "mostAdvancedCandidate": {
+      "registered": 248,
+      "open": 137,
+      "previousStagingRegistered": 242,
+      "remainingExplicitC1": 4,
+      "remainingC2ThroughC5": 133,
+      "nextReopenedId": "SIM-C1-L006-03",
+      "branch": "review/cric-flight-gravity-annotation",
+      "commit": "0be84bc345eb5da07798531e203fabf907c049b5",
+      "statusPath": "editorial/reviews/full-corpus-work-status-20261126.json",
+      "registrySha256": "da15020895d1ffa5cb2e96462c435f20f2e2a9a8ca7fb9a2d823ab2e16f647a9",
+      "canonicalIntegration": "PENDING",
+      "finalRuntimeRecheckRequired": true
+    },
+    "twoC1FamiliesActualUi980": {
+      "sourceCommit": "e02b0a767097f22ed66b7240432fc30b206217fd",
+      "runtimeSha256": "980518b78d0767d90f16322539852e7e79360e20f05078ceb6e9b0425e805301",
+      "archiveCommit": "6085680883a44f954433d5ee312f24cf0ed03ca0",
+      "receipt": "editorial/reviews/c1-two-families-980-552-20261127/receipt.json",
+      "archiveSha256": "359c39f518ac4e22b2a0d3b2a939880757061b292c7c702f624683b831909952",
+      "actualCases": 552,
+      "setupCases": 96,
+      "correctAssignedAnswers": 192,
+      "uniqueScreenshots": 530,
+      "recordIds": 12,
+      "status": "TECHNICAL_SUCCESS_INDEPENDENT_RASTER_REVIEW_PENDING",
+      "activityCredit": 0
+    },
+    "C3HeatCapacityDraft264": {
+      "id": "SIM-C3-L03-02",
+      "status": "ORIGINAL_NEGATIVE_DRAFT_MATH_PEER_REVIEWED_FRESH_UI_PLAN_VERIFIED",
+      "runner": "editorial/reviews/heat-capacity-264-independent-20261127/run-activity-ui.py",
+      "plannedCases": 192,
+      "actualCasesForThisPlan": 0,
       "activityCredit": 0
     }
   },
@@ -244,6 +414,21 @@
       "secondImportSaved": 0,
       "oldAttemptsPreserved": 3,
       "adaptivityQuestionRecords": 4611
+    },
+    "currentRegisterProof": {
+      "commit": "2a1eccb446a91bfdc34633117a2ab11de29fa2a2",
+      "receipt": "editorial/reviews/canonical-candidate-full-coexistence-20261127/receipt.json",
+      "receiptSha256": "ac85c16aa3cded163be8dc6df27a81bd3f054a2716306952879b43509e6dac67",
+      "inputCommit": "4793a90b549173e520e5f7b3eb0009fccb13b1a3",
+      "runtimeSha256": "abb2bf2ac567438953766cf3550644b3d6ea501d75d610fb6291b2cffc5a428b",
+      "registrySha256": "a0b63e1aaf0d8df4a83ceb906241e07fc67948b7c18442390f5db91df10ca005",
+      "drafts": 4628,
+      "packages": 317,
+      "repeatSaved": 0,
+      "repeatedImportUnchanged": 4628,
+      "publishedRecordsPreserved": 991,
+      "historicalFixturesPreserved": 3,
+      "adaptiveQuestionRecords": 4611
     }
   },
   "canonicalIntegration": "PENDING",
@@ -316,11 +501,11 @@
     }
   },
   "nextAction": [
-    "Review the preserved C1 552 observations independently, then renew the four C1 closures beginning SIM-C1-L006-03 on the exact integration candidate",
-    "Verify all 139 C2\u2013C6 activities individually using the archived evidence, the new visibility replay and the corrected edition tasks",
-    "Validate all groups on one integration runtime and rerun final previews and coexistence",
+    "Renew the four C1 closures beginning SIM-C1-L006-03 on the candidate chosen for integration",
+    "Continue the next 133 original C2–C5 activities by family using the independent installed model, manual task and actual browser evidence",
+    "Rerun all groups, including the six registered candidate C6 activities, on the exact integration runtime",
     "Integrate through the ordinary canonical PR and record CI on the integrated SHA",
-    "Keep the human approval queue and the separate app publication gate traceable"
+    "Keep separate evidence for human approval and publication in the app"
   ],
   "composedCandidate": {
     "branch": "feat/cric-composed-runtime",
@@ -353,7 +538,7 @@
       "contractPass": 2,
       "requestCommit": "f7b4a31d783aed06ac89d35d2c09956a2f16c58f",
       "visibilityRun": 45935050054,
-      "visibilityStatusAtCheckpoint": "QUEUED",
+      "visibilityStatusAtCheckpoint": "C2_C4_SUCCESS_C4_ARCHIVED_C3_C5_C6_LAST_OBSERVED_RUNNING",
       "C5Preflight": {
         "plannedCases": 14464,
         "originalRecords": 27,
@@ -361,6 +546,99 @@
         "allDraftInputsVerified": 9,
         "actualBrowserCases": 0,
         "receipt": "editorial/reviews/composed-draft-pin-preflight-20261127/receipt.json"
+      },
+      "C4TechnicalArchive": {
+        "commit": "6085680883a44f954433d5ee312f24cf0ed03ca0",
+        "receipt": "editorial/reviews/visibility139-abb2-run45935050054-20261127/C4/receipt.json",
+        "artifactId": 15172159159,
+        "upstreamZipSha256": "a1e5534cbf32e943d6469141e5d4c414c1ed5f12e45922b402764e79bac3463e",
+        "observedCases": 7872,
+        "technicalFailures": 0,
+        "activityCredit": 0
+      }
+    },
+    "canonicalIntegrationCandidate": {
+      "branch": "feat/cric-canonical-integration-candidate",
+      "mergedSourceCommit": "63cc5fd89df00ce4a4885479b1306ca1a5833064",
+      "previewCommit": "4793a90b549173e520e5f7b3eb0009fccb13b1a3",
+      "runtimeSha256": "abb2bf2ac567438953766cf3550644b3d6ea501d75d610fb6291b2cffc5a428b",
+      "registrySha256": "a0b63e1aaf0d8df4a83ceb906241e07fc67948b7c18442390f5db91df10ca005",
+      "privatePreviewRun": 45935494138,
+      "previewObservedStatus": "COMPLETED",
+      "nodePass": 305,
+      "contractPass": 2,
+      "c6OriginalStaticReplay": {
+        "records": 6,
+        "controls": 97,
+        "clockSamples": 400,
+        "actualAssignedTasks": 12,
+        "activityCredit": 0
+      },
+      "obsoleteBranchCreationRun": {
+        "id": 45935494194,
+        "conclusion": "CANCELLED",
+        "reason": "New branch creation activated the historical visibility request. The valid replay is 45935050054."
+      },
+      "canonicalIntegration": "PENDING",
+      "previewObservedConclusion": "SUCCESS",
+      "actualPreviewCasesFromOriginalJobLog": 13869,
+      "renderedBatches": 316,
+      "previewJobId": 140297636992,
+      "previewJobLogReceipt": "editorial/reviews/full-preview-45935494138-20261127/upstream-terminal-summary.json",
+      "previewArtifactId": 15172917063,
+      "fullZipMarkerReplay": "PENDING_LOCAL_REPLAY"
+    },
+    "newestSourceForBoundedReview": {
+      "commit": "c3b03eb98cdafd706499ee64d6b3f5e356f27da8",
+      "branch": "review/cric-flight-gravity-annotation",
+      "runtimeSha256": "0fdcc3b04c869d75811a4e07b7b8d1d87210869d6087e12e01ee70b6c370e1d4",
+      "nodePass": 311,
+      "contractPass": 2,
+      "candidateStatus": "SCOPED_INDEPENDENT_VERIFICATION_PENDING"
+    },
+    "priorOpticalCandidate": {
+      "commit": "ad00ccac9e1d0839c45bd1880cb344b9334f2ae1",
+      "branch": "review/cric-c6-optical-annotation",
+      "runtimeSha256": "0818bc9e4051c7533a27688f784c46fa283928209f37b80870086fa4b20dc440",
+      "nodePass": 310,
+      "contractPass": 2,
+      "candidateStatus": "SCOPED_INDEPENDENT_VERIFICATION_PENDING"
+    },
+    "newestFlightAnnotationSource": {
+      "commit": "e02b0a767097f22ed66b7240432fc30b206217fd",
+      "branch": "review/cric-flight-axis-legend",
+      "runtimeSha256": "980518b78d0767d90f16322539852e7e79360e20f05078ceb6e9b0425e805301",
+      "nodePass": 311,
+      "contractPass": 2,
+      "independentConsumerReview": "SCOPED_POSITIVE",
+      "independentCommit": "484b89b79fccefe9cd8e05d47d7151abf8348946",
+      "scopedCases": 70,
+      "geometryStates": 58,
+      "wholeGroupStatus": "PENDING"
+    },
+    "midpointAndPressSource": {
+      "commit": "099fe6614bdaf14702da8a472eea1bb743fd1599",
+      "branch": "review/cric-midpoint-and-press-visibility",
+      "runtimeSha256": "77c13a37088c8b19e7e56558a85ff8ad644acf8488abb9b5d0a5214991c696d4",
+      "nodePass": 313,
+      "contractPass": 2,
+      "independentCurrentSourceReview": "IN_PROGRESS",
+      "authoringScope": [
+        "SIM-C2-L003-02",
+        "SIM-C4-L02-02"
+      ],
+      "priorIndependentFindings": {
+        "SIM-C2-L003-02": {
+          "commit": "77ce7ba7884a54215b71bd119a3530b9c53a1824",
+          "finding": "PRESS_FORCE_ARROW_SCALE_UNDECLARED"
+        },
+        "SIM-C4-L02-02": {
+          "commit": "eea7e75f9c2545c7584c678b2b46fbb80e0e7008",
+          "findings": [
+            "MARKER_AND_VECTOR_LEGEND_MISMATCH",
+            "SMALL_DIRECTIONAL_ARROWHEAD_UNREADABLE_IN_2D"
+          ]
+        }
       }
     }
   }
