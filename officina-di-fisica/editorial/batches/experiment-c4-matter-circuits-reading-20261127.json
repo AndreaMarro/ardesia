@@ -1,0 +1,489 @@
+{
+  "assets": [],
+  "records": [
+    {
+      "anchor": "Avvicina una bacchetta positiva a un conduttore",
+      "apparatus": "dipoli",
+      "assessmentSelection": {
+        "points": [
+          2,
+          8
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Il campione è metallico, isolato e già in equilibrio. Prima dell’equilibrio un campo nel materiale farebbe muovere gli elettroni liberi. Segui la redistribuzione sulle due facce e confronta il segno delle cariche: nel metallo isolato il bilancio di carica resta quello iniziale.",
+          "type": "text"
+        },
+        {
+          "text": "\\vec E_{\\mathrm{int}}=\\vec E_{\\mathrm{est}}+\\vec E_{\\mathrm{ind}}=\\vec 0",
+          "type": "formula"
+        },
+        {
+          "text": "A 2 kV/m, il contributo indotto nel metallo vale 2 kV/m nel verso opposto. Facendo la somma orientata ottieni zero. A 8 kV/m lo stesso bilancio è 8−8=0 kV/m. Nessuna conversione è necessaria, perché i due contributi sono espressi nella stessa unità.",
+          "type": "text"
+        },
+        {
+          "text": "Leggi la sonda nella parte interna del materiale. Un valore nullo lì non dice quale campo c’è fuori. Se conosci il campo esterno, ne ricavi il contributo indotto interno cambiandone il verso. La conclusione sul campo nullo vale a equilibrio raggiunto. Durante il transitorio il campo mette in moto le cariche.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Campo esterno uniforme",
+        "max": 10.0,
+        "min": 0.0,
+        "step": 1.0,
+        "unit": "kV/m"
+      },
+      "course": "C4",
+      "formula": "E interno = E esterno + E indotto = 0",
+      "id": "SIM-C4-L04-01",
+      "interpretation": "Nel campione metallico isolato gli elettroni liberi si ridistribuiscono sulle superfici. Il campo da loro creato compensa l’esterno. Le quantità di carica positiva e negativa indotte si bilanciano.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Campo interno nel conduttore in equilibrio",
+        "unit": "kV/m"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C4-L03"
+      ],
+      "references": [
+        [
+          2.0,
+          0.0
+        ],
+        [
+          8.0,
+          0.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Cariche mobili e cariche legate",
+      "skill": "C4-L04",
+      "substitution": "{x} + (−{x})",
+      "summary": "Come può il campo interno restare nullo mentre avvicini una sorgente esterna?",
+      "title": "Conduttori e induzione elettrostatica",
+      "topic": "6.3 Conduttori e induzione elettrostatica",
+      "transferPrompt": "Applichi {x} a un conduttore e attendi l’equilibrio elettrostatico. Quanto campo dovrebbe misurare una sonda nel materiale conduttore?",
+      "version": 2
+    },
+    {
+      "anchor": "In un isolante le cariche possono spostarsi",
+      "apparatus": "dipoli",
+      "assessmentSelection": {
+        "points": [
+          3,
+          9
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Prima confronta il campo senza materiale e poi quello all’interno del dielettrico. Le piastre sono grandi, il generatore è scollegato e la carica libera resta fissa. Il dielettrico è lineare e omogeneo, riempie la regione di misura e il banco trascura gli effetti dei bordi.",
+          "type": "text"
+        },
+        {
+          "text": "D=\\sigma_{\\mathrm{libera}},\\qquad\nE_0=\\frac{D}{\\varepsilon_0},\\qquad\nE=\\frac{D}{3\\varepsilon_0}=\\frac{E_0}{3}",
+          "type": "formula"
+        },
+        {
+          "text": "La polarizzazione produce un contributo opposto al campo applicato. Dal rapporto 3, adimensionale, segue che 3 kV/m prima dell’inserimento diventano 1 kV/m nel materiale. Per il secondo dato, 9÷3 dà 3 kV/m. La divisione lascia la stessa unità. Per risalire al campo senza materiale, moltiplica la lettura per tre.",
+          "type": "text"
+        },
+        {
+          "text": "Se leggessi 3 kV/m dopo l’inserimento, il valore di riferimento compatibile sarebbe 9 kV/m. Controlla sempre che la carica resti fissa. A tensione mantenuta da un generatore, il banco descriverebbe una condizione diversa.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Campo esterno a carica libera fissata",
+        "max": 12.0,
+        "min": 0.0,
+        "step": 1.0,
+        "unit": "kV/m"
+      },
+      "course": "C4",
+      "formula": "E = E₀/εᵣ, con εᵣ = 3",
+      "id": "SIM-C4-L04-02",
+      "interpretation": "Fra grandi piastre a carica libera fissata entra un dielettrico lineare omogeneo. I centri di carica legata si separano leggermente. La polarizzazione si oppone al campo applicato.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Campo nel dielettrico",
+        "unit": "kV/m"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C4-L03"
+      ],
+      "references": [
+        [
+          3.0,
+          1.0
+        ],
+        [
+          9.0,
+          3.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Cariche mobili e cariche legate",
+      "skill": "C4-L04",
+      "substitution": "{x} / 3",
+      "summary": "Perché nel materiale isolante il campo si riduce senza annullarsi?",
+      "title": "Dielettrici e polarizzazione",
+      "topic": "6.3 Dielettrici e polarizzazione",
+      "transferPrompt": "Scolleghi il generatore per mantenere fissa la carica sulle piastre. Il campo senza dielettrico sarebbe {x}. Inserendo un materiale con εᵣ = 3, quale campo resta al suo interno?",
+      "version": 2
+    },
+    {
+      "anchor": "Immagina una sezione trasversale di un filo.",
+      "apparatus": "filo",
+      "assessmentSelection": {
+        "points": [
+          1,
+          4
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Scegli una sezione fissa del filo e fai partire il conteggio. La corrente dice quanta carica orientata attraversa quella sezione nell’unità di tempo. Il modello mantiene 2 A, cioè 2 C/s, durante l’intera misura. Per questo la carica si ottiene sommando contributi uguali per ogni secondo.",
+          "type": "text"
+        },
+        {
+          "text": "I=\\frac{\\Delta q}{\\Delta t},\\qquad\n\\Delta q=I\\Delta t",
+          "type": "formula"
+        },
+        {
+          "text": "Dopo 1 s passano 2 C. Dopo 4 s passano quattro gruppi da 2 C, cioè 8 C. Nel prodotto, il secondo di Δt semplifica il secondo al denominatore. Al contrario, sapere che sono passati 8 C con una corrente costante di 2 A permette di ricavare 8÷2=4 s.",
+          "type": "text"
+        },
+        {
+          "text": "La freccia di corrente indica il verso convenzionale. Nel metallo gli elettroni derivano nel verso opposto. Aggiungere un secondo di osservazione aumenta di 2 C la carica transitata. La corrente resta la stessa.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Durata della misura",
+        "max": 5.0,
+        "min": 0.5,
+        "step": 0.5,
+        "unit": "s"
+      },
+      "course": "C4",
+      "formula": "Δq = IΔt, con I = 2 A",
+      "id": "SIM-C4-L05-01",
+      "interpretation": "Ogni secondo passano 2 coulomb di carica convenzionale. Nel metallo gli elettroni derivano nel verso opposto alla corrente.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Carica attraversata",
+        "unit": "C"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C4-L04"
+      ],
+      "references": [
+        [
+          1.0,
+          2.0
+        ],
+        [
+          4.0,
+          8.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Quanto vale una corrente",
+      "skill": "C4-L05",
+      "substitution": "2 × {x}",
+      "summary": "Quanta carica attraversa la sezione marcata del filo?",
+      "title": "Corrente continua e intensità",
+      "topic": "6.4 Corrente continua e intensità",
+      "transferPrompt": "Un filo porta una corrente stazionaria di 2 A per {x}. Quanti coulomb attraversano la stessa sezione?",
+      "version": 2
+    },
+    {
+      "anchor": "Immagina una sezione trasversale di un filo.",
+      "apparatus": "circuito",
+      "assessmentSelection": {
+        "points": [
+          3,
+          6
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Nel circuito immagina due osservazioni distinte. Il voltmetro ai morsetti registra 12 V in entrambe. L’amperometro, in serie, registra la corrente nel resistore scelto. Il modello di generatore ideale mantiene la tensione anche quando cambia il carico. Il carico è ohmico e la sua temperatura è fissata.",
+          "type": "text"
+        },
+        {
+          "text": "V=RI,\\qquad I=\\frac{V}{R}",
+          "type": "formula"
+        },
+        {
+          "text": "Con 3 Ω cerca il numero che moltiplicato per 3 dà 12. Ottieni 4 A. Con 6 Ω, 12÷6 dà 2 A. L’unità V/Ω è l’ampere. Anche senza fare il secondo conto puoi prevedere che raddoppiare la resistenza a tensione fissa dimezza la corrente.",
+          "type": "text"
+        },
+        {
+          "text": "Una lettura di 2 A a 12 V permette di risalire a R = V/I = 6 Ω. La corrente non è una proprietà fissa della batteria ideale. Dipende dalla resistenza che colleghi.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Resistenza del carico",
+        "max": 12.0,
+        "min": 2.0,
+        "step": 1.0,
+        "unit": "Ω"
+      },
+      "course": "C4",
+      "formula": "I = V/R, con V = 12 V fissata dal generatore",
+      "id": "SIM-C4-L05-02",
+      "interpretation": "Collega il resistore alla stessa batteria ideale da 12 V. Il voltmetro ai morsetti conserva la lettura e l’amperometro cambia con il carico.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Corrente nel carico",
+        "unit": "A"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C4-L04"
+      ],
+      "references": [
+        [
+          3.0,
+          4.0
+        ],
+        [
+          6.0,
+          2.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Quanto vale una corrente",
+      "skill": "C4-L05",
+      "substitution": "12 / {x}",
+      "summary": "Il generatore ideale mantiene la tensione o la corrente quando cambi il carico?",
+      "title": "Generatore ideale",
+      "topic": "6.4 Generatore ideale",
+      "transferPrompt": "Un alimentatore ideale da 12 V fa funzionare un carico da {x}. Quale corrente dovrebbe leggere l’amperometro in serie?",
+      "version": 2
+    },
+    {
+      "anchor": "Per un resistore ohmico R resta costante",
+      "apparatus": "circuito",
+      "assessmentSelection": {
+        "points": [
+          -4,
+          8
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Mantieni fissato il verso positivo dell’amperometro. La tensione del resistore è misurata rispetto ai morsetti nello stesso ordine per entrambe le prove. Il resistore ha 4 Ω a temperatura costante. La legge di Ohm collega quindi il segno della differenza di potenziale al segno della corrente.",
+          "type": "text"
+        },
+        {
+          "text": "I=\\frac{V}{4\\ \\mathrm{\\Omega}}",
+          "type": "formula"
+        },
+        {
+          "text": "Con −4 V, il modulo della corrente vale 4÷4=1 A e il segno è negativo. Con +8 V, 8÷4 dà +2 A. Il grafico passa per l’origine: a tensione nulla la corrente del resistore è nulla. Se conosci I = −1 A, moltiplica per 4 Ω per recuperare V = −4 V.",
+          "type": "text"
+        },
+        {
+          "text": "Un valore negativo significa che la corrente reale percorre il circuito nel verso opposto al riferimento. Il valore di resistenza resta positivo. Leggere soltanto il modulo dell’amperometro perderebbe questa informazione.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Tensione al resistore",
+        "max": 8.0,
+        "min": -8.0,
+        "step": 1.0,
+        "unit": "V"
+      },
+      "course": "C4",
+      "formula": "I = V/R, con R = 4 Ω",
+      "id": "SIM-C4-L05-03",
+      "interpretation": "La resistenza è costante a temperatura fissata. Invertendo la tensione si inverte la corrente. Il grafico è una retta passante per l’origine.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Corrente con segno",
+        "unit": "A"
+      },
+      "order": 3,
+      "prerequisites": [
+        "C4-L04"
+      ],
+      "references": [
+        [
+          -4.0,
+          -1.0
+        ],
+        [
+          8.0,
+          2.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Quanto vale una corrente",
+      "skill": "C4-L05",
+      "substitution": "{x} / 4",
+      "summary": "Cosa fa un resistore ohmico quando inverti i morsetti?",
+      "title": "Conduzione ohmica",
+      "topic": "6.4 Conduzione ohmica",
+      "transferPrompt": "A un resistore di 4 Ω applichi la tensione con segno {x}. Quale lettura con segno dà l’amperometro col verso di riferimento del banco?",
+      "version": 2
+    },
+    {
+      "anchor": "Per un resistore ohmico R resta costante",
+      "apparatus": "filo",
+      "assessmentSelection": {
+        "points": [
+          1,
+          2
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Confronta tratti dello stesso filo, con uguale sezione e temperatura. Due tratti identici in serie offrono il doppio della resistenza di un tratto solo. La lunghezza cambia la resistenza, poi la resistenza cambia la corrente a tensione fissata.",
+          "type": "text"
+        },
+        {
+          "text": "R=\\frac{\\rho L}{A}\n =\\left(2\\ \\frac{\\mathrm{\\Omega}}{\\mathrm m}\\right)L,\\qquad\nI=\\frac{4\\ \\mathrm V}{R}",
+          "type": "formula"
+        },
+        {
+          "text": "Con 1 m, ottieni R = 2 Ω e I = 4/2 = 2 A. Con 2 m, ottieni R = 4 Ω e I = 4/4 = 1 A. Nel primo passaggio il metro si semplifica. Nel secondo, V/Ω dà A.",
+          "type": "text"
+        },
+        {
+          "text": "Per tornare dalla lettura alla lunghezza, ricava prima R = 4 V/I, poi dividi per 2 Ω/m. Per esempio 1 A corrisponde a 4 Ω e quindi a 2 m. A tensione fissata la corrente si dimezza quando la lunghezza raddoppia.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Lunghezza del filo",
+        "max": 4.0,
+        "min": 0.5,
+        "step": 0.5,
+        "unit": "m"
+      },
+      "course": "C4",
+      "formula": "R = ρL/A = 2L Ω; I = 4/R",
+      "id": "SIM-C4-L05-04",
+      "interpretation": "Mantieni sezione e materiale fissi, con resistenza per metro di 2 Ω/m. Prima calcola la resistenza dal filo, poi usa la tensione ai morsetti per trovare la corrente.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Corrente a 4 V",
+        "unit": "A"
+      },
+      "order": 4,
+      "prerequisites": [
+        "C4-L04"
+      ],
+      "references": [
+        [
+          1.0,
+          2.0
+        ],
+        [
+          2.0,
+          1.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Quanto vale una corrente",
+      "skill": "C4-L05",
+      "substitution": "2 / {x}",
+      "summary": "Come si combinano le due leggi di Ohm quando allunghi il filo?",
+      "title": "Prima e seconda legge di Ohm",
+      "topic": "6.4 Prima e seconda legge di Ohm",
+      "transferPrompt": "Un filo presenta una resistenza di 2 Ω per metro e ne usi {x}. Alimentandolo a 4 V, quale corrente scorre?",
+      "version": 2
+    },
+    {
+      "anchor": "Una retta V(I) passante per l’origine indica",
+      "apparatus": "filo",
+      "assessmentSelection": {
+        "points": [
+          0.2,
+          0.8
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "I campioni hanno tutti lunghezza 2 m e sezione 1 mm², alla stessa temperatura. In questo confronto la resistività distingue i materiali. La resistenza è la lettura ai capi del singolo campione e incorpora anche la sua geometria.",
+          "type": "text"
+        },
+        {
+          "text": "R=\\frac{\\rho L}{A},\\qquad\n1\\ \\mathrm{\\mu\\Omega\\,m}=10^{-6}\\ \\mathrm{\\Omega\\,m},\n\\qquad 1\\ \\mathrm{mm^2}=10^{-6}\\ \\mathrm{m^2}",
+          "type": "formula"
+        },
+        {
+          "text": "Scrivi 10⁻⁶ sia nella resistività sia nella sezione. I fattori si semplificano. Rimane il doppio del numero riportato in µΩ·m: 2 × 0,2 = 0,4 Ω, mentre 2 × 0,8 = 1,6 Ω. I metri nella formula si elidono perché (Ω·m)m/m² = Ω.",
+          "type": "text"
+        },
+        {
+          "text": "Se leggi 1,6 Ω con questa geometria, la resistività è 0,8 µΩ·m. La regola del raddoppio appartiene a questo confronto a lunghezza e area fissate. In generale usa ρ = RA/L.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Resistività",
+        "max": 1.0,
+        "min": 0.1,
+        "step": 0.1,
+        "unit": "µΩ·m"
+      },
+      "course": "C4",
+      "formula": "R = ρL/A, con L = 2 m e A = 1 mm²",
+      "id": "SIM-C4-L05-05",
+      "interpretation": "Sostituisci il materiale mantenendo lunghezza, area e temperatura. Converti µΩ·m e mm² in SI: i fattori dieci alla meno sei si semplificano.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Resistenza del filo",
+        "unit": "Ω"
+      },
+      "order": 5,
+      "prerequisites": [
+        "C4-L04"
+      ],
+      "references": [
+        [
+          0.2,
+          0.4
+        ],
+        [
+          0.8,
+          1.6
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Quanto vale una corrente",
+      "skill": "C4-L05",
+      "substitution": "2 × {x}",
+      "summary": "Due fili geometricamente identici presentano la stessa resistenza?",
+      "title": "Resistività",
+      "topic": "6.4 Resistività",
+      "transferPrompt": "Tagli un filo lungo 2 m di sezione 1 mm² in un materiale di resistività {x}. Quale resistenza misuri ai capi?",
+      "version": 2
+    }
+  ],
+  "schema": "astra/1"
+}
