@@ -1,0 +1,53 @@
+{
+  "id": "C3-L06",
+  "kind": "lesson",
+  "course": "C3",
+  "section": "Fare i conti con il primo principio",
+  "order": 6,
+  "title": "Fare i conti con il primo principio",
+  "skill": "C3-L06",
+  "prerequisites": [
+    "C3-L01",
+    "C3-L02",
+    "C3-L03"
+  ],
+  "version": 1,
+  "coverage": [
+    "5.4 Primo principio",
+    "5.4 Energia interna",
+    "5.4 Calore e lavoro",
+    "5.4 Interpretazione del lavoro su un diagramma p–V"
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "text": "Un gas può scaldarsi perché riceve calore oppure perché viene compresso. Per distinguere questi modi di trasferire energia scegliamo il gas come sistema. U è la sua energia interna, somma dei contributi microscopici. U non comprende l’energia cinetica associata al moto del recipiente come un tutto."
+    },
+    {
+      "type": "figure",
+      "src": "/figures/C3-bilancio.svg",
+      "text": "Q è positivo quando entra nel sistema. W è positivo quando il sistema compie lavoro sull’ambiente. I segni seguono queste due frecce di riferimento."
+    },
+    {
+      "type": "formula",
+      "text": "\\Delta U=U_f-U_i=Q-W"
+    },
+    {
+      "type": "text",
+      "text": "Il calore Q entrante aumenta U. Il lavoro W che il sistema compie all’esterno riduce l’energia che gli rimane. Per un pistone senza attrito sottoposto all’esterno a pressione costante, il lavoro si ricava dalla forza esterna moltiplicata per lo spostamento. Il prodotto di area e spostamento è la variazione di volume."
+    },
+    {
+      "type": "formula",
+      "text": "W=p_{\\rm est}(V_f-V_i),\\qquad 1\\ \\mathrm{kPa}\\cdot1\\ \\mathrm L=1\\ \\mathrm J"
+    },
+    {
+      "type": "text",
+      "text": "In espansione ΔV è positivo, in compressione è negativo. In una trasformazione quasi statica meccanicamente equilibrata p interna ed esterna coincidono al limite. L’area sotto il cammino p–V misura il lavoro con un segno legato al verso di percorrenza. In una trasformazione rapida fuori equilibrio può mancare una singola pressione interna uniforme."
+    },
+    {
+      "type": "text",
+      "text": "Per un gas perfetto di quantità e composizione fisse, l’energia interna dipende solo dalla temperatura. Un termometro che torna alla lettura iniziale implica ΔU = 0 per quel modello, anche se lungo il percorso si sono scambiati calore e lavoro."
+    }
+  ],
+  "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+}

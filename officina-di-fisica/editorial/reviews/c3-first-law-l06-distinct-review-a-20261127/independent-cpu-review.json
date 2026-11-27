@@ -1,0 +1,80 @@
+{
+  "activityCredit": 0,
+  "browser": "NOT_RUN",
+  "candidateCommit": "270d212b4f45151a8dc010a192a65fb13acfa24b",
+  "humanApproval": "NOT_RUN",
+  "potentialPresentationRisk": "L06-04 has one long combined integral/unit-conversion TeX block; test actual320 before any UI finding or approval. L06-03 combined formula also requires actual fit check.",
+  "primaryCommit": "9f3ae65969819f6476a812a120aba1c2bb9da625",
+  "primaryModelSha256": "48ac8b6244cb13b09d52836c89d8dd747f6964b51fa54e193f9dfab647f15bda",
+  "rawConsumerObservationSha256": "695ff34c5af294c8cd5d581b68aa7808881d76499b0bdd3521827d2d45a0693a",
+  "records": [
+    {
+      "activityCredit": 0,
+      "browser": "NOT_RUN",
+      "candidateSha256": "987bd8a2cdc841187b5d408f6253ee2a9368986af9799bc65c0acd0292067524",
+      "compiledTaskAnswersExact": [
+        "20",
+        "-15"
+      ],
+      "draftTextReview": "READ_COMPLETE_NO_MATHEMATICAL_FINDING",
+      "geometry": "NOT_YET_VISUALLY_REVIEWED",
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C3-L06-01",
+      "manual": "Gas system, closed boundary; Q in and W by gas, W10J. Actual30→20 and−5→−15; inverse and zero independently derived.",
+      "mathematicalReview": "POSITIVE_WITHIN_FROZEN_MODEL",
+      "sourceSha256": "5f51405f4f22ffab8c755e86183ddd8d736c65c90dea7ecaf70b6e0926961916"
+    },
+    {
+      "activityCredit": 0,
+      "browser": "NOT_RUN",
+      "candidateSha256": "2b01180a530de7284204eff0877637b517b6849cca0264fb337e318b0e5f0104",
+      "compiledTaskAnswersExact": [
+        "240",
+        "-120"
+      ],
+      "draftTextReview": "READ_COMPLETE_NO_MATHEMATICAL_FINDING",
+      "geometry": "NOT_YET_VISUALLY_REVIEWED",
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C3-L06-02",
+      "manual": "Fixed ideal gas with constant nCv12J/K. Actual20→240 and−10→−120; increments in K, no absolute-temperature claim; fixed piston means zero volume work.",
+      "mathematicalReview": "POSITIVE_WITHIN_FROZEN_MODEL",
+      "sourceSha256": "e32495fa9aa4202383efe5cedf94f256d844487cc261cef780c0fd1a45af51e1"
+    },
+    {
+      "activityCredit": 0,
+      "browser": "NOT_RUN",
+      "candidateSha256": "30897565781c4f915f3fca86122e35e43b75fa29af21fa6195494ca66f7b32ca",
+      "compiledTaskAnswersExact": [
+        "30",
+        "-10"
+      ],
+      "draftTextReview": "READ_COMPLETE_NO_MATHEMATICAL_FINDING",
+      "geometry": "NOT_YET_VISUALLY_REVIEWED",
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C3-L06-03",
+      "manual": "Fixed ΔU10J. ActualW20→Q30 andW−20→Q−10; negative heat exits while compression work enters. Alternative10−W fails the first law.",
+      "mathematicalReview": "POSITIVE_WITHIN_FROZEN_MODEL",
+      "sourceSha256": "466bca495a9288fa5485e37cffcbd0597c8a203ec2e539c1c8576c2dc6c5b929"
+    },
+    {
+      "activityCredit": 0,
+      "browser": "NOT_RUN",
+      "candidateSha256": "f25406a7835eb509eb5ab0c0adbed906bec2b869ae35edd5968139b20c0f8217",
+      "compiledTaskAnswersExact": [
+        "150",
+        "-75"
+      ],
+      "draftTextReview": "READ_COMPLETE_NO_MATHEMATICAL_FINDING",
+      "geometry": "NOT_YET_VISUALLY_REVIEWED",
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C3-L06-04",
+      "manual": "Quasistatic100kPa isobar. ActualΔV1.5→150 and−.75→−75J; kPa L=J; oriented integral differs from unsigned geometric area.",
+      "mathematicalReview": "POSITIVE_WITHIN_FROZEN_MODEL",
+      "sourceSha256": "b5d6f0c91de75782282340e44a5a0b7bdf780ca352aebfafc5134b9af1cadaa1"
+    }
+  ],
+  "runtimeSha256": "53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a",
+  "schemaVersion": "1.0.0",
+  "scope": "INDEPENDENT_CPU_AND_MANUAL_ONLY",
+  "sourceCommit": "1b72b71a68a6023ab1c9fa189733947b03029914"
+}
