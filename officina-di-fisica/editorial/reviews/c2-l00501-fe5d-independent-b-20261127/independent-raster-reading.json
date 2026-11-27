@@ -433,7 +433,7 @@
   ],
   "observations": 160,
   "rawCaseIdentitiesChecked": 160,
-  "currentCaseCoverage": "6successful parts40+30+10+40+30+10; split native/fallback keys disjoint and union matches frozen160plan.",
+  "currentCaseCoverage": "Six successful terminal parts contain 40 + 30 + 10 + 40 + 30 + 10 cases. Native and fallback splits are disjoint and their union matches the frozen 160-case plan.",
   "profiles": [
     {
       "width": 320,
@@ -580,7 +580,7 @@
     "criticalOccurrences": 24,
     "criticalReadReceiptSha256": "b525af9233e79c95b29b0ede73dc5d0f32bab8b4085fdaee6a4fa69913a28b54",
     "perCaseReceiptSha256": "e31561e98404afc68364a4a6043018621d7303f2d3136071b4b02a7f9bd805c0",
-    "rasterByteDifferencesRetained": "Two1280fallback casesgrid7/t0 andclock12/t6 differ between editions only in PNG bytes; SVG/elements/controls/readout equality proved, both images read. No semantic defect observed."
+    "rasterByteDifferencesRetained": "Two 1280 fallback cases, grid v=7 at t=0 and clock v=12 at t=6, differ between editions only in PNG bytes. SVG, elements, controls and readouts are identical; both images were read. No additional semantic defect was observed."
   },
   "mathAndClock": {
     "strictCheckedInteractions": 144,
@@ -624,8 +624,8 @@
       288
     ],
     "volumeLimit": "Integrated volumes derived independently, not claimed as actual DOM fields.",
-    "zeroSemantics": "32captured zero cases have0flow/0distance and no arrows; zero clock6s transports nothing.",
-    "periodicity": "At72cm a six-period tracer pattern may recur; the actual clock6s and72cm distance remain exact, and intermediate3/21cm captured states differ. No clock freeze inferred."
+    "zeroSemantics": "All 32 zero cases show zero flow and distance, with no directional arrows. The zero-speed clock at 6 s transports nothing.",
+    "periodicity": "At 72 cm the 12 cm tracer pattern repeats six times. Clock time 6 s and displacement 72 cm remain exact; captured intermediate displacements 3 cm and 21 cm differ. No clock freeze is inferred."
   },
   "sourceGeometryDiff": {
     "filesChanged": [
@@ -633,17 +633,17 @@
       "static/js/banchi/voci/legende.js",
       "static/js/banchi/voci/modelli/C2.js"
     ],
-    "scope": "CurrentL00501model only adds apparatus visible-tip flag; measure4*x unchanged. Current raw elements change only velocity arrowz0→0.4 and dettaglio=true,224arrow elements across112cases. All tracer positions/radii, arrowx/y endpoints, data/controls/guide/questions/model outputs identical to same53bdcase.",
+    "scope": "The L005-01 model only adds an apparatus flag for visible tips; the law 4*x is unchanged. In current raw elements, 224 arrows across 112 cases change only depth z=0 to z=0.4 and dettaglio=true. Tracer positions and radii, arrow x/y endpoints, scalar outputs, controls, guide and questions remain identical to the corresponding 53bd case.",
     "otherSourceScope": "Pitot branch changes in same shared files are excluded from this review.",
-    "legend": "Actual DOM all144interaction cases describes side offset preserving direction/common scale; setup16occurrences read in8distinct whole UIimages."
+    "legend": "All 144 actual interaction legends explain the side offset and preserve velocity direction and common scale. Sixteen setup occurrences were read through eight distinct complete UI images."
   },
   "findings": [
     {
       "findingId": "CONTINUITY01-F01",
       "status": "RESOLVED_ON_FE5D_CAPTURED_SCOPE",
       "cases": 8,
-      "raster": "Both colors have visible rightward pointed ends at1cm/s in current fallbackgridt0/clockt3,320/1280,each edition. Current4marginal setup occurrences also reread.",
-      "geometricSupport": "Currenthead width9intrinsicSVGunits exceeds2.7shaft; oldhead≈1.504contained. Tip remains at the physical shaftend, no flow/scale change. These are intrinsic coordinates, not CSSpixels.",
+      "raster": "Both colours have visible rightward pointed ends at 1 cm/s in fallback grid t=0 and clock t=3, at 320 and 1280, for both editions. The four previously marginal setup occurrences were also reread.",
+      "geometricSupport": "Current head transverse width is 9 intrinsic SVG units, exceeding the 2.7 shaft stroke. The old width was approximately 1.504 and was contained within the shaft. The tip remains at the physical shaft end; flow and scale are unchanged. These are intrinsic SVG coordinates, not CSS pixels.",
       "caseKeys": [
         "SIM-C2-L005-01|draft|320|fixed_projection|grid|1",
         "SIM-C2-L005-01|draft|320|fixed_projection|clock|1",
@@ -659,12 +659,12 @@
       "findingId": "CONTINUITY01-F02",
       "status": "RESOLVED_ON_FE5D_CAPTURED_SCOPE",
       "cases": 16,
-      "raster": "Green6cm/s,t0 andpurple7cm/s,t3 apexes now visible against/clear of rear tracers in currentOrbit/Side320/1280,each edition.",
+      "raster": "Green tips at 6 cm/s, t=0 and purple tips at 7 cm/s, t=3 are visible in Orbit and Side at 320 and 1280, for both editions.",
       "geometricSupport": {
         "tipTracerRayTestsAllNativePairs": 1008,
         "frontOccludingTracerHits": 0,
         "projectedOverlapBehindArrowPairs": 8,
-        "interpretation": "Eight2Dprojected overlaps remain with the tracer behind the arrow. Source z0.4 plus actual draw-order/raster preserves the pointed end; no claim that silhouettes never touch. Old16forward-occlusion witnesses still reproduced by exact rational ray test."
+        "interpretation": "Eight projected overlaps remain, with the tracer behind the arrow. The depth z=0.4, actual draw order and raster preserve the pointed end. This is not a claim that silhouettes never touch. The exact ray test still reproduces all sixteen historical forward-occlusion witnesses."
       },
       "caseKeys": [
         "SIM-C2-L005-01|draft|320|orbit|grid|2",
@@ -702,11 +702,11 @@
     "role": "Read-only independent check of existing canonical artifacts; not another collector, ETL, registry or release pipeline."
   },
   "negativeAndHistoricalPreservation": {
-    "old53bd": "All160case snapshots and oldreview preserved; noretag/withdrawal of oldnegative witnesses.",
-    "new1280draftReported40Timeout": "Excluded diagnostics at1f70; successful split30+10only used.",
+    "old53bd": "All 160 historical case snapshots and the old review are preserved. Historical negative judgments are not retagged.",
+    "new1280draftReported40Timeout": "The timeout diagnostic in commit 1f70 is excluded. Only successful split parts of 30 and 10 cases were used.",
     "oldMixed80SIGKILL": "Excluded entirely.",
-    "recipeCounterexample": "Expected64unique image bootstrap stopped atactual66; originalrecipe and observedterminal1 retained. Finalrecipe includesall66 without weakening case coverage.",
-    "cpuHistory": "Real20test and first21test runs retained. Final21test uses owned oldreport snapshot for self-contained CI inputs."
+    "recipeCounterexample": "The bootstrap expected 64 unique PNGs and stopped when it found 66. The original recipe and observed exit 1 are preserved. The final recipe retains all 66 images and all 160 case occurrences.",
+    "cpuHistory": "The real 20-test run and first 21-test run are preserved. The final 21-test run uses an owned historical report snapshot, making the test inputs self-contained."
   },
   "overallVerdict": "CURRENT_CAPTURED_INSTRUMENT_AND_RASTER_SCOPE_PASS",
   "registrarStatus": "PENDING_CANONICAL_REGISTRAR; reviewer made no registration",
