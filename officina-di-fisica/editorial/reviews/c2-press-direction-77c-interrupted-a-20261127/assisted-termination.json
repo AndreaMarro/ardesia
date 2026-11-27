@@ -1,0 +1,33 @@
+{
+  "role": "DISTINCT_REVIEWER_A_SUPERVISOR_INTERVENTION",
+  "explicitParentInstruction": true,
+  "preInterventionChecks": [
+    {
+      "pid": 48991,
+      "verifiedParentPid": 48988,
+      "verifiedCommAndParent": "48988 node",
+      "verifiedCwd": "/private/tmp/cric-resident-integrator/officina-di-fisica"
+    },
+    {
+      "pid": 48993,
+      "verifiedParentPid": 48991,
+      "verifiedCommAndParent": "48991 /Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python",
+      "verifiedCwd": "/private/tmp/cric-midpoint-and-press-20261127/officina-di-fisica"
+    }
+  ],
+  "originalExplicitTimeout": null,
+  "reason": "Actual40 raw cases complete but canonical teardown remained pending without browser child; no undisturbed terminal claimed",
+  "signals": [
+    {
+      "pid": 48991,
+      "signal": "SIGTERM"
+    },
+    {
+      "pid": 48993,
+      "signal": "SIGTERM"
+    }
+  ],
+  "interventionEpochSeconds": 1795754964.677024,
+  "anySubsequentZeroMustNotCountAsUndisturbed": true,
+  "scientificAcceptanceGranted": false
+}

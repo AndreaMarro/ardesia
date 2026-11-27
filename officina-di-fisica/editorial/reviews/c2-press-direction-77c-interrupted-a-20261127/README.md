@@ -1,0 +1,3 @@
+# Interrupted first press-direction proof
+
+All40rawcases were acquired and18wholePNGs actually opened/read. The canonical process remained in teardown after writing its report, without a live Chrome child. No explicit outer timeout had been set. Parent authorized a controlled stop. PID/parent/cwd were verified for the own Node48991 and own server48993; SIGTERM stopped the server but not Node. A second verified SIGKILL stopped only Node. Real child terminal -9/signal9 after197.557s, outer247. This is an assisted interrupted attempt, never an undisturbed exit0 or approval. Raw reports, images, metadata, selection, process evidence and signal records are unchanged. A fresh attempt will have an explicit120s timeout and separate evidence. No producer/app code was changed.
