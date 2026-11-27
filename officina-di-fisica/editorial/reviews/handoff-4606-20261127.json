@@ -38,18 +38,18 @@
         "requiresExactRuntimeIntegrationCheck": true
       }
     },
-    "perIdStatusCommit": "1ca9dcad9f7d2ca2281ddf056c317e163d00d1e1"
+    "perIdStatusCommit": "8936ab7a798fa4b398d03ee8c655103820657537"
   },
   "otherActivities": {
     "total": 385,
-    "registered": 263,
-    "open": 122,
-    "newReviewsOpen": 122,
+    "registered": 266,
+    "open": 119,
+    "newReviewsOpen": 119,
     "explicitlyReopened": 0,
     "nextReopenedId": null,
     "nextNewOriginalId": "SIM-C2-L002-01",
-    "candidateCommit": "1ca9dcad9f7d2ca2281ddf056c317e163d00d1e1",
-    "registrySha256": "8e0435b4a5a9535705de76d03d2817534b01fe934b26a1dddf5a3d2155f1e592",
+    "candidateCommit": "8936ab7a798fa4b398d03ee8c655103820657537",
+    "registrySha256": "2216ff2d4dce9cde7059038aba5a0ca7b767ecf42aba2eed92be63c5b940b745",
     "completedOnUnifiedRuntime": false,
     "historical242Snapshot": {
       "registered": 242,
@@ -612,14 +612,29 @@
       "publicationAction": "NONE",
       "manifest": "editorial/reviews/c2-hydrostatic-reading-author-20261127.json",
       "independentCommit": "39b82327267ef8576049848aa32965df61efd786",
-      "actualAssignedTasks": 8
+      "actualAssignedTasks": 8,
+      "actualManometerThirdEdition": {
+        "candidateCommit": "b9994b9116e87478905191d85cca8037d17ae4bd",
+        "runtimeSha256": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6",
+        "collectorCommit": "d43240f5c5a3b37018248cf756454cd6841f46ef",
+        "collectorSha256": "719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15",
+        "recordId": "SIM-C2-L002-04",
+        "publishedVersion": 2,
+        "privateOwnerVersion": 3,
+        "guestHttpStatus": 403,
+        "actualCases": 48,
+        "actualExit": 0,
+        "independentCommit": "8ae4fe9d790189f333298024f250532da2f7b9c1",
+        "remainingCohort": "IN_PROGRESS",
+        "activityCredit": 0
+      }
     },
     "currentSourceActivityRegister": {
       "branch": "review/cric-wave-current-integration",
-      "commit": "1ca9dcad9f7d2ca2281ddf056c317e163d00d1e1",
-      "registrySha256": "8e0435b4a5a9535705de76d03d2817534b01fe934b26a1dddf5a3d2155f1e592",
-      "runtimeSha256": "1efcd26bbb078453b75be5fbd1502b95cf07c0ffabb4112a4e4cf78170ff46aa",
-      "registeredAcrossEvidenceEpochs": 263,
+      "commit": "8936ab7a798fa4b398d03ee8c655103820657537",
+      "registrySha256": "2216ff2d4dce9cde7059038aba5a0ca7b767ecf42aba2eed92be63c5b940b745",
+      "runtimeSha256": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6",
+      "registeredAcrossEvidenceEpochs": 266,
       "activeAlreadyRegisteredWithdrawals": 0,
       "nextNewOriginalId": "SIM-C2-L002-01",
       "canonicalIntegration": "PENDING",
@@ -651,6 +666,27 @@
         "canonicalFirstPlus": 5,
         "canonicalRepeatPlus": 0,
         "reportSha256": "3c2c6e39a801800c32559f6f0fb73c4959cc969472069ca0780456c383054515"
+      },
+      "previous263Candidate": {
+        "commit": "1ca9dcad9f7d2ca2281ddf056c317e163d00d1e1",
+        "runtimeSha256": "1efcd26bbb078453b75be5fbd1502b95cf07c0ffabb4112a4e4cf78170ff46aa",
+        "registeredAcrossEvidenceEpochs": 263,
+        "registrySha256": "8e0435b4a5a9535705de76d03d2817534b01fe934b26a1dddf5a3d2155f1e592"
+      },
+      "c4ScopedThree": {
+        "commit": "8936ab7a798fa4b398d03ee8c655103820657537",
+        "reportSha256": "3b1484258151b0d16a446c62f5fca1bcdcde3fbc6b856ef4b43a9fce3caeb2b9",
+        "actualCases": 168,
+        "canonicalFirstPlus": 3,
+        "canonicalRepeatPlus": 0,
+        "observedIds": [
+          "SIM-C4-L01-01",
+          "SIM-C4-L01-02",
+          "SIM-C4-L03-01"
+        ],
+        "visualPeerCommit": "a3cfedd91142bb32b5390e606965c41e66b42782",
+        "manualPeerCommit": "d9830c51d08a951e30e2ab4e8b249c328ebdca55",
+        "adversarialRejections": 3
       }
     },
     "continuityReadingDrafts": {
@@ -683,6 +719,49 @@
       "archiveSha256": "0896b5e0787b954fd7c074376b93f0d4057e925c31ccbbef7abca42aa29c4a10",
       "archive": "editorial/reviews/c4-composed-7c72-browser-interruption-20261127/actual-prefix.zip",
       "nextPlan": "FOUR_DISJOINT_SLICES_EACH_112_WITH_IDENTICAL_CANDIDATE_AND_REQUEST",
+      "activityCredit": 0,
+      "freshSlices": {
+        "archiveCommit": "0848ecd06819453aa5ae988b1d6a839852894508",
+        "status": "TECHNICAL_COMPLETE_AND_VISUAL_FINDINGS_REMAIN",
+        "actualCases": 448,
+        "assignedAnswerEvents": 128,
+        "completedSlices": 4,
+        "rootVisualOrbitBlockedIds": [
+          "SIM-C4-L02-03",
+          "SIM-C4-L03-02",
+          "SIM-C4-L03-03"
+        ],
+        "peerVisualFallbackBlockedIds": [
+          "SIM-C4-L02-01",
+          "SIM-C4-L02-02"
+        ],
+        "authorFallbackCandidate": "2e615e493f37e3aae80644a556052f965958fbd0",
+        "authorFallbackNodePass": 325,
+        "authorFallbackContractPass": 2,
+        "next": "Compose the fallback and orbit corrections, verify five IDs on the exact merged test runtime; the older evidence remains frozen."
+      }
+    },
+    "openCountsByCourse": {
+      "C2": 31,
+      "C3": 35,
+      "C4": 26,
+      "C5": 27
+    },
+    "c3StateGasDrafts": {
+      "authorCommit": "b9530f9be51234a0e9cce760025741031ab3ccfb",
+      "ids": [
+        "SIM-C3-L01-01",
+        "SIM-C3-L01-02",
+        "SIM-C3-L01-03",
+        "SIM-C3-L01-04",
+        "SIM-C3-L02-01",
+        "SIM-C3-L02-02"
+      ],
+      "savedFirst": 6,
+      "repeatSaved": 0,
+      "publishedVersionsPreserved": 991,
+      "independentReview": "IN_PROGRESS",
+      "actualOwnerUi": "NOT_RUN",
       "activityCredit": 0
     }
   },
@@ -790,13 +869,27 @@
       "archiveCommit": "b689bf3a8e4a66c09a0f2c4da12f6cc7cfab248a",
       "receipt": "editorial/reviews/cric-visibility-draft-pin-failure-45932692932-20261127/receipt.json",
       "draftBytesRestoredCommit": "ab4f9dbc204343be7731257e1e33f616f0c55afc"
+    },
+    "remoteWaveCandidateVisibility": {
+      "runId": 45945853585,
+      "inputCommit": "3ad480c1cccf476275c0723a14932a5d819dd3bf",
+      "candidateCommit": "375faa7a90f5f643840aabb8cc3076f9a2d5f5de",
+      "runtimeSha256": "3ed5bc77d8320230b62e1c3e6ca3bdd00f240cc64ec236b10fe55a306ca79251",
+      "archivedCourseC4": {
+        "commit": "c6bc5b815cfb1817753ad228f741dd4f3b288015",
+        "actualCases": 7872,
+        "actualUniquePngs": 5000,
+        "artifactId": 15176398532,
+        "zipSha256": "f3a1ad83e541763c9b54554e23d27598d4502f35c82d8810d082dc7d4b3a9a2c"
+      },
+      "activityCredit": 0
     }
   },
   "nextAction": [
     "Replay the first open original SIM-C2-L002-01 and DRAFT047 with separate original and draft decisions, then validate the other four hydrostatic drafts in the same review scope.",
     "Run owner-only and per-ID runtime checks for the five C2 continuity drafts. Retain the earlier geometry findings until evidence on the composed candidate exists.",
-    "Complete the four disjoint exact C4 browser slices and independently judge the eight IDs including the three corrected field probes.",
-    "Continue all 122 open C2–C5 IDs. Renew the full candidate runtime evidence and execute CI on the integrated canonical SHA.",
+    "Compose the two targeted C4 display patches, then reproduce and independently review the five visually open IDs on that exact composed runtime.",
+    "Continue the remaining 119 C2–C5 IDs. Renew complete same-runtime integration and execute CI on the integrated canonical SHA.",
     "Record human scientific approval and publication separately."
   ],
   "composedCandidate": {
@@ -975,5 +1068,5 @@
       "fullPreviewReplayOnFinalCandidate": "PENDING"
     }
   },
-  "activityCandidateRuntimeSha256": "1efcd26bbb078453b75be5fbd1502b95cf07c0ffabb4112a4e4cf78170ff46aa"
+  "activityCandidateRuntimeSha256": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6"
 }
