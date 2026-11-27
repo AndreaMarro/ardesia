@@ -4,7 +4,7 @@
 
 Segna una sezione del tubo perpendicolare alla corrente. In un secondo una velocità media di 6 cm/s equivale allo svuotamento di uno strato lungo 6 cm che occupa tutta la sezione. Questo è un modo di contare il volume anche se la velocità reale varia da punto a punto. La velocità data è la media sull’area. Per la portata volumetrica usa \(Q=A\bar v\).
 
-Con 4 cm² moltiplica 4 per 6 e ottieni \(24\,\mathrm{cm^3/s}\). Un centimetro cubo è un millilitro, quindi la lettura è **24 mL/s**. Nel secondo compito, a 7 cm/s, il prodotto è **28 mL/s**. In senso inverso, \(\bar v=Q/A\) e 28 cm³/s divisi per 4 cm² danno 7 cm/s. Con il tubo fermo al livello zero il volume attraversato deve essere zero. A sezione costante, se raddoppia la velocità raddoppia il volume al secondo.
+Con 4 cm² moltiplica 4 per 6 e ottieni \(24\,\mathrm{cm^3/s}\). Un centimetro cubo è un millilitro, quindi la lettura è **24 mL/s**. Nel secondo compito, a 7 cm/s, il prodotto è **28 mL/s**. In senso inverso, \(\bar v=Q/A\) e 28 cm³/s divisi per 4 cm² danno 7 cm/s. Con la velocità media impostata a zero, il volume che attraversa la sezione in un secondo è zero. A sezione costante, se raddoppia la velocità raddoppia il volume al secondo.
 
 ## `SIM-C2-L005-02` · Dal volume alla massa che esce
 
