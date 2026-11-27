@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "1.0.0",
+  "phase": "REAL_BROWSER_RESOURCE_NEGATIVE_NO_ACCEPTANCE",
+  "candidateCommit": "375faa7a90f5f643840aabb8cc3076f9a2d5f5de",
+  "runtimeSha256": "3ed5bc77d8320230b62e1c3e6ca3bdd00f240cc64ec236b10fe55a306ca79251",
+  "actualBrowser": {
+    "observedExitCode": 1,
+    "observedSignal": null,
+    "durationSeconds": 212.05530045801424,
+    "runtimeSha256": "3ed5bc77d8320230b62e1c3e6ca3bdd00f240cc64ec236b10fe55a306ca79251",
+    "collectorSha256": "2c48f62282d0db2a692f8a082902392d67e4d96a25d3fc0379478dda38b5fd61",
+    "plannedCases": 448,
+    "freeBytesImmediatelyBeforeBrowser": 2177490944,
+    "canonicalPer25CaseDiskGuard": "UNCHANGED",
+    "reportSha256": "a7e7575051aa21d97714336cbfa6b461821a69175d47504754b8e2a86b171731",
+    "activityCredit": 0,
+    "humanApproval": "NOT_RUN",
+    "publicationAction": "NONE"
+  },
+  "canonicalReportStatus": "FAIL",
+  "canonicalFinalFailure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n451 !== 448\n",
+  "reportEntries": 451,
+  "uniqueCaseKeys": 448,
+  "duplicateKeys": {
+    "SIM-C4-L01-02|published|1280|fixed_projection|grid|0": 2,
+    "SIM-C4-L02-03|published|1280|fixed_projection|grid|3": 2,
+    "SIM-C4-L03-03|published|1280|fixed_projection|grid|4": 2
+  },
+  "actualGuardFailures": [
+    {
+      "caseKey": "SIM-C4-L01-02|published|1280|fixed_projection|grid|0",
+      "error": "AssertionError [ERR_ASSERTION]: Free disk below2GiB",
+      "file": "cases/652d78163bcbed7eac3ff567e573ee78af8ad5890aff2eac7f7e6ec84da2e136.json"
+    },
+    {
+      "caseKey": "SIM-C4-L02-03|published|1280|fixed_projection|grid|3",
+      "error": "AssertionError [ERR_ASSERTION]: Free disk below2GiB",
+      "file": "cases/90e266632043a8cfe936f54add6cb87ce1087bb6d1e5f85c56327fe6ba748718.json"
+    },
+    {
+      "caseKey": "SIM-C4-L03-03|published|1280|fixed_projection|grid|4",
+      "error": "AssertionError [ERR_ASSERTION]: Free disk below2GiB",
+      "file": "cases/9585773bc396f1cda9b51ff68d685f72a630b8672b8bdba6a9ce2a95e418364e.json"
+    }
+  ],
+  "staleFirstEntriesAfterSamePathOverwrite": [
+    {
+      "reportIndex": 399,
+      "caseKey": "SIM-C4-L01-02|published|1280|fixed_projection|grid|0",
+      "reportEntrySha256": "6104d7ea77d987a332fcfd5040352bfb9fe2a58f2fa2a450e31339c15b323ed7",
+      "currentFileSha256": "6c5f12f77b5a1bd9c121131f84286892963dc0ef37feee6db98f622a70f34d13"
+    },
+    {
+      "reportIndex": 424,
+      "caseKey": "SIM-C4-L02-03|published|1280|fixed_projection|grid|3",
+      "reportEntrySha256": "02984476dce2660104b10dec84b878cb2ba5edaf5fd985cd8bf237f447cba8fe",
+      "currentFileSha256": "ab7cc2aec498c4eab04dea013e69e3c0f174e448d54439695f66af92bef2256e"
+    },
+    {
+      "reportIndex": 449,
+      "caseKey": "SIM-C4-L03-03|published|1280|fixed_projection|grid|4",
+      "reportEntrySha256": "4ad02234a20b034ba3e369aacc1d95fb923b366d2b4764b5fba56ce18cb4564d",
+      "currentFileSha256": "0282b77e4730ff1808a64253c5b424feae0889a951cfcab7a4e5078b30d7e66e"
+    }
+  ],
+  "explanation": "The unmodified canonical collector saves a normal case, then its per25 disk guard can throw. The surrounding per-case catch saves a failed case under the same caseKey/path and continues. This produced3duplicate report entries and3overwritten earlier normal case JSON. The final unique-count assertion failed. No synthesized success, completion or marker is created.",
+  "currentFullCampaignPNGsActuallyOpened": 0,
+  "previousP24Evidence": "Separate successful24 on2096; never retagged as currentfull448",
+  "sourceOnlyPreflight": "Actual8record/110control/85clock mathematical preflight remains separate and genuine; it does not grant UI acceptance.",
+  "disposition": "PRESERVE_ALL_RAW; NO_ADOPTION; FRESH_COMPLETE_RERENDER_REQUIRED",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
