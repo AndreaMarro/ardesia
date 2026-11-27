@@ -1,0 +1,17 @@
+{
+  "expectedRuntime": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6",
+  "currentRuntime": "4a2af33b84df29da7a59958eceddc0cae233dc607069cf3e9e7acf7139e8db35",
+  "expectedProtocol": "c23abf00cb3665ac9d5b90c1f8256852045a7582fa5e8bae5acf31462b619ab8",
+  "currentProtocol": "8303aae2cd94332e1c93f8e34b3329653c4490d30104c873bb41506469658be7",
+  "changes": [
+    {
+      "path": "policies/exams.json",
+      "expected": "c2431c2a3705491a38299240f08ea657f89ad90f5c092d1b91f8e2b130f7dbf3",
+      "current": null
+    }
+  ],
+  "browser": "NOT_RUN",
+  "action": "FAIL_CLOSED_CPU_PREFLIGHT_REQUIRES_IMMUTABLE_RUNTIME_ADOPTION",
+  "subsequentDiagnosis": "Comparison used stale A helper8303 which omits policies; actual readonly app helper and immutable b999 helper are c23 byte-identical. No actual app drift was established. Repeat must use canonical c23 helper verbatim.",
+  "productFinding": false
+}

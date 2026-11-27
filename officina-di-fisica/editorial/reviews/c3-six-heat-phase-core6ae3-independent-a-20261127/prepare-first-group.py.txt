@@ -1,0 +1,20 @@
+from pathlib import Path
+import json,hashlib
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c3-six-heat-phase-core6ae3-independent-a-20261127';F=D/'canonical-inputs';F.mkdir(exist_ok=True)
+for old,new in [('candidate.verbatim.json','experiment-c3-heat-transformations-reading-20261127.json'),('bindings.verbatim.json','experiment-c3-heat-transformations-reading-20261127-bindings.json')]: (F/new).write_bytes((D/old).read_bytes())
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+package=json.loads((D/'candidate.verbatim.json').read_bytes());links=json.loads((D/'bindings.verbatim.json').read_bytes());node=json.loads((D/'actual-current-source.json').read_bytes());plan=json.loads((D/'browser-plan-pending-authorization.json').read_bytes());fp=json.loads((D/'actual-current-runtime-fingerprint.json').read_bytes())
+g=plan['groups'][0];G=D/'groups'/g['group'];G.mkdir(parents=True,exist_ok=True);rec=package['records'][0];link=links[0];obs=node['records'][0];grid=[r['x']for r in g['states']if r['kind']=='grid'];expected=[next(r['model']['y']for r in obs['cases']if r['x']==x)for x in grid]
+row=dict(id=rec['id'],course='C3',variant='draft',record=rec,sourceSha256=link['sourceSha256'],candidateSha256=link['candidateSha256'],grid=grid,expectedValues=expected,clockCases=[],auxiliaryCases=[],questions=[dict(input=str(t['suggestedEntry']),expectedAccepted=True,prompt=t['installed']['prompt'],sourceManualReadiness='DISTINCT_SOURCE_FIRST_EXACT_MODEL_AND_COMPLETE_MANUAL_READING')for t in obs['tasks']],clockInput=False,hasClock=False,sourcePrediction=2,originalJudgment=dict(sourceScientificReview='INDEPENDENT_EXACT_PRIMARY_FROZEN_BEFORE_DRAFTS',UI='NOT_RUN_BY_THIS_REPLAY',activityCredit=0))
+profiles=[dict(width=p['width'],fallback=p['renderer']=='fallback',view=p['view'])for p in g['profiles']]
+metadata=dict(schemaVersion='1.0.0',scope='DISTINCT_A_C3_L0301_DRAFT_ONLY_320_FOUR_PROFILES_24CASES',authorization='PREPARATION_ONLY_NO_CHROME_AUTHORIZATION_YET',candidateCommit=plan['candidateCommit'],sourceCommit=plan['consumerSourceCommit'],runtimeSha256=fp['sha256'],protocolSha256=plan['collectorSha256'],activityCredit=0,humanApproval='NOT_RUN')
+(G/'metadata.json').write_text(json.dumps(metadata,ensure_ascii=False,indent=2)+'\n')
+keys=[]
+for p in profiles:
+ stem='|'.join((rec['id'],'draft',str(p['width']),p['view']));keys.append(stem+'|setup');keys += [stem+'|grid|'+str(i)for i in range(len(grid))]
+prepared=dict(schemaVersion='1.0.0',sourceCommit=plan['consumerSourceCommit'],originalRef='5d1dc8dc7b601aef959d10d564c75462be74708d',course='C3',runtimeFingerprint=fp,records=[row],draftRecords=package['records'],packageFiles=[str(F/'experiment-c3-heat-transformations-reading-20261127.json')],inputFiles={str(p):sha(p)for p in F.iterdir()},requestFile=str(G/'metadata.json'),requestSha256=sha(G/'metadata.json'),profiles=profiles,expectedCaseKeys=keys,expectedDraftGridInputs=len(grid),expectedOriginalGridInputs=0,expectedClockInteractions=0,sourceFiles={'officina-di-fisica/content/esperienze-C3.json':fp['files']['content/esperienze-C3.json']},scope=metadata['scope'],activityCredit=0,humanApproval='NOT_RUN',publicationAction='NONE')
+assert len(keys)==24 and len(keys)==len(set(keys))
+(G/'prepared.json').write_text(json.dumps(prepared,ensure_ascii=False,indent=2)+'\n')
+(G/'request.json').write_text(json.dumps(dict(candidateApp='/private/tmp/cric-midpoint-and-press-20261127/officina-di-fisica',prepared=str(G/'prepared.json'),output=str(G/'actual')),indent=2)+'\n')
+(D/'first-group-readiness.json').write_text(json.dumps(dict(group=g['group'],caseCount=24,preparedSha256=sha(G/'prepared.json'),requestSha256=sha(G/'request.json'),metadataSha256=sha(G/'metadata.json'),phase='READY_PENDING_ROOT_CHROME_AUTHORIZATION',allSixDraftRecordsCanonicallyPinned=True,browser='NOT_RUN',activityCredit=0,humanApproval='NOT_RUN'),indent=2)+'\n')
+(D/'prepare-first-group.py.txt').write_bytes(Path(__file__).read_bytes())
