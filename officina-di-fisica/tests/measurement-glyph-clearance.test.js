@@ -115,3 +115,25 @@ test('the early cart velocity has a separate direction cue only above zero', asy
   }
   assert.match(activity.legend(2, 'diagram'), /sei volte/);
 });
+
+test('the virtual image stays clear of the object label in the C6 lens', async () => {
+  const activity = await experience('SIM-C6-L06-01');
+  for (let distance = 0.5; distance <= 3; distance += 0.25) {
+    const elements = activity.elements(distance, 2);
+    assert.ok(!elements.some(element => element.kind === 'label' && element.text === 'Oggetto'));
+    assert.ok(elements.some(element => element.kind === 'label' && element.text === 'F′'));
+    assert.equal(activity.model.solve({ x: distance }).y, 1 - 1 / distance);
+  }
+  const arrowsAt = distance => activity.elements(distance, 2).filter(element => element.kind === 'arrow');
+  const [object, virtualImage] = arrowsAt(0.5);
+  assert.equal(object.c, colore.viola);
+  assert.equal(virtualImage.c, colore.rosso);
+  assert.ok(virtualImage.a[0] < object.a[0] && object.a[0] < 0);
+  assert.ok(virtualImage.a[1] < virtualImage.b[1]);
+  assert.equal(arrowsAt(1).length, 1);
+  const realImage = arrowsAt(2).find(element => element.c === colore.rosso);
+  assert.ok(realImage.a[0] > 0 && realImage.b[1] < realImage.a[1]);
+  for (const view of ['side', 'diagram']) {
+    assert.match(activity.legend(2, view), /oggetto.*immagine virtuale.*immagine reale/i);
+  }
+});
