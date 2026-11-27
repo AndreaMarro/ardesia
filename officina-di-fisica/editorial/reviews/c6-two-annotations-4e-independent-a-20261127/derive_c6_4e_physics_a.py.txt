@@ -1,0 +1,12 @@
+from pathlib import Path
+from fractions import Fraction
+import json,sys
+import pint
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');sys.path.insert(0,str(A));from tools.corpus_engineering import c6_two_annotations_4e_review_a as v
+APP=Path('/private/tmp/cric-combined-preintegration-20261127/officina-di-fisica');D=v.BASE;raw=(APP/'content/esperienze-C6.json').read_bytes();(D/'original-source.json').write_bytes(raw);source=json.loads(raw);u=pint.UnitRegistry();rows=[]
+for r in source:
+ points=[Fraction(str(r['control']['min']))+i*Fraction(str(r['control']['step']))for i in range(round((r['control']['max']-r['control']['min'])/r['control']['step'])+1)];rows.append(dict(id=r['id'],results=[dict(x=str(x),yExact=str(v.exact(r['id'],x)))for x in points]))
+checks=[(340*u.meter/u.second*.001*u.second/2,u.meter),(1*u.gram/(1*u.gram/u.centimeter**3)/(4*u.second)/(2*u.centimeter**2),u.centimeter/u.second),(.8*5*u.volt*2*u.ampere*1*u.second/(400*u.joule/u.kelvin),u.kelvin),(120*u.dimensionless/(2*u.dimensionless),u.dimensionless),(2*u.meter/u.second*2*u.second,u.meter),(1*u.meter/(1*u.meter),u.dimensionless)]
+for expression,unit in checks:assert expression.check(unit.dimensionality)
+result=dict(exposure='Existing integrative questions/source/shared physics exposure disclosed; own rederivation, not newly blind work',records=rows,exactGridValues=sum(len(r['results'])for r in rows),pintDimensionalChecks=len(checks),physicalDerivations={'L02-01':'Steady incompressible water, all mass collected for4s: volume=m/rho; v=volume/(4s*A)=m/8 cm/s. Collected mass at time tau is m*tau/4, not instantaneously all m. At40g: v5cm/s and mass0/20/40g at tau0/2/4s.','L05-01':'Integrate signed piecewise velocity:+2m/s for0<=t<=2, then−1m/s. x=2t, then4−(t−2)=6−t. At0,1.75,2,2.25,4:0,3.5,4,3.75,2m. Path at4s is6m, not2m. Instantaneous ideal velocity discontinuity at2s does not justify a finite stop or finite acceleration; absent arrow at exact turn is a limiting representation.'},currentUI='NOT_EVALUATED_BY_THIS_SCRIPT',scientificAcceptanceGranted=False)
+(D/'independent-physics.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n');print('OWN_EXACT_GRID97_PINT6_REAL0')

@@ -1,0 +1,35 @@
+node:internal/modules/run_main:122
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Values have same structure but are not reference-equal:
+
+{
+  calculation: '0,17 × 0 = 0 m',
+  input: '0 ms',
+  reading: '0 m',
+  value: 0,
+  x: 0
+}
+
+    at file:///private/tmp/compare_c6_4e_annotation_a.mjs:4:308 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: {
+    x: 0,
+    value: 0,
+    input: '0 ms',
+    reading: '0 m',
+    calculation: '0,17 × 0 = 0 m'
+  },
+  expected: {
+    x: 0,
+    value: 0,
+    input: '0 ms',
+    reading: '0 m',
+    calculation: '0,17 × 0 = 0 m'
+  },
+  operator: 'strictEqual'
+}
+
+Node.js v22.14.0

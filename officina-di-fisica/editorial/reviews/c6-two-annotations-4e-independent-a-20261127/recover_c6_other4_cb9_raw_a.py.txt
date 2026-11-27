@@ -1,0 +1,12 @@
+from pathlib import Path
+import subprocess,json,hashlib,zipfile,io
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');R=Path('/private/tmp/cric-resident-integrator/officina-di-fisica');D=A/'editorial/reviews/c6-two-annotations-4e-independent-a-20261127';P='officina-di-fisica/editorial/reviews/visibility139-cb9-run45917299096-20261127/C6/';ref='ebc0840871945b12d5eb7514ee653257bb1f583e';receipt=json.loads((R/P.removeprefix('officina-di-fisica/')/'receipt.json').read_bytes());chunks=[]
+for p in receipt['parts']:
+ raw=subprocess.check_output(['git','-c','gc.auto=0','show',ref+':'+P+p['file']],cwd=A);assert hashlib.sha256(raw).hexdigest()==p['sha256'];chunks.append(raw)
+raw=b''.join(chunks);assert hashlib.sha256(raw).hexdigest()==receipt['upstreamSha256'];z=zipfile.ZipFile(io.BytesIO(raw));report=json.loads((R/P.removeprefix('officina-di-fisica/')/'report.json').read_bytes());prepared=json.loads((R/P.removeprefix('officina-di-fisica/')/'prepared.json').read_bytes());other={'SIM-C6-L01-01','SIM-C6-L03-01','SIM-C6-L04-01','SIM-C6-L06-01'};selections=[];out=D/'historical-cb9-other-four';out.mkdir(exist_ok=True)
+for r in prepared['records']:
+ if r['id']not in other:continue
+ for width in [320,1280]:
+  for index in sorted(set([0,len(r['grid'])-1]+([r['grid'].index(1)]if r['id']=='SIM-C6-L06-01'else[]))):
+   key=f'{r["id"]}|published|{width}|orbit|grid|{index}';i=next(i for i in report['cases']if i['caseKey']==key);members=[m for m in z.namelist()if m.endswith('/'+i['file'])or m==i['file']];assert len(members)==1;data=z.read(members[0]);assert hashlib.sha256(data).hexdigest()==i['sha256'];c=json.loads(data);assert c['runtimeSha256']=='cb9fc66d96ecced2addff3df4dfbeb0b5834e73a13719a78ea964bc28a5ada49'and c['caseKey']==key;dest=out/Path(i['file']).name;dest.write_bytes(data);selections.append(dict(caseKey=key,sourceFile=members[0],sourceArchiveSha256=receipt['upstreamSha256'],file=str(dest.relative_to(A)),sha256=i['sha256'],runtime=c['runtimeSha256'],observedX=c['sourceReplayedX'],y=c['model']['y'],currentUI=False,screenshotOpened=False))
+(D/'historical-raw-selected-index.json').write_text(json.dumps(dict(archiveCommit=ref,archiveReceipt=receipt,archiveRecoveredOnlyInMemory=True,selectedCases=selections,scope='Historical cb9 raw values/geometry only; no current4eUI or visual claim'),indent=2)+'\n');(D/'historical-cb9-report.json').write_bytes((R/P.removeprefix('officina-di-fisica/')/'report.json').read_bytes());print('HISTORICAL_RAW',len(selections),'ZIPverified',receipt['upstreamSha256'],'NO_DISK_ZIP_COPY')

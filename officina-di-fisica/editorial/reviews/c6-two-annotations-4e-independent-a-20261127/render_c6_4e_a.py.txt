@@ -1,0 +1,10 @@
+from pathlib import Path
+import json,hashlib
+from PIL import Image,ImageDraw
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c6-two-annotations-4e-independent-a-20261127';groups=json.loads((D/'overview-groups.json').read_bytes());out=D/'whole-overviews';out.mkdir(exist_ok=True);index=[]
+for g in groups:
+ p=g['profile'];rows=g['cases'];canvas=Image.new('RGB',(900,760),'#f2f1ec');draw=ImageDraw.Draw(canvas);tiles=[]
+ for n,c in enumerate(rows):
+  png=c['screenshots'][0];src=D/'actual'/png['file'];assert hashlib.sha256(src.read_bytes()).hexdigest()==png['sha256'];tile=Image.open(src).convert('RGB');sw,sh=tile.size;s=min(294/sw,341/sh);dw,dh=round(sw*s),round(sh*s);tile=tile.resize((dw,dh));x=n%3*300;y=n//3*380;draw.text((x+2,y+4),f'{c["interaction"]["kind"]} x={c["sourceReplayedX"]} clock={c["sourceReplayedClockTime"]}',fill='black');canvas.paste(tile,(x+(300-dw)//2,y+30));tiles.append(dict(caseKey=c['caseKey'],sourcePng=png,sourceDimensions=[sw,sh],displayDimensions=[dw,dh],wholeCanvasNoCrop=True))
+ dest=out/(g['id']+'-'+str(p['width'])+'-'+p['view']+'.png');canvas.save(dest);index.append(dict(id=g['id'],profile=p,file=str(dest.relative_to(A)),sha256=hashlib.sha256(dest.read_bytes()).hexdigest(),tiles=tiles,wholeOpenedAndRead=False))
+(D/'overview-index.json').write_text(json.dumps(index,indent=2)+'\n');print('OVERVIEWS16_88WHOLE_FRAMES',flush=True)

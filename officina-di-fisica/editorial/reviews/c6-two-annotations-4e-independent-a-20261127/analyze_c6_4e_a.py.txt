@@ -1,0 +1,22 @@
+from pathlib import Path
+import sys,json,subprocess
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');sys.path.insert(0,str(A));from tools.corpus_engineering import c6_two_annotations_4e_review_a as v
+D=v.BASE;cases=v.actual();states=[c for c in cases if'interaction'in c];assert len(states)==88;groups=[];census=[]
+for id_ in ['SIM-C6-L02-01','SIM-C6-L05-01']:
+ for profile in json.loads((D/'prepared.json').read_bytes())['profiles']:
+  rows=[c for c in states if c['id']==id_ and c['profile']==profile];groups.append(dict(id=id_,profile=profile,cases=rows))
+for c in states:
+ arrows=[e for e in c['elements']if e['kind']=='arrow']
+ if c['id']=='SIM-C6-L02-01':
+  if c['sourceReplayedX']==0:assert arrows==[]
+  else:assert len(arrows)==2 and all(a['b'][0]>a['a'][0]for a in arrows)
+ elif c['sourceReplayedX']==2:assert arrows==[]
+ else:assert len(arrows)==1 and (arrows[0]['b'][0]>arrows[0]['a'][0])==(c['sourceReplayedX']<2)
+ for g in c.get('nativeGlyphs',[]):
+  b=g['vertexViewportBounds'];assert 0<=b['minX']<=b['maxX']<=c['canvas']['width']and 0<=b['minY']<=b['maxY']<=c['canvas']['height'];assert not g['tipInsideOpaqueLabel']
+ census.append(dict(caseKey=c['caseKey'],arrowCount=len(arrows),nativeGlyphCount=len(c.get('nativeGlyphs',[])),viewportAndOpaqueTipChecks=True,scope='Actual Float32 whole geometry viewport + label-tip candidate; whole raster reading recorded separately'))
+historical=json.loads((D/'historical-raw-selected-index.json').read_bytes());rawresults=[]
+for r in historical['selectedCases']:
+ c=json.loads((A/r['file']).read_bytes());v.scalar_observation(c['id'],c['sourceReplayedX'],c['model']['y']);rawresults.append(dict(id=c['id'],caseKey=c['caseKey'],x=c['sourceReplayedX'],exactY=str(v.exact(c['id'],c['sourceReplayedX'])),sourceRuntime=c['runtimeSha256'],currentRuntimeUI=False,codeOnlyTipCandidates=[dict(elementIndex=g['elementIndex'],labels=g['tipInsideOpaqueLabel'])for g in c.get('nativeGlyphs',[])if g['tipInsideOpaqueLabel']],noVisualClosure=True))
+(D/'current-state-census.json').write_text(json.dumps(census,indent=2)+'\n');(D/'historical-other-four-analysis.json').write_text(json.dumps(rawresults,indent=2)+'\n');(D/'overview-groups.json').write_text(json.dumps(groups,ensure_ascii=False,indent=2)+'\n');print('CURRENT104_88STATES_VALIDATED; HISTORICAL18_MATH_ONLY',flush=True)
+r=subprocess.run(['python3','/private/tmp/render_c6_4e_a.py']);sys.exit(r.returncode)

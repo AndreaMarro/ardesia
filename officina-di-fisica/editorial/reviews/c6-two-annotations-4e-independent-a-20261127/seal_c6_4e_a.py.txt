@@ -1,0 +1,57 @@
+from pathlib import Path
+import json,hashlib,subprocess
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica')
+D=A/'editorial/reviews/c6-two-annotations-4e-independent-a-20261127'
+h=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+assert json.loads((D/'target-terminal.json').read_bytes())['actualObservedExitCode']==0
+assert json.loads((D/'actual-terminal.json').read_bytes())['actualObservedExitCode']==0
+for name in ['prepare_c6_4e_annotation_a.py','run_c6_4e_annotation_a.py','compare_c6_4e_annotation_a.mjs','run_c6_4e_static_a.py','recover_c6_other4_cb9_raw_a.py','derive_c6_4e_physics_a.py','analyze_c6_4e_a.py','render_c6_4e_a.py','run_c6_4e_analysis_a.py','freeze_c6_4e_manual_a.py','run_c6_4e_target_a.py','seal_c6_4e_a.py']:
+ (D/(name+'.txt')).write_bytes((Path('/private/tmp')/name).read_bytes())
+inputs=json.loads((D/'git-inputs.json').read_bytes())['inputs']
+for ref,path,name in [('03f9634d7d6a8dcfe9161990c4d5dbc62e3773f5','static/js/banchi/voci/legende.js','current-legende.js.txt'),('03f9634d7d6a8dcfe9161990c4d5dbc62e3773f5','static/js/banchi/voci/esperimento.js','current-esperimento.js.txt'),('03f9634d7d6a8dcfe9161990c4d5dbc62e3773f5','static/js/banchi/voci/apparati/fluidi.js','current-fluidi.js.txt'),('03f9634d7d6a8dcfe9161990c4d5dbc62e3773f5','static/js/banchi/voci/apparati/meccanica.js','current-meccanica.js.txt'),('bd8d6bcf357c484d48fdb5a2ef50b8518621a01a','tools/corpus_engineering/experiment_visibility_ui.mjs','canonical-protocol.mjs.txt'),('cf3d8774ea4eb2f5287b7d7b890d9be0bf8bc8bc','editorial/reviews/C6-6-source-only-primary-20261125.json','prior-C6-scientific-primary.json'),('cf3d8774ea4eb2f5287b7d7b890d9be0bf8bc8bc','editorial/reviews/C6-6-code-partial-20261125/delivery.json','prior-C6-code-only-delivery.json')]:
+ raw=subprocess.check_output(['git','-c','gc.auto=0','show',ref+':officina-di-fisica/'+path],cwd=A)
+ if (D/name).exists():assert (D/name).read_bytes()==raw
+ (D/name).write_bytes(raw)
+ inputs.append(dict(commit=ref,path='officina-di-fisica/'+path,snapshot=name,sha256=hashlib.sha256(raw).hexdigest()))
+(D/'git-inputs.json').write_text(json.dumps(dict(schemaVersion='1.0.0',inputs=inputs),indent=2)+'\n')
+(D/'README.md').write_text('''# Independent bounded C6 annotation review on03f /4e
+
+Candidate03f9634d7d6a8dcfe9161990c4d5dbc62e3773f5, full actual runtime4e753b9dbfa1f0062cdcc10d7a6f6f9ec83c4bd69bda9e4f276c3757e8dbba3b. A is distinct from the consumer/annotation author and made no production/candidate/Root edits. Earlier C6 question authoring and shared physics exposure are disclosed; this is not presented as a new blind primary. Existing separate scientific primary and original observer source are frozen verbatim, alongside A's rational derivations.
+
+## Two current annotation IDs
+
+SIM-C6-L02-01: steady incompressible water,1g/cm³, collection4s, area2cm². Mean speed is collected mass/8 in cm/s. Current observation includes mass0,8,24,40g and collector clock0/2/4s at40g. At zero there are no directed velocity arrows; at nonzero values both full directional indicators and the collection geometry are visible. Entrata/Uscita text is removed from the scene and remains named and located in the readable HTML legend, including fallback.
+
+SIM-C6-L05-01: signed areas integrate+2m/s before2s and−1m/s after2s, so displacement2t then6−t. The observed times are0,1.75,2,2.25,4s. At4s displacement2m differs from path6m. At the ideal instantaneous reversal the source omits an arrow rather than assigning a unique velocity or finite dwell; the two neighboring states show opposite direction and the correct2:1magnitude ratio. The green cart remains identifiable from the HTML legend and graduated guide after Carrello is removed from the scene.
+
+The actual canonical new104case run really terminated0 in48.906s, signalnull and errorsJSempty. It contains16setup observations with actual questions/phases/keyboard-openedlegend, axe0 and horizontal overflow checks, plus88grid/clockframes. Every newcase/PNG digest was checked. All16wholeoverview sheets/88uncropped gridframes and two additional whole original PNGs were opened/read. Native orbit/side/top and fallback,320/1280, are all represented. Full native Float32 shaft/cone viewport bounds and label-tip candidates were checked; they are not substituted for raster reading. Both annotations are positive within this bounded actual scope, with no new finding. Not every rawsetupPNG is claimed manually opened.
+
+All88current observed scalars were checked against independent rational source equations; the original C6 observer comparator is unchanged (relative1e-10, absolute1e-10 only at exact zero). Complete model/input/clock values also match the canonical same-browser isolated immutable reference exactly, with scientificAuthorityNONE. A separately recomputed97source grid values and6Pint dimensional checks, with finite/real/physical/discrete domains before conversion. The model/camera/geometry source comparison covers6originals,97controls,493default-plus-clock slots and2465five-stage arrays: only Entrata/Uscita inL02 and Carrello inL05 are removed. Defaultclock0 and explicitclock0 slots can coincide physically;493is not claimed as493unique physical states. All numerical models, readings, graphs, worked steps and other primitive arrays remain exact.
+
+## Other four IDs: static/raw only
+
+L01-01 uses stationary sound speed340m/s and roundtripdistance0.17t_ms; zero is a degenerate control. L03-01 uses supplied10W, useful8W and heatcapacity400J/K, giving t/50K. L04-01 uses integer identical halving layers and120/2^n. L06-01 uses thin-lens normalized vergence1−1/(p/f), continuous at the focal point as0 while q diverges. Their original domains and exact values were independently rechecked; current static model/scene comparisons are unchanged. No new browser cases were acquired for these four, and they receive no current visual closure.
+
+18historical cb9 rawcases were recovered losslessly, only in memory, from the two immutable Gitarchive parts, full ZIP SHA772b2fc4db33658d0de0863ac75076c5bad264cab60c59ecebe570c8d3051c23. The selected cases are min/max at both widths plus exactfocus forL06. Their rawcaseSHA and source cb9 fingerprint remain intact; their scalar values were rechecked against the independent equations. The archive's3992technical observations are not claimed as A's current4e review or a scientific approval. No historical PNG reading is claimed by this raw-only step. The old source/code partial and its pre-existing echo geometry warning are retained, not overwritten or automatically closed by annotation changes. Per-ID limits are explicit in per-id-scope.json.
+
+## Tests, transport and limits
+
+16new independent tests really passed in0.108s (0.417s supervisor). They reject wrong clock mass, flipped cart direction, shared wrong numerical values even with a modified technicalreference, nonfinite/complex/bool/selector inputs, restored labels, missing accessible names, stale identity and false approval. No tolerance or runtime/harness assertion was weakened. The first static comparator incorrectly used objectidentity for measurementobjects; its actual exit1 and verbatim stderr/script are preserved. The correction uses full deep equality and the complete static comparison then really returned0. No consumer failure is inferred from that utility error. Space initially too close to2GiB paused the browser before launch; guard remained unchanged and the successful browser acquired with2.432GBfree.
+
+All current inputs and every imported module are in the handoff. The80immutable numerical-reference files and4canonicalpackage/binding inputs are reused byte-exact from the existing A evidence, with full manifest transport. The protocol snapshot matches both the actual report and its immutable Gitproducer. The historical ZIP remains archived on GitHub; no duplicate local ZIP was written. Production changefalse, completeC6Renewalfalse, scientificAcceptanceGrantedfalse, activityCredit0, humanNOT_RUN. Parent alone integrates and decides any wider renewal or acceptance.
+''')
+files={}
+p=json.loads((D/'prepared.json').read_bytes())
+for path,want in p['inputFiles'].items():
+ path=Path(path);assert h(path)==want
+ files[str(path.relative_to(A))]=want
+base=Path(p['baselineBundleRoot'])
+for path in base.rglob('*'):
+ if path.is_file():files[str(path.relative_to(A))]=h(path)
+for path in D.rglob('*'):
+ if path.is_file()and path.name!='handoff.json':files[str(path.relative_to(A))]=h(path)
+for name in ['tools/corpus_engineering/c6_two_annotations_4e_review_a.py','tests/corpus/test_c6_two_annotations_4e_independent_a.py']:files[name]=h(A/name)
+for path,want in files.items():assert h(A/path)==want,path
+handoff=dict(schemaVersion='1.0.0',role='DISTINCT_REVIEWER_A_TWO_C6_ANNOTATIONS',candidateCommit='03f9634d7d6a8dcfe9161990c4d5dbc62e3773f5',runtimeSha256='4e753b9dbfa1f0062cdcc10d7a6f6f9ec83c4bd69bda9e4f276c3757e8dbba3b',actualUiCases=104,actualUiExit=0,wholeOverviewsRead=16,uncroppedGridClockFramesRead=88,additionalWholePngsRead=2,actualIndependentTests=16,actualIndependentTestsExit=0,ownRationalSourceGridValues=97,ownPintChecks=6,staticOriginals=6,staticDefaultPlusClockSlots=493,staticFiveStageArrays=2465,authorizedLabelInstancesRemoved=3,actualBoundedAnnotationReview='POSITIVE_BOTH_IDS',reviewedAnnotationIds=['SIM-C6-L02-01','SIM-C6-L05-01'],otherFourCurrentUI=False,otherFourHistoricalRawCases=18,historicalArchiveGitCommit='ebc0840871945b12d5eb7514ee653257bb1f583e',historicalArchiveSha256='772b2fc4db33658d0de0863ac75076c5bad264cab60c59ecebe570c8d3051c23',completeC6Renewal=False,scientificAcceptanceGranted=False,activityCredit=0,humanApproval='NOT_RUN',files=files)
+(D/'handoff.json').write_text(json.dumps(handoff,ensure_ascii=False,indent=2)+'\n')
+print('HANDOFF',h(D/'handoff.json'),'BLOBS',len(files))
