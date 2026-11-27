@@ -1,0 +1,194 @@
+[
+  {
+    "id": "SIM-C3-L03-01",
+    "version": 1,
+    "title": "Calore e scambio di energia",
+    "summary": "Quanti joule servono per far salire il termometro del campione?",
+    "anchor": "Un blocchetto e una vasca alla stessa",
+    "interpretation": "Senza cambiamenti di fase e senza lavoro meccanico il calore entrante aumenta l’energia del campione. Confronta più salti termici a capacità costante.",
+    "apparatus": "calorimetro",
+    "control": {
+      "label": "Aumento di temperatura",
+      "unit": "K",
+      "min": 0.0,
+      "max": 12.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Energia assorbita",
+      "unit": "J"
+    },
+    "references": [
+      [
+        2.0,
+        100.0
+      ],
+      [
+        8.0,
+        400.0
+      ]
+    ],
+    "transferPrompt": "Vuoi scaldare un campione con capacità termica 50 J/K di {x}. Quanti joule gli devi fornire?",
+    "skill": "C3-L03"
+  },
+  {
+    "id": "SIM-C3-L03-03",
+    "version": 1,
+    "title": "Capacità termiche dei gas ideali",
+    "summary": "Perché il gas richiede più calore se il pistone può salire?",
+    "anchor": "Un gas si può scaldare a volume",
+    "interpretation": "Confronta una mole di gas ideale prima in un cilindro bloccato, poi a pressione costante. A parità di ΔT l’energia interna cresce ugualmente. Solo nel secondo caso il gas compie lavoro di espansione.",
+    "apparatus": "pistone",
+    "control": {
+      "label": "Aumento di temperatura",
+      "unit": "K",
+      "min": 0.0,
+      "max": 20.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Calore in più a pressione costante",
+      "unit": "J"
+    },
+    "references": [
+      [
+        2.0,
+        16.628
+      ],
+      [
+        10.0,
+        83.14
+      ]
+    ],
+    "transferPrompt": "Riscaldi una mole di gas ideale di {x}, prima a pressione costante e poi, ripartendo dalle stesse condizioni, a volume costante. Con R = 8,314 J/(mol·K), quanti joule in più occorrono nella prima prova?",
+    "skill": "C3-L03"
+  },
+  {
+    "id": "SIM-C3-L03-04",
+    "version": 1,
+    "title": "Calorimetria",
+    "summary": "Quale temperatura si raggiunge mescolando due quantità disuguali d’acqua?",
+    "anchor": "Nel calorimetro ideale isolato, trascurando il lavoro",
+    "interpretation": "Mescola l’acqua a 80 °C con 200 g a 20 °C in un recipiente isolato di capacità trascurabile. Il calore perso dal campione caldo uguaglia quello acquistato dal freddo.",
+    "apparatus": "calorimetro",
+    "control": {
+      "label": "Massa di acqua calda",
+      "unit": "g",
+      "min": 50.0,
+      "max": 300.0,
+      "step": 25.0
+    },
+    "measure": {
+      "label": "Temperatura di equilibrio",
+      "unit": "°C"
+    },
+    "references": [
+      [
+        100.0,
+        40.0
+      ],
+      [
+        200.0,
+        50.0
+      ]
+    ],
+    "transferPrompt": "Versi {x} d’acqua a 80 °C in 200 g d’acqua a 20 °C. Trascurando il recipiente e le dispersioni, quale temperatura finale trovi?",
+    "skill": "C3-L03"
+  },
+  {
+    "id": "SIM-C3-L04-01",
+    "version": 1,
+    "title": "Fusione",
+    "summary": "Mentre il ghiaccio fonde, dove va l’energia fornita?",
+    "anchor": "Scalda lentamente del ghiaccio puro alla sua",
+    "interpretation": "A pressione atmosferica le due fasi dell’acqua pura coesistono a circa 0 °C. L’energia riduce la massa solida. Fino a completa fusione il termometro resta fermo.",
+    "apparatus": "fase",
+    "control": {
+      "label": "Energia fornita a ghiaccio a 0 °C",
+      "unit": "kJ",
+      "min": 0.0,
+      "max": 33.4,
+      "step": 1.67
+    },
+    "measure": {
+      "label": "Massa fusa",
+      "unit": "g"
+    },
+    "references": [
+      [
+        8.35,
+        25.0
+      ],
+      [
+        16.7,
+        50.0
+      ]
+    ],
+    "transferPrompt": "Al ghiaccio già a 0 °C fornisci {x}. Con calore latente di fusione 334 J/g, quanti grammi diventano acqua?",
+    "skill": "C3-L04"
+  },
+  {
+    "id": "SIM-C3-L04-02",
+    "version": 1,
+    "title": "Evaporazione e condensazione",
+    "summary": "Che segno ha il calore quando il vapore si condensa?",
+    "anchor": "L è il calore latente specifico in",
+    "interpretation": "Alla temperatura di ebollizione, evaporare richiede energia e condensare la libera. Il segno della massa trasformata distingue i due versi. Le particelle nella camera rappresentano la fase vapore.",
+    "apparatus": "fase",
+    "control": {
+      "label": "Massa che diventa vapore con segno",
+      "unit": "g",
+      "min": -5.0,
+      "max": 5.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Calore assorbito dall’acqua",
+      "unit": "kJ"
+    },
+    "references": [
+      [
+        -2.0,
+        -4.52
+      ],
+      [
+        3.0,
+        6.78
+      ]
+    ],
+    "transferPrompt": "Nel cambio di fase la massa trasformata, con il segno scelto nel banco, è {x}. Quale calore scambia l’acqua con l’esterno, usando 2,26 kJ/g?",
+    "skill": "C3-L04"
+  },
+  {
+    "id": "SIM-C3-L04-03",
+    "version": 1,
+    "title": "Calore latente e bilanci a tratti",
+    "summary": "Quale parte dell’energia cambia la temperatura e quale cambia la fase?",
+    "anchor": "Per attraversare più tratti, suddividi il cammino",
+    "interpretation": "Un campione di 100 g parte a −10 °C. Con c del ghiaccio arrotondato a 2 J/(g·K) servono 2 kJ per arrivare a zero e altri 34 kJ per fondere tutto. Dopo 36 kJ si scalda l’acqua.",
+    "apparatus": "fase",
+    "control": {
+      "label": "Energia dall’inizio del riscaldamento",
+      "unit": "kJ",
+      "min": 0.0,
+      "max": 54.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Massa fusa",
+      "unit": "g"
+    },
+    "references": [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        19.0,
+        50.0
+      ]
+    ],
+    "transferPrompt": "Al campione arrivano in tutto {x}. Tolti i 2 kJ di riscaldamento iniziale, quanti grammi dei 100 g di ghiaccio sono fusi, con L = 340 J/g?",
+    "skill": "C3-L04"
+  }
+]
