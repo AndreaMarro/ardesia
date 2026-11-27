@@ -1,0 +1,125 @@
+{
+  "phase": "ACTUAL_UI_TECHNICAL_RESULTS_VISUAL_READING_SEPARATE",
+  "runtimeSha256": "53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a",
+  "collectorSha256": "719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15",
+  "expectedCases": 112,
+  "actualCases": 112,
+  "technicalPass": 96,
+  "technicalFailures": [
+    {
+      "caseKey": "SIM-C3-L05-01|draft|320|orbit|setup",
+      "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(metrics.formulas.every(f=>f.typeset>0&&f.scroll<=f.width+1&&f.typeset<=f.width+1))\n"
+    },
+    {
+      "caseKey": "SIM-C3-L05-01|draft|320|orbit|grid|0",
+      "error": "Setup failed; state not observed"
+    },
+    {
+      "caseKey": "SIM-C3-L05-01|draft|320|orbit|grid|1",
+      "error": "Setup failed; state not observed"
+    },
+    {
+      "caseKey": "SIM-C3-L05-01|draft|320|orbit|grid|2",
+      "error": "Setup failed; state not observed"
+    },
+    {
+      "caseKey": "SIM-C3-L05-01|draft|320|side|setup",
+      "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(metrics.formulas.every(f=>f.typeset>0&&f.scroll<=f.width+1&&f.typeset<=f.width+1))\n"
+    },
+    {
+      "caseKey": "SIM-C3-L05-01|draft|320|side|grid|0",
+      "error": "Setup failed; state not observed"
+    },
+    {
+      "caseKey": "SIM-C3-L05-01|draft|320|side|grid|1",
+      "error": "Setup failed; state not observed"
+    },
+    {
+      "caseKey": "SIM-C3-L05-01|draft|320|side|grid|2",
+      "error": "Setup failed; state not observed"
+    },
+    {
+      "caseKey": "SIM-C3-L05-01|draft|320|top|setup",
+      "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(metrics.formulas.every(f=>f.typeset>0&&f.scroll<=f.width+1&&f.typeset<=f.width+1))\n"
+    },
+    {
+      "caseKey": "SIM-C3-L05-01|draft|320|top|grid|0",
+      "error": "Setup failed; state not observed"
+    },
+    {
+      "caseKey": "SIM-C3-L05-01|draft|320|top|grid|1",
+      "error": "Setup failed; state not observed"
+    },
+    {
+      "caseKey": "SIM-C3-L05-01|draft|320|top|grid|2",
+      "error": "Setup failed; state not observed"
+    },
+    {
+      "caseKey": "SIM-C3-L05-01|draft|320|fixed_projection|setup",
+      "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(metrics.formulas.every(f=>f.typeset>0&&f.scroll<=f.width+1&&f.typeset<=f.width+1))\n"
+    },
+    {
+      "caseKey": "SIM-C3-L05-01|draft|320|fixed_projection|grid|0",
+      "error": "Setup failed; state not observed"
+    },
+    {
+      "caseKey": "SIM-C3-L05-01|draft|320|fixed_projection|grid|1",
+      "error": "Setup failed; state not observed"
+    },
+    {
+      "caseKey": "SIM-C3-L05-01|draft|320|fixed_projection|grid|2",
+      "error": "Setup failed; state not observed"
+    }
+  ],
+  "processExitCode": 1,
+  "timeoutTriggered": false,
+  "javascriptErrors": [],
+  "setupQuestions": 40,
+  "uniqueScreenshots": 95,
+  "contactSheets": [
+    {
+      "file": "contact-320-orbit.png",
+      "sha256": "4da416a8a945054d71af628f24a097368da942e3ce38eeb193e86198d317ab77",
+      "cases": 14
+    },
+    {
+      "file": "contact-320-side.png",
+      "sha256": "c0100f448c3768689213d36ae0902ab9eb7304dc024f5795baacdaed6d1c6fa3",
+      "cases": 14
+    },
+    {
+      "file": "contact-320-top.png",
+      "sha256": "cf44b8be7181e55954d777ad0f2ad32ab9f31e8b4d9ec2db2e4ee1d582a25304",
+      "cases": 14
+    },
+    {
+      "file": "contact-320-fixed_projection.png",
+      "sha256": "54f286a0f0ff891d35ce31d6f4a47d11e1b8a516e4e4369a6e32dbb99a46292a",
+      "cases": 14
+    },
+    {
+      "file": "contact-1280-orbit.png",
+      "sha256": "fbb4e88361a21e5de2fc9a2902ad92719a06cb8a45ae24485eda63039031490c",
+      "cases": 14
+    },
+    {
+      "file": "contact-1280-side.png",
+      "sha256": "818095f6996236b464d1d0e50fd2d57e2d039be5f5fad5d52813279ff5d68f38",
+      "cases": 14
+    },
+    {
+      "file": "contact-1280-top.png",
+      "sha256": "08ef01182c965c154290deff69ede2a576d1f9df734966c5c1f528f2b4d4f96d",
+      "cases": 14
+    },
+    {
+      "file": "contact-1280-fixed_projection.png",
+      "sha256": "a03f45deb325d5a3bd803663af74d8a49a69d06fd384f1fb2525a21d791ac9b1",
+      "cases": 14
+    }
+  ],
+  "activityCredit": 0,
+  "publicationAction": "NONE",
+  "humanApproval": "NOT_RUN",
+  "visualJudgment": "PENDING_INDEPENDENT_RASTER_READING"
+}

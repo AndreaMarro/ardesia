@@ -1,0 +1,82 @@
+{
+  "role": "AI_DISTINCT_FROM_ROOT_AUTHOR",
+  "authorCommit": "77502640b902c17dcdfb2eb9d68ce97602995807",
+  "runtimeSourceCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "runtimeSha256": "53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a",
+  "actualTerminal": {
+    "exitCode": 1,
+    "timeoutTriggered": false,
+    "elapsedSeconds": 83.10960912704468
+  },
+  "actualCases": 112,
+  "technicalPassCases": 96,
+  "actualFailedSetups": 4,
+  "statesNotObservedFollowingSetupFailure": 12,
+  "actualNumberSubmissions": 40,
+  "javascriptErrors": [],
+  "rasterReading": {
+    "contactSheetsRead": [
+      "contact-320-orbit.png",
+      "contact-320-side.png",
+      "contact-320-top.png",
+      "contact-320-fixed_projection.png",
+      "contact-1280-orbit.png",
+      "contact-1280-side.png",
+      "contact-1280-top.png",
+      "contact-1280-fixed_projection.png"
+    ],
+    "cells": 112,
+    "actualImageCells": 96,
+    "blankFailureCells": 16,
+    "fullOriginalPNGsRead": [
+      "decb3849561c7d0c9e828701402488e79064d898adc27e9492bb5744487afb70",
+      "3f0e7a823b86eb68af5f3d42d299d203a959fba157ed391375ce6e4f4cfc9906",
+      "20e48d4322e8c3f87228374333a3bc6005ac7b52d593be00eaa70bb72d055d52",
+      "e3a7c78b5405949d9104b24de655d8702650c47b3e68248482aa5c335c035199",
+      "26fea3a6d6bd4712b7075e76891392003c11830665b2e3a0ae89d11f230b8cb0",
+      "9258601cf28b670436f0eb9b5938a566050d08e49ab966c7fb9949edf11291ff"
+    ]
+  },
+  "perID": [
+    {
+      "id": "SIM-C3-L05-01",
+      "mathManualCPU": "PASS_PREVIOUSLY_SEALED",
+      "UI": "FAIL",
+      "findings": [
+        "4actual320 setup failures on authored formula typeset/scroll width assertion; raw does not preserve formula width number or failed-setup screenshot.",
+        "1280top1cm Fredda masks tip, Calda masks shaft part."
+      ],
+      "originalEditionRewritten": false
+    },
+    {
+      "id": "SIM-C3-L05-02",
+      "mathManualCPU": "PASS_PREVIOUSLY_SEALED",
+      "UI": "FAIL",
+      "findings": [
+        "320side3.5g/s and1280orbit5g/s Ritorno cartouche masks purple return-arrow apex."
+      ],
+      "clock72": "NOT_RUN_WAITING_DISTINCT_AUTHOR_CORRECTION",
+      "originalEditionRewritten": false
+    },
+    {
+      "id": "SIM-C3-L05-03",
+      "mathManualCPU": "PASS_PREVIOUSLY_SEALED",
+      "UI": "FAIL",
+      "positiveScope": "200K net inward,300K zero net/arrow absent,400K net outward all eight profiles acquired; actual source outputs match independently frozen working values.",
+      "findings": [
+        "320top500K Ambiente masks central net-arrow apex; other two arrows visible.1280top500K positive control."
+      ],
+      "originalEditionRewritten": false
+    }
+  ],
+  "analysisEnvironmentDiagnostic": {
+    "initialAnalyzerPython": "Restored scientific venv does not includePIL; analysis import failed before any input mutation.",
+    "actualAnalyzerUsed": "Systempython3 with installedPillow; eight contact sheets and checksum summary generated from unchanged raw."
+  },
+  "overallActivityAccepted": false,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "registryChanged": false,
+  "runtimeEdited": false
+}
