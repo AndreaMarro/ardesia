@@ -1,0 +1,40 @@
+[
+  {
+    "id": "SIM-C4-L04-01",
+    "title": "Conduttori e induzione elettrostatica",
+    "summary": "Come può il campo interno restare nullo mentre avvicini una sorgente esterna?",
+    "interpretation": "Nel campione metallico isolato gli elettroni liberi si ridistribuiscono sulle superfici. Il campo da loro creato compensa l’esterno. Le quantità di carica positiva e negativa indotte si bilanciano.",
+    "formula": "E interno = E esterno + E indotto = 0",
+    "control": {
+      "label": "Campo esterno uniforme",
+      "unit": "kV/m",
+      "min": 0.0,
+      "max": 10.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Campo interno nel conduttore in equilibrio",
+      "unit": "kV/m"
+    },
+    "apparatus": "dipoli"
+  },
+  {
+    "id": "SIM-C4-L04-02",
+    "title": "Dielettrici e polarizzazione",
+    "summary": "Perché nel materiale isolante il campo si riduce senza annullarsi?",
+    "interpretation": "Fra grandi piastre a carica libera fissata entra un dielettrico lineare omogeneo. I centri di carica legata si separano leggermente. La polarizzazione si oppone al campo applicato.",
+    "formula": "E = E₀/εᵣ, con εᵣ = 3",
+    "control": {
+      "label": "Campo esterno a carica libera fissata",
+      "unit": "kV/m",
+      "min": 0.0,
+      "max": 12.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Campo nel dielettrico",
+      "unit": "kV/m"
+    },
+    "apparatus": "dipoli"
+  }
+]
