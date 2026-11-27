@@ -1,0 +1,7 @@
+# Whole benchmark renewal on0184b146 /abb2
+
+Actual new browser cohort, stable runtime before/after, declared eight profiles, all four delivery stages, wrong/correct independently solved Number responses and separate clock observations. New source/model reports were recomputed twice identically on the actual candidate. Every record explicitly carries EXACT_MANUAL_CALCULATION, worked arithmetic, assumptions and pedagogy; arbitrary illustrative readouts are not represented as mandatory hand calculations. Pure independent scientific functions are reused, not the legacy epoch report/verify judgment.
+
+036 is positive in its bounded five-ID scope:148actual cases/56clock, five fresh scientific/model reports and complete canonical identity shape. Former field-head/section negatives remain unchanged in the historical cb9 delivery. Native section now has a real nonflat line; charge contribution heads remain visible with a common scale and actual charge/P HTMLidentities. This is not exhaustive camera/control coverage or GPUreadback.
+
+No registry/ledger/publication changes and no human approval. No new93exam/import991history audit in these benchmark campaigns. Executed dependency archives preserve exact bytes and do not authorize replacing Root legacy verifier files. Portable tests require immutable runtime commit0184;18actual changed runtime inputs are declared in035/runtime-git-inputs for existing CIbootstrap. Old036 missing-scope metadata and every old negative remain frozen. Root alone decides canonical integration or closure.

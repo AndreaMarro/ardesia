@@ -1,0 +1,963 @@
+{
+  "kind": "INDEPENDENT_WHOLE_BOUNDED_BENCH_RENEWAL",
+  "candidateCommit": "0184b146513e024d99ce8391fb0a5f4892f79e7e",
+  "runtimeSha256": "abb2bf2ac567438953766cf3550644b3d6ea501d75d610fb6291b2cffc5a428b",
+  "files": {
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-process.txt": {
+      "sha256": "784624b6106f3905ca04157466531956bf6a674add52534f8626de9b0022d32b",
+      "bytes": 80
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-proof-index.json": {
+      "sha256": "d63c1db12ac593c9648a923129ce72c30af8ee8a706138c1863d2a37671cf139",
+      "bytes": 23906
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-01-1280-diagram-boundary0.png": {
+      "sha256": "ce63b153ac60d35ee43c624dc1f27691019f67d32ba174d9002a5e908157dbba",
+      "bytes": 137008
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-01-1280-diagram-boundary1.png": {
+      "sha256": "9f8139d7164d8b8a4c965be8f9b42bef6b389974654b4349004f1f603830af1b",
+      "bytes": 139825
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-01-1280-diagram.png": {
+      "sha256": "803e219f549e918e4dda6cd38373c3ebd0a53476a31577b08d080abc523c558a",
+      "bytes": 139762
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-01-1280-orbit-boundary0.png": {
+      "sha256": "f1fcd9ff8d976c0b41bfef3554ac3a83a4493f09bab2f9c4ee7f3b6bb8ab5f1e",
+      "bytes": 148681
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-01-1280-orbit-boundary1.png": {
+      "sha256": "0338542e637aeebff9304bb9958396bbfee50ac3bdbb13ab1ab734e11a60069f",
+      "bytes": 152426
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-01-1280-orbit.png": {
+      "sha256": "584e828856ee0e39d834f1771759048cc68e3e29a032dcc5fca179eb93785008",
+      "bytes": 154755
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-01-1280-side-boundary0.png": {
+      "sha256": "f49e14fad15047779e09c7b53f0fe19225fb8b39e360e31ec11d6bfcb2f1b321",
+      "bytes": 122529
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-01-1280-side-boundary1.png": {
+      "sha256": "6684b5ce5431aa03e47888a00c27466e7fda55ec5b4e2eddf8622efaf2dc1f0b",
+      "bytes": 125750
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-01-1280-side.png": {
+      "sha256": "f67ee68a55a23a59f75ed454f89a8e95bd19b781637d7b6295ded45f429ced8f",
+      "bytes": 129506
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-01-1280-top-boundary0.png": {
+      "sha256": "44fd421bdb66291311680624a1acc60664114317eebaea52ae51c3f9f2f1c000",
+      "bytes": 168460
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-01-1280-top-boundary1.png": {
+      "sha256": "d64af5ae912c6dd5eb6ba7c5836311e2785871f01694a847702c63e77da7beb9",
+      "bytes": 172010
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-01-1280-top.png": {
+      "sha256": "83edf8549359f0fbfa8e554aaa69e7070de26da44a342a619f366528289b4265",
+      "bytes": 170535
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-01-320-diagram-boundary0.png": {
+      "sha256": "48b4b37a75d6eae03a63171154671ebe4d0cdfede7930cee71e7fa7656f92828",
+      "bytes": 53048
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-01-320-diagram-boundary1.png": {
+      "sha256": "a807cf67f88356d834c3e730a61edf4f2ed48d3a1dcad54113ee67f12d10bfc0",
+      "bytes": 54608
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-01-320-diagram.png": {
+      "sha256": "b707074faa0c8eb6012fb9e441d90cf390f9201e72014a91c716f3973d72742d",
+      "bytes": 54338
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-01-320-orbit-boundary0.png": {
+      "sha256": "d839e082d9b91cded8ede134304d930d027e3f49e8bef9974393bc2c19fe5cef",
+      "bytes": 57535
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-01-320-orbit-boundary1.png": {
+      "sha256": "1e446c8ec77cd3f47af9f22023060d7ebe892891404ba4aa0592f474b6e320a8",
+      "bytes": 59373
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-01-320-orbit.png": {
+      "sha256": "87ae7a166ebbaa600a0f79747f2527ebeef85a6d96035f773d3176708d636693",
+      "bytes": 59549
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-01-320-side-boundary0.png": {
+      "sha256": "1d4ad78dfc99a41663f902b9980f513732515454ee4fe8fb8db9a7d7abd0bd7c",
+      "bytes": 49702
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-01-320-side-boundary1.png": {
+      "sha256": "5bc499fdca4151231167d58ff1d74e70cfa0b9711df82f801d9b494afa519197",
+      "bytes": 51499
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-01-320-side.png": {
+      "sha256": "339f65da8c3e49bef084b04c675a0aae36e4fb4b0ff70843fd67f9db3e7dd3ad",
+      "bytes": 52093
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-01-320-top-boundary0.png": {
+      "sha256": "7da7e673384b29bfd386241504ff55b2fd96dc008d7aacc65f3c0a3a9370f018",
+      "bytes": 62562
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-01-320-top-boundary1.png": {
+      "sha256": "db2b7f29886ad803af49908d8c92b8a198c76ff394e67683afc848c4ca622e7c",
+      "bytes": 64203
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-01-320-top.png": {
+      "sha256": "d511756f5fa831caa59156c0a9bd52840dc4bf221b588bec7a3038f767778078",
+      "bytes": 63861
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-1280-diagram-boundary0.png": {
+      "sha256": "d49e80c6de1c4bd6d9157ed5bd9e1688128d15022865214901302c5602d831ac",
+      "bytes": 129024
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-1280-diagram-boundary1.png": {
+      "sha256": "928da5738cbc48e0d4128bd095f1e21f1d8a58ef535fefaff46a6101ebaadac6",
+      "bytes": 122239
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-1280-diagram-clock0.5.png": {
+      "sha256": "2e09ce0c56147b18ea1b88efdca1201751e8a19d86ad44466c1c464169e77520",
+      "bytes": 125869
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-1280-diagram-clock0.png": {
+      "sha256": "36028b847dde8b92f5a764264b7f62d1afcc88dc4153d111a8e577454db5dbc0",
+      "bytes": 124816
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-1280-diagram-clock1.png": {
+      "sha256": "95ec5a6670a67934f2950ea8fcc9234c8d2c4875a0168656a140450dd3f32e97",
+      "bytes": 124138
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-1280-diagram.png": {
+      "sha256": "cd07629a45155c96cef564229c6e5d5d37e213678d7dc247a8e5fb2cd23c258f",
+      "bytes": 134397
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-1280-orbit-boundary0.png": {
+      "sha256": "d336a450dd4810777933cb3c06c9f623a8685501c73940f9c30e814919dd2b6a",
+      "bytes": 166988
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-1280-orbit-boundary1.png": {
+      "sha256": "12c3ef1eefe36a735100110b8b115eec8ea2721248a7c4bd2dabf7d0568faa8f",
+      "bytes": 160466
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-1280-orbit-clock0.5.png": {
+      "sha256": "fbe3ff4437bcef5d67415a124b301530526e3875e96507f9cc7fb2f52ca0f713",
+      "bytes": 164099
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-1280-orbit-clock0.png": {
+      "sha256": "3d66f6bd8ffd062c5de946c29e7ca342efdcce9ce888f6fee99941fd027ac44a",
+      "bytes": 163055
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-1280-orbit-clock1.png": {
+      "sha256": "0605209bf9af65de1553141c803adafba22fd848e1a8580967ba3e83f08584d9",
+      "bytes": 163246
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-1280-orbit.png": {
+      "sha256": "e383c167511df28032c5f9aad967c349d7654f7058c980d4fc3349551053f2f3",
+      "bytes": 172017
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-1280-side-boundary0.png": {
+      "sha256": "04a2997d8dba6be8fc927c3614e98ef2e303cbf9eeb0ec49b127d1d90da20f80",
+      "bytes": 123385
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-1280-side-boundary1.png": {
+      "sha256": "f2abb9635035cad5c620c82883cdabc81fc410768eb2cd677a395bc10b46b3b5",
+      "bytes": 116654
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-1280-side-clock0.5.png": {
+      "sha256": "ee352ec1b0889fb3a6ea1b268af99ccb28380ca21732eb8dd477b9b6deb2cdc0",
+      "bytes": 120172
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-1280-side-clock0.png": {
+      "sha256": "2d440ad15802aec35bbde787ccd8a730c44878942e29ffc00c34a716f59d1fec",
+      "bytes": 119172
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-1280-side-clock1.png": {
+      "sha256": "24b610741695b1af09b897a878ef2cbc0dd8128d4c9b0549a910861271f12e3a",
+      "bytes": 119388
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-1280-side.png": {
+      "sha256": "47b560753a78ce3e7af881f2a4929e4649e60bd00c7cee514c195d6cce13eccf",
+      "bytes": 130185
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-1280-top-boundary0.png": {
+      "sha256": "708e48e03447627be122dc2436dbd1074719f0e07f5a37d2420d19643449d8b3",
+      "bytes": 164782
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-1280-top-boundary1.png": {
+      "sha256": "faae48cb3a5a28d2541a5efdcf0bdf44831f6e883d6cd0fa6a982811062f4b93",
+      "bytes": 158149
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-1280-top-clock0.5.png": {
+      "sha256": "ca1bbc08c08616a08f8496d782010ad6ce9ebc69f6e51463ea75c6a6abd14e0b",
+      "bytes": 161249
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-1280-top-clock0.png": {
+      "sha256": "eecd8ba845fa793829495e0192345ccc4ce65134cea4ceab98156b97a36efe91",
+      "bytes": 160777
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-1280-top-clock1.png": {
+      "sha256": "6770c05845a30b72bf3237571543ae38cb3df2f28badce97110dfd77e3660029",
+      "bytes": 160476
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-1280-top.png": {
+      "sha256": "62f23f06c5e41c327187339b9d73b6a6b4fadbeb435ed8e2f0632a2048bffeff",
+      "bytes": 169739
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-320-diagram-boundary0.png": {
+      "sha256": "8995c3faa2f8d276015e5c060c983997bd2fa826801a17ecaa98228f471f40e6",
+      "bytes": 49820
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-320-diagram-boundary1.png": {
+      "sha256": "d87eeeb90cffcc85b0eb5d14aac3d1e9c3014705e42cdf9c64fba6246ec25125",
+      "bytes": 49055
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-320-diagram-clock0.5.png": {
+      "sha256": "ca849860cf8e7b604c0be8f3e5037360a09541978b9ad975454baafd940f4b83",
+      "bytes": 41347
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-320-diagram-clock0.png": {
+      "sha256": "cb0fda6ab2dbf33dd4ae254e288d6eeafc6ab1277133b002fe89ddceaa51b718",
+      "bytes": 40549
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-320-diagram-clock1.png": {
+      "sha256": "2448f5cbe8c82b9a1d5f40a0e5a106d92f4c20e839bfee06f00729fcbb1a528b",
+      "bytes": 40313
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-320-diagram.png": {
+      "sha256": "3816fa592d1561b803f6c0dff08496f5c47843bceed4471f4b17bc5d80454d5b",
+      "bytes": 49068
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-320-orbit-boundary0.png": {
+      "sha256": "0d0e8a6a48c96c8bfa89a21ae8a9c858f9aa615c12d13bb6c04da4ce29b4db6d",
+      "bytes": 59064
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-320-orbit-boundary1.png": {
+      "sha256": "5516e7d1648b1f052b99fcb7decbd2f677fa6e702a491db1246398964c3c507d",
+      "bytes": 58291
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-320-orbit-clock0.5.png": {
+      "sha256": "b4e4b758ddee8f7c0e33f6570f3bd7147f09a86280f9499c5a273a713ec6c8a1",
+      "bytes": 50694
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-320-orbit-clock0.png": {
+      "sha256": "ab33d4643d70764df79ae10f0d2de9da5f747fa710af248e39dad2951234e2bd",
+      "bytes": 49832
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-320-orbit-clock1.png": {
+      "sha256": "16e6794f4760a469a570471878e62cfc53659a39c85ff40957fb4a2ff4173251",
+      "bytes": 49936
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-320-orbit.png": {
+      "sha256": "d2c9ec13a868875c6c8ed5f47417652c3509b4583df491f9606c32486a709f27",
+      "bytes": 59016
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-320-side-boundary0.png": {
+      "sha256": "baf16ed5e8b3d5cbe4c829b046e6b07892d6bb1cb16ead76486661214bc2a3bc",
+      "bytes": 48517
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-320-side-boundary1.png": {
+      "sha256": "2e29be75b059dc4db81cad3dde96cd2c921652691eb2c01c7689ce480c1d295c",
+      "bytes": 47766
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-320-side-clock0.5.png": {
+      "sha256": "e919d439571a8a56459000d76e47d35e5b4b2ca256f46774267eb98b49a97bbb",
+      "bytes": 40049
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-320-side-clock0.png": {
+      "sha256": "90df73d59eb05a5db15b9182cc79e43fa1fd1c44b2b7cd71fd0b58fb2187b6d2",
+      "bytes": 39266
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-320-side-clock1.png": {
+      "sha256": "49a81d299aa42f69f5a4edfc523d767535a2d2a2a6e63a23ea2754bcd6763768",
+      "bytes": 39206
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-320-side.png": {
+      "sha256": "27711cddc2be0197acd6214649245f33c7429cba9fd2836bc33983eead9fa6ce",
+      "bytes": 48025
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-320-top-boundary0.png": {
+      "sha256": "834e563939b1e514ed3af699a47a016c6ab45ba77b926d1c7bdf4194fc1aa0d4",
+      "bytes": 67029
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-320-top-boundary1.png": {
+      "sha256": "9d790a190a3de87d918cda68f29c078c8d0db825324eefc81e48eacf27f0d2c5",
+      "bytes": 66356
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-320-top-clock0.5.png": {
+      "sha256": "85ba54fa4928a8a813fbc7d17515695d2653fbc8d033939f3aeaebe9c01e516d",
+      "bytes": 58564
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-320-top-clock0.png": {
+      "sha256": "51e8350f0f5b06df55e2c3afc3be5b4607422c6b494a29b915449d1d4338befe",
+      "bytes": 57929
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-320-top-clock1.png": {
+      "sha256": "f1aaab2ee72288376f00c89a2213a03c6c0140d9bce5a5876b8e9f23900bcd9b",
+      "bytes": 57738
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-02-320-top.png": {
+      "sha256": "e5e5418db771303c392677e4778035eae2788c71c8fc963298bae3f9424a5b57",
+      "bytes": 66209
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-03-1280-diagram-boundary0.png": {
+      "sha256": "d61835eeaefec4a65a8da220133c18f3fb8a23ec5d93a1cb68e1b0c7f4cda88c",
+      "bytes": 127274
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-03-1280-diagram-boundary1.png": {
+      "sha256": "f542bfa6b8f1afb97514af86758a994a8865cb826f2cb6d7c04eaded597a5c1a",
+      "bytes": 129026
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-03-1280-diagram.png": {
+      "sha256": "af3ebba49a760e14029d234be1c5050a8f100c8699060da770ba2776899873c7",
+      "bytes": 127779
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-03-1280-orbit-boundary0.png": {
+      "sha256": "eb2b6a4874463d96bb2650fd72e6df7e93d36b8195c1de2f78a2abeb7289e7e0",
+      "bytes": 155373
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-03-1280-orbit-boundary1.png": {
+      "sha256": "1361a7295851f208c5c81445ad5ebdfd79007c869d312bd77925e87b949bc4ca",
+      "bytes": 157319
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-03-1280-orbit.png": {
+      "sha256": "65d8c8e02b454c8f9c180c0a523768e58898517e6ce117bd2488f34065e9963b",
+      "bytes": 154806
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-03-1280-side-boundary0.png": {
+      "sha256": "a47f4530ce3e3abd5153cb6f646b5d9095eac33113dfacdbe5afcaf5235c0c9c",
+      "bytes": 127507
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-03-1280-side-boundary1.png": {
+      "sha256": "785a66650d7b103e1d3ab263b47ae38e469d9f1558fbfcaaf019a0c61b09f065",
+      "bytes": 129185
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-03-1280-side.png": {
+      "sha256": "be2c990e099fe755b16e6cd7f9fc17c28391293fce1a1a25e90baed03ba6b0dc",
+      "bytes": 126965
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-03-1280-top-boundary0.png": {
+      "sha256": "70da3a3c414ea7bd129183fca7202053d7d16decd490910812edc0651f3723d7",
+      "bytes": 170470
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-03-1280-top-boundary1.png": {
+      "sha256": "ac4f5c4f706f61e1059fc2568bb933ac5565065ea13c2cebbb426679a157a161",
+      "bytes": 172220
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-03-1280-top.png": {
+      "sha256": "7f27948ce8e60fade5b9514db07448b0d0695fd70dda82dc60e8e013586f276b",
+      "bytes": 169439
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-03-320-diagram-boundary0.png": {
+      "sha256": "097c5c37cbaa4fe77ad69cc4b95e0653d81dfa5760b230fc3cf3770697fba8c2",
+      "bytes": 53483
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-03-320-diagram-boundary1.png": {
+      "sha256": "64788fb5a3bcff6d43aafd0cdd2061d6c6a62d9193f85bccf085fbd868145ea1",
+      "bytes": 51957
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-03-320-diagram.png": {
+      "sha256": "83d7d603c235a5ac0038d461989315043af70542a58a4cd568384a59b3080604",
+      "bytes": 51482
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-03-320-orbit-boundary0.png": {
+      "sha256": "18627f4e5308fe7a8d6da6df7a959d4a548ee71117b2490c2ddb1830a7fb6247",
+      "bytes": 64565
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-03-320-orbit-boundary1.png": {
+      "sha256": "c43d2ddb83133b3e642b6018b549fc9f2d156fd941de72e776aa7e941ca7212a",
+      "bytes": 62955
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-03-320-orbit.png": {
+      "sha256": "521b760eb0564fbf1b62879d60152b70d36f6e5bff73c7f43359ad270363baae",
+      "bytes": 61848
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-03-320-side-boundary0.png": {
+      "sha256": "7ef114355b8ec9cd54da5d271587ec624108053a97529ca1bd8f574f55ca8f1e",
+      "bytes": 54005
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-03-320-side-boundary1.png": {
+      "sha256": "85c64b3b9b807b1398dba7d30c6ab9901f65bad2ba123fa67a3301da2db7b16a",
+      "bytes": 52423
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-03-320-side.png": {
+      "sha256": "dbd52d85d897b49607f27ef478878c8a4204e505c905ea4791317f62096ae0d2",
+      "bytes": 51317
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-03-320-top-boundary0.png": {
+      "sha256": "5f2cbab83edb295e9fd6d8c0884f57e7c40feef45c924ab2a7a40f73093d207b",
+      "bytes": 69451
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-03-320-top-boundary1.png": {
+      "sha256": "7e8b4750d8b0e0336be92784912c5110ebb7e39aabf95b572c0ad6b8a6195b86",
+      "bytes": 67943
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-03-320-top.png": {
+      "sha256": "eac9767452a593b554b15d4e5be0002e9cb14c714ae1e4f874c8a6511f26b287",
+      "bytes": 67262
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-1280-diagram-boundary0.png": {
+      "sha256": "dc69bfde177cc7003d8c0014e9be273d8ea62fa1dd87cd946d3b63a2076e47d4",
+      "bytes": 135353
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-1280-diagram-boundary1.png": {
+      "sha256": "874b554c45548bb110901d223be86ce3eee6dece829ae2cf8538a6ab17d2bc13",
+      "bytes": 133994
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-1280-diagram-clock0.png": {
+      "sha256": "ad8c17f252d594d72fceb5835ca14037b2615f00c5f4377f5bf058900ea4e675",
+      "bytes": 136908
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-1280-diagram-clock1.png": {
+      "sha256": "48ad9cc3628dbf3cb7ffefc12e4abf648380bd0f05e9ed76271dfe761aacc9f3",
+      "bytes": 136843
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-1280-diagram.png": {
+      "sha256": "523bf4250238f6c6e28bfb638d22cb5ccafbac21b83f3051b93c62f5ded01a5c",
+      "bytes": 152438
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-1280-orbit-boundary0.png": {
+      "sha256": "eefe92c16fd3f22121586c2b3a6d4e6c67d3e62c369f326f8ffa98ba3c8b6891",
+      "bytes": 184941
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-1280-orbit-boundary1.png": {
+      "sha256": "6f0f78aa1405fe83591eefdaf6a70c1106ee988ea3ab48fb3c436b351c6f46d3",
+      "bytes": 167362
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-1280-orbit-clock0.png": {
+      "sha256": "7e6ed9d016d18584342955aad47984cd9be7fd4a1a23e5058281b18c739158a9",
+      "bytes": 170261
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-1280-orbit-clock1.png": {
+      "sha256": "51229a4a125dfa1eb40bb922c69b035a8513733dd4b656e3b564f6d6864ffec2",
+      "bytes": 170408
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-1280-orbit.png": {
+      "sha256": "86260d719b057726ce2391ed261ad34963478c6646a88c52b94a11f54270182d",
+      "bytes": 194348
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-1280-side-boundary0.png": {
+      "sha256": "4c36afb9c4a524ed8409e0501dbe9fd311b668ed4ff4885df88c02a67c176643",
+      "bytes": 129995
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-1280-side-boundary1.png": {
+      "sha256": "dd45fb25df4aa0941c4f2e08fcab19675057d44d2464a5573abf4947c19d6671",
+      "bytes": 129575
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-1280-side-clock0.png": {
+      "sha256": "c5169fccc39c38b570f7650b81fba174745984bd85354744da9e2de2e544c3f2",
+      "bytes": 132418
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-1280-side-clock1.png": {
+      "sha256": "27e49723f3a980dc6e6a951838d5b63d491a59112ee895d816d139d95d01b7c1",
+      "bytes": 131945
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-1280-side.png": {
+      "sha256": "423179f37574483f903f497526a9eea33df681520912c63a5d8dfe00b2e7e13f",
+      "bytes": 146368
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-1280-top-boundary0.png": {
+      "sha256": "06a9ffadaf0d0669e2b7404eb4bd2bf877521b629081719c90b166cddb1c3045",
+      "bytes": 178676
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-1280-top-boundary1.png": {
+      "sha256": "3876f571e14a8d28523dab2e205187be67675302dae0abf07c99bd9de0c6dcfa",
+      "bytes": 176403
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-1280-top-clock0.png": {
+      "sha256": "7870a99f29f50d2222645608a35c57d85c144093fedca0901d9f71fb6758ec36",
+      "bytes": 179334
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-1280-top-clock1.png": {
+      "sha256": "0e02a5f33c354d7a40a8c640e87255c8bb87074be4650b9522e05ae79eed3f55",
+      "bytes": 178754
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-1280-top.png": {
+      "sha256": "60c7579909f2c6f1c571b2d74c55aca4d98a2327368812d89640f62829a341f6",
+      "bytes": 192909
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-320-diagram-boundary0.png": {
+      "sha256": "ef75c2dfef3646945e440a5f0c837d95f1a14f7d076cb51bb39bcf48f0d61f79",
+      "bytes": 53505
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-320-diagram-boundary1.png": {
+      "sha256": "365c3dce9f1c0970fc530a40fc8c96ba10d47ac0795e88eccf51685fdc588e15",
+      "bytes": 52666
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-320-diagram-clock0.png": {
+      "sha256": "5942fde1444d3bb2f4fbfe844f1b0b66aee92fe08a82312e866d9723f2aa7e39",
+      "bytes": 45096
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-320-diagram-clock1.png": {
+      "sha256": "d8bc081f8982418bfca790b223c4125d5857a6f8985f24096470f2cbf56774c3",
+      "bytes": 44966
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-320-diagram.png": {
+      "sha256": "4e8c0dc909d46d1fa8a321131d081355233b986946be7d0907dc7053ac8b4561",
+      "bytes": 52340
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-320-orbit-boundary0.png": {
+      "sha256": "2cb81e95d715c675d9173031336a2953f1332844a8cc5b3380cd69344cb16a57",
+      "bytes": 65499
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-320-orbit-boundary1.png": {
+      "sha256": "d3da4b9e48cbf8c5187ec5b8953e2270734370148e22521a2b8d9ee5410fda95",
+      "bytes": 58802
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-320-orbit-clock0.png": {
+      "sha256": "7474cba0bbac2dc372a00ff62e178b1d176845ef676adf561760a85fad79df42",
+      "bytes": 51424
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-320-orbit-clock1.png": {
+      "sha256": "878c0ecbb1242f2efe0b7305fdb1577c15c5b5ffa24ac82b334073d435440cb9",
+      "bytes": 51271
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-320-orbit.png": {
+      "sha256": "3800dcd0ab018cd32e394d434b6376d0490bcb3704be92c2d5b5740e599e70dc",
+      "bytes": 60277
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-320-side-boundary0.png": {
+      "sha256": "cfa72f913b3d7f8750d7530d86016ceccc150d231a70e025887c537c14b0d8ac",
+      "bytes": 52394
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-320-side-boundary1.png": {
+      "sha256": "c356460afd60ea413a6b006a0b62b2e5ca542fc05b3e039dc2892ed72297eb3c",
+      "bytes": 51411
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-320-side-clock0.png": {
+      "sha256": "de06dbabb67ce7baed7ce00fb3bc21248103f4751f21d6b8caec20810f4ec3b3",
+      "bytes": 43873
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-320-side-clock1.png": {
+      "sha256": "ec54144da9b58a51bade4aed2052d196f12b0c41236e7a8e10dc79917316b55a",
+      "bytes": 43662
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-320-side.png": {
+      "sha256": "1d02d1b8aa2d239c77fa48761707a58bcd11f0052c8e1e00e413430da6baee77",
+      "bytes": 50458
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-320-top-boundary0.png": {
+      "sha256": "f4c61dc62fa638d0dbed17b7203e466b5f050b6f0e3930ccdcc45310da54e8a5",
+      "bytes": 63883
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-320-top-boundary1.png": {
+      "sha256": "094c519a9c6d130b2645f93fe37273aa6dc0ff4dda734866bc377fd5084df57b",
+      "bytes": 61987
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-320-top-clock0.png": {
+      "sha256": "41345435e6f2f7d150a7bf6bf38a0d5384220268bb847be06ff9a2e8f184dda5",
+      "bytes": 54527
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-320-top-clock1.png": {
+      "sha256": "e652761d365fa9f1b5e9ea0dee53810b9e71be4713a4bcd51530ea05ae0886fc",
+      "bytes": 54305
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-04-320-top.png": {
+      "sha256": "0c41af8501de2abe3b4ad47d2a04e6383ff104a18188e9c5de34657ab39b2aa2",
+      "bytes": 60894
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-1280-diagram-boundary0.png": {
+      "sha256": "37b047a242a69458c66bc66caa4f2b413566d204f21c6b499c6fe8a2f0da853d",
+      "bytes": 121795
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-1280-diagram-boundary1.png": {
+      "sha256": "d505a9d4186a083dde0425b3a0209b9371d61850e0e59a816e01301a4c23f78d",
+      "bytes": 121729
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-1280-diagram-clock0.png": {
+      "sha256": "6ffb33fc40062452e924bcaceb923ee8b122b18cafa72b00c63faff969865f75",
+      "bytes": 114829
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-1280-diagram-clock3.png": {
+      "sha256": "584ab438bd784bfae9ded4e231fc31e896093bc236e7f663530cfd7c0d7e90c4",
+      "bytes": 115384
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-1280-diagram-clock6.png": {
+      "sha256": "396181b9556208ba3699eefc0c6d4ad039053777f9543b67c36c9f052e00488f",
+      "bytes": 115071
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-1280-diagram.png": {
+      "sha256": "29342710b703a67a0dea3281202af8d8f386f6585a16b8235268bb8cd05253f9",
+      "bytes": 126525
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-1280-orbit-boundary0.png": {
+      "sha256": "b4d41cea90be09b3ee50d4c811ee88a995809635e27b5bba60431754bcc2daca",
+      "bytes": 152760
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-1280-orbit-boundary1.png": {
+      "sha256": "9feeefa19b9ec8f561294ff9e3164ce9929eecdeea0a0385d397b5cd6aad9fac",
+      "bytes": 151511
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-1280-orbit-clock0.png": {
+      "sha256": "274add18cdb3637f426cb61821e2e74661686db1bb06835832bf64f42fb488ff",
+      "bytes": 146135
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-1280-orbit-clock3.png": {
+      "sha256": "3c56079a42c0b8a39b788570f03527959903c43e77ad2d735fe608e9579dfaa3",
+      "bytes": 147309
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-1280-orbit-clock6.png": {
+      "sha256": "ddff3293a5d5b5c9dc02a34c56f87a7cc1f3908d66cf26562e5c2c9b8dd5b468",
+      "bytes": 144644
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-1280-orbit.png": {
+      "sha256": "32356ae257c09d481e2833c07ad29728ce4b7d25e088b90f324e2bd800315588",
+      "bytes": 157573
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-1280-side-boundary0.png": {
+      "sha256": "3b7e92d18303af4c79983cc89371823ea5198997684e7587de1a3786cccf8d14",
+      "bytes": 125488
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-1280-side-boundary1.png": {
+      "sha256": "5e0a5eb6751797e0347952be114678c01392c56b5bdfefaa7a9f241c32b063e4",
+      "bytes": 125098
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-1280-side-clock0.png": {
+      "sha256": "9920cea8b4451eafaa3d5c8c3d7116479f98f85f6f580bd3ecf5e7f8ba85f56e",
+      "bytes": 118428
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-1280-side-clock3.png": {
+      "sha256": "5f0ca92d758d6ff936c923234849c991b1e761d172aabba36c32d0ed79e631f0",
+      "bytes": 118894
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-1280-side-clock6.png": {
+      "sha256": "6b00afb54570857aca8bdfea28e0fbc07ca65ab2e7aace8dd38cbc9b425a8af5",
+      "bytes": 118957
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-1280-side.png": {
+      "sha256": "4ba0f1688cd93767cadf21208f464809f13937ff6c5c644cb3d57e322d64d1e5",
+      "bytes": 131995
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-1280-top-boundary0.png": {
+      "sha256": "e9db64d34e6f0d84023225c1fad40bbdf2987b857553a7c524490bb3debbf1c9",
+      "bytes": 164041
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-1280-top-boundary1.png": {
+      "sha256": "11b71545834db825348dacba0fbdf76a78e685fa0cfe1745eb00f20e7cf15dd4",
+      "bytes": 164101
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-1280-top-clock0.png": {
+      "sha256": "9fc33022f5e26ce3afe56ad9dc7793c3659a6438a2f1bcce7a430e08623761ad",
+      "bytes": 157505
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-1280-top-clock3.png": {
+      "sha256": "d5d8838f9dad13c6558d21d1a59bcf64f38289009c67a5fae113987cec65d1fb",
+      "bytes": 157859
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-1280-top-clock6.png": {
+      "sha256": "c9243726965f4fa34818be046ef6bbb96a046da7259505d5c76e6e8f3d174ff9",
+      "bytes": 157766
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-1280-top.png": {
+      "sha256": "0a13a995d80d090c55887ca278ef9b7eabb02849a03b19eaa9f935c137b476c7",
+      "bytes": 169698
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-320-diagram-boundary0.png": {
+      "sha256": "cc09569f32c5cbff0035565f6812b9e71cf496e1d8f231c9646aee0a4815d35f",
+      "bytes": 49027
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-320-diagram-boundary1.png": {
+      "sha256": "c0d847f12b6f76a50be363d0e70cc258b4a110b23c8d85461bfdede19fc51a0b",
+      "bytes": 48990
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-320-diagram-clock0.png": {
+      "sha256": "ffe6924c3e830a3fc13660eb0b45f62ccec11092eb0deb80fa49da830a85046f",
+      "bytes": 40688
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-320-diagram-clock3.png": {
+      "sha256": "76fb42b9d12d2bb4a7c11d2d09e0274c0414dd63a6f17381e185ed52de6e8c36",
+      "bytes": 41467
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-320-diagram-clock6.png": {
+      "sha256": "0a318d7fa66aedf591bcd59b615c2c70ddf8a052ecc369f9392167193dd8523f",
+      "bytes": 41213
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-320-diagram.png": {
+      "sha256": "240a41c12ffe06aafb698e2904906162e5bafbfd24744960afa17afa64106327",
+      "bytes": 48719
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-320-orbit-boundary0.png": {
+      "sha256": "d4355b430b9c799f9d523030547ab170ca78834d956b3144d5af8a828ac1d3f7",
+      "bytes": 64185
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-320-orbit-boundary1.png": {
+      "sha256": "ed8a7476e1cd362a45ff304326b3dfa47cd5c9f19af7a0221dfd3f40a8865d1f",
+      "bytes": 63290
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-320-orbit-clock0.png": {
+      "sha256": "40b98f269f93fb0dfaa3b3f5aaff1e46d14289f009ebf48c4ecf78fb8a4225db",
+      "bytes": 55926
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-320-orbit-clock3.png": {
+      "sha256": "e18eb55fb96a72e9035d4a130732ba929c16ea6422eed2e8d8a3845318f58ba6",
+      "bytes": 56991
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-320-orbit-clock6.png": {
+      "sha256": "768b70f0c61b26a1668bfee03f039891985cc95c8999eb34b8c0623f307d6262",
+      "bytes": 55429
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-320-orbit.png": {
+      "sha256": "d144ffd24ab6b0bb7e7c4e66b619c7b79786d3f928d85647e8815c3347c9c3ca",
+      "bytes": 63853
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-320-side-boundary0.png": {
+      "sha256": "5a32a5aab26661b344933869c570df8fd49a6b8c6904c863132f113242cb68d7",
+      "bytes": 51245
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-320-side-boundary1.png": {
+      "sha256": "489d1d2ce206356efbb8c048591626ee9a72939b34129edfea1eb4c4a6dc3a36",
+      "bytes": 51071
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-320-side-clock0.png": {
+      "sha256": "b4e9eb034a0cd628eac2221dfa575298043aef0e3c9376bdc0c20a6c3dfba4fa",
+      "bytes": 42901
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-320-side-clock3.png": {
+      "sha256": "c55eea14727a677b3fbb41b17d74bcec33c3bb3e9a72d106e10421e0d95436f0",
+      "bytes": 44056
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-320-side-clock6.png": {
+      "sha256": "01f2b91f4c4e598a06d48e642ca71ebf326117a45d8425b12ff892eb00e8d27b",
+      "bytes": 43475
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-320-side.png": {
+      "sha256": "56e83250aaa3dfd5aa866e4fb13e24ce2b9f340429e14977d94ffe17ce03700e",
+      "bytes": 51873
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-320-top-boundary0.png": {
+      "sha256": "06bf728118532b1ff7611523f1756e10e6ea4d1e21c96c2a9a117f4abfde9049",
+      "bytes": 68805
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-320-top-boundary1.png": {
+      "sha256": "f830ebbb3a2a52380f618ae0b9c17022161235a7407a0f54eefa2ce6e36eb995",
+      "bytes": 68859
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-320-top-clock0.png": {
+      "sha256": "ec34b247fa6814d11405d6a8fe6811d188f53a5bb66569c66fa05034dbf5407c",
+      "bytes": 60577
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-320-top-clock3.png": {
+      "sha256": "070d52aa82122ef78cba731de71d091fdd3878f1d0b320b906f9ed4b5eae7ca9",
+      "bytes": 61231
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-320-top-clock6.png": {
+      "sha256": "aac6c0076b9268859898ca84575e3a979b77d96665a742a1f9423ce5efc25f11",
+      "bytes": 61053
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/LAB3D-05-320-top.png": {
+      "sha256": "abae004efe3ea04c740478b93632a877abed88f436588f566644c870b1f8173d",
+      "bytes": 69048
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/consumer.json": {
+      "sha256": "5d680374f19e8d52b3867413c6a2459571b2889cbcbca132b4dc61befa98a77b",
+      "bytes": 335183
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/actual-ui-120/terminal-receipt.json": {
+      "sha256": "a6cbe847ba9ca4df071c25f4faab3067dd9e051cde9807cb1d3cbdbfa13ac38d",
+      "bytes": 93246
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/bench-mechanics-fluids-035-renewal-abb2.json": {
+      "sha256": "0aa50e46897efb94590988fe0503c9e43c4023471a03a63fafa3ac6e9effb151",
+      "bytes": 30092
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/browser-bench-mechanics-fluids-abb2.mjs": {
+      "sha256": "f6201837d939a97e88de51fd650f94828b7ba2aba143b5cefae74ab1a2de0977",
+      "bytes": 15614
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/calculation-scope-pre-run-audit.json": {
+      "sha256": "7e3533ec24b95bb499a38f43888ba72c390dfdfe8ff95b4151cd1db65a1c35b6",
+      "bytes": 9948
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/contact-LAB3D-01.png": {
+      "sha256": "8d12838545b4349daaf17aab4aaf032c7cfbb916699a7a60aa4c735849d01910",
+      "bytes": 215856
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/contact-LAB3D-02.png": {
+      "sha256": "ca2ddc9673440a61a7fc9db0363d02f1b41b3991e0cd66cfde341577c6290d8b",
+      "bytes": 250992
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/contact-LAB3D-03.png": {
+      "sha256": "cbea92908ed46d5a1d11fe3a70f7c45a40608a83e540cb15d99a47d2082e22bd",
+      "bytes": 212015
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/contact-LAB3D-04.png": {
+      "sha256": "fa09b983dca9fae88630f6183c3f73d87a260226ddcb4846c9dd49434008ef67",
+      "bytes": 262190
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/contact-LAB3D-05.png": {
+      "sha256": "bbf1145487b2f174cb45f5b7b37316ddf469d279de40704e0387abc8be9cce52",
+      "bytes": 207324
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/contact-sheet-layout.json": {
+      "sha256": "5d6cd81bc68ca8d9a059350e1217366078c1b8c6bbaf866643a556deca3469ca",
+      "bytes": 9913
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/executed-python-dependencies.json": {
+      "sha256": "11403245856474e81e6b506d8b0e341ad0c97334c11c848cb4b8e917d4139368",
+      "bytes": 683
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/executed-python-dependencies.zip": {
+      "sha256": "aa7e1b828d77128d21954b7cbaf2a72140293960f96086af22676de61596699d",
+      "bytes": 18703
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/first-seven-pass-target-tests-receipt.json": {
+      "sha256": "fb8c7b5ceda91b276d4776a148349a8705994c470734cd2f536efc5f893bc154",
+      "bytes": 123
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/first-seven-pass-target-tests.txt": {
+      "sha256": "3a0945c6c8557603b1442fd103a2bb3583a9e27781b95524c31c01bdfbed042a",
+      "bytes": 1458
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/flight-geometry-process.json": {
+      "sha256": "175dc88dd4c42c1276c60bf39989ef0df18e3fc5f438841c21ee19ab0010a3db",
+      "bytes": 117
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/flight-gravity-shaft-actual-geometry.json": {
+      "sha256": "5c656f853ab08276a667eff2f42d18ea20845683ec6eed4fb56e1e573204b578",
+      "bytes": 954430
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/fresh-repeat-receipt.json": {
+      "sha256": "bd2a9bfbc1e4871f6d648fe31245a03a6ce827c6933b4c4f31366547b0e0f3fe",
+      "bytes": 477
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/independent-review.md": {
+      "sha256": "f154e47f75a5804058bf162cbec106fefc9a31e0411b35cdd9901c6e52cddfdd",
+      "bytes": 1647
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/independent-visual-reading.json": {
+      "sha256": "cabb25ad1f4f7e631a7ff4958ffae0c5caa9e04d2643e6d7352f04f075d447e7",
+      "bytes": 2277
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/make-review-contact-sheets.py": {
+      "sha256": "108f7f8548071cbd8f6a065ed98077ca5532ea8407b2c37481575d73604f976d",
+      "bytes": 1339
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/observe-flight-gravity-shaft.mjs": {
+      "sha256": "85b24d8abd87182ffd1ac1a2827850a67299332118c2b4180ee2574b01b3dfe3",
+      "bytes": 6682
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/recompute-current-reports.py": {
+      "sha256": "7073397aa08d6b6ad4c4c1fa8c203b8a538d7aac5c96b6f36d6b910466659f2b",
+      "bytes": 3050
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/run-bounded.py": {
+      "sha256": "76809b44a27eb03afb21821fd50fd7aeaadf454e5da35c6bb9295b4e004f9aac",
+      "bytes": 2561
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/runtime-git-inputs/git-inputs.json": {
+      "sha256": "b9563f9ba9b62e58407cfcc6e8dceb0d8b601fdde9a3efa45c6ba1e3d5d43df1",
+      "bytes": 5283
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/runtime-git-inputs/static_js_banchi_banco.js.txt": {
+      "sha256": "c3e7e83dc18f35880dbd90d705185f67f144ec8a7b86ccb87c132d6bae9f4dc3",
+      "bytes": 35651
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/runtime-git-inputs/static_js_banchi_scena.js.txt": {
+      "sha256": "294a5e5966d004d48456e867a9deb27da5d32ba9ce43e087d4ea713f4544e399",
+      "bytes": 13864
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/runtime-git-inputs/static_js_banchi_scene_campo.js.txt": {
+      "sha256": "457fd9ccec431f43806a39e8b8fca78c243931514f8e5971c474b5cdbfae6dfa",
+      "bytes": 4525
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/runtime-git-inputs/static_js_banchi_scene_onde.js.txt": {
+      "sha256": "61f9bf1a96d64a393127993da6857d25c9f9612e2a315f48e5145b35bd027ca6",
+      "bytes": 4996
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/runtime-git-inputs/static_js_banchi_scene_piano.js.txt": {
+      "sha256": "c98424e8911887f3a540c5c3a9d1e256d87d4fd7fa61e13375bbe33fb238f969",
+      "bytes": 2060
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/runtime-git-inputs/static_js_banchi_scene_volo.js.txt": {
+      "sha256": "4805d6f2d980ae4eab4565c11900c6c6c9e8f1b7bca7ff33ec7601779876a8af",
+      "bytes": 3271
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/runtime-git-inputs/static_js_banchi_tavola.js.txt": {
+      "sha256": "d5fd26d78a3e25dc98c28efd46392710c906add3205ec59107bddfddef32c7d8",
+      "bytes": 20836
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/runtime-git-inputs/static_js_banchi_voci_apparati_campi.js.txt": {
+      "sha256": "0be803fcc45d07af6081df4b71ad5e0e0b52d5d1a9dcc462cea58a9260b9a238",
+      "bytes": 9811
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/runtime-git-inputs/static_js_banchi_voci_apparati_fluidi.js.txt": {
+      "sha256": "2b16b9147c4e8d7301f67be1b6b186944ed500d3a31a94e27dc1b7b4e8b79d25",
+      "bytes": 11864
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/runtime-git-inputs/static_js_banchi_voci_apparati_onde.js.txt": {
+      "sha256": "12c46c991002ab8138fb0fe535c8b4e134d9003cf2b46e93f032e642f838eebc",
+      "bytes": 14890
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/runtime-git-inputs/static_js_banchi_voci_apparati_termica.js.txt": {
+      "sha256": "2c2dd287ce60ea861830437697e5cc182ffb9d2bdbbcb7085053a271c1cc4459",
+      "bytes": 10440
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/runtime-git-inputs/static_js_banchi_voci_esperimento.js.txt": {
+      "sha256": "42b750b18354fdad7c7e42f9e5e6bdc0ec4a28f5ede7a41b0780ad7509a6bac6",
+      "bytes": 12777
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/runtime-git-inputs/static_js_banchi_voci_geometria.js.txt": {
+      "sha256": "9c3c277d3c519bb54abbbfc6b68212c481e65051bf240e6f2a96a578ac16f144",
+      "bytes": 6812
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/runtime-git-inputs/static_js_banchi_voci_legende.js.txt": {
+      "sha256": "36fa7ab4d57ce9b1f672cbc7c588f49690c45ad2d46678dd213810417ad23aa2",
+      "bytes": 14158
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/runtime-git-inputs/static_js_banchi_voci_modelli_C4.js.txt": {
+      "sha256": "de65de5483970720e2ec9fb01e3146f71aaad90529dd1f0a3c298c56fd2bf620",
+      "bytes": 8916
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/runtime-git-inputs/static_js_banchi_voci_modelli_C5.js.txt": {
+      "sha256": "11df78b3c86ccd009853419ae869c54ae884619270636e8f7a7a0a7471dae004",
+      "bytes": 8814
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/runtime-git-inputs/static_js_banchi_voci_tavola.js.txt": {
+      "sha256": "21373daa0b6841cc98b537d61cc678c3b9a935f4023d30f54d7cbd8ee2b693fa",
+      "bytes": 5049
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/runtime-git-inputs/static_style.css.txt": {
+      "sha256": "afa9ee3c3184bc422d7deabc36a7c5602cb4df85fe1276c1bd9a20291bb9f705",
+      "bytes": 37273
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/source-runtime-pins.json": {
+      "sha256": "4e77cfb84c03445134b38a406edeb0932114b06d698b41bca2284ea61f3e0c9e",
+      "bytes": 2440
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/target-tests-receipt.json": {
+      "sha256": "b12b826dd87839e362f556374162f52f630dff9a438cd9eae91c008da1708fbf",
+      "bytes": 122
+    },
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-abb2-20261127/target-tests.txt": {
+      "sha256": "3bb4f27498c5bd0a1953cd9bc77cf0c8ae4a6d10496817fb4ec3445f7fde49ff",
+      "bytes": 1458
+    },
+    "officina-di-fisica/tools/corpus_engineering/bench_mechanics_fluids_renewal_abb2_verifier.py": {
+      "sha256": "0ef6b71cefd78c8a7b61424669fa49ad2a033b514d7deda7462a990e9d9251e2",
+      "bytes": 9554
+    },
+    "officina-di-fisica/tests/corpus/renewal_runtime_abb2.py": {
+      "sha256": "0af1f3876a7c65628c0303157ccf11885d6eaea28c54cae445462b2ef83d8510",
+      "bytes": 3734
+    },
+    "officina-di-fisica/tests/corpus/test_benches_035_036_renewal_abb2.py": {
+      "sha256": "ca44be4a25da4a8ceea39c267e0871385e244e4e0e668f22e7ec65315c8910f6",
+      "bytes": 5002
+    }
+  },
+  "actualBrowserExitCode": 0,
+  "actualCases": 120,
+  "actualClockObservations": 64,
+  "twoActualFreshReportsIdentical": true,
+  "sourceMathNodeOkCount": 5,
+  "boundedUiOkCount": 4,
+  "consumerFailedIds": [
+    "LAB3D-02"
+  ],
+  "canonicalActivityGate": "REJECT_WHOLE_GROUP_CONSUMER_NEGATIVE",
+  "calculationScopeExplicitForEveryRecord": true,
+  "executedDependencyArchivesAreNotLegacyOverwriteAuthorization": true,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "registryOrLedgerAction": "NONE"
+}
