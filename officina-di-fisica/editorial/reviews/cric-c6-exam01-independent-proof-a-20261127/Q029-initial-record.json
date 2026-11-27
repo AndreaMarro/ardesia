@@ -1,0 +1,63 @@
+{
+  "id": "C6-Q029",
+  "kind": "question",
+  "course": "C6",
+  "section": "Simulazione 1",
+  "order": 17,
+  "title": "Velocità maggiore nello stesso tratto orizzontale",
+  "skill": "C2-L006",
+  "prerequisites": [
+    "C2-L006"
+  ],
+  "version": 2,
+  "prompt": "Un fluido ideale incomprimibile scorre in regime stazionario lungo una stessa linea di corrente orizzontale, senza perdite. La rapidità aumenta da A a B. Come cambia la pressione statica?",
+  "family": "un-condotto-orizzontale-ideale",
+  "difficulty": 2,
+  "blocks": [
+    {
+      "type": "text",
+      "text": "Alla stessa quota Bernoulli conserva p+ρv²/2. Poiché il termine cinetico aumenta da A a B e la densità è positiva, il termine di pressione deve diminuire. Si confrontano pressioni statiche lungo la stessa linea, con le ipotesi dichiarate. Non si afferma che la pressione assoluta diventi nulla o negativa."
+    },
+    {
+      "type": "formula",
+      "text": "p+\\frac12\\rho v^2=\\text{costante}"
+    },
+    {
+      "type": "formula",
+      "text": " p_B<p_A"
+    },
+    {
+      "type": "text",
+      "text": "La sola uguaglianza delle quote non rende costante la pressione se cambia la velocità. Conservare la portata è una condizione di continuità e non sostituisce il bilancio di energia. In presenza di perdite o macchine occorrerebbero termini aggiuntivi, assenti dal modello."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "options": [
+      "Diminuisce",
+      "Aumenta necessariamente",
+      "Resta uguale perché la quota è uguale",
+      "Diventa necessariamente nulla",
+      "Diventa maggiore solo perché la portata si conserva"
+    ],
+    "value": "Diminuisce"
+  },
+  "hints": [
+    "Confronta quali termini di Bernoulli restano uguali e quale aumenta.",
+    "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+  ],
+  "error": {
+    "category": "concetto",
+    "message": "La sola uguaglianza delle quote non rende costante la pressione se cambia la velocità. Conservare la portata è una condizione di continuità e non sostituisce il bilancio di energia. In presenza di perdite o macchine occorrerebbero termini aggiuntivi, assenti dal modello.",
+    "target": "C2-L006"
+  },
+  "exam": 1,
+  "baseVersion": 1,
+  "reuse": [
+    "C6"
+  ],
+  "coverage": [
+    "Trentuno problemi distinti di sintesi fisica"
+  ],
+  "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+}
