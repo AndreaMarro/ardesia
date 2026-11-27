@@ -220,8 +220,10 @@
     "benchConsumerFollowup": {
       "previousNegativeCommit": "cac719403c2b59a9e837d8f3474a515217b869d5",
       "testedCandidate": "0184b146513e024d99ce8391fb0a5f4892f79e7e",
-      "pending": "Signed evidence and complete cohorts 035 and 036",
-      "activityCredit": 0
+      "pending": "Complete cohorts 035 and 036",
+      "activityCredit": 0,
+      "independentProofCommitPrefix": "aca2a238",
+      "positiveFocusedCases": 22
     }
   },
   "coexistence": {
@@ -353,7 +355,7 @@
       "contractPass": 2,
       "requestCommit": "f7b4a31d783aed06ac89d35d2c09956a2f16c58f",
       "visibilityRun": 45935050054,
-      "visibilityStatusAtCheckpoint": "QUEUED",
+      "visibilityStatusAtCheckpoint": "BROWSER_STEP_OBSERVED_FOR_C2_C3_C4_C5",
       "C5Preflight": {
         "plannedCases": 14464,
         "originalRecords": 27,
@@ -362,6 +364,30 @@
         "actualBrowserCases": 0,
         "receipt": "editorial/reviews/composed-draft-pin-preflight-20261127/receipt.json"
       }
+    },
+    "canonicalIntegrationCandidate": {
+      "branch": "feat/cric-canonical-integration-candidate",
+      "mergedSourceCommit": "63cc5fd89df00ce4a4885479b1306ca1a5833064",
+      "previewCommit": "4793a90b549173e520e5f7b3eb0009fccb13b1a3",
+      "runtimeSha256": "abb2bf2ac567438953766cf3550644b3d6ea501d75d610fb6291b2cffc5a428b",
+      "registrySha256": "a0b63e1aaf0d8df4a83ceb906241e07fc67948b7c18442390f5db91df10ca005",
+      "privatePreviewRun": 45935494138,
+      "previewObservedStatus": "IN_PROGRESS",
+      "nodePass": 305,
+      "contractPass": 2,
+      "c6OriginalStaticReplay": {
+        "records": 6,
+        "controls": 97,
+        "clockSamples": 400,
+        "actualAssignedTasks": 12,
+        "activityCredit": 0
+      },
+      "obsoleteBranchCreationRun": {
+        "id": 45935494194,
+        "conclusion": "CANCELLED",
+        "reason": "New branch creation activated the historical visibility request. The valid replay is 45935050054."
+      },
+      "canonicalIntegration": "PENDING"
     }
   }
 }
