@@ -1,0 +1,57 @@
+{
+  "candidateCommit": "375faa7a90f5f643840aabb8cc3076f9a2d5f5de",
+  "baselineCommit": "3d060603540c981bf641f776ca65fd3ef76106c3",
+  "inputs": [
+    {
+      "ref": "3d060603540c981bf641f776ca65fd3ef76106c3",
+      "path": "static/js/banchi/modelli/onde.js",
+      "snapshot": "baseline-20964/static/js/banchi/modelli/onde.js",
+      "sha256": "3fb789376d62279c115c5facf666c10c39160068210585a5755ee86daa2dbb7c"
+    },
+    {
+      "ref": "3d060603540c981bf641f776ca65fd3ef76106c3",
+      "path": "static/js/banchi/misure.js",
+      "snapshot": "baseline-20964/static/js/banchi/misure.js",
+      "sha256": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d"
+    },
+    {
+      "ref": "375faa7a90f5f643840aabb8cc3076f9a2d5f5de",
+      "path": "static/js/banchi/modelli/onde.js",
+      "snapshot": "candidate-source/static/js/banchi/modelli/onde.js",
+      "sha256": "fdf5fc16432a92d816db87f35348d461d491cbf48ea45703c27cda2a02314bc3"
+    },
+    {
+      "ref": "375faa7a90f5f643840aabb8cc3076f9a2d5f5de",
+      "path": "static/js/banchi/tavola.js",
+      "snapshot": "candidate-source/static/js/banchi/tavola.js",
+      "sha256": "ca3d68142f4717f9a5066c5626dde7187781e75c4c4c2cf7c13fa0fcc9d5d40d"
+    },
+    {
+      "ref": "375faa7a90f5f643840aabb8cc3076f9a2d5f5de",
+      "path": "static/js/banchi/banco.js",
+      "snapshot": "candidate-source/static/js/banchi/banco.js",
+      "sha256": "44192babc8992b23a57d3852c14161f26c41a46e3c4902fe37a11e5fbb2a69cf"
+    },
+    {
+      "ref": "375faa7a90f5f643840aabb8cc3076f9a2d5f5de",
+      "path": "static/js/banchi/quaderno.js",
+      "snapshot": "candidate-source/static/js/banchi/quaderno.js",
+      "sha256": "ecc32226e0fa1781b36cac952fa926a2ac17be6b4eae491ef6ef5744fcd8885a"
+    },
+    {
+      "ref": "375faa7a90f5f643840aabb8cc3076f9a2d5f5de",
+      "path": "static/js/banchi/misure.js",
+      "snapshot": "candidate-source/static/js/banchi/misure.js",
+      "sha256": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d"
+    },
+    {
+      "ref": "375faa7a90f5f643840aabb8cc3076f9a2d5f5de",
+      "path": "content/banchi.json",
+      "snapshot": "candidate-source/content/banchi.json",
+      "sha256": "c0494a9091cca33b7631b68df1cb7b472c63d0e5481e7dbd391ae1b46e326bdf"
+    }
+  ],
+  "disclosure": "Prior original036source/math/negative readouts known; independent review of distinct Root-authored display correction, not blind-source claim.",
+  "scope": "Only display conversion/native reading and native-wave fallback caller changed. Raw model formulas/sample/solve/params/assessments and common formatter unchanged by full source diff. One production drawing caller passes the actual model.",
+  "activityCredit": 0
+}
