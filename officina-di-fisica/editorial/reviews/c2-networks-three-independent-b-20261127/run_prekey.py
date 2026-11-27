@@ -1,0 +1,13 @@
+from independent_math import SPECS,value,inverse,exact
+from fractions import Fraction as F
+import json
+rows=[]
+for ident,(lo,hi,step,points,answers,unit)in SPECS.items():
+ states=[]
+ for i in range(8):
+  x=exact(lo)+i*exact(step);y=value(ident,x,True);assert inverse(ident,y)==x;states.append({'x':str(x),'y':str(y)})
+ for x,y in zip(points,answers):assert value(ident,x,True)==exact(y)
+ rows.append({'id':ident,'unit':unit,'manual':list(zip(points,answers)),'states':states})
+assert exact('3/2')==exact('1.5') and exact('15/2')==exact('7.5')
+assert F(2*10**9)*F(4,10**6)==8000
+print(json.dumps({'phase':'SOURCE_ONLY_PREKEY','consumerImports':[],'records':3,'gridStates':24,'manualTasks':6,'results':rows},indent=2))

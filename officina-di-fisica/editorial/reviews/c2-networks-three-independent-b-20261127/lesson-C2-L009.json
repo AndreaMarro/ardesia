@@ -1,0 +1,46 @@
+{
+  "id": "C2-L009",
+  "kind": "lesson",
+  "course": "C2",
+  "section": "Fluidi in movimento",
+  "order": 9,
+  "title": "Decidere come sono collegati i condotti",
+  "skill": "C2-L009",
+  "prerequisites": [
+    "C2-L005",
+    "C2-L008"
+  ],
+  "version": 1,
+  "blocks": [
+    {
+      "type": "text",
+      "text": "Due strozzature una dopo l’altra e due rami alternativi non producono lo stesso effetto sulla portata complessiva. Rappresenta ogni tratto laminare con la sua resistenza idraulica R = Δp/Q. Per collegare le resistenze, individua prima i nodi, cioè le giunzioni che idealizziamo alla stessa pressione. Le relazioni semplici qui valgono per flussi stazionari incomprimibili e resistenze lineari."
+    },
+    {
+      "type": "figure",
+      "src": "/figures/C2-reti.svg",
+      "text": "Nella riga alta ogni porzione di fluido deve attraversare entrambi i tratti. Nella riga bassa i due tratti collegano la stessa coppia di nodi."
+    },
+    {
+      "type": "text",
+      "text": "In serie la portata è comune. Le cadute di pressione si sommano perché, passando da un estremo all’altro, la pressione al nodo intermedio si cancella. In parallelo la caduta di pressione è comune a ciascun ramo; sono le portate che si sommano al nodo."
+    },
+    {
+      "type": "formula",
+      "text": "R_{\\rm serie}=R_1+R_2,\\qquad \\frac{1}{R_{\\rm parallelo}}=\\frac{1}{R_1}+\\frac{1}{R_2}"
+    },
+    {
+      "type": "formula",
+      "text": "R_{\\rm parallelo}=\\frac{R_1R_2}{R_1+R_2}\\quad\\text{per due rami}"
+    },
+    {
+      "type": "text",
+      "text": "Un nuovo ramo parallelo offre un altro passaggio e riduce la resistenza equivalente sotto quella del ramo meno resistente. In serie ogni tratto aggiunge una caduta e la resistenza totale supera ciascun contributo. In una rete biologica idealizzata puoi confrontare distribuzioni di flusso a parità di pressioni ai nodi. Le pareti elastiche, la regolazione fisiologica e le condizioni pulsanti modificano i parametri reali. Per controllare un calcolo, prova a chiudere mentalmente un ramo mettendo la sua resistenza molto grande."
+    }
+  ],
+  "coverage": [
+    "Resistenze idrauliche in serie e in parallelo",
+    "Portata nei rami",
+    "Resistenze e pressioni nei sistemi biologici"
+  ]
+}

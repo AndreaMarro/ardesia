@@ -1,0 +1,101 @@
+{
+  "sourceCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+  "sourceRawSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+  "allowlist": [
+    "id",
+    "version",
+    "title",
+    "summary",
+    "interpretation",
+    "control",
+    "measure",
+    "transferPrompt",
+    "apparatus",
+    "skill",
+    "section",
+    "prerequisites"
+  ],
+  "records": [
+    {
+      "id": "SIM-C2-L009-01",
+      "version": 1,
+      "title": "Resistenze idrauliche in serie e in parallelo",
+      "summary": "Perché il parallelo offre meno resistenza del ramo più facile?",
+      "interpretation": "I rami fra gli stessi nodi hanno lo stesso salto di pressione e sommano le portate. Confronta con la disposizione in serie, in cui la portata è comune e si sommano le cadute.",
+      "control": {
+        "label": "Seconda resistenza",
+        "unit": "kPa·s/mL",
+        "min": 1.0,
+        "max": 8.0,
+        "step": 1.0
+      },
+      "measure": {
+        "label": "Resistenza equivalente in parallelo",
+        "unit": "kPa·s/mL"
+      },
+      "transferPrompt": "Affianchi un ramo da 2 kPa·s/mL a un secondo da {x}. Quale resistenza equivalente presenta la coppia ai suoi capi?",
+      "apparatus": "rete",
+      "skill": "C2-L009",
+      "section": "Fluidi in movimento",
+      "proposedPointsOnly": [
+        2,
+        6
+      ]
+    },
+    {
+      "id": "SIM-C2-L009-02",
+      "version": 1,
+      "title": "Portata nei rami",
+      "summary": "Quale ramo riceve più flusso a parità di pressione tra i nodi?",
+      "interpretation": "La pompa mantiene 12 kPa fra gli estremi. Il ramo inferiore resta a 3 kPa·s/mL e porta 4 mL/s. Cambia soltanto l’altro ramo e confronta le frecce.",
+      "control": {
+        "label": "Resistenza del ramo superiore",
+        "unit": "kPa·s/mL",
+        "min": 1.0,
+        "max": 8.0,
+        "step": 1.0
+      },
+      "measure": {
+        "label": "Portata nel ramo superiore",
+        "unit": "mL/s"
+      },
+      "transferPrompt": "Ai capi di due rami ci sono 12 kPa. Se quello superiore presenta una resistenza di {x}, quanta portata passa proprio in quel ramo?",
+      "apparatus": "rete",
+      "skill": "C2-L009",
+      "section": "Fluidi in movimento",
+      "proposedPointsOnly": [
+        3,
+        6
+      ]
+    },
+    {
+      "id": "SIM-C2-L009-03",
+      "version": 1,
+      "title": "Resistenze e pressioni nei sistemi biologici",
+      "summary": "A quale pressione si porta il nodo fra due resistenze in serie?",
+      "interpretation": "Il modello ha una pressione di ingresso di 10 kPa e una resistenza a monte di 2 kPa·s/mL. Aumentando la resistenza a valle cala la portata, ma cresce la pressione intermedia.",
+      "control": {
+        "label": "Resistenza a valle",
+        "unit": "kPa·s/mL",
+        "min": 1.0,
+        "max": 8.0,
+        "step": 1.0
+      },
+      "measure": {
+        "label": "Pressione nel nodo centrale",
+        "unit": "kPa"
+      },
+      "transferPrompt": "Un tubo ha due resistenze in serie, la prima da 2 kPa·s/mL e la seconda da {x}. Se ingresso e uscita sono a 10 e 0 kPa, che pressione trovi al nodo?",
+      "apparatus": "rete",
+      "skill": "C2-L009",
+      "section": "Fluidi in movimento",
+      "proposedPointsOnly": [
+        2,
+        6
+      ]
+    }
+  ],
+  "candidateBlocksRead": false,
+  "authorReceiptRead": false
+}

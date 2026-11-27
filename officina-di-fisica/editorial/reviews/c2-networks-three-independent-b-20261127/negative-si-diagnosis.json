@@ -1,0 +1,7 @@
+{
+  "observedExitCode": 1,
+  "cause": "Checker fed internal SI conversion constant2e9 into bounded student-literal decoder, whose integer literal ceiling is1e9.",
+  "fix": "Only internal SI conversion represented directly as exact Fraction; no decoder or input budget changed.",
+  "physicalResultUnchanged": "8000Pa",
+  "candidateBlocksStillUnopened": true
+}
