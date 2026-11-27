@@ -16,14 +16,15 @@ BATCH = 'experiment-c4-matter-circuits-reading-20261127'
 ORIGINAL = '5d1dc8dc7b601aef959d10d564c75462be74708d'
 
 
-def entries(app, policy):
+def entries(app, policy, minimum_only=False):
     sources = {row['id']: row for row in json.loads((app/'content/esperienze-C4.json').read_bytes())}
     review, consumer, package, bindings = [json.loads(policy[key]) for key in ('review','consumer','package','bindings')]
     manuals = {row['id']: row for row in review['perId']}
     actual = {row['id']: row for row in consumer['results'] if row['variant']=='draft'}
     bound = {row['id']: row for row in bindings}
     out = []
-    for draft in package['records']:
+    drafts = package['records'][:2] if minimum_only else package['records']
+    for draft in drafts:
         key = draft['id']
         source, proof, model, binding = sources[key], manuals[key], actual[key], bound[key]
         assert digest(draft)==proof['candidateSha256']==binding['candidateSha256']
@@ -46,6 +47,11 @@ def entries(app, policy):
             assert Fraction(entry)==exact
             questions.append({'input':entry,'prompt':q['prompt'],'expectedAccepted':True,
                               'sourceManualReadiness':'INDEPENDENT_MANUAL_C4_53BD_REPLAY'})
+        if minimum_only:
+            control = source['control']
+            assert control['min'] == 0 and control['step'] > 0
+            grid = [control['step']]
+            expected = [samples[grid[0]]['solve']['y']]
         clocks = []
         if model['clock']:
             assert key=='SIM-C4-L05-01' and not model['clock']['input']
@@ -57,7 +63,7 @@ def entries(app, policy):
                     'candidateSha256':digest(draft),'record':draft,'grid':grid,'expectedValues':expected,
                     'clockCases':clocks,'auxiliaryCases':[],'hasClock':bool(model['clock']),'clockInput':False,
                     'questions':questions,'sourcePrediction':model['prediction'],'originalJudgment':'SEE_DISTINCT_FROZEN_PEER_REVIEW'})
-    assert len(out)==7
+    assert len(out)==(2 if minimum_only else 7)
     return out
 
 
@@ -76,16 +82,19 @@ def prepare(app, repo, staging, directory, width, part, candidate=CANDIDATE, run
             'bindings':git_blob(staging,commit,prefix+bindings_name)}
     review=json.loads(policy['review'])
     assert review['rawPackageSha256']==pin(policy['package']) and review['bindingsSha256']==pin(policy['bindings'])
-    rows=entries(app,policy)
-    rows = rows[:3] if part == 'matter' else rows[3:]
+    rows=entries(app,policy,minimum_only=part == 'minimum')
+    if part == 'matter':
+        rows = rows[:3]
+    elif part == 'circuits':
+        rows = rows[3:]
     files={str(inputs/package_name):freeze(inputs/package_name,policy['package']),
            str(inputs/bindings_name):freeze(inputs/bindings_name,policy['bindings'])}
     authority={key:freeze(directory/f'frozen-{key}.json',raw) for key,raw in policy.items() if key in ('review','consumer')}
     request={'schemaVersion':'1.0.0','scope':f'C4_FIRST_SEVEN_DRAFTS_{part.upper()}_{width}','runtimeSha256':runtime,
              'runtimeCommit':candidate,'collectorSha256':COLLECTOR,'independentPeerCommit':PEER,
              'authoritySha256':authority,'inputFiles':files,'activityCredit':0,'humanApproval':'NOT_RUN','publicationAction':'NONE'}
-    profiles=[{'width':width,'view':view,'fallback':view=='fixed_projection'}
-              for view in ('orbit','side','top','fixed_projection')]
+    views = ('top','fixed_projection') if part == 'minimum' else ('orbit','side','top','fixed_projection')
+    profiles=[{'width':width,'view':view,'fallback':view=='fixed_projection'} for view in views]
     keys=[]
     for row in rows:
         for p in profiles:
@@ -111,7 +120,7 @@ if __name__=='__main__':
     parser.add_argument('staging',type=Path)
     parser.add_argument('output',type=Path)
     parser.add_argument('width',type=int,choices=(320,1280))
-    parser.add_argument('part',choices=('matter','circuits'))
+    parser.add_argument('part',choices=('matter','circuits','minimum'))
     parser.add_argument('--runtime-ref', default=CANDIDATE)
     parser.add_argument('--runtime-sha256', default=RUNTIME)
     args=parser.parse_args()
