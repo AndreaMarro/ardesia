@@ -1,4 +1,4 @@
-"""Assemble the C5 field, spectrum and photon draft editions from immutable source editions.
+"""Assemble the C5 field, spectrum and photon draft editions and the nuclei and optics drafts from immutable sources.
 
 Use the canonical astra/1 importer for persistence. This authoring script confers
 no scientific acceptance and writes no central ledger entries.
@@ -13,6 +13,7 @@ from tools.corpus_engineering.pipeline import digest
 
 SOURCE_REF = '5d1dc8dc7b601aef959d10d564c75462be74708d'
 BATCH = 'experiment-c5-field-spectrum-photon-reading-20261127'
+NUCLEI_OPTICS_BATCH = 'experiment-c5-nuclei-optics-reading-20261127'
 
 
 def text(value):
@@ -88,14 +89,78 @@ EDITIONS = {
 }
 
 
+NUCLEI_OPTICS = {
+    'SIM-C5-L08-01': {
+        'points': [7, 8],
+        'prerequisites': ['C5-L07'],
+        'interpretation': 'Tieni fissi i sei protoni nella figura. Aggiungi un neutrone per volta e aggiorna soltanto il numero di massa.',
+        'transferPrompt': 'Un nucleo di carbonio contiene 6 protoni e {x} neutroni. Quale numero di massa scrivi in alto a sinistra di C?',
+        'blocks': [
+            text('Il carbonio è definito dal numero atomico Z = 6. Pertanto il disegno parte con sei protoni in entrambe le configurazioni. I neutroni aggiungono nucleoni senza cambiare Z. Il numero di massa A conta i nucleoni, mentre la massa misurata in unità atomiche dipende anche dall’energia di legame.'),
+            formula(r'A=Z+N,\qquad N=A-Z'),
+            text('Completa il primo disegno con sette neutroni. Hai 6 + 7 = 13 nucleoni, perciò scrivi ¹³C. Nella seconda configurazione aggiungi l’ottavo neutrone. Il conto diventa 6 + 8 = 14 e il simbolo è ¹⁴C. Se ti danno direttamente ¹⁴C puoi partire da 14 e sottrarre i 6 protoni per trovare 8 neutroni.'),
+            text('In entrambi i disegni i protoni restano sei. Perciò assegnare 14 al numero atomico cambierebbe elemento. Il carbonio-13 è stabile e il carbonio-14 è radioattivo. Il modello di conteggio permette di identificare i nuclei, mentre la stabilità si determina con informazioni sulla struttura nucleare.'),
+        ],
+    },
+    'SIM-C5-L08-03': {
+        'points': [1, 2],
+        'prerequisites': ['C5-L07'],
+        'interpretation': 'Tieni due conti separati mentre leggi la scena. Uno segue il numero dei protoni, l’altro conta tutti i nucleoni del nucleo figlio.',
+        'transferPrompt': 'Nel decadimento «{x}», quale valore con segno ottieni sottraendo il numero atomico del nucleo padre da quello del figlio?',
+        'blocks': [
+            text('Disegna il nucleo padre come un riquadro con due numeri, Z per i protoni e A per tutti i nucleoni. Nel decadimento alfa traccia una freccia in uscita per una particella con due protoni e due neutroni. Sottrai le due quantità dai rispettivi conti. Il nucleo figlio ha due protoni e quattro nucleoni in meno.'),
+            formula(r'\alpha\colon\ (Z,A)\to(Z-2,A-4),\qquad \beta^-\colon\ (Z,A)\to(Z+1,A),\qquad \gamma\colon\ (Z,A)\to(Z,A)'),
+            text('Nel beta meno sostituisci un neutrone disegnato dentro il nucleo con un protone. Il figlio guadagna un protone e il numero totale di nucleoni è lo stesso. L’elettrone e l’antineutrino prodotti escono. La carica del figlio aumenta di un’unità, bilanciata dalla carica −e dell’elettrone. Per le due consegne inserisci −2 per l’alfa e +1 per il beta meno.'),
+            text('Nella transizione gamma esce un fotone e il nucleo perde energia senza cambiare Z o A. Per risalire al padre, inverti la variazione del figlio. Dopo un’alfa aggiungi 2 a Z e 4 ad A, mentre dopo un beta meno sottrai 1 a Z e conserva A.'),
+        ],
+    },
+    'SIM-C5-L09-01': {
+        'points': [20, 50],
+        'prerequisites': ['C5-L06'],
+        'interpretation': 'Disegna la normale nel punto di incidenza. Apri due angoli uguali dai lati opposti della normale e orienta le frecce per distinguere arrivo e partenza della luce.',
+        'transferPrompt': 'Un raggio arriva su uno specchio piano con un angolo di {x} rispetto alla normale. Qual è l’apertura tra il segmento che torna alla sorgente e il raggio riflesso?',
+        'blocks': [
+            text('Nel punto in cui il raggio incontra lo specchio, traccia la retta perpendicolare alla superficie. L’incidenza e la riflessione si misurano da questa normale. Per costruire l’apertura, parti dal punto di incidenza lungo il segmento rivolto alla sorgente. Poi attraversa la normale fino al raggio riflesso.'),
+            formula(r'\theta_r=\theta_i,\qquad \alpha=\theta_i+\theta_r=2\theta_i'),
+            text('Nel primo disegno i due settori sono da 20° e 20°, quindi l’apertura vale 40°. Nel secondo sono da 50° e 50°, quindi vale 100°. Se l’apertura è 100°, dividila in due settori uguali per risalire all’incidenza di 50°.'),
+            text('A incidenza normale il raggio ripercorre il segmento verso la sorgente e l’apertura così costruita è zero. Le frecce dei due raggi sono allora opposte perché indicano i versi della luce. Il valore richiesto riguarda i due segmenti che partono geometricamente dal punto di incidenza.'),
+        ],
+    },
+    'SIM-C5-L10-01': {
+        'points': [5, 20],
+        'prerequisites': ['C5-L09'],
+        'interpretation': 'Lascia i raggi in ingresso paralleli e disegna il loro incontro sul lato opposto della lente. Il fuoco più vicino corrisponde a più diottrie.',
+        'transferPrompt': 'Una lente convergente sottile mette a fuoco raggi paralleli a {x}. Quale potere ottico ha in diottrie?',
+        'blocks': [
+            text('Nel modello di lente sottile l’asse ottico passa per il centro della lente. Raggi paralleli e vicini all’asse si incontrano nel fuoco immagine. Segna in figura la distanza f dal piano della lente al fuoco. Un fuoco più vicino indica che i raggi si inclinano di più e che la lente ha potere maggiore.'),
+            formula(r'D=\frac{1}{f\ \text{in metri}},\qquad 1\ \text{diottria}=1\ \mathrm m^{-1}'),
+            text('La prima distanza è 5 cm, cioè 5/100 m = 1/20 m. Il reciproco vale 20 diottrie. Nella seconda traccia il fuoco è a 20 cm, cioè 20/100 m = 1/5 m. Il reciproco vale 5 diottrie. Se leggi 5 diottrie, il reciproco 1/5 m riporta a 20 cm.'),
+            text('Puoi controllare il calcolo con i rapporti. Il secondo fuoco è quattro volte più lontano e il secondo potere è un quarto del primo. Il potere è positivo nella convenzione del banco perché la lente è convergente. Invertire il numero in centimetri senza la conversione consegnerebbe un valore in cm⁻¹.'),
+        ],
+    },
+    'SIM-C5-L10-02': {
+        'points': [5, 20],
+        'prerequisites': ['C5-L09'],
+        'interpretation': 'Sposta l’oggetto da prima del fuoco a oltre il fuoco. Per leggere il segno di 1/q cerca l’incontro dei raggi oppure il punto in cui si incontrano i loro prolungamenti.',
+        'transferPrompt': 'L’oggetto è a {x} da una lente sottile convergente con f = 10 cm. Qual è la vergenza dell’immagine 1/q con segno, in diottrie?',
+        'blocks': [
+            text('Disegna la lente e segna i due fuochi a 10 cm. Prendi p positivo per l’oggetto reale e q positivo per un’immagine dalla parte dei raggi emergenti. Dal vertice dell’oggetto traccia il raggio centrale e quello parallelo all’asse. Quest’ultimo, dopo la lente, passa per il fuoco immagine. La loro costruzione giustifica la relazione paraassiale della lente sottile.'),
+            formula(r'\frac{1}{q}=\frac{1}{f}-\frac{1}{p},\qquad f=\frac{1}{10}\ \mathrm m'),
+            text('Per p = 5 cm hai p = 1/20 m. Ottieni 1/q = 10 − 20 = −10 diottrie. I raggi divergono e i loro prolungamenti si incontrano dal lato dell’oggetto a q = −1/10 m. Per p = 20 cm usi p = 1/5 m e trovi 1/q = 10 − 5 = +5 diottrie. I raggi convergono dal lato opposto a q = 1/5 m.'),
+            text('Al fuoco p = f i due reciproci si cancellano. La risultante è zero e i raggi emergono paralleli, con immagine all’infinito. Se parti da una vergenza immagine di +5 diottrie, la formula inversa dà 1/p = 10 − 5 = 5 m⁻¹, quindi p = 20 cm. Cambiare segno sulla vergenza cambierebbe anche il lato attribuito all’immagine.'),
+        ],
+    },
+}
+
+
 def write(path, payload):
     path.write_text(json.dumps(payload, ensure_ascii=False, sort_keys=True, indent=2) + '\n', encoding='utf-8')
 
 
-def assemble(source_file, batch_directory):
+def assemble(source_file, batch_directory, batch=BATCH, editions=EDITIONS):
     sources = {row['id']: row for row in json.loads(source_file.read_bytes())}
     records, bindings = [], []
-    for activity_id, edition in EDITIONS.items():
+    for activity_id, edition in editions.items():
         source = sources[activity_id]
         version = edition.get('sourceVersion', 1)
         if (source['version'], source['kind'], source['course']) != (version, 'experiment', 'C5'):
@@ -113,13 +178,15 @@ def assemble(source_file, batch_directory):
             'id': activity_id, 'sourceId': activity_id, 'sourceRef': SOURCE_REF,
             'sourceSha256': digest(source), 'candidateSha256': digest(record), 'assetChecksums': {},
         })
-    write(batch_directory / f'{BATCH}.json', {'schema': 'astra/1', 'records': records, 'assets': []})
-    write(batch_directory / f'{BATCH}-bindings.json', bindings)
+    write(batch_directory / f'{batch}.json', {'schema': 'astra/1', 'records': records, 'assets': []})
+    write(batch_directory / f'{batch}-bindings.json', bindings)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('source_file', type=Path)
     parser.add_argument('batch_directory', type=Path)
+    parser.add_argument('--nuclei-optics', action='store_true')
     arguments = parser.parse_args()
-    assemble(arguments.source_file, arguments.batch_directory)
+    batch, editions = (NUCLEI_OPTICS_BATCH, NUCLEI_OPTICS) if arguments.nuclei_optics else (BATCH, EDITIONS)
+    assemble(arguments.source_file, arguments.batch_directory, batch, editions)

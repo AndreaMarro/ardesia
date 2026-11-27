@@ -1,0 +1,361 @@
+{
+  "assets": [],
+  "records": [
+    {
+      "anchor": "Due atomi dello stesso elemento hanno lo",
+      "apparatus": "nucleo",
+      "assessmentSelection": {
+        "points": [
+          7,
+          8
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Il carbonio è definito dal numero atomico Z = 6. Pertanto il disegno parte con sei protoni in entrambe le configurazioni. I neutroni aggiungono nucleoni senza cambiare Z. Il numero di massa A conta i nucleoni, mentre la massa misurata in unità atomiche dipende anche dall’energia di legame.",
+          "type": "text"
+        },
+        {
+          "text": "A=Z+N,\\qquad N=A-Z",
+          "type": "formula"
+        },
+        {
+          "text": "Completa il primo disegno con sette neutroni. Hai 6 + 7 = 13 nucleoni, perciò scrivi ¹³C. Nella seconda configurazione aggiungi l’ottavo neutrone. Il conto diventa 6 + 8 = 14 e il simbolo è ¹⁴C. Se ti danno direttamente ¹⁴C puoi partire da 14 e sottrarre i 6 protoni per trovare 8 neutroni.",
+          "type": "text"
+        },
+        {
+          "text": "In entrambi i disegni i protoni restano sei. Perciò assegnare 14 al numero atomico cambierebbe elemento. Il carbonio-13 è stabile e il carbonio-14 è radioattivo. Il modello di conteggio permette di identificare i nuclei, mentre la stabilità si determina con informazioni sulla struttura nucleare.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Neutroni in un nucleo con 6 protoni",
+        "max": 8.0,
+        "min": 6.0,
+        "step": 1.0,
+        "unit": "1"
+      },
+      "course": "C5",
+      "discrete": true,
+      "formula": "A = Z + N, con Z = 6",
+      "id": "SIM-C5-L08-01",
+      "interpretation": "Tieni fissi i sei protoni nella figura. Aggiungi un neutrone per volta e aggiorna soltanto il numero di massa.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Numero di massa",
+        "unit": "1"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C5-L07"
+      ],
+      "references": [
+        [
+          6.0,
+          12.0
+        ],
+        [
+          8.0,
+          14.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Decadimenti e attività",
+      "skill": "C5-L08",
+      "substitution": "6 + {x}",
+      "summary": "Come riconosci isotopi dello stesso elemento senza confondere A e Z?",
+      "title": "Nucleo instabile, nuclidi e isotopi radioattivi",
+      "topic": "UD7 · nucleo instabile, nuclidi e isotopi radioattivi",
+      "transferPrompt": "Un nucleo di carbonio contiene 6 protoni e {x} neutroni. Quale numero di massa scrivi in alto a sinistra di C?",
+      "version": 2
+    },
+    {
+      "anchor": "Nel decadimento α viene emesso un nucleo",
+      "apparatus": "nucleo",
+      "assessmentSelection": {
+        "points": [
+          1,
+          2
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Disegna il nucleo padre come un riquadro con due numeri, Z per i protoni e A per tutti i nucleoni. Nel decadimento alfa traccia una freccia in uscita per una particella con due protoni e due neutroni. Sottrai le due quantità dai rispettivi conti. Il nucleo figlio ha due protoni e quattro nucleoni in meno.",
+          "type": "text"
+        },
+        {
+          "text": "\\alpha\\colon\\ (Z,A)\\to(Z-2,A-4),\\qquad \\beta^-\\colon\\ (Z,A)\\to(Z+1,A),\\qquad \\gamma\\colon\\ (Z,A)\\to(Z,A)",
+          "type": "formula"
+        },
+        {
+          "text": "Nel beta meno sostituisci un neutrone disegnato dentro il nucleo con un protone. Il figlio guadagna un protone e il numero totale di nucleoni è lo stesso. L’elettrone e l’antineutrino prodotti escono. La carica del figlio aumenta di un’unità, bilanciata dalla carica −e dell’elettrone. Per le due consegne inserisci −2 per l’alfa e +1 per il beta meno.",
+          "type": "text"
+        },
+        {
+          "text": "Nella transizione gamma esce un fotone e il nucleo perde energia senza cambiare Z o A. Per risalire al padre, inverti la variazione del figlio. Dopo un’alfa aggiungi 2 a Z e 4 ad A, mentre dopo un beta meno sottrai 1 a Z e conserva A.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "choices": [
+          "Alfa",
+          "Beta meno",
+          "Gamma"
+        ],
+        "label": "Transizione considerata",
+        "max": 3.0,
+        "min": 1.0,
+        "step": 1.0,
+        "unit": "1"
+      },
+      "course": "C5",
+      "formula": "α: ΔZ = −2 e ΔA = −4; β⁻: ΔZ = +1 e ΔA = 0; γ: entrambi nulli",
+      "id": "SIM-C5-L08-03",
+      "interpretation": "Tieni due conti separati mentre leggi la scena. Uno segue il numero dei protoni, l’altro conta tutti i nucleoni del nucleo figlio.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Variazione del numero atomico",
+        "unit": "1"
+      },
+      "order": 3,
+      "prerequisites": [
+        "C5-L07"
+      ],
+      "references": [
+        [
+          1.0,
+          -2.0
+        ],
+        [
+          2.0,
+          1.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Decadimenti e attività",
+      "skill": "C5-L08",
+      "substitution": [
+        "0 − 2",
+        "1 − 0",
+        "0"
+      ],
+      "summary": "Quali conteggi del nucleo cambiano nelle transizioni alfa, beta meno e gamma?",
+      "title": "Decadimenti α, β e transizioni γ",
+      "topic": "UD7 · decadimenti α, β e transizioni γ",
+      "transferPrompt": "Nel decadimento «{x}», quale valore con segno ottieni sottraendo il numero atomico del nucleo padre da quello del figlio?",
+      "version": 2
+    },
+    {
+      "anchor": "L’angolo di riflessione uguaglia l’angolo d’incidenza. Per",
+      "apparatus": "ottica",
+      "assessmentSelection": {
+        "points": [
+          20,
+          50
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Nel punto in cui il raggio incontra lo specchio, traccia la retta perpendicolare alla superficie. L’incidenza e la riflessione si misurano da questa normale. Per costruire l’apertura, parti dal punto di incidenza lungo il segmento rivolto alla sorgente. Poi attraversa la normale fino al raggio riflesso.",
+          "type": "text"
+        },
+        {
+          "text": "\\theta_r=\\theta_i,\\qquad \\alpha=\\theta_i+\\theta_r=2\\theta_i",
+          "type": "formula"
+        },
+        {
+          "text": "Nel primo disegno i due settori sono da 20° e 20°, quindi l’apertura vale 40°. Nel secondo sono da 50° e 50°, quindi vale 100°. Se l’apertura è 100°, dividila in due settori uguali per risalire all’incidenza di 50°.",
+          "type": "text"
+        },
+        {
+          "text": "A incidenza normale il raggio ripercorre il segmento verso la sorgente e l’apertura così costruita è zero. Le frecce dei due raggi sono allora opposte perché indicano i versi della luce. Il valore richiesto riguarda i due segmenti che partono geometricamente dal punto di incidenza.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Angolo incidente rispetto alla normale",
+        "max": 75.0,
+        "min": 0.0,
+        "step": 5.0,
+        "unit": "°"
+      },
+      "course": "C5",
+      "formula": "θ riflesso = θ incidente; apertura = 2θ",
+      "id": "SIM-C5-L09-01",
+      "interpretation": "Disegna la normale nel punto di incidenza. Apri due angoli uguali dai lati opposti della normale e orienta le frecce per distinguere arrivo e partenza della luce.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Angolo fra raggio verso la sorgente e raggio riflesso",
+        "unit": "°"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C5-L06"
+      ],
+      "references": [
+        [
+          20.0,
+          40.0
+        ],
+        [
+          50.0,
+          100.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Riflessione e rifrazione",
+      "skill": "C5-L09",
+      "substitution": "2 × {x}",
+      "summary": "Quale linea divide in due parti uguali il disegno della riflessione?",
+      "title": "Legge della riflessione",
+      "topic": "UD7 · legge della riflessione",
+      "transferPrompt": "Un raggio arriva su uno specchio piano con un angolo di {x} rispetto alla normale. Qual è l’apertura tra il segmento che torna alla sorgente e il raggio riflesso?",
+      "version": 2
+    },
+    {
+      "anchor": "Una lente convergente sottile porta raggi paralleli",
+      "apparatus": "ottica",
+      "assessmentSelection": {
+        "points": [
+          5,
+          20
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Nel modello di lente sottile l’asse ottico passa per il centro della lente. Raggi paralleli e vicini all’asse si incontrano nel fuoco immagine. Segna in figura la distanza f dal piano della lente al fuoco. Un fuoco più vicino indica che i raggi si inclinano di più e che la lente ha potere maggiore.",
+          "type": "text"
+        },
+        {
+          "text": "D=\\frac{1}{f\\ \\text{in metri}},\\qquad 1\\ \\text{diottria}=1\\ \\mathrm m^{-1}",
+          "type": "formula"
+        },
+        {
+          "text": "La prima distanza è 5 cm, cioè 5/100 m = 1/20 m. Il reciproco vale 20 diottrie. Nella seconda traccia il fuoco è a 20 cm, cioè 20/100 m = 1/5 m. Il reciproco vale 5 diottrie. Se leggi 5 diottrie, il reciproco 1/5 m riporta a 20 cm.",
+          "type": "text"
+        },
+        {
+          "text": "Puoi controllare il calcolo con i rapporti. Il secondo fuoco è quattro volte più lontano e il secondo potere è un quarto del primo. Il potere è positivo nella convenzione del banco perché la lente è convergente. Invertire il numero in centimetri senza la conversione consegnerebbe un valore in cm⁻¹.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Distanza focale della lente",
+        "max": 20.0,
+        "min": 5.0,
+        "step": 1.0,
+        "unit": "cm"
+      },
+      "course": "C5",
+      "formula": "D = 1/f(m) = 100/f(cm)",
+      "id": "SIM-C5-L10-01",
+      "interpretation": "Lascia i raggi in ingresso paralleli e disegna il loro incontro sul lato opposto della lente. Il fuoco più vicino corrisponde a più diottrie.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Potere diottrico",
+        "unit": "m⁻¹"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C5-L09"
+      ],
+      "references": [
+        [
+          5.0,
+          20.0
+        ],
+        [
+          20.0,
+          5.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Lenti e immagini",
+      "skill": "C5-L10",
+      "substitution": "100 / {x}",
+      "summary": "Quale lente fa incontrare prima raggi paralleli all’asse?",
+      "title": "Lenti sottili convergenti",
+      "topic": "UD7 · lenti sottili convergenti",
+      "transferPrompt": "Una lente convergente sottile mette a fuoco raggi paralleli a {x}. Quale potere ottico ha in diottrie?",
+      "version": 2
+    },
+    {
+      "anchor": "Tutte le distanze devono avere la stessa",
+      "apparatus": "ottica",
+      "assessmentSelection": {
+        "points": [
+          5,
+          20
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Disegna la lente e segna i due fuochi a 10 cm. Prendi p positivo per l’oggetto reale e q positivo per un’immagine dalla parte dei raggi emergenti. Dal vertice dell’oggetto traccia il raggio centrale e quello parallelo all’asse. Quest’ultimo, dopo la lente, passa per il fuoco immagine. La loro costruzione giustifica la relazione paraassiale della lente sottile.",
+          "type": "text"
+        },
+        {
+          "text": "\\frac{1}{q}=\\frac{1}{f}-\\frac{1}{p},\\qquad f=\\frac{1}{10}\\ \\mathrm m",
+          "type": "formula"
+        },
+        {
+          "text": "Per p = 5 cm hai p = 1/20 m. Ottieni 1/q = 10 − 20 = −10 diottrie. I raggi divergono e i loro prolungamenti si incontrano dal lato dell’oggetto a q = −1/10 m. Per p = 20 cm usi p = 1/5 m e trovi 1/q = 10 − 5 = +5 diottrie. I raggi convergono dal lato opposto a q = 1/5 m.",
+          "type": "text"
+        },
+        {
+          "text": "Al fuoco p = f i due reciproci si cancellano. La risultante è zero e i raggi emergono paralleli, con immagine all’infinito. Se parti da una vergenza immagine di +5 diottrie, la formula inversa dà 1/p = 10 − 5 = 5 m⁻¹, quindi p = 20 cm. Cambiare segno sulla vergenza cambierebbe anche il lato attribuito all’immagine.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Distanza dell’oggetto",
+        "max": 25.0,
+        "min": 5.0,
+        "step": 1.0,
+        "unit": "cm"
+      },
+      "course": "C5",
+      "formula": "1/q = 1/f − 1/p, con f = 10 cm; 1/q(m) = 10 − 100/p",
+      "id": "SIM-C5-L10-02",
+      "interpretation": "Sposta l’oggetto da prima del fuoco a oltre il fuoco. Per leggere il segno di 1/q cerca l’incontro dei raggi oppure il punto in cui si incontrano i loro prolungamenti.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Vergenza dell’immagine",
+        "unit": "diottrie"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C5-L09"
+      ],
+      "references": [
+        [
+          5.0,
+          -10.0
+        ],
+        [
+          20.0,
+          5.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Lenti e immagini",
+      "skill": "C5-L10",
+      "substitution": "10 − (100 / {x})",
+      "summary": "Come riconosci un’immagine reale, virtuale o all’infinito senza dividere per zero?",
+      "title": "Legge dei punti coniugati e formazione di immagini",
+      "topic": "UD7 · legge dei punti coniugati e formazione di immagini",
+      "transferPrompt": "L’oggetto è a {x} da una lente sottile convergente con f = 10 cm. Qual è la vergenza dell’immagine 1/q con segno, in diottrie?",
+      "version": 2
+    }
+  ],
+  "schema": "astra/1"
+}
