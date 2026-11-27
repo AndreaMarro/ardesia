@@ -1,5 +1,7 @@
-"""Run the existing independent C4–C6 model comparisons on the current app."""
+"""Replay existing independent course model comparisons on a pinned app."""
 
+import argparse
+import gzip
 import importlib
 import json
 import subprocess
@@ -12,7 +14,7 @@ from tools.corpus_engineering.runtime_fingerprint import runtime_fingerprint
 RUNTIME = 'cb9fc66d96ecced2addff3df4dfbeb0b5834e73a13719a78ea964bc28a5ada49'
 
 
-def review_course(app, output, course):
+def review_course(app, output, course, compress_raw=False):
     module = importlib.import_module(f'tools.corpus_engineering.experiments_{course}_code_partial_verifier')
     primary = app / module.PRIMARY
     protocol = app / module.PROTOCOL
@@ -39,16 +41,22 @@ def review_course(app, output, course):
         if any(proof.get(key) != value for key, value in expected.items()):
             raise ValueError('Actual code collector emitted a mismatched report')
         raw_result = output / f'{course}-{group}-actual.json'
-        raw_result.write_bytes(run.stdout)
+        if compress_raw:
+            raw_result = raw_result.with_suffix('.json.gz')
+            raw_result.write_bytes(gzip.compress(run.stdout, mtime=0))
+        else:
+            raw_result.write_bytes(run.stdout)
         compared = module.compare(group, proof, sources)
         assert {row['id'] for row in compared} == set(proof['sourceIds'])
         report = output / f'{course}-{group}-comparison.json'
         report.write_text(canonical(compared) + '\n')
         results.extend(compared)
-        status[group] = {'rawSha256': sha(run.stdout), 'comparisonsSha256': sha(report.read_bytes()),
+        status[group] = {'rawSha256': sha(run.stdout), 'artifact': raw_result.name,
+                         'artifactSha256': sha(raw_result.read_bytes()), 'comparisonsSha256': sha(report.read_bytes()),
                          'observedExit': run.returncode, 'records': len(compared),
                          'codeStates': sum(len(row['cases']) for row in proof['records'])}
-    assert {row['id'] for row in results} == set(sources)
+    if len(results) != len(sources) or {row['id'] for row in results} != set(sources):
+        raise ValueError('Incomplete or duplicate course source coverage: ' + course)
     return {'independentPrimarySha256': primary_sha, 'verifierSha256': sha(Path(module.__file__).read_bytes()),
             'collectorSha256': protocol_sha, 'groups': status, 'recordCount': len(results),
             'positiveSourceMath': sum(row['sourceMathAndActualTasksOk'] is True for row in results),
@@ -58,21 +66,35 @@ def review_course(app, output, course):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--course', choices=('C3', 'C4', 'C5', 'C6'), action='append')
+    parser.add_argument('--runtime', default=RUNTIME)
+    parser.add_argument('--commit')
+    parser.add_argument('--output', type=Path)
+    parser.add_argument('--compress-raw', action='store_true')
+    args = parser.parse_args()
     app = Path.cwd()
+    head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=app, text=True).strip()
+    if args.commit and head != args.commit:
+        raise ValueError('Unexpected source checkout')
     before = runtime_fingerprint(app)
-    if before['sha256'] != RUNTIME:
+    if before['sha256'] != args.runtime:
         raise ValueError('Unexpected current runtime')
-    output = Path(__file__).resolve().parent / 'c4-c6-current-models-20261127'
-    output.mkdir(exist_ok=True)
-    courses = {key: review_course(app, output, key) for key in ('C4', 'C5', 'C6')}
-    assert runtime_fingerprint(app) == before
-    assert sum(row['recordCount'] for row in courses.values()) == 62
-    receipt = {'runtimeSha256': RUNTIME, 'courses': courses,
-               'scope': 'Fresh installed-code replay and independent source math. Original edition only. Browser and draft evidence are separate.',
+    if args.output is None and (args.course or args.runtime != RUNTIME or args.compress_raw):
+        parser.error('--output is required for a different course, runtime or archive format')
+    output = args.output or Path(__file__).resolve().parent / 'c4-c6-current-models-20261127'
+    output.mkdir(parents=True, exist_ok=True)
+    names = args.course or ['C4', 'C5', 'C6']
+    if len(set(names)) != len(names):
+        raise ValueError('Each course must be requested once')
+    courses = {key: review_course(app, output, key, args.compress_raw) for key in names}
+    if runtime_fingerprint(app) != before:
+        raise ValueError('Application runtime changed during collection')
+    receipt = {'sourceCommit': head, 'runtimeSha256': args.runtime, 'courses': courses,
+               'scope': 'Fresh installed-code replay and independent source math. Original editions only.',
                'currentActivityCredit': 0, 'humanApproval': 'NOT_RUN', 'publicationAction': 'NONE'}
     (output / 'receipt.json').write_text(canonical(receipt) + '\n')
-    print('Replayed all 62 original C4–C6 activity models with the current installed app; no browser acceptance.')
-
+    print('Replayed', sum(row['recordCount'] for row in courses.values()), 'original models.')
 
 if __name__ == '__main__':
     main()
