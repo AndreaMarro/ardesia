@@ -292,7 +292,7 @@ export const ondulatoria = {
       const length = 0.75 * s.uscita;
       const depth = s.mostraDettaglio ? 0.29 : 0;
       b.arrow([x, 1.36, depth], [x + length, 1.36, depth], c.verde);
-      if (s.mostraDettaglio && s.uscita > 0 && s.uscita <= 2 / 11) {
+      if (s.mostraDettaglio && s.uscita > 0 && s.uscita <= 3 / 11) {
         b.arrow([x, 2.04, 0.62], [x + 4 * length, 2.04, 0.62], c.ocra, true);
       }
     }

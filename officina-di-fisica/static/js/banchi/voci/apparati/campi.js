@@ -61,7 +61,14 @@ export const campi = {
     if (s.forza !== undefined) {
       const height = s.frecceSeparate ? 0.56 : 0.67;
       const depth = s.frecceSeparate ? 0.38 : 0;
-      for (const k of [-1, 1]) b.arrow([k * d, height, depth], [k * (d + 0.62 * s.forza), height, depth], c.viola);
+      const length = 0.62 * s.forza;
+      for (const k of [-1, 1]) {
+        b.arrow([k * d, height, depth], [k * (d + length), height, depth], c.viola);
+        // Below this length the small SVG arrowhead needs the separate detail.
+        if (s.frecceSeparate && Math.abs(length) > 0 && Math.abs(length) < 0.16) {
+          b.arrow([k * d, 1.50, 0.86], [k * (d + 8 * length), 1.50, 0.86], c.ocra, true);
+        }
+      }
     }
     if (s.trasferimento)
       for (let i = 0; i < Math.abs(s.qa); i++)

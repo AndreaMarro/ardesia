@@ -12,24 +12,31 @@ async function experience(id) {
 
 test('both Coulomb forces keep the common gain clear of the charge spheres', async () => {
   const activity = await experience('SIM-C4-L01-02');
-  for (const x of [1, 2, 4, 6]) {
+  for (const x of [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6]) {
     const elements = activity.elements(x, 2);
-    const forces = elements.filter(element => element.kind === 'arrow');
+    const forces = elements.filter(element => element.kind === 'arrow' && element.c === colore.viola);
+    const detail = elements.filter(element => element.kind === 'arrow' && element.c === colore.ocra);
     assert.equal(forces.length, 2);
+    const length = 0.62 * (90 / x ** 2) / 60;
+    assert.equal(detail.length, x >= 2.5 ? 2 : 0);
     for (const [index, arrow] of forces.entries()) {
       const sense = 2 * index - 1;
       assert.equal(arrow.a[2], 0.38);
       assert.equal(arrow.b[2], arrow.a[2]);
       assert.equal(arrow.b[1], arrow.a[1]);
-      assert.ok(Math.abs(arrow.b[0] - arrow.a[0] - sense * 0.62 * (90 / x ** 2) / 60) < 1e-12);
+      assert.ok(Math.abs(arrow.b[0] - arrow.a[0] - sense * length) < 1e-12);
       assert.equal(arrow.c, colore.viola);
+      if (detail[index]) {
+        assert.equal(detail[index].dettaglio, true);
+        assert.ok(Math.abs(detail[index].b[0] - detail[index].a[0] - 8 * sense * length) < 1e-12);
+      }
     }
   }
 });
 
 test('the photoelectron inset preserves direction, gives its scale, and vanishes at zero excess', async () => {
   const activity = await experience('SIM-C5-L07-03');
-  for (const input of [13, 14, 15, 16, 17, 25]) {
+  for (const input of [13, 14, 15, 16, 17, 18, 25]) {
     const arrows = activity.elements(input, 2).filter(element => element.kind === 'arrow');
     const excess = Math.max(0, input - 14);
     if (!excess) {
@@ -41,7 +48,7 @@ test('the photoelectron inset preserves direction, gives its scale, and vanishes
     assert.equal(main.c, colore.verde);
     assert.equal(main.a[2], 0.29);
     assert.ok(Math.abs(main.b[0] - main.a[0] - length) < 1e-12);
-    if (excess <= 2) {
+    if (excess <= 3) {
       assert.equal(inset.c, colore.ocra);
       assert.equal(inset.dettaglio, true);
       assert.ok(Math.abs(inset.b[0] - inset.a[0] - 4 * length) < 1e-12);

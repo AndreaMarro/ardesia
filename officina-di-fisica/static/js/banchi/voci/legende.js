@@ -93,7 +93,7 @@ const annotazioni = {
     ['Film a due facce', 'I due contorni schematici indicano le superfici del film a due facce. La freccia ocra indica il raggio di riferimento.', ['L010-05']],
   ],
   C4: [
-    ['+1', 'Le due sfere rosse hanno ciascuna carica +1 nC. Le frecce viola sono riportate accanto alle sfere alla stessa scala, parallele alla retta che unisce i centri.', ['L01-02']],
+    ['+1', 'Le due sfere rosse hanno ciascuna carica +1 nC. Le frecce viola sono riportate accanto alle sfere alla stessa scala, parallele alla retta che unisce i centri. Il dettaglio ocra conserva i versi e ingrandisce di otto volte le frecce più corte.', ['L01-02']],
     ['P', 'Il punto P è a metà fra le due cariche. Resta fisso mentre si varia la carica a destra.', ['L02-02']],
     ['Corrente convenzionale', '', ['L05-01','L05-04','L05-05']],
     ['Pila', '', ['L05-02','L05-03','L06-02']],
