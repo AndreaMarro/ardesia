@@ -4,7 +4,6 @@
   "canonicalBranch": "officina-di-fisica",
   "canonicalHeadObserved": "7c29ccc18ad3b42ceecfca509ef57f786bd2c496",
   "stagingBranch": "feat/cric-experiment-manual-revisions",
-  "runtimeSha256": "cb9fc66d96ecced2addff3df4dfbeb0b5834e73a13719a78ea964bc28a5ada49",
   "sourceQuestionRegister": {
     "status": "ALL_SOURCE_QUESTIONS_REGISTERED_AS_REVIEWED_DRAFT",
     "ardesia": 4000,
@@ -42,14 +41,27 @@
   },
   "otherActivities": {
     "total": 385,
-    "registered": 242,
-    "open": 143,
-    "newReviewsOpen": 139,
-    "explicitlyReopened": 4,
-    "historicalClosuresNeedingCurrentRuntime": 6,
-    "overlapBetweenHistoricalClosuresAndExplicitReopenings": 1,
+    "registered": 257,
+    "open": 128,
+    "newReviewsOpen": 127,
+    "explicitlyReopened": 1,
+    "nextReopenedId": "LAB3D-03",
+    "nextNewOriginalId": "SIM-C2-L001-01",
+    "candidateCommit": "7b05fd3a9cc3b0463c1b2d32015e41cca56e8b73",
+    "registrySha256": "d6161e87211198a9516d023f347bc8f8cdc6cc03da0beb129b7557b9b221d2e5",
+    "completedOnUnifiedRuntime": false,
+    "historical242Snapshot": {
+      "registered": 242,
+      "open": 143,
+      "newReviewsOpen": 139,
+      "explicitlyReopened": 4,
+      "historicalClosuresNeedingCurrentRuntime": 6,
+      "overlapBetweenHistoricalClosuresAndExplicitReopenings": 1,
+      "nextReopenedId": "SIM-C1-L006-03",
+      "runtimeSha256": "cb9fc66d96ecced2addff3df4dfbeb0b5834e73a13719a78ea964bc28a5ada49",
+      "status": "HISTORICAL_REGISTER_SNAPSHOT"
+    },
     "independentFiveReplayCommit": "1ed3c13cebb8fe8b80dc997f8b6c9a6b0646f1e8",
-    "nextReopenedId": "SIM-C1-L006-03",
     "methodsClosureCommit": "6b3eb8ba422ca76548021d557d1d54da22d8c098",
     "currentC4ToC6ModelReplay": {
       "commit": "52b5a65b0b46d9b8603dacf1e702dbf92bff7c6b",
@@ -536,6 +548,58 @@
       "Runtime": "3ed5bc77d8320230b62e1c3e6ca3bdd00f240cc64ec236b10fe55a306ca79251",
       "independentEvidenceCommit": "34233eef99a913151be4badf5451a86472043d9a",
       "activityCredit": 0
+    },
+    "LAB3D03ActualFocusedAndInterruptedReplay": {
+      "focusedCommit": "46be39bcda147096e1211da788fb4db4838fbc4a",
+      "focusedManifestSha256": "e159918aae9fd33cd0a9b09991455fe89aa936109c3ef9f326cc12d360f9e1a7",
+      "focusedActualCases": 16,
+      "focusedExitCode": 0,
+      "fullFirstAttemptCommit": "a95e2d613d1e975f9cb37ad053c4fdb58e6d8305",
+      "fullFirstAttemptManifestSha256": "e60256b19eec275479f87fefc0277ef90c8de24f92675bc7b1333cb6726aadb4",
+      "fullFirstAttemptExitCode": 1,
+      "fullFirstAttemptPng": 59,
+      "fullFirstAttemptFailure": "LOCAL_DISK_CAPACITY",
+      "activityCredit": 0
+    },
+    "collectorCapacityInterruption": {
+      "commit": "9e3f6fbdb6b49762372114849ac08907e63cdedb",
+      "protocolSha256": "e24c46b4c11403821b026c304875f68edc76b679aa6928b1716bd597c5d15e55",
+      "actualPrefixCases": 25,
+      "actualUniquePrefixCases": 25,
+      "simulatedLowCapacity": true,
+      "terminalCode": 1,
+      "fixtureArchiveSha256": "cdb61d61b8d070913de0f2c4ce43a1671c2482c7bbe717871170632254a5c9d5",
+      "completePositiveReplay": "PENDING",
+      "activityCredit": 0
+    },
+    "hydrostaticReadingDrafts": {
+      "schemaVersion": "1.0.0",
+      "phase": "AUTHOR_DRAFT_DELIVERY",
+      "ids": [
+        "SIM-C2-L002-02",
+        "SIM-C2-L002-03",
+        "SIM-C2-L002-04",
+        "SIM-C2-L003-01"
+      ],
+      "fileSha256": {
+        "editorial/batches/experiment-c2-hydrostatic-reading-20261127.json": "78c347b7a93009ee884b52183d5606dfe53e6d887928cf0c4290929d59655830",
+        "editorial/batches/experiment-c2-hydrostatic-reading-20261127-bindings.json": "5610706630c77fb72f20c6a8121b0e1a52b0a35c0ca65c071dde05dd9560f1ad",
+        "editorial/reviews/c2-stevino-manometry-pascal-manual-20261127.md": "061f17b755553ced959c7046d07d6080ae504e1459995e4d7cad079355728a37"
+      },
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "localCanonicalImporter": {
+        "savedFirst": 4,
+        "unchangedOnRepeat": 4,
+        "savedOnRepeat": 0,
+        "publishedRecordsByteEquivalent": 991,
+        "liveAndDraftVersionsConfirmed": 4
+      },
+      "independentCheck": "IN_PROGRESS",
+      "actualOwnerPreview": "NOT_RUN",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE",
+      "manifest": "editorial/reviews/c2-hydrostatic-reading-author-20261127.json"
     }
   },
   "coexistence": {
@@ -645,9 +709,9 @@
     }
   },
   "nextAction": [
-    "Finish the independent LAB3D-03 focused and full 035 review on the corrected runtime, then close the single current withdrawal.",
+    "Repeat the complete LAB3D-03 family 035 browser proof on 1efcd after the measured capacity failure, then submit the scoped closure to the canonical validator.",
     "Continue original C2-L001-01 through C2-L001-05, where separate review already covered all 10 manual tasks.",
-    "Repeat C4 full448 with a clean resource stop protocol, preserving the original raw failed replay and its checksums.",
+    "Complete the C4 diagnosis of the three reported label collisions, verify the repairs independently and rerun full448 with the fixed collector.",
     "Continue the remaining C2–C5 activities and renew scoped evidence and complete CI on the final canonical integration SHA.",
     "Retain the separate human science approval and publication gates."
   ],
@@ -815,7 +879,8 @@
       "runtimeSha256": "1efcd26bbb078453b75be5fbd1502b95cf07c0ffabb4112a4e4cf78170ff46aa",
       "nodePass": 316,
       "contractPass": 2,
-      "separatedProbeRasterCanary": "ACTUAL16_TERMINAL0_INDEPENDENT_RASTER_REVIEW_PENDING"
+      "separatedProbeRasterCanary": "ACTUAL16_TERMINAL0_INDEPENDENT_RASTER_REVIEW_PASS_FOCUSED"
     }
-  }
+  },
+  "activityCandidateRuntimeSha256": "3ed5bc77d8320230b62e1c3e6ca3bdd00f240cc64ec236b10fe55a306ca79251"
 }
