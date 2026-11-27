@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-author-a-resident-20261127/officina-di-fisica/editorial/reviews/c3-l0403-53bd-historical-glyph-canary-a-20261127/review-canary.py", line 45, in <module>
+    FINDINGS=[state(c)for c in CASES if'interaction'in c]
+              ~~~~~^^^
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-author-a-resident-20261127/officina-di-fisica/editorial/reviews/c3-l0403-53bd-historical-glyph-canary-a-20261127/review-canary.py", line 28, in state
+    arrows=[e for e in c['elements']if e['kind']=='arrow'];require(len(arrows)==int(energy>0),'Only nonzero detail should remain at this tiny energy')
+                                                                                ~~~^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'BooleanFalse'

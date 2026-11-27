@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-author-a-resident-20261127/officina-di-fisica/editorial/reviews/c3-l0403-53bd-historical-glyph-canary-a-20261127/review-canary.py", line 45, in <module>
+    FINDINGS=[state(c)for c in CASES if'interaction'in c]
+              ~~~~~^^^
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-author-a-resident-20261127/officina-di-fisica/editorial/reviews/c3-l0403-53bd-historical-glyph-canary-a-20261127/review-canary.py", line 32, in state
+    for got,want in zip(a['b'],[Fraction(-64,25)+length,Fraction(47,20),Fraction(21,20)],strict=True):boundary.legacy.cpu.roundoff_only(got,want)
+                                                                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-author-a-resident-20261127/officina-di-fisica/tools/corpus_engineering/c3_six_heat_phase_core6ae3_review_a.py", line 40, in roundoff_only
+    if abs(actual-w)>16*math.ulp(max(1.0,abs(w))):raise ValueError('Independent exact law disagrees beyond binary roundoff')
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Independent exact law disagrees beyond binary roundoff
