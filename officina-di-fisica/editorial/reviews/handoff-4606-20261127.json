@@ -42,14 +42,14 @@
   },
   "otherActivities": {
     "total": 385,
-    "registered": 276,
-    "open": 109,
-    "newReviewsOpen": 109,
+    "registered": 285,
+    "open": 100,
+    "newReviewsOpen": 100,
     "explicitlyReopened": 0,
     "nextReopenedId": null,
     "nextNewOriginalId": "SIM-C2-L005-01",
-    "candidateCommit": "3be1ddfe5bbec66daa88127859e6c95ef5e25cd3",
-    "registrySha256": "667af5c0261d136a2d1578c0ebc5fa90851a482cab967339dac4126c25497e23",
+    "candidateCommit": "fe3f1b774faced60f82baa20f980b9d6dfb19302",
+    "registrySha256": "b81fd912f9d35af4c51b1082fbb8320f2c2981efecc42ac488b79f39a7aae61b",
     "completedOnUnifiedRuntime": false,
     "historical242Snapshot": {
       "registered": 242,
@@ -372,19 +372,20 @@
     },
     "mostAdvancedCandidate": {
       "branch": "review/cric-wave-current-integration",
-      "commit": "3be1ddfe5bbec66daa88127859e6c95ef5e25cd3",
-      "registrySha256": "667af5c0261d136a2d1578c0ebc5fa90851a482cab967339dac4126c25497e23",
+      "commit": "fe3f1b774faced60f82baa20f980b9d6dfb19302",
+      "latestEvidenceCommit": "ce411b3cf35e0ddc1284dbf6f92031d336b3e929",
+      "registrySha256": "b81fd912f9d35af4c51b1082fbb8320f2c2981efecc42ac488b79f39a7aae61b",
       "runtimeSha256": "f357b970906cb827c8e8046a42e45b35d8745179752f2a756b2affdf56bbe5f4",
-      "registeredAcrossEvidenceEpochs": 276,
+      "registeredAcrossEvidenceEpochs": 285,
       "activeAlreadyRegisteredWithdrawals": 0,
       "nextNewOriginalId": "SIM-C2-L005-01",
       "perIdStatusPath": "editorial/reviews/full-corpus-work-status-20261126.json",
-      "perIdStatusSha256": "067f21329d4ad06ba6fb4cf905837ee54f3df2111e0405cd12dd1afd560c8e75",
+      "perIdStatusSha256": "14431bb4749815ba37a509b1b7c7e1e447368548fae3f702ceef4ce6b6ac425a",
       "fullSingleRuntimeRenewal": "PENDING",
       "canonicalIntegration": "PENDING",
       "humanApproval": "NOT_RUN",
       "publicationAction": "NONE",
-      "open": 109
+      "open": 100
     },
     "twoC1FamiliesActualUi980": {
       "sourceCommit": "e02b0a767097f22ed66b7240432fc30b206217fd",
@@ -633,14 +634,15 @@
     },
     "currentSourceActivityRegister": {
       "branch": "review/cric-wave-current-integration",
-      "commit": "3be1ddfe5bbec66daa88127859e6c95ef5e25cd3",
-      "registrySha256": "667af5c0261d136a2d1578c0ebc5fa90851a482cab967339dac4126c25497e23",
+      "commit": "fe3f1b774faced60f82baa20f980b9d6dfb19302",
+      "latestEvidenceCommit": "ce411b3cf35e0ddc1284dbf6f92031d336b3e929",
+      "registrySha256": "b81fd912f9d35af4c51b1082fbb8320f2c2981efecc42ac488b79f39a7aae61b",
       "runtimeSha256": "f357b970906cb827c8e8046a42e45b35d8745179752f2a756b2affdf56bbe5f4",
-      "registeredAcrossEvidenceEpochs": 276,
+      "registeredAcrossEvidenceEpochs": 285,
       "activeAlreadyRegisteredWithdrawals": 0,
       "nextNewOriginalId": "SIM-C2-L005-01",
       "perIdStatusPath": "editorial/reviews/full-corpus-work-status-20261126.json",
-      "perIdStatusSha256": "067f21329d4ad06ba6fb4cf905837ee54f3df2111e0405cd12dd1afd560c8e75",
+      "perIdStatusSha256": "14431bb4749815ba37a509b1b7c7e1e447368548fae3f702ceef4ce6b6ac425a",
       "fullSingleRuntimeRenewal": "PENDING",
       "canonicalIntegration": "PENDING",
       "humanApproval": "NOT_RUN",
@@ -702,7 +704,7 @@
       "C2": 26,
       "C3": 35,
       "C4": 21,
-      "C5": 27
+      "C5": 18
     },
     "c3StateGasDrafts": {
       "authorCommit": "b9530f9be51234a0e9cce760025741031ab3ccfb",
@@ -806,6 +808,10 @@
         {
           "commit": "45af4e31194a07e4b9d9967874ecbaceb49cf106",
           "records": 7
+        },
+        {
+          "commit": "43083298dea4d10c37bc8940069e98ba66c464ce",
+          "records": 7
         }
       ],
       "activityCredit": 0,
@@ -879,7 +885,14 @@
         "SIM-C5-L05-01": "CURRENT_DISPLAY_AND_LEGEND_FINDINGS",
         "SIM-C5-L05-03": "HISTORICAL_CLOCK_STATES_REQUIRE_REFRESH"
       },
-      "registered": 0
+      "registered": 9,
+      "registeredCommit": "fe3f1b774faced60f82baa20f980b9d6dfb19302",
+      "currentCases": 216,
+      "currentAnswerSubmissions": 144,
+      "protectedPreviews": 27,
+      "identicalImages": 215,
+      "independentlyRereadDifferentImages": 1,
+      "updatedSourceFrameAuthorCommit": "30bb137cb159661524d695627203c4ccadd11292"
     },
     "latestContinuityCorrections": {
       "branch": "feat/cric-continuity-downstream-arrow",
@@ -893,6 +906,21 @@
       "contractsPassed": 2,
       "independentBrowser": "PENDING",
       "registered": 0
+    },
+    "historical276SourceActivityRegister": {
+      "branch": "review/cric-wave-current-integration",
+      "commit": "3be1ddfe5bbec66daa88127859e6c95ef5e25cd3",
+      "registrySha256": "667af5c0261d136a2d1578c0ebc5fa90851a482cab967339dac4126c25497e23",
+      "runtimeSha256": "f357b970906cb827c8e8046a42e45b35d8745179752f2a756b2affdf56bbe5f4",
+      "registeredAcrossEvidenceEpochs": 276,
+      "activeAlreadyRegisteredWithdrawals": 0,
+      "nextNewOriginalId": "SIM-C2-L005-01",
+      "perIdStatusPath": "editorial/reviews/full-corpus-work-status-20261126.json",
+      "perIdStatusSha256": "067f21329d4ad06ba6fb4cf905837ee54f3df2111e0405cd12dd1afd560c8e75",
+      "fullSingleRuntimeRenewal": "PENDING",
+      "canonicalIntegration": "PENDING",
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
     }
   },
   "coexistence": {
@@ -950,6 +978,27 @@
       "adaptiveQuestionRecords": 4611,
       "rawResultSha256": "29e7de495024717ced4e09c7eec33b6a6b278280614e7ea02a9718734dd926ea",
       "rawEmptyFixtureResultSha256": "9e8540157335a9e69f76bd54fe1bd6ea733a96b91c54e8287c6206a493053b1c",
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    "latestF357Proof": {
+      "commit": "ce411b3cf35e0ddc1284dbf6f92031d336b3e929",
+      "receipt": "editorial/reviews/coexistence-f357-285-20261127/result.json",
+      "receiptSha256": "5c5ad749ea546de6578ed85bb47005314245be37ff357d18b496b31be3933e9e",
+      "inputCommit": "fe3f1b774faced60f82baa20f980b9d6dfb19302",
+      "runtimeSha256": "f357b970906cb827c8e8046a42e45b35d8745179752f2a756b2affdf56bbe5f4",
+      "registrySha256": "b81fd912f9d35af4c51b1082fbb8320f2c2981efecc42ac488b79f39a7aae61b",
+      "packages": 322,
+      "importedDrafts": 4643,
+      "repeatSaved": 0,
+      "publishedPreserved": 991,
+      "preexistingSyntheticAttemptsPreserved": 3,
+      "pinnedSyntheticItemsPreserved": 3,
+      "adaptiveQuestionRecords": 4611,
+      "supplementalPracticeOutsideSourceCount": 5,
+      "protectedExamRecords": 93,
+      "rawFreshSha256": "1bf72c2736bf0fafd94262a0d1d38448ec5cbce187248c2c009dcd72e04e9900",
+      "rawHistoryFixtureSha256": "19f9b73b22cae909e3cc337f7b44384a46af792b0b84edf95e96829bb0adc810",
       "humanApproval": "NOT_RUN",
       "publicationAction": "NONE"
     }
@@ -1046,10 +1095,10 @@
     }
   },
   "nextAction": [
-    "Resume at SIM-C2-L005-01 and verify the scoped current C2 fixes on the composed app through the real consumer.",
-    "Prepare canonical private previews and independently accepted records for the nine C5 canary-positive drafts. Keep the two scoped limitations open.",
-    "Finish the C3 and remaining C4 independent checks, reconcile all 109 open records, then run the unified runtime gates, canonical PR and exact-SHA CI.",
-    "Record human approval and publication separately."
+    "Resume the open C2 activity queue from SIM-C2-L005-01. Complete independent browser evidence for the current combined continuity and Bernoulli correction scope.",
+    "Recover the two C3 L03-01 browser segments. Continue the other heat and phase IDs.",
+    "Complete the distinct review of the 21 authored C4 drafts and remaining C5 source families. Reconcile 100 open records and run the unified runtime gates, canonical PR and exact-SHA CI.",
+    "Record human approval and app publication separately."
   ],
   "composedCandidate": {
     "branch": "feat/cric-composed-runtime",
@@ -1235,5 +1284,12 @@
     "freeBytesAfter": 2937139200,
     "gitPublicationRetained": true,
     "scientificCredit": 0
+  },
+  "resumedAfterHostRestart": {
+    "recoveredCandidateCommit": "3be1ddfe5bbec66daa88127859e6c95ef5e25cd3",
+    "recoveredRuntimeSha256": "f357b970906cb827c8e8046a42e45b35d8745179752f2a756b2affdf56bbe5f4",
+    "persistedReplacementC5Evidence": "07fc7442fb0d4c14de9969102d753e849c59dcb6",
+    "temporaryC3BrowserObservationsUnavailable": 48,
+    "scientificC3EvidencePinned": "060153c771d88039109c8fba0d38507d7be50473"
   }
 }

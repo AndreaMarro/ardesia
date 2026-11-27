@@ -2,7 +2,7 @@
 
 ## Stato operativo aggiornato
 
-Per il mandato Cric, partire dal [registro e dalle ricevute correnti](officina-di-fisica/editorial/reviews/handoff-4606-20261127.json). Lo snapshot più recente attesta 4.606 quesiti registrati come bozze, 276 altre attività registrate e 109 da chiudere. Gli stati cronologici seguenti documentano passaggi precedenti.
+Per il mandato Cric, partire dal [registro e dalle ricevute correnti](officina-di-fisica/editorial/reviews/handoff-4606-20261127.json). Lo snapshot più recente attesta 4.606 quesiti registrati come bozze, 285 altre attività registrate e 100 da chiudere. Gli stati cronologici seguenti documentano passaggi precedenti.
 
 ## Stato verificato del 27 novembre — mandato incompleto
 
