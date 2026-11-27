@@ -1,0 +1,77 @@
+[
+  {
+    "id": "SIM-C3-L05-01",
+    "version": 1,
+    "title": "Conduzione",
+    "summary": "Una parete due volte più spessa lascia passare la stessa potenza?",
+    "anchor": "La conducibilità λ si misura in W/(m·K),",
+    "formula": "P = kAΔT/L; k = 1 W/(m·K), A = 0,01 m², ΔT = 20 K",
+    "interpretation": "Le facce sono mantenute a due temperature fisse. Segui il gradiente dalla calda alla fredda. Nella conduzione stazionaria monodimensionale la stessa differenza si distribuisce su una distanza maggiore.",
+    "control": {
+      "label": "Spessore della parete",
+      "unit": "cm",
+      "min": 1.0,
+      "max": 8.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Potenza condotta",
+      "unit": "W"
+    },
+    "apparatus": "barra",
+    "referenceInputOnly": [
+      2.0,
+      5.0
+    ]
+  },
+  {
+    "id": "SIM-C3-L05-02",
+    "version": 1,
+    "title": "Convezione",
+    "summary": "Come trasporta energia un liquido che entra caldo ed esce più freddo?",
+    "anchor": "Se una corrente di fluido trasporta con",
+    "formula": "P = ṁcΔT; c = 4,2 J/(g·K), ΔT = 10 K",
+    "interpretation": "Segui il fluido nel circuito. Ogni grammo cede 42 J mentre si raffredda di 10 K. Aumentando i grammi che passano ogni secondo aumenta la potenza trasportata.",
+    "control": {
+      "label": "Portata di massa",
+      "unit": "g/s",
+      "min": 0.0,
+      "max": 5.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Potenza termica trasportata",
+      "unit": "W"
+    },
+    "apparatus": "convezione",
+    "referenceInputOnly": [
+      1.0,
+      3.0
+    ]
+  },
+  {
+    "id": "SIM-C3-L05-03",
+    "version": 1,
+    "title": "Irraggiamento",
+    "summary": "Quale superficie perde energia quando la tua piastra è più fredda dell’ambiente?",
+    "anchor": "L’irraggiamento avviene mediante onde elettromagnetiche e attraversa",
+    "formula": "P/A = εσ(T⁴−Tₐ⁴); ε = 1, Tₐ = 300 K, σ ≈ 5,67×10⁻⁸",
+    "interpretation": "La piastra nera scambia radiazione con un grande ambiente a 300 K. Confronta emissione e assorbimento. La freccia netta si inverte passando per l’equilibrio.",
+    "control": {
+      "label": "Temperatura della superficie",
+      "unit": "K",
+      "min": 200.0,
+      "max": 500.0,
+      "step": 10.0
+    },
+    "measure": {
+      "label": "Flusso radiativo netto",
+      "unit": "W/m²"
+    },
+    "apparatus": "radiazione",
+    "referenceInputOnly": [
+      300.0,
+      400.0
+    ]
+  }
+]
