@@ -1,0 +1,24 @@
+{
+  "observedStages": [
+    {
+      "stage": "actual-code",
+      "exitCode": 0
+    },
+    {
+      "stage": "comparison",
+      "exitCode": 1
+    }
+  ],
+  "cause": "Checker wrongly passed a machine-grid input Decimal0.30000000000000004 into the bounded student-expression decoder. Its frozen16-character decimal guard rejected it, correctly.",
+  "correction": "Match observed IEEE input lexemes directly by Decimal equality to isolated pre-key table. Do not decode them as student expressions. All nominal exact arithmetic, source data, pre-key tables and shared decoder remain unchanged. No epsilon or grammar expansion.",
+  "additionalDiagnostic": "A real separate tracing execution observed EXACT_INPUT_FAILURE Decimal0.30000000000000004; not a candidate failure.",
+  "preservedFiles": {
+    "actual-code.json": "dfc074aafba05a1bce04cf407667f17bb8cc95ac33e5da9e517c330c4dbbcabc",
+    "actual-code.stdout.txt": "dfc074aafba05a1bce04cf407667f17bb8cc95ac33e5da9e517c330c4dbbcabc",
+    "actual-code.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "comparison.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "comparison.stderr.txt": "96c961bfb5287e2630dd9113e89d0e188e87e04b2b2211da7e89a98df621e43e",
+    "actual-terminal.json": "3674de073ddad2203852b72c01771a4b871c656cefcb2b53aa3ee41d040ad688",
+    "check_actual.py": "5f5308abd401e832af712c32af74f3bcbe405eb16dcfe806388b6f075015cff5"
+  }
+}

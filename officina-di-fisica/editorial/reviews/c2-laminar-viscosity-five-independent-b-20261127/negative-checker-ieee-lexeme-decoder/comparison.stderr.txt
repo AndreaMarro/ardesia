@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-author-b-recovery-20261127/officina-di-fisica/editorial/reviews/c2-laminar-viscosity-five-independent-b-20261127/independent_math.py", line 21, in exact
+    try:y=exact_literal(raw)
+          ~~~~~~~~~~~~~^^^^^
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-author-b-recovery-20261127/officina-di-fisica/editorial/reviews/c2-laminar-viscosity-five-independent-b-20261127/frozen_exact_arithmetic_literals.py", line 40, in exact_literal
+    value=visit(tree.body)
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-author-b-recovery-20261127/officina-di-fisica/editorial/reviews/c2-laminar-viscosity-five-independent-b-20261127/frozen_exact_arithmetic_literals.py", line 39, in visit
+    raise ValueError('unsupported arithmetic node')
+ValueError: unsupported arithmetic node
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-author-b-recovery-20261127/officina-di-fisica/editorial/reviews/c2-laminar-viscosity-five-independent-b-20261127/check_actual.py", line 35, in <module>
+    for q,x in zip(r['questions'],actualInputs):assert q['value']==ieee(x)and q['unit']==('numero puro'if unit=='1'else unit)
+                                                                   ~~~~^^^
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-author-b-recovery-20261127/officina-di-fisica/editorial/reviews/c2-laminar-viscosity-five-independent-b-20261127/check_actual.py", line 17, in ieee
+    def ieee(x):return next(s['independentIEEE']for s in prekey[ident]['tasks']+prekey[ident]['states']if exact(s['x'])==exact(x))
+                       ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-author-b-recovery-20261127/officina-di-fisica/editorial/reviews/c2-laminar-viscosity-five-independent-b-20261127/check_actual.py", line 17, in <genexpr>
+    def ieee(x):return next(s['independentIEEE']for s in prekey[ident]['tasks']+prekey[ident]['states']if exact(s['x'])==exact(x))
+                                                                                                                         ~~~~~^^^
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-author-b-recovery-20261127/officina-di-fisica/editorial/reviews/c2-laminar-viscosity-five-independent-b-20261127/independent_math.py", line 22, in exact
+    except (ValueError,SyntaxError,TypeError,OverflowError)as e:raise ValueError('Unsupported exact literal')from e
+                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unsupported exact literal

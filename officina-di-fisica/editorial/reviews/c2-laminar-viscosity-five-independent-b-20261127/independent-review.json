@@ -1,0 +1,218 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "INDEPENDENT_FIVE_DRAFT_C2_CPU_TEXT_MATH_MANUAL_REVIEW",
+  "author": "root",
+  "independentReviewer": "author_vectors_b",
+  "candidateCommit": "3176fbf64947eeb2f56e67f4264d7939e7b059b8",
+  "consumerCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "rawPackageSha256": "79c86c8eacfe0d8d24471908ef9fe4c63f2d8080b01b5bea67a527c069db73ca",
+  "reviewedRecords": [
+    {
+      "id": "SIM-C2-L007-01",
+      "candidateSha256": "4a2d1245fd979a779ea073fa19aac53efd2c42212b66125475ef268fed735664",
+      "version": 2,
+      "baseVersion": 1,
+      "skill": "C2-L007",
+      "textMathManualReview": {
+        "ok": true,
+        "assumptionsAndDimensions": "Draft explicitly supplies model waterρ1000kg/m³,η.001Pa·s,D.01m, satisfying the primary’s conditional density datum. Re uses mean section speed and is dimensionless. The2300threshold is approximate/conditional, not universal.",
+        "independentManualCalculation": "Re=10000v(m/s):.15→1500;.40→4000. Inverse1500→.15m/s,4000→.40m/s. Zero speed yields0.",
+        "manualArithmeticAndPedagogy": "Manual powers10^(3−2+3) give10^4. Draft appropriately withdraws the parabolic display at4000 rather than asserting a laminar solution there.",
+        "servedPoints": [
+          "0.15",
+          "0.40"
+        ],
+        "exactAnswers": [
+          "1500",
+          "4000"
+        ],
+        "unit": "1",
+        "literalServedPromptsVerified": true
+      },
+      "statesEachEdition": 13,
+      "visualReview": "NOT_RUN",
+      "historicalVisuals": "No new raster examined",
+      "humanApproval": "NOT_RUN",
+      "findings": []
+    },
+    {
+      "id": "SIM-C2-L007-02",
+      "candidateSha256": "821e625fceafd23bb95a8756c51881e187be9b034355f3e2e3a940c382f4ddae",
+      "version": 2,
+      "baseVersion": 1,
+      "skill": "C2-L007",
+      "textMathManualReview": {
+        "ok": true,
+        "assumptionsAndDimensions": "Stationary field at a fixed probe, with a parabolic laminar profile now explicit in the transfer task. vmax8cm/s and radiusR/2 imply3/4ofmaximum; stationarity alone would not determine that spatial value.",
+        "independentManualCalculation": "8(1−1/4)=6cm/s at both1s and2s. Multiplying6by4/3 recovers8cm/s. Observation time is not identifiable from a constant speed reading.",
+        "manualArithmeticAndPedagogy": "Stationary does not mean particles at rest or spatially uniform flow. Final formula correctly carries the8cm/s factor; unchanged KaTeX was already dimensionally explicit.",
+        "servedPoints": [
+          "1",
+          "2"
+        ],
+        "exactAnswers": [
+          "6",
+          "6"
+        ],
+        "unit": "cm/s",
+        "literalServedPromptsVerified": true
+      },
+      "statesEachEdition": 17,
+      "visualReview": "NOT_RUN",
+      "historicalVisuals": "No new raster examined",
+      "humanApproval": "NOT_RUN",
+      "findings": []
+    },
+    {
+      "id": "SIM-C2-L007-03",
+      "candidateSha256": "a40fc405ec7428a924fb5f5796f0eafb011c52ea05773d6200d8823e6dbfbdf8",
+      "version": 2,
+      "baseVersion": 1,
+      "skill": "C2-L007",
+      "textMathManualReview": {
+        "ok": true,
+        "assumptionsAndDimensions": "Newtonian constitutive law with imposed local gradient4s⁻¹. τ=ηdv/dy, stress is force per area inPa=N/m², not total force. No pressure-driven profile is inferred from the constitutive law alone.",
+        "independentManualCalculation": ".5Pa·s→2Pa;1.5Pa·s→6Pa. Inverse6Pa/(4s⁻¹)=1.5Pa·s.",
+        "manualArithmeticAndPedagogy": "Same imposed gradient can require different stresses in different fluids. Simple halves and multiplication by4; Pa·s×s⁻¹=Pa.",
+        "servedPoints": [
+          "0.5",
+          "1.5"
+        ],
+        "exactAnswers": [
+          "2",
+          "6"
+        ],
+        "unit": "Pa",
+        "literalServedPromptsVerified": true
+      },
+      "statesEachEdition": 20,
+      "visualReview": "NOT_RUN",
+      "historicalVisuals": "L007-03/04 plate occlusions remain separate/open; not inferred resolved from any CPU result.",
+      "humanApproval": "NOT_RUN",
+      "findings": []
+    },
+    {
+      "id": "SIM-C2-L007-04",
+      "candidateSha256": "2bf2855a35a2fc129904c2c28819dee13739371851fd95d8782af84ebc331767",
+      "version": 2,
+      "baseVersion": 1,
+      "skill": "C2-L007",
+      "textMathManualReview": {
+        "ok": true,
+        "assumptionsAndDimensions": "The assigned linear profile and positive gap1…8mm justify gradientΔv/h withΔv40mm/s. This is a specified kinematic profile, not a claim that arbitrary pressure-driven flow is linear.",
+        "independentManualCalculation": "2mm→20s⁻¹;5mm→8s⁻¹. SI check.04m/s divided by.002m or.005m gives20/8s⁻¹. Inverse40mm/s divided by8s⁻¹=5mm.",
+        "manualArithmeticAndPedagogy": "Same millimetre unit cancels, gradient positive for y upwards. Larger gap at fixed velocity jump lowers slope; manual divisions are exact.",
+        "servedPoints": [
+          "2",
+          "5"
+        ],
+        "exactAnswers": [
+          "20",
+          "8"
+        ],
+        "unit": "s⁻¹",
+        "literalServedPromptsVerified": true
+      },
+      "statesEachEdition": 8,
+      "visualReview": "NOT_RUN",
+      "historicalVisuals": "L007-03/04 plate occlusions remain separate/open; not inferred resolved from any CPU result.",
+      "humanApproval": "NOT_RUN",
+      "findings": []
+    },
+    {
+      "id": "SIM-C2-L007-05",
+      "candidateSha256": "ae8673cb9c447c3fc487b990a0398199ad997ed63b50078b1332c8782f56f358",
+      "version": 2,
+      "baseVersion": 1,
+      "skill": "C2-L007",
+      "textMathManualReview": {
+        "ok": true,
+        "assumptionsAndDimensions": "Circular fully developed laminar profile, stationary wall and no-slip. The dimensionless radial ratio is0…1 and velocity maximum12cm/s.",
+        "independentManualCalculation": "x.5→12(1−1/4)=9cm/s;x1→0cm/s;centerx0→12cm/s. Inversex=√(1−v/12):9→.5;0→1.",
+        "manualArithmeticAndPedagogy": "The square matters: using1−x would incorrectly give6at half-radius. Boundary0is a local velocity under no-slip, not absence of fluid; radial branch is nonnegative.",
+        "servedPoints": [
+          "0.5",
+          "1"
+        ],
+        "exactAnswers": [
+          "9",
+          "0"
+        ],
+        "unit": "cm/s",
+        "literalServedPromptsVerified": true
+      },
+      "statesEachEdition": 21,
+      "visualReview": "NOT_RUN",
+      "historicalVisuals": "No new raster examined",
+      "humanApproval": "NOT_RUN",
+      "findings": []
+    }
+  ],
+  "primary": {
+    "commit": "b991cd9bdcdcd9865f2949cd417da7c8ef550969",
+    "sha256": "35bf8a82bffa33f77226091610da3a9194a60c25b7b97f38b7d21c9f2e125853"
+  },
+  "preKeyModel": {
+    "commit": "717b48deeb302da0bbf3c73f946c184a2121a75f",
+    "sha256": "5dd92e8d074a21cc70e43553890f5b7c414d09b7af54e2f189f03f66c77df78d",
+    "consumerImports": [],
+    "realExitCode": 0,
+    "independentStates": 79,
+    "tasks": 10
+  },
+  "automation": {
+    "realTests": 14,
+    "testsExitCode": 0,
+    "actualModelStatesBothEditions": 158,
+    "manualTasks": 10,
+    "manualInputsAcceptedByUnchangedGrader": 10,
+    "negativeInputsRejected": 15,
+    "exactComparison": "Nominal rational grid by index is separate from actual IEEE grid lexemes; actual inputs and outputs strictly match isolated pre-key table. No epsilon.",
+    "originalDraftSameInputSceneClockParity": true,
+    "clockSamplesAcrossBothEditions": 380,
+    "stages": [
+      {
+        "stage": "actual-code",
+        "observedExitCode": 0,
+        "signal": null
+      },
+      {
+        "stage": "comparison",
+        "observedExitCode": 0,
+        "signal": null
+      },
+      {
+        "stage": "tests",
+        "observedExitCode": 0,
+        "signal": null
+      },
+      {
+        "stage": "grader",
+        "observedExitCode": 0,
+        "signal": null
+      }
+    ]
+  },
+  "historicalFinding": {
+    "id": "SIM-C2-L007-02",
+    "field": "formula",
+    "oldCommit": "0c538bad8dc26b2942509ca209d26aaf6b592f63",
+    "status": "RESOLVED_ON_3176_ONLY",
+    "strictDiff": "Only formula changed; four other records and all correct answer values/points/blocks unchanged.",
+    "oldBytesAndMathRun": "superseded-0c538-before-unit-field/"
+  },
+  "sourceAndCandidateIdentities": "ALL5_CANONICAL_BINDINGS_AND_GIT_SNAPSHOTS_BYTE_EXACT",
+  "findings": [],
+  "negativeHistory": [
+    "negative-checker-ieee-lexeme-decoder: attempted to use bounded student-expression grammar on machine coordinate0.30000000000000004; rejected. Fixed only IEEE lookup, mathematical decoder unchanged.",
+    "refresh-bootstrap-refusal.json: whitespace assertion and later exclusive-open refusal before any child; no prior results overwritten or called fresh."
+  ],
+  "reviewedSource": "All candidate fields and blocks read after primary/model freeze; density and parabolic conditions verified explicit; theoretical C2-L007 preserved.",
+  "Chrome": "NOT_RUN",
+  "canonicalDBImport": "NOT_RUN",
+  "runtimeFingerprint": "NOT_RUN_FULL_RUNTIME;actualCPUmodules pinned to1b72and Gitbyteverified",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "activityCredit": 0,
+  "timestamp": "2026-11-27T08:58:30.431637+00:00"
+}

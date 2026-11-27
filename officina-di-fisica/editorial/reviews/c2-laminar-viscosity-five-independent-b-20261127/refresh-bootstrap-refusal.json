@@ -1,0 +1,8 @@
+{
+  "observed": "First refresh refused on overly literal whitespace assertion: expected1\u2212 vsactual1 \u2212. CandidateSHA assertion had already matched.",
+  "consequentRun": "Shell lacked set-e, so attempted fresh wrapper; exclusive-open protection refused existing stdout before any child. No old result overwritten or called fresh.",
+  "correction": "Use actual whitespace in explicit field assertion, read original bytes from preserved archive, and set-e before refresh/run. Structural only-formula assertion and candidateSHA unchanged.",
+  "candidateFailure": false,
+  "Chrome": "NOT_RUN",
+  "activityCredit": 0
+}

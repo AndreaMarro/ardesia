@@ -1,0 +1,1624 @@
+{
+  "phase": "FIVE_C2_CPU_SCIENTIFIC_COMPARISON",
+  "candidateCommit": "3176fbf64947eeb2f56e67f4264d7939e7b059b8",
+  "consumerCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "states": 158,
+  "records": [
+    {
+      "id": "SIM-C2-L007-01",
+      "variant": "published",
+      "manualPoints": [
+        "2/5",
+        "3/10"
+      ],
+      "manualNominalExactAnswers": [
+        "4000",
+        "3000"
+      ],
+      "sourceUnit": "1",
+      "states": [
+        {
+          "gridIndex": 0,
+          "nominalInput": "0",
+          "actualInputLexeme": "0",
+          "nominalExactGivenData": "0",
+          "actualOutputLexeme": "0",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "nominalInput": "1/20",
+          "actualInputLexeme": "0.05",
+          "nominalExactGivenData": "500",
+          "actualOutputLexeme": "500",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "nominalInput": "1/10",
+          "actualInputLexeme": "0.1",
+          "nominalExactGivenData": "1000",
+          "actualOutputLexeme": "1000",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "nominalInput": "3/20",
+          "actualInputLexeme": "0.15000000000000002",
+          "nominalExactGivenData": "1500",
+          "actualOutputLexeme": "1500.0000000000002",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "nominalInput": "1/5",
+          "actualInputLexeme": "0.2",
+          "nominalExactGivenData": "2000",
+          "actualOutputLexeme": "2000",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "nominalInput": "1/4",
+          "actualInputLexeme": "0.25",
+          "nominalExactGivenData": "2500",
+          "actualOutputLexeme": "2500",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "nominalInput": "3/10",
+          "actualInputLexeme": "0.30000000000000004",
+          "nominalExactGivenData": "3000",
+          "actualOutputLexeme": "3000.0000000000005",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "nominalInput": "7/20",
+          "actualInputLexeme": "0.35000000000000003",
+          "nominalExactGivenData": "3500",
+          "actualOutputLexeme": "3500.0000000000005",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "nominalInput": "2/5",
+          "actualInputLexeme": "0.4",
+          "nominalExactGivenData": "4000",
+          "actualOutputLexeme": "4000",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "nominalInput": "9/20",
+          "actualInputLexeme": "0.45",
+          "nominalExactGivenData": "4500",
+          "actualOutputLexeme": "4500",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "nominalInput": "1/2",
+          "actualInputLexeme": "0.5",
+          "nominalExactGivenData": "5000",
+          "actualOutputLexeme": "5000",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 11,
+          "nominalInput": "11/20",
+          "actualInputLexeme": "0.55",
+          "nominalExactGivenData": "5500",
+          "actualOutputLexeme": "5500",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 12,
+          "nominalInput": "3/5",
+          "actualInputLexeme": "0.6000000000000001",
+          "nominalExactGivenData": "6000",
+          "actualOutputLexeme": "6000.000000000001",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Velocità media» su 0,4 m/s. Quale valore ottieni per «Numero di Reynolds»?",
+          "value": 4000,
+          "unit": "numero puro",
+          "worked": "Re = ρvD/η; acqua, D = 0,01 m, η = 0,001 Pa·s. 10000 × 0,4 = 4000."
+        },
+        {
+          "prompt": "Acqua con viscosità 0,001 Pa·s percorre un tubo di diametro 1 cm a 0,3 m/s. Quale numero di Reynolds useresti per valutare il regime?",
+          "value": "3000.0000000000005",
+          "unit": "numero puro",
+          "worked": "Re = ρvD/η; acqua, D = 0,01 m, η = 0,001 Pa·s. 10000 × 0,3 ≈ 3000."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "4000",
+        "3000"
+      ],
+      "literalPromptsMatchFrozenData": false
+    },
+    {
+      "id": "SIM-C2-L007-01",
+      "variant": "draft",
+      "manualPoints": [
+        "0.15",
+        "0.40"
+      ],
+      "manualNominalExactAnswers": [
+        "1500",
+        "4000"
+      ],
+      "sourceUnit": "1",
+      "states": [
+        {
+          "gridIndex": 0,
+          "nominalInput": "0",
+          "actualInputLexeme": "0",
+          "nominalExactGivenData": "0",
+          "actualOutputLexeme": "0",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "nominalInput": "1/20",
+          "actualInputLexeme": "0.05",
+          "nominalExactGivenData": "500",
+          "actualOutputLexeme": "500",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "nominalInput": "1/10",
+          "actualInputLexeme": "0.1",
+          "nominalExactGivenData": "1000",
+          "actualOutputLexeme": "1000",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "nominalInput": "3/20",
+          "actualInputLexeme": "0.15000000000000002",
+          "nominalExactGivenData": "1500",
+          "actualOutputLexeme": "1500.0000000000002",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "nominalInput": "1/5",
+          "actualInputLexeme": "0.2",
+          "nominalExactGivenData": "2000",
+          "actualOutputLexeme": "2000",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "nominalInput": "1/4",
+          "actualInputLexeme": "0.25",
+          "nominalExactGivenData": "2500",
+          "actualOutputLexeme": "2500",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "nominalInput": "3/10",
+          "actualInputLexeme": "0.30000000000000004",
+          "nominalExactGivenData": "3000",
+          "actualOutputLexeme": "3000.0000000000005",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "nominalInput": "7/20",
+          "actualInputLexeme": "0.35000000000000003",
+          "nominalExactGivenData": "3500",
+          "actualOutputLexeme": "3500.0000000000005",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "nominalInput": "2/5",
+          "actualInputLexeme": "0.4",
+          "nominalExactGivenData": "4000",
+          "actualOutputLexeme": "4000",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "nominalInput": "9/20",
+          "actualInputLexeme": "0.45",
+          "nominalExactGivenData": "4500",
+          "actualOutputLexeme": "4500",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "nominalInput": "1/2",
+          "actualInputLexeme": "0.5",
+          "nominalExactGivenData": "5000",
+          "actualOutputLexeme": "5000",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 11,
+          "nominalInput": "11/20",
+          "actualInputLexeme": "0.55",
+          "nominalExactGivenData": "5500",
+          "actualOutputLexeme": "5500",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 12,
+          "nominalInput": "3/5",
+          "actualInputLexeme": "0.6000000000000001",
+          "nominalExactGivenData": "6000",
+          "actualOutputLexeme": "6000.000000000001",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Velocità media» su 0,15 m/s. Quale valore ottieni per «Numero di Reynolds»?",
+          "value": 1500,
+          "unit": "numero puro",
+          "worked": "Re = ρvD/η; acqua, D = 0,01 m, η = 0,001 Pa·s. 10000 × 0,15 = 1500."
+        },
+        {
+          "prompt": "Acqua di densità 1.000 kg/m³ e viscosità 0,001 Pa·s percorre un tubo di diametro 1 cm a 0,4 m/s. Quale numero di Reynolds ottieni?",
+          "value": 4000,
+          "unit": "numero puro",
+          "worked": "Re = ρvD/η; acqua, D = 0,01 m, η = 0,001 Pa·s. 10000 × 0,4 = 4000."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "1500",
+        "4000"
+      ],
+      "literalPromptsMatchFrozenData": true
+    },
+    {
+      "id": "SIM-C2-L007-02",
+      "variant": "published",
+      "manualPoints": [
+        "3",
+        "2"
+      ],
+      "manualNominalExactAnswers": [
+        "6",
+        "6"
+      ],
+      "sourceUnit": "cm/s",
+      "states": [
+        {
+          "gridIndex": 0,
+          "nominalInput": "0",
+          "actualInputLexeme": "0",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "nominalInput": "1/4",
+          "actualInputLexeme": "0.25",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "nominalInput": "1/2",
+          "actualInputLexeme": "0.5",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "nominalInput": "3/4",
+          "actualInputLexeme": "0.75",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "nominalInput": "1",
+          "actualInputLexeme": "1",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "nominalInput": "5/4",
+          "actualInputLexeme": "1.25",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "nominalInput": "3/2",
+          "actualInputLexeme": "1.5",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "nominalInput": "7/4",
+          "actualInputLexeme": "1.75",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "nominalInput": "2",
+          "actualInputLexeme": "2",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "nominalInput": "9/4",
+          "actualInputLexeme": "2.25",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "nominalInput": "5/2",
+          "actualInputLexeme": "2.5",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 11,
+          "nominalInput": "11/4",
+          "actualInputLexeme": "2.75",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 12,
+          "nominalInput": "3",
+          "actualInputLexeme": "3",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 13,
+          "nominalInput": "13/4",
+          "actualInputLexeme": "3.25",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 14,
+          "nominalInput": "7/2",
+          "actualInputLexeme": "3.5",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 15,
+          "nominalInput": "15/4",
+          "actualInputLexeme": "3.75",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 16,
+          "nominalInput": "4",
+          "actualInputLexeme": "4",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Istante di osservazione» su 3 s. Quale valore ottieni per «Velocità a metà raggio»?",
+          "value": 6,
+          "unit": "cm/s",
+          "worked": "v(R/2) = 8[1−(1/2)²] = 6 cm/s. 8 × (1 − 0,5²) = 6 cm/s."
+        },
+        {
+          "prompt": "Lasci la sonda a metà raggio in un moto stazionario con velocità sull’asse di 8 cm/s. Al tempo 2 s, quale velocità locale dovrebbe ancora segnalare?",
+          "value": 6,
+          "unit": "cm/s",
+          "worked": "v(R/2) = 8[1−(1/2)²] = 6 cm/s. 8 × (1 − 0,5²) = 6 cm/s."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "6",
+        "6"
+      ],
+      "literalPromptsMatchFrozenData": false
+    },
+    {
+      "id": "SIM-C2-L007-02",
+      "variant": "draft",
+      "manualPoints": [
+        "1",
+        "2"
+      ],
+      "manualNominalExactAnswers": [
+        "6",
+        "6"
+      ],
+      "sourceUnit": "cm/s",
+      "states": [
+        {
+          "gridIndex": 0,
+          "nominalInput": "0",
+          "actualInputLexeme": "0",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "nominalInput": "1/4",
+          "actualInputLexeme": "0.25",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "nominalInput": "1/2",
+          "actualInputLexeme": "0.5",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "nominalInput": "3/4",
+          "actualInputLexeme": "0.75",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "nominalInput": "1",
+          "actualInputLexeme": "1",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "nominalInput": "5/4",
+          "actualInputLexeme": "1.25",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "nominalInput": "3/2",
+          "actualInputLexeme": "1.5",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "nominalInput": "7/4",
+          "actualInputLexeme": "1.75",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "nominalInput": "2",
+          "actualInputLexeme": "2",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "nominalInput": "9/4",
+          "actualInputLexeme": "2.25",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "nominalInput": "5/2",
+          "actualInputLexeme": "2.5",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 11,
+          "nominalInput": "11/4",
+          "actualInputLexeme": "2.75",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 12,
+          "nominalInput": "3",
+          "actualInputLexeme": "3",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 13,
+          "nominalInput": "13/4",
+          "actualInputLexeme": "3.25",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 14,
+          "nominalInput": "7/2",
+          "actualInputLexeme": "3.5",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 15,
+          "nominalInput": "15/4",
+          "actualInputLexeme": "3.75",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 16,
+          "nominalInput": "4",
+          "actualInputLexeme": "4",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Istante di osservazione» su 1 s. Quale valore ottieni per «Velocità a metà raggio»?",
+          "value": 6,
+          "unit": "cm/s",
+          "worked": "v(R/2) = (8 cm/s)[1 − (1/2)²] = 6 cm/s. 8 × (1 − 0,5²) = 6 cm/s."
+        },
+        {
+          "prompt": "La sonda resta a metà raggio in un flusso laminare stazionario. Il profilo è parabolico e al centro l’acqua scorre a 8 cm/s. Al tempo 2 s, quale velocità locale misuri?",
+          "value": 6,
+          "unit": "cm/s",
+          "worked": "v(R/2) = (8 cm/s)[1 − (1/2)²] = 6 cm/s. 8 × (1 − 0,5²) = 6 cm/s."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "6",
+        "6"
+      ],
+      "literalPromptsMatchFrozenData": true
+    },
+    {
+      "id": "SIM-C2-L007-03",
+      "variant": "published",
+      "manualPoints": [
+        "3/2",
+        "11/10"
+      ],
+      "manualNominalExactAnswers": [
+        "6",
+        "22/5"
+      ],
+      "sourceUnit": "Pa",
+      "states": [
+        {
+          "gridIndex": 0,
+          "nominalInput": "1/10",
+          "actualInputLexeme": "0.1",
+          "nominalExactGivenData": "2/5",
+          "actualOutputLexeme": "0.4",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "nominalInput": "1/5",
+          "actualInputLexeme": "0.2",
+          "nominalExactGivenData": "4/5",
+          "actualOutputLexeme": "0.8",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "nominalInput": "3/10",
+          "actualInputLexeme": "0.30000000000000004",
+          "nominalExactGivenData": "6/5",
+          "actualOutputLexeme": "1.2000000000000002",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "nominalInput": "2/5",
+          "actualInputLexeme": "0.4",
+          "nominalExactGivenData": "8/5",
+          "actualOutputLexeme": "1.6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "nominalInput": "1/2",
+          "actualInputLexeme": "0.5",
+          "nominalExactGivenData": "2",
+          "actualOutputLexeme": "2",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "nominalInput": "3/5",
+          "actualInputLexeme": "0.6",
+          "nominalExactGivenData": "12/5",
+          "actualOutputLexeme": "2.4",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "nominalInput": "7/10",
+          "actualInputLexeme": "0.7000000000000001",
+          "nominalExactGivenData": "14/5",
+          "actualOutputLexeme": "2.8000000000000003",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "nominalInput": "4/5",
+          "actualInputLexeme": "0.8",
+          "nominalExactGivenData": "16/5",
+          "actualOutputLexeme": "3.2",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "nominalInput": "9/10",
+          "actualInputLexeme": "0.9",
+          "nominalExactGivenData": "18/5",
+          "actualOutputLexeme": "3.6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "nominalInput": "1",
+          "actualInputLexeme": "1",
+          "nominalExactGivenData": "4",
+          "actualOutputLexeme": "4",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "nominalInput": "11/10",
+          "actualInputLexeme": "1.1",
+          "nominalExactGivenData": "22/5",
+          "actualOutputLexeme": "4.4",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 11,
+          "nominalInput": "6/5",
+          "actualInputLexeme": "1.2000000000000002",
+          "nominalExactGivenData": "24/5",
+          "actualOutputLexeme": "4.800000000000001",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 12,
+          "nominalInput": "13/10",
+          "actualInputLexeme": "1.3000000000000003",
+          "nominalExactGivenData": "26/5",
+          "actualOutputLexeme": "5.200000000000001",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 13,
+          "nominalInput": "7/5",
+          "actualInputLexeme": "1.4000000000000001",
+          "nominalExactGivenData": "28/5",
+          "actualOutputLexeme": "5.6000000000000005",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 14,
+          "nominalInput": "3/2",
+          "actualInputLexeme": "1.5000000000000002",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6.000000000000001",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 15,
+          "nominalInput": "8/5",
+          "actualInputLexeme": "1.6",
+          "nominalExactGivenData": "32/5",
+          "actualOutputLexeme": "6.4",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 16,
+          "nominalInput": "17/10",
+          "actualInputLexeme": "1.7000000000000002",
+          "nominalExactGivenData": "34/5",
+          "actualOutputLexeme": "6.800000000000001",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 17,
+          "nominalInput": "9/5",
+          "actualInputLexeme": "1.8000000000000003",
+          "nominalExactGivenData": "36/5",
+          "actualOutputLexeme": "7.200000000000001",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 18,
+          "nominalInput": "19/10",
+          "actualInputLexeme": "1.9000000000000001",
+          "nominalExactGivenData": "38/5",
+          "actualOutputLexeme": "7.6000000000000005",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 19,
+          "nominalInput": "2",
+          "actualInputLexeme": "2",
+          "nominalExactGivenData": "8",
+          "actualOutputLexeme": "8",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Viscosità dinamica» su 1,5 Pa·s. Quale valore ottieni per «Sforzo di taglio»?",
+          "value": 6,
+          "unit": "Pa",
+          "worked": "τ = η dv/dy = 4η. 4 × 1,5 = 6 Pa."
+        },
+        {
+          "prompt": "Mantieni un gradiente di velocità di 4 s⁻¹ e usi un liquido con viscosità 1,1 Pa·s. Quale sforzo tangenziale si esercita?",
+          "value": "4.4",
+          "unit": "Pa",
+          "worked": "τ = η dv/dy = 4η. 4 × 1,1 = 4,4 Pa."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "6",
+        "4,4"
+      ],
+      "literalPromptsMatchFrozenData": false
+    },
+    {
+      "id": "SIM-C2-L007-03",
+      "variant": "draft",
+      "manualPoints": [
+        "0.5",
+        "1.5"
+      ],
+      "manualNominalExactAnswers": [
+        "2",
+        "6"
+      ],
+      "sourceUnit": "Pa",
+      "states": [
+        {
+          "gridIndex": 0,
+          "nominalInput": "1/10",
+          "actualInputLexeme": "0.1",
+          "nominalExactGivenData": "2/5",
+          "actualOutputLexeme": "0.4",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "nominalInput": "1/5",
+          "actualInputLexeme": "0.2",
+          "nominalExactGivenData": "4/5",
+          "actualOutputLexeme": "0.8",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "nominalInput": "3/10",
+          "actualInputLexeme": "0.30000000000000004",
+          "nominalExactGivenData": "6/5",
+          "actualOutputLexeme": "1.2000000000000002",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "nominalInput": "2/5",
+          "actualInputLexeme": "0.4",
+          "nominalExactGivenData": "8/5",
+          "actualOutputLexeme": "1.6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "nominalInput": "1/2",
+          "actualInputLexeme": "0.5",
+          "nominalExactGivenData": "2",
+          "actualOutputLexeme": "2",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "nominalInput": "3/5",
+          "actualInputLexeme": "0.6",
+          "nominalExactGivenData": "12/5",
+          "actualOutputLexeme": "2.4",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "nominalInput": "7/10",
+          "actualInputLexeme": "0.7000000000000001",
+          "nominalExactGivenData": "14/5",
+          "actualOutputLexeme": "2.8000000000000003",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "nominalInput": "4/5",
+          "actualInputLexeme": "0.8",
+          "nominalExactGivenData": "16/5",
+          "actualOutputLexeme": "3.2",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "nominalInput": "9/10",
+          "actualInputLexeme": "0.9",
+          "nominalExactGivenData": "18/5",
+          "actualOutputLexeme": "3.6",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "nominalInput": "1",
+          "actualInputLexeme": "1",
+          "nominalExactGivenData": "4",
+          "actualOutputLexeme": "4",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "nominalInput": "11/10",
+          "actualInputLexeme": "1.1",
+          "nominalExactGivenData": "22/5",
+          "actualOutputLexeme": "4.4",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 11,
+          "nominalInput": "6/5",
+          "actualInputLexeme": "1.2000000000000002",
+          "nominalExactGivenData": "24/5",
+          "actualOutputLexeme": "4.800000000000001",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 12,
+          "nominalInput": "13/10",
+          "actualInputLexeme": "1.3000000000000003",
+          "nominalExactGivenData": "26/5",
+          "actualOutputLexeme": "5.200000000000001",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 13,
+          "nominalInput": "7/5",
+          "actualInputLexeme": "1.4000000000000001",
+          "nominalExactGivenData": "28/5",
+          "actualOutputLexeme": "5.6000000000000005",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 14,
+          "nominalInput": "3/2",
+          "actualInputLexeme": "1.5000000000000002",
+          "nominalExactGivenData": "6",
+          "actualOutputLexeme": "6.000000000000001",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 15,
+          "nominalInput": "8/5",
+          "actualInputLexeme": "1.6",
+          "nominalExactGivenData": "32/5",
+          "actualOutputLexeme": "6.4",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 16,
+          "nominalInput": "17/10",
+          "actualInputLexeme": "1.7000000000000002",
+          "nominalExactGivenData": "34/5",
+          "actualOutputLexeme": "6.800000000000001",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 17,
+          "nominalInput": "9/5",
+          "actualInputLexeme": "1.8000000000000003",
+          "nominalExactGivenData": "36/5",
+          "actualOutputLexeme": "7.200000000000001",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 18,
+          "nominalInput": "19/10",
+          "actualInputLexeme": "1.9000000000000001",
+          "nominalExactGivenData": "38/5",
+          "actualOutputLexeme": "7.6000000000000005",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 19,
+          "nominalInput": "2",
+          "actualInputLexeme": "2",
+          "nominalExactGivenData": "8",
+          "actualOutputLexeme": "8",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Viscosità dinamica» su 0,5 Pa·s. Quale valore ottieni per «Sforzo di taglio»?",
+          "value": 2,
+          "unit": "Pa",
+          "worked": "τ = η dv/dy, con dv/dy = 4 s⁻¹. 4 × 0,5 = 2 Pa."
+        },
+        {
+          "prompt": "Il gradiente resta 4 s⁻¹ fra le lastre. Con una viscosità di 1,5 Pa·s, quale sforzo di taglio ottieni per il fluido newtoniano?",
+          "value": 6,
+          "unit": "Pa",
+          "worked": "τ = η dv/dy, con dv/dy = 4 s⁻¹. 4 × 1,5 = 6 Pa."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "2",
+        "6"
+      ],
+      "literalPromptsMatchFrozenData": true
+    },
+    {
+      "id": "SIM-C2-L007-04",
+      "variant": "published",
+      "manualPoints": [
+        "4",
+        "6"
+      ],
+      "manualNominalExactAnswers": [
+        "10",
+        "20/3"
+      ],
+      "sourceUnit": "s⁻¹",
+      "states": [
+        {
+          "gridIndex": 0,
+          "nominalInput": "1",
+          "actualInputLexeme": "1",
+          "nominalExactGivenData": "40",
+          "actualOutputLexeme": "40",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "nominalInput": "2",
+          "actualInputLexeme": "2",
+          "nominalExactGivenData": "20",
+          "actualOutputLexeme": "20",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "nominalInput": "3",
+          "actualInputLexeme": "3",
+          "nominalExactGivenData": "40/3",
+          "actualOutputLexeme": "13.333333333333334",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "nominalInput": "4",
+          "actualInputLexeme": "4",
+          "nominalExactGivenData": "10",
+          "actualOutputLexeme": "10",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "nominalInput": "5",
+          "actualInputLexeme": "5",
+          "nominalExactGivenData": "8",
+          "actualOutputLexeme": "8",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "nominalInput": "6",
+          "actualInputLexeme": "6",
+          "nominalExactGivenData": "20/3",
+          "actualOutputLexeme": "6.666666666666667",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "nominalInput": "7",
+          "actualInputLexeme": "7",
+          "nominalExactGivenData": "40/7",
+          "actualOutputLexeme": "5.714285714285714",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "nominalInput": "8",
+          "actualInputLexeme": "8",
+          "nominalExactGivenData": "5",
+          "actualOutputLexeme": "5",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Distanza fra le lastre» su 4 mm. Quale valore ottieni per «Gradiente di velocità»?",
+          "value": 10,
+          "unit": "s⁻¹",
+          "worked": "dv/dy = Δv/h, con Δv = 40 mm/s. 40 / 4 = 10 s⁻¹."
+        },
+        {
+          "prompt": "Due piastre distano 6 mm e differiscono in velocità di 40 mm/s. Quale gradiente misura lo strumento fra le due?",
+          "value": "6.666666666666667",
+          "unit": "s⁻¹",
+          "worked": "dv/dy = Δv/h, con Δv = 40 mm/s. 40 / 6 ≈ 6,667 s⁻¹."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "10",
+        "6,667"
+      ],
+      "literalPromptsMatchFrozenData": false
+    },
+    {
+      "id": "SIM-C2-L007-04",
+      "variant": "draft",
+      "manualPoints": [
+        "2",
+        "5"
+      ],
+      "manualNominalExactAnswers": [
+        "20",
+        "8"
+      ],
+      "sourceUnit": "s⁻¹",
+      "states": [
+        {
+          "gridIndex": 0,
+          "nominalInput": "1",
+          "actualInputLexeme": "1",
+          "nominalExactGivenData": "40",
+          "actualOutputLexeme": "40",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "nominalInput": "2",
+          "actualInputLexeme": "2",
+          "nominalExactGivenData": "20",
+          "actualOutputLexeme": "20",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "nominalInput": "3",
+          "actualInputLexeme": "3",
+          "nominalExactGivenData": "40/3",
+          "actualOutputLexeme": "13.333333333333334",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "nominalInput": "4",
+          "actualInputLexeme": "4",
+          "nominalExactGivenData": "10",
+          "actualOutputLexeme": "10",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "nominalInput": "5",
+          "actualInputLexeme": "5",
+          "nominalExactGivenData": "8",
+          "actualOutputLexeme": "8",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "nominalInput": "6",
+          "actualInputLexeme": "6",
+          "nominalExactGivenData": "20/3",
+          "actualOutputLexeme": "6.666666666666667",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "nominalInput": "7",
+          "actualInputLexeme": "7",
+          "nominalExactGivenData": "40/7",
+          "actualOutputLexeme": "5.714285714285714",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "nominalInput": "8",
+          "actualInputLexeme": "8",
+          "nominalExactGivenData": "5",
+          "actualOutputLexeme": "5",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Distanza fra le lastre» su 2 mm. Quale valore ottieni per «Gradiente di velocità»?",
+          "value": 20,
+          "unit": "s⁻¹",
+          "worked": "dv/dy = Δv/h, con Δv = 40 mm/s. 40 / 2 = 20 s⁻¹."
+        },
+        {
+          "prompt": "Le due lastre distano 5 mm. Quella superiore scorre a 40 mm/s e quella inferiore è ferma. Quale gradiente trovi per un profilo lineare?",
+          "value": 8,
+          "unit": "s⁻¹",
+          "worked": "dv/dy = Δv/h, con Δv = 40 mm/s. 40 / 5 = 8 s⁻¹."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "20",
+        "8"
+      ],
+      "literalPromptsMatchFrozenData": true
+    },
+    {
+      "id": "SIM-C2-L007-05",
+      "variant": "published",
+      "manualPoints": [
+        "1/2",
+        "11/20"
+      ],
+      "manualNominalExactAnswers": [
+        "9",
+        "837/100"
+      ],
+      "sourceUnit": "cm/s",
+      "states": [
+        {
+          "gridIndex": 0,
+          "nominalInput": "0",
+          "actualInputLexeme": "0",
+          "nominalExactGivenData": "12",
+          "actualOutputLexeme": "12",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "nominalInput": "1/20",
+          "actualInputLexeme": "0.05",
+          "nominalExactGivenData": "1197/100",
+          "actualOutputLexeme": "11.97",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "nominalInput": "1/10",
+          "actualInputLexeme": "0.1",
+          "nominalExactGivenData": "297/25",
+          "actualOutputLexeme": "11.879999999999999",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "nominalInput": "3/20",
+          "actualInputLexeme": "0.15000000000000002",
+          "nominalExactGivenData": "1173/100",
+          "actualOutputLexeme": "11.73",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "nominalInput": "1/5",
+          "actualInputLexeme": "0.2",
+          "nominalExactGivenData": "288/25",
+          "actualOutputLexeme": "11.52",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "nominalInput": "1/4",
+          "actualInputLexeme": "0.25",
+          "nominalExactGivenData": "45/4",
+          "actualOutputLexeme": "11.25",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "nominalInput": "3/10",
+          "actualInputLexeme": "0.30000000000000004",
+          "nominalExactGivenData": "273/25",
+          "actualOutputLexeme": "10.919999999999998",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "nominalInput": "7/20",
+          "actualInputLexeme": "0.35000000000000003",
+          "nominalExactGivenData": "1053/100",
+          "actualOutputLexeme": "10.53",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "nominalInput": "2/5",
+          "actualInputLexeme": "0.4",
+          "nominalExactGivenData": "252/25",
+          "actualOutputLexeme": "10.08",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "nominalInput": "9/20",
+          "actualInputLexeme": "0.45",
+          "nominalExactGivenData": "957/100",
+          "actualOutputLexeme": "9.57",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "nominalInput": "1/2",
+          "actualInputLexeme": "0.5",
+          "nominalExactGivenData": "9",
+          "actualOutputLexeme": "9",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 11,
+          "nominalInput": "11/20",
+          "actualInputLexeme": "0.55",
+          "nominalExactGivenData": "837/100",
+          "actualOutputLexeme": "8.370000000000001",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 12,
+          "nominalInput": "3/5",
+          "actualInputLexeme": "0.6000000000000001",
+          "nominalExactGivenData": "192/25",
+          "actualOutputLexeme": "7.679999999999999",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 13,
+          "nominalInput": "13/20",
+          "actualInputLexeme": "0.65",
+          "nominalExactGivenData": "693/100",
+          "actualOutputLexeme": "6.929999999999999",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 14,
+          "nominalInput": "7/10",
+          "actualInputLexeme": "0.7000000000000001",
+          "nominalExactGivenData": "153/25",
+          "actualOutputLexeme": "6.119999999999999",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 15,
+          "nominalInput": "3/4",
+          "actualInputLexeme": "0.75",
+          "nominalExactGivenData": "21/4",
+          "actualOutputLexeme": "5.25",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 16,
+          "nominalInput": "4/5",
+          "actualInputLexeme": "0.8",
+          "nominalExactGivenData": "108/25",
+          "actualOutputLexeme": "4.3199999999999985",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 17,
+          "nominalInput": "17/20",
+          "actualInputLexeme": "0.8500000000000001",
+          "nominalExactGivenData": "333/100",
+          "actualOutputLexeme": "3.3299999999999983",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 18,
+          "nominalInput": "9/10",
+          "actualInputLexeme": "0.9",
+          "nominalExactGivenData": "57/25",
+          "actualOutputLexeme": "2.2799999999999994",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 19,
+          "nominalInput": "19/20",
+          "actualInputLexeme": "0.9500000000000001",
+          "nominalExactGivenData": "117/100",
+          "actualOutputLexeme": "1.169999999999999",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 20,
+          "nominalInput": "1",
+          "actualInputLexeme": "1",
+          "nominalExactGivenData": "0",
+          "actualOutputLexeme": "0",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Raggio della sonda diviso R» su 0,5. Quale valore ottieni per «Velocità locale»?",
+          "value": 9,
+          "unit": "cm/s",
+          "worked": "v(r) = 12[1−(r/R)²]. 12 × (1 − (0,5 × 0,5)) = 9 cm/s."
+        },
+        {
+          "prompt": "In un tubo laminare la velocità sull’asse è 12 cm/s. Se r/R vale 0,55, quale velocità locale ti aspetti?",
+          "value": "8.370000000000001",
+          "unit": "cm/s",
+          "worked": "v(r) = 12[1−(r/R)²]. 12 × (1 − (0,55 × 0,55)) ≈ 8,37 cm/s."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "9",
+        "8,37"
+      ],
+      "literalPromptsMatchFrozenData": false
+    },
+    {
+      "id": "SIM-C2-L007-05",
+      "variant": "draft",
+      "manualPoints": [
+        "0.5",
+        "1"
+      ],
+      "manualNominalExactAnswers": [
+        "9",
+        "0"
+      ],
+      "sourceUnit": "cm/s",
+      "states": [
+        {
+          "gridIndex": 0,
+          "nominalInput": "0",
+          "actualInputLexeme": "0",
+          "nominalExactGivenData": "12",
+          "actualOutputLexeme": "12",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 1,
+          "nominalInput": "1/20",
+          "actualInputLexeme": "0.05",
+          "nominalExactGivenData": "1197/100",
+          "actualOutputLexeme": "11.97",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 2,
+          "nominalInput": "1/10",
+          "actualInputLexeme": "0.1",
+          "nominalExactGivenData": "297/25",
+          "actualOutputLexeme": "11.879999999999999",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 3,
+          "nominalInput": "3/20",
+          "actualInputLexeme": "0.15000000000000002",
+          "nominalExactGivenData": "1173/100",
+          "actualOutputLexeme": "11.73",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 4,
+          "nominalInput": "1/5",
+          "actualInputLexeme": "0.2",
+          "nominalExactGivenData": "288/25",
+          "actualOutputLexeme": "11.52",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 5,
+          "nominalInput": "1/4",
+          "actualInputLexeme": "0.25",
+          "nominalExactGivenData": "45/4",
+          "actualOutputLexeme": "11.25",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 6,
+          "nominalInput": "3/10",
+          "actualInputLexeme": "0.30000000000000004",
+          "nominalExactGivenData": "273/25",
+          "actualOutputLexeme": "10.919999999999998",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 7,
+          "nominalInput": "7/20",
+          "actualInputLexeme": "0.35000000000000003",
+          "nominalExactGivenData": "1053/100",
+          "actualOutputLexeme": "10.53",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 8,
+          "nominalInput": "2/5",
+          "actualInputLexeme": "0.4",
+          "nominalExactGivenData": "252/25",
+          "actualOutputLexeme": "10.08",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 9,
+          "nominalInput": "9/20",
+          "actualInputLexeme": "0.45",
+          "nominalExactGivenData": "957/100",
+          "actualOutputLexeme": "9.57",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 10,
+          "nominalInput": "1/2",
+          "actualInputLexeme": "0.5",
+          "nominalExactGivenData": "9",
+          "actualOutputLexeme": "9",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 11,
+          "nominalInput": "11/20",
+          "actualInputLexeme": "0.55",
+          "nominalExactGivenData": "837/100",
+          "actualOutputLexeme": "8.370000000000001",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 12,
+          "nominalInput": "3/5",
+          "actualInputLexeme": "0.6000000000000001",
+          "nominalExactGivenData": "192/25",
+          "actualOutputLexeme": "7.679999999999999",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 13,
+          "nominalInput": "13/20",
+          "actualInputLexeme": "0.65",
+          "nominalExactGivenData": "693/100",
+          "actualOutputLexeme": "6.929999999999999",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 14,
+          "nominalInput": "7/10",
+          "actualInputLexeme": "0.7000000000000001",
+          "nominalExactGivenData": "153/25",
+          "actualOutputLexeme": "6.119999999999999",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 15,
+          "nominalInput": "3/4",
+          "actualInputLexeme": "0.75",
+          "nominalExactGivenData": "21/4",
+          "actualOutputLexeme": "5.25",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 16,
+          "nominalInput": "4/5",
+          "actualInputLexeme": "0.8",
+          "nominalExactGivenData": "108/25",
+          "actualOutputLexeme": "4.3199999999999985",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 17,
+          "nominalInput": "17/20",
+          "actualInputLexeme": "0.8500000000000001",
+          "nominalExactGivenData": "333/100",
+          "actualOutputLexeme": "3.3299999999999983",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 18,
+          "nominalInput": "9/10",
+          "actualInputLexeme": "0.9",
+          "nominalExactGivenData": "57/25",
+          "actualOutputLexeme": "2.2799999999999994",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 19,
+          "nominalInput": "19/20",
+          "actualInputLexeme": "0.9500000000000001",
+          "nominalExactGivenData": "117/100",
+          "actualOutputLexeme": "1.169999999999999",
+          "strictPrekeyIEEERepresentationMatches": true
+        },
+        {
+          "gridIndex": 20,
+          "nominalInput": "1",
+          "actualInputLexeme": "1",
+          "nominalExactGivenData": "0",
+          "actualOutputLexeme": "0",
+          "strictPrekeyIEEERepresentationMatches": true
+        }
+      ],
+      "actualQuestions": [
+        {
+          "prompt": "Imposta «Raggio della sonda diviso R» su 0,5. Quale valore ottieni per «Velocità locale»?",
+          "value": 9,
+          "unit": "cm/s",
+          "worked": "v(r) = (12 cm/s) [1 − (r/R)²]. 12 × (1 − (0,5 × 0,5)) = 9 cm/s."
+        },
+        {
+          "prompt": "In un tubo con profilo laminare parabolico la velocità sull’asse è 12 cm/s. Se r/R vale 1, quale velocità locale misuri?",
+          "value": 0,
+          "unit": "cm/s",
+          "worked": "v(r) = (12 cm/s) [1 − (r/R)²]. 12 × (1 − (1 × 1)) = 0 cm/s."
+        }
+      ],
+      "actualQuestionDisplays": [
+        "9",
+        "0"
+      ],
+      "literalPromptsMatchFrozenData": true
+    }
+  ],
+  "numericIsolation": "Frozen reference from fresh pre-key Node process without any consumer imports; strict Decimal lexeme comparison; no epsilon.",
+  "representation": "Exact nominal rational slider grids are separate from actual IEEE grid-input lexemes. Actual input/output match isolated pre-key table strictly; no epsilon. All nominal exact values derived by grid index.",
+  "clockParity": "Each legal input duration and five clock frames compared across editions; initial-reference duration excluded from metadata because references can change.",
+  "bindingIdentity": "ALL5_SOURCE_AND_CANDIDATE_CANONICAL_HASHES_MATCH",
+  "actualDraftManualTasks": 10,
+  "literalServedPromptsMatched": 10,
+  "originalAndDraftStates": "IDENTICAL_ASSERTED_BY_PRODUCER",
+  "Chrome": "NOT_RUN",
+  "canonicalDBImport": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "activityCredit": 0
+}
