@@ -40,7 +40,7 @@ with store.connect() as db:
 '''
 
 
-def exercise(batch="units-001"):
+def exercise(batch):
     if not re.fullmatch(r"[a-z][a-z0-9-]{0,63}",batch):raise ValueError("Invalid batch ID")
     package=APP/"editorial/batches"/(batch+".json")
     return exercise_package(package)
@@ -187,8 +187,8 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(__doc__)
     parser.add_argument("--output", type=Path, required=True)
-    group=parser.add_mutually_exclusive_group()
-    group.add_argument("--batch", default="units-001")
+    group=parser.add_mutually_exclusive_group(required=True)
+    group.add_argument("--batch")
     group.add_argument("--registry", action="store_true")
     args = parser.parse_args()
     result = exercise_registry() if args.registry else exercise(args.batch)
