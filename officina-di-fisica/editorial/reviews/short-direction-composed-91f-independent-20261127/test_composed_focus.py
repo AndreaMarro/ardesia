@@ -18,6 +18,10 @@ def svgheads(svg,color):
    width=max(abs((x-c)*(d-b)-(y-d)*(c-a))/L for x,y in pts)
    out.append({'axisLength':L,'headHalfWidth':width,'headExposesOutsideShaft':width>1.35})
  return out
+def declared_detail(ident,heads,legend):
+ word={'SIM-C1-L006-03':'sei volte','SIM-C1-L007-02':'sei volte','SIM-C4-L01-02':'otto volte','SIM-C5-L07-03':'quattro volte'}[ident]
+ return bool(heads) and all(h['headExposesOutsideShaft'] for h in heads) and word in legend.lower() and 'ocra' in legend.lower()
+
 class ComposedFocus(unittest.TestCase):
  def test_actual_identity_and_explicit_image_read(self):
   r=load(D/'actual-browser/report.json');t=load(D/'actual-browser-terminal.json');log=load(D/'raster-read-log.json')
@@ -37,7 +41,15 @@ class ComposedFocus(unittest.TestCase):
    if not c['profile']['fallback']or c['id']not in colors:continue
    primary=svgheads(c['observed']['svg'],colors[c['id']]);detail=svgheads(c['observed']['svg'],'#d49332')
    if not primary:self.assertEqual(detail,[]);continue
-   with self.subTest(key=c['key']):self.assertTrue(all(x['headExposesOutsideShaft']for x in primary)or bool(detail)and all(x['headExposesOutsideShaft']for x in detail)and'dettaglio'in c['legendText'].lower(),{'primary':primary,'detail':detail})
+   with self.subTest(key=c['key']):self.assertTrue(all(x['headExposesOutsideShaft']for x in primary)or declared_detail(c['id'],detail,c['legendText']),{'primary':primary,'detail':detail})
+ def test_declared_gain_requires_correct_factor_and_visible_head(self):
+  heads=[{'headExposesOutsideShaft':True}]
+  for ident,word in [('SIM-C1-L006-03','sei volte'),('SIM-C1-L007-02','sei volte'),('SIM-C4-L01-02','otto volte'),('SIM-C5-L07-03','quattro volte')]:
+   self.assertTrue(declared_detail(ident,heads,'Le frecce ocra sono '+word+' più lunghe'))
+   self.assertFalse(declared_detail(ident,heads,'Le frecce ocra sono più lunghe'))
+   self.assertFalse(declared_detail(ident,heads,'Dettaglio ocra cento volte'))
+   self.assertFalse(declared_detail(ident,[{'headExposesOutsideShaft':False}],'Frecce ocra '+word))
+   self.assertFalse(declared_detail(ident,heads,'Frecce '+word))
  def test_zeros_thresholds_detail_boundaries_and_legend(self):
   for c in cases():
    es=c['observed']['elements'];detail=[e for e in es if e.get('dettaglio')];x=c['observed'].get('sourceReplayedX',c['input'])

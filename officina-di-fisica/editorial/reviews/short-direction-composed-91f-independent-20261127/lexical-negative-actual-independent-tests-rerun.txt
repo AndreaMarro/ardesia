@@ -1,0 +1,60 @@
+test_actual_identity_and_explicit_image_read (__main__.ComposedFocus.test_actual_identity_and_explicit_image_read) ... ok
+test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail (__main__.ComposedFocus.test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail) ... 
+  test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail (__main__.ComposedFocus.test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail) (key='SIM-C1-L006-03|320|fixed_projection|2.25|') ... FAIL
+  test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail (__main__.ComposedFocus.test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail) (key='SIM-C1-L006-03|320|fixed_projection|2.75|') ... FAIL
+  test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail (__main__.ComposedFocus.test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail) (key='SIM-C1-L006-03|320|fixed_projection|4|') ... FAIL
+  test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail (__main__.ComposedFocus.test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail) (key='SIM-C1-L006-03|1280|fixed_projection|2.25|') ... FAIL
+  test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail (__main__.ComposedFocus.test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail) (key='SIM-C1-L006-03|1280|fixed_projection|4|') ... FAIL
+test_remaining_native_label_mask_census (__main__.ComposedFocus.test_remaining_native_label_mask_census) ... ok
+test_source_math_primary_geometry_and_exact_details (__main__.ComposedFocus.test_source_math_primary_geometry_and_exact_details) ... ok
+test_zeros_thresholds_detail_boundaries_and_legend (__main__.ComposedFocus.test_zeros_thresholds_detail_boundaries_and_legend) ... ok
+
+======================================================================
+FAIL: test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail (__main__.ComposedFocus.test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail) (key='SIM-C1-L006-03|320|fixed_projection|2.25|')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/short-direction-composed-91f-independent-20261127/test_composed_focus.py", line 40, in test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail
+    with self.subTest(key=c['key']):self.assertTrue(all(x['headExposesOutsideShaft']for x in primary)or bool(detail)and all(x['headExposesOutsideShaft']for x in detail)and'dettaglio'in c['legendText'].lower(),{'primary':primary,'detail':detail})
+                                    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : {'primary': [{'axisLength': 7.891358024691357, 'headHalfWidth': 1.2626172839506182, 'headExposesOutsideShaft': False}, {'axisLength': 7.891358024691328, 'headHalfWidth': 1.2626172839506182, 'headExposesOutsideShaft': False}], 'detail': [{'axisLength': 47.34814814814814, 'headHalfWidth': 4.5, 'headExposesOutsideShaft': True}, {'axisLength': 47.34814814814814, 'headHalfWidth': 4.5, 'headExposesOutsideShaft': True}]}
+
+======================================================================
+FAIL: test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail (__main__.ComposedFocus.test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail) (key='SIM-C1-L006-03|320|fixed_projection|2.75|')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/short-direction-composed-91f-independent-20261127/test_composed_focus.py", line 40, in test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail
+    with self.subTest(key=c['key']):self.assertTrue(all(x['headExposesOutsideShaft']for x in primary)or bool(detail)and all(x['headExposesOutsideShaft']for x in detail)and'dettaglio'in c['legendText'].lower(),{'primary':primary,'detail':detail})
+                                    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : {'primary': [{'axisLength': 5.282644628099206, 'headHalfWidth': 0.8452231404958752, 'headExposesOutsideShaft': False}, {'axisLength': 5.282644628099206, 'headHalfWidth': 0.8452231404958752, 'headExposesOutsideShaft': False}], 'detail': [{'axisLength': 31.695867768595065, 'headHalfWidth': 4.5, 'headExposesOutsideShaft': True}, {'axisLength': 31.695867768595065, 'headHalfWidth': 4.5, 'headExposesOutsideShaft': True}]}
+
+======================================================================
+FAIL: test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail (__main__.ComposedFocus.test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail) (key='SIM-C1-L006-03|320|fixed_projection|4|')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/short-direction-composed-91f-independent-20261127/test_composed_focus.py", line 40, in test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail
+    with self.subTest(key=c['key']):self.assertTrue(all(x['headExposesOutsideShaft']for x in primary)or bool(detail)and all(x['headExposesOutsideShaft']for x in detail)and'dettaglio'in c['legendText'].lower(),{'primary':primary,'detail':detail})
+                                    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : {'primary': [{'axisLength': 2.496875000000003, 'headHalfWidth': 0.3995000000000033, 'headExposesOutsideShaft': False}, {'axisLength': 2.4968749999999886, 'headHalfWidth': 0.3995000000000033, 'headExposesOutsideShaft': False}], 'detail': [{'axisLength': 14.981250000000017, 'headHalfWidth': 4.5, 'headExposesOutsideShaft': True}, {'axisLength': 14.981249999999989, 'headHalfWidth': 4.5, 'headExposesOutsideShaft': True}]}
+
+======================================================================
+FAIL: test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail (__main__.ComposedFocus.test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail) (key='SIM-C1-L006-03|1280|fixed_projection|2.25|')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/short-direction-composed-91f-independent-20261127/test_composed_focus.py", line 40, in test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail
+    with self.subTest(key=c['key']):self.assertTrue(all(x['headExposesOutsideShaft']for x in primary)or bool(detail)and all(x['headExposesOutsideShaft']for x in detail)and'dettaglio'in c['legendText'].lower(),{'primary':primary,'detail':detail})
+                                    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : {'primary': [{'axisLength': 7.891358024691357, 'headHalfWidth': 1.2626172839506182, 'headExposesOutsideShaft': False}, {'axisLength': 7.891358024691328, 'headHalfWidth': 1.2626172839506182, 'headExposesOutsideShaft': False}], 'detail': [{'axisLength': 47.34814814814814, 'headHalfWidth': 4.5, 'headExposesOutsideShaft': True}, {'axisLength': 47.34814814814814, 'headHalfWidth': 4.5, 'headExposesOutsideShaft': True}]}
+
+======================================================================
+FAIL: test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail (__main__.ComposedFocus.test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail) (key='SIM-C1-L006-03|1280|fixed_projection|4|')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/short-direction-composed-91f-independent-20261127/test_composed_focus.py", line 40, in test_all_nonzero_focus_fallback_has_exposed_primary_or_declared_detail
+    with self.subTest(key=c['key']):self.assertTrue(all(x['headExposesOutsideShaft']for x in primary)or bool(detail)and all(x['headExposesOutsideShaft']for x in detail)and'dettaglio'in c['legendText'].lower(),{'primary':primary,'detail':detail})
+                                    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : {'primary': [{'axisLength': 2.496875000000003, 'headHalfWidth': 0.3995000000000033, 'headExposesOutsideShaft': False}, {'axisLength': 2.4968749999999886, 'headHalfWidth': 0.3995000000000033, 'headExposesOutsideShaft': False}], 'detail': [{'axisLength': 14.981250000000017, 'headHalfWidth': 4.5, 'headExposesOutsideShaft': True}, {'axisLength': 14.981249999999989, 'headHalfWidth': 4.5, 'headExposesOutsideShaft': True}]}
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.149s
+
+FAILED (failures=5)

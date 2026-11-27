@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0.0",
+  "reviewer": "author_vectors_b",
+  "authorOfReviewedCorrection": "Root",
+  "id": "SIM-C1-L007-01",
+  "sourceCommit": "ad00ccac9e1d0839c45bd1880cb344b9334f2ae1",
+  "runtimeSha256": "0818bc9e4051c7533a27688f784c46fa283928209f37b80870086fa4b20dc440",
+  "sourceRecordSha256": "f85003b40a9ad21a9aebb9d5568a2bbc15664d957dddf4dd47473d4e9182ad5c",
+  "wholeCampaignReportSha256": "a20523cec5f7cf6b38ce251c4d9498958ea1062f123fbe81fd9d29457ec3fa40",
+  "scope": "ALL40_PLANNED_CURRENT_CASES_FOR_THIS_ID_ONLY_IN_EXISTING552_CAMPAIGN",
+  "result": "NO_RESIDUAL_AXIS_LABEL_OCCLUSION_FOUND_IN_THESE_OBSERVED_CASES",
+  "actualExistingCampaignExitCode": 0,
+  "currentCasesIdentityCheckedAndImagesOpened": 40,
+  "profiles": "orbit/side/top/fixed_projection at320/1280; setup plus0/90/120/180 degrees in each profile",
+  "independentTestMethods": 4,
+  "actualTests": {
+    "observedExitCode": 0,
+    "durationSeconds": 0.15891558298608288,
+    "testModuleSha256": "eafe041cae440b6051c2a51bd4cf0a2a693177c914549cb543ceda8723f5617b",
+    "rawSha256": "3781640117d63ad493caa9f8bbe4a6185e289f1b0f7e0a441cd8ffec21b49b21",
+    "activityCredit": 0,
+    "humanApproval": "NOT_RUN",
+    "publicationAction": "NONE"
+  },
+  "manualPhysics": {
+    "formula": "W=Fs cos(theta), F=4N, s=3m; product unit N*m=J",
+    "exactValuesJ": {
+      "0": 12,
+      "90": 0,
+      "120": -6,
+      "180": -12
+    },
+    "binaryRepresentationDisclosure": "The recorded JS result at120 is -5.999999999999997, formatted -6 J; no numeric rule or tolerance was changed by this review. The exact physical value follows cos120=-1/2.",
+    "zero": "At90 degrees work is0; both force and displacement remain nonzero. A side-view point is an end-on projection, not a physically zero vector."
+  },
+  "visualReading": {
+    "side320": "Read all0/90/120/180 frames. y text absent; x remains. At90 the ochre force is end-on and appears as a small cap at the origin, with no opaque label covering it.",
+    "topAndFallback": "Both vectors and sign-changing projection read at all four angles. At90 the nativeTop force/displacement are perpendicular; fallback follows the two gray projected axes.",
+    "orbitAndWide": "All remaining actual images and full setup screenshots including expanded legend read. No y label on the arrow or residual replacement label found.",
+    "legend": "Explicitly explains that the second axis crosses the first vector tail and can appear as a point in a3D edge-on view. Generic color key remains; no assertion of equal physical units for force and displacement scales."
+  },
+  "history": "This is a fresh read of0818 actual artifacts, not a relabel of the old4c83/1a negatives. The separate cb9 audit did not propose L00701 among its three new label-negative IDs. Those histories are not equated.",
+  "freshBrowserLaunched": false,
+  "newRuntimeOrContentEdits": false,
+  "c6": "Excluded; reviewer authored C6 overlay",
+  "full552Acceptance": false,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
