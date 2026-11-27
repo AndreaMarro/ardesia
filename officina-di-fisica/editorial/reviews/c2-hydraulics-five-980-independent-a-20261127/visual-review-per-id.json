@@ -1,0 +1,1687 @@
+{
+  "schemaVersion": "1.0.0",
+  "role": "DISTINCT_REVIEWER_A_LOCAL_BOUNDED",
+  "sourceCommit": "e02b0a767097f22ed66b7240432fc30b206217fd",
+  "runtimeSha256": "980518b78d0767d90f16322539852e7e79360e20f05078ceb6e9b0425e805301",
+  "artifactPins": {
+    "actual/report.json": {
+      "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/report.json",
+      "sha256": "6546e115dfc1d6f072a4beec9b50745b865caa7e899a583f7261b46874af49a3"
+    },
+    "prepared.json": {
+      "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/prepared.json",
+      "sha256": "2bd0eec48fde696d22faf9906fbb3a0deb6c9dce3e7be65edfb1d7d796eb5444"
+    },
+    "actual-terminal.json": {
+      "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual-terminal.json",
+      "sha256": "467c7cabb853d63ccbef1f444998032e3d28de6af9667a95a89e45c122db9d29"
+    }
+  },
+  "records": [
+    {
+      "id": "SIM-C2-L003-02",
+      "sourceCommit": "e02b0a767097f22ed66b7240432fc30b206217fd",
+      "runtimeSha256": "980518b78d0767d90f16322539852e7e79360e20f05078ceb6e9b0425e805301",
+      "sourceRecordSha256": "4305c01bf5d0375a4969f8ecd1f6676118f777fc947be526fc534c8b1c36148a",
+      "sourceVersion": 1,
+      "visualReview": "FAIL",
+      "openFindingIds": [
+        "PRESS_FORCE_ARROW_SCALE_UNDECLARED"
+      ],
+      "reason": "Il testo confronta il guadagno di forza4; le due frecce hanno lunghezze0,36 e0,70 e la legenda non ne dichiara una funzione soltanto direzionale o scale diverse. Compiti e volume sono corretti. La vista Alto è assiale e viene esclusa dalle inferenze sul modulo.",
+      "scope": {
+        "kind": "BOUNDED_ORIGINAL_WITH_NEW_UI_AND_DISTINCT_PHYSICS",
+        "profiles": [
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "gridValues": [
+          0,
+          2,
+          4,
+          6,
+          8
+        ],
+        "clockCases": [],
+        "actualCaseCount": 48,
+        "gridClockCaseCount": 40,
+        "setupCount": 8,
+        "acceptedAnswerEvents": 16,
+        "phaseTextVariantsRead": 1,
+        "phasesPerSetup": 4,
+        "authoredReadingPanel": "ABSENT_ORIGINAL_BLOCKS_EMPTY_READING_NULL",
+        "manualWholeRawPngCount": 8,
+        "all200FramesManuallyOpened": false,
+        "manualReadCaseKeys": [
+          "SIM-C2-L003-02|published|320|orbit|grid|4",
+          "SIM-C2-L003-02|published|320|side|grid|4",
+          "SIM-C2-L003-02|published|320|top|grid|4",
+          "SIM-C2-L003-02|published|320|fixed_projection|grid|4",
+          "SIM-C2-L003-02|published|1280|orbit|grid|4",
+          "SIM-C2-L003-02|published|1280|side|grid|4",
+          "SIM-C2-L003-02|published|1280|top|grid|4",
+          "SIM-C2-L003-02|published|1280|fixed_projection|grid|4"
+        ],
+        "fullObservedCaseKeys": [
+          "SIM-C2-L003-02|published|320|orbit|setup",
+          "SIM-C2-L003-02|published|320|orbit|grid|0",
+          "SIM-C2-L003-02|published|320|orbit|grid|1",
+          "SIM-C2-L003-02|published|320|orbit|grid|2",
+          "SIM-C2-L003-02|published|320|orbit|grid|3",
+          "SIM-C2-L003-02|published|320|orbit|grid|4",
+          "SIM-C2-L003-02|published|320|side|setup",
+          "SIM-C2-L003-02|published|320|side|grid|0",
+          "SIM-C2-L003-02|published|320|side|grid|1",
+          "SIM-C2-L003-02|published|320|side|grid|2",
+          "SIM-C2-L003-02|published|320|side|grid|3",
+          "SIM-C2-L003-02|published|320|side|grid|4",
+          "SIM-C2-L003-02|published|320|top|setup",
+          "SIM-C2-L003-02|published|320|top|grid|0",
+          "SIM-C2-L003-02|published|320|top|grid|1",
+          "SIM-C2-L003-02|published|320|top|grid|2",
+          "SIM-C2-L003-02|published|320|top|grid|3",
+          "SIM-C2-L003-02|published|320|top|grid|4",
+          "SIM-C2-L003-02|published|320|fixed_projection|setup",
+          "SIM-C2-L003-02|published|320|fixed_projection|grid|0",
+          "SIM-C2-L003-02|published|320|fixed_projection|grid|1",
+          "SIM-C2-L003-02|published|320|fixed_projection|grid|2",
+          "SIM-C2-L003-02|published|320|fixed_projection|grid|3",
+          "SIM-C2-L003-02|published|320|fixed_projection|grid|4",
+          "SIM-C2-L003-02|published|1280|orbit|setup",
+          "SIM-C2-L003-02|published|1280|orbit|grid|0",
+          "SIM-C2-L003-02|published|1280|orbit|grid|1",
+          "SIM-C2-L003-02|published|1280|orbit|grid|2",
+          "SIM-C2-L003-02|published|1280|orbit|grid|3",
+          "SIM-C2-L003-02|published|1280|orbit|grid|4",
+          "SIM-C2-L003-02|published|1280|side|setup",
+          "SIM-C2-L003-02|published|1280|side|grid|0",
+          "SIM-C2-L003-02|published|1280|side|grid|1",
+          "SIM-C2-L003-02|published|1280|side|grid|2",
+          "SIM-C2-L003-02|published|1280|side|grid|3",
+          "SIM-C2-L003-02|published|1280|side|grid|4",
+          "SIM-C2-L003-02|published|1280|top|setup",
+          "SIM-C2-L003-02|published|1280|top|grid|0",
+          "SIM-C2-L003-02|published|1280|top|grid|1",
+          "SIM-C2-L003-02|published|1280|top|grid|2",
+          "SIM-C2-L003-02|published|1280|top|grid|3",
+          "SIM-C2-L003-02|published|1280|top|grid|4",
+          "SIM-C2-L003-02|published|1280|fixed_projection|setup",
+          "SIM-C2-L003-02|published|1280|fixed_projection|grid|0",
+          "SIM-C2-L003-02|published|1280|fixed_projection|grid|1",
+          "SIM-C2-L003-02|published|1280|fixed_projection|grid|2",
+          "SIM-C2-L003-02|published|1280|fixed_projection|grid|3",
+          "SIM-C2-L003-02|published|1280|fixed_projection|grid|4"
+        ]
+      },
+      "readPngSha256": [
+        "59c030a341b33bb51b51a5de268b3f37a1395511ecc0180ecca0658cbcdc86ab",
+        "e3085078c08343740504cf34506dadeefbcf9ab24d1014ef4808056039534f9f",
+        "e2ffe0e17301d5d0ea91fcf1e732dd4a112925cfdb93d29dbd4a476799bc5209",
+        "094be629ba50ffdd1b2213702d323e15869e68798bab17e8a0da53164904082f",
+        "e310d6fcb4c53bfcc67edb8d4130df0c141df88018f71c20d05102c4e08dde51",
+        "2431a706251a65bd2081bc21b099e88c1911d2098086c1fa56f7d9518c85a5a1",
+        "dcf92a9e8e7d47242c1f6af873698f61e6c386036dba4bef1ea0f13630902662",
+        "73a982265c8e73d81db2563352923cf35102797934c8dc3691a8f357dd38b56d"
+      ],
+      "readFiles": [
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/59c030a341b33bb51b51a5de268b3f37a1395511ecc0180ecca0658cbcdc86ab.png",
+          "sha256": "59c030a341b33bb51b51a5de268b3f37a1395511ecc0180ecca0658cbcdc86ab",
+          "caseKey": "SIM-C2-L003-02|published|320|orbit|grid|4",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/e3085078c08343740504cf34506dadeefbcf9ab24d1014ef4808056039534f9f.png",
+          "sha256": "e3085078c08343740504cf34506dadeefbcf9ab24d1014ef4808056039534f9f",
+          "caseKey": "SIM-C2-L003-02|published|320|side|grid|4",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/e2ffe0e17301d5d0ea91fcf1e732dd4a112925cfdb93d29dbd4a476799bc5209.png",
+          "sha256": "e2ffe0e17301d5d0ea91fcf1e732dd4a112925cfdb93d29dbd4a476799bc5209",
+          "caseKey": "SIM-C2-L003-02|published|320|top|grid|4",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/094be629ba50ffdd1b2213702d323e15869e68798bab17e8a0da53164904082f.png",
+          "sha256": "094be629ba50ffdd1b2213702d323e15869e68798bab17e8a0da53164904082f",
+          "caseKey": "SIM-C2-L003-02|published|320|fixed_projection|grid|4",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/e310d6fcb4c53bfcc67edb8d4130df0c141df88018f71c20d05102c4e08dde51.png",
+          "sha256": "e310d6fcb4c53bfcc67edb8d4130df0c141df88018f71c20d05102c4e08dde51",
+          "caseKey": "SIM-C2-L003-02|published|1280|orbit|grid|4",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/2431a706251a65bd2081bc21b099e88c1911d2098086c1fa56f7d9518c85a5a1.png",
+          "sha256": "2431a706251a65bd2081bc21b099e88c1911d2098086c1fa56f7d9518c85a5a1",
+          "caseKey": "SIM-C2-L003-02|published|1280|side|grid|4",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/dcf92a9e8e7d47242c1f6af873698f61e6c386036dba4bef1ea0f13630902662.png",
+          "sha256": "dcf92a9e8e7d47242c1f6af873698f61e6c386036dba4bef1ea0f13630902662",
+          "caseKey": "SIM-C2-L003-02|published|1280|top|grid|4",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/73a982265c8e73d81db2563352923cf35102797934c8dc3691a8f357dd38b56d.png",
+          "sha256": "73a982265c8e73d81db2563352923cf35102797934c8dc3691a8f357dd38b56d",
+          "caseKey": "SIM-C2-L003-02|published|1280|fixed_projection|grid|4",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        }
+      ],
+      "readCaseFiles": [
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/c9da6e1e7692c7ff47f6a4eb4b4396728e131405a98997b473e79fedc05bd960.json",
+          "sha256": "ae24340d877db7d48d96bd28c34ba95a6271b159f8a07f8608942d201c6f5a3e"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/0c11144cd1347e949809b03401f69da848b7eed9c1eacb7cb2281526cbf3d2b1.json",
+          "sha256": "f7de4d67ddd1cebb1df3947e175e625b07a4030d7359fc98dc0768fb6f4937a1"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/ec7aa19c4b3ce93023aee9ab424bfbbf54a8d43e5af30f4208174e44ab4198e0.json",
+          "sha256": "c59f3fdd24694556dee7d752b1b80ed31da72af78af7f4c500616308af4a2dc4"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/f9559a3b639160c60c6837af244aca947db3a458fd78b1cc16fca5c902515506.json",
+          "sha256": "6e8933fe2710d169db6654a3b7e0d0ddd57459fa240f81c60752a4f8b6a1d2e8"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/d68d1f325ae2393983ce58c0cc5d1d2014a1e25a8af9f96e36891a56ae4da8e6.json",
+          "sha256": "e6c1428b2e8d1e179c998b9e03ad6c6b053b46ea6b7238bb558cf1cd2df4a3b0"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/b8776c108525f8a02eb823ad9d00e218d89a9a999eb999854da632594408e66b.json",
+          "sha256": "3e73131af91db56d3ffefff4bfc0cf0a16153af6eca3cad3237469174ec3bbdb"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/b8816011d47d141c533cf7cb39928909b618e60feb80eff6fdb88c42ddd80d70.json",
+          "sha256": "4788f73359b11bedc2113136d09d365a564ae7eda322e223fd9b358adc5658af"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/7eca5de5de5c8037fe23b91954764137e7a6cadb14744afeb25c0ecb7892f54b.json",
+          "sha256": "248a025804307bf1337bb19706dc93eb78271d9c121ce0c9f71c8ba07c589a28"
+        }
+      ],
+      "actualPhaseText": [
+        "OSSERVA · 2/5\nIndividua il fenomeno\n\nLa sezione del pistone grande è quattro volte quella del piccolo. Il volume spinto in basso a sinistra ricompare a destra. Con pressioni uguali il rapporto delle forze è l’inverso di quello delle corse.\n\nA₁s₁ = A₂s₂; A₂ = 4A₁\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+        "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Corsa del pistone piccolo» e confronta la scena con il punto segnato sul grafico. Parti da 2 cm, poi prova 6 cm.\n\nCorsa del pistone piccolo = 2 cm · Sollevamento del pistone grande = 0,5 cm\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+        "COMPRENDI · 4/5\nOsserva la lettura del modello\n\nQuesta posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 6 cm e 4 cm.\n\nSollevamento del pistone grande = 0,5 cm\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+        "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Corsa del pistone piccolo» a 4 cm. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nA₁s₁ = A₂s₂; A₂ = 4A₁\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale"
+      ],
+      "installedAnswerExamples": [
+        {
+          "expectedAccepted": true,
+          "input": "1.5",
+          "prompt": "Imposta «Corsa del pistone piccolo» su 6 cm. Quale valore ottieni per «Sollevamento del pistone grande»?",
+          "sourceManualReadiness": true,
+          "actualPrompt": "Imposta «Corsa del pistone piccolo» su 6 cm. Quale valore ottieni per «Sollevamento del pistone grande»?",
+          "status": "Corretto. A₁s₁ = A₂s₂; A₂ = 4A₁. 6 / 4 = 1,5 cm."
+        },
+        {
+          "expectedAccepted": true,
+          "input": "1.0",
+          "prompt": "Spingi per 4 cm il pistone piccolo di una pressa. Se l’area grande è quadrupla, di quanto sollevi l’altro pistone?",
+          "sourceManualReadiness": true,
+          "actualPrompt": "Spingi per 4 cm il pistone piccolo di una pressa. Se l’area grande è quadrupla, di quanto sollevi l’altro pistone?",
+          "status": "Corretto. A₁s₁ = A₂s₂; A₂ = 4A₁. 4 / 4 = 1 cm."
+        }
+      ],
+      "sourceOriginalRecord": {
+        "anchor": "Se il liquido incomprimibile riempie il circuito",
+        "apparatus": "pressa",
+        "blocks": [],
+        "control": {
+          "label": "Corsa del pistone piccolo",
+          "max": 8.0,
+          "min": 0.0,
+          "step": 0.5,
+          "unit": "cm"
+        },
+        "course": "C2",
+        "formula": "A₁s₁ = A₂s₂; A₂ = 4A₁",
+        "id": "SIM-C2-L003-02",
+        "interpretation": "La sezione del pistone grande è quattro volte quella del piccolo. Il volume spinto in basso a sinistra ricompare a destra. Con pressioni uguali il rapporto delle forze è l’inverso di quello delle corse.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Sollevamento del pistone grande",
+          "unit": "cm"
+        },
+        "order": 2,
+        "references": [
+          [
+            2.0,
+            0.5
+          ],
+          [
+            6.0,
+            1.5
+          ]
+        ],
+        "section": "Fluidi in quiete",
+        "skill": "C2-L003",
+        "substitution": "{x} / 4",
+        "summary": "Quanto guadagni in forza e quanto perdi in corsa in una pressa ideale?",
+        "title": "Pressa idraulica",
+        "topic": "Pressa idraulica",
+        "transferPrompt": "Spingi per {x} il pistone piccolo di una pressa. Se l’area grande è quadrupla, di quanto sollevi l’altro pistone?",
+        "version": 1
+      },
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L003-03",
+      "sourceCommit": "e02b0a767097f22ed66b7240432fc30b206217fd",
+      "runtimeSha256": "980518b78d0767d90f16322539852e7e79360e20f05078ceb6e9b0425e805301",
+      "sourceRecordSha256": "d10d51cc730cda5f9b3947f31e3b1ae6bb1b9470c2e46b5ccc5cbf823681d1e6",
+      "sourceVersion": 1,
+      "visualReview": "PASS",
+      "openFindingIds": [],
+      "reason": "Due sonde alla stessa quota e incremento distinto dalla pressione iniziale20kPa; incremento nullo senza freccia. Compiti28/26kPa corretti, freccia positiva leggibile nelle viste non assiali. Nessuna scala di due forze diverse confrontata.",
+      "scope": {
+        "kind": "BOUNDED_ORIGINAL_WITH_NEW_UI_AND_DISTINCT_PHYSICS",
+        "profiles": [
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "gridValues": [
+          0,
+          6,
+          8,
+          12
+        ],
+        "clockCases": [],
+        "actualCaseCount": 40,
+        "gridClockCaseCount": 32,
+        "setupCount": 8,
+        "acceptedAnswerEvents": 16,
+        "phaseTextVariantsRead": 1,
+        "phasesPerSetup": 4,
+        "authoredReadingPanel": "ABSENT_ORIGINAL_BLOCKS_EMPTY_READING_NULL",
+        "manualWholeRawPngCount": 8,
+        "all200FramesManuallyOpened": false,
+        "manualReadCaseKeys": [
+          "SIM-C2-L003-03|published|320|orbit|grid|3",
+          "SIM-C2-L003-03|published|320|side|grid|3",
+          "SIM-C2-L003-03|published|320|top|grid|3",
+          "SIM-C2-L003-03|published|320|fixed_projection|grid|3",
+          "SIM-C2-L003-03|published|1280|orbit|grid|3",
+          "SIM-C2-L003-03|published|1280|side|grid|3",
+          "SIM-C2-L003-03|published|1280|top|grid|3",
+          "SIM-C2-L003-03|published|1280|fixed_projection|grid|3"
+        ],
+        "fullObservedCaseKeys": [
+          "SIM-C2-L003-03|published|320|orbit|setup",
+          "SIM-C2-L003-03|published|320|orbit|grid|0",
+          "SIM-C2-L003-03|published|320|orbit|grid|1",
+          "SIM-C2-L003-03|published|320|orbit|grid|2",
+          "SIM-C2-L003-03|published|320|orbit|grid|3",
+          "SIM-C2-L003-03|published|320|side|setup",
+          "SIM-C2-L003-03|published|320|side|grid|0",
+          "SIM-C2-L003-03|published|320|side|grid|1",
+          "SIM-C2-L003-03|published|320|side|grid|2",
+          "SIM-C2-L003-03|published|320|side|grid|3",
+          "SIM-C2-L003-03|published|320|top|setup",
+          "SIM-C2-L003-03|published|320|top|grid|0",
+          "SIM-C2-L003-03|published|320|top|grid|1",
+          "SIM-C2-L003-03|published|320|top|grid|2",
+          "SIM-C2-L003-03|published|320|top|grid|3",
+          "SIM-C2-L003-03|published|320|fixed_projection|setup",
+          "SIM-C2-L003-03|published|320|fixed_projection|grid|0",
+          "SIM-C2-L003-03|published|320|fixed_projection|grid|1",
+          "SIM-C2-L003-03|published|320|fixed_projection|grid|2",
+          "SIM-C2-L003-03|published|320|fixed_projection|grid|3",
+          "SIM-C2-L003-03|published|1280|orbit|setup",
+          "SIM-C2-L003-03|published|1280|orbit|grid|0",
+          "SIM-C2-L003-03|published|1280|orbit|grid|1",
+          "SIM-C2-L003-03|published|1280|orbit|grid|2",
+          "SIM-C2-L003-03|published|1280|orbit|grid|3",
+          "SIM-C2-L003-03|published|1280|side|setup",
+          "SIM-C2-L003-03|published|1280|side|grid|0",
+          "SIM-C2-L003-03|published|1280|side|grid|1",
+          "SIM-C2-L003-03|published|1280|side|grid|2",
+          "SIM-C2-L003-03|published|1280|side|grid|3",
+          "SIM-C2-L003-03|published|1280|top|setup",
+          "SIM-C2-L003-03|published|1280|top|grid|0",
+          "SIM-C2-L003-03|published|1280|top|grid|1",
+          "SIM-C2-L003-03|published|1280|top|grid|2",
+          "SIM-C2-L003-03|published|1280|top|grid|3",
+          "SIM-C2-L003-03|published|1280|fixed_projection|setup",
+          "SIM-C2-L003-03|published|1280|fixed_projection|grid|0",
+          "SIM-C2-L003-03|published|1280|fixed_projection|grid|1",
+          "SIM-C2-L003-03|published|1280|fixed_projection|grid|2",
+          "SIM-C2-L003-03|published|1280|fixed_projection|grid|3"
+        ]
+      },
+      "readPngSha256": [
+        "8f5f99781628fd724d8d4e2f0be13a2bc2854419a090fcb561060ae01e2e5726",
+        "0cc3553567b72e57a9a70e48f2a59326ddc8b07c1c4a56aa51f7ea7319e18eb8",
+        "2541ee2c1ba31d42b2c7cbc2df554e86d8b58900aa7ef609f5ec50dd3b8ddfea",
+        "5d041ce2d94e7116a59a85c2907e9659418008dc0d86d549883355b63402cfab",
+        "9ad456efc246aa4048ab6b62140d329f3d8d24c58d036bcbd625028fb088d8bd",
+        "b885231b609a2c68d8252b51d0c0c1fb89e9dc62639a8979b6d3c1bdf9a5b2ef",
+        "85d698171b1ac97bb79157964eabda93534a51f0e3dad68820e75c165da9d14b",
+        "9a3ddaae5f7cdabb24b0e4376b24a197daefed6b2bcc479a99afb599cf3dc769"
+      ],
+      "readFiles": [
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/8f5f99781628fd724d8d4e2f0be13a2bc2854419a090fcb561060ae01e2e5726.png",
+          "sha256": "8f5f99781628fd724d8d4e2f0be13a2bc2854419a090fcb561060ae01e2e5726",
+          "caseKey": "SIM-C2-L003-03|published|320|orbit|grid|3",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/0cc3553567b72e57a9a70e48f2a59326ddc8b07c1c4a56aa51f7ea7319e18eb8.png",
+          "sha256": "0cc3553567b72e57a9a70e48f2a59326ddc8b07c1c4a56aa51f7ea7319e18eb8",
+          "caseKey": "SIM-C2-L003-03|published|320|side|grid|3",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/2541ee2c1ba31d42b2c7cbc2df554e86d8b58900aa7ef609f5ec50dd3b8ddfea.png",
+          "sha256": "2541ee2c1ba31d42b2c7cbc2df554e86d8b58900aa7ef609f5ec50dd3b8ddfea",
+          "caseKey": "SIM-C2-L003-03|published|320|top|grid|3",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/5d041ce2d94e7116a59a85c2907e9659418008dc0d86d549883355b63402cfab.png",
+          "sha256": "5d041ce2d94e7116a59a85c2907e9659418008dc0d86d549883355b63402cfab",
+          "caseKey": "SIM-C2-L003-03|published|320|fixed_projection|grid|3",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/9ad456efc246aa4048ab6b62140d329f3d8d24c58d036bcbd625028fb088d8bd.png",
+          "sha256": "9ad456efc246aa4048ab6b62140d329f3d8d24c58d036bcbd625028fb088d8bd",
+          "caseKey": "SIM-C2-L003-03|published|1280|orbit|grid|3",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/b885231b609a2c68d8252b51d0c0c1fb89e9dc62639a8979b6d3c1bdf9a5b2ef.png",
+          "sha256": "b885231b609a2c68d8252b51d0c0c1fb89e9dc62639a8979b6d3c1bdf9a5b2ef",
+          "caseKey": "SIM-C2-L003-03|published|1280|side|grid|3",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/85d698171b1ac97bb79157964eabda93534a51f0e3dad68820e75c165da9d14b.png",
+          "sha256": "85d698171b1ac97bb79157964eabda93534a51f0e3dad68820e75c165da9d14b",
+          "caseKey": "SIM-C2-L003-03|published|1280|top|grid|3",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/9a3ddaae5f7cdabb24b0e4376b24a197daefed6b2bcc479a99afb599cf3dc769.png",
+          "sha256": "9a3ddaae5f7cdabb24b0e4376b24a197daefed6b2bcc479a99afb599cf3dc769",
+          "caseKey": "SIM-C2-L003-03|published|1280|fixed_projection|grid|3",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        }
+      ],
+      "readCaseFiles": [
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/1e714904f7f879e299f789e452c6cc4dcf7890475460f2f348148f7c675884c8.json",
+          "sha256": "1184c239c851febf01d43d3bd3a80b74543020221e69ed1154415c411eaaf07b"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/4b0aeb0197bc78b499f556c9b6564fc08b1c628beb83d959e7bd10695db72d41.json",
+          "sha256": "354af94e50585aa07f7612ea64b1d84c30121e09eef44a525a4737acc57d0c1c"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/d6e51251a2729b7a9a0187301d01dc832feb41bc93014e0eefef5f07a5a085ac.json",
+          "sha256": "b1b375ef5803837b9b810ca40e184b9623cdd615285726a18cd3b63915be95e4"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/e2f7ac36b67d7a664c336e91114b440f90cba80842f286d6254103b81c1a7ed2.json",
+          "sha256": "a342c91d6efa9f1b79640e0f31c7dae39acbe7d7576dd671acd9ec814c5594d4"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/30bbb41c37a6a16bb798a8e95fac7b1c87aac3958e8d8938c56881966366d195.json",
+          "sha256": "4463b78bb74e8665534e4ffdfe71910b7f56360d710e894503de7b275a1192cd"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/bec48c0509baeccbb7f5fe89fed9d469c30209bc3b53fe350882d8c78820be29.json",
+          "sha256": "ad58a3360319bbe66db03287d094b1aea318416819d456e50da72f888391d9cc"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/2a3220696062dc947c563413e8b48a50df6e31b130a84c997d1c9de3665f262b.json",
+          "sha256": "384f2cda8b1aed0ccf07ab5f7cb08b44b644f2d10ccd1ae2e1e613a30529139b"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/8c12bade3ef46131b3ca4acbe16dddeb49f76ea03fb82ba47e4a5c3f5c9c1467.json",
+          "sha256": "291d0704d2f6dad1d6923db3f8f046f179b39ff3814f1e7442ce6ab44de96ed0"
+        }
+      ],
+      "actualPhaseText": [
+        "OSSERVA · 2/5\nIndividua il fenomeno\n\nLa sonda profonda parte da 20 kPa rispetto all’atmosfera. Aggiungi pressione col pistone. L’incremento è identico a tutte le quote, mentre le pressioni totali restano diverse.\n\np relativa = Δp superficie + ρgh = Δp superficie + 20 kPa\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+        "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Incremento di pressione in superficie» e confronta la scena con il punto segnato sul grafico. Parti da 0 kPa, poi prova 8 kPa.\n\nIncremento di pressione in superficie = 0 kPa · Pressione relativa alla sonda profonda = 20 kPa\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+        "COMPRENDI · 4/5\nOsserva la lettura del modello\n\nQuesta posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 8 kPa e 6 kPa.\n\nPressione relativa alla sonda profonda = 20 kPa\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+        "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Incremento di pressione in superficie» a 6 kPa. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\np relativa = Δp superficie + ρgh = Δp superficie + 20 kPa\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale"
+      ],
+      "installedAnswerExamples": [
+        {
+          "expectedAccepted": true,
+          "input": "28.0",
+          "prompt": "Imposta «Incremento di pressione in superficie» su 8 kPa. Quale valore ottieni per «Pressione relativa alla sonda profonda»?",
+          "sourceManualReadiness": true,
+          "actualPrompt": "Imposta «Incremento di pressione in superficie» su 8 kPa. Quale valore ottieni per «Pressione relativa alla sonda profonda»?",
+          "status": "Corretto. p relativa = Δp superficie + ρgh = Δp superficie + 20 kPa. 20 + 8 = 28 kPa."
+        },
+        {
+          "expectedAccepted": true,
+          "input": "26.0",
+          "prompt": "La colonna d’acqua dà già 20 kPa di sovrapressione. Aggiungi 6 kPa in superficie. Quale pressione relativa leggi alla sonda profonda?",
+          "sourceManualReadiness": true,
+          "actualPrompt": "La colonna d’acqua dà già 20 kPa di sovrapressione. Aggiungi 6 kPa in superficie. Quale pressione relativa leggi alla sonda profonda?",
+          "status": "Corretto. p relativa = Δp superficie + ρgh = Δp superficie + 20 kPa. 20 + 6 = 26 kPa."
+        }
+      ],
+      "sourceOriginalRecord": {
+        "anchor": "Qui le forze indicano gli incrementi normali",
+        "apparatus": "vasca",
+        "blocks": [],
+        "control": {
+          "label": "Incremento di pressione in superficie",
+          "max": 12.0,
+          "min": 0.0,
+          "step": 1.0,
+          "unit": "kPa"
+        },
+        "course": "C2",
+        "formula": "p relativa = Δp superficie + ρgh = Δp superficie + 20 kPa",
+        "id": "SIM-C2-L003-03",
+        "interpretation": "La sonda profonda parte da 20 kPa rispetto all’atmosfera. Aggiungi pressione col pistone. L’incremento è identico a tutte le quote, mentre le pressioni totali restano diverse.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Pressione relativa alla sonda profonda",
+          "unit": "kPa"
+        },
+        "order": 3,
+        "references": [
+          [
+            0.0,
+            20.0
+          ],
+          [
+            8.0,
+            28.0
+          ]
+        ],
+        "section": "Fluidi in quiete",
+        "skill": "C2-L003",
+        "substitution": "20 + {x}",
+        "summary": "A due metri di profondità l’incremento di pressione si attenua?",
+        "title": "Trasmissione dell’incremento di pressione in un liquido confinato",
+        "topic": "Trasmissione dell’incremento di pressione in un liquido confinato",
+        "transferPrompt": "La colonna d’acqua dà già 20 kPa di sovrapressione. Aggiungi {x} in superficie. Quale pressione relativa leggi alla sonda profonda?",
+        "version": 1
+      },
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L004-01",
+      "sourceCommit": "e02b0a767097f22ed66b7240432fc30b206217fd",
+      "runtimeSha256": "980518b78d0767d90f16322539852e7e79360e20f05078ceb6e9b0425e805301",
+      "sourceRecordSha256": "0c58da03bc25a8f85eadfc06ea214ef468ba8b3f00c2995f536a484874d9d63b",
+      "sourceVersion": 1,
+      "visualReview": "PASS",
+      "openFindingIds": [],
+      "reason": "Frazione immersa proporzionale al volume e spinta10N/L;0L senza freccia. Compiti30/20N corretti. A0,25L la freccia è molto corta: dettaglio completo leggibile nella Laterale1280, limitazione esplicitata senza promettere modulo o verso dalla vista Alto.",
+      "scope": {
+        "kind": "BOUNDED_ORIGINAL_WITH_NEW_UI_AND_DISTINCT_PHYSICS",
+        "profiles": [
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "gridValues": [
+          0,
+          0.25,
+          1,
+          2,
+          3,
+          4
+        ],
+        "clockCases": [],
+        "actualCaseCount": 56,
+        "gridClockCaseCount": 48,
+        "setupCount": 8,
+        "acceptedAnswerEvents": 16,
+        "phaseTextVariantsRead": 1,
+        "phasesPerSetup": 4,
+        "authoredReadingPanel": "ABSENT_ORIGINAL_BLOCKS_EMPTY_READING_NULL",
+        "manualWholeRawPngCount": 8,
+        "all200FramesManuallyOpened": false,
+        "manualReadCaseKeys": [
+          "SIM-C2-L004-01|published|320|orbit|grid|1",
+          "SIM-C2-L004-01|published|320|side|grid|1",
+          "SIM-C2-L004-01|published|320|top|grid|1",
+          "SIM-C2-L004-01|published|320|fixed_projection|grid|1",
+          "SIM-C2-L004-01|published|1280|orbit|grid|1",
+          "SIM-C2-L004-01|published|1280|side|grid|1",
+          "SIM-C2-L004-01|published|1280|top|grid|1",
+          "SIM-C2-L004-01|published|1280|fixed_projection|grid|1"
+        ],
+        "fullObservedCaseKeys": [
+          "SIM-C2-L004-01|published|320|orbit|setup",
+          "SIM-C2-L004-01|published|320|orbit|grid|0",
+          "SIM-C2-L004-01|published|320|orbit|grid|1",
+          "SIM-C2-L004-01|published|320|orbit|grid|2",
+          "SIM-C2-L004-01|published|320|orbit|grid|3",
+          "SIM-C2-L004-01|published|320|orbit|grid|4",
+          "SIM-C2-L004-01|published|320|orbit|grid|5",
+          "SIM-C2-L004-01|published|320|side|setup",
+          "SIM-C2-L004-01|published|320|side|grid|0",
+          "SIM-C2-L004-01|published|320|side|grid|1",
+          "SIM-C2-L004-01|published|320|side|grid|2",
+          "SIM-C2-L004-01|published|320|side|grid|3",
+          "SIM-C2-L004-01|published|320|side|grid|4",
+          "SIM-C2-L004-01|published|320|side|grid|5",
+          "SIM-C2-L004-01|published|320|top|setup",
+          "SIM-C2-L004-01|published|320|top|grid|0",
+          "SIM-C2-L004-01|published|320|top|grid|1",
+          "SIM-C2-L004-01|published|320|top|grid|2",
+          "SIM-C2-L004-01|published|320|top|grid|3",
+          "SIM-C2-L004-01|published|320|top|grid|4",
+          "SIM-C2-L004-01|published|320|top|grid|5",
+          "SIM-C2-L004-01|published|320|fixed_projection|setup",
+          "SIM-C2-L004-01|published|320|fixed_projection|grid|0",
+          "SIM-C2-L004-01|published|320|fixed_projection|grid|1",
+          "SIM-C2-L004-01|published|320|fixed_projection|grid|2",
+          "SIM-C2-L004-01|published|320|fixed_projection|grid|3",
+          "SIM-C2-L004-01|published|320|fixed_projection|grid|4",
+          "SIM-C2-L004-01|published|320|fixed_projection|grid|5",
+          "SIM-C2-L004-01|published|1280|orbit|setup",
+          "SIM-C2-L004-01|published|1280|orbit|grid|0",
+          "SIM-C2-L004-01|published|1280|orbit|grid|1",
+          "SIM-C2-L004-01|published|1280|orbit|grid|2",
+          "SIM-C2-L004-01|published|1280|orbit|grid|3",
+          "SIM-C2-L004-01|published|1280|orbit|grid|4",
+          "SIM-C2-L004-01|published|1280|orbit|grid|5",
+          "SIM-C2-L004-01|published|1280|side|setup",
+          "SIM-C2-L004-01|published|1280|side|grid|0",
+          "SIM-C2-L004-01|published|1280|side|grid|1",
+          "SIM-C2-L004-01|published|1280|side|grid|2",
+          "SIM-C2-L004-01|published|1280|side|grid|3",
+          "SIM-C2-L004-01|published|1280|side|grid|4",
+          "SIM-C2-L004-01|published|1280|side|grid|5",
+          "SIM-C2-L004-01|published|1280|top|setup",
+          "SIM-C2-L004-01|published|1280|top|grid|0",
+          "SIM-C2-L004-01|published|1280|top|grid|1",
+          "SIM-C2-L004-01|published|1280|top|grid|2",
+          "SIM-C2-L004-01|published|1280|top|grid|3",
+          "SIM-C2-L004-01|published|1280|top|grid|4",
+          "SIM-C2-L004-01|published|1280|top|grid|5",
+          "SIM-C2-L004-01|published|1280|fixed_projection|setup",
+          "SIM-C2-L004-01|published|1280|fixed_projection|grid|0",
+          "SIM-C2-L004-01|published|1280|fixed_projection|grid|1",
+          "SIM-C2-L004-01|published|1280|fixed_projection|grid|2",
+          "SIM-C2-L004-01|published|1280|fixed_projection|grid|3",
+          "SIM-C2-L004-01|published|1280|fixed_projection|grid|4",
+          "SIM-C2-L004-01|published|1280|fixed_projection|grid|5"
+        ]
+      },
+      "readPngSha256": [
+        "5d6dcf455e18c009fe09967aaddd50ca4c33c7e2d2efceb45d52df7922286f87",
+        "1fbfc9672204a76e767dd4e5aa84ac50e50ec24f307ac61582755202686a4430",
+        "3d46ec9bbb0684aaa978d11711e36d6565ce8d82d9434c589585bbb8121020c9",
+        "9ac60f1df71e72f6f89577299cc81841e2b6b5fbfb62c4e96bf80a54b0645510",
+        "5fb5218c7af157d09feeb7f77109540762785c2f69c615921d784753c0ccfa8e",
+        "04dd50abab10dafab256015a053c88200d4e440a80e7cd0e8c5f23b6af02b70c",
+        "9fbd4fbb8a1ff5cdc8574a4043dfe0ea77b1d34f29e289190b5c32a8d72bd88a",
+        "f90a71420447931f72fad6af5b673e7438df8ae736bde1fa5d26da17f77d68f1"
+      ],
+      "readFiles": [
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/5d6dcf455e18c009fe09967aaddd50ca4c33c7e2d2efceb45d52df7922286f87.png",
+          "sha256": "5d6dcf455e18c009fe09967aaddd50ca4c33c7e2d2efceb45d52df7922286f87",
+          "caseKey": "SIM-C2-L004-01|published|320|orbit|grid|1",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/1fbfc9672204a76e767dd4e5aa84ac50e50ec24f307ac61582755202686a4430.png",
+          "sha256": "1fbfc9672204a76e767dd4e5aa84ac50e50ec24f307ac61582755202686a4430",
+          "caseKey": "SIM-C2-L004-01|published|320|side|grid|1",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/3d46ec9bbb0684aaa978d11711e36d6565ce8d82d9434c589585bbb8121020c9.png",
+          "sha256": "3d46ec9bbb0684aaa978d11711e36d6565ce8d82d9434c589585bbb8121020c9",
+          "caseKey": "SIM-C2-L004-01|published|320|top|grid|1",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/9ac60f1df71e72f6f89577299cc81841e2b6b5fbfb62c4e96bf80a54b0645510.png",
+          "sha256": "9ac60f1df71e72f6f89577299cc81841e2b6b5fbfb62c4e96bf80a54b0645510",
+          "caseKey": "SIM-C2-L004-01|published|320|fixed_projection|grid|1",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/5fb5218c7af157d09feeb7f77109540762785c2f69c615921d784753c0ccfa8e.png",
+          "sha256": "5fb5218c7af157d09feeb7f77109540762785c2f69c615921d784753c0ccfa8e",
+          "caseKey": "SIM-C2-L004-01|published|1280|orbit|grid|1",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/04dd50abab10dafab256015a053c88200d4e440a80e7cd0e8c5f23b6af02b70c.png",
+          "sha256": "04dd50abab10dafab256015a053c88200d4e440a80e7cd0e8c5f23b6af02b70c",
+          "caseKey": "SIM-C2-L004-01|published|1280|side|grid|1",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/9fbd4fbb8a1ff5cdc8574a4043dfe0ea77b1d34f29e289190b5c32a8d72bd88a.png",
+          "sha256": "9fbd4fbb8a1ff5cdc8574a4043dfe0ea77b1d34f29e289190b5c32a8d72bd88a",
+          "caseKey": "SIM-C2-L004-01|published|1280|top|grid|1",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/f90a71420447931f72fad6af5b673e7438df8ae736bde1fa5d26da17f77d68f1.png",
+          "sha256": "f90a71420447931f72fad6af5b673e7438df8ae736bde1fa5d26da17f77d68f1",
+          "caseKey": "SIM-C2-L004-01|published|1280|fixed_projection|grid|1",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        }
+      ],
+      "readCaseFiles": [
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/ffff77db683373e869e09e0d5fa09ed9f7d632526809a946012d7ab715e20c1b.json",
+          "sha256": "fd87871dbafa32adde9f144ee9d2155af2151fd4c6bdfac393203a0ba6824232"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/c102afc2b1a48d236cd2b1af50d4a66030bdf9b30363b47b1c38c08a962016d8.json",
+          "sha256": "99f25386ad8ce23d5d9c133ad4c3aeaf4ab7e90c141c9e305cd9b1955ad9a43a"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/33c8c4b22b9bbc38eb37ccbf5d912249d5b7d0c40cfaa1e08387bfc2552c9f84.json",
+          "sha256": "000831407783c5a5ec39d42e2b56550939bb34109b0f591218734af37f4d4315"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/3cc23da87395f575e9d01121cabcb7c4f76afe3a2c05cf90e7e09cf96fc39d92.json",
+          "sha256": "cdca1917c04d6c54587081805f2eb0074044fc6af8079df0ade6ae7114d3aa84"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/139a9d486842843d1f43511f709f9167219466528239e8cb81f9f8f136fc86c0.json",
+          "sha256": "51ea94c69be274e908cba5da322e5df5410360e3ca3b5969c558fd2ab5c0c98e"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/cc512cb54e0d198ec64a56bc375da0a09970268eaf420bbe03632360d7708a73.json",
+          "sha256": "540774c7524b60bb2c9f9a2279279d98a8bb7acd6542c16dc4098152f75a2a4f"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/fb227f1cd4d6b329d5f503cc057127c46cbef4dc725f1088f67fa567369a68ac.json",
+          "sha256": "bf95d74b0660abfb3086a23bb89f1209238e85f13726f565b0c2ecc547fa37ca"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/fe78bb0a290b9751817183d26df4c82c7f888919c134b293040bf5278f6cbdcc.json",
+          "sha256": "f4ab18208aac03bfb0729d0b86e6f4857c3258c7513186b8b51b90d54617354b"
+        }
+      ],
+      "actualPhaseText": [
+        "OSSERVA · 2/5\nIndividua il fenomeno\n\nSpingi lentamente il blocco nel recipiente. Conta soltanto il volume sotto il pelo libero. La spinta verso l’alto uguaglia il peso di quel volume d’acqua, con g = 10 m/s².\n\nFₐ = ρgV immerso; 1 L d’acqua pesa circa 10 N\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+        "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Volume immerso» e confronta la scena con il punto segnato sul grafico. Parti da 1 L, poi prova 3 L.\n\nVolume immerso = 1 L · Spinta di Archimede = 10 N\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+        "COMPRENDI · 4/5\nOsserva la lettura del modello\n\nQuesta posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 3 L e 2 L.\n\nSpinta di Archimede = 10 N\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+        "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Volume immerso» a 2 L. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nFₐ = ρgV immerso; 1 L d’acqua pesa circa 10 N\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale"
+      ],
+      "installedAnswerExamples": [
+        {
+          "expectedAccepted": true,
+          "input": "30.0",
+          "prompt": "Imposta «Volume immerso» su 3 L. Quale valore ottieni per «Spinta di Archimede»?",
+          "sourceManualReadiness": true,
+          "actualPrompt": "Imposta «Volume immerso» su 3 L. Quale valore ottieni per «Spinta di Archimede»?",
+          "status": "Corretto. Fₐ = ρgV immerso; 1 L d’acqua pesa circa 10 N. 10 × 3 = 30 N."
+        },
+        {
+          "expectedAccepted": true,
+          "input": "20.0",
+          "prompt": "Un oggetto sposta 2 L d’acqua. Con un peso dell’acqua di circa 10 N per litro, quale spinta verso l’alto riceve?",
+          "sourceManualReadiness": true,
+          "actualPrompt": "Un oggetto sposta 2 L d’acqua. Con un peso dell’acqua di circa 10 N per litro, quale spinta verso l’alto riceve?",
+          "status": "Corretto. Fₐ = ρgV immerso; 1 L d’acqua pesa circa 10 N. 10 × 2 = 20 N."
+        }
+      ],
+      "sourceOriginalRecord": {
+        "anchor": "Immergi un corpo senza appoggiarlo sul fondo.",
+        "apparatus": "galleggia",
+        "blocks": [],
+        "control": {
+          "label": "Volume immerso",
+          "max": 4.0,
+          "min": 0.0,
+          "step": 0.25,
+          "unit": "L"
+        },
+        "course": "C2",
+        "formula": "Fₐ = ρgV immerso; 1 L d’acqua pesa circa 10 N",
+        "id": "SIM-C2-L004-01",
+        "interpretation": "Spingi lentamente il blocco nel recipiente. Conta soltanto il volume sotto il pelo libero. La spinta verso l’alto uguaglia il peso di quel volume d’acqua, con g = 10 m/s².",
+        "kind": "experiment",
+        "measure": {
+          "label": "Spinta di Archimede",
+          "unit": "N"
+        },
+        "order": 1,
+        "references": [
+          [
+            1.0,
+            10.0
+          ],
+          [
+            3.0,
+            30.0
+          ]
+        ],
+        "section": "Fluidi in quiete",
+        "skill": "C2-L004",
+        "substitution": "10 × {x}",
+        "summary": "Come colleghi la spinta alla quantità d’acqua spostata?",
+        "title": "Principio di Archimede",
+        "topic": "Principio di Archimede",
+        "transferPrompt": "Un oggetto sposta {x} d’acqua. Con un peso dell’acqua di circa 10 N per litro, quale spinta verso l’alto riceve?",
+        "version": 1
+      },
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L004-02",
+      "sourceCommit": "e02b0a767097f22ed66b7240432fc30b206217fd",
+      "runtimeSha256": "980518b78d0767d90f16322539852e7e79360e20f05078ceb6e9b0425e805301",
+      "sourceRecordSha256": "0b77659a3ab54a38625864835ec65bd9141d74317928fe8aa6fb4e40bd117c68",
+      "sourceVersion": 1,
+      "visualReview": "PASS",
+      "openFindingIds": [],
+      "reason": "Immersione costante e spinta proporzionale aρ; compiti20/18N corretti. Un solo indicatore con scala costante entro la prova, senza ambiguità comparabile alle due frecce della pressa.",
+      "scope": {
+        "kind": "BOUNDED_ORIGINAL_WITH_NEW_UI_AND_DISTINCT_PHYSICS",
+        "profiles": [
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "gridValues": [
+          600,
+          800,
+          900,
+          1000,
+          1200
+        ],
+        "clockCases": [],
+        "actualCaseCount": 48,
+        "gridClockCaseCount": 40,
+        "setupCount": 8,
+        "acceptedAnswerEvents": 16,
+        "phaseTextVariantsRead": 1,
+        "phasesPerSetup": 4,
+        "authoredReadingPanel": "ABSENT_ORIGINAL_BLOCKS_EMPTY_READING_NULL",
+        "manualWholeRawPngCount": 8,
+        "all200FramesManuallyOpened": false,
+        "manualReadCaseKeys": [
+          "SIM-C2-L004-02|published|320|orbit|grid|2",
+          "SIM-C2-L004-02|published|320|side|grid|2",
+          "SIM-C2-L004-02|published|320|top|grid|2",
+          "SIM-C2-L004-02|published|320|fixed_projection|grid|2",
+          "SIM-C2-L004-02|published|1280|orbit|grid|2",
+          "SIM-C2-L004-02|published|1280|side|grid|2",
+          "SIM-C2-L004-02|published|1280|top|grid|2",
+          "SIM-C2-L004-02|published|1280|fixed_projection|grid|2"
+        ],
+        "fullObservedCaseKeys": [
+          "SIM-C2-L004-02|published|320|orbit|setup",
+          "SIM-C2-L004-02|published|320|orbit|grid|0",
+          "SIM-C2-L004-02|published|320|orbit|grid|1",
+          "SIM-C2-L004-02|published|320|orbit|grid|2",
+          "SIM-C2-L004-02|published|320|orbit|grid|3",
+          "SIM-C2-L004-02|published|320|orbit|grid|4",
+          "SIM-C2-L004-02|published|320|side|setup",
+          "SIM-C2-L004-02|published|320|side|grid|0",
+          "SIM-C2-L004-02|published|320|side|grid|1",
+          "SIM-C2-L004-02|published|320|side|grid|2",
+          "SIM-C2-L004-02|published|320|side|grid|3",
+          "SIM-C2-L004-02|published|320|side|grid|4",
+          "SIM-C2-L004-02|published|320|top|setup",
+          "SIM-C2-L004-02|published|320|top|grid|0",
+          "SIM-C2-L004-02|published|320|top|grid|1",
+          "SIM-C2-L004-02|published|320|top|grid|2",
+          "SIM-C2-L004-02|published|320|top|grid|3",
+          "SIM-C2-L004-02|published|320|top|grid|4",
+          "SIM-C2-L004-02|published|320|fixed_projection|setup",
+          "SIM-C2-L004-02|published|320|fixed_projection|grid|0",
+          "SIM-C2-L004-02|published|320|fixed_projection|grid|1",
+          "SIM-C2-L004-02|published|320|fixed_projection|grid|2",
+          "SIM-C2-L004-02|published|320|fixed_projection|grid|3",
+          "SIM-C2-L004-02|published|320|fixed_projection|grid|4",
+          "SIM-C2-L004-02|published|1280|orbit|setup",
+          "SIM-C2-L004-02|published|1280|orbit|grid|0",
+          "SIM-C2-L004-02|published|1280|orbit|grid|1",
+          "SIM-C2-L004-02|published|1280|orbit|grid|2",
+          "SIM-C2-L004-02|published|1280|orbit|grid|3",
+          "SIM-C2-L004-02|published|1280|orbit|grid|4",
+          "SIM-C2-L004-02|published|1280|side|setup",
+          "SIM-C2-L004-02|published|1280|side|grid|0",
+          "SIM-C2-L004-02|published|1280|side|grid|1",
+          "SIM-C2-L004-02|published|1280|side|grid|2",
+          "SIM-C2-L004-02|published|1280|side|grid|3",
+          "SIM-C2-L004-02|published|1280|side|grid|4",
+          "SIM-C2-L004-02|published|1280|top|setup",
+          "SIM-C2-L004-02|published|1280|top|grid|0",
+          "SIM-C2-L004-02|published|1280|top|grid|1",
+          "SIM-C2-L004-02|published|1280|top|grid|2",
+          "SIM-C2-L004-02|published|1280|top|grid|3",
+          "SIM-C2-L004-02|published|1280|top|grid|4",
+          "SIM-C2-L004-02|published|1280|fixed_projection|setup",
+          "SIM-C2-L004-02|published|1280|fixed_projection|grid|0",
+          "SIM-C2-L004-02|published|1280|fixed_projection|grid|1",
+          "SIM-C2-L004-02|published|1280|fixed_projection|grid|2",
+          "SIM-C2-L004-02|published|1280|fixed_projection|grid|3",
+          "SIM-C2-L004-02|published|1280|fixed_projection|grid|4"
+        ]
+      },
+      "readPngSha256": [
+        "3578aed6db5747df6c6f0ec79f237445f1d139a9b330c91d9656247d8ac24115",
+        "0da995f733050d70a58669a0415032aa6d7d0854795925d9e354025cf6f3eb6e",
+        "5d395acb86cc4c367837a792b64cf61fd405b93470d788082a795d7773358c4e",
+        "10ff85050cf2516c993c8aded7e0d25d625870592ef0e37dc385a1f5d270c3db",
+        "84d6e2e58a8b185a19ca534ec21cd0e4e52510720d26d51db8c5d65c534d9b18",
+        "b7374f2e28dc8d3eb509a83ca76f7851399b5e94795458d2cc95213f47c7ed74",
+        "95d16a88efb2aa7a925004b1b8688012447f473ecc89b2dad3c92c4ff9d5a316",
+        "bf0a16a57138a63a20a4d84d97b5cfbfe540d55da35bd740a5d52495599dd7c2"
+      ],
+      "readFiles": [
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/3578aed6db5747df6c6f0ec79f237445f1d139a9b330c91d9656247d8ac24115.png",
+          "sha256": "3578aed6db5747df6c6f0ec79f237445f1d139a9b330c91d9656247d8ac24115",
+          "caseKey": "SIM-C2-L004-02|published|320|orbit|grid|2",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/0da995f733050d70a58669a0415032aa6d7d0854795925d9e354025cf6f3eb6e.png",
+          "sha256": "0da995f733050d70a58669a0415032aa6d7d0854795925d9e354025cf6f3eb6e",
+          "caseKey": "SIM-C2-L004-02|published|320|side|grid|2",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/5d395acb86cc4c367837a792b64cf61fd405b93470d788082a795d7773358c4e.png",
+          "sha256": "5d395acb86cc4c367837a792b64cf61fd405b93470d788082a795d7773358c4e",
+          "caseKey": "SIM-C2-L004-02|published|320|top|grid|2",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/10ff85050cf2516c993c8aded7e0d25d625870592ef0e37dc385a1f5d270c3db.png",
+          "sha256": "10ff85050cf2516c993c8aded7e0d25d625870592ef0e37dc385a1f5d270c3db",
+          "caseKey": "SIM-C2-L004-02|published|320|fixed_projection|grid|2",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/84d6e2e58a8b185a19ca534ec21cd0e4e52510720d26d51db8c5d65c534d9b18.png",
+          "sha256": "84d6e2e58a8b185a19ca534ec21cd0e4e52510720d26d51db8c5d65c534d9b18",
+          "caseKey": "SIM-C2-L004-02|published|1280|orbit|grid|2",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/b7374f2e28dc8d3eb509a83ca76f7851399b5e94795458d2cc95213f47c7ed74.png",
+          "sha256": "b7374f2e28dc8d3eb509a83ca76f7851399b5e94795458d2cc95213f47c7ed74",
+          "caseKey": "SIM-C2-L004-02|published|1280|side|grid|2",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/95d16a88efb2aa7a925004b1b8688012447f473ecc89b2dad3c92c4ff9d5a316.png",
+          "sha256": "95d16a88efb2aa7a925004b1b8688012447f473ecc89b2dad3c92c4ff9d5a316",
+          "caseKey": "SIM-C2-L004-02|published|1280|top|grid|2",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/bf0a16a57138a63a20a4d84d97b5cfbfe540d55da35bd740a5d52495599dd7c2.png",
+          "sha256": "bf0a16a57138a63a20a4d84d97b5cfbfe540d55da35bd740a5d52495599dd7c2",
+          "caseKey": "SIM-C2-L004-02|published|1280|fixed_projection|grid|2",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        }
+      ],
+      "readCaseFiles": [
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/d55bf3c9f709ee135f69a6cccf9f3c0e99d31e37f350a2b3758dd2d45cee4557.json",
+          "sha256": "655128981ed581d39e0c76f4166eb40361750c6729c267052c10327ad3c746d3"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/e8f33c5d0308a612a2e49ef21d34520ade9a655fd069f01a925a0fad06f1117c.json",
+          "sha256": "0615b8962004c251a5bcdc56d6c5dca92af9035dcbd6a1d13a3da9776305781e"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/3688acd8b8f8704d8188af072e9f34a44365db9d57b331adc9e245cb20cd7097.json",
+          "sha256": "87d86cb4e485648a6d8df43d6b062702718b69337665d28cf2a956348a14526c"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/66b114791e9dc6072062f989e7769e8c1cbcdee2be7e0d634c4f12c7bd9c9160.json",
+          "sha256": "51de6ade0b1575d92c33e6dae45a76c26bfc9dbec05a26dcd7898aea02d9cdb1"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/30103119935344f285b67e46acd1cbecda83d46768d2ee976eadcead9623c2c9.json",
+          "sha256": "0efbc506c846885255bb992cf15a50de7e9cd87a4f98aa6aad62c829543db240"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/6793032ebfe0cdecf89708f9793151c198c53da657def58e1baab8abae7f6382.json",
+          "sha256": "f2329ff505b63cea507277cb0f6bb2cc49fdda089d0453aa28eb604bf2d24b58"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/9a871a82cea688154c28d320a3a1997f7241d313ba08726200b5a4a3f9755529.json",
+          "sha256": "eab3265fd553fd2ef36407ac4d945cea74b293568c390584c08bdcfeae7a3d9e"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/9cf57bb1b07f40cd23933acab452e2357d27c0846e7a0b04472c2ed5eb4c91b7.json",
+          "sha256": "352da824127cf86aacf7accdf738e5ec72db941ac1e2edfba48714273de01459"
+        }
+      ],
+      "actualPhaseText": [
+        "OSSERVA · 2/5\nIndividua il fenomeno\n\nIl corpo sposta sempre 2 L. Raddoppiando la densità raddoppi il peso del fluido spostato. Un sostegno trattiene il corpo alla stessa quota.\n\nFₐ = ρ × 10 × 0,002\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+        "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Densità del liquido» e confronta la scena con il punto segnato sul grafico. Parti da 800 kg/m³, poi prova 1000 kg/m³.\n\nDensità del liquido = 800 kg/m³ · Spinta su 2 litri immersi = 16 N\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+        "COMPRENDI · 4/5\nOsserva la lettura del modello\n\nQuesta posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 1000 kg/m³ e 900 kg/m³.\n\nSpinta su 2 litri immersi = 16 N\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+        "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Densità del liquido» a 900 kg/m³. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nFₐ = ρ × 10 × 0,002\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale"
+      ],
+      "installedAnswerExamples": [
+        {
+          "expectedAccepted": true,
+          "input": "20.0",
+          "prompt": "Imposta «Densità del liquido» su 1000 kg/m³. Quale valore ottieni per «Spinta su 2 litri immersi»?",
+          "sourceManualReadiness": true,
+          "actualPrompt": "Imposta «Densità del liquido» su 1000 kg/m³. Quale valore ottieni per «Spinta su 2 litri immersi»?",
+          "status": "Corretto. Fₐ = ρ × 10 × 0,002. 0,02 × 1000 = 20 N."
+        },
+        {
+          "expectedAccepted": true,
+          "input": "18.0",
+          "prompt": "Immergi completamente un oggetto da 2 L in un liquido di densità 900 kg/m³. Quale spinta misura il dinamometro per differenza?",
+          "sourceManualReadiness": true,
+          "actualPrompt": "Immergi completamente un oggetto da 2 L in un liquido di densità 900 kg/m³. Quale spinta misura il dinamometro per differenza?",
+          "status": "Corretto. Fₐ = ρ × 10 × 0,002. 0,02 × 900 = 18 N."
+        }
+      ],
+      "sourceOriginalRecord": {
+        "anchor": "La densità ρ_f è quella del fluido",
+        "apparatus": "galleggia",
+        "blocks": [],
+        "control": {
+          "label": "Densità del liquido",
+          "max": 1200.0,
+          "min": 600.0,
+          "step": 50.0,
+          "unit": "kg/m³"
+        },
+        "course": "C2",
+        "formula": "Fₐ = ρ × 10 × 0,002",
+        "id": "SIM-C2-L004-02",
+        "interpretation": "Il corpo sposta sempre 2 L. Raddoppiando la densità raddoppi il peso del fluido spostato. Un sostegno trattiene il corpo alla stessa quota.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Spinta su 2 litri immersi",
+          "unit": "N"
+        },
+        "order": 2,
+        "references": [
+          [
+            800.0,
+            16.0
+          ],
+          [
+            1000.0,
+            20.0
+          ]
+        ],
+        "section": "Fluidi in quiete",
+        "skill": "C2-L004",
+        "substitution": "0,02 × {x}",
+        "summary": "Cambia la spinta se il corpo resta tutto immerso ma cambia il liquido?",
+        "title": "Spinta idrostatica",
+        "topic": "Spinta idrostatica",
+        "transferPrompt": "Immergi completamente un oggetto da 2 L in un liquido di densità {x}. Quale spinta misura il dinamometro per differenza?",
+        "version": 1
+      },
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L004-03",
+      "sourceCommit": "e02b0a767097f22ed66b7240432fc30b206217fd",
+      "runtimeSha256": "980518b78d0767d90f16322539852e7e79360e20f05078ceb6e9b0425e805301",
+      "sourceRecordSha256": "f9c4b4338d9fa15ff5e2b4d55c297a0198cdf6d29d49b9c2e0fdb504917009b7",
+      "sourceVersion": 2,
+      "visualReview": "PASS",
+      "openFindingIds": [],
+      "reason": "Equilibrio perρ≤1000 e neutralità aρ1000 descritta dalla fonteoriginalev2; compiti80/60% corretti. Una posizione neutra possibile è mostrata, non una profondità unica. Un solo indicatore cresce con la densità, Top assiale distinto.",
+      "scope": {
+        "kind": "BOUNDED_ORIGINAL_WITH_NEW_UI_AND_DISTINCT_PHYSICS",
+        "profiles": [
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "gridValues": [
+          200,
+          250,
+          600,
+          800,
+          1000
+        ],
+        "clockCases": [],
+        "actualCaseCount": 48,
+        "gridClockCaseCount": 40,
+        "setupCount": 8,
+        "acceptedAnswerEvents": 16,
+        "phaseTextVariantsRead": 1,
+        "phasesPerSetup": 4,
+        "authoredReadingPanel": "ABSENT_ORIGINAL_BLOCKS_EMPTY_READING_NULL",
+        "manualWholeRawPngCount": 8,
+        "all200FramesManuallyOpened": false,
+        "manualReadCaseKeys": [
+          "SIM-C2-L004-03|published|320|orbit|grid|4",
+          "SIM-C2-L004-03|published|320|side|grid|4",
+          "SIM-C2-L004-03|published|320|top|grid|4",
+          "SIM-C2-L004-03|published|320|fixed_projection|grid|4",
+          "SIM-C2-L004-03|published|1280|orbit|grid|4",
+          "SIM-C2-L004-03|published|1280|side|grid|4",
+          "SIM-C2-L004-03|published|1280|top|grid|4",
+          "SIM-C2-L004-03|published|1280|fixed_projection|grid|4"
+        ],
+        "fullObservedCaseKeys": [
+          "SIM-C2-L004-03|published|320|orbit|setup",
+          "SIM-C2-L004-03|published|320|orbit|grid|0",
+          "SIM-C2-L004-03|published|320|orbit|grid|1",
+          "SIM-C2-L004-03|published|320|orbit|grid|2",
+          "SIM-C2-L004-03|published|320|orbit|grid|3",
+          "SIM-C2-L004-03|published|320|orbit|grid|4",
+          "SIM-C2-L004-03|published|320|side|setup",
+          "SIM-C2-L004-03|published|320|side|grid|0",
+          "SIM-C2-L004-03|published|320|side|grid|1",
+          "SIM-C2-L004-03|published|320|side|grid|2",
+          "SIM-C2-L004-03|published|320|side|grid|3",
+          "SIM-C2-L004-03|published|320|side|grid|4",
+          "SIM-C2-L004-03|published|320|top|setup",
+          "SIM-C2-L004-03|published|320|top|grid|0",
+          "SIM-C2-L004-03|published|320|top|grid|1",
+          "SIM-C2-L004-03|published|320|top|grid|2",
+          "SIM-C2-L004-03|published|320|top|grid|3",
+          "SIM-C2-L004-03|published|320|top|grid|4",
+          "SIM-C2-L004-03|published|320|fixed_projection|setup",
+          "SIM-C2-L004-03|published|320|fixed_projection|grid|0",
+          "SIM-C2-L004-03|published|320|fixed_projection|grid|1",
+          "SIM-C2-L004-03|published|320|fixed_projection|grid|2",
+          "SIM-C2-L004-03|published|320|fixed_projection|grid|3",
+          "SIM-C2-L004-03|published|320|fixed_projection|grid|4",
+          "SIM-C2-L004-03|published|1280|orbit|setup",
+          "SIM-C2-L004-03|published|1280|orbit|grid|0",
+          "SIM-C2-L004-03|published|1280|orbit|grid|1",
+          "SIM-C2-L004-03|published|1280|orbit|grid|2",
+          "SIM-C2-L004-03|published|1280|orbit|grid|3",
+          "SIM-C2-L004-03|published|1280|orbit|grid|4",
+          "SIM-C2-L004-03|published|1280|side|setup",
+          "SIM-C2-L004-03|published|1280|side|grid|0",
+          "SIM-C2-L004-03|published|1280|side|grid|1",
+          "SIM-C2-L004-03|published|1280|side|grid|2",
+          "SIM-C2-L004-03|published|1280|side|grid|3",
+          "SIM-C2-L004-03|published|1280|side|grid|4",
+          "SIM-C2-L004-03|published|1280|top|setup",
+          "SIM-C2-L004-03|published|1280|top|grid|0",
+          "SIM-C2-L004-03|published|1280|top|grid|1",
+          "SIM-C2-L004-03|published|1280|top|grid|2",
+          "SIM-C2-L004-03|published|1280|top|grid|3",
+          "SIM-C2-L004-03|published|1280|top|grid|4",
+          "SIM-C2-L004-03|published|1280|fixed_projection|setup",
+          "SIM-C2-L004-03|published|1280|fixed_projection|grid|0",
+          "SIM-C2-L004-03|published|1280|fixed_projection|grid|1",
+          "SIM-C2-L004-03|published|1280|fixed_projection|grid|2",
+          "SIM-C2-L004-03|published|1280|fixed_projection|grid|3",
+          "SIM-C2-L004-03|published|1280|fixed_projection|grid|4"
+        ]
+      },
+      "readPngSha256": [
+        "a34a52e65b67b60b612fe80e9141a39aa32bbd1343dc3ff23cf98bb804851dfa",
+        "a140b4af20d276c0547da2615d65a93006032f56ca0fe961feb4e810d428343d",
+        "10757f891a8671eaba9a7158e4b8be5b3413724dbe07ef1ec83ab5c3f57f8807",
+        "4fc41bf747da262117cf7237df17639d5cf4dcef749c2d5c9368ad1f27be7fec",
+        "febaedf11baaa882b0bb88110b1ff7072b0ceb652465ad91b719d344cdaaae95",
+        "6b8df4c6a548419ccb14e7448e2bedc6637db87d0c2e60e9f3594f792c31b1e8",
+        "38f8563fae9d635f648af007833a3eccd1c708f1d0ddea661029f62b1646cd35",
+        "6d54cdfe786eb6c85f62309b3bea8ce4636b20950604c2cc3c627fa7a5aecda7"
+      ],
+      "readFiles": [
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/a34a52e65b67b60b612fe80e9141a39aa32bbd1343dc3ff23cf98bb804851dfa.png",
+          "sha256": "a34a52e65b67b60b612fe80e9141a39aa32bbd1343dc3ff23cf98bb804851dfa",
+          "caseKey": "SIM-C2-L004-03|published|320|orbit|grid|4",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/a140b4af20d276c0547da2615d65a93006032f56ca0fe961feb4e810d428343d.png",
+          "sha256": "a140b4af20d276c0547da2615d65a93006032f56ca0fe961feb4e810d428343d",
+          "caseKey": "SIM-C2-L004-03|published|320|side|grid|4",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/10757f891a8671eaba9a7158e4b8be5b3413724dbe07ef1ec83ab5c3f57f8807.png",
+          "sha256": "10757f891a8671eaba9a7158e4b8be5b3413724dbe07ef1ec83ab5c3f57f8807",
+          "caseKey": "SIM-C2-L004-03|published|320|top|grid|4",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/4fc41bf747da262117cf7237df17639d5cf4dcef749c2d5c9368ad1f27be7fec.png",
+          "sha256": "4fc41bf747da262117cf7237df17639d5cf4dcef749c2d5c9368ad1f27be7fec",
+          "caseKey": "SIM-C2-L004-03|published|320|fixed_projection|grid|4",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/febaedf11baaa882b0bb88110b1ff7072b0ceb652465ad91b719d344cdaaae95.png",
+          "sha256": "febaedf11baaa882b0bb88110b1ff7072b0ceb652465ad91b719d344cdaaae95",
+          "caseKey": "SIM-C2-L004-03|published|1280|orbit|grid|4",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/6b8df4c6a548419ccb14e7448e2bedc6637db87d0c2e60e9f3594f792c31b1e8.png",
+          "sha256": "6b8df4c6a548419ccb14e7448e2bedc6637db87d0c2e60e9f3594f792c31b1e8",
+          "caseKey": "SIM-C2-L004-03|published|1280|side|grid|4",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/38f8563fae9d635f648af007833a3eccd1c708f1d0ddea661029f62b1646cd35.png",
+          "sha256": "38f8563fae9d635f648af007833a3eccd1c708f1d0ddea661029f62b1646cd35",
+          "caseKey": "SIM-C2-L004-03|published|1280|top|grid|4",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/screens/6d54cdfe786eb6c85f62309b3bea8ce4636b20950604c2cc3c627fa7a5aecda7.png",
+          "sha256": "6d54cdfe786eb6c85f62309b3bea8ce4636b20950604c2cc3c627fa7a5aecda7",
+          "caseKey": "SIM-C2-L004-03|published|1280|fixed_projection|grid|4",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        }
+      ],
+      "readCaseFiles": [
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/d15b9c62bfa6ac3841a05a9c6c1b38ed5a0a09c64daa11e667944e1e45148e55.json",
+          "sha256": "b84f7635f69fac686f6d239027a624f10b2aecd6b5d63b118300b911b72aa94b"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/958ee356b888f7a61861bab2e624d2d0e07f9b6d7b5425b1812b1c9392ff6c43.json",
+          "sha256": "2c7b747fefc3511138b88c0f48b865a0bfc5c8719e06eeb95dfbfdcf8072f029"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/2806ab8648e0e2d0c4ba73f6f26a13342dfbf1fce558f7b3090a2db76ee9e56f.json",
+          "sha256": "6b400e9047cf9bdb9ab6007bf09757467f4c6fbfa24627aa4c8d2e3e3d117b3a"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/9acd3dad5bba32f9c3d77957a50f90e9c925c04ac4cd9f2b3bddf0b8b7601263.json",
+          "sha256": "21f8c83bfec79dacb42f2fd45af665d6404b12ec869ed8e2dcc09ec897781ce1"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/1363c861cb8968723d35a7a60289617257f4a623fec707b63e33ddbc5b636ec6.json",
+          "sha256": "86eae13b2783e7cac062e6258990cf6e3ac731da20faa88225d669d9f8bf0cc3"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/cea0ad9dd156f957fa35919aa9e865f600849dc710e284da25ab2b0cd7e3057a.json",
+          "sha256": "8db117d0471d1fda47b49a950a1c4b2219953e1773e3fcba37e33e2e0fa5dc37"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/6b722496249b46f2b43ac783173b3ea3c7d82eae508fc464a8c1d385cbf89a72.json",
+          "sha256": "adb021ff30b58768db83760680759a4c213690a0f09e2917c2735a9ebc19c5b7"
+        },
+        {
+          "path": "editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/actual/cases/e6eb89c9cad24ded86dc3ca7f702421ab440956a3347fd69555ba584622a2f22.json",
+          "sha256": "b93d81c20b37cf9db1eb383e6d43b02cf5d8a08e8d71850fd0a7f983322ebe65"
+        }
+      ],
+      "actualPhaseText": [
+        "OSSERVA · 2/5\nIndividua il fenomeno\n\nIl peso di tutto il blocco è bilanciato dalla spinta sul solo volume immerso. Con densità 250 kg/m³, un quarto del volume sposta acqua a sufficienza e tre quarti restano fuori. A 1000 kg/m³ il blocco deve essere interamente immerso. Finché rimane immerso senza toccare il fondo, spinta e peso si compensano a qualsiasi profondità. La tavola mostra una delle posizioni possibili.\n\nV immerso / V = ρ corpo / ρ acqua\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+        "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Densità del blocco» e confronta la scena con il punto segnato sul grafico. Parti da 250 kg/m³, poi prova 800 kg/m³.\n\nDensità del blocco = 250 kg/m³ · Frazione immersa in equilibrio = 25 %\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+        "COMPRENDI · 4/5\nOsserva la lettura del modello\n\nQuesta posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 800 kg/m³ e 600 kg/m³.\n\nFrazione immersa in equilibrio = 25 %\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+        "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Densità del blocco» a 600 kg/m³. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nV immerso / V = ρ corpo / ρ acqua\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale"
+      ],
+      "installedAnswerExamples": [
+        {
+          "expectedAccepted": true,
+          "input": "80.0",
+          "prompt": "Imposta «Densità del blocco» su 800 kg/m³. Quale valore ottieni per «Frazione immersa in equilibrio»?",
+          "sourceManualReadiness": true,
+          "actualPrompt": "Imposta «Densità del blocco» su 800 kg/m³. Quale valore ottieni per «Frazione immersa in equilibrio»?",
+          "status": "Corretto. V immerso / V = ρ corpo / ρ acqua. 800 / 10 = 80 %."
+        },
+        {
+          "expectedAccepted": true,
+          "input": "60.0",
+          "prompt": "Un blocco omogeneo di densità 600 kg/m³ è libero in acqua da 1000 kg/m³. All’equilibrio quale percentuale del volume è immersa?",
+          "sourceManualReadiness": true,
+          "actualPrompt": "Un blocco omogeneo di densità 600 kg/m³ è libero in acqua da 1000 kg/m³. All’equilibrio quale percentuale del volume è immersa?",
+          "status": "Corretto. V immerso / V = ρ corpo / ρ acqua. 600 / 10 = 60 %."
+        }
+      ],
+      "sourceOriginalRecord": {
+        "anchor": "Questa relazione vale per un corpo libero",
+        "apparatus": "galleggia",
+        "blocks": [],
+        "control": {
+          "label": "Densità del blocco",
+          "max": 1000.0,
+          "min": 200.0,
+          "step": 50.0,
+          "unit": "kg/m³"
+        },
+        "course": "C2",
+        "formula": "V immerso / V = ρ corpo / ρ acqua",
+        "id": "SIM-C2-L004-03",
+        "interpretation": "Il peso di tutto il blocco è bilanciato dalla spinta sul solo volume immerso. Con densità 250 kg/m³, un quarto del volume sposta acqua a sufficienza e tre quarti restano fuori. A 1000 kg/m³ il blocco deve essere interamente immerso. Finché rimane immerso senza toccare il fondo, spinta e peso si compensano a qualsiasi profondità. La tavola mostra una delle posizioni possibili.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Frazione immersa in equilibrio",
+          "unit": "%"
+        },
+        "order": 3,
+        "references": [
+          [
+            250.0,
+            25.0
+          ],
+          [
+            800.0,
+            80.0
+          ]
+        ],
+        "section": "Fluidi in quiete",
+        "skill": "C2-L004",
+        "substitution": "{x} / 10",
+        "summary": "Quale percentuale del volume del blocco resta immersa nell’acqua?",
+        "title": "Condizioni di galleggiamento e immersione",
+        "topic": "Condizioni di galleggiamento e immersione",
+        "transferPrompt": "Un blocco omogeneo di densità {x} è libero in acqua da 1000 kg/m³. All’equilibrio quale percentuale del volume è immersa?",
+        "version": 2
+      },
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    }
+  ],
+  "completeAllControlRasterReview": false,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN"
+}

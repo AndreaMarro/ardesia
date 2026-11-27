@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "1.0.0",
+  "role": "DISTINCT_REVIEWER_A",
+  "physicalModelExposure": "PRIOR_SOURCE_FIRST_MODELS_REUSED_WITH_NEW_SOURCE_AND_INSTALLED_TASK_READING",
+  "recusalAudit": "NO_CONSUMER_OR_ACTIVITY_DRAFT_AUTHORSHIP_BY_A_IN_THESE_FIVE; QUESTION_AUTHORSHIP_OTHER_IDS_DOES_NOT_SUPPLY_CONSUMER_APPROVAL",
+  "records": [
+    {
+      "id": "SIM-C2-L003-02",
+      "hypothesesAndDomain": "Liquido incomprimibile, circuito pieno, pistoni senza perdite nel modello ideale; rapporto delle aree4. La corsa è confrontata, il guadagno di forza richiede uguale pressione efficace.",
+      "manualProcedure": "A₁s₁=4A₁s₂, quindi s₂=s₁/4. Con6cm:6/4=1,5cm; con4cm:1cm. Il volume ceduto e quello ricevuto sono uguali.",
+      "geometricContract": "Le aree dei pistoni e gli spostamenti devono avere rapporto4 e1/4; controllare separatamente la semantica delle due frecce di forza, senza attribuire loro automaticamente una scala comune.",
+      "originalAndInstalledQuestionProseRead": true,
+      "sourceBlocksEmpty": true,
+      "authoredReadingPanel": "ABSENT_ORIGINAL_BLOCKS_EMPTY",
+      "UI": "PENDING_REAL_TERMINAL_AND_RASTER_READING",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L003-03",
+      "hypothesesAndDomain": "Fluido statico omogeneo; stessa profondità, sovrapressione idrostatica iniziale20kPa; si aggiunge un incremento uniforme, non si rende uniforme la pressione totale.",
+      "manualProcedure": "Somma20kPa e8kPa:28kPa; somma20 e6:26kPa. A incremento nullo la lettura resta20kPa.",
+      "geometricContract": "Due sonde alla stessa quota, freccia di incremento assente a0 e diretta sulla superficie per incremento positivo.",
+      "originalAndInstalledQuestionProseRead": true,
+      "sourceBlocksEmpty": true,
+      "authoredReadingPanel": "ABSENT_ORIGINAL_BLOCKS_EMPTY",
+      "UI": "PENDING_REAL_TERMINAL_AND_RASTER_READING",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L004-01",
+      "hypothesesAndDomain": "Acquaρ1000kg/m³, g10m/s², volume immerso imposto lentamente senza appoggio sul fondo; eventuale forza esterna trattiene il blocco.",
+      "manualProcedure": "1L=0,001m³, quindiρgV=1000·10·0,001=10N per litro.3L→30N e2L→20N. A0L spinta nulla.",
+      "geometricContract": "Frazione immersa proporzionale aV/4L; direzione verticale verso l’alto e scala della spinta costante durante questa prova.",
+      "originalAndInstalledQuestionProseRead": true,
+      "sourceBlocksEmpty": true,
+      "authoredReadingPanel": "ABSENT_ORIGINAL_BLOCKS_EMPTY",
+      "UI": "PENDING_REAL_TERMINAL_AND_RASTER_READING",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L004-02",
+      "hypothesesAndDomain": "Corpo completamente immerso con volume costante2L, sostenuto alla stessa quota; densità del fluido variata fra prove, g10m/s². La differenza delle letture del dinamometro misura la spinta.",
+      "manualProcedure": "2L=0,002m³;F_A=ρ·10·0,002=ρ/50 N.1000/50=20N;900/50=18N.",
+      "geometricContract": "Blocco alla stessa immersione in tutti gli stati; cambia soltanto la forza proporzionalmente alla densità.",
+      "originalAndInstalledQuestionProseRead": true,
+      "sourceBlocksEmpty": true,
+      "authoredReadingPanel": "ABSENT_ORIGINAL_BLOCKS_EMPTY",
+      "UI": "PENDING_REAL_TERMINAL_AND_RASTER_READING",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L004-03",
+      "hypothesesAndDomain": "Corpo libero omogeneo in acquaρ1000kg/m³; equilibrio sotto peso e spinta, densità200..1000. Al limite1000 la piena immersione è neutra, senza posizione verticale unica. Fonteoriginalev2.",
+      "manualProcedure": "ρ_acqua g V_immerso=ρ_corpo g V_totale; percentuale100·ρ/1000=ρ/10.800→80%;600→60%.",
+      "geometricContract": "Frazione immersa da0,2 a1 e freccia non nulla; a neutralità è mostrata soltanto una posizione possibile, come dice il testo originale.",
+      "originalAndInstalledQuestionProseRead": true,
+      "sourceBlocksEmpty": true,
+      "authoredReadingPanel": "ABSENT_ORIGINAL_BLOCKS_EMPTY",
+      "UI": "PENDING_REAL_TERMINAL_AND_RASTER_READING",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    }
+  ]
+}

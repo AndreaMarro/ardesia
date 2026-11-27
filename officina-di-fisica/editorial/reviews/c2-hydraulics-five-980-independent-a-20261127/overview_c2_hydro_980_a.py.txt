@@ -1,0 +1,10 @@
+from PIL import Image,ImageOps,ImageDraw
+from pathlib import Path
+import json,hashlib
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c2-hydraulics-five-980-independent-a-20261127';r=json.loads((D/'actual/report.json').read_bytes());rows=[json.loads((D/'actual'/i['file']).read_bytes())for i in r['cases']];out=[]
+for id_ in sorted({c['id']for c in rows}):
+ cs=[c for c in rows if c['id']==id_ and'interaction'in c];cols=6;w,h=220,165;sheet=Image.new('RGB',(cols*w,((len(cs)+cols-1)//cols)*h),'white');draw=ImageDraw.Draw(sheet)
+ for i,c in enumerate(cs):
+  raw=D/'actual'/c['screenshots'][0]['file'];im=Image.open(raw).convert('RGB');im.thumbnail((w-6,h-32));x=(i%cols)*w;y=(i//cols)*h;sheet.paste(im,(x+(w-im.width)//2,y+30));draw.text((x+3,y+2),str(c['profile']['width'])+' '+c['profile']['view']+' x='+str(c['sourceReplayedX']),fill='black')
+ f=D/(id_+'-all-bounded-states.png');sheet.save(f);out.append(dict(id=id_,file=str(f.relative_to(A)),sha256=hashlib.sha256(f.read_bytes()).hexdigest(),tileCount=len(cs),wholeOverviewOpenedAndRead=False))
+(D/'overview-reading.json').write_text(json.dumps(out,indent=2)+'\n');print('FIVE_OVERVIEWS_200TILES_CREATED_PENDING_READING')

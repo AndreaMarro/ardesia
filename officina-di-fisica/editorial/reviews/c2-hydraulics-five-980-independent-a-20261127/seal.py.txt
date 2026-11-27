@@ -1,0 +1,21 @@
+from pathlib import Path
+import json,hashlib,ast
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c2-hydraulics-five-980-independent-a-20261127';sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+(D/'seal.py.txt').write_bytes(Path(__file__).read_bytes())
+for p in D.rglob('*'):
+ if p.is_file()and p.name.endswith('.py.txt'):pass
+files={p for p in D.rglob('*')if p.is_file()and p.name!='handoff.json'}
+modules={A/'tools/corpus_engineering/c2_hydraulics_five_980_review_a.py',A/'tools/corpus_engineering/c2_41_static_cb9_verifier_a.py',A/'tools/corpus_engineering/pipeline.py',A/'tools/corpus_engineering/review_contract.py',A/'tests/corpus/test_c2_hydraulics_five_980_independent_a.py'}
+# Dynamic frozen imports are concrete dependencies, not just historical snapshots.
+recovered=A/'editorial/reviews/c2-41-cb9-independent-a-20261127/recovered';files.update(p for p in recovered.rglob('*')if p.is_file());queue=list(modules)
+while queue:
+ p=queue.pop()
+ for n in ast.walk(ast.parse(p.read_text())):
+  if isinstance(n,ast.ImportFrom)and n.level and n.module:
+   q=p.parent.joinpath(*n.module.split('.')).with_suffix('.py')
+   if q.exists()and q not in modules:modules.add(q);queue.append(q)
+files.update(modules);p=json.loads((D/'prepared.json').read_bytes());files.update(Path(s)for s in p['inputFiles']);baseline=Path(p['baselineBundleRoot']);files.update(q for q in baseline.rglob('*')if q.is_file());files.add(A/'editorial/reviews/c2-41-cb9-independent-a-20261127/inputs/original-esperienze-C2.json')
+# Required authoritative pipeline/importable producer bytes are carried verbatim.
+R=Path('/private/tmp/cric-resident-integrator/officina-di-fisica');src=R/'tools/corpus_engineering/baseline_browser_reference.mjs';dst=D/'canonical-baseline-helper.mjs.txt';dst.write_bytes(src.read_bytes());files.add(dst)
+h=dict(schemaVersion='1.0.0',role='DISTINCT_REVIEWER_A',sourceCommit='e02b0a767097f22ed66b7240432fc30b206217fd',runtimeSha256='980518b78d0767d90f16322539852e7e79360e20f05078ceb6e9b0425e805301',scopeIds=['SIM-C2-L003-02','SIM-C2-L003-03','SIM-C2-L004-01','SIM-C2-L004-02','SIM-C2-L004-03'],actualBrowserCases=240,actualBrowserExit=0,actualInstalledAnswerEvents=80,manualWholeRawPngRead=40,manualOverviewTilesRead=200,testsActualExit=0,testsActualCount=13,hypothesisExamples=120,sourceExactCheckCount=29,openFindingIds=['PRESS_FORCE_ARROW_SCALE_UNDECLARED'],localVisualVerdicts=dict(zip(['SIM-C2-L003-02','SIM-C2-L003-03','SIM-C2-L004-01','SIM-C2-L004-02','SIM-C2-L004-03'],['FAIL','PASS','PASS','PASS','PASS'])),perIdReview='editorial/reviews/c2-hydraulics-five-980-independent-a-20261127/visual-review-per-id.json',preservedPrebrowserNegative=True,activityCredit=0,humanApproval='NOT_RUN',files={str(q.relative_to(A)):sha(q)for q in sorted(files)})
+(D/'handoff.json').write_text(json.dumps(h,ensure_ascii=False,indent=2)+'\n');print('SEALED',len(files),'FILES; HANDOFF_SHA',sha(D/'handoff.json'))

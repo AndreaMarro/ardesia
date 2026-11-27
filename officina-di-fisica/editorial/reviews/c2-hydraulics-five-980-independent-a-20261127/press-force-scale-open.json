@@ -1,0 +1,35 @@
+{
+  "id": "PRESS_FORCE_ARROW_SCALE_UNDECLARED",
+  "activityId": "SIM-C2-L003-02",
+  "status": "OPEN",
+  "scope": "DIDACTIC_GEOMETRIC_SCALE_NOT_NUMERIC_TASK_FAILURE",
+  "sourceCommit": "e02b0a767097f22ed66b7240432fc30b206217fd",
+  "runtimeSha256": "980518b78d0767d90f16322539852e7e79360e20f05078ceb6e9b0425e805301",
+  "sourceLoci": [
+    "static/js/banchi/voci/apparati/fluidi.js:116-141",
+    "static/js/banchi/voci/legende.js:26",
+    "content/esperienze-C2.json:SIM-C2-L003-02.interpretation"
+  ],
+  "actualCaseKey": "SIM-C2-L003-02|published|1280|side|grid|4",
+  "actualArrowLengths": [
+    0.3600000000000001,
+    0.7000000000000002
+  ],
+  "exactLengths": [
+    "9/25",
+    "7/10"
+  ],
+  "exactDisplayedRatio": "35/18",
+  "requiredEqualPressureForceRatio": "4",
+  "correctAreaRatio": "4",
+  "correctStrokeRatio": "1/4",
+  "actualLegend": "L’area si misura sulla faccia perpendicolare alla forza. Nella pressa a due pistoni, a sinistra l’area è A₁ e a destra è 4 A₁.",
+  "raster": [
+    {
+      "file": "screens/2431a706251a65bd2081bc21b099e88c1911d2098086c1fa56f7d9518c85a5a1.png",
+      "sha256": "2431a706251a65bd2081bc21b099e88c1911d2098086c1fa56f7d9518c85a5a1"
+    }
+  ],
+  "otherFourComparableAmbiguityObserved": false,
+  "reason": "Il testo confronta il guadagno di forza4; le due frecce hanno lunghezze0,36 e0,70 e la legenda non ne dichiara una funzione soltanto direzionale o scale diverse. Compiti e volume sono corretti. La vista Alto è assiale e viene esclusa dalle inferenze sul modulo."
+}
