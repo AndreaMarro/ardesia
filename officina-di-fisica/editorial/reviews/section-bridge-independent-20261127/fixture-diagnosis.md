@@ -1,0 +1,3 @@
+The first real target ran 13 tests: 12 passed, one errored because the test convenience loader tried to read the deliberately removed certificate before the production function was called. Historical fresh-oracle checks on all 25 packages had passed. The corrected test captures inputs before removing the file, then invokes the actual production verifier; rejection expectations are unchanged. Original negative output is retained.
+
+The added compiler unit initially encountered macOS /var versus /private/var aliases in the disposable fixture before compilation. The fixture repo path is now resolved at creation, matching the production app canonical path. The original output is retained; compiler anchor expectations are unchanged.

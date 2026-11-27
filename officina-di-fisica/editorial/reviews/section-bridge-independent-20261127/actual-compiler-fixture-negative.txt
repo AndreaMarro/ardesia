@@ -1,0 +1,48 @@
+bounded local start; free bytes 3948015616
+test_all_actual_25_pairs_with_fresh_historical_oracles_and_distinct_composite (__main__.BridgeTests.test_all_actual_25_pairs_with_fresh_historical_oracles_and_distinct_composite) ... PARTIAL20_PROMPTS;10_exact_numeric_checks;4_Pint_checks;ONLY_Q001_020_MODELED;candidate_SCI_NOT_RUN
+PARTIAL20_SOURCE_PROMPTS;8_exact_numeric_checks;4_Pint_checks;ONLY_Q021_040_MODELED;candidate_SCI_NOT_RUN
+PARTIAL20_SOURCE_PROMPTS;8_exact_numeric_checks;4_Pint_checks;ONLY_Q021_040_MODELED;candidate_SCI_NOT_RUN
+PARTIAL10_SOURCE_PROMPTS;5_exact_numeric_checks;3_Pint_checks;ONLY_Q041_050_MODELED;candidate_SCI_NOT_RUN
+50_PROMPTS_INDIVIDUALLY_DERIVED;26_EXACT_NUMERIC_SYMBOLIC_CHECKS;8_PINT_CHECKS;NO_CANDIDATE_KEYS_OPENED;NO_CANDIDATE_SCI_PASS
+50_PROMPTS_INDIVIDUALLY_DERIVED;26_EXACT_NUMERIC_SYMBOLIC_CHECKS;8_PINT_CHECKS;NO_CANDIDATE_KEYS_OPENED;NO_CANDIDATE_SCI_PASS
+50_PROMPTS_INDIVIDUALLY_DERIVED;26_EXACT_NUMERIC_SYMBOLIC_CHECKS;8_PINT_CHECKS;NO_CANDIDATE_KEYS_OPENED;NO_CANDIDATE_SCI_PASS
+50_PROMPTS_INDIVIDUALLY_DERIVED;26_EXACT_NUMERIC_SYMBOLIC_CHECKS;8_PINT_CHECKS;NO_CANDIDATE_KEYS_OPENED;NO_CANDIDATE_SCI_PASS
+50_PROMPTS_INDIVIDUALLY_DERIVED;26_EXACT_NUMERIC_SYMBOLIC_CHECKS;8_PINT_CHECKS;NO_CANDIDATE_KEYS_OPENED;NO_CANDIDATE_SCI_PASS
+ok
+test_compiler_retains_historical_anchor_and_emits_distinct_current_composite (__main__.BridgeTests.test_compiler_retains_historical_anchor_and_emits_distinct_current_composite) ... ERROR
+test_legacy_old_payload_without_metadata_reaches_unchanged_import_boundary (__main__.BridgeTests.test_legacy_old_payload_without_metadata_reaches_unchanged_import_boundary) ... ok
+test_missing_certificate_metadata_does_not_allow_new_payload (__main__.BridgeTests.test_missing_certificate_metadata_does_not_allow_new_payload) ... ok
+test_old_oracle_rejects_new_payload_instead_of_retagging (__main__.BridgeTests.test_old_oracle_rejects_new_payload_instead_of_retagging) ... ok
+test_old_report_failure_stops_before_import (__main__.BridgeTests.test_old_report_failure_stops_before_import) ... ok
+test_rejects_forged_certificate_even_with_spec_checksum_renewed (__main__.BridgeTests.test_rejects_forged_certificate_even_with_spec_checksum_renewed) ... ok
+test_rejects_historical_file_or_science_change (__main__.BridgeTests.test_rejects_historical_file_or_science_change) ... ok
+test_rejects_leaf_and_directory_symlinks_and_traversal (__main__.BridgeTests.test_rejects_leaf_and_directory_symlinks_and_traversal) ... ok
+test_rejects_missing_corrupt_and_stale_certificate (__main__.BridgeTests.test_rejects_missing_corrupt_and_stale_certificate) ... ok
+test_rejects_wrong_math_with_candidate_binding_renewed (__main__.BridgeTests.test_rejects_wrong_math_with_candidate_binding_renewed) ... ok
+test_rejects_wrong_section_with_candidate_binding_renewed (__main__.BridgeTests.test_rejects_wrong_section_with_candidate_binding_renewed) ... ok
+test_validate_batch_preserves_fresh_oracle_and_import_boundaries (__main__.BridgeTests.test_validate_batch_preserves_fresh_oracle_and_import_boundaries) ... ok
+test_validate_batch_requires_current_preview_after_import_boundary (__main__.BridgeTests.test_validate_batch_requires_current_preview_after_import_boundary) ... ok
+
+======================================================================
+ERROR: test_compiler_retains_historical_anchor_and_emits_distinct_current_composite (__main__.BridgeTests.test_compiler_retains_historical_anchor_and_emits_distinct_current_composite)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/section-bridge-independent-20261127/test_bridge.py", line 131, in test_compiler_retains_historical_anchor_and_emits_distinct_current_composite
+    spec,old,oldb,pins,p,b,report=self.values();revised,cert=self.verify();paths={'package':f'editorial/batches/{self.batch}.json','science':f'editorial/reviews/{self.batch}.json','integration':f'editorial/reviews/{self.batch}-integration.json','browser':f'editorial/reviews/{self.batch}-browser.json','sectionReconciliation':str(cert.relative_to(self.app))};sums={key:('0'*64)for key in paths};sums['sectionReconciliation']=sha(cert.read_bytes())
+                                                                                                                                                                                                                                                                                                                                          ~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py", line 385, in relative_to
+    raise ValueError(f"{str(self)!r} is not in the subpath of {str(other)!r}")
+ValueError: '/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/cric-section-peer-gojw56ov/officina-di-fisica/editorial/reviews/section-reconciliation-v1/cric-c1-l006/certificate.json' is not in the subpath of '/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/cric-section-peer-gojw56ov/officina-di-fisica'
+
+----------------------------------------------------------------------
+Ran 14 tests in 6.375s
+
+FAILED (errors=1)
+Traceback (most recent call last):
+  File "/private/tmp/cric-bounded-local.py", line 7, in <module>
+    subprocess.run(sys.argv[1:],check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py", line 579, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['/private/tmp/cric-recovery-venv/bin/python', '-B', 'editorial/reviews/section-bridge-independent-20261127/test_bridge.py']' returned non-zero exit status 1.
