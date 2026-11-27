@@ -19,7 +19,7 @@ TASKS=[('Raddoppiare lo spessore, non l’area',
  ('Da millilitri a metri cubi',
   'Un campione di soluzione occupa 250 mL. Qual è lo stesso volume in metri cubi? Scegli il valore esatto.',
   ['1/4000 m³', '1/4 m³', '250 m³', '1/40 m³', '1/400 m³'],
-  'Un litro è un decimetro cubo, cioè 10⁻³ m³. Un millilitro è un millesimo di litro:10⁻⁶ m³. Quindi 250 mL sono 250×10⁻⁶ m³=25/100000 '
+  'Un litro è un decimetro cubo, cioè 10⁻³ m³. Un millilitro è un millesimo di litro: 10⁻⁶ m³. Quindi 250 mL sono 250×10⁻⁶ m³=25/100000 '
   'm³=1/4000 m³. È anche 0,00025 m³, ma la frazione è selezionabile senza introdurre arrotondamenti.',
   '1\\,\\mathrm{mL}=10^{-6}\\,\\mathrm{m^3}\\qquad V=\\frac1{4000}\\,\\mathrm{m^3}',
   '1/4 m³ corrisponde a 250 litri, non 250 millilitri. 1/400 m³ è dieci volte il volume assegnato. Il prefisso milli riguarda il litro e '
@@ -173,7 +173,7 @@ TASKS=[('Raddoppiare lo spessore, non l’area',
   'non il 70% dell’intensità originale un’altra volta. Il prodotto è 49/100: esce il 49% di I₀.',
   'I_1=\\frac7{10}I_0\\qquad I_2=\\frac7{10}I_1\\qquad I_2=\\frac{49}{100}I_0',
   'Sommare le due percentuali trasmesse non descrive due strati in sequenza. Sottrarre due volte 30 punti percentuali darebbe 40%, ma ogni '
-  'perdita è riferita all’intensità che entra nello strato corrispondente.70% ignora il secondo strato.',
+  'perdita è riferita all’intensità che entra nello strato corrispondente. 70% ignora il secondo strato.',
   'Applica il secondo fattore al risultato del primo, non nuovamente all’ingresso originale.'),
  ('Attrito statico effettivo e massimo',
   'Un corpo resta fermo su un piano orizzontale. L’unica spinta orizzontale applicata ha modulo 3 N e l’attrito statico massimo '
