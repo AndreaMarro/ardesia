@@ -1,0 +1,56 @@
+from pathlib import Path
+import json,hashlib,subprocess
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c6-family-six-0fd-independent-a-20261127';OLD=A/'editorial/reviews/c6-two-repairs-0818-independent-a-20261127';OLDER=A/'editorial/reviews/c6-two-annotations-4e-independent-a-20261127';h=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();assert json.loads((D/'target-terminal.json').read_bytes())['actualObservedExitCode']==0;assert json.loads((D/'actual-terminal.json').read_bytes())['actualObservedExitCode']==0
+for name in ['prepare_c6_family_0fd_a.py','run_c6_family_0fd_a.py','compare_c6_0fd_a.mjs','run_c6_0fd_stages_a.py','analyze_c6_0fd_a.py','run_c6_0fd_analysis_a.py','produce_c6_0fd_per_id_a.py','run_c6_0fd_target_a.py','seal_c6_0fd_a.py']:(D/(name+'.txt')).write_bytes((Path('/private/tmp')/name).read_bytes())
+C='c3b03eb98cdafd706499ee64d6b3f5e356f27da8';inputs=[]
+for path,name in [('content/esperienze-C6.json','original-source.json'),('static/js/banchi/voci/modelli/C6.js','candidate-C6.js.txt'),('static/js/banchi/voci/orologi.js','candidate-orologi.js.txt'),('static/js/banchi/voci/legende.js','candidate-legende.js.txt'),('static/js/banchi/voci/apparati/fluidi.js','candidate-fluidi.js.txt'),('static/js/banchi/voci/apparati/meccanica.js','candidate-meccanica.js.txt'),('static/js/banchi/voci/apparati/termica.js','candidate-termica.js.txt'),('static/js/banchi/voci/apparati/onde.js','candidate-onde.js.txt'),('static/js/banchi/voci/esperimento.js','candidate-esperimento.js.txt'),('static/js/banchi/scena.js','candidate-native-renderer.js.txt'),('static/js/banchi/voci/tavola.js','candidate-fallback-renderer.js.txt')]:
+ raw=subprocess.check_output(['git','-c','gc.auto=0','show',C+':officina-di-fisica/'+path],cwd=A);dest=D/name
+ if dest.exists():assert dest.read_bytes()==raw
+ dest.write_bytes(raw);inputs.append(dict(commit=C,path='officina-di-fisica/'+path,snapshot=name,sha256=hashlib.sha256(raw).hexdigest()))
+ref='bd8d6bcf357c484d48fdb5a2ef50b8518621a01a';path='officina-di-fisica/tools/corpus_engineering/experiment_visibility_ui.mjs';raw=subprocess.check_output(['git','-c','gc.auto=0','show',ref+':'+path],cwd=A);assert raw==(D/'canonical-protocol.mjs.txt').read_bytes();inputs.append(dict(commit=ref,path=path,snapshot='canonical-protocol.mjs.txt',sha256=hashlib.sha256(raw).hexdigest()));(D/'git-inputs.json').write_text(json.dumps(dict(schemaVersion='1.0.0',inputs=inputs),indent=2)+'\n')
+review=json.loads((D/'visual-review-per-id.json').read_bytes());assert len(review['records'])==6 and all(r['visualReview']=='PASS'for r in review['records']);report=json.loads((D/'actual/report.json').read_bytes());assert report['protocolSha256']==h(D/'canonical-protocol.mjs.txt')
+(D/'README.md').write_text('''# Independent current C6 family: six bounded local visual passes
+
+Runtime-sourcec3b03eb98cdafd706499ee64d6b3f5e356f27da8, observed evidenceHEAD6eeafb9fff0f9dc0f8055bb6ce1fdb0f758ed8ed, full actual runtime0fdcc3b04c869d75811a4e07b7b8d1d87210869d6087e12e01ee70b6c370e1d4. A is distinct from the consumer authors and made no app/Root/registry/consumer edits. Prior C6 sources, source-only primary, question authoring and independent equation/shape models are reused with exposure disclosed, not claimed newly blind or newly authored IDs.
+
+## Actual single-browser family proof
+
+The new canonical312case run really terminated0 in110.967s, signalnull, errorsJSempty and full fingerprint equal before/after. There are48actual setups (six originals×eightprofiles) and264grid/clock observations. Setup really traverses four visible phases, operates both installed answer forms, keyboard-opens the legend, checks scoped axe0 and horizontal overflow.96installed answer events returned the frozen expected correctstatus, with actual prompts/inputs/statuses retained. Each sixID has all nativeOrbit/Side/Top and fallback320/1280profiles.
+
+All original C6blocks arrays are empty and the authored-readingpanel is absent: actual reading=null is retained, not converted into a fabricated lesson-panel reading. The four installed phase texts and two actual answer examples for each ID are included in visual-review-per-id.json and were read. Each ID's four phase-text arrays are byte-equivalent across its eight profiles. Actual legend text was read, including the usable fixed-projection optical instruction and the echo's out-and-return explanation.
+
+The bounded plans reuse already verified states: echo0/2/10/20ms with20msclock5/10/15/20ms; masscollection0/8/24/40g with40gclock2/4s; heater0/20/50/80/100s; absorber0/3/5layers; cart0/1.75/2/2.25/4s; lens p/f0.5/0.75/1/1.25/2/3. Defaultclock0 is not duplicated as a separate clockcase. No previous image was retagged; every current case and its screenshot came from this actual current run and was hash-verified.
+
+## Manual visual evidence and local verdicts
+
+48whole original PNGs were individually opened/read, exactly one perID/profile. The selected states emphasize reflectionat20ms/clock10ms, final40gcollection, upper100scolumn, weak5layeroutgoingbeam,2.25scartreturn and the previously hidden p/f0.5virtualimage. This is not a claim all264grid/clock PNGs or allsetupPNGs were manually opened. Every other acquired state was checked against independent physical equations/clock/shape contracts and exact isolated-browser parity; no opaque-label failure was inferred from a summary alone. raw-png-reading-selection.json records the exact current caseKey/profile/path/SHA for each whole image.
+
+The six explicit visualReview=PASS rows are local to this documented scope. Echo's complete forward/return indicators and reflectedpulse are visible. The flow's two velocity indicators and collection are clear. The heater's upper column is free in useful nonaxial views, while Top naturally collapses height. The weak transmitted bundle remains visible without Rivelatorecover; its1/32opacity is nonzero and unchanged. The cart's return arrow is complete and leftward; its exactinstantturn state remains explicitly without a uniquevelocityarrow. The lens virtualimage head is complete after Oggetto removal; retainedF′and the ray signs/geometry remain clear. Top opticalheight projection is still edge-on, with the applicable view guidance retained. No new finding in these current observed scopes.
+
+visual-review-per-id.json is the canonical handoff to Parent's validator: each row has id, localPASS/FAIL, reason, source/version/runtimepins, explicit profiles/controls/clockcasekeys, readPngSha256 (eight real PNGs), paths/SHA and sourcecasefiles. The top artifactPins bind actual/report.json, prepared.json and actual-terminal.json. All rows retain activityCredit0/humanNOT_RUN. Parent alone verifies the cases and authorizes any gate registration; these local passes do not grant that credit.
+
+## Mathematical and physical verification
+
+All264current states were checked by the independent original rational equations and clock/shape contracts. The original observer comparator is unchanged (relative1e-10, absolute1e-10 only at exactzero); the canonical distinct-context baseline comparison separately checks whole model/control/clock objects exactly with scientificAuthorityNONE. The units/assumptions/manual derivations from the prior independent97rational/6Pint work are transported without claiming they are newly blind work. Echo roundtripdistance and instantaneouspulseposition are separate; the collectionclock tracks massalreadycollected; heat uses useful8W/400JperK; absorber count is discrete; cart path differs from signeddisplacement; normalized lensvergence is0 atfocus while q diverges.
+
+The new static sourcecomparison on the current candidate versus0818 really returned exactequality for all6originals,97legalcontrols,493default-plus-clock slots and2465five-stage arrays, including all labels. There are97defaultslots and396distinct-per-input explicitclockslots; the four duplicatefraction slots at zeroecho-duration add no distinctphysicalstate (the old fivefraction clockprotocol counted400including those aliases).493does not mean493uniquephysicalstates. All source data/model/readings/graphs/workedsteps and scene arrays are unchanged for C6; othercourse edits in this composite are outside A's judgement.
+
+Every current observed physical model/spec/canvas/sourcecamera/fullscene/nativeFloat32mesh/remaininglabel also matches its corresponding actual prior case exactly. The previous observations retain their own4e/abb2/0818 fingerprints and current shots retain0fd. This is a cross-epoch physical comparison, not reuse of an old screenshot as a new acquisition. The old abb2negative findings and all original PNGs/derivation failures/guardrejection are byte-preserved in the manifest.
+
+22new independent tests really passed in0.942s (1.279ssupervisor). They check full312scope,96answers,emptyreadingtruth,48accessibilitysetups,all264physical states,echo/collectionclocks,turn/focuscases,oldlabelabsence,48actualreadPNGhashes/profiles,canonicalartifactpins and six localverdicts. Wrong modelsevenwhenbothtechnicalmodelsagree,wrongcartdirection,missingPNG/pin,staleruntime,falsecredit/humanapproval and nonfinite/discretedomain mutations are rejected. Preparation/static/browser/analysis/target all returned real0. No new assertion, tolerance, physical model, consumer or pipeline mutation.
+
+CompleteAllControlRasterReviewfalse, scientificAcceptanceGrantedfalse, activityCredit0, humanNOT_RUN. This is a sixIDfamily proof with explicitly bounded currentraster coverage; it is not the remote3992fullmatrix relabelled, a review of allotheractivities, or a publication/humanapproval.
+''')
+files={}
+for folder in [OLD,OLDER]:
+ old=json.loads((folder/'handoff.json').read_bytes())
+ for name,sha in old['files'].items():
+  if name in files:assert files[name]==sha,name
+  files[name]=sha
+ files[str((folder/'handoff.json').relative_to(A))]=h(folder/'handoff.json')
+for path in D.rglob('*'):
+ if path.is_file()and path.name!='handoff.json':files[str(path.relative_to(A))]=h(path)
+for name in ['tools/corpus_engineering/c6_family_six_0fd_review_a.py','tests/corpus/test_c6_family_six_0fd_independent_a.py']:files[name]=h(A/name)
+for name,sha in files.items():assert h(A/name)==sha,name
+handoff=dict(schemaVersion='1.0.0',role='DISTINCT_REVIEWER_A_SIX_C6_CURRENT_FAMILY_BOUNDED',sourceCommit=C,runtimeSha256='0fdcc3b04c869d75811a4e07b7b8d1d87210869d6087e12e01ee70b6c370e1d4',observedAppHead='6eeafb9fff0f9dc0f8055bb6ce1fdb0f758ed8ed',actualCases=312,actualTechnicalExit=0,setupCases=48,installedAcceptedAnswerEvents=96,currentGridClockCases=264,manualWholeRawPngsRead=48,manualProfilesPerId=8,perIdVisualReviewFile=str((D/'visual-review-per-id.json').relative_to(A)),perIdVisualReviewSha256=h(D/'visual-review-per-id.json'),localVisualPassIds=[r['id']for r in review['records']],actualIndependentTests=22,actualIndependentTestsExit=0,sourceControls=97,sourceDefaultPlusClockSlots=493,sourceFiveStageScenes=2465,oldNegativesUnchanged=True,all264FramesManuallyOpened=False,completeAllControlRasterReview=False,scientificAcceptanceGranted=False,activityCredit=0,humanApproval='NOT_RUN',files=files)
+(D/'handoff.json').write_text(json.dumps(handoff,ensure_ascii=False,indent=2)+'\n');print('HANDOFF',h(D/'handoff.json'),'FILES',len(files),'PER_ID',h(D/'visual-review-per-id.json'))
