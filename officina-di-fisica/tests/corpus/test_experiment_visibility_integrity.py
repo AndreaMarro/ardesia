@@ -99,15 +99,25 @@ class VisibilityIntegrity(unittest.TestCase):
     def test_full_owner_record_body_must_match_normalized_prepared_record(self):
         code=r"""
         import assert from 'node:assert/strict';
-        import * as api from './tools/corpus_engineering/experiment_visibility_ui.mjs';
+        import {assertOwnerRecord as check} from './tools/corpus_engineering/experiment_visibility_ui.mjs';
         const expected={id:'case',version:2,baseVersion:1,control:{min:0,max:1,step:1},assessmentSelection:{schemaVersion:'1.0.0',points:[0,1]},blocks:[{type:'paragraph',text:'Frozen statement'}]};
         const saved={...expected,review:'bozza'};delete saved.baseVersion;
-        const check=api.assertOwnerRecord??((a,b)=>{assert.deepEqual(a.control,b.control);assert.deepEqual(a.assessmentSelection,b.assessmentSelection);});
         check(saved,expected);
         assert.throws(()=>check({...saved,blocks:[{type:'paragraph',text:'Other delivered statement'}]},expected));
         assert.throws(()=>check({...saved,version:3},expected));
+        check({...saved,version:3},{...expected,baseVersion:2,version:3});
+        assert.throws(()=>check(saved,{...expected,baseVersion:2,version:3}));
+        assert.throws(()=>check({...saved,version:4},{...expected,baseVersion:2,version:4}));
+        assert.throws(()=>check(saved,{...expected,baseVersion:true}));
         """
         result=subprocess.run(['node','--input-type=module','-e',code],cwd=APP,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
         self.assertEqual(result.returncode,0,result.stderr)
+
+    def test_requested_draft_must_follow_an_integer_live_edition(self):
+        self.assertTrue(v.is_next_edition({'baseVersion':1,'version':2}))
+        self.assertTrue(v.is_next_edition({'baseVersion':2,'version':3}))
+        for base, version in ((2, 2), (2, 4), (True, 2), (0, 1), (2, '3'), (2**53-1, 2**53)):
+            with self.subTest(base=base, version=version):
+                self.assertFalse(v.is_next_edition({'baseVersion':base,'version':version}))
 
 if __name__=='__main__':unittest.main()

@@ -43,6 +43,11 @@ def digest(value):return sha(canonical(value))
 def load(path):return json.loads(Path(path).read_bytes())
 
 
+def is_next_edition(row):
+    base, version = row.get('baseVersion'), row.get('version')
+    return type(base) is int and type(version) is int and 1 <= base < 2**53 - 1 and version == base + 1
+
+
 def safe(root,name):
     if not isinstance(name,str):raise ValueError('Unsafe evidence path')
     p=PurePosixPath(name)
@@ -211,8 +216,10 @@ def prepare(request_file,course,workspace):
             p=target/rel;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(blob);input_files[str(p)]=sha(blob)
         package=load(target/'editorial/batches'/f'{batch}.json');packages.append(str(target/'editorial/batches'/f'{batch}.json'))
         for row in package['records']:
-            if row['id']in drafts or row['id']not in inv or(row['version'],row['baseVersion'])!=(2,1):raise ValueError('Bad revision identity')
+            if row['id'] in drafts or row['id'] not in inv or not is_next_edition(row):
+                raise ValueError('Bad revision identity')
             base=next(s for s in sources if s['id']==row['id'])
+            if row['baseVersion'] != base.get('version', 1):raise ValueError('Draft base does not match the source edition')
             for field in ('control','measure','references','apparatus','course','kind','engine'):
                 if row.get(field)!=base.get(field):raise ValueError('Physical source field changed: '+field)
             drafts[row['id']]=row
@@ -427,7 +434,7 @@ def verify_prepared_inputs(info,prepared):
     rows={}
     for name in packages:
         for row in json.loads(blobs[name])['records']:
-            if row['id']in rows or(row['version'],row['baseVersion'])!=(2,1):raise ValueError('Private revision identity differs')
+            if row['id'] in rows or not is_next_edition(row):raise ValueError('Private revision identity differs')
             rows[row['id']]=row
     planned=prepared.get('draftRecords',[])
     if len(rows)!=9 or len(planned)!=9 or len({x['id']for x in planned})!=9 or canonical({x['id']:x for x in planned})!=canonical(rows):
@@ -435,7 +442,7 @@ def verify_prepared_inputs(info,prepared):
     for item in prepared['records']:
         if item['variant']=='draft'and(digest(item['record'])!=digest(rows.get(item['id']))or item['candidateSha256']!=digest(rows[item['id']])):
             raise ValueError('Cohort candidate rebound')
-    normalized={key:{**{k:v for k,v in row.items()if k not in('baseVersion','review')},'version':2,'review':'bozza'}for key,row in rows.items()}
+    normalized={key:{**{k:v for k,v in row.items()if k not in('baseVersion','review')},'review':'bozza'}for key,row in rows.items()}
     result={'files':expected,'normalizedOwnerRecords':normalized,'activityCredit':0}
     if baseline is not None:result['baselineReference']=baseline
     return result

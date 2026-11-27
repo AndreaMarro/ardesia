@@ -10,8 +10,10 @@ import path from 'node:path';
 import {chromium} from 'playwright';
 
 export function assertOwnerRecord(saved,prepared){
- const expected={...prepared,version:2,review:'bozza'};delete expected.baseVersion;
- assert.deepEqual(saved,expected,'Full normalized owner record differs from prepared candidate');
+ const {baseVersion,...expected}=prepared;
+ assert.ok(Number.isSafeInteger(baseVersion)&&baseVersion>=1&&Number.isSafeInteger(expected.version)
+  &&expected.version===baseVersion+1,'Prepared candidate must be the next live edition');
+ assert.deepEqual(saved,{...expected,review:'bozza'},'Full normalized owner record differs from prepared candidate');
 }
 
 export function assertObservedControls(measured,state,row){
@@ -211,7 +213,7 @@ try{
   if(profile.fallback)await context.addInitScript(()=>{const get=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(k,...a){return k.includes('webgl')?null:get.call(this,k,...a);};});
   if(!ownerState){
    assert.ok((await context.request.post(base+'/api/owner',{headers:{'X-Astra-Request':'1'},data:{ticket}})).ok());ownerState=await context.storageState();
-   const checked=[];for(const expected of plan.draftRecords){const response=await context.request.get(base+'/api/author/item/'+expected.id);assert.ok(response.ok());const text=await response.text();assertOwnerRecord(JSON.parse(text).record,expected);checked.push({id:expected.id,version:2,responseBytesSha256:sha(Buffer.from(text))});}
+   const checked=[];for(const expected of plan.draftRecords){const response=await context.request.get(base+'/api/author/item/'+expected.id);assert.ok(response.ok());const text=await response.text();const {record}=JSON.parse(text);assertOwnerRecord(record,expected);checked.push({id:expected.id,version:record.version,responseBytesSha256:sha(Buffer.from(text))});}
    assert.equal(checked.length,plan.draftRecords.length);
    report.fullOwnerRecordIdentity={scope:'All declared complete normalized owner records, no cross-language canonical digest',records:checked};
   }
