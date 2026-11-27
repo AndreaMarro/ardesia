@@ -1,0 +1,31 @@
+{
+  "runs": [
+    {
+      "stage": "frozen-rubric",
+      "observedExitCode": 0,
+      "elapsedSeconds": 0.17699799999991228,
+      "signal": null
+    },
+    {
+      "stage": "independent-verifier",
+      "observedExitCode": 0,
+      "elapsedSeconds": 1.2363196670003163,
+      "signal": null
+    },
+    {
+      "stage": "tests",
+      "observedExitCode": 0,
+      "elapsedSeconds": 3.384762665999915,
+      "signal": null
+    },
+    {
+      "stage": "tests21_source_fingerprint_closure",
+      "observedExitCode": 0,
+      "elapsedSeconds": 1.6972223330003544,
+      "signal": null
+    }
+  ],
+  "Chrome": "NOT_RUN",
+  "mutex": "work/.cric-browser.lock",
+  "freeGuardBytes": 2147483648
+}

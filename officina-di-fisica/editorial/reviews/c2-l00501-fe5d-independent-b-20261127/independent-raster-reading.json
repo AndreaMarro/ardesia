@@ -1,0 +1,720 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "INDEPENDENT_CONTINUITY_FE5D_CURRENT_INSTRUMENT_AND_RASTER_REVIEW",
+  "id": "SIM-C2-L005-01",
+  "author": "root",
+  "independentReviewer": "author_vectors_b",
+  "recusalAudit": "Reviewer authored neither this C2 model, DRAFT nor renderer fix. Own C6 overlay and unrelated C4 annotation scope excluded.",
+  "consumerCommit": "8de7bd774c71841c4b744485b012abd6506f3645",
+  "runtimeSha256": "fe5d26413e1aeb59987cc3fd6040adde3b01952b6e5e5c3951695b2e64d9166b",
+  "candidateSha256": "06eb0924b44574ea48b9e2211fa87c7ba6126c8905884184ae5c929ecf40ae9f",
+  "sourceSha256": "2c1385b566f8fc10f826b0885738205ac0e1c02bc1e4d56265169433bfde8d06",
+  "planFreezeCommit": "bad86f90615352eb496fee3e85cc6853a7b651f8",
+  "planSha256": "e83a03ef009a68c569193b7481b1ffd517d3d6c734f6f0d68b8947a2f2d90df6",
+  "historicalScientificAnchor": {
+    "commit": "820f32eb94aeab1c4abbec24264d9ede8847d2c4",
+    "primaryCommit": "5114b5439eff1daaa143c674459fc470018a126d",
+    "primarySha256": "fa50a2ceeb39798796e28345c82631c669b8aad88f9f7a8dddfcddc8441b2907",
+    "sameCandidate": true,
+    "freshCurrentArithmeticAndRasters": true,
+    "oldSignatureNotRetagged": true
+  },
+  "sourceArchives": [
+    {
+      "commit": "6e6bcbb1890b5c2a270b77930052a85bb2fa3023",
+      "manifestPath": "officina-di-fisica/editorial/reviews/converged-runtime-53bd-20261127/continuity-l00501-320-draft-fe5d-40-manifest.json",
+      "manifestSha256": "aa55e28d8da13b640a284517b6af503469a892ea91dc0f262b380ed75e54a4bb",
+      "archivePath": "officina-di-fisica/editorial/reviews/converged-runtime-53bd-20261127/continuity-l00501-320-draft-fe5d-40.zip",
+      "archiveSha256": "e83da710900ec96d14f275c03f94cd0f4c66d9f7802589d24ec4d0af508ad4b2",
+      "archiveBytes": 821815,
+      "archiveBytesVerifiedFromGit": true,
+      "listedFilesVerifiedAgainstArchive": 83,
+      "sharedSourceMutated": false,
+      "localZipDuplicateCreated": false
+    },
+    {
+      "commit": "1f70d18f76be4a9cd69b78c9151258598e880cc2",
+      "manifestPath": "officina-di-fisica/editorial/reviews/converged-runtime-53bd-20261127/continuity-l00501-1280-draft-fe5d-split-40-manifest.json",
+      "manifestSha256": "bd9cef96a8dca04cbde1f301c899897e33ead976742dbc03b10939e2dc3cf735",
+      "archivePath": "officina-di-fisica/editorial/reviews/converged-runtime-53bd-20261127/continuity-l00501-1280-draft-fe5d-split-40.zip",
+      "archiveSha256": "d3e1741f39a6bdc8398aafadd353229da5919b1cc445cd528c77dfd8e9d4b5eb",
+      "archiveBytes": 1476527,
+      "archiveBytesVerifiedFromGit": true,
+      "listedFilesVerifiedAgainstArchive": 95,
+      "sharedSourceMutated": false,
+      "localZipDuplicateCreated": false
+    },
+    {
+      "commit": "2741428afa440c15a78922cf4bf9e17fe0a74e04",
+      "manifestPath": "officina-di-fisica/editorial/reviews/converged-runtime-53bd-20261127/continuity-l00501-published-fe5d-80-manifest.json",
+      "manifestSha256": "8e01f2b7eab9bbb9510bb1746c94485f35c2c7d029ef63654aed6478010338e0",
+      "archivePath": "officina-di-fisica/editorial/reviews/converged-runtime-53bd-20261127/continuity-l00501-published-fe5d-80.zip",
+      "archiveSha256": "59da4d7acae2c8fafd1453277e29d55c5357f9181c47d9f665a153fb64ff825e",
+      "archiveBytes": 2286602,
+      "archiveBytesVerifiedFromGit": true,
+      "listedFilesVerifiedAgainstArchive": 177,
+      "sharedSourceMutated": false,
+      "localZipDuplicateCreated": false
+    }
+  ],
+  "sourceBrowserRuns": [
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-fallback",
+      "rawReportFile": "raw/continuity-l00501-1280-draft-fe5d-fallback/actual/report.json",
+      "rawReportSha256": "ffe5971b20eb7c745bd2626586e5f38cc39949832772a37c0303dee2c9bac1e5",
+      "preparedSha256": "35f67b67195453351ac8419b631909f244c0c915c3ad58030ed24bdfd88c8761",
+      "sourceCommit": "8de7bd774c71841c4b744485b012abd6506f3645",
+      "terminal": {
+        "observedExitCode": 0,
+        "seconds": 12.217352749999918,
+        "startingFreeBytes": 12956753920,
+        "timeoutTriggered": false
+      },
+      "cases": 10,
+      "canonicalImport": {
+        "publishedCount": 991,
+        "imports": [
+          {
+            "first": {
+              "saved": 5,
+              "unchanged": 0,
+              "publication": "DRAFT"
+            },
+            "second": {
+              "saved": 0,
+              "unchanged": 5,
+              "publication": "DRAFT"
+            }
+          }
+        ]
+      },
+      "guestIsolation": "ORIGINAL_OR_DENIED_AND_DRAFT_ASSETS_403",
+      "fullOwnerRecordIdentity": {
+        "scope": "All declared complete normalized owner records, no cross-language canonical digest",
+        "records": [
+          {
+            "id": "SIM-C2-L005-01",
+            "version": 2,
+            "responseBytesSha256": "5108c1acaad4501627e171323e7c6c88af1d7f680f0adb86dc37424725265251"
+          },
+          {
+            "id": "SIM-C2-L005-02",
+            "version": 2,
+            "responseBytesSha256": "59363bc9af55b625f8b9c1226ad2d7e95d8513df297c502fe00a943e452720b8"
+          },
+          {
+            "id": "SIM-C2-L005-03",
+            "version": 2,
+            "responseBytesSha256": "9ae9b395111b0cea7d0ee020c6d5afacf61323f05607eb5518bc2a48377c506b"
+          },
+          {
+            "id": "SIM-C2-L005-04",
+            "version": 2,
+            "responseBytesSha256": "dd2091cabb0a5088e03e61b010bbdbeed40fb9f091ebf7a0a42a3f76eac48dc0"
+          },
+          {
+            "id": "SIM-C2-L005-05",
+            "version": 2,
+            "responseBytesSha256": "c598001ac4ca588021daeca0ccd1daa719503cd07b756950ab90b726b11d9b92"
+          }
+        ]
+      }
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "rawReportFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/report.json",
+      "rawReportSha256": "a48c7c4d14757a50331a91ff100450410be2a63cb8d8f2fa4f4454735f81922c",
+      "preparedSha256": "658850b968f7599a48f75200ec7bd776f46b550954c5e203de02b996902ffc47",
+      "sourceCommit": "8de7bd774c71841c4b744485b012abd6506f3645",
+      "terminal": {
+        "observedExitCode": 0,
+        "seconds": 35.91430204199969,
+        "startingFreeBytes": 12901814272,
+        "timeoutTriggered": false
+      },
+      "cases": 30,
+      "canonicalImport": {
+        "publishedCount": 991,
+        "imports": [
+          {
+            "first": {
+              "saved": 5,
+              "unchanged": 0,
+              "publication": "DRAFT"
+            },
+            "second": {
+              "saved": 0,
+              "unchanged": 5,
+              "publication": "DRAFT"
+            }
+          }
+        ]
+      },
+      "guestIsolation": "ORIGINAL_OR_DENIED_AND_DRAFT_ASSETS_403",
+      "fullOwnerRecordIdentity": {
+        "scope": "All declared complete normalized owner records, no cross-language canonical digest",
+        "records": [
+          {
+            "id": "SIM-C2-L005-01",
+            "version": 2,
+            "responseBytesSha256": "dc44065038d8abaaf4e9d7eb52eb46b784f5b32525b2bd1d047d1a15bf9c8aea"
+          },
+          {
+            "id": "SIM-C2-L005-02",
+            "version": 2,
+            "responseBytesSha256": "373889b3ff36368a76264da837319c4069a50e918ba74cf987df229217753e2d"
+          },
+          {
+            "id": "SIM-C2-L005-03",
+            "version": 2,
+            "responseBytesSha256": "95c571081222de70c452527c46fad908733d0a2fff96b761a73dacd5aceb6b99"
+          },
+          {
+            "id": "SIM-C2-L005-04",
+            "version": 2,
+            "responseBytesSha256": "761d033464d6b3da5583f3b28dea4b91136d9bca6cb66dd5fdb34fbe983e0f52"
+          },
+          {
+            "id": "SIM-C2-L005-05",
+            "version": 2,
+            "responseBytesSha256": "8ffb4fc36b158103155a77152b626f4a2748154235db7351e32da9689d21fbc3"
+          }
+        ]
+      }
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-fallback",
+      "rawReportFile": "raw/continuity-l00501-1280-published-fe5d-fallback/actual/report.json",
+      "rawReportSha256": "240c099abda5597acb3f9134e9890a5609fed7fc41380dd31d05b3f81beb2180",
+      "preparedSha256": "26d7a87684ccd46b449bcada7bea7bc983569dbbb5e748a4fe8897dca545dc03",
+      "sourceCommit": "8de7bd774c71841c4b744485b012abd6506f3645",
+      "terminal": {
+        "observedExitCode": 0,
+        "seconds": 10.558229041000232,
+        "startingFreeBytes": 12850360320,
+        "timeoutTriggered": false
+      },
+      "cases": 10,
+      "canonicalImport": {
+        "publishedCount": 991,
+        "imports": [
+          {
+            "first": {
+              "saved": 5,
+              "unchanged": 0,
+              "publication": "DRAFT"
+            },
+            "second": {
+              "saved": 0,
+              "unchanged": 5,
+              "publication": "DRAFT"
+            }
+          }
+        ]
+      },
+      "guestIsolation": "ORIGINAL_OR_DENIED_AND_DRAFT_ASSETS_403",
+      "fullOwnerRecordIdentity": {
+        "scope": "All declared complete normalized owner records, no cross-language canonical digest",
+        "records": [
+          {
+            "id": "SIM-C2-L005-01",
+            "version": 2,
+            "responseBytesSha256": "0f5e371808b098e8804527527688d0ab8cb4ae58b2d273f49bb3369c9dd90c94"
+          },
+          {
+            "id": "SIM-C2-L005-02",
+            "version": 2,
+            "responseBytesSha256": "f28bb5dcaba291a69c0eeeba8cb5b05ef74e2402a6defae2cc3ed5918bc0519b"
+          },
+          {
+            "id": "SIM-C2-L005-03",
+            "version": 2,
+            "responseBytesSha256": "93a5e30403f5b9cbcd81c4e51ab0fe525cd82a5e2fd83536fd00df875efd2c9e"
+          },
+          {
+            "id": "SIM-C2-L005-04",
+            "version": 2,
+            "responseBytesSha256": "2785dfc659caae88e10aaed2a1f5304a88353551c8cd4c8403bc17c45043015f"
+          },
+          {
+            "id": "SIM-C2-L005-05",
+            "version": 2,
+            "responseBytesSha256": "aea6d65470abe229eac7e54d1386953f475ebaedec6b17b065e5d3f8ab320769"
+          }
+        ]
+      }
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "rawReportFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/report.json",
+      "rawReportSha256": "bd8de75bfde0d1a305298205062b2f3e20ffe0fd95ecf25782c3140847c207cb",
+      "preparedSha256": "1ba2321c02afc8de4beb523336b5c00f5a3280e1cae52ae622a33f01bcd6d8a4",
+      "sourceCommit": "8de7bd774c71841c4b744485b012abd6506f3645",
+      "terminal": {
+        "observedExitCode": 0,
+        "seconds": 49.9172833749999,
+        "startingFreeBytes": 12861517824,
+        "timeoutTriggered": false
+      },
+      "cases": 30,
+      "canonicalImport": {
+        "publishedCount": 991,
+        "imports": [
+          {
+            "first": {
+              "saved": 5,
+              "unchanged": 0,
+              "publication": "DRAFT"
+            },
+            "second": {
+              "saved": 0,
+              "unchanged": 5,
+              "publication": "DRAFT"
+            }
+          }
+        ]
+      },
+      "guestIsolation": "ORIGINAL_OR_DENIED_AND_DRAFT_ASSETS_403",
+      "fullOwnerRecordIdentity": {
+        "scope": "All declared complete normalized owner records, no cross-language canonical digest",
+        "records": [
+          {
+            "id": "SIM-C2-L005-01",
+            "version": 2,
+            "responseBytesSha256": "f3c6345a051ede6426346b04b3aee7732f1137b8eceaa9a05e60a4167d43e45f"
+          },
+          {
+            "id": "SIM-C2-L005-02",
+            "version": 2,
+            "responseBytesSha256": "cca1492b9d63f10ef87e5af770c030df0ae6ddea85c4777d153e63f2ebf8b9ce"
+          },
+          {
+            "id": "SIM-C2-L005-03",
+            "version": 2,
+            "responseBytesSha256": "7cf50836bc9b7660a58446a9fd9633d7b041c2c6aac197c1d5cd39ede7e04d76"
+          },
+          {
+            "id": "SIM-C2-L005-04",
+            "version": 2,
+            "responseBytesSha256": "ec3439ac4e1918d83bc49c88365eb0baac51ca3637701615b330acc867fe4c66"
+          },
+          {
+            "id": "SIM-C2-L005-05",
+            "version": 2,
+            "responseBytesSha256": "693eb50bae442ae6cdbc35289e6a13ac0f280eb1fe08555d714269a956444699"
+          }
+        ]
+      }
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "rawReportFile": "raw/continuity-l00501-320-draft-fe5d/actual/report.json",
+      "rawReportSha256": "8d46a796a66be06595aadd057adc061f7b536d1beaa7dc1574f536c1c5ffc72a",
+      "preparedSha256": "18d7dceec7334a9f28f25400c98a1acdaa67622ad42a774c23997ea6019c364c",
+      "sourceCommit": "8de7bd774c71841c4b744485b012abd6506f3645",
+      "terminal": {
+        "observedExitCode": 0,
+        "seconds": 36.61956258400005,
+        "startingFreeBytes": 13239541760,
+        "timeoutTriggered": false
+      },
+      "cases": 40,
+      "canonicalImport": {
+        "publishedCount": 991,
+        "imports": [
+          {
+            "first": {
+              "saved": 5,
+              "unchanged": 0,
+              "publication": "DRAFT"
+            },
+            "second": {
+              "saved": 0,
+              "unchanged": 5,
+              "publication": "DRAFT"
+            }
+          }
+        ]
+      },
+      "guestIsolation": "ORIGINAL_OR_DENIED_AND_DRAFT_ASSETS_403",
+      "fullOwnerRecordIdentity": {
+        "scope": "All declared complete normalized owner records, no cross-language canonical digest",
+        "records": [
+          {
+            "id": "SIM-C2-L005-01",
+            "version": 2,
+            "responseBytesSha256": "e3478269ffcbe0261e0e3b9674b465c5df39571c8b5dee9b741d9b6169d99121"
+          },
+          {
+            "id": "SIM-C2-L005-02",
+            "version": 2,
+            "responseBytesSha256": "b0d1e3d04b0cece0abd2e623f5eef5a96f2c774c9631e83db1f81dd9db528b34"
+          },
+          {
+            "id": "SIM-C2-L005-03",
+            "version": 2,
+            "responseBytesSha256": "49685eedb4dbdd03d8e6c6b39c0f176b1dc915b0c5e0f8b93fffb21903edd618"
+          },
+          {
+            "id": "SIM-C2-L005-04",
+            "version": 2,
+            "responseBytesSha256": "571a54d78829bdb696b6365ecd04c02794551ea23737204e458fbba258a578c4"
+          },
+          {
+            "id": "SIM-C2-L005-05",
+            "version": 2,
+            "responseBytesSha256": "3a6673ad6a8f7795a8216ad50b423c43ad2392ff2acd2e5c8c52c8b14ffbaad5"
+          }
+        ]
+      }
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "rawReportFile": "raw/continuity-l00501-320-published-fe5d/actual/report.json",
+      "rawReportSha256": "4e605593fc856dfca52ae58e0d2be91a111bdddfe944a6cc127ad1678076f9d1",
+      "preparedSha256": "89224de45487c9742f9de72c8145619ce20eca24e9c707bc98b1cf88000098e2",
+      "sourceCommit": "8de7bd774c71841c4b744485b012abd6506f3645",
+      "terminal": {
+        "observedExitCode": 0,
+        "seconds": 30.747672250000505,
+        "startingFreeBytes": 12848705536,
+        "timeoutTriggered": false
+      },
+      "cases": 40,
+      "canonicalImport": {
+        "publishedCount": 991,
+        "imports": [
+          {
+            "first": {
+              "saved": 5,
+              "unchanged": 0,
+              "publication": "DRAFT"
+            },
+            "second": {
+              "saved": 0,
+              "unchanged": 5,
+              "publication": "DRAFT"
+            }
+          }
+        ]
+      },
+      "guestIsolation": "ORIGINAL_OR_DENIED_AND_DRAFT_ASSETS_403",
+      "fullOwnerRecordIdentity": {
+        "scope": "All declared complete normalized owner records, no cross-language canonical digest",
+        "records": [
+          {
+            "id": "SIM-C2-L005-01",
+            "version": 2,
+            "responseBytesSha256": "74c2b13eb5a5ae43db142c1d64603227115543423b33e32d4194aaba40843518"
+          },
+          {
+            "id": "SIM-C2-L005-02",
+            "version": 2,
+            "responseBytesSha256": "af49b9329f24b9603ac95285a01b200095c91be5cb674dd7e574da3e4327c0e2"
+          },
+          {
+            "id": "SIM-C2-L005-03",
+            "version": 2,
+            "responseBytesSha256": "2bdba561ecc19d0e5bc73b67a1367a11e6e667004783ee4811b62d9fa2cd00b4"
+          },
+          {
+            "id": "SIM-C2-L005-04",
+            "version": 2,
+            "responseBytesSha256": "ba5ac577e8e55a8b5a6c7452a2e7bf68a3cb7359663b3e341653a91bc546be22"
+          },
+          {
+            "id": "SIM-C2-L005-05",
+            "version": 2,
+            "responseBytesSha256": "d53b7fd396bad4d2f962b22572ca40f9a7481dc2af242912e784f15b1532d440"
+          }
+        ]
+      }
+    }
+  ],
+  "observations": 160,
+  "rawCaseIdentitiesChecked": 160,
+  "currentCaseCoverage": "6successful parts40+30+10+40+30+10; split native/fallback keys disjoint and union matches frozen160plan.",
+  "profiles": [
+    {
+      "width": 320,
+      "view": "orbit",
+      "editions": {
+        "draft": {
+          "casesRead": 10,
+          "verdict": "PASS_CAPTURED_SCOPE"
+        },
+        "published": {
+          "casesRead": 10,
+          "verdict": "PASS_CAPTURED_SCOPE"
+        }
+      },
+      "criticalCases": 4,
+      "wholeRasterRead": true,
+      "newResidual": null
+    },
+    {
+      "width": 320,
+      "view": "side",
+      "editions": {
+        "draft": {
+          "casesRead": 10,
+          "verdict": "PASS_CAPTURED_SCOPE"
+        },
+        "published": {
+          "casesRead": 10,
+          "verdict": "PASS_CAPTURED_SCOPE"
+        }
+      },
+      "criticalCases": 4,
+      "wholeRasterRead": true,
+      "newResidual": null
+    },
+    {
+      "width": 320,
+      "view": "top",
+      "editions": {
+        "draft": {
+          "casesRead": 10,
+          "verdict": "PASS_CAPTURED_SCOPE"
+        },
+        "published": {
+          "casesRead": 10,
+          "verdict": "PASS_CAPTURED_SCOPE"
+        }
+      },
+      "criticalCases": 0,
+      "wholeRasterRead": true,
+      "newResidual": null
+    },
+    {
+      "width": 320,
+      "view": "fixed_projection",
+      "editions": {
+        "draft": {
+          "casesRead": 10,
+          "verdict": "PASS_CAPTURED_SCOPE"
+        },
+        "published": {
+          "casesRead": 10,
+          "verdict": "PASS_CAPTURED_SCOPE"
+        }
+      },
+      "criticalCases": 4,
+      "wholeRasterRead": true,
+      "newResidual": null
+    },
+    {
+      "width": 1280,
+      "view": "orbit",
+      "editions": {
+        "draft": {
+          "casesRead": 10,
+          "verdict": "PASS_CAPTURED_SCOPE"
+        },
+        "published": {
+          "casesRead": 10,
+          "verdict": "PASS_CAPTURED_SCOPE"
+        }
+      },
+      "criticalCases": 4,
+      "wholeRasterRead": true,
+      "newResidual": null
+    },
+    {
+      "width": 1280,
+      "view": "side",
+      "editions": {
+        "draft": {
+          "casesRead": 10,
+          "verdict": "PASS_CAPTURED_SCOPE"
+        },
+        "published": {
+          "casesRead": 10,
+          "verdict": "PASS_CAPTURED_SCOPE"
+        }
+      },
+      "criticalCases": 4,
+      "wholeRasterRead": true,
+      "newResidual": null
+    },
+    {
+      "width": 1280,
+      "view": "top",
+      "editions": {
+        "draft": {
+          "casesRead": 10,
+          "verdict": "PASS_CAPTURED_SCOPE"
+        },
+        "published": {
+          "casesRead": 10,
+          "verdict": "PASS_CAPTURED_SCOPE"
+        }
+      },
+      "criticalCases": 0,
+      "wholeRasterRead": true,
+      "newResidual": null
+    },
+    {
+      "width": 1280,
+      "view": "fixed_projection",
+      "editions": {
+        "draft": {
+          "casesRead": 10,
+          "verdict": "PASS_CAPTURED_SCOPE"
+        },
+        "published": {
+          "casesRead": 10,
+          "verdict": "PASS_CAPTURED_SCOPE"
+        }
+      },
+      "criticalCases": 4,
+      "wholeRasterRead": true,
+      "newResidual": null
+    }
+  ],
+  "imageReading": {
+    "uniqueWholePngsRead": 66,
+    "caseOccurrencesCovered": 160,
+    "completeUnscaledSheets": 10,
+    "directWholeCriticalPngs": 12,
+    "criticalOccurrences": 24,
+    "criticalReadReceiptSha256": "b525af9233e79c95b29b0ede73dc5d0f32bab8b4085fdaee6a4fa69913a28b54",
+    "perCaseReceiptSha256": "e31561e98404afc68364a4a6043018621d7303f2d3136071b4b02a7f9bd805c0",
+    "rasterByteDifferencesRetained": "Two1280fallback casesgrid7/t0 andclock12/t6 differ between editions only in PNG bytes; SVG/elements/controls/readout equality proved, both images read. No semantic defect observed."
+  },
+  "mathAndClock": {
+    "strictCheckedInteractions": 144,
+    "manualRepliesObserved": 32,
+    "law": "Q=4v mL/s forvcm/s; displacement=vtcm, derived integratedvolume4vtmL",
+    "physicalGridFlows": [
+      0,
+      4,
+      24,
+      28,
+      48
+    ],
+    "clockInputs": [
+      [
+        0,
+        6
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        7,
+        3
+      ],
+      [
+        12,
+        6
+      ]
+    ],
+    "clockDistancesCm": [
+      0,
+      3,
+      21,
+      72
+    ],
+    "derivedIntegratedVolumesMl": [
+      0,
+      12,
+      84,
+      288
+    ],
+    "volumeLimit": "Integrated volumes derived independently, not claimed as actual DOM fields.",
+    "zeroSemantics": "32captured zero cases have0flow/0distance and no arrows; zero clock6s transports nothing.",
+    "periodicity": "At72cm a six-period tracer pattern may recur; the actual clock6s and72cm distance remain exact, and intermediate3/21cm captured states differ. No clock freeze inferred."
+  },
+  "sourceGeometryDiff": {
+    "filesChanged": [
+      "static/js/banchi/voci/apparati/fluidi.js",
+      "static/js/banchi/voci/legende.js",
+      "static/js/banchi/voci/modelli/C2.js"
+    ],
+    "scope": "CurrentL00501model only adds apparatus visible-tip flag; measure4*x unchanged. Current raw elements change only velocity arrowz0→0.4 and dettaglio=true,224arrow elements across112cases. All tracer positions/radii, arrowx/y endpoints, data/controls/guide/questions/model outputs identical to same53bdcase.",
+    "otherSourceScope": "Pitot branch changes in same shared files are excluded from this review.",
+    "legend": "Actual DOM all144interaction cases describes side offset preserving direction/common scale; setup16occurrences read in8distinct whole UIimages."
+  },
+  "findings": [
+    {
+      "findingId": "CONTINUITY01-F01",
+      "status": "RESOLVED_ON_FE5D_CAPTURED_SCOPE",
+      "cases": 8,
+      "raster": "Both colors have visible rightward pointed ends at1cm/s in current fallbackgridt0/clockt3,320/1280,each edition. Current4marginal setup occurrences also reread.",
+      "geometricSupport": "Currenthead width9intrinsicSVGunits exceeds2.7shaft; oldhead≈1.504contained. Tip remains at the physical shaftend, no flow/scale change. These are intrinsic coordinates, not CSSpixels.",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|fixed_projection|grid|1",
+        "SIM-C2-L005-01|draft|320|fixed_projection|clock|1",
+        "SIM-C2-L005-01|published|320|fixed_projection|grid|1",
+        "SIM-C2-L005-01|published|320|fixed_projection|clock|1",
+        "SIM-C2-L005-01|draft|1280|fixed_projection|grid|1",
+        "SIM-C2-L005-01|draft|1280|fixed_projection|clock|1",
+        "SIM-C2-L005-01|published|1280|fixed_projection|grid|1",
+        "SIM-C2-L005-01|published|1280|fixed_projection|clock|1"
+      ]
+    },
+    {
+      "findingId": "CONTINUITY01-F02",
+      "status": "RESOLVED_ON_FE5D_CAPTURED_SCOPE",
+      "cases": 16,
+      "raster": "Green6cm/s,t0 andpurple7cm/s,t3 apexes now visible against/clear of rear tracers in currentOrbit/Side320/1280,each edition.",
+      "geometricSupport": {
+        "tipTracerRayTestsAllNativePairs": 1008,
+        "frontOccludingTracerHits": 0,
+        "projectedOverlapBehindArrowPairs": 8,
+        "interpretation": "Eight2Dprojected overlaps remain with the tracer behind the arrow. Source z0.4 plus actual draw-order/raster preserves the pointed end; no claim that silhouettes never touch. Old16forward-occlusion witnesses still reproduced by exact rational ray test."
+      },
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|orbit|grid|2",
+        "SIM-C2-L005-01|draft|320|orbit|clock|2",
+        "SIM-C2-L005-01|draft|320|side|grid|2",
+        "SIM-C2-L005-01|draft|320|side|clock|2",
+        "SIM-C2-L005-01|published|320|orbit|grid|2",
+        "SIM-C2-L005-01|published|320|orbit|clock|2",
+        "SIM-C2-L005-01|published|320|side|grid|2",
+        "SIM-C2-L005-01|published|320|side|clock|2",
+        "SIM-C2-L005-01|draft|1280|orbit|grid|2",
+        "SIM-C2-L005-01|draft|1280|orbit|clock|2",
+        "SIM-C2-L005-01|draft|1280|side|grid|2",
+        "SIM-C2-L005-01|draft|1280|side|clock|2",
+        "SIM-C2-L005-01|published|1280|orbit|grid|2",
+        "SIM-C2-L005-01|published|1280|orbit|clock|2",
+        "SIM-C2-L005-01|published|1280|side|grid|2",
+        "SIM-C2-L005-01|published|1280|side|clock|2"
+      ]
+    }
+  ],
+  "openFindings": [],
+  "realCpuTests": 21,
+  "cpuTerminalSha256": "dcd343c3b496a95b72641579b53a211e52ab6d09d5594ac60c0c6ceaca18cb80",
+  "freshReviewIdentitySha256": "f06282b0ce3bb2bde2fbd779ad1eca93f7fbbae56f6d32a3656013eca53ca720",
+  "verifier": {
+    "module": "continuity_readout_verifier.py",
+    "moduleSha256": "fd429d7e7434f50446e20ee2c6ee8c0d01b169e6c563083ee86a8812ee7521e1",
+    "entryPoints": [
+      "verify_case(case,config)",
+      "verify_dataset(folder)"
+    ],
+    "inputSha256": "05ebf51a7da18db3df12462fdadf1d6c9bec2d0b91a95909e03f176a2215b25e",
+    "outputSha256": "041dd72ddb6479b55c1bc6eaad7a416cdf530c5bfb93f58b6a9caec88086b08f",
+    "role": "Read-only independent check of existing canonical artifacts; not another collector, ETL, registry or release pipeline."
+  },
+  "negativeAndHistoricalPreservation": {
+    "old53bd": "All160case snapshots and oldreview preserved; noretag/withdrawal of oldnegative witnesses.",
+    "new1280draftReported40Timeout": "Excluded diagnostics at1f70; successful split30+10only used.",
+    "oldMixed80SIGKILL": "Excluded entirely.",
+    "recipeCounterexample": "Expected64unique image bootstrap stopped atactual66; originalrecipe and observedterminal1 retained. Finalrecipe includesall66 without weakening case coverage.",
+    "cpuHistory": "Real20test and first21test runs retained. Final21test uses owned oldreport snapshot for self-contained CI inputs."
+  },
+  "overallVerdict": "CURRENT_CAPTURED_INSTRUMENT_AND_RASTER_SCOPE_PASS",
+  "registrarStatus": "PENDING_CANONICAL_REGISTRAR; reviewer made no registration",
+  "macroOrOtherIDs": "NOT_GRANTED",
+  "newChrome": "NOT_RUN",
+  "newCanonicalDBImport": "NOT_RUN_BY_REVIEWER; producer import/owner/guest reports preserved verbatim",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "activityCredit": 0,
+  "timestamp": "2026-11-27T10:13:17.541861+00:00"
+}

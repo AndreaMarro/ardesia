@@ -1,0 +1,63 @@
+from pathlib import Path
+from PIL import Image,ImageDraw
+import json,hashlib,subprocess,zipfile,io,collections,math
+R=Path.cwd();D=R/'officina-di-fisica/editorial/reviews/c2-l00501-fe5d-independent-b-20261127';O=D.parent/'c2-l00501-53bd-both-editions-independent-b-20261127';H=lambda b:hashlib.sha256(b).hexdigest();J=lambda p:json.loads(p.read_text());prefix='officina-di-fisica/editorial/reviews/converged-runtime-53bd-20261127/'
+assert H((D/'verification-plan-before-current-raw.json').read_bytes())=='e83a03ef009a68c569193b7481b1ffd517d3d6c734f6f0d68b8947a2f2d90df6'
+authorities=[('6e6bcbb1890b5c2a270b77930052a85bb2fa3023','continuity-l00501-320-draft-fe5d-40-manifest.json'),('1f70d18f76be4a9cd69b78c9151258598e880cc2','continuity-l00501-1280-draft-fe5d-split-40-manifest.json'),('2741428afa440c15a78922cf4bf9e17fe0a74e04','continuity-l00501-published-fe5d-80-manifest.json')]
+(D/'archive-authority').mkdir(exist_ok=True);gitinputs=[];auth=[]
+for commit,name in authorities:
+ raw=subprocess.check_output(['git','-c','gc.auto=0','show',commit+':'+prefix+name]);(D/'archive-authority'/name).write_bytes(raw);manifest=json.loads(raw);gitinputs.append({'commit':commit,'path':prefix+name,'snapshot':'archive-authority/'+name,'sha256':H(raw)})
+ if commit.startswith('2741428'):assert H(raw)=='8e01f2b7eab9bbb9510bb1746c94485f35c2c7d029ef63654aed6478010338e0'
+ zname=name.replace('-manifest.json','.zip');zraw=subprocess.check_output(['git','-c','gc.auto=0','show',commit+':'+prefix+zname]);assert H(zraw)==manifest['archiveSha256'];z=zipfile.ZipFile(io.BytesIO(zraw));count=0
+ for path,sha in manifest['files'].items():
+  b=z.read(path);assert H(b)==sha
+  dest=D/'raw'/path;assert dest.resolve().is_relative_to((D/'raw').resolve());dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(b);count+=1
+ auth.append({'commit':commit,'manifestPath':prefix+name,'manifestSha256':H(raw),'archivePath':prefix+zname,'archiveSha256':H(zraw),'archiveBytes':len(zraw),'archiveBytesVerifiedFromGit':True,'listedFilesVerifiedAgainstArchive':count,'sharedSourceMutated':False,'localZipDuplicateCreated':False})
+items=[];groups=[];unique={};runtime='fe5d26413e1aeb59987cc3fd6040adde3b01952b6e5e5c3951695b2e64d9166b'
+for source in sorted((D/'raw').iterdir()):
+ if not source.is_dir():continue
+ report=J(source/'actual/report.json');prepared=J(source/'prepared.json');terminal=J(source/'terminal.json');assert terminal['observedExitCode']==0 and not terminal['timeoutTriggered'];assert report['errors']==[];assert report['runtimeFingerprint']['sha256']==runtime;assert report['preparedSha256']==H((source/'prepared.json').read_bytes());assert set(prepared['expectedCaseKeys'])=={e['caseKey']for e in report['cases']}
+ for e in report['cases']:
+  path=source/'actual'/e['file'];assert H(path.read_bytes())==e['sha256'];c=J(path);assert c['id']=='SIM-C2-L005-01'and c['technicalOk'];assert c['runtimeSha256']==runtime
+  for shot in c['screenshots']:
+   image=source/'actual'/shot['file'];assert H(image.read_bytes())==shot['sha256'];unique.setdefault(shot['sha256'],{'path':str(image.relative_to(D)),'caseKeys':[]})['caseKeys'].append(c['caseKey'])
+  items.append({'group':source.name,'caseKey':c['caseKey'],'caseSha256':e['sha256'],'caseFile':str(path.relative_to(D)),'profile':c['profile'],'variant':c['variant'],'requestedX':c.get('requestedX'),'requestedTime':c.get('requestedTime'),'actualRenderer':c.get('actualRenderer'),'screenshots':c['screenshots']})
+ groups.append({'group':source.name,'rawReportFile':str((source/'actual/report.json').relative_to(D)),'rawReportSha256':H((source/'actual/report.json').read_bytes()),'preparedSha256':report['preparedSha256'],'sourceCommit':report['sourceCommit'],'terminal':terminal,'cases':len(report['cases']),'canonicalImport':report['canonicalImport'],'guestIsolation':report['guestIsolation'],'fullOwnerRecordIdentity':report['fullOwnerRecordIdentity']})
+assert len(items)==160 and len({r['caseKey']for r in items})==160
+assert len(unique)==66,(len(unique),'Unexpected changed dedup; preserve all images')
+# Old snapshots preserve each old case and report, not the historical screenshot archive a second time.
+oldIndex=J(O/'verified-raw-index.json');oldcases={}
+(D/'historical-53bd').mkdir(exist_ok=True)
+for row in oldIndex['cases']:
+ oldcases[row['caseKey']]=J(O/row['caseFile']);name=H(row['caseKey'].encode())+'.json';(D/'historical-53bd'/name).write_bytes((O/row['caseFile']).read_bytes());row['caseFile']='historical-53bd/'+name
+(D/'historical-53bd/index.json').write_text(json.dumps(oldIndex,ensure_ascii=False,indent=2)+'\n')
+for name in ['independent-raster-reading.json','handoff.json']:(D/'historical-53bd'/name).write_bytes((O/name).read_bytes())
+sheets=[];setups=collections.defaultdict(list)
+for width in [320,1280]:
+ for view in ['orbit','side','top','fixed_projection']:
+  same=[r for r in items if r['profile']['width']==width and r['profile']['view']==view];assert len(same)==20
+  frames=[];seen=set()
+  for row in same:
+   shot=row['screenshots'][0]
+   if shot['sha256']in seen:continue
+   seen.add(shot['sha256'])
+   if row['caseKey'].endswith('setup'):setups[width].append(row)
+   else:frames.append(row)
+  assert len(frames)==(9 if width==1280 and view=='fixed_projection'else 7)
+  images=[Image.open(D/unique[r['screenshots'][0]['sha256']]['path']).convert('RGB')for r in frames];cols=4 if width==320 else 2;cw=max(im.width for im in images);ch=max(im.height for im in images)+32;canvas=Image.new('RGB',(cols*cw,math.ceil(len(images)/cols)*ch),'white');draw=ImageDraw.Draw(canvas)
+  for i,(im,row)in enumerate(zip(images,frames)):
+   x,y=i%cols*cw,i//cols*ch;draw.text((x+3,y+3),row['caseKey'].split('|')[-2]+' v='+str(row['requestedX'])+' t='+str(row['requestedTime']),fill='black');canvas.paste(im,(x,y+32))
+  p=D/f'sheet-{width}-{view}.png';canvas.save(p);sheets.append({'file':p.name,'sourcePngs':[r['screenshots'][0]['sha256']for r in frames],'resized':False,'completeImages':True,'sha256':H(p.read_bytes())})
+for width,rows in setups.items():
+ assert len(rows)==4
+ images=[Image.open(D/unique[r['screenshots'][0]['sha256']]['path']).convert('RGB')for r in rows];cols=4 if width==320 else 2;cw=max(im.width for im in images);ch=max(im.height for im in images)+32;canvas=Image.new('RGB',(cols*cw,math.ceil(4/cols)*ch),'white');draw=ImageDraw.Draw(canvas)
+ for i,(im,row)in enumerate(zip(images,rows)):
+  x,y=i%cols*cw,i//cols*ch;draw.text((x+3,y+3),row['profile']['view'],fill='black');canvas.paste(im,(x,y+32))
+ p=D/f'sheet-setup-{width}.png';canvas.save(p);sheets.append({'file':p.name,'sourcePngs':[r['screenshots'][0]['sha256']for r in rows],'resized':False,'completeImages':True,'sha256':H(p.read_bytes())})
+critical=[];plan=J(D/'verification-plan-before-current-raw.json');keyset=set(plan['frozenCriticalCases']['F01']['caseKeys']+plan['frozenCriticalCases']['F02']['caseKeys'])
+for row in items:
+ if row['caseKey']in keyset:critical.append({'caseKey':row['caseKey'],'caseFile':row['caseFile'],'sha256':row['screenshots'][0]['sha256'],'path':unique[row['screenshots'][0]['sha256']]['path'],'reason':'F01_FALLBACK_V1'if row['profile']['fallback']else'F02_NATIVE_TRACER'})
+assert len(critical)==24
+(D/'critical-read-list.json').write_text(json.dumps({'caseOccurrences':critical,'uniquePngCount':len({r['sha256']for r in critical}),'phase':'RAW_VERIFIED_READING_PENDING'},indent=2)+'\n')
+(D/'git-inputs.json').write_text(json.dumps({'schemaVersion':'1.0.0','inputs':gitinputs},indent=2)+'\n');(D/'archive-authority-verification.json').write_text(json.dumps({'archives':auth,'allListedBytesMatchGitArchive':True,'newChrome':False,'excludedDiagnostic':'Original1280draft reported40 but terminaltimeout archive in1f70 is excluded; mixed80oldSIGKILL also excluded.'},indent=2)+'\n')
+(D/'verified-raw-index.json').write_text(json.dumps({'phase':'RAW_VERIFIED_RASTER_READING_PENDING','id':'SIM-C2-L005-01','runtimeSha256':runtime,'observations':160,'uniquePngCount':len(unique),'screenOccurrences':160,'groups':groups,'cases':items,'uniqueScreenshots':unique,'sheets':sheets,'currentRawAuthority':'Three immutable Git archive/manifest pairs; every member verified and copied verbatim.','newChrome':'NOT_RUN','activityCredit':0},ensure_ascii=False,indent=2)+'\n');print(json.dumps({'cases':160,'rawParts':len(groups),'uniquePngs':len(unique),'sheets':len(sheets),'criticalOccurrences':len(critical),'criticalUniquePngs':len({r['sha256']for r in critical})}))

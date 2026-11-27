@@ -1,0 +1,4387 @@
+{
+  "phase": "RAW_VERIFIED_RASTER_READING_PENDING",
+  "id": "SIM-C2-L005-01",
+  "runtimeSha256": "fe5d26413e1aeb59987cc3fd6040adde3b01952b6e5e5c3951695b2e64d9166b",
+  "observations": 160,
+  "uniquePngCount": 66,
+  "screenOccurrences": 160,
+  "groups": [
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-fallback",
+      "rawReportFile": "raw/continuity-l00501-1280-draft-fe5d-fallback/actual/report.json",
+      "rawReportSha256": "ffe5971b20eb7c745bd2626586e5f38cc39949832772a37c0303dee2c9bac1e5",
+      "preparedSha256": "35f67b67195453351ac8419b631909f244c0c915c3ad58030ed24bdfd88c8761",
+      "sourceCommit": "8de7bd774c71841c4b744485b012abd6506f3645",
+      "terminal": {
+        "observedExitCode": 0,
+        "seconds": 12.217352749999918,
+        "startingFreeBytes": 12956753920,
+        "timeoutTriggered": false
+      },
+      "cases": 10,
+      "canonicalImport": {
+        "publishedCount": 991,
+        "imports": [
+          {
+            "first": {
+              "saved": 5,
+              "unchanged": 0,
+              "publication": "DRAFT"
+            },
+            "second": {
+              "saved": 0,
+              "unchanged": 5,
+              "publication": "DRAFT"
+            }
+          }
+        ]
+      },
+      "guestIsolation": "ORIGINAL_OR_DENIED_AND_DRAFT_ASSETS_403",
+      "fullOwnerRecordIdentity": {
+        "scope": "All declared complete normalized owner records, no cross-language canonical digest",
+        "records": [
+          {
+            "id": "SIM-C2-L005-01",
+            "version": 2,
+            "responseBytesSha256": "5108c1acaad4501627e171323e7c6c88af1d7f680f0adb86dc37424725265251"
+          },
+          {
+            "id": "SIM-C2-L005-02",
+            "version": 2,
+            "responseBytesSha256": "59363bc9af55b625f8b9c1226ad2d7e95d8513df297c502fe00a943e452720b8"
+          },
+          {
+            "id": "SIM-C2-L005-03",
+            "version": 2,
+            "responseBytesSha256": "9ae9b395111b0cea7d0ee020c6d5afacf61323f05607eb5518bc2a48377c506b"
+          },
+          {
+            "id": "SIM-C2-L005-04",
+            "version": 2,
+            "responseBytesSha256": "dd2091cabb0a5088e03e61b010bbdbeed40fb9f091ebf7a0a42a3f76eac48dc0"
+          },
+          {
+            "id": "SIM-C2-L005-05",
+            "version": 2,
+            "responseBytesSha256": "c598001ac4ca588021daeca0ccd1daa719503cd07b756950ab90b726b11d9b92"
+          }
+        ]
+      }
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "rawReportFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/report.json",
+      "rawReportSha256": "a48c7c4d14757a50331a91ff100450410be2a63cb8d8f2fa4f4454735f81922c",
+      "preparedSha256": "658850b968f7599a48f75200ec7bd776f46b550954c5e203de02b996902ffc47",
+      "sourceCommit": "8de7bd774c71841c4b744485b012abd6506f3645",
+      "terminal": {
+        "observedExitCode": 0,
+        "seconds": 35.91430204199969,
+        "startingFreeBytes": 12901814272,
+        "timeoutTriggered": false
+      },
+      "cases": 30,
+      "canonicalImport": {
+        "publishedCount": 991,
+        "imports": [
+          {
+            "first": {
+              "saved": 5,
+              "unchanged": 0,
+              "publication": "DRAFT"
+            },
+            "second": {
+              "saved": 0,
+              "unchanged": 5,
+              "publication": "DRAFT"
+            }
+          }
+        ]
+      },
+      "guestIsolation": "ORIGINAL_OR_DENIED_AND_DRAFT_ASSETS_403",
+      "fullOwnerRecordIdentity": {
+        "scope": "All declared complete normalized owner records, no cross-language canonical digest",
+        "records": [
+          {
+            "id": "SIM-C2-L005-01",
+            "version": 2,
+            "responseBytesSha256": "dc44065038d8abaaf4e9d7eb52eb46b784f5b32525b2bd1d047d1a15bf9c8aea"
+          },
+          {
+            "id": "SIM-C2-L005-02",
+            "version": 2,
+            "responseBytesSha256": "373889b3ff36368a76264da837319c4069a50e918ba74cf987df229217753e2d"
+          },
+          {
+            "id": "SIM-C2-L005-03",
+            "version": 2,
+            "responseBytesSha256": "95c571081222de70c452527c46fad908733d0a2fff96b761a73dacd5aceb6b99"
+          },
+          {
+            "id": "SIM-C2-L005-04",
+            "version": 2,
+            "responseBytesSha256": "761d033464d6b3da5583f3b28dea4b91136d9bca6cb66dd5fdb34fbe983e0f52"
+          },
+          {
+            "id": "SIM-C2-L005-05",
+            "version": 2,
+            "responseBytesSha256": "8ffb4fc36b158103155a77152b626f4a2748154235db7351e32da9689d21fbc3"
+          }
+        ]
+      }
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-fallback",
+      "rawReportFile": "raw/continuity-l00501-1280-published-fe5d-fallback/actual/report.json",
+      "rawReportSha256": "240c099abda5597acb3f9134e9890a5609fed7fc41380dd31d05b3f81beb2180",
+      "preparedSha256": "26d7a87684ccd46b449bcada7bea7bc983569dbbb5e748a4fe8897dca545dc03",
+      "sourceCommit": "8de7bd774c71841c4b744485b012abd6506f3645",
+      "terminal": {
+        "observedExitCode": 0,
+        "seconds": 10.558229041000232,
+        "startingFreeBytes": 12850360320,
+        "timeoutTriggered": false
+      },
+      "cases": 10,
+      "canonicalImport": {
+        "publishedCount": 991,
+        "imports": [
+          {
+            "first": {
+              "saved": 5,
+              "unchanged": 0,
+              "publication": "DRAFT"
+            },
+            "second": {
+              "saved": 0,
+              "unchanged": 5,
+              "publication": "DRAFT"
+            }
+          }
+        ]
+      },
+      "guestIsolation": "ORIGINAL_OR_DENIED_AND_DRAFT_ASSETS_403",
+      "fullOwnerRecordIdentity": {
+        "scope": "All declared complete normalized owner records, no cross-language canonical digest",
+        "records": [
+          {
+            "id": "SIM-C2-L005-01",
+            "version": 2,
+            "responseBytesSha256": "0f5e371808b098e8804527527688d0ab8cb4ae58b2d273f49bb3369c9dd90c94"
+          },
+          {
+            "id": "SIM-C2-L005-02",
+            "version": 2,
+            "responseBytesSha256": "f28bb5dcaba291a69c0eeeba8cb5b05ef74e2402a6defae2cc3ed5918bc0519b"
+          },
+          {
+            "id": "SIM-C2-L005-03",
+            "version": 2,
+            "responseBytesSha256": "93a5e30403f5b9cbcd81c4e51ab0fe525cd82a5e2fd83536fd00df875efd2c9e"
+          },
+          {
+            "id": "SIM-C2-L005-04",
+            "version": 2,
+            "responseBytesSha256": "2785dfc659caae88e10aaed2a1f5304a88353551c8cd4c8403bc17c45043015f"
+          },
+          {
+            "id": "SIM-C2-L005-05",
+            "version": 2,
+            "responseBytesSha256": "aea6d65470abe229eac7e54d1386953f475ebaedec6b17b065e5d3f8ab320769"
+          }
+        ]
+      }
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "rawReportFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/report.json",
+      "rawReportSha256": "bd8de75bfde0d1a305298205062b2f3e20ffe0fd95ecf25782c3140847c207cb",
+      "preparedSha256": "1ba2321c02afc8de4beb523336b5c00f5a3280e1cae52ae622a33f01bcd6d8a4",
+      "sourceCommit": "8de7bd774c71841c4b744485b012abd6506f3645",
+      "terminal": {
+        "observedExitCode": 0,
+        "seconds": 49.9172833749999,
+        "startingFreeBytes": 12861517824,
+        "timeoutTriggered": false
+      },
+      "cases": 30,
+      "canonicalImport": {
+        "publishedCount": 991,
+        "imports": [
+          {
+            "first": {
+              "saved": 5,
+              "unchanged": 0,
+              "publication": "DRAFT"
+            },
+            "second": {
+              "saved": 0,
+              "unchanged": 5,
+              "publication": "DRAFT"
+            }
+          }
+        ]
+      },
+      "guestIsolation": "ORIGINAL_OR_DENIED_AND_DRAFT_ASSETS_403",
+      "fullOwnerRecordIdentity": {
+        "scope": "All declared complete normalized owner records, no cross-language canonical digest",
+        "records": [
+          {
+            "id": "SIM-C2-L005-01",
+            "version": 2,
+            "responseBytesSha256": "f3c6345a051ede6426346b04b3aee7732f1137b8eceaa9a05e60a4167d43e45f"
+          },
+          {
+            "id": "SIM-C2-L005-02",
+            "version": 2,
+            "responseBytesSha256": "cca1492b9d63f10ef87e5af770c030df0ae6ddea85c4777d153e63f2ebf8b9ce"
+          },
+          {
+            "id": "SIM-C2-L005-03",
+            "version": 2,
+            "responseBytesSha256": "7cf50836bc9b7660a58446a9fd9633d7b041c2c6aac197c1d5cd39ede7e04d76"
+          },
+          {
+            "id": "SIM-C2-L005-04",
+            "version": 2,
+            "responseBytesSha256": "ec3439ac4e1918d83bc49c88365eb0baac51ca3637701615b330acc867fe4c66"
+          },
+          {
+            "id": "SIM-C2-L005-05",
+            "version": 2,
+            "responseBytesSha256": "693eb50bae442ae6cdbc35289e6a13ac0f280eb1fe08555d714269a956444699"
+          }
+        ]
+      }
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "rawReportFile": "raw/continuity-l00501-320-draft-fe5d/actual/report.json",
+      "rawReportSha256": "8d46a796a66be06595aadd057adc061f7b536d1beaa7dc1574f536c1c5ffc72a",
+      "preparedSha256": "18d7dceec7334a9f28f25400c98a1acdaa67622ad42a774c23997ea6019c364c",
+      "sourceCommit": "8de7bd774c71841c4b744485b012abd6506f3645",
+      "terminal": {
+        "observedExitCode": 0,
+        "seconds": 36.61956258400005,
+        "startingFreeBytes": 13239541760,
+        "timeoutTriggered": false
+      },
+      "cases": 40,
+      "canonicalImport": {
+        "publishedCount": 991,
+        "imports": [
+          {
+            "first": {
+              "saved": 5,
+              "unchanged": 0,
+              "publication": "DRAFT"
+            },
+            "second": {
+              "saved": 0,
+              "unchanged": 5,
+              "publication": "DRAFT"
+            }
+          }
+        ]
+      },
+      "guestIsolation": "ORIGINAL_OR_DENIED_AND_DRAFT_ASSETS_403",
+      "fullOwnerRecordIdentity": {
+        "scope": "All declared complete normalized owner records, no cross-language canonical digest",
+        "records": [
+          {
+            "id": "SIM-C2-L005-01",
+            "version": 2,
+            "responseBytesSha256": "e3478269ffcbe0261e0e3b9674b465c5df39571c8b5dee9b741d9b6169d99121"
+          },
+          {
+            "id": "SIM-C2-L005-02",
+            "version": 2,
+            "responseBytesSha256": "b0d1e3d04b0cece0abd2e623f5eef5a96f2c774c9631e83db1f81dd9db528b34"
+          },
+          {
+            "id": "SIM-C2-L005-03",
+            "version": 2,
+            "responseBytesSha256": "49685eedb4dbdd03d8e6c6b39c0f176b1dc915b0c5e0f8b93fffb21903edd618"
+          },
+          {
+            "id": "SIM-C2-L005-04",
+            "version": 2,
+            "responseBytesSha256": "571a54d78829bdb696b6365ecd04c02794551ea23737204e458fbba258a578c4"
+          },
+          {
+            "id": "SIM-C2-L005-05",
+            "version": 2,
+            "responseBytesSha256": "3a6673ad6a8f7795a8216ad50b423c43ad2392ff2acd2e5c8c52c8b14ffbaad5"
+          }
+        ]
+      }
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "rawReportFile": "raw/continuity-l00501-320-published-fe5d/actual/report.json",
+      "rawReportSha256": "4e605593fc856dfca52ae58e0d2be91a111bdddfe944a6cc127ad1678076f9d1",
+      "preparedSha256": "89224de45487c9742f9de72c8145619ce20eca24e9c707bc98b1cf88000098e2",
+      "sourceCommit": "8de7bd774c71841c4b744485b012abd6506f3645",
+      "terminal": {
+        "observedExitCode": 0,
+        "seconds": 30.747672250000505,
+        "startingFreeBytes": 12848705536,
+        "timeoutTriggered": false
+      },
+      "cases": 40,
+      "canonicalImport": {
+        "publishedCount": 991,
+        "imports": [
+          {
+            "first": {
+              "saved": 5,
+              "unchanged": 0,
+              "publication": "DRAFT"
+            },
+            "second": {
+              "saved": 0,
+              "unchanged": 5,
+              "publication": "DRAFT"
+            }
+          }
+        ]
+      },
+      "guestIsolation": "ORIGINAL_OR_DENIED_AND_DRAFT_ASSETS_403",
+      "fullOwnerRecordIdentity": {
+        "scope": "All declared complete normalized owner records, no cross-language canonical digest",
+        "records": [
+          {
+            "id": "SIM-C2-L005-01",
+            "version": 2,
+            "responseBytesSha256": "74c2b13eb5a5ae43db142c1d64603227115543423b33e32d4194aaba40843518"
+          },
+          {
+            "id": "SIM-C2-L005-02",
+            "version": 2,
+            "responseBytesSha256": "af49b9329f24b9603ac95285a01b200095c91be5cb674dd7e574da3e4327c0e2"
+          },
+          {
+            "id": "SIM-C2-L005-03",
+            "version": 2,
+            "responseBytesSha256": "2bdba561ecc19d0e5bc73b67a1367a11e6e667004783ee4811b62d9fa2cd00b4"
+          },
+          {
+            "id": "SIM-C2-L005-04",
+            "version": 2,
+            "responseBytesSha256": "ba5ac577e8e55a8b5a6c7452a2e7bf68a3cb7359663b3e341653a91bc546be22"
+          },
+          {
+            "id": "SIM-C2-L005-05",
+            "version": 2,
+            "responseBytesSha256": "d53b7fd396bad4d2f962b22572ca40f9a7481dc2af242912e784f15b1532d440"
+          }
+        ]
+      }
+    }
+  ],
+  "cases": [
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-fallback",
+      "caseKey": "SIM-C2-L005-01|draft|1280|fixed_projection|setup",
+      "caseSha256": "0970f3d5c266b70e8819541c394992b782004a8150da12651f874197573e86ca",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-fallback/actual/cases/881c367a49b3f4f01d688dff0fc21b95a16d0da482aab7e4522adc39a861ac1b.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": null,
+      "requestedTime": null,
+      "actualRenderer": null,
+      "screenshots": [
+        {
+          "file": "screens/97e554289c770cd8255f569bbaf2d51c949562fedb9657e6703b8e291f14808d.png",
+          "sha256": "97e554289c770cd8255f569bbaf2d51c949562fedb9657e6703b8e291f14808d"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-fallback",
+      "caseKey": "SIM-C2-L005-01|draft|1280|fixed_projection|grid|0",
+      "caseSha256": "c6e3a9ab26e93d0f2a5394d9f49df917e4887390f0a3b359a4f8870bc41c5c67",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-fallback/actual/cases/4f834173f377b5c43d497efdcc3b96b85d5a4559f1a642674e11c7055dc21bbf.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 0,
+      "requestedTime": null,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/4c578d650690534807047133fa68327417a828c14126783d59a54c43763654ce.png",
+          "sha256": "4c578d650690534807047133fa68327417a828c14126783d59a54c43763654ce"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-fallback",
+      "caseKey": "SIM-C2-L005-01|draft|1280|fixed_projection|grid|1",
+      "caseSha256": "df10ade0360c33b7f435b07b83f46ba3dc85325a3e9b9dc5cefdb688d141dff0",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-fallback/actual/cases/6f38aa14242f9b4ce953383844e400fd983d511619acffa03fa3b35e369933f9.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 1,
+      "requestedTime": null,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/d6609ef3ac1702eb87b9ac5b178613fd1ab5f498633e88411a0acd86e0e82301.png",
+          "sha256": "d6609ef3ac1702eb87b9ac5b178613fd1ab5f498633e88411a0acd86e0e82301"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-fallback",
+      "caseKey": "SIM-C2-L005-01|draft|1280|fixed_projection|grid|2",
+      "caseSha256": "0db06cc794ac5fcc47508a1e3d9ffe3f581808cf67dc474c140b1de8c84a5071",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-fallback/actual/cases/a025ddbe34075426dcd651432c41f88007ab096fb45ad515c8fb622253b827cb.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 6,
+      "requestedTime": null,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/b59dd74a16c6f1cb18f74c2f1fbd37b156b919f1e86e043cbb793d65c06adb9c.png",
+          "sha256": "b59dd74a16c6f1cb18f74c2f1fbd37b156b919f1e86e043cbb793d65c06adb9c"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-fallback",
+      "caseKey": "SIM-C2-L005-01|draft|1280|fixed_projection|grid|3",
+      "caseSha256": "85e992177eb2adeb06007b7b0d4ec39a7161f5f96d4162959df18201e2a317c2",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-fallback/actual/cases/c9fa47f4553c2a74bd8eab48c2d053664f60b0005e816b1dd2cda11453d9e083.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 7,
+      "requestedTime": null,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/5aae6f27c21a7743800cf69095703519239b192fd4212483c9d3988690337761.png",
+          "sha256": "5aae6f27c21a7743800cf69095703519239b192fd4212483c9d3988690337761"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-fallback",
+      "caseKey": "SIM-C2-L005-01|draft|1280|fixed_projection|grid|4",
+      "caseSha256": "b9aef8d90641aab3330466c6bbeacafb55402e0a851c1e3f6a544a88c87b1d5e",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-fallback/actual/cases/57e479a5d5c1e1c237752cd9a1871147f31b01424473eca09d3adde346d76c54.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 12,
+      "requestedTime": null,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/1606b556cadef1837dc87395917f4f9b22d8deb9c8cfe7ecc4d94a35f7d26e86.png",
+          "sha256": "1606b556cadef1837dc87395917f4f9b22d8deb9c8cfe7ecc4d94a35f7d26e86"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-fallback",
+      "caseKey": "SIM-C2-L005-01|draft|1280|fixed_projection|clock|0",
+      "caseSha256": "9117291fe0223dcd13cb860f9d4604b1f0d2905d9a273738ad7e3e8ca1ab89b7",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-fallback/actual/cases/bb6ddb76f165235f406f5ad9419d2ace4c81a55419a6cf44fd5b649d0215288f.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 0,
+      "requestedTime": 6,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/4c578d650690534807047133fa68327417a828c14126783d59a54c43763654ce.png",
+          "sha256": "4c578d650690534807047133fa68327417a828c14126783d59a54c43763654ce"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-fallback",
+      "caseKey": "SIM-C2-L005-01|draft|1280|fixed_projection|clock|1",
+      "caseSha256": "95f5f43258aa43e3f27080de4b995126c627cf06b42d775598c8135737ded027",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-fallback/actual/cases/404198f1beab305ae54c972566cd1dc2d4ada842456821089048dec536ea4d2a.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 1,
+      "requestedTime": 3,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/ad9691aa1ea4702c33befe22ec905c5068acc5604f45ad9d7637179eda1b433e.png",
+          "sha256": "ad9691aa1ea4702c33befe22ec905c5068acc5604f45ad9d7637179eda1b433e"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-fallback",
+      "caseKey": "SIM-C2-L005-01|draft|1280|fixed_projection|clock|2",
+      "caseSha256": "68d1366644d5a0fafef81d0939ad4c2bebc42fa69a4b3cfe2cad987a34deae23",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-fallback/actual/cases/5e33037223011701b3c0e888240cf0d5e369037f1f6e09dac56e6af64cbe2cf5.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 7,
+      "requestedTime": 3,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/846eb3e7f056172487a0214ba21f6a381e5b3e428f664903f9d9ac44e8e46b0f.png",
+          "sha256": "846eb3e7f056172487a0214ba21f6a381e5b3e428f664903f9d9ac44e8e46b0f"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-fallback",
+      "caseKey": "SIM-C2-L005-01|draft|1280|fixed_projection|clock|3",
+      "caseSha256": "2597c81fcfc4b6b34dea55bd15465f3697b5c777de93b6c6a9b3c9162bfe192e",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-fallback/actual/cases/841cb0c7f4710c22ca73679b0380be3f9826883711f56afbdeffef9c83edf9b9.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 12,
+      "requestedTime": 6,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/9828e86f2ad4e971e1e4b6551c824c15fea83f3c0180e1ce9547d4788971a815.png",
+          "sha256": "9828e86f2ad4e971e1e4b6551c824c15fea83f3c0180e1ce9547d4788971a815"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|orbit|setup",
+      "caseSha256": "cab1e6a1df5e602f826ed83b4b35b23877729374c0a970c4e003b08003ac93ba",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/4266f48286225934364e5ec51e58c9a739081327de8e52eb88ec57adaa4bad00.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": null,
+      "requestedTime": null,
+      "actualRenderer": null,
+      "screenshots": [
+        {
+          "file": "screens/a211890e370d4b0a87540f4ae8ce6baae71f391a48b387aa0f6feb55c51970e5.png",
+          "sha256": "a211890e370d4b0a87540f4ae8ce6baae71f391a48b387aa0f6feb55c51970e5"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|orbit|grid|0",
+      "caseSha256": "192cdc617028ec86d55931da775fd2ead4e21d9536e1ce4b984f79a60f4ca8f8",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/31789a519b7f409c6e6114eeb11b367b87a2cdebcc6874051ae851e990cc97bd.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 0,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/ceb4232e44e6b132b834582f59711f03268cbba89ff389455522ef2d3a25960d.png",
+          "sha256": "ceb4232e44e6b132b834582f59711f03268cbba89ff389455522ef2d3a25960d"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|orbit|grid|1",
+      "caseSha256": "81d09b64f5c39eb6376986036c467e5942526b7421bf37cc380752bc932d96ec",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/725f71344272bedc091434b1247c89a27ce448b2e94e8b143fa09ac2161dcb56.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 1,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/581230f5eb2451693fc28b8d563f0fc0c8bb55b726b359be635b8373079dc6ea.png",
+          "sha256": "581230f5eb2451693fc28b8d563f0fc0c8bb55b726b359be635b8373079dc6ea"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|orbit|grid|2",
+      "caseSha256": "cfe6ad941702c2af4656902c486178350117e18ab1f6142c409e9f010df5999d",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/89d71d9df49a6723658591984abfba31ef0afdfd583dc654d15196064d06445e.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 6,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/d634ef2e9e387cc7d905e1ca21dd41caca8db0c121bc693b12159938b7bfd421.png",
+          "sha256": "d634ef2e9e387cc7d905e1ca21dd41caca8db0c121bc693b12159938b7bfd421"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|orbit|grid|3",
+      "caseSha256": "0f18ebf2c62919ff055f3c54eef50e561d3ffc77dbead1cb604e6734f1abca18",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/0a30f4474601dfdeb7986974d296245d0ed8146fade0d4fbb44651421ad6a41c.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 7,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/7cb08f2e3020387781b78d01f1ca7b8e78ef6526570b45ca9c37e37013a67cd3.png",
+          "sha256": "7cb08f2e3020387781b78d01f1ca7b8e78ef6526570b45ca9c37e37013a67cd3"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|orbit|grid|4",
+      "caseSha256": "588d4f4ead8e08814bab496a49c05370c8b92097e8777816692f30891724c288",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/657b6f0e504832ecc2ce1379f01042278c6b29c3ff8d3141fe55d608b2da4a42.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 12,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/5bd59bcc35632f7356c76879d3c99689921c54d4d2c38e18c913a8b97008c3be.png",
+          "sha256": "5bd59bcc35632f7356c76879d3c99689921c54d4d2c38e18c913a8b97008c3be"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|orbit|clock|0",
+      "caseSha256": "fec8be3ec980fdac2672a3cf0d78077dbdef0b3376dd95775a063877f212f9ed",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/abc432decb0becdf646972d627e9cb6f212bf35e7e11778f875dabaf557ed2a3.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 0,
+      "requestedTime": 6,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/ceb4232e44e6b132b834582f59711f03268cbba89ff389455522ef2d3a25960d.png",
+          "sha256": "ceb4232e44e6b132b834582f59711f03268cbba89ff389455522ef2d3a25960d"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|orbit|clock|1",
+      "caseSha256": "40a4f1ff9d82083bc0951927252807b497dd41269941510563e127ab14ab37e4",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/d0c3892e13a7d2a84a760629ed85ebbb171756df1476a7dc56d717bd7db70523.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 1,
+      "requestedTime": 3,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/cd548fd6c9fef4e4a585fbe614f9ed84a6b89cb6c1a78b5683a84089292a90e7.png",
+          "sha256": "cd548fd6c9fef4e4a585fbe614f9ed84a6b89cb6c1a78b5683a84089292a90e7"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|orbit|clock|2",
+      "caseSha256": "2f57f10f062aee29510c40154a0110e2464b5081d438ff51097e5463aeccb3c7",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/371d4e834e49d3369c99b0d6fea33d46e21ac42700b23e0ad323fa214031107a.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 7,
+      "requestedTime": 3,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/49934fdda199892c701748c250ae2661f176d8ff0cf65d694a3bb344d8bbe159.png",
+          "sha256": "49934fdda199892c701748c250ae2661f176d8ff0cf65d694a3bb344d8bbe159"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|orbit|clock|3",
+      "caseSha256": "187fd8eea2ec9982b4db4328ef80f02b08e98f4411b2b957f147957bd399c40c",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/6ffa5d246f3405fe1d1483b9329dba8ab8edcb8228ca96e8424b58a30432dc72.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 12,
+      "requestedTime": 6,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/5bd59bcc35632f7356c76879d3c99689921c54d4d2c38e18c913a8b97008c3be.png",
+          "sha256": "5bd59bcc35632f7356c76879d3c99689921c54d4d2c38e18c913a8b97008c3be"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|side|setup",
+      "caseSha256": "c3fbfd706d87de97d840bff33eea814b064b2333c80677caf9594a3f75fb4121",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/9d31313be187629d30b6224a9c75e057e4187fdfdaf9b6651148f4954799513b.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": null,
+      "requestedTime": null,
+      "actualRenderer": null,
+      "screenshots": [
+        {
+          "file": "screens/b588f449e142e1141d9a031bb187c45050d378350c280f246f507788a9dcfb53.png",
+          "sha256": "b588f449e142e1141d9a031bb187c45050d378350c280f246f507788a9dcfb53"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|side|grid|0",
+      "caseSha256": "6c7887250426e068dc12f1c624f0ccbd5e0428ca0b370f24fe6abd77fc9cf1cf",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/3ce421c10c286b2fa6c70257c3313914d47f5b245cc424876181466093f5195a.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 0,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/4055665bdfb14833bb4fcc3f9017b4f259dd4f369f35cd2bc71a873c1ac2344e.png",
+          "sha256": "4055665bdfb14833bb4fcc3f9017b4f259dd4f369f35cd2bc71a873c1ac2344e"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|side|grid|1",
+      "caseSha256": "150a08463944455613e49cf831265277c66d1935bf5e970f68daa30e0fd1540c",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/22a8e1dd210f1aad40bc7f0da7eaefb6d59f88e2659320b85109e0fdc402abcc.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 1,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/79266b1216ca076882b461079e8f144aaaf63b9be0513ce1801c5f3574d60a77.png",
+          "sha256": "79266b1216ca076882b461079e8f144aaaf63b9be0513ce1801c5f3574d60a77"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|side|grid|2",
+      "caseSha256": "8a3f035009686e5bc66ff6f6c9324a74f984c61777be0a039c19d2f88a062fd1",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/f7d1329236d7234312ec09c8f221d5b708de5aee5f209c7c03a1aa8f57e1164a.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 6,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/413941a177423a0a5f996a5a99fe458b7eebb55191b36d4832ceaf26b7c935bb.png",
+          "sha256": "413941a177423a0a5f996a5a99fe458b7eebb55191b36d4832ceaf26b7c935bb"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|side|grid|3",
+      "caseSha256": "d28bfd02c68c3c09667cfafaf4edda2227d3854d8c591035fb120fd766cb7138",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/d7822a1ac58fa47b3903d3de09652c239fa7d303149a4ce08856f18cbeb0dcfb.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 7,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/ec16e965989f6e5ad0651d170ca51ebdf06bb91fdb46e7387d3b25cabf857565.png",
+          "sha256": "ec16e965989f6e5ad0651d170ca51ebdf06bb91fdb46e7387d3b25cabf857565"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|side|grid|4",
+      "caseSha256": "a0aa796bc46d7c26bc3fec200723f45cd398a4a06f7f3868a2291dd8f2f2a8e2",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/95dc34bdc3e1a20a37dea3c1f733cfcd038ccc21df67873348659cbc6dd1b784.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 12,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/1ab68496940171dd226f67f6fb6eead744162957661506628d025386fc4f9fae.png",
+          "sha256": "1ab68496940171dd226f67f6fb6eead744162957661506628d025386fc4f9fae"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|side|clock|0",
+      "caseSha256": "de89eced389191082f364771f49301eb4aac0e7cce957217a523e5f9636a40f7",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/674e6ec9339d141f0af302109e817aeeb8fb04e8060230e366b79477d8c5987b.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 0,
+      "requestedTime": 6,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/4055665bdfb14833bb4fcc3f9017b4f259dd4f369f35cd2bc71a873c1ac2344e.png",
+          "sha256": "4055665bdfb14833bb4fcc3f9017b4f259dd4f369f35cd2bc71a873c1ac2344e"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|side|clock|1",
+      "caseSha256": "292b60268ca6e82aa5fd5a32cb41ff553bfcbf67ab0c28e0ad05e1a7a415543a",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/4cb1aaddcdea3df35428447fd5ef2af360ab4958c0129c4288b1341ec9ba7c73.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 1,
+      "requestedTime": 3,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/3b56392a736e4e48b52425c520d146f1f49165e31c70c601db3b29883c771697.png",
+          "sha256": "3b56392a736e4e48b52425c520d146f1f49165e31c70c601db3b29883c771697"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|side|clock|2",
+      "caseSha256": "dcaaf7d3a3fd0b222374e9961e953e7c07f7f31a7f42e6a34b420fa27c63e016",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/6d1656b6ab80c95552156398e750e1785bb9ce0ef00f42749b292f510ab96e05.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 7,
+      "requestedTime": 3,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/fc4cf0214fafd22bcdb4fa1720033ecd17fc31534888b1462307cc2175076e98.png",
+          "sha256": "fc4cf0214fafd22bcdb4fa1720033ecd17fc31534888b1462307cc2175076e98"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|side|clock|3",
+      "caseSha256": "22aa45a04f2a68a944f627c6bd8bb345aa9b2cf611f28f55d277c9be50759ab5",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/afe1f2940fc2d30764582e09b9c546a642ab89b5e670814fff377104dc155b37.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 12,
+      "requestedTime": 6,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/1ab68496940171dd226f67f6fb6eead744162957661506628d025386fc4f9fae.png",
+          "sha256": "1ab68496940171dd226f67f6fb6eead744162957661506628d025386fc4f9fae"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|top|setup",
+      "caseSha256": "a9b648458dcaf2413e1eeb53a1f42af7fbc7604d0f8ebfe42b8124d929f5fdd5",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/ef2f35fdfdc567b7d1175808312817c6171bd1373ffa85813ad71ed0c3f17230.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": null,
+      "requestedTime": null,
+      "actualRenderer": null,
+      "screenshots": [
+        {
+          "file": "screens/f12d235ce791e501d41c5e32829d4e2f8dac7cc94850d8ed90f4e9bac17715f9.png",
+          "sha256": "f12d235ce791e501d41c5e32829d4e2f8dac7cc94850d8ed90f4e9bac17715f9"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|top|grid|0",
+      "caseSha256": "0b65c079c339c4ee263fb6fa69005cc730c5d7c22c53c4be06195c40a53c7dce",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/3320fbb7af8496a555881d54a5f2359579b081e955b6ea82d1e23ad9e822af47.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 0,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/2d09b1932313f30e8f4ed2831139d4fe1d2f358203666978c5960b3847a8f04b.png",
+          "sha256": "2d09b1932313f30e8f4ed2831139d4fe1d2f358203666978c5960b3847a8f04b"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|top|grid|1",
+      "caseSha256": "7d34344b81d1f3515f09386e899c1888742409ea4c2ed423c5a42cdf238700c1",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/1ec093b3ad5189d1d2051fad7005a07eaa239d80beb8f84da1d678811d0cf48c.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 1,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/0cf591075af14b04149ef7f96b5df4a2a9731bbb6c5cc7ffa70e49b79a817d13.png",
+          "sha256": "0cf591075af14b04149ef7f96b5df4a2a9731bbb6c5cc7ffa70e49b79a817d13"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|top|grid|2",
+      "caseSha256": "56107e254d5333068d1e30e50b7cea7663121678f10e98219ddc95989af14132",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/85728ae9a068a692a6e31eda4454bfdb4aeb618cb934895568a3fb3ccfd6adfd.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 6,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/72487fb14001af9478e5c6f819efef5f102a28b1d151b50726da166d969556fe.png",
+          "sha256": "72487fb14001af9478e5c6f819efef5f102a28b1d151b50726da166d969556fe"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|top|grid|3",
+      "caseSha256": "31cf2002766d5f596a6b64e69f9486fe6018a9d694abdce842e24e022bb0a0d5",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/63bdd78cb4122cfcb50a20083f1dedccf7da05e2cccaa0b50f324d64fec0ac11.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 7,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/bac656814a628aae730276e6466add89c32fe734abb76e97bd2b6476fa39fd6f.png",
+          "sha256": "bac656814a628aae730276e6466add89c32fe734abb76e97bd2b6476fa39fd6f"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|top|grid|4",
+      "caseSha256": "0e4e3a7a9864f913c9cb32dfa219309cf3bb1f2ee3439af3c40a1f7eb0ecacec",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/0117f2e1ecca5c143906c741a5200efa5be85ae3f4bb8b08690b5fbd48971e6c.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 12,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/b449c1f37dd4d46993b365d6a5fb6f96db133c7e652dd277ed25796d4317ac03.png",
+          "sha256": "b449c1f37dd4d46993b365d6a5fb6f96db133c7e652dd277ed25796d4317ac03"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|top|clock|0",
+      "caseSha256": "251ebb312d908de780e4654bf1686360a4805ed778e8db854fdd1409c3304d9b",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/92504b1ce8814de5e1b67f65a96335a186539c06c9c8d24d61ff34164715810a.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 0,
+      "requestedTime": 6,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/2d09b1932313f30e8f4ed2831139d4fe1d2f358203666978c5960b3847a8f04b.png",
+          "sha256": "2d09b1932313f30e8f4ed2831139d4fe1d2f358203666978c5960b3847a8f04b"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|top|clock|1",
+      "caseSha256": "e74b716aca29d4ac9f498db1bf2652ce5844a746adaa94b6ae29c26e1042b18e",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/3a27342b48a773d5b3aff31f87523edd2b5f32948008bd63ee39a88f73e8ed19.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 1,
+      "requestedTime": 3,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/c7d498470ae0b007c785e5190be8959328cddac2103b2f9774fe232db1a7c0d6.png",
+          "sha256": "c7d498470ae0b007c785e5190be8959328cddac2103b2f9774fe232db1a7c0d6"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|top|clock|2",
+      "caseSha256": "5de33801a0ad1291bd024d38ca8143006c3114f8df56eff2488a2d4f678a42bf",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/f45603fee6f064ef1c981350c7862ddc8a9a8a7949cb8e43c2a31a1fb25a9c2f.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 7,
+      "requestedTime": 3,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/1c97b1c5a75845d5b84a54abbce923676dd1a744ab541f6d3afacc4964e6144f.png",
+          "sha256": "1c97b1c5a75845d5b84a54abbce923676dd1a744ab541f6d3afacc4964e6144f"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-draft-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|draft|1280|top|clock|3",
+      "caseSha256": "dc771e5519e560354f6e4b61beb254a920554633ff8061bf7c2084a27b1fd901",
+      "caseFile": "raw/continuity-l00501-1280-draft-fe5d-native/actual/cases/19293fae85ebf150a8cb540e527250897a6103c7597467bd99d1070d2c99064c.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 1280
+      },
+      "variant": "draft",
+      "requestedX": 12,
+      "requestedTime": 6,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/b449c1f37dd4d46993b365d6a5fb6f96db133c7e652dd277ed25796d4317ac03.png",
+          "sha256": "b449c1f37dd4d46993b365d6a5fb6f96db133c7e652dd277ed25796d4317ac03"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-fallback",
+      "caseKey": "SIM-C2-L005-01|published|1280|fixed_projection|setup",
+      "caseSha256": "d6320aa92d46e988536c6d69b22b0be4398742b1f5eae63ab111203c18ca7b2b",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-fallback/actual/cases/61a0bc6a1afd5830cc2424919032d04993504b1b39104f272585859ceef19f6d.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": null,
+      "requestedTime": null,
+      "actualRenderer": null,
+      "screenshots": [
+        {
+          "file": "screens/97e554289c770cd8255f569bbaf2d51c949562fedb9657e6703b8e291f14808d.png",
+          "sha256": "97e554289c770cd8255f569bbaf2d51c949562fedb9657e6703b8e291f14808d"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-fallback",
+      "caseKey": "SIM-C2-L005-01|published|1280|fixed_projection|grid|0",
+      "caseSha256": "12edae3c0cfc269b798efc2a740c89074790ec6085399e576344256511f70326",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-fallback/actual/cases/b8d2a9f8ee2c9d5c04161b2fe505c598821d4a523a0a5fae55906a50799092bb.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 0,
+      "requestedTime": null,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/4c578d650690534807047133fa68327417a828c14126783d59a54c43763654ce.png",
+          "sha256": "4c578d650690534807047133fa68327417a828c14126783d59a54c43763654ce"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-fallback",
+      "caseKey": "SIM-C2-L005-01|published|1280|fixed_projection|grid|1",
+      "caseSha256": "ec013780c745e79f9cdef016a9f4a76e8e21f835290f4bbea862e66505a4f3d7",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-fallback/actual/cases/12e6a3107ad27788131bf0c4c9257a52c6ab2963bd66f6a24ed2e78c3f2efa32.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 1,
+      "requestedTime": null,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/d6609ef3ac1702eb87b9ac5b178613fd1ab5f498633e88411a0acd86e0e82301.png",
+          "sha256": "d6609ef3ac1702eb87b9ac5b178613fd1ab5f498633e88411a0acd86e0e82301"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-fallback",
+      "caseKey": "SIM-C2-L005-01|published|1280|fixed_projection|grid|2",
+      "caseSha256": "26ab4b5a37690d24e40f939549a38f4caf3e7d2f56b643ac390fd36b816430a1",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-fallback/actual/cases/bbe236aff70ac75a34554dae3450f8251c91a52b06bda4547266ec90744aa900.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 6,
+      "requestedTime": null,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/b59dd74a16c6f1cb18f74c2f1fbd37b156b919f1e86e043cbb793d65c06adb9c.png",
+          "sha256": "b59dd74a16c6f1cb18f74c2f1fbd37b156b919f1e86e043cbb793d65c06adb9c"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-fallback",
+      "caseKey": "SIM-C2-L005-01|published|1280|fixed_projection|grid|3",
+      "caseSha256": "842ae5699aaa95b54db6040311da992269c95ebf353abb417824a69e44d37b60",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-fallback/actual/cases/04ee5078624a2c462b85f90679b829d1d46c0f26d6492d9ae5507791619a3572.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 7,
+      "requestedTime": null,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/08b4988b82045f6dae2b780536752277c723da810605f4a33ee502dddc0bc90a.png",
+          "sha256": "08b4988b82045f6dae2b780536752277c723da810605f4a33ee502dddc0bc90a"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-fallback",
+      "caseKey": "SIM-C2-L005-01|published|1280|fixed_projection|grid|4",
+      "caseSha256": "91e3cf1b9e8978f3979b37c6419fd3ebc45fa43cfa4d21b426070d237f2e08ba",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-fallback/actual/cases/ffac5210515de4f84ae2c64e40f42a1007390e1eec48e560235b149524c12752.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 12,
+      "requestedTime": null,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/1606b556cadef1837dc87395917f4f9b22d8deb9c8cfe7ecc4d94a35f7d26e86.png",
+          "sha256": "1606b556cadef1837dc87395917f4f9b22d8deb9c8cfe7ecc4d94a35f7d26e86"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-fallback",
+      "caseKey": "SIM-C2-L005-01|published|1280|fixed_projection|clock|0",
+      "caseSha256": "d9f0321671a09dd9910d379d3f9ab98ee54ff8b57498ac23784194fdf032286a",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-fallback/actual/cases/6650b596e6efa61c620bf87973e242f847c3b40327fcfb9f68e6b274f6e98559.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 0,
+      "requestedTime": 6,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/4c578d650690534807047133fa68327417a828c14126783d59a54c43763654ce.png",
+          "sha256": "4c578d650690534807047133fa68327417a828c14126783d59a54c43763654ce"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-fallback",
+      "caseKey": "SIM-C2-L005-01|published|1280|fixed_projection|clock|1",
+      "caseSha256": "48fd7ef4f208368bc4fec4573958243d2721e8c1f389d77ceead7df34dc68c72",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-fallback/actual/cases/24156f92717a580020b1e95ae84982dd9e7bffc51e58bd8f8e590210bea01ba6.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 1,
+      "requestedTime": 3,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/ad9691aa1ea4702c33befe22ec905c5068acc5604f45ad9d7637179eda1b433e.png",
+          "sha256": "ad9691aa1ea4702c33befe22ec905c5068acc5604f45ad9d7637179eda1b433e"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-fallback",
+      "caseKey": "SIM-C2-L005-01|published|1280|fixed_projection|clock|2",
+      "caseSha256": "221f6b2d92eb10670173f95564be1ddefdbf2168734688090f598548ac0ac964",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-fallback/actual/cases/e40bec2cdddc65df04891dcc03120a1a8f021fdc279054c3faf5173a26744a3a.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 7,
+      "requestedTime": 3,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/846eb3e7f056172487a0214ba21f6a381e5b3e428f664903f9d9ac44e8e46b0f.png",
+          "sha256": "846eb3e7f056172487a0214ba21f6a381e5b3e428f664903f9d9ac44e8e46b0f"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-fallback",
+      "caseKey": "SIM-C2-L005-01|published|1280|fixed_projection|clock|3",
+      "caseSha256": "a3d4387e9d959c53702f9c3c35b3daae1e285fcd56df50ef5c6fb33636d2f13b",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-fallback/actual/cases/2d9dcb72a3a9aa61f06ae4defb5c115b549706b04c9e8b80696874105c0ba077.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 12,
+      "requestedTime": 6,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/1606b556cadef1837dc87395917f4f9b22d8deb9c8cfe7ecc4d94a35f7d26e86.png",
+          "sha256": "1606b556cadef1837dc87395917f4f9b22d8deb9c8cfe7ecc4d94a35f7d26e86"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|orbit|setup",
+      "caseSha256": "5c763692b07e21b95850a6608564cf586b84a3c3bd66d3e184db8bdaf2e236f1",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/c11e65d3ec51faccacaa40a59b69b9a7069259fc1fcc423ceaf831784a64ae19.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": null,
+      "requestedTime": null,
+      "actualRenderer": null,
+      "screenshots": [
+        {
+          "file": "screens/a211890e370d4b0a87540f4ae8ce6baae71f391a48b387aa0f6feb55c51970e5.png",
+          "sha256": "a211890e370d4b0a87540f4ae8ce6baae71f391a48b387aa0f6feb55c51970e5"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|orbit|grid|0",
+      "caseSha256": "943dbde26b0f82f175e738e2d049ab7573dd7808e8231ffb9f3b794c9c0505cd",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/ba03e7b84f4877cf6d8b86985ea915b44dcfd7b125bc1a291f92c7906cb7b601.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 0,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/ceb4232e44e6b132b834582f59711f03268cbba89ff389455522ef2d3a25960d.png",
+          "sha256": "ceb4232e44e6b132b834582f59711f03268cbba89ff389455522ef2d3a25960d"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|orbit|grid|1",
+      "caseSha256": "139623999ca62881a7017bb3c7549cc8d1424e8824ec36b5a90af5c8a4126c79",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/27ef52bb991dd813521c3d2497a11e3b9a4a0b9e0ffaf5483cfaa7dfdc22536a.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 1,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/581230f5eb2451693fc28b8d563f0fc0c8bb55b726b359be635b8373079dc6ea.png",
+          "sha256": "581230f5eb2451693fc28b8d563f0fc0c8bb55b726b359be635b8373079dc6ea"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|orbit|grid|2",
+      "caseSha256": "3354cafa46282a9681ea5bba7d11f87df3f5ae6ff122882fe87f4ccd4056f9d0",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/2638d42b147e6bf3db6f429ed6e4a95b47e620614afd72897c87cda49f5f6c1f.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 6,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/d634ef2e9e387cc7d905e1ca21dd41caca8db0c121bc693b12159938b7bfd421.png",
+          "sha256": "d634ef2e9e387cc7d905e1ca21dd41caca8db0c121bc693b12159938b7bfd421"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|orbit|grid|3",
+      "caseSha256": "c822beb3d2c764964d80997f71ea47c1b93c98fdb6bda3b9aa949049ecffed20",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/a63a4772cf17fd6d7b66f75f5f4c79fac2ce438c1743f372fea907ba1a421678.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 7,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/7cb08f2e3020387781b78d01f1ca7b8e78ef6526570b45ca9c37e37013a67cd3.png",
+          "sha256": "7cb08f2e3020387781b78d01f1ca7b8e78ef6526570b45ca9c37e37013a67cd3"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|orbit|grid|4",
+      "caseSha256": "de6cadff930369ccfd0aeac33f2854564fff769b102de51b98b6a543aa52d00e",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/ef28342ddf71d86a9899720ab0177e17574ef7ba0ab44cf2fa7161f9b96b7f7a.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 12,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/5bd59bcc35632f7356c76879d3c99689921c54d4d2c38e18c913a8b97008c3be.png",
+          "sha256": "5bd59bcc35632f7356c76879d3c99689921c54d4d2c38e18c913a8b97008c3be"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|orbit|clock|0",
+      "caseSha256": "86e554ed2c98eeaf98a6512555fae9ed8f8454124ca96aad1a154c36cf99b497",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/b6fe562f5e2a161a2bb0f2254b4cf1d4ed4c04cc113e163a7f03b1b2d239a344.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 0,
+      "requestedTime": 6,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/ceb4232e44e6b132b834582f59711f03268cbba89ff389455522ef2d3a25960d.png",
+          "sha256": "ceb4232e44e6b132b834582f59711f03268cbba89ff389455522ef2d3a25960d"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|orbit|clock|1",
+      "caseSha256": "a5e1c7ca37dca71109009a7ec368e96b3cb6bb79e60537342c3053ea81fbaea3",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/caf92a89128a8073af02094648831d6ed6766c287974b086f41f61619d6200cb.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 1,
+      "requestedTime": 3,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/cd548fd6c9fef4e4a585fbe614f9ed84a6b89cb6c1a78b5683a84089292a90e7.png",
+          "sha256": "cd548fd6c9fef4e4a585fbe614f9ed84a6b89cb6c1a78b5683a84089292a90e7"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|orbit|clock|2",
+      "caseSha256": "b853d782b4e81e21d1b4a84ec6d86da628781eb34a2621be56429fdb970afc2d",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/0f58d416afcf4991f36364c87820ebf3119ecda58d858913c5b9da185712d0b7.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 7,
+      "requestedTime": 3,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/49934fdda199892c701748c250ae2661f176d8ff0cf65d694a3bb344d8bbe159.png",
+          "sha256": "49934fdda199892c701748c250ae2661f176d8ff0cf65d694a3bb344d8bbe159"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|orbit|clock|3",
+      "caseSha256": "541e9e598be0fff2e7af95888144cc839f1390a8f16e46a6f916e9daeb6fa5a3",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/b38cd93d4797d1e808d95a17eeff1800febbf1aa9dd377adf70748fcf66a4fc6.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 12,
+      "requestedTime": 6,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/5bd59bcc35632f7356c76879d3c99689921c54d4d2c38e18c913a8b97008c3be.png",
+          "sha256": "5bd59bcc35632f7356c76879d3c99689921c54d4d2c38e18c913a8b97008c3be"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|side|setup",
+      "caseSha256": "9f3ff001ac0f8433ea739019c167e887496ee59f68f39b9328dc60cf318d4ead",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/bb3ae82083190d2ec73420dd08a503190a2aec0aab6585c425471cab32dcade8.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": null,
+      "requestedTime": null,
+      "actualRenderer": null,
+      "screenshots": [
+        {
+          "file": "screens/b588f449e142e1141d9a031bb187c45050d378350c280f246f507788a9dcfb53.png",
+          "sha256": "b588f449e142e1141d9a031bb187c45050d378350c280f246f507788a9dcfb53"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|side|grid|0",
+      "caseSha256": "265793272113c0e95fe05ed459fcce64ac9d616aa0ec00e7b02083d567ea520c",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/144fc6622aaa42206a6549268d592c14c2ba014606f27300a6463197d4984217.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 0,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/4055665bdfb14833bb4fcc3f9017b4f259dd4f369f35cd2bc71a873c1ac2344e.png",
+          "sha256": "4055665bdfb14833bb4fcc3f9017b4f259dd4f369f35cd2bc71a873c1ac2344e"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|side|grid|1",
+      "caseSha256": "e055b070efd397d68c33d803fde57496fc4df13cc61ec9a8d787145d268b830f",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/18a8093459f3d4d10e1745403c0cc20a871d2cbe676472ae003c1de89648b4ff.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 1,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/79266b1216ca076882b461079e8f144aaaf63b9be0513ce1801c5f3574d60a77.png",
+          "sha256": "79266b1216ca076882b461079e8f144aaaf63b9be0513ce1801c5f3574d60a77"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|side|grid|2",
+      "caseSha256": "3c392701f607982f4adb4c06d2e30bd2332c0680e94bd719211a388f5bb04036",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/3e75b3a9299f2c6f22a732ae2855d7ea508d0bd209c8367241235790a226e8a0.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 6,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/413941a177423a0a5f996a5a99fe458b7eebb55191b36d4832ceaf26b7c935bb.png",
+          "sha256": "413941a177423a0a5f996a5a99fe458b7eebb55191b36d4832ceaf26b7c935bb"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|side|grid|3",
+      "caseSha256": "7db73224b814bfbcf8becabbc594901aa388fb9d04f24fe9c54bbe11c38f2e7d",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/de3194a5186454d181f829e5019ee8b40ca08f28c6fac368dbddc12efdce58bc.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 7,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/ec16e965989f6e5ad0651d170ca51ebdf06bb91fdb46e7387d3b25cabf857565.png",
+          "sha256": "ec16e965989f6e5ad0651d170ca51ebdf06bb91fdb46e7387d3b25cabf857565"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|side|grid|4",
+      "caseSha256": "7399c69f2014fded7e5a5ed5fe63a2324e6b99814e0267503cb64d1811d1307c",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/0a9d3bba7c7122d359198b2f76a6a2061938bfc02ba72c26015f50f8f798e800.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 12,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/1ab68496940171dd226f67f6fb6eead744162957661506628d025386fc4f9fae.png",
+          "sha256": "1ab68496940171dd226f67f6fb6eead744162957661506628d025386fc4f9fae"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|side|clock|0",
+      "caseSha256": "fc2ffc5f3a9450c084a254afe3fb1c486da229d198865c6170c436a266622aa6",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/0da172dbe7a059bd5033a596b443a591e0ab7ae45e86253eef76c1fbe86fe466.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 0,
+      "requestedTime": 6,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/4055665bdfb14833bb4fcc3f9017b4f259dd4f369f35cd2bc71a873c1ac2344e.png",
+          "sha256": "4055665bdfb14833bb4fcc3f9017b4f259dd4f369f35cd2bc71a873c1ac2344e"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|side|clock|1",
+      "caseSha256": "5989a7995c9b7dc0473f71406ef1e025369fff8dc861247157da725462723da4",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/f8bb3fcd85c67444f1003786fb12128d325a1da972f79bb0a70a92e6ac1570c7.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 1,
+      "requestedTime": 3,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/3b56392a736e4e48b52425c520d146f1f49165e31c70c601db3b29883c771697.png",
+          "sha256": "3b56392a736e4e48b52425c520d146f1f49165e31c70c601db3b29883c771697"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|side|clock|2",
+      "caseSha256": "9307868c3e2ac9d7e42cb2c4f2a4f307b0ec5898285b33a928fc7e70dc85d263",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/24e1690c083a93d9dde225e18289e435645764c193f00b071c99928dfdc0ba0f.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 7,
+      "requestedTime": 3,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/fc4cf0214fafd22bcdb4fa1720033ecd17fc31534888b1462307cc2175076e98.png",
+          "sha256": "fc4cf0214fafd22bcdb4fa1720033ecd17fc31534888b1462307cc2175076e98"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|side|clock|3",
+      "caseSha256": "abc497a19d71a7c27498ca0112e42ca6f3a0ea8d56a90765adc9dcbf3b3a461b",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/822992694c66258484fd48b2869d9e331149d526842717b084895f73c354a302.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 12,
+      "requestedTime": 6,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/1ab68496940171dd226f67f6fb6eead744162957661506628d025386fc4f9fae.png",
+          "sha256": "1ab68496940171dd226f67f6fb6eead744162957661506628d025386fc4f9fae"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|top|setup",
+      "caseSha256": "489daccf6f2344cdb1fb541365b7feea51f7f862d4d0d995afe50249dc776087",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/a1468feb84659a2aed81062c271d32d7937939ba55b82dd067f18ef505250bcd.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": null,
+      "requestedTime": null,
+      "actualRenderer": null,
+      "screenshots": [
+        {
+          "file": "screens/f12d235ce791e501d41c5e32829d4e2f8dac7cc94850d8ed90f4e9bac17715f9.png",
+          "sha256": "f12d235ce791e501d41c5e32829d4e2f8dac7cc94850d8ed90f4e9bac17715f9"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|top|grid|0",
+      "caseSha256": "709eac56bd6315f54051a8a4c05582bb190216ff07868f335895e139d71fee0e",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/5a12ba199e920cbe09b0216c8f0460b45525f7ea9f84bc87420c5bd37e92bbc1.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 0,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/2d09b1932313f30e8f4ed2831139d4fe1d2f358203666978c5960b3847a8f04b.png",
+          "sha256": "2d09b1932313f30e8f4ed2831139d4fe1d2f358203666978c5960b3847a8f04b"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|top|grid|1",
+      "caseSha256": "a3d9793baeff07eef2ca158416841efba33bfc707c1020ab1c2b24d102b6c7fd",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/4f02a12a9cf61ddc6b7e1c7c9e77406c8c7dd0dd5030c86c5d86d89d05f3476f.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 1,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/0cf591075af14b04149ef7f96b5df4a2a9731bbb6c5cc7ffa70e49b79a817d13.png",
+          "sha256": "0cf591075af14b04149ef7f96b5df4a2a9731bbb6c5cc7ffa70e49b79a817d13"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|top|grid|2",
+      "caseSha256": "0648bb18e419418baf75552230cb22bc5ccf2350731f2e2c656ad1054df5c746",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/a666d82b3b9cb8f04d7320f400a450d7513f72adefddbae29edafd9323815ee5.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 6,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/72487fb14001af9478e5c6f819efef5f102a28b1d151b50726da166d969556fe.png",
+          "sha256": "72487fb14001af9478e5c6f819efef5f102a28b1d151b50726da166d969556fe"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|top|grid|3",
+      "caseSha256": "c0c519ae4e10092b0bfacaa4f7cdfe54d3512df590ba2ee113557a06a019357d",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/cb71cdd5edcc2ce7227549bf2b8776871122a63f58a3c9b7125dc517b77b65cf.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 7,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/bac656814a628aae730276e6466add89c32fe734abb76e97bd2b6476fa39fd6f.png",
+          "sha256": "bac656814a628aae730276e6466add89c32fe734abb76e97bd2b6476fa39fd6f"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|top|grid|4",
+      "caseSha256": "07dc105b503ca8090d865efa60eb050d7a2afafa3c377dd71488c179b27de6c5",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/65e1f50d880284d4e28421f1a011c64bf47f4c4a804cd600255554bf5019a0f9.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 12,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/b449c1f37dd4d46993b365d6a5fb6f96db133c7e652dd277ed25796d4317ac03.png",
+          "sha256": "b449c1f37dd4d46993b365d6a5fb6f96db133c7e652dd277ed25796d4317ac03"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|top|clock|0",
+      "caseSha256": "baa99471c58e569ffca55cc5a5b9aa8b061d12c94a8a1221835f952d8050230a",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/19208ac47a357a4f9a4a16465166396299138995d80e32e9918cde4a8a5b1e12.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 0,
+      "requestedTime": 6,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/2d09b1932313f30e8f4ed2831139d4fe1d2f358203666978c5960b3847a8f04b.png",
+          "sha256": "2d09b1932313f30e8f4ed2831139d4fe1d2f358203666978c5960b3847a8f04b"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|top|clock|1",
+      "caseSha256": "91a1bd224150d68e31c760aca194f2f27c8c6ad3ea8a3e1513c00c70dba40568",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/cfebacd59d36635ec48c006323d44c9445c0e089696e03e266d9f5fe8b421c7b.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 1,
+      "requestedTime": 3,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/c7d498470ae0b007c785e5190be8959328cddac2103b2f9774fe232db1a7c0d6.png",
+          "sha256": "c7d498470ae0b007c785e5190be8959328cddac2103b2f9774fe232db1a7c0d6"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|top|clock|2",
+      "caseSha256": "85ffc8ac2325d6ecca77230c73e5969e1b5fe30159922d5fd56a9901e40c0e00",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/0946f4bae0f6183d224960a4dab8f5dee8dc91b0bd8dd0c6ee7de89baa408088.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 7,
+      "requestedTime": 3,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/1c97b1c5a75845d5b84a54abbce923676dd1a744ab541f6d3afacc4964e6144f.png",
+          "sha256": "1c97b1c5a75845d5b84a54abbce923676dd1a744ab541f6d3afacc4964e6144f"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-1280-published-fe5d-native",
+      "caseKey": "SIM-C2-L005-01|published|1280|top|clock|3",
+      "caseSha256": "b3cfb26d8474e333d52db1a3218e11bc2ed9251fce34f78fe610c5c8bc678aaf",
+      "caseFile": "raw/continuity-l00501-1280-published-fe5d-native/actual/cases/a08c02c93a73cc5135cf52665089f3e4bba0975a3616d27617c4b4cf0d8362f7.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 1280
+      },
+      "variant": "published",
+      "requestedX": 12,
+      "requestedTime": 6,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/b449c1f37dd4d46993b365d6a5fb6f96db133c7e652dd277ed25796d4317ac03.png",
+          "sha256": "b449c1f37dd4d46993b365d6a5fb6f96db133c7e652dd277ed25796d4317ac03"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|orbit|setup",
+      "caseSha256": "442d3f9afe1fbe2db883571036f0aff0374cf62de29f5d4fdc099a35ab2e9772",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/da6e713e2f2c15392d69e219b9aaea918bb60e85b5e772957fb2b2f2bde87e8f.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": null,
+      "requestedTime": null,
+      "actualRenderer": null,
+      "screenshots": [
+        {
+          "file": "screens/0afd80f016bc437aeaa4c1e0117e95b0fc96df63e11bd301253d5f237b54bf86.png",
+          "sha256": "0afd80f016bc437aeaa4c1e0117e95b0fc96df63e11bd301253d5f237b54bf86"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|orbit|grid|0",
+      "caseSha256": "45065e92da8e32f4d8b3e40988f36d186ade42cc4816cc24b56fef7db7d6655e",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/fe749784c8214f418318034d8791d1ae6885ad2e0ded204456ab228e1be1803d.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 0,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/c67035c0604c2827fed6358e4d4efe5888673e400d0367aab460a7348ece3f09.png",
+          "sha256": "c67035c0604c2827fed6358e4d4efe5888673e400d0367aab460a7348ece3f09"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|orbit|grid|1",
+      "caseSha256": "2d5f12e8813eb14bc4d387c886f88664993ab44457a37094243a61cb925c57e2",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/d488dab2b129ebdff2c9262179730f32c929d32b80ad02a1028ec371f2c7e96e.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 1,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/a268f1a89ab7e6ebee5b3f8707f5bf65ebf923b89eb27399a254589434a4097c.png",
+          "sha256": "a268f1a89ab7e6ebee5b3f8707f5bf65ebf923b89eb27399a254589434a4097c"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|orbit|grid|2",
+      "caseSha256": "278fac347adadf03b4c7b810a32e147d8fba0896c3ba2b78a4e3aebe7dcd7eb2",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/6f65d5fa18ed6985b69c6e88be4fe0b3d020e4f861f6c4767ce7bbc98959d4d9.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 6,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/ac3df94ba6ddda0c49b1eb5f6df840ca579db95e345147be31e392b36ec0d638.png",
+          "sha256": "ac3df94ba6ddda0c49b1eb5f6df840ca579db95e345147be31e392b36ec0d638"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|orbit|grid|3",
+      "caseSha256": "4778cde0283b381889abc6e30594b783f8fd9d4dd8b73ff3a9c3b4a76cadceb7",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/3e1e35405ba93c31d70f757dad98ed218d84bed45378c0a7b9eac93396588ca2.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 7,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/95805247454381abfe8848b618ad5cf5223133b03bb47718eed6973e97f1f275.png",
+          "sha256": "95805247454381abfe8848b618ad5cf5223133b03bb47718eed6973e97f1f275"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|orbit|grid|4",
+      "caseSha256": "34c00b4467fc85cac4b883951dadeda297c1234c6bacf8a34e67073d1ebe6c0e",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/30f34fc5c96f4f8d30494618e748b8226852d029219b38b50393c8f0e0cbabdf.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 12,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/fe2620656395d644713b68b55cb7e6ce794ba346bfbce0bcd828230198c5fb01.png",
+          "sha256": "fe2620656395d644713b68b55cb7e6ce794ba346bfbce0bcd828230198c5fb01"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|orbit|clock|0",
+      "caseSha256": "5620b16523cf6e7e0c64b1a989f96f734cdf76587342ce047711d26108be387a",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/020c937e4259161434092cb7e6d389131efd51906979502a07130b4e2d52e80b.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 0,
+      "requestedTime": 6,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/c67035c0604c2827fed6358e4d4efe5888673e400d0367aab460a7348ece3f09.png",
+          "sha256": "c67035c0604c2827fed6358e4d4efe5888673e400d0367aab460a7348ece3f09"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|orbit|clock|1",
+      "caseSha256": "84858a75c007d92a86cdcd9ef1064adbfa05860107714bdf397a4e8086582f46",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/6a04b838e93b11278532ebb2186d552446fbec0f27cb5b2d063a231352e362fb.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 1,
+      "requestedTime": 3,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/b460189a59965ad72339a82d302caeea20bf772f4ef04118640553c369b4874d.png",
+          "sha256": "b460189a59965ad72339a82d302caeea20bf772f4ef04118640553c369b4874d"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|orbit|clock|2",
+      "caseSha256": "29bc4b2c1f52f49452086225e2f7a706524a45c301fbc0011c24d27a7122ac9c",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/634f2cb07fd4787d6949c8f97dca7d934095ce6406c85f59266b1f981108ac93.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 7,
+      "requestedTime": 3,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/4150585a574e3972108835b277b9231f925296cf2f14fc06b05b421526a1da51.png",
+          "sha256": "4150585a574e3972108835b277b9231f925296cf2f14fc06b05b421526a1da51"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|orbit|clock|3",
+      "caseSha256": "810d6962b76284a716d410e5732ae0cc8e096099e9f90d963fd03c46ec3fcd7c",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/da6baf3736817a3e9f16e20e71670f439400a3413bd9e4a0c9e1a065ec31757e.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 12,
+      "requestedTime": 6,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/fe2620656395d644713b68b55cb7e6ce794ba346bfbce0bcd828230198c5fb01.png",
+          "sha256": "fe2620656395d644713b68b55cb7e6ce794ba346bfbce0bcd828230198c5fb01"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|side|setup",
+      "caseSha256": "739c3ab858c9319d87ccb05ef21687b6064ece975cc73a49da31cd2de5f9c741",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/4ff8501570c63a64845e975062bd8320be9d1bf174e0162c6dbb53e9527a31c6.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": null,
+      "requestedTime": null,
+      "actualRenderer": null,
+      "screenshots": [
+        {
+          "file": "screens/fdca8eebd53888ba77a70d8e6d375369ea229b2e46f9fc9bb21a4559dd77b2f7.png",
+          "sha256": "fdca8eebd53888ba77a70d8e6d375369ea229b2e46f9fc9bb21a4559dd77b2f7"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|side|grid|0",
+      "caseSha256": "262eda8ff9398eb5a0ce622b4a228a27c02218dbcc8d5ed3cd8fa1d458dba41c",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/84eac9ba9ec7d3c64527af36001c54bc6be9617788d3d870b7206ea953388bc0.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 0,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/be4f49d30f2b761a883bfc4137b94fba4a8d7072b03e9f904e366e1f91c2e4e6.png",
+          "sha256": "be4f49d30f2b761a883bfc4137b94fba4a8d7072b03e9f904e366e1f91c2e4e6"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|side|grid|1",
+      "caseSha256": "07fc99af180c478727638f9d2b3cba36d075aaa5dc69f4448ab8442d1869779e",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/8e5987a78755cf224b6420558312315efcfd1631985f18ebd366def0fd7ae34d.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 1,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/c70122a9fea7ad664d701a5d5374f4b58684006f6017cfc6e24a3c3d5d53c23e.png",
+          "sha256": "c70122a9fea7ad664d701a5d5374f4b58684006f6017cfc6e24a3c3d5d53c23e"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|side|grid|2",
+      "caseSha256": "bab4228c03c8bb2ea5145066f9b5ab24e87bfeaac8de5852425c47478edad496",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/ab2052022cb06a1e81e93b3e4d419a7d770d4253877cc2400d45c98a72b9ca61.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 6,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/20b808757c2477d314d5eba0963d0c449343711af0a03fa0a11f47447f1d1944.png",
+          "sha256": "20b808757c2477d314d5eba0963d0c449343711af0a03fa0a11f47447f1d1944"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|side|grid|3",
+      "caseSha256": "e32db15e31a64397cf383cc14ddb53ad7d759f638280697c727fc6b283545634",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/d0c8cc70e757b2a8896dd68df084dbbd7c056c1d253c478ef7728d217f4454c1.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 7,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/c4f81be2dfa773101a8c64fb08750f3fe730e14b7951cdf32f53200f0185141f.png",
+          "sha256": "c4f81be2dfa773101a8c64fb08750f3fe730e14b7951cdf32f53200f0185141f"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|side|grid|4",
+      "caseSha256": "5d26b4012251d5350f01486d4207cfff47097c5eb061edd6dfea2bae2f2093b8",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/a081c52f760ab04eb11b57f6979328a88a9a254b802c77f4988819acd9b7f189.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 12,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/1f8c0d2bbff36c05bb2b500f499e1c8702820041ad9f3eed9112f5e733890479.png",
+          "sha256": "1f8c0d2bbff36c05bb2b500f499e1c8702820041ad9f3eed9112f5e733890479"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|side|clock|0",
+      "caseSha256": "1d3bc00a2e866969121ba38667af06bcaa440bf547ef72b51e490cba5a6c6b12",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/8e387f7496abf2ea8ed26a675ce0a24c1c1c18a63d5de1c866ef4885b1bd906f.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 0,
+      "requestedTime": 6,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/be4f49d30f2b761a883bfc4137b94fba4a8d7072b03e9f904e366e1f91c2e4e6.png",
+          "sha256": "be4f49d30f2b761a883bfc4137b94fba4a8d7072b03e9f904e366e1f91c2e4e6"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|side|clock|1",
+      "caseSha256": "55afa19057696bc8af9b09ac71853d85a82931c70967c37ed365a1c37dee96cf",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/3e5aa2c37e5b553c0060f9b5e74686a727d070f94335c7518050f85d3673b1e9.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 1,
+      "requestedTime": 3,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/49d711dbf68e27991e33ee7a74787e1f5a676971f2f0f560dfa80fefcccd3871.png",
+          "sha256": "49d711dbf68e27991e33ee7a74787e1f5a676971f2f0f560dfa80fefcccd3871"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|side|clock|2",
+      "caseSha256": "26f62d1d55b33405b641afde6fb8951e425ef576c8cbc8df1967ac0bea93fb34",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/e2cf3966e503418e299fbee4ea41826ee3c6a561c51dfb21b3dd9c5e0259c270.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 7,
+      "requestedTime": 3,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/f48ea3008472256a888373807874bb9992ecb1a2e8993e993f608be9baa93d2a.png",
+          "sha256": "f48ea3008472256a888373807874bb9992ecb1a2e8993e993f608be9baa93d2a"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|side|clock|3",
+      "caseSha256": "989bbf65c520d5f1a36bd83324517138ef46bb954ab81ff845410b6fde38807d",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/0e51128dcc4bcc7752817157beab6b6a2bd5340f2e4b924cc85cf182f1041fdf.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 12,
+      "requestedTime": 6,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/1f8c0d2bbff36c05bb2b500f499e1c8702820041ad9f3eed9112f5e733890479.png",
+          "sha256": "1f8c0d2bbff36c05bb2b500f499e1c8702820041ad9f3eed9112f5e733890479"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|top|setup",
+      "caseSha256": "0d01dd5faacaf16c673abdb15904dc80a9c546fab5f28d2399617eb1c0613010",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/1b44ec39fc84886f88db40d3ef2691014930dfd0aad1707d6a16a7db88125987.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": null,
+      "requestedTime": null,
+      "actualRenderer": null,
+      "screenshots": [
+        {
+          "file": "screens/2b95530fdcb84188eec62108e74e7abc3d522827b1b5a2c9c525dd2038356139.png",
+          "sha256": "2b95530fdcb84188eec62108e74e7abc3d522827b1b5a2c9c525dd2038356139"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|top|grid|0",
+      "caseSha256": "18ba0eb392a40e7d02568b8d3ea464f1e30214c22c01a41698182fede4a9d032",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/38eef9cf0f986a06331964b3eb0df28c275ac0406c289bd3e98aaf68ff7fa6c7.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 0,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/bc3d2f49180ebe92201a17584e8f78313d04fb2a60fe926b4e5207ca6affff42.png",
+          "sha256": "bc3d2f49180ebe92201a17584e8f78313d04fb2a60fe926b4e5207ca6affff42"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|top|grid|1",
+      "caseSha256": "235691bfdd5cf4cbdb42403d2453ac5859607a50970a0402ac9959820711051c",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/1df971652d2f85f1360b22d709bf1781a98ebb8c0ab642efcc77d9bbca57c245.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 1,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/1c9a728529573758f722a8cdab3ac578d85e9bca8178295c740eea295b22a4d0.png",
+          "sha256": "1c9a728529573758f722a8cdab3ac578d85e9bca8178295c740eea295b22a4d0"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|top|grid|2",
+      "caseSha256": "01a29d6cde00897bbac03c231d266160f05f1451c625c7faf45b152e21efd75e",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/52635cfbb1a81437bd04cc488cc03e0a939c44a423b4ae813d6d47e0e2ee2a61.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 6,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/dea1025912cb771c345841b346adcefc9b9f826e4582e5ad367fbe30dbb869e3.png",
+          "sha256": "dea1025912cb771c345841b346adcefc9b9f826e4582e5ad367fbe30dbb869e3"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|top|grid|3",
+      "caseSha256": "d17979920821cba543f0cc3c5ce8e90a27edcb0ee37a7872d902c72e5de38560",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/a2676f145f8afbf088e0e523bc0cbd60fb2a0ee41cbafad347415cecce2e2f39.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 7,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/3f66c478f935c3156d1564af795867345d309a1afeb9f38c0ed4a480ecdecdc3.png",
+          "sha256": "3f66c478f935c3156d1564af795867345d309a1afeb9f38c0ed4a480ecdecdc3"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|top|grid|4",
+      "caseSha256": "1f6c8e89f2ed9522a253d1696ce7cb4031eef8a5baad3521f4018e229b28dc00",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/0ddeced6729626a38106a533ff7edc9906f08682d9b2b715386c566a9e06fae2.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 12,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/94c0c4881674d9e45ae6e4d4d6cc9caf4242eb98b16db82ecf1da94e800c6ca7.png",
+          "sha256": "94c0c4881674d9e45ae6e4d4d6cc9caf4242eb98b16db82ecf1da94e800c6ca7"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|top|clock|0",
+      "caseSha256": "24b958a4443610c47606cdc7181d89ea6ffc6bcb8f4ecb1b2dcf8aafd5105ac2",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/79a64ccbbe84e7556fd24a7b51b65e8ea7495db2d3469edde092716afe3c25eb.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 0,
+      "requestedTime": 6,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/bc3d2f49180ebe92201a17584e8f78313d04fb2a60fe926b4e5207ca6affff42.png",
+          "sha256": "bc3d2f49180ebe92201a17584e8f78313d04fb2a60fe926b4e5207ca6affff42"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|top|clock|1",
+      "caseSha256": "b506ec2fd1d5d57f375a0c56b7d0e9d0be4a1546291ce0abb0f9b66258a81742",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/2e251baf971d62b75567f9fef1a3fb4851b49937f8adf723876918654d79faf7.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 1,
+      "requestedTime": 3,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/8f7449794c746935398708ead6ccfe052d7eb2ff87a0df6887130893c6ef7dec.png",
+          "sha256": "8f7449794c746935398708ead6ccfe052d7eb2ff87a0df6887130893c6ef7dec"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|top|clock|2",
+      "caseSha256": "544123dbcd96f7e2f16535c49ec43a4c58df647612db3298d674e60606699615",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/f40d2d24bae50fabb89714b5975a511468c13b76d37b84e3b2014f10241c0bbf.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 7,
+      "requestedTime": 3,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/6d2335dccc3331535ed26f95105b76c0e32889f679ea3b44ea80022712675314.png",
+          "sha256": "6d2335dccc3331535ed26f95105b76c0e32889f679ea3b44ea80022712675314"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|top|clock|3",
+      "caseSha256": "28f4ee143713f5f099a7e44390044dbca1041ca7588b960c676a810909ccc826",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/daaf8a98fffe45c2b2774a53108e1bd1bfd539799f24cd5b487e13629fdf2888.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 12,
+      "requestedTime": 6,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/94c0c4881674d9e45ae6e4d4d6cc9caf4242eb98b16db82ecf1da94e800c6ca7.png",
+          "sha256": "94c0c4881674d9e45ae6e4d4d6cc9caf4242eb98b16db82ecf1da94e800c6ca7"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|fixed_projection|setup",
+      "caseSha256": "32a19d4ace95b6100195831f4cfc5f27197e2c9a4fe7509e8d76041f23235ba3",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/852ec0263199700c8561b2ef17fffe897612df0c3e9282e63e63b23458d3f610.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": null,
+      "requestedTime": null,
+      "actualRenderer": null,
+      "screenshots": [
+        {
+          "file": "screens/e0a7bf22d82cc1c20ef2bdcb3daa252b0b42bc430b724e975876e07dd6532625.png",
+          "sha256": "e0a7bf22d82cc1c20ef2bdcb3daa252b0b42bc430b724e975876e07dd6532625"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|fixed_projection|grid|0",
+      "caseSha256": "070137a9bd21352e47d6fe837461dbf42f52e1194ab6698f91be0b311d7690d2",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/180bf92b1656e7aca29465c09cea16f784f43b233f0f302facc5233c8c13e888.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 0,
+      "requestedTime": null,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/f0822c02bff44e84c9c988ef55f02d26774ac4b14eb4bd8cedb15d306fc22691.png",
+          "sha256": "f0822c02bff44e84c9c988ef55f02d26774ac4b14eb4bd8cedb15d306fc22691"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|fixed_projection|grid|1",
+      "caseSha256": "b3676870256dd8b54c1fc3c9215e3e01fbb61aac2c820c141de4cf79a006bf74",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/34b1f66e91110638b3498320d902f70b9cf07d61e6dfdec51918b31ea30e8f0d.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 1,
+      "requestedTime": null,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/efab2ee0e57335085849a5f330c8a53db769712003b6e718b0d197b8954b233d.png",
+          "sha256": "efab2ee0e57335085849a5f330c8a53db769712003b6e718b0d197b8954b233d"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|fixed_projection|grid|2",
+      "caseSha256": "5a8dc8cce38fc0ec142c8b4abbbce15d0071681c8062bd0c796767a88f98267d",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/c8206cf998204068aeca08505ab547aa727c3671ae5fff6953e7ea2eec404e11.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 6,
+      "requestedTime": null,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/4b584e003fb772ffcd5bd044308d8465455939b2caf27446a98da4b5cedb4487.png",
+          "sha256": "4b584e003fb772ffcd5bd044308d8465455939b2caf27446a98da4b5cedb4487"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|fixed_projection|grid|3",
+      "caseSha256": "a89a1a8f571032153686172291d24f17bf0f43239a19c9122c32dbfabf72a924",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/06bbabda7845253ca1480a0e9a09012b0d3519031777d3825ac3236e2521c5a6.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 7,
+      "requestedTime": null,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/084c64c072ef789a36c827a97d4519efab12eeddbca87d8252b420905d039af7.png",
+          "sha256": "084c64c072ef789a36c827a97d4519efab12eeddbca87d8252b420905d039af7"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|fixed_projection|grid|4",
+      "caseSha256": "01c36ced7a8f6d843f505720d9ef87a52132d6ed6db983ecc5db589d9550bdb0",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/e99652e6a3b26977bb28cff0c6d5d688e010789c24094fb845bab03ac00b0d3d.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 12,
+      "requestedTime": null,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/421388fb2b361722ff8000498ac65f83833a1f3589ca1f7c120e7e6ba19a48f6.png",
+          "sha256": "421388fb2b361722ff8000498ac65f83833a1f3589ca1f7c120e7e6ba19a48f6"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|fixed_projection|clock|0",
+      "caseSha256": "93f7f56bef98152c577bfebe1cbc6bbe200fc45ee11be682a000d363b00109cc",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/1d7a1d95080d299a42cbdc5e6a68f0a76201ba0aa768132cca2f06a1f024af37.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 0,
+      "requestedTime": 6,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/f0822c02bff44e84c9c988ef55f02d26774ac4b14eb4bd8cedb15d306fc22691.png",
+          "sha256": "f0822c02bff44e84c9c988ef55f02d26774ac4b14eb4bd8cedb15d306fc22691"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|fixed_projection|clock|1",
+      "caseSha256": "c9865927aee72986ed80eac24698a0d426564ad97789ab9c55f1b099512c9b4f",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/2e685ffe70b3db489dfada0aba7abbde777b1f184a1e7dc3f0afddfc611a6ed7.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 1,
+      "requestedTime": 3,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/72cfdf96c55a4509b47d54c2e37f14664765fb4a51474dec7d304ac6e2ec444f.png",
+          "sha256": "72cfdf96c55a4509b47d54c2e37f14664765fb4a51474dec7d304ac6e2ec444f"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|fixed_projection|clock|2",
+      "caseSha256": "c5ccca303d5682a23007df259628bc74f5602708aa7c9ae7f110e6a8e9ea818e",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/858bc588362d4ae4853ce65a94d556bdf4f52877b7774aca8694470c3c9db435.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 7,
+      "requestedTime": 3,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/80c16a79c31b28e6ee3a6ef773eaabfd2b83e46ce86b3ce7dc34f0878e6f1c35.png",
+          "sha256": "80c16a79c31b28e6ee3a6ef773eaabfd2b83e46ce86b3ce7dc34f0878e6f1c35"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-draft-fe5d",
+      "caseKey": "SIM-C2-L005-01|draft|320|fixed_projection|clock|3",
+      "caseSha256": "bcb9191c3c1ff33faec9f74c8236743f28ed5d63384d34ffb89a78e4d0f2238d",
+      "caseFile": "raw/continuity-l00501-320-draft-fe5d/actual/cases/16505c0562747ad5478102e733bcd268b183d7adf75e18c9af7afa2bc72b878c.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 320
+      },
+      "variant": "draft",
+      "requestedX": 12,
+      "requestedTime": 6,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/421388fb2b361722ff8000498ac65f83833a1f3589ca1f7c120e7e6ba19a48f6.png",
+          "sha256": "421388fb2b361722ff8000498ac65f83833a1f3589ca1f7c120e7e6ba19a48f6"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|orbit|setup",
+      "caseSha256": "b10c37bb5b3ce3d541968c59d6fe87fb018b6c5e8d13fbae3a28f997b1abd87c",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/3013c6888ec5ba59cb1bbc3afc972be7fab5bf8b2551d8ff9446766f7a90b1cf.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": null,
+      "requestedTime": null,
+      "actualRenderer": null,
+      "screenshots": [
+        {
+          "file": "screens/0afd80f016bc437aeaa4c1e0117e95b0fc96df63e11bd301253d5f237b54bf86.png",
+          "sha256": "0afd80f016bc437aeaa4c1e0117e95b0fc96df63e11bd301253d5f237b54bf86"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|orbit|grid|0",
+      "caseSha256": "e60a7a49bfcfe64bfcae458cca21220eec963425516d4f005901b13f21639b72",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/70fabfb575aac0a15ac7394ceecb5109096425993c0c3a09a4cdda777fb6b347.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 0,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/c67035c0604c2827fed6358e4d4efe5888673e400d0367aab460a7348ece3f09.png",
+          "sha256": "c67035c0604c2827fed6358e4d4efe5888673e400d0367aab460a7348ece3f09"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|orbit|grid|1",
+      "caseSha256": "191fc766d045aca5b292f0c8fdf631970b9be9a1f5975e4aa18c1725a3e61df3",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/63a66dea32dd0d118eec012e02f714da5ba36ce0bbe27bb8530897b0a36f4f1f.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 1,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/a268f1a89ab7e6ebee5b3f8707f5bf65ebf923b89eb27399a254589434a4097c.png",
+          "sha256": "a268f1a89ab7e6ebee5b3f8707f5bf65ebf923b89eb27399a254589434a4097c"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|orbit|grid|2",
+      "caseSha256": "da904d84073ca6ae94b522603a45010be560aab47ef765db1f06b1f74c02f8a2",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/a6e6bafd73c507a279854ded9ecbef131471e551c0f0e645bd0df54ce4605b70.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 6,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/ac3df94ba6ddda0c49b1eb5f6df840ca579db95e345147be31e392b36ec0d638.png",
+          "sha256": "ac3df94ba6ddda0c49b1eb5f6df840ca579db95e345147be31e392b36ec0d638"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|orbit|grid|3",
+      "caseSha256": "df00c915bd3e2a59a43e9bb4cf8c2320a761ec44cf4fa527dbbbe61593c5bfa9",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/e9a8aaa4523e7d44515c2bda1fdb50593c29d9925f3ab116f3561afc4410ac57.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 7,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/95805247454381abfe8848b618ad5cf5223133b03bb47718eed6973e97f1f275.png",
+          "sha256": "95805247454381abfe8848b618ad5cf5223133b03bb47718eed6973e97f1f275"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|orbit|grid|4",
+      "caseSha256": "b82b23d02bf11d16cff1c005ff0d0f3343965472ca74ce3bce6c529bed454dcb",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/b88125829344ffffe5eff0055c42f896786a71848bf011d21b077857d3ea4dd3.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 12,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/fe2620656395d644713b68b55cb7e6ce794ba346bfbce0bcd828230198c5fb01.png",
+          "sha256": "fe2620656395d644713b68b55cb7e6ce794ba346bfbce0bcd828230198c5fb01"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|orbit|clock|0",
+      "caseSha256": "d4ec0bcb97902eb8a51208a3d7f91094aedc4ba50590495c71d4a65ec7ff2357",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/5dcb3628ce7bb3d3bfa719ea6958ce9a9e8399a8e5421b78362b1f3ba1518e0f.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 0,
+      "requestedTime": 6,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/c67035c0604c2827fed6358e4d4efe5888673e400d0367aab460a7348ece3f09.png",
+          "sha256": "c67035c0604c2827fed6358e4d4efe5888673e400d0367aab460a7348ece3f09"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|orbit|clock|1",
+      "caseSha256": "edfb45dcccde27c7ccd6907a5be291ccaaca4df0c4218dc2b8736ed264924849",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/465917baa5052dd6159003b01b71b9a4702e65a260da9a0bfb72f93dc62598a3.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 1,
+      "requestedTime": 3,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/b460189a59965ad72339a82d302caeea20bf772f4ef04118640553c369b4874d.png",
+          "sha256": "b460189a59965ad72339a82d302caeea20bf772f4ef04118640553c369b4874d"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|orbit|clock|2",
+      "caseSha256": "254f9fb1a3707f990b0b2c45993ba24991cb4eee4f0a2adc7559f1fd3d98afba",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/4b82348a0b55e839d177828972c188ee77620f681f0a1babf9230aff620c12db.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 7,
+      "requestedTime": 3,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/4150585a574e3972108835b277b9231f925296cf2f14fc06b05b421526a1da51.png",
+          "sha256": "4150585a574e3972108835b277b9231f925296cf2f14fc06b05b421526a1da51"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|orbit|clock|3",
+      "caseSha256": "10842781398e0d709512c5e3450e6c528f39b3fed6f3b542ae59434dbe35b567",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/dd2bb2fe48519812c1d471d70ea4ac3d50da05c09b22a2d88cf168bbc304f6e2.json",
+      "profile": {
+        "fallback": false,
+        "view": "orbit",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 12,
+      "requestedTime": 6,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/fe2620656395d644713b68b55cb7e6ce794ba346bfbce0bcd828230198c5fb01.png",
+          "sha256": "fe2620656395d644713b68b55cb7e6ce794ba346bfbce0bcd828230198c5fb01"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|side|setup",
+      "caseSha256": "578607bbf51a6e8c08e38eb547958b4d9e1c30bda3b825874b81de83f7ce4a67",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/81cb79e101ae5ba401d105dc9d4c770b648d688e8bbf67b097d7856eb1758f62.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": null,
+      "requestedTime": null,
+      "actualRenderer": null,
+      "screenshots": [
+        {
+          "file": "screens/fdca8eebd53888ba77a70d8e6d375369ea229b2e46f9fc9bb21a4559dd77b2f7.png",
+          "sha256": "fdca8eebd53888ba77a70d8e6d375369ea229b2e46f9fc9bb21a4559dd77b2f7"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|side|grid|0",
+      "caseSha256": "8fc44b02862cdaebce5f8bdcbaf3a1c42097c1134ccf1911d477301db82d348b",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/67d0b33485c6e5f3eda28791c1f9b44cc8c03b449b4d13c5834f3d0011a8996d.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 0,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/be4f49d30f2b761a883bfc4137b94fba4a8d7072b03e9f904e366e1f91c2e4e6.png",
+          "sha256": "be4f49d30f2b761a883bfc4137b94fba4a8d7072b03e9f904e366e1f91c2e4e6"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|side|grid|1",
+      "caseSha256": "e70f81f94301f5571525d1ffb8f89984f9f011899fd27c9619afefccaa7d5c03",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/fef6a13c5602e8c3b5f9a2a9e11c773af57aa48412fa68f9d2ca19f570feaef7.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 1,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/c70122a9fea7ad664d701a5d5374f4b58684006f6017cfc6e24a3c3d5d53c23e.png",
+          "sha256": "c70122a9fea7ad664d701a5d5374f4b58684006f6017cfc6e24a3c3d5d53c23e"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|side|grid|2",
+      "caseSha256": "1f12c430116059d41e637c6cfbc46e9c3f2479a5acd8e80075fa680c1bdd1d77",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/e25740233d6ffbbf41dcb6917e09b0ade6de9d8f9db8a4afb5fdd9ba54445e21.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 6,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/20b808757c2477d314d5eba0963d0c449343711af0a03fa0a11f47447f1d1944.png",
+          "sha256": "20b808757c2477d314d5eba0963d0c449343711af0a03fa0a11f47447f1d1944"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|side|grid|3",
+      "caseSha256": "8b8218d7b055db8aadcfd23640e9b15b557b51c20f5baeb2ac7704e4285bc2e8",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/adec7812912a242879b158906f789dea92f0433f66c6aa4549e3b7a891a9abb1.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 7,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/c4f81be2dfa773101a8c64fb08750f3fe730e14b7951cdf32f53200f0185141f.png",
+          "sha256": "c4f81be2dfa773101a8c64fb08750f3fe730e14b7951cdf32f53200f0185141f"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|side|grid|4",
+      "caseSha256": "c34255bf078a118872ccb4a501768f2dc0c1c3de85d1c8834212d6afe44fa090",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/6a875acf024b48435bd7f2d9cdae7437b1ff8bb84ab4e7917e361ff8c9519066.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 12,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/1f8c0d2bbff36c05bb2b500f499e1c8702820041ad9f3eed9112f5e733890479.png",
+          "sha256": "1f8c0d2bbff36c05bb2b500f499e1c8702820041ad9f3eed9112f5e733890479"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|side|clock|0",
+      "caseSha256": "626b5473bd2fa7ecbef6b7fe8a04de37520770b52584ab92372c1a102151c253",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/a05f2f2a3b2df84ac69b08a672e5cb781f3fe1fca9ccaea34b18d451c3eecea8.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 0,
+      "requestedTime": 6,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/be4f49d30f2b761a883bfc4137b94fba4a8d7072b03e9f904e366e1f91c2e4e6.png",
+          "sha256": "be4f49d30f2b761a883bfc4137b94fba4a8d7072b03e9f904e366e1f91c2e4e6"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|side|clock|1",
+      "caseSha256": "833b9fa63f2d6e44a38e64af09d29302d2e89cd6faebffc6956c47c8c1b2d41d",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/6f5a4dda805e4be67b2f1013d99839999e9a6f10ac8cdc18ac9042ab63b8a4c6.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 1,
+      "requestedTime": 3,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/49d711dbf68e27991e33ee7a74787e1f5a676971f2f0f560dfa80fefcccd3871.png",
+          "sha256": "49d711dbf68e27991e33ee7a74787e1f5a676971f2f0f560dfa80fefcccd3871"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|side|clock|2",
+      "caseSha256": "1028fd10b627d9c2a6532f5efca6b90c50dd01d688bd6a2c946947c36c7080b0",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/47ef3cc635958779ab7a7bba6aedf3d78d1418bf9df3968926a3220cf7411cd0.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 7,
+      "requestedTime": 3,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/f48ea3008472256a888373807874bb9992ecb1a2e8993e993f608be9baa93d2a.png",
+          "sha256": "f48ea3008472256a888373807874bb9992ecb1a2e8993e993f608be9baa93d2a"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|side|clock|3",
+      "caseSha256": "313fe128eaa924b4d1bf597066e2d4f400a2e26af31398bd0c60305fe46964fe",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/5a12fb30b62fe52cafa171c6ff2b7db82e593bca97b170570091533eb844178f.json",
+      "profile": {
+        "fallback": false,
+        "view": "side",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 12,
+      "requestedTime": 6,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/1f8c0d2bbff36c05bb2b500f499e1c8702820041ad9f3eed9112f5e733890479.png",
+          "sha256": "1f8c0d2bbff36c05bb2b500f499e1c8702820041ad9f3eed9112f5e733890479"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|top|setup",
+      "caseSha256": "38e3a1521e32c8cfae852640c68fa2e15c1ea2cc8d003394edad3057238ad379",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/dc024938f88eaae6f7d352a6e953b3f19af655141b2d31b14803c04308a1efc1.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": null,
+      "requestedTime": null,
+      "actualRenderer": null,
+      "screenshots": [
+        {
+          "file": "screens/2b95530fdcb84188eec62108e74e7abc3d522827b1b5a2c9c525dd2038356139.png",
+          "sha256": "2b95530fdcb84188eec62108e74e7abc3d522827b1b5a2c9c525dd2038356139"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|top|grid|0",
+      "caseSha256": "21873739ba5022e2a5e38afe5ce4ee73e5b78d96af1676b3e2afa2d8b6cf801a",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/96249ad55b637487630b05ca87e644401e4649756cabc09d862610556fb6e342.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 0,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/bc3d2f49180ebe92201a17584e8f78313d04fb2a60fe926b4e5207ca6affff42.png",
+          "sha256": "bc3d2f49180ebe92201a17584e8f78313d04fb2a60fe926b4e5207ca6affff42"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|top|grid|1",
+      "caseSha256": "14b35f9a7736df5f203d835125a1e29bd64f1738fe8369ec441afb630be2ef5d",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/7e1cf9aa816685ad7fd9220a3bfdb10ba2789d603e3f775a5a5ebf3d7dff179f.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 1,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/1c9a728529573758f722a8cdab3ac578d85e9bca8178295c740eea295b22a4d0.png",
+          "sha256": "1c9a728529573758f722a8cdab3ac578d85e9bca8178295c740eea295b22a4d0"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|top|grid|2",
+      "caseSha256": "3d4339955e3099e4fba7dbd172bd70a1ba6a5a909882e7109b6eaf9662edf4e1",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/40e67fd870f155392b0a51c939f48e71a77170cfd9f689f3cbc76e7e486ffdd2.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 6,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/dea1025912cb771c345841b346adcefc9b9f826e4582e5ad367fbe30dbb869e3.png",
+          "sha256": "dea1025912cb771c345841b346adcefc9b9f826e4582e5ad367fbe30dbb869e3"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|top|grid|3",
+      "caseSha256": "206f71fe65f2463e11b4ca16e1be9e13989d1b9b8a60cdded78fee81f297c50d",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/0fb9c2d5163cfa773a766b448562eb1ed8624a591a16127f53071d7f24fc407d.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 7,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/3f66c478f935c3156d1564af795867345d309a1afeb9f38c0ed4a480ecdecdc3.png",
+          "sha256": "3f66c478f935c3156d1564af795867345d309a1afeb9f38c0ed4a480ecdecdc3"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|top|grid|4",
+      "caseSha256": "ae387ba37da9b38d93956b9ee18fd13cd2a4486db225dfe676faaefc17c8f012",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/931ca0e753ba6cdc9378b3badaa57e901ed3152e6f8a5f478868051f6d1bd353.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 12,
+      "requestedTime": null,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/94c0c4881674d9e45ae6e4d4d6cc9caf4242eb98b16db82ecf1da94e800c6ca7.png",
+          "sha256": "94c0c4881674d9e45ae6e4d4d6cc9caf4242eb98b16db82ecf1da94e800c6ca7"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|top|clock|0",
+      "caseSha256": "cdd20dc0965b1c1f4089de2848bd1f224c89738ca152f2333b6585d3a7b38d10",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/4cf64c531b9724c72bf042ea59537ae0751f1556060fc836e0b947c39a9e04f2.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 0,
+      "requestedTime": 6,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/bc3d2f49180ebe92201a17584e8f78313d04fb2a60fe926b4e5207ca6affff42.png",
+          "sha256": "bc3d2f49180ebe92201a17584e8f78313d04fb2a60fe926b4e5207ca6affff42"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|top|clock|1",
+      "caseSha256": "4faa3278a765bfeb88b928c3d4d6476972c6db87ebe30a58c64ccb1d3ec6b67e",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/1f0d3802f5dca00aef86eb40114b9f04cba5c5386c893e609eb273e0ffebd564.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 1,
+      "requestedTime": 3,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/8f7449794c746935398708ead6ccfe052d7eb2ff87a0df6887130893c6ef7dec.png",
+          "sha256": "8f7449794c746935398708ead6ccfe052d7eb2ff87a0df6887130893c6ef7dec"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|top|clock|2",
+      "caseSha256": "dc26bba7dc1d72a002ef7be74e1c3c7741a62baf8de1b0ef667be4e7332f2980",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/6194381b4bfe76b4f93e10b30a67426270e0b2a0296ca8f6851e92a664deee65.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 7,
+      "requestedTime": 3,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/6d2335dccc3331535ed26f95105b76c0e32889f679ea3b44ea80022712675314.png",
+          "sha256": "6d2335dccc3331535ed26f95105b76c0e32889f679ea3b44ea80022712675314"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|top|clock|3",
+      "caseSha256": "f97d2af1538270f56c1c257931fbede5346f87b5b2918b4cbbd2d82534189d40",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/9f1be8c4812831162a260c01e95d1386d6137ec85f36e18a591eb2cfff2eb18f.json",
+      "profile": {
+        "fallback": false,
+        "view": "top",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 12,
+      "requestedTime": 6,
+      "actualRenderer": "3D interattivo",
+      "screenshots": [
+        {
+          "file": "screens/94c0c4881674d9e45ae6e4d4d6cc9caf4242eb98b16db82ecf1da94e800c6ca7.png",
+          "sha256": "94c0c4881674d9e45ae6e4d4d6cc9caf4242eb98b16db82ecf1da94e800c6ca7"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|fixed_projection|setup",
+      "caseSha256": "51a1452c61a90e327dba4eb2861e78f77cd77665550c1965fb3f36329ed9f1cb",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/938bdb83f548276bccfbce505dda582cf8d063ceddec391b4737fae2d1103945.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": null,
+      "requestedTime": null,
+      "actualRenderer": null,
+      "screenshots": [
+        {
+          "file": "screens/e0a7bf22d82cc1c20ef2bdcb3daa252b0b42bc430b724e975876e07dd6532625.png",
+          "sha256": "e0a7bf22d82cc1c20ef2bdcb3daa252b0b42bc430b724e975876e07dd6532625"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|fixed_projection|grid|0",
+      "caseSha256": "75efa1271c45c9fe12c0bc6119f33267c419c8e05fe1b64cb46dcf89b7377d2e",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/2ec5c9d79cc2c1d7f3d2db31a9c587343649a5ebf1c81af08ffdd0be42e6b789.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 0,
+      "requestedTime": null,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/f0822c02bff44e84c9c988ef55f02d26774ac4b14eb4bd8cedb15d306fc22691.png",
+          "sha256": "f0822c02bff44e84c9c988ef55f02d26774ac4b14eb4bd8cedb15d306fc22691"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|fixed_projection|grid|1",
+      "caseSha256": "dd13bdba0f5290bdfb7ca20f6e63119d375bca8b404ffe176a85f9e6970e1719",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/4c1a2a316501da03003471e1ba2c0970df07f11014ba8d8ccb06d969fdd2e842.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 1,
+      "requestedTime": null,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/efab2ee0e57335085849a5f330c8a53db769712003b6e718b0d197b8954b233d.png",
+          "sha256": "efab2ee0e57335085849a5f330c8a53db769712003b6e718b0d197b8954b233d"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|fixed_projection|grid|2",
+      "caseSha256": "2c3f7cc3c054ab8ce4e6578849556cc89f4747c2f2954ff74b479c7504321c80",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/641f9d85a48259f25f37d02bb8f978b88405fd723a3998a90b35a2223b5d009c.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 6,
+      "requestedTime": null,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/4b584e003fb772ffcd5bd044308d8465455939b2caf27446a98da4b5cedb4487.png",
+          "sha256": "4b584e003fb772ffcd5bd044308d8465455939b2caf27446a98da4b5cedb4487"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|fixed_projection|grid|3",
+      "caseSha256": "a0eeb6c94ac5233e0d8af0b7481f1237ead74ffdbc446a39c508965c2756f99c",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/b3c689c6c43364fad6a7c505a18a21b87404d535f58c6b83e44244d6faee7cae.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 7,
+      "requestedTime": null,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/084c64c072ef789a36c827a97d4519efab12eeddbca87d8252b420905d039af7.png",
+          "sha256": "084c64c072ef789a36c827a97d4519efab12eeddbca87d8252b420905d039af7"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|fixed_projection|grid|4",
+      "caseSha256": "d8c00c0b85fd9ad7f91937a840fd64e24b8f9742e9a8e794f65878b883f89820",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/6c2ddfe89dbe9c1243940d4e46f427e503ca0238a137cd37d4b5169b4d22419a.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 12,
+      "requestedTime": null,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/421388fb2b361722ff8000498ac65f83833a1f3589ca1f7c120e7e6ba19a48f6.png",
+          "sha256": "421388fb2b361722ff8000498ac65f83833a1f3589ca1f7c120e7e6ba19a48f6"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|fixed_projection|clock|0",
+      "caseSha256": "1b8ff4f4c3ba8448230a18a53c0ae0d368fac7820eb99cbeb612e3a4a2c8fc3d",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/52040cd26620677be7d8bc02c133e30835aec11c7f3a64833dcf9047284560ea.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 0,
+      "requestedTime": 6,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/f0822c02bff44e84c9c988ef55f02d26774ac4b14eb4bd8cedb15d306fc22691.png",
+          "sha256": "f0822c02bff44e84c9c988ef55f02d26774ac4b14eb4bd8cedb15d306fc22691"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|fixed_projection|clock|1",
+      "caseSha256": "cb966dd0a572470352342bd87ab39afa24724ee4840ea7b3229e832907a5bff1",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/3fcdafdf84080ed9a9d85e7adb9fcc38face88f33292535ca9b4e1dc7a151b21.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 1,
+      "requestedTime": 3,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/72cfdf96c55a4509b47d54c2e37f14664765fb4a51474dec7d304ac6e2ec444f.png",
+          "sha256": "72cfdf96c55a4509b47d54c2e37f14664765fb4a51474dec7d304ac6e2ec444f"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|fixed_projection|clock|2",
+      "caseSha256": "e738e3d8aa9b91ea835df5b4cb68d4a2f4a6383204de2e9edb3461f570cc7e52",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/e4280c6977fd512997a74709ff6dbdd71d7cc80b4f277a9d1ba7a915cc7aab5a.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 7,
+      "requestedTime": 3,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/80c16a79c31b28e6ee3a6ef773eaabfd2b83e46ce86b3ce7dc34f0878e6f1c35.png",
+          "sha256": "80c16a79c31b28e6ee3a6ef773eaabfd2b83e46ce86b3ce7dc34f0878e6f1c35"
+        }
+      ]
+    },
+    {
+      "group": "continuity-l00501-320-published-fe5d",
+      "caseKey": "SIM-C2-L005-01|published|320|fixed_projection|clock|3",
+      "caseSha256": "c64acc3608edb69a76751013f15e2b0da4d65d55121e64218da5946bc8bb1b70",
+      "caseFile": "raw/continuity-l00501-320-published-fe5d/actual/cases/a4d87c99360f3e267e68229029c242fdc23dd774140fb9866584e0bf23e88320.json",
+      "profile": {
+        "fallback": true,
+        "view": "fixed_projection",
+        "width": 320
+      },
+      "variant": "published",
+      "requestedX": 12,
+      "requestedTime": 6,
+      "actualRenderer": "Tavola di misura",
+      "screenshots": [
+        {
+          "file": "screens/421388fb2b361722ff8000498ac65f83833a1f3589ca1f7c120e7e6ba19a48f6.png",
+          "sha256": "421388fb2b361722ff8000498ac65f83833a1f3589ca1f7c120e7e6ba19a48f6"
+        }
+      ]
+    }
+  ],
+  "uniqueScreenshots": {
+    "97e554289c770cd8255f569bbaf2d51c949562fedb9657e6703b8e291f14808d": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-fallback/actual/screens/97e554289c770cd8255f569bbaf2d51c949562fedb9657e6703b8e291f14808d.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|fixed_projection|setup",
+        "SIM-C2-L005-01|published|1280|fixed_projection|setup"
+      ]
+    },
+    "4c578d650690534807047133fa68327417a828c14126783d59a54c43763654ce": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-fallback/actual/screens/4c578d650690534807047133fa68327417a828c14126783d59a54c43763654ce.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|fixed_projection|grid|0",
+        "SIM-C2-L005-01|draft|1280|fixed_projection|clock|0",
+        "SIM-C2-L005-01|published|1280|fixed_projection|grid|0",
+        "SIM-C2-L005-01|published|1280|fixed_projection|clock|0"
+      ]
+    },
+    "d6609ef3ac1702eb87b9ac5b178613fd1ab5f498633e88411a0acd86e0e82301": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-fallback/actual/screens/d6609ef3ac1702eb87b9ac5b178613fd1ab5f498633e88411a0acd86e0e82301.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|fixed_projection|grid|1",
+        "SIM-C2-L005-01|published|1280|fixed_projection|grid|1"
+      ]
+    },
+    "b59dd74a16c6f1cb18f74c2f1fbd37b156b919f1e86e043cbb793d65c06adb9c": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-fallback/actual/screens/b59dd74a16c6f1cb18f74c2f1fbd37b156b919f1e86e043cbb793d65c06adb9c.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|fixed_projection|grid|2",
+        "SIM-C2-L005-01|published|1280|fixed_projection|grid|2"
+      ]
+    },
+    "5aae6f27c21a7743800cf69095703519239b192fd4212483c9d3988690337761": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-fallback/actual/screens/5aae6f27c21a7743800cf69095703519239b192fd4212483c9d3988690337761.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|fixed_projection|grid|3"
+      ]
+    },
+    "1606b556cadef1837dc87395917f4f9b22d8deb9c8cfe7ecc4d94a35f7d26e86": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-fallback/actual/screens/1606b556cadef1837dc87395917f4f9b22d8deb9c8cfe7ecc4d94a35f7d26e86.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|fixed_projection|grid|4",
+        "SIM-C2-L005-01|published|1280|fixed_projection|grid|4",
+        "SIM-C2-L005-01|published|1280|fixed_projection|clock|3"
+      ]
+    },
+    "ad9691aa1ea4702c33befe22ec905c5068acc5604f45ad9d7637179eda1b433e": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-fallback/actual/screens/ad9691aa1ea4702c33befe22ec905c5068acc5604f45ad9d7637179eda1b433e.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|fixed_projection|clock|1",
+        "SIM-C2-L005-01|published|1280|fixed_projection|clock|1"
+      ]
+    },
+    "846eb3e7f056172487a0214ba21f6a381e5b3e428f664903f9d9ac44e8e46b0f": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-fallback/actual/screens/846eb3e7f056172487a0214ba21f6a381e5b3e428f664903f9d9ac44e8e46b0f.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|fixed_projection|clock|2",
+        "SIM-C2-L005-01|published|1280|fixed_projection|clock|2"
+      ]
+    },
+    "9828e86f2ad4e971e1e4b6551c824c15fea83f3c0180e1ce9547d4788971a815": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-fallback/actual/screens/9828e86f2ad4e971e1e4b6551c824c15fea83f3c0180e1ce9547d4788971a815.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|fixed_projection|clock|3"
+      ]
+    },
+    "a211890e370d4b0a87540f4ae8ce6baae71f391a48b387aa0f6feb55c51970e5": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-native/actual/screens/a211890e370d4b0a87540f4ae8ce6baae71f391a48b387aa0f6feb55c51970e5.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|orbit|setup",
+        "SIM-C2-L005-01|published|1280|orbit|setup"
+      ]
+    },
+    "ceb4232e44e6b132b834582f59711f03268cbba89ff389455522ef2d3a25960d": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-native/actual/screens/ceb4232e44e6b132b834582f59711f03268cbba89ff389455522ef2d3a25960d.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|orbit|grid|0",
+        "SIM-C2-L005-01|draft|1280|orbit|clock|0",
+        "SIM-C2-L005-01|published|1280|orbit|grid|0",
+        "SIM-C2-L005-01|published|1280|orbit|clock|0"
+      ]
+    },
+    "581230f5eb2451693fc28b8d563f0fc0c8bb55b726b359be635b8373079dc6ea": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-native/actual/screens/581230f5eb2451693fc28b8d563f0fc0c8bb55b726b359be635b8373079dc6ea.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|orbit|grid|1",
+        "SIM-C2-L005-01|published|1280|orbit|grid|1"
+      ]
+    },
+    "d634ef2e9e387cc7d905e1ca21dd41caca8db0c121bc693b12159938b7bfd421": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-native/actual/screens/d634ef2e9e387cc7d905e1ca21dd41caca8db0c121bc693b12159938b7bfd421.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|orbit|grid|2",
+        "SIM-C2-L005-01|published|1280|orbit|grid|2"
+      ]
+    },
+    "7cb08f2e3020387781b78d01f1ca7b8e78ef6526570b45ca9c37e37013a67cd3": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-native/actual/screens/7cb08f2e3020387781b78d01f1ca7b8e78ef6526570b45ca9c37e37013a67cd3.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|orbit|grid|3",
+        "SIM-C2-L005-01|published|1280|orbit|grid|3"
+      ]
+    },
+    "5bd59bcc35632f7356c76879d3c99689921c54d4d2c38e18c913a8b97008c3be": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-native/actual/screens/5bd59bcc35632f7356c76879d3c99689921c54d4d2c38e18c913a8b97008c3be.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|orbit|grid|4",
+        "SIM-C2-L005-01|draft|1280|orbit|clock|3",
+        "SIM-C2-L005-01|published|1280|orbit|grid|4",
+        "SIM-C2-L005-01|published|1280|orbit|clock|3"
+      ]
+    },
+    "cd548fd6c9fef4e4a585fbe614f9ed84a6b89cb6c1a78b5683a84089292a90e7": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-native/actual/screens/cd548fd6c9fef4e4a585fbe614f9ed84a6b89cb6c1a78b5683a84089292a90e7.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|orbit|clock|1",
+        "SIM-C2-L005-01|published|1280|orbit|clock|1"
+      ]
+    },
+    "49934fdda199892c701748c250ae2661f176d8ff0cf65d694a3bb344d8bbe159": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-native/actual/screens/49934fdda199892c701748c250ae2661f176d8ff0cf65d694a3bb344d8bbe159.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|orbit|clock|2",
+        "SIM-C2-L005-01|published|1280|orbit|clock|2"
+      ]
+    },
+    "b588f449e142e1141d9a031bb187c45050d378350c280f246f507788a9dcfb53": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-native/actual/screens/b588f449e142e1141d9a031bb187c45050d378350c280f246f507788a9dcfb53.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|side|setup",
+        "SIM-C2-L005-01|published|1280|side|setup"
+      ]
+    },
+    "4055665bdfb14833bb4fcc3f9017b4f259dd4f369f35cd2bc71a873c1ac2344e": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-native/actual/screens/4055665bdfb14833bb4fcc3f9017b4f259dd4f369f35cd2bc71a873c1ac2344e.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|side|grid|0",
+        "SIM-C2-L005-01|draft|1280|side|clock|0",
+        "SIM-C2-L005-01|published|1280|side|grid|0",
+        "SIM-C2-L005-01|published|1280|side|clock|0"
+      ]
+    },
+    "79266b1216ca076882b461079e8f144aaaf63b9be0513ce1801c5f3574d60a77": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-native/actual/screens/79266b1216ca076882b461079e8f144aaaf63b9be0513ce1801c5f3574d60a77.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|side|grid|1",
+        "SIM-C2-L005-01|published|1280|side|grid|1"
+      ]
+    },
+    "413941a177423a0a5f996a5a99fe458b7eebb55191b36d4832ceaf26b7c935bb": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-native/actual/screens/413941a177423a0a5f996a5a99fe458b7eebb55191b36d4832ceaf26b7c935bb.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|side|grid|2",
+        "SIM-C2-L005-01|published|1280|side|grid|2"
+      ]
+    },
+    "ec16e965989f6e5ad0651d170ca51ebdf06bb91fdb46e7387d3b25cabf857565": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-native/actual/screens/ec16e965989f6e5ad0651d170ca51ebdf06bb91fdb46e7387d3b25cabf857565.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|side|grid|3",
+        "SIM-C2-L005-01|published|1280|side|grid|3"
+      ]
+    },
+    "1ab68496940171dd226f67f6fb6eead744162957661506628d025386fc4f9fae": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-native/actual/screens/1ab68496940171dd226f67f6fb6eead744162957661506628d025386fc4f9fae.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|side|grid|4",
+        "SIM-C2-L005-01|draft|1280|side|clock|3",
+        "SIM-C2-L005-01|published|1280|side|grid|4",
+        "SIM-C2-L005-01|published|1280|side|clock|3"
+      ]
+    },
+    "3b56392a736e4e48b52425c520d146f1f49165e31c70c601db3b29883c771697": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-native/actual/screens/3b56392a736e4e48b52425c520d146f1f49165e31c70c601db3b29883c771697.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|side|clock|1",
+        "SIM-C2-L005-01|published|1280|side|clock|1"
+      ]
+    },
+    "fc4cf0214fafd22bcdb4fa1720033ecd17fc31534888b1462307cc2175076e98": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-native/actual/screens/fc4cf0214fafd22bcdb4fa1720033ecd17fc31534888b1462307cc2175076e98.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|side|clock|2",
+        "SIM-C2-L005-01|published|1280|side|clock|2"
+      ]
+    },
+    "f12d235ce791e501d41c5e32829d4e2f8dac7cc94850d8ed90f4e9bac17715f9": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-native/actual/screens/f12d235ce791e501d41c5e32829d4e2f8dac7cc94850d8ed90f4e9bac17715f9.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|top|setup",
+        "SIM-C2-L005-01|published|1280|top|setup"
+      ]
+    },
+    "2d09b1932313f30e8f4ed2831139d4fe1d2f358203666978c5960b3847a8f04b": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-native/actual/screens/2d09b1932313f30e8f4ed2831139d4fe1d2f358203666978c5960b3847a8f04b.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|top|grid|0",
+        "SIM-C2-L005-01|draft|1280|top|clock|0",
+        "SIM-C2-L005-01|published|1280|top|grid|0",
+        "SIM-C2-L005-01|published|1280|top|clock|0"
+      ]
+    },
+    "0cf591075af14b04149ef7f96b5df4a2a9731bbb6c5cc7ffa70e49b79a817d13": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-native/actual/screens/0cf591075af14b04149ef7f96b5df4a2a9731bbb6c5cc7ffa70e49b79a817d13.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|top|grid|1",
+        "SIM-C2-L005-01|published|1280|top|grid|1"
+      ]
+    },
+    "72487fb14001af9478e5c6f819efef5f102a28b1d151b50726da166d969556fe": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-native/actual/screens/72487fb14001af9478e5c6f819efef5f102a28b1d151b50726da166d969556fe.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|top|grid|2",
+        "SIM-C2-L005-01|published|1280|top|grid|2"
+      ]
+    },
+    "bac656814a628aae730276e6466add89c32fe734abb76e97bd2b6476fa39fd6f": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-native/actual/screens/bac656814a628aae730276e6466add89c32fe734abb76e97bd2b6476fa39fd6f.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|top|grid|3",
+        "SIM-C2-L005-01|published|1280|top|grid|3"
+      ]
+    },
+    "b449c1f37dd4d46993b365d6a5fb6f96db133c7e652dd277ed25796d4317ac03": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-native/actual/screens/b449c1f37dd4d46993b365d6a5fb6f96db133c7e652dd277ed25796d4317ac03.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|top|grid|4",
+        "SIM-C2-L005-01|draft|1280|top|clock|3",
+        "SIM-C2-L005-01|published|1280|top|grid|4",
+        "SIM-C2-L005-01|published|1280|top|clock|3"
+      ]
+    },
+    "c7d498470ae0b007c785e5190be8959328cddac2103b2f9774fe232db1a7c0d6": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-native/actual/screens/c7d498470ae0b007c785e5190be8959328cddac2103b2f9774fe232db1a7c0d6.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|top|clock|1",
+        "SIM-C2-L005-01|published|1280|top|clock|1"
+      ]
+    },
+    "1c97b1c5a75845d5b84a54abbce923676dd1a744ab541f6d3afacc4964e6144f": {
+      "path": "raw/continuity-l00501-1280-draft-fe5d-native/actual/screens/1c97b1c5a75845d5b84a54abbce923676dd1a744ab541f6d3afacc4964e6144f.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|1280|top|clock|2",
+        "SIM-C2-L005-01|published|1280|top|clock|2"
+      ]
+    },
+    "08b4988b82045f6dae2b780536752277c723da810605f4a33ee502dddc0bc90a": {
+      "path": "raw/continuity-l00501-1280-published-fe5d-fallback/actual/screens/08b4988b82045f6dae2b780536752277c723da810605f4a33ee502dddc0bc90a.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|published|1280|fixed_projection|grid|3"
+      ]
+    },
+    "0afd80f016bc437aeaa4c1e0117e95b0fc96df63e11bd301253d5f237b54bf86": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/0afd80f016bc437aeaa4c1e0117e95b0fc96df63e11bd301253d5f237b54bf86.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|orbit|setup",
+        "SIM-C2-L005-01|published|320|orbit|setup"
+      ]
+    },
+    "c67035c0604c2827fed6358e4d4efe5888673e400d0367aab460a7348ece3f09": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/c67035c0604c2827fed6358e4d4efe5888673e400d0367aab460a7348ece3f09.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|orbit|grid|0",
+        "SIM-C2-L005-01|draft|320|orbit|clock|0",
+        "SIM-C2-L005-01|published|320|orbit|grid|0",
+        "SIM-C2-L005-01|published|320|orbit|clock|0"
+      ]
+    },
+    "a268f1a89ab7e6ebee5b3f8707f5bf65ebf923b89eb27399a254589434a4097c": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/a268f1a89ab7e6ebee5b3f8707f5bf65ebf923b89eb27399a254589434a4097c.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|orbit|grid|1",
+        "SIM-C2-L005-01|published|320|orbit|grid|1"
+      ]
+    },
+    "ac3df94ba6ddda0c49b1eb5f6df840ca579db95e345147be31e392b36ec0d638": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/ac3df94ba6ddda0c49b1eb5f6df840ca579db95e345147be31e392b36ec0d638.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|orbit|grid|2",
+        "SIM-C2-L005-01|published|320|orbit|grid|2"
+      ]
+    },
+    "95805247454381abfe8848b618ad5cf5223133b03bb47718eed6973e97f1f275": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/95805247454381abfe8848b618ad5cf5223133b03bb47718eed6973e97f1f275.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|orbit|grid|3",
+        "SIM-C2-L005-01|published|320|orbit|grid|3"
+      ]
+    },
+    "fe2620656395d644713b68b55cb7e6ce794ba346bfbce0bcd828230198c5fb01": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/fe2620656395d644713b68b55cb7e6ce794ba346bfbce0bcd828230198c5fb01.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|orbit|grid|4",
+        "SIM-C2-L005-01|draft|320|orbit|clock|3",
+        "SIM-C2-L005-01|published|320|orbit|grid|4",
+        "SIM-C2-L005-01|published|320|orbit|clock|3"
+      ]
+    },
+    "b460189a59965ad72339a82d302caeea20bf772f4ef04118640553c369b4874d": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/b460189a59965ad72339a82d302caeea20bf772f4ef04118640553c369b4874d.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|orbit|clock|1",
+        "SIM-C2-L005-01|published|320|orbit|clock|1"
+      ]
+    },
+    "4150585a574e3972108835b277b9231f925296cf2f14fc06b05b421526a1da51": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/4150585a574e3972108835b277b9231f925296cf2f14fc06b05b421526a1da51.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|orbit|clock|2",
+        "SIM-C2-L005-01|published|320|orbit|clock|2"
+      ]
+    },
+    "fdca8eebd53888ba77a70d8e6d375369ea229b2e46f9fc9bb21a4559dd77b2f7": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/fdca8eebd53888ba77a70d8e6d375369ea229b2e46f9fc9bb21a4559dd77b2f7.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|side|setup",
+        "SIM-C2-L005-01|published|320|side|setup"
+      ]
+    },
+    "be4f49d30f2b761a883bfc4137b94fba4a8d7072b03e9f904e366e1f91c2e4e6": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/be4f49d30f2b761a883bfc4137b94fba4a8d7072b03e9f904e366e1f91c2e4e6.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|side|grid|0",
+        "SIM-C2-L005-01|draft|320|side|clock|0",
+        "SIM-C2-L005-01|published|320|side|grid|0",
+        "SIM-C2-L005-01|published|320|side|clock|0"
+      ]
+    },
+    "c70122a9fea7ad664d701a5d5374f4b58684006f6017cfc6e24a3c3d5d53c23e": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/c70122a9fea7ad664d701a5d5374f4b58684006f6017cfc6e24a3c3d5d53c23e.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|side|grid|1",
+        "SIM-C2-L005-01|published|320|side|grid|1"
+      ]
+    },
+    "20b808757c2477d314d5eba0963d0c449343711af0a03fa0a11f47447f1d1944": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/20b808757c2477d314d5eba0963d0c449343711af0a03fa0a11f47447f1d1944.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|side|grid|2",
+        "SIM-C2-L005-01|published|320|side|grid|2"
+      ]
+    },
+    "c4f81be2dfa773101a8c64fb08750f3fe730e14b7951cdf32f53200f0185141f": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/c4f81be2dfa773101a8c64fb08750f3fe730e14b7951cdf32f53200f0185141f.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|side|grid|3",
+        "SIM-C2-L005-01|published|320|side|grid|3"
+      ]
+    },
+    "1f8c0d2bbff36c05bb2b500f499e1c8702820041ad9f3eed9112f5e733890479": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/1f8c0d2bbff36c05bb2b500f499e1c8702820041ad9f3eed9112f5e733890479.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|side|grid|4",
+        "SIM-C2-L005-01|draft|320|side|clock|3",
+        "SIM-C2-L005-01|published|320|side|grid|4",
+        "SIM-C2-L005-01|published|320|side|clock|3"
+      ]
+    },
+    "49d711dbf68e27991e33ee7a74787e1f5a676971f2f0f560dfa80fefcccd3871": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/49d711dbf68e27991e33ee7a74787e1f5a676971f2f0f560dfa80fefcccd3871.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|side|clock|1",
+        "SIM-C2-L005-01|published|320|side|clock|1"
+      ]
+    },
+    "f48ea3008472256a888373807874bb9992ecb1a2e8993e993f608be9baa93d2a": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/f48ea3008472256a888373807874bb9992ecb1a2e8993e993f608be9baa93d2a.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|side|clock|2",
+        "SIM-C2-L005-01|published|320|side|clock|2"
+      ]
+    },
+    "2b95530fdcb84188eec62108e74e7abc3d522827b1b5a2c9c525dd2038356139": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/2b95530fdcb84188eec62108e74e7abc3d522827b1b5a2c9c525dd2038356139.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|top|setup",
+        "SIM-C2-L005-01|published|320|top|setup"
+      ]
+    },
+    "bc3d2f49180ebe92201a17584e8f78313d04fb2a60fe926b4e5207ca6affff42": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/bc3d2f49180ebe92201a17584e8f78313d04fb2a60fe926b4e5207ca6affff42.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|top|grid|0",
+        "SIM-C2-L005-01|draft|320|top|clock|0",
+        "SIM-C2-L005-01|published|320|top|grid|0",
+        "SIM-C2-L005-01|published|320|top|clock|0"
+      ]
+    },
+    "1c9a728529573758f722a8cdab3ac578d85e9bca8178295c740eea295b22a4d0": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/1c9a728529573758f722a8cdab3ac578d85e9bca8178295c740eea295b22a4d0.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|top|grid|1",
+        "SIM-C2-L005-01|published|320|top|grid|1"
+      ]
+    },
+    "dea1025912cb771c345841b346adcefc9b9f826e4582e5ad367fbe30dbb869e3": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/dea1025912cb771c345841b346adcefc9b9f826e4582e5ad367fbe30dbb869e3.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|top|grid|2",
+        "SIM-C2-L005-01|published|320|top|grid|2"
+      ]
+    },
+    "3f66c478f935c3156d1564af795867345d309a1afeb9f38c0ed4a480ecdecdc3": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/3f66c478f935c3156d1564af795867345d309a1afeb9f38c0ed4a480ecdecdc3.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|top|grid|3",
+        "SIM-C2-L005-01|published|320|top|grid|3"
+      ]
+    },
+    "94c0c4881674d9e45ae6e4d4d6cc9caf4242eb98b16db82ecf1da94e800c6ca7": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/94c0c4881674d9e45ae6e4d4d6cc9caf4242eb98b16db82ecf1da94e800c6ca7.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|top|grid|4",
+        "SIM-C2-L005-01|draft|320|top|clock|3",
+        "SIM-C2-L005-01|published|320|top|grid|4",
+        "SIM-C2-L005-01|published|320|top|clock|3"
+      ]
+    },
+    "8f7449794c746935398708ead6ccfe052d7eb2ff87a0df6887130893c6ef7dec": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/8f7449794c746935398708ead6ccfe052d7eb2ff87a0df6887130893c6ef7dec.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|top|clock|1",
+        "SIM-C2-L005-01|published|320|top|clock|1"
+      ]
+    },
+    "6d2335dccc3331535ed26f95105b76c0e32889f679ea3b44ea80022712675314": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/6d2335dccc3331535ed26f95105b76c0e32889f679ea3b44ea80022712675314.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|top|clock|2",
+        "SIM-C2-L005-01|published|320|top|clock|2"
+      ]
+    },
+    "e0a7bf22d82cc1c20ef2bdcb3daa252b0b42bc430b724e975876e07dd6532625": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/e0a7bf22d82cc1c20ef2bdcb3daa252b0b42bc430b724e975876e07dd6532625.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|fixed_projection|setup",
+        "SIM-C2-L005-01|published|320|fixed_projection|setup"
+      ]
+    },
+    "f0822c02bff44e84c9c988ef55f02d26774ac4b14eb4bd8cedb15d306fc22691": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/f0822c02bff44e84c9c988ef55f02d26774ac4b14eb4bd8cedb15d306fc22691.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|fixed_projection|grid|0",
+        "SIM-C2-L005-01|draft|320|fixed_projection|clock|0",
+        "SIM-C2-L005-01|published|320|fixed_projection|grid|0",
+        "SIM-C2-L005-01|published|320|fixed_projection|clock|0"
+      ]
+    },
+    "efab2ee0e57335085849a5f330c8a53db769712003b6e718b0d197b8954b233d": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/efab2ee0e57335085849a5f330c8a53db769712003b6e718b0d197b8954b233d.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|fixed_projection|grid|1",
+        "SIM-C2-L005-01|published|320|fixed_projection|grid|1"
+      ]
+    },
+    "4b584e003fb772ffcd5bd044308d8465455939b2caf27446a98da4b5cedb4487": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/4b584e003fb772ffcd5bd044308d8465455939b2caf27446a98da4b5cedb4487.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|fixed_projection|grid|2",
+        "SIM-C2-L005-01|published|320|fixed_projection|grid|2"
+      ]
+    },
+    "084c64c072ef789a36c827a97d4519efab12eeddbca87d8252b420905d039af7": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/084c64c072ef789a36c827a97d4519efab12eeddbca87d8252b420905d039af7.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|fixed_projection|grid|3",
+        "SIM-C2-L005-01|published|320|fixed_projection|grid|3"
+      ]
+    },
+    "421388fb2b361722ff8000498ac65f83833a1f3589ca1f7c120e7e6ba19a48f6": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/421388fb2b361722ff8000498ac65f83833a1f3589ca1f7c120e7e6ba19a48f6.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|fixed_projection|grid|4",
+        "SIM-C2-L005-01|draft|320|fixed_projection|clock|3",
+        "SIM-C2-L005-01|published|320|fixed_projection|grid|4",
+        "SIM-C2-L005-01|published|320|fixed_projection|clock|3"
+      ]
+    },
+    "72cfdf96c55a4509b47d54c2e37f14664765fb4a51474dec7d304ac6e2ec444f": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/72cfdf96c55a4509b47d54c2e37f14664765fb4a51474dec7d304ac6e2ec444f.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|fixed_projection|clock|1",
+        "SIM-C2-L005-01|published|320|fixed_projection|clock|1"
+      ]
+    },
+    "80c16a79c31b28e6ee3a6ef773eaabfd2b83e46ce86b3ce7dc34f0878e6f1c35": {
+      "path": "raw/continuity-l00501-320-draft-fe5d/actual/screens/80c16a79c31b28e6ee3a6ef773eaabfd2b83e46ce86b3ce7dc34f0878e6f1c35.png",
+      "caseKeys": [
+        "SIM-C2-L005-01|draft|320|fixed_projection|clock|2",
+        "SIM-C2-L005-01|published|320|fixed_projection|clock|2"
+      ]
+    }
+  },
+  "sheets": [
+    {
+      "file": "sheet-320-orbit.png",
+      "sourcePngs": [
+        "c67035c0604c2827fed6358e4d4efe5888673e400d0367aab460a7348ece3f09",
+        "a268f1a89ab7e6ebee5b3f8707f5bf65ebf923b89eb27399a254589434a4097c",
+        "ac3df94ba6ddda0c49b1eb5f6df840ca579db95e345147be31e392b36ec0d638",
+        "95805247454381abfe8848b618ad5cf5223133b03bb47718eed6973e97f1f275",
+        "fe2620656395d644713b68b55cb7e6ce794ba346bfbce0bcd828230198c5fb01",
+        "b460189a59965ad72339a82d302caeea20bf772f4ef04118640553c369b4874d",
+        "4150585a574e3972108835b277b9231f925296cf2f14fc06b05b421526a1da51"
+      ],
+      "resized": false,
+      "completeImages": true,
+      "sha256": "bb8578a6dd40afefafcde8ca104c240ce21ee66a5b3ce723e207d4e0da7ffd3c"
+    },
+    {
+      "file": "sheet-320-side.png",
+      "sourcePngs": [
+        "be4f49d30f2b761a883bfc4137b94fba4a8d7072b03e9f904e366e1f91c2e4e6",
+        "c70122a9fea7ad664d701a5d5374f4b58684006f6017cfc6e24a3c3d5d53c23e",
+        "20b808757c2477d314d5eba0963d0c449343711af0a03fa0a11f47447f1d1944",
+        "c4f81be2dfa773101a8c64fb08750f3fe730e14b7951cdf32f53200f0185141f",
+        "1f8c0d2bbff36c05bb2b500f499e1c8702820041ad9f3eed9112f5e733890479",
+        "49d711dbf68e27991e33ee7a74787e1f5a676971f2f0f560dfa80fefcccd3871",
+        "f48ea3008472256a888373807874bb9992ecb1a2e8993e993f608be9baa93d2a"
+      ],
+      "resized": false,
+      "completeImages": true,
+      "sha256": "3c7ecf9b279678918b37496e99d5d7b99c179f12dae767a655eef234440979d9"
+    },
+    {
+      "file": "sheet-320-top.png",
+      "sourcePngs": [
+        "bc3d2f49180ebe92201a17584e8f78313d04fb2a60fe926b4e5207ca6affff42",
+        "1c9a728529573758f722a8cdab3ac578d85e9bca8178295c740eea295b22a4d0",
+        "dea1025912cb771c345841b346adcefc9b9f826e4582e5ad367fbe30dbb869e3",
+        "3f66c478f935c3156d1564af795867345d309a1afeb9f38c0ed4a480ecdecdc3",
+        "94c0c4881674d9e45ae6e4d4d6cc9caf4242eb98b16db82ecf1da94e800c6ca7",
+        "8f7449794c746935398708ead6ccfe052d7eb2ff87a0df6887130893c6ef7dec",
+        "6d2335dccc3331535ed26f95105b76c0e32889f679ea3b44ea80022712675314"
+      ],
+      "resized": false,
+      "completeImages": true,
+      "sha256": "b4dedf864fb9001bea5758bd01dbf2b848a3be8a7ac5f51379474238d470bbe2"
+    },
+    {
+      "file": "sheet-320-fixed_projection.png",
+      "sourcePngs": [
+        "f0822c02bff44e84c9c988ef55f02d26774ac4b14eb4bd8cedb15d306fc22691",
+        "efab2ee0e57335085849a5f330c8a53db769712003b6e718b0d197b8954b233d",
+        "4b584e003fb772ffcd5bd044308d8465455939b2caf27446a98da4b5cedb4487",
+        "084c64c072ef789a36c827a97d4519efab12eeddbca87d8252b420905d039af7",
+        "421388fb2b361722ff8000498ac65f83833a1f3589ca1f7c120e7e6ba19a48f6",
+        "72cfdf96c55a4509b47d54c2e37f14664765fb4a51474dec7d304ac6e2ec444f",
+        "80c16a79c31b28e6ee3a6ef773eaabfd2b83e46ce86b3ce7dc34f0878e6f1c35"
+      ],
+      "resized": false,
+      "completeImages": true,
+      "sha256": "06acb06573e577fb4418c2005ba862e0ee28c3a73374d849651546dffe33db4b"
+    },
+    {
+      "file": "sheet-1280-orbit.png",
+      "sourcePngs": [
+        "ceb4232e44e6b132b834582f59711f03268cbba89ff389455522ef2d3a25960d",
+        "581230f5eb2451693fc28b8d563f0fc0c8bb55b726b359be635b8373079dc6ea",
+        "d634ef2e9e387cc7d905e1ca21dd41caca8db0c121bc693b12159938b7bfd421",
+        "7cb08f2e3020387781b78d01f1ca7b8e78ef6526570b45ca9c37e37013a67cd3",
+        "5bd59bcc35632f7356c76879d3c99689921c54d4d2c38e18c913a8b97008c3be",
+        "cd548fd6c9fef4e4a585fbe614f9ed84a6b89cb6c1a78b5683a84089292a90e7",
+        "49934fdda199892c701748c250ae2661f176d8ff0cf65d694a3bb344d8bbe159"
+      ],
+      "resized": false,
+      "completeImages": true,
+      "sha256": "32bd5e3679b361a83eb63309c68c8e7aa1f90e249f247523b238d6212d75ecf4"
+    },
+    {
+      "file": "sheet-1280-side.png",
+      "sourcePngs": [
+        "4055665bdfb14833bb4fcc3f9017b4f259dd4f369f35cd2bc71a873c1ac2344e",
+        "79266b1216ca076882b461079e8f144aaaf63b9be0513ce1801c5f3574d60a77",
+        "413941a177423a0a5f996a5a99fe458b7eebb55191b36d4832ceaf26b7c935bb",
+        "ec16e965989f6e5ad0651d170ca51ebdf06bb91fdb46e7387d3b25cabf857565",
+        "1ab68496940171dd226f67f6fb6eead744162957661506628d025386fc4f9fae",
+        "3b56392a736e4e48b52425c520d146f1f49165e31c70c601db3b29883c771697",
+        "fc4cf0214fafd22bcdb4fa1720033ecd17fc31534888b1462307cc2175076e98"
+      ],
+      "resized": false,
+      "completeImages": true,
+      "sha256": "3b55b7be68603aa750853677fdc34122369dd8c1830acf8f73b1b20e1f73bd0e"
+    },
+    {
+      "file": "sheet-1280-top.png",
+      "sourcePngs": [
+        "2d09b1932313f30e8f4ed2831139d4fe1d2f358203666978c5960b3847a8f04b",
+        "0cf591075af14b04149ef7f96b5df4a2a9731bbb6c5cc7ffa70e49b79a817d13",
+        "72487fb14001af9478e5c6f819efef5f102a28b1d151b50726da166d969556fe",
+        "bac656814a628aae730276e6466add89c32fe734abb76e97bd2b6476fa39fd6f",
+        "b449c1f37dd4d46993b365d6a5fb6f96db133c7e652dd277ed25796d4317ac03",
+        "c7d498470ae0b007c785e5190be8959328cddac2103b2f9774fe232db1a7c0d6",
+        "1c97b1c5a75845d5b84a54abbce923676dd1a744ab541f6d3afacc4964e6144f"
+      ],
+      "resized": false,
+      "completeImages": true,
+      "sha256": "d54cb46e7cea67e45164745f13d8e2f3255ece7e0746a6a6f16b05be88752895"
+    },
+    {
+      "file": "sheet-1280-fixed_projection.png",
+      "sourcePngs": [
+        "4c578d650690534807047133fa68327417a828c14126783d59a54c43763654ce",
+        "d6609ef3ac1702eb87b9ac5b178613fd1ab5f498633e88411a0acd86e0e82301",
+        "b59dd74a16c6f1cb18f74c2f1fbd37b156b919f1e86e043cbb793d65c06adb9c",
+        "5aae6f27c21a7743800cf69095703519239b192fd4212483c9d3988690337761",
+        "1606b556cadef1837dc87395917f4f9b22d8deb9c8cfe7ecc4d94a35f7d26e86",
+        "ad9691aa1ea4702c33befe22ec905c5068acc5604f45ad9d7637179eda1b433e",
+        "846eb3e7f056172487a0214ba21f6a381e5b3e428f664903f9d9ac44e8e46b0f",
+        "9828e86f2ad4e971e1e4b6551c824c15fea83f3c0180e1ce9547d4788971a815",
+        "08b4988b82045f6dae2b780536752277c723da810605f4a33ee502dddc0bc90a"
+      ],
+      "resized": false,
+      "completeImages": true,
+      "sha256": "21b8ab2b9095a0fb7ccb66da752c402c0549b109f6c4ccba159c1416fafead97"
+    },
+    {
+      "file": "sheet-setup-320.png",
+      "sourcePngs": [
+        "0afd80f016bc437aeaa4c1e0117e95b0fc96df63e11bd301253d5f237b54bf86",
+        "fdca8eebd53888ba77a70d8e6d375369ea229b2e46f9fc9bb21a4559dd77b2f7",
+        "2b95530fdcb84188eec62108e74e7abc3d522827b1b5a2c9c525dd2038356139",
+        "e0a7bf22d82cc1c20ef2bdcb3daa252b0b42bc430b724e975876e07dd6532625"
+      ],
+      "resized": false,
+      "completeImages": true,
+      "sha256": "5127dbaeebcd83eaf76455f02ba06bc8c208e0094e0081437b36300f42114c73"
+    },
+    {
+      "file": "sheet-setup-1280.png",
+      "sourcePngs": [
+        "a211890e370d4b0a87540f4ae8ce6baae71f391a48b387aa0f6feb55c51970e5",
+        "b588f449e142e1141d9a031bb187c45050d378350c280f246f507788a9dcfb53",
+        "f12d235ce791e501d41c5e32829d4e2f8dac7cc94850d8ed90f4e9bac17715f9",
+        "97e554289c770cd8255f569bbaf2d51c949562fedb9657e6703b8e291f14808d"
+      ],
+      "resized": false,
+      "completeImages": true,
+      "sha256": "39a5c4923705facca21b1c62de736a94f4104576a83b582203990045cfab7508"
+    }
+  ],
+  "currentRawAuthority": "Three immutable Git archive/manifest pairs; every member verified and copied verbatim.",
+  "newChrome": "NOT_RUN",
+  "activityCredit": 0
+}

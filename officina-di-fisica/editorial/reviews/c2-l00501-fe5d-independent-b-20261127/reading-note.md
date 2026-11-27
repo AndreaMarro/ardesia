@@ -1,0 +1,11 @@
+# Independent C2 L00501 FE5D reading
+
+Frozen verification planbad86f90 before current output/PNG reading, with old primary5114/SCI820f32 unchanged. Producer consumer8de7bd77/runtimefe5d2641. Three immutable Git archive/manifest authorities6e6bcbb1,1f70d18f,2741428a were read byte-for-byte; all members/PNG/report/prepared identities verified. Six real0parts cover160cases acrossboth editions andeight width/view profiles. Timeout-reported40 and oldmixed80SIGKILL excluded.
+
+All66wholePNG read in10unscaled complete sheets,12critical originals reopened individually cover8fallbacksmall-head and16native/tracer occurrences. F01 resolved: pointed tips protrude from each shaft atv1,grid0/clock3,bothwidths/editions. F02 resolved: greenv6/t0 andpurplev7/t3 tips remain visible with arrows in front oftracers. Side silhouettes canstilltouch; exact1008tip/opaquetracer raytests give0frontocclusions and8rearprojectedoverlaps. This is not a claim of physical or2Dseparation. NativeTop andfourmarginaldefaultsetups also reread within capturedscope. No new concrete residual seen.
+
+Fresh exactinstrument checks144interactions and32actualmanualreplies. Q=4v,clockdistancevt andindependently integratedvolume4vt. Volumes arederived, not readoutfields. Zero emitsnoarrows/transportsnothing;72cm repeatsa12cmtracerperiodsix times, without clockfreeze. All scalar/control/clock/question/guide/sourcecandidate fields equal oldsamecases; only224arrowprimitives movez0→.4 plusvisibleheadflag. Alltracercoordinates/radii andarrowx/y endpoints unchanged. Legend explains thatoffset andsamevelocityscale. SharedPitot edits excluded.
+
+21finalCPUtests actually0/1.104s, including typed/nonfinite andwrong-readout/clock/staleidentity/headbackslide/reverseddirection guards. Ownparameterizedverify_case/verify_dataset operate solely on existing canonical artifacts; allimportedPython inputs andoldreport snapshots are included forCI. Real20test/first21test histories andfailed64-versus66imageassumption preserved. No currentcasecollapsed to forceoldcount.
+
+No Chrome, Root edits, candidate changes, newETL, DBimport, registration, publication orhumansignoff. Currentboundedreview positive, Rootcanonicalregistrar pending. Old53bdnegativeepoch remains intact.
