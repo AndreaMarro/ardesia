@@ -48,8 +48,8 @@ EDITIONS = {
         'blocks': [
             text('Disegna due frecce opposte. La piastra emette verso l’ambiente e l’ambiente stesso irradia verso la piastra. Nel modello nero e con tutta la vista occupata da un ambiente uniforme, il flusso netto uscente è la differenza fra quei due contributi. Usa temperature assolute in kelvin e trascura gli altri canali di scambio.'),
             formula(r'j=\sigma(T^4-T_a^4),\qquad T_a=300\ \mathrm K,\qquad \sigma\simeq5{,}67\times10^{-8}\ \mathrm{W\,m^{-2}\,K^{-4}}'),
-            text('A 200 K raccogli 100⁴ = 10⁸ K⁴. Rimane 2⁴ − 3⁴ = 16 − 81 = −65. Il fattore 10⁸ cancella quello nella costante. Per moltiplicare 5,67 per 65, somma 5,67 × 60 = 340,2 e 5,67 × 5 = 28,35. Con il segno ottieni −368,55 W/m². Nella figura prevale la freccia entrante.'),
-            text('A 400 K il fattore intero diventa 4⁴ − 3⁴ = 256 − 81 = 175. Fai 5,67 × (200 − 25). Da 1.134 togli 141,75, che è un quarto di 567. Rimangono 992,25 W/m² e prevale la freccia uscente. A 300 K le due frecce hanno uguale modulo. Il flusso netto è zero benché continuino entrambi gli scambi.'),
+            text('A 200 K raccogli (100 K)⁴ = 10⁸ K⁴. Rimane 2⁴ − 3⁴ = 16 − 81 = −65. Il fattore 10⁸ cancella quello nella costante. Per moltiplicare 5,67 per 65, somma 5,67 × 60 = 340,2 e 5,67 × 5 = 28,35. Con il segno ottieni −368,55 W/m². Nel tuo disegno prevale la freccia entrante. Il banco mostra il risultato netto, anch’esso entrante.'),
+            text('A 400 K il fattore intero diventa 4⁴ − 3⁴ = 256 − 81 = 175. Fai 5,67 × (200 − 25). Da 1.134 togli 141,75, che è un quarto di 567. Rimangono 992,25 W/m² e nel tuo disegno prevale la freccia uscente. A 300 K le due frecce del tuo disegno hanno uguale modulo. Nel banco scompare la freccia del flusso netto. Entrambi gli scambi continuano.'),
             text('Per isolare la temperatura, somma Tₐ⁴ a j/σ e prendi la radice quarta positiva. Per trovare l’equilibrio basta porre j = 0. Ottieni T⁴ = Tₐ⁴ e quindi T = 300 K, senza calcolare alcuna radice numerica.'),
         ],
     },
