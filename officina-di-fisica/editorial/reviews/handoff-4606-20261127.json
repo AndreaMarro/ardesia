@@ -387,11 +387,62 @@
     },
     "C3HeatCapacityDraft264": {
       "id": "SIM-C3-L03-02",
-      "status": "ORIGINAL_NEGATIVE_DRAFT_MATH_PEER_REVIEWED_FRESH_UI_PLAN_VERIFIED",
+      "status": "CANONICAL_VALIDATOR_PASS_CURRENT_PRIVATE_DRAFT_WITH_ORIGINAL_NEGATIVE_RETAINED",
       "runner": "editorial/reviews/heat-capacity-264-independent-20261127/run-activity-ui.py",
       "plannedCases": 192,
-      "actualCasesForThisPlan": 0,
-      "activityCredit": 0
+      "actualCasesForThisPlan": 192,
+      "activityCredit": 0,
+      "privateCanonicalPreviewCases": 3,
+      "registrationCommit": "797fb93f8fb5d3aba83ee452d6b3dbad8e99e483",
+      "reportSha256": "7e60ecf918be1c6f75e3503af560f843fe6e214b0a9a2c06f19d73838c08da35",
+      "firstPassAdded": 1,
+      "repeatAdded": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    "currentIntegratedEvidenceCandidate": {
+      "branch": "review/cric-current-activity-integration",
+      "observedCommit": "6745dd13acfc1896b8fba141e801a2ce2dc38e31",
+      "runtimeSha256": "2096493ae86311ec459e012032cd1f8fe41293326cc5769d86376aa5a0b59635",
+      "registrySha256": "cc0ffecabb5b4a3952d2f09b9e2aa61d2482fcc3f0ab03739c451ce64d01a52b",
+      "registeredAcrossEvidenceEpochs": 248,
+      "open": 137,
+      "explicitlyReopened": 5,
+      "newReviewsStillOpen": 132,
+      "nextActivityId": "SIM-C1-L006-03",
+      "unifiedFullGate": "PENDING",
+      "c6SameRuntimeRenewal": "CANONICAL_VALIDATOR_PASSED_TWICE_CURRENT_ORIGINALS",
+      "waveWithdrawal": {
+        "id": "LAB3D-10",
+        "batch": "bench-fields-optics-036",
+        "peerCommit": "e52c789d44ec9942a2fb583c8fcf93dbfa452fae",
+        "evidence": "editorial/reviews/lab3d10-oscillating-zero-withdrawal-20261127/receipt.json"
+      },
+      "c1SameRuntimeReview": {
+        "actualCases": 296,
+        "terminalExit": 0,
+        "independentVisualReading": "POSITIVE_IN_FOUR_REOPENED_BOUNDED_STATES_GATE_PENDING",
+        "independentCommit": "602c7b2622f5c13a1015240857cb1826b42edf5a",
+        "manualPeerCommit": "642ca1c24dc07ca4710aef655ddc168166f3b9f3"
+      },
+      "c4MidpointReview": {
+        "actualCases": 24,
+        "peerCommit": "5d31a5da14022972bae0dec35bb262d5e4d7ab7e",
+        "scope": "SPECIFIC_ID_ONLY"
+      },
+      "benchGroupsPeer": {
+        "commit": "e52c789d44ec9942a2fb583c8fcf93dbfa452fae",
+        "mechanicsAndFluids": "5_OF_5_PASS",
+        "fieldsAndOptics": "4_OF_5_PASS_LAB3D_10_WITHDRAWN",
+        "activityCredit": 0
+      },
+      "c6RenewalReceipt": "editorial/reviews/c6-2096-existing-register-renewal-20261127.json"
+    },
+    "C2FiveManualAppendix": {
+      "file": "editorial/reviews/c2-hydraulics-five-exact-manual-20261127.md",
+      "sha256": "9ae73dfe54bd9faa10e1dac8421e4346af637e7c89d54c5b48f256125814f91d",
+      "peerCommit": "5cdd98b4c56e0d83ed7632195200f6f9c181a249",
+      "status": "ALL_FIVE_DISTINCT_MANUAL_REVIEW_PASS_NOT_REGISTRATION"
     }
   },
   "coexistence": {
@@ -501,11 +552,11 @@
     }
   },
   "nextAction": [
-    "Renew the four C1 closures beginning SIM-C1-L006-03 on the candidate chosen for integration",
-    "Continue the next 133 original C2–C5 activities by family using the independent installed model, manual task and actual browser evidence",
-    "Rerun all groups, including the six registered candidate C6 activities, on the exact integration runtime",
-    "Integrate through the ordinary canonical PR and record CI on the integrated SHA",
-    "Keep separate evidence for human approval and publication in the app"
+    "Close the four explicitly reopened C1 records beginning SIM-C1-L006-03 only after the full family passes the existing validator.",
+    "Validate the same-runtime C6 renewal and retain the six earlier verified original decisions with their old evidence.",
+    "Verify LAB3D-10 on the actual correction and repeat the full 036 group before closing the withdrawal.",
+    "Finish the remaining C2–C5 activities and reproduce the full corpus and CI on the exact canonical integration SHA.",
+    "Retain the human scientific approval queue and the publication gate as separate states."
   ],
   "composedCandidate": {
     "branch": "feat/cric-composed-runtime",
@@ -538,7 +589,7 @@
       "contractPass": 2,
       "requestCommit": "f7b4a31d783aed06ac89d35d2c09956a2f16c58f",
       "visibilityRun": 45935050054,
-      "visibilityStatusAtCheckpoint": "C2_C4_SUCCESS_C4_ARCHIVED_C3_C5_C6_LAST_OBSERVED_RUNNING",
+      "visibilityStatusAtCheckpoint": "ALL_FIVE_GITHUB_JOBS_COMPLETED_SUCCESS_C4_LOCALLY_REPLAYED",
       "C5Preflight": {
         "plannedCases": 14464,
         "originalRecords": 27,
@@ -555,7 +606,8 @@
         "observedCases": 7872,
         "technicalFailures": 0,
         "activityCredit": 0
-      }
+      },
+      "terminalMetadataReceipt": "editorial/reviews/visibility139-abb2-run45935050054-20261127/terminal-all-courses.json"
     },
     "canonicalIntegrationCandidate": {
       "branch": "feat/cric-canonical-integration-candidate",
@@ -586,7 +638,10 @@
       "previewJobId": 140297636992,
       "previewJobLogReceipt": "editorial/reviews/full-preview-45935494138-20261127/upstream-terminal-summary.json",
       "previewArtifactId": 15172917063,
-      "fullZipMarkerReplay": "PENDING_LOCAL_REPLAY"
+      "fullZipMarkerReplay": "VERIFIED_316_MARKERS_13869_CASES",
+      "previewArchiveCommit": "3016112970716a4a27adc7f621c8386eab0053a1",
+      "previewArchiveReceipt": "editorial/reviews/full-preview-45935494138-20261127/receipt.json",
+      "previewArtifactZipSha256": "975f6589ae3cf1216bdf9497f903bfbc7ddee2977b55dc2f20044628824bad69"
     },
     "newestSourceForBoundedReview": {
       "commit": "c3b03eb98cdafd706499ee64d6b3f5e356f27da8",
@@ -640,6 +695,17 @@
           ]
         }
       }
+    },
+    "waveZeroReadoutSource": {
+      "commit": "375faa7a90f5f643840aabb8cc3076f9a2d5f5de",
+      "branch": "review/cric-wave-zero-readout",
+      "runtimeSha256": "3ed5bc77d8320230b62e1c3e6ca3bdd00f240cc64ec236b10fe55a306ca79251",
+      "nodePass": 315,
+      "contractPass": 2,
+      "browserAndWholeBatchRenewal": "FOCUSED_BROWSER_PASS_WHOLE_GROUP_RUNNING",
+      "focusedPeerCommit": "b4813dab9a6f63fa79874074364c21ac38ed18bc",
+      "actualFocusedCases": 98,
+      "profiles": 14
     }
   }
 }

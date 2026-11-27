@@ -2,9 +2,11 @@
 
 import argparse
 import hashlib
+import io
 import json
 import re
 import stat
+import sys
 from pathlib import Path, PurePosixPath
 from zipfile import ZipFile
 
@@ -116,14 +118,15 @@ def evidence(archive, names, course, request, request_sha, run_id, head, protoco
     return result, summaries
 
 
-def archive_course(args):
+def archive_course(args, stream):
     require(re.fullmatch(r'[a-f0-9]{40}', args.head) is not None, 'Expected an immutable Git commit')
-    with args.zip.open('rb') as stream:
-        require(hashlib.file_digest(stream, 'sha256').hexdigest() == args.sha256, 'Upstream ZIP hash differs')
+    size = stream.seek(0, io.SEEK_END)
+    stream.seek(0)
+    require(hashlib.file_digest(stream, 'sha256').hexdigest() == args.sha256, 'Upstream ZIP hash differs')
     request_raw = args.request.read_bytes()
     request = json.loads(request_raw)
     require(request['protocolFiles'][COLLECTOR] == args.protocol_sha256, 'Collector differs from declared request')
-    with ZipFile(args.zip) as archive:
+    with ZipFile(stream) as archive:
         names = inspect_members(archive)
         request_name = '.github/cric-experiment-visibility-request.json'
         matches = [name for name in names if name == request_name or name.endswith('/' + request_name)]
@@ -134,15 +137,15 @@ def archive_course(args):
     for name, raw in summaries.items():
         (args.output / name).write_bytes(raw)
     parts = []
-    with args.zip.open('rb') as stream:
-        while payload := stream.read(PART_BYTES):
-            file = args.output / f'upstream-artifact.zip.part-{len(parts)+1:03d}'
-            file.write_bytes(payload)
-            recorded = file.read_bytes()
-            require(recorded == payload, 'Written archive part differs')
-            parts.append({'file': file.name, 'bytes': len(recorded), 'sha256': sha(recorded)})
+    stream.seek(0)
+    while payload := stream.read(PART_BYTES):
+        file = args.output / f'upstream-artifact.zip.part-{len(parts)+1:03d}'
+        file.write_bytes(payload)
+        recorded = file.read_bytes()
+        require(recorded == payload, 'Written archive part differs')
+        parts.append({'file': file.name, 'bytes': len(recorded), 'sha256': sha(recorded)})
     result.update(runId=args.run, runCommit=args.head, course=args.course, artifactId=args.artifact_id,
-                  upstreamSha256=args.sha256, upstreamBytes=args.zip.stat().st_size, upstreamMemberCount=len(names),
+                  upstreamSha256=args.sha256, upstreamBytes=size, upstreamMemberCount=len(names),
                   parts=parts, activityCredit=0, humanApproval='NOT_RUN', publicationAction='NONE')
     (args.output / 'receipt.json').write_text(json.dumps(result, indent=2) + '\n')
     print(args.course, result['terminalStatus'], result['observedCases'], 'observed cases, zero approval credit')
@@ -154,12 +157,23 @@ def main():
     parser.add_argument('--head', required=True)
     parser.add_argument('--course', choices=COURSES, required=True)
     parser.add_argument('--artifact-id', type=int, required=True)
-    parser.add_argument('--zip', type=Path, required=True)
+    source = parser.add_mutually_exclusive_group(required=True)
+    source.add_argument('--zip', type=Path)
+    source.add_argument('--stdin-bytes', type=int, metavar='UPSTREAM_BYTES')
     parser.add_argument('--sha256', required=True)
     parser.add_argument('--request', type=Path, required=True)
     parser.add_argument('--protocol-sha256', required=True)
     parser.add_argument('--output', type=Path, required=True)
-    archive_course(parser.parse_args())
+    args = parser.parse_args()
+    if args.zip:
+        with args.zip.open('rb') as stream:
+            archive_course(args, stream)
+    else:
+        require(0 < args.stdin_bytes <= 256 * 1024**2, 'Upstream ZIP exceeds the bounded stream limit')
+        raw = sys.stdin.buffer.read(args.stdin_bytes + 1)
+        require(len(raw) == args.stdin_bytes, 'Upstream ZIP size differs')
+        with io.BytesIO(raw) as stream:
+            archive_course(args, stream)
 
 
 if __name__ == '__main__':
