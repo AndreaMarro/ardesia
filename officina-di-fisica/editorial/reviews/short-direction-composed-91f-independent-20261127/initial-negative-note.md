@@ -1,0 +1,1 @@
+The first source preflight ended1 before Chrome: the independent checker incorrectly used strict reference equality for two equal measurement objects. The expectation is unchanged; it now uses deep structural equality, matching the existing canonical comparison. Raw negative logs and the original checker in eec7e2f8 are preserved. No browser result existed for that attempt.

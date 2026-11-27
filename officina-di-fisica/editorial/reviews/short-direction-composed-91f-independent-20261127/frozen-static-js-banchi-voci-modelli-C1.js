@@ -1,0 +1,263 @@
+const cos = (degrees) => Math.cos((degrees * Math.PI) / 180);
+const sin = (degrees) => Math.sin((degrees * Math.PI) / 180);
+
+export const experiments = {
+  // Notazione scientifica
+  'SIM-C1-L001-01': {
+    observe: "Fai crescere l’esponente di uno. Confronta l’apertura del calibro in micrometri e leggi l’ingrandimento indicato nel dettaglio.",
+    measure: (x) => 2 * 10 ** (x + 6),
+    apparatus: (x, y) => ({ frazione: y / 20000, scala: true }),
+  },
+  // Grandezze fisiche, dimensioni e SI
+  'SIM-C1-L001-02': {
+    observe: "Conta i cubetti lungo uno spigolo, poi in una faccia e infine nel volume. Raddoppiare lo spigolo raddoppia ciascuno dei tre fattori.",
+    measure: (x) => x ** 3,
+    apparatus: (x, y) => ({ lato: x / 5, celle: x }),
+  },
+  // Conversioni tra unità
+  'SIM-C1-L001-03': {
+    observe: "Accosta la ganascia mobile alla tacca di 10 mm. Leggi quanti centimetri separano le due ganasce.",
+    measure: (x) => x / 10,
+    apparatus: (x, y) => ({ frazione: x / 50 }),
+  },
+  // Stima di ordine di grandezza
+  'SIM-C1-L001-04': {
+    observe: "Immagina di riempire la cassa con cubi d’acqua da un metro di lato. Conta quanti ne entrano dopo aver raddoppiato il lato.",
+    measure: (x) => 1000 * x ** 3,
+    apparatus: (x, y) => ({ lato: x / 5 }),
+  },
+  // Grandezze intensive ed estensive
+  'SIM-C1-L001-05': {
+    observe: "Affianca due campioni uguali. Somma le masse, poi dividi la massa totale per il volume totale e confronta le due densità.",
+    measure: (x) => 60 * x,
+    apparatus: (x, y) => ({ numero: x }),
+  },
+  // Scalari e vettori
+  'SIM-C1-L001-06': {
+    observe: "Ruota la freccia oltre la verticale. Il modulo resta 4 m/s mentre la proiezione orizzontale passa attraverso lo zero e cambia segno.",
+    measure: (x) => 4 * cos(x),
+    apparatus: (x, y) => ({ ax: 2 * cos(x), ay: 2 * sin(x), proietta: true }),
+  },
+  // Funzioni trigonometriche elementari
+  'SIM-C1-L002-01': {
+    observe: "Segui la punta del segmento e la sua proiezione sui due assi. A zero gradi l’altezza è nulla, a novanta è tutta la lunghezza.",
+    measure: (x) => 10 * sin(x),
+    apparatus: (x, y) => ({ ax: 2.5 * cos(x), ay: 2.5 * sin(x), proietta: true, verticale: true }),
+  },
+  // Definizione, componenti e modulo dei vettori
+  'SIM-C1-L002-02': {
+    observe: "Tieni fissi i 3 m orizzontali. Aggiungi 4 m verticali e controlla sul triangolo perché la diagonale misura 5 m.",
+    measure: (x) => Math.hypot(3, x),
+    apparatus: (x, y) => ({ ax: 1, ay: x / 3, proietta: true }),
+  },
+  // Somma e differenza
+  'SIM-C1-L002-03': {
+    observe: "Porta la coda della seconda freccia sulla punta della prima. Un secondo spostamento negativo riporta la punta verso l’origine.",
+    measure: (x) => 3 + x,
+    apparatus: (x, y) => ({ ax: 1.2, ay: 0, bx: 0.4 * x, by: 0, somma: true }),
+  },
+  // Prodotto scalare e vettoriale
+  'SIM-C1-L002-04': {
+    observe: "Porta le frecce da parallele a perpendicolari. Confronta la proiezione lungo la prima con la freccia normale al loro piano.",
+    measure: (x) => 6 * cos(x),
+    apparatus: (x, y) => ({ ax: 1.5, ay: 0, bx: cos(x), by: sin(x), croce: true }),
+  },
+  // Posizione e spostamento
+  'SIM-C1-L003-01': {
+    observe: "Confronta la tacca di partenza a 2 m con il carrello. Una posizione finale positiva può corrispondere a uno spostamento negativo.",
+    measure: (x) => x - 2,
+    apparatus: (x, y) => ({ pos: x, inizio: 2, min: -2, max: 6 }),
+  },
+  // Traiettoria e legge oraria
+  'SIM-C1-L003-02': {
+    observe: "Ferma la pallina al culmine e sul ritorno. Guarda la proiezione a terra per capire come avanza anche quando smette di salire.",
+    measure: (x) => 10 * x - 5 * x * x,
+    apparatus: (x, y) => ({ t: x, vx: 3, vy: 10, g: 10 }),
+  },
+  // Velocità media e istantanea
+  'SIM-C1-L003-03': {
+    observe: "Parti dal segno di 1 s. In «Grafici e misure» la retta tratteggiata unisce le due posizioni. Accorcia l’intervallo e osserva come cambia la sua pendenza.",
+    measure: (x) => 2 + x,
+    apparatus: (x, y) => ({ pos: (1 + x) ** 2, inizio: 1, min: 0, max: 16 }),
+  },
+  // Accelerazione media e istantanea
+  'SIM-C1-L003-04': {
+    observe: "La freccia sul carrello indica la velocità. In «Grafici e misure» la retta tratteggiata unisce le due letture del tachimetro. La sua pendenza misura l’accelerazione media.",
+    measure: (x) => 2 + x,
+    apparatus: (x, y) => ({
+      pos: (1 + x) ** 3 / 3,
+      inizio: 1 / 3,
+      min: 0,
+      max: 22,
+      freccia: (1 + x) ** 2 / 12,
+    }),
+  },
+  // Moto rettilineo uniforme
+  'SIM-C1-L003-05': {
+    observe: "Osserva il carrello a un secondo di distanza tra due letture. Conta le tacche percorse e confrontale con il segno della velocità.",
+    measure: (x) => -1 + 2 * x,
+    apparatus: (x, y) => ({ pos: y, inizio: -1, min: -1, max: 9, freccia: 0.8 }),
+  },
+  // Grafici cinematici
+  'SIM-C1-L003-06': {
+    observe: "Scegli un istante prima e uno dopo 2 s. Il carrello può trovarsi nello stesso punto mentre viaggia in versi opposti.",
+    measure: (x) => (x <= 2 ? 2 * x : 8 - 2 * x),
+    apparatus: (x, y) => ({ pos: y, inizio: 0, min: 0, max: 4, freccia: x < 2 ? 0.8 : x > 2 ? -0.8 : 0 }),
+  },
+  // Moto uniformemente accelerato
+  'SIM-C1-L004-01': {
+    observe: "Confronta le distanze da fermo dopo 1 s e dopo 2 s. Guarda come cambia nel frattempo la freccia della velocità.",
+    measure: (x) => x * x,
+    apparatus: (x, y) => ({ pos: y, inizio: 0, min: 0, max: 16, freccia: x / 3 }),
+  },
+  // Caduta libera
+  'SIM-C1-L004-02': {
+    observe: "Leggi la quota della pallina in due istanti. Negli ultimi intervalli uguali di tempo la perdita di quota è maggiore.",
+    measure: (x) => 20 - 5 * x * x,
+    apparatus: (x, y) => ({ altezza: y / 20 }),
+  },
+  // Moto parabolico
+  'SIM-C1-L004-03': {
+    observe: "Cambia la velocità orizzontale e osserva due lanci dalla stessa quota. Confronta dove arrivano e quanto dura ciascun volo.",
+    measure: (x) => 2 * x,
+    apparatus: (x, y) => ({ t: 1, vx: x, vy: 10, g: 10 }),
+  },
+  // Moto circolare uniforme e accelerazione centripeta
+  'SIM-C1-L004-04': {
+    observe: "Segui un quarto di giro. La velocità ruota restando tangente, mentre l’accelerazione punta continuamente verso il perno.",
+    measure: (x) => (x * x) / 2,
+    apparatus: (x, y) => ({ r: 1.4, tangente: x / 5, radiale: y / 13 }),
+  },
+  // Sistemi inerziali e primo principio
+  'SIM-C1-L005-01': {
+    observe: "Dopo la spinta confronta il carrello con la tacca di partenza. Controlla se in secondi uguali percorre distanze uguali.",
+    measure: (x) => 1.5 * x,
+    apparatus: (x, y) => ({ pos: y, inizio: 0, min: 0, max: 7.5, freccia: 0.9 }),
+  },
+  // Equilibrio traslazionale e statico
+  'SIM-C1-L005-02': {
+    observe: "Regola la forza verso destra fino a ottenere due frecce uguali e opposte. Leggi la risultante e indica su quale corpo agiscono.",
+    measure: (x) => x - 6,
+    apparatus: (x, y) => ({ destra: x / 6, sinistra: 1 }),
+  },
+  // Secondo principio della dinamica
+  'SIM-C1-L005-03': {
+    observe: "A massa fissata raddoppia la forza risultante. Confronta il verso e la variazione della freccia dell’accelerazione.",
+    measure: (x) => x / 2,
+    apparatus: (x, y) => ({ destra: x / 5, acc: y / 3 }),
+  },
+  // Azione e reazione
+  'SIM-C1-L005-04': {
+    observe: "Individua il carrello su cui agisce ciascuna forza. Le due frecce opposte appartengono a corpi diversi.",
+    measure: (x) => -x,
+    apparatus: (x, y) => ({ intensita: x / 9 }),
+  },
+  // Forza peso e normale
+  'SIM-C1-L005-05': {
+    observe: "Inclina la guida e guarda il peso verticale e la normale perpendicolare al piano. Confronta la normale a due inclinazioni.",
+    measure: (x) => 20 * cos(x),
+    apparatus: (x, y) => ({ angolo: x, peso: 1, normale: y / 20 }),
+  },
+  // Tensione in un filo
+  'SIM-C1-L005-06': {
+    observe: "Parti da accelerazione nulla e aumenta l’accelerazione verso l’alto. Confronta la trazione verso l’alto con il peso della massa.",
+    measure: (x) => 2 * (10 + x),
+    apparatus: (x, y) => ({ altezza: 0.55, filo: true, tensione: y / 30 }),
+  },
+  // Attrito statico e dinamico
+  'SIM-C1-L006-01': {
+    observe: "Aumenta la spinta fino a 6 N e poi superali. Leggi l’attrito appena prima e appena dopo l’inizio dello scivolamento.",
+    measure: (x) => (x <= 6 ? x : 3),
+    apparatus: (x, y) => ({ destra: x / 7, sinistra: y / 7 }),
+  },
+  // Forza elastica e legge di Hooke
+  'SIM-C1-L006-02': {
+    observe: "Sposta l’estremo mobile ai due lati dell’equilibrio. La forza della molla cambia verso e punta verso la posizione di riposo.",
+    measure: (x) => -0.5 * x,
+    apparatus: (x, y) => ({ estensione: x / 5, forza: y / 2 }),
+  },
+  // Forza gravitazionale
+  'SIM-C1-L006-03': {
+    observe: "Misura la distanza fra i centri delle sfere. Se la raddoppi, osserva come cambiano le due frecce dell’attrazione.",
+    measure: (x) => 1 / x ** 2,
+    apparatus: (x, y) => ({ distanza: x / 4, forza: y }),
+  },
+  // Lavoro di una forza
+  'SIM-C1-L007-01': {
+    observe: "Ruota la forza fino a renderla perpendicolare allo spostamento. Individua la componente che contribuisce al lavoro e seguila oltre i 90°.",
+    measure: (x) => 12 * cos(x),
+    apparatus: (x, y) => ({ ax: 1.6, ay: 0, bx: 1.5 * cos(x), by: 1.5 * sin(x), prodotto: true }),
+  },
+  // Potenza media e istantanea
+  'SIM-C1-L007-02': {
+    observe: "Confronta la velocità del carrello all’inizio e più tardi. Con la stessa forza, la potenza istantanea segue la velocità.",
+    measure: (x) => 6 * x,
+    apparatus: (x, y) => ({ pos: x * x, inizio: 0, min: 0, max: 16, freccia: x / 3, dettaglioVelocita: true }),
+  },
+  // Teorema dell’energia cinetica
+  'SIM-C1-L007-03': {
+    observe: "Raddoppia la velocità finale aumentando il lavoro. Verifica sul contatore quante volte hai dovuto moltiplicare il lavoro netto.",
+    measure: (x) => Math.sqrt(x),
+    apparatus: (x, y) => ({ pos: x, inizio: 0, min: 0, max: 16, freccia: y / 3 }),
+  },
+  // Forze conservative e non conservative
+  'SIM-C1-L008-01': {
+    observe: "Segui il tragitto diretto e la deviazione tra gli stessi estremi. L’attrito compie lavoro lungo tutta la strada percorsa.",
+    measure: (x) => -2 * x,
+    apparatus: (x, y) => ({ lunghezza: x }),
+  },
+  // Energia potenziale gravitazionale ed elastica
+  'SIM-C1-L008-02': {
+    observe: "Osserva l’altezza della massa e la deformazione della molla. Distingui il contributo lineare della gravità da quello quadratico della molla.",
+    measure: (x) => 10 * x + 0.5 * x * x,
+    apparatus: (x, y) => ({ estensione: x / 10, verticale: true }),
+  },
+  // Energia meccanica e conservazione
+  'SIM-C1-L008-03': {
+    observe: "Scegli due quote della stessa discesa. Somma l’energia cinetica e quella potenziale in ciascuna posizione.",
+    measure: (x) => 10 * (5 - x),
+    apparatus: (x, y) => ({ altezza: x / 5 }),
+  },
+  // Quantità di moto e impulso
+  'SIM-C1-L009-01': {
+    observe: "Lascia agire la stessa forza per due durate. Confronta la variazione di quantità di moto con il prodotto forza per tempo.",
+    measure: (x) => 4 * x,
+    apparatus: (x, y) => ({ a: -1.8 + 0.25 * x * x, va: x / 2 }),
+  },
+  // Conservazione della quantità di moto nei sistemi isolati
+  'SIM-C1-L009-02': {
+    observe: "Confronta la velocità di A prima dell’urto con quella dei due carrelli uniti. La massa in movimento è ora doppia.",
+    measure: (x) => x / 2,
+    apparatus: (x, y) => ({ a: -0.3, b: 0.3, va: y / 2, vb: y / 2 }),
+  },
+  // Centro di massa e suo moto
+  'SIM-C1-L010-01': {
+    observe: "Localizza il centro di massa fra i carrelli da 1 e 3 kg. Segui la sua posizione mentre i due carrelli avanzano.",
+    measure: (x) => 1 + x,
+    apparatus: (x, y) => ({ a: -2 + x, b: 2 + x, centro: y, unita: 0.65, massaB: 3 }),
+  },
+  // Corpo rigido
+  'SIM-C1-L010-02': {
+    observe: "Ruota l’asta mantenendo fissa la sua lunghezza. Leggi la distanza verticale fra gli estremi rispetto alla direzione orizzontale.",
+    measure: (x) => 20 * sin(x),
+    apparatus: (x, y) => ({ angolo: x, sx: 1, dx: 1 }),
+  },
+  // Momento torcente
+  'SIM-C1-L010-03': {
+    observe: "Localizza il perno e misura la distanza perpendicolare dalla linea d’azione della forza. Cambiando quel braccio cambia il momento.",
+    measure: (x) => x / 10,
+    apparatus: (x, y) => ({ sx: 0.85, dx: x / 24, fd: 0.8 }),
+  },
+  // Equilibrio rotazionale
+  'SIM-C1-L010-04': {
+    observe: "Allontana la forza equilibrante dal perno. Confronta i prodotti forza per braccio sui due lati dell’asta.",
+    measure: (x) => 120 / x,
+    apparatus: (x, y) => ({ sx: x / 22, dx: 20 / 22, fs: y / 10, fd: 0.6 }),
+  },
+  // Leve nel corpo umano
+  'SIM-C1-L010-05': {
+    observe: "Avvicina al gomito il punto di applicazione del muscolo. Con lo stesso carico in mano aumenta la trazione necessaria all’equilibrio.",
+    measure: (x) => 300 / x,
+    apparatus: (x, y) => ({ braccio: true, dx: 1.9, sx: (x / 30) * 1.9, fs: y / 90, fd: 10 / 90 }),
+  },
+};

@@ -1,0 +1,35 @@
+node:internal/modules/run_main:122
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Values have same structure but are not reference-equal:
+
+{
+  calculation: '1 / (1²) = 1',
+  input: '1',
+  reading: '1',
+  value: 1,
+  x: 1
+}
+
+    at file:///private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/short-direction-composed-91f-independent-20261127/compare-current.mjs:22:67 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: {
+    x: 1,
+    value: 1,
+    input: '1',
+    reading: '1',
+    calculation: '1 / (1²) = 1'
+  },
+  expected: {
+    x: 1,
+    value: 1,
+    input: '1',
+    reading: '1',
+    calculation: '1 / (1²) = 1'
+  },
+  operator: 'strictEqual'
+}
+
+Node.js v22.14.0

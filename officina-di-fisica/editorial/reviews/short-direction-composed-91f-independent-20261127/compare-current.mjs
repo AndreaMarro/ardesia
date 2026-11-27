@@ -19,7 +19,7 @@ for(const course of ['C1','C4','C5']){
   const n=Math.round((source.control.max-source.control.min)/source.control.step)+1;let count=0,detailCount=0;
   for(let i=0;i<n;i++){
    const x=source.control.min+i*source.control.step;controls++;
-   assert.deepEqual(a.model.solve({x}),b.model.solve({x}));assert.equal(a.measurement(x),b.measurement(x));
+   assert.deepEqual(a.model.solve({x}),b.model.solve({x}));assert.deepEqual(a.measurement(x),b.measurement(x));
    const solution=a.model.solve({x});assert.deepEqual(a.model.graphs({x},solution),b.model.graphs({x},solution));assert.deepEqual(a.model.steps({x},solution),b.model.steps({x},solution));
    const times=[undefined];if(a.clock){const duration=a.clock.duration(x,solution.y);assert.equal(b.clock.duration(x,solution.y),duration);times.push(...[0,.25,.5,.75,1].map(f=>duration*f));}
    for(const time of times){
