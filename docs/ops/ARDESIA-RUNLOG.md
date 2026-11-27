@@ -2310,3 +2310,13 @@ Ordine di ripresa
 2. Raccogliere le cinque ricevute del nuovo replay. Confermare per ID matematica manuale, rappresentazioni e percorso studente, a partire dalle sei attività C6 con testo già rivisto.
 3. Riprodurre i gruppi 035/036, le anteprime riservate e la prova di coesistenza sul runtime d’integrazione.
 4. Validare checkpoint e PR canonica, acquisire la CI sulla SHA integrata e aggiornare l’handoff e la coda di approvazione.
+
+
+## 27 novembre 2026 — Famiglia C6 registrata sul candidato
+
+Il validatore delle attività ha accettato le sei edizioni originali C6 sulla sorgente `c3b03eb98cdafd706499ee64d6b3f5e356f27da8`, con prova indipendente `3d5d0e6c16928ae82ab4c5fdc2a58d1e944e88f7`. Il commit di registrazione è `0be84bc345eb5da07798531e203fabf907c049b5`. Il doppio passaggio aggiunge sei attività e poi zero. Il candidato riporta 248/385 attività accettate e 137 aperte, oltre a 4.606/4.606 quesiti in bozza. Le verifiche riguardano la configurazione eseguita. La pubblicazione e l’integrazione canonica restano pendenti.
+
+1. Riprendere da `SIM-C1-L006-03` e rinnovare le quattro chiusure C1 sulla sorgente effettiva d’integrazione.
+2. Portare nel registro le famiglie C2–C5 dopo le verifiche individuali in corso, preservando i risultati negativi originali e le bozze correttive.
+3. Riprodurre i sei C6 sulla versione d’integrazione, acquisire le campagne browser attive e rigenerare il checkpoint.
+4. Portare la revisione ordinaria alla SHA integrata e conservare esito CI, coda umana e pubblicazione separati.

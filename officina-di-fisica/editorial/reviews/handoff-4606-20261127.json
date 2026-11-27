@@ -297,8 +297,19 @@
         "actualSubmittedAnswers": 96,
         "sourceCommit": "c3b03eb98cdafd706499ee64d6b3f5e356f27da8",
         "runtimeSha256": "0fdcc3b04c869d75811a4e07b7b8d1d87210869d6087e12e01ee70b6c370e1d4",
-        "independentVisualDisposition": "AWAITING_FROZEN_DELIVERY",
-        "activityCredit": 0
+        "independentVisualDisposition": "SIX_BOUNDED_VISUAL_POSITIVES_REGISTERED_ON_CURRENT_CANDIDATE",
+        "activityCredit": 6,
+        "independentReviewCommit": "3d5d0e6c16928ae82ab4c5fdc2a58d1e944e88f7",
+        "verifiedIndividualVisualRecords": 6,
+        "manuallyReadImages": 48,
+        "sourceControls": 97,
+        "sourceClockSamples": 400,
+        "distinctAssignedTasks": 12,
+        "registrationCommit": "0be84bc345eb5da07798531e203fabf907c049b5",
+        "canonicalValidatorReceipt": "editorial/reviews/c6-whole-activity-candidate-20261127/actual-register.txt",
+        "scienceReportSha256": "440191454e38e9eb7d129e308e1c434001d3fe999eb34f22862d8c5ecefe82f9",
+        "repeatAdded": 0,
+        "negativeChecksRejected": 4
       }
     },
     "c1CurrentMatrix": {
@@ -345,6 +356,20 @@
       "actualBrowserCases": 0,
       "editorialBoundaryTestsPassed": 7,
       "activityCredit": 0
+    },
+    "mostAdvancedCandidate": {
+      "registered": 248,
+      "open": 137,
+      "previousStagingRegistered": 242,
+      "remainingExplicitC1": 4,
+      "remainingC2ThroughC5": 133,
+      "nextReopenedId": "SIM-C1-L006-03",
+      "branch": "review/cric-flight-gravity-annotation",
+      "commit": "0be84bc345eb5da07798531e203fabf907c049b5",
+      "statusPath": "editorial/reviews/full-corpus-work-status-20261126.json",
+      "registrySha256": "da15020895d1ffa5cb2e96462c435f20f2e2a9a8ca7fb9a2d823ab2e16f647a9",
+      "canonicalIntegration": "PENDING",
+      "finalRuntimeRecheckRequired": true
     }
   },
   "coexistence": {
@@ -454,11 +479,11 @@
     }
   },
   "nextAction": [
-    "Review the preserved C1 552 observations independently, then renew the four C1 closures beginning SIM-C1-L006-03 on the exact integration candidate",
-    "Verify all 139 C2\u2013C6 activities individually using the archived evidence, the new visibility replay and the corrected edition tasks",
-    "Validate all groups on one integration runtime and rerun final previews and coexistence",
+    "Renew the four C1 closures beginning SIM-C1-L006-03 on the candidate chosen for integration",
+    "Continue the next 133 original C2\u2013C5 activities by family using the independent installed model, manual task and actual browser evidence",
+    "Rerun all groups, including the six registered candidate C6 activities, on the exact integration runtime",
     "Integrate through the ordinary canonical PR and record CI on the integrated SHA",
-    "Keep the human approval queue and the separate app publication gate traceable"
+    "Keep separate evidence for human approval and publication in the app"
   ],
   "composedCandidate": {
     "branch": "feat/cric-composed-runtime",
