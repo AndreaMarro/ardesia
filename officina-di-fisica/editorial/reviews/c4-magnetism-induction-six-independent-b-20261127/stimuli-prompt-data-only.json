@@ -1,0 +1,151 @@
+{
+  "phase": "SIX_IDS_PROMPT_DATA_ONLY_BEFORE_BLOCKS",
+  "sourceCommit": "43083298dea4d10c37bc8940069e98ba66c464ce",
+  "rawAuthorPackageSha256": "a852b724ca591ad590e2911704bbe609ccbb2cc233e5fd03b94b7176dfd44e51",
+  "records": [
+    {
+      "id": "SIM-C4-L09-01",
+      "version": 2,
+      "baseVersion": 1,
+      "title": "Origine magnetica delle correnti ed esperimento di Oersted",
+      "data": "Il filo rettilineo è lungo rispetto alla distanza della sonda. Guarda dall’alto e applica la mano destra. Nel modello si trascura il campo terrestre; a corrente nulla il filo non seleziona una direzione.",
+      "control": {
+        "label": "Corrente verticale nel filo",
+        "unit": "A",
+        "min": -6.0,
+        "max": 6.0,
+        "step": 0.5
+      },
+      "measure": {
+        "label": "Campo tangenziale con segno",
+        "unit": "µT"
+      },
+      "transferPrompt": "Una sonda resta a 5 cm dal filo rettilineo mentre la corrente vale {x}. Quale campo tangenziale con segno legge secondo il verso indicato?",
+      "proposedPointsOnly": [
+        5,
+        -2
+      ]
+    },
+    {
+      "id": "SIM-C4-L09-03",
+      "version": 3,
+      "baseVersion": 2,
+      "title": "Moto circolare in campo magnetico uniforme",
+      "data": "La velocità iniziale è perpendicolare a un campo magnetico uniforme. La forza fornisce l’accelerazione centripeta senza compiere lavoro. Il modulo della velocità resta costante.",
+      "control": {
+        "label": "Campo magnetico",
+        "unit": "T",
+        "min": 0.5,
+        "max": 4.0,
+        "step": 0.25
+      },
+      "measure": {
+        "label": "Raggio dell’orbita",
+        "unit": "cm"
+      },
+      "transferPrompt": "In un’orbita perpendicolare al campo, mv/|q| vale 0,12 T·m. Se il campo diventa {x}, quale raggio misuri in centimetri?",
+      "proposedPointsOnly": [
+        3,
+        1
+      ]
+    },
+    {
+      "id": "SIM-C4-L10-01",
+      "version": 2,
+      "baseVersion": 1,
+      "title": "Flusso magnetico",
+      "data": "La freccia normale è perpendicolare alla superficie. Di taglio il flusso si annulla, anche se il campo rimane presente; invertendo la normale il flusso cambia segno.",
+      "control": {
+        "label": "Angolo tra campo e normale",
+        "unit": "°",
+        "min": 0.0,
+        "max": 180.0,
+        "step": 5.0
+      },
+      "measure": {
+        "label": "Flusso magnetico",
+        "unit": "mWb"
+      },
+      "transferPrompt": "Una spira di area 0,02 m² è in un campo da 0,3 T. Se la normale orientata forma {x} con il campo, quale flusso con segno ottieni in mWb?",
+      "proposedPointsOnly": [
+        120,
+        60
+      ]
+    },
+    {
+      "id": "SIM-C4-L10-02",
+      "version": 2,
+      "baseVersion": 1,
+      "title": "Forza elettromotrice indotta",
+      "data": "Sì, se il campo concatenato cambia. Qui le spire sono fisse e la normale è parallela al campo. Con il circuito aperto puoi misurare una fem senza corrente.",
+      "control": {
+        "label": "Velocità di variazione del campo",
+        "unit": "T/s",
+        "min": -4.0,
+        "max": 4.0,
+        "step": 0.5
+      },
+      "measure": {
+        "label": "Fem indotta",
+        "unit": "V"
+      },
+      "transferPrompt": "Una bobina da 10 spire di 0,05 m² è perpendicolare al campo, che varia al ritmo con segno di {x}. Quale fem compare secondo il verso orientato?",
+      "proposedPointsOnly": [
+        3,
+        -2
+      ]
+    },
+    {
+      "id": "SIM-C4-L10-03",
+      "version": 2,
+      "baseVersion": 1,
+      "title": "Legge di Faraday–Neumann–Lenz",
+      "data": "Mantieni fisso l’aumento di flusso concatenato di 2 Wb. Distribuendolo su più tempo diminuisce il modulo della fem. Il segno è riferito al verso positivo fissato dalla normale.",
+      "control": {
+        "label": "Tempo per la stessa variazione di flusso",
+        "unit": "s",
+        "min": 0.25,
+        "max": 4.0,
+        "step": 0.25
+      },
+      "measure": {
+        "label": "Fem media",
+        "unit": "V"
+      },
+      "transferPrompt": "Il flusso concatenato aumenta di 2 Wb durante {x}. Con l’orientazione della bobina fissata, quale fem media misura il voltmetro?",
+      "proposedPointsOnly": [
+        2,
+        0.5
+      ]
+    },
+    {
+      "id": "SIM-C4-L10-04",
+      "version": 2,
+      "baseVersion": 1,
+      "title": "Correnti indotte e loro verso",
+      "data": "Chiudi il circuito su 2 Ω e trascura l’autoinduzione. Invertendo la variazione si inverte la corrente. Il suo campo si oppone all’aumento oppure sostiene il campo che sta diminuendo.",
+      "control": {
+        "label": "Variazione del flusso concatenato",
+        "unit": "Wb/s",
+        "min": -6.0,
+        "max": 6.0,
+        "step": 1.0
+      },
+      "measure": {
+        "label": "Corrente indotta con segno",
+        "unit": "A"
+      },
+      "transferPrompt": "In una spira da 2 Ω il flusso concatenato varia a {x}. Quale corrente orientata prevede la legge di Lenz?",
+      "proposedPointsOnly": [
+        6,
+        -4
+      ]
+    }
+  ],
+  "excludedID": "SIM-C4-L09-02",
+  "exclusionReason": "Already independently accepted in revision263; no duplicate content review or credit. Only original prompt/data/proposed-point metadata had been exposed before hold.",
+  "mu0AuthorProvidedWithoutAnswers": "approximately4*pi*10^-7T*m/A;vacuum/air;r5cm",
+  "actualServedPointsVerification": "PENDING",
+  "Chrome": "NOT_RUN",
+  "activityCredit": 0
+}
