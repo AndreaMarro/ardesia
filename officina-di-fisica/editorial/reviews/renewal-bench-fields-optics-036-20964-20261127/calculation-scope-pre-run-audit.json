@@ -1,0 +1,151 @@
+{
+  "records": [
+    {
+      "id": "LAB3D-06",
+      "sourceVersion": 1,
+      "sourceSha256": "f547e3cd9935fc4a5c41e24b211dd5348e89208e90402af8e37564b382623b32",
+      "kind": "bench",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "SOURCE actualassessments:2*1*10/(1/2)=40W; inverseL=(1/2)*2*10/20=1/2m. Predictiondoublethicknesshalvespower forfixednonzeroDeltaT/A/k. Defaults10cm=.1m,16cm²=.0016m²,DeltaT=-60K givegradient-600K/m,flux+1200W/m²,rightwardpower48/25=1.92W. Reverseboundaries reversesign, equaltemperatureszeroanduninferableL. Studentneedsonlyfinitefractionarithmetic; instrumenthandlesarbitraryslideroutputs, notrequiredhandcomputedcontinuousPDE.",
+      "physicalAssumptions": "Homogeneousbar/sourcelessstationary1DFourierconduction,k>0constant, lateralinsulation,fixedfaceCelsiustemperatures. Temperaturedifferences1C=1K. L2..20cmpositive,A4..40cm²positive,k.5..10W/(mK),Tfaces0..100C. Zeroandreversedgradientallowed. Staticsteadyprofile/colorsarestate,notfinitepropagationtransient.",
+      "pedagogicalReview": "Prediction/computation/inverse distinguishthermalfluxdensityandtotalpower,negativegradient/positiveflowandzero-inputdegeneracy. Bothactualassessmentsindependentlysolved; L/Aunitsconvertedbeforeusingk.",
+      "sourceMandatoryTasks": [
+        {
+          "prompt": "Una parete ha k = 2 W/(m·K), A = 1 m², L = 0,5 m e ΔT = 10 K. Calcola la potenza trasferita.",
+          "unit": "W"
+        },
+        {
+          "prompt": "Un pannello di area 2 m² trasmette 20 W con ΔT = 10 K e k = 0,5 W/(m·K). Trova lo spessore.",
+          "unit": "m"
+        }
+      ],
+      "sourceAssignedTaskCount": 2,
+      "disclosure": "Previously independently read source/manual derivations reused; pre-run classification, not fresh engine/UI PASS. Arbitrary readouts are observations unless source assigns them.",
+      "ok": false,
+      "consumerUI": "NOT_RUN_CURRENT_WHOLE_COHORT",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "LAB3D-07",
+      "sourceVersion": 2,
+      "sourceSha256": "78c9bf6522ed8b0b7ea6cd801e0c2311db0d3297a764bd2a3cb5ecaeb73e30fc",
+      "kind": "bench",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "SOURCE actualassessments:9e9*(1e-9)/1²=9N/C, doublingdistance2m gives9/4=2.25N/C; midpointof+1/-1nCseparated2mgives9+9=18N/Cfrompositive tonegative. Predictionequalpositivechargesmidpointfieldsoppose/cancel;default+2/+2gives0Ebut36V. nCprefactorreducesktonumeric9; vectorCoulombderivedasminusgradientofscalarpotential. Arbitrary3Dprobecomputationsareinstrumentreadings, notstudent-requirednumericradicals. Atnonzero pointsourcecoincidencemodelwarnsundefined; q0removesourceandallowszeroatitsformerpoint.",
+      "physicalAssumptions": "Staticpointchargesvacuum,roundedworkingk9e9SI, qin-nC−4..4andcoordinates−2..2m. VectorlinearCoulombfieldsandscalarpotentialsreference0atinfinity. Probeonsupportofanynonzero sourceexcluded/warned; q0absentsource. Finitegridisopotentialandtracedfieldlinesapproximatecontours, notexactmeshgeometryorquantitativefieldline-density. Twochargescanbe coincidentawayfromprobe; sourcepointitselfwarned.",
+      "pedagogicalReview": "Predictionfield0doesnotmeanpotential0. Signedvectorcontributionsandoutward/inwarddirection, one-charge inverse-square distance check, potentialsurface/fielddirectiondistinctionandpoint-sourcewarningactuallyread. SourcesourceqversustestchargeqandnCconversionclear.",
+      "sourceMandatoryTasks": [
+        {
+          "prompt": "Una carica di +1 nC è nel vuoto. A 1 m, con k = 9 × 10⁹ N·m²/C², quanto vale il modulo del campo?",
+          "unit": "N/C"
+        },
+        {
+          "prompt": "Due cariche da +1 nC e −1 nC distano 2 m. Quanto vale il modulo del campo nel punto medio, con la stessa k?",
+          "unit": "N/C"
+        }
+      ],
+      "sourceAssignedTaskCount": 2,
+      "disclosure": "Previously independently read source/manual derivations reused; pre-run classification, not fresh engine/UI PASS. Arbitrary readouts are observations unless source assigns them.",
+      "ok": false,
+      "consumerUI": "NOT_RUN_CURRENT_WHOLE_COHORT",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "LAB3D-08",
+      "sourceVersion": 1,
+      "sourceSha256": "b161439ca8573937e25bdbf37d1dc8eac00fba1643dd49c6448d8c5900299ec2",
+      "kind": "bench",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "SOURCE actualassessments:12V/(2+4)ohm=2Acommontobothseries. Parallel6Vacross6ohm/3ohmgives1+2=3A. DefaultsparallelU6/R6,R3 givesI1=1/I2=2/I3A,branchP6/12W,sum18W=UI. Seriesdefaults6/(6+3)=2/3A, drops4/2V, power4W. U0allzeroandresistancecannotbeinferredfrom0/0; UIexplanationstatesit. Allassignedfinitefractions/manual, otherpositivecontrolsverifiedthroughKirchhoffbalances,notclaimedstudentcomputedallcases.",
+      "physicalAssumptions": "IdealDCfixedvoltage0..12V, positiveohmicR1/R2in1..20ohm,idealwires/nodes/nointernalbatteryresistance. Seriescommoncurrent,parallelsamevoltage,KCLandpowerbalance. ZeroUvalidbut0/0inverseunidentifiable. No heating-dependentRorrealbatterycapacityclaim.",
+      "pedagogicalReview": "Topologyidentifiedbeforeformulas, currentversusvoltagedistinguished, circuit/graphicsreadpluspowerbalance. GeneratorzeroexplainedratherthanpresentingR=0/0. Formalanswerssourceindependentlychecked, actualconsumerpositiveresistorsprecludenonphysicalzeroR.",
+      "sourceMandatoryTasks": [
+        {
+          "prompt": "Una pila da 12 V alimenta 2 Ω e 4 Ω in serie. Quanto vale la corrente nel primo resistore?",
+          "unit": "A"
+        },
+        {
+          "prompt": "Ora colleghi 6 Ω e 3 Ω in parallelo a 6 V. Qual è la corrente erogata dalla pila?",
+          "unit": "A"
+        }
+      ],
+      "sourceAssignedTaskCount": 2,
+      "disclosure": "Previously independently read source/manual derivations reused; pre-run classification, not fresh engine/UI PASS. Arbitrary readouts are observations unless source assigns them.",
+      "ok": false,
+      "consumerUI": "NOT_RUN_CURRENT_WHOLE_COHORT",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "LAB3D-09",
+      "sourceVersion": 1,
+      "sourceSha256": "b9cc100c57cd49cafef91871663cc424a64e0c9d290e0eecc47be6a0d37d204e",
+      "kind": "bench",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "SOURCE actualassessments:1/q=1/10-1/30=1/15percm,q15cmreal; p5/f10gives1/q=-1/10,q-10cmvirtualupright,m2. Defaults30/12 givesq20,m-2/3,screen20sharp. Positivep/fthinparaxiallensmodel. Atp=fparalleloutgoingrays,qInfinity,mnotfinite,nofinitescreen. Formulaalso independently followsintersectiony=-x/p andy=1-x/f. Instrumentarbitrarynumericreadingsnotstudent-requiredradicalevaluation. SeparateverticalscaleH.46per1cmobject/axial.06gives23/3≈7.7exaggerationexplicit.",
+      "physicalAssumptions": "Thinconvergingparaxiallens,realobjectp5..50cm,f5..25cmpositive,screen5..65cmpositive. Singularityp=fexplicit. Signedqnegativeobjectsidevirtual,noexit-sidescreen. Screenfocuscriterionabs(q-screen)<.05cmisnumericalreadouttolerance, notphysicaldepthoffieldmodel. Offviewintersectionsreadnumerically;3Dverticalscaleexplicitlyexaggerated.",
+      "pedagogicalReview": "Real/virtual/infinitebranchesallreachableandread, referenceobjectheight/scalemismatchdeclared, dashedbackprojectionsnotphysicalbackwardrays. Assessednegativeqexplainedratherthanlostabsolutevalue; actualscreencannotfocusvirtualimage.",
+      "sourceMandatoryTasks": [
+        {
+          "prompt": "Un oggetto è a 30 cm da una lente di focale 10 cm. A quale distanza dalla lente si forma l’immagine?",
+          "unit": "cm"
+        },
+        {
+          "prompt": "Sposti l’oggetto a 5 cm dalla stessa lente di focale 10 cm. Quanto vale la distanza con segno q?",
+          "unit": "cm"
+        }
+      ],
+      "sourceAssignedTaskCount": 2,
+      "disclosure": "Previously independently read source/manual derivations reused; pre-run classification, not fresh engine/UI PASS. Arbitrary readouts are observations unless source assigns them.",
+      "ok": false,
+      "consumerUI": "NOT_RUN_CURRENT_WHOLE_COHORT",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "LAB3D-10",
+      "sourceVersion": 1,
+      "sourceSha256": "04b00398505e2ffac6cca0c83dff5ef45286e1a518578dbc3ad7a488102330c0",
+      "kind": "bench",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "SOURCE actualassessments:equalinphase2mm+2mmgives4mm;equalpathsplus180degreesgivescosphaseanditsnegativealltimes,0mm. CONSUMER adds2actualtasks:instant+1.5-.5=+1mm; distances.6/.9difference.3m=halfLambda.6givesrelativephasepiand0mmforequalamplitudes. Exactphasorquadraturesprove2A|cos(DeltaPhi/2)|; instantaneoussumisnotamplitude. Instrumentdefaultc.6,f1 giveslambda.6m, nothandcalculationofeverycosvalue. Nodex0/phase180verifiedatmultipleactualclockinstants. Coherentprogressivescalartransversewavesconstant2mmcontributioninobservedzoneareexplicitassignedidealization,notgeometricspreadingorfullwaterhydrodynamics.",
+      "physicalAssumptions": "Coherentsteadysinusoidalscalarwaves,equal2mm amplitudes/c.6m/sconstantinobservedzone,linearpointwisesuperposition. f.5..2Hz,d.2..1.6m,relativephase−180..180degrees,probe x−1.2..1.2/z−.8...8m; noenergyattenuationclaim. Crestsnotcausalturnonfronts, phaseconventionkr−omegat+phi. Graphs/displayfloatingpoint; near-exactnodesnumericallyzeroedat16epsilon, nothandcomputednewprecision.",
+      "pedagogicalReview": "Actualpilotguida/ragionamento/fourmathdrawingsandtwoaddedassessmenttasksread,notjustsourceJSON. Separatesinstantaneoussignedsum/envelope, propagationphase/sourcephaseandnodealltimes. Allrequestednumeric tasksaremanualfinitearithmetic; consumersimtrigreadingsnotextraassignedcalculatorwork.",
+      "sourceMandatoryTasks": [
+        {
+          "prompt": "Due onde hanno ciascuna ampiezza 2 mm. Si incontrano in fase. Quanto vale l’ampiezza risultante?",
+          "unit": "mm"
+        },
+        {
+          "prompt": "Alla stessa distanza da due sorgenti uguali introduci uno sfasamento di 180°. Qual è l’ampiezza alla sonda?",
+          "unit": "mm"
+        }
+      ],
+      "sourceAssignedTaskCount": 2,
+      "disclosure": "Previously independently read source/manual derivations reused; pre-run classification, not fresh engine/UI PASS. Arbitrary readouts are observations unless source assigns them.",
+      "ok": false,
+      "consumerUI": "NOT_RUN_CURRENT_WHOLE_COHORT",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "runtimeSha256": "2096493ae86311ec459e012032cd1f8fe41293326cc5769d86376aa5a0b59635",
+  "requiredCanonicalCalculationScopeOnEveryFreshResult": true,
+  "legacy036MissingScopeRemainsFrozenAndNotAdmissionReady": true,
+  "plan": {
+    "baseCases": 40,
+    "boundaryCases": 108,
+    "actualClockObservationCount": 56,
+    "installedNodeCasesPerFreshReport": 1045
+  },
+  "freshScienceAndUi": "PENDING",
+  "activityCredit": 0,
+  "runtimeSourceCommit": "3d060603540c981bf641f776ca65fd3ef76106c3"
+}
