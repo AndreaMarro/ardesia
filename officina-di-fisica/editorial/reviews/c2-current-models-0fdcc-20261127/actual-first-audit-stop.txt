@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/private/tmp/cric-flight-gravity-annotation-20261127/officina-di-fisica/editorial/reviews/replay-c4-c6-current-models-20261127.py", line 167, in <module>
+    main()
+    ~~~~^^
+  File "/private/tmp/cric-flight-gravity-annotation-20261127/officina-di-fisica/editorial/reviews/replay-c4-c6-current-models-20261127.py", line 157, in main
+    courses['C2'] = review_c2(app, output, args.compress_raw)
+                    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/cric-flight-gravity-annotation-20261127/officina-di-fisica/editorial/reviews/replay-c4-c6-current-models-20261127.py", line 117, in review_c2
+    save_group('pressure-hydrostatics', canonical(measurements).encode(), first, pressure.independent_checks(), pressure)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/cric-flight-gravity-annotation-20261127/officina-di-fisica/editorial/reviews/replay-c4-c6-current-models-20261127.py", line 89, in save_group
+    raise ValueError('C2 independent math failed: ' + label)
+ValueError: C2 independent math failed: pressure-hydrostatics
