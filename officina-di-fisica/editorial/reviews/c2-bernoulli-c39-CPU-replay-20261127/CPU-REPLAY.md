@@ -1,0 +1,9 @@
+# Replay CPU distinto sul consumer corretto
+
+Fonte autore cbf7792f872caf575d58acd28cc7ace1ada14169, runtime reale c39f7cdf31e4443059614bac79e7e27c6399c1cfc6fe3dcd1bfdb6b9c3db027e, checkout Root in sola lettura. Il modulo C2 cambia soltanto v₁ grafico0,65→2/3 in L006-03. Gli altri due delta di apparato del ramo riguardano flag di visibilità L005-03 e L005-05, non le misure.
+
+Le due regressioni negative dell’epoca7c sono state copiate byte per byte in un namespace CPU temporaneo con il modulo autentico Gitcbf e l’import relativo originale; nessuna asserzione riscritta e nessun file Root modificato. Ora entrambe PASS, exit0. Il rapporto delle velocità grafiche è2,1,1/2 rispettivamente adareaRatio1/2,1,2; adarea1 le colonne sono identiche. Il JSON conserva endpoint Double reali: sottrarre coordinate con origini diverse può differire di un ultimo bit, senza il precedente scarto fisico40/39. Non viene introdotta alcuna tolleranza nel grader.
+
+Confronto separato su41originali C2:555ingressi, misure/readings/grafici e domande esattamente uguali; anche il sorgente di ogni funzione measure è identico.527scene degli altri38ID identiche allo stage2. I tre ID con deltaautoriale sono esplicitamente esclusi da questa uguaglianza geometrica. Tutte8risposte delle quattro nuove bozze93ee sono ricompilate sul consumer nuovo e restano identiche. È parità tecnica dei modelli invariati, oltre alla risoluzione scientifica indipendente già fissata nel report originale; non nuova review globale di tutte41attività.
+
+La ricevuta registra fingerprint nuovo prima/dopo uguale. Nessun Chrome, raster, approvazione umana, pubblicazione o credito. La correzione della scala passa il suo scope CPU; i limiti visivi Pitot e la nuovaepoca UI restano pendenti. Il vecchio report con2RED/exit1 non viene modificato o ritaggato.

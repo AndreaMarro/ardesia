@@ -1,0 +1,102 @@
+{
+  "phase": "LIMITED_PREPARATION_ONLY_NO_CHROME",
+  "runtimeCandidateCommit": "cbf7792f872caf575d58acd28cc7ace1ada14169",
+  "runtimeSha256": "c39f7cdf31e4443059614bac79e7e27c6399c1cfc6fe3dcd1bfdb6b9c3db027e",
+  "candidateApp": "/private/tmp/cric-continuity-arrow-author-20261127/officina-di-fisica",
+  "draftCandidateCommit": "93ee5b5acf91de1030dbeb33f962252acb9ba34f",
+  "draftPackages": [
+    {
+      "sourcePath": "officina-di-fisica/editorial/batches/experiment-c2-bernoulli-reading-20261127.json",
+      "fileSha256": "dc476c2b377915352543b3a8359bbc69f22ebf3404fefd0f016ea08731561dc0",
+      "bindingsSha256": "ecf37117466328f32baea390d96d9493c4bd4ee6408e2513ba6fc5868f869e45"
+    }
+  ],
+  "collectorSha256": "719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15",
+  "profiles": [
+    {
+      "width": 320,
+      "fallback": false,
+      "view": "orbit"
+    },
+    {
+      "width": 320,
+      "fallback": false,
+      "view": "side"
+    },
+    {
+      "width": 320,
+      "fallback": false,
+      "view": "top"
+    },
+    {
+      "width": 320,
+      "fallback": true,
+      "view": "fixed_projection"
+    },
+    {
+      "width": 1280,
+      "fallback": false,
+      "view": "orbit"
+    },
+    {
+      "width": 1280,
+      "fallback": false,
+      "view": "side"
+    },
+    {
+      "width": 1280,
+      "fallback": false,
+      "view": "top"
+    },
+    {
+      "width": 1280,
+      "fallback": true,
+      "view": "fixed_projection"
+    }
+  ],
+  "BernoulliDraftCases": {
+    "setupAndTwoAssignedEach": 96,
+    "supplementalAreaRatio1L00603": 8,
+    "supplementalPitot0and5": 16,
+    "total": 120
+  },
+  "optionalAdjacentConsumerCases": [
+    {
+      "id": "SIM-C2-L005-03",
+      "variant": "published_original",
+      "inputs": [
+        6,
+        5,
+        8
+      ],
+      "reason": "Actualsourcequestions andwidestsectionshortdirectioncue;drafttextnotreviewedhere",
+      "setupAndStateCases": 32
+    },
+    {
+      "id": "SIM-C2-L005-05",
+      "variant": "published_original",
+      "inputs": [
+        0,
+        1,
+        11,
+        12
+      ],
+      "reason": "Bothzeroendpoints andsmallnonzerobranches1/11;drafttextnotreviewedhere",
+      "setupAndStateCases": 40
+    }
+  ],
+  "maximumPlannedCases": 192,
+  "requiredPrelaunch": [
+    "FreshruntimeSHAexactmatch;noold7cretag",
+    "Exactpackage/bindinginputset+fileSHA;wholefullrecordcanonicalauthorityandnormalizedownerJSONpins",
+    "OnlycanonicalimportinephemeralSQLite,ownerfetchfullrecordandprivatefixture;guestsourceunchanged",
+    "No numeric tolerance changes;sourceconsumerparityseparatefromindependentmath",
+    "Sharedflock,free>=2GiB,oneChrome,boundedtimeoutandactualterminalreceipt",
+    "RecordPitot/fullglyph/labels/camera/nativeandfallback;zeromustremainzero"
+  ],
+  "launchAllowed": false,
+  "blockedUntil": "Parentnextmessage;C4activeandnoChromeauthorized",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
