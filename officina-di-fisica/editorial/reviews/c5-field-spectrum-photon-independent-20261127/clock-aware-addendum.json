@@ -1,0 +1,79 @@
+{
+  "phase": "ADDITIVE_CLOCK_AWARE_PREPARATION_NOT_UI",
+  "priorCPUHandoffSha256": "8cc19cb8fcbb2c80c6a8948cb07eaf8edca5c062cb74bacacce335f3c1490b0e",
+  "priorPreparation": "prepare-bounded120.py rejects unproven no-clock assumption; actual refusal rerun preserved verbatim. CPU/source/scientific result was never an actual UI claim.",
+  "clockModels": {
+    "rows": [
+      {
+        "id": "SIM-C5-L06-02",
+        "x": 4,
+        "period": 10,
+        "unit": "ns",
+        "duration": 20,
+        "phaseAtQuarter": {
+          "fase": 1.5707963267948966
+        },
+        "signalAtQuarter": 4,
+        "zeroSignal": 0
+      },
+      {
+        "id": "SIM-C5-L06-02",
+        "x": 3,
+        "period": 10,
+        "unit": "ns",
+        "duration": 20,
+        "phaseAtQuarter": {
+          "fase": 1.5707963267948966
+        },
+        "signalAtQuarter": 3,
+        "zeroSignal": 0
+      },
+      {
+        "id": "SIM-C5-L07-01",
+        "x": 250,
+        "period": 4,
+        "unit": "fs",
+        "duration": 8,
+        "phaseAtQuarter": {
+          "fase": 1.5707963267948966
+        },
+        "signalAtQuarter": 1,
+        "zeroSignal": 0
+      },
+      {
+        "id": "SIM-C5-L07-01",
+        "x": 500,
+        "period": 2,
+        "unit": "fs",
+        "duration": 4,
+        "phaseAtQuarter": {
+          "fase": 1.5707963267948966
+        },
+        "signalAtQuarter": 1,
+        "zeroSignal": 0
+      }
+    ],
+    "scope": "CPU_PERIOD_AND_STANDARD_QUARTER_PHASE_ONLY_NOT_ACTUAL_CLOCK_UI",
+    "productUI": "NOT_RUN",
+    "activityCredit": 0
+  },
+  "independentDerivations": [
+    "At100MHz, T=1/f=1e-8s=10ns. Both4/3V/m amplitudes retain period10ns; simulation20ns covers2T. Quarter period2.5ns gives E4/3V/m and zero-time signal0.",
+    "For f inTHz, T_fs=1e15/(f*1e12)=1000/f. At250/500THz periods4/2fs; durations8/4fs. Phase=2pi*fTHz*tfs/1000, quarter phasepi/2 and normalized field1. These are field animation values, not photon-energy changes."
+  ],
+  "preparedBrowserPlan": {
+    "path": "bounded-120-clock-aware/prepared.json",
+    "sha256": "f9b8241f17a5f386399e1343fd43057e2ddc54bf30e009ee6768cec553589f30",
+    "cases": 120,
+    "hasClockIDs": [
+      "SIM-C5-L06-02",
+      "SIM-C5-L07-01"
+    ],
+    "requestedClockState": "Zero explicitly reset and checked at each selected grid point by unchanged719 collector.",
+    "clockSweep": "NOT_INCLUDED_NOT_CLAIMED",
+    "productUI": "NOT_RUN"
+  },
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

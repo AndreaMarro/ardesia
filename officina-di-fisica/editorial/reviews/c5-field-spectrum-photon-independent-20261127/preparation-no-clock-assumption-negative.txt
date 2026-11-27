@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-review-c2-resume-20261127/officina-di-fisica/editorial/reviews/c5-field-spectrum-photon-independent-20261127/prepare-bounded120.py", line 9, in <module>
+    profiles=[{'width':w,'fallback':fallback,'view':view}for w in[320,1280]for fallback,view in[(False,'orbit'),(False,'side'),(False,'top'),(True,'fixed_projection')]];assert not any(r['hasClock']for r in records)
+                                                                                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

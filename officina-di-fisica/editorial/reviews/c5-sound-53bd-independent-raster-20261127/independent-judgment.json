@@ -1,0 +1,131 @@
+{
+  "reviewerRole": "AI_INDEPENDENT_REVIEW_OF_ROOT_AUTHORED_CORRECTION",
+  "id": "SIM-C5-L05-01",
+  "variant": "draft",
+  "runtimeCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+  "runtimeSha256": "53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a",
+  "rootRawCommitReported": "296e98ff",
+  "sourceReportSha256": "a1d7acf690aefd12f524a06e46900ee64f2b788e996c62d7e9e351088628516f",
+  "sourceTechnicalStatus": "ALL_PLANNED_CASES_OBSERVED_REVIEW_NOT_GRANTED",
+  "sourceProducerTerminal": {
+    "observedExitCode": 0,
+    "seconds": 23.083754833000057,
+    "startingFreeBytes": 15326511104,
+    "timeoutTriggered": false
+  },
+  "newBrowserStartedByReviewer": false,
+  "actualRasterReading": {
+    "contactSheets": [
+      {
+        "file": "contact-320-orbit.png",
+        "sha256": "9db16f843ba4432af259167155c867f427e2d81736c45ab394b9e025254cb319",
+        "cases": 8
+      },
+      {
+        "file": "contact-320-side.png",
+        "sha256": "303f1b61eb2fcd6d8f906bfc428abacb4348cab7db206ab7f824e02c3928d36b",
+        "cases": 8
+      },
+      {
+        "file": "contact-320-top.png",
+        "sha256": "a14dd3793d18c31d743660234f28d1b5ea0c942d5997cb7d54767d83bfb07984",
+        "cases": 8
+      },
+      {
+        "file": "contact-320-fixed_projection.png",
+        "sha256": "9abdc0296c6b97c8c08f44a2736460a88194ba51452a0937daf1b017f0fb529a",
+        "cases": 8
+      },
+      {
+        "file": "contact-1280-orbit.png",
+        "sha256": "0eef32d1f1857462b6698232215c060ad04092965538d83aa09e8880b3283bd7",
+        "cases": 8
+      },
+      {
+        "file": "contact-1280-side.png",
+        "sha256": "c53983f3e3a5a284a7c44a107786b7d22b88849c87e0a9a16a8c753c2efbd343",
+        "cases": 8
+      },
+      {
+        "file": "contact-1280-top.png",
+        "sha256": "90acc84b5c0f5b29a80b86625320a5bf7854a7410f60f91b7e306b93a2a320a9",
+        "cases": 8
+      },
+      {
+        "file": "contact-1280-fixed_projection.png",
+        "sha256": "515ee35fb0cdf4f0a39f15776d188944fbf43f7e491d708bc84674b99f5ef25e",
+        "cases": 8
+      }
+    ],
+    "all64CellsRead": true,
+    "nativeSizeOriginalPNGsActuallyOpened": [
+      "f0854d79ae8fa450da19f030925fbbb60822eacedf1b224c6455e0842d52b6c8",
+      "1146cf430869682d8510e66829c80aa5e8c60127804b980fad67be2218d9f08d",
+      "306b6d250156de81c424c585c52a0dd7d77aa7bcf6bdd2adbe626011b82c99d8",
+      "280cad3e9fff33cdd151c307a367ea07d4121f3226dceb9477e6a009ba2a6f29",
+      "0171f6b33fc1674dfb368176ad134ddf2d897b745c17fbc932dec1c72bfc1746",
+      "70ccefbff1e5e92098a25fb69d70f5b4b250b5a8c7619eab8b4e522297130861",
+      "6ea5120c2dbd863c1ddbac873ee0108b16b4d02a2a9f56746f805b761d7aa19a"
+    ]
+  },
+  "positiveObservations": [
+    "Native Top1280 steel t0/15/30 complete wavefront circumferences are contained in acquired viewport; circles may extend beyond the illustrative table but are not viewport-clipped.",
+    "The source ochre sphere, receiver and moving violet signal are identified by displayed HTML legend; old opaque source/receiver names absent in selected actual frames.",
+    "Native orbit1280t30 shows violet signal in front of receiver.",
+    "Atsteel15ms marker is halfway along source-receiver separation; at30ms marker reaches receiver, consistent with150m/(5000m/s)=0.03s=30ms.",
+    "Water50ms marker halfway; water150m/(1500m/s)=0.1s=100ms; air441.2ms is rounded observable, not one of this peer new manual tasks."
+  ],
+  "finding": {
+    "code": "FALLBACK_ARRIVAL_SIGNAL_DISK_PARTIALLY_PAINTED_OVER_BY_RECEIVER",
+    "severity": "P2",
+    "scope": "Two actual acquired fixed-projection frames at320/1280, steel30ms. Not an entire-sphere occlusion claim and not inferred as a native failure.",
+    "proof": [
+      {
+        "caseKey": "SIM-C5-L05-01|draft|320|fixed_projection|clock|2",
+        "caseFile": "negative-steel-320-fallback-t30.json",
+        "PNGFile": "6ea5120c2dbd863c1ddbac873ee0108b16b4d02a2a9f56746f805b761d7aa19a.png",
+        "PNGsha256": "6ea5120c2dbd863c1ddbac873ee0108b16b4d02a2a9f56746f805b761d7aa19a",
+        "svgCircle": {
+          "cx": 351.25,
+          "cy": 120.25,
+          "r": 4.62
+        },
+        "occludingLaterOpaquePolygon": {
+          "minX": 345.49,
+          "maxX": 352.21000000000004,
+          "minY": 100.56,
+          "maxY": 151.6
+        },
+        "circleBeforePolygon": true,
+        "fillOnlyCoveredAreaFraction": 0.6313264099348942
+      },
+      {
+        "caseKey": "SIM-C5-L05-01|draft|1280|fixed_projection|clock|2",
+        "caseFile": "negative-steel-1280-fallback-t30.json",
+        "PNGFile": "0171f6b33fc1674dfb368176ad134ddf2d897b745c17fbc932dec1c72bfc1746.png",
+        "PNGsha256": "0171f6b33fc1674dfb368176ad134ddf2d897b745c17fbc932dec1c72bfc1746",
+        "svgCircle": {
+          "cx": 351.25,
+          "cy": 120.25,
+          "r": 4.62
+        },
+        "occludingLaterOpaquePolygon": {
+          "minX": 345.49,
+          "maxX": 352.21000000000004,
+          "minY": 100.56,
+          "maxY": 151.6
+        },
+        "circleBeforePolygon": true,
+        "fillOnlyCoveredAreaFraction": 0.6313264099348942
+      }
+    ],
+    "cause": "SVG painter order draws the receiver opaque polygon after the violet signal circle. The entire circle vertical range lies inside the receiver rectangle; rectangle covers63.13%of disk fill area, excluding its stroke.",
+    "scientificValuesOrManualTaskFault": false
+  },
+  "boundedVisualDecision": "FAIL_RESIDUAL_AT_RECEIVER_FALLBACK_T30",
+  "overallActivityAcceptance": false,
+  "DopplerL05_03": "NOT_REVIEWED_BY_THIS_REPORT",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
