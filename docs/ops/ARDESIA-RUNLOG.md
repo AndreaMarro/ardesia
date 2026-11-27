@@ -2296,3 +2296,17 @@ L’audit lettori sul runtime `748b31de…` ha misurato 358 casi su 179 attivit�
 Il branch canonico remoto è `officina-di-fisica` a `7c29ccc18ad3b42ceecfca509ef57f786bd2c496`. La nuova CI finale e la nuova integrazione canonica restano da eseguire. Approvazioni umane e nuove pubblicazioni nell’app sono entrambe zero. I 93 quesiti d’esame restano protetti nell’app. Le 100 revisioni Pro non sono state identificate. I 199 controlli tecnici recuperati conservano il loro stato separato.
 
 Per riprendere, verificare il registro e i manifesti per ID, partire da `C6-AQ01` dopo la verifica distinta, completare la correzione e il collaudo di tutti i lettori sul runtime effettivo, poi eseguire la campagna interattiva e rinnovare il checkpoint. Il passaggio al canone richiede la PR ordinaria e la CI sulla SHA integrata. Il prossimo handoff deve riportare gli esiti effettivi e ogni residuo.
+
+
+## 27 novembre 2026 — Anteprime complete e ripresa della verifica delle attività
+
+Il registro di lavoro conta 4.606 quesiti in bozza, 242 attività accettate e 143 aperte. Il prossimo ID è `SIM-C1-L006-03`. Il ramo canonico osservato è `7c29ccc18ad3b42ceecfca509ef57f786bd2c496`. L’integrazione del corpus completo, la CI sulla sua SHA, l’approvazione umana e la pubblicazione restano pendenti.
+
+L’esecuzione 45929961994 ha superato 316 lotti e 13.869 casi reali sullo specifico candidato del lettore. Le prove originali con checksum sono nel commit `e12c9591db3a7e7b385d01b83efb2f04b16684eb`. L’archivio è stato ricostruito dai blob Git e confrontato con lo ZIP originale prima di liberare la copia di lavoro. Il replay interattivo 45932692932 si è fermato prima del browser per i checksum del pacchetto 263. Il ripristino di pacchetto e binding è confermato nel preflight C5. Il nuovo replay 45935050054 usa il commit `f7b4a31d783aed06ac89d35d2c09956a2f16c58f`, che punta alla sorgente di collaudo `0184b146513e024d99ce8391fb0a5f4892f79e7e`.
+
+Ordine di ripresa
+
+1. Completare il controllo visivo indipendente C1 e chiudere i quattro ritiri sul candidato integrabile, partendo da `SIM-C1-L006-03`.
+2. Raccogliere le cinque ricevute del nuovo replay. Confermare per ID matematica manuale, rappresentazioni e percorso studente, a partire dalle sei attività C6 con testo già rivisto.
+3. Riprodurre i gruppi 035/036, le anteprime riservate e la prova di coesistenza sul runtime d’integrazione.
+4. Validare checkpoint e PR canonica, acquisire la CI sulla SHA integrata e aggiornare l’handoff e la coda di approvazione.

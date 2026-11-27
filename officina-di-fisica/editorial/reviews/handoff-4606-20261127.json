@@ -31,7 +31,13 @@
       "requiringNewBrowserProof": 240,
       "validatedBatch": "cric-c1-l006",
       "validatedCommit": "3668b784a6828de594b0ddb00c669e93b41a0859",
-      "existingMaterializedDraftHandling": "NATIVE_NEW_EDITION_REQUIRED"
+      "existingMaterializedDraftHandling": "NATIVE_NEW_EDITION_REQUIRED",
+      "composedBrowserProof": {
+        "verifiedAllPackages": true,
+        "runId": 45929961994,
+        "inputCommit": "728474c72f069e87ab8528549bb31f172ed5608a",
+        "requiresExactRuntimeIntegrationCheck": true
+      }
     }
   },
   "otherActivities": {
@@ -169,7 +175,54 @@
       ],
       "requiresRenewalOnFinalRuntime": true
     },
-    "pendingManualAppendixC6": "editorial/reviews/c6-activities-exact-manual-solution-20261127.json"
+    "heatCapacityPrivateDraft": {
+      "id": "SIM-C3-L03-02",
+      "ownerBrowserCommit": "4d521169615c3c488487fc5ca4e551c909009f02",
+      "ownerBrowserReceiptSha256": "fe126203b855bfc9038850da9e4120e677bd9a81a25d6138c07e17bcc0dc3ad1",
+      "cases": 3,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    "c6ManualAppendix": {
+      "path": "editorial/reviews/c6-activities-exact-manual-solution-20261127.json",
+      "sha256": "f1d725a31caba4a205c57fcd5ca4efa05cd88e55c5750b751e6e1dff71eef63d",
+      "verifiedTextAndMathIds": 6,
+      "actualAssignedTasks": 12,
+      "overallUiAcceptance": "PENDING"
+    },
+    "perIdTechnicalIndex": {
+      "path": "editorial/reviews/visibility139-cb9-run45917299096-20261127/per-id-evidence-index.json",
+      "sha256": "a0266d6d10c94b8413b0ffdfb72082de2f4baccf6eb42873b35560acdb2c37df",
+      "ids": 139,
+      "scientificActivityCredit": 0
+    },
+    "composedC1BoundedRead": {
+      "receipt": "editorial/reviews/c1-foundation-work-composed-552-20261127/receipt.json",
+      "actualCases": 552,
+      "uniqueScreenshots": 530,
+      "independentVisualReview": "PENDING",
+      "activityCredit": 0,
+      "nextReopenedId": "SIM-C1-L006-03"
+    },
+    "c2IndependentSixOutletsAndPitot": {
+      "commit": "c8f1d20af2c336bc2d1bfe03f018bdf8ecb68dd8",
+      "actualCases": 74,
+      "sourceCommit": "03f9634d7d6a8dcfe9161990c4d5dbc62e3773f5",
+      "activityCredit": 0
+    },
+    "c4C5ScopedVisualReview": {
+      "commit": "dc5521e389e0175509d7ab4cfbfd08cb3ff684cd",
+      "actualCases": 54,
+      "previousCoulombFallbackUnreadableSubcases": 9,
+      "correctionCandidate": "0184b146513e024d99ce8391fb0a5f4892f79e7e",
+      "activityCredit": 0
+    },
+    "benchConsumerFollowup": {
+      "previousNegativeCommit": "cac719403c2b59a9e837d8f3474a515217b869d5",
+      "testedCandidate": "0184b146513e024d99ce8391fb0a5f4892f79e7e",
+      "pending": "Signed evidence and complete cohorts 035 and 036",
+      "activityCredit": 0
+    }
   },
   "coexistence": {
     "commit": "9c0eb3f59945321d4409d47485d9c92714d86775",
@@ -179,7 +232,19 @@
     "repeatSaved": 0,
     "publishedPayloadsPreserved": 991,
     "preexistingAttemptsAndPinnedItemsPreserved": 3,
-    "receipt": "editorial/reviews/registry4606-history-fixture-20261127/receipt.json"
+    "receipt": "editorial/reviews/registry4606-history-fixture-20261127/receipt.json",
+    "composedProof": {
+      "commit": "e3f4f6e09f3dea4246127ebabf47811e0baad6c7",
+      "path": "editorial/reviews/cric-composed-coexistence-20261127/receipt.json",
+      "receiptSha256": "da10d2e6dcd14b7ba3839755fd187bb76947c4a32833dd3a39a1f03d0b15ffb4",
+      "testedSourceCommit": "728474c72f069e87ab8528549bb31f172ed5608a",
+      "runtimeSha256": "62a266d24545e83f48b3c812ab885881795c13de5276b1ebc080f6443a2763dd",
+      "drafts": 4628,
+      "packages": 317,
+      "secondImportSaved": 0,
+      "oldAttemptsPreserved": 3,
+      "adaptivityQuestionRecords": 4611
+    }
   },
   "canonicalIntegration": "PENDING",
   "finalCIOnCanonicalSHA": "PENDING",
@@ -223,13 +288,39 @@
       "archiveCommit": "573a3eeb48b1a58c6b05524bb514f40f1165dce7",
       "actualCases": 45576,
       "summarySha256": "a246931d816c3d2a0975ea82bca6b3b470b118550f31cc48a58e7f22e3dd4d6a"
+    },
+    "completePrivatePreview": {
+      "id": 45929961994,
+      "inputCommit": "728474c72f069e87ab8528549bb31f172ed5608a",
+      "status": "SUCCESS",
+      "verifiedPositiveMarkers": 316,
+      "actualBrowserCases": 13869,
+      "registrySha256": "05c71babe91b61c292cf9175552944b785ddb216cd8909cace6296f265ecd213",
+      "runtimeSha256": "62a266d24545e83f48b3c812ab885881795c13de5276b1ebc080f6443a2763dd",
+      "archiveCommit": "e12c9591db3a7e7b385d01b83efb2f04b16684eb",
+      "receipt": "editorial/reviews/full-preview-45929961994-20261127/receipt.json",
+      "receiptSha256": "c456440a15d3e3fbf872e6be45343ccfd1cc07013d2af77f29de10dc92ee7555",
+      "upstreamZipSha256": "431c9d0581da6fb9203ed2f2ff4296d45cb6cf1be753878adb547ad6d4a9bca5",
+      "activityCredit": 0
+    },
+    "composedVisibilityFailedBeforeBrowser": {
+      "id": 45932692932,
+      "status": "FAILED_BEFORE_BROWSER",
+      "actualBrowserCases": 0,
+      "failedJobs": 5,
+      "failure": "Draft input changed",
+      "inputCommit": "2872a3151190788f1dda517dd4900ac18d0309ef",
+      "archiveCommit": "b689bf3a8e4a66c09a0f2c4da12f6cc7cfab248a",
+      "receipt": "editorial/reviews/cric-visibility-draft-pin-failure-45932692932-20261127/receipt.json",
+      "draftBytesRestoredCommit": "ab4f9dbc204343be7731257e1e33f616f0c55afc"
     }
   },
   "nextAction": [
-    "Use five verified upstream archives to complete the individual visual assessments and verify the targeted corrections",
-    "Close the four remaining C1 force/work reopenings beginning SIM-C1-L006-03, and the 139 C2–C6 activities",
-    "Validate all groups on the exact integration runtime and rerun final previews and coexistence",
-    "Open and validate canonical integration and document CI on the integrated SHA"
+    "Review the preserved C1 552 observations independently, then renew the four C1 closures beginning SIM-C1-L006-03 on the exact integration candidate",
+    "Verify all 139 C2\u2013C6 activities individually using the archived evidence, the new visibility replay and the corrected edition tasks",
+    "Validate all groups on one integration runtime and rerun final previews and coexistence",
+    "Integrate through the ordinary canonical PR and record CI on the integrated SHA",
+    "Keep the human approval queue and the separate app publication gate traceable"
   ],
   "composedCandidate": {
     "branch": "feat/cric-composed-runtime",
@@ -238,8 +329,39 @@
     "nodePass": 301,
     "contractPass": 2,
     "privatePreviewRun": 45929961994,
-    "privatePreviewObservedStatus": "in_progress",
-    "privatePreviewObservedConclusion": "",
-    "canonicalIntegration": "PENDING"
+    "privatePreviewObservedStatus": "completed",
+    "privatePreviewObservedConclusion": "success",
+    "canonicalIntegration": "PENDING",
+    "latestVisualSource": {
+      "commit": "03f9634d7d6a8dcfe9161990c4d5dbc62e3773f5",
+      "runtimeSha256": "4e753b9dbfa1f0062cdcc10d7a6f6f9ec83c4bd69bda9e4f276c3757e8dbba3b",
+      "nodePass": 305,
+      "contractPass": 2,
+      "originalEngineControlsEqual": 2838,
+      "clockObservationsEqual": 3715,
+      "dynamicVisibilityRun": 45932692932,
+      "requestCommit": "2872a3151190788f1dda517dd4900ac18d0309ef",
+      "dynamicVisibilityStatus": "completed",
+      "dynamicVisibilityConclusion": "failure",
+      "independentFocusedChecks": "PARTIAL_WITH_EXPLICIT_FINDINGS"
+    },
+    "replayCandidate": {
+      "branch": "feat/cric-composed-input-recovery",
+      "commit": "0184b146513e024d99ce8391fb0a5f4892f79e7e",
+      "runtimeSha256": "abb2bf2ac567438953766cf3550644b3d6ea501d75d610fb6291b2cffc5a428b",
+      "nodePass": 305,
+      "contractPass": 2,
+      "requestCommit": "f7b4a31d783aed06ac89d35d2c09956a2f16c58f",
+      "visibilityRun": 45935050054,
+      "visibilityStatusAtCheckpoint": "QUEUED",
+      "C5Preflight": {
+        "plannedCases": 14464,
+        "originalRecords": 27,
+        "courseDrafts": 6,
+        "allDraftInputsVerified": 9,
+        "actualBrowserCases": 0,
+        "receipt": "editorial/reviews/composed-draft-pin-preflight-20261127/receipt.json"
+      }
+    }
   }
 }

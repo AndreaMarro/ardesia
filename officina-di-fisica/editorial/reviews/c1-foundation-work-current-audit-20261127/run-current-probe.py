@@ -1,11 +1,13 @@
 """Exercise the two remaining C1 reopenings and the other IDs in their families."""
 
+import argparse
 import fcntl
 import json
 from pathlib import Path
 import shutil
 import subprocess
 import time
+from types import FunctionType
 
 from tools.corpus_engineering import experiments_foundations_revision_verifier as foundation
 from tools.corpus_engineering import experiments_force_work_corrected_048_verifier as work
@@ -23,20 +25,23 @@ def write(file, data):
     file.write_text(canonical(data) + '\n')
 
 
-def installed(relative):
-    raw = Path(relative).read_bytes()
-    git = subprocess.check_output(['git', 'show', BASE + ':officina-di-fisica/' + relative])
+def installed(app, commit, relative):
+    raw = (app / relative).read_bytes()
+    git = subprocess.check_output(['git', 'show', commit + ':officina-di-fisica/' + relative], cwd=app)
     if raw != git:
         raise ValueError('Input differs from the public checkpoint: ' + relative)
     return raw
 
 
-def plan_records(source, draft):
+def plan_records(source, draft, app):
     effective = dict(source)
     effective[draft['id']] = draft
     result = []
     for model in (foundation, work):
-        actual = model.runtime_values(effective)
+        runtime_values = model.runtime_values
+        installed_runtime_values = FunctionType(runtime_values.__code__, {**runtime_values.__globals__, 'APP': app},
+                                                runtime_values.__name__, runtime_values.__defaults__, runtime_values.__closure__)
+        actual = installed_runtime_values(effective)
         comparison = model.compare_runtime(actual)
         exact_checks = model.independent_checks()
         for key, (lo, hi, _step, first, assessed, transfer, _unit) in model.SPECS.items():
@@ -69,30 +74,36 @@ def plan_records(source, draft):
 
 
 def main():
-    app = Path.cwd()
-    output = Path(__file__).resolve().parent / 'actual-ui'
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--app', type=Path, default=Path.cwd())
+    parser.add_argument('--commit', default=BASE)
+    parser.add_argument('--runtime', default=RUNTIME)
+    parser.add_argument('--output', type=Path, default=Path(__file__).resolve().parent / 'actual-ui')
+    arguments = parser.parse_args()
+    app = arguments.app.resolve(strict=True)
+    output = arguments.output.resolve()
+    collector = Path(__file__).resolve().parents[3] / 'tools/corpus_engineering/experiment_visibility_ui.mjs'
     with open('/private/tmp/cric-bounded-local-work.lock', 'a') as lock:
         fcntl.flock(lock, fcntl.LOCK_EX)
         assert shutil.disk_usage(app).free >= 2 * 1024**3
-        output.mkdir()
+        output.mkdir(parents=True)
         observed_input = output / 'private-inputs'
         observed_input.mkdir()
         fingerprint = runtime_fingerprint(app)
-        assert fingerprint['sha256'] == RUNTIME
+        assert fingerprint['sha256'] == arguments.runtime
         pinned = {}
         for suffix in ('.json', '-bindings.json'):
             name = DRAFT + suffix
             file = observed_input / name
-            raw = installed('editorial/batches/' + name)
+            raw = installed(app, arguments.commit, 'editorial/batches/' + name)
             file.write_bytes(raw)
             pinned[str(file)] = sha(raw)
         package = observed_input / (DRAFT + '.json')
         draft, = json.loads(package.read_bytes())['records']
-        source_raw = installed('content/esperienze-C1.json')
+        source_raw = installed(app, arguments.commit, 'content/esperienze-C1.json')
         source = {row['id']: row for row in json.loads(source_raw)}
-        records = plan_records(source, draft)
-        collector = app / 'tools/corpus_engineering/experiment_visibility_ui.mjs'
-        request = {'sourceCommit': BASE, 'runtimeSha256': RUNTIME, 'collectorSha256': sha(collector.read_bytes()),
+        records = plan_records(source, draft, app)
+        request = {'sourceCommit': arguments.commit, 'runtimeSha256': arguments.runtime, 'collectorSha256': sha(collector.read_bytes()),
                    'sourceSha256': sha(source_raw), 'packageFiles': pinned, 'effectiveIds': [row['id'] for row in records],
                    'scope': 'BOUND_CURRENT_TWO_C1_FAMILIES_EFFECTIVE_EDITION_ACTUAL_UI_ONLY', 'activityCredit': 0}
         request_file = output / 'request.json'
@@ -100,7 +111,7 @@ def main():
         profiles = [{'width': width, 'view': view, 'fallback': view == 'fixed_projection'}
                     for width in (320, 1280) for view in ('orbit', 'side', 'top', 'fixed_projection')]
         planned = {'schemaVersion': '1.0.0', 'requestSha256': sha(request_file.read_bytes()),
-                   'runtimeFingerprint': fingerprint, 'sourceCommit': BASE, 'course': 'C1',
+                   'runtimeFingerprint': fingerprint, 'sourceCommit': arguments.commit, 'course': 'C1',
                    'scope': request['scope'], 'records': records, 'profiles': profiles,
                    'packageFiles': [str(package)], 'inputFiles': pinned, 'draftRecords': [draft]}
         keys = []
@@ -121,7 +132,7 @@ def main():
             run = subprocess.run(['node', str(collector), str(info)], stdout=log, stderr=subprocess.STDOUT, timeout=900)
         assert runtime_fingerprint(app) == fingerprint
         report_file = output / 'report.json'
-        receipt = {'observedExitCode': run.returncode, 'runtimeSha256': RUNTIME, 'preparedSha256': sha(prepared.read_bytes()),
+        receipt = {'observedExitCode': run.returncode, 'runtimeSha256': arguments.runtime, 'preparedSha256': sha(prepared.read_bytes()),
                    'collectorSha256': request['collectorSha256'], 'durationSeconds': time.monotonic() - start,
                    'reportSha256': sha(report_file.read_bytes()) if report_file.exists() else None,
                    'plannedCases': len(keys), 'activityCredit': 0, 'humanApproval': 'NOT_RUN', 'publicationAction': 'NONE'}
