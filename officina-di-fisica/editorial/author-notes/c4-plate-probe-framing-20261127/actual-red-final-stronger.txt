@@ -1,0 +1,87 @@
+TAP version 13
+# Subtest: SIM-C4-L02-03 · whole marker and three field heads are clear of plate silhouettes in initial framing
+not ok 1 - SIM-C4-L02-03 · whole marker and three field heads are clear of plate silhouettes in initial framing
+  ---
+  duration_ms: 15.70375
+  location: '/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/cric-c4-framing-cpu-base-0l1y3wmf/officina-di-fisica/tests/plate-probe-camera.test.js:11:2'
+  failureType: 'testCodeFailure'
+  error: '{"id":"SIM-C4-L02-03","x":4,"w":294,"h":341,"kind":"ball","leftGapCss":85.75565425472114,"rightGapCss":-5.393046162634954,"scope":"actualFloat32mesh projected support; noGPUrasterclaim"}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/cric-c4-framing-cpu-base-0l1y3wmf/officina-di-fisica/tests/plate-probe-camera.test.js:22:13)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: SIM-C4-L03-02 · whole marker and three field heads are clear of plate silhouettes in initial framing
+not ok 2 - SIM-C4-L03-02 · whole marker and three field heads are clear of plate silhouettes in initial framing
+  ---
+  duration_ms: 3.110792
+  location: '/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/cric-c4-framing-cpu-base-0l1y3wmf/officina-di-fisica/tests/plate-probe-camera.test.js:11:2'
+  failureType: 'testCodeFailure'
+  error: '{"id":"SIM-C4-L03-02","x":4,"w":294,"h":341,"kind":"ball","leftGapCss":85.75565425472114,"rightGapCss":-5.393046162634954,"scope":"actualFloat32mesh projected support; noGPUrasterclaim"}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/cric-c4-framing-cpu-base-0l1y3wmf/officina-di-fisica/tests/plate-probe-camera.test.js:22:13)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+# Subtest: SIM-C4-L03-03 · whole marker and three field heads are clear of plate silhouettes in initial framing
+not ok 3 - SIM-C4-L03-03 · whole marker and three field heads are clear of plate silhouettes in initial framing
+  ---
+  duration_ms: 1.97375
+  location: '/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/cric-c4-framing-cpu-base-0l1y3wmf/officina-di-fisica/tests/plate-probe-camera.test.js:11:2'
+  failureType: 'testCodeFailure'
+  error: '{"id":"SIM-C4-L03-03","x":8,"w":294,"h":341,"kind":"ball","leftGapCss":85.75565425472114,"rightGapCss":-5.393046162634954,"scope":"actualFloat32mesh projected support; noGPUrasterclaim"}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/cric-c4-framing-cpu-base-0l1y3wmf/officina-di-fisica/tests/plate-probe-camera.test.js:22:13)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+# Subtest: target camera keeps all actual opaque mesh supports and table corners inside both recorded frames
+ok 4 - target camera keeps all actual opaque mesh supports and table corners inside both recorded frames
+  ---
+  duration_ms: 76.2915
+  ...
+# Subtest: native alternative views are taught without directing fallback users to disabled controls
+not ok 5 - native alternative views are taught without directing fallback users to disabled controls
+  ---
+  duration_ms: 1.119417
+  location: '/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/cric-c4-framing-cpu-base-0l1y3wmf/officina-di-fisica/tests/plate-probe-camera.test.js:40:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /frontal/i. Input:
+    
+    'Armatura positiva a sinistra · armatura negativa a destra. Il punto viola rappresenta la particella positiva. Le frecce ocra rappresentano il campo elettrico uniforme dalla piastra positiva a quella negativa.'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: 'Armatura positiva a sinistra · armatura negativa a destra. Il punto viola rappresenta la particella positiva. Le frecce ocra rappresentano il campo elettrico uniforme dalla piastra positiva a quella negativa.'
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file:///private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/cric-c4-framing-cpu-base-0l1y3wmf/officina-di-fisica/tests/plate-probe-camera.test.js:43:43)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 1
+# fail 4
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 252.330958

@@ -1,0 +1,99 @@
+diff --git a/officina-di-fisica/static/js/banchi/voci/esperimento.js b/officina-di-fisica/static/js/banchi/voci/esperimento.js
+index 4bafcd8e..5f0af5aa 100644
+--- a/officina-di-fisica/static/js/banchi/voci/esperimento.js
++++ b/officina-di-fisica/static/js/banchi/voci/esperimento.js
+@@ -40,6 +40,9 @@ export async function esperienza(record) {
+   const calc = (x) => stabile(law.measure(x));
+   const clock = record.engine ? null : orologioVoce(record, law);
+   const nativeVectorAxes = !record.engine && record.apparatus === 'vettori';
++  const frontalPlateProbe = !record.engine && [
++    'SIM-C4-L02-03', 'SIM-C4-L03-02', 'SIM-C4-L03-03',
++  ].includes(record.id);
+   const etichetteFuoriScena = nativeVectorAxes ? ['y'] : !record.engine && annotazioneScena(record)?.etichette;
+   function elements(x, stage, time) {
+     if (clock?.input && time !== undefined) x = time;
+@@ -306,7 +309,10 @@ export async function esperienza(record) {
+     // Keep their complete opaque meshes in all three preset camera frames.
+     height: nativeVectorAxes ? 6 : high ? 4.65 : top ? 4.68 : 4.25,
+     width: 8.1,
+-    eye: top ? [2.3, 4.35, 6.1] : [2.6, 1.9, 6.1],
++    // A lateral eye lets the opaque right plate hide the nearby probe. In these
++    // three native activities, a raised frontal view keeps their x positions
++    // separate on screen without moving the probe, field or physical plates.
++    eye: frontalPlateProbe ? [0, 1.9, 6.1] : top ? [2.3, 4.35, 6.1] : [2.6, 1.9, 6.1],
+     bg: { C1: 0xf3eddd, C2: 0xe7efe5, C3: 0xf4eada, C4: 0xecebf1, C5: 0xe7edf0, C6: 0xe9eeea }[record.course] ?? 0xe9eeea,
+   };
+   const scene = {
+@@ -328,9 +334,14 @@ export async function esperienza(record) {
+     measurement,
+     clock,
+     observe: law.observe,
+-    legend: (_stage, view) => legend ?? (nativeVectorAxes
+-      ? legende.vettori.replace('Gli assi x e y sono indicati sulla tavola.',
+-        'L’asse x è etichettato. L’asse y passa per la coda del primo vettore ed è perpendicolare a x nel piano dei vettori. Nella tavola 2D è l’altra retta grigia; in una vista 3D di taglio può apparire come un punto. Usa i controlli e le letture numeriche per confrontare i risultati.')
+-      : legendaVoce(record, view)),
++    legend: (_stage, view) => {
++      const text = legend ?? (nativeVectorAxes
++        ? legende.vettori.replace('Gli assi x e y sono indicati sulla tavola.',
++          'L’asse x è etichettato. L’asse y passa per la coda del primo vettore ed è perpendicolare a x nel piano dei vettori. Nella tavola 2D è l’altra retta grigia; in una vista 3D di taglio può apparire come un punto. Usa i controlli e le letture numeriche per confrontare i risultati.')
++        : legendaVoce(record, view));
++      return frontalPlateProbe && view !== 'diagram'
++        ? text + ' La vista Obliqua parte da un’inquadratura frontale rialzata. Se ruoti la scena e una piastra copre il punto, usa Ripristina vista oppure scegli Alto o Laterale per confrontare la posizione lungo il campo.'
++        : text;
++    },
+   };
+ }
+diff --git a/officina-di-fisica/tests/c4-probe-legend.test.js b/officina-di-fisica/tests/c4-probe-legend.test.js
+index a8bb6110..5592dd3b 100644
+--- a/officina-di-fisica/tests/c4-probe-legend.test.js
++++ b/officina-di-fisica/tests/c4-probe-legend.test.js
+@@ -41,8 +41,8 @@ test('all eight observed positions preserve the field, moving point and scalar e
+   }
+ });
+ 
+-test('all 29 C4 controls, teaching outputs, clocks, geometry and unrelated legends retain the frozen baseline',async()=>{
+-  assert.deepEqual(await contract(),baseline.records);
++test('all 29 C4 physical and teaching outputs retain baseline except the explicit three native camera eyes',async()=>{
++  assert.deepEqual(await contract({allowFrontalPlateView:true}),baseline.records);
+ });
+ 
+ test('the accessible descriptions identify the point without assigning a charge to the voltmeter probe',async()=>{
+diff --git a/officina-di-fisica/tests/helpers/c4-probe-contract.mjs b/officina-di-fisica/tests/helpers/c4-probe-contract.mjs
+index e0cc29b9..e7f0d925 100644
+--- a/officina-di-fisica/tests/helpers/c4-probe-contract.mjs
++++ b/officina-di-fisica/tests/helpers/c4-probe-contract.mjs
+@@ -1,4 +1,5 @@
+ // Source-only characterization of installed outputs, not a raster verdict.
++import assert from 'node:assert/strict';
+ import {createHash} from 'node:crypto';
+ import {readFileSync} from 'node:fs';
+ import {esperienza} from '../../static/js/banchi/voci/esperimento.js';
+@@ -10,10 +11,18 @@ const normalize = (id, elements) => affected.has(id)
+   ? elements.filter(e => e.kind !== 'label' || !['Sonda','+','−'].includes(e.text))
+   : elements;
+ 
+-export async function contract() {
++// Explicit exception for the separately tested native front-raised framing.
++const frontalPlateViewIds = new Set(['SIM-C4-L02-03','SIM-C4-L03-02','SIM-C4-L03-03']);
++export async function contract({allowFrontalPlateView = false} = {}) {
+   const result = [];
+   for (const record of records) {
+     const a = await esperienza(record), states = [];
++    let characterizedSpec = a.scene.spec;
++    if (allowFrontalPlateView && frontalPlateViewIds.has(record.id)) {
++      // All other scene/physical/teaching values still enter the old hash unchanged.
++      assert.deepEqual(a.scene.spec.eye, [0,1.9,6.1], record.id + ' explicit native framing');
++      characterizedSpec = {...a.scene.spec, eye:[2.6,1.9,6.1]};
++    }
+     const {min,max,step} = record.control;
+     for (let i=0;i<=Math.round((max-min)/step);i++) {
+       const x=min+i*step, solved=a.model.solve({x});
+@@ -33,7 +42,7 @@ export async function contract() {
+       states.push(entry);
+     }
+     result.push({id:record.id,controls:states.length,
+-      physicalAndTeachingSha256:sha({record:a.record,params:a.model.params,spec:a.scene.spec,
++      physicalAndTeachingSha256:sha({record:a.record,params:a.model.params,spec:characterizedSpec,
+         observe:a.observe,states}),
+       // Only the three accessible descriptions are deliberately extended.
+       ...(affected.has(record.id)?{}:{legends:['orbit','side','top','diagram'].map(view=>a.legend(2,view))})});

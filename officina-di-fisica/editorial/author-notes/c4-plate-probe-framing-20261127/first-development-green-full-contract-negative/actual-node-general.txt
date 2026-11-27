@@ -1,0 +1,2193 @@
+
+> officina-di-fisica@1.1.0 test
+> node --test tests/*.test.js
+
+TAP version 13
+# Subtest: Piano2D: normale e peso nella stessa scala su tutta la griglia angolare e di massa
+ok 1 - Piano2D: normale e peso nella stessa scala su tutta la griglia angolare e di massa
+  ---
+  duration_ms: 43.36525
+  ...
+# Subtest: Piano2D: normale opposta a Pperp e Ppar ricostruiscono il peso vettorialmente
+ok 2 - Piano2D: normale opposta a Pperp e Ppar ricostruiscono il peso vettorialmente
+  ---
+  duration_ms: 0.235083
+  ...
+# Subtest: Una componente piccola mantiene una punta più corta della freccia
+ok 3 - Una componente piccola mantiene una punta più corta della freccia
+  ---
+  duration_ms: 0.254458
+  ...
+# Subtest: Il bordo del piano segue la tangente fisica e vettori restano nel viewport
+ok 4 - Il bordo del piano segue la tangente fisica e vettori restano nel viewport
+  ---
+  duration_ms: 2.267042
+  ...
+# Subtest: Stevino · the surface and the two probes keep separate labels at every depth
+ok 5 - Stevino · the surface and the two probes keep separate labels at every depth
+  ---
+  duration_ms: 3.136958
+  ...
+# Subtest: 01 · contatto statico, soglia, distacco e forza inversa
+ok 6 - 01 · contatto statico, soglia, distacco e forza inversa
+  ---
+  duration_ms: 1.193792
+  ...
+# Subtest: 02 · gravità, tempi, gittata, energia e rotazione del piano di volo
+ok 7 - 02 · gravità, tempi, gittata, energia e rotazione del piano di volo
+  ---
+  duration_ms: 0.390916
+  ...
+# Subtest: 03 · pressione di superficie, incremento, indipendenza da p₀ e inversione SI
+ok 8 - 03 · pressione di superficie, incremento, indipendenza da p₀ e inversione SI
+  ---
+  duration_ms: 0.156291
+  ...
+# Subtest: 04 · profilo integrato, portata, unità, r⁴ reciproco e validità
+ok 9 - 04 · profilo integrato, portata, unità, r⁴ reciproco e validità
+  ---
+  duration_ms: 0.518958
+  ...
+# Subtest: 05 · Boyle, isocora, moli, equivalenza kPa·L = J
+ok 10 - 05 · Boyle, isocora, moli, equivalenza kPa·L = J
+  ---
+  duration_ms: 0.151292
+  ...
+# Subtest: 06 · segno, potenza conservata tra facce, area, isolamento e inversa
+ok 11 - 06 · segno, potenza conservata tra facce, area, isolamento e inversa
+  ---
+  duration_ms: 0.154375
+  ...
+# Subtest: 07 · segno, sovrapposizione, V scalare, rotazione 3D, singolarità
+ok 12 - 07 · segno, sovrapposizione, V scalare, rotazione 3D, singolarità
+  ---
+  duration_ms: 0.36825
+  ...
+# Subtest: 08 · Kirchhoff, bilancio di potenza, formula inversa e generatore a tensione nulla
+ok 13 - 08 · Kirchhoff, bilancio di potenza, formula inversa e generatore a tensione nulla
+  ---
+  duration_ms: 0.181292
+  ...
+# Subtest: 09 · raggi coniugati, reale, virtuale, infinito e fuoco sullo schermo
+ok 14 - 09 · raggi coniugati, reale, virtuale, infinito e fuoco sullo schermo
+  ---
+  duration_ms: 1.34825
+  ...
+# Subtest: 10 · nodi, ventri, periodicità, cammino e ampiezza RMS
+ok 15 - 10 · nodi, ventri, periodicità, cammino e ampiezza RMS
+  ---
+  duration_ms: 1.772875
+  ...
+# Subtest: LAB3D-01 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+ok 16 - LAB3D-01 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+  ---
+  duration_ms: 1.960041
+  ...
+# Subtest: LAB3D-02 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+ok 17 - LAB3D-02 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+  ---
+  duration_ms: 1.760958
+  ...
+# Subtest: LAB3D-03 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+ok 18 - LAB3D-03 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+  ---
+  duration_ms: 0.541209
+  ...
+# Subtest: LAB3D-04 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+ok 19 - LAB3D-04 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+  ---
+  duration_ms: 1.052333
+  ...
+# Subtest: LAB3D-05 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+ok 20 - LAB3D-05 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+  ---
+  duration_ms: 0.453791
+  ...
+# Subtest: LAB3D-06 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+ok 21 - LAB3D-06 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+  ---
+  duration_ms: 0.24625
+  ...
+# Subtest: LAB3D-07 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+ok 22 - LAB3D-07 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+  ---
+  duration_ms: 0.565083
+  ...
+# Subtest: LAB3D-08 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+ok 23 - LAB3D-08 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+  ---
+  duration_ms: 0.722458
+  ...
+# Subtest: LAB3D-09 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+ok 24 - LAB3D-09 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+  ---
+  duration_ms: 0.261125
+  ...
+# Subtest: LAB3D-10 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+ok 25 - LAB3D-10 · dominio, ingressi immutabili e campionamento indipendente dai fotogrammi
+  ---
+  duration_ms: 0.474209
+  ...
+# Subtest: the weight and normal keep their length and origin in the moving block frame
+ok 26 - the weight and normal keep their length and origin in the moving block frame
+  ---
+  duration_ms: 2.938334
+  ...
+# Subtest: field contributions and resultant share the probe, scale and annotation layer
+ok 27 - field contributions and resultant share the probe, scale and annotation layer
+  ---
+  duration_ms: 1.220041
+  ...
+# Subtest: the flight retains the origin marker and the apex guide without a covering label
+ok 28 - the flight retains the origin marker and the apex guide without a covering label
+  ---
+  duration_ms: 1.401542
+  ...
+# Subtest: small flight velocities retain their direction and get a separate 16× detail
+ok 29 - small flight velocities retain their direction and get a separate 16× detail
+  ---
+  duration_ms: 1.937083
+  ...
+# Subtest: the constant gravity arrow clears the launch and landing platform
+ok 30 - the constant gravity arrow clears the launch and landing platform
+  ---
+  duration_ms: 3.76975
+  ...
+# Subtest: every reachable nonzero spring force keeps its full signed scale outside the opaque endpoint
+ok 31 - every reachable nonzero spring force keeps its full signed scale outside the opaque endpoint
+  ---
+  duration_ms: 5.314791
+  ...
+# Subtest: rigid rod and its endpoints stay in front of the support across the complete angle grid
+ok 32 - rigid rod and its endpoints stay in front of the support across the complete angle grid
+  ---
+  duration_ms: 1.212958
+  ...
+# Subtest: lever arrows preserve force ratios and lines of action while clearing opaque markers and pivot
+ok 33 - lever arrows preserve force ratios and lines of action while clearing opaque markers and pivot
+  ---
+  duration_ms: 1.1865
+  ...
+# Subtest: zero-duration mean power is distinguished from its zero limit and instantaneous power
+ok 34 - zero-duration mean power is distinguished from its zero limit and instantaneous power
+  ---
+  duration_ms: 0.382375
+  ...
+# Subtest: the complete lever force glyph stays above the opaque table at every reachable input
+ok 35 - the complete lever force glyph stays above the opaque table at every reachable input
+  ---
+  duration_ms: 0.584041
+  ...
+# Subtest: fulcrum and elbow names remain in the existing HTML legend without covering the rod markers
+ok 36 - fulcrum and elbow names remain in the existing HTML legend without covering the rod markers
+  ---
+  duration_ms: 0.215208
+  ...
+# Subtest: incline normals keep the complete common-scale vector outside the opaque body on the full angle grid
+ok 37 - incline normals keep the complete common-scale vector outside the opaque body on the full angle grid
+  ---
+  duration_ms: 1.291583
+  ...
+# Subtest: incline weight stays above the table and separate from the normal without moving its line of action
+ok 38 - incline weight stays above the table and separate from the normal without moving its line of action
+  ---
+  duration_ms: 0.445125
+  ...
+# Subtest: incline force names and fixed weight remain readable in the HTML legend instead of covering the glyphs
+ok 39 - incline force names and fixed weight remain readable in the HTML legend instead of covering the glyphs
+  ---
+  duration_ms: 0.547667
+  ...
+# Subtest: the complete constant weight remains above its body and tabletop over every falling height
+ok 40 - the complete constant weight remains above its body and tabletop over every falling height
+  ---
+  duration_ms: 1.991041
+  ...
+# Subtest: complete circular velocity and acceleration glyphs clear the body at unchanged exact scales over the orbit
+ok 41 - complete circular velocity and acceleration glyphs clear the body at unchanged exact scales over the orbit
+  ---
+  duration_ms: 13.347666
+  ...
+# Subtest: collinear translational force glyphs retain their common scale in front of the complete opaque block
+ok 42 - collinear translational force glyphs retain their common scale in front of the complete opaque block
+  ---
+  duration_ms: 1.796167
+  ...
+# Subtest: moving endpoint and mass vector names remain in HTML without sprites covering their physical tips
+ok 43 - moving endpoint and mass vector names remain in HTML without sprites covering their physical tips
+  ---
+  duration_ms: 0.771417
+  ...
+# Subtest: vector names remain in the HTML legend with no opaque name sprite over a or b tips
+ok 44 - vector names remain in the HTML legend with no opaque name sprite over a or b tips
+  ---
+  duration_ms: 0.714292
+  ...
+# Subtest: default start name stays readable in the legend while custom coordinate names are retained
+ok 45 - default start name stays readable in the legend while custom coordinate names are retained
+  ---
+  duration_ms: 0.571209
+  ...
+# Subtest: SIM-C4-L02-03: the moving point and plate labels cannot mask a field arrow
+ok 46 - SIM-C4-L02-03: the moving point and plate labels cannot mask a field arrow
+  ---
+  duration_ms: 10.728291
+  ...
+# Subtest: SIM-C4-L03-02: the moving point and plate labels cannot mask a field arrow
+ok 47 - SIM-C4-L03-02: the moving point and plate labels cannot mask a field arrow
+  ---
+  duration_ms: 2.043667
+  ...
+# Subtest: SIM-C4-L03-03: the moving point and plate labels cannot mask a field arrow
+ok 48 - SIM-C4-L03-03: the moving point and plate labels cannot mask a field arrow
+  ---
+  duration_ms: 0.928458
+  ...
+# Subtest: all eight observed positions preserve the field, moving point and scalar exactly
+ok 49 - all eight observed positions preserve the field, moving point and scalar exactly
+  ---
+  duration_ms: 3.497916
+  ...
+# Subtest: all 29 C4 controls, teaching outputs, clocks, geometry and unrelated legends retain the frozen baseline
+not ok 50 - all 29 C4 controls, teaching outputs, clocks, geometry and unrelated legends retain the frozen baseline
+  ---
+  duration_ms: 275.14
+  location: '/private/tmp/cric-vector-apparatus-author-20261126/officina-di-fisica/tests/c4-probe-legend.test.js:44:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+    
+      [
+        {
+          controls: 9,
+          id: 'SIM-C4-L01-01',
+          legends: [
+    ...
+          id: 'SIM-C4-L02-03',
+    +     physicalAndTeachingSha256: '37c526c09954fb0031ad40e17e561ffcab96905f06029d3207197c5b41ffa50b'
+    -     physicalAndTeachingSha256: '4c69f18508e4461bb88bc7bb1b0daea16555e070e61666bf500b9d8c212620ca'
+        },
+        {
+          controls: 11,
+          id: 'SIM-C4-L03-01',
+          legends: [
+    ...
+          id: 'SIM-C4-L03-02',
+    +     physicalAndTeachingSha256: 'e4068218f4d4c5c4c34c63bda64e4c3f40730c78868f1a09bc9c5fde8ced26c7'
+    -     physicalAndTeachingSha256: '87ad538a7c422c94e26dc85a1b2c451635d19839bf209adab1c6b41297a5fdca'
+        },
+        {
+          controls: 17,
+          id: 'SIM-C4-L03-03',
+    +     physicalAndTeachingSha256: 'c6dcf5e9ccfa671edcce5e25d8548afc49f1e57e5176861839a5aa4b4a340ac0'
+    -     physicalAndTeachingSha256: '589c0cba34424a90f6f442801d1a18020460e80f13dca6b5c7ee901127382d53'
+        },
+        {
+          controls: 11,
+          id: 'SIM-C4-L04-01',
+          legends: [
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0:
+      id: 'SIM-C4-L01-01'
+      controls: 9
+      physicalAndTeachingSha256: 'ab9d0bc9defe76c16e109cc5bd77202c5b0776b86910d376222f31bce041cf57'
+      legends:
+        0: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.'
+        1: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.'
+        2: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.'
+        3: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.'
+    1:
+      id: 'SIM-C4-L01-02'
+      controls: 11
+      physicalAndTeachingSha256: 'cde6598d850acb838508e890aec9848c8315b8834affe8e7106913b88e9ca627'
+      legends:
+        0: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P. Le due sfere rosse hanno ciascuna carica +1 nC. Le frecce viola sono riportate accanto alle sfere alla stessa scala, parallele alla retta che unisce i centri. Il dettaglio ocra scuro conserva i versi e ingrandisce di otto volte le frecce più corte.'
+        1: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P. Le due sfere rosse hanno ciascuna carica +1 nC. Le frecce viola sono riportate accanto alle sfere alla stessa scala, parallele alla retta che unisce i centri. Il dettaglio ocra scuro conserva i versi e ingrandisce di otto volte le frecce più corte.'
+        2: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P. Le due sfere rosse hanno ciascuna carica +1 nC. Le frecce viola sono riportate accanto alle sfere alla stessa scala, parallele alla retta che unisce i centri. Il dettaglio ocra scuro conserva i versi e ingrandisce di otto volte le frecce più corte.'
+        3: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P. Le due sfere rosse hanno ciascuna carica +1 nC. Le frecce viola sono riportate accanto alle sfere alla stessa scala, parallele alla retta che unisce i centri. Il dettaglio ocra scuro conserva i versi e ingrandisce di otto volte le frecce più corte.'
+    2:
+      id: 'SIM-C4-L02-01'
+      controls: 15
+      physicalAndTeachingSha256: '402d1fa90730288049cc1f07d964afd11de68fe54b00c70e183277aeb8b85241'
+      legends:
+        0: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.'
+        1: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.'
+        2: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.'
+        3: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.'
+    3:
+      id: 'SIM-C4-L02-02'
+      controls: 13
+      physicalAndTeachingSha256: '3e1f5829fde8f85a326efab39fa3572f1750ba6027b57ede62fed7cb9395d53e'
+      legends:
+        0: 'La carica di sinistra è fissa a +1 nC. Il controllo della carica a destra mostra il valore con segno. Le sfere mostrano cariche positive in rosso, negative in viola e nulle in grigio. Il punto verde P è a metà tra le cariche. La freccia viola è spostata accanto a P per renderla visibile e mostra il campo risultante lungo la retta delle cariche. Il dettaglio ocra scuro ingrandisce di dieci volte le frecce corte e ne conserva il verso. Quando i due campi si annullano, la freccia scompare e la lettura vale zero.'
+        1: 'La carica di sinistra è fissa a +1 nC. Il controllo della carica a destra mostra il valore con segno. Le sfere mostrano cariche positive in rosso, negative in viola e nulle in grigio. Il punto verde P è a metà tra le cariche. La freccia viola è spostata accanto a P per renderla visibile e mostra il campo risultante lungo la retta delle cariche. Il dettaglio ocra scuro ingrandisce di dieci volte le frecce corte e ne conserva il verso. Quando i due campi si annullano, la freccia scompare e la lettura vale zero.'
+        2: 'La carica di sinistra è fissa a +1 nC. Il controllo della carica a destra mostra il valore con segno. Le sfere mostrano cariche positive in rosso, negative in viola e nulle in grigio. Il punto verde P è a metà tra le cariche. La freccia viola è spostata accanto a P per renderla visibile e mostra il campo risultante lungo la retta delle cariche. Il dettaglio ocra scuro ingrandisce di dieci volte le frecce corte e ne conserva il verso. Quando i due campi si annullano, la freccia scompare e la lettura vale zero.'
+        3: 'La carica di sinistra è fissa a +1 nC. Il controllo della carica a destra mostra il valore con segno. Le sfere mostrano cariche positive in rosso, negative in viola e nulle in grigio. Il punto verde P è a metà tra le cariche. La freccia viola è spostata accanto a P per renderla visibile e mostra il campo risultante lungo la retta delle cariche. Il dettaglio ocra scuro ingrandisce di dieci volte le frecce corte e ne conserva il verso. Quando i due campi si annullano, la freccia scompare e la lettura vale zero.'
+    4:
+      id: 'SIM-C4-L02-03'
+      controls: 17
+      physicalAndTeachingSha256: '4c69f18508e4461bb88bc7bb1b0daea16555e070e61666bf500b9d8c212620ca'
+    5:
+      id: 'SIM-C4-L03-01'
+      controls: 11
+      physicalAndTeachingSha256: 'cd4f38707d9f9d68e415e50f0c0770ca4500fae46d6481bf25edaa957c506061'
+      legends:
+        0: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.'
+        1: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.'
+        2: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.'
+        3: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.'
+    6:
+      id: 'SIM-C4-L03-02'
+      controls: 17
+      physicalAndTeachingSha256: '87ad538a7c422c94e26dc85a1b2c451635d19839bf209adab1c6b41297a5fdca'
+    7:
+      id: 'SIM-C4-L03-03'
+      controls: 17
+      physicalAndTeachingSha256: '589c0cba34424a90f6f442801d1a18020460e80f13dca6b5c7ee901127382d53'
+    8:
+      id: 'SIM-C4-L04-01'
+      controls: 11
+      physicalAndTeachingSha256: '01a7f8186299f18afae6bc13cf152f15472b7d1b8bd5f383e1754453748ba52d'
+      legends:
+        0: 'Viola · carica negativa. Rosso · positiva. Verde · campo applicato'
+        1: 'Viola · carica negativa. Rosso · positiva. Verde · campo applicato'
+        2: 'Viola · carica negativa. Rosso · positiva. Verde · campo applicato'
+        3: 'Viola · carica negativa. Rosso · positiva. Verde · campo applicato'
+    9:
+      id: 'SIM-C4-L04-02'
+      controls: 13
+      physicalAndTeachingSha256: '487cab5c996f9c407487b07d7a55f52784f056b6ff03c5094fb888ce1e119c30'
+      legends:
+        0: 'Viola · carica negativa. Rosso · positiva. Verde · campo applicato'
+        1: 'Viola · carica negativa. Rosso · positiva. Verde · campo applicato'
+        2: 'Viola · carica negativa. Rosso · positiva. Verde · campo applicato'
+        3: 'Viola · carica negativa. Rosso · positiva. Verde · campo applicato'
+    10:
+      id: 'SIM-C4-L05-01'
+      controls: 10
+      physicalAndTeachingSha256: '3d5dcda1fc0f13596437ffd2807996ecb6266b811fb52f0b4e65224c66dd53c6'
+      legends:
+        0: 'Verde · corrente convenzionale. Punti viola · portatori negativi'
+        1: 'Verde · corrente convenzionale. Punti viola · portatori negativi'
+        2: 'Verde · corrente convenzionale. Punti viola · portatori negativi'
+        3: 'Verde · corrente convenzionale. Punti viola · portatori negativi'
+    11:
+      id: 'SIM-C4-L05-02'
+      controls: 11
+      physicalAndTeachingSha256: '9225172ca559edbefb6bc5774e7ee5d8b178bdc76def965ed6b599a538abe679'
+      legends:
+        0: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale'
+        1: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale'
+        2: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale'
+        3: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale'
+    12:
+      id: 'SIM-C4-L05-03'
+      controls: 17
+      physicalAndTeachingSha256: '0ac5c133c99d0977906040e66ba948fd9e5f4a0f41eb5a51652f2051ab3be98c'
+      legends:
+        0: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale'
+        1: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale'
+        2: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale'
+        3: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale'
+    13:
+      id: 'SIM-C4-L05-04'
+      controls: 8
+      physicalAndTeachingSha256: '1c74f7d0bd3d7e21032df670a25e52dc5c2901710baf1699dde4140141a1fc92'
+      legends:
+        0: 'Verde · corrente convenzionale. Punti viola · portatori negativi'
+        1: 'Verde · corrente convenzionale. Punti viola · portatori negativi'
+        2: 'Verde · corrente convenzionale. Punti viola · portatori negativi'
+        3: 'Verde · corrente convenzionale. Punti viola · portatori negativi'
+    14:
+      id: 'SIM-C4-L05-05'
+      controls: 10
+      physicalAndTeachingSha256: '9408e9cb424665acc03a1bd4907d20941983e74d05a9237789ee409345278361'
+      legends:
+        0: 'Verde · corrente convenzionale. Punti viola · portatori negativi'
+        1: 'Verde · corrente convenzionale. Punti viola · portatori negativi'
+        2: 'Verde · corrente convenzionale. Punti viola · portatori negativi'
+        3: 'Verde · corrente convenzionale. Punti viola · portatori negativi'
+    15:
+      id: 'SIM-C4-L06-01'
+      controls: 11
+      physicalAndTeachingSha256: '4e6eff376e38d4b7d354e4e9b5fc394b0f660bffe4892ace659d79309fed7d27'
+      legends:
+        0: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale. Il circuito in serie è a sinistra. Il circuito in parallelo è a destra e i rami condividono gli stessi nodi.'
+        1: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale. Il circuito in serie è a sinistra. Il circuito in parallelo è a destra e i rami condividono gli stessi nodi.'
+        2: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale. Il circuito in serie è a sinistra. Il circuito in parallelo è a destra e i rami condividono gli stessi nodi.'
+        3: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale. Il circuito in serie è a sinistra. Il circuito in parallelo è a destra e i rami condividono gli stessi nodi.'
+    16:
+      id: 'SIM-C4-L06-02'
+      controls: 17
+      physicalAndTeachingSha256: 'c0717203a143967e912f63141f6ab931c4d0360cbeb518db47fe15c9a91718b7'
+      legends:
+        0: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale'
+        1: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale'
+        2: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale'
+        3: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale'
+    17:
+      id: 'SIM-C4-L07-01'
+      controls: 15
+      physicalAndTeachingSha256: '79ad1fded83e73f788f7f7dd1db32ca0516d613b0f9facc3d719caad27346e53'
+      legends:
+        0: 'Armatura positiva a sinistra · armatura negativa a destra. La piastra rossa porta il segno + e quella verde il segno −.'
+        1: 'Armatura positiva a sinistra · armatura negativa a destra. La piastra rossa porta il segno + e quella verde il segno −.'
+        2: 'Armatura positiva a sinistra · armatura negativa a destra. La piastra rossa porta il segno + e quella verde il segno −.'
+        3: 'Armatura positiva a sinistra · armatura negativa a destra. La piastra rossa porta il segno + e quella verde il segno −.'
+    18:
+      id: 'SIM-C4-L07-02'
+      controls: 7
+      physicalAndTeachingSha256: '515dc61c08e7598df6aed435545ada093b708e26f322efc301459ec901d81a40'
+      legends:
+        0: 'Armatura positiva a sinistra · armatura negativa a destra'
+        1: 'Armatura positiva a sinistra · armatura negativa a destra'
+        2: 'Armatura positiva a sinistra · armatura negativa a destra'
+        3: 'Armatura positiva a sinistra · armatura negativa a destra'
+    19:
+      id: 'SIM-C4-L07-03'
+      controls: 17
+      physicalAndTeachingSha256: 'ed61c0c3593f6d2d3235ee525a999c2a9f3fb50d3d9db42525eb5ae33fce5721'
+      legends:
+        0: 'Armatura positiva a sinistra · armatura negativa a destra'
+        1: 'Armatura positiva a sinistra · armatura negativa a destra'
+        2: 'Armatura positiva a sinistra · armatura negativa a destra'
+        3: 'Armatura positiva a sinistra · armatura negativa a destra'
+    20:
+      id: 'SIM-C4-L08-01'
+      controls: 8
+      physicalAndTeachingSha256: '6867581a1ee7bea9bc8730d7dff78697f2646ff7710a2e28b49ee04cbe2b7ab1'
+      legends:
+        0: 'Ogni coppia di piastre è un condensatore. Segui i fili tra i terminali'
+        1: 'Ogni coppia di piastre è un condensatore. Segui i fili tra i terminali'
+        2: 'Ogni coppia di piastre è un condensatore. Segui i fili tra i terminali'
+        3: 'Ogni coppia di piastre è un condensatore. Segui i fili tra i terminali'
+    21:
+      id: 'SIM-C4-L08-02'
+      controls: 13
+      physicalAndTeachingSha256: '6eacb7b99183b91a5db1c60795510532331f777b266f7993d619b3a3c7fe6778'
+      legends:
+        0: 'Ogni coppia di piastre è un condensatore. Segui i fili tra i terminali'
+        1: 'Ogni coppia di piastre è un condensatore. Segui i fili tra i terminali'
+        2: 'Ogni coppia di piastre è un condensatore. Segui i fili tra i terminali'
+        3: 'Ogni coppia di piastre è un condensatore. Segui i fili tra i terminali'
+    22:
+      id: 'SIM-C4-L09-01'
+      controls: 25
+      physicalAndTeachingSha256: '344a6bdb283ea63f8d2937c2c98c4f6137b563b9f034af87f366ecc9ac3a5bc1'
+      legends:
+        0: 'Filo verticale · circonferenze del campo · sonda tangenziale. La sonda B è a destra del filo. La freccia in quel punto è tangente alla circonferenza del campo.'
+        1: 'Filo verticale · circonferenze del campo · sonda tangenziale. La sonda B è a destra del filo. La freccia in quel punto è tangente alla circonferenza del campo.'
+        2: 'Filo verticale · circonferenze del campo · sonda tangenziale. La sonda B è a destra del filo. La freccia in quel punto è tangente alla circonferenza del campo.'
+        3: 'Filo verticale · circonferenze del campo · sonda tangenziale. La sonda B è a destra del filo. La freccia in quel punto è tangente alla circonferenza del campo.'
+    23:
+      id: 'SIM-C4-L09-02'
+      controls: 37
+      physicalAndTeachingSha256: 'ee83f6a288d598f5431d2ba376c121db1052eec75e3e91c14239c9e447d8a8e2'
+      legends:
+        0: 'B · le tre frecce grigie parallele sotto la carica. v · la freccia verde sopra la carica. F · la freccia viola della forza sulla carica positiva, quando presente. La forza non nulla è perpendicolare sia a v sia a B; con velocità parallela o antiparallela al campo si annulla. v e F sono riportate accanto alla carica, conservando il verso e la propria scala. Per confrontare il modulo della forza scegli la vista Obliqua o Laterale.'
+        1: 'B · le tre frecce grigie parallele sotto la carica. v · la freccia verde sopra la carica. F · la freccia viola della forza sulla carica positiva, quando presente. La forza non nulla è perpendicolare sia a v sia a B; con velocità parallela o antiparallela al campo si annulla. v e F sono riportate accanto alla carica, conservando il verso e la propria scala. Per confrontare il modulo della forza scegli la vista Obliqua o Laterale.'
+        2: 'B · le tre frecce grigie parallele sotto la carica. v · la freccia verde sopra la carica. F · la freccia viola della forza sulla carica positiva, quando presente. La forza non nulla è perpendicolare sia a v sia a B; con velocità parallela o antiparallela al campo si annulla. v e F sono riportate accanto alla carica, conservando il verso e la propria scala. Per confrontare il modulo della forza scegli la vista Obliqua o Laterale.'
+        3: 'B · le tre frecce grigie parallele sotto la carica. v · la freccia verde sopra la carica. F · la freccia viola della forza sulla carica positiva, quando presente. La forza non nulla è perpendicolare sia a v sia a B; con velocità parallela o antiparallela al campo si annulla. v e F sono riportate accanto alla carica, conservando il verso e la propria scala. Per confrontare il modulo della forza usa la lettura numerica.'
+    24:
+      id: 'SIM-C4-L09-03'
+      controls: 15
+      physicalAndTeachingSha256: '69ae71b0f49dab83d0490af4c5684e38e00de9779f8dc9d0ab4ae16053cff67c'
+      legends:
+        0: 'Il perno indica il centro. Verde · velocità tangente alla circonferenza. Viola · accelerazione verso il centro. Le frecce sono disegnate sopra la pallina, in un piano parallelo. Velocità e accelerazione hanno scale proprie: confronta le lunghezze della stessa grandezza.'
+        1: 'Il perno indica il centro. Verde · velocità tangente alla circonferenza. Viola · accelerazione verso il centro. Le frecce sono disegnate sopra la pallina, in un piano parallelo. Velocità e accelerazione hanno scale proprie: confronta le lunghezze della stessa grandezza.'
+        2: 'Il perno indica il centro. Verde · velocità tangente alla circonferenza. Viola · accelerazione verso il centro. Le frecce sono disegnate sopra la pallina, in un piano parallelo. Velocità e accelerazione hanno scale proprie: confronta le lunghezze della stessa grandezza.'
+        3: 'Il perno indica il centro. Verde · velocità tangente alla circonferenza. Viola · accelerazione verso il centro. Le frecce sono disegnate sopra la pallina, in un piano parallelo. Velocità e accelerazione hanno scale proprie: confronta le lunghezze della stessa grandezza.'
+    25:
+      id: 'SIM-C4-L10-01'
+      controls: 37
+      physicalAndTeachingSha256: '1858ca30e93af32ecddc134c353743d95541bcba508eabbec1aba7e73a2be0a2'
+      legends:
+        0: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira. La normale alla spira forma un angolo retto con il piano della spira.'
+        1: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira. La normale alla spira forma un angolo retto con il piano della spira.'
+        2: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira. La normale alla spira forma un angolo retto con il piano della spira.'
+        3: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira. La normale alla spira forma un angolo retto con il piano della spira.'
+    26:
+      id: 'SIM-C4-L10-02'
+      controls: 17
+      physicalAndTeachingSha256: 'e42d8543b8fbb72447bf5129ea5f2a738528b72b3145140c2919fcf001892a49'
+      legends:
+        0: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira'
+        1: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira'
+        2: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira'
+        3: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira'
+    27:
+      id: 'SIM-C4-L10-03'
+      controls: 16
+      physicalAndTeachingSha256: 'fe3db9ec3b26e14a95a0996910d0eb46cf6fb70703c43f5d4519061ab771e8e8'
+      legends:
+        0: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira'
+        1: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira'
+        2: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira'
+        3: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira'
+    28:
+      id: 'SIM-C4-L10-04'
+      controls: 13
+      physicalAndTeachingSha256: '598292e245e313917fd9f1c8a82ac0b14a6218423d575e63f514fb1b5f45b7a6'
+      legends:
+        0: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira'
+        1: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira'
+        2: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira'
+        3: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira'
+  actual:
+    0:
+      id: 'SIM-C4-L01-01'
+      controls: 9
+      physicalAndTeachingSha256: 'ab9d0bc9defe76c16e109cc5bd77202c5b0776b86910d376222f31bce041cf57'
+      legends:
+        0: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.'
+        1: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.'
+        2: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.'
+        3: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.'
+    1:
+      id: 'SIM-C4-L01-02'
+      controls: 11
+      physicalAndTeachingSha256: 'cde6598d850acb838508e890aec9848c8315b8834affe8e7106913b88e9ca627'
+      legends:
+        0: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P. Le due sfere rosse hanno ciascuna carica +1 nC. Le frecce viola sono riportate accanto alle sfere alla stessa scala, parallele alla retta che unisce i centri. Il dettaglio ocra scuro conserva i versi e ingrandisce di otto volte le frecce più corte.'
+        1: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P. Le due sfere rosse hanno ciascuna carica +1 nC. Le frecce viola sono riportate accanto alle sfere alla stessa scala, parallele alla retta che unisce i centri. Il dettaglio ocra scuro conserva i versi e ingrandisce di otto volte le frecce più corte.'
+        2: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P. Le due sfere rosse hanno ciascuna carica +1 nC. Le frecce viola sono riportate accanto alle sfere alla stessa scala, parallele alla retta che unisce i centri. Il dettaglio ocra scuro conserva i versi e ingrandisce di otto volte le frecce più corte.'
+        3: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P. Le due sfere rosse hanno ciascuna carica +1 nC. Le frecce viola sono riportate accanto alle sfere alla stessa scala, parallele alla retta che unisce i centri. Il dettaglio ocra scuro conserva i versi e ingrandisce di otto volte le frecce più corte.'
+    2:
+      id: 'SIM-C4-L02-01'
+      controls: 15
+      physicalAndTeachingSha256: '402d1fa90730288049cc1f07d964afd11de68fe54b00c70e183277aeb8b85241'
+      legends:
+        0: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.'
+        1: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.'
+        2: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.'
+        3: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.'
+    3:
+      id: 'SIM-C4-L02-02'
+      controls: 13
+      physicalAndTeachingSha256: '3e1f5829fde8f85a326efab39fa3572f1750ba6027b57ede62fed7cb9395d53e'
+      legends:
+        0: 'La carica di sinistra è fissa a +1 nC. Il controllo della carica a destra mostra il valore con segno. Le sfere mostrano cariche positive in rosso, negative in viola e nulle in grigio. Il punto verde P è a metà tra le cariche. La freccia viola è spostata accanto a P per renderla visibile e mostra il campo risultante lungo la retta delle cariche. Il dettaglio ocra scuro ingrandisce di dieci volte le frecce corte e ne conserva il verso. Quando i due campi si annullano, la freccia scompare e la lettura vale zero.'
+        1: 'La carica di sinistra è fissa a +1 nC. Il controllo della carica a destra mostra il valore con segno. Le sfere mostrano cariche positive in rosso, negative in viola e nulle in grigio. Il punto verde P è a metà tra le cariche. La freccia viola è spostata accanto a P per renderla visibile e mostra il campo risultante lungo la retta delle cariche. Il dettaglio ocra scuro ingrandisce di dieci volte le frecce corte e ne conserva il verso. Quando i due campi si annullano, la freccia scompare e la lettura vale zero.'
+        2: 'La carica di sinistra è fissa a +1 nC. Il controllo della carica a destra mostra il valore con segno. Le sfere mostrano cariche positive in rosso, negative in viola e nulle in grigio. Il punto verde P è a metà tra le cariche. La freccia viola è spostata accanto a P per renderla visibile e mostra il campo risultante lungo la retta delle cariche. Il dettaglio ocra scuro ingrandisce di dieci volte le frecce corte e ne conserva il verso. Quando i due campi si annullano, la freccia scompare e la lettura vale zero.'
+        3: 'La carica di sinistra è fissa a +1 nC. Il controllo della carica a destra mostra il valore con segno. Le sfere mostrano cariche positive in rosso, negative in viola e nulle in grigio. Il punto verde P è a metà tra le cariche. La freccia viola è spostata accanto a P per renderla visibile e mostra il campo risultante lungo la retta delle cariche. Il dettaglio ocra scuro ingrandisce di dieci volte le frecce corte e ne conserva il verso. Quando i due campi si annullano, la freccia scompare e la lettura vale zero.'
+    4:
+      id: 'SIM-C4-L02-03'
+      controls: 17
+      physicalAndTeachingSha256: '37c526c09954fb0031ad40e17e561ffcab96905f06029d3207197c5b41ffa50b'
+    5:
+      id: 'SIM-C4-L03-01'
+      controls: 11
+      physicalAndTeachingSha256: 'cd4f38707d9f9d68e415e50f0c0770ca4500fae46d6481bf25edaa957c506061'
+      legends:
+        0: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.'
+        1: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.'
+        2: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.'
+        3: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.'
+    6:
+      id: 'SIM-C4-L03-02'
+      controls: 17
+      physicalAndTeachingSha256: 'e4068218f4d4c5c4c34c63bda64e4c3f40730c78868f1a09bc9c5fde8ced26c7'
+    7:
+      id: 'SIM-C4-L03-03'
+      controls: 17
+      physicalAndTeachingSha256: 'c6dcf5e9ccfa671edcce5e25d8548afc49f1e57e5176861839a5aa4b4a340ac0'
+    8:
+      id: 'SIM-C4-L04-01'
+      controls: 11
+      physicalAndTeachingSha256: '01a7f8186299f18afae6bc13cf152f15472b7d1b8bd5f383e1754453748ba52d'
+      legends:
+        0: 'Viola · carica negativa. Rosso · positiva. Verde · campo applicato'
+        1: 'Viola · carica negativa. Rosso · positiva. Verde · campo applicato'
+        2: 'Viola · carica negativa. Rosso · positiva. Verde · campo applicato'
+        3: 'Viola · carica negativa. Rosso · positiva. Verde · campo applicato'
+    9:
+      id: 'SIM-C4-L04-02'
+      controls: 13
+      physicalAndTeachingSha256: '487cab5c996f9c407487b07d7a55f52784f056b6ff03c5094fb888ce1e119c30'
+      legends:
+        0: 'Viola · carica negativa. Rosso · positiva. Verde · campo applicato'
+        1: 'Viola · carica negativa. Rosso · positiva. Verde · campo applicato'
+        2: 'Viola · carica negativa. Rosso · positiva. Verde · campo applicato'
+        3: 'Viola · carica negativa. Rosso · positiva. Verde · campo applicato'
+    10:
+      id: 'SIM-C4-L05-01'
+      controls: 10
+      physicalAndTeachingSha256: '3d5dcda1fc0f13596437ffd2807996ecb6266b811fb52f0b4e65224c66dd53c6'
+      legends:
+        0: 'Verde · corrente convenzionale. Punti viola · portatori negativi'
+        1: 'Verde · corrente convenzionale. Punti viola · portatori negativi'
+        2: 'Verde · corrente convenzionale. Punti viola · portatori negativi'
+        3: 'Verde · corrente convenzionale. Punti viola · portatori negativi'
+    11:
+      id: 'SIM-C4-L05-02'
+      controls: 11
+      physicalAndTeachingSha256: '9225172ca559edbefb6bc5774e7ee5d8b178bdc76def965ed6b599a538abe679'
+      legends:
+        0: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale'
+        1: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale'
+        2: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale'
+        3: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale'
+    12:
+      id: 'SIM-C4-L05-03'
+      controls: 17
+      physicalAndTeachingSha256: '0ac5c133c99d0977906040e66ba948fd9e5f4a0f41eb5a51652f2051ab3be98c'
+      legends:
+        0: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale'
+        1: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale'
+        2: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale'
+        3: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale'
+    13:
+      id: 'SIM-C4-L05-04'
+      controls: 8
+      physicalAndTeachingSha256: '1c74f7d0bd3d7e21032df670a25e52dc5c2901710baf1699dde4140141a1fc92'
+      legends:
+        0: 'Verde · corrente convenzionale. Punti viola · portatori negativi'
+        1: 'Verde · corrente convenzionale. Punti viola · portatori negativi'
+        2: 'Verde · corrente convenzionale. Punti viola · portatori negativi'
+        3: 'Verde · corrente convenzionale. Punti viola · portatori negativi'
+    14:
+      id: 'SIM-C4-L05-05'
+      controls: 10
+      physicalAndTeachingSha256: '9408e9cb424665acc03a1bd4907d20941983e74d05a9237789ee409345278361'
+      legends:
+        0: 'Verde · corrente convenzionale. Punti viola · portatori negativi'
+        1: 'Verde · corrente convenzionale. Punti viola · portatori negativi'
+        2: 'Verde · corrente convenzionale. Punti viola · portatori negativi'
+        3: 'Verde · corrente convenzionale. Punti viola · portatori negativi'
+    15:
+      id: 'SIM-C4-L06-01'
+      controls: 11
+      physicalAndTeachingSha256: '4e6eff376e38d4b7d354e4e9b5fc394b0f660bffe4892ace659d79309fed7d27'
+      legends:
+        0: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale. Il circuito in serie è a sinistra. Il circuito in parallelo è a destra e i rami condividono gli stessi nodi.'
+        1: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale. Il circuito in serie è a sinistra. Il circuito in parallelo è a destra e i rami condividono gli stessi nodi.'
+        2: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale. Il circuito in serie è a sinistra. Il circuito in parallelo è a destra e i rami condividono gli stessi nodi.'
+        3: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale. Il circuito in serie è a sinistra. Il circuito in parallelo è a destra e i rami condividono gli stessi nodi.'
+    16:
+      id: 'SIM-C4-L06-02'
+      controls: 17
+      physicalAndTeachingSha256: 'c0717203a143967e912f63141f6ab931c4d0360cbeb518db47fe15c9a91718b7'
+      legends:
+        0: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale'
+        1: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale'
+        2: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale'
+        3: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale'
+    17:
+      id: 'SIM-C4-L07-01'
+      controls: 15
+      physicalAndTeachingSha256: '79ad1fded83e73f788f7f7dd1db32ca0516d613b0f9facc3d719caad27346e53'
+      legends:
+        0: 'Armatura positiva a sinistra · armatura negativa a destra. La piastra rossa porta il segno + e quella verde il segno −.'
+        1: 'Armatura positiva a sinistra · armatura negativa a destra. La piastra rossa porta il segno + e quella verde il segno −.'
+        2: 'Armatura positiva a sinistra · armatura negativa a destra. La piastra rossa porta il segno + e quella verde il segno −.'
+        3: 'Armatura positiva a sinistra · armatura negativa a destra. La piastra rossa porta il segno + e quella verde il segno −.'
+    18:
+      id: 'SIM-C4-L07-02'
+      controls: 7
+      physicalAndTeachingSha256: '515dc61c08e7598df6aed435545ada093b708e26f322efc301459ec901d81a40'
+      legends:
+        0: 'Armatura positiva a sinistra · armatura negativa a destra'
+        1: 'Armatura positiva a sinistra · armatura negativa a destra'
+        2: 'Armatura positiva a sinistra · armatura negativa a destra'
+        3: 'Armatura positiva a sinistra · armatura negativa a destra'
+    19:
+      id: 'SIM-C4-L07-03'
+      controls: 17
+      physicalAndTeachingSha256: 'ed61c0c3593f6d2d3235ee525a999c2a9f3fb50d3d9db42525eb5ae33fce5721'
+      legends:
+        0: 'Armatura positiva a sinistra · armatura negativa a destra'
+        1: 'Armatura positiva a sinistra · armatura negativa a destra'
+        2: 'Armatura positiva a sinistra · armatura negativa a destra'
+        3: 'Armatura positiva a sinistra · armatura negativa a destra'
+    20:
+      id: 'SIM-C4-L08-01'
+      controls: 8
+      physicalAndTeachingSha256: '6867581a1ee7bea9bc8730d7dff78697f2646ff7710a2e28b49ee04cbe2b7ab1'
+      legends:
+        0: 'Ogni coppia di piastre è un condensatore. Segui i fili tra i terminali'
+        1: 'Ogni coppia di piastre è un condensatore. Segui i fili tra i terminali'
+        2: 'Ogni coppia di piastre è un condensatore. Segui i fili tra i terminali'
+        3: 'Ogni coppia di piastre è un condensatore. Segui i fili tra i terminali'
+    21:
+      id: 'SIM-C4-L08-02'
+      controls: 13
+      physicalAndTeachingSha256: '6eacb7b99183b91a5db1c60795510532331f777b266f7993d619b3a3c7fe6778'
+      legends:
+        0: 'Ogni coppia di piastre è un condensatore. Segui i fili tra i terminali'
+        1: 'Ogni coppia di piastre è un condensatore. Segui i fili tra i terminali'
+        2: 'Ogni coppia di piastre è un condensatore. Segui i fili tra i terminali'
+        3: 'Ogni coppia di piastre è un condensatore. Segui i fili tra i terminali'
+    22:
+      id: 'SIM-C4-L09-01'
+      controls: 25
+      physicalAndTeachingSha256: '344a6bdb283ea63f8d2937c2c98c4f6137b563b9f034af87f366ecc9ac3a5bc1'
+      legends:
+        0: 'Filo verticale · circonferenze del campo · sonda tangenziale. La sonda B è a destra del filo. La freccia in quel punto è tangente alla circonferenza del campo.'
+        1: 'Filo verticale · circonferenze del campo · sonda tangenziale. La sonda B è a destra del filo. La freccia in quel punto è tangente alla circonferenza del campo.'
+        2: 'Filo verticale · circonferenze del campo · sonda tangenziale. La sonda B è a destra del filo. La freccia in quel punto è tangente alla circonferenza del campo.'
+        3: 'Filo verticale · circonferenze del campo · sonda tangenziale. La sonda B è a destra del filo. La freccia in quel punto è tangente alla circonferenza del campo.'
+    23:
+      id: 'SIM-C4-L09-02'
+      controls: 37
+      physicalAndTeachingSha256: 'ee83f6a288d598f5431d2ba376c121db1052eec75e3e91c14239c9e447d8a8e2'
+      legends:
+        0: 'B · le tre frecce grigie parallele sotto la carica. v · la freccia verde sopra la carica. F · la freccia viola della forza sulla carica positiva, quando presente. La forza non nulla è perpendicolare sia a v sia a B; con velocità parallela o antiparallela al campo si annulla. v e F sono riportate accanto alla carica, conservando il verso e la propria scala. Per confrontare il modulo della forza scegli la vista Obliqua o Laterale.'
+        1: 'B · le tre frecce grigie parallele sotto la carica. v · la freccia verde sopra la carica. F · la freccia viola della forza sulla carica positiva, quando presente. La forza non nulla è perpendicolare sia a v sia a B; con velocità parallela o antiparallela al campo si annulla. v e F sono riportate accanto alla carica, conservando il verso e la propria scala. Per confrontare il modulo della forza scegli la vista Obliqua o Laterale.'
+        2: 'B · le tre frecce grigie parallele sotto la carica. v · la freccia verde sopra la carica. F · la freccia viola della forza sulla carica positiva, quando presente. La forza non nulla è perpendicolare sia a v sia a B; con velocità parallela o antiparallela al campo si annulla. v e F sono riportate accanto alla carica, conservando il verso e la propria scala. Per confrontare il modulo della forza scegli la vista Obliqua o Laterale.'
+        3: 'B · le tre frecce grigie parallele sotto la carica. v · la freccia verde sopra la carica. F · la freccia viola della forza sulla carica positiva, quando presente. La forza non nulla è perpendicolare sia a v sia a B; con velocità parallela o antiparallela al campo si annulla. v e F sono riportate accanto alla carica, conservando il verso e la propria scala. Per confrontare il modulo della forza usa la lettura numerica.'
+    24:
+      id: 'SIM-C4-L09-03'
+      controls: 15
+      physicalAndTeachingSha256: '69ae71b0f49dab83d0490af4c5684e38e00de9779f8dc9d0ab4ae16053cff67c'
+      legends:
+        0: 'Il perno indica il centro. Verde · velocità tangente alla circonferenza. Viola · accelerazione verso il centro. Le frecce sono disegnate sopra la pallina, in un piano parallelo. Velocità e accelerazione hanno scale proprie: confronta le lunghezze della stessa grandezza.'
+        1: 'Il perno indica il centro. Verde · velocità tangente alla circonferenza. Viola · accelerazione verso il centro. Le frecce sono disegnate sopra la pallina, in un piano parallelo. Velocità e accelerazione hanno scale proprie: confronta le lunghezze della stessa grandezza.'
+        2: 'Il perno indica il centro. Verde · velocità tangente alla circonferenza. Viola · accelerazione verso il centro. Le frecce sono disegnate sopra la pallina, in un piano parallelo. Velocità e accelerazione hanno scale proprie: confronta le lunghezze della stessa grandezza.'
+        3: 'Il perno indica il centro. Verde · velocità tangente alla circonferenza. Viola · accelerazione verso il centro. Le frecce sono disegnate sopra la pallina, in un piano parallelo. Velocità e accelerazione hanno scale proprie: confronta le lunghezze della stessa grandezza.'
+    25:
+      id: 'SIM-C4-L10-01'
+      controls: 37
+      physicalAndTeachingSha256: '1858ca30e93af32ecddc134c353743d95541bcba508eabbec1aba7e73a2be0a2'
+      legends:
+        0: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira. La normale alla spira forma un angolo retto con il piano della spira.'
+        1: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira. La normale alla spira forma un angolo retto con il piano della spira.'
+        2: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira. La normale alla spira forma un angolo retto con il piano della spira.'
+        3: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira. La normale alla spira forma un angolo retto con il piano della spira.'
+    26:
+      id: 'SIM-C4-L10-02'
+      controls: 17
+      physicalAndTeachingSha256: 'e42d8543b8fbb72447bf5129ea5f2a738528b72b3145140c2919fcf001892a49'
+      legends:
+        0: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira'
+        1: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira'
+        2: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira'
+        3: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira'
+    27:
+      id: 'SIM-C4-L10-03'
+      controls: 16
+      physicalAndTeachingSha256: 'fe3db9ec3b26e14a95a0996910d0eb46cf6fb70703c43f5d4519061ab771e8e8'
+      legends:
+        0: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira'
+        1: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira'
+        2: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira'
+        3: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira'
+    28:
+      id: 'SIM-C4-L10-04'
+      controls: 13
+      physicalAndTeachingSha256: '598292e245e313917fd9f1c8a82ac0b14a6218423d575e63f514fb1b5f45b7a6'
+      legends:
+        0: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira'
+        1: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira'
+        2: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira'
+        3: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/cric-vector-apparatus-author-20261126/officina-di-fisica/tests/c4-probe-legend.test.js:45:10)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+# Subtest: the accessible descriptions identify the point without assigning a charge to the voltmeter probe
+ok 51 - the accessible descriptions identify the point without assigning a charge to the voltmeter probe
+  ---
+  duration_ms: 3.328917
+  ...
+# Subtest: zero displacement and zero energy gain leave the nonzero uniform field visible
+ok 52 - zero displacement and zero energy gain leave the nonzero uniform field visible
+  ---
+  duration_ms: 10.313084
+  ...
+# Subtest: the capillary image describes only the parts visible in each stage
+ok 53 - the capillary image describes only the parts visible in each stage
+  ---
+  duration_ms: 3.022459
+  ...
+# Subtest: isolated zero segments disappear, a closed path keeps its final edge
+ok 54 - isolated zero segments disappear, a closed path keeps its final edge
+  ---
+  duration_ms: 2.441792
+  ...
+# Subtest: all published topics produce finite, nondegenerate geometry over the common sampling grid
+ok 55 - all published topics produce finite, nondegenerate geometry over the common sampling grid
+  ---
+  duration_ms: 466.411042
+  ...
+# Subtest: a vacuum wave keeps transverse fields in phase and carries energy along the optical axis
+ok 56 - a vacuum wave keeps transverse fields in phase and carries energy along the optical axis
+  ---
+  duration_ms: 4.515541
+  ...
+# Subtest: integrating signed velocity recovers the track and distinguishes outward and return readings
+ok 57 - integrating signed velocity recovers the track and distinguishes outward and return readings
+  ---
+  duration_ms: 1.492042
+  ...
+# Subtest: transparent lens sections meet without internal faces and parallel rays cross at the marked focus
+ok 58 - transparent lens sections meet without internal faces and parallel rays cross at the marked focus
+  ---
+  duration_ms: 3.337334
+  ...
+# Subtest: il grafico della posizione e l’impulso triangolare ricostruiscono i risultati degli esempi
+ok 59 - il grafico della posizione e l’impulso triangolare ricostruiscono i risultati degli esempi
+  ---
+  duration_ms: 7.988209
+  ...
+# Subtest: una somma di anelli sferici verifica il campo interno ed esterno e la soglia per il coefficiente riguarda |a|
+ok 60 - una somma di anelli sferici verifica il campo interno ed esterno e la soglia per il coefficiente riguarda |a|
+  ---
+  duration_ms: 40.548375
+  ...
+# Subtest: il verso delle forze nella tavola determina il lavoro sul blocco
+ok 61 - il verso delle forze nella tavola determina il lavoro sul blocco
+  ---
+  duration_ms: 3.487292
+  ...
+# Subtest: equazione radiale, quantità di moto e momento di una coppia reggono i cambi di massa e di polo
+ok 62 - equazione radiale, quantità di moto e momento di una coppia reggono i cambi di massa e di polo
+  ---
+  duration_ms: 1.159292
+  ...
+# Subtest: le sette misure pubblicate e le unità delle secanti sono riproducibili in tutte le posizioni del controllo
+ok 63 - le sette misure pubblicate e le unità delle secanti sono riproducibili in tutte le posizioni del controllo
+  ---
+  duration_ms: 145.163333
+  ...
+# Subtest: la sezione illustrata e la media per unità di area riproducono la lettura della sonda
+ok 64 - la sezione illustrata e la media per unità di area riproducono la lettura della sonda
+  ---
+  duration_ms: 19.303292
+  ...
+# Subtest: il lavoro sulla piastra bilancia la dissipazione e il flusso ricostruisce la viscosità inversa
+ok 65 - il lavoro sulla piastra bilancia la dissipazione e il flusso ricostruisce la viscosità inversa
+  ---
+  duration_ms: 209.112875
+  ...
+# Subtest: pressioni, forze e portate restituiscono le chiavi con il segno e le unità del sistema
+ok 66 - pressioni, forze e portate restituiscono le chiavi con il segno e le unità del sistema
+  ---
+  duration_ms: 3.056958
+  ...
+# Subtest: il manometro ricompone la pressione nelle due colonne a ogni posizione e a pressione uguale
+ok 67 - il manometro ricompone la pressione nelle due colonne a ogni posizione e a pressione uguale
+  ---
+  duration_ms: 31.298458
+  ...
+# Subtest: la geometria del galleggiante dà il volume che equilibra il peso, anche a densità uguale
+ok 68 - la geometria del galleggiante dà il volume che equilibra il peso, anche a densità uguale
+  ---
+  duration_ms: 2.224791
+  ...
+# Subtest: C4 · misura virtuale della forza su due prove opposte, a 1 e 2 m
+ok 69 - C4 · misura virtuale della forza su due prove opposte, a 1 e 2 m
+  ---
+  duration_ms: 2.722292
+  ...
+# Subtest: C4 · flusso da una superficie orientata e dalla geometria della figura
+ok 70 - C4 · flusso da una superficie orientata e dalla geometria della figura
+  ---
+  duration_ms: 1.445875
+  ...
+# Subtest: C4 · raggio positivo per entrambe le polarità e per tutto il controllo magnetico
+ok 71 - C4 · raggio positivo per entrambe le polarità e per tutto il controllo magnetico
+  ---
+  duration_ms: 25.282958
+  ...
+# Subtest: il segnale attraversa il centro ogni 18 ms e la densità di energia della corda scala con la massa per metro
+ok 72 - il segnale attraversa il centro ogni 18 ms e la densità di energia della corda scala con la massa per metro
+  ---
+  duration_ms: 1.80175
+  ...
+# Subtest: la geometria della figura predice la potenza intercettata e l’angolo solido verifica l’esempio
+ok 73 - la geometria della figura predice la potenza intercettata e l’angolo solido verifica l’esempio
+  ---
+  duration_ms: 3.292125
+  ...
+# Subtest: la conversione acustica, il passo della radioonda e la rifrazione superano il controllo inverso
+ok 74 - la conversione acustica, il passo della radioonda e la rifrazione superano il controllo inverso
+  ---
+  duration_ms: 1.449083
+  ...
+# Subtest: la componente magnetica e la direzione dei vettori nel banco attraversano lo zero insieme
+ok 75 - la componente magnetica e la direzione dei vettori nel banco attraversano lo zero insieme
+  ---
+  duration_ms: 110.563458
+  ...
+# Subtest: Ogni voce pubblicata ha esattamente una simulazione con ID, domanda e paragrafo propri
+ok 76 - Ogni voce pubblicata ha esattamente una simulazione con ID, domanda e paragrafo propri
+  ---
+  duration_ms: 123.620459
+  ...
+# Subtest: SIM-C1-L001-01 · Notazione scientifica
+ok 77 - SIM-C1-L001-01 · Notazione scientifica
+  ---
+  duration_ms: 59.537042
+  ...
+# Subtest: SIM-C1-L001-02 · Grandezze fisiche, dimensioni e SI
+ok 78 - SIM-C1-L001-02 · Grandezze fisiche, dimensioni e SI
+  ---
+  duration_ms: 4.093875
+  ...
+# Subtest: SIM-C1-L001-03 · Conversioni tra unità
+ok 79 - SIM-C1-L001-03 · Conversioni tra unità
+  ---
+  duration_ms: 3.300417
+  ...
+# Subtest: SIM-C1-L001-04 · Stima di ordine di grandezza
+ok 80 - SIM-C1-L001-04 · Stima di ordine di grandezza
+  ---
+  duration_ms: 1.797542
+  ...
+# Subtest: SIM-C1-L001-05 · Grandezze intensive ed estensive
+ok 81 - SIM-C1-L001-05 · Grandezze intensive ed estensive
+  ---
+  duration_ms: 1.998083
+  ...
+# Subtest: SIM-C1-L001-06 · Scalari e vettori
+ok 82 - SIM-C1-L001-06 · Scalari e vettori
+  ---
+  duration_ms: 1.738625
+  ...
+# Subtest: SIM-C1-L002-01 · Funzioni trigonometriche elementari
+ok 83 - SIM-C1-L002-01 · Funzioni trigonometriche elementari
+  ---
+  duration_ms: 1.297875
+  ...
+# Subtest: SIM-C1-L002-02 · Definizione, componenti e modulo dei vettori
+ok 84 - SIM-C1-L002-02 · Definizione, componenti e modulo dei vettori
+  ---
+  duration_ms: 2.658667
+  ...
+# Subtest: SIM-C1-L002-03 · Somma e differenza
+ok 85 - SIM-C1-L002-03 · Somma e differenza
+  ---
+  duration_ms: 3.575667
+  ...
+# Subtest: SIM-C1-L002-04 · Prodotto scalare e vettoriale
+ok 86 - SIM-C1-L002-04 · Prodotto scalare e vettoriale
+  ---
+  duration_ms: 1.699958
+  ...
+# Subtest: SIM-C1-L003-01 · Posizione e spostamento
+ok 87 - SIM-C1-L003-01 · Posizione e spostamento
+  ---
+  duration_ms: 2.934041
+  ...
+# Subtest: SIM-C1-L003-02 · Traiettoria e legge oraria
+ok 88 - SIM-C1-L003-02 · Traiettoria e legge oraria
+  ---
+  duration_ms: 3.63025
+  ...
+# Subtest: SIM-C1-L003-03 · Velocità media e istantanea
+ok 89 - SIM-C1-L003-03 · Velocità media e istantanea
+  ---
+  duration_ms: 2.567709
+  ...
+# Subtest: SIM-C1-L003-04 · Accelerazione media e istantanea
+ok 90 - SIM-C1-L003-04 · Accelerazione media e istantanea
+  ---
+  duration_ms: 2.178417
+  ...
+# Subtest: SIM-C1-L003-05 · Moto rettilineo uniforme
+ok 91 - SIM-C1-L003-05 · Moto rettilineo uniforme
+  ---
+  duration_ms: 3.08475
+  ...
+# Subtest: SIM-C1-L003-06 · Grafici cinematici
+ok 92 - SIM-C1-L003-06 · Grafici cinematici
+  ---
+  duration_ms: 1.702042
+  ...
+# Subtest: SIM-C1-L004-01 · Moto uniformemente accelerato
+ok 93 - SIM-C1-L004-01 · Moto uniformemente accelerato
+  ---
+  duration_ms: 2.779375
+  ...
+# Subtest: SIM-C1-L004-02 · Caduta libera
+ok 94 - SIM-C1-L004-02 · Caduta libera
+  ---
+  duration_ms: 3.714458
+  ...
+# Subtest: SIM-C1-L004-03 · Moto parabolico
+ok 95 - SIM-C1-L004-03 · Moto parabolico
+  ---
+  duration_ms: 9.649125
+  ...
+# Subtest: SIM-C1-L004-04 · Moto circolare uniforme e accelerazione centripeta
+ok 96 - SIM-C1-L004-04 · Moto circolare uniforme e accelerazione centripeta
+  ---
+  duration_ms: 6.04525
+  ...
+# Subtest: SIM-C1-L005-01 · Sistemi inerziali e primo principio
+ok 97 - SIM-C1-L005-01 · Sistemi inerziali e primo principio
+  ---
+  duration_ms: 3.561833
+  ...
+# Subtest: SIM-C1-L005-02 · Equilibrio traslazionale e statico
+ok 98 - SIM-C1-L005-02 · Equilibrio traslazionale e statico
+  ---
+  duration_ms: 2.415916
+  ...
+# Subtest: SIM-C1-L005-03 · Secondo principio della dinamica
+ok 99 - SIM-C1-L005-03 · Secondo principio della dinamica
+  ---
+  duration_ms: 0.885625
+  ...
+# Subtest: SIM-C1-L005-04 · Azione e reazione
+ok 100 - SIM-C1-L005-04 · Azione e reazione
+  ---
+  duration_ms: 1.387167
+  ...
+# Subtest: SIM-C1-L005-05 · Forza peso e normale
+ok 101 - SIM-C1-L005-05 · Forza peso e normale
+  ---
+  duration_ms: 10.417959
+  ...
+# Subtest: SIM-C1-L005-06 · Tensione in un filo
+ok 102 - SIM-C1-L005-06 · Tensione in un filo
+  ---
+  duration_ms: 0.918583
+  ...
+# Subtest: SIM-C1-L006-01 · Attrito statico e dinamico
+ok 103 - SIM-C1-L006-01 · Attrito statico e dinamico
+  ---
+  duration_ms: 0.494125
+  ...
+# Subtest: SIM-C1-L006-02 · Forza elastica e legge di Hooke
+ok 104 - SIM-C1-L006-02 · Forza elastica e legge di Hooke
+  ---
+  duration_ms: 8.660416
+  ...
+# Subtest: SIM-C1-L006-03 · Forza gravitazionale
+ok 105 - SIM-C1-L006-03 · Forza gravitazionale
+  ---
+  duration_ms: 1.133875
+  ...
+# Subtest: SIM-C1-L007-01 · Lavoro di una forza
+ok 106 - SIM-C1-L007-01 · Lavoro di una forza
+  ---
+  duration_ms: 4.883
+  ...
+# Subtest: SIM-C1-L007-02 · Potenza media e istantanea
+ok 107 - SIM-C1-L007-02 · Potenza media e istantanea
+  ---
+  duration_ms: 3.050042
+  ...
+# Subtest: SIM-C1-L007-03 · Teorema dell’energia cinetica
+ok 108 - SIM-C1-L007-03 · Teorema dell’energia cinetica
+  ---
+  duration_ms: 1.020041
+  ...
+# Subtest: SIM-C1-L008-01 · Forze conservative e non conservative
+ok 109 - SIM-C1-L008-01 · Forze conservative e non conservative
+  ---
+  duration_ms: 1.450042
+  ...
+# Subtest: SIM-C1-L008-02 · Energia potenziale gravitazionale ed elastica
+ok 110 - SIM-C1-L008-02 · Energia potenziale gravitazionale ed elastica
+  ---
+  duration_ms: 1.921459
+  ...
+# Subtest: SIM-C1-L008-03 · Energia meccanica e conservazione
+ok 111 - SIM-C1-L008-03 · Energia meccanica e conservazione
+  ---
+  duration_ms: 0.729709
+  ...
+# Subtest: SIM-C1-L009-01 · Quantità di moto e impulso
+ok 112 - SIM-C1-L009-01 · Quantità di moto e impulso
+  ---
+  duration_ms: 1.4345
+  ...
+# Subtest: SIM-C1-L009-02 · Conservazione della quantità di moto nei sistemi isolati
+ok 113 - SIM-C1-L009-02 · Conservazione della quantità di moto nei sistemi isolati
+  ---
+  duration_ms: 1.931709
+  ...
+# Subtest: SIM-C1-L010-01 · Centro di massa e suo moto
+ok 114 - SIM-C1-L010-01 · Centro di massa e suo moto
+  ---
+  duration_ms: 1.280208
+  ...
+# Subtest: SIM-C1-L010-02 · Corpo rigido
+ok 115 - SIM-C1-L010-02 · Corpo rigido
+  ---
+  duration_ms: 1.416
+  ...
+# Subtest: SIM-C1-L010-03 · Momento torcente
+ok 116 - SIM-C1-L010-03 · Momento torcente
+  ---
+  duration_ms: 3.615416
+  ...
+# Subtest: SIM-C1-L010-04 · Equilibrio rotazionale
+ok 117 - SIM-C1-L010-04 · Equilibrio rotazionale
+  ---
+  duration_ms: 0.870042
+  ...
+# Subtest: SIM-C1-L010-05 · Leve nel corpo umano
+ok 118 - SIM-C1-L010-05 · Leve nel corpo umano
+  ---
+  duration_ms: 2.184459
+  ...
+# Subtest: SIM-C2-L001-01 · Stati di aggregazione
+ok 119 - SIM-C2-L001-01 · Stati di aggregazione
+  ---
+  duration_ms: 20.915083
+  ...
+# Subtest: SIM-C2-L001-02 · Fluidi e solidi
+ok 120 - SIM-C2-L001-02 · Fluidi e solidi
+  ---
+  duration_ms: 1.458417
+  ...
+# Subtest: SIM-C2-L001-03 · Densità
+ok 121 - SIM-C2-L001-03 · Densità
+  ---
+  duration_ms: 1.144375
+  ...
+# Subtest: SIM-C2-L001-04 · Pressione e forza normale
+ok 122 - SIM-C2-L001-04 · Pressione e forza normale
+  ---
+  duration_ms: 0.709667
+  ...
+# Subtest: SIM-C2-L001-05 · Pressione assoluta e relativa
+ok 123 - SIM-C2-L001-05 · Pressione assoluta e relativa
+  ---
+  duration_ms: 0.823375
+  ...
+# Subtest: SIM-C2-L002-01 · Legge di Stevino
+ok 124 - SIM-C2-L002-01 · Legge di Stevino
+  ---
+  duration_ms: 1.172375
+  ...
+# Subtest: SIM-C2-L002-02 · Pressione con la profondità
+ok 125 - SIM-C2-L002-02 · Pressione con la profondità
+  ---
+  duration_ms: 0.827458
+  ...
+# Subtest: SIM-C2-L002-03 · Esperimento di Torricelli
+ok 126 - SIM-C2-L002-03 · Esperimento di Torricelli
+  ---
+  duration_ms: 0.769792
+  ...
+# Subtest: SIM-C2-L002-04 · Manometro a U
+ok 127 - SIM-C2-L002-04 · Manometro a U
+  ---
+  duration_ms: 1.057542
+  ...
+# Subtest: SIM-C2-L003-01 · Principio di Pascal
+ok 128 - SIM-C2-L003-01 · Principio di Pascal
+  ---
+  duration_ms: 0.886792
+  ...
+# Subtest: SIM-C2-L003-02 · Pressa idraulica
+ok 129 - SIM-C2-L003-02 · Pressa idraulica
+  ---
+  duration_ms: 2.127875
+  ...
+# Subtest: SIM-C2-L003-03 · Trasmissione dell’incremento di pressione in un liquido confinato
+ok 130 - SIM-C2-L003-03 · Trasmissione dell’incremento di pressione in un liquido confinato
+  ---
+  duration_ms: 1.793208
+  ...
+# Subtest: SIM-C2-L004-01 · Principio di Archimede
+ok 131 - SIM-C2-L004-01 · Principio di Archimede
+  ---
+  duration_ms: 0.981542
+  ...
+# Subtest: SIM-C2-L004-02 · Spinta idrostatica
+ok 132 - SIM-C2-L004-02 · Spinta idrostatica
+  ---
+  duration_ms: 0.684292
+  ...
+# Subtest: SIM-C2-L004-03 · Condizioni di galleggiamento e immersione
+ok 133 - SIM-C2-L004-03 · Condizioni di galleggiamento e immersione
+  ---
+  duration_ms: 0.919209
+  ...
+# Subtest: SIM-C2-L005-01 · Flusso e portata volumetrica
+ok 134 - SIM-C2-L005-01 · Flusso e portata volumetrica
+  ---
+  duration_ms: 10.929917
+  ...
+# Subtest: SIM-C2-L005-02 · Conservazione della massa
+ok 135 - SIM-C2-L005-02 · Conservazione della massa
+  ---
+  duration_ms: 3.996125
+  ...
+# Subtest: SIM-C2-L005-03 · Equazione di continuità
+ok 136 - SIM-C2-L005-03 · Equazione di continuità
+  ---
+  duration_ms: 5.525875
+  ...
+# Subtest: SIM-C2-L005-04 · Velocità media di sezione
+ok 137 - SIM-C2-L005-04 · Velocità media di sezione
+  ---
+  duration_ms: 12.969334
+  ...
+# Subtest: SIM-C2-L005-05 · Biforcazioni
+ok 138 - SIM-C2-L005-05 · Biforcazioni
+  ---
+  duration_ms: 1.129375
+  ...
+# Subtest: SIM-C2-L006-01 · Teorema di Bernoulli
+ok 139 - SIM-C2-L006-01 · Teorema di Bernoulli
+  ---
+  duration_ms: 9.649625
+  ...
+# Subtest: SIM-C2-L006-02 · Pressione statica e dinamica
+ok 140 - SIM-C2-L006-02 · Pressione statica e dinamica
+  ---
+  duration_ms: 3.238292
+  ...
+# Subtest: SIM-C2-L006-03 · Stenosi e aneurisma in modello ideale
+ok 141 - SIM-C2-L006-03 · Stenosi e aneurisma in modello ideale
+  ---
+  duration_ms: 5.75375
+  ...
+# Subtest: SIM-C2-L006-04 · Condizioni di validità
+ok 142 - SIM-C2-L006-04 · Condizioni di validità
+  ---
+  duration_ms: 2.521458
+  ...
+# Subtest: SIM-C2-L007-01 · Flussi laminari e turbolenti
+ok 143 - SIM-C2-L007-01 · Flussi laminari e turbolenti
+  ---
+  duration_ms: 1.369375
+  ...
+# Subtest: SIM-C2-L007-02 · Regime stazionario
+ok 144 - SIM-C2-L007-02 · Regime stazionario
+  ---
+  duration_ms: 2.83625
+  ...
+# Subtest: SIM-C2-L007-03 · Viscosità dinamica
+ok 145 - SIM-C2-L007-03 · Viscosità dinamica
+  ---
+  duration_ms: 1.265583
+  ...
+# Subtest: SIM-C2-L007-04 · Gradiente di velocità
+ok 146 - SIM-C2-L007-04 · Gradiente di velocità
+  ---
+  duration_ms: 2.139916
+  ...
+# Subtest: SIM-C2-L007-05 · Profilo parabolico laminare
+ok 147 - SIM-C2-L007-05 · Profilo parabolico laminare
+  ---
+  duration_ms: 6.963042
+  ...
+# Subtest: SIM-C2-L008-01 · Legge di Hagen–Poiseuille
+ok 148 - SIM-C2-L008-01 · Legge di Hagen–Poiseuille
+  ---
+  duration_ms: 4.597458
+  ...
+# Subtest: SIM-C2-L008-02 · Ruolo di raggio, lunghezza, viscosità e salto di pressione
+ok 149 - SIM-C2-L008-02 · Ruolo di raggio, lunghezza, viscosità e salto di pressione
+  ---
+  duration_ms: 3.126833
+  ...
+# Subtest: SIM-C2-L008-03 · Resistenza idraulica
+ok 150 - SIM-C2-L008-03 · Resistenza idraulica
+  ---
+  duration_ms: 3.620542
+  ...
+# Subtest: SIM-C2-L008-04 · Limiti dei modelli fisiologici
+ok 151 - SIM-C2-L008-04 · Limiti dei modelli fisiologici
+  ---
+  duration_ms: 10.170208
+  ...
+# Subtest: SIM-C2-L009-01 · Resistenze idrauliche in serie e in parallelo
+ok 152 - SIM-C2-L009-01 · Resistenze idrauliche in serie e in parallelo
+  ---
+  duration_ms: 4.824667
+  ...
+# Subtest: SIM-C2-L009-02 · Portata nei rami
+ok 153 - SIM-C2-L009-02 · Portata nei rami
+  ---
+  duration_ms: 1.843791
+  ...
+# Subtest: SIM-C2-L009-03 · Resistenze e pressioni nei sistemi biologici
+ok 154 - SIM-C2-L009-03 · Resistenze e pressioni nei sistemi biologici
+  ---
+  duration_ms: 6.310791
+  ...
+# Subtest: SIM-C2-L010-01 · Tensione superficiale
+ok 155 - SIM-C2-L010-01 · Tensione superficiale
+  ---
+  duration_ms: 3.183084
+  ...
+# Subtest: SIM-C2-L010-02 · Piccole quantità di liquido
+ok 156 - SIM-C2-L010-02 · Piccole quantità di liquido
+  ---
+  duration_ms: 1.88225
+  ...
+# Subtest: SIM-C2-L010-03 · Bagnabilità e capillarità
+ok 157 - SIM-C2-L010-03 · Bagnabilità e capillarità
+  ---
+  duration_ms: 1.213875
+  ...
+# Subtest: SIM-C2-L010-04 · Interfacce piane e curve
+ok 158 - SIM-C2-L010-04 · Interfacce piane e curve
+  ---
+  duration_ms: 2.631792
+  ...
+# Subtest: SIM-C2-L010-05 · Legge di Laplace e pressione di curvatura
+ok 159 - SIM-C2-L010-05 · Legge di Laplace e pressione di curvatura
+  ---
+  duration_ms: 4.447625
+  ...
+# Subtest: SIM-C3-L01-01 · Sistema e ambiente
+ok 160 - SIM-C3-L01-01 · Sistema e ambiente
+  ---
+  duration_ms: 28.700375
+  ...
+# Subtest: SIM-C3-L01-02 · Stato termodinamico e variabili p, V, T
+ok 161 - SIM-C3-L01-02 · Stato termodinamico e variabili p, V, T
+  ---
+  duration_ms: 1.481917
+  ...
+# Subtest: SIM-C3-L01-03 · Funzioni di stato
+ok 162 - SIM-C3-L01-03 · Funzioni di stato
+  ---
+  duration_ms: 1.751125
+  ...
+# Subtest: SIM-C3-L01-04 · Temperatura e scale
+ok 163 - SIM-C3-L01-04 · Temperatura e scale
+  ---
+  duration_ms: 1.231083
+  ...
+# Subtest: SIM-C3-L02-01 · Gas perfetti
+ok 164 - SIM-C3-L02-01 · Gas perfetti
+  ---
+  duration_ms: 1.882291
+  ...
+# Subtest: SIM-C3-L02-02 · Equazione di stato e variabili assolute
+ok 165 - SIM-C3-L02-02 · Equazione di stato e variabili assolute
+  ---
+  duration_ms: 1.572042
+  ...
+# Subtest: SIM-C3-L03-01 · Calore e scambio di energia
+ok 166 - SIM-C3-L03-01 · Calore e scambio di energia
+  ---
+  duration_ms: 1.430167
+  ...
+# Subtest: SIM-C3-L03-02 · Capacità termica e calore specifico
+ok 167 - SIM-C3-L03-02 · Capacità termica e calore specifico
+  ---
+  duration_ms: 1.110792
+  ...
+# Subtest: SIM-C3-L03-03 · Capacità termiche dei gas ideali
+ok 168 - SIM-C3-L03-03 · Capacità termiche dei gas ideali
+  ---
+  duration_ms: 4.054708
+  ...
+# Subtest: SIM-C3-L03-04 · Calorimetria
+ok 169 - SIM-C3-L03-04 · Calorimetria
+  ---
+  duration_ms: 1.184208
+  ...
+# Subtest: SIM-C3-L04-01 · Fusione
+ok 170 - SIM-C3-L04-01 · Fusione
+  ---
+  duration_ms: 3.006458
+  ...
+# Subtest: SIM-C3-L04-02 · Evaporazione e condensazione
+ok 171 - SIM-C3-L04-02 · Evaporazione e condensazione
+  ---
+  duration_ms: 1.360792
+  ...
+# Subtest: SIM-C3-L04-03 · Calore latente e bilanci a tratti
+ok 172 - SIM-C3-L04-03 · Calore latente e bilanci a tratti
+  ---
+  duration_ms: 2.133416
+  ...
+# Subtest: SIM-C3-L05-01 · Conduzione
+ok 173 - SIM-C3-L05-01 · Conduzione
+  ---
+  duration_ms: 1.049125
+  ...
+# Subtest: SIM-C3-L05-02 · Convezione
+ok 174 - SIM-C3-L05-02 · Convezione
+  ---
+  duration_ms: 2.298
+  ...
+# Subtest: SIM-C3-L05-03 · Irraggiamento
+ok 175 - SIM-C3-L05-03 · Irraggiamento
+  ---
+  duration_ms: 2.155208
+  ...
+# Subtest: SIM-C3-L06-01 · Primo principio
+ok 176 - SIM-C3-L06-01 · Primo principio
+  ---
+  duration_ms: 7.679292
+  ...
+# Subtest: SIM-C3-L06-02 · Energia interna
+ok 177 - SIM-C3-L06-02 · Energia interna
+  ---
+  duration_ms: 1.303208
+  ...
+# Subtest: SIM-C3-L06-03 · Calore e lavoro
+ok 178 - SIM-C3-L06-03 · Calore e lavoro
+  ---
+  duration_ms: 1.209125
+  ...
+# Subtest: SIM-C3-L06-04 · Interpretazione del lavoro su un diagramma p–V
+ok 179 - SIM-C3-L06-04 · Interpretazione del lavoro su un diagramma p–V
+  ---
+  duration_ms: 0.812083
+  ...
+# Subtest: SIM-C3-L07-01 · Trasformazioni reversibili e irreversibili
+ok 180 - SIM-C3-L07-01 · Trasformazioni reversibili e irreversibili
+  ---
+  duration_ms: 1.998166
+  ...
+# Subtest: SIM-C3-L07-02 · Isoterma
+ok 181 - SIM-C3-L07-02 · Isoterma
+  ---
+  duration_ms: 2.579083
+  ...
+# Subtest: SIM-C3-L07-03 · Isocora
+ok 182 - SIM-C3-L07-03 · Isocora
+  ---
+  duration_ms: 4.662625
+  ...
+# Subtest: SIM-C3-L07-04 · Isobara
+ok 183 - SIM-C3-L07-04 · Isobara
+  ---
+  duration_ms: 4.123541
+  ...
+# Subtest: SIM-C3-L07-05 · Adiabatica e confronto qualitativo
+ok 184 - SIM-C3-L07-05 · Adiabatica e confronto qualitativo
+  ---
+  duration_ms: 2.830042
+  ...
+# Subtest: SIM-C3-L08-01 · Ciclo termodinamico
+ok 185 - SIM-C3-L08-01 · Ciclo termodinamico
+  ---
+  duration_ms: 0.978542
+  ...
+# Subtest: SIM-C3-L08-02 · Bilancio energetico di un ciclo
+ok 186 - SIM-C3-L08-02 · Bilancio energetico di un ciclo
+  ---
+  duration_ms: 1.287084
+  ...
+# Subtest: SIM-C3-L08-03 · Funzionamento ciclico
+ok 187 - SIM-C3-L08-03 · Funzionamento ciclico
+  ---
+  duration_ms: 0.754458
+  ...
+# Subtest: SIM-C3-L09-01 · Secondo principio, enunciati di Kelvin–Planck e Clausius
+ok 188 - SIM-C3-L09-01 · Secondo principio, enunciati di Kelvin–Planck e Clausius
+  ---
+  duration_ms: 1.886125
+  ...
+# Subtest: SIM-C3-L09-02 · Macchine termiche
+ok 189 - SIM-C3-L09-02 · Macchine termiche
+  ---
+  duration_ms: 1.402042
+  ...
+# Subtest: SIM-C3-L09-03 · Rendimento
+ok 190 - SIM-C3-L09-03 · Rendimento
+  ---
+  duration_ms: 12.227834
+  ...
+# Subtest: SIM-C3-L09-04 · Ciclo di Carnot
+ok 191 - SIM-C3-L09-04 · Ciclo di Carnot
+  ---
+  duration_ms: 4.18425
+  ...
+# Subtest: SIM-C3-L10-01 · Entropia funzione di stato
+ok 192 - SIM-C3-L10-01 · Entropia funzione di stato
+  ---
+  duration_ms: 0.784458
+  ...
+# Subtest: SIM-C3-L10-02 · Implicazioni macroscopiche
+ok 193 - SIM-C3-L10-02 · Implicazioni macroscopiche
+  ---
+  duration_ms: 1.731917
+  ...
+# Subtest: SIM-C3-L10-03 · Interpretazione statistica
+ok 194 - SIM-C3-L10-03 · Interpretazione statistica
+  ---
+  duration_ms: 2.047625
+  ...
+# Subtest: SIM-C3-L10-04 · Direzione naturale dei processi
+ok 195 - SIM-C3-L10-04 · Direzione naturale dei processi
+  ---
+  duration_ms: 1.73475
+  ...
+# Subtest: SIM-C4-L01-01 · Carica elettrica, segno, unità e conservazione
+ok 196 - SIM-C4-L01-01 · Carica elettrica, segno, unità e conservazione
+  ---
+  duration_ms: 77.297916
+  ...
+# Subtest: SIM-C4-L01-02 · Interazione fra cariche puntiformi e legge di Coulomb
+ok 197 - SIM-C4-L01-02 · Interazione fra cariche puntiformi e legge di Coulomb
+  ---
+  duration_ms: 1.058833
+  ...
+# Subtest: SIM-C4-L02-01 · Campo elettrico e linee di forza
+ok 198 - SIM-C4-L02-01 · Campo elettrico e linee di forza
+  ---
+  duration_ms: 3.361167
+  ...
+# Subtest: SIM-C4-L02-02 · Campo di una o più cariche puntiformi
+ok 199 - SIM-C4-L02-02 · Campo di una o più cariche puntiformi
+  ---
+  duration_ms: 1.161083
+  ...
+# Subtest: SIM-C4-L02-03 · Moto in un campo elettrico uniforme
+ok 200 - SIM-C4-L02-03 · Moto in un campo elettrico uniforme
+  ---
+  duration_ms: 1.726583
+  ...
+# Subtest: SIM-C4-L03-01 · Energia potenziale di una distribuzione di cariche
+ok 201 - SIM-C4-L03-01 · Energia potenziale di una distribuzione di cariche
+  ---
+  duration_ms: 1.100334
+  ...
+# Subtest: SIM-C4-L03-02 · Potenziale e differenza di potenziale
+ok 202 - SIM-C4-L03-02 · Potenziale e differenza di potenziale
+  ---
+  duration_ms: 0.620542
+  ...
+# Subtest: SIM-C4-L03-03 · Conservazione dell’energia in un campo elettrico
+ok 203 - SIM-C4-L03-03 · Conservazione dell’energia in un campo elettrico
+  ---
+  duration_ms: 0.59575
+  ...
+# Subtest: SIM-C4-L04-01 · Conduttori e induzione elettrostatica
+ok 204 - SIM-C4-L04-01 · Conduttori e induzione elettrostatica
+  ---
+  duration_ms: 0.9485
+  ...
+# Subtest: SIM-C4-L04-02 · Dielettrici e polarizzazione
+ok 205 - SIM-C4-L04-02 · Dielettrici e polarizzazione
+  ---
+  duration_ms: 0.781
+  ...
+# Subtest: SIM-C4-L05-01 · Corrente continua e intensità
+ok 206 - SIM-C4-L05-01 · Corrente continua e intensità
+  ---
+  duration_ms: 1.895625
+  ...
+# Subtest: SIM-C4-L05-02 · Generatore ideale
+ok 207 - SIM-C4-L05-02 · Generatore ideale
+  ---
+  duration_ms: 0.973708
+  ...
+# Subtest: SIM-C4-L05-03 · Conduzione ohmica
+ok 208 - SIM-C4-L05-03 · Conduzione ohmica
+  ---
+  duration_ms: 0.956375
+  ...
+# Subtest: SIM-C4-L05-04 · Prima e seconda legge di Ohm
+ok 209 - SIM-C4-L05-04 · Prima e seconda legge di Ohm
+  ---
+  duration_ms: 2.213834
+  ...
+# Subtest: SIM-C4-L05-05 · Resistività
+ok 210 - SIM-C4-L05-05 · Resistività
+  ---
+  duration_ms: 0.956917
+  ...
+# Subtest: SIM-C4-L06-01 · Resistenze in serie e in parallelo
+ok 211 - SIM-C4-L06-01 · Resistenze in serie e in parallelo
+  ---
+  duration_ms: 1.302417
+  ...
+# Subtest: SIM-C4-L06-02 · Potenza elettrica ed effetto Joule
+ok 212 - SIM-C4-L06-02 · Potenza elettrica ed effetto Joule
+  ---
+  duration_ms: 0.56175
+  ...
+# Subtest: SIM-C4-L07-01 · Capacità elettrica e condensatore piano
+ok 213 - SIM-C4-L07-01 · Capacità elettrica e condensatore piano
+  ---
+  duration_ms: 0.440625
+  ...
+# Subtest: SIM-C4-L07-02 · Effetto del dielettrico
+ok 214 - SIM-C4-L07-02 · Effetto del dielettrico
+  ---
+  duration_ms: 0.891375
+  ...
+# Subtest: SIM-C4-L07-03 · Energia immagazzinata
+ok 215 - SIM-C4-L07-03 · Energia immagazzinata
+  ---
+  duration_ms: 0.681333
+  ...
+# Subtest: SIM-C4-L08-01 · Condensatori in serie e in parallelo
+ok 216 - SIM-C4-L08-01 · Condensatori in serie e in parallelo
+  ---
+  duration_ms: 1.628083
+  ...
+# Subtest: SIM-C4-L08-02 · Conservazione di carica nei collegamenti
+ok 217 - SIM-C4-L08-02 · Conservazione di carica nei collegamenti
+  ---
+  duration_ms: 0.570583
+  ...
+# Subtest: SIM-C4-L09-01 · Origine magnetica delle correnti ed esperimento di Oersted
+ok 218 - SIM-C4-L09-01 · Origine magnetica delle correnti ed esperimento di Oersted
+  ---
+  duration_ms: 2.11825
+  ...
+# Subtest: SIM-C4-L09-02 · Forza di Lorentz su una carica in moto e su un filo
+ok 219 - SIM-C4-L09-02 · Forza di Lorentz su una carica in moto e su un filo
+  ---
+  duration_ms: 1.171625
+  ...
+# Subtest: SIM-C4-L09-03 · Moto circolare in campo magnetico uniforme
+ok 220 - SIM-C4-L09-03 · Moto circolare in campo magnetico uniforme
+  ---
+  duration_ms: 1.692917
+  ...
+# Subtest: SIM-C4-L10-01 · Flusso magnetico
+ok 221 - SIM-C4-L10-01 · Flusso magnetico
+  ---
+  duration_ms: 1.849542
+  ...
+# Subtest: SIM-C4-L10-02 · Forza elettromotrice indotta
+ok 222 - SIM-C4-L10-02 · Forza elettromotrice indotta
+  ---
+  duration_ms: 1.096125
+  ...
+# Subtest: SIM-C4-L10-03 · Legge di Faraday–Neumann–Lenz
+ok 223 - SIM-C4-L10-03 · Legge di Faraday–Neumann–Lenz
+  ---
+  duration_ms: 1.656458
+  ...
+# Subtest: SIM-C4-L10-04 · Correnti indotte e loro verso
+ok 224 - SIM-C4-L10-04 · Correnti indotte e loro verso
+  ---
+  duration_ms: 1.135625
+  ...
+# Subtest: SIM-C5-L01-01 · Oscillatore armonico come sorgente
+ok 225 - SIM-C5-L01-01 · Oscillatore armonico come sorgente
+  ---
+  duration_ms: 5.607542
+  ...
+# Subtest: SIM-C5-L01-02 · Ampiezza, periodo, frequenza e pulsazione
+ok 226 - SIM-C5-L01-02 · Ampiezza, periodo, frequenza e pulsazione
+  ---
+  duration_ms: 2.609667
+  ...
+# Subtest: SIM-C5-L02-01 · Perturbazione, energia e mezzo materiale
+ok 227 - SIM-C5-L02-01 · Perturbazione, energia e mezzo materiale
+  ---
+  duration_ms: 1.964166
+  ...
+# Subtest: SIM-C5-L02-02 · Velocità, frequenza e lunghezza d’onda
+ok 228 - SIM-C5-L02-02 · Velocità, frequenza e lunghezza d’onda
+  ---
+  duration_ms: 4.356
+  ...
+# Subtest: SIM-C5-L02-03 · Equazione armonica di propagazione
+ok 229 - SIM-C5-L02-03 · Equazione armonica di propagazione
+  ---
+  duration_ms: 2.118542
+  ...
+# Subtest: SIM-C5-L02-04 · Onde trasversali su corda e longitudinali nei fluidi
+ok 230 - SIM-C5-L02-04 · Onde trasversali su corda e longitudinali nei fluidi
+  ---
+  duration_ms: 2.179833
+  ...
+# Subtest: SIM-C5-L03-01 · Principio di sovrapposizione
+ok 231 - SIM-C5-L03-01 · Principio di sovrapposizione
+  ---
+  duration_ms: 2.937917
+  ...
+# Subtest: SIM-C5-L03-02 · Interferenza costruttiva e distruttiva
+ok 232 - SIM-C5-L03-02 · Interferenza costruttiva e distruttiva
+  ---
+  duration_ms: 4.08475
+  ...
+# Subtest: SIM-C5-L04-01 · Energia e potenza di un’onda meccanica in un mezzo elastico
+ok 233 - SIM-C5-L04-01 · Energia e potenza di un’onda meccanica in un mezzo elastico
+  ---
+  duration_ms: 1.082333
+  ...
+# Subtest: SIM-C5-L04-02 · Intensità come energia per area e tempo
+ok 234 - SIM-C5-L04-02 · Intensità come energia per area e tempo
+  ---
+  duration_ms: 4.192291
+  ...
+# Subtest: SIM-C5-L04-03 · Legge dell’inverso del quadrato della distanza
+ok 235 - SIM-C5-L04-03 · Legge dell’inverso del quadrato della distanza
+  ---
+  duration_ms: 2.7965
+  ...
+# Subtest: SIM-C5-L05-01 · Velocità del suono nei mezzi
+ok 236 - SIM-C5-L05-01 · Velocità del suono nei mezzi
+  ---
+  duration_ms: 4.174083
+  ...
+# Subtest: SIM-C5-L05-02 · Intensità, percezione e livello sonoro in decibel
+ok 237 - SIM-C5-L05-02 · Intensità, percezione e livello sonoro in decibel
+  ---
+  duration_ms: 6.246208
+  ...
+# Subtest: SIM-C5-L05-03 · Effetto Doppler qualitativo
+ok 238 - SIM-C5-L05-03 · Effetto Doppler qualitativo
+  ---
+  duration_ms: 4.038792
+  ...
+# Subtest: SIM-C5-L06-01 · Onde elettromagnetiche e campi ortogonali
+ok 239 - SIM-C5-L06-01 · Onde elettromagnetiche e campi ortogonali
+  ---
+  duration_ms: 4.035542
+  ...
+# Subtest: SIM-C5-L06-02 · Velocità, frequenza, lunghezza d’onda, ampiezza e intensità
+ok 240 - SIM-C5-L06-02 · Velocità, frequenza, lunghezza d’onda, ampiezza e intensità
+  ---
+  duration_ms: 3.846541
+  ...
+# Subtest: SIM-C5-L06-03 · Spettro: radio, microonde, infrarosso, visibile, UV, X e gamma
+ok 241 - SIM-C5-L06-03 · Spettro: radio, microonde, infrarosso, visibile, UV, X e gamma
+  ---
+  duration_ms: 4.165
+  ...
+# Subtest: SIM-C5-L07-01 · Quantizzazione dell’energia e relazione di Planck
+ok 242 - SIM-C5-L07-01 · Quantizzazione dell’energia e relazione di Planck
+  ---
+  duration_ms: 3.681625
+  ...
+# Subtest: SIM-C5-L07-02 · Assorbimento e legge di Lambert–Beer
+ok 243 - SIM-C5-L07-02 · Assorbimento e legge di Lambert–Beer
+  ---
+  duration_ms: 3.086708
+  ...
+# Subtest: SIM-C5-L07-03 · Distinzione fra radiazioni ionizzanti e non ionizzanti
+ok 244 - SIM-C5-L07-03 · Distinzione fra radiazioni ionizzanti e non ionizzanti
+  ---
+  duration_ms: 2.153334
+  ...
+# Subtest: SIM-C5-L08-01 · Nucleo instabile, nuclidi e isotopi radioattivi
+ok 245 - SIM-C5-L08-01 · Nucleo instabile, nuclidi e isotopi radioattivi
+  ---
+  duration_ms: 1.181959
+  ...
+# Subtest: SIM-C5-L08-02 · Attività, legge di decadimento e tempo di dimezzamento
+ok 246 - SIM-C5-L08-02 · Attività, legge di decadimento e tempo di dimezzamento
+  ---
+  duration_ms: 1.681042
+  ...
+# Subtest: SIM-C5-L08-03 · Decadimenti α, β e transizioni γ
+ok 247 - SIM-C5-L08-03 · Decadimenti α, β e transizioni γ
+  ---
+  duration_ms: 0.660875
+  ...
+# Subtest: SIM-C5-L09-01 · Legge della riflessione
+ok 248 - SIM-C5-L09-01 · Legge della riflessione
+  ---
+  duration_ms: 0.910791
+  ...
+# Subtest: SIM-C5-L09-02 · Indice di rifrazione e legge di Snell
+ok 249 - SIM-C5-L09-02 · Indice di rifrazione e legge di Snell
+  ---
+  duration_ms: 0.602458
+  ...
+# Subtest: SIM-C5-L10-01 · Lenti sottili convergenti
+ok 250 - SIM-C5-L10-01 · Lenti sottili convergenti
+  ---
+  duration_ms: 2.400875
+  ...
+# Subtest: SIM-C5-L10-02 · Legge dei punti coniugati e formazione di immagini
+ok 251 - SIM-C5-L10-02 · Legge dei punti coniugati e formazione di immagini
+  ---
+  duration_ms: 0.952958
+  ...
+# Subtest: SIM-C6-L01-01 · Misurare una distanza con l’eco
+ok 252 - SIM-C6-L01-01 · Misurare una distanza con l’eco
+  ---
+  duration_ms: 20.096833
+  ...
+# Subtest: SIM-C6-L02-01 · Dalla massa raccolta alla velocità del fluido
+ok 253 - SIM-C6-L02-01 · Dalla massa raccolta alla velocità del fluido
+  ---
+  duration_ms: 7.919666
+  ...
+# Subtest: SIM-C6-L03-01 · Dalla batteria al calorimetro
+ok 254 - SIM-C6-L03-01 · Dalla batteria al calorimetro
+  ---
+  duration_ms: 2.132542
+  ...
+# Subtest: SIM-C6-L04-01 · Riconoscere una legge di attenuazione
+ok 255 - SIM-C6-L04-01 · Riconoscere una legge di attenuazione
+  ---
+  duration_ms: 4.199291
+  ...
+# Subtest: SIM-C6-L05-01 · Sommare aree con segno
+ok 256 - SIM-C6-L05-01 · Sommare aree con segno
+  ---
+  duration_ms: 3.315375
+  ...
+# Subtest: SIM-C6-L06-01 · Verificare la lente intorno alla distanza focale
+ok 257 - SIM-C6-L06-01 · Verificare la lente intorno alla distanza focale
+  ---
+  duration_ms: 1.879959
+  ...
+# Subtest: Invarianti fra strumenti indipendenti e vincoli di validità
+ok 258 - Invarianti fra strumenti indipendenti e vincoli di validità
+  ---
+  duration_ms: 31.053875
+  ...
+# Subtest: Le indicazioni sperimentali sono specifiche per ciascuna delle 181 voci
+ok 259 - Le indicazioni sperimentali sono specifiche per ciascuna delle 181 voci
+  ---
+  duration_ms: 17.97
+  ...
+# Subtest: Orologio, corpi e misure soddisfano gli stessi vincoli fisici nei sei corsi
+ok 260 - Orologio, corpi e misure soddisfano gli stessi vincoli fisici nei sei corsi
+  ---
+  duration_ms: 25.939709
+  ...
+# Subtest: Inquadratura stretta con etichette vicine e confine della tavola
+ok 261 - Inquadratura stretta con etichette vicine e confine della tavola
+  ---
+  duration_ms: 0.623709
+  ...
+# Subtest: Entrata stays in the accessible legend and off the measured glyphs
+ok 262 - Entrata stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 64.884875
+  ...
+# Subtest: Presa frontale stays in the accessible legend and off the measured glyphs
+ok 263 - Presa frontale stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 6.101416
+  ...
+# Subtest: Uscita stays in the accessible legend and off the measured glyphs
+ok 264 - Uscita stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 17.874209
+  ...
+# Subtest: Sezione di misura stays in the accessible legend and off the measured glyphs
+ok 265 - Sezione di misura stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 10.551209
+  ...
+# Subtest: Sforzo sulla lastra stays in the accessible legend and off the measured glyphs
+ok 266 - Sforzo sulla lastra stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 1.227625
+  ...
+# Subtest: Presa intermedia stays in the accessible legend and off the measured glyphs
+ok 267 - Presa intermedia stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 3.756125
+  ...
+# Subtest: In parallelo stays in the accessible legend and off the measured glyphs
+ok 268 - In parallelo stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 1.925334
+  ...
+# Subtest: Goccia stays in the accessible legend and off the measured glyphs
+ok 269 - Goccia stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 1.353334
+  ...
+# Subtest: Film a due facce stays in the accessible legend and off the measured glyphs
+ok 270 - Film a due facce stays in the accessible legend and off the measured glyphs
+  ---
+  duration_ms: 2.694
+  ...
+# Subtest: unrelated labels keep their existing anchors
+ok 271 - unrelated labels keep their existing anchors
+  ---
+  duration_ms: 3.994916
+  ...
+# Subtest: the Pitot velocity arrows pass beside the probes with the same direction and scale
+ok 272 - the Pitot velocity arrows pass beside the probes with the same direction and scale
+  ---
+  duration_ms: 10.637584
+  ...
+# Subtest: press arrows show motion direction and disappear at zero stroke
+ok 273 - press arrows show motion direction and disappear at zero stroke
+  ---
+  duration_ms: 1.518958
+  ...
+# Subtest: Il lettore ricompone ogni lezione ed esempio dalle stesse unità editoriali
+ok 274 - Il lettore ricompone ogni lezione ed esempio dalle stesse unità editoriali
+  ---
+  duration_ms: 47.956708
+  ...
+# Subtest: Le voci tardive o remote lasciano sempre sotto controllo l’ascolto
+ok 275 - Le voci tardive o remote lasciano sempre sotto controllo l’ascolto
+  ---
+  duration_ms: 1.059375
+  ...
+# Subtest: Il pacchetto italiano offline rispetta impronte e budget della distribuzione verificata
+ok 276 - Il pacchetto italiano offline rispetta impronte e budget della distribuzione verificata
+  ---
+  duration_ms: 19.900083
+  ...
+# Verificati 117 esempi e 8 lezioni a più figure.
+# Subtest: Ogni blocco del manoscritto resta nello stesso ordine e con la relativa didascalia
+ok 277 - Ogni blocco del manoscritto resta nello stesso ordine e con la relativa didascalia
+  ---
+  duration_ms: 26.543791
+  ...
+# Subtest: Un breve blocco indivisibile e i quesiti si leggono in forma integrale
+ok 278 - Un breve blocco indivisibile e i quesiti si leggono in forma integrale
+  ---
+  duration_ms: 1.519458
+  ...
+# Subtest: Lo svolgimento di un quesito espanso è navigabile un passaggio alla volta dopo la risposta
+ok 279 - Lo svolgimento di un quesito espanso è navigabile un passaggio alla volta dopo la risposta
+  ---
+  duration_ms: 0.278
+  ...
+# Subtest: both Coulomb forces keep the common gain clear of the charge spheres
+ok 280 - both Coulomb forces keep the common gain clear of the charge spheres
+  ---
+  duration_ms: 22.035125
+  ...
+# Subtest: the photoelectron inset preserves direction, gives its scale, and vanishes at zero excess
+ok 281 - the photoelectron inset preserves direction, gives its scale, and vanishes at zero excess
+  ---
+  duration_ms: 13.448583
+  ...
+# Subtest: confirmed C1 and Doppler cartouches leave the geometry and the accessible names legible
+ok 282 - confirmed C1 and Doppler cartouches leave the geometry and the accessible names legible
+  ---
+  duration_ms: 29.243208
+  ...
+# Subtest: small gravitational attraction remains visible in both inward directions
+ok 283 - small gravitational attraction remains visible in both inward directions
+  ---
+  duration_ms: 4.0465
+  ...
+# Subtest: the early cart velocity has a separate direction cue only above zero
+ok 284 - the early cart velocity has a separate direction cue only above zero
+  ---
+  duration_ms: 3.907458
+  ...
+# Subtest: the virtual image stays clear of the object label in the C6 lens
+ok 285 - the virtual image stays clear of the object label in the C6 lens
+  ---
+  duration_ms: 11.122792
+  ...
+# Subtest: the C6 attenuation detector label leaves the transmitted beam unobstructed
+ok 286 - the C6 attenuation detector label leaves the transmitted beam unobstructed
+  ---
+  duration_ms: 22.145792
+  ...
+# Subtest: the kinetic-energy cart keeps its original speed and adds a visible short-vector detail
+ok 287 - the kinetic-energy cart keeps its original speed and adds a visible short-vector detail
+  ---
+  duration_ms: 2.65375
+  ...
+# Subtest: Dieci chiavi indipendenti, una competenza per soluzione e due tavole consecutive
+ok 288 - Dieci chiavi indipendenti, una competenza per soluzione e due tavole consecutive
+  ---
+  duration_ms: 11.726709
+  ...
+# Subtest: Cinque derivazioni equivalenti, controlli numerici e tre fasi per grafico
+ok 289 - Cinque derivazioni equivalenti, controlli numerici e tre fasi per grafico
+  ---
+  duration_ms: 4.092
+  ...
+# Subtest: Parentesi, segno, potenze e limiti espliciti del correttore
+ok 290 - Parentesi, segno, potenze e limiti espliciti del correttore
+  ---
+  duration_ms: 8.654084
+  ...
+# Subtest: ogni microcorso presenta formule inverse, tre disegni successivi e esercizio senza calcolatrice
+ok 291 - ogni microcorso presenta formule inverse, tre disegni successivi e esercizio senza calcolatrice
+  ---
+  duration_ms: 8.674584
+  ...
+# Subtest: le cinque pagine trattano aspetti fisici distinti e controlli non confondibili
+ok 292 - le cinque pagine trattano aspetti fisici distinti e controlli non confondibili
+  ---
+  duration_ms: 3.208958
+  ...
+# Subtest: l’indice C6 collega tutti i cinque microcorsi senza duplicarne le schede
+ok 293 - l’indice C6 collega tutti i cinque microcorsi senza duplicarne le schede
+  ---
+  duration_ms: 0.309625
+  ...
+# Subtest: l’ingresso sprint distingue diagnosi, allenamento e simulazione normativa
+ok 294 - l’ingresso sprint distingue diagnosi, allenamento e simulazione normativa
+  ---
+  duration_ms: 0.799333
+  ...
+# Subtest: the midpoint probe marks signed superposition and a separate visible detail
+ok 295 - the midpoint probe marks signed superposition and a separate visible detail
+  ---
+  duration_ms: 15.998208
+  ...
+# Subtest: the single-source field keeps the numerical charge label
+ok 296 - the single-source field keeps the numerical charge label
+  ---
+  duration_ms: 1.603166
+  ...
+# Subtest: C1 · soglia, quiete, attrito nullo, distacco e bilancio verticale
+ok 297 - C1 · soglia, quiete, attrito nullo, distacco e bilancio verticale
+  ---
+  duration_ms: 2.665834
+  ...
+# Subtest: C2 · raggio dimezzato, proporzionalità, regime laminare
+ok 298 - C2 · raggio dimezzato, proporzionalità, regime laminare
+  ---
+  duration_ms: 2.307958
+  ...
+# Subtest: C3 · stati, area, lavoro di compressione, primo principio
+ok 299 - C3 · stati, area, lavoro di compressione, primo principio
+  ---
+  duration_ms: 3.54475
+  ...
+# Subtest: C4 · nodi, maglia, potenza e tensione nulla
+ok 300 - C4 · nodi, maglia, potenza e tensione nulla
+  ---
+  duration_ms: 0.499375
+  ...
+# Subtest: C5 · due raggi si intersecano nel punto coniugato
+ok 301 - C5 · due raggi si intersecano nel punto coniugato
+  ---
+  duration_ms: 0.353917
+  ...
+# Subtest: Lancio · differenze centrate, energia e radici anche nel lancio verticale
+ok 302 - Lancio · differenze centrate, energia e radici anche nel lancio verticale
+  ---
+  duration_ms: 1.895208
+  ...
+# Subtest: Capillare · integrazione sugli anelli, moto locale e dominio di Reynolds
+ok 303 - Capillare · integrazione sugli anelli, moto locale e dominio di Reynolds
+  ---
+  duration_ms: 3.624208
+  ...
+# Subtest: Pistone · pV costante e quadratura indipendente del lavoro con entrambi i segni
+ok 304 - Pistone · pV costante e quadratura indipendente del lavoro con entrambi i segni
+  ---
+  duration_ms: 17.163167
+  ...
+# Subtest: Faraday e Lenz · derivata del flusso, campo nullo istantaneo, circuito aperto e carico resistivo
+ok 305 - Faraday e Lenz · derivata del flusso, campo nullo istantaneo, circuito aperto e carico resistivo
+  ---
+  duration_ms: 0.98375
+  ...
+# Subtest: Onde · traslazione delle creste, somma puntuale e nodi per fase o cammino
+ok 306 - Onde · traslazione delle creste, somma puntuale e nodi per fase o cammino
+  ---
+  duration_ms: 6.660708
+  ...
+# Subtest: Onde · lettura dello zero istantaneo e degli spostamenti prima e dopo
+ok 307 - Onde · lettura dello zero istantaneo e degli spostamenti prima e dopo
+  ---
+  duration_ms: 0.4035
+  ...
+# Subtest: Orologio · stesso istante a 24, 60, 120 fps, arresto e riavvio del ciclo
+ok 308 - Orologio · stesso istante a 24, 60, 120 fps, arresto e riavvio del ciclo
+  ---
+  duration_ms: 0.853833
+  ...
+# Subtest: SIM-C4-L02-03 · whole marker and three field heads are clear of plate silhouettes in initial framing
+ok 309 - SIM-C4-L02-03 · whole marker and three field heads are clear of plate silhouettes in initial framing
+  ---
+  duration_ms: 122.810084
+  ...
+# Subtest: SIM-C4-L03-02 · whole marker and three field heads are clear of plate silhouettes in initial framing
+ok 310 - SIM-C4-L03-02 · whole marker and three field heads are clear of plate silhouettes in initial framing
+  ---
+  duration_ms: 35.129709
+  ...
+# Subtest: SIM-C4-L03-03 · whole marker and three field heads are clear of plate silhouettes in initial framing
+ok 311 - SIM-C4-L03-03 · whole marker and three field heads are clear of plate silhouettes in initial framing
+  ---
+  duration_ms: 36.657708
+  ...
+# Subtest: target camera keeps all actual opaque mesh supports and table corners inside both recorded frames
+ok 312 - target camera keeps all actual opaque mesh supports and table corners inside both recorded frames
+  ---
+  duration_ms: 60.768833
+  ...
+# Subtest: native alternative views are taught without directing fallback users to disabled controls
+ok 313 - native alternative views are taught without directing fallback users to disabled controls
+  ---
+  duration_ms: 3.051584
+  ...
+# Subtest: I contratti pubblicati accettano il pacchetto di geometria e respingono una legge incompleta
+ok 314 - I contratti pubblicati accettano il pacchetto di geometria e respingono una legge incompleta
+  ---
+  duration_ms: 271.210833
+  ...
+# Subtest: Il client MCP ufficiale negozia il protocollo e invoca solo gli strumenti autorizzati
+ok 315 - Il client MCP ufficiale negozia il protocollo e invoca solo gli strumenti autorizzati
+  ---
+  duration_ms: 219.708833
+  ...
+# Subtest: Entrambe le durate. Inversione, zero e distanza coincidono con una somma indipendente a passi di mezzo secondo
+ok 316 - Entrambe le durate. Inversione, zero e distanza coincidono con una somma indipendente a passi di mezzo secondo
+  ---
+  duration_ms: 2.772708
+  ...
+# Subtest: Il modello accetta altri tratti, una sosta e un’origine traslata e rifiuta tempi o dati fuori dominio
+ok 317 - Il modello accetta altri tratti, una sosta e un’origine traslata e rifiuta tempi o dati fuori dominio
+  ---
+  duration_ms: 9.608208
+  ...
+# Subtest: Il feedback e l’aiuto sono indipendenti. Anche ripristinare lo stesso testo richiede un nuovo invio
+ok 318 - Il feedback e l’aiuto sono indipendenti. Anche ripristinare lo stesso testo richiede un nuovo invio
+  ---
+  duration_ms: 1.098584
+  ...
+# Subtest: Le prime cinque risoluzioni editoriali mantengono i risultati e mostrano il ragionamento
+ok 319 - Le prime cinque risoluzioni editoriali mantengono i risultati e mostrano il ragionamento
+  ---
+  duration_ms: 22.955583
+  ...
+# Subtest: L’accelerazione centripeta include correttamente il raggio al denominatore
+ok 320 - L’accelerazione centripeta include correttamente il raggio al denominatore
+  ---
+  duration_ms: 2.67575
+  ...
+# Subtest: Ogni file JSON mantiene gli identificatori unici nella propria banca
+ok 321 - Ogni file JSON mantiene gli identificatori unici nella propria banca
+  ---
+  duration_ms: 18.170667
+  ...
+# Subtest: the smallest positive work is represented with its true sense in both thermal machines
+ok 322 - the smallest positive work is represented with its true sense in both thermal machines
+  ---
+  duration_ms: 15.79625
+  ...
+# Subtest: five early fusion frames retain a directional indicator for supplied energy
+ok 323 - five early fusion frames retain a directional indicator for supplied energy
+  ---
+  duration_ms: 5.134834
+  ...
+# Subtest: larger transfers keep their existing scale and no magnified arrow
+ok 324 - larger transfers keep their existing scale and no magnified arrow
+  ---
+  duration_ms: 2.25275
+  ...
+# Subtest: legends explain the active view and distinguish heat from work
+ok 325 - legends explain the active view and distinguish heat from work
+  ---
+  duration_ms: 1.807542
+  ...
+# Subtest: the fallback arrowhead extends beyond the shaft without moving its tip
+ok 326 - the fallback arrowhead extends beyond the shaft without moving its tip
+  ---
+  duration_ms: 12.053833
+  ...
+# Subtest: the native wave section follows the centre plane even when the projected sheet degenerates
+ok 327 - the native wave section follows the centre plane even when the projected sheet degenerates
+  ---
+  duration_ms: 16.604083
+  ...
+# Subtest: the trace belongs only to the section view
+ok 328 - the trace belongs only to the section view
+  ---
+  duration_ms: 15.922292
+  ...
+1..328
+# tests 328
+# suites 0
+# pass 327
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1750.128667

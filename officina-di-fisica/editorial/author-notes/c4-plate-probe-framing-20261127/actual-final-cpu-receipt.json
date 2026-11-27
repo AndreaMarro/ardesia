@@ -1,0 +1,73 @@
+{
+  "results": [
+    {
+      "name": "red-final-stronger",
+      "command": [
+        "node",
+        "--test",
+        "tests/plate-probe-camera.test.js"
+      ],
+      "expectedExitCode": 1,
+      "actualExitCode": 1,
+      "elapsedSeconds": 0.4437711238861084,
+      "rawSha256": "b1939040867d36c0928e15861bd36788cc29d0b6658520b1a6887535b0fcff94"
+    },
+    {
+      "name": "source-invariance",
+      "command": [
+        "node",
+        "/private/tmp/cric-vector-apparatus-author-20261126/officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/source-invariance.mjs"
+      ],
+      "expectedExitCode": 0,
+      "actualExitCode": 0,
+      "elapsedSeconds": 3.5933806896209717,
+      "rawSha256": "745e407338475d91861a8f42899b25a3abefcb921fa1eb69a4d3733d8bbb8b1f"
+    },
+    {
+      "name": "target-final",
+      "command": [
+        "node",
+        "--test",
+        "tests/plate-probe-camera.test.js"
+      ],
+      "expectedExitCode": 0,
+      "actualExitCode": 0,
+      "elapsedSeconds": 0.37633204460144043,
+      "rawSha256": "0b442286e894994957930672c03075b03d4913989b787fcad81f3887f3d32af9"
+    },
+    {
+      "name": "node-general-final",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "expectedExitCode": 0,
+      "actualExitCode": 0,
+      "elapsedSeconds": 1.4498622417449951,
+      "rawSha256": "c6866dabf27a4ee21ca57087afadc39b299fe52dda36545b2eb8516cc75b79fb"
+    },
+    {
+      "name": "contracts-final",
+      "command": [
+        "npm",
+        "run",
+        "test:contracts"
+      ],
+      "expectedExitCode": 0,
+      "actualExitCode": 0,
+      "elapsedSeconds": 1.6057829856872559,
+      "rawSha256": "31a21d12ef86d35b0ecd79d4ce817d14035fb9f8420699bf687b6158b6a960e8"
+    }
+  ],
+  "freeBytesAtStart": 4351291392,
+  "testSha256": "ee0bba01ffdab9bfc404d1fb76601be51bd3c2c1b64948082651ef018c22509d",
+  "meshHelperSha256": "3afd99bb580f89988d52838c780da3ec9c5c5612ee83bf70f5ea046a0399272f",
+  "productionSha256": "7b22b646285e70f837d1f5649499506681e42eb8fd7930166d347953bb79d67f",
+  "baseCommit": "b9994b9116e87478905191d85cca8037d17ae4bd",
+  "immutableSourceBeforeAfterVerified": true,
+  "role": "AUTHOR_DEVELOPMENT_ONLY",
+  "browserStarted": false,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

@@ -1,0 +1,258 @@
+{
+  "schemaVersion": "1.0.0",
+  "role": "AUTHOR_DELIVERY_NO_SCIENTIFIC_ACCEPTANCE",
+  "baseCommit": "b9994b9116e87478905191d85cca8037d17ae4bd",
+  "branch": "feat/cric-c4-plate-frontal-camera",
+  "targetIds": [
+    "SIM-C4-L02-03",
+    "SIM-C4-L03-02",
+    "SIM-C4-L03-03"
+  ],
+  "changedProductionPaths": [
+    "officina-di-fisica/static/js/banchi/voci/esperimento.js"
+  ],
+  "runtimeSha256": "ba48962eeb9f3e6d4988dbd93accd3bbc529e4e4f094bb53b8236c2d4c895538",
+  "runtimeBeforeAfterIdentical": true,
+  "actualCpuTests": {
+    "target": {
+      "pass": 5,
+      "fail": 0,
+      "exit": 0
+    },
+    "nodeGeneral": {
+      "pass": 328,
+      "fail": 0,
+      "exit": 0
+    },
+    "contracts": {
+      "pass": 2,
+      "fail": 0,
+      "exit": 0
+    },
+    "strongerBaselineRed": {
+      "pass": 1,
+      "fail": 4,
+      "exit": 1
+    },
+    "firstGeneralNegativePreserved": {
+      "pass": 327,
+      "fail": 1,
+      "exit": 1
+    }
+  },
+  "sourceInvariance": {
+    "records": 181,
+    "inputs": 2838,
+    "scenes": 19659,
+    "other178CameraAndLegendsExact": true,
+    "allModelsGeometryGradingTeachingExact": true
+  },
+  "meshProjectedSupport": {
+    "cases": 102,
+    "minCssGap": 0.5444444444444452,
+    "scope": "Actual Float32 static/mobile mesh vertices, complete shafts/cones; not a GPU/raster/UI certificate."
+  },
+  "scientificApproval": "NOT_RUN_RECUSED_AUTHOR",
+  "productUI": "NOT_RUN",
+  "peerReview": "PENDING_DISTINCT_REVIEWER",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "activityCredit": 0,
+  "files": [
+    {
+      "path": "officina-di-fisica/static/js/banchi/voci/esperimento.js",
+      "bytes": 13508,
+      "sha256": "7b22b646285e70f837d1f5649499506681e42eb8fd7930166d347953bb79d67f"
+    },
+    {
+      "path": "officina-di-fisica/tests/c4-probe-legend.test.js",
+      "bytes": 3475,
+      "sha256": "1e836135f62d33d055895d286b0c464e16ec3011f4517abc975e931267c1586c"
+    },
+    {
+      "path": "officina-di-fisica/tests/helpers/c4-probe-contract.mjs",
+      "bytes": 2715,
+      "sha256": "8accf063b723bd1cc7ece0eff635396e6a6defce296253ab80c93e1e066e3077"
+    },
+    {
+      "path": "officina-di-fisica/tests/plate-probe-camera.test.js",
+      "bytes": 3037,
+      "sha256": "ee0bba01ffdab9bfc404d1fb76601be51bd3c2c1b64948082651ef018c22509d"
+    },
+    {
+      "path": "officina-di-fisica/tests/helpers/plate-probe-projection.mjs",
+      "bytes": 2882,
+      "sha256": "3afd99bb580f89988d52838c780da3ec9c5c5612ee83bf70f5ea046a0399272f"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/AUTHOR-DESIGN-AND-LIMITS.md",
+      "bytes": 4020,
+      "sha256": "737f542f3f0a160739465c78f5780e05e2b1049ff34307bd45bc4403653d37d3"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/actual-contracts-final.txt",
+      "bytes": 704,
+      "sha256": "31a21d12ef86d35b0ecd79d4ce817d14035fb9f8420699bf687b6158b6a960e8"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/actual-final-cpu-receipt.json",
+      "bytes": 2292,
+      "sha256": "1b825dcda37b6da39e29930cd888338c545362ab9c1e9d7a9a53430cea739ef4"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/actual-mesh-observation.txt",
+      "bytes": 81,
+      "sha256": "79bd951e44ea68fd26716e09eb0d2df4971c091d17233e1bfb4ee17bef780ec2"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/actual-mesh-projection.json",
+      "bytes": 173451,
+      "sha256": "7b3dc4e01ecaaec2ff3c40c696ee524ae731a3c12f4e40861ed372020cceca77"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/actual-mesh-runtime-receipt.json",
+      "bytes": 93133,
+      "sha256": "4a9b6aa63dfff975552607b4dbc7cd29428270c09faa516c50d26acb8bc5dbe3"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/actual-node-general-final.txt",
+      "bytes": 59666,
+      "sha256": "c6866dabf27a4ee21ca57087afadc39b299fe52dda36545b2eb8516cc75b79fb"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/actual-red-final-receipt.json",
+      "bytes": 468,
+      "sha256": "5deadc2ddd1bb5a0fcca2bcd61affc819c89c3e243e8b087705d5e9334e519ae"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/actual-red-final-stronger.txt",
+      "bytes": 5007,
+      "sha256": "b1939040867d36c0928e15861bd36788cc29d0b6658520b1a6887535b0fcff94"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/actual-red-final.txt",
+      "bytes": 4684,
+      "sha256": "dc180890d91cd4a2186b89f17af6784303ec3c8f24cbc90df451e579abdc9769"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/actual-red-receipt.json",
+      "bytes": 467,
+      "sha256": "b9c9ec13c43f8a1f5fadac8e74819cfdfece46e8fc3be7638be01b3cd327d9ea"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/actual-red.txt",
+      "bytes": 4693,
+      "sha256": "57100a6fe34d5b4cea6015cd28e73cb3ae72d0800ba6a70df735c165fe35d82b"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/actual-source-invariance.json",
+      "bytes": 217917,
+      "sha256": "277a3b83412f207f8f1386a4d68b91134b27f78695bdbbb25ecb46b13b2b4f0c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/actual-source-invariance.txt",
+      "bytes": 80,
+      "sha256": "745e407338475d91861a8f42899b25a3abefcb921fa1eb69a4d3733d8bbb8b1f"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/actual-target-final.txt",
+      "bytes": 1379,
+      "sha256": "0b442286e894994957930672c03075b03d4913989b787fcad81f3887f3d32af9"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/design-before-implementation.json",
+      "bytes": 2655,
+      "sha256": "8ebfd0cbb2ed54a48a10466b5a3eae44325ed446d48f39e41ed82a07150f4821"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/esperimento-before-b999.js.txt",
+      "bytes": 12777,
+      "sha256": "42b750b18354fdad7c7e42f9e5e6bdc0ec4a28f5ede7a41b0780ad7509a6bac6"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/executed-final-cpu-supervisor.py",
+      "bytes": 3684,
+      "sha256": "606043b1160e244a67f45d9a03eab4c48f404adc8269e97ec608943ea75f4849"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/executed-mesh-runtime-supervisor.py",
+      "bytes": 1642,
+      "sha256": "63cf9193b0d27e737db4fa8da08fe4605a84785ccd5b1828f1a55601ff0372c2"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/first-development-green-full-contract-negative/actual-green-tests-receipt.json",
+      "bytes": 1017,
+      "sha256": "54768147dda83422ca7367f62ba8be8d426b8a144ee8de4c399014d7c68a9f12"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/first-development-green-full-contract-negative/actual-node-general.txt",
+      "bytes": 112612,
+      "sha256": "8d2db7d011240ecc9d666408eaeba696021311253b5dcf81bad74781f03022a7"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/first-development-green-full-contract-negative/actual-target.txt",
+      "bytes": 1381,
+      "sha256": "ba92219e38ab60038540e8f8a80ae09f76905939f707943440044463c8a2b402"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/historical-fixture-preservation.json",
+      "bytes": 984,
+      "sha256": "e62b461506483997d3e29afb29705a0c8fb62c6531267432deb338eaeb391ef9"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/immutable-baseline-source-inputs.json",
+      "bytes": 16665,
+      "sha256": "fdb4691df274747e9d096e2eac363be2698d31fddb14608ba3e81bc34436f24b"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/independent-baseline-negative/SIM-C4-L02-03-1280-orbit-grid4.png",
+      "bytes": 34245,
+      "sha256": "a15b8d164458ac554a6392c2a474bb50a631cba3623332fd38816a44996f275e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/independent-baseline-negative/SIM-C4-L02-03-320-orbit-grid4.png",
+      "bytes": 8583,
+      "sha256": "c3e410889ff1a8f31f93132ac7f729db57e1760648247462a53f69992bbafac0"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/independent-baseline-negative/SIM-C4-L03-02-1280-orbit-grid4.png",
+      "bytes": 34570,
+      "sha256": "dc31e7b5e4ab81c5234934832d9106fbdba534612fb83a5b3585b0b1d7bd9307"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/independent-baseline-negative/SIM-C4-L03-02-320-orbit-grid4.png",
+      "bytes": 8723,
+      "sha256": "bd66e742f70bbdb152b1b79bed3b3d1e1b8106c7542566c7526f5945160c8d62"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/independent-baseline-negative/SIM-C4-L03-03-1280-orbit-grid4.png",
+      "bytes": 34228,
+      "sha256": "0a8ff2dc58e3c5485bc2f26c3cf9598835c91252ea103fcb2c1b298ec3610a5f"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/independent-baseline-negative/SIM-C4-L03-03-320-orbit-grid4.png",
+      "bytes": 8671,
+      "sha256": "ee4fed53187b36950f0f18bb65e8dc2f0565b26d7fd6f8f975ab3a63bd62f53c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/independent-baseline-negative/extreme-orbit-index.json",
+      "bytes": 3135,
+      "sha256": "69af0dae5969552e3cd76b195ea6e1edf17cc4c7f41629706a46f0c2afc00ed7"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/mesh-projection-observation.mjs",
+      "bytes": 2306,
+      "sha256": "50eac265941c8389b23541f7fc2181b79465d3ad24bc17169b311a3c48c0eb41"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/source-invariance.mjs",
+      "bytes": 3953,
+      "sha256": "935043696b2a8cbe1eb5d56098f143f05cf96d30ada982161560fdfbead549cd"
+    },
+    {
+      "path": "officina-di-fisica/editorial/author-notes/c4-plate-probe-framing-20261127/tracked-change.diff",
+      "bytes": 6133,
+      "sha256": "de31c77609fc672cdae8f3a641effa4cb3a0a6dad4f8fab827d80c62f9ce1b11"
+    }
+  ]
+}

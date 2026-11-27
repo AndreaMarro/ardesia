@@ -1,0 +1,73 @@
+{
+  "baseCommit": "b9994b9116e87478905191d85cca8037d17ae4bd",
+  "role": "AUTHOR_ONLY_FINAL_ACCEPTANCE_RECUSED",
+  "targetIds": [
+    "SIM-C4-L02-03",
+    "SIM-C4-L03-02",
+    "SIM-C4-L03-03"
+  ],
+  "priorIndependentRootRasterEvidence": [
+    {
+      "file": "SIM-C4-L02-03-1280-orbit-grid4.png",
+      "sha256": "a15b8d164458ac554a6392c2a474bb50a631cba3623332fd38816a44996f275e",
+      "dimensions": [
+        839,
+        451
+      ]
+    },
+    {
+      "file": "SIM-C4-L02-03-320-orbit-grid4.png",
+      "sha256": "c3e410889ff1a8f31f93132ac7f729db57e1760648247462a53f69992bbafac0",
+      "dimensions": [
+        294,
+        341
+      ]
+    },
+    {
+      "file": "SIM-C4-L03-02-1280-orbit-grid4.png",
+      "sha256": "dc31e7b5e4ab81c5234934832d9106fbdba534612fb83a5b3585b0b1d7bd9307",
+      "dimensions": [
+        839,
+        451
+      ]
+    },
+    {
+      "file": "SIM-C4-L03-02-320-orbit-grid4.png",
+      "sha256": "bd66e742f70bbdb152b1b79bed3b3d1e1b8106c7542566c7526f5945160c8d62",
+      "dimensions": [
+        294,
+        341
+      ]
+    },
+    {
+      "file": "SIM-C4-L03-03-1280-orbit-grid4.png",
+      "sha256": "0a8ff2dc58e3c5485bc2f26c3cf9598835c91252ea103fcb2c1b298ec3610a5f",
+      "dimensions": [
+        839,
+        451
+      ]
+    },
+    {
+      "file": "SIM-C4-L03-03-320-orbit-grid4.png",
+      "sha256": "ee4fed53187b36950f0f18bb65e8dc2f0565b26d7fd6f8f975ab3a63bd62f53c",
+      "dimensions": [
+        294,
+        341
+      ]
+    }
+  ],
+  "cause": "Orbit eye haspositiveX; rays from pointnearinnerface crossrightplate. Physicalsphereandplatealreadyseparate inworldX, so no longitudinal/physicschange needed.",
+  "proposedChange": "NativeonlytargetIDs: eye[0,1.9,6.1] instead[2.6,1.9,6.1], preserving target/height/width, Top/Side/fallback andallgeometry. Nativelegendexplainsfront-raisedcamera andavailable alternatives; no unavailableviewinstruction infallback.",
+  "exactLongitudinalBounds": {
+    "rightPlateInnerFace": "d\u221211/200",
+    "sphereMaximum": "d\u22121/5+13/100=d\u22127/100",
+    "sphereToPlateGap": "3/200=0.015",
+    "fieldTipMaximum": "d\u221221/100",
+    "scope": "Rayprojections andactualFloat32meshvertices willbetested; no GPU/rastercertificate fromnominalradii."
+  },
+  "testPlan": "Actualexperience andactualThreeFloat32sphere/box/cone meshes, both recorded294\u00d7341/839\u00d7451 sizes, allcontrolgridvalues/endpoints; frame check; all181model/graded/elements baselineJSONinvariance andother178spec/legendidentical. RED beforeproduction, thenonlytargeteye/legendfix.",
+  "browser": "NOT_RUN_WAITING_PARENT_TURN",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
