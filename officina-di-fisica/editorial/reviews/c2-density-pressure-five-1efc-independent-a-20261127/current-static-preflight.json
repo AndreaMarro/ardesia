@@ -1,0 +1,684 @@
+{
+  "schemaVersion": "1.0.0",
+  "phase": "CURRENT_PREFLIGHT_ONLY_NOT_REGISTRABLE",
+  "sourceCommit": "3abd7dce2c2d837c903c9e17ac1d7fd0aa08dcca",
+  "runtimeSha256": "1efcd26bbb078453b75be5fbd1502b95cf07c0ffabb4112a4e4cf78170ff46aa",
+  "sourceCaseCount": 51,
+  "sourceStageCount": 255,
+  "exactCheckCount": 31,
+  "records": [
+    {
+      "id": "SIM-C2-L001-01",
+      "originalVersion": 1,
+      "exactChecks": [
+        {
+          "claim": "first actual assessment derived independently",
+          "independentExact": "60",
+          "expectedValue": "60",
+          "unit": "cm^3",
+          "dimension": {
+            "[length]": "3"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "generated transfer derived independently",
+          "independentExact": "15/2",
+          "expectedValue": "15/2",
+          "unit": "cm^3",
+          "dimension": {
+            "[length]": "3"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "6g/gasdensity gives60cm3",
+          "independentExact": "60",
+          "expectedValue": "60",
+          "unit": "cm^3",
+          "dimension": {
+            "[length]": "3"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "6g/liquiddensity gives15over2cm3",
+          "independentExact": "15/2",
+          "expectedValue": "15/2",
+          "unit": "cm^3",
+          "dimension": {
+            "[length]": "3"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "phase1densitytimesvolume preserves6gmass",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "g",
+          "dimension": {
+            "[mass]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "phase2densitytimesvolume preserves6gmass",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "g",
+          "dimension": {
+            "[mass]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "phase3densitytimesvolume preserves6gmass",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "g",
+          "dimension": {
+            "[mass]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        }
+      ],
+      "currentCode": {
+        "ok": true,
+        "errors": [],
+        "caseCount": 3,
+        "plannedCaseCount": 3,
+        "clockSampleCount": 0,
+        "tasks": [
+          {
+            "index": 0,
+            "input": 3,
+            "modelExact": "60",
+            "requiredByDeliveredQuestion": "60",
+            "agreement": true,
+            "actualPrompt": "Imposta «Stato del campione» su Gas. Quale valore ottieni per «Volume del modello»?",
+            "actualWorked": "V = m/ρ; m = 6 g. 6 / 0,1 = 60 cm³."
+          },
+          {
+            "index": 1,
+            "input": 2,
+            "modelExact": "15/2",
+            "requiredByDeliveredQuestion": "15/2",
+            "agreement": true,
+            "actualPrompt": "Preleva 6 g di materiale e scegli lo stato «Liquido». Usando la densità indicata per questo campione, quale volume occupa?",
+            "actualWorked": "V = m/ρ; m = 6 g. 6 / 0,8 = 7,5 cm³."
+          }
+        ],
+        "requestedTaskAgreement": true,
+        "formatRoundtrip": [
+          {
+            "display": "60",
+            "parsed": 60
+          },
+          {
+            "display": "7,5",
+            "parsed": 7.5
+          }
+        ]
+      },
+      "legalControlCount": 3,
+      "sourceStageCount": 15,
+      "legacyNegative": null,
+      "legacyNegativeRuntime": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "physicalAssumptions": "Three discrete illustrative states at same6gmass; densities assigned perstate. No continuousphasepath, equationofstate or universal densityordering inferred.",
+      "priorManualDerivation": "Assignedm6g and phase densities1,4/5,1/10g/cm³ yield6,15/2,60cm³. Tasks gas60 and liquid7.5. Divide by a fraction:6/(4/5)=6*5/4. The phase-density ordering is toy assigned data, not universalwater expansion.",
+      "legacyReportNotRetagged": true,
+      "currentUI": "NOT_RUN",
+      "visualReview": "PENDING_NEW_BROWSER_AND_RASTER_READING",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L001-02",
+      "originalVersion": 1,
+      "exactChecks": [
+        {
+          "claim": "first actual assessment derived independently",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "generated transfer derived independently",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "stationary plane Couette derivative",
+          "independentExact": "x/2",
+          "expectedValue": "x/2",
+          "unit": "1/s",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "viscosity times6cmpersec over2cm",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "fourcmpersec gives2Pa",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "zero speed zero stress",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        }
+      ],
+      "currentCode": {
+        "ok": true,
+        "errors": [],
+        "caseCount": 9,
+        "plannedCaseCount": 9,
+        "clockSampleCount": 0,
+        "tasks": [
+          {
+            "index": 0,
+            "input": 6,
+            "modelExact": "3",
+            "requiredByDeliveredQuestion": "3",
+            "agreement": true,
+            "actualPrompt": "Imposta «Velocità della lastra superiore» su 6 cm/s. Quale valore ottieni per «Sforzo viscoso»?",
+            "actualWorked": "τ = ηv/h; η = 1 Pa·s, h = 2 cm. 6 / 2 = 3 Pa."
+          },
+          {
+            "index": 1,
+            "input": 4,
+            "modelExact": "2",
+            "requiredByDeliveredQuestion": "2",
+            "agreement": true,
+            "actualPrompt": "Una piastra scorre a 4 cm/s sopra uno strato spesso 2 cm con viscosità 1 Pa·s. Quanto sforzo tangenziale dev’essere trasmesso?",
+            "actualWorked": "τ = ηv/h; η = 1 Pa·s, h = 2 cm. 4 / 2 = 2 Pa."
+          }
+        ],
+        "requestedTaskAgreement": true,
+        "formatRoundtrip": [
+          {
+            "display": "3",
+            "parsed": 3
+          },
+          {
+            "display": "2",
+            "parsed": 2
+          }
+        ]
+      },
+      "legalControlCount": 9,
+      "sourceStageCount": 45,
+      "legacyNegative": "At native upper-plate velocity6cm/s, top green shaft/tip lie inside the opaque upper plate: arrowY1.4575, plateY1.3875..1.5275. Cone rims can protrude slightly; no whole-cone containment claim. Actual native PNG shows only the lower four nonzero layer arrows. Fallback comparison retained.",
+      "legacyNegativeRuntime": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "physicalAssumptions": "Atregime, parallelplates, no-slip linear stationary Newtonian profileη1Pa*s,d2cm, lowerplatefixed, no imposedpressuregradient; shear magnitude fornonnegativeU.",
+      "priorManualDerivation": "Stationary Newtonian Couetteτ=ηU/d. Centimetres cancel inU/d;1Pa*s*6cm/s/2cm=3Pa, transfer4 gives2Pa. ZeroU yields0; arbitrarygridinteger speeds divideby2. Studenttext explicitly says a regime, so no unqualified startup assumption is supplied by reviewer.",
+      "legacyReportNotRetagged": true,
+      "currentUI": "NOT_RUN",
+      "visualReview": "PENDING_NEW_BROWSER_AND_RASTER_READING",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L001-03",
+      "originalVersion": 1,
+      "exactChecks": [
+        {
+          "claim": "first actual assessment derived independently",
+          "independentExact": "15",
+          "expectedValue": "15",
+          "unit": "g",
+          "dimension": {
+            "[mass]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "generated transfer derived independently",
+          "independentExact": "25/2",
+          "expectedValue": "25/2",
+          "unit": "g",
+          "dimension": {
+            "[mass]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "densitySI conversion",
+          "independentExact": "2500",
+          "expectedValue": "2500",
+          "unit": "kg/m^3",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-3"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "6cm3 gives15g",
+          "independentExact": "15",
+          "expectedValue": "15",
+          "unit": "g",
+          "dimension": {
+            "[mass]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "5cm3 gives12.5g",
+          "independentExact": "25/2",
+          "expectedValue": "25/2",
+          "unit": "g",
+          "dimension": {
+            "[mass]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        }
+      ],
+      "currentCode": {
+        "ok": true,
+        "errors": [],
+        "caseCount": 8,
+        "plannedCaseCount": 8,
+        "clockSampleCount": 0,
+        "tasks": [
+          {
+            "index": 0,
+            "input": 6,
+            "modelExact": "15",
+            "requiredByDeliveredQuestion": "15",
+            "agreement": true,
+            "actualPrompt": "Imposta «Volume del materiale» su 6 cm³. Quale valore ottieni per «Massa sulla bilancia»?",
+            "actualWorked": "m = ρV; ρ = 2,5 g/cm³. 2,5 × 6 = 15 g."
+          },
+          {
+            "index": 1,
+            "input": 5,
+            "modelExact": "25/2",
+            "requiredByDeliveredQuestion": "25/2",
+            "agreement": true,
+            "actualPrompt": "Una provetta contiene 5 cm³ di un materiale con densità 2,5 g/cm³. Qual è la massa del solo contenuto?",
+            "actualWorked": "m = ρV; ρ = 2,5 g/cm³. 2,5 × 5 = 12,5 g."
+          }
+        ],
+        "requestedTaskAgreement": true,
+        "formatRoundtrip": [
+          {
+            "display": "15",
+            "parsed": 15
+          },
+          {
+            "display": "12,5",
+            "parsed": 12.5
+          }
+        ]
+      },
+      "legalControlCount": 8,
+      "sourceStageCount": 40,
+      "legacyNegative": null,
+      "legacyNegativeRuntime": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "physicalAssumptions": "Homogeneousmaterial, fixedρ2.5g/cm³, contentmass only, positivediscretevolume1..8cm³; no mass-to-weight conflation.",
+      "priorManualDerivation": "m=(5/2g/cm³)V. At6cm³15g, transfer5cm³25/2g. Multiply by5 thenhalve, container tare excluded by solo contenuto. Density2500kg/m³. Volumecontrols1..8, same uniform material.",
+      "legacyReportNotRetagged": true,
+      "currentUI": "NOT_RUN",
+      "visualReview": "PENDING_NEW_BROWSER_AND_RASTER_READING",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L001-04",
+      "originalVersion": 1,
+      "exactChecks": [
+        {
+          "claim": "first actual assessment derived independently",
+          "independentExact": "20",
+          "expectedValue": "20",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "generated transfer derived independently",
+          "independentExact": "100/7",
+          "expectedValue": "100/7",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "squarecm conversion",
+          "independentExact": "1/10000",
+          "expectedValue": "1/10000",
+          "unit": "m^2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "10N over5cm2 gives20kPa",
+          "independentExact": "20",
+          "expectedValue": "20",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "10N over7cm2 exact100over7kPa",
+          "independentExact": "100/7",
+          "expectedValue": "100/7",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "manual longdivision remainder5",
+          "independentExact": "5",
+          "expectedValue": "5",
+          "unit": "",
+          "dimension": {},
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_manual_feasibility_not_source_supplied_step"
+        },
+        {
+          "claim": "14.286 relative error1over50000",
+          "independentExact": "1/50000",
+          "expectedValue": "1/50000",
+          "unit": "",
+          "dimension": {},
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        }
+      ],
+      "currentCode": {
+        "ok": true,
+        "errors": [],
+        "caseCount": 10,
+        "plannedCaseCount": 10,
+        "clockSampleCount": 0,
+        "tasks": [
+          {
+            "index": 0,
+            "input": 5,
+            "modelExact": "20",
+            "requiredByDeliveredQuestion": "20",
+            "agreement": true,
+            "actualPrompt": "Imposta «Area della faccia» su 5 cm². Quale valore ottieni per «Pressione sul piano»?",
+            "actualWorked": "p = F/A; F = 10 N ⇒ p(kPa) = 100/A. 100 / 5 = 20 kPa."
+          },
+          {
+            "index": 1,
+            "input": 7,
+            "modelExact": "100/7",
+            "requiredByDeliveredQuestion": "100/7",
+            "agreement": true,
+            "actualPrompt": "Un blocco esercita 10 N sul piano. Se appoggia su una faccia di area 7 cm², quale pressione in kPa registra il piano?",
+            "actualWorked": "p = F/A; F = 10 N ⇒ p(kPa) = 100/A. 100 / 7 ≈ 14,29 kPa."
+          }
+        ],
+        "requestedTaskAgreement": true,
+        "formatRoundtrip": [
+          {
+            "display": "20",
+            "parsed": 20
+          },
+          {
+            "display": "14,29",
+            "parsed": 14.29
+          }
+        ]
+      },
+      "legalControlCount": 10,
+      "sourceStageCount": 50,
+      "legacyNegative": null,
+      "legacyNegativeRuntime": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "physicalAssumptions": "Fixednormal10N, positivearea1..10cm², averagepressureFnormal/A; shear/localstress distribution not specified.",
+      "priorManualDerivation": "Acm²=A/10000m²;10N/(A/10000)m²=100/AkPa. Task5cm²20kPa; transfer7 gives100/7. Manual100000=7*14285+5 gives14.285..., input14.286 relativeerror1/50000<0.005 actualgrader. Mean normal pressure, no proof of uniformlocalcontact pressure.",
+      "legacyReportNotRetagged": true,
+      "currentUI": "NOT_RUN",
+      "visualReview": "PENDING_NEW_BROWSER_AND_RASTER_READING",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L001-05",
+      "originalVersion": 1,
+      "exactChecks": [
+        {
+          "claim": "first actual assessment derived independently",
+          "independentExact": "110",
+          "expectedValue": "110",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "generated transfer derived independently",
+          "independentExact": "100",
+          "expectedValue": "100",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "assigned waterg10 depth1 increment10kPa",
+          "independentExact": "10",
+          "expectedValue": "10",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "100kPa boundary plus10 gives110",
+          "independentExact": "110",
+          "expectedValue": "110",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "90kPa boundary plus10 gives100",
+          "independentExact": "100",
+          "expectedValue": "100",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "relative pressure independent atmosphere",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "",
+          "dimension": {},
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        }
+      ],
+      "currentCode": {
+        "ok": true,
+        "errors": [],
+        "caseCount": 21,
+        "plannedCaseCount": 21,
+        "clockSampleCount": 0,
+        "tasks": [
+          {
+            "index": 0,
+            "input": 100,
+            "modelExact": "110",
+            "requiredByDeliveredQuestion": "110",
+            "agreement": true,
+            "actualPrompt": "Imposta «Pressione atmosferica» su 100 kPa. Quale valore ottieni per «Pressione assoluta a 1 m»?",
+            "actualWorked": "p assoluta = p atmosferica + ρgh = p atmosferica + 10 kPa. 100 + 10 = 110 kPa."
+          },
+          {
+            "index": 1,
+            "input": 90,
+            "modelExact": "100",
+            "requiredByDeliveredQuestion": "100",
+            "agreement": true,
+            "actualPrompt": "Sposti la vasca in un luogo con pressione atmosferica 90 kPa. Che pressione assoluta indica il sensore a un metro sott’acqua?",
+            "actualWorked": "p assoluta = p atmosferica + ρgh = p atmosferica + 10 kPa. 90 + 10 = 100 kPa."
+          }
+        ],
+        "requestedTaskAgreement": true,
+        "formatRoundtrip": [
+          {
+            "display": "110",
+            "parsed": 110
+          },
+          {
+            "display": "100",
+            "parsed": 100
+          }
+        ]
+      },
+      "legalControlCount": 21,
+      "sourceStageCount": 105,
+      "legacyNegative": "Native320 opaque Sonda sprite completely covers left probe; Superficie also covers atmospheric-force tip at70..100kPa. At110 tip leaves that rectangle; only probe/partial-shaft claim retained there. Scalar absolute/relative pressure model remains correct.",
+      "legacyNegativeRuntime": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "physicalAssumptions": "Staticconstantdensitywaterρ1000,g10, fixed1mdepth, surfacepressure70..110kPa; atmospheric and hydrostatic contributions additive.",
+      "priorManualDerivation": "Explicitρ1000,g10,h1m gives10kPa relative pressure. Absolute at100kPa110, transfer90→100. Surface variation does not changeρgh. Vacuum is absolutezero; relativezero atsurface. Only arithmeticaddition and elementarySIconversion required.",
+      "legacyReportNotRetagged": true,
+      "currentUI": "NOT_RUN",
+      "visualReview": "PENDING_NEW_BROWSER_AND_RASTER_READING",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    }
+  ],
+  "browser": "NOT_RUN",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN"
+}
