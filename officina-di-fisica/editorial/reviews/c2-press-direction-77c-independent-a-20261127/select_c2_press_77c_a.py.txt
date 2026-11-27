@@ -1,0 +1,8 @@
+from pathlib import Path
+import json
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c2-press-direction-77c-independent-a-20261127';r=json.loads((D/'actual/report.json').read_bytes());selected=[]
+for q in r['cases']:
+ c=json.loads((D/'actual'/q['file']).read_bytes());choose=(c.get('sourceReplayedX')in[0,8]if'interaction'in c else c['profile']['view']=='top')
+ if choose:
+  png=c['screenshots'][0];selected.append(dict(id=c['id'],caseKey=c['caseKey'],profile=c['profile'],sourceReplayedX=c.get('sourceReplayedX'),isSetup='interaction'not in c,file=str((D/'actual'/png['file']).relative_to(A)),sha256=png['sha256'],caseFile=str((D/'actual'/q['file']).relative_to(A)),wholeRawPngOpenedAndRead=False))
+assert len(selected)==18;(D/'raw-png-reading-selection.json').write_text(json.dumps(selected,indent=2)+'\n');print('SELECTED18_ACTUAL_PNGS_PENDING_READING')

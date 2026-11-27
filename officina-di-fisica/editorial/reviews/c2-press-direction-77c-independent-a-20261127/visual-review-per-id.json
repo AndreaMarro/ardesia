@@ -1,0 +1,495 @@
+{
+  "schemaVersion": "1.0.0",
+  "role": "DISTINCT_REVIEWER_A_NEW_SCOPED_REPAIR",
+  "sourceCommit": "099fe6614bdaf14702da8a472eea1bb743fd1599",
+  "runtimeSha256": "77c13a37088c8b19e7e56558a85ff8ad644acf8488abb9b5d0a5214991c696d4",
+  "artifactPins": {
+    "actual/report.json": {
+      "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/report.json",
+      "sha256": "8bfebdc823113f391efd9b933b717ef68280f6ca4d6acddbc4c28bdd47a42f20"
+    },
+    "prepared.json": {
+      "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/prepared.json",
+      "sha256": "4f38df08269a45b5da11aa8f12003b3fab1454a19e69c6322417fbe0f7f421b6"
+    },
+    "actual-terminal.json": {
+      "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual-terminal.json",
+      "sha256": "6f3c03d79a1e03d3404c3880505c3475515001939cb3f41affc91f8d3bb3a395"
+    }
+  },
+  "records": [
+    {
+      "id": "SIM-C2-L003-02",
+      "sourceCommit": "099fe6614bdaf14702da8a472eea1bb743fd1599",
+      "runtimeSha256": "77c13a37088c8b19e7e56558a85ff8ad644acf8488abb9b5d0a5214991c696d4",
+      "sourceRecordSha256": "4305c01bf5d0375a4969f8ecd1f6676118f777fc947be526fc534c8b1c36148a",
+      "sourceVersion": 1,
+      "visualReview": "PASS",
+      "reason": "La legenda dichiara i soli versi schematici, non una misura di forza o corsa; le corse si confrontano con quote e letture. Zero senza frecce in tutti8profili. Nei24stati nonnulli rimangono verso discendente a sinistra e ascendente a destra, aree4 e spostamenti1/4 invariati. DallaTop nativa l’invitoLaterale è azionabile; nel fallback non compare quel comando. Entrambi i compiti manuali restano1,5cm e1cm. Giudizio locale limitato ai4controlli e8profili osservati, non una nuova approvazione umana.",
+      "scope": {
+        "profiles": [
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "gridValues": [
+          0,
+          0.5,
+          4,
+          8
+        ],
+        "clockCases": [],
+        "actualCaseCount": 40,
+        "setupCount": 8,
+        "acceptedAnswerEvents": 16,
+        "gridClockCaseCount": 32,
+        "manualWholeRawPngCount": 18,
+        "all32FramesIndividuallyOpened": false,
+        "fullObservedCaseKeys": [
+          "SIM-C2-L003-02|published|320|orbit|setup",
+          "SIM-C2-L003-02|published|320|orbit|grid|0",
+          "SIM-C2-L003-02|published|320|orbit|grid|1",
+          "SIM-C2-L003-02|published|320|orbit|grid|2",
+          "SIM-C2-L003-02|published|320|orbit|grid|3",
+          "SIM-C2-L003-02|published|320|side|setup",
+          "SIM-C2-L003-02|published|320|side|grid|0",
+          "SIM-C2-L003-02|published|320|side|grid|1",
+          "SIM-C2-L003-02|published|320|side|grid|2",
+          "SIM-C2-L003-02|published|320|side|grid|3",
+          "SIM-C2-L003-02|published|320|top|setup",
+          "SIM-C2-L003-02|published|320|top|grid|0",
+          "SIM-C2-L003-02|published|320|top|grid|1",
+          "SIM-C2-L003-02|published|320|top|grid|2",
+          "SIM-C2-L003-02|published|320|top|grid|3",
+          "SIM-C2-L003-02|published|320|fixed_projection|setup",
+          "SIM-C2-L003-02|published|320|fixed_projection|grid|0",
+          "SIM-C2-L003-02|published|320|fixed_projection|grid|1",
+          "SIM-C2-L003-02|published|320|fixed_projection|grid|2",
+          "SIM-C2-L003-02|published|320|fixed_projection|grid|3",
+          "SIM-C2-L003-02|published|1280|orbit|setup",
+          "SIM-C2-L003-02|published|1280|orbit|grid|0",
+          "SIM-C2-L003-02|published|1280|orbit|grid|1",
+          "SIM-C2-L003-02|published|1280|orbit|grid|2",
+          "SIM-C2-L003-02|published|1280|orbit|grid|3",
+          "SIM-C2-L003-02|published|1280|side|setup",
+          "SIM-C2-L003-02|published|1280|side|grid|0",
+          "SIM-C2-L003-02|published|1280|side|grid|1",
+          "SIM-C2-L003-02|published|1280|side|grid|2",
+          "SIM-C2-L003-02|published|1280|side|grid|3",
+          "SIM-C2-L003-02|published|1280|top|setup",
+          "SIM-C2-L003-02|published|1280|top|grid|0",
+          "SIM-C2-L003-02|published|1280|top|grid|1",
+          "SIM-C2-L003-02|published|1280|top|grid|2",
+          "SIM-C2-L003-02|published|1280|top|grid|3",
+          "SIM-C2-L003-02|published|1280|fixed_projection|setup",
+          "SIM-C2-L003-02|published|1280|fixed_projection|grid|0",
+          "SIM-C2-L003-02|published|1280|fixed_projection|grid|1",
+          "SIM-C2-L003-02|published|1280|fixed_projection|grid|2",
+          "SIM-C2-L003-02|published|1280|fixed_projection|grid|3"
+        ]
+      },
+      "readPngSha256": [
+        "e0bcc7cf78dcb9fe5f99227ea33cf8387a4c74256b611b489522103fbb856177",
+        "59c030a341b33bb51b51a5de268b3f37a1395511ecc0180ecca0658cbcdc86ab",
+        "47a4972664520bae63de5c9a87533cee707effa7bbd1e732dd2a67575e2b84b2",
+        "e3085078c08343740504cf34506dadeefbcf9ab24d1014ef4808056039534f9f",
+        "3538236b114a3eb91b261853f304fb314754a17d694f3560aa244cbd2eac83e7",
+        "9533c29e498ba682682ceaa94e626c949d90a09f6098926c46631569adc484bd",
+        "e2ffe0e17301d5d0ea91fcf1e732dd4a112925cfdb93d29dbd4a476799bc5209",
+        "bc12f7867116e2af9171b4b2257aa712393723be1aee0d6e7ecbee5a73b9c058",
+        "094be629ba50ffdd1b2213702d323e15869e68798bab17e8a0da53164904082f",
+        "dcc264286b7ded19fb23d88737b1ae530c882f8ba37d4edc9df6c02632a80a0c",
+        "e310d6fcb4c53bfcc67edb8d4130df0c141df88018f71c20d05102c4e08dde51",
+        "6ed7da2e4a4fe532f682ddc4a668cad8d66fa8c9b3530a9d4f412f21d6daa2e7",
+        "2431a706251a65bd2081bc21b099e88c1911d2098086c1fa56f7d9518c85a5a1",
+        "624a1ca70f9037e9260bba7fc416e12375b21a80f052cf18f49e6cbf30cf6748",
+        "4a27cf60794ca636f48793de7796cb624689ea95cd01037680d2ca2cc7cdfc0f",
+        "dcf92a9e8e7d47242c1f6af873698f61e6c386036dba4bef1ea0f13630902662",
+        "5ac38654d256e844749088d5ddc01e268dc9f2abbc0d3554d4edb964fdf7db7c",
+        "73a982265c8e73d81db2563352923cf35102797934c8dc3691a8f357dd38b56d"
+      ],
+      "readFiles": [
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/screens/e0bcc7cf78dcb9fe5f99227ea33cf8387a4c74256b611b489522103fbb856177.png",
+          "sha256": "e0bcc7cf78dcb9fe5f99227ea33cf8387a4c74256b611b489522103fbb856177",
+          "caseKey": "SIM-C2-L003-02|published|320|orbit|grid|0",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/screens/59c030a341b33bb51b51a5de268b3f37a1395511ecc0180ecca0658cbcdc86ab.png",
+          "sha256": "59c030a341b33bb51b51a5de268b3f37a1395511ecc0180ecca0658cbcdc86ab",
+          "caseKey": "SIM-C2-L003-02|published|320|orbit|grid|3",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/screens/47a4972664520bae63de5c9a87533cee707effa7bbd1e732dd2a67575e2b84b2.png",
+          "sha256": "47a4972664520bae63de5c9a87533cee707effa7bbd1e732dd2a67575e2b84b2",
+          "caseKey": "SIM-C2-L003-02|published|320|side|grid|0",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/screens/e3085078c08343740504cf34506dadeefbcf9ab24d1014ef4808056039534f9f.png",
+          "sha256": "e3085078c08343740504cf34506dadeefbcf9ab24d1014ef4808056039534f9f",
+          "caseKey": "SIM-C2-L003-02|published|320|side|grid|3",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/screens/3538236b114a3eb91b261853f304fb314754a17d694f3560aa244cbd2eac83e7.png",
+          "sha256": "3538236b114a3eb91b261853f304fb314754a17d694f3560aa244cbd2eac83e7",
+          "caseKey": "SIM-C2-L003-02|published|320|top|setup",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/screens/9533c29e498ba682682ceaa94e626c949d90a09f6098926c46631569adc484bd.png",
+          "sha256": "9533c29e498ba682682ceaa94e626c949d90a09f6098926c46631569adc484bd",
+          "caseKey": "SIM-C2-L003-02|published|320|top|grid|0",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/screens/e2ffe0e17301d5d0ea91fcf1e732dd4a112925cfdb93d29dbd4a476799bc5209.png",
+          "sha256": "e2ffe0e17301d5d0ea91fcf1e732dd4a112925cfdb93d29dbd4a476799bc5209",
+          "caseKey": "SIM-C2-L003-02|published|320|top|grid|3",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/screens/bc12f7867116e2af9171b4b2257aa712393723be1aee0d6e7ecbee5a73b9c058.png",
+          "sha256": "bc12f7867116e2af9171b4b2257aa712393723be1aee0d6e7ecbee5a73b9c058",
+          "caseKey": "SIM-C2-L003-02|published|320|fixed_projection|grid|0",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/screens/094be629ba50ffdd1b2213702d323e15869e68798bab17e8a0da53164904082f.png",
+          "sha256": "094be629ba50ffdd1b2213702d323e15869e68798bab17e8a0da53164904082f",
+          "caseKey": "SIM-C2-L003-02|published|320|fixed_projection|grid|3",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/screens/dcc264286b7ded19fb23d88737b1ae530c882f8ba37d4edc9df6c02632a80a0c.png",
+          "sha256": "dcc264286b7ded19fb23d88737b1ae530c882f8ba37d4edc9df6c02632a80a0c",
+          "caseKey": "SIM-C2-L003-02|published|1280|orbit|grid|0",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/screens/e310d6fcb4c53bfcc67edb8d4130df0c141df88018f71c20d05102c4e08dde51.png",
+          "sha256": "e310d6fcb4c53bfcc67edb8d4130df0c141df88018f71c20d05102c4e08dde51",
+          "caseKey": "SIM-C2-L003-02|published|1280|orbit|grid|3",
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/screens/6ed7da2e4a4fe532f682ddc4a668cad8d66fa8c9b3530a9d4f412f21d6daa2e7.png",
+          "sha256": "6ed7da2e4a4fe532f682ddc4a668cad8d66fa8c9b3530a9d4f412f21d6daa2e7",
+          "caseKey": "SIM-C2-L003-02|published|1280|side|grid|0",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/screens/2431a706251a65bd2081bc21b099e88c1911d2098086c1fa56f7d9518c85a5a1.png",
+          "sha256": "2431a706251a65bd2081bc21b099e88c1911d2098086c1fa56f7d9518c85a5a1",
+          "caseKey": "SIM-C2-L003-02|published|1280|side|grid|3",
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/screens/624a1ca70f9037e9260bba7fc416e12375b21a80f052cf18f49e6cbf30cf6748.png",
+          "sha256": "624a1ca70f9037e9260bba7fc416e12375b21a80f052cf18f49e6cbf30cf6748",
+          "caseKey": "SIM-C2-L003-02|published|1280|top|setup",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/screens/4a27cf60794ca636f48793de7796cb624689ea95cd01037680d2ca2cc7cdfc0f.png",
+          "sha256": "4a27cf60794ca636f48793de7796cb624689ea95cd01037680d2ca2cc7cdfc0f",
+          "caseKey": "SIM-C2-L003-02|published|1280|top|grid|0",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/screens/dcf92a9e8e7d47242c1f6af873698f61e6c386036dba4bef1ea0f13630902662.png",
+          "sha256": "dcf92a9e8e7d47242c1f6af873698f61e6c386036dba4bef1ea0f13630902662",
+          "caseKey": "SIM-C2-L003-02|published|1280|top|grid|3",
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/screens/5ac38654d256e844749088d5ddc01e268dc9f2abbc0d3554d4edb964fdf7db7c.png",
+          "sha256": "5ac38654d256e844749088d5ddc01e268dc9f2abbc0d3554d4edb964fdf7db7c",
+          "caseKey": "SIM-C2-L003-02|published|1280|fixed_projection|grid|0",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/screens/73a982265c8e73d81db2563352923cf35102797934c8dc3691a8f357dd38b56d.png",
+          "sha256": "73a982265c8e73d81db2563352923cf35102797934c8dc3691a8f357dd38b56d",
+          "caseKey": "SIM-C2-L003-02|published|1280|fixed_projection|grid|3",
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          },
+          "wholeRawPngOpenedAndRead": true
+        }
+      ],
+      "readCaseFiles": [
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/cases/75c962979a5497beec504e38175a5105a21db0317519dbf88b32dde20a3fcedc.json",
+          "sha256": "fc7a4e817be9cac1748b9c50b831d9dd9cb08139de4e8d3b30c31db6004847e1"
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/cases/22710a79335413e708d2679fb3de3e7b241d5d0576ca812fdad3a1096482cb98.json",
+          "sha256": "38d32d9c5a3cbc87997d75a6f6452af6885a858ac386d8469a17eb34892031d2"
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/cases/df677ef729a98b8c4cc2db83ecd0076da7d3bac67ac99f5581fa01e8e0c5d22d.json",
+          "sha256": "31f22d385702c091d6193e718d97830317f9540b879466e03ad19d206a2511ea"
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/cases/10d9989a72c6122be748309e4cc62794a781d0d8bccafccf80e0b3fbcda68f45.json",
+          "sha256": "35ab83c30f3cf5b9707905f1a1e702a1364642d76bc8c0ebbfec5d4f0675754f"
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/cases/a0103bf9b2b3b7a33e10e45379d6364329d8d5be28f63ab73447b54b5c8d8950.json",
+          "sha256": "74aae03408c78d5c55e8184fd5afed57a7c1f2fd9bdbd699671ae2804a55ff1c"
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/cases/d509b92a53ffe87cc00637d5b5297581d83f27f7cc5a75239dda2d27196a97d9.json",
+          "sha256": "5c54c966b81d28743088f03254dd8c4e0141d4cf659c66913b21c954afd9adc7"
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/cases/164bda3c921ec1978ca4e0eb18fa99881e9f22a03e3793efce9e01e4bb7c4da3.json",
+          "sha256": "ae03a01eb1dc9fee62d079014a78a8344827c2bae6082746a70eea0822748b39"
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/cases/8fae2e37fb6318468126a6a4b177aece2db40165d6341842b7ed08d699c82603.json",
+          "sha256": "a12b9bee0eca6a08dc3bea5a9b48a881e8eb2801bd0bf784f451b0c5a8abf488"
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/cases/08d964a2125e8c5ec868146867e8701f4e212a35e2f042886a50689a3d871e25.json",
+          "sha256": "c905fca186c74b5c51cf44f6355fe759cfec1b32bdec585af5c7d9a1e249ac7f"
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/cases/da58ef066e9cdc4fc771ce20b32cdf7ad0dfa1c48ea1329a9be40bc3c5abcebd.json",
+          "sha256": "90b0c35557ce36f6bab7072e9d0ceb0281419ece8481caf0a6358ac5af2f6d81"
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/cases/89de7a1868788d9a579ccfd67d68056489609fb56150ba54489e0769a43a4f10.json",
+          "sha256": "d8d677b64b777ea34c5a7195167f29b9f88910396030eb069a48ae29b3aba502"
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/cases/d8937c53307d82c3ad7c6be1b605fc6e65d50a7eb6d5121e60f4958e7359b52a.json",
+          "sha256": "2ddb516a5fb3d0aa213949d07da6add40463d2b90fdda1490d6876d51b409efc"
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/cases/7123ffc23e149de481948d2c55b4053fad87386eade0a743c66656d887bf4a0c.json",
+          "sha256": "fe25f110bb39b8635824aa3a03fe25ee0645f0bd31d93b4080b8e666cf2d56b7"
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/cases/66e6c80aab172f2f59cc5b5c971b1e59ccd221ce3bc37107457acbf36c07be27.json",
+          "sha256": "76287018466c1b7cb9028339a2409f107e25b7a4bee4a596df7162bfc45f6c80"
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/cases/be6981d8ad2a20da40f7a329724823b3850a3e4970e2dba1456eecd06d8d1fac.json",
+          "sha256": "69e6045267583520d737c6789e428bd4b4960f037d421360297de70ff29abb22"
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/cases/6dec61c280dfc96dc0e93488137d03fb4afc5ba01b93b41765053394f4a68867.json",
+          "sha256": "75d9a7bd3a222fda900b88262a46ea30854976637b840699c08122f80c74f760"
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/cases/c3a7e81fd62e925048aa246d53abe447d9b1db81b39bc2a586697604762edc1c.json",
+          "sha256": "cc68171e9021fba268ea258ddc93548533e7282b18b76e2b97079819f75ba5ce"
+        },
+        {
+          "path": "editorial/reviews/c2-press-direction-77c-independent-a-20261127/actual/cases/ace55112e554bd50a448cc947c6cce120dee898386c33af433820c4091790bfb.json",
+          "sha256": "be1e44c98964d5666cb17dec46c72fcb6bc7fd32f3f1c9d568828f7656ab034c"
+        }
+      ],
+      "actualPhaseText": [
+        "OSSERVA · 2/5\nIndividua il fenomeno\n\nLa sezione del pistone grande è quattro volte quella del piccolo. Il volume spinto in basso a sinistra ricompare a destra. Con pressioni uguali il rapporto delle forze è l’inverso di quello delle corse.\n\nA₁s₁ = A₂s₂; A₂ = 4A₁\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+        "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Corsa del pistone piccolo» e confronta la scena con il punto segnato sul grafico. Parti da 2 cm, poi prova 6 cm.\n\nCorsa del pistone piccolo = 2 cm · Sollevamento del pistone grande = 0,5 cm\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+        "COMPRENDI · 4/5\nOsserva la lettura del modello\n\nQuesta posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 6 cm e 4 cm.\n\nSollevamento del pistone grande = 0,5 cm\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+        "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Corsa del pistone piccolo» a 4 cm. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nA₁s₁ = A₂s₂; A₂ = 4A₁\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale"
+      ],
+      "installedAnswerExamples": [
+        {
+          "expectedAccepted": true,
+          "input": "1.5",
+          "prompt": "Imposta «Corsa del pistone piccolo» su 6 cm. Quale valore ottieni per «Sollevamento del pistone grande»?",
+          "sourceManualReadiness": true,
+          "actualPrompt": "Imposta «Corsa del pistone piccolo» su 6 cm. Quale valore ottieni per «Sollevamento del pistone grande»?",
+          "status": "Corretto. A₁s₁ = A₂s₂; A₂ = 4A₁. 6 / 4 = 1,5 cm."
+        },
+        {
+          "expectedAccepted": true,
+          "input": "1.0",
+          "prompt": "Spingi per 4 cm il pistone piccolo di una pressa. Se l’area grande è quadrupla, di quanto sollevi l’altro pistone?",
+          "sourceManualReadiness": true,
+          "actualPrompt": "Spingi per 4 cm il pistone piccolo di una pressa. Se l’area grande è quadrupla, di quanto sollevi l’altro pistone?",
+          "status": "Corretto. A₁s₁ = A₂s₂; A₂ = 4A₁. 4 / 4 = 1 cm."
+        }
+      ],
+      "sourceOriginalRecord": {
+        "anchor": "Se il liquido incomprimibile riempie il circuito",
+        "apparatus": "pressa",
+        "blocks": [],
+        "control": {
+          "label": "Corsa del pistone piccolo",
+          "max": 8.0,
+          "min": 0.0,
+          "step": 0.5,
+          "unit": "cm"
+        },
+        "course": "C2",
+        "formula": "A₁s₁ = A₂s₂; A₂ = 4A₁",
+        "id": "SIM-C2-L003-02",
+        "interpretation": "La sezione del pistone grande è quattro volte quella del piccolo. Il volume spinto in basso a sinistra ricompare a destra. Con pressioni uguali il rapporto delle forze è l’inverso di quello delle corse.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Sollevamento del pistone grande",
+          "unit": "cm"
+        },
+        "order": 2,
+        "references": [
+          [
+            2.0,
+            0.5
+          ],
+          [
+            6.0,
+            1.5
+          ]
+        ],
+        "section": "Fluidi in quiete",
+        "skill": "C2-L003",
+        "substitution": "{x} / 4",
+        "summary": "Quanto guadagni in forza e quanto perdi in corsa in una pressa ideale?",
+        "title": "Pressa idraulica",
+        "topic": "Pressa idraulica",
+        "transferPrompt": "Spingi per {x} il pistone piccolo di una pressa. Se l’area grande è quadrupla, di quanto sollevi l’altro pistone?",
+        "version": 1
+      },
+      "locallyResolvedFindingId": "PRESS_FORCE_ARROW_SCALE_UNDECLARED",
+      "priorNegativeRuntime": "980518b78d0767d90f16322539852e7e79360e20f05078ceb6e9b0425e805301",
+      "priorNegativeNotModified": true,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    }
+  ],
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN"
+}
