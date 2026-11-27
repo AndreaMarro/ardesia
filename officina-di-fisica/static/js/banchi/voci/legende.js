@@ -108,6 +108,8 @@ const annotazioni = {
     ['Sonda', 'Il punto viola rappresenta la carica positiva di 3 µC.', ['L03-03']],
     ['+', 'Le frecce ocra rappresentano il campo elettrico uniforme dalla piastra positiva a quella negativa.', ['L02-03','L03-02','L03-03']],
     ['−', '', ['L02-03','L03-02','L03-03']],
+    ['Conduttore isolato', 'Il blocco grigio è il conduttore isolato. Le cariche indotte compaiono sulle facce. Per i campi più deboli il dettaglio ocra scuro mostra la freccia verde quattro volte più lunga, con lo stesso verso.', ['L04-01']],
+    ['Dielettrico', 'Il blocco azzurro è il dielettrico. Ogni coppia di punti di colore diverso rappresenta un dipolo. Per i campi più deboli il dettaglio ocra scuro mostra la freccia verde quattro volte più lunga, con lo stesso verso.', ['L04-02']],
     ['Corrente convenzionale', '', ['L05-01','L05-04','L05-05']],
     ['Pila', '', ['L05-02','L05-03','L06-02']],
     ['In parallelo', 'Il circuito in serie è a sinistra. Il circuito in parallelo è a destra e i rami condividono gli stessi nodi.', ['L06-01']],

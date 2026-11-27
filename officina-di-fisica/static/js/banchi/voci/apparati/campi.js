@@ -125,6 +125,9 @@ export const campi = {
         b.ball([x + e, y, 0], 0.082, c.rosso);
       }
     b.arrow([-2.55, 1, 0], [-2.55 + s.campo, 1, 0], c.verde);
+    if (s.campo > 0 && s.campo <= 0.25) {
+      b.arrow([-2.55, 1.55, 0.65], [-2.55 + 4 * s.campo, 1.55, 0.65], c.ocraScuro, true);
+    }
     b.label([0, 2.07, 0], s.metallo ? 'Conduttore isolato' : 'Dielettrico');
   },
   filo(b, s) {

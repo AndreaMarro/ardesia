@@ -1,0 +1,46 @@
+✖ SIM-C4-L04-01 keeps charge markers visible and the weak field direction legible (43.95325ms)
+✖ SIM-C4-L04-02 keeps charge markers visible and the weak field direction legible (12.62075ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 705.60275
+
+✖ failing tests:
+
+test at tests/electrostatic-material-reading.test.js:13:3
+✖ SIM-C4-L04-01 keeps charge markers visible and the weak field direction legible (43.95325ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(!scene.some(mark => mark.kind === 'label' && mark.text === label))
+  
+      at TestContext.<anonymous> (file:///Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-converged-next-20261127/officina-di-fisica/tests/electrostatic-material-reading.test.js:19:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/electrostatic-material-reading.test.js:13:3
+✖ SIM-C4-L04-02 keeps charge markers visible and the weak field direction legible (12.62075ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(!scene.some(mark => mark.kind === 'label' && mark.text === label))
+  
+      at TestContext.<anonymous> (file:///Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-converged-next-20261127/officina-di-fisica/tests/electrostatic-material-reading.test.js:19:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

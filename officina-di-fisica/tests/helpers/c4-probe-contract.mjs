@@ -8,8 +8,19 @@ import {colore} from '../../static/js/banchi/voci/geometria.js';
 export const affected = new Set(['SIM-C4-L02-03','SIM-C4-L03-02','SIM-C4-L03-03']);
 export const records = JSON.parse(readFileSync(new URL('../../content/esperienze-C4.json',import.meta.url)));
 const sha = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
+const materialLabels = new Map([
+  ['SIM-C4-L04-01', 'Conduttore isolato'],
+  ['SIM-C4-L04-02', 'Dielettrico'],
+]);
+const materialLegend = 'Viola · carica negativa. Rosso · positiva. Verde · campo applicato';
 function normalize(id, elements) {
   if (affected.has(id)) return elements.filter(e => e.kind !== 'label' || !['Sonda','+','−'].includes(e.text));
+  const label = materialLabels.get(id);
+  if (label) {
+    assert.ok(!elements.some(element => element.kind === 'label' && element.text === label));
+    return [...elements.filter(element => element.kind !== 'arrow' || element.c !== colore.ocraScuro),
+      {kind:'label', p:[0,2.07,0], text:label, c:colore.inchiostro}];
+  }
   return elements.map(element => {
     if (element.kind !== 'arrow') return element;
     if (id === 'SIM-C4-L02-01') {
@@ -58,8 +69,12 @@ export async function contract({allowFrontalPlateView = false} = {}) {
     result.push({id:record.id,controls:states.length,
       physicalAndTeachingSha256:sha({record:a.record,params:a.model.params,spec:characterizedSpec,
         observe:a.observe,states}),
-      // Only the three accessible descriptions are deliberately extended.
-      ...(affected.has(record.id)?{}:{legends:['orbit','side','top','diagram'].map(view=>a.legend(2,view))})});
+      ...(affected.has(record.id)?{}:{legends:['orbit','side','top','diagram'].map(view=>{
+        const legend = a.legend(2,view);
+        if (!materialLabels.has(record.id)) return legend;
+        assert.ok(legend.startsWith(materialLegend + '. '));
+        return legend.slice(0, materialLegend.length);
+      })})});
   }
   return result;
 }
