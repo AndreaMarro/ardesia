@@ -1,0 +1,177 @@
+{
+  "sourceCommit": "5bd3d016842e4ebcf4dba965c25b5252bd2cc36c",
+  "runtimeSha256": "34d3de9ee5f452bf469b007c8e6f9686ebcc103af647bfe1ac4873d975e0cb67",
+  "actualCases": 6,
+  "failedCases": 6,
+  "actualObservedExitCode": 1,
+  "records": [
+    {
+      "id": "C1-E021",
+      "width": 641,
+      "formulas": [
+        {
+          "width": 439,
+          "scroll": 439,
+          "typeset": 418.15625
+        },
+        {
+          "width": 439,
+          "scroll": 653,
+          "typeset": 418.15625
+        }
+      ],
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(4)"
+            ]
+          ]
+        }
+      ],
+      "failureScreenshotSha256": "4130bb7a1c8b5ddbcbedb65350b12283a360292b6945bd3b0b9dee02d2848ce7"
+    },
+    {
+      "id": "C3-E019",
+      "width": 641,
+      "formulas": [
+        {
+          "width": 439,
+          "scroll": 596,
+          "typeset": 418.15625
+        },
+        {
+          "width": 439,
+          "scroll": 439,
+          "typeset": 418.15625
+        }
+      ],
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(2)"
+            ]
+          ]
+        }
+      ],
+      "failureScreenshotSha256": "d6602f37331d6d19b241cb7bd4dc6b4890eb36972778f31806c5732f13bc3afb"
+    },
+    {
+      "id": "C5-E011",
+      "width": 641,
+      "formulas": [
+        {
+          "width": 439,
+          "scroll": 439,
+          "typeset": 418.15625
+        },
+        {
+          "width": 439,
+          "scroll": 615,
+          "typeset": 418.15625
+        }
+      ],
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(4)"
+            ]
+          ]
+        }
+      ],
+      "failureScreenshotSha256": "84a71c80c92e042d647a3e0d3ab03a0550375163acbc5156b3ac4b21ce63dc76"
+    },
+    {
+      "id": "C1-E021",
+      "width": 768,
+      "formulas": [
+        {
+          "width": 549,
+          "scroll": 549,
+          "typeset": 528.640625
+        },
+        {
+          "width": 549,
+          "scroll": 653,
+          "typeset": 528.640625
+        }
+      ],
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(4)"
+            ]
+          ]
+        }
+      ],
+      "failureScreenshotSha256": "e9da163454c3b10a4164421c4590802d91c0155aa3ca6901af69456780fff56f"
+    },
+    {
+      "id": "C3-E019",
+      "width": 768,
+      "formulas": [
+        {
+          "width": 549,
+          "scroll": 596,
+          "typeset": 528.640625
+        },
+        {
+          "width": 549,
+          "scroll": 549,
+          "typeset": 528.640625
+        }
+      ],
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(2)"
+            ]
+          ]
+        }
+      ],
+      "failureScreenshotSha256": "f46be463e8366664f2de129d4b032d68d385882a9ce7f438337d11b5700e535a"
+    },
+    {
+      "id": "C5-E011",
+      "width": 768,
+      "formulas": [
+        {
+          "width": 549,
+          "scroll": 549,
+          "typeset": 528.640625
+        },
+        {
+          "width": 549,
+          "scroll": 615,
+          "typeset": 528.640625
+        }
+      ],
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(4)"
+            ]
+          ]
+        }
+      ],
+      "failureScreenshotSha256": "a66c1ad705fcae6477014416760bd3d51d5f70edad307cc6476a21173b356de1"
+    }
+  ],
+  "classification": "CURRENT_READER_LAYOUT_BOUNDARY_HORIZONTAL_SCROLL_AND_FOCUSABILITY",
+  "scope": "Remaining641/768 gap; not a mathematical source error or claim that320/1280 failed",
+  "noNewDynamicEpochStarted": true,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
