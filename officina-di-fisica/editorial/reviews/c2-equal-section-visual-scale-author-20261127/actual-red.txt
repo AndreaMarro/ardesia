@@ -1,0 +1,27 @@
+TAP version 13
+# Subtest: equal sections give equal speeds and static head in the ideal narrowed tube
+not ok 1 - equal sections give equal speeds and static head in the ideal narrowed tube
+  ---
+  duration_ms: 27.77575
+  location: '/private/tmp/cric-continuity-arrow-author-20261127/officina-di-fisica/tests/continuity-downstream-arrow.test.js:55:1'
+  failureType: 'testCodeFailure'
+  error: 'ratio at A₂/A₁=0.5'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/cric-continuity-arrow-author-20261127/officina-di-fisica/tests/continuity-downstream-arrow.test.js:65:12)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 321.409208

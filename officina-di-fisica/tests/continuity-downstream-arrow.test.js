@@ -51,3 +51,19 @@ test('bifurcation maintains proportional, distinguishable arrows and drops only 
   assert.match(bench.legend(2, 'side'), /dall’alto/);
   assert.doesNotMatch(bench.legend(2, 'diagram'), /si sovrappongono/);
 });
+
+test('equal sections give equal speeds and static head in the ideal narrowed tube', async () => {
+  const branch = records.find(record => record.id === 'SIM-C2-L006-03');
+  const bench = await esperienza(branch);
+  for (let area = branch.control.min; area <= branch.control.max; area += branch.control.step) {
+    const scene = bench.elements(area, 2);
+    const arrows = scene.filter(element => element.kind === 'arrow');
+    const upstream = arrows.find(arrow => arrow.c === colore.verde);
+    const downstream = arrows.find(arrow => arrow.c === colore.viola);
+    const length = arrow => arrow.b[0] - arrow.a[0];
+    assert.equal(bench.model.solve({x:area}).y, 2 / area);
+    assert.ok(Math.abs(length(downstream) / length(upstream) - 1 / area) < 1e-12, `ratio at A₂/A₁=${area}`);
+    const staticHead = x => scene.find(element => element.kind === 'rod' && element.c === colore.verde && element.a[0] === x).b[1];
+    assert.equal(Math.sign(staticHead(1.4) - staticHead(-1.4)), Math.sign(area - 1), `head change at A₂/A₁=${area}`);
+  }
+});

@@ -137,7 +137,7 @@ export const experiments = {
   'SIM-C2-L006-03': {
     observe: "Allarga e poi restringi la sezione locale. Confronta velocità e pressione nel modello di tubo orizzontale ideale.",
     measure: (x) => 2 / x,
-    apparatus: (x, y) => ({ r1: 0.57, r2: 0.57 * Math.sqrt(x), v1: 0.65, v2: y / 3, pressione: true }),
+    apparatus: (x, y) => ({ r1: 0.57, r2: 0.57 * Math.sqrt(x), v1: 2 / 3, v2: y / 3, pressione: true }),
   },
   // Condizioni di validità
   'SIM-C2-L006-04': {
