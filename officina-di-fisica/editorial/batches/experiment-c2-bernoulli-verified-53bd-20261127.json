@@ -1,0 +1,217 @@
+{
+  "assets": [],
+  "records": [
+    {
+      "anchor": "Quando un liquido accelera in un restringimento,",
+      "apparatus": "condotto",
+      "assessmentSelection": {
+        "points": [
+          3,
+          2
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Immagina di seguire una piccola porzione d’acqua dall’ingresso alla gola. Nel Venturi del banco il moto è stazionario, l’acqua è incomprimibile, le perdite sono trascurate e le due sezioni considerate sono alla stessa quota. Su quella linea di corrente l’energia per volume si ripartisce fra pressione statica e contributo cinetico.",
+          "type": "text"
+        },
+        {
+          "text": "p_1+\\frac{\\rho v_1^2}{2}=p_2+\\frac{\\rho v_2^2}{2},\\qquad p_2=p_1-\\frac{\\rho}{2}(v_2^2-v_1^2)",
+          "type": "formula"
+        },
+        {
+          "text": "Il prodotto di kg/m³ per m²/s² dà Pa. Con ρ = 1000 kg/m³ e velocità indicate in m/s, il fattore 1000 si cancella nel passaggio a kPa: basta dimezzare la differenza dei quadrati. All’ingresso v₁ = 1 m/s e p₁ = 20 kPa.",
+          "type": "text"
+        },
+        {
+          "text": "Alla gola con 3 m/s, fai 3² − 1² = 8. Dimezzando ottieni una caduta di 4 kPa e leggi 20 − 4 = 16 kPa. Con 2 m/s, 4 − 1 dà 3 e la caduta è 3/2 kPa. Ottieni 20 − 3/2 = 18,5 kPa.",
+          "type": "text"
+        },
+        {
+          "text": "Se conosci 16 kPa puoi risalire alla velocità: la caduta è 4 kPa, quindi la differenza dei quadrati è 8. Sommando 1 ottieni 9 e scegli 3 m/s, il valore positivo del modulo. La presa alla gola legge pressione statica. Il contributo cinetico cresce nel tratto stretto.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Velocità nella gola",
+        "max": 4.0,
+        "min": 1.0,
+        "step": 0.25,
+        "unit": "m/s"
+      },
+      "course": "C2",
+      "formula": "p₂ = p₁ + ½ρ(v₁²−v₂²); p₁ = 20 kPa, v₁ = 1 m/s",
+      "id": "SIM-C2-L006-01",
+      "interpretation": "Segui la stessa linea di corrente orizzontale in acqua ideale. All’aumento dell’energia cinetica per unità di volume corrisponde un calo della pressione statica.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Pressione statica nella gola",
+        "unit": "kPa"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C2-L005"
+      ],
+      "references": [
+        [
+          1.0,
+          20.0
+        ],
+        [
+          3.0,
+          16.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in movimento",
+      "skill": "C2-L006",
+      "substitution": "20,5 − (0,5 × {x} × {x})",
+      "summary": "Dove si ritrova l’energia quando la corrente accelera?",
+      "title": "Teorema di Bernoulli",
+      "topic": "Teorema di Bernoulli",
+      "transferPrompt": "In un Venturi orizzontale ideale entrano acqua a 1 m/s e pressione statica di 20 kPa. Se nella gola l’acqua scorre a {x}, quale pressione statica vi leggi?",
+      "version": 2
+    },
+    {
+      "anchor": "Per una stenosi idealizzata, la continuità prevede",
+      "apparatus": "condotto",
+      "assessmentSelection": {
+        "points": [
+          0.5,
+          2
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Considera quanto liquido attraversa due sezioni nello stesso piccolo intervallo di tempo. Nel modello rigido, stazionario e incomprimibile, senza rami, quel volume è uguale. Se la sezione locale si dimezza, lo stesso volume può passare soltanto raddoppiando la velocità media.",
+          "type": "text"
+        },
+        {
+          "text": "A_1v_1=A_2v_2,\\qquad v_2=\\frac{v_1}{A_2/A_1},\\qquad \\frac{A_2}{A_1}=\\frac{v_1}{v_2}",
+          "type": "formula"
+        },
+        {
+          "text": "Il rapporto delle aree è un numero puro, perciò la velocità rimane in m/s. All’ingresso hai 2 m/s. Nel restringimento, l’area vale metà di quella iniziale: 2 ÷ (1/2) = 4 m/s. Nell’allargamento l’area è doppia: 2÷2=1 m/s.",
+          "type": "text"
+        },
+        {
+          "text": "Dalla velocità di 1 m/s puoi recuperare il rapporto delle aree facendo 2÷1=2. Leggi la variazione dell’area nel disegno, senza usare il raggio come se fosse l’area. Un vaso reale può deformarsi, avere moto pulsatile e dissipare energia. Qui si confrontano soltanto le velocità medie nel modello.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Area locale rispetto a quella iniziale",
+        "max": 2.0,
+        "min": 0.5,
+        "step": 0.25,
+        "unit": "1"
+      },
+      "course": "C2",
+      "formula": "v₂ = v₁ A₁/A₂; v₁ = 2 m/s",
+      "id": "SIM-C2-L006-03",
+      "interpretation": "Restringi o allarga il tratto centrale. Il modello mantiene la portata in un condotto rigido orizzontale con fluido incomprimibile. Un vaso reale è pulsatile e può dissipare energia.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Velocità locale",
+        "unit": "m/s"
+      },
+      "order": 3,
+      "prerequisites": [
+        "C2-L005"
+      ],
+      "references": [
+        [
+          0.5,
+          4.0
+        ],
+        [
+          2.0,
+          1.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in movimento",
+      "skill": "C2-L006",
+      "substitution": "2 / {x}",
+      "summary": "In quale tratto il flusso accelera e in quale rallenta?",
+      "title": "Stenosi e aneurisma in modello ideale",
+      "topic": "Stenosi e aneurisma in modello ideale",
+      "transferPrompt": "Un condotto trasporta acqua a 2 m/s all’ingresso. Se l’area locale diventa {x} volte quella iniziale, quale velocità trovi?",
+      "version": 2
+    },
+    {
+      "anchor": "Ogni termine si misura in pascal: pressione",
+      "apparatus": "condotto",
+      "assessmentSelection": {
+        "points": [
+          6,
+          4
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Confronta l’ingresso e l’uscita del tubo alla stessa altezza e con la stessa sezione. In moto stazionario e incomprimibile le velocità medie coincidono. In un bilancio meccanico per volume i termini di quota e di velocità si cancellano fra ingresso e uscita. Resta una caduta di pressione che rappresenta l’energia dissipata.",
+          "type": "text"
+        },
+        {
+          "text": "p_1-p_2=\\Delta p_\\mathrm{perdita},\\qquad p_2=p_1-\\Delta p_\\mathrm{perdita}",
+          "type": "formula"
+        },
+        {
+          "text": "Il pascal è un joule per metro cubo, quindi perdita per volume e pressione possono essere espresse entrambe in kPa. Partendo da 15 kPa, sottrai 6 kPa e ottieni 9 kPa. Se la perdita è 4 kPa, ottieni 15 − 4 = 11 kPa.",
+          "type": "text"
+        },
+        {
+          "text": "Da 11 kPa in uscita puoi ricavare 4 kPa di perdita sottraendo la lettura di uscita dai 15 kPa all’ingresso. A perdita nulla il modello dà 15 kPa a entrambe le prese. La velocità può restare uguale anche se la pressione statica scende.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Perdita di energia per volume",
+        "max": 8.0,
+        "min": 0.0,
+        "step": 0.5,
+        "unit": "kPa"
+      },
+      "course": "C2",
+      "formula": "A e quota costanti: p₂ = p₁ − Δp perdita",
+      "id": "SIM-C2-L006-04",
+      "interpretation": "Le sezioni e le velocità coincidono. Senza dissipazione le due prese coincidono; introducendo una perdita prescritta la pressione cala pur restando invariata la velocità.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Pressione statica in uscita",
+        "unit": "kPa"
+      },
+      "order": 4,
+      "prerequisites": [
+        "C2-L005"
+      ],
+      "references": [
+        [
+          0.0,
+          15.0
+        ],
+        [
+          6.0,
+          9.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in movimento",
+      "skill": "C2-L006",
+      "substitution": "15 − {x}",
+      "summary": "Quando la somma ideale di Bernoulli sovrastima la pressione a valle?",
+      "title": "Condizioni di validità",
+      "topic": "Condizioni di validità",
+      "transferPrompt": "L’acqua entra in un tubo orizzontale a 15 kPa. A sezione costante perde {x} di energia per volume. Quale pressione statica rimane in uscita?",
+      "version": 2
+    }
+  ],
+  "schema": "astra/1"
+}
