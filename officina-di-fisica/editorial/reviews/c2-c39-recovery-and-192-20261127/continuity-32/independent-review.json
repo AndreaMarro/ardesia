@@ -1,0 +1,109 @@
+{
+  "reviewerRole": "AI_INDEPENDENT_NOT_RUNTIME_AUTHOR",
+  "runtimeCommit": "cbf7792f872caf575d58acd28cc7ace1ada14169",
+  "runtimeSha256": "c39f7cdf31e4443059614bac79e7e27c6399c1cfc6fe3dcd1bfdb6b9c3db027e",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "id": "SIM-C2-L005-03",
+  "sourceSha256": "fd13a8fe629571a0f27076fd812c706b5339129227ae2468e7cf4ea09f68680f",
+  "edition": 1,
+  "variant": "publishedOriginalOnly",
+  "processExitCode": 0,
+  "elapsedSeconds": 18.70782208442688,
+  "cases": 32,
+  "NumberSubmissions": 16,
+  "modelLaw": "Q=A*v;24cm3/s divided by A in cm2 yields cm/s",
+  "gridAndExactOutputs": [
+    [
+      6,
+      4
+    ],
+    [
+      5,
+      4.8
+    ],
+    [
+      8,
+      3
+    ]
+  ],
+  "actualAssignedInputs": [
+    6,
+    5
+  ],
+  "actualAssignedEntries": [
+    4,
+    4.8
+  ],
+  "sourceHypotheses": "Steady incompressible nonbranching flow; section-average velocity, rigid cross sections.",
+  "visualReading": {
+    "contactSheets": [
+      {
+        "file": "contact-320-orbit.png",
+        "sha256": "68c857de271d573d1826d4229b5b8f015567420cbe0d9a764669096901ae68b0",
+        "cases": 4
+      },
+      {
+        "file": "contact-320-side.png",
+        "sha256": "a36c07894fb233022c0a0574942dff551629b3d9a7be543086482491049822be",
+        "cases": 4
+      },
+      {
+        "file": "contact-320-top.png",
+        "sha256": "34ab51674df1d99adbdef1bd55bde2e725135365a0847ce88dc9969ede8d1449",
+        "cases": 4
+      },
+      {
+        "file": "contact-320-fixed_projection.png",
+        "sha256": "b561c48acbffc5ae2e3e7563d9c615b7b68d8596deb9be640834ba78ca8fb21b",
+        "cases": 4
+      },
+      {
+        "file": "contact-1280-orbit.png",
+        "sha256": "a5cc1bb1b1321d7f6f8a6fbe8d9990022e512fab39fed8777d5a696ea868c7bb",
+        "cases": 4
+      },
+      {
+        "file": "contact-1280-side.png",
+        "sha256": "c61bf4929f44b14f0f259b6092dcc5d4186d289d8696d1b386617cab15862dce",
+        "cases": 4
+      },
+      {
+        "file": "contact-1280-top.png",
+        "sha256": "51de99c212f8a44f974ff4abb4cfd53c386304452febbb00f393a1f96b3766db",
+        "cases": 4
+      },
+      {
+        "file": "contact-1280-fixed_projection.png",
+        "sha256": "f9ece45c03b63cce70daedbbe54c45af3825398e3061b603fa32ef4673ff3215",
+        "cases": 4
+      }
+    ],
+    "all32CellsRead": true,
+    "nativeSizeOriginalPNGs": [
+      {
+        "file": "actual/screens/3d6aff7c5a14477d6a7ccd912256b9e6fe5212aa2d53dc243b1b39deaa133ff0.png",
+        "sha256": "3d6aff7c5a14477d6a7ccd912256b9e6fe5212aa2d53dc243b1b39deaa133ff0"
+      },
+      {
+        "file": "actual/screens/1f231ab4e39ccaf067f7d50f212e81e91e8fa57d6bc812707de13ebffdcab963.png",
+        "sha256": "1f231ab4e39ccaf067f7d50f212e81e91e8fa57d6bc812707de13ebffdcab963"
+      }
+    ]
+  },
+  "boundedVisualDecision": "POSITIVE_IN_ACTUAL_8PROFILE_6_5_8_STATES",
+  "observations": [
+    "Short violet arrow at widest section8 remains visible in orbit/side/top/native and fixed projection at320/1280.",
+    "No opaque label observed over the short head in these frames; equal fixed upstream24cm3/s and inverse downstream speeds retained.",
+    "The original has no authored blocks; editorial draft text of L005-03 is outside this delivery."
+  ],
+  "limitations": [
+    "No full legal grid/camera sweep or GPU introspection.",
+    "No automatic canonical registration or withdrawal closure.",
+    "Four separate Bernoulli DRAFT imports serve the declared private fixture; this source-only slice does not preview their text."
+  ],
+  "newFindings": [],
+  "overallActivityAcceptance": false,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
