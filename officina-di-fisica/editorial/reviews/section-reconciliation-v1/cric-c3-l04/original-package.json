@@ -1,0 +1,673 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C3-Q031",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 31,
+      "title": "Massa che evapora",
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C3-L03"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Porto il calore latente in kJ/kg: 2,26 MJ/kg=2260 kJ/kg. La massa trasformata è Q/L=45,2/2260 kg=0,020 kg, cioè 20 g. Non c’è un tratto di riscaldamento preliminare, perché il liquido è già alla temperatura di ebollizione."
+        },
+        {
+          "type": "formula",
+          "text": "L=2260\\,\\mathrm{kJ/kg}"
+        },
+        {
+          "type": "formula",
+          "text": " m=Q/L"
+        },
+        {
+          "type": "formula",
+          "text": " m=0{,}020\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " m=20\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "0,020 g cambia l’unità senza convertire i chilogrammi. 20000 g perde la conversione da MJ a kJ. Moltiplicare Q per L non isola una massa e produce unità diverse da kg."
+        }
+      ],
+      "prompt": "Un liquido già alla temperatura di ebollizione assorbe 45,2 kJ destinati soltanto alla vaporizzazione. Il calore latente specifico è 2,26 MJ/kg. Quanti grammi evaporano?",
+      "difficulty": 1,
+      "family": "massa-evaporata-dal-bilancio-energetico",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "g",
+        "tolerance": 0
+      },
+      "hints": [
+        "Usa la stessa unità energetica per Q e L, poi converti kg in g.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "0,020 g cambia l’unità senza convertire i chilogrammi. 20000 g perde la conversione da MJ a kJ. Moltiplicare Q per L non isola una massa e produce unità diverse da kg.",
+        "target": "C3-L04"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Massa che evapora"
+      ]
+    },
+    {
+      "id": "C3-Q032",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 32,
+      "title": "Che cosa cambia nel plateau",
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C3-L03"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel tratto di fusione l’energia trasforma una parte del solido in liquido. La temperatura resta al valore di coesistenza, mentre aumenta la massa già fusa e diminuisce quella solida. Si considera un campione chiuso, quindi la massa totale non cresce."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2f78e36e347fe42a2ff75ebf5894cc09cd294f986e8e581361b3a19325402cdc",
+          "text": "Durante il plateau la temperatura resta al punto di fusione e la frazione liquida aumenta. L’asse orizzontale indica energia fornita, non una durata già assegnata."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{\\rm fusione}=m_{\\rm fusa}L_f"
+        },
+        {
+          "type": "formula",
+          "text": " m_{\\rm liquida}\\uparrow"
+        },
+        {
+          "type": "text",
+          "text": "L’aumento di temperatura caratterizza i tratti fuori dal plateau. La massa totale non è il conteggio della sola fase liquida. La frazione solida diminuisce, non aumenta. Il plateau non impone che la potenza del riscaldatore cambi."
+        }
+      ],
+      "prompt": "A pressione costante un campione puro assorbe energia e resta alla sua temperatura di fusione mentre coesistono solido e liquido. Che cosa aumenta durante questo tratto?",
+      "difficulty": 1,
+      "family": "la-struttura-del-plateau",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La frazione di massa liquida",
+          "La temperatura del campione",
+          "La massa totale del campione chiuso",
+          "La frazione solida",
+          "Necessariamente la potenza del riscaldatore"
+        ],
+        "value": "La frazione di massa liquida"
+      },
+      "hints": [
+        "Distingui la temperatura dalla proporzione fra le due fasi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "L’aumento di temperatura caratterizza i tratti fuori dal plateau. La massa totale non è il conteggio della sola fase liquida. La frazione solida diminuisce, non aumenta. Il plateau non impone che la potenza del riscaldatore cambi.",
+        "target": "C3-L04"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Che cosa cambia nel plateau"
+      ]
+    },
+    {
+      "id": "C3-Q033",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 33,
+      "title": "Il vapore sul vetro",
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C3-L03"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La condensazione è il passaggio dalla fase aeriforme a quella liquida. Le goccioline sul vetro sono acqua liquida proveniente dal vapore. Durante il processo il vapore cede energia all’ambiente; non basta osservare gocce per concludere che sia avvenuta una solidificazione."
+        },
+        {
+          "type": "formula",
+          "text": "\\text{vapore}\\longrightarrow\\text{liquido}"
+        },
+        {
+          "type": "text",
+          "text": "La fusione parte dal solido, la solidificazione termina nel solido e la vaporizzazione procede nel verso opposto. La sublimazione collega direttamente solido e vapore."
+        }
+      ],
+      "prompt": "Il vapore d’acqua forma goccioline liquide su un vetro freddo. Come si chiama il passaggio dal vapore al liquido?",
+      "difficulty": 1,
+      "family": "gocce-sul-vetro-freddo",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Condensazione",
+          "Fusione",
+          "Solidificazione",
+          "Vaporizzazione",
+          "Sublimazione"
+        ],
+        "value": "Condensazione"
+      },
+      "hints": [
+        "Nomina prima la fase iniziale e poi quella finale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La fusione parte dal solido, la solidificazione termina nel solido e la vaporizzazione procede nel verso opposto. La sublimazione collega direttamente solido e vapore.",
+        "target": "C3-L04"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Il vapore sul vetro"
+      ]
+    },
+    {
+      "id": "C3-Q034",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 34,
+      "title": "La durata della fusione",
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C3-L03"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Converto 40 g in 0,040 kg e 334 kJ/kg in 334000 J/kg. L’energia richiesta è 0,040·334000=13360 J. Una potenza di 80 J/s richiede 13360/80=167 s. Il ghiaccio è già al punto di fusione: non aggiungo un termine mcΔT."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2f78e36e347fe42a2ff75ebf5894cc09cd294f986e8e581361b3a19325402cdc",
+          "text": "A 80 W netti, la fusione completa richiede 13360 J e 167 s; la retta energetica vale soltanto entro questo tratto di fase."
+        },
+        {
+          "type": "formula",
+          "text": "Q=mL_f"
+        },
+        {
+          "type": "formula",
+          "text": " Q=13360\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " t=Q/P"
+        },
+        {
+          "type": "formula",
+          "text": " t=167\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "13,36 copia il valore numerico dell’energia richiesta espressa in kJ, senza costruire il rapporto energia/potenza necessario per il tempo. Dimenticare la conversione da grammi darebbe una durata mille volte maggiore. Riscaldare l’acqua dopo la fusione sarebbe un processo ulteriore non richiesto."
+        }
+      ],
+      "prompt": "Un riscaldatore trasmette al ghiaccio una potenza netta costante di 80 W. Quanto tempo serve a fondere interamente 40 g già a 0 °C alla pressione atmosferica, con L_f=334 kJ/kg? Si trascurano altri scambi.",
+      "difficulty": 2,
+      "family": "cronometrare-una-fusione",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 167,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "hints": [
+        "Trova prima l’energia latente e dividila per la potenza effettiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "13,36 copia il valore numerico dell’energia richiesta espressa in kJ, senza costruire il rapporto energia/potenza necessario per il tempo. Dimenticare la conversione da grammi darebbe una durata mille volte maggiore. Riscaldare l’acqua dopo la fusione sarebbe un processo ulteriore non richiesto.",
+        "target": "C3-L04"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "La durata della fusione"
+      ]
+    },
+    {
+      "id": "C3-Q035",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 35,
+      "title": "Perdere liquido a 22 °C",
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C3-L03"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Molecole possono lasciare la superficie liquida anche sotto la temperatura di ebollizione. Se l’aria consente una perdita netta di vapore, la goccia diminuisce di volume per evaporazione. La temperatura di 22 °C non obbliga a postulare bolle nell’intero liquido."
+        },
+        {
+          "type": "formula",
+          "text": "\\text{liquido superficiale}\\longrightarrow\\text{vapore}"
+        },
+        {
+          "type": "text",
+          "text": "L’ebollizione non è necessaria per l’evaporazione superficiale. La condensazione tenderebbe ad aggiungere liquido, non a spiegare da sola la perdita. La semplice diminuzione di volume non dimostra che l’acqua sia diventata ghiaccio."
+        }
+      ],
+      "prompt": "Una goccia d’acqua esposta all’aria su una piastra a 22 °C diminuisce di volume. Quale meccanismo è compatibile con questa osservazione, senza richiedere ebollizione?",
+      "difficulty": 1,
+      "family": "evaporare-lontano-dallebollizione",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Evaporazione dalla superficie",
+          "Necessariamente ebollizione in tutto il volume",
+          "Necessariamente solidificazione",
+          "Condensazione che aggiunge liquido",
+          "Creazione di acqua dal nulla"
+        ],
+        "value": "Evaporazione dalla superficie"
+      },
+      "hints": [
+        "Ricorda che la superficie può perdere molecole anche senza bolle.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "L’ebollizione non è necessaria per l’evaporazione superficiale. La condensazione tenderebbe ad aggiungere liquido, non a spiegare da sola la perdita. La semplice diminuzione di volume non dimostra che l’acqua sia diventata ghiaccio.",
+        "target": "C3-L04"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Perdere liquido a 22 °C"
+      ]
+    },
+    {
+      "id": "C3-Q036",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 36,
+      "title": "Un calore latente dal grafico",
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C3-L03"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’energia del plateau è PΔt=60·150=9000 J. La massa effettivamente fusa è 0,030 kg. Dividendo ottengo L=9000/0,030=300000 J/kg, cioè 300 kJ/kg. La durata del plateau riguarda la trasformazione di tutta la massa assegnata."
+        },
+        {
+          "type": "formula",
+          "text": "Q=9000\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " L=\\frac{Q}{m}"
+        },
+        {
+          "type": "formula",
+          "text": " L=300000\\,\\mathrm{J/kg}"
+        },
+        {
+          "type": "formula",
+          "text": " L=300\\,\\mathrm{kJ/kg}"
+        },
+        {
+          "type": "text",
+          "text": "9000 J è il calore totale, non quello per chilogrammo. Dividere per 30 senza convertire i grammi dà 300 J/g, che equivale proprio a 300 kJ/kg: non si deve poi cambiare l’unità senza controllarne il fattore."
+        }
+      ],
+      "prompt": "In un campione puro a pressione fissata la fusione di 30 g dura 150 s sotto una potenza termica netta costante di 60 W. La temperatura resta al valore di fusione. Trova il calore latente specifico in kJ/kg.",
+      "difficulty": 2,
+      "family": "ricavare-l-dalla-durata-del-plateau",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 300,
+        "unit": "kJ/kg",
+        "tolerance": 0
+      },
+      "hints": [
+        "L’area potenza-tempo dà l’energia; dividila per la massa trasformata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "9000 J è il calore totale, non quello per chilogrammo. Dividere per 30 senza convertire i grammi dà 300 J/g, che equivale proprio a 300 kJ/kg: non si deve poi cambiare l’unità senza controllarne il fattore.",
+        "target": "C3-L04"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Un calore latente dal grafico"
+      ]
+    },
+    {
+      "id": "C3-Q037",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 37,
+      "title": "Dal liquido al solido",
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C3-L03"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La solidificazione trasforma il liquido in solido. Nel modello di equilibrio a pressione fissata la temperatura resta al valore di coesistenza mentre cambia la frazione solida. Il calore esce dal materiale: con il calore entrante positivo il suo Q di fase è negativo."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{\\rm materiale}=-m_{\\rm trasformata}L_f"
+        },
+        {
+          "type": "text",
+          "text": "La fusione è il processo inverso e richiede energia entrante. La condensazione parte dal vapore e termina nel liquido; evaporazione e sublimazione terminano nel vapore."
+        }
+      ],
+      "prompt": "Un materiale a pressione fissa cede calore latente e passa da liquido a solido restando alla temperatura di coesistenza. Come si chiama il fenomeno?",
+      "difficulty": 1,
+      "family": "dal-liquido-al-solido",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Solidificazione",
+          "Fusione",
+          "Condensazione",
+          "Evaporazione",
+          "Sublimazione"
+        ],
+        "value": "Solidificazione"
+      },
+      "hints": [
+        "Distingui il verso del passaggio di fase e quello del calore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La fusione è il processo inverso e richiede energia entrante. La condensazione parte dal vapore e termina nel liquido; evaporazione e sublimazione terminano nel vapore.",
+        "target": "C3-L04"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Dal liquido al solido"
+      ]
+    },
+    {
+      "id": "C3-Q038",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 38,
+      "title": "La percentuale fusa dal residuo",
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C3-L03"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa trasformata è la differenza fra quella inizialmente solida e il residuo: 120−45=75 g. La frazione fusa è 75/120=5/8. Moltiplicando per 100 si ottiene 62,5%. I 45 g rimasti costituiscono invece il 37,5%."
+        },
+        {
+          "type": "formula",
+          "text": "m_{\\rm fusa}=75\\,\\mathrm g"
+        },
+        {
+          "type": "formula",
+          "text": " f=\\frac{75}{120}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{75}{120}=\\frac58"
+        },
+        {
+          "type": "formula",
+          "text": " f=62{,}5\\%"
+        },
+        {
+          "type": "text",
+          "text": "37,5% è la parte ancora solida. 75 copia il valore numerico della massa fusa in grammi, non la percentuale. 100% ignora il residuo di 45 g. La frazione 5/8 va moltiplicata per 100 per esprimerne la percentuale: scrivere 5/8% perderebbe questo fattore."
+        }
+      ],
+      "prompt": "Un campione chiuso contiene inizialmente 120 g di solido al punto di fusione, a pressione fissata. Si fornisce energia finché restano 45 g di solido. Quale percentuale della massa iniziale è diventata liquida?",
+      "difficulty": 1,
+      "family": "frazione-fusa-dal-residuo",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "62,5%",
+          "37,5%",
+          "75%",
+          "100%",
+          "5/8%"
+        ],
+        "value": "62,5%"
+      },
+      "hints": [
+        "Sottrai il residuo prima di formare la percentuale rispetto alla massa iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "37,5% è la parte ancora solida. 75 copia il valore numerico della massa fusa in grammi, non la percentuale. 100% ignora il residuo di 45 g. La frazione 5/8 va moltiplicata per 100 per esprimerne la percentuale: scrivere 5/8% perderebbe questo fattore.",
+        "target": "C3-L04"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "La percentuale fusa dal residuo"
+      ]
+    },
+    {
+      "id": "C3-Q039",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 39,
+      "title": "Il contributo aggiuntivo del vapore",
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C3-L03"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vapore deve prima condensare alla pressione assegnata, cedendo il calore latente mL_v. Poi l’acqua ottenuta si raffredda da 100 a 40 °C. Quest’ultimo tratto è comune alla massa che era già liquida; la condensazione è il contributo aggiuntivo. Chiamo E_c il modulo del calore di condensazione ed E_r quello del successivo raffreddamento del liquido."
+        },
+        {
+          "type": "formula",
+          "text": "E_c=mL_v"
+        },
+        {
+          "type": "formula",
+          "text": " E_r=mc_l(100-40)\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " |Q_{\\rm vapore}|=E_c+E_r"
+        },
+        {
+          "type": "formula",
+          "text": " |Q_{\\rm liquido}|=E_r"
+        },
+        {
+          "type": "text",
+          "text": "La stessa temperatura iniziale non rende uguali le energie delle due fasi. Non è presente ghiaccio, quindi non compare una fusione. Il quesito non impone un getto con energia cinetica macroscopica."
+        }
+      ],
+      "prompt": "Masse uguali di vapore saturo a 100 °C e di acqua liquida a 100 °C terminano entrambe come acqua a 40 °C, alla pressione atmosferica. Quale contributo aggiuntivo viene ceduto dal vapore?",
+      "difficulty": 2,
+      "family": "perche-il-vapore-cede-piu-energia",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Il calore latente di condensazione mL_v",
+          "Un ulteriore riscaldamento da 40 a 100 °C",
+          "Nessuno, perché le temperature iniziali coincidono",
+          "La sola energia cinetica del getto, obbligatoriamente",
+          "Il calore latente di fusione del ghiaccio"
+        ],
+        "value": "Il calore latente di condensazione mL_v"
+      },
+      "hints": [
+        "Suddividi il percorso del vapore in condensazione e raffreddamento del liquido.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "La stessa temperatura iniziale non rende uguali le energie delle due fasi. Non è presente ghiaccio, quindi non compare una fusione. Il quesito non impone un getto con energia cinetica macroscopica.",
+        "target": "C3-L04"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Il contributo aggiuntivo del vapore"
+      ]
+    },
+    {
+      "id": "C3-Q040",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 40,
+      "title": "Prima verificare che il ghiaccio fonda",
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C3-L03"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Raffreddando l’acqua fino a 0 °C si libererebbero 100·4,18·20=8360 J, più dei 3340 J necessari a fondere tutto il ghiaccio. Restano 5020 J che scaldano 110 g di acqua liquida. La capacità finale è 110·4,18=459,8 J/K. Il quoziente 5020/459,8=25100/2299 dà la lettura finale sopra 0 °C, senza ricorrere a una divisione approssimata."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2f78e36e347fe42a2ff75ebf5894cc09cd294f986e8e581361b3a19325402cdc",
+          "text": "Il confronto energetico precede il calcolo di temperatura: 8360 J cedibili fino a 0 °C superano 3340 J di fusione. Restano 5020 J per scaldare i 110 g di liquido finale."
+        },
+        {
+          "type": "formula",
+          "text": "E_{\\rm disponibile}=8360\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_{\\rm fusione}=3340\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_{\\rm residua}=5020\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " C_f=459{,}8\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " t_f=\\frac{25100}{2299}\\,{}^\\circ\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "0 °C sarebbe possibile se restasse ghiaccio, ma il controllo energetico lo esclude. 20 °C ignorerebbe l’energia ceduta dall’acqua. Raddoppiare il quoziente non rispetta il bilancio. Il valore negativo è incompatibile con acqua liquida finale nel ramo fisico verificato."
+        }
+      ],
+      "prompt": "Alla pressione atmosferica, in isolamento si aggiungono 10 g di ghiaccio a 0 °C a 100 g d’acqua a 20 °C. Usa L_f=334 J/g e c_l=4,18 J/(g·K), recipiente trascurabile e nessun lavoro apprezzabile. Quale temperatura finale esatta in °C si ottiene?",
+      "difficulty": 3,
+      "family": "bilancio-di-una-miscela-con-ghiaccio",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "25100/2299 °C",
+          "0 °C",
+          "20 °C",
+          "50200/2299 °C",
+          "−25100/2299 °C"
+        ],
+        "value": "25100/2299 °C"
+      },
+      "hints": [
+        "Confronta prima il calore cedibile fino a 0 °C con quello necessario alla fusione completa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "0 °C sarebbe possibile se restasse ghiaccio, ma il controllo energetico lo esclude. 20 °C ignorerebbe l’energia ceduta dall’acqua. Raddoppiare il quoziente non rispetta il bilancio. Il valore negativo è incompatibile con acqua liquida finale nel ramo fisico verificato.",
+        "target": "C3-L04"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Prima verificare che il ghiaccio fonda"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "2f78e36e347fe42a2ff75ebf5894cc09cd294f986e8e581361b3a19325402cdc",
+      "name": "cric-c3-l04-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTUwMCIgdmlld0JveD0iMCAwIDY0MCAxNTAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIj48dGl0bGUgaWQ9InRpdGxlIj5QbGF0ZWF1LCBkdXJhdGEgZGkgZnVzaW9uZSBlIGNvbnRyb2xsbyBlbmVyZ2V0aWNvPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+VW4gcGxhdGVhdSBzb2xpZG8tbGlxdWlkbzsgZW5lcmdpYSBsaW5lYXJlIG5lbCB0ZW1wbyBmaW5vIGEgY2VudG9zZXNzYW50YXNldHRlIHNlY29uZGk7IGVuZXJnaWEgY2VkaWJpbGUgb3R0b21pbGF0cmVjZW50b3Nlc3NhbnRhIGpvdWxlIHJpcGFydGl0YSBpbiB0cmVtaWxhdHJlY2VudG9xdWFyYW50YSBkaSBmdXNpb25lIGUgY2lucXVlbWlsYXZlbnRpIHJlc2lkdWkuPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImFycm93IiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI4IiByZWZYPSI3IiByZWZZPSI0IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMOCA0TDAgOFoiIGZpbGw9IiM3MzUwYjAiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTAwIiBmaWxsPSIjZmFmN2VlIi8+PHRleHQgeD0iMzAiIHk9IjQwIiBmb250LXNpemU9IjI1IiBmaWxsPSIjMzAyYTNlIj4xLiBUZW1wZXJhdHVyYSBmZXJtYSwgZmFzZSB2YXJpYWJpbGU8L3RleHQ+PHRleHQgeD0iMzAiIHk9Ijg1IiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj5DYW1waW9uZSBwdXJvIGEgcHJlc3Npb25lIGNvc3RhbnRlPC90ZXh0PjxwYXRoIGQ9Ik0xMzAgNDIwVjEyNU0xMzAgNDIwSDU0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzI2ZDgxIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMTUwIDM5MEwyNjAgMjgwSDQyMEw1MTAgMTcwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNDc5NzkiIHN0cm9rZS13aWR0aD0iNCIvPjxwYXRoIGQ9Ik0xMzAgMjgwSDI2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzI2ZDgxIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWRhc2hhcnJheT0iNyA2Ii8+PHRleHQgeD0iMzUiIHk9IjE0NSIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzMwMmEzZSI+VDwvdGV4dD48dGV4dCB4PSIzMCIgeT0iMjg1IiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj5UIGZ1czwvdGV4dD48dGV4dCB4PSI0ODUiIHk9IjQ2MCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzMwMmEzZSI+USBmb3JuaXRvPC90ZXh0Pjx0ZXh0IHg9IjI3NSIgeT0iMjQ1IiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj5zb2xpZG8gKyBsaXF1aWRvPC90ZXh0Pjx0ZXh0IHg9IjIwMCIgeT0iNDA1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMzAyYTNlIj5zb2xpZG88L3RleHQ+PHRleHQgeD0iNDQ1IiB5PSIxNTAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMzMDJhM2UiPmxpcXVpZG88L3RleHQ+PHRleHQgeD0iNDAiIHk9IjUwMCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzMwMmEzZSI+TmVsIHBsYXRlYXUgY3Jlc2NlIGxhIGZyYXppb25lIGxpcXVpZGEuPC90ZXh0Pjx0ZXh0IHg9IjMwIiB5PSI1NzAiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMzMDJhM2UiPjIuIEZvbmRlcmUgY29uIHBvdGVuemEgY29zdGFudGU8L3RleHQ+PHRleHQgeD0iMzAiIHk9IjYxNSIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzMwMmEzZSI+NDAgZyBkaSBnaGlhY2NpbyBhIDAgwrBDOyBQIG5ldHRhID0gODAgVzwvdGV4dD48cGF0aCBkPSJNMTQwIDkzMFY2NTBNMTQwIDkzMEg1NDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzcyNmQ4MSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBhdGggZD0iTTE0MCA5MzBMNDc0IDY2Mi44IiBmaWxsPSJub25lIiBzdHJva2U9IiM3MzUwYjAiIHN0cm9rZS13aWR0aD0iNCIvPjxwYXRoIGQ9Ik00NzQgNjYyLjhWOTMwIiBmaWxsPSJub25lIiBzdHJva2U9IiM3MjZkODEiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtZGFzaGFycmF5PSI3IDYiLz48dGV4dCB4PSIzNSIgeT0iNjYyIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj5FIChKKTwvdGV4dD48dGV4dCB4PSIzNzUiIHk9IjY1MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzMwMmEzZSI+MTMzNjAgSjwvdGV4dD48dGV4dCB4PSIxMTIiIHk9Ijk2MCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzMwMmEzZSI+MDwvdGV4dD48dGV4dCB4PSI0NDgiIHk9Ijk2MCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzMwMmEzZSI+MTY3PC90ZXh0Pjx0ZXh0IHg9IjUyMCIgeT0iMTAwNSIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzMwMmEzZSI+dCAocyk8L3RleHQ+PHRleHQgeD0iMTcwIiB5PSI4MzAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMzMDJhM2UiPkUgPSBQdDwvdGV4dD48dGV4dCB4PSIzMCIgeT0iMTA3NSIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzMwMmEzZSI+My4gSWwgZ2hpYWNjaW8gZm9uZGUgdHV0dG8/PC90ZXh0PjxwYXRoIGQ9Ik0xNDAgMTQwMFYxMTAwTTE0MCAxNDAwSDU3NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzI2ZDgxIiBzdHJva2Utd2lkdGg9IjIiLz48cmVjdCB4PSIxNDAiIHk9IjExMzUiIHdpZHRoPSI0MTgiIGhlaWdodD0iNDUiIGZpbGw9IiM3MzUwYjAiLz48cmVjdCB4PSIxNDAiIHk9IjEyNTUiIHdpZHRoPSIxNjciIGhlaWdodD0iNDUiIGZpbGw9IiM2OGJkY2YiLz48cmVjdCB4PSIzMDciIHk9IjEyNTUiIHdpZHRoPSIyNTEiIGhlaWdodD0iNDUiIGZpbGw9IiMxNDc5NzkiLz48dGV4dCB4PSIxNTUiIHk9IjExMjAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMzMDJhM2UiPjgzNjAgSiBjZWRpYmlsaSBmaW5vIGEgMCDCsEM8L3RleHQ+PHRleHQgeD0iMTQ1IiB5PSIxMjMwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMzAyYTNlIj4zMzQwIEogcGVyIGZvbmRlcmU8L3RleHQ+PHRleHQgeD0iMzMwIiB5PSIxMzMwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj41MDIwIEogcmVzaWR1aTwvdGV4dD48dGV4dCB4PSIxMTIiIHk9IjE0MzAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMzMDJhM2UiPjA8L3RleHQ+PHRleHQgeD0iNDkwIiB5PSIxNDY4IiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj5FbmVyZ2lhIChKKTwvdGV4dD48L3N2Zz4K"
+    }
+  ]
+}

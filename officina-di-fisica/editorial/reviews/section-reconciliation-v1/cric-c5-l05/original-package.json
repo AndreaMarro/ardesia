@@ -1,0 +1,656 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C5-Q041",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 41,
+      "title": "Ricostruire l’intensità da cinquanta decibel",
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04"
+      ],
+      "version": 3,
+      "prompt": "Il livello di intensità è L=10 log₁₀(I/I₀) dB e il riferimento è I₀=10⁻¹² W/m². A 50 dB quale intensità corrisponde, in microwatt al metro quadrato?",
+      "family": "intensita-dal-livello-sonoro",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Divido il coefficiente del livello per dieci: log₁₀(I/I₀)=5. Significa che I/I₀=10⁵. Moltiplico 10⁵ per 10⁻¹² W/m² e ottengo 10⁻⁷ W/m². Poiché un microwatt è 10⁻⁶ W, il valore è 10⁻¹ μW/m², ossia 0,10 μW/m². Ogni passaggio usa soltanto potenze di dieci."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/9bf7dd4afc3e870261154750830924fed711c82c9257603e5eb3a6d61fb82b37",
+          "text": "Il primo pannello separa il livello dal rapporto d’intensità: 0 dB corrisponde a I₀, 10 dB a 10I₀ e 50 dB a 10⁵I₀. Le lunghezze delle frecce non rappresentano intensità lineari."
+        },
+        {
+          "type": "formula",
+          "text": "\\log_{10}(I/I_0)=5"
+        },
+        {
+          "type": "formula",
+          "text": " I=10^{-7}\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I=\\frac1{10}\\,\\mu\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "10 μW/m² corrisponde a un rapporto 10⁷ dal riferimento e quindi a 70 dB, non 50 dB. 50 copia il coefficiente del livello senza invertire il logaritmo. Il prefisso micro moltiplica l’unità watt per 10⁻⁶."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "0,10 μW/m²",
+          "10 μW/m²",
+          "100 μW/m²",
+          "0,00001 μW/m²",
+          "50 μW/m²"
+        ],
+        "value": "0,10 μW/m²"
+      },
+      "hints": [
+        "Il logaritmo vale cinque: ricostruisci prima il rapporto, poi converti il prefisso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "10 μW/m² corrisponde a un rapporto 10⁷ dal riferimento e quindi a 70 dB, non 50 dB. 50 copia il coefficiente del livello senza invertire il logaritmo. Il prefisso micro moltiplica l’unità watt per 10⁻⁶.",
+        "target": "C5-L05"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Ricostruire l’intensità da cinquanta decibel"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q042",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 42,
+      "title": "Zero della scala e intensità non nulla",
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04"
+      ],
+      "version": 2,
+      "prompt": "Nel livello L=10 log₁₀(I/I₀) dB, il riferimento I₀ è positivo. Quale intensità fisica corrisponde a L=0 dB?",
+      "family": "il-significato-di-zero-decibel",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il logaritmo deve valere zero e 10⁰=1. Dunque I/I₀=1 e I=I₀>0. Lo zero della scala di livello è un riferimento convenzionale, non assenza di onda. Per intensità positive inferiori a I₀ il livello può essere negativo senza che sia negativa l’intensità fisica."
+        },
+        {
+          "type": "formula",
+          "text": "\\log_{10}(I/I_0)=0"
+        },
+        {
+          "type": "formula",
+          "text": " I/I_0=1"
+        },
+        {
+          "type": "formula",
+          "text": " I=I_0"
+        },
+        {
+          "type": "text",
+          "text": "Intensità nulla non appartiene al dominio del logaritmo reale di questa formula: il livello tende a meno infinito quando I tende a zero da valori positivi. Un’intensità negativa non è ammessa nel modello del livello."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Un valore che dipende soltanto dal tempo di ascolto",
+          "L’intensità positiva I₀",
+          "Intensità rigorosamente nulla",
+          "Un’intensità negativa",
+          "La massima intensità udibile da chiunque"
+        ],
+        "value": "L’intensità positiva I₀"
+      },
+      "hints": [
+        "Quale numero positivo ha logaritmo decimale uguale a zero?",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Intensità nulla non appartiene al dominio del logaritmo reale di questa formula: il livello tende a meno infinito quando I tende a zero da valori positivi. Un’intensità negativa non è ammessa nel modello del livello.",
+        "target": "C5-L05"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Zero della scala e intensità non nulla"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q043",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 43,
+      "title": "Il segno della variazione in decibel",
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04"
+      ],
+      "version": 2,
+      "prompt": "Un filtro acustico porta un’intensità positiva I_i a I_f=I_i/100. Usa ΔL=10 log₁₀(I_f/I_i) dB. Qual è la variazione finale meno iniziale, in decibel?",
+      "family": "decibel-dopo-attenuazione",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto finale su iniziale è 1/100=10⁻². Il suo logaritmo decimale è −2; moltiplicando per dieci ottengo −20 dB. Il segno negativo corrisponde alla diminuzione dell’intensità. Non devo conoscere il livello iniziale per trovare questa differenza."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{I_f}{I_i}=10^{-2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta L=-20\\,\\mathrm{dB}"
+        },
+        {
+          "type": "text",
+          "text": "+20 dB inverte l’ordine del rapporto e descriverebbe un aumento di cento volte. −2 dB dimentica il fattore dieci della definizione. −100 dB non è il logaritmo del fattore cento."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": -20,
+        "unit": "dB",
+        "tolerance": 0
+      },
+      "hints": [
+        "Scrivi un centesimo come una potenza di dieci.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "+20 dB inverte l’ordine del rapporto e descriverebbe un aumento di cento volte. −2 dB dimentica il fattore dieci della definizione. −100 dB non è il logaritmo del fattore cento.",
+        "target": "C5-L05"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Il segno della variazione in decibel"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q044",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 44,
+      "title": "La misura non esaurisce la percezione",
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04"
+      ],
+      "version": 2,
+      "prompt": "Due toni hanno la stessa intensità fisica positiva al ricevitore e frequenze diverse. Senza altre informazioni sull’udito dell’ascoltatore, si può dedurre che siano percepiti ugualmente forti?",
+      "family": "due-suoni-alla-stessa-intensita",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La stessa intensità dà lo stesso livello riferito allo stesso I₀. La sensazione dipende però anche dalla frequenza e dalla risposta dell’ascoltatore. Il solo dato fisico assegnato non consente quindi di concludere uguale sensazione. Non serve negare l’uguaglianza delle intensità per riconoscere questo limite."
+        },
+        {
+          "type": "formula",
+          "text": "I_1=I_2"
+        },
+        {
+          "type": "formula",
+          "text": " L_1=L_2"
+        },
+        {
+          "type": "text",
+          "text": "Cambiare l’unità con cui si esprime I non cambia la percezione. Una frequenza maggiore non impone un’intensità fisica maggiore. Il livello di intensità non costituisce da solo una scala universale della sensazione sonora."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Sì, purché l’intensità sia espressa in W/m²",
+          "No: il tono più acuto ha necessariamente maggiore intensità fisica",
+          "No: due frequenze diverse non possono mai avere intensità uguali",
+          "No: la sensibilità dell’udito dipende anche dalla frequenza",
+          "Sì, sempre, perché i watt sono uguali"
+        ],
+        "value": "No: la sensibilità dell’udito dipende anche dalla frequenza"
+      },
+      "hints": [
+        "Distingui la grandezza rilevata dal microfono dalla risposta dell’orecchio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Cambiare l’unità con cui si esprime I non cambia la percezione. Una frequenza maggiore non impone un’intensità fisica maggiore. Il livello di intensità non costituisce da solo una scala universale della sensazione sonora.",
+        "target": "C5-L05"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "La misura non esaurisce la percezione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q045",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 45,
+      "title": "Andata più ritorno dell’eco",
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04"
+      ],
+      "version": 2,
+      "prompt": "Una sorgente e un microfono sono nello stesso punto, a 51 m da una parete ferma. Il suono viaggia alla stessa velocità costante all’andata e al ritorno; l’eco arriva dopo 0,30 s, trascurando altri ritardi. Qual è la velocità in metri al secondo?",
+      "family": "velocita-del-suono-da-uneco",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’eco percorre 51 m fino alla parete e altri 51 m per ritornare al microfono. Il cammino totale è 102 m. Divido per 0,30 s e, moltiplicando numeratore e denominatore per dieci, ottengo 1020/3=340 m/s. Il controllo 340×0,30=102 m ricostruisce entrambe le tratte."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/9bf7dd4afc3e870261154750830924fed711c82c9257603e5eb3a6d61fb82b37",
+          "text": "La parete è a 51 m dal punto comune di sorgente e microfono. Le due frecce distinte rappresentano 51 m di andata e 51 m di ritorno: 102 m in 0,30 s."
+        },
+        {
+          "type": "formula",
+          "text": "s_{\\rm tot}=2d"
+        },
+        {
+          "type": "formula",
+          "text": " s_{\\rm tot}=102\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " v=340\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "170 m/s divide soltanto la distanza della parete per il tempo di andata e ritorno. 680 m/s conterebbe quattro tratte uguali. Il fattore due viene dalla geometria dell’eco, non da una variazione della velocità alla riflessione."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 340,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "hints": [
+        "Disegna separatamente la freccia di andata e quella di ritorno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "testo",
+        "message": "170 m/s divide soltanto la distanza della parete per il tempo di andata e ritorno. 680 m/s conterebbe quattro tratte uguali. Il fattore due viene dalla geometria dell’eco, non da una variazione della velocità alla riflessione.",
+        "target": "C5-L05"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Andata più ritorno dell’eco"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q046",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 46,
+      "title": "Il tono prima e dopo il passaggio",
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04"
+      ],
+      "version": 2,
+      "prompt": "Una sorgente sonora subsonica mantiene la frequenza emessa in aria immobile. Rispetto a un ricevitore fermo passa da un tratto radiale di avvicinamento a uno di allontanamento, con velocità radiali non nulle. Come si confrontano le frequenze ricevute con quella emessa?",
+      "family": "sorgente-che-supera-losservatore",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In avvicinamento le emissioni successive partono da posizioni più vicine al ricevitore: i fronti davanti alla sorgente sono più ravvicinati e arrivano più spesso. In allontanamento i fronti arrivano più distanziati e la frequenza ricevuta è minore di quella emessa. La sorgente mantiene il suo ritmo proprio; cambia il ritmo di arrivo nel mezzo."
+        },
+        {
+          "type": "formula",
+          "text": "f_{\\rm avv}>f_{\\rm emessa}"
+        },
+        {
+          "type": "formula",
+          "text": " f_{\\rm all}<f_{\\rm emessa}"
+        },
+        {
+          "type": "text",
+          "text": "Essere fermo non impedisce al ricevitore di rilevare un Doppler dovuto alla sorgente. Variare soltanto l’intensità non descrive la diversa separazione dei fronti. Il modello dichiarato è subsonico, non il caso di fronti d’urto."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Prima superiore, poi inferiore a quella emessa",
+          "Prima inferiore, poi superiore a quella emessa",
+          "Sempre uguali a quella emessa",
+          "Entrambe nulle perché il ricevitore è fermo",
+          "Cambia soltanto l’intensità, mai la frequenza"
+        ],
+        "value": "Prima superiore, poi inferiore a quella emessa"
+      },
+      "hints": [
+        "Conta quanti fronti raggiungono il punto fisso in un secondo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Essere fermo non impedisce al ricevitore di rilevare un Doppler dovuto alla sorgente. Variare soltanto l’intensità non descrive la diversa separazione dei fronti. Il modello dichiarato è subsonico, non il caso di fronti d’urto.",
+        "target": "C5-L05"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Il tono prima e dopo il passaggio"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q047",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 47,
+      "title": "Andare incontro ai fronti",
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04"
+      ],
+      "version": 2,
+      "prompt": "Una sorgente sonora resta ferma in aria immobile. Un ascoltatore si muove verso la sorgente con velocità positiva minore di quella del suono. Che cosa cambia al suo orecchio?",
+      "family": "ricevitore-in-moto",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La sorgente ferma mantiene il ritmo di emissione e la distanza fra i fronti nell’aria. L’ascoltatore va incontro ai fronti e li incrocia più spesso di un ricevitore fermo. La frequenza ricevuta aumenta senza bisogno di cambiare la frequenza della sorgente o la velocità del suono rispetto al mezzo."
+        },
+        {
+          "type": "formula",
+          "text": "f_{\\rm ricevuta}>f_{\\rm emessa}"
+        },
+        {
+          "type": "text",
+          "text": "Il movimento del ricevitore non modifica automaticamente le onde già emesse nel mezzo. Non raddoppia la loro distanza e non accelera il suono rispetto all’aria. Il ritmo degli incontri può cambiare anche se il ritmo della sorgente resta invariato."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La velocità del suono rispetto all’aria aumenta",
+          "Incontra più fronti nell’unità di tempo",
+          "La sorgente emette più cicli in un secondo",
+          "La distanza fra i fronti nell’aria deve raddoppiare",
+          "La frequenza ricevuta si annulla"
+        ],
+        "value": "Incontra più fronti nell’unità di tempo"
+      },
+      "hints": [
+        "Immagina di camminare incontro a una successione regolare di fronti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Il movimento del ricevitore non modifica automaticamente le onde già emesse nel mezzo. Non raddoppia la loro distanza e non accelera il suono rispetto all’aria. Il ritmo degli incontri può cambiare anche se il ritmo della sorgente resta invariato.",
+        "target": "C5-L05"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Andare incontro ai fronti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q048",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 48,
+      "title": "La stessa frequenza oltre il confine",
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04"
+      ],
+      "version": 2,
+      "prompt": "Un suono monocromatico di 1,00 kHz passa normalmente dall’aria all’acqua attraverso un’interfaccia fissa e lineare. Nell’acqua la velocità assegnata è 1480 m/s. Qual è la lunghezza d’onda trasmessa?",
+      "family": "frequenza-oltre-uninterfaccia",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’interfaccia fissa conserva la frequenza di 1,00 kHz=1000 Hz. Nell’acqua λ=v/f=1480/1000 m=1,48 m. Il nuovo mezzo cambia la velocità e quindi la distanza fra fronti, ma non il ritmo temporale imposto dalla sorgente. La divisione per mille si esegue spostando la virgola di tre posizioni."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/9bf7dd4afc3e870261154750830924fed711c82c9257603e5eb3a6d61fb82b37",
+          "text": "L’ultimo pannello è un’istantanea della sola onda in acqua, a 1,00 kHz. La distanza fra due creste è 1,48 m; non è la traiettoria delle particelle. La frequenza è la stessa di quella incidente attraverso l’interfaccia fissa."
+        },
+        {
+          "type": "formula",
+          "text": "f=1000\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda=\\frac{v}{f}"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda=1{,}48\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "1480 m usa 1 Hz anziché 1 kHz. 0,00148 m conterebbe il fattore mille due volte. Invertire v/f produce un numero con dimensione inversa di una lunghezza; non è la λ richiesta."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "0,6757 m",
+          "1000 m",
+          "1,48 m",
+          "1480 m",
+          "0,00148 m"
+        ],
+        "value": "1,48 m"
+      },
+      "hints": [
+        "Conserva la frequenza e usa la velocità del mezzo di arrivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "1480 m usa 1 Hz anziché 1 kHz. 0,00148 m conterebbe il fattore mille due volte. Invertire v/f produce un numero con dimensione inversa di una lunghezza; non è la λ richiesta.",
+        "target": "C5-L05"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "La stessa frequenza oltre il confine"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q049",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 49,
+      "title": "Il nome dell’unità del livello",
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04"
+      ],
+      "version": 2,
+      "prompt": "Come si chiama l’unità con simbolo dB usata per il livello di intensità sonora?",
+      "family": "soglia-convenzionale",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il nome è decibel. Il livello è dieci volte il logaritmo decimale di un rapporto di intensità e si esprime in dB. L’intensità fisica si misura invece in W/m²: una grandezza e il suo livello logaritmico non hanno la stessa unità di presentazione."
+        },
+        {
+          "type": "formula",
+          "text": "L=10\\log_{10}(I/I_0)\\,\\mathrm{dB}"
+        },
+        {
+          "type": "text",
+          "text": "Hertz misura frequenza, pascal pressione e joule energia. Watt al metro quadrato è l’unità di I, non il nome dell’unità del suo livello. Il rapporto nell’argomento del logaritmo deve essere adimensionale."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Hertz",
+          "Pascal",
+          "Joule",
+          "Decibel",
+          "Watt al metro quadrato"
+        ],
+        "value": "Decibel"
+      },
+      "hints": [
+        "Leggi per esteso il simbolo dB.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Hertz misura frequenza, pascal pressione e joule energia. Watt al metro quadrato è l’unità di I, non il nome dell’unità del suo livello. Il rapporto nell’argomento del logaritmo deve essere adimensionale.",
+        "target": "C5-L05"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Il nome dell’unità del livello"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q050",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 50,
+      "title": "Tre sorgenti senza fase comune",
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04"
+      ],
+      "version": 2,
+      "prompt": "Tre sorgenti mutuamente incoerenti producono ciascuna la stessa intensità media positiva I al microfono. I termini d’interferenza hanno media nulla. Quanto aumenta il livello rispetto a una sola? Scegli l’espressione esatta positiva, senza approssimare il logaritmo.",
+      "family": "tre-sorgenti-incoerenti",
+      "difficulty": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per sorgenti incoerenti si sommano le intensità medie: I_tot=I+I+I=3I. La differenza dei livelli dipende dal rapporto 3I/I=3. È quindi 10 log₁₀(3) dB, positivo perché 3>1. Questa forma è già esatta e selezionabile: non occorre calcolare a mente le cifre decimali del logaritmo."
+        },
+        {
+          "type": "formula",
+          "text": "I_{\\rm tot}=3I"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta L=10\\log_{10}(3)\\,\\mathrm{dB}"
+        },
+        {
+          "type": "text",
+          "text": "30 dB richiederebbe un rapporto d’intensità 1000, non 3. 3 dB confonde il numero delle sorgenti con un livello. Il fattore 20 si applica a rapporti di ampiezze nelle condizioni appropriate, non al rapporto d’intensità qui assegnato. Il rapporto inverso darebbe una variazione negativa."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "30 dB",
+          "3 dB",
+          "20 log₁₀(3) dB",
+          "10 log₁₀(1/3) dB",
+          "10 log₁₀(3) dB"
+        ],
+        "value": "10 log₁₀(3) dB"
+      },
+      "hints": [
+        "Somma prima le intensità, poi confronta il totale con quella di una sola sorgente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "30 dB richiederebbe un rapporto d’intensità 1000, non 3. 3 dB confonde il numero delle sorgenti con un livello. Il fattore 20 si applica a rapporti di ampiezze nelle condizioni appropriate, non al rapporto d’intensità qui assegnato. Il rapporto inverso darebbe una variazione negativa.",
+        "target": "C5-L05"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Tre sorgenti senza fase comune"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "9bf7dd4afc3e870261154750830924fed711c82c9257603e5eb3a6d61fb82b37",
+      "name": "cric-c5-l05-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTU4MCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPlNjYWxhIGluIGRlY2liZWwsIHRyYWdpdHRvIGRlbGzigJllY28gZSBvbmRhIG5lbGzigJlhY3F1YTwvdGl0bGU+CjxkZXNjIGlkPSJkZXNjIj5VbmEgdGFiZWxsYSBjb2xsZWdhIHplcm8sIGRpZWNpIGUgY2lucXVhbnRhIGRlY2liZWwgYSB1bm8sIGRpZWNpIGUgY2VudG9taWxhIHZvbHRlIGlsIHJpZmVyaW1lbnRvLiBM4oCZZWNvIHBlcmNvcnJlIGR1ZSB0cmF0dGUgZGkgY2lucXVhbnR1bm8gbWV0cmkuIEzigJlvbmRhIGluIGFjcXVhIGNvbnNlcnZhIGZyZXF1ZW56YSBtaWxsZSBoZXJ0eiBlIGhhIGNyZXN0ZSBzZXBhcmF0ZSBkYSB1bm8gdmlyZ29sYSBxdWFyYW50b3R0byBtZXRyaTsgbOKAmWFsdGV6emEgw6ggdW5hIHByZXNzaW9uZSBzY2hlbWF0aWNhLCBub24gdW5vIHNwb3N0YW1lbnRvIG1hdGVyaWFsZS48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9InRpcCIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNiIgbWFya2VySGVpZ2h0PSI2IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iY29udGV4dC1zdHJva2UiLz48L21hcmtlcj48L2RlZnM+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTU4MCIgZmlsbD0iI2ZmZmRmNyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZpbGw9IiMyMDJjMzkiPgo8dGV4dCB4PSIzMiIgeT0iNTIiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4xLiBJbCBsaXZlbGxvIGNvbmZyb250YSBpbnRlbnNpdMOgPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iOTUiIGZvbnQtc2l6ZT0iMjMiPlJpZmVyaW1lbnRvIHBvc2l0aXZvOiBJ4oKAID0gMTDigbvCucKyIFcvbcKyLjwvdGV4dD4KPHRleHQgeD0iNjUiIHk9IjE5MSIgZm9udC1zaXplPSIyMyI+TGl2ZWxsbzwvdGV4dD4KPHRleHQgeD0iMzYwIiB5PSIxOTEiIGZvbnQtc2l6ZT0iMjMiPkludGVuc2l0w6A8L3RleHQ+Cjx0ZXh0IHg9Ijc4IiB5PSIyNTgiIGZvbnQtc2l6ZT0iMjMiPjAgZEI8L3RleHQ+Cjx0ZXh0IHg9IjM4MiIgeT0iMjU4IiBmb250LXNpemU9IjIzIj5J4oKAPC90ZXh0Pgo8dGV4dCB4PSI3OCIgeT0iMzM4IiBmb250LXNpemU9IjIzIj4xMCBkQjwvdGV4dD4KPHRleHQgeD0iMzgyIiB5PSIzMzgiIGZvbnQtc2l6ZT0iMjMiPjEwSeKCgDwvdGV4dD4KPHRleHQgeD0iNzgiIHk9IjQxOCIgZm9udC1zaXplPSIyMyI+NTAgZEI8L3RleHQ+Cjx0ZXh0IHg9IjM4MiIgeT0iNDE4IiBmb250LXNpemU9IjIzIj4xMOKBtUnigoA8L3RleHQ+CjxwYXRoIGQ9Ik0yMDUgMjUwSDMzMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA0ZDYzIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjdGlwKSIvPgo8cGF0aCBkPSJNMjA1IDMzMEgzMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMwNGQ2MyIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI3RpcCkiLz4KPHBhdGggZD0iTTIwNSA0MTBIMzMwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzMDRkNjMiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCN0aXApIi8+Cjx0ZXh0IHg9IjMyIiB5PSI0OTIiIGZvbnQtc2l6ZT0iMjMiPjUwIGRCIOKGkiAxMOKBtUnigoAgPSAxMOKBu+KBtyBXL23Csi48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI1MzUiIGZvbnQtc2l6ZT0iMjMiPlF1aW5kaSBJID0gMCwxMCDOvFcvbcKyLjwvdGV4dD4KPGxpbmUgeDE9IjMyIiB5MT0iNTcwIiB4Mj0iNjA4IiB5Mj0iNTcwIiBzdHJva2U9IiNiOGM0Y2EiLz4KPHRleHQgeD0iMzIiIHk9IjYyNSIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9ImJvbGQiPjIuIEzigJllY28gY29udGEgZW50cmFtYmUgbGUgdHJhdHRlPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNjY4IiBmb250LXNpemU9IjIzIj5Tb3JnZW50ZSBlIG1pY3JvZm9ubyBuZWxsbyBzdGVzc28gcHVudG8uPC90ZXh0Pgo8Y2lyY2xlIGN4PSIxMTAiIGN5PSI4MzAiIHI9IjM1IiBmaWxsPSIjZGNlYWYwIiBzdHJva2U9IiMzMDRkNjMiIHN0cm9rZS13aWR0aD0iMyIvPgo8cmVjdCB4PSI1MjUiIHk9IjczMCIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE5MCIgZmlsbD0iIzk4NmMzNSIvPgo8cGF0aCBkPSJNMTYwIDc4MEg1MTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzI2NzI4ZCIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI3RpcCkiLz4KPHBhdGggZD0iTTUxMCA4ODBIMTYwIiBmaWxsPSJub25lIiBzdHJva2U9IiNhMTQ3M2MiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCN0aXApIi8+Cjx0ZXh0IHg9IjI2NCIgeT0iNzUyIiBmb250LXNpemU9IjIzIj41MSBtPC90ZXh0Pgo8dGV4dCB4PSIyNjQiIHk9IjkyMSIgZm9udC1zaXplPSIyMyI+NTEgbTwvdGV4dD4KPHRleHQgeD0iMzgiIHk9Ijk3MiIgZm9udC1zaXplPSIyMyI+bWljcm9mb25vPC90ZXh0Pgo8dGV4dCB4PSI1MDAiIHk9Ijk3MiIgZm9udC1zaXplPSIyMyI+cGFyZXRlPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTAyMCIgZm9udC1zaXplPSIyMyI+MTAyIG0gaW4gMCwzMCBzIOKGkiB2ZWxvY2l0w6AgMzQwIG0vcy48L3RleHQ+CjxsaW5lIHgxPSIzMiIgeTE9IjEwNTMiIHgyPSI2MDgiIHkyPSIxMDUzIiBzdHJva2U9IiNiOGM0Y2EiLz4KPHRleHQgeD0iMzIiIHk9IjExMDgiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4zLiBMYSBsdW5naGV6emEgZOKAmW9uZGEgaW4gYWNxdWE8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMTUxIiBmb250LXNpemU9IjIzIj5GcmVxdWVuemEgdHJhc21lc3NhOiAxLDAwIGtIei48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMTk1IiBmb250LXNpemU9IjIzIj5QcmVzc2lvbmU6IHNjYWxhIHZlcnRpY2FsZSBzY2hlbWF0aWNhLjwvdGV4dD4KPHBhdGggZD0iTTE0MCAxMzAwSDU2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA0ZDYzIiBzdHJva2Utd2lkdGg9IjMiLz4KPHBvbHlsaW5lIHBvaW50cz0iMTgwLjAwMDAwMCwxMjQwLjAwMDAwMCAxODEuODUwMDAwLDEyNDAuMDQ2MjU4IDE4My43MDAwMDAsMTI0MC4xODQ5NjAgMTg1LjU1MDAwMCwxMjQwLjQxNTg5MyAxODcuNDAwMDAwLDEyNDAuNzM4NzAwIDE4OS4yNTAwMDAsMTI0MS4xNTI4ODMgMTkxLjEwMDAwMCwxMjQxLjY1NzgwNSAxOTIuOTUwMDAwLDEyNDIuMjUyNjg2IDE5NC44MDAwMDAsMTI0Mi45MzY2MDkgMTk2LjY1MDAwMCwxMjQzLjcwODUyMCAxOTguNTAwMDAwLDEyNDQuNTY3MjI4IDIwMC4zNTAwMDAsMTI0NS41MTE0MTAgMjAyLjIwMDAwMCwxMjQ2LjUzOTYwOSAyMDQuMDUwMDAwLDEyNDcuNjUwMjQwIDIwNS45MDAwMDAsMTI0OC44NDE1OTAgMjA3Ljc1MDAwMCwxMjUwLjExMTgyMyAyMDkuNjAwMDAwLDEyNTEuNDU4OTgwIDIxMS40NTAwMDAsMTI1Mi44ODA5ODQgMjEzLjMwMDAwMCwxMjU0LjM3NTY0MiAyMTUuMTUwMDAwLDEyNTUuOTQwNjQ5IDIxNy4wMDAwMDAsMTI1Ny41NzM1OTMgMjE4Ljg1MDAwMCwxMjU5LjI3MTk1NSAyMjAuNzAwMDAwLDEyNjEuMDMzMTE3IDIyMi41NTAwMDAsMTI2Mi44NTQzNjMgMjI0LjQwMDAwMCwxMjY0LjczMjg4NSAyMjYuMjUwMDAwLDEyNjYuNjY1Nzg2IDIyOC4xMDAwMDAsMTI2OC42NTAwODYgMjI5Ljk1MDAwMCwxMjcwLjY4MjcyNiAyMzEuODAwMDAwLDEyNzIuNzYwNTcwIDIzMy42NTAwMDAsMTI3NC44ODA0MTYgMjM1LjUwMDAwMCwxMjc3LjAzODk5NCAyMzcuMzUwMDAwLDEyNzkuMjMyOTc3IDIzOS4yMDAwMDAsMTI4MS40NTg5ODAgMjQxLjA1MDAwMCwxMjgzLjcxMzU3MyAyNDIuOTAwMDAwLDEyODUuOTkzMjc4IDI0NC43NTAwMDAsMTI4OC4yOTQ1ODEgMjQ2LjYwMDAwMCwxMjkwLjYxMzkzMiAyNDguNDUwMDAwLDEyOTIuOTQ3NzU2IDI1MC4zMDAwMDAsMTI5NS4yOTI0NTQgMjUyLjE1MDAwMCwxMjk3LjY0NDQxMSAyNTQuMDAwMDAwLDEzMDAuMDAwMDAwIDI1NS44NTAwMDAsMTMwMi4zNTU1ODkgMjU3LjcwMDAwMCwxMzA0LjcwNzU0NiAyNTkuNTUwMDAwLDEzMDcuMDUyMjQ0IDI2MS40MDAwMDAsMTMwOS4zODYwNjggMjYzLjI1MDAwMCwxMzExLjcwNTQxOSAyNjUuMTAwMDAwLDEzMTQuMDA2NzIyIDI2Ni45NTAwMDAsMTMxNi4yODY0MjcgMjY4LjgwMDAwMCwxMzE4LjU0MTAyMCAyNzAuNjUwMDAwLDEzMjAuNzY3MDIzIDI3Mi41MDAwMDAsMTMyMi45NjEwMDYgMjc0LjM1MDAwMCwxMzI1LjExOTU4NCAyNzYuMjAwMDAwLDEzMjcuMjM5NDMwIDI3OC4wNTAwMDAsMTMyOS4zMTcyNzQgMjc5LjkwMDAwMCwxMzMxLjM0OTkxNCAyODEuNzUwMDAwLDEzMzMuMzM0MjE0IDI4My42MDAwMDAsMTMzNS4yNjcxMTUgMjg1LjQ1MDAwMCwxMzM3LjE0NTYzNyAyODcuMzAwMDAwLDEzMzguOTY2ODgzIDI4OS4xNTAwMDAsMTM0MC43MjgwNDUgMjkxLjAwMDAwMCwxMzQyLjQyNjQwNyAyOTIuODUwMDAwLDEzNDQuMDU5MzUxIDI5NC43MDAwMDAsMTM0NS42MjQzNTggMjk2LjU1MDAwMCwxMzQ3LjExOTAxNiAyOTguNDAwMDAwLDEzNDguNTQxMDIwIDMwMC4yNTAwMDAsMTM0OS44ODgxNzcgMzAyLjEwMDAwMCwxMzUxLjE1ODQxMCAzMDMuOTUwMDAwLDEzNTIuMzQ5NzYwIDMwNS44MDAwMDAsMTM1My40NjAzOTEgMzA3LjY1MDAwMCwxMzU0LjQ4ODU5MCAzMDkuNTAwMDAwLDEzNTUuNDMyNzcyIDMxMS4zNTAwMDAsMTM1Ni4yOTE0ODAgMzEzLjIwMDAwMCwxMzU3LjA2MzM5MSAzMTUuMDUwMDAwLDEzNTcuNzQ3MzE0IDMxNi45MDAwMDAsMTM1OC4zNDIxOTUgMzE4Ljc1MDAwMCwxMzU4Ljg0NzExNyAzMjAuNjAwMDAwLDEzNTkuMjYxMzAwIDMyMi40NTAwMDAsMTM1OS41ODQxMDcgMzI0LjMwMDAwMCwxMzU5LjgxNTA0MCAzMjYuMTUwMDAwLDEzNTkuOTUzNzQyIDMyOC4wMDAwMDAsMTM2MC4wMDAwMDAgMzI5Ljg1MDAwMCwxMzU5Ljk1Mzc0MiAzMzEuNzAwMDAwLDEzNTkuODE1MDQwIDMzMy41NTAwMDAsMTM1OS41ODQxMDcgMzM1LjQwMDAwMCwxMzU5LjI2MTMwMCAzMzcuMjUwMDAwLDEzNTguODQ3MTE3IDMzOS4xMDAwMDAsMTM1OC4zNDIxOTUgMzQwLjk1MDAwMCwxMzU3Ljc0NzMxNCAzNDIuODAwMDAwLDEzNTcuMDYzMzkxIDM0NC42NTAwMDAsMTM1Ni4yOTE0ODAgMzQ2LjUwMDAwMCwxMzU1LjQzMjc3MiAzNDguMzUwMDAwLDEzNTQuNDg4NTkwIDM1MC4yMDAwMDAsMTM1My40NjAzOTEgMzUyLjA1MDAwMCwxMzUyLjM0OTc2MCAzNTMuOTAwMDAwLDEzNTEuMTU4NDEwIDM1NS43NTAwMDAsMTM0OS44ODgxNzcgMzU3LjYwMDAwMCwxMzQ4LjU0MTAyMCAzNTkuNDUwMDAwLDEzNDcuMTE5MDE2IDM2MS4zMDAwMDAsMTM0NS42MjQzNTggMzYzLjE1MDAwMCwxMzQ0LjA1OTM1MSAzNjUuMDAwMDAwLDEzNDIuNDI2NDA3IDM2Ni44NTAwMDAsMTM0MC43MjgwNDUgMzY4LjcwMDAwMCwxMzM4Ljk2Njg4MyAzNzAuNTUwMDAwLDEzMzcuMTQ1NjM3IDM3Mi40MDAwMDAsMTMzNS4yNjcxMTUgMzc0LjI1MDAwMCwxMzMzLjMzNDIxNCAzNzYuMTAwMDAwLDEzMzEuMzQ5OTE0IDM3Ny45NTAwMDAsMTMyOS4zMTcyNzQgMzc5LjgwMDAwMCwxMzI3LjIzOTQzMCAzODEuNjUwMDAwLDEzMjUuMTE5NTg0IDM4My41MDAwMDAsMTMyMi45NjEwMDYgMzg1LjM1MDAwMCwxMzIwLjc2NzAyMyAzODcuMjAwMDAwLDEzMTguNTQxMDIwIDM4OS4wNTAwMDAsMTMxNi4yODY0MjcgMzkwLjkwMDAwMCwxMzE0LjAwNjcyMiAzOTIuNzUwMDAwLDEzMTEuNzA1NDE5IDM5NC42MDAwMDAsMTMwOS4zODYwNjggMzk2LjQ1MDAwMCwxMzA3LjA1MjI0NCAzOTguMzAwMDAwLDEzMDQuNzA3NTQ2IDQwMC4xNTAwMDAsMTMwMi4zNTU1ODkgNDAyLjAwMDAwMCwxMzAwLjAwMDAwMCA0MDMuODUwMDAwLDEyOTcuNjQ0NDExIDQwNS43MDAwMDAsMTI5NS4yOTI0NTQgNDA3LjU1MDAwMCwxMjkyLjk0Nzc1NiA0MDkuNDAwMDAwLDEyOTAuNjEzOTMyIDQxMS4yNTAwMDAsMTI4OC4yOTQ1ODEgNDEzLjEwMDAwMCwxMjg1Ljk5MzI3OCA0MTQuOTUwMDAwLDEyODMuNzEzNTczIDQxNi44MDAwMDAsMTI4MS40NTg5ODAgNDE4LjY1MDAwMCwxMjc5LjIzMjk3NyA0MjAuNTAwMDAwLDEyNzcuMDM4OTk0IDQyMi4zNTAwMDAsMTI3NC44ODA0MTYgNDI0LjIwMDAwMCwxMjcyLjc2MDU3MCA0MjYuMDUwMDAwLDEyNzAuNjgyNzI2IDQyNy45MDAwMDAsMTI2OC42NTAwODYgNDI5Ljc1MDAwMCwxMjY2LjY2NTc4NiA0MzEuNjAwMDAwLDEyNjQuNzMyODg1IDQzMy40NTAwMDAsMTI2Mi44NTQzNjMgNDM1LjMwMDAwMCwxMjYxLjAzMzExNyA0MzcuMTUwMDAwLDEyNTkuMjcxOTU1IDQzOS4wMDAwMDAsMTI1Ny41NzM1OTMgNDQwLjg1MDAwMCwxMjU1Ljk0MDY0OSA0NDIuNzAwMDAwLDEyNTQuMzc1NjQyIDQ0NC41NTAwMDAsMTI1Mi44ODA5ODQgNDQ2LjQwMDAwMCwxMjUxLjQ1ODk4MCA0NDguMjUwMDAwLDEyNTAuMTExODIzIDQ1MC4xMDAwMDAsMTI0OC44NDE1OTAgNDUxLjk1MDAwMCwxMjQ3LjY1MDI0MCA0NTMuODAwMDAwLDEyNDYuNTM5NjA5IDQ1NS42NTAwMDAsMTI0NS41MTE0MTAgNDU3LjUwMDAwMCwxMjQ0LjU2NzIyOCA0NTkuMzUwMDAwLDEyNDMuNzA4NTIwIDQ2MS4yMDAwMDAsMTI0Mi45MzY2MDkgNDYzLjA1MDAwMCwxMjQyLjI1MjY4NiA0NjQuOTAwMDAwLDEyNDEuNjU3ODA1IDQ2Ni43NTAwMDAsMTI0MS4xNTI4ODMgNDY4LjYwMDAwMCwxMjQwLjczODcwMCA0NzAuNDUwMDAwLDEyNDAuNDE1ODkzIDQ3Mi4zMDAwMDAsMTI0MC4xODQ5NjAgNDc0LjE1MDAwMCwxMjQwLjA0NjI1OCA0NzYuMDAwMDAwLDEyNDAuMDAwMDAwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNjcyOGQiIHN0cm9rZS13aWR0aD0iNCIvPgo8cGF0aCBkPSJNMTgwIDEyNDBWMTQzME00NzYgMTI0MFYxNDMwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzMDRkNjMiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNyA3Ii8+CjxwYXRoIGQ9Ik0xODAgMTQzMFYxNDUwSDQ3NlYxNDMwIiBmaWxsPSJub25lIiBzdHJva2U9IiM5ODZjMzUiIHN0cm9rZS13aWR0aD0iMyIvPgo8dGV4dCB4PSIyNDAiIHk9IjE0OTAiIGZvbnQtc2l6ZT0iMjMiPs67ID0gMSw0OCBtPC90ZXh0Pgo8dGV4dCB4PSI1MzMiIHk9IjEzOTAiIGZvbnQtc2l6ZT0iMjMiPng8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxNTQwIiBmb250LXNpemU9IjIzIj52ID0gMTQ4MCBtL3M7IGYgPSAxMDAwIEh6LjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

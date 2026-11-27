@@ -1,0 +1,700 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C2-Q091",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di superficie e capillarità",
+      "order": 91,
+      "title": "Perché una piccola goccia tende alla sfera",
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L010"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Creare area costa energia γA. Con γ positiva e volume conservato, una forma con area minore ha energia superficiale minore; fra le forme libere la sfera è quella di area minima per quel volume. Non si sta affermando che ogni goccia reale sia sferica: qui sono escluse le forzanti che la deformerebbero."
+        },
+        {
+          "type": "formula",
+          "text": "E_s=\\gamma A"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma>0"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\mathrm{costante}"
+        },
+        {
+          "type": "formula",
+          "text": " \\min E_s\\Longleftrightarrow\\min A"
+        },
+        {
+          "type": "text",
+          "text": "Massimizzare l’area aumenterebbe l’energia. Non occorre γ=0: è proprio il costo positivo a selezionare l’area minore. Annullare il volume perderebbe liquido, mentre la gravità rilevante è esclusa dal modello."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una piccola goccia libera ha volume fissato e tensione superficiale positiva uniforme e isotropa. Gravità, appoggi e altre sollecitazioni sono trascurabili. Perché l’equilibrio tende alla forma sferica?",
+      "family": "forma-di-una-piccola-goccia-libera",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La sfera minimizza l’area e quindi l’energia superficiale a volume fissato",
+          "La sfera massimizza sempre la superficie",
+          "La tensione superficiale deve annullarsi",
+          "Il volume può diventare nullo senza conservare liquido",
+          "La gravità deve schiacciare ogni goccia"
+        ],
+        "value": "La sfera minimizza l’area e quindi l’energia superficiale a volume fissato"
+      },
+      "hints": [
+        "Quale grandezza può diminuire se il volume resta fissato e creare superficie costa energia?",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Massimizzare l’area aumenterebbe l’energia. Non occorre γ=0: è proprio il costo positivo a selezionare l’area minore. Annullare il volume perderebbe liquido, mentre la gravità rilevante è esclusa dal modello.",
+        "target": "C2-L010"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Interfacce singole e film a due facce",
+        "Angolo di contatto e risalita",
+        "Curvature, volumi e coalescenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q092",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di superficie e capillarità",
+      "order": 92,
+      "title": "Il costo di una nuova interfaccia",
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L010"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Converto prima l’area: un centimetro quadrato è 10⁻⁴ m², quindi ΔA=3·10⁻⁴ m². La tensione è 1/20 N/m, equivalente a 1/20 J/m². Il prodotto è (3/20)·10⁻⁴ J=15·10⁻⁶ J, cioè 15 µJ. Il conteggio riguarda una sola interfaccia, senza un fattore due aggiuntivo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/a0300d17e88f9f31fa8a3e8bfb61bba31409102e3945e31f81b4cc05e56e10be",
+          "text": "Il primo pannello rappresenta una nuova singola interfaccia piana di 3 cm², illustrata come un rettangolo di 3 cm per 1 cm. Non è un film a due facce: il costo assegnato è 15 µJ."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta A=3\\,10^{-4}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta E=\\gamma\\Delta A"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta E=15\\,10^{-6}\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta E=15\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "text",
+          "text": "30 µJ conterebbe due interfacce invece di una. Convertire cm² come una lunghezza introdurrebbe il fattore sbagliato. Il rapporto γ/ΔA non è un’energia e invertire il prodotto cambia anche le dimensioni."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "A temperatura fissata si crea lentamente una nuova singola interfaccia di area ΔA=3,0 cm². La tensione superficiale resta γ=0,050 N/m. Nel modello ΔE=γΔA, quanta energia superficiale occorre in microjoule?",
+      "family": "energia-per-creare-superficie",
+      "answer": {
+        "type": "numeric",
+        "value": 15,
+        "unit": "µJ",
+        "tolerance": 0
+      },
+      "hints": [
+        "Eleva al quadrato il fattore cm→m prima di usare l’area.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "30 µJ conterebbe due interfacce invece di una. Convertire cm² come una lunghezza introdurrebbe il fattore sbagliato. Il rapporto γ/ΔA non è un’energia e invertire il prodotto cambia anche le dimensioni.",
+        "target": "C2-L010"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Interfacce singole e film a due facce",
+        "Angolo di contatto e risalita",
+        "Curvature, volumi e coalescenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q093",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di superficie e capillarità",
+      "order": 93,
+      "title": "Due facce tirano lo stesso bordo",
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L010"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni faccia contribuisce γℓ; essendo due, il modulo totale è 2γℓ. Porto 4 cm a 1/25 m e 0,025 a 1/40: 2/(40·25)=1/500 N. Poiché 1 mN=1/1000 N, il risultato è 2 mN. Non si raddoppia la lunghezza fisica: si contano le due interfacce che agiscono sullo stesso bordo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/a0300d17e88f9f31fa8a3e8bfb61bba31409102e3945e31f81b4cc05e56e10be",
+          "text": "Nel pannello centrale due interfacce di un film tirano lo stesso bordo di 4 cm. Ciascuna contribuisce 1 mN e le due frecce hanno scala comune; il totale concorde è 2 mN."
+        },
+        {
+          "type": "formula",
+          "text": "F=2\\gamma\\ell"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=\\frac1{25}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " F=\\frac1{500}\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F=2\\,\\mathrm{mN}"
+        },
+        {
+          "type": "text",
+          "text": "Un millinewton conterebbe soltanto una faccia. Usare 4 come metri farebbe crescere la forza di cento volte. N/m è l’unità di γ, non quella della forza dopo il prodotto con ℓ."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un film di sapone sottile ha due interfacce aria–liquido, ciascuna con γ=0,025 N/m. Entrambe tirano perpendicolarmente lo stesso bordo rettilineo lungo ℓ=4 cm e i contributi sono concordi. Qual è il modulo della forza totale in mN?",
+      "family": "un-bordo-mobile-sul-telaio",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "mN",
+        "tolerance": 0
+      },
+      "hints": [
+        "Conta le superfici fisiche e poi converti la lunghezza del bordo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un millinewton conterebbe soltanto una faccia. Usare 4 come metri farebbe crescere la forza di cento volte. N/m è l’unità di γ, non quella della forza dopo il prodotto con ℓ.",
+        "target": "C2-L010"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Interfacce singole e film a due facce",
+        "Angolo di contatto e risalita",
+        "Curvature, volumi e coalescenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q094",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di superficie e capillarità",
+      "order": 94,
+      "title": "Un capillare non bagnante",
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L010"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La quota h positiva verso l’alto soddisfa h=2γ cosθ/(ρgr). Tutti i fattori tranne il coseno sono positivi; cos120°=−1/2. Quindi h<0: il livello interno è depresso rispetto al riferimento esterno. Il segno non è un’energia negativa né un’altezza assoluta rispetto al pavimento."
+        },
+        {
+          "type": "formula",
+          "text": "h=\\frac{2\\gamma\\cos\\theta}{\\rho gr}"
+        },
+        {
+          "type": "formula",
+          "text": " \\cos120^\\circ=-\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " h<0"
+        },
+        {
+          "type": "text",
+          "text": "La risalita richiede cosθ positivo, non un angolo qualunque. Il coseno è zero a 90°, non a 120°. La depressione del livello non elimina la massa di liquido né rende indeterminata la previsione del modello."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "In un capillare verticale un liquido ha angolo di contatto θ=120°, misurato attraverso il liquido. L’atmosfera è uguale dentro e fuori, il gas è di densità trascurabile e si usa il modello capillare di equilibrio. Come si dispone il livello interno rispetto alla superficie esterna?",
+      "family": "menisco-non-bagnante",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Più basso: si ha depressione capillare",
+          "Più alto per qualunque angolo",
+          "Allo stesso livello perché cos120°=0",
+          "In modo indeterminato anche nel modello assegnato",
+          "Il liquido scompare dal tubo"
+        ],
+        "value": "Più basso: si ha depressione capillare"
+      },
+      "hints": [
+        "L’angolo è attraverso il liquido: conserva il segno del suo coseno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La risalita richiede cosθ positivo, non un angolo qualunque. Il coseno è zero a 90°, non a 120°. La depressione del livello non elimina la massa di liquido né rende indeterminata la previsione del modello.",
+        "target": "C2-L010"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Interfacce singole e film a due facce",
+        "Angolo di contatto e risalita",
+        "Curvature, volumi e coalescenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q095",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di superficie e capillarità",
+      "order": 95,
+      "title": "La goccia piccola richiede più pressione",
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L010"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per una goccia sferica Δp=2γ/R. Nel rapporto si cancella la tensione superficiale: Δp_piccola/Δp_grande=R_grande/R_piccola=4. Moltiplico 30 Pa per quattro e ottengo 120 Pa. Si confrontano differenze interno meno esterno, non necessariamente pressioni assolute uguali fra le due prove."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/a0300d17e88f9f31fa8a3e8bfb61bba31409102e3945e31f81b4cc05e56e10be",
+          "text": "Le due gocce finali hanno raggi 1 mm e 4 mm in scala comune. Le barre delle sovrapressioni usano una scala separata: 120 Pa per la piccola e 30 Pa per la grande, rapporto inverso dei raggi."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p=\\frac{2\\gamma}{R}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta p_{\\rm piccola}}{\\Delta p_{\\rm grande}}=\\frac{4}{1}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_{\\rm piccola}=120\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "15/2 Pa invertirebbe la dipendenza dal raggio. Trenta ignorerebbe la diversa curvatura; 480 Pa userebbe una dipendenza quadratica inversa che non appartiene alla legge di Laplace."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Due gocce della stessa sostanza sono sferiche, con raggi 1 mm e 4 mm, e hanno la stessa γ. Ognuna ha una sola interfaccia; si trascurano deformazioni gravitazionali. Se quella grande ha sovrapressione interna di 30 Pa rispetto all’esterno, quanto vale quella piccola in Pa?",
+      "family": "due-raggi-e-due-gocce",
+      "answer": {
+        "type": "numeric",
+        "value": 120,
+        "unit": "Pa",
+        "tolerance": 0
+      },
+      "hints": [
+        "Raggi più piccoli significano maggiore curvatura: controlla il verso del rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "15/2 Pa invertirebbe la dipendenza dal raggio. Trenta ignorerebbe la diversa curvatura; 480 Pa userebbe una dipendenza quadratica inversa che non appartiene alla legge di Laplace.",
+        "target": "C2-L010"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Interfacce singole e film a due facce",
+        "Angolo di contatto e risalita",
+        "Curvature, volumi e coalescenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q096",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di superficie e capillarità",
+      "order": 96,
+      "title": "Cambiare la parete, non il liquido",
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L010"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge contiene il fattore cosθ. Densità,γ,g,r sono comuni e si cancellano: h₆₀/h₀=cos60°/cos0°=(1/2)/1=1/2. Entrambi i coseni sono positivi, dunque entrambe le quote sono risalite. La natura della parete entra attraverso l’angolo di contatto."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{h_{60}}{h_0}=\\frac{\\cos60^\\circ}{\\cos0^\\circ}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{h_{60}}{h_0}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Stesso liquido non implica stesso angolo sulla parete. Il reciproco due invertirebbe i tubi. Livello nullo richiederebbe 90° e depressione un angolo superiore a 90° nel modello."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Due capillari dello stesso raggio contengono lo stesso liquido alle stesse condizioni. Per il primo θ=0°, per il secondo θ=60°, sempre misurati attraverso il liquido. Con g e riferimento esterno comuni, come si confrontano le risalite positive?",
+      "family": "capillari-di-materiali-diversi",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La seconda è metà della prima",
+          "La seconda è doppia",
+          "Sono uguali perché il liquido è lo stesso",
+          "La seconda è nulla",
+          "La seconda è negativa"
+        ],
+        "value": "La seconda è metà della prima"
+      },
+      "hints": [
+        "Dopo aver cancellato le grandezze comuni, confronta i due coseni notevoli.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Stesso liquido non implica stesso angolo sulla parete. Il reciproco due invertirebbe i tubi. Livello nullo richiederebbe 90° e depressione un angolo superiore a 90° nel modello.",
+        "target": "C2-L010"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Interfacce singole e film a due facce",
+        "Angolo di contatto e risalita",
+        "Curvature, volumi e coalescenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q097",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di superficie e capillarità",
+      "order": 97,
+      "title": "La curvatura nulla non aggiunge pressione",
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L010"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forma generale usa le due curvature principali: Δp=γ(1/R₁+1/R₂). Una superficie piana ha entrambe le curvature zero, quindi questo contributo è nullo. Non si sta affermando che la pressione assoluta del fluido sia zero, né che sparisca ogni eventuale gradiente idrostatico lontano dall’interfaccia."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac1{R_1}=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac1{R_2}=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_{\\rm curvatura}=0"
+        },
+        {
+          "type": "text",
+          "text": "Il raggio infinito ha reciproco zero, non infinito. 2γ senza una lunghezza al denominatore non ha dimensione di pressione. La pressione atmosferica è un riferimento esterno, non una curvatura."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "Nella legge di Laplace un’interfaccia ideale piana ha tensione uniforme e non vi sono altre sollecitazioni interfaciali. Qual è la differenza di pressione attribuibile alla curvatura?",
+      "family": "una-superficie-senza-curvatura",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Nulla",
+          "Sempre 2γ indipendentemente dalle unità",
+          "Infinita perché il raggio è infinito",
+          "Necessariamente negativa",
+          "Uguale alla pressione atmosferica"
+        ],
+        "value": "Nulla"
+      },
+      "hints": [
+        "Nella formula compare il reciproco del raggio: considera le curvature, non i raggi da soli.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il raggio infinito ha reciproco zero, non infinito. 2γ senza una lunghezza al denominatore non ha dimensione di pressione. La pressione atmosferica è un riferimento esterno, non una curvatura.",
+        "target": "C2-L010"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Interfacce singole e film a due facce",
+        "Angolo di contatto e risalita",
+        "Curvature, volumi e coalescenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q098",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di superficie e capillarità",
+      "order": 98,
+      "title": "Una tensione ridotta nel medesimo capillare",
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L010"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con r,ρ,g e cosθ comuni, h è direttamente proporzionale a γ. Il nuovo rapporto è 7/10: moltiplico 20 mm per 7/10 e ottengo 14 mm. La risalita resta positiva e più bassa, coerentemente con la minore forza superficiale a parità del peso per unità di altezza."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{h_B}{h_A}=\\frac{\\gamma_B}{\\gamma_A}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{h_B}{h_A}=\\frac7{10}"
+        },
+        {
+          "type": "formula",
+          "text": " h_B=14\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Sei millimetri è la diminuzione 20−14, non l’altezza finale. 200/7 mm invertirebbe il rapporto; venti ignorerebbe la nuova tensione. Dimezzare automaticamente non usa il 70% assegnato."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "In uno stesso capillare a bagnamento completo un liquido sale di 20 mm. Un secondo liquido ha la stessa densità, lo stesso angolo di contatto e tensione superficiale pari al 70% della prima. A g invariata, quanto sale il secondo liquido in mm nel modello di equilibrio?",
+      "family": "risalita-dopo-cambio-di-liquido",
+      "answer": {
+        "type": "numeric",
+        "value": 14,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "hints": [
+        "Calcola l’altezza finale, non soltanto quanto diminuisce rispetto alla prima.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei millimetri è la diminuzione 20−14, non l’altezza finale. 200/7 mm invertirebbe il rapporto; venti ignorerebbe la nuova tensione. Dimezzare automaticamente non usa il 70% assegnato.",
+        "target": "C2-L010"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Interfacce singole e film a due facce",
+        "Angolo di contatto e risalita",
+        "Curvature, volumi e coalescenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q099",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di superficie e capillarità",
+      "order": 99,
+      "title": "Otto gocce diventano una",
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L010"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Conservo prima il volume: R³=8r³, perciò il nuovo raggio è R=2r. L’area finale è 4π(2r)²=16πr², mentre quella iniziale totale è 8·4πr²=32πr². Il rapporto è 1/2. Per γ uniforme costante diminuisce anche l’energia superficiale, senza perdere volume."
+        },
+        {
+          "type": "formula",
+          "text": "R^3=8r^3"
+        },
+        {
+          "type": "formula",
+          "text": " R=2r"
+        },
+        {
+          "type": "formula",
+          "text": " A_i=32\\pi r^2"
+        },
+        {
+          "type": "formula",
+          "text": " A_f=16\\pi r^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{A_f}{A_i}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due è il rapporto dei raggi, non delle aree totali. 1/8 usa il numero delle gocce senza ricostruire il raggio finale. 1/4 darebbe A_finale=8πr², incompatibile con R=2r. Otto non rappresenta una riduzione di superficie."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "Otto gocce sferiche identiche di raggio r si fondono senza perdita di liquido in una sola goccia sferica. Quanto vale A_finale/A_iniziale, dove l’area iniziale è la somma delle aree delle otto gocce?",
+      "family": "coalescenza-di-otto-gocce",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/8",
+          "1/4",
+          "8"
+        ],
+        "value": "1/2"
+      },
+      "hints": [
+        "Conserva il volume prima di calcolare le due aree.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due è il rapporto dei raggi, non delle aree totali. 1/8 usa il numero delle gocce senza ricostruire il raggio finale. 1/4 darebbe A_finale=8πr², incompatibile con R=2r. Otto non rappresenta una riduzione di superficie.",
+        "target": "C2-L010"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Interfacce singole e film a due facce",
+        "Angolo di contatto e risalita",
+        "Curvature, volumi e coalescenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q100",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di superficie e capillarità",
+      "order": 100,
+      "title": "Una bolla nel liquido non è un film di sapone",
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L010"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La parola bolla non basta a contare le superfici. Qui il gas tocca direttamente il liquido lungo una sola interfaccia sferica, quindi le due curvature principali uguali valgono 1/R e sommano 2/R. Il fattore quattro descriverebbe invece il diverso modello di una bolla di sapone a film sottile con due interfacce."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p=\\gamma\\left(\\frac1R+\\frac1R\\right)"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=\\frac{2\\gamma}{R}"
+        },
+        {
+          "type": "text",
+          "text": "Due curvature della stessa superficie non sono due interfacce fisiche. γR ha dimensione di forza, non pressione. La tensione non si annulla perché l’interno è gas e la curvatura dipende dal raggio."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una bolla sferica di gas si trova dentro un liquido, con una sola interfaccia gas–liquido di tensione γ uniforme. Trascurando gravità e spessore interfaciale, quale ragionamento fissa la sovrapressione interna capillare?",
+      "family": "una-bolla-di-gas-nel-liquido",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Una sola interfaccia curva dà Δp=2γ/R",
+          "Ogni bolla ha sempre due interfacce, dunque Δp=4γ/R",
+          "La pressione è nulla perché il gas non ha superficie",
+          "Δp=γR perché il raggio moltiplica sempre la tensione",
+          "La sovrapressione è indipendente da R"
+        ],
+        "value": "Una sola interfaccia curva dà Δp=2γ/R"
+      },
+      "hints": [
+        "Conta prima le interfacce materiali, poi le curvature di ciascuna.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due curvature della stessa superficie non sono due interfacce fisiche. γR ha dimensione di forza, non pressione. La tensione non si annulla perché l’interno è gas e la curvatura dipende dal raggio.",
+        "target": "C2-L010"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Interfacce singole e film a due facce",
+        "Angolo di contatto e risalita",
+        "Curvature, volumi e coalescenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "a0300d17e88f9f31fa8a3e8bfb61bba31409102e3945e31f81b4cc05e56e10be",
+      "name": "cric-c2-l010-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTc5MCIgdmlld0JveD0iMCAwIDY0MCAxNzkwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIj48dGl0bGUgaWQ9InRpdGxlIj5BcmVhLCBmaWxtIGUgZ29jY2U8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5BcmVhIHBpYW5hIGRpIHRyZSBjZW50aW1ldHJpIHF1YWRyYXRpLCBkdWUgZm9yemUgc3VwZXJmaWNpYWxpIGNvbmNvcmRpIGUgZ29jY2UgY29uIHJhZ2dpbyBlIHNvdnJhcHJlc3Npb25lIGluIHJhcHBvcnRvIGludmVyc28uPC9kZXNjPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI2NDAiIGhlaWdodD0iMTc5MCIgZmlsbD0id2hpdGUiLz48dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+Q29udGFyZSBsZSBzdXBlcmZpY2ksIHBvaSBjYWxjb2xhcmU8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjExMCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xIMK3IE51b3ZhIGFyZWEgZGkgdW5hIHNvbGEgaW50ZXJmYWNjaWE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIyMzAiIHdpZHRoPSIzMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjZDllY2YxIi8+PHRleHQgeD0iMzAwIiB5PSIyMDUiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjMgY208L3RleHQ+PHRleHQgeD0iNzAiIHk9IjI4NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xIGNtPC90ZXh0Pjx0ZXh0IHg9IjMwMCIgeT0iMjkwIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4zIGNtwrI8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjQyMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij7OsyA9IDAsMDUwIE4vbTsgzpRFID0gMTUgwrVKPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI1NDAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MiDCtyBVbiBmaWxtOiBkdWUgY29udHJpYnV0aSBzdWwgYm9yZG88L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI2NDAiIHdpZHRoPSIzMDAiIGhlaWdodD0iMTgwIiBmaWxsPSIjZDllY2YxIi8+PGxpbmUgeDE9IjE1MCIgeTE9IjgyMCIgeDI9IjQ1MCIgeTI9IjgyMCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjUiLz48bGluZSB4MT0iMjIwIiB5MT0iODIwIiB4Mj0iMjIwIiB5Mj0iNzIwIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5Z29uIHBvaW50cz0iMjIwLDcyMCAyMjQuMCw3MjguMCAyMTYuMCw3MjguMCIgZmlsbD0iIzMwNmY4YyIvPjxsaW5lIHgxPSIzODAiIHkxPSI4MjAiIHgyPSIzODAiIHkyPSI3MjAiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlnb24gcG9pbnRzPSIzODAsNzIwIDM4NC4wLDcyOC4wIDM3Ni4wLDcyOC4wIiBmaWxsPSIjMzA2ZjhjIi8+PHRleHQgeD0iMjIwIiB5PSI2OTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjEgbU48L3RleHQ+PHRleHQgeD0iMzgwIiB5PSI2OTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjEgbU48L3RleHQ+PHRleHQgeD0iMzAwIiB5PSI4ODAiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPuKEkyA9IDQgY208L3RleHQ+PHRleHQgeD0iMzUiIHk9Ijk1NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5EdWUgZmFjY2U6IEYgPSAyzrPihJMgPSAyIG1OPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMDgwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjMgwrcgUmFnZ2lvIGUgc292cmFwcmVzc2lvbmU8L3RleHQ+PGNpcmNsZSBjeD0iMTcwIiBjeT0iMTI4MCIgcj0iMzAiIGZpbGw9IiNkOWVjZjEiLz48Y2lyY2xlIGN4PSI0NDAiIGN5PSIxMjgwIiByPSIxMjAiIGZpbGw9IiNkOWVjZjEiLz48bGluZSB4MT0iMTcwIiB5MT0iMTI4MCIgeDI9IjIwMCIgeTI9IjEyODAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjQ0MCIgeTE9IjEyODAiIHgyPSI1NjAiIHkyPSIxMjgwIiBzdHJva2U9IiM2MDczODMiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3MCIgeT0iMTQ1MCIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UiA9IDEgbW08L3RleHQ+PHRleHQgeD0iNDQwIiB5PSIxNDUwIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5SID0gNCBtbTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTU0MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5waWNjb2xhPC90ZXh0PjxyZWN0IHg9IjE4MCIgeT0iMTUxNSIgd2lkdGg9IjI0MCIgaGVpZ2h0PSIyOCIgZmlsbD0iIzk4NmMzNSIvPjx0ZXh0IHg9IjQ0MCIgeT0iMTU0MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xMjAgUGE8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjE2MjAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+Z3JhbmRlPC90ZXh0PjxyZWN0IHg9IjE4MCIgeT0iMTU5NSIgd2lkdGg9IjYwIiBoZWlnaHQ9IjI4IiBmaWxsPSIjM2Q3NzkxIi8+PHRleHQgeD0iMjY1IiB5PSIxNjIwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjMwIFBhPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxNzIwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlVuYSBpbnRlcmZhY2NpYSBzZmVyaWNhOiDOlHAgPSAyzrMvUjwvdGV4dD48L3N2Zz4K"
+    }
+  ]
+}

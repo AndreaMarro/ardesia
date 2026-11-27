@@ -1,0 +1,649 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C5-Q031",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 31,
+      "title": "Energia divisa per tempo e area",
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02"
+      ],
+      "version": 2,
+      "prompt": "Un fascio uniforme e costante attraversa perpendicolarmente un sensore di area 2,0 cm². In 3,0 s trasferisce 12 mJ. Qual è l’intensità in watt al metro quadrato?",
+      "family": "bilancio-sul-sensore",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima divido l’energia per il tempo: 12 mJ in 3 s sono 4 mW, cioè 0,004 W. L’area di 2 cm² è 2×10⁻⁴ m², perché la conversione delle lunghezze va elevata al quadrato. Divido 0,004 W per quest’area e ottengo 20 W/m². L’intensità non è la sola potenza raccolta."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/88294b6965693c785a0084154a399b7d4dfbe5be34229b54ac9fdf323119516d",
+          "text": "Il primo pannello mostra 12 mJ trasferiti in 3 s con potenza costante di 4 mW. La stessa consegna assegna area perpendicolare di 2 cm², da cui I=20 W/m²."
+        },
+        {
+          "type": "formula",
+          "text": "P=\\frac{E}{t}"
+        },
+        {
+          "type": "formula",
+          "text": " P=4\\,\\mathrm{mW}"
+        },
+        {
+          "type": "formula",
+          "text": " I=\\frac{P}{S}"
+        },
+        {
+          "type": "formula",
+          "text": " I=20\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "0,002 W/m² userebbe il numero 2 come se l’area fosse 2 m². 2 W/m² corrisponderebbe a un’area dieci volte maggiore. Il valore 4 copia il coefficiente della potenza in milliwatt e non completa la divisione per l’area."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "W/m²",
+        "tolerance": 0
+      },
+      "hints": [
+        "Converti separatamente millijoule e centimetri quadrati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "0,002 W/m² userebbe il numero 2 come se l’area fosse 2 m². 2 W/m² corrisponderebbe a un’area dieci volte maggiore. Il valore 4 copia il coefficiente della potenza in milliwatt e non completa la divisione per l’area.",
+        "target": "C5-L04"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Energia divisa per tempo e area"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q032",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 32,
+      "title": "Due cambiamenti nello stesso rapporto",
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02"
+      ],
+      "version": 2,
+      "prompt": "Una sorgente puntiforme isotropa emette potenza positiva in un mezzo senza assorbimento. La potenza raddoppia e il ricevitore passa da r>0 a 2r. Qual è il rapporto I_f/I_i?",
+      "family": "la-sorgente-emette-il-doppio",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’intensità è P/(4πr²). Nel rapporto delle due preparazioni il numeratore fornisce un fattore due; raddoppiare il raggio moltiplica il denominatore per quattro. Il risultato è 2/4=1/2. L’intensità finale è minore pur essendo aumentata la potenza della sorgente."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/88294b6965693c785a0084154a399b7d4dfbe5be34229b54ac9fdf323119516d",
+          "text": "Le barre centrali confrontano I_i e I_f=I_i/2 sulla stessa scala normalizzata. Il raddoppio della potenza è compensato solo in parte dall’area sferica quadruplicata."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{I_f}{I_i}=\\frac{P_f}{P_i}\\left(\\frac{r_i}{r_f}\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{I_f}{I_i}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "2 ignora il raggio; 1/4 ignora il raddoppio della potenza. Il rapporto 1 usa una dipendenza lineare anziché quadratica dalla distanza. 8 moltiplica per quattro invece di dividere."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8",
+          "1/2",
+          "2",
+          "1/4",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "hints": [
+        "Separa il cambiamento della potenza da quello dell’area della sfera.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2 ignora il raggio; 1/4 ignora il raddoppio della potenza. Il rapporto 1 usa una dipendenza lineare anziché quadratica dalla distanza. 8 moltiplica per quattro invece di dividere.",
+        "target": "C5-L04"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Due cambiamenti nello stesso rapporto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q033",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 33,
+      "title": "Ricavare la distanza dalla diminuzione",
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02"
+      ],
+      "version": 2,
+      "prompt": "Una sorgente puntiforme isotropa ha potenza costante positiva e il mezzo non assorbe. A 0,80 m l’intensità è nove volte quella nel punto B. A quale distanza dalla sorgente si trova B?",
+      "family": "distanza-sconosciuta",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A parità di potenza I_A/I_B=(r_B/r_A)². Il rapporto delle intensità è nove, quindi il rapporto positivo delle distanze è tre. Moltiplico 0,80 m per tre e trovo 2,4 m. B riceve meno intensità e deve stare più lontano. La radice negativa non è una distanza dalla sorgente."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{r_B}{r_A}=\\sqrt9"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=3r_A"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=2{,}4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "7,2 m moltiplica la distanza per nove senza estrarre la radice e darebbe un rapporto di intensità 81. 4/15 m divide per tre e rende B più vicino. 0,80 m darebbe intensità uguali."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/15 m",
+          "0,08 m",
+          "2,4 m",
+          "7,2 m",
+          "0,80 m"
+        ],
+        "value": "2,4 m"
+      },
+      "hints": [
+        "Per passare dal rapporto delle intensità a quello delle distanze serve una radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "7,2 m moltiplica la distanza per nove senza estrarre la radice e darebbe un rapporto di intensità 81. 4/15 m divide per tre e rende B più vicino. 0,80 m darebbe intensità uguali.",
+        "target": "C5-L04"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Ricavare la distanza dalla diminuzione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q034",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 34,
+      "title": "Allargare il sensore nello stesso campo",
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02"
+      ],
+      "version": 2,
+      "prompt": "Un campo d’onda uniforme e costante ha intensità positiva. Una sonda perpendicolare al fascio raddoppia la propria area, restando nel medesimo campo e senza perturbarlo. Come cambiano intensità locale e potenza attraversante?",
+      "family": "stessa-sfera-sonda-piu-larga",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni metro quadrato riceve la stessa potenza di prima, perché il campo locale non è cambiato. La sonda raccoglie però due volte quell’area. Da P=IS segue che la potenza raddoppia mentre I resta invariata. È come affiancare due sonde uguali nel medesimo campo uniforme."
+        },
+        {
+          "type": "formula",
+          "text": "I_f=I_i"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{P_f}{P_i}=\\frac{S_f}{S_i}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{S_f}{S_i}=2"
+        },
+        {
+          "type": "text",
+          "text": "La potenza della sorgente non coincide con quella intercettata da una singola sonda. Cambiare l’area del ricevitore non modifica per definizione l’intensità del campo assegnato e non la raddoppia."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Entrambe raddoppiano",
+          "Entrambe si dimezzano",
+          "La potenza resta uguale perché la sorgente è la stessa",
+          "L’intensità resta uguale e la potenza raddoppia",
+          "L’intensità raddoppia e la potenza resta uguale"
+        ],
+        "value": "L’intensità resta uguale e la potenza raddoppia"
+      },
+      "hints": [
+        "Pensa alla potenza che attraversa due finestre uguali affiancate.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La potenza della sorgente non coincide con quella intercettata da una singola sonda. Cambiare l’area del ricevitore non modifica per definizione l’intensità del campo assegnato e non la raddoppia.",
+        "target": "C5-L04"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Allargare il sensore nello stesso campo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q035",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 35,
+      "title": "Leggere watt al metro quadrato",
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02"
+      ],
+      "version": 2,
+      "prompt": "L’intensità espressa in W/m² descrive energia per unità di area e per unità di quale grandezza?",
+      "family": "leggere-lunita-composta",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un watt equivale a un joule al secondo. Dividere ancora per un metro quadrato dà J/(s·m²): energia che attraversa un’area per unità di tempo. L’area e il tempo svolgono ruoli diversi e devono entrambi comparire per ricostruire un’energia trasferita."
+        },
+        {
+          "type": "formula",
+          "text": "1\\,\\mathrm{W/m^2}=1\\,\\mathrm{J/(s\\,m^2)}"
+        },
+        {
+          "type": "text",
+          "text": "Massa e temperatura non compaiono in questa unità. Dividere per una frequenza significherebbe moltiplicare per un tempo, non ottenere la potenza per area. La lunghezza d’onda non sostituisce una durata."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Massa",
+          "Lunghezza d’onda",
+          "Frequenza",
+          "Temperatura",
+          "Tempo"
+        ],
+        "value": "Tempo"
+      },
+      "hints": [
+        "Riscrivi il watt come joule al secondo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Massa e temperatura non compaiono in questa unità. Dividere per una frequenza significherebbe moltiplicare per un tempo, non ottenere la potenza per area. La lunghezza d’onda non sostituisce una durata.",
+        "target": "C5-L04"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Leggere watt al metro quadrato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q036",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 36,
+      "title": "Un fascio che non si allarga",
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02"
+      ],
+      "version": 2,
+      "prompt": "Un fascio ideale collimato mantiene potenza positiva e sezione costanti lungo il percorso, senza assorbimento né altre perdite. Che cosa accade all’intensità media su ogni sezione perpendicolare uguale?",
+      "family": "fascio-cilindrico-ideale",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’intensità media è la potenza divisa per l’area della sezione. Nel modello entrambe restano costanti, quindi anche il rapporto resta costante. La legge 1/r² descrive invece una propagazione che distribuisce la stessa potenza su sfere di area crescente. Non basta allontanarsi per imporre quella geometria a un fascio collimato."
+        },
+        {
+          "type": "formula",
+          "text": "I=\\frac{P}{S}"
+        },
+        {
+          "type": "formula",
+          "text": " P,S=\\text{costanti}"
+        },
+        {
+          "type": "text",
+          "text": "Un dimezzamento per metro richiederebbe una legge di perdita non assegnata. La crescita o l’annullamento contraddicono la conservazione di potenza e sezione. La distanza da sola non determina l’area attraversata dal fascio."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Rimane costante",
+          "Diminuisce necessariamente come 1/r²",
+          "Si dimezza ogni metro",
+          "Cresce linearmente con la distanza",
+          "Diventa nulla dopo una lunghezza d’onda"
+        ],
+        "value": "Rimane costante"
+      },
+      "hints": [
+        "Individua la superficie su cui si distribuisce la potenza, senza sostituirla con una sfera.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Un dimezzamento per metro richiederebbe una legge di perdita non assegnata. La crescita o l’annullamento contraddicono la conservazione di potenza e sezione. La distanza da sola non determina l’area attraversata dal fascio.",
+        "target": "C5-L04"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Un fascio che non si allarga"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q037",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 37,
+      "title": "Una media comprende anche le pause",
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02"
+      ],
+      "version": 2,
+      "prompt": "Una sorgente emette 4,0 W per 2,0 ms in ogni periodo di 10 ms; nel resto del periodo emette potenza nulla. Qual è la potenza media sul periodo intero?",
+      "family": "impulsi-e-media-nel-tempo",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’energia di un impulso è 4 W×0,002 s=0,008 J. Divido questa energia per l’intero periodo 0,010 s e ottengo 0,80 W. Lo stesso calcolo è 4 W per la frazione attiva 2/10=1/5. La media è inferiore al valore acceso perché il tempo di pausa entra nel denominatore."
+        },
+        {
+          "type": "formula",
+          "text": "E_{\\rm impulso}=8\\,\\mathrm{mJ}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline P=\\frac{E_{\\rm impulso}}{T}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline P=\\frac45\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "4 W è la potenza durante l’impulso, non la media sul periodo. 20 W inverte la frazione attiva. 0,0080 W copia il coefficiente dell’energia in joule senza dividerlo per 0,010 s."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "0,0080 W",
+          "0,80 W",
+          "4,0 W",
+          "2,0 W",
+          "20 W"
+        ],
+        "value": "0,80 W"
+      },
+      "hints": [
+        "Calcola energia per impulso e dividila per il periodo, comprese le pause.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "testo",
+        "message": "4 W è la potenza durante l’impulso, non la media sul periodo. 20 W inverte la frazione attiva. 0,0080 W copia il coefficiente dell’energia in joule senza dividerlo per 0,010 s.",
+        "target": "C5-L04"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Una media comprende anche le pause"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q038",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 38,
+      "title": "La densità lineare resta nel rapporto",
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02"
+      ],
+      "version": 3,
+      "prompt": "Due corde ideali, alle rispettive tensioni, hanno la stessa velocità di propagazione v>0. Piccole onde sinusoidali hanno uguali ampiezze A>0 e frequenze f>0. La densità lineare di B è tre volte quella di A. Qual è il rapporto delle potenze medie P_B/P_A?",
+      "family": "potenza-della-corda-e-massa-lineare",
+      "difficulty": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel modello di piccole pendenze vale P media=μvω²A²/2. Frequenza uguale significa pulsazione uguale; anche velocità, ampiezza e fattore 1/2 sono comuni e si semplificano. Resta μ_B/μ_A=3. Le tensioni possono essere diverse: per conservare v²=F_tensione/μ quando μ triplica deve triplicare anche la tensione."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline P=\\frac12\\mu v\\omega^2A^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\overline P_B}{\\overline P_A}=3"
+        },
+        {
+          "type": "text",
+          "text": "Nove eleverebbe al quadrato anche μ, che compare alla prima potenza. Un terzo invertirebbe il rapporto. Imporre contemporaneamente tensioni uguali e velocità uguali sarebbe incompatibile con queste densità diverse nel modello della corda ideale."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "hints": [
+        "Cancella soltanto i fattori che il prompt mantiene uguali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Nove eleverebbe al quadrato anche μ, che compare alla prima potenza. Un terzo invertirebbe il rapporto. Imporre contemporaneamente tensioni uguali e velocità uguali sarebbe incompatibile con queste densità diverse nel modello della corda ideale.",
+        "target": "C5-L04"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "La densità lineare resta nel rapporto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q039",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 39,
+      "title": "Proiettare l’area del sensore",
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02"
+      ],
+      "version": 3,
+      "prompt": "Un’onda piana uniforme di intensità costante 5,0 W/m² attraversa un sensore piano di area 4,0 m². La propagazione forma 60° con la normale al sensore. Quale potenza attraversa il sensore in watt?",
+      "family": "energia-catturata-inclinando-il-sensore",
+      "difficulty": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La superficie efficace perpendicolare al fascio vale S cosθ. Il coseno di 60° è 1/2: dei 4 m² geometrici ne risultano efficaci 2 m². Moltiplico per 5 W/m² e ottengo 10 W. L’angolo è dalla normale; usando l’angolo dal piano occorrerebbe invece il seno complementare."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/88294b6965693c785a0084154a399b7d4dfbe5be34229b54ac9fdf323119516d",
+          "text": "L’ultimo pannello è una sezione laterale a profondità uguale: la lunghezza proiettata e quindi l’area efficace sono metà. Il sensore geometrico misura 4 m² e la proiezione 2 m². Il disegno dell’angolo fra raggio e normale è distinto dalla scala dei valori delle aree."
+        },
+        {
+          "type": "formula",
+          "text": "S_{\\rm eff}=S\\cos60^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " S_{\\rm eff}=2\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " P=10\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "20 W trascura l’inclinazione e corrisponde a raggio lungo la normale. Zero corrisponderebbe a propagazione tangente al piano. Un’area proiettata maggiore di 4 m² non sarebbe compatibile con questa proiezione."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "hints": [
+        "Guarda il sensore dalla direzione del fascio e usa l’angolo dalla normale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "20 W trascura l’inclinazione e corrisponde a raggio lungo la normale. Zero corrisponderebbe a propagazione tangente al piano. Un’area proiettata maggiore di 4 m² non sarebbe compatibile con questa proiezione.",
+        "target": "C5-L04"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Proiettare l’area del sensore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q040",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 40,
+      "title": "Potenza su superfici chiuse",
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02"
+      ],
+      "version": 2,
+      "prompt": "Una sorgente emette in regime stazionario e si trova al centro di due sfere concentriche. Fra le due superfici non ci sono assorbimenti, altre sorgenti o accumulo di energia. Come si confronta la potenza totale uscente attraverso le due sfere?",
+      "family": "superficie-chiusa-e-conservazione",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In ogni secondo l’energia uscita dalla sfera interna deve attraversare anche quella esterna, perché nel guscio non viene assorbita né accumulata. La potenza totale è quindi la stessa. Nel caso isotropo l’intensità diminuisce come 1/r², ma l’area 4πr² compensa questa diminuzione. Non si confronta la sola intensità in un punto."
+        },
+        {
+          "type": "formula",
+          "text": "P_{\\rm esterna}=P_{\\rm interna}"
+        },
+        {
+          "type": "text",
+          "text": "Una superficie chiusa non impedisce alle onde di attraversarla. La minore intensità locale sulla sfera più grande non significa minore potenza integrata sull’intera superficie. L’assenza di accumulo è una condizione del bilancio stazionario."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "È maggiore sulla sfera interna",
+          "È maggiore sulla sfera esterna",
+          "È zero perché le superfici sono chiuse",
+          "È inversamente proporzionale al solo raggio",
+          "È la stessa"
+        ],
+        "value": "È la stessa"
+      },
+      "hints": [
+        "Considera tutta l’energia che attraversa l’intero guscio in un secondo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una superficie chiusa non impedisce alle onde di attraversarla. La minore intensità locale sulla sfera più grande non significa minore potenza integrata sull’intera superficie. L’assenza di accumulo è una condizione del bilancio stazionario.",
+        "target": "C5-L04"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Potenza su superfici chiuse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "88294b6965693c785a0084154a399b7d4dfbe5be34229b54ac9fdf323119516d",
+      "name": "cric-c5-l04-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTU2MCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTYwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkVuZXJnaWEgc3VsIHNlbnNvcmUsIGVzcGFuc2lvbmUgZSBwcm9pZXppb25lIGRlbGzigJlhcmVhPC90aXRsZT4KPGRlc2MgaWQ9ImRlc2MiPklsIHNlbnNvcmUgcmljZXZlIGRvZGljaSBtaWxsaWpvdWxlIGluIHRyZSBzZWNvbmRpLiBCYXJyZSBub3JtYWxpenphdGUgbW9zdHJhbm8gaW50ZW5zaXTDoCBmaW5hbGUgbWV0w6AgcXVhbmRvIHBvdGVuemEgZSBkaXN0YW56YSByYWRkb3BwaWFuby4gTGEgc2V6aW9uZSBsYXRlcmFsZSBkZWwgc2Vuc29yZSBmb3JtYSB0cmVudGEgZ3JhZGkgY29sIHJhZ2dpbyBlIGxhIHN1YSBub3JtYWxlIHNlc3NhbnRhOyBsYSBwcm9pZXppb25lIGhhIG1ldMOgIGx1bmdoZXp6YSBlLCBhIHByb2ZvbmRpdMOgIHVndWFsZSwgbWV0w6AgYXJlYS48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9InRpcCIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNiIgbWFya2VySGVpZ2h0PSI2IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iY29udGV4dC1zdHJva2UiLz48L21hcmtlcj48L2RlZnM+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTU2MCIgZmlsbD0iI2ZmZmRmNyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZpbGw9IiMyMDJjMzkiPgo8dGV4dCB4PSIzMiIgeT0iNTIiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4xLiBEYWwgc2Vuc29yZSBhbGzigJlpbnRlbnNpdMOgPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iOTUiIGZvbnQtc2l6ZT0iMjMiPkVuZXJnaWEgcmljZXZ1dGEgY29uIHBvdGVuemEgY29zdGFudGUuPC90ZXh0Pgo8cGF0aCBkPSJNMTQwIDE0NVY0NjBINTU1IiBmaWxsPSJub25lIiBzdHJva2U9IiMzMDRkNjMiIHN0cm9rZS13aWR0aD0iMyIvPgo8cGF0aCBkPSJNMTQwIDQ2MEw1MDAgMTgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNjcyOGQiIHN0cm9rZS13aWR0aD0iNCIvPgo8cGF0aCBkPSJNMTQwIDE4MEg1MDBWNDYwTTE0MCAzMjBIMzIwVjQ2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA0ZDYzIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjcgNyIvPgo8dGV4dCB4PSIzMiIgeT0iMTUxIiBmb250LXNpemU9IjIzIj5FIChtSik8L3RleHQ+Cjx0ZXh0IHg9IjkxIiB5PSIxODkiIGZvbnQtc2l6ZT0iMjMiPjEyPC90ZXh0Pgo8dGV4dCB4PSIxMDIiIHk9IjMyOSIgZm9udC1zaXplPSIyMyI+NjwvdGV4dD4KPHRleHQgeD0iMTA1IiB5PSI0OTQiIGZvbnQtc2l6ZT0iMjMiPjA8L3RleHQ+Cjx0ZXh0IHg9IjMwOCIgeT0iNDk0IiBmb250LXNpemU9IjIzIj4xLDU8L3RleHQ+Cjx0ZXh0IHg9IjQ5MyIgeT0iNDk0IiBmb250LXNpemU9IjIzIj4zPC90ZXh0Pgo8dGV4dCB4PSI1MzIiIHk9IjUzMyIgZm9udC1zaXplPSIyMyI+dCAocyk8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI1NzYiIGZvbnQtc2l6ZT0iMjMiPlAgPSA0IG1XOyBTID0gMiBjbcKyOyBJID0gMjAgVy9twrIuPC90ZXh0Pgo8bGluZSB4MT0iMzIiIHkxPSI2MDkiIHgyPSI2MDgiIHkyPSI2MDkiIHN0cm9rZT0iI2I4YzRjYSIvPgo8dGV4dCB4PSIzMiIgeT0iNjY0IiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+Mi4gUGnDuSBwb3RlbnphLCBtYSBwacO5IGxvbnRhbm88L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI3MDciIGZvbnQtc2l6ZT0iMjMiPlBvdGVuemEgZG9wcGlhLCBkaXN0YW56YSBkb3BwaWEuPC90ZXh0Pgo8cGF0aCBkPSJNMTgwIDc0MFY5MjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMwNGQ2MyIgc3Ryb2tlLXdpZHRoPSIzIi8+Cjx0ZXh0IHg9IjEzMSIgeT0iNzYwIiBmb250LXNpemU9IjIzIj4wPC90ZXh0Pgo8dGV4dCB4PSI0MyIgeT0iODAxIiBmb250LXNpemU9IjIzIj5J4bWiPC90ZXh0Pgo8cmVjdCB4PSIxODAiIHk9Ijc3MCIgd2lkdGg9IjMyMCIgaGVpZ2h0PSI0NSIgZmlsbD0iIzI2NzI4ZCIvPgo8dGV4dCB4PSI0MyIgeT0iODg2IiBmb250LXNpemU9IjIzIj5JX2Y8L3RleHQ+CjxyZWN0IHg9IjE4MCIgeT0iODU1IiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjQ1IiBmaWxsPSIjOTg2YzM1Ii8+Cjx0ZXh0IHg9IjM2MiIgeT0iODg3IiBmb250LXNpemU9IjIzIj5J4bWiIC8gMjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijk2NyIgZm9udC1zaXplPSIyMyI+QmFycmUgc3VsbGEgc3Rlc3NhIHNjYWxhIG5vcm1hbGl6emF0YS48L3RleHQ+CjxsaW5lIHgxPSIzMiIgeTE9IjEwMDAiIHgyPSI2MDgiIHkyPSIxMDAwIiBzdHJva2U9IiNiOGM0Y2EiLz4KPHRleHQgeD0iMzIiIHk9IjEwNTUiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4zLiBM4oCZYXJlYSB2aXN0YSBkYWwgZmFzY2lvPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTA5OCIgZm9udC1zaXplPSIyMyI+U2V6aW9uZSBsYXRlcmFsZSBhIHByb2ZvbmRpdMOgIHVndWFsZS48L3RleHQ+CjxwYXRoIGQ9Ik04MCAxMzQwSDU1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMjY3MjhkIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjdGlwKSIvPgo8cGF0aCBkPSJNMTUwLjA5NjE4OSAxMjY1TDQwOS45MDM4MTEgMTQxNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTg2YzM1IiBzdHJva2Utd2lkdGg9IjciLz4KPHBhdGggZD0iTTI4MCAxMzQwTDM0MCAxMjM2LjA3Njk1MiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNGU4NzZkIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjdGlwKSIvPgo8cGF0aCBkPSJNMTUwLjA5NjE4OSAxMjY1SDUzME00MDkuOTAzODExIDE0MTVINTMwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzMDRkNjMiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNyA3Ii8+CjxwYXRoIGQ9Ik01MzAgMTI2NVYxNDE1TTUyMCAxMjY1SDU0ME01MjAgMTQxNUg1NDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ExNDczYyIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxwYXRoIGQ9Ik0zNDAgMTM0MEE2MCA2MCAwIDAgMCAzMTAgMTI4OC4wMzg0NzYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMwNGQ2MyIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjM0OSIgeT0iMTIyOCIgZm9udC1zaXplPSIyMyI+bm9ybWFsZTwvdGV4dD4KPHRleHQgeD0iMzUwIiB5PSIxMjk2IiBmb250LXNpemU9IjIzIj42MMKwPC90ZXh0Pgo8dGV4dCB4PSI0NDIiIHk9IjEzMTgiIGZvbnQtc2l6ZT0iMjMiPnJhZ2dpbzwvdGV4dD4KPHRleHQgeD0iMTE1IiB5PSIxNDY1IiBmb250LXNpemU9IjIzIj5zZW5zb3JlPC90ZXh0Pgo8dGV4dCB4PSI0MDUiIHk9IjE0NjUiIGZvbnQtc2l6ZT0iMjMiPnByb2llemlvbmU8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxNTMyIiBmb250LXNpemU9IjIzIj5BcmVhOiA0IG3CsiDihpIgMiBtwrIgZWZmaWNhY2kuIFBvdGVuemE6IDEwIFcuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
