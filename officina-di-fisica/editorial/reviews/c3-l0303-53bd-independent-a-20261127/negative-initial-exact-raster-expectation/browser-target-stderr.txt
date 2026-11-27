@@ -1,0 +1,28 @@
+test_all48_pairs_same_fields_and_raster (tests.corpus.test_c3_l0303_53bd_browser_a.NewMayerEpoch.test_all48_pairs_same_fields_and_raster) ... FAIL
+test_exact_mayer_and_constant_pressure_cue (tests.corpus.test_c3_l0303_53bd_browser_a.NewMayerEpoch.test_exact_mayer_and_constant_pressure_cue) ... ok
+test_fresh_saved (tests.corpus.test_c3_l0303_53bd_browser_a.NewMayerEpoch.test_fresh_saved) ... ok
+test_legacy_globals_remain_separate (tests.corpus.test_c3_l0303_53bd_browser_a.NewMayerEpoch.test_legacy_globals_remain_separate) ... ok
+test_new_epoch_exact_source_and_no_credit (tests.corpus.test_c3_l0303_53bd_browser_a.NewMayerEpoch.test_new_epoch_exact_source_and_no_credit) ... ok
+test_eight_profiles_and_48_actual (tests.corpus.test_c3_l0303_persistent_browser_a.GasMayerActual.test_eight_profiles_and_48_actual) ... ok
+test_exact_independent_entries (tests.corpus.test_c3_l0303_persistent_browser_a.GasMayerActual.test_exact_independent_entries) ... ok
+test_fresh_saved (tests.corpus.test_c3_l0303_persistent_browser_a.GasMayerActual.test_fresh_saved) ... ok
+
+======================================================================
+FAIL: test_all48_pairs_same_fields_and_raster (tests.corpus.test_c3_l0303_53bd_browser_a.NewMayerEpoch.test_all48_pairs_same_fields_and_raster)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-author-a-resident-20261127/officina-di-fisica/tests/corpus/test_c3_l0303_53bd_browser_a.py", line 5, in test_all48_pairs_same_fields_and_raster
+    def test_all48_pairs_same_fields_and_raster(self):self.assertEqual(v.compare(),{'pairedCases':48,'equalFields':48,'equalRasterPairs':48})
+                                                      ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'pairedCases': 48, 'equalFields': 48, 'equalRasterPairs': 46} != {'pairedCases': 48, 'equalFields': 48, 'equalRasterPairs': 48}
+- {'equalFields': 48, 'equalRasterPairs': 46, 'pairedCases': 48}
+?                                          ^
+
++ {'equalFields': 48, 'equalRasterPairs': 48, 'pairedCases': 48}
+?                                          ^
+
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.642s
+
+FAILED (failures=1)

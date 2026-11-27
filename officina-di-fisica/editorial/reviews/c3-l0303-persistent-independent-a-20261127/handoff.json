@@ -1,0 +1,577 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "SIM-C3-L03-03",
+  "candidateCommit": "6ae3c2a177bcde74b2bebf8f22c1fa50850b0413",
+  "sourceCommit": "b9994b9116e87478905191d85cca8037d17ae4bd",
+  "runtimeSha256": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6",
+  "collectorSha256": "719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15",
+  "actualBrowserCases": 48,
+  "actualBrowserExitCodes": [
+    0,
+    0
+  ],
+  "actualTargetTests": 3,
+  "actualTargetExitCode": 0,
+  "visualReview": "PASS_WITHIN_EXPLICIT_SCOPE",
+  "scientificReview": "POSITIVE_INDEPENDENT_MAYER_MODEL_AND_ACTUAL_TWO_TASKS",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "files": [
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0301-recovery-preflight-a-20261127/canonical-inputs/experiment-c3-heat-transformations-reading-20261127-bindings.json",
+      "sha256": "d45118ea4cb1922484f9dd580c0f59d357cee30e94caa109b903ff6d1839c835"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0301-recovery-preflight-a-20261127/canonical-inputs/experiment-c3-heat-transformations-reading-20261127.json",
+      "sha256": "6b1a174247634c5db60d3382645467db33114d1b1078addb9fd821a25725d349"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/cases/01e79297d65e82c602d421db44877489d53c0baf3aee82f18cfa0f3bb2c838b3.json",
+      "sha256": "0387ff6dc0a8b861db24607bad321f5c79bf61ccdfdcf59aaf760e235e1fd09d"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/cases/0e1f705f353d0c3a49009c7ab6a30b2d4be1c552958d84a7f76e893b661cef36.json",
+      "sha256": "914bdbcfd358d4d2bdfe66c75658ab34f43e9fe9be5c7a01138a1fa0a85cb038"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/cases/264b70de2bc39cded49de30e47d4bb37e6a6cb667805f118043543fa324933fa.json",
+      "sha256": "701812a844b749e0539a4aa4eaa615d4ec76c4cf0b8053eb3dddd0d208366201"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/cases/27c39d3d6c12a40d9e902add11889b5fc0420239e09433de1e22e12c027fbcc0.json",
+      "sha256": "516434089507002720007fb84a06f856f0baa8ac42557b6c1cf2e93713a74deb"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/cases/31df8ef4398ed762d238c2fc33924a7ed4310a63db8992a1faee08eb96599c93.json",
+      "sha256": "572af6f104b818e50c18e9e9b3f6743f63c9486e6dcd34f17d345962307586fc"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/cases/474cbffdbfdb988b567bad95b8334f42cd7b22bb3eba77ff0704f876a587f572.json",
+      "sha256": "6ba1b4e9014f1a57cb9b41663e0dfb2cc01e618ae22488089788af977ee0c263"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/cases/549699a9a42dbcb91781ee4bd8e36a6a47aba09e32a3f08dc57d7851f79599d7.json",
+      "sha256": "ed80f56a6a03ee01cade5eaccc8fde3320ddb14af93685cab70181c118090a27"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/cases/5f449ff2a9d0fa97a4a13b81369b252caaf4ffc0e9f2ae08568dd1f98a84a567.json",
+      "sha256": "9a5b7c33e14d1acb30d9709d08ff8d9b3de1c91c511a3c1f1a160744d976edac"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/cases/69a62e15340a387aa4fedbc8e7fb5d5a6b3578845b8537c4edca56048a5ea64a.json",
+      "sha256": "57c56d493139035b999f1e635bf2fa8522b2a834c8d8beb47a506b27ac8b5923"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/cases/6a2223aaa6aaa5e87a667b756debf6156bdeda4f124f9f70d230380e4a1e5fb3.json",
+      "sha256": "66aac8d97737a415358e611cb72cb62ebf7053509ed7853a5ff503604138f51c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/cases/6d60e62bbdc0830e9f9c6d266fcccc48e36ee300e88356cb8ac544b5a258b1a6.json",
+      "sha256": "101139527c52ab32e58a995274aaeae033333e5f1d41e68b664021351c37deb1"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/cases/6f172a5d06159c0bf2dd29d24714867473d48693ef81bd1a4dd4c36a6319b640.json",
+      "sha256": "ae6b89fbab153ab41f95713ba28013fa289f368cf598c28ae78713c962e924a7"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/cases/75a0794aae21ebe744582565a50a80583a3f939b85e59536388488db4ac961b7.json",
+      "sha256": "5e74e7c1d347ebd9743618cdfd45de0dc27fb5d187991dcf733dc15d7a04b320"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/cases/890b74ecfcfcdf19edc0159934d7e4fb0a694b1a91f18ed53c2a6acd4b859909.json",
+      "sha256": "33a41683c9a0011217fd8a99226ef03964c515ca14e66db8b8755e7a80af6927"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/cases/a0f53612a84f09327f85028b25aa63b4fd4aef2ad1f71a78d2cfdc628cdf686e.json",
+      "sha256": "f3089e97cd405eab4edd0b509da9fdfbd5ecbd4b7c0372ea775fa055af5e74d8"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/cases/a44f488a8d1901c73980bf2894f8d74cbbf89e57c15ec071098c4f9c660e0bbd.json",
+      "sha256": "2cea8430c166d683c2470263777d7a78d757d59ae2dbcc2fafb2187fa8e97113"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/cases/aa49a1c415b3ab29e105c23d63ff856f30c01088a21a6204fafcd6448d038323.json",
+      "sha256": "9ae7a98e96a067f0768ed31cf4edbec17a794b8cde908c27444c9f56e11bd146"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/cases/b905bfcf03e82a86295f6133433ce8f9066a73c53eaee4c69276e16794f959c7.json",
+      "sha256": "0a22ea374b00eaf625be227d43a6a2e5e026e277f9856a3070e5505e5e195ddc"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/cases/bd8de2112a1744dc9c30b69ad81c722e517ff8b6a3ca88cf52da82dfd9ea9612.json",
+      "sha256": "745ad50fdce2b3afb24976b74d4514ebe74ad357fd58889b0c3ae90bf8b7fcb8"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/cases/c0e5175d37aa68e49e0a14becf0e47881fe121cb589fb85e0f81156ac3f881f9.json",
+      "sha256": "d6afb8e9fe2177bae5c1630ff845a588896ff1158979eb141a564bb8cf80af62"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/cases/d4595166cda143fb8f7ce1bc6f411bcb78e2549e3d0e584df0e73f0dee467c58.json",
+      "sha256": "47c6df6418989bdf71775c4e039e6712eeb73fa09ffb4cccb11b2c62ffc024e5"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/cases/e057dcf36b37f02c2d48d1d4ef461aa999f2b89957ef2f467240e4bead9a8c6e.json",
+      "sha256": "7b65f22790602a04de3aafa8dc6a7cd67658c9c7311cf30ab660cfe58780c418"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/cases/e76b2060c529b971da3c8d4a0b93a68d33637604d7cf443a47533433749b5d1b.json",
+      "sha256": "4dac27a3eb7f689738b4b3b508e2cec1641db80cbaa58615716f6d514204d174"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/cases/f9a19423253454495ec98280150752b0601a1cc87c6b137ddc19f966bc32a78a.json",
+      "sha256": "5df08df9dc3495ebca6ca439fafb585462cddde91463f89311a30c3c8a1ffbb9"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/completed-cases.jsonl",
+      "sha256": "4a767759ef58c77c31c4b320f984b3899f8cf047d182b4c46ce4b0ce7dbb3006"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/report.json",
+      "sha256": "0d2bee98dbbf7426058ba6f39f65d447595ef10e454030c9c6c0b858c0871390"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/screens/0033c115cce9685dbc14af8525f308f4d4e99559f31d684aa79a70e231a2b925.png",
+      "sha256": "0033c115cce9685dbc14af8525f308f4d4e99559f31d684aa79a70e231a2b925"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/screens/0278170f98273e899b216f1d511014ce9d41926af8fce63d3e9adc3725990709.png",
+      "sha256": "0278170f98273e899b216f1d511014ce9d41926af8fce63d3e9adc3725990709"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/screens/15920bb724ffff620e0524c42f37aaaa01e4975b9b04d6b32607d9988e7cdec3.png",
+      "sha256": "15920bb724ffff620e0524c42f37aaaa01e4975b9b04d6b32607d9988e7cdec3"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/screens/31b530cab743c9a4e230099485a78cba204988d977fae626dd14b64f14e95c0e.png",
+      "sha256": "31b530cab743c9a4e230099485a78cba204988d977fae626dd14b64f14e95c0e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/screens/4e24627b9187515bf6ce7da565a88cf829277f75b8feb68096c396eea7740da9.png",
+      "sha256": "4e24627b9187515bf6ce7da565a88cf829277f75b8feb68096c396eea7740da9"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/screens/510e146ea1318117d8cebf3af531f4815a369dff8bf6dbd53f12bf93f56c1bb2.png",
+      "sha256": "510e146ea1318117d8cebf3af531f4815a369dff8bf6dbd53f12bf93f56c1bb2"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/screens/53450f5d336ce26573a84b38a3ace95153c383173063fa050703ee31f4e4e4f2.png",
+      "sha256": "53450f5d336ce26573a84b38a3ace95153c383173063fa050703ee31f4e4e4f2"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/screens/57ee6b3a246f249f9f7b2293dbbcdb94070b9629bf5041c80fbc18d338e657a9.png",
+      "sha256": "57ee6b3a246f249f9f7b2293dbbcdb94070b9629bf5041c80fbc18d338e657a9"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/screens/58e90601db6c26072d609003bb41ead12cf0140070d4fc2c51c1dc1391881367.png",
+      "sha256": "58e90601db6c26072d609003bb41ead12cf0140070d4fc2c51c1dc1391881367"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/screens/672396aebcfd23a086005df718c14f7a8829f50654a12964c488877e5dd297fb.png",
+      "sha256": "672396aebcfd23a086005df718c14f7a8829f50654a12964c488877e5dd297fb"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/screens/6c44acf42c48c422530a2cea761fe57d5e1a05cc2f556750c63b3b4b9baf4a3b.png",
+      "sha256": "6c44acf42c48c422530a2cea761fe57d5e1a05cc2f556750c63b3b4b9baf4a3b"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/screens/7145e49e1851202273a27740ec75887e89f0181907fc0c4f5d770e81f116764b.png",
+      "sha256": "7145e49e1851202273a27740ec75887e89f0181907fc0c4f5d770e81f116764b"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/screens/7d4f7f2c84e73b37ff91ee1c7cc2a61df33ccd0d4bf614bb72e1608698570425.png",
+      "sha256": "7d4f7f2c84e73b37ff91ee1c7cc2a61df33ccd0d4bf614bb72e1608698570425"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/screens/8123e3d1934951187920cf0b6a37e44f6bbfb454e0c99c4a075cef0a25f6e925.png",
+      "sha256": "8123e3d1934951187920cf0b6a37e44f6bbfb454e0c99c4a075cef0a25f6e925"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/screens/8a6bc07556b96c35e0b7d9f3a0014f3feca7a7b99a49e123403983f630da0974.png",
+      "sha256": "8a6bc07556b96c35e0b7d9f3a0014f3feca7a7b99a49e123403983f630da0974"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/screens/900a007aa7cf49c5b9956f24add78277c4f6c3965d9715b43d569b3414946b2e.png",
+      "sha256": "900a007aa7cf49c5b9956f24add78277c4f6c3965d9715b43d569b3414946b2e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/screens/9e2b001e4bbdf48df7568912dd84808341d61750895ad2b3bb72fae112d4f995.png",
+      "sha256": "9e2b001e4bbdf48df7568912dd84808341d61750895ad2b3bb72fae112d4f995"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/screens/b2d427b5857806072e3efa1b666fdaaa2257894627589adb20831e7d29ac7479.png",
+      "sha256": "b2d427b5857806072e3efa1b666fdaaa2257894627589adb20831e7d29ac7479"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/screens/bfbade16ffd83f2d3c9ef01119fb266d1c5dc4f2ae887b705a977bf75c6325c0.png",
+      "sha256": "bfbade16ffd83f2d3c9ef01119fb266d1c5dc4f2ae887b705a977bf75c6325c0"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/screens/f4c8c239087253f88fb8a21eaa980034e258143a912fab0443b6d357391e7682.png",
+      "sha256": "f4c8c239087253f88fb8a21eaa980034e258143a912fab0443b6d357391e7682"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/screens/f736774ad05113988d3adf71428dda622227556d075d1c7315f77379b459450e.png",
+      "sha256": "f736774ad05113988d3adf71428dda622227556d075d1c7315f77379b459450e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/screens/f8625c7b63ebc7cd6f03caff46e05bfdccf72cdb1874915b16937cb5ba33d05d.png",
+      "sha256": "f8625c7b63ebc7cd6f03caff46e05bfdccf72cdb1874915b16937cb5ba33d05d"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/screens/fa777d159bd8f722a5937d8b02061eb0432483f9d6489930d8de524ae385a22e.png",
+      "sha256": "fa777d159bd8f722a5937d8b02061eb0432483f9d6489930d8de524ae385a22e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual/screens/fc06cbbd7134ae26dccdbf2ff420aef0f0b4716b94c9875f8a7ec33829f445fb.png",
+      "sha256": "fc06cbbd7134ae26dccdbf2ff420aef0f0b4716b94c9875f8a7ec33829f445fb"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual-process-stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual-process-stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/actual-terminal.json",
+      "sha256": "4808b652d2ad880c31c0570caf16ec3e882cf29158f718b157093f3a8ac4dd6c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/browser-wrapper-stdout.txt",
+      "sha256": "38f00304518044c7906337ce48baf35006efb1e23dbfaf7be82b9a2106714e63"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/metadata.json",
+      "sha256": "43ee953076f4590174bfd88399fa28933e660a74b2e269c9a45be69eb1511e91"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/prepared.json",
+      "sha256": "c8b1f859ed46d9b0091c329abbb67e3f92fc7baffffd5f7f3b699d5baddf3151"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/1280/request.json",
+      "sha256": "523b2645979e4465a08cd22cb376632827097c4e43c2f5358a6ea1be63ee8ea5"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/cases/16f73762aa843f5966ec76a5d0a700b76dff46742d45534bc44ba25639922031.json",
+      "sha256": "806ab7000ec154017824c40e0a40e405190127eb2f15587dbd9b1dc95ae2605a"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/cases/1ec1e61d1e25444f3499ccad7c71bba391e40c0c3c32da8564a9686c0f570656.json",
+      "sha256": "c292798f7be93da8f46ccc833c3b5f2a0b50bad79982ffc9b03406173c9366a4"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/cases/2de52800b3735c026dcc163b20835ae499c321d9297e52c7e36ff66e7d01245e.json",
+      "sha256": "0f825c2eeb84f0538d839c723230d97fa967338a6d55a9d6768d7db7bf60d250"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/cases/3e8061748a577a9e582d9df99133624ca886ebae91abb942da93d21032e5ce6c.json",
+      "sha256": "2cb69761984e909bed7c60d04905b6f0e2342abbb5a0500cdc7b80142a583157"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/cases/488ba456d6b08ba374c880b6bb050c78ac35893a93599f707e20d71376480ffd.json",
+      "sha256": "4987426ef2bbe63e41f3e44612551a1d0c9453dd7daa71c9c4e1e7962e230706"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/cases/577a37e490be1b3f79dbbf5b1846c97d04bd257a4b385965b85f92c8708972f8.json",
+      "sha256": "aa8eef84445e8c94fb4a521682668417dcbe3a74c6958ad36276f87a836570bc"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/cases/5a720bb8f41c6e0cf6ebd852c782f619e42c3a278b072ffda8aa49bf52f00032.json",
+      "sha256": "81c57bb3f9727fca0e27d81c496b8604eadcdb15b16500a11d068c870f6926b1"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/cases/5b41c056128de8d6c3a1d0a53a02c41bef30bf48df5daa0a2f23fdd396980025.json",
+      "sha256": "2219c0c305fc62b2720f88343a772d7922546b0f47fd5084f2fd46dcebeb9b9b"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/cases/5de2e203434276e5cf8b5e645a74c9ac979fc212559bacfbf2d7a45c08fffba8.json",
+      "sha256": "0b6641945257cd8ab366f3e49472a0e488b393b138cd1e3300aeee52ab34a578"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/cases/6c568cfeb571766ca713b1074461ee16cf7f7d3d14c505c4a50f684491479e9e.json",
+      "sha256": "4bfabaa88336105fd0f983ab10af89669e7e329d84d93f6a7d15744d84218e81"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/cases/7e61e89145f908c22057655294a6f69aed9e0c79ca15c4553d6a18bd9b5ca941.json",
+      "sha256": "8059faf5dccb573ec6cbe01e7acb17692b92d93545586885c6cdf3931e234ee4"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/cases/93f709da1e99ea384eedc14f411e3d69b081d6c0beb53bea378354b175353865.json",
+      "sha256": "18d4efa567137f327696d595c90243b155b1bdd4c5fc515e13f08a8bef82ce53"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/cases/95c2ebe5d0ed60199435c88495108362155c9776db23457af5f13f1fcd422d45.json",
+      "sha256": "e26f5438b2a31686da73742b19e67fed1968253f1890854c93aaadf8d92d3f55"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/cases/a2a84641ead3863cec0dd90195be6080cf0a7d67ab61cc3abd54a238c021339b.json",
+      "sha256": "ba83651cf4a1e3e24797314eb2cf5c0dd6d6011177b6c32ae0a7b492343875b9"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/cases/a98ed076a8844c1129fb17ce663564ab18a313abc2b80022ea83fa515410b229.json",
+      "sha256": "8012afa067fa0dead9d467fb99590356728b20c84248f02c053e1069bf0e43fc"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/cases/ad655ef21de5c506d83a7821f722a87392d4a820f8efa407087eb2ad61d5b65f.json",
+      "sha256": "eb8f3f86a3ff704dba055e3677276f9d63b40eeb873d47997474ae0c9ff98c58"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/cases/b54f13022de183b558140de119e362085178c225a3af984777d03d1a5ca35439.json",
+      "sha256": "554b27d0b0d611c660b9916222c134c0e20f27f173407f0b36d676b2eadf5184"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/cases/be744a7427f3af478730196384710542ead1536293ea4f3935dd41fb382828c7.json",
+      "sha256": "55a65783c77fae399f3a75118511f670cb65da5b2e3a84f970cec333bcb28dae"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/cases/c437f8aa74636c70b30dbbc701003743905edc2ac88ea702efd7d81cf288a650.json",
+      "sha256": "1a3bcbbbc34a4456d2857ec0ac84f467c65ba92352fc29e118483f057b8e1fb1"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/cases/c5a066eefa55f5137bcd7bf7b7954474fac765d8a4e433c37aa363410502c3da.json",
+      "sha256": "c2fb0cec88b4f14443ed9a0dcd9abd2598dfaa18e3b31c71c84fb19ef559b654"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/cases/c6399fb42e1e217f8197d9b92a95df71a0b5f0ad9c67cb5f934426ec15202914.json",
+      "sha256": "fd6edb83405affff1cd5347418ca1df8db961d915de5de7e3bf2e0f731325a77"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/cases/cf811a9df4f6a583169ef495744ea60a50bba4f431f2e1365be2f28a0f9f7526.json",
+      "sha256": "96fe20bfab788a787810cc06e76d75a2dded431ff951137e50a3bbbd5639a43e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/cases/e416eab89d48017d83ffbf6ebfa2038a6fe795ba78780b925b057a86e2f0fd85.json",
+      "sha256": "79241c59f8909e35b557a9c747aa7c39698defe9db0886827ddef1dd1651771d"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/cases/f3dbd73971c411700bb69bc92f8181f1969d636700e82456516ad8818f966191.json",
+      "sha256": "fb5cfebcad5d7a7ec90f05dfa4428f6e410cc791f56e50c09a473efd6a94c5b5"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/completed-cases.jsonl",
+      "sha256": "50df05bc8ae7db53471d2ee3a94dc9cde7ed08e0ff4a9c26f79842331017e5da"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/report.json",
+      "sha256": "34d5aeb0523c3fd65a4aa8fe782754aab126bab8f67462047253e44d6239ec3f"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/screens/0779cbd2e41600f0f4c6d2f2a56ce408af34fc37a28c2853a2663555d3c82850.png",
+      "sha256": "0779cbd2e41600f0f4c6d2f2a56ce408af34fc37a28c2853a2663555d3c82850"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/screens/13e1a31f2a829eb4a6a59588350bbe72521ed733111042c56850a2c53a16ebc0.png",
+      "sha256": "13e1a31f2a829eb4a6a59588350bbe72521ed733111042c56850a2c53a16ebc0"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/screens/2218f4970cad61d2bea80dd9c7460618e09d954c44a743bf14a98c7405e00480.png",
+      "sha256": "2218f4970cad61d2bea80dd9c7460618e09d954c44a743bf14a98c7405e00480"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/screens/38184b58f5feb5029a3afece42d163da30978c1fb5cbeeda6d17dba908d24054.png",
+      "sha256": "38184b58f5feb5029a3afece42d163da30978c1fb5cbeeda6d17dba908d24054"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/screens/645e7932a1392ca90bf673cb9effd4f79dd31b1d1295a91eef65f1480b11915f.png",
+      "sha256": "645e7932a1392ca90bf673cb9effd4f79dd31b1d1295a91eef65f1480b11915f"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/screens/678255695be72a5e83511f9aa84897342d04e3822f925afe7ffe58567e385ad3.png",
+      "sha256": "678255695be72a5e83511f9aa84897342d04e3822f925afe7ffe58567e385ad3"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/screens/6e376486ae5c38a9d21505e0b193c0f4587d5ce0df3a41599c141d8548416c9a.png",
+      "sha256": "6e376486ae5c38a9d21505e0b193c0f4587d5ce0df3a41599c141d8548416c9a"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/screens/82275fef5e3a82a50c797ef4f49c4ee7a905c308eddbca4097a2f2870479eccf.png",
+      "sha256": "82275fef5e3a82a50c797ef4f49c4ee7a905c308eddbca4097a2f2870479eccf"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/screens/9345991ef60c78aa2c2457a2adab749583d485db4e27f595b11efad0855bb791.png",
+      "sha256": "9345991ef60c78aa2c2457a2adab749583d485db4e27f595b11efad0855bb791"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/screens/9f2a2f2073f6120135e2a72679c69e799d32853ed3ef29c3f39d21f6a2a9396a.png",
+      "sha256": "9f2a2f2073f6120135e2a72679c69e799d32853ed3ef29c3f39d21f6a2a9396a"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/screens/a51d5f3382c808b87565daa7edccdccc8507a0a44e199476edc4a258cf3b005d.png",
+      "sha256": "a51d5f3382c808b87565daa7edccdccc8507a0a44e199476edc4a258cf3b005d"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/screens/b5eb41dbeb2bfc28804a5f1559589a639489035606b8a75225d897582b7fc112.png",
+      "sha256": "b5eb41dbeb2bfc28804a5f1559589a639489035606b8a75225d897582b7fc112"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/screens/b6f067e2c7dcf723d2b31734bfc670d2167018829581f11272a488ef2650a40c.png",
+      "sha256": "b6f067e2c7dcf723d2b31734bfc670d2167018829581f11272a488ef2650a40c"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/screens/b741e7e24b8c634dd554324026146008457fe2647ad9f6c5d23b6236cbd96a6a.png",
+      "sha256": "b741e7e24b8c634dd554324026146008457fe2647ad9f6c5d23b6236cbd96a6a"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/screens/cafc5ed8fc9285510771e51d967ddf08607a1aac1ddb12f207cf15461804dfbd.png",
+      "sha256": "cafc5ed8fc9285510771e51d967ddf08607a1aac1ddb12f207cf15461804dfbd"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/screens/d35449bf73bc650b2c6b6aa311903bd82612a5c2d6d6387ada7b7c826f03f073.png",
+      "sha256": "d35449bf73bc650b2c6b6aa311903bd82612a5c2d6d6387ada7b7c826f03f073"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/screens/efdab2e44985da6f9cf2523ea3cbf0e9053fe1de79b41ea052cfc59f84096a00.png",
+      "sha256": "efdab2e44985da6f9cf2523ea3cbf0e9053fe1de79b41ea052cfc59f84096a00"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/screens/f8a5183b530dc671204c5c93e7fcd98ca19b5cdaa1307dee10b65b8089448956.png",
+      "sha256": "f8a5183b530dc671204c5c93e7fcd98ca19b5cdaa1307dee10b65b8089448956"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/screens/f8aa5a8094dd86e78327dfd2e3e8e41367dac10ba9cc7514332ada1cf914a108.png",
+      "sha256": "f8aa5a8094dd86e78327dfd2e3e8e41367dac10ba9cc7514332ada1cf914a108"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/screens/fef04a839dbdee9a35da98ab22c73a6650470a9589db2df59e40ffb6776be248.png",
+      "sha256": "fef04a839dbdee9a35da98ab22c73a6650470a9589db2df59e40ffb6776be248"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual/screens/ff91ba01ce2a98b2d0643f65a223468f751758c52c7a09596333dbc58e93879b.png",
+      "sha256": "ff91ba01ce2a98b2d0643f65a223468f751758c52c7a09596333dbc58e93879b"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual-process-stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual-process-stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/actual-terminal.json",
+      "sha256": "5aa04edbbf847d04aa4a78daa955b1e3abf443e468a483cecbd86286c4fa9db8"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/browser-wrapper-stdout.txt",
+      "sha256": "b18e8d022c78337069d6278080de231c339a6237eed0cbec0c6703ed320901a9"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/metadata.json",
+      "sha256": "c588e41163b1e118525bb5112c66028aba15737dd70987764c26e35a067c4f71"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/prepared.json",
+      "sha256": "b0623ff1cf8407a8a5ea3f2ff55c7297a9533bd0669dc3857efc4c49854d2a91"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/320/request.json",
+      "sha256": "243eb574d4114e3ea64c7a141c3a7a8c850b0fe90cf1b1e0efa598c6f1f362a6"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/browser-target-stderr.txt",
+      "sha256": "ee06e3de780ace6af96c64f115d3d1c8115813210d19e79e8f4a320ce81a5388"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/browser-target-stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/browser-target-terminal.json",
+      "sha256": "6d1d3241e8f1e37a82b964c7c1d523de85d5821b2f80564fecaaca5366d30925"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/distinct-manual-and-visual-reading.md",
+      "sha256": "4857e254ea1e88725ddcf731f5fc56acf140d26064b6b3d365b278f4f50c8428"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/finalize.py.txt",
+      "sha256": "25c08d6881aa9ca1955262381636ef9628617c1ceeeaaf8e21c56a527393582e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/independent-browser-review.json",
+      "sha256": "60081f5b0845be6f5c44320d945a29ac7a496f0c3f1a0de29734ee2213da67ab"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/make-visual-pages.py",
+      "sha256": "284003008490ab5956966a43fd261128ffbdbf13a05e68b301055968c1395bcc"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/preflight-readiness.json",
+      "sha256": "a781a3d50e512a19982d65218da93b933e93835260a29145b5fc926de51047db"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/prepare.py.txt",
+      "sha256": "d63e9a7bb4ff28a5db921d4b0677a314882210b2b8917133d3911b017710a333"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/read-1280-1.png",
+      "sha256": "3d1694af5645997d9f0a9d8f92e5b900c679fba164943a7b36b0b90a91d9929e"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/read-1280-2.png",
+      "sha256": "285882d404786da969f0f1dbbf663fa04773bbe1f74a09d949e2a472c2aa0f92"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/read-1280-3.png",
+      "sha256": "97bef065dddf8b4f06a3e9fd72db632661d3841c72488cb0e8405f4e8af8f65f"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/read-1280-4.png",
+      "sha256": "85596a7d8698b3dc087fc11bb29a6d2894e929a0e14848cab55bc97bbf258370"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/read-320-1.png",
+      "sha256": "4a6506f3fd23dbdecd07331eb6679b684aba96473fa50b9c20b643ac287eb48b"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/read-320-2.png",
+      "sha256": "a07e9556c446490a9ad534c24afde5210611796640a5e4556ccc5b7e7cb8c1d5"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/run-authorized-group.py",
+      "sha256": "bb6291b5822e8a0191ab6a0ed1d0685d4614392804599c34de06cdaf4ae9ffbf"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/run-browser-review-target.py",
+      "sha256": "c2e10b589e965293b37d29344fbdf4d193b643ef8bd7847e87447b5138302b73"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/visual-page-index.json",
+      "sha256": "2ecdbb01ad3f9194a0831ab7f74a2495bbf610d1c425ea82aa841b692690a340"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-l0303-persistent-independent-a-20261127/visual-review-per-id.json",
+      "sha256": "e227f8219ea0b21dbf907847b91e72e75d9461b632d9e61c4583cec2740ba4ea"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-six-heat-phase-core6ae3-independent-a-20261127/canonical-collector-719.verbatim.mjs",
+      "sha256": "719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15"
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c3-six-heat-phase-core6ae3-independent-a-20261127/runtime-fingerprint-canonical.verbatim.py",
+      "sha256": "c23abf00cb3665ac9d5b90c1f8256852045a7582fa5e8bae5acf31462b619ab8"
+    },
+    {
+      "path": "officina-di-fisica/tests/corpus/test_c3_l0303_persistent_browser_a.py",
+      "sha256": "5da9d1a97750c749f98b8e86fec89936d68b736ce1f23374e5908687f93171e2"
+    },
+    {
+      "path": "officina-di-fisica/tools/corpus_engineering/c3_draft_bounded_browser_review_a.py",
+      "sha256": "20a408c56410aec0fd4c925a7d6772b53798f8508a4608dd1f8c63cf929370a1"
+    },
+    {
+      "path": "officina-di-fisica/tools/corpus_engineering/c3_l0303_persistent_browser_a.py",
+      "sha256": "2b09130ed70c23de7973a97300706267b2d8471f5f919ad929824569b46103a1"
+    },
+    {
+      "path": "officina-di-fisica/tools/corpus_engineering/c3_six_heat_phase_core6ae3_review_a.py",
+      "sha256": "5441a4e5fd29200ce792f129797e66bc850b401d7a96a216665cc985d1c28537"
+    },
+    {
+      "path": "officina-di-fisica/tools/corpus_engineering/c3_six_heat_phase_primary_models_a.py",
+      "sha256": "faf3583af19d0c8e9597de1e21280cf1152d96ddae1d2e3a58934c14c2450a76"
+    }
+  ]
+}

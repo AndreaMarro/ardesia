@@ -1,0 +1,9 @@
+# Distinct fresh53bd mixture observation
+
+SIM-C3-L03-04 only, Core6ae3 DRAFT2/base1. New320/24 terminal0/null52.357s and1280/24 terminal0/null29.893s, no assistance or timeout.48 whole freshPNG read through six uncropped/unscaled pages.8setup profiles include16 actual accepted answers50C and48C; five selected masses50/100/175/200/300g include control endpoints and both installed inputs.
+
+Independent source-first exact balance: m(80−Tf)=200(Tf−20), common positive specific heat cancels. Tf=(80m+4000)/(m+200), endpoints32/56C. With200g, equal masses give50C. With175g,18000/375=48C and175×32=200×28=5600gK. The inverse is200(Tf−20)/(80−Tf), restricted to the actual control range when testing invertibility. Units and Celsius/kelvin increments are distinguished from absolute-temperature ratios. Assumptions: isolated vessel with negligible heat capacity, no evaporation, common constant water specific heat.
+
+All48 current actual cases, complete normalized owner draft and guest isolation are checked against canonical raw hashes, unchanged exact model and finite binary-observation boundary. Extra geometry checks identify the one thermometer column and schematic mass box with their actual endpoints/dimensions. Five tests real0/0.195s; legacy7c modules/globals unchanged. No source/UI/registry mutation.
+
+No new finding within observed scope. Alto is axial to the vertical thermometer, so column height is not a quantitative reading there. Nonaxial native and fallback are read. Box, color and fixed liquid level are explicitly schematic, not a geometric measurement of water quantities. Five formulas fit setup DOM in all profiles; bench PNGs are not full scrolling prose screenshots. No original-edition interactive replay, arbitrary camera/privateGPU claim, approval or activity credit. Canonical bundle/preview follows separately.
