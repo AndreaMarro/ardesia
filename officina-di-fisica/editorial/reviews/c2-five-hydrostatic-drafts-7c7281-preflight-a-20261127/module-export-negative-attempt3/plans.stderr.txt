@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/editorial/reviews/c2-five-hydrostatic-drafts-7c7281-preflight-a-20261127/build-plans.py", line 5, in <module>
+    D=v.BASE;sha=lambda b:hashlib.sha256(b).hexdigest();report=v.report();(D/'independent-preflight.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+                                                               ~~~~~~~~^^
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tools/corpus_engineering/c2_five_hydrostatic_drafts_7c7281_preflight_a.py", line 48, in report
+    if negative['actualObservedExitCode']!=1 or 'Full normalized owner record differs'not in(BASE/'owner-v3-negative.stderr.txt').read_text():raise ValueError('Authentic owner-v3 counterexample must remain negative')
+                                                                                                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Authentic owner-v3 counterexample must remain negative

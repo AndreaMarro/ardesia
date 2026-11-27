@@ -1,0 +1,1 @@
+import{createRequire}from'node:module';import{pathToFileURL}from'node:url';const req=createRequire('/private/tmp/cric-resident-integrator/officina-di-fisica/package.json');export async function resolve(specifier,context,nextResolve){return nextResolve(specifier==='playwright'?pathToFileURL(req.resolve('playwright').replace(/index\.js$/,'index.mjs')).href:specifier,context)}

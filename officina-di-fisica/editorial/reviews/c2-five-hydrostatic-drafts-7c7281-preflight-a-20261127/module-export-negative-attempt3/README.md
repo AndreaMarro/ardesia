@@ -1,0 +1,1 @@
+Attempt3 source/fingerprint completed0 but the frozen collector import selected the CommonJS Playwright export rather than its ES-module export. The negative-cause guard stopped before rebuilding a report or running the target. No claim of owner-version reproduction is based on this attempt. No browser was run.

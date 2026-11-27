@@ -1,0 +1,10 @@
+file:///private/tmp/cric-author-a-resident/officina-di-fisica/editorial/reviews/c2-five-hydrostatic-drafts-7c7281-preflight-a-20261127/collector-e24c46.verbatim.mjs:10
+import {chromium} from 'playwright';
+        ^^^^^^^^
+SyntaxError: The requested module 'playwright' does not provide an export named 'chromium'
+    at ModuleJob._instantiate (node:internal/modules/esm/module_job:180:21)
+    at async ModuleJob.run (node:internal/modules/esm/module_job:263:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:578:26)
+    at async file:///private/tmp/cric-author-a-resident/officina-di-fisica/editorial/reviews/c2-five-hydrostatic-drafts-7c7281-preflight-a-20261127/counterexample-owner-version.mjs:1:137
+
+Node.js v22.14.0

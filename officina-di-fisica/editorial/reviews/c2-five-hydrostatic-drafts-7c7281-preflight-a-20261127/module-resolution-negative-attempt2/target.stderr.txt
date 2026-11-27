@@ -1,0 +1,23 @@
+test_actual_six_editions102states (tests.corpus.test_c2_five_hydrostatic_drafts_7c7281_preflight_a.FiveDraftPreflight.test_actual_six_editions102states) ... ok
+test_authentic_collector_negative_preserved (tests.corpus.test_c2_five_hydrostatic_drafts_7c7281_preflight_a.FiveDraftPreflight.test_authentic_collector_negative_preserved) ... FAIL
+test_domain_nonfinite_before_cast (tests.corpus.test_c2_five_hydrostatic_drafts_7c7281_preflight_a.FiveDraftPreflight.test_domain_nonfinite_before_cast) ... ok
+test_draft_exact_inverse_units (tests.corpus.test_c2_five_hydrostatic_drafts_7c7281_preflight_a.FiveDraftPreflight.test_draft_exact_inverse_units) ... ok
+test_original_negative_and_grader_contrasts (tests.corpus.test_c2_five_hydrostatic_drafts_7c7281_preflight_a.FiveDraftPreflight.test_original_negative_and_grader_contrasts) ... ok
+test_original_physics_conflict_retained (tests.corpus.test_c2_five_hydrostatic_drafts_7c7281_preflight_a.FiveDraftPreflight.test_original_physics_conflict_retained) ... ok
+test_owner_guest_future_gate_explicit (tests.corpus.test_c2_five_hydrostatic_drafts_7c7281_preflight_a.FiveDraftPreflight.test_owner_guest_future_gate_explicit) ... ok
+test_records_and_bindings_are_verbatim (tests.corpus.test_c2_five_hydrostatic_drafts_7c7281_preflight_a.FiveDraftPreflight.test_records_and_bindings_are_verbatim) ... ok
+test_seven_bounded_groups312 (tests.corpus.test_c2_five_hydrostatic_drafts_7c7281_preflight_a.FiveDraftPreflight.test_seven_bounded_groups312) ... ok
+
+======================================================================
+FAIL: test_authentic_collector_negative_preserved (tests.corpus.test_c2_five_hydrostatic_drafts_7c7281_preflight_a.FiveDraftPreflight.test_authentic_collector_negative_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tests/corpus/test_c2_five_hydrostatic_drafts_7c7281_preflight_a.py", line 30, in test_authentic_collector_negative_preserved
+    n=json.loads((v.BASE/'owner-v3-negative-terminal.json').read_bytes());self.assertEqual(n['actualObservedExitCode'],1);self.assertEqual(n['signal'],None);self.assertIn('Full normalized owner record differs',(v.BASE/'owner-v3-negative.stderr.txt').read_text())
+                                                                                                                                                             ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'Full normalized owner record differs' not found in "node:internal/modules/package_json_reader:268\n  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);\n        ^\n\nError [ERR_MODULE_NOT_FOUND]: Cannot find package 'playwright' imported from /private/tmp/cric-author-a-resident/officina-di-fisica/editorial/reviews/c2-five-hydrostatic-drafts-7c7281-preflight-a-20261127/collector-e24c46.verbatim.mjs\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:268:9)\n    at packageResolve (node:internal/modules/esm/resolve:768:81)\n    at moduleResolve (node:internal/modules/esm/resolve:854:18)\n    at defaultResolve (node:internal/modules/esm/resolve:984:11)\n    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:685:12)\n    at #cachedDefaultResolve (node:internal/modules/esm/loader:634:25)\n    at ModuleLoader.resolve (node:internal/modules/esm/loader:617:38)\n    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:273:38)\n    at ModuleJob._link (node:internal/modules/esm/module_job:135:49) {\n  code: 'ERR_MODULE_NOT_FOUND'\n}\n\nNode.js v22.14.0\n"
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.382s
+
+FAILED (failures=1)

@@ -1,0 +1,14 @@
+from pathlib import Path
+import subprocess,sys,json,time,hashlib,os,shutil
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c2-five-hydrostatic-drafts-7c7281-preflight-a-20261127';app=Path('/private/tmp/cric-midpoint-and-press-20261127/officina-di-fisica')
+cmds=[('fingerprint',[sys.executable,'-B','-m','tools.corpus_engineering.runtime_fingerprint'],app,0),('installed-source',['node',str(D/'collect-source.mjs')],A,0),('owner-v3-negative',['node',str(D/'counterexample-owner-version.mjs')],A,1),('plans',[sys.executable,'-B',str(D/'build-plans.py')],A,0),('target',[sys.executable,'-B','-m','unittest','tests.corpus.test_c2_five_hydrostatic_drafts_7c7281_preflight_a','-v'],A,0)]
+for name,cmd,cwd,expected in cmds:
+ if shutil.disk_usage(D).free<2*1024**3:raise SystemExit('RESOURCE_REFUSAL_BEFORE_'+name)
+ t=time.time();r=subprocess.run(cmd,cwd=cwd,capture_output=True,timeout=45,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'});
+ for label,b in [('stdout',r.stdout),('stderr',r.stderr)]:(D/(name+'.'+label+'.txt')).write_bytes(b)
+ rec=dict(actualObservedExitCode=r.returncode,signal=None if r.returncode>=0 else-r.returncode,expectedExitCode=expected,elapsedSeconds=time.time()-t,timeoutSeconds=45,command=cmd,stdoutSha256=hashlib.sha256(r.stdout).hexdigest(),stderrSha256=hashlib.sha256(r.stderr).hexdigest(),browser='NOT_RUN');(D/(name+'-terminal.json')).write_text(json.dumps(rec,indent=2)+'\n')
+ if name=='fingerprint':
+  fp=json.loads(r.stdout);assert fp['sha256']=='7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6';(D/'current-runtime-fingerprint.json').write_bytes(r.stdout)
+ print(name,rec, r.stderr.decode()[-1500:]if name!='owner-v3-negative'else'actual legitimate-v3 rejection preserved',flush=True)
+ if r.returncode!=expected:raise SystemExit(r.returncode or1)
+print('All expected CPU terminals observed; preflight remains BLOCKED, not browser approved')

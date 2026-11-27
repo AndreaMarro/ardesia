@@ -1,0 +1,232 @@
+{
+  "schemaVersion": "1.0.0",
+  "sourceCommit": "b9994b9116e87478905191d85cca8037d17ae4bd",
+  "runtimeSha256": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6",
+  "phase": "PREFLIGHT_BLOCKED_COLLECTOR_OWNER_VERSION_PIN",
+  "draftCount": 5,
+  "sourceEditionCount": 6,
+  "sourceStates": 102,
+  "physicalConversions": [
+    "981/50 kilopascal",
+    "15 kilopascal"
+  ],
+  "records": [
+    {
+      "id": "SIM-C2-L002-01",
+      "edition": "published",
+      "sourceVersion": 1,
+      "candidateVersion": 1,
+      "tasks": [
+        {
+          "inputLexeme": "2",
+          "modelExact": "981/50",
+          "actualInstalled": {
+            "prompt": "Imposta «Profondità della sonda» su 2 m. Quale valore ottieni per «Sovrapressione dell’acqua»?",
+            "value": 19.62,
+            "unit": "kPa",
+            "worked": "Δp = ρgh, con ρ = 1000 kg/m³. 9,81 × 2 = 19,62 kPa."
+          },
+          "deliveredPhysicsExact": "981/50"
+        },
+        {
+          "inputLexeme": "3/2",
+          "modelExact": "2943/200",
+          "actualInstalled": {
+            "prompt": "Un sensore azzerato in superficie viene immerso a 1,5 m nell’acqua. Di quanti kPa sale la lettura usando g = 10 m/s²?",
+            "value": 14.715,
+            "unit": "kPa",
+            "worked": "Δp = ρgh, con ρ = 1000 kg/m³. 9,81 × 1,5 ≈ 14,72 kPa."
+          },
+          "deliveredPhysicsExact": "15"
+        }
+      ],
+      "legalStates": 13,
+      "sourceMath": "SOURCE_CONTRACT_CONFLICT_RETAINED",
+      "UI": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L002-01",
+      "edition": "draft",
+      "sourceVersion": 1,
+      "candidateVersion": 2,
+      "tasks": [
+        {
+          "inputLexeme": "2",
+          "modelExact": "981/50",
+          "actualInstalled": {
+            "prompt": "Imposta «Profondità della sonda» su 2 m. Quale valore ottieni per «Sovrapressione dell’acqua»?",
+            "value": 19.62,
+            "unit": "kPa",
+            "worked": "Δp = ρgh, con ρ = 1000 kg/m³ e g = 981/100 m/s². 9,81 × 2 = 19,62 kPa."
+          },
+          "deliveredPhysicsExact": "981/50"
+        },
+        {
+          "inputLexeme": "1.5",
+          "modelExact": "2943/200",
+          "actualInstalled": {
+            "prompt": "Un sensore azzerato in superficie viene immerso a 1,5 m nell’acqua. Di quanti kPa sale la lettura usando g = 981/100 m/s²? Mantieni esatte le frazioni durante il conto.",
+            "value": 14.715,
+            "unit": "kPa",
+            "worked": "Δp = ρgh, con ρ = 1000 kg/m³ e g = 981/100 m/s². 9,81 × 1,5 ≈ 14,72 kPa."
+          },
+          "deliveredPhysicsExact": "2943/200"
+        }
+      ],
+      "legalStates": 13,
+      "sourceMath": "POSITIVE_PREFLIGHT_ONLY",
+      "UI": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L002-02",
+      "edition": "draft",
+      "sourceVersion": 1,
+      "candidateVersion": 2,
+      "tasks": [
+        {
+          "inputLexeme": "2",
+          "modelExact": "10",
+          "actualInstalled": {
+            "prompt": "Imposta «Quota della sonda sopra il fondo» su 2 m. Quale valore ottieni per «Pressione relativa»?",
+            "value": 10,
+            "unit": "kPa",
+            "worked": "h = 3−z; Δp = 10(3−z) kPa. 10 × (3 − 2) = 10 kPa."
+          },
+          "deliveredPhysicsExact": "10"
+        },
+        {
+          "inputLexeme": "1.5",
+          "modelExact": "15",
+          "actualInstalled": {
+            "prompt": "L’acqua raggiunge quota 3 m rispetto al fondo. Installi la sonda alla quota 1,5 m. Quale pressione relativa devi aspettarti?",
+            "value": 15,
+            "unit": "kPa",
+            "worked": "h = 3−z; Δp = 10(3−z) kPa. 10 × (3 − 1,5) = 15 kPa."
+          },
+          "deliveredPhysicsExact": "15"
+        }
+      ],
+      "legalStates": 13,
+      "sourceMath": "POSITIVE_PREFLIGHT_ONLY",
+      "UI": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L002-03",
+      "edition": "draft",
+      "sourceVersion": 1,
+      "candidateVersion": 2,
+      "tasks": [
+        {
+          "inputLexeme": "102",
+          "modelExact": "75",
+          "actualInstalled": {
+            "prompt": "Imposta «Pressione dell’aria» su 102 kPa. Quale valore ottieni per «Altezza della colonna di mercurio»?",
+            "value": 75,
+            "unit": "cm",
+            "worked": "h = p/(ρg); ρ = 13600 kg/m³, g = 10 m/s². 102 / 1,36 = 75 cm."
+          },
+          "deliveredPhysicsExact": "75"
+        },
+        {
+          "inputLexeme": "88.4",
+          "modelExact": "65",
+          "actualInstalled": {
+            "prompt": "Un barometro a mercurio è esposto alla pressione 88,4 kPa. Quale altezza della colonna prevedi con ρ = 13 600 kg/m³ e g = 10 m/s²?",
+            "value": 65,
+            "unit": "cm",
+            "worked": "h = p/(ρg); ρ = 13600 kg/m³, g = 10 m/s². 88,4 / 1,36 = 65 cm."
+          },
+          "deliveredPhysicsExact": "65"
+        }
+      ],
+      "legalStates": 31,
+      "sourceMath": "POSITIVE_PREFLIGHT_ONLY",
+      "UI": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L002-04",
+      "edition": "draft",
+      "sourceVersion": 2,
+      "candidateVersion": 3,
+      "tasks": [
+        {
+          "inputLexeme": "2",
+          "modelExact": "20",
+          "actualInstalled": {
+            "prompt": "Imposta «Differenza di pressione» su 2 kPa. Quale valore ottieni per «Dislivello con segno»?",
+            "value": 20,
+            "unit": "cm",
+            "worked": "Δp = p sinistra − p destra. Δh = h destra − h sinistra = Δp/(ρg), con acqua e g = 10 m/s².. 10 × 2 = 20 cm."
+          },
+          "deliveredPhysicsExact": "20"
+        },
+        {
+          "inputLexeme": "0",
+          "modelExact": "0",
+          "actualInstalled": {
+            "prompt": "La pressione a sinistra meno la pressione a destra vale 0 kPa. Quanto misura, in centimetri e con segno, il livello destro meno quello sinistro?",
+            "value": 0,
+            "unit": "cm",
+            "worked": "Δp = p sinistra − p destra. Δh = h destra − h sinistra = Δp/(ρg), con acqua e g = 10 m/s².. 10 × 0 = 0 cm."
+          },
+          "deliveredPhysicsExact": "0"
+        }
+      ],
+      "legalStates": 21,
+      "sourceMath": "POSITIVE_PREFLIGHT_ONLY",
+      "UI": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L003-01",
+      "edition": "draft",
+      "sourceVersion": 1,
+      "candidateVersion": 2,
+      "tasks": [
+        {
+          "inputLexeme": "6",
+          "modelExact": "12",
+          "actualInstalled": {
+            "prompt": "Imposta «Pressione aggiunta» su 6 kPa. Quale valore ottieni per «Incremento di forza sul pistone grande»?",
+            "value": 12,
+            "unit": "N",
+            "worked": "ΔF = Δp A; A = 20 cm². 2 × 6 = 12 N."
+          },
+          "deliveredPhysicsExact": "12"
+        },
+        {
+          "inputLexeme": "5",
+          "modelExact": "10",
+          "actualInstalled": {
+            "prompt": "Aumenti di 5 kPa la pressione idraulica. Il pistone di uscita ha area 20 cm². Di quanto aumenta la forza che può esercitare?",
+            "value": 10,
+            "unit": "N",
+            "worked": "ΔF = Δp A; A = 20 cm². 2 × 5 = 10 N."
+          },
+          "deliveredPhysicsExact": "10"
+        }
+      ],
+      "legalStates": 11,
+      "sourceMath": "POSITIVE_PREFLIGHT_ONLY",
+      "UI": "NOT_RUN",
+      "activityCredit": 0
+    }
+  ],
+  "knownCollectorBlocker": {
+    "fileSha256": "e24c46b4c11403821b026c304875f68edc76b679aa6928b1716bd597c5d15e55",
+    "id": "SIM-C2-L002-04",
+    "originalVersion": 2,
+    "correctDraftVersion": 3,
+    "incorrectHardcodedOwnerVersion": 2,
+    "actualCounterexampleExit": 1,
+    "productFailure": false
+  },
+  "ownerGuestGate": "REQUIRED_REAL_CANONICAL_HTTP_IN_FUTURE_BROWSER_NOT_RUN",
+  "browser": "NOT_RUN",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN"
+}
