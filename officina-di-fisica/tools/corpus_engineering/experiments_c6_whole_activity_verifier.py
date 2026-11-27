@@ -17,7 +17,7 @@ IDS = {'SIM-C6-' + key for key in oracle.DATA}
 APPENDIX = 'editorial/reviews/c6-activities-exact-manual-solution-20261127.md'
 APPENDIX_PEER = 'editorial/reviews/c6-manual-appendix-independent-20261127/independent-review.json'
 PEER_SHA256 = 'ed1bd84ad7a7a116574539bfd423ba517fdb3fd421ba3012128063735ec9a41b'
-SEAL = 'editorial/reviews/c6-0fdcc-whole-activity-evidence-20261127.json'
+SEAL = 'editorial/reviews/c6-2096-whole-activity-evidence-20261127.json'
 PROFILE_KEYS = {(width, view, view == 'fixed_projection') for width in (320, 1280)
                 for view in ('orbit', 'side', 'top', 'fixed_projection')}
 
