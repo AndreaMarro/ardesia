@@ -1,0 +1,254 @@
+{
+  "phase": "INDEPENDENT_SELECTIVE_FINAL_AUTHOR_CORRECTION_ADDENDUM",
+  "authorCommit": "77502640b902c17dcdfb2eb9d68ce97602995807",
+  "reviewerRole": "AI_DISTINCT_FROM_ROOT_AUTHOR",
+  "priorExposureDisclosure": "Previously reviewed originalC3 source/model family in139partial work; not key-naive to historical source. This primary uses the original selected problem/formula/interpretation/control/unit/reference-input projection and Root neutralpoint list only. Original interpretation contains42J/g given support. No new636bc draft JSON/module/receipt/values opened before freeze.",
+  "sourcePrimaryCommit": "fa8e94bd8e69842712b97dd8e3ada63c2cf6776a",
+  "sourcePrimarySha256": "582d7987da9640695396f371ee48e9b076be9a8b89e445f94a1285a14893107d",
+  "sourcePrimaryOriginalTransferCorrection": {
+    "path": "../original-task-input-only-reconciliation.json",
+    "commit": "cd95f6bbbc147201629059dae58b045be985a3bb",
+    "sha256": "099d2176fc19751eff267363420a9d0e415fb840da11d2927e41634b635a6026",
+    "scope": "Additive correction of an original-source transfer-input enumeration before candidate reading; convection original transfer is2.5g/s ->105W, not2.75. The six independently selected candidate outputs were unchanged."
+  },
+  "previousNegative": {
+    "commit": "5ef21598b5ada752a385326bbba687c8220e0480",
+    "manifestPath": "../old-636-manifest.json",
+    "manifestSha256": "a4d45e6f97199aabe42421773d77fedb7274519f202430eae425d4adc50fea6f",
+    "retainedUnchanged": true,
+    "findingsNotRetagged": true
+  },
+  "limitedDelta": {
+    "records": [
+      {
+        "id": "SIM-C3-L05-01",
+        "changedFields": []
+      },
+      {
+        "id": "SIM-C3-L05-02",
+        "changedFields": []
+      },
+      {
+        "id": "SIM-C3-L05-03",
+        "changedFields": [
+          "blocks"
+        ]
+      }
+    ],
+    "newRadiationCandidateSha256": "37cfc96add22d662a3585a89ad746d429ac2467cccdf4bb112a1ca0a0c95c9f3",
+    "assetsUnchanged": true
+  },
+  "resolvedFindings": [
+    {
+      "id": "SIM-C3-L05-03",
+      "finding": "Unit on fourth-power reference factor",
+      "old": "100⁴ =10⁸ K⁴",
+      "final": "(100 K)⁴ =10⁸ K⁴",
+      "decision": "RESOLVED_IN_FINAL_TEXT"
+    },
+    {
+      "id": "SIM-C3-L05-03",
+      "finding": "Gross-exchange student diagram vs net-flux apparatus attribution",
+      "decision": "RESOLVED_IN_FINAL_TEXT",
+      "evidence": "Both200/400 paragraphs explicitly refer to the student drawing; they separately identify the net inward/outward bank result. At300K the text retains two nonzero equal opposing gross exchanges in the student diagram and says the bank net arrow disappears. Three renderer copies of the same net flux do not denote three physical channels. This is source/CPU confirmation, not UI observation."
+    }
+  ],
+  "actualCPU": {
+    "runtimeSourceCommit": "1b72b71a68a6023ab1c9fa189733947b03029914",
+    "runtimeFingerprint": "53bd0c149919095e24abc8f490702494b3054367230aa941ff509ce52772d46a",
+    "fingerprintBeforeAfterIdentical": true,
+    "scalarControls": 67,
+    "sourceCandidateSceneStagePairs": 268,
+    "katexFormulasParsed": 3,
+    "blocksRead": 13,
+    "actualCompiledTasks": 6,
+    "independentTests": 7,
+    "testSeconds": 0.002,
+    "testExitCode": 0,
+    "wrongTaskMutationsRejected": 3,
+    "roundingScope": "All radiation grid comparisons use explicitly nearest-even Float64 rounding of the exact rational representation of installed sigma double times integer fourth-power difference. No epsilon or altered scientific expected values. Exact selected decimal answers use assigned sigma_work=567/10^10."
+  },
+  "canonicalImport": {
+    "afterPublishedCount": 991,
+    "afterPublishedSha256": "99c8d805004c82ba63a19f7ad8c0825666ca813d4f15471b8df4db5657b7c9ee",
+    "beforePublishedCount": 991,
+    "beforePublishedSha256": "99c8d805004c82ba63a19f7ad8c0825666ca813d4f15471b8df4db5657b7c9ee",
+    "database": "disposable_sqlite",
+    "firstImport": {
+      "publication": "DRAFT",
+      "saved": 3,
+      "unchanged": 0
+    },
+    "humanApproval": "NOT_RUN",
+    "packageSha256": "9c3b10c98b5648e9aa8c2735bf306f196f27fbf4462fc11b55e3ae3a6df5c3be",
+    "preservedHistoricalVersions": 991,
+    "preservedLiveHeads": 3,
+    "publication": "DRAFT",
+    "repeatedImport": {
+      "publication": "DRAFT",
+      "saved": 0,
+      "unchanged": 3
+    },
+    "schemaVersion": "1.0.0",
+    "verifiedIds": [
+      "SIM-C3-L05-01",
+      "SIM-C3-L05-02",
+      "SIM-C3-L05-03"
+    ]
+  },
+  "records": [
+    {
+      "id": "SIM-C3-L05-01",
+      "sourceVersion": 1,
+      "candidateVersion": 2,
+      "sourceSha256": "20f725b8dda9bfffcbbbd3e5d120b5ca3c8562b8c5d909dd15e8858c06e7f988",
+      "candidateSha256": "f66614d549c1a640753f3e8752c08e86ec9b2fbf8556953047e2503111457043",
+      "blocksRead": 4,
+      "textMathManualDecision": "PASS_BOUNDED_CPU_AND_INDEPENDENT_TEXT_REVIEW",
+      "independentModel": "P=k*A*DeltaT/L; k=1W/(mK),A=1/100m2,DeltaT=20K;L=x/100m -> P=20/x W",
+      "selectedInputs": [
+        {
+          "x": "2",
+          "unit": "cm"
+        },
+        {
+          "x": "8",
+          "unit": "cm"
+        }
+      ],
+      "exactSelectedOutputs": [
+        "10",
+        "5/2"
+      ],
+      "manualNumberEntries": [
+        "10",
+        "2.5"
+      ],
+      "manualMethod": "1*0.01*20=0.2W*m; divide by0.02m ->10W and0.08m ->2.5W. Or cancel hundredths to20/x. Quadrupling thickness2->8 divides power by4. Inverse L_cm=20/P_W.",
+      "domains": "x in[1,8]cm step1/2; L>0,k>0,A>0; DeltaT is a temperature difference. Zero thickness is outside model and would be singular.",
+      "assumptions": "Stationary one-dimensional conduction through a homogeneous flat slab, constantk, isothermal faces20K apart, negligible lateral losses/contact resistance/internal generation; P is positive hot-to-cold power magnitude. Fixed face temperatures maintained, not a transient cooling law.",
+      "dimensions": "W/(mK)*m2*K/m=W; centimetres converted explicitly to metres.",
+      "actualTaskInputs": [
+        2,
+        8
+      ],
+      "actualTaskValues": [
+        10,
+        2.5
+      ],
+      "sourceScientificJudgment": "NOT_NEWLY_CERTIFIED_BY_THIS_CANDIDATE_REVIEW",
+      "productUI": "NOT_RUN",
+      "geometryDecision": "NOT_OBSERVED_IN_PRODUCT_UI",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C3-L05-02",
+      "sourceVersion": 1,
+      "candidateVersion": 2,
+      "sourceSha256": "16cb138880c0509f85f26c36e1f6e4a33eac7c8b1058f0c1c93f43712e451b08",
+      "candidateSha256": "52739cf2daacade04b0bc06c0c8fd1fb00236b3a86c6bfd91cdd02a49fc5a02f",
+      "blocksRead": 4,
+      "textMathManualDecision": "PASS_BOUNDED_CPU_AND_INDEPENDENT_TEXT_REVIEW",
+      "independentModel": "P=mdot*c*DeltaT; c=21/5J/(gK),DeltaT=10K -> P=42*x W",
+      "selectedInputs": [
+        {
+          "x": "2",
+          "unit": "g/s"
+        },
+        {
+          "x": "7/2",
+          "unit": "g/s"
+        }
+      ],
+      "exactSelectedOutputs": [
+        "84",
+        "147"
+      ],
+      "manualNumberEntries": [
+        "84",
+        "147"
+      ],
+      "manualMethod": "Each gram releases42J. At2g/s double42 ->84J/s=84W. At3.5g/s use42*(3+1/2)=126+21=147W. Inverse mdot=P/42:147/42=7/2g/s.",
+      "domains": "mdot>=0; source[0,5]g/s step1/4. At0 no advective heat transport. c positive, no phase change.",
+      "assumptions": "Steady mass-conserving stream with fixed10K temperature drop and constant specific heat, negligible kinetic/potential changes, shaft work and losses outside assigned heat-transfer balance. This is stream enthalpy transport, not a prescribed Newton h*A*DeltaT coefficient law.",
+      "dimensions": "g/s*J/(gK)*K=J/s=W. Same specific heat4200J/(kgK), massflow0.002/0.0035kg/s.",
+      "actualTaskInputs": [
+        2,
+        3.5
+      ],
+      "actualTaskValues": [
+        84,
+        147
+      ],
+      "sourceScientificJudgment": "NOT_NEWLY_CERTIFIED_BY_THIS_CANDIDATE_REVIEW",
+      "productUI": "NOT_RUN",
+      "geometryDecision": "NOT_OBSERVED_IN_PRODUCT_UI",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C3-L05-03",
+      "sourceVersion": 1,
+      "candidateVersion": 2,
+      "sourceSha256": "9dfad569d14db6aaeecd08c0d959da1dd85a241ea83f82bb31120de92519fc05",
+      "candidateSha256": "37cfc96add22d662a3585a89ad746d429ac2467cccdf4bb112a1ca0a0c95c9f3",
+      "blocksRead": 5,
+      "textMathManualDecision": "PASS_BOUNDED_CPU_AND_INDEPENDENT_TEXT_REVIEW",
+      "independentModel": "q=P/A=sigma_work*(T^4-300^4);sigma_work=567/10^10 W*m^-2*K^-4;epsilon=1",
+      "selectedInputs": [
+        {
+          "x": "200",
+          "unit": "K"
+        },
+        {
+          "x": "400",
+          "unit": "K"
+        }
+      ],
+      "exactSelectedOutputs": [
+        "-7371/20",
+        "3969/4"
+      ],
+      "manualNumberEntries": [
+        "-368.55",
+        "992.25"
+      ],
+      "manualMethod": "Set theta=T/(100K). Then q=(567/100)*(theta^4-81)W/m2. At200K theta2,2^4-81=16-81=-65;567*65=36855 ->-368.55W/m2. At400K theta4,4^4-81=256-81=175;567*175=99225 ->992.25W/m2. No large-log/power calculator required.",
+      "domains": "Absolute T>=0K, source[200,500]K step10; q can be negative and lower bound atT0 is-sigma*300^4. At300K qnet0 while both gross fluxes459.27W/m2 remain nonzero.",
+      "assumptions": "Black diffuse surface/view factor1 in a large uniform black radiative environment at300K; equal absorptivity/emissivity1, no other heat channels included. Positive q is outward from plate, negative q is net absorption. Surface200/400 is an assigned instantaneous or externally maintained temperature; onlyT300 is radiative equilibrium for a freely equilibrating plate. No thermal capacity/time evolution provided.",
+      "dimensions": "sigmaW*m^-2*K^-4 timesK^4 givesW/m2, a flux, not totalW without area. Assigned sigma is rounded; rational/decimal arithmetic exact relative to that working value, physical Stefan constant remains approximate.",
+      "actualTaskInputs": [
+        200,
+        400
+      ],
+      "actualTaskValues": [
+        -368.55,
+        992.25
+      ],
+      "sourceScientificJudgment": "NOT_NEWLY_CERTIFIED_BY_THIS_CANDIDATE_REVIEW",
+      "productUI": "NOT_RUN",
+      "geometryDecision": "NOT_OBSERVED_IN_PRODUCT_UI",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "limits": [
+    "CPU source/candidate scene equality is not a renderer/raster/occlusion/camera observation. No product browser was started.",
+    "Only convection has an installed clock: source CPU states at t=0,5,10s and flows2,3.5g/s verify transported mass=flow*time and loop phase. No UI clock sweep performed.",
+    "Radiative sigma is a rounded working value; exact arithmetic means exact relative to those assigned data, not an exact physical constant.",
+    "Published source editions remain untouched. Prior original-source findings and gaps are not cleared by candidate text/manual checks.",
+    "No source/candidate/generated author module was imported as an independent scientific oracle. Canonical importer loads the candidate solely for structural isolated import."
+  ],
+  "overallActivityAccepted": false,
+  "productUI": "NOT_RUN",
+  "browserStarted": false,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "registryChanged": false,
+  "candidateEditedByReviewer": false
+}
