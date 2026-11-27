@@ -1,0 +1,450 @@
+bounded local start; free bytes 2971791360
+FFFFFFFFFFFFFFFEFFFFFFFFFFFFFFFFFFFFFFF.FFFFFFFFF
+======================================================================
+ERROR: test_exact_arithmetic_at_references_and_transfer (test_heat_capacity_264_independent.HeatCapacity264.test_exact_arithmetic_at_references_and_transfer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 20, in test_exact_arithmetic_at_references_and_transfer
+    self.assertEqual(V.capacity(250)/V.capacity(100),F(5,2))
+                     ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/fractions.py", line 665, in forward
+    return monomorphic_operator(a, b)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/fractions.py", line 813, in _div
+    raise ZeroDivisionError('Fraction(%s, 0)' % db)
+ZeroDivisionError: Fraction(1, 0)
+
+======================================================================
+FAIL: test_all_11_grid_states (test_heat_capacity_264_independent.HeatCapacity264.test_all_11_grid_states) (mass=50)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 23, in test_all_11_grid_states
+    with self.subTest(mass=mass):self.assertEqual(V.capacity(mass),F(2*mass,5))
+                                 ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Fraction(0, 1) != Fraction(20, 1)
+
+======================================================================
+FAIL: test_all_11_grid_states (test_heat_capacity_264_independent.HeatCapacity264.test_all_11_grid_states) (mass=75)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 23, in test_all_11_grid_states
+    with self.subTest(mass=mass):self.assertEqual(V.capacity(mass),F(2*mass,5))
+                                 ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Fraction(0, 1) != Fraction(30, 1)
+
+======================================================================
+FAIL: test_all_11_grid_states (test_heat_capacity_264_independent.HeatCapacity264.test_all_11_grid_states) (mass=100)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 23, in test_all_11_grid_states
+    with self.subTest(mass=mass):self.assertEqual(V.capacity(mass),F(2*mass,5))
+                                 ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Fraction(0, 1) != Fraction(40, 1)
+
+======================================================================
+FAIL: test_all_11_grid_states (test_heat_capacity_264_independent.HeatCapacity264.test_all_11_grid_states) (mass=125)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 23, in test_all_11_grid_states
+    with self.subTest(mass=mass):self.assertEqual(V.capacity(mass),F(2*mass,5))
+                                 ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Fraction(0, 1) != Fraction(50, 1)
+
+======================================================================
+FAIL: test_all_11_grid_states (test_heat_capacity_264_independent.HeatCapacity264.test_all_11_grid_states) (mass=150)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 23, in test_all_11_grid_states
+    with self.subTest(mass=mass):self.assertEqual(V.capacity(mass),F(2*mass,5))
+                                 ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Fraction(0, 1) != Fraction(60, 1)
+
+======================================================================
+FAIL: test_all_11_grid_states (test_heat_capacity_264_independent.HeatCapacity264.test_all_11_grid_states) (mass=175)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 23, in test_all_11_grid_states
+    with self.subTest(mass=mass):self.assertEqual(V.capacity(mass),F(2*mass,5))
+                                 ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Fraction(0, 1) != Fraction(70, 1)
+
+======================================================================
+FAIL: test_all_11_grid_states (test_heat_capacity_264_independent.HeatCapacity264.test_all_11_grid_states) (mass=200)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 23, in test_all_11_grid_states
+    with self.subTest(mass=mass):self.assertEqual(V.capacity(mass),F(2*mass,5))
+                                 ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Fraction(0, 1) != Fraction(80, 1)
+
+======================================================================
+FAIL: test_all_11_grid_states (test_heat_capacity_264_independent.HeatCapacity264.test_all_11_grid_states) (mass=225)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 23, in test_all_11_grid_states
+    with self.subTest(mass=mass):self.assertEqual(V.capacity(mass),F(2*mass,5))
+                                 ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Fraction(0, 1) != Fraction(90, 1)
+
+======================================================================
+FAIL: test_all_11_grid_states (test_heat_capacity_264_independent.HeatCapacity264.test_all_11_grid_states) (mass=250)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 23, in test_all_11_grid_states
+    with self.subTest(mass=mass):self.assertEqual(V.capacity(mass),F(2*mass,5))
+                                 ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Fraction(0, 1) != Fraction(100, 1)
+
+======================================================================
+FAIL: test_all_11_grid_states (test_heat_capacity_264_independent.HeatCapacity264.test_all_11_grid_states) (mass=275)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 23, in test_all_11_grid_states
+    with self.subTest(mass=mass):self.assertEqual(V.capacity(mass),F(2*mass,5))
+                                 ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Fraction(0, 1) != Fraction(110, 1)
+
+======================================================================
+FAIL: test_all_11_grid_states (test_heat_capacity_264_independent.HeatCapacity264.test_all_11_grid_states) (mass=300)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 23, in test_all_11_grid_states
+    with self.subTest(mass=mass):self.assertEqual(V.capacity(mass),F(2*mass,5))
+                                 ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Fraction(0, 1) != Fraction(120, 1)
+
+======================================================================
+FAIL: test_doubling_backslide_rejected_even_with_test_only_pin_renewal (test_heat_capacity_264_independent.HeatCapacity264.test_doubling_backslide_rejected_even_with_test_only_pin_renewal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 49, in test_doubling_backslide_rejected_even_with_test_only_pin_renewal
+    with self.assertRaises(ValueError):self.result()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_exact_arithmetic_at_references_and_transfer (test_heat_capacity_264_independent.HeatCapacity264.test_exact_arithmetic_at_references_and_transfer) (mass=100)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 19, in test_exact_arithmetic_at_references_and_transfer
+    with self.subTest(mass=mass):self.assertEqual(V.capacity(mass),F(value));self.assertEqual(V.inverse_capacity(F(value)),F(mass))
+                                 ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Fraction(0, 1) != Fraction(40, 1)
+
+======================================================================
+FAIL: test_exact_arithmetic_at_references_and_transfer (test_heat_capacity_264_independent.HeatCapacity264.test_exact_arithmetic_at_references_and_transfer) (mass=250)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 19, in test_exact_arithmetic_at_references_and_transfer
+    with self.subTest(mass=mass):self.assertEqual(V.capacity(mass),F(value));self.assertEqual(V.inverse_capacity(F(value)),F(mass))
+                                 ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Fraction(0, 1) != Fraction(100, 1)
+
+======================================================================
+FAIL: test_exact_arithmetic_at_references_and_transfer (test_heat_capacity_264_independent.HeatCapacity264.test_exact_arithmetic_at_references_and_transfer) (mass=175)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 19, in test_exact_arithmetic_at_references_and_transfer
+    with self.subTest(mass=mass):self.assertEqual(V.capacity(mass),F(value));self.assertEqual(V.inverse_capacity(F(value)),F(mass))
+                                 ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Fraction(0, 1) != Fraction(70, 1)
+
+======================================================================
+FAIL: test_finite_exact_positive_domains (test_heat_capacity_264_independent.HeatCapacity264.test_finite_exact_positive_domains) (function='capacity', bad='True')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 27, in test_finite_exact_positive_domains
+    with self.subTest(function=function.__name__,bad=repr(bad)),self.assertRaises(ValueError):function(bad)
+                                                                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_finite_exact_positive_domains (test_heat_capacity_264_independent.HeatCapacity264.test_finite_exact_positive_domains) (function='capacity', bad='False')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 27, in test_finite_exact_positive_domains
+    with self.subTest(function=function.__name__,bad=repr(bad)),self.assertRaises(ValueError):function(bad)
+                                                                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_finite_exact_positive_domains (test_heat_capacity_264_independent.HeatCapacity264.test_finite_exact_positive_domains) (function='capacity', bad='0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 27, in test_finite_exact_positive_domains
+    with self.subTest(function=function.__name__,bad=repr(bad)),self.assertRaises(ValueError):function(bad)
+                                                                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_finite_exact_positive_domains (test_heat_capacity_264_independent.HeatCapacity264.test_finite_exact_positive_domains) (function='capacity', bad='-1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 27, in test_finite_exact_positive_domains
+    with self.subTest(function=function.__name__,bad=repr(bad)),self.assertRaises(ValueError):function(bad)
+                                                                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_finite_exact_positive_domains (test_heat_capacity_264_independent.HeatCapacity264.test_finite_exact_positive_domains) (function='capacity', bad='Fraction(-1, 2)')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 27, in test_finite_exact_positive_domains
+    with self.subTest(function=function.__name__,bad=repr(bad)),self.assertRaises(ValueError):function(bad)
+                                                                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_finite_exact_positive_domains (test_heat_capacity_264_independent.HeatCapacity264.test_finite_exact_positive_domains) (function='capacity', bad='1.0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 27, in test_finite_exact_positive_domains
+    with self.subTest(function=function.__name__,bad=repr(bad)),self.assertRaises(ValueError):function(bad)
+                                                                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_finite_exact_positive_domains (test_heat_capacity_264_independent.HeatCapacity264.test_finite_exact_positive_domains) (function='capacity', bad='inf')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 27, in test_finite_exact_positive_domains
+    with self.subTest(function=function.__name__,bad=repr(bad)),self.assertRaises(ValueError):function(bad)
+                                                                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_finite_exact_positive_domains (test_heat_capacity_264_independent.HeatCapacity264.test_finite_exact_positive_domains) (function='capacity', bad='nan')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 27, in test_finite_exact_positive_domains
+    with self.subTest(function=function.__name__,bad=repr(bad)),self.assertRaises(ValueError):function(bad)
+                                                                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_finite_exact_positive_domains (test_heat_capacity_264_independent.HeatCapacity264.test_finite_exact_positive_domains) (function='capacity', bad='(1+1j)')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 27, in test_finite_exact_positive_domains
+    with self.subTest(function=function.__name__,bad=repr(bad)),self.assertRaises(ValueError):function(bad)
+                                                                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_finite_exact_positive_domains (test_heat_capacity_264_independent.HeatCapacity264.test_finite_exact_positive_domains) (function='capacity', bad="'100'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 27, in test_finite_exact_positive_domains
+    with self.subTest(function=function.__name__,bad=repr(bad)),self.assertRaises(ValueError):function(bad)
+                                                                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_finite_exact_positive_domains (test_heat_capacity_264_independent.HeatCapacity264.test_finite_exact_positive_domains) (function='capacity', bad='None')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 27, in test_finite_exact_positive_domains
+    with self.subTest(function=function.__name__,bad=repr(bad)),self.assertRaises(ValueError):function(bad)
+                                                                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_finite_exact_positive_domains (test_heat_capacity_264_independent.HeatCapacity264.test_finite_exact_positive_domains) (function='inverse_capacity', bad='True')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 27, in test_finite_exact_positive_domains
+    with self.subTest(function=function.__name__,bad=repr(bad)),self.assertRaises(ValueError):function(bad)
+                                                                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_finite_exact_positive_domains (test_heat_capacity_264_independent.HeatCapacity264.test_finite_exact_positive_domains) (function='inverse_capacity', bad='False')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 27, in test_finite_exact_positive_domains
+    with self.subTest(function=function.__name__,bad=repr(bad)),self.assertRaises(ValueError):function(bad)
+                                                                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_finite_exact_positive_domains (test_heat_capacity_264_independent.HeatCapacity264.test_finite_exact_positive_domains) (function='inverse_capacity', bad='0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 27, in test_finite_exact_positive_domains
+    with self.subTest(function=function.__name__,bad=repr(bad)),self.assertRaises(ValueError):function(bad)
+                                                                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_finite_exact_positive_domains (test_heat_capacity_264_independent.HeatCapacity264.test_finite_exact_positive_domains) (function='inverse_capacity', bad='-1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 27, in test_finite_exact_positive_domains
+    with self.subTest(function=function.__name__,bad=repr(bad)),self.assertRaises(ValueError):function(bad)
+                                                                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_finite_exact_positive_domains (test_heat_capacity_264_independent.HeatCapacity264.test_finite_exact_positive_domains) (function='inverse_capacity', bad='Fraction(-1, 2)')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 27, in test_finite_exact_positive_domains
+    with self.subTest(function=function.__name__,bad=repr(bad)),self.assertRaises(ValueError):function(bad)
+                                                                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_finite_exact_positive_domains (test_heat_capacity_264_independent.HeatCapacity264.test_finite_exact_positive_domains) (function='inverse_capacity', bad='1.0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 27, in test_finite_exact_positive_domains
+    with self.subTest(function=function.__name__,bad=repr(bad)),self.assertRaises(ValueError):function(bad)
+                                                                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_finite_exact_positive_domains (test_heat_capacity_264_independent.HeatCapacity264.test_finite_exact_positive_domains) (function='inverse_capacity', bad='inf')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 27, in test_finite_exact_positive_domains
+    with self.subTest(function=function.__name__,bad=repr(bad)),self.assertRaises(ValueError):function(bad)
+                                                                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_finite_exact_positive_domains (test_heat_capacity_264_independent.HeatCapacity264.test_finite_exact_positive_domains) (function='inverse_capacity', bad='nan')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 27, in test_finite_exact_positive_domains
+    with self.subTest(function=function.__name__,bad=repr(bad)),self.assertRaises(ValueError):function(bad)
+                                                                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_finite_exact_positive_domains (test_heat_capacity_264_independent.HeatCapacity264.test_finite_exact_positive_domains) (function='inverse_capacity', bad='(1+1j)')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 27, in test_finite_exact_positive_domains
+    with self.subTest(function=function.__name__,bad=repr(bad)),self.assertRaises(ValueError):function(bad)
+                                                                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_finite_exact_positive_domains (test_heat_capacity_264_independent.HeatCapacity264.test_finite_exact_positive_domains) (function='inverse_capacity', bad="'100'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 27, in test_finite_exact_positive_domains
+    with self.subTest(function=function.__name__,bad=repr(bad)),self.assertRaises(ValueError):function(bad)
+                                                                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_finite_exact_positive_domains (test_heat_capacity_264_independent.HeatCapacity264.test_finite_exact_positive_domains) (function='inverse_capacity', bad='None')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 27, in test_finite_exact_positive_domains
+    with self.subTest(function=function.__name__,bad=repr(bad)),self.assertRaises(ValueError):function(bad)
+                                                                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_fresh_content_review_passes_without_activity_credit (test_heat_capacity_264_independent.HeatCapacity264.test_fresh_content_review_passes_without_activity_credit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 14, in test_fresh_content_review_passes_without_activity_credit
+    r=self.result();self.assertEqual(r['candidateTextMathManualPassCount'],1);self.assertTrue(r['records'][0]['candidateTextMathManualReview']['ok']);self.assertFalse(r['overallAcceptanceGranted']);self.assertFalse(r['records'][0]['ok']);self.assertEqual(r['records'][0]['activityCredit'],0)
+                    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_missing_or_duplicate_candidate_is_rejected (test_heat_capacity_264_independent.HeatCapacity264.test_missing_or_duplicate_candidate_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 37, in test_missing_or_duplicate_candidate_is_rejected
+    with self.assertRaises(ValueError):self.result()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_original_negative_is_distinct_and_retained (test_heat_capacity_264_independent.HeatCapacity264.test_original_negative_is_distinct_and_retained)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 16, in test_original_negative_is_distinct_and_retained
+    r=self.result()['records'][0]['publishedEditionReview'];self.assertFalse(r['ok']);self.assertEqual(r['sourceSha256'],self.b[0]['sourceSha256']);self.assertTrue(r['mathematicalLawCorrect']);self.assertEqual(r['publicationAction'],'NONE')
+                                                            ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_wrong_actual_engine_value_rejected (test_heat_capacity_264_independent.HeatCapacity264.test_wrong_actual_engine_value_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 40, in test_wrong_actual_engine_value_rejected
+    with self.assertRaises(ValueError):self.result()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_wrong_actual_transfer_or_unit_rejected (test_heat_capacity_264_independent.HeatCapacity264.test_wrong_actual_transfer_or_unit_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 43, in test_wrong_actual_transfer_or_unit_rejected
+    with self.assertRaises(ValueError):self.result()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_wrong_source_or_candidate_identity_rejected (test_heat_capacity_264_independent.HeatCapacity264.test_wrong_source_or_candidate_identity_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 34, in test_wrong_source_or_candidate_identity_rejected
+    with self.assertRaises(ValueError):self.result()
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_wrong_version_or_original_physics_rejected_after_binding_renewal (test_heat_capacity_264_independent.HeatCapacity264.test_wrong_version_or_original_physics_rejected_after_binding_renewal) (field='baseVersion')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 31, in test_wrong_version_or_original_physics_rejected_after_binding_renewal
+    with self.subTest(field=field),self.assertRaises(ValueError):self.result()
+                                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_wrong_version_or_original_physics_rejected_after_binding_renewal (test_heat_capacity_264_independent.HeatCapacity264.test_wrong_version_or_original_physics_rejected_after_binding_renewal) (field='version')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 31, in test_wrong_version_or_original_physics_rejected_after_binding_renewal
+    with self.subTest(field=field),self.assertRaises(ValueError):self.result()
+                                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_wrong_version_or_original_physics_rejected_after_binding_renewal (test_heat_capacity_264_independent.HeatCapacity264.test_wrong_version_or_original_physics_rejected_after_binding_renewal) (field='course')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 31, in test_wrong_version_or_original_physics_rejected_after_binding_renewal
+    with self.subTest(field=field),self.assertRaises(ValueError):self.result()
+                                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_wrong_version_or_original_physics_rejected_after_binding_renewal (test_heat_capacity_264_independent.HeatCapacity264.test_wrong_version_or_original_physics_rejected_after_binding_renewal) (field='measure')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tests/corpus/test_heat_capacity_264_independent.py", line 31, in test_wrong_version_or_original_physics_rejected_after_binding_renewal
+    with self.subTest(field=field),self.assertRaises(ValueError):self.result()
+                                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.279s
+
+FAILED (failures=47, errors=1)
+Traceback (most recent call last):
+  File "/private/tmp/cric-bounded-local.py", line 7, in <module>
+    subprocess.run(sys.argv[1:],check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py", line 579, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['/private/tmp/cric-recovery-venv/bin/python', '-B', '-m', 'unittest', 'discover', '-s', 'tests/corpus', '-p', 'test_heat_capacity_264_independent.py']' returned non-zero exit status 1.

@@ -1,0 +1,22 @@
+from pathlib import Path
+import subprocess,json,hashlib,shutil
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');R=Path('/private/tmp/cric-resident-integrator/officina-di-fisica');D=A/'editorial/reviews/c2-41-cb9-independent-a-20261127';D.mkdir(exist_ok=True);(D/'recovered').mkdir(exist_ok=True);(D/'inputs').mkdir(exist_ok=True);entries=[];sha=lambda b:hashlib.sha256(b).hexdigest();ref='cf3d8774ea4eb2f5287b7d7b890d9be0bf8bc8bc'
+def blob(commit,path,dest):
+ raw=subprocess.check_output(['git','show',commit+':officina-di-fisica/'+path],cwd=R);p=D/dest;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(raw);entries.append({'commit':commit,'path':'officina-di-fisica/'+path,'snapshot':str(p.relative_to(D)),'sha256':sha(raw)});return raw
+src=blob('5d1dc8dc7b601aef959d10d564c75462be74708d','content/esperienze-C2.json','inputs/original-esperienze-C2.json');assert sha(src)=='33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1'
+for name in ['experiment-stevino-revision-047.json','experiment-stevino-revision-047-bindings.json']:blob(ref,'editorial/batches/'+name,'inputs/'+name)
+for name in ['experiments_pressure_hydrostatics_047_verifier.py','experiments_hydraulics_buoyancy_code_verifier.py','experiments_flow_continuity_code_verifier.py','experiments_C2_flows_interfaces_code_verifier.py','experiments_C2_code_partial_review.py','experiment_stevino_revision_047_math_verifier.py','runtime_fingerprint.py']:
+ path='tools/corpus_engineering/'+name;r=subprocess.check_output(['git','log','-1','--format=%H',ref,'--',':(top)officina-di-fisica/'+path],cwd=R,text=True).strip();assert len(r)==40;blob(r,path,'recovered/'+name)
+for name in ['experiments-C2-flow-capillarity-prompt-primary-20261125.json','experiments-C2-hydraulics-continuity-prompt-primary-20261125.json','experiments-pressure-hydrostatics-047-source-first-inputs.json','C2-remaining26-code-partial-20261125/findings.json']:
+ path='editorial/reviews/'+name;raw=blob(ref,path,'recovered/editorial/reviews/'+name)
+for path in ['static/js/banchi/voci/esperimento.js','static/js/banchi/voci/apparati/fluidi.js','static/js/banchi/voci/modelli/C2.js','static/js/banchi/voci/legende.js','static/js/banchi/scena.js','static/js/banchi/tavola.js']:
+ blob(ref,path,'current-consumer/'+Path(path).name)
+for key in ['SIM-C2-L001-02','SIM-C2-L001-05','SIM-C2-L002-01','SIM-C2-L002-02','SIM-C2-L003-01','SIM-C2-L005-05','SIM-C2-L006-02','SIM-C2-L007-03','SIM-C2-L007-04','SIM-C2-L008-02']:
+ path='editorial/reviews/consumer-17-prepatch-contracts-20261126/fixtures/'+key+'.json';blob('c4b0083f3c3c3b519026ad45a43ee68183a7423e',path,'historical-conditions/'+key+'.json')
+# git-inputs permits only local basenames; each snapshot is declared in its own directory.
+bydir={}
+for e in entries:
+ p=Path(e.pop('snapshot'));e['snapshot']=p.name;bydir.setdefault(p.parent,[]).append(e)
+for parent,items in bydir.items():(D/parent/'git-inputs.json').write_text(json.dumps({'schemaVersion':'1.0.0','inputs':items},indent=2)+'\n')
+(D/'review-request.json').write_text(json.dumps({'schemaVersion':'1.0.0','role':'INDEPENDENT_REVIEWER_A','runId':45917299096,'runHead':'0dbfa07c4d8abe6d80bc827d0f08a40b62075059','candidateSource':ref,'runtimeSha256':'cb9fc66d96ecced2addff3df4dfbeb0b5834e73a13719a78ea964bc28a5ada49','rawRequestSha256':'9b3651b34beace77fab0ba9d57934a88c00d339dd974596c92e9f83722b0dac5','expectedOriginalIds':[r['id']for r in json.loads(src)],'originalCount':41,'effectiveDraftSeparate':'SIM-C2-L002-01@2','UI':'PENDING_ACTUAL_REMOTE_REPORT','activityCredit':0,'humanApproval':'NOT_RUN'},indent=2)+'\n');assert len(json.loads(src))==41
+print('PREPARED',len(entries),'immutable snapshots')

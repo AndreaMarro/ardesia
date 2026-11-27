@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "1.0.0",
+  "phase": "DRAFT264_TEXT_MATH_MANUAL_REVIEW_NOT_ACTIVITY_ACCEPTANCE",
+  "verifierSha256": "826551c4982e21c8206b4c0b37a019ad8eb8aa0e898d64987570a104049ffca6",
+  "records": [
+    {
+      "id": "SIM-C3-L03-02",
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourceSha256": "c8f54de1efba88f0cb8bc8901a2650925c1b34786fa809c60469b5f072237eb2",
+      "sourceVersion": 1,
+      "candidateSha256": "54e65f2095ff5dc179514e0443e1db9d6819b9e087e0522494b91fddfc7dc01e",
+      "candidateVersion": 2,
+      "baseVersion": 1,
+      "reviewedSignature": "833159e6975126932476e43a1805df4e0f589601b452d873fbd217ad083a1ec9",
+      "assetChecksums": {},
+      "verificationMode": "EXACT_ORACLE",
+      "candidateTextMathManualReview": {
+        "ok": true,
+        "checks": [
+          {
+            "mass_g": "100",
+            "capacity_J_per_K": "40"
+          },
+          {
+            "mass_g": "250",
+            "capacity_J_per_K": "100"
+          },
+          {
+            "mass_g": "175",
+            "capacity_J_per_K": "70"
+          }
+        ],
+        "ratio": "5/2",
+        "inverseMass_g": "175",
+        "heatFor250gAnd1K_J": "100",
+        "actualTasks": [
+          {
+            "mass_g": "250",
+            "capacity_J_per_K": "100",
+            "finiteNumericInput": "100"
+          },
+          {
+            "mass_g": "175",
+            "capacity_J_per_K": "70",
+            "finiteNumericInput": "70"
+          }
+        ],
+        "units": "c=2/5 J/(g K); C=mc in J/K; C/c in g; C deltaT in J",
+        "physicalAssumptions": "Same material; assigned c constant in the small interval; Q denotes heat absorbed by sample; no inference about heater loss or unchanged specific heat from doubled sample mass.",
+        "pedagogy": "The first250g and transfer175g questions, integer division by5 and multiplication by2, inverse and actual5/2 ratio were read individually. The retained summary is an interrogative, not a claim that specific heat doubles."
+      },
+      "publishedEditionReview": {
+        "sourceSha256": "c8f54de1efba88f0cb8bc8901a2650925c1b34786fa809c60469b5f072237eb2",
+        "ok": false,
+        "mathematicalLawCorrect": true,
+        "pedagogicalReview": "FAIL_UNQUALIFIED_DOUBLING_CLAIM_FOR_100_TO_250_G",
+        "actualCapacityRatio": "5/2",
+        "originalEditionRetained": true,
+        "humanApproval": "NOT_RUN",
+        "publicationAction": "NONE"
+      },
+      "independentPrimarySha256": "c87e8e0db9b84ae2fe58cd1bf0bb81185806521b3e8953aff63d7dd6dc7cbcf2",
+      "actualCodeProbeCanonicalSha256": "7eeee68d1076b26a087c1c9054310b2114151ec71627da9afaeed86dca6a537d",
+      "newProductUiReview": "NOT_RUN",
+      "candidateState": "DRAFT",
+      "overallAcceptance": "NOT_GRANTED_PENDING_CURRENT_ACTIVITY_UI",
+      "ok": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "candidateTextMathManualPassCount": 1,
+  "overallAcceptanceGranted": false,
+  "newUiCases": 0,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

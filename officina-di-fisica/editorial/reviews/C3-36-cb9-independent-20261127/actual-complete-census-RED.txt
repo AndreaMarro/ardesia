@@ -1,0 +1,88 @@
+bounded local start; free bytes 2919702528
+test_all36_instruments_match_effective_elements_and_full_state_coverage (__main__.ArrowCensus.test_all36_instruments_match_effective_elements_and_full_state_coverage) ... ok
+test_exact_zero_has_no_directional_glyph (__main__.ArrowCensus.test_exact_zero_has_no_directional_glyph) ... ok
+test_nonzero_clock_arrows_are_retained (__main__.ArrowCensus.test_nonzero_clock_arrows_are_retained) ...
+  test_nonzero_clock_arrows_are_retained (__main__.ArrowCensus.test_nonzero_clock_arrows_are_retained) (id='SIM-C3-L04-03', x=1, time=0.125, color=12144456) ... FAIL
+  test_nonzero_clock_arrows_are_retained (__main__.ArrowCensus.test_nonzero_clock_arrows_are_retained) (id='SIM-C3-L04-03', x=1, time=0.25, color=12144456) ... FAIL
+  test_nonzero_clock_arrows_are_retained (__main__.ArrowCensus.test_nonzero_clock_arrows_are_retained) (id='SIM-C3-L04-03', x=1, time=0.375, color=12144456) ... FAIL
+  test_nonzero_clock_arrows_are_retained (__main__.ArrowCensus.test_nonzero_clock_arrows_are_retained) (id='SIM-C3-L04-03', x=2, time=0.25, color=12144456) ... FAIL
+  test_nonzero_clock_arrows_are_retained (__main__.ArrowCensus.test_nonzero_clock_arrows_are_retained) (id='SIM-C3-L04-03', x=3, time=0.375, color=12144456) ... FAIL
+test_positive_or_negative_nonzero_grid_arrows_are_retained (__main__.ArrowCensus.test_positive_or_negative_nonzero_grid_arrows_are_retained) ...
+  test_positive_or_negative_nonzero_grid_arrows_are_retained (__main__.ArrowCensus.test_positive_or_negative_nonzero_grid_arrows_are_retained) (id='SIM-C3-L09-01', x=5, color=7557296) ... FAIL
+  test_positive_or_negative_nonzero_grid_arrows_are_retained (__main__.ArrowCensus.test_positive_or_negative_nonzero_grid_arrows_are_retained) (id='SIM-C3-L09-02', x=10, color=7557296) ... FAIL
+
+======================================================================
+FAIL: test_nonzero_clock_arrows_are_retained (__main__.ArrowCensus.test_nonzero_clock_arrows_are_retained) (id='SIM-C3-L04-03', x=1, time=0.125, color=12144456)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C3-36-cb9-independent-20261127/test-complete-arrow-census.py", line 27, in test_nonzero_clock_arrows_are_retained
+    with self.subTest(id=r['id'],x=case['x'],time=case['time'],color=arrow['c']):self.assertTrue(arrow['retainedByActualRenderer'])
+                                                                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_nonzero_clock_arrows_are_retained (__main__.ArrowCensus.test_nonzero_clock_arrows_are_retained) (id='SIM-C3-L04-03', x=1, time=0.25, color=12144456)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C3-36-cb9-independent-20261127/test-complete-arrow-census.py", line 27, in test_nonzero_clock_arrows_are_retained
+    with self.subTest(id=r['id'],x=case['x'],time=case['time'],color=arrow['c']):self.assertTrue(arrow['retainedByActualRenderer'])
+                                                                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_nonzero_clock_arrows_are_retained (__main__.ArrowCensus.test_nonzero_clock_arrows_are_retained) (id='SIM-C3-L04-03', x=1, time=0.375, color=12144456)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C3-36-cb9-independent-20261127/test-complete-arrow-census.py", line 27, in test_nonzero_clock_arrows_are_retained
+    with self.subTest(id=r['id'],x=case['x'],time=case['time'],color=arrow['c']):self.assertTrue(arrow['retainedByActualRenderer'])
+                                                                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_nonzero_clock_arrows_are_retained (__main__.ArrowCensus.test_nonzero_clock_arrows_are_retained) (id='SIM-C3-L04-03', x=2, time=0.25, color=12144456)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C3-36-cb9-independent-20261127/test-complete-arrow-census.py", line 27, in test_nonzero_clock_arrows_are_retained
+    with self.subTest(id=r['id'],x=case['x'],time=case['time'],color=arrow['c']):self.assertTrue(arrow['retainedByActualRenderer'])
+                                                                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_nonzero_clock_arrows_are_retained (__main__.ArrowCensus.test_nonzero_clock_arrows_are_retained) (id='SIM-C3-L04-03', x=3, time=0.375, color=12144456)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C3-36-cb9-independent-20261127/test-complete-arrow-census.py", line 27, in test_nonzero_clock_arrows_are_retained
+    with self.subTest(id=r['id'],x=case['x'],time=case['time'],color=arrow['c']):self.assertTrue(arrow['retainedByActualRenderer'])
+                                                                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_positive_or_negative_nonzero_grid_arrows_are_retained (__main__.ArrowCensus.test_positive_or_negative_nonzero_grid_arrows_are_retained) (id='SIM-C3-L09-01', x=5, color=7557296)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C3-36-cb9-independent-20261127/test-complete-arrow-census.py", line 20, in test_positive_or_negative_nonzero_grid_arrows_are_retained
+    with self.subTest(id=r['id'],x=case['x'],color=arrow['c']):self.assertTrue(arrow['retainedByActualRenderer'])
+                                                               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_positive_or_negative_nonzero_grid_arrows_are_retained (__main__.ArrowCensus.test_positive_or_negative_nonzero_grid_arrows_are_retained) (id='SIM-C3-L09-02', x=10, color=7557296)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/editorial/reviews/C3-36-cb9-independent-20261127/test-complete-arrow-census.py", line 20, in test_positive_or_negative_nonzero_grid_arrows_are_retained
+    with self.subTest(id=r['id'],x=case['x'],color=arrow['c']):self.assertTrue(arrow['retainedByActualRenderer'])
+                                                               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.009s
+
+FAILED (failures=7)
+Traceback (most recent call last):
+  File "/private/tmp/cric-bounded-local.py", line 7, in <module>
+    subprocess.run(sys.argv[1:],check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py", line 579, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['python3', '-B', 'editorial/reviews/C3-36-cb9-independent-20261127/test-complete-arrow-census.py']' returned non-zero exit status 1.

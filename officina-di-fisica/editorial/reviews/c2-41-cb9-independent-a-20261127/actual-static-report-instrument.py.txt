@@ -1,0 +1,8 @@
+from pathlib import Path
+import sys,json
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');sys.path.insert(0,str(A));from tools.corpus_engineering import c2_41_static_cb9_verifier_a as v
+report=v.report();(v.BASE/'current-static-source-math-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+for row in report['records']:
+ c=row['installedCode'];print(row['id'],'source_math',row['sourceMathOk'],'code_geometry',row['codeGeometryOk'],'errors',c.get('errors',[]),'geometryErrors',c.get('geometryErrors',[]))
+print('DRAFT',report['separateStevinoDraft']['textMathOk'],'CHECKS',sum(len(r['exactChecks'])for r in report['records']))
+assert len(report['records'])==41 and all(r['sourceMathOk']for r in report['records']if r['id']!='SIM-C2-L002-01')and report['separateStevinoDraft']['textMathOk']

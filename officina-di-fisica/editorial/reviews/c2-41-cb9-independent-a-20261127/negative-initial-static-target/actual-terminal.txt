@@ -1,0 +1,41 @@
+SHARED_LOCK_ACQUIRED; free bytes 3875758080; one child
+test01_exact_scope_and_pending_ui (tests.corpus.test_c2_41_static_cb9_a.C2FortyOneStatic.test01_exact_scope_and_pending_ui) ... ok
+test02_source_conflict_and_separate_draft (tests.corpus.test_c2_41_static_cb9_a.C2FortyOneStatic.test02_source_conflict_and_separate_draft) ... ok
+test03_all_scalar_faults_rejected_by_models (tests.corpus.test_c2_41_static_cb9_a.C2FortyOneStatic.test03_all_scalar_faults_rejected_by_models) ... FAIL
+test04_original_and_draft_versions_and_identity (tests.corpus.test_c2_41_static_cb9_a.C2FortyOneStatic.test04_original_and_draft_versions_and_identity) ... ok
+test05_finite_exact_guards_before_cast (tests.corpus.test_c2_41_static_cb9_a.C2FortyOneStatic.test05_finite_exact_guards_before_cast) ... ok
+test06_legal_domains_and_selectors (tests.corpus.test_c2_41_static_cb9_a.C2FortyOneStatic.test06_legal_domains_and_selectors) ... ok
+test07_missing_inlet_fails_current_geometry (tests.corpus.test_c2_41_static_cb9_a.C2FortyOneStatic.test07_missing_inlet_fails_current_geometry) ... ok
+test08_each_geometric_fix_has_an_actual_counterexample (tests.corpus.test_c2_41_static_cb9_a.C2FortyOneStatic.test08_each_geometric_fix_has_an_actual_counterexample) ... ok
+test09_constitutive_mutants_do_not_pass_by_hash (tests.corpus.test_c2_41_static_cb9_a.C2FortyOneStatic.test09_constitutive_mutants_do_not_pass_by_hash) ... ERROR
+test10_no_unearned_ui_claim (tests.corpus.test_c2_41_static_cb9_a.C2FortyOneStatic.test10_no_unearned_ui_claim) ... ok
+test11_exact_legal_interpolation_and_known_reference (tests.corpus.test_c2_41_static_cb9_a.C2FortyOneStatic.test11_exact_legal_interpolation_and_known_reference) ... ok
+
+======================================================================
+ERROR: test09_constitutive_mutants_do_not_pass_by_hash (tests.corpus.test_c2_41_static_cb9_a.C2FortyOneStatic.test09_constitutive_mutants_do_not_pass_by_hash)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tests/corpus/test_c2_41_static_cb9_a.py", line 62, in test09_constitutive_mutants_do_not_pass_by_hash
+    checks=m.independent_checks()if hasattr(m,'independent_checks')else m.all_exact_checks()if hasattr(m,'all_exact_checks')else m.exact_checks();self.assertTrue(any(not c['ok']for values in checks.values()for c in values))
+                                                                        ~~~~~~~~~~~~~~~~~~^^
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/editorial/reviews/c2-41-cb9-independent-a-20261127/recovered/experiments_C2_flows_interfaces_code_verifier.py", line 174, in all_exact_checks
+    possible=inverse_inputs(key,want);check(key,'physical inverse includes actual input'+str(x),int(any(sp.simplify(v-number(x))==0 for v in possible)),1)
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/editorial/reviews/c2-41-cb9-independent-a-20261127/recovered/experiments_C2_flows_interfaces_code_verifier.py", line 138, in inverse_inputs
+    if not valid:raise ValueError('Inverse outside physical control domain')
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Inverse outside physical control domain
+
+======================================================================
+FAIL: test03_all_scalar_faults_rejected_by_models (tests.corpus.test_c2_41_static_cb9_a.C2FortyOneStatic.test03_all_scalar_faults_rejected_by_models)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tests/corpus/test_c2_41_static_cb9_a.py", line 20, in test03_all_scalar_faults_rejected_by_models
+    for key,r in wrong.items():self.assertTrue(r.get('errors'),key)
+                               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: None is not true : SIM-C2-L001-01
+
+----------------------------------------------------------------------
+Ran 11 tests in 22.693s
+
+FAILED (failures=1, errors=1)
+CHILD_EXIT 1; free bytes 3874144256

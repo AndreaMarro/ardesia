@@ -25,12 +25,24 @@ def collect(repo,commit,p,pin):
  else:pending[dest]=b
  files[p]={'sourceCommit':commit,'sha256':pin}
  return b
-for role,ref,path,pin in deliveries:
- repo='/private/tmp/cric-author-'+role+'-resident'
- raw=collect(repo,ref,path,pin);manifest=json.loads(raw)
- assert manifest['humanApproval']=='NOT_RUN'
- for p,d in manifest['files'].items():collect(repo,ref,p,d if isinstance(d,str)else d['sha256'])
+repos = {
+    'a': '/private/tmp/cric-author-a-resident',
+    'b': '/private/tmp/cric-author-b-resident',
+    'core': '/private/tmp/cric-experiment-contract-fix',
+}
+for role, ref, path, pin in deliveries:
+    repo = repos[role]
+    manifest = json.loads(collect(repo, ref, path, pin))
+    assert manifest['humanApproval'] == 'NOT_RUN'
+    declared = manifest['files']
+    if isinstance(declared, list):
+        entries = {item['path'].removeprefix('officina-di-fisica/'): item['sha256'] for item in declared}
+        assert len(entries) == len(declared)
+    else:
+        entries = {name: item if isinstance(item, str) else item['sha256'] for name, item in declared.items()}
+    for name, expected in entries.items():
+        collect(repo, ref, name, expected)
 for dest,b in pending.items():dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(b)
 receipt=app/f'editorial/reviews/cric-c6-{mode}-root-recovery-20261127.json'
-receipt.write_text(json.dumps({'scope':'Exact bounded delivery from declared immutable C6 owner or independent reviewer','deliveries':deliveries,'replacedPreviouslyRecoveredPaths':replaced,'files':dict(sorted(files.items()))},indent=2)+'\n')
+receipt.write_text(json.dumps({'scope':'Exact bounded delivery from a declared immutable author or independent reviewer','deliveries':deliveries,'replacedPreviouslyRecoveredPaths':replaced,'files':dict(sorted(files.items()))},indent=2)+'\n')
 print('Verified and acquired',len(files),'unique immutable paths across both roles')

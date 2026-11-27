@@ -1,0 +1,96 @@
+"""Distinct C2 source/math/current-code partial. UI remains pending, never registrable."""
+from pathlib import Path
+from fractions import Fraction
+import hashlib,json,math,zipfile,importlib.util,importlib.machinery,types,sys
+from .pipeline import digest
+APP=Path(__file__).resolve().parents[2]
+BASE=APP/'editorial/reviews/c2-41-cb9-independent-a-20261127'
+RUNTIME='cb9fc66d96ecced2addff3df4dfbeb0b5834e73a13719a78ea964bc28a5ada49'
+MODELS={}
+def load(name):
+    if name in MODELS:return MODELS[name]
+    folder=BASE/'recovered';pins={x['snapshot']:x['sha256']for x in json.loads((folder/'git-inputs.json').read_bytes())['inputs']}
+    p=folder/name
+    if hashlib.sha256(p.read_bytes()).hexdigest()!=pins[name]:raise ValueError('Frozen model source changed')
+    package=__package__+'._c2_41_frozen_a'
+    if package not in sys.modules:
+        parent=types.ModuleType(package);parent.__path__=[str(folder)];sys.modules[package]=parent
+        from . import pipeline
+        sys.modules[package+'.pipeline']=pipeline
+    full=package+'.'+name.removesuffix('.py');loader=importlib.machinery.SourceFileLoader(full,str(p));spec=importlib.util.spec_from_loader(full,loader);m=importlib.util.module_from_spec(spec);sys.modules[full]=m
+    if name=='experiments_pressure_hydrostatics_047_verifier.py':load('runtime_fingerprint.py')
+    if name in ['experiments_flow_continuity_code_verifier.py','experiments_C2_flows_interfaces_code_verifier.py']:
+        boundary=load('experiments_C2_code_partial_review.py');boundary.APP=folder
+    loader.exec_module(m);MODELS[name]=m;return m
+
+def frozen_sources():return {r['id']:r for r in json.loads((BASE/'inputs/original-esperienze-C2.json').read_bytes())}
+def collected():
+    receipt=json.loads((BASE/'actual-current-node-receipt.json').read_bytes())
+    if receipt['actualNodeExit']!=0 or receipt['runtimeBefore']!=receipt['runtimeAfter']or receipt['runtimeBefore']['sha256']!=RUNTIME:raise ValueError('Actual current collection required')
+    zpath=BASE/'actual-current-node-verbatim.zip'
+    if hashlib.sha256(zpath.read_bytes()).hexdigest()!=receipt['zipSha256']:raise ValueError('Collection ZIP drift')
+    with zipfile.ZipFile(zpath)as z:
+        if z.namelist()!=['actual-current-node.json']:raise ValueError('Unexpected archive members')
+        raw=z.read('actual-current-node.json')
+    if hashlib.sha256(raw).hexdigest()!=receipt['rawSha256']:raise ValueError('Actual raw collection drift')
+    p=json.loads(raw)
+    if p['UI']!='NOT_RUN'or p['scientificApproval']is not False or len(p['records'])!=42:raise ValueError('No UI/approval inference')
+    return p
+
+def exact_number(x):
+    import sympy as sp
+    if type(x)not in(int,Fraction)and not isinstance(x,sp.Expr):raise ValueError('Exact finite real required, before casts')
+    v=sp.sympify(x)
+    if v.is_number is not True or v.is_real is not True or v.is_finite is not True:raise ValueError('Exact finite real required')
+    return v
+
+def model_for(key):
+    for name in ['experiments_pressure_hydrostatics_047_verifier.py','experiments_hydraulics_buoyancy_code_verifier.py','experiments_flow_continuity_code_verifier.py','experiments_C2_flows_interfaces_code_verifier.py']:
+        m=load(name)
+        if key in m.SPECS:return m
+    raise ValueError('Unknown C2 activity')
+
+def exact_value(key,x):
+    x=exact_number(x);m=model_for(key);spec=m.SPECS[key];lo,hi=map(lambda v:exact_number(Fraction(str(v))),spec[:2])
+    if not lo<=x<=hi:raise ValueError('Outside actual control domain')
+    if key in ['SIM-C2-L001-01','SIM-C2-L008-02']and x.is_integer is not True:raise ValueError('Discrete physical selector')
+    return m.exact_value(key,x)
+
+def compare(proof):
+    sources=frozen_sources();rows={r['id']:r for r in proof['records']if r['variant']=='original'}
+    if len(rows)!=41 or set(rows)!=set(sources):raise ValueError('Missing/duplicate exact original activity IDs')
+    out={};pressure=load('experiments_pressure_hydrostatics_047_verifier.py')
+    current={k:{**rows[k],'cases':[{**c,'output':c['solve']}for c in rows[k]['cases']],'formatRoundtrip':rows[k]['assessmentFormat']}for k in pressure.SPECS}
+    pressure_cmp=pressure.compare_runtime(current);pressure_math=pressure.independent_checks()
+    for k in pressure.SPECS:out[k]={'checks':pressure_math[k],'codeComparison':pressure_cmp[k]}
+    hydro=load('experiments_hydraulics_buoyancy_code_verifier.py');hydro_cmp=hydro.compare_installed({'records':[rows[k]for k in hydro.SPECS]});hydro_math=hydro.exact_checks()
+    for k in hydro.SPECS:out[k]={'checks':hydro_math[k],'codeComparison':hydro_cmp[k]}
+    boundary=load('experiments_C2_code_partial_review.py');flow=load('experiments_flow_continuity_code_verifier.py');fc=boundary.compare(flow,{'records':[rows[k]for k in flow.SPECS]},sources);fm=flow.exact_checks()
+    for k in flow.SPECS:out[k]={'checks':fm[k],'codeComparison':fc[k]}
+    other=load('experiments_C2_flows_interfaces_code_verifier.py')
+    for group in ['bernoulli','viscosity-poiseuille','networks','capillarity']:
+        m=other.for_group(group);comp=boundary.compare(m,{'records':[rows[k]for k in m.SPECS]},sources);checks=m.exact_checks()
+        for k in m.SPECS:out[k]={'checks':checks[k],'codeComparison':comp[k]}
+    return out
+
+def draft_review(proof):
+    from .review_contract import reviewed_rows
+    package=json.loads((BASE/'inputs/experiment-stevino-revision-047.json').read_bytes());bindings=json.loads((BASE/'inputs/experiment-stevino-revision-047-bindings.json').read_bytes());r=package['records'][0];b=bindings[0];source=frozen_sources()[r['id']]
+    token=digest({'record':r,'assets':b['assetChecksums'],'source':{'id':b['sourceId'],'ref':b['sourceRef'],'sha256':b['sourceSha256']}})
+    row,link,signature,assets,errors=reviewed_rows(package,bindings,{r['id']:token},{r['id']},BASE/'inputs')[0]
+    if errors or b['sourceSha256']!=digest(source)or r['version']!=2 or r['baseVersion']!=1:raise ValueError('Separate Stevino identity/provenance')
+    if r['assessmentSelection']!={'schemaVersion':'1.0.0','points':[2,1.5]}or '981/100'not in r['formula']or '981/100'not in r['transferPrompt']:raise ValueError('Reviewed common gravity/domain altered')
+    actual=next(x for x in proof['records']if x['variant']=='draft');m=load('experiment_stevino_revision_047_math_verifier.py');checks=m.independent_checks();tasks=[]
+    for task,x in zip(actual['assessment'],[2,Fraction(3,2)],strict=True):
+        want=Fraction(981,100)*x;tasks.append({'input':str(x),'requiredExact':str(want),'actual':task['value'],'unit':task['unit'],'ok':load('experiments_C2_code_partial_review.py').near(task['value'],want)and task['unit']=='kPa','actualPrompt':task['prompt']})
+    return {'id':r['id'],'candidateVersion':2,'sourceVersion':1,'sourceSha256':digest(source),'candidateSha256':digest(r),'reviewedSignature':signature,'checks':checks,'tasks':tasks,'textMathOk':all(c['ok']for c in checks)and all(t['ok']for t in tasks),'originalPublishedIssueRetained':True,'UI':'PENDING_ACTUAL_REMOTE_DRAFT_CASES','ok':False,'overallComplete':False,'activityCredit':0}
+
+def report(proof=None):
+    proof=proof or collected();comparisons=compare(proof);sources=frozen_sources();records=[]
+    for key,entry in comparisons.items():
+        m=model_for(key);primary={r['id']:r for r in json.loads((BASE/'recovered/editorial/reviews/experiments-C2-hydraulics-continuity-prompt-primary-20261125.json').read_bytes())['records']};manual=m.MANUAL[key] if hasattr(m,'MANUAL') else primary[key]['independentDerivation']+'. '+primary[key]['manualProcedure'];assumptions=m.ASSUMPTIONS[key] if hasattr(m,'ASSUMPTIONS') else primary[key]['assumptionsAndDomain'];code=entry['codeComparison'];math_ok=all(c['ok']for c in entry['checks']);errors=code.get('errors',[]);geometry=code.get('geometryErrors',[])
+        code_ok=code.get('ok',code.get('installedScalarTasksAndClocksOk',not errors));geometry_ok=code.get('geometryCodeOk',not geometry)
+        if key=='SIM-C2-L002-01':science=False;issue='Original transfer explicitly g10, required15kPa at1.5m; engine/task9.81 gives14.715. Separate DRAFT2 declares9.81.'
+        else:science=math_ok and code_ok;issue=None
+        records.append({'id':key,'version':sources[key]['version'],'sourceSha256':digest(sources[key]),'exactChecks':entry['checks'],'sourceMathOk':science,'sourceIssue':issue,'installedCode':code,'codeGeometryOk':geometry_ok,'manualArithmeticRecovered':manual,'physicalAssumptionsRecovered':assumptions,'freshSourceReading':True,'currentRuntimeSha256':RUNTIME,'UI':'PENDING_ACTUAL_REMOTE_REPORT','visualReview':'PENDING','ok':False,'overallComplete':False,'activityCredit':0,'humanApproval':'NOT_RUN'})
+    return {'schemaVersion':'1.0.0','phase':'NEW_DISTINCT_CURRENT_SOURCE_MATH_CODE_PARTIAL_NOT_REGISTRABLE','runtimeSha256':RUNTIME,'records':records,'separateStevinoDraft':draft_review(proof),'UI':'PENDING_ACTUAL_REMOTE_REPORT','acceptedActivityCount':0,'humanApproval':'NOT_RUN','publicationAction':'NONE','originalHistoricalReportsUnchanged':True}

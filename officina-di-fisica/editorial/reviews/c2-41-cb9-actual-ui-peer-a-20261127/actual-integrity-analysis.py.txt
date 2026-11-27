@@ -1,0 +1,83 @@
+from pathlib import Path,PurePosixPath
+import sys,json,zipfile,hashlib,math,collections
+from fractions import Fraction
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');sys.path.insert(0,str(A));from tools.corpus_engineering import c2_41_static_cb9_verifier_a as models
+D=A/'editorial/reviews/c2-41-cb9-actual-ui-peer-a-20261127';D.mkdir(exist_ok=True);Z=Path('/private/tmp/cric-cb9-45917299096-C2-original.zip');PREFIX='_temp/experiment-C2/evidence/';SHA='7e7106ecf91b21e16db59443f9d225df252bd9a8289c385287714f3cc297d4f9';h=lambda b:hashlib.sha256(b).hexdigest();assert Z.stat().st_size==165112617 and hashlib.file_digest(Z.open('rb'),'sha256').hexdigest()==SHA
+
+def near(x,y):return type(x)in(int,float)and math.isfinite(x)and math.isclose(x,float(y),rel_tol=1e-10,abs_tol=1e-10)
+def project(p,c):
+ m=c['sourceDerivedCamera']['matrixWorld'];q=c['sourceDerivedCamera']['projectionMatrix'];assert q[15]==1 and q[3]==q[7]==q[11]==0
+ v=[p[i]-m[12+i]for i in range(3)];xx=sum(m[i]*v[i]for i in range(3));yy=sum(m[4+i]*v[i]for i in range(3));return((1+q[0]*xx)*c['canvas']['width']/2,(1-q[5]*yy)*c['canvas']['height']/2)
+def hull(points):
+ ps=sorted(set(points))
+ if len(ps)<=2:return ps
+ cross=lambda o,a,b:(a[0]-o[0])*(b[1]-o[1])-(a[1]-o[1])*(b[0]-o[0])
+ lo=[];up=[]
+ for p in ps:
+  while len(lo)>=2 and cross(lo[-2],lo[-1],p)<=0:lo.pop()
+  lo.append(p)
+ for p in reversed(ps):
+  while len(up)>=2 and cross(up[-2],up[-1],p)<=0:up.pop()
+  up.append(p)
+ return lo[:-1]+up[:-1]
+def separation(poly,box):
+ rect=[(box['x']-box['w']/2,box['y']-box['h']/2),(box['x']+box['w']/2,box['y']-box['h']/2),(box['x']+box['w']/2,box['y']+box['h']/2),(box['x']-box['w']/2,box['y']+box['h']/2)]
+ axes=[(1,0),(0,1)]
+ for i,p in enumerate(poly):
+  q=poly[(i+1)%len(poly)];dx,dy=q[0]-p[0],q[1]-p[1];length=math.hypot(dx,dy)
+  if length:axes.append((-dy/length,dx/length))
+ gaps=[]
+ for ax,ay in axes:
+  a=[x*ax+y*ay for x,y in poly];b=[x*ax+y*ay for x,y in rect];gaps.append(max(min(b)-max(a),min(a)-max(b)))
+ return max(gaps)
+with zipfile.ZipFile(Z)as z:
+ names=z.namelist();assert len(names)==len(set(names))and all(not PurePosixPath(n).is_absolute()and'..'not in PurePosixPath(n).parts for n in names)
+ planRaw=z.read(PREFIX+'prepared.json');reportRaw=z.read(PREFIX+'report.json');receiptRaw=z.read(PREFIX+'terminal-receipt.json');plan=json.loads(planRaw);report=json.loads(reportRaw);receipt=json.loads(receiptRaw)
+ assert receipt['observedExitCode']==0 and receipt['error']is None and not report['errors']and report['technicalStatus']=='ALL_PLANNED_CASES_OBSERVED_REVIEW_NOT_GRANTED'
+ assert receipt['runtimeSha256']==report['runtimeFingerprint']['sha256']==plan['runtimeFingerprint']['sha256']==models.RUNTIME
+ assert receipt['requestSha256']==report['requestSha256']==plan['requestSha256']=='9b3651b34beace77fab0ba9d57934a88c00d339dd974596c92e9f83722b0dac5'
+ assert h(planRaw)==report['preparedSha256']==receipt['preparedSha256'];assert len(report['cases'])==7440 and len(set(x['caseKey']for x in report['cases']))==7440 and set(x['caseKey']for x in report['cases'])==set(plan['expectedCaseKeys'])
+ sources=models.frozen_sources();assert len(sources)==41;prepared={(r['id'],r['variant']):r for r in plan['records']};assert len(prepared)==42
+ stats={key:{'id':key[0],'variant':key[1],'cases':0,'setup':0,'grid':0,'clock':0,'profiles':collections.Counter(),'errors':[],'alarms':[],'questionStatuses':[],'pngs':set()}for key in prepared};caseIndex=[];screens={};expected_cache={};alarms=[];partcount=0;checks=0
+ for item in report['cases']:
+  raw=z.read(PREFIX+item['file']);assert h(raw)==item['sha256'];c=json.loads(raw);assert c['caseKey']==item['caseKey']and c['technicalOk']and item['technicalOk']and c['scientificApproval']is False and c['humanApproval']=='NOT_RUN'and c['activityCredit']==0 and c['runtimeSha256']==models.RUNTIME
+  key=(c['id'],c['variant']);s=stats[key];p=prepared[key];assert c['sourceSha256']==p['sourceSha256']and c['candidateSha256']==p['candidateSha256'];s['cases']+=1;profile=c['profile'];prof=('fallback'if profile['fallback']else profile['view'])+str(profile['width']);s['profiles'][prof]+=1
+  for png in c['screenshots']:
+   if png['file']in screens:assert screens[png['file']]==png['sha256']
+   else:assert h(z.read(PREFIX+png['file']))==png['sha256'];screens[png['file']]=png['sha256']
+   s['pngs'].add(png['file'])
+  info={'caseKey':c['caseKey'],'caseFile':item['file'],'caseSha256':item['sha256'],'id':key[0],'variant':key[1],'profile':profile,'screenshots':c['screenshots']}
+  if 'interaction'not in c:
+   s['setup']+=1;assert len(c['questions'])==2 and not c['axe']
+   for q in c['questions']:
+    status=q['status'];good=status.startswith('Corretto.');assert good==q['expectedAccepted'];s['questionStatuses'].append({'input':q['input'],'actualPrompt':q['actualPrompt'],'expectedAccepted':q['expectedAccepted'],'status':status})
+   info['kind']='setup'
+  else:
+   i=c['interaction'];info.update(kind=i['kind'],x=c['sourceReplayedX'],time=c['sourceReplayedClockTime'],interactionIndex=i['index']);s[i['kind']]+=1
+   assert near(c['requestedX'],i['x'])and near(c['model']['x'],c['sourceReplayedX'])
+   if i['kind']=='grid':assert near(i['x'],p['grid'][i['index']])
+   else:assert near(i['time'],p['clockCases'][i['index']]['time'])
+   x=Fraction(str(c['sourceReplayedX']));cache=(key[0],x)
+   if cache not in expected_cache:expected_cache[cache]=models.model_for(key[0]).exact_value(key[0],x)
+   want=expected_cache[cache];assert near(c['model']['y'],want),(c['caseKey'],c['model']['y'],str(want));checks+=1
+   if c.get('legendLayout'):assert c['legendLayout']['visible']and c['legendLayout']['scrollWidth']<=c['legendLayout']['width']+1
+   assert not any(e.get('text')in['Sonda','Superficie','A₁','4 A₁','Nodo A','Nodo B']for e in c['elements']if e.get('kind')=='label'and key[0]in['SIM-C2-L001-05','SIM-C2-L002-01','SIM-C2-L002-02','SIM-C2-L003-01','SIM-C2-L005-05'])
+   if not profile['fallback']:
+    assert c['sourceDerivedCamera']['view']==profile['view']
+    for glyph in c.get('nativeGlyphs',[]):
+     for number,part in enumerate(glyph['parts']):
+      poly=hull([project(v,c)for v in part['vertices']]);partcount+=1
+      margin=min(min(x,c['canvas']['width']-x,y,c['canvas']['height']-y)for x,y in poly)
+      if margin<0:
+       a={'caseKey':c['caseKey'],'elementIndex':glyph['elementIndex'],'part':number,'kind':'VIEWPORT','marginPixels':margin};alarms.append(a);s['alarms'].append(a)
+      for label in c.get('labels',[]):
+       gap=separation(poly,label['box'])
+       if gap<0:
+        a={'caseKey':c['caseKey'],'elementIndex':glyph['elementIndex'],'part':number,'kind':'LABEL_OVERLAP_CANDIDATE','label':label['text'],'signedSATGapPixels':gap};alarms.append(a);s['alarms'].append(a)
+  caseIndex.append(info)
+ for key,s in stats.items():
+  p=prepared[key];assert s['setup']==8 and s['grid']==8*len(p['grid'])and s['clock']==8*len(p['clockCases']);s['profiles']=dict(s['profiles']);s['uniquePngs']=len(s.pop('pngs'))
+ print('INTEGRITY',len(caseIndex),'mathStates',checks,'parts',partcount,'alarms',len(alarms),'uniquePNGs',len(screens),flush=True)
+ for name,raw in [('actual-remote-report.json',reportRaw),('actual-remote-prepared.json',planRaw),('actual-remote-terminal-receipt.json',receiptRaw)]: (D/name).write_bytes(raw)
+ (D/'case-index.json').write_text(json.dumps(caseIndex,ensure_ascii=False,separators=(',',':'))+'\n');(D/'current-projection-alarms.json').write_text(json.dumps(alarms,ensure_ascii=False,indent=2)+'\n');(D/'per-edition-coverage.json').write_text(json.dumps(list(stats.values()),ensure_ascii=False,indent=2)+'\n');(D/'png-index.json').write_text(json.dumps(screens,sort_keys=True)+'\n')
+ (D/'actual-integrity-and-math-result.json').write_text(json.dumps({'actualExit':0,'sourceArtifactSha256':SHA,'sourceArtifactBytes':Z.stat().st_size,'cases':len(caseIndex),'mathStatesCompared':checks,'fullNativeParts':partcount,'projectionAlarmCandidates':len(alarms),'uniquePngsVerified':len(screens),'profiles':plan['profiles'],'runtimeSha256':models.RUNTIME,'originalCount':41,'separateDraftCount':1,'UIAcquisition':'ACTUAL_REMOTE_EXIT0','manualFrameReading':'PENDING','completeScientificAcceptance':False,'activityCredit':0,'humanApproval':'NOT_RUN'},indent=2)+'\n')
