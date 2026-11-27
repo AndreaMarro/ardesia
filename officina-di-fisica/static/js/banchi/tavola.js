@@ -273,7 +273,7 @@ export function drawing(model, p, s, t, stage, title, projection = 'top', equati
       }
     }
     d += dot(px, pz, green) + label(px + 7, pz - 4, 'P');
-    if (reveal) d += label(15, 185, 'Spostamento in P · ' + n(1000 * (s.instant?.y ?? 0)) + ' mm');
+    if (reveal) d += label(15, 185, 'Spostamento in P · ' + n(equations.displacementMillimetres(s.instant?.y ?? 0)) + ' mm');
   }
   return `<svg class="bench-diagram" viewBox="0 0 430 198" role="img" aria-label="${esc('Schema di ' + title)}">${d}</svg>`;
 }

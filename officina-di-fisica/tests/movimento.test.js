@@ -119,6 +119,17 @@ test('Onde · traslazione delle creste, somma puntuale e nodi per fase o cammino
     dt = 0.12;
   near(Math.cos(s.k * 0.2), Math.cos(s.k * (0.2 + 0.6 * dt) - s.omega * dt));
 });
+test('Onde · lettura dello zero istantaneo e degli spostamenti prima e dopo', () => {
+  const p = {f:1, d:1.2, phase:0, x:0, z:0};
+  const s = onde.solve(p);
+  const t = 1 / 4;
+  const displayed = time => onde.readings(p, s, time).find(([name]) => name === 'Spostamento istantaneo')[1];
+  assert.equal(displayed(t), 0);
+  assert.equal(s.envelope, 0.004);
+  assert.equal(displayed(t - 0.000001), 1000 * onde.sample(s, t - 0.000001).y);
+  assert.equal(displayed(t + 0.000001), 1000 * onde.sample(s, t + 0.000001).y);
+  assert.ok(displayed(t - 0.000001) > 0 && displayed(t + 0.000001) < 0);
+});
 test('Orologio · stesso istante a 24, 60, 120 fps, arresto e riavvio del ciclo', () => {
   for (const fps of [24, 60, 120]) {
     let t = 0;
