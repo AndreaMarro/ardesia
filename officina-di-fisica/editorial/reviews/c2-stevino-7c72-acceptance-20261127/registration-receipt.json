@@ -1,0 +1,33 @@
+{
+  "activityIds": [
+    "SIM-C2-L002-01"
+  ],
+  "added": 1,
+  "runtimeSha256": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6",
+  "reportSha256": "33b6b58fa907b78ee1740e9071f07d1dbf77c483897db50d1b301ab1a9b7d89b",
+  "registrySha256": "317bc02e087a11f6be1a81b03a8aee95b2fc8abb81fb1c1acd928def6a1d82b0",
+  "registeredAcrossEvidenceEpochs": 267,
+  "openActivities": 118,
+  "actualObservedCases": 120,
+  "protectedPreviewCases": 3,
+  "negativeChecks": [
+    {
+      "test": "draft_text_drift",
+      "rejected": true,
+      "reason": "Observed record differs from its complete canonical owner record: SIM-C2-L002-01"
+    },
+    {
+      "test": "boolean_not_numeric_normalization",
+      "rejected": true,
+      "reason": "Observed record differs from its complete canonical owner record: SIM-C2-L002-01"
+    },
+    {
+      "test": "source_hash_drift",
+      "rejected": true,
+      "reason": "Prepared observation is for a different record: officina-di-fisica/editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/draft-l002-01"
+    }
+  ],
+  "canonicalIntegration": "PENDING",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

@@ -13,7 +13,8 @@ const sha=value=>createHash('sha256').update(value).digest('hex');
 
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const batch=process.argv[2];
-assert.match(batch ?? '',/^[a-z][a-z0-9-]{0,63}$/,'Pass the registered batch ID as the first argument');
+assert.ok(batch,'Usage: node tests/corpus/browser-drafts.mjs <batch-id>');
+assert.match(batch,/^[a-z][a-z0-9-]{0,63}$/);
 const packageFile=path.join(root,'editorial/batches',batch+'.json');
 const output=process.env.ASTRA_RESULTS || path.join(root,'var/corpus-browser',batch);
 const data=await mkdtemp(path.join(tmpdir(),'cric-draft-browser-'));
