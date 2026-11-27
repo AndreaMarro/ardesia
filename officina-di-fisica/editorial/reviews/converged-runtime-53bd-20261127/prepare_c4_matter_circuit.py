@@ -61,9 +61,8 @@ def entries(app, policy):
     return out
 
 
-def prepare(app, repo, staging, directory, width, part):
-    fingerprint,_=profile(app,RUNTIME)
-    assert fingerprint['sha256']==RUNTIME
+def prepare(app, repo, staging, directory, width, part, candidate=CANDIDATE, runtime=RUNTIME):
+    fingerprint,_=profile(app,runtime)
     directory.mkdir(parents=True,exist_ok=True)
     inputs=directory/'inputs'
     inputs.mkdir(exist_ok=True)
@@ -82,8 +81,8 @@ def prepare(app, repo, staging, directory, width, part):
     files={str(inputs/package_name):freeze(inputs/package_name,policy['package']),
            str(inputs/bindings_name):freeze(inputs/bindings_name,policy['bindings'])}
     authority={key:freeze(directory/f'frozen-{key}.json',raw) for key,raw in policy.items() if key in ('review','consumer')}
-    request={'schemaVersion':'1.0.0','scope':f'C4_FIRST_SEVEN_DRAFTS_{part.upper()}_{width}','runtimeSha256':RUNTIME,
-             'runtimeCommit':CANDIDATE,'collectorSha256':COLLECTOR,'independentPeerCommit':PEER,
+    request={'schemaVersion':'1.0.0','scope':f'C4_FIRST_SEVEN_DRAFTS_{part.upper()}_{width}','runtimeSha256':runtime,
+             'runtimeCommit':candidate,'collectorSha256':COLLECTOR,'independentPeerCommit':PEER,
              'authoritySha256':authority,'inputFiles':files,'activityCredit':0,'humanApproval':'NOT_RUN','publicationAction':'NONE'}
     profiles=[{'width':width,'view':view,'fallback':view=='fixed_projection'}
               for view in ('orbit','side','top','fixed_projection')]
@@ -94,7 +93,7 @@ def prepare(app, repo, staging, directory, width, part):
             keys.extend([start+'|setup',*(start+f'|grid|{index}' for index in range(len(row['grid']))),
                          *(start+f'|clock|{index}' for index in range(len(row['clockCases'])))])
     plan={'schemaVersion':'1.0.0','scope':request['scope'],'course':'C4','originalRef':ORIGINAL,
-          'runtimeFingerprint':fingerprint,'sourceCommit':CANDIDATE,'requestSha256':write(directory/'request.json',request),
+          'runtimeFingerprint':fingerprint,'sourceCommit':candidate,'requestSha256':write(directory/'request.json',request),
           'records':rows,'draftRecords':json.loads(policy['package'])['records'],'profiles':profiles,
           'expectedCaseKeys':keys,'inputFiles':files,'packageFiles':[str(inputs/package_name)],
           'activityCredit':0,'humanApproval':'NOT_RUN','publicationAction':'NONE'}
@@ -113,5 +112,8 @@ if __name__=='__main__':
     parser.add_argument('output',type=Path)
     parser.add_argument('width',type=int,choices=(320,1280))
     parser.add_argument('part',choices=('matter','circuits'))
+    parser.add_argument('--runtime-ref', default=CANDIDATE)
+    parser.add_argument('--runtime-sha256', default=RUNTIME)
     args=parser.parse_args()
-    prepare(args.app.resolve(),args.peer.resolve(),args.staging.resolve(),args.output.resolve(),args.width,args.part)
+    prepare(args.app.resolve(),args.peer.resolve(),args.staging.resolve(),args.output.resolve(),args.width,args.part,
+            args.runtime_ref,args.runtime_sha256)
