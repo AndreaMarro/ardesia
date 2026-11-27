@@ -1,0 +1,61 @@
+{
+  "decision": "NOT_ACCEPTED_RESIDUAL_PARTICLE_AND_AXIS_CART_MASKS",
+  "ok": false,
+  "actualTechnicalExitCode": 0,
+  "actualCases": 48,
+  "all48FramesReadIn4ContactSheets": true,
+  "originalPngIndividuallyOpened": [
+    "vertical-apex-320-orbit.png",
+    "default-start-320-orbit.png",
+    "default-start-320-side.png",
+    "vertical-apex-1280-orbit.png",
+    "default-start-1280-side.png",
+    "vertical-near-apex-1280-orbit.png",
+    "vertical-late-1280-orbit.png",
+    "vertical-late-320-orbit.png"
+  ],
+  "id": "LAB3D-02",
+  "sourcePhysicsChanged": false,
+  "nearApexPrimaryDetailRetained": true,
+  "acquiredFindings": [
+    {
+      "kind": "PARTICLE_DEPTH_OCCLUSION",
+      "actualUiCaptures": 6,
+      "distinctPhysicalTimeStates": 3,
+      "scope": "Vertical5m/s; Orbit320/1280; apexT/2,near.5s,late1s. Atapex/near partial SHAFT371samples; late partial CONE443samples including actualFloat32tip. Not whole-cone containment. Counts are duplicated surface samples, not independent UI observations.",
+      "proof": "actual-full-glyph-geometry.json.gz",
+      "summary": "full-glyph-summary.json"
+    },
+    {
+      "kind": "PARTIAL_CONE_RIM_AXIS_CART_MASK",
+      "actualUiCaptures": 1,
+      "scope": "Default4m/s50deg15deg,t0,Side320. zopaque rectangle[59,575,74,594];71/672cone-generator samples with own-front hit project under it. ActualFloat32tipprojection(57.446,585.240) outside cart. Tinypartialrim, not tip or wholecone claim.",
+      "proof": "z-cart-observation.json"
+    }
+  ],
+  "positiveChanges": [
+    "Actual36native cases have no base depthmask or viewport clipping for gravity; floor translation solves previous table shaft issue.",
+    "Side gravity readable in the vertical target states; zero-speedapex does not create a false velocity/detail arrow.",
+    "Nearpeak primary and16xdetail remain present as appropriate; fields/model/source/pilot/format13files byte-identical.",
+    "12forcedfallback cases and actual keyboard legends axe0; strictly checked requested times, displayed5decimalcontrol and4significant-digit time/height/vy readouts."
+  ],
+  "priorExposure": "Reviewer already read prior source laws and negative035/4e75 cases. Root is distinct author; no author tests used as physics oracle. Adjacent C1experience changes are disclosed but not approved, six authored vector IDs remain recused.",
+  "limits": "Bounded48actual cases, not new whole035/036/139/246acceptance; no new Numbergrading/import991/93exams audit.36native Float32+CPUray cases and measured original PNG corroborate visual masks; not GPUintrospection or arbitrary-camera/global-grid certification.",
+  "manualPhysicsOracle": {
+    "g": "981/100m/s^2",
+    "vertical5_apexTime": "500/981s",
+    "vertical5_apexHeight": "1250/981m",
+    "vertical5_landingTime": "1000/981s",
+    "at_half_second_y": "1019/800m",
+    "at_half_second_vy": "19/200m/s",
+    "at_one_second_y": "19/200m",
+    "at_one_second_vy": "-481/100m/s",
+    "graphicGravityLength": "16/25world-unit, not SIacceleration magnitude",
+    "floorGraphicTipLowerBound": "7/50world-unit; graphic and physical units kept separate",
+    "status": "Reviewer derivations only; arbitrary slider readings are not newly assigned hand calculations."
+  },
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "registryOrLedgerAction": "NONE"
+}

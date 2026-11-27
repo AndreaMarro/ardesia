@@ -1,0 +1,27 @@
+test_flight_gravity_91f_review (unittest.loader._FailedTest.test_flight_gravity_91f_review) ... ERROR
+
+======================================================================
+ERROR: test_flight_gravity_91f_review (unittest.loader._FailedTest.test_flight_gravity_91f_review)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_flight_gravity_91f_review
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_flight_gravity_91f_review.py", line 7, in <module>
+    CHECK=module('g91check',B/'artifact-check.py')
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_flight_gravity_91f_review.py", line 6, in module
+    spec=importlib.util.spec_from_file_location(name,path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+                                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/independent-flight-gravity-91f0-20261127/artifact-check.py", line 30
+    want=443 if '-late-'in row['case']else371
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: expected 'else' after 'if' expression
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)
