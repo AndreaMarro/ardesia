@@ -1,0 +1,913 @@
+{
+  "schemaVersion": "1.0.0",
+  "candidateCommit": "6ae3c2a177bcde74b2bebf8f22c1fa50850b0413",
+  "consumerSourceCommit": "b9994b9116e87478905191d85cca8037d17ae4bd",
+  "runtimeSha256": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6",
+  "collectorSha256": "719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15",
+  "status": "PLANNED_ONLY_CHROME_NOT_AUTHORIZED",
+  "runtimeAdoption": "REQUIRES_ROOT_CONFIRMATION_BEFORE_BROWSER_NO_RETAGS",
+  "groups": [
+    {
+      "group": "sim-c3-l03-01-320",
+      "id": "SIM-C3-L03-01",
+      "edition": "DRAFT",
+      "baseVersion": 1,
+      "version": 2,
+      "profiles": [
+        {
+          "width": 320,
+          "view": "orbit",
+          "renderer": "native"
+        },
+        {
+          "width": 320,
+          "view": "side",
+          "renderer": "native"
+        },
+        {
+          "width": 320,
+          "view": "top",
+          "renderer": "native"
+        },
+        {
+          "width": 320,
+          "view": "fixed_projection",
+          "renderer": "fallback"
+        }
+      ],
+      "states": [
+        {
+          "kind": "grid",
+          "x": 0
+        },
+        {
+          "kind": "grid",
+          "x": 2
+        },
+        {
+          "kind": "grid",
+          "x": 6
+        },
+        {
+          "kind": "grid",
+          "x": 8
+        },
+        {
+          "kind": "grid",
+          "x": 12
+        }
+      ],
+      "questions": [
+        {
+          "input": "400",
+          "expectedAccepted": true
+        },
+        {
+          "input": "300",
+          "expectedAccepted": true
+        }
+      ],
+      "expectedCases": 24,
+      "setupPerProfile": true,
+      "requiresOwnerCompleteRecord": true,
+      "requiresGuestOriginalOrDenied": true
+    },
+    {
+      "group": "sim-c3-l03-01-1280",
+      "id": "SIM-C3-L03-01",
+      "edition": "DRAFT",
+      "baseVersion": 1,
+      "version": 2,
+      "profiles": [
+        {
+          "width": 1280,
+          "view": "orbit",
+          "renderer": "native"
+        },
+        {
+          "width": 1280,
+          "view": "side",
+          "renderer": "native"
+        },
+        {
+          "width": 1280,
+          "view": "top",
+          "renderer": "native"
+        },
+        {
+          "width": 1280,
+          "view": "fixed_projection",
+          "renderer": "fallback"
+        }
+      ],
+      "states": [
+        {
+          "kind": "grid",
+          "x": 0
+        },
+        {
+          "kind": "grid",
+          "x": 2
+        },
+        {
+          "kind": "grid",
+          "x": 6
+        },
+        {
+          "kind": "grid",
+          "x": 8
+        },
+        {
+          "kind": "grid",
+          "x": 12
+        }
+      ],
+      "questions": [
+        {
+          "input": "400",
+          "expectedAccepted": true
+        },
+        {
+          "input": "300",
+          "expectedAccepted": true
+        }
+      ],
+      "expectedCases": 24,
+      "setupPerProfile": true,
+      "requiresOwnerCompleteRecord": true,
+      "requiresGuestOriginalOrDenied": true
+    },
+    {
+      "group": "sim-c3-l03-03-320",
+      "id": "SIM-C3-L03-03",
+      "edition": "DRAFT",
+      "baseVersion": 1,
+      "version": 2,
+      "profiles": [
+        {
+          "width": 320,
+          "view": "orbit",
+          "renderer": "native"
+        },
+        {
+          "width": 320,
+          "view": "side",
+          "renderer": "native"
+        },
+        {
+          "width": 320,
+          "view": "top",
+          "renderer": "native"
+        },
+        {
+          "width": 320,
+          "view": "fixed_projection",
+          "renderer": "fallback"
+        }
+      ],
+      "states": [
+        {
+          "kind": "grid",
+          "x": 0
+        },
+        {
+          "kind": "grid",
+          "x": 2
+        },
+        {
+          "kind": "grid",
+          "x": 10
+        },
+        {
+          "kind": "grid",
+          "x": 11
+        },
+        {
+          "kind": "grid",
+          "x": 20
+        }
+      ],
+      "questions": [
+        {
+          "input": "83.14",
+          "expectedAccepted": true
+        },
+        {
+          "input": "91.454",
+          "expectedAccepted": true
+        }
+      ],
+      "expectedCases": 24,
+      "setupPerProfile": true,
+      "requiresOwnerCompleteRecord": true,
+      "requiresGuestOriginalOrDenied": true
+    },
+    {
+      "group": "sim-c3-l03-03-1280",
+      "id": "SIM-C3-L03-03",
+      "edition": "DRAFT",
+      "baseVersion": 1,
+      "version": 2,
+      "profiles": [
+        {
+          "width": 1280,
+          "view": "orbit",
+          "renderer": "native"
+        },
+        {
+          "width": 1280,
+          "view": "side",
+          "renderer": "native"
+        },
+        {
+          "width": 1280,
+          "view": "top",
+          "renderer": "native"
+        },
+        {
+          "width": 1280,
+          "view": "fixed_projection",
+          "renderer": "fallback"
+        }
+      ],
+      "states": [
+        {
+          "kind": "grid",
+          "x": 0
+        },
+        {
+          "kind": "grid",
+          "x": 2
+        },
+        {
+          "kind": "grid",
+          "x": 10
+        },
+        {
+          "kind": "grid",
+          "x": 11
+        },
+        {
+          "kind": "grid",
+          "x": 20
+        }
+      ],
+      "questions": [
+        {
+          "input": "83.14",
+          "expectedAccepted": true
+        },
+        {
+          "input": "91.454",
+          "expectedAccepted": true
+        }
+      ],
+      "expectedCases": 24,
+      "setupPerProfile": true,
+      "requiresOwnerCompleteRecord": true,
+      "requiresGuestOriginalOrDenied": true
+    },
+    {
+      "group": "sim-c3-l03-04-320",
+      "id": "SIM-C3-L03-04",
+      "edition": "DRAFT",
+      "baseVersion": 1,
+      "version": 2,
+      "profiles": [
+        {
+          "width": 320,
+          "view": "orbit",
+          "renderer": "native"
+        },
+        {
+          "width": 320,
+          "view": "side",
+          "renderer": "native"
+        },
+        {
+          "width": 320,
+          "view": "top",
+          "renderer": "native"
+        },
+        {
+          "width": 320,
+          "view": "fixed_projection",
+          "renderer": "fallback"
+        }
+      ],
+      "states": [
+        {
+          "kind": "grid",
+          "x": 50
+        },
+        {
+          "kind": "grid",
+          "x": 100
+        },
+        {
+          "kind": "grid",
+          "x": 175
+        },
+        {
+          "kind": "grid",
+          "x": 200
+        },
+        {
+          "kind": "grid",
+          "x": 300
+        }
+      ],
+      "questions": [
+        {
+          "input": "50",
+          "expectedAccepted": true
+        },
+        {
+          "input": "48",
+          "expectedAccepted": true
+        }
+      ],
+      "expectedCases": 24,
+      "setupPerProfile": true,
+      "requiresOwnerCompleteRecord": true,
+      "requiresGuestOriginalOrDenied": true
+    },
+    {
+      "group": "sim-c3-l03-04-1280",
+      "id": "SIM-C3-L03-04",
+      "edition": "DRAFT",
+      "baseVersion": 1,
+      "version": 2,
+      "profiles": [
+        {
+          "width": 1280,
+          "view": "orbit",
+          "renderer": "native"
+        },
+        {
+          "width": 1280,
+          "view": "side",
+          "renderer": "native"
+        },
+        {
+          "width": 1280,
+          "view": "top",
+          "renderer": "native"
+        },
+        {
+          "width": 1280,
+          "view": "fixed_projection",
+          "renderer": "fallback"
+        }
+      ],
+      "states": [
+        {
+          "kind": "grid",
+          "x": 50
+        },
+        {
+          "kind": "grid",
+          "x": 100
+        },
+        {
+          "kind": "grid",
+          "x": 175
+        },
+        {
+          "kind": "grid",
+          "x": 200
+        },
+        {
+          "kind": "grid",
+          "x": 300
+        }
+      ],
+      "questions": [
+        {
+          "input": "50",
+          "expectedAccepted": true
+        },
+        {
+          "input": "48",
+          "expectedAccepted": true
+        }
+      ],
+      "expectedCases": 24,
+      "setupPerProfile": true,
+      "requiresOwnerCompleteRecord": true,
+      "requiresGuestOriginalOrDenied": true
+    },
+    {
+      "group": "sim-c3-l04-01-320",
+      "id": "SIM-C3-L04-01",
+      "edition": "DRAFT",
+      "baseVersion": 1,
+      "version": 2,
+      "profiles": [
+        {
+          "width": 320,
+          "view": "orbit",
+          "renderer": "native"
+        },
+        {
+          "width": 320,
+          "view": "side",
+          "renderer": "native"
+        },
+        {
+          "width": 320,
+          "view": "top",
+          "renderer": "native"
+        },
+        {
+          "width": 320,
+          "view": "fixed_projection",
+          "renderer": "fallback"
+        }
+      ],
+      "states": [
+        {
+          "kind": "grid",
+          "x": 0
+        },
+        {
+          "kind": "grid",
+          "x": 1.67
+        },
+        {
+          "kind": "grid",
+          "x": 16.7
+        },
+        {
+          "kind": "grid",
+          "x": 18.37
+        },
+        {
+          "kind": "grid",
+          "x": 33.4
+        },
+        {
+          "kind": "clock",
+          "x": 33.4,
+          "time": 0
+        },
+        {
+          "kind": "clock",
+          "x": 33.4,
+          "time": 0.125
+        },
+        {
+          "kind": "clock",
+          "x": 33.4,
+          "time": 10
+        },
+        {
+          "kind": "clock",
+          "x": 33.4,
+          "time": 20
+        }
+      ],
+      "questions": [
+        {
+          "input": "50",
+          "expectedAccepted": true
+        },
+        {
+          "input": "55",
+          "expectedAccepted": true
+        }
+      ],
+      "expectedCases": 40,
+      "setupPerProfile": true,
+      "requiresOwnerCompleteRecord": true,
+      "requiresGuestOriginalOrDenied": true
+    },
+    {
+      "group": "sim-c3-l04-01-1280",
+      "id": "SIM-C3-L04-01",
+      "edition": "DRAFT",
+      "baseVersion": 1,
+      "version": 2,
+      "profiles": [
+        {
+          "width": 1280,
+          "view": "orbit",
+          "renderer": "native"
+        },
+        {
+          "width": 1280,
+          "view": "side",
+          "renderer": "native"
+        },
+        {
+          "width": 1280,
+          "view": "top",
+          "renderer": "native"
+        },
+        {
+          "width": 1280,
+          "view": "fixed_projection",
+          "renderer": "fallback"
+        }
+      ],
+      "states": [
+        {
+          "kind": "grid",
+          "x": 0
+        },
+        {
+          "kind": "grid",
+          "x": 1.67
+        },
+        {
+          "kind": "grid",
+          "x": 16.7
+        },
+        {
+          "kind": "grid",
+          "x": 18.37
+        },
+        {
+          "kind": "grid",
+          "x": 33.4
+        },
+        {
+          "kind": "clock",
+          "x": 33.4,
+          "time": 0
+        },
+        {
+          "kind": "clock",
+          "x": 33.4,
+          "time": 0.125
+        },
+        {
+          "kind": "clock",
+          "x": 33.4,
+          "time": 10
+        },
+        {
+          "kind": "clock",
+          "x": 33.4,
+          "time": 20
+        }
+      ],
+      "questions": [
+        {
+          "input": "50",
+          "expectedAccepted": true
+        },
+        {
+          "input": "55",
+          "expectedAccepted": true
+        }
+      ],
+      "expectedCases": 40,
+      "setupPerProfile": true,
+      "requiresOwnerCompleteRecord": true,
+      "requiresGuestOriginalOrDenied": true
+    },
+    {
+      "group": "sim-c3-l04-02-320",
+      "id": "SIM-C3-L04-02",
+      "edition": "DRAFT",
+      "baseVersion": 1,
+      "version": 2,
+      "profiles": [
+        {
+          "width": 320,
+          "view": "orbit",
+          "renderer": "native"
+        },
+        {
+          "width": 320,
+          "view": "side",
+          "renderer": "native"
+        },
+        {
+          "width": 320,
+          "view": "top",
+          "renderer": "native"
+        },
+        {
+          "width": 320,
+          "view": "fixed_projection",
+          "renderer": "fallback"
+        }
+      ],
+      "states": [
+        {
+          "kind": "grid",
+          "x": -5
+        },
+        {
+          "kind": "grid",
+          "x": -2
+        },
+        {
+          "kind": "grid",
+          "x": 0
+        },
+        {
+          "kind": "grid",
+          "x": 3
+        },
+        {
+          "kind": "grid",
+          "x": 5
+        }
+      ],
+      "questions": [
+        {
+          "input": "6.78",
+          "expectedAccepted": true
+        },
+        {
+          "input": "0",
+          "expectedAccepted": true
+        }
+      ],
+      "expectedCases": 24,
+      "setupPerProfile": true,
+      "requiresOwnerCompleteRecord": true,
+      "requiresGuestOriginalOrDenied": true
+    },
+    {
+      "group": "sim-c3-l04-02-1280",
+      "id": "SIM-C3-L04-02",
+      "edition": "DRAFT",
+      "baseVersion": 1,
+      "version": 2,
+      "profiles": [
+        {
+          "width": 1280,
+          "view": "orbit",
+          "renderer": "native"
+        },
+        {
+          "width": 1280,
+          "view": "side",
+          "renderer": "native"
+        },
+        {
+          "width": 1280,
+          "view": "top",
+          "renderer": "native"
+        },
+        {
+          "width": 1280,
+          "view": "fixed_projection",
+          "renderer": "fallback"
+        }
+      ],
+      "states": [
+        {
+          "kind": "grid",
+          "x": -5
+        },
+        {
+          "kind": "grid",
+          "x": -2
+        },
+        {
+          "kind": "grid",
+          "x": 0
+        },
+        {
+          "kind": "grid",
+          "x": 3
+        },
+        {
+          "kind": "grid",
+          "x": 5
+        }
+      ],
+      "questions": [
+        {
+          "input": "6.78",
+          "expectedAccepted": true
+        },
+        {
+          "input": "0",
+          "expectedAccepted": true
+        }
+      ],
+      "expectedCases": 24,
+      "setupPerProfile": true,
+      "requiresOwnerCompleteRecord": true,
+      "requiresGuestOriginalOrDenied": true
+    },
+    {
+      "group": "sim-c3-l04-03-320",
+      "id": "SIM-C3-L04-03",
+      "edition": "DRAFT",
+      "baseVersion": 1,
+      "version": 2,
+      "profiles": [
+        {
+          "width": 320,
+          "view": "orbit",
+          "renderer": "native"
+        },
+        {
+          "width": 320,
+          "view": "side",
+          "renderer": "native"
+        },
+        {
+          "width": 320,
+          "view": "top",
+          "renderer": "native"
+        },
+        {
+          "width": 320,
+          "view": "fixed_projection",
+          "renderer": "fallback"
+        }
+      ],
+      "states": [
+        {
+          "kind": "grid",
+          "x": 0
+        },
+        {
+          "kind": "grid",
+          "x": 1
+        },
+        {
+          "kind": "grid",
+          "x": 2
+        },
+        {
+          "kind": "grid",
+          "x": 19
+        },
+        {
+          "kind": "grid",
+          "x": 28
+        },
+        {
+          "kind": "grid",
+          "x": 36
+        },
+        {
+          "kind": "grid",
+          "x": 54
+        },
+        {
+          "kind": "clock",
+          "x": 54,
+          "time": 0.125
+        },
+        {
+          "kind": "clock",
+          "x": 54,
+          "time": 0.25
+        },
+        {
+          "kind": "clock",
+          "x": 54,
+          "time": 1
+        },
+        {
+          "kind": "clock",
+          "x": 54,
+          "time": 9.5
+        },
+        {
+          "kind": "clock",
+          "x": 54,
+          "time": 18
+        },
+        {
+          "kind": "clock",
+          "x": 54,
+          "time": 27
+        }
+      ],
+      "questions": [
+        {
+          "input": "50",
+          "expectedAccepted": true
+        },
+        {
+          "input": "76.47",
+          "expectedAccepted": true
+        }
+      ],
+      "expectedCases": 56,
+      "setupPerProfile": true,
+      "requiresOwnerCompleteRecord": true,
+      "requiresGuestOriginalOrDenied": true
+    },
+    {
+      "group": "sim-c3-l04-03-1280",
+      "id": "SIM-C3-L04-03",
+      "edition": "DRAFT",
+      "baseVersion": 1,
+      "version": 2,
+      "profiles": [
+        {
+          "width": 1280,
+          "view": "orbit",
+          "renderer": "native"
+        },
+        {
+          "width": 1280,
+          "view": "side",
+          "renderer": "native"
+        },
+        {
+          "width": 1280,
+          "view": "top",
+          "renderer": "native"
+        },
+        {
+          "width": 1280,
+          "view": "fixed_projection",
+          "renderer": "fallback"
+        }
+      ],
+      "states": [
+        {
+          "kind": "grid",
+          "x": 0
+        },
+        {
+          "kind": "grid",
+          "x": 1
+        },
+        {
+          "kind": "grid",
+          "x": 2
+        },
+        {
+          "kind": "grid",
+          "x": 19
+        },
+        {
+          "kind": "grid",
+          "x": 28
+        },
+        {
+          "kind": "grid",
+          "x": 36
+        },
+        {
+          "kind": "grid",
+          "x": 54
+        },
+        {
+          "kind": "clock",
+          "x": 54,
+          "time": 0.125
+        },
+        {
+          "kind": "clock",
+          "x": 54,
+          "time": 0.25
+        },
+        {
+          "kind": "clock",
+          "x": 54,
+          "time": 1
+        },
+        {
+          "kind": "clock",
+          "x": 54,
+          "time": 9.5
+        },
+        {
+          "kind": "clock",
+          "x": 54,
+          "time": 18
+        },
+        {
+          "kind": "clock",
+          "x": 54,
+          "time": 27
+        }
+      ],
+      "questions": [
+        {
+          "input": "50",
+          "expectedAccepted": true
+        },
+        {
+          "input": "76.47",
+          "expectedAccepted": true
+        }
+      ],
+      "expectedCases": 56,
+      "setupPerProfile": true,
+      "requiresOwnerCompleteRecord": true,
+      "requiresGuestOriginalOrDenied": true
+    }
+  ],
+  "expectedTotalCases": 384,
+  "maxGroupCases": 56,
+  "resourceGuardBytes": 2147483648,
+  "exclusiveMutex": "/private/tmp/cric-bounded-local-work.lock",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN"
+}

@@ -1,0 +1,12 @@
+from pathlib import Path
+import subprocess,json,hashlib
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c3-six-heat-phase-core6ae3-independent-a-20261127';D.mkdir(exist_ok=True)
+ref='6ae3c2a177bcde74b2bebf8f22c1fa50850b0413';inputs=[]
+for path,snapshot in [('editorial/batches/experiment-c3-heat-transformations-reading-20261127.json','candidate.verbatim.json'),('editorial/batches/experiment-c3-heat-transformations-reading-20261127-bindings.json','bindings.verbatim.json'),('editorial/author-notes/c3-heat-transformations-reading-20261127/AUTHOR-SIX-INDIVIDUAL-READINGS.md','author-manual.verbatim.md'),('editorial/author-notes/c3-heat-transformations-reading-20261127/L04-03-prior-visual-findings-retained.json','prior-visual-negatives.verbatim.json')]:
+ rp='officina-di-fisica/'+path;raw=subprocess.check_output(['git','-c','gc.auto=0','show',ref+':'+rp],cwd=A);(D/snapshot).write_bytes(raw);inputs.append(dict(commit=ref,path=rp,snapshot=snapshot,sha256=hashlib.sha256(raw).hexdigest()))
+original=A/'editorial/reviews/c3-six-heat-phase-source-primary-a-20261127/original-source.verbatim.json'
+(D/'original-source.verbatim.json').write_bytes(original.read_bytes())
+inputs.append(dict(commit='5d1dc8dc7b601aef959d10d564c75462be74708d',path='officina-di-fisica/content/esperienze-C3.json',snapshot='original-source.verbatim.json',sha256=hashlib.sha256(original.read_bytes()).hexdigest()))
+raw=subprocess.check_output(['git','-c','gc.auto=0','show','b9994b9116e87478905191d85cca8037d17ae4bd:officina-di-fisica/content/C3.json'],cwd=A);(D/'lessons-C3.verbatim.json').write_bytes(raw);inputs.append(dict(commit='b9994b9116e87478905191d85cca8037d17ae4bd',path='officina-di-fisica/content/C3.json',snapshot='lessons-C3.verbatim.json',sha256=hashlib.sha256(raw).hexdigest()))
+(D/'git-inputs.json').write_text(json.dumps(dict(schemaVersion='1.0.0',inputs=inputs),indent=2)+'\n')
+(D/'prepare.py.txt').write_bytes(Path(__file__).read_bytes())
