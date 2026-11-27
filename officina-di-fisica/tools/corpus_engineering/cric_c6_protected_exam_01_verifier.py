@@ -470,7 +470,7 @@ REVIEWED_ERROR_CATEGORIES={'C6-Q013': 'calcolo',
  'C6-Q042': 'concetto',
  'C6-Q043': 'concetto'}
 DEPENDENCY_SHA256={'cric_c6_exam01_prompt_only_models_a.py': '3b786131512b3b93cbbb7bcebff61c35f005743a4ea817808e2970d1df92f506',
- 'cric_c6_exam01_review_common_a.py': 'bb07398bbb48c5884523605d3c4110d194c920f4264bebe6d5da1c4636638a27',
+ 'cric_c6_exam01_review_common_a.py': 'c32dc4f20e293a2bf85dc9dd2ee4757b00a9f751606dc882da6bc994ac6fd32e',
  'cric_c6_exam01_review_evidence_a.py': '4b2fccb50707b0d6fbb6a4d32be136c1a32cf4d009f8ed50ffbf6fe9d9130ed6',
  'electric_exact_literals.py': 'b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc'}
 SCIENTIFIC_ASSET_REVIEW=('Complete final SVG XML and independent fresh native640×1740 PNG actually read: signed paths share30 '

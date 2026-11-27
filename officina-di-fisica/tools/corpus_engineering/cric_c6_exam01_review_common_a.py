@@ -63,8 +63,8 @@ def verify(package,bindings,config,asset_root=None):
         if assets and not accessible_svg(root,assets):errors.append('Independent accessible SVG association/title/description failed')
         if binding.get('sourceId')!=identifier or binding.get('sourceRef')!=SOURCE_REF or binding.get('sourceSha256')!=config['READ_SOURCE_SHA256'][identifier]:errors.append('Independent original source mismatch')
         for key in ['id','kind','course','skill','family','difficulty','order','exam','prerequisites','section']:
-            if row.get(key)!=metadata.get(key):errors.append('Independent original identity/taxonomy changed: '+key)
-        if row.get('version')!=metadata['version']+1 or row.get('baseVersion')!=metadata['version']:errors.append('Independent original version chain changed')
+            if digest(row.get(key))!=digest(metadata.get(key)):errors.append('Independent original identity/taxonomy changed: '+key)
+        if type(row.get('version'))is not int or type(row.get('baseVersion'))is not int or row.get('version')!=metadata['version']+1 or row.get('baseVersion')!=metadata['version']:errors.append('Independent original version chain changed')
         if row.get('error',{}).get('target')!=metadata['skill']or row.get('error',{}).get('category')!=config['REVIEWED_ERROR_CATEGORIES'][identifier]:errors.append('Independent feedback mapping changed')
         prov=binding.get('provenance',{})
         if prov.get('sourceOrigin')!='cric'or prov.get('sourcePath')!=SOURCE_PATH or prov.get('sourceVersion')!=metadata['version']or binding.get('provenanceSha256')!=digest(prov):errors.append('Independent source provenance changed')
