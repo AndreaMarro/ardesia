@@ -47,6 +47,7 @@ export async function esperienza(record) {
     const y = calc(x);
     const state = law.apparatus(x, y);
     if (!record.engine && record.id === 'SIM-C2-L005-03') state.puntaVelocitaValleVisibile = true;
+    if (!record.engine && record.id === 'SIM-C2-L005-05') state.punteRamiVisibili = true;
     if (clock?.frame && time !== undefined) Object.assign(state, clock.frame(x, time, y));
     if (['SIM-C2-L009-01', 'SIM-C4-L06-01', 'SIM-C4-L08-01'].includes(record.id)) {
       for (const [side, series] of [

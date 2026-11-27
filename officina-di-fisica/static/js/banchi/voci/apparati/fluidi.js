@@ -275,7 +275,12 @@ export const fluidi = {
       tubo(b, A, l, 0.14);
       tubo(b, l, r, 0.14);
       tubo(b, r, B, 0.14);
-      b.arrow([-0.72, 1.25, 0.9 * k], [-0.72 + 1.1 * f, 1.25, 0.9 * k], k < 0 ? c.viola : c.verde);
+      b.arrow(
+        [-0.72, 1.25, 0.9 * k],
+        [-0.72 + 1.1 * f, 1.25, 0.9 * k],
+        k < 0 ? c.viola : c.verde,
+        s.punteRamiVisibili,
+      );
     }
   },
   film(b, s) {

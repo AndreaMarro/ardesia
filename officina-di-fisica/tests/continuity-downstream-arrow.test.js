@@ -29,3 +29,25 @@ test('continuity keeps the downstream direction legible at every allowed area', 
     }
   }
 });
+
+test('bifurcation maintains proportional, distinguishable arrows and drops only zero flow', async () => {
+  const branch = records.find(record => record.id === 'SIM-C2-L005-05');
+  const bench = await esperienza(branch);
+  for (let upper = branch.control.min; upper <= branch.control.max; upper += branch.control.step) {
+    const lower = 12 - upper;
+    assert.equal(bench.model.solve({x:upper}).y, lower);
+    const arrows = bench.elements(upper, 2).filter(element => element.kind === 'arrow');
+    for (const [flow, color] of [[upper, colore.viola], [lower, colore.verde]]) {
+      const arrow = arrows.find(element => element.c === color);
+      if (flow === 0) {
+        assert.equal(arrow, undefined);
+        continue;
+      }
+      assert.ok(Math.abs(arrow.b[0] - arrow.a[0] - 1.1 * flow / 12) < 1e-12);
+      assert.equal(arrow.dettaglio, true);
+    }
+  }
+  assert.match(bench.legend(2, 'side'), /si sovrappongono/);
+  assert.match(bench.legend(2, 'side'), /dall’alto/);
+  assert.doesNotMatch(bench.legend(2, 'diagram'), /si sovrappongono/);
+});

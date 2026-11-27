@@ -143,6 +143,11 @@ export function legendaVoce(record, vista) {
     const orientamento = vista === 'top' ? ' Con la vista Laterale puoi confrontare le quote dei pistoni.' : '';
     return legenda + ' La freccia rossa indica la discesa a sinistra, la verde la salita a destra. Le frecce indicano solo i versi e scompaiono a corsa zero. Usa le quote e le letture per confrontare le corse: a destra la corsa è un quarto di quella a sinistra.' + orientamento;
   }
+  if (record.id === 'SIM-C2-L005-05') {
+    const orientamento = vista === 'side' ? ' Nella vista Laterale i rami si sovrappongono. Osservali dall’alto per distinguerli.' : '';
+    return 'Ocra · portata entrante. Viola · ramo superiore. Verde · ramo inferiore. '
+      + 'Le frecce hanno la stessa scala e scompaiono nei rami a portata nulla.' + orientamento;
+  }
   if (record.id === 'SIM-C4-L02-02') {
     return 'La carica di sinistra è fissa a +1 nC. Il controllo della carica a destra mostra il valore con segno. '
       + 'Le sfere mostrano cariche positive in rosso, negative in viola e nulle in grigio. '

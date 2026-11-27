@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "1.0.0",
+  "activityId": "SIM-C2-L005-05",
+  "provenanceNegativeCommit": "38b45ecb915fbc0315a8b1fd45e4890d8460e1be",
+  "baselineCommit": "42b37e7e57f6b1a6e467fec183b56eeac2fbb030",
+  "runtimeSha256": "ede9c789291e66e78f30326578a27a7d069d0c85abddbe3d6b631bde8da52ddb",
+  "change": "Wider 2D tips retain the flow direction at short arrow lengths. The accessible legend names branch colours and explains the natural side projection overlap.",
+  "testedFlowMlPerSecond": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "targetRedExitCode": 1,
+  "targetGreenExitCode": 0,
+  "nodeTestsPassed": 325,
+  "contractTestsPassed": 2,
+  "fixtureFiles": {
+    "editorial/reviews/c2-bifurcation-direction-author-20261127/actual-node-tests.txt": "e66a025021acc7d33a354192c3e907ca7bb67534e90e2c8f4ab5b3e80caf820c",
+    "editorial/reviews/c2-bifurcation-direction-author-20261127/actual-contract-tests.txt": "9c292b4b36f6c2bc0c3e7d4513cef3cb12e89d94a6ef88f7d3d4c9166d1f4a5a",
+    "editorial/reviews/c2-bifurcation-direction-author-20261127/actual-green.txt": "e10a6c97f2916d0c4133e7b7b424a6f022bc13ec9ea8ffeaab3cdb20296cb907",
+    "static/js/banchi/voci/apparati/fluidi.js": "6faf0e94d26620dca5288633c55e7acb842cc7c3f849d4ccfb9fa796e802d4c5",
+    "static/js/banchi/voci/esperimento.js": "be468362a7acc1840dc91d1f22eb172d8fd62d3e8d6fe8a1a71164633659cc4a",
+    "static/js/banchi/voci/legende.js": "656b1c18c43c2e369b3fec16312e3e57b5bd9867d83629733a6aaad9959b20b3",
+    "tests/continuity-downstream-arrow.test.js": "7bf71004e227e71146b21d86790befb2d9f71e7c02833e636860fcf0102cf5af",
+    "editorial/reviews/c2-bifurcation-direction-author-20261127/actual-red.txt.gz": "22421105c6306f4824434769a62ede2708dc45f356373e400852a6850f9bb81d"
+  },
+  "authoredCorrection": true,
+  "independentBrowser": "PENDING",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "originalRedLogSha256": "9b04f07cedce6f7f9635fd89debf2edaf5fdae3e54a579578d1f2fdb2c9c9e60"
+}
