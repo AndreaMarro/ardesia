@@ -222,7 +222,7 @@ TASKS=[('Che cosa identifica una densità',
   'significa che nel terzo tratto il gas cede calore.',
   'W_{\\rm gas}=-12\\,\\mathrm J\\qquad \\Delta U_{\\rm ciclo}=0\\qquad Q_1+Q_2+Q_3=W_{\\rm gas}\\qquad '
   'Q_3=-37\\,\\mathrm J',
-  '+13 J userebbe lavoro positivo invece del verso antiorario. +37 J perderebbe il segno del calore '
+  '+13 J darebbe Q_netto=40−15+13=+38 J, non il lavoro netto −12 J richiesto dal ciclo. +37 J perderebbe il segno del calore '
   'ceduto. Sottrarre tutti i moduli senza distinguere ingresso e uscita non ricostruisce il bilancio '
   'orientato.',
   'Determina prima il segno del lavoro, poi somma i calori con il loro segno.'),

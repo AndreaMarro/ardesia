@@ -196,7 +196,7 @@ Procedimento: Un kilopascal per litro vale un joule. Il percorso antiorario dà 
 
 Passaggi: `W_{\rm gas}=-12\,\mathrm J\qquad \Delta U_{\rm ciclo}=0\qquad Q_1+Q_2+Q_3=W_{\rm gas}\qquad Q_3=-37\,\mathrm J`.
 
-Distrattori: +13 J userebbe lavoro positivo invece del verso antiorario. +37 J perderebbe il segno del calore ceduto. Sottrarre tutti i moduli senza distinguere ingresso e uscita non ricostruisce il bilancio orientato.
+Distrattori: +13 J darebbe Q_netto=40−15+13=+38 J, non il lavoro netto −12 J richiesto dal ciclo. +37 J perderebbe il segno del calore ceduto. Sottrarre tutti i moduli senza distinguere ingresso e uscita non ricostruisce il bilancio orientato.
 
 Aiuto: Determina prima il segno del lavoro, poi somma i calori con il loro segno.
 
@@ -439,3 +439,5 @@ Distrattori: Hertz e becquerel condividono la dimensione di tempo inverso ma si 
 Aiuto: Distingui il nome dell’unità della radioattività da quello della frequenza periodica.
 
 La sezione originale è ripristinata per ciascun ID dal medesimo file fonte: nessun altro campo didattico, risposta, formula o asset cambia. I precedenti byte e risultati tecnici sono conservati; le nuove doppie assembly e importazioni sono reali e distinte. Nessuna firma scientifica propria.
+
+Feedback Q057 riletto dopo rilievo distinto: il distrattore +13 J è confutato per sostituzione nel bilancio; attribuirlo al solo segno opposto del lavoro era errato. Nessuna chiave o formula cambia, vecchi byte conservati e nuovo import reale.
