@@ -1,0 +1,60 @@
+{
+  "scope": "AUTHOR_ACTUAL_INSTALLED_TASKS",
+  "activityCredit": 0,
+  "rows": [
+    {
+      "id": "SIM-C2-L009-01",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Seconda resistenza» su 2 kPa·s/mL. Quale valore ottieni per «Resistenza equivalente in parallelo»?",
+          "value": 1,
+          "unit": "kPa·s/mL",
+          "worked": "1/Rₑq = 1/R₁ + 1/R₂ in parallelo. In serie Rₑq = R₁ + R₂. R₁ = 2 kPa·s/mL. 2 × 2 / (2 + 2) = 1 kPa·s/mL."
+        },
+        {
+          "prompt": "Un ramo da 2 kPa·s/mL è in parallelo con un ramo da 6 kPa·s/mL. Qual è la resistenza equivalente fra i due nodi comuni?",
+          "value": 1.5,
+          "unit": "kPa·s/mL",
+          "worked": "1/Rₑq = 1/R₁ + 1/R₂ in parallelo. In serie Rₑq = R₁ + R₂. R₁ = 2 kPa·s/mL. 2 × 6 / (2 + 6) = 1,5 kPa·s/mL."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C2-L009-02",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Resistenza del ramo superiore» su 3 kPa·s/mL. Quale valore ottieni per «Portata nel ramo superiore»?",
+          "value": 4,
+          "unit": "mL/s",
+          "worked": "Q₁ = Δp/R₁, con Δp = 12 kPa. 12 / 3 = 4 mL/s."
+        },
+        {
+          "prompt": "La pompa fissa una differenza di pressione di 12 kPa. La resistenza del ramo superiore è 6 kPa·s/mL. Quale portata passa in quel ramo?",
+          "value": 2,
+          "unit": "mL/s",
+          "worked": "Q₁ = Δp/R₁, con Δp = 12 kPa. 12 / 6 = 2 mL/s."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C2-L009-03",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Resistenza a valle» su 2 kPa·s/mL. Quale valore ottieni per «Pressione nel nodo centrale»?",
+          "value": 5,
+          "unit": "kPa",
+          "worked": "pₙ − pᵤ = (pᵢ − pᵤ) R₂/(R₁ + R₂), con pᵢ = 10 kPa, pᵤ = 0 kPa e R₁ = 2 kPa·s/mL. 10 × 2 / (2 + 2) = 5 kPa."
+        },
+        {
+          "prompt": "In un tubo in serie R₁ = 2 kPa·s/mL e la resistenza a valle è 6 kPa·s/mL. Dall’ingresso a 10 kPa all’uscita a 0 kPa, quale pressione trovi fra R₁ e R₂?",
+          "value": 7.5,
+          "unit": "kPa",
+          "worked": "pₙ − pᵤ = (pᵢ − pᵤ) R₂/(R₁ + R₂), con pᵢ = 10 kPa, pᵤ = 0 kPa e R₁ = 2 kPa·s/mL. 10 × 6 / (2 + 6) = 7,5 kPa."
+        }
+      ]
+    }
+  ]
+}

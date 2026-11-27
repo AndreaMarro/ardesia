@@ -1,0 +1,96 @@
+{
+  "scope": "AUTHOR_ACTUAL_INSTALLED_TASKS",
+  "activityCredit": 0,
+  "rows": [
+    {
+      "id": "SIM-C2-L010-01",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Lunghezza del bordo mobile» su 1,5 cm. Quale valore ottieni per «Forza sul bordo»?",
+          "value": 1.5,
+          "unit": "mN",
+          "worked": "F = 2γℓ, con γ = 0,05 N/m. 1,5 = 1,5 mN."
+        },
+        {
+          "prompt": "Una pellicola di sapone ha due facce e la tensione su ciascuna è 0,05 N/m. Il bordo mobile è lungo 4 cm. Quale forza in mN lo mantiene in equilibrio?",
+          "value": 4,
+          "unit": "mN",
+          "worked": "F = 2γℓ, con γ = 0,05 N/m. 4 = 4 mN."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C2-L010-02",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Raggio della goccia» su 0,5 mm. Quale valore ottieni per «Rapporto superficie/volume»?",
+          "value": 6,
+          "unit": "mm⁻¹",
+          "worked": "A/V = 4πr²/(4πr³/3) = 3/r. 3 / 0,5 = 6 mm⁻¹."
+        },
+        {
+          "prompt": "Per gocce sferiche di raggio 3 mm, quale superficie esposta per unità di volume ottieni in mm⁻¹?",
+          "value": 1,
+          "unit": "mm⁻¹",
+          "worked": "A/V = 4πr²/(4πr³/3) = 3/r. 3 / 3 = 1 mm⁻¹."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C2-L010-03",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Angolo di contatto» su 60 °. Quale valore ottieni per «Salita con segno»?",
+          "value": 5.000000000000001,
+          "unit": "mm",
+          "worked": "h = 2γ cos θ/(ρgr); qui h = 10 cos θ mm. 10 × cos(60°) ≈ 5 mm."
+        },
+        {
+          "prompt": "Al contatto nullo il capillare ha un dislivello di +10 mm. Se l’angolo misurato nel liquido vale 120 °, quale dislivello con segno ottieni?",
+          "value": -4.999999999999998,
+          "unit": "mm",
+          "worked": "h = 2γ cos θ/(ρgr); qui h = 10 cos θ mm. 10 × cos(120°) ≈ -5 mm."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C2-L010-04",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Curvatura 1/r» su 0 mm⁻¹. Quale valore ottieni per «Eccesso di pressione»?",
+          "value": 0,
+          "unit": "Pa",
+          "worked": "Δp = 2γ/r = 2γκ, con κ = 1/r e γ = 0,05 N/m. 100 × 0 = 0 Pa."
+        },
+        {
+          "prompt": "Una goccia sferica ha una sola interfaccia, tensione 0,05 N/m e curvatura 1/r uguale a 1,5 mm⁻¹. Qual è il salto di pressione dall’esterno all’interno?",
+          "value": 150,
+          "unit": "Pa",
+          "worked": "Δp = 2γ/r = 2γκ, con κ = 1/r e γ = 0,05 N/m. 100 × 1,5 = 150 Pa."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C2-L010-05",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Raggio della bolla di sapone» su 2 mm. Quale valore ottieni per «Pressione interna in eccesso»?",
+          "value": 100,
+          "unit": "Pa",
+          "worked": "Δp = 4γ/r; γ = 0,05 N/m. 200 / 2 = 100 Pa."
+        },
+        {
+          "prompt": "Una bolla di sapone sottile ha raggio 8 mm e tensione 0,05 N/m su ciascuna faccia. Quale pressione interna in eccesso prevedi?",
+          "value": 25,
+          "unit": "Pa",
+          "worked": "Δp = 4γ/r; γ = 0,05 N/m. 200 / 8 = 25 Pa."
+        }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-"""Reproduce the C2 laminar-flow and Poiseuille draft editions."""
+"""Reproduce the C2 fluid flow and surface tension draft editions."""
 
 import argparse
 import json
@@ -10,6 +10,8 @@ from tools.corpus_engineering.pipeline import digest
 SOURCE_REF = '5d1dc8dc7b601aef959d10d564c75462be74708d'
 BATCH = 'experiment-c2-laminar-viscosity-reading-20261127'
 POISEUILLE_BATCH = 'experiment-c2-poiseuille-reading-20261127'
+NETWORK_BATCH = 'experiment-c2-hydraulic-network-reading-20261127'
+SURFACE_BATCH = 'experiment-c2-surface-tension-reading-20261127'
 
 
 def text(value):
@@ -127,6 +129,96 @@ POISEUILLE = {
 }
 
 
+NETWORKS = {
+    'SIM-C2-L009-01': {
+        'points': [2, 6],
+        'formula': '1/Rₑq = 1/R₁ + 1/R₂ in parallelo. In serie Rₑq = R₁ + R₂. R₁ = 2 kPa·s/mL',
+        'transferPrompt': 'Un ramo da 2 kPa·s/mL è in parallelo con un ramo da {x}. Qual è la resistenza equivalente fra i due nodi comuni?',
+        'blocks': [
+            text('Segna il nodo di ingresso e quello di uscita, poi unisci gli stessi due nodi con due rami. Il salto di pressione è comune, mentre le due portate si sommano. Nel banco vale la legge lineare Δp = RQ per ciascun ramo. Aggiungendo il secondo ramo si aggiunge una via di passaggio.'),
+            formula(r'Q=\Delta p\left(\frac{1}{R_1}+\frac{1}{R_2}\right),\qquad R_{\rm eq}=\frac{R_1R_2}{R_1+R_2}'),
+            text('Con due rami da 2 kPa·s/mL, la portata è doppia rispetto a un solo ramo. La resistenza equivalente è la metà di 2, quindi 1 kPa·s/mL. Con R₂ = 6 kPa·s/mL calcola 2 × 6/(2 + 6) = 12/8 = 3/2 kPa·s/mL. Un ramo da 6 lascia passare meno fluido del ramo da 2 quando Δp è uguale.'),
+            text('Se l’equivalente vale 3/2 kPa·s/mL, sottrai 1/2 da 2/3 nelle unità della conduttanza. Rimane 1/6, quindi R₂ è 6 kPa·s/mL. Se invece disegni i due rami uno dopo l’altro, la portata è comune. In quella configurazione la pompa deve sostenere la somma delle due cadute e la resistenza è 2 + 6 = 8 kPa·s/mL.'),
+        ],
+    },
+    'SIM-C2-L009-02': {
+        'points': [3, 6],
+        'formula': 'Q₁ = Δp/R₁, con Δp = 12 kPa',
+        'transferPrompt': 'La pompa fissa una differenza di pressione di 12 kPa. La resistenza del ramo superiore è {x}. Quale portata passa in quel ramo?',
+        'blocks': [
+            text('Disegna le frecce dei due rami in parallelo. Entrambe collegano il nodo ad alta pressione allo stesso nodo a bassa pressione. La pompa fissa la differenza fra i nodi a 12 kPa e nel modello ogni ramo ha resistenza lineare. Puoi quindi calcolare la sua portata separatamente con la sua resistenza.'),
+            formula(r'Q_1=\frac{12\ \mathrm{kPa}}{R_1},\qquad Q_2=\frac{12\ \mathrm{kPa}}{3\ \mathrm{kPa\,s/mL}}=4\ \mathrm{mL/s}'),
+            text('Se R₁ = 3 kPa·s/mL, disegna frecce uguali e inserisci 12/3 = 4 mL/s per il ramo superiore. Se R₁ sale a 6 kPa·s/mL, disegna la freccia in alto lunga la metà. Il conto 12/6 dà 2 mL/s. Nel ramo inferiore persistono 4 mL/s perché lì non è cambiato né il salto di pressione né la resistenza.'),
+            text('La portata totale è la somma. Passa da 8 a 6 mL/s quando riduci la portata superiore. Per risalire a R₁ da 2 mL/s dividi 12 kPa per 2 mL/s. Il risultato è 6 kPa·s/mL. Questa dipendenza presuppone che la pompa mantenga davvero la stessa differenza ai due capi.'),
+        ],
+    },
+    'SIM-C2-L009-03': {
+        'points': [2, 6],
+        'formula': 'pₙ − pᵤ = (pᵢ − pᵤ) R₂/(R₁ + R₂), con pᵢ = 10 kPa, pᵤ = 0 kPa e R₁ = 2 kPa·s/mL',
+        'transferPrompt': 'In un tubo in serie R₁ = 2 kPa·s/mL e la resistenza a valle è {x}. Dall’ingresso a 10 kPa all’uscita a 0 kPa, quale pressione trovi fra R₁ e R₂?',
+        'blocks': [
+            text('Metti le due resistenze in fila e traccia una sola freccia di portata lungo il tubo. In moto stazionario incomprimibile la portata è uguale nei due tratti. Le cadute di pressione si sommano e ciascuna è proporzionale alla resistenza del proprio tratto. La pressione al nodo è quella di uscita più la caduta sul tratto a valle.'),
+            formula(r'Q=\frac{p_i-p_u}{R_1+R_2},\qquad p_n-p_u=R_2Q=(p_i-p_u)\frac{R_2}{R_1+R_2}'),
+            text('Disegna un dislivello totale di 10 kPa. Con R₂ = 2 le due cadute sono uguali, quindi il nodo sta a 5 kPa. Con R₂ = 6 la parte a valle è 6/(2 + 6) = 3/4 del totale. Tre quarti di 10 fanno 7,5 kPa. La parte a monte scende a 2,5 kPa.'),
+            text('Se sai che il nodo è a 7,5 kPa, usa il rapporto fra le cadute. A valle cadono 7,5 kPa e a monte 2,5 kPa. Poiché la portata è uguale, R₂ è tre volte R₁, quindi 6 kPa·s/mL. Mentre la resistenza a valle cresce, la portata totale cala e la pressione del nodo si avvicina a quella di ingresso.'),
+        ],
+    },
+}
+SURFACES = {
+    'SIM-C2-L010-01': {
+        'points': [1.5, 4],
+        'transferPrompt': 'Una pellicola di sapone ha due facce e la tensione su ciascuna è 0,05 N/m. Il bordo mobile è lungo {x}. Quale forza in mN lo mantiene in equilibrio?',
+        'blocks': [
+            text('Disegna il bordo mobile e guarda il film da un lato. La tensione superficiale esercita una trazione tangente alla superficie, lungo tutta la linea di contatto. Ripeti il disegno per l’altra faccia della pellicola. Su questo bordo le due trazioni hanno lo stesso verso e il bordo è perpendicolare alla direzione di tiro.'),
+            formula(r'F=2\gamma\ell=(0{,}10\ \mathrm{N/m})\ell'),
+            text('Con 1,5 cm hai 0,015 m. Dividi per dieci e ottieni 0,0015 N, cioè 1,5 mN. Con 4 cm parti da 0,04 m, trovi 0,004 N e quindi 4 mN. L’uguaglianza fra il numero in centimetri e quello in millinewton vale qui perché la tensione assegnata dà esattamente 0,10 N/m per entrambe le facce.'),
+            text('Con 4 mN torna a 0,004 N e dividi per 0,10 N/m. Ottieni 0,04 m, cioè 4 cm. Il segno della forza di equilibrio è opposto a quello del tiro del film. Conteggiare una sola superficie farebbe prevedere metà della forza richiesta.'),
+        ],
+    },
+    'SIM-C2-L010-02': {
+        'points': [0.5, 3],
+        'transferPrompt': 'Per gocce sferiche di raggio {x}, quale superficie esposta per unità di volume ottieni in mm⁻¹?',
+        'blocks': [
+            text('Disegna due sfere e segna il raggio dal centro alla superficie. L’area cresce con il quadrato del raggio, mentre il volume cresce con il cubo. Quando confronti l’area esposta con il volume racchiuso, una potenza del raggio rimane al denominatore.'),
+            formula(r'\frac{A}{V}=\frac{4\pi r^2}{(4/3)\pi r^3}=\frac{3}{r}'),
+            text('Per r = 1/2 mm, dividere 3 per un mezzo equivale a moltiplicare per due. Ottieni 6 mm⁻¹. Per r = 3 mm ottieni 3/3 = 1 mm⁻¹. Dalla misura 6 mm⁻¹ ricavi r = 3/(6 mm⁻¹) = 1/2 mm. Le unità sono mm²/mm³ e diventano l’inverso di una lunghezza.'),
+            text('Ora immagina di suddividere lo stesso volume totale in molte gocce uguali. Il rapporto complessivo fra la somma delle aree e il volume totale è ancora 3/r. A volume totale fissato, le gocce più piccole espongono quindi più superficie.'),
+        ],
+    },
+    'SIM-C2-L010-03': {
+        'points': [60, 120],
+        'transferPrompt': 'Al contatto nullo il capillare ha un dislivello di +10 mm. Se l’angolo misurato nel liquido vale {x}, quale dislivello con segno ottieni?',
+        'blocks': [
+            text('Segna lo zero all’altezza del pelo libero esterno. Misura l’angolo fra parete e tangente al menisco dalla parte del liquido. Lungo la circonferenza la tensione ha componente verticale γ cos θ per unità di lunghezza. In equilibrio questa componente bilancia la differenza idrostatica della colonna. Supponi il tubo circolare e usa il modello statico del banco.'),
+            formula(r'2\pi r\gamma\cos\theta=\rho g\pi r^2 h,\qquad h=\frac{2\gamma}{\rho g r}\cos\theta=(10\ \mathrm{mm})\cos\theta'),
+            text('Sul disegno di 60° traccia una componente rivolta in alto. Il coseno di 60° è 1/2, quindi h = +5 mm. Per 120° usa cos(180° − 60°) = −cos 60° e ottieni −5 mm. Il menisco sta sotto il livello esterno. A 90° la componente verticale scompare e il dislivello è zero.'),
+            text('Dal dislivello −5 mm risali a cos θ = −5/10 = −1/2. Nell’intervallo da 0° a 180° riconosci 120° senza cercare valori di arccoseno. La stessa lunghezza in valore assoluto da una parte e dall’altra del livello corrisponde a due angoli supplementari.'),
+        ],
+    },
+    'SIM-C2-L010-04': {
+        'points': [0, 1.5],
+        'formula': 'Δp = 2γ/r = 2γκ, con κ = 1/r e γ = 0,05 N/m',
+        'transferPrompt': 'Una goccia sferica ha una sola interfaccia, tensione 0,05 N/m e curvatura 1/r uguale a {x}. Qual è il salto di pressione dall’esterno all’interno?',
+        'blocks': [
+            text('Segna le pressioni ai due lati di una sola superficie liquida. Per una sfera le due curvature principali valgono entrambe 1/r. La legge di Laplace somma quei contributi. Il banco mostra 1/r, quindi devi contare due volte quella curvatura per ottenere la somma.'),
+            formula(r'\Delta p=\gamma(1/r+1/r)=2\gamma\kappa,\qquad 1\ \mathrm{mm}^{-1}=1000\ \mathrm m^{-1}'),
+            text('Per la superficie piana la curvatura è zero, quindi 2γ × 0 dà 0 Pa. A 1,5 mm⁻¹ moltiplica per 1.000 e ottieni 1.500 m⁻¹. Il doppio di 0,05 N/m è 0,10 N/m. Un decimo di 1.500 dà 150 N/m², cioè 150 Pa.'),
+            text('Traccia una sezione più curva per il secondo caso, con la pressione maggiore all’interno. Per ritrovare la curvatura da 150 Pa dividi per 0,10 N/m e ottieni 1.500 m⁻¹, pari a 1,5 mm⁻¹. Curvatura zero significa raggio infinito nel modello limite.'),
+        ],
+    },
+    'SIM-C2-L010-05': {
+        'points': [2, 8],
+        'transferPrompt': 'Una bolla di sapone sottile ha raggio {x} e tensione 0,05 N/m su ciascuna faccia. Quale pressione interna in eccesso prevedi?',
+        'blocks': [
+            text('Disegna il film come due circonferenze molto vicine tra loro. Si passa dall’aria esterna al liquido e poi dal liquido all’aria interna. Nel limite di film sottile, i due raggi sono quasi uguali e ciascuna interfaccia contribuisce 2γ/r al salto. Assumi equilibrio e uguale tensione sulle due facce.'),
+            formula(r'\Delta p=\frac{4\gamma}{r}=\frac{0{,}20\ \mathrm{N/m}}{r}'),
+            text('Con r = 2 mm dividi 0,20 per 0,002 in unità SI. Il rapporto è 200/2 = 100 Pa. Con 8 mm dividi 200 per 8 e ottieni 25 Pa. La bolla più grande ha raggio quadruplo e sovrapressione pari a un quarto.'),
+            text('Per ritrovare il raggio da 25 Pa inverti la relazione. Calcola (0,20 N/m)/(25 N/m²) = 0,008 m = 8 mm. Alla stessa γ e allo stesso raggio una goccia con una sola interfaccia darebbe metà del salto. La differenza dipende dal numero di superfici che attraversi, mentre le due curvature per superficie restano già incluse.'),
+        ],
+    },
+}
+
+
 def assemble(source_file, directory, batch, editions, prerequisite):
     sources = {row['id']: row for row in json.loads(source_file.read_bytes())}
     records, bindings = [], []
@@ -150,7 +242,17 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('source_file', type=Path)
     parser.add_argument('batch_directory', type=Path)
-    parser.add_argument('--poiseuille', action='store_true')
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--poiseuille', action='store_true')
+    mode.add_argument('--networks', action='store_true')
+    mode.add_argument('--surfaces', action='store_true')
     args = parser.parse_args()
-    scope = (POISEUILLE_BATCH, POISEUILLE, 'C2-L008') if args.poiseuille else (BATCH, EDITIONS, 'C2-L007')
+    if args.poiseuille:
+        scope = POISEUILLE_BATCH, POISEUILLE, 'C2-L008'
+    elif args.networks:
+        scope = NETWORK_BATCH, NETWORKS, 'C2-L009'
+    elif args.surfaces:
+        scope = SURFACE_BATCH, SURFACES, 'C2-L010'
+    else:
+        scope = BATCH, EDITIONS, 'C2-L007'
     assemble(args.source_file, args.batch_directory, *scope)
