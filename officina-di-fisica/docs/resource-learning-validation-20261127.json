@@ -1,6 +1,6 @@
 {
   "schema": "cric.resource-learning-validation/1",
-  "recordedAt": "2026-11-27T17:53:34+00:00",
+  "recordedAt": "2026-11-27T18:12:36+00:00",
   "timezone": "Europe/Rome",
   "pullRequest": "https://github.com/AndreaMarro/ardesia/pull/366",
   "branch": "feat/cric-resource-learning-20261127",
@@ -51,6 +51,12 @@
       "local": "2fce1561bc08d016a453b0229fbb46c60beebc70",
       "remote": "035fc891681a27f115bbd4c4e46be18243700eb8",
       "tree": "0b25b314e9592e127b3ebe871144c76139503d46"
+    },
+    {
+      "role": "Stable case picker label; full product CI passed",
+      "local": "c2b502c350f4517dae05c53f3a131f0793de74f9",
+      "remote": "5a590742485335e191dca2ecfbf53381224491bf",
+      "tree": "cbde95d1bab260acc81b6d257bcae9ca5f760375"
     }
   ],
   "localVerification": [
@@ -243,6 +249,34 @@
       "checkout": "86fc019e0cabe5ea61170bddf4fba50220beda55",
       "checkoutTree": "0b25b314e9592e127b3ebe871144c76139503d46",
       "checkoutTreeIdenticalToHead": true
+    },
+    {
+      "run": 46045340845,
+      "url": "https://github.com/AndreaMarro/ardesia/actions/runs/46045340845",
+      "head": "5a590742485335e191dca2ecfbf53381224491bf",
+      "mainJob": 140663080205,
+      "mainConclusion": "success",
+      "nativeSimulationJobs": 12,
+      "nativeSimulationConclusion": "success",
+      "passed": {
+        "javascript": 285,
+        "platformContracts": 2,
+        "typescript": true,
+        "topLevelPython": 102,
+        "mainBrowserJourney": true,
+        "editor": true,
+        "disciplineAudits": 20,
+        "resourceJourneyChecks": 8,
+        "resourceAudits": 5,
+        "remainingBrowserSuites": true,
+        "reproduciblePackage": true,
+        "pdfBookletsAndIndexes": true
+      },
+      "checkout": "cf0ad6a1ee62fc281cda10bdf9569732d1f5b3ae",
+      "checkoutTree": "cbde95d1bab260acc81b6d257bcae9ca5f760375",
+      "checkoutTreeIdenticalToHead": true,
+      "evidenceDirectory": "evidence/resource-learning-5a590742/",
+      "releaseSha256": "c17bdad50e00dcb6a0e9c9630cace7a9f96265577d844a259615134a02aab5c7"
     }
   ],
   "independentReviewCorrections": [
@@ -261,16 +295,33 @@
     "No broad claim of WCAG conformance, tested human usability or improved learning outcomes.",
     "No new scientific checkpoint approval and no publication of DRAFT corpus.",
     "No private Suria source archive or private Analisi corpus included.",
-    "CI results must be associated with the actual tested checkout/tree. A later documentation or code commit does not inherit a PASS automatically."
+    "CI results must be associated with the actual tested checkout/tree. A later documentation or code commit does not inherit a PASS automatically.",
+    "Resource browser journey currently exercised in Chrome; native simulations and discipline flows have separate Chromium/WebKit coverage. Automated accessibility reports retain incomplete results requiring manual review."
   ],
   "pendingVerification": {
-    "change": "Case selector label is explicitly associated by for/id and separated from option text; responsive field wrapper retains the layout.",
-    "required": "Rerun the unchanged full resource journey and candidate CI; inspect screenshots and package after completion.",
-    "status": "NOT_YET_VERIFIED_IN_BROWSER"
+    "status": "PRODUCT_CI_PASS_SCIENTIFIC_GATE_IN_PROGRESS",
+    "productRun": 46045340845,
+    "scientificRun": 46045340795,
+    "scientificJob": 140663186485,
+    "scientificStatus": "in_progress",
+    "scientificStep": "Riproduzione del checkpoint di tutti i 4606 ID",
+    "asOf": "2026-11-27T18:12:36+00:00",
+    "remaining": [
+      "Complete separate scientific corpus workflow without resetting its evidence.",
+      "Manual accessibility checks for automated incomplete results, assistive technology and cognitive usability.",
+      "Human observation and learning evaluation; current software tests do not establish learning efficacy.",
+      "Human scientific publication approval remains separate."
+    ],
+    "scientificConclusion": null,
+    "scientificCounterproofs": "success"
   },
   "knownNativeFinding": {
     "path": "static/js/banchi/tavola.js",
     "finding": "The two capillary SVG groups have aria-label without an explicit naming-compatible role.",
     "resolutionScope": "The new composed resource consumer normalizes their role. The native scientific source remains untouched; coordinate any canonical source correction with its owner and repeat the native consumer evidence."
-  }
+  },
+  "testedProductHead": "5a590742485335e191dca2ecfbf53381224491bf",
+  "handoffBranch": "handoff/cric-resource-learning-20261127",
+  "handoffScope": "Documentation and original CI evidence only; application source and tests identical to tested product head. Separate branch preserves the running scientific gate on PR366.",
+  "visualReview": "evidence/resource-learning-5a590742/README.md"
 }

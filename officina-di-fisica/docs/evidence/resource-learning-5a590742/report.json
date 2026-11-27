@@ -1,0 +1,75 @@
+{
+  "checks": [
+    "Free tool, keyboard parameters, 2D view and presentation controls without prediction gating",
+    "Self-contained model case reopens with identical parameters, time and view in a second browser context",
+    "Public resource case is usable before login, with account access required for personal saves",
+    "Saved case persists across navigation/reload; a different account cannot read its private record",
+    "Teacher collection persists, shares only intended content, and student opens the same case and its real lesson",
+    "Revocation denies the old shared collection and reactivation creates a different token",
+    "Logout in another tab removes private collection and saved-case content from existing tabs",
+    "320px layouts and WCAG automated audit; learning evidence ledger unchanged by tool/collection use"
+  ],
+  "audits": [
+    {
+      "label": "resource-directory-desktop",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ],
+      "passes": 23
+    },
+    {
+      "label": "free-tool-desktop",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ],
+      "passes": 28
+    },
+    {
+      "label": "collection-desktop",
+      "violations": [],
+      "incomplete": [
+        "label-content-name-mismatch"
+      ],
+      "passes": 29
+    },
+    {
+      "label": "free-tool-320",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ],
+      "passes": 28
+    },
+    {
+      "label": "collection-320",
+      "violations": [],
+      "incomplete": [],
+      "passes": 18
+    }
+  ],
+  "errors": [],
+  "status": "PASS",
+  "browser": "158.0.8127.36",
+  "ledgerBefore": {
+    "attempts": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "lab_events": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  },
+  "ledgerAfter": {
+    "attempts": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "lab_events": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  }
+}

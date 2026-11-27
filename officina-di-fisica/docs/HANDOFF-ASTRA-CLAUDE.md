@@ -11,6 +11,16 @@ Questo è il punto d’ingresso per continuare il lavoro senza dipendere dalla c
 3. [Registro della consegna](resource-learning-validation-20261127.json): revisioni esatte, prove riuscite, prove negative e limiti.
 4. [PR #366](https://github.com/AndreaMarro/ardesia/pull/366): head remota e stato aggiornato dei controlli. I risultati appartengono alla revisione indicata, non automaticamente alla head successiva.
 
+## Esito finale del collaudo di prodotto e ramo del dossier
+
+La candidata verificata è **`feat/cric-resource-learning-20261127@5a590742485335e191dca2ecfbf53381224491bf`**, nella PR #366. Il [run di prodotto 46045340845](https://github.com/AndreaMarro/ardesia/actions/runs/46045340845) ha superato il job principale e le dodici simulazioni Chromium/WebKit: 285 test JavaScript, due contratti e TypeScript, 102 test Python, browser principale/editor, percorsi delle discipline e delle risorse, altre regressioni browser, pacchetto e fascicoli. La prova risorse registra otto controlli e cinque audit automatici senza violazioni rilevate; i risultati incompleti degli audit restano da verificare manualmente.
+
+Il dossier conclusivo vive nel branch **`handoff/cric-resource-learning-20261127`**, discendente dalla candidata. Aggiunge esclusivamente documentazione ed estratti delle prove; codice applicativo e test sono identici alla head verificata. Questa separazione mantiene ferma la PR mentre il [gate scientifico esteso 46045340795](https://github.com/AndreaMarro/ardesia/actions/runs/46045340795) continua. Il suo stato era `in_progress` al momento della registrazione; leggerne il risultato attuale prima di proporre integrazione o rilascio.
+
+[Report, screenshot originali e revisione visiva](evidence/resource-learning-5a590742/README.md) documentano anche i limiti: percorso mobile ancora lungo, etichette piccole nella tavola, disposizione dell’istante da rifinire, contatore guidato nell’uso libero e continuità da completare oltre il caso. Il superamento del collaudo funzionale non chiude questi obiettivi di design o la verifica con persone.
+
+Per ripartire con questo dossier già presente usare il branch di handoff; confrontarlo prima con la head corrente della PR e con le altre sessioni. Se la candidata è avanzata, riconciliare quei cambiamenti in un nuovo branch. Non trattare uno snapshot del 27 novembre come autorità su una revisione successiva.
+
 ## 1. Mandato del proprietario
 
 Andrea chiede di portare avanti concretamente Cric, conservando la visione e prevenendo regressioni. Chiede anche di documentare tutto perché Astra o Claude possano proseguire. Il repository è pubblico, la cartella di lavoro esclusiva è `officina-di-fisica/`, il branch canonico è `officina-di-fisica`.
@@ -94,8 +104,8 @@ Questa composizione isola il lavoro durante la revisione parallela, ma resta acc
 Da un clone del repository, controllare prima `git status`, worktree e PR. Aggiornare le ref e creare un proprio branch, senza riusare o cancellare il worktree di un’altra sessione:
 
 ```sh
-git fetch origin officina-di-fisica feat/cric-resource-learning-20261127 feat/cric-learning-platform review/cric-converged-runtime
-git worktree add -b feat/cric-next ../cric-next origin/feat/cric-resource-learning-20261127
+git fetch origin officina-di-fisica feat/cric-resource-learning-20261127 handoff/cric-resource-learning-20261127 feat/cric-learning-platform review/cric-converged-runtime
+git worktree add -b feat/cric-next ../cric-next origin/handoff/cric-resource-learning-20261127
 cd ../cric-next/officina-di-fisica
 ```
 
@@ -119,11 +129,22 @@ Aprire `/` per il client composto. `/index.html` conserva l’ingresso storico. 
 2. Aprire Concentrazione: controlli, scena e spiegazione restano disponibili. Escape richiude e restituisce il focus al pulsante.
 3. Generare il collegamento e aprirlo in un altro contesto. Confrontare parametri, vista, istante e letture. Aprire una versione incompatibile deve produrre un errore esplicito.
 4. In un account di prova salvare il caso, ricaricare e riaprirlo. Creare una raccolta, aggiungere e ordinare casi, salvare. Controllare titolo e istruzioni.
-5. Attivare il collegamento e aprirlo come visitatore: le note personali dei casi non devono comparire. Raggiungere la lezione, tornare alla raccolta, revocare e verificare che il vecchio collegamento non funzioni.
+5. Attivare il collegamento e aprirlo come visitatore: le note personali dei casi non devono comparire. Dal caso provare «Torna alla raccolta» e, dalla raccolta, aprire la lezione collegata. Dopo l’ingresso nella lezione il ritorno usa ancora la cronologia del browser: il riferimento al caso non è conservato da ogni schermata di lettura e pratica. Revocare il collegamento e verificare che il vecchio indirizzo non apra più la raccolta.
 6. Su una disciplina di prova esaurire i quesiti con errori, poi riaprire il quaderno: deve esserci un passo di recupero dichiarato. Ripetere risposte già viste non aumenta le evidenze autonome.
 7. Riprendere una correzione da un secondo contesto con gli stessi cookie e senza storage del dispositivo. Non deve essere creato un nuovo tentativo.
 
 ## 6. Comandi di verifica
+
+Per riprodurre il collaudo usare **Node 22 e Python 3.11 o successivo**. Il lettore storico può avere requisiti inferiori, ma il packaging usa `hashlib.file_digest`, disponibile da Python 3.11. `npm ci` installa le librerie del lockfile, non i motori browser. I controlli PDF richiedono anche gli strumenti Poppler (`pdfinfo`, `pdftotext`, `pdffonts`, `pdftoppm`, `pdftohtml`; pacchetto `poppler-utils` nell’ambiente Linux della CI).
+
+Preparare Chromium e WebKit con la CLI della versione Playwright installata. Su Linux la seguente forma installa anche le dipendenze di sistema; l’ambiente deve consentire tale installazione:
+
+```sh
+npx playwright install --with-deps chromium webkit
+export ASTRA_CHROME="$(node --input-type=module -e "import {chromium} from 'playwright'; console.log(chromium.executablePath())")"
+```
+
+`ASTRA_CHROME` indica così il Chromium appena installato anche ai runner che, in sua assenza, cercherebbero un Chrome di sistema. WebKit resta necessario per gli scenari delle discipline e dell’architettura. In un ambiente che fornisce già Chrome si può indicare il suo percorso esplicito, conservando la versione nel report. Un download bloccato non equivale a un collaudo applicativo.
 
 ```sh
 python3 -m unittest tests.test_resource_cases tests.test_resource_composition tests.test_discipline_study tests.test_discipline_exports tests.test_rational_steps -v
@@ -172,4 +193,4 @@ La lista personale mostra gli ultimi 200 casi e le ultime 100 raccolte con conte
 
 ## 9. Prompt breve da dare all’agente successivo
 
-> Lavora su `AndreaMarro/ardesia`, cartella esclusiva `officina-di-fisica/`, in un worktree nuovo a partire dalla head aggiornata della PR DRAFT #366 (`feat/cric-resource-learning-20261127`). Leggi `AGENTS.md`, rigenera lo stato e leggi questo handoff, `PRODUCT-TARGET-AND-ACCEPTANCE.md`, il registro della consegna e i check della PR. Ricontrolla le head: il ramo scientifico può essere avanzato e può esistere lavoro locale non pubblicato. Continua il prodotto preservando la visione: il docente attinge a strumenti e casi; lo studente trova spiegazione, pratica e recupero coerenti. Non introdurre un LMS per conduzione delle lezioni. Conserva architettura, dati e gate. Verifica il consumer reale e la riapertura prima di dichiarare completato. Correggi le regressioni osservate; non indebolire test o firme. Documenta comandi, SHA, limiti e prossimo passo. La pubblicazione dei materiali nell’app resta soggetta al gate umano.
+> Lavora su `AndreaMarro/ardesia`, cartella esclusiva `officina-di-fisica/`, in un worktree nuovo a partire dal dossier `handoff/cric-resource-learning-20261127`, riconciliato con la head aggiornata della PR DRAFT #366 (`feat/cric-resource-learning-20261127`). Leggi `AGENTS.md`, rigenera lo stato e leggi questo handoff, `PRODUCT-TARGET-AND-ACCEPTANCE.md`, il registro della consegna e i check della PR. Ricontrolla le head: il ramo scientifico può essere avanzato e può esistere lavoro locale non pubblicato. Continua il prodotto preservando la visione: il docente attinge a strumenti e casi; lo studente trova spiegazione, pratica e recupero coerenti. Non introdurre un LMS per conduzione delle lezioni. Conserva architettura, dati e gate. Verifica il consumer reale e la riapertura prima di dichiarare completato. Correggi le regressioni osservate; non indebolire test o firme. Documenta comandi, SHA, limiti e prossimo passo. La pubblicazione dei materiali nell’app resta soggetta al gate umano.

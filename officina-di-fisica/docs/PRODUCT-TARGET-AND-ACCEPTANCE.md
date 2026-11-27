@@ -1,6 +1,6 @@
 # Cric — obiettivo di prodotto e criteri di accettazione
 
-Riferimento: consegna del **27 novembre 2026**, da leggere insieme a [HANDOFF-ASTRA-CLAUDE.md](HANDOFF-ASTRA-CLAUDE.md). Questo documento definisce il risultato da ottenere e come riconoscerlo. Le head, le prove della candidata e i registri scientifici devono essere ricontrollati prima di lavorare: gli stati qui descritti sono uno snapshot, non un’autorizzazione al rilascio.
+Riferimento: consegna del **27 novembre 2026**, da leggere insieme a [HANDOFF-ASTRA-CLAUDE.md](HANDOFF-ASTRA-CLAUDE.md). Questo documento definisce il risultato da ottenere e come riconoscerlo. Le head, le prove della candidata e i registri scientifici devono essere ricontrollati prima di lavorare: gli stati qui descritti sono uno snapshot, non un’autorizzazione al rilascio. Il collaudo di prodotto sulla head `5a590742` è terminato con successo; report e limiti visivi sono nel [dossier delle prove](evidence/resource-learning-5a590742/README.md).
 
 ## 1. Risultato atteso
 
@@ -15,8 +15,8 @@ La qualità si valuta su questo percorso completo. Aggiungere strumenti, contenu
 | Area | Stato funzionale osservato | Stato della verifica da conservare nell’handoff |
 | --- | --- | --- |
 | Copertina e navigazione | **Implementato:** azioni principali ridotte, accessi a studio, percorsi e risorse. | **Non verificato:** comprensibilità e qualità visiva della candidata con persone; collaudo browser da riferire alla SHA effettiva. |
-| Uso libero degli strumenti | **Implementato:** ingresso ai banchi senza previsione obbligatoria; scena e comandi disponibili in concentrazione. | **Non verificato:** comportamento completo del consumer composto sui browser e dispositivi previsti. |
-| Casi riproducibili e raccolte | **Parziale:** contratto completo su Poiseuille; salvataggio, raccolta, condivisione e revoca presenti. | Contratti e backend hanno prove locali; riapertura visiva e percorso completo richiedono il relativo collaudo browser. |
+| Uso libero degli strumenti | **Implementato:** ingresso ai banchi senza previsione obbligatoria; scena e comandi disponibili in concentrazione. | Percorso delle risorse verificato in Chrome, compresa larghezza 320 pixel. **Non verificato:** il medesimo consumer su tutti i browser e dispositivi previsti. |
+| Casi riproducibili e raccolte | **Parziale:** contratto completo su Poiseuille; salvataggio, raccolta, condivisione e revoca presenti. | Contratti, backend, riapertura del caso e percorso raccolta/condivisione hanno superato il collaudo browser della candidata indicata nel dossier. |
 | Caso, lezione e studio | **Parziale:** collegamenti al caso, alla lezione e al percorso presenti. | **Non verificato:** continuità didattica completa e conservazione del riferimento al caso durante l’intero studio. |
 | Adattività | **Implementato:** regole su eventi reali, recupero, pool esaurito, famiglie e programmi; ricevuta recuperabile dal server. | Scenari software documentati in [adaptive-policy.md](adaptive-policy.md). **Non verificato:** efficacia dell’apprendimento sulle persone. |
 | Programmi universitari | **Parziale:** grafo, riferimenti validati e ambito della decisione server; scelta del programma non ancora sincronizzata fra dispositivi. | **Non verificato:** copertura generale delle università italiane. Il pacchetto pubblico di prova non certifica il corpus privato di Analisi. |
@@ -114,8 +114,8 @@ La consegna deve indicare SHA, dipendenze, comandi, risultati, fallimenti, limit
 
 | Priorità | Incremento concreto | Dipendenze | Condizione di uscita |
 | --- | --- | --- | --- |
-| **P0** | Rendere verificabile la candidata composta e correggere i blocchi del percorso già implementato. | Head e writer riconciliati; ambiente browser; prove e fixture disponibili. | Percorsi risorse e studio eseguiti sulla candidata precisa, negativi conservati, regressioni risolte o bloccanti espliciti. |
-| **P1** | Completare il percorso Fluidi: caso preparato, uso esterno, lezione pertinente, pratica, recupero e ritorno. | P0; mapping editoriale e accessi validi. | Il docente riusa il caso e lo studente continua senza perdere il riferimento; la valutazione resta distinta dall’esplorazione. |
+| **P0** | Conservare la candidata verificata, chiudere il gate scientifico separato e ricontrollare i gate invalidati da nuovi incrementi. | Head e writer riconciliati; ambiente browser; prove e fixture disponibili. | Percorsi risorse e studio eseguiti sulla candidata precisa, negativi conservati, regressioni risolte o bloccanti espliciti. |
+| **P1** | Ridurre le difficoltà visive documentate e completare il percorso Fluidi: caso preparato, uso esterno, lezione pertinente, pratica, recupero e ritorno. | P0; mapping editoriale e accessi validi. | Il docente riusa il caso e lo studente continua senza perdere il riferimento; la valutazione resta distinta dall’esplorazione. |
 | **P1** | Provare il riuso dello stesso contratto su un secondo strumento e su Analisi. | Caso Fluidi stabile; modello e materiali autorizzati. | Riapertura, versioni, permessi e continuità superano gli stessi scenari senza duplicare player o autorità dati. |
 | **P1** | Osservare la comprensione dei flussi con persone e correggere i blocchi. | Percorso completo utilizzabile; compiti e dati di prova definiti. | Problemi riproducibili registrati e correzioni verificate; nessuna inferenza impropria sull’efficacia. |
 | **P2** | Completare studio quotidiano e preferenze persistenti di programma e obiettivo. | Semantica della policy e autorità delle preferenze definite nel sistema esistente. | Ripresa coerente fra dispositivi, proposta motivata, override esplicito e comportamento onesto quando mancano prove o materiali. |
