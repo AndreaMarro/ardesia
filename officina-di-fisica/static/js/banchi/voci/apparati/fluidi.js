@@ -175,7 +175,12 @@ export const fluidi = {
     const arrowDepth = s.pitot ? 0.23 : 0;
     const velocita = () => {
       b.arrow([-l + 0.18, 1.05, arrowDepth], [-l + 0.18 + 0.8 * s.v1, 1.05, arrowDepth], c.verde);
-      b.arrow([0.44, 1.05, arrowDepth], [0.44 + 0.8 * s.v2, 1.05, arrowDepth], c.viola);
+      b.arrow(
+        [0.44, 1.05, arrowDepth],
+        [0.44 + 0.8 * s.v2, 1.05, arrowDepth],
+        c.viola,
+        s.puntaVelocitaValleVisibile,
+      );
     };
     if (!s.pitot) velocita();
     if (s.pressione || s.pitot || s.perdita !== undefined) {

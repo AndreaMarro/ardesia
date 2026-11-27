@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "1.0.0",
+  "activityId": "SIM-C2-L005-03",
+  "provenanceNegativeCommit": "90620e84f8f81416e6be4e985c56679f5a03c943",
+  "baselineCommit": "b9994b9116e87478905191d85cca8037d17ae4bd",
+  "runtimeSha256": "8bee43ea624526e5d508cfca831e0be1ac63bbff02e47e1971b9531c9659cf75",
+  "change": "Only the 2D downstream velocity arrowhead uses the existing wider tip for this built-in experiment; the model and vector endpoints are unchanged.",
+  "directedOnlyTo": "SIM-C2-L005-03",
+  "testedAreasCm2": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "targetRedExitCode": 1,
+  "targetGreenExitCode": 0,
+  "nodeTestsPassed": 324,
+  "contractTestsPassed": 2,
+  "fixtureFiles": {
+    "editorial/reviews/c2-continuity-downstream-author-20261127/actual-node-tests.txt": "5dad6d4f12f9097575eafd4656b5e4421f18dd86450fe7f5b4c4be7a183d0564",
+    "editorial/reviews/c2-continuity-downstream-author-20261127/actual-contract-tests.txt": "431f0218326b038c2e4589ca6fadb60dcad87cb88245891ea3e1897b0e2d586d",
+    "editorial/reviews/c2-continuity-downstream-author-20261127/actual-green.txt": "39e1cc6ea005b513231e25147ad57719336cc1f8ebbc63ce0b570ef996e9fe00",
+    "editorial/reviews/c2-continuity-downstream-author-20261127/actual-red.txt": "17d9e63fcec71028a730983f947fe9053785d97511960dd974a42f0a5d8370f4",
+    "static/js/banchi/voci/apparati/fluidi.js": "d63b1a021a48f1057c1ca3d1e0c7ae4dbd9fbb8d8660e3dc110ee141905cedbf",
+    "static/js/banchi/voci/esperimento.js": "ac211eb68e8c52ace8f7148412b8de3ca73bb42ca51cbcdc180b9c500a25ef0e",
+    "tests/continuity-downstream-arrow.test.js": "3fe68fd4b4a5d7fd0829c77cf3ec1fdaf0960abe732c4def16d99fb9a6d04e59"
+  },
+  "authoredCorrection": true,
+  "independentBrowser": "PENDING",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

@@ -1,0 +1,27 @@
+TAP version 13
+# Subtest: continuity keeps the downstream direction legible at every allowed area
+not ok 1 - continuity keeps the downstream direction legible at every allowed area
+  ---
+  duration_ms: 23.276583
+  location: '/private/tmp/cric-continuity-arrow-author-20261127/officina-di-fisica/tests/continuity-downstream-arrow.test.js:12:1'
+  failureType: 'testCodeFailure'
+  error: 'area=7 cm², width=320px'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/cric-continuity-arrow-author-20261127/officina-di-fisica/tests/continuity-downstream-arrow.test.js:28:14)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 247.173833
