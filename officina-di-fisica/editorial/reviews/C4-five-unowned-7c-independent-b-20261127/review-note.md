@@ -1,0 +1,19 @@
+# C4: lettura raster distinta di cinque ID sul7c
+
+B ha scritto la nuova annotazione soltanto per L02-03/L03-02/L03-03 ed è ricusato su questi tre: sono esclusi da tutte le conclusioni. Le presenti cinque attività restano di autore Root. La matematica indipendente è precedente a questa candidata ed è preservata come dipendenza; non ho usato i raster o i report del precedente replay fallito come prova attuale.
+
+Consumer b9994b9116e87478905191d85cca8037d17ae4bd, runtime7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6, collector e24. I quattro slice nuovi hanno112 casi ciascuno, terminali reali0 già documentati da Root. Ho controllato hash di casi/report e tutti280 casi pertinenti ai cinque ID; gli80 invii reali delle domande coincidono con dieci quantità indipendenti. Le dimensioni e i segni restano quelli delle consegne originali: conteggio in e, forza inµN, campo in kN/C, energia inµJ.
+
+Lettura effettiva:122 PNG sorgente come riquadri completi, senza ritaglio né ridimensionamento, in25 fogli realmente aperti. Quattro PNG negativi sono stati inoltre aperti individualmente. Queste quattro riaperture non aumentano il numero di sorgenti distinte. PerID:22 L01-01,26 L01-02,22 L02-01,26 L02-02,26 L03-01. Gli altri158 fotogrammi sono verificati come dati/hash/scalari, NON certificati visivamente. I70 fogli iniziali non selezionati non sono stati aperti e mantengono readfalse.
+
+L01-01: nessun nuovo residuo nei22 canarini. Segni opposti e conteggio totale nullo coerenti; a zero entrambe le cariche sono nulle. Dall'alto alcune file di elettroni schematici si sovrappongono per proiezione; le viste Obliqua/Laterale distinguono i gruppi. Non si afferma che il conteggio di tutti i puntini sia leggibile da ogni proiezione.
+
+L01-02: nessun nuovo residuo nei26 canarini. Repulsioni opposte e uguali, scala primaria preservata, dettagli ocra scuro×8 nella fascia separata leggibili anche nei piccoli segnali osservati e al confine r2. Le lunghezze non vanno confuse con un vettore di campo×10: la legenda specifica le forze e il proprio ingrandimento.
+
+L02-01: NEGATIVO di resa nel fallback a r8cm, campo45/32kN/C. Il dettaglio ocra×10 appare come una barretta, senza punta distinguibile, sia320 sia1280. I due PNG interi sono conservati. La testa ha semilarghezza1,626923 e il tratto semispessore1,35: le ali eccedono il tratto di soli0,276923 unitàSVG (circa0,177pixel al320). Queste misure corroborano la lettura reale, non sostituiscono un giudizio del raster. Nessuna occlusione3D è dedotta; i vettori dei canarini nativi restano separati dalla sonda.
+
+L02-02: NEGATIVO di resa nel fallback a carica destra−3nC, campo+90kN/C. La punta viola si fonde con la sfera destra dello stesso colore. Centro292,45/113,76 e raggio11,66; punta284,56/117,06, distanza quadrata73,1421 minore di135,9556. La base della testa resta fuori: è fusione parziale della punta, NON intera freccia nascosta o asserzione di profondità3D. La cancellazione a+1nC e le due direzioni dei dettagli per0,5/1,5nC risultano corrette nei canarini letti.
+
+L03-01: nessun nuovo residuo nei26 canarini. Due contributi mutano al variare della terza carica; il segno dell'energia cambia e a−0,5nC l'energia della terna è zero senza imporre cariche nulle. Il triangolo è leggibile dall'alto; la vista Laterale mostra il suo piano di taglio. Le etichette dei segni restano distinguibili nelle viste osservate.
+
+Conclusioni limitate ai raster dichiarati. Tre ID positivi soltanto nei canarini letti; due ID hanno residui correnti e non ricevono una chiusura visiva. Nessun consumer, registro o directory sorgente modificato. Nessun nuovo Chrome; nessuna firma sui tre ID di cui B è autore. HumanNOT_RUN e publicationActionNONE. Il primo bootstrap ha fallito prima delle letture perché il venv non aveva Pillow; è preservato, mentre l'analisi finale usa l'installazione globale Pillow12.2.0 già presente, senza installazioni.

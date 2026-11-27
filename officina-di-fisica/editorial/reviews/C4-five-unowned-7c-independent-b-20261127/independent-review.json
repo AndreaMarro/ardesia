@@ -1,0 +1,140 @@
+{
+  "schemaVersion": "1.0.0",
+  "role": "INDEPENDENT_RASTER_REVIEW",
+  "reviewer": "B",
+  "candidateAuthor": "Root",
+  "candidateCommit": "b9994b9116e87478905191d85cca8037d17ae4bd",
+  "runtimeSha256": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6",
+  "reports": [
+    {
+      "slice": 0,
+      "sha256": "95353d1c2538c0b509fbfd88b623e32f9efb4a5eafd7baede11df50397d3ccd4",
+      "cases": 112
+    },
+    {
+      "slice": 1,
+      "sha256": "61c33aaa3659db8e42c745d74d4ead37247451e6682a22311b12e25336006f88",
+      "cases": 112
+    },
+    {
+      "slice": 2,
+      "sha256": "a9ba61b2fda086c397c21139a4d8fed5d9d653912853263e4d878b7fdf44b8de",
+      "cases": 112
+    },
+    {
+      "slice": 3,
+      "sha256": "9bcdd26a7231b47fdf76ad9e91df4bb132915b69dfa828e024b492cb0a64920d",
+      "cases": 112
+    }
+  ],
+  "recusal": {
+    "authoredIdsExcluded": [
+      "SIM-C4-L02-03",
+      "SIM-C4-L03-02",
+      "SIM-C4-L03-03"
+    ],
+    "reason": "B authored only the probe/polarity legend changes for these three separate IDs; no acceptance or verdict on them here."
+  },
+  "disclosure": "Independent mathematics predates this candidate; current inputs and rasters are from four new112-case slices. No PNG/report or positive reused from the failed earlier epoch. B has no authorship of the five IDs here.",
+  "verifiedCurrentCases": 280,
+  "manualTaskSubmissionsChecked": 80,
+  "reading": {
+    "sourceFramesReadInWholePanels": 122,
+    "contactSheetPNGFilesActuallyOpened": 25,
+    "individualSourcePNGFilesAdditionallyOpened": [
+      "screens/aea6701adea967597682e9363dcb99f2aaf6dc5dadf1c9c95beda17f83be03b4.png",
+      "screens/bd4e23d3f432fa50cb68613ba8f06395524ba24a79ed99629cf295efef64ad7e.png",
+      "screens/dcab54351f31634b648f5032ce0d6beac791862ede2f7e7227e679729db2702d.png",
+      "screens/bda3ab722737aa6179c40449905569d357666167e2450617f70c82b7f615b197.png"
+    ],
+    "perIdWholePanels": {
+      "SIM-C4-L01-01": 22,
+      "SIM-C4-L01-02": 26,
+      "SIM-C4-L02-01": 22,
+      "SIM-C4-L02-02": 26,
+      "SIM-C4-L03-01": 26
+    },
+    "sourceFramesNotVisuallyRead": 158,
+    "scope": "122 of280 frames; none of the158 unselected frames inherits a visual positive. Four individual opens are repeats of panels already counted, not extra unique frames."
+  },
+  "perId": [
+    {
+      "id": "SIM-C4-L01-01",
+      "recordsIntegrityAndScalarChecked": 48,
+      "newPNGSourceFramesReadAsWholePanels": 22,
+      "rasterVerdict": "POSITIVE_OBSERVED_CANARIES_ONLY",
+      "unselectedFramesVisuallyCertified": false,
+      "twoManualTasksExact": [
+        "6",
+        "4"
+      ],
+      "findings": [],
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C4-L01-02",
+      "recordsIntegrityAndScalarChecked": 56,
+      "newPNGSourceFramesReadAsWholePanels": 26,
+      "rasterVerdict": "POSITIVE_OBSERVED_CANARIES_ONLY",
+      "unselectedFramesVisuallyCertified": false,
+      "twoManualTasksExact": [
+        "10",
+        "45/8"
+      ],
+      "findings": [],
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C4-L02-01",
+      "recordsIntegrityAndScalarChecked": 48,
+      "newPNGSourceFramesReadAsWholePanels": 22,
+      "rasterVerdict": "NEGATIVE_CURRENT_FALLBACK",
+      "unselectedFramesVisuallyCertified": false,
+      "twoManualTasksExact": [
+        "10",
+        "18/5"
+      ],
+      "findings": [
+        "FAIL_DIRECTIONAL_HEAD_NOT_DISTINGUISHABLE_FROM_BAR",
+        "FAIL_DIRECTIONAL_HEAD_NOT_DISTINGUISHABLE_FROM_BAR"
+      ],
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C4-L02-02",
+      "recordsIntegrityAndScalarChecked": 64,
+      "newPNGSourceFramesReadAsWholePanels": 26,
+      "rasterVerdict": "NEGATIVE_CURRENT_FALLBACK",
+      "unselectedFramesVisuallyCertified": false,
+      "twoManualTasksExact": [
+        "0",
+        "45/2"
+      ],
+      "findings": [
+        "FAIL_ARROW_TIP_MERGES_WITH_PURPLE_CHARGE",
+        "FAIL_ARROW_TIP_MERGES_WITH_PURPLE_CHARGE"
+      ],
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C4-L03-01",
+      "recordsIntegrityAndScalarChecked": 64,
+      "newPNGSourceFramesReadAsWholePanels": 26,
+      "rasterVerdict": "POSITIVE_OBSERVED_CANARIES_ONLY",
+      "unselectedFramesVisuallyCertified": false,
+      "twoManualTasksExact": [
+        "9/2",
+        "9/5"
+      ],
+      "findings": [],
+      "activityCredit": 0
+    }
+  ],
+  "currentNegativeCases": 4,
+  "newChromeSessions": 0,
+  "sourceDirectoryWrites": 0,
+  "scientificApproval": false,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
