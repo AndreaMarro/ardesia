@@ -1,0 +1,96 @@
+{
+  "scope": "AUTHOR_ACTUAL_INSTALLED_TASKS",
+  "activityCredit": 0,
+  "rows": [
+    {
+      "id": "SIM-C5-L06-01",
+      "draftVersion": 3,
+      "tasks": [
+        {
+          "prompt": "Imposta «Fase del campo» su 90 °. Quale valore ottieni per «Campo magnetico istantaneo»?",
+          "value": 10,
+          "unit": "nT",
+          "worked": "E = 3 sin φ V/m; B = E/c; c ≈ 3×10⁸ m/s. 10 × sin(90°) ≈ 10 nT."
+        },
+        {
+          "prompt": "In un’onda piana nel vuoto la componente elettrica in P è 3 sin φ V/m. Alla fase 270 °, quale componente magnetica con segno esprimi in nT?",
+          "value": -10,
+          "unit": "nT",
+          "worked": "E = 3 sin φ V/m; B = E/c; c ≈ 3×10⁸ m/s. 10 × sin(270°) ≈ -10 nT."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C5-L06-02",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Ampiezza del campo elettrico» su 4 V/m. Quale valore ottieni per «Intensità rispetto a E₀ = 2 V/m»?",
+          "value": 4,
+          "unit": "numero puro",
+          "worked": "I/I riferimento = (E₀/2)²; c = λf. (4 / 2)² = 4."
+        },
+        {
+          "prompt": "A frequenza fissata vari l’ampiezza elettrica da 2 V/m a 3 V/m. Quanto vale il rapporto fra la nuova intensità media e quella di riferimento?",
+          "value": 2.25,
+          "unit": "numero puro",
+          "worked": "I/I riferimento = (E₀/2)²; c = λf. (3 / 2)² = 2,25."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C5-L06-03",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Banda dello spettro» su Radio. Quale valore ottieni per «Logaritmo decimale della lunghezza d’onda in metri»?",
+          "value": 2,
+          "unit": "numero puro",
+          "worked": "log₁₀ λ(m) = log₁₀ c − log₁₀ f. log₁₀(100) = 2."
+        },
+        {
+          "prompt": "Per la banda «X», il banco usa una lunghezza campione di 10⁻¹⁰ m. In che posizione si trova sulla scala log₁₀(λ/m)?",
+          "value": -10,
+          "unit": "numero puro",
+          "worked": "log₁₀ λ(m) = log₁₀ c − log₁₀ f. log₁₀(10⁻¹⁰) = -10."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C5-L07-01",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Frequenza del fotone» su 250 THz. Quale valore ottieni per «Energia per fotone»?",
+          "value": 1.034,
+          "unit": "eV",
+          "worked": "E = hf; h ≈ 4,136×10⁻¹⁵ eV·s. 0,004136 × 250 ≈ 1,034 eV."
+        },
+        {
+          "prompt": "Una sorgente monocromatica emette a 500 THz. Usa h ≃ 4,136 × 10⁻¹⁵ eV·s. Quanti eV trasporta un singolo fotone?",
+          "value": 2.068,
+          "unit": "eV",
+          "worked": "E = hf; h ≈ 4,136×10⁻¹⁵ eV·s. 0,004136 × 500 ≈ 2,068 eV."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C5-L07-03",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Energia del singolo fotone» su 14 eV. Quale valore ottieni per «Energia cinetica massima liberata»?",
+          "value": 0,
+          "unit": "eV",
+          "worked": "K = max(0, E fotone − 14 eV). max(0; 14 − 14) = 0 eV."
+        },
+        {
+          "prompt": "Un fotone da 19 eV incontra il bersaglio del banco, con energia di legame 14 eV. Quanta energia cinetica massima rimane all’elettrone?",
+          "value": 5,
+          "unit": "eV",
+          "worked": "K = max(0, E fotone − 14 eV). max(0; 19 − 14) = 5 eV."
+        }
+      ]
+    }
+  ]
+}
