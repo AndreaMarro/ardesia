@@ -56,8 +56,9 @@ def verify_declared_blobs(repo, inputs):
 
 
 def fixture_commit_refs(reviews_root):
-    """Discover actual audit fixtures, not informational historical commit labels."""
+    """Discover immutable commits from audit fixtures and runtime observations."""
     refs = set()
+    draft_files = ("package.json", "bindings.json")
     for path in sorted(Path(reviews_root).rglob("manifest.json")):
         manifest = json.loads(path.read_text())
         if not isinstance(manifest, dict) or "sourceCandidateCommit" not in manifest:
@@ -68,10 +69,17 @@ def fixture_commit_refs(reviews_root):
         files = manifest.get("files")
         if not isinstance(files, dict):
             raise ValueError("Candidate fixture file checksums are missing")
-        for name in ("package.json", "bindings.json"):
+        if (manifest.get("schemaVersion") == "1.0.0" and "runtimeSha256" in manifest
+            and not any(name in files or (path.parent / name).exists() for name in draft_files)):
+            runtime = manifest["runtimeSha256"]
+            if not isinstance(runtime, str) or not re.fullmatch(r"[0-9a-f]{64}", runtime):
+                raise ValueError(f"Runtime observation requires a SHA-256 fingerprint: {path}")
+            refs.add(ref)
+            continue
+        for name in draft_files:
             expected = files.get(name)
             if not isinstance(expected, str) or not re.fullmatch(r"[0-9a-f]{64}", expected):
-                raise ValueError("Candidate fixture package/bindings checksum missing")
+                raise ValueError(f"Candidate fixture package/bindings checksum missing: {path}")
             if hashlib.sha256((path.parent / name).read_bytes()).hexdigest() != expected:
                 raise ValueError("Candidate fixture package/bindings changed")
         refs.add(ref)

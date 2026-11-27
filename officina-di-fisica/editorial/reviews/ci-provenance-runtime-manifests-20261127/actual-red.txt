@@ -1,0 +1,19 @@
+..warning: filtering not recognized by server, ignoring
+From /var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/tmpdnbnceha/origin
+ * branch            6d74b091d44d3a3280f4445a635cbcb56cf5f977 -> FETCH_HEAD
+.E
+======================================================================
+ERROR: test_runtime_observation_needs_a_commit_but_has_no_draft_package (test_git_provenance.GitProvenance.test_runtime_observation_needs_a_commit_but_has_no_draft_package)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-converged-runtime-20261127/officina-di-fisica/tests/corpus/test_git_provenance.py", line 54, in test_runtime_observation_needs_a_commit_but_has_no_draft_package
+    self.assertEqual(fixture_commit_refs(root), ["a" * 40, "c" * 40])
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/cric-converged-runtime-20261127/officina-di-fisica/tools/corpus_engineering/git_provenance.py", line 74, in fixture_commit_refs
+    raise ValueError("Candidate fixture package/bindings checksum missing")
+ValueError: Candidate fixture package/bindings checksum missing
+
+----------------------------------------------------------------------
+Ran 4 tests in 1.055s
+
+FAILED (errors=1)

@@ -1,0 +1,30 @@
+{
+  "activityCredit": 0,
+  "failedHead": "625e8ee99799ec1134cb2022a1902788a2fc4334",
+  "failedStep": "Sorgenti immutabili e strumenti solo editoriali",
+  "failedWorkflowRun": 45978666113,
+  "files": {
+    "actual-green.txt": "ba833da5891b9b705e10fe5977ae50851484f80c2a04e0a1debd37a2864ed203",
+    "actual-red.txt": "e8cb31818306bec8b8c9ec72ad563a6c64cb9f80cc1294080cf41d258f841a5b"
+  },
+  "humanApproval": "NOT_RUN",
+  "localRegressionAfter": {
+    "errors": 0,
+    "exitCode": 0,
+    "tests": 4
+  },
+  "localRegressionBefore": {
+    "errors": 1,
+    "exitCode": 1,
+    "tests": 4
+  },
+  "observedManifestSha256ByPath": {
+    "officina-di-fisica/editorial/reviews/independent-stevino-label-1efc-20261127/manifest.json": "e159918aae9fd33cd0a9b09991455fe89aa936109c3ef9f326cc12d360f9e1a7",
+    "officina-di-fisica/editorial/reviews/independent-wave-zero-3ed5-20261127/manifest.json": "c2d0faf54d7da65d0d7edc9ad02db3e9233ee685730b384631ae56b297d4ec47",
+    "officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-1efc-20261127/attempt01-resource-negative/manifest.json": "e60256b19eec275479f87fefc0277ef90c8de24f92675bc7b1333cb6726aadb4"
+  },
+  "publicationAction": "NONE",
+  "rootCause": "Runtime-observation manifests share a source commit field with draft fixture manifests but have no draft package or bindings.",
+  "schemaVersion": "1.0.0",
+  "scope": "Corpus engineering CI Git object discovery"
+}

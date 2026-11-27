@@ -43,6 +43,21 @@ class GitProvenance(unittest.TestCase):
             with self.assertRaises(FileNotFoundError):
                 fixture_commit_refs(root)
 
+    def test_runtime_observation_needs_a_commit_but_has_no_draft_package(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            fixture(root, "draft", "a" * 40)
+            receipt = root / "manifest.json"
+            data = {"schemaVersion": "1.0.0", "runtimeSha256": "b" * 64,
+                    "sourceCandidateCommit": "c" * 40, "files": {"process.log": "d" * 64}}
+            receipt.write_text(json.dumps(data))
+            self.assertEqual(fixture_commit_refs(root), ["a" * 40, "c" * 40])
+
+            data["files"]["package.json"] = "e" * 64
+            receipt.write_text(json.dumps(data))
+            with self.assertRaises(FileNotFoundError):
+                fixture_commit_refs(root)
+
     def test_real_missing_object_fetch_and_second_execution_are_idempotent(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
