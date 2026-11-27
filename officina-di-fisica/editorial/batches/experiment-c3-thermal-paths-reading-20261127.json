@@ -1,0 +1,287 @@
+{
+  "assets": [],
+  "records": [
+    {
+      "anchor": "La reversibilità richiede che sistema e ambiente",
+      "apparatus": "ciclo",
+      "assessmentSelection": {
+        "points": [
+          1,
+          2
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Sul piano p–V segna gli equilibri a 1 L e a 2 L sull’isoterma pV = 100 kPa·L. Il lavoro di ogni espansione dipende dal carico esterno contro cui si muove il pistone. Con salti finiti, scegli un carico costante in ogni tratto e usa la pressione di equilibrio del suo estremo destro. Il rettangolo mostra il lavoro sul carico.",
+          "type": "text"
+        },
+        {
+          "text": "W=\\sum_i p_{{\\rm est},i}\\Delta V_i,\\qquad p_{{\\rm est},i}=\\frac{100\\ \\mathrm{kPa\\,L}}{V_i},\\qquad 1\\ \\mathrm{kPa\\,L}=1\\ \\mathrm J",
+          "type": "formula"
+        },
+        {
+          "text": "Con un solo tratto, il carico è 100/2 = 50 kPa. La base è 1 L e il rettangolo vale 50 J. Per due tratti inserisci il punto intermedio a 3/2 L. Il primo carico vale 200/3 kPa, il secondo 50 kPa. Le due basi misurano mezzo litro ciascuna.",
+          "type": "text"
+        },
+        {
+          "text": "Le aree sono 100/3 J e 25 J. Somma con denominatore tre e ottieni (100 + 75)/3 = 175/3 J. Poiché 3 × 58 = 174, resta 1/3 J. Scrivi 58,33 J arrotondando il tre periodico al centesimo. La somma dei due rettangoli supera il rettangolo singolo di 25/3 J.",
+          "type": "text"
+        },
+        {
+          "text": "Continua il disegno con rettangoli sempre più stretti. L’isoterma decresce, quindi i rettangoli all’estremo destro stanno sotto la curva. Nel limite la differenza di pressione che guida ciascun passo tende a zero e il lavoro si avvicina a 100 ln 2 J. Le due consegne richiedono soltanto le aree dei rettangoli.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Numero di espansioni a gradini",
+        "max": 8.0,
+        "min": 1.0,
+        "step": 1.0,
+        "unit": "1"
+      },
+      "course": "C3",
+      "discrete": true,
+      "formula": "W = Σ pₑ,ᵢ ΔVᵢ, con pₑ,ᵢ = (100 kPa·L)/Vᵢ al termine di ciascun tratto",
+      "id": "SIM-C3-L07-01",
+      "interpretation": "Il gas si espande isotermicamente da 1 a 2 L, mantenendo pV = 100 kPa·L agli equilibri. Piccoli salti riducono la differenza di pressione. Le aree dei gradini si avvicinano a 100 ln 2 joule.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Lavoro del gas",
+        "unit": "J"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C3-L07"
+      ],
+      "references": [
+        [
+          1.0,
+          50.0
+        ],
+        [
+          2.0,
+          58.3333333
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Riconoscere il percorso nel piano p–V",
+      "skill": "C3-L07",
+      "substitution": "gradini",
+      "summary": "Come si avvicina il lavoro a quello di un’espansione reversibile?",
+      "title": "Trasformazioni reversibili e irreversibili",
+      "topic": "5.4 Trasformazioni reversibili e irreversibili",
+      "transferPrompt": "Il pistone passa da 1 L a 2 L in {x} espansioni uguali. In ogni tratto mantieni la pressione esterna pari a (100 kPa·L) diviso per il volume finale del tratto. Quanti joule di lavoro ottieni? Per un decimale periodico arrotonda al centesimo.",
+      "version": 2
+    },
+    {
+      "anchor": "In una isoterma del gas perfetto chiuso",
+      "apparatus": "pistone",
+      "assessmentSelection": {
+        "points": [
+          2,
+          4
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Nel disegno il pistone è a contatto con un termostato. Una quantità fissa di gas ideale alla stessa temperatura conserva il prodotto pressione per volume. Colloca i punti di equilibrio sul piano p–V. Spostare il pistone verso un volume maggiore riduce la pressione, seguendo un’iperbole.",
+          "type": "text"
+        },
+        {
+          "text": "p_2V_2=p_1V_1=100\\ \\mathrm{kPa\\,L},\\qquad p_2=\\frac{100\\ \\mathrm{kPa\\,L}}{V_2}",
+          "type": "formula"
+        },
+        {
+          "text": "A 2 L dividi 100 per 2 e ottieni 50 kPa. A 4 L dividi per 4 e leggi 25 kPa. I litri si cancellano. Controlla i due punti ricostruendo i prodotti 50 × 2 e 25 × 4. Entrambi valgono 100 kPa·L.",
+          "type": "text"
+        },
+        {
+          "text": "Se conosci invece 25 kPa, isola il volume e dividi 100 kPa·L per 25 kPa. Ritrovi 4 L. Raddoppiare il volume da 2 a 4 L dimezza la pressione pur lasciando la temperatura invariata. Usa una pressione assoluta nella legge del gas ideale.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Volume dopo l’espansione",
+        "max": 4.0,
+        "min": 1.0,
+        "step": 0.25,
+        "unit": "L"
+      },
+      "course": "C3",
+      "formula": "p₂ = p₁V₁/V₂, con p₁V₁ = 100 kPa·L",
+      "id": "SIM-C3-L07-02",
+      "interpretation": "Il gas resta a contatto con un termostato. Diminuendo il volume aumenta la pressione mentre la temperatura resta fissa. Il grafico pressione-volume è un’iperbole.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Pressione finale",
+        "unit": "kPa"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C3-L07"
+      ],
+      "references": [
+        [
+          1.0,
+          100.0
+        ],
+        [
+          2.0,
+          50.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Riconoscere il percorso nel piano p–V",
+      "skill": "C3-L07",
+      "substitution": "100 / {x}",
+      "summary": "Qual è la traccia di una compressione isoterma sul piano p–V?",
+      "title": "Isoterma",
+      "topic": "5.4 Isoterma",
+      "transferPrompt": "Una quantità fissa di gas ideale resta in equilibrio termico alla stessa temperatura, con pV = 100 kPa·L. Se il volume finale è {x}, quale pressione assoluta ottieni?",
+      "version": 2
+    },
+    {
+      "anchor": "In una trasformazione isocora il volume resta",
+      "apparatus": "pistone",
+      "assessmentSelection": {
+        "points": [
+          250,
+          400
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Blocca il pistone e disegna due punti sopra la stessa tacca di volume. Per una quantità fissa di gas ideale, a volume costante il rapporto p/T rimane uguale fra gli equilibri. La temperatura è assoluta, perché i rapporti fra temperature in gradi Celsius sposterebbero lo zero fisico.",
+          "type": "text"
+        },
+        {
+          "text": "\\frac{p_2}{T_2}=\\frac{p_1}{T_1}=\\frac{150\\ \\mathrm{kPa}}{300\\ \\mathrm K}=\\frac12\\ \\mathrm{kPa/K}",
+          "type": "formula"
+        },
+        {
+          "text": "Prendi metà di 250 e leggi 125 kPa. Poi prendi metà di 400 e leggi 200 kPa. Segna i due punti su una retta nel piano p–T. Nella rappresentazione p–V restano sulla stessa verticale, quindi la variazione di volume è zero e il pistone non compie lavoro di espansione.",
+          "type": "text"
+        },
+        {
+          "text": "Se il manometro assoluto legge 200 kPa, dividi per mezzo kPa/K. Dividere per un mezzo raddoppia la lettura numerica e dà 400 K. L’aumento di pressione avviene a volume fisso perché il gas si scalda, senza spostare il pistone.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Temperatura del gas",
+        "max": 500.0,
+        "min": 200.0,
+        "step": 25.0,
+        "unit": "K"
+      },
+      "course": "C3",
+      "formula": "p₂ = p₁ T₂/T₁, con p₁ = 150 kPa a 300 K",
+      "id": "SIM-C3-L07-03",
+      "interpretation": "Il cilindro mantiene il volume. Un aumento della temperatura assoluta fa crescere linearmente la pressione. Il lavoro di volume è zero lungo tutto il percorso.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Pressione a volume fisso",
+        "unit": "kPa"
+      },
+      "order": 3,
+      "prerequisites": [
+        "C3-L07"
+      ],
+      "references": [
+        [
+          250.0,
+          125.0
+        ],
+        [
+          400.0,
+          200.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Riconoscere il percorso nel piano p–V",
+      "skill": "C3-L07",
+      "substitution": "0,5 × {x}",
+      "summary": "Che cosa succede al carico sulle pareti se il pistone è bloccato?",
+      "title": "Isocora",
+      "topic": "5.4 Isocora",
+      "transferPrompt": "Nel cilindro rigido chiuso il gas ideale era a 150 kPa e 300 K. A {x}, quale pressione assoluta prevedi?",
+      "version": 2
+    },
+    {
+      "anchor": "In una trasformazione isocora il volume resta",
+      "apparatus": "pistone",
+      "assessmentSelection": {
+        "points": [
+          250,
+          450
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Mantieni lo stesso carico sul pistone e aspetta l’equilibrio dopo ogni cambio di temperatura. Se il pistone scorre senza attrito apprezzabile e la quantità di gas resta fissa, la pressione resta quella imposta dal carico e dall’atmosfera. Nella legge del gas ideale rimane costante il rapporto fra volume e temperatura.",
+          "type": "text"
+        },
+        {
+          "text": "\\frac{V_2}{T_2}=\\frac{V_1}{T_1}=\\frac{3\\ \\mathrm L}{300\\ \\mathrm K}=\\frac{1}{100}\\ \\mathrm{L/K}",
+          "type": "formula"
+        },
+        {
+          "text": "Disegna sullo stesso cilindro tre tacche per il pistone a 250, 300 e 450 K. Dividendo 250 per 100 ottieni 2,5 L. La tacca centrale è 3 L e a 450 K ottieni 4,5 L. Sul piano p–V i tre equilibri stanno sulla stessa orizzontale perché la pressione è fissata.",
+          "type": "text"
+        },
+        {
+          "text": "Per tornare da 4,5 L alla temperatura, moltiplica per 100 K/L e ottieni 450 K. In questo modello il gas più caldo occupa più volume, quindi durante l’espansione il pistone compie lavoro sul carico. Il rapporto va calcolato usando kelvin.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Temperatura del gas",
+        "max": 500.0,
+        "min": 200.0,
+        "step": 25.0,
+        "unit": "K"
+      },
+      "course": "C3",
+      "formula": "V₂ = V₁T₂/T₁, con V₁ = 3 L a 300 K",
+      "id": "SIM-C3-L07-04",
+      "interpretation": "Il carico esterno è costante. Riscaldando lentamente, il gas si espande fino a ripristinare l’equilibrio meccanico. Usa temperature assolute per calcolare il rapporto dei volumi.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Volume a pressione fissa",
+        "unit": "L"
+      },
+      "order": 4,
+      "prerequisites": [
+        "C3-L07"
+      ],
+      "references": [
+        [
+          250.0,
+          2.5
+        ],
+        [
+          400.0,
+          4.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Riconoscere il percorso nel piano p–V",
+      "skill": "C3-L07",
+      "substitution": "{x} / 100",
+      "summary": "Perché il pistone può salire senza che aumenti la pressione?",
+      "title": "Isobara",
+      "topic": "5.4 Isobara",
+      "transferPrompt": "Un gas ideale chiuso occupa 3 L a 300 K. Si porta a {x} mantenendo la stessa pressione assoluta mediante un pistone libero. Quale volume misura?",
+      "version": 2
+    }
+  ],
+  "schema": "astra/1"
+}

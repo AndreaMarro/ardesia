@@ -1,4 +1,4 @@
-"""Assemble the C3 heat-exchange and first-law draft editions."""
+"""Assemble the C3 heat exchange, first law, process and cycle drafts."""
 
 import argparse
 import json
@@ -10,6 +10,8 @@ from tools.corpus_engineering.pipeline import digest
 SOURCE_REF = '5d1dc8dc7b601aef959d10d564c75462be74708d'
 BATCH = 'experiment-c3-heat-exchange-reading-20261127'
 FIRST_LAW_BATCH = 'experiment-c3-first-law-reading-20261127'
+PATHS_BATCH = 'experiment-c3-thermal-paths-reading-20261127'
+CYCLES_BATCH = 'experiment-c3-thermal-cycles-reading-20261127'
 
 
 def text(value):
@@ -100,6 +102,86 @@ FIRST_LAW = {
 }
 
 
+PATHS = {
+    'SIM-C3-L07-01': {
+        'points': [1, 2],
+        'formula': 'W = Σ pₑ,ᵢ ΔVᵢ, con pₑ,ᵢ = (100 kPa·L)/Vᵢ al termine di ciascun tratto',
+        'transferPrompt': 'Il pistone passa da 1 L a 2 L in {x} espansioni uguali. In ogni tratto mantieni la pressione esterna pari a (100 kPa·L) diviso per il volume finale del tratto. Quanti joule di lavoro ottieni? Per un decimale periodico arrotonda al centesimo.',
+        'blocks': [
+            text('Sul piano p–V segna gli equilibri a 1 L e a 2 L sull’isoterma pV = 100 kPa·L. Il lavoro di ogni espansione dipende dal carico esterno contro cui si muove il pistone. Con salti finiti, scegli un carico costante in ogni tratto e usa la pressione di equilibrio del suo estremo destro. Il rettangolo mostra il lavoro sul carico.'),
+            formula(r'W=\sum_i p_{{\rm est},i}\Delta V_i,\qquad p_{{\rm est},i}=\frac{100\ \mathrm{kPa\,L}}{V_i},\qquad 1\ \mathrm{kPa\,L}=1\ \mathrm J'),
+            text('Con un solo tratto, il carico è 100/2 = 50 kPa. La base è 1 L e il rettangolo vale 50 J. Per due tratti inserisci il punto intermedio a 3/2 L. Il primo carico vale 200/3 kPa, il secondo 50 kPa. Le due basi misurano mezzo litro ciascuna.'),
+            text('Le aree sono 100/3 J e 25 J. Somma con denominatore tre e ottieni (100 + 75)/3 = 175/3 J. Poiché 3 × 58 = 174, resta 1/3 J. Scrivi 58,33 J arrotondando il tre periodico al centesimo. La somma dei due rettangoli supera il rettangolo singolo di 25/3 J.'),
+            text('Continua il disegno con rettangoli sempre più stretti. L’isoterma decresce, quindi i rettangoli all’estremo destro stanno sotto la curva. Nel limite la differenza di pressione che guida ciascun passo tende a zero e il lavoro si avvicina a 100 ln 2 J. Le due consegne richiedono soltanto le aree dei rettangoli.'),
+        ],
+    },
+    'SIM-C3-L07-02': {
+        'points': [2, 4],
+        'transferPrompt': 'Una quantità fissa di gas ideale resta in equilibrio termico alla stessa temperatura, con pV = 100 kPa·L. Se il volume finale è {x}, quale pressione assoluta ottieni?',
+        'blocks': [
+            text('Nel disegno il pistone è a contatto con un termostato. Una quantità fissa di gas ideale alla stessa temperatura conserva il prodotto pressione per volume. Colloca i punti di equilibrio sul piano p–V. Spostare il pistone verso un volume maggiore riduce la pressione, seguendo un’iperbole.'),
+            formula(r'p_2V_2=p_1V_1=100\ \mathrm{kPa\,L},\qquad p_2=\frac{100\ \mathrm{kPa\,L}}{V_2}'),
+            text('A 2 L dividi 100 per 2 e ottieni 50 kPa. A 4 L dividi per 4 e leggi 25 kPa. I litri si cancellano. Controlla i due punti ricostruendo i prodotti 50 × 2 e 25 × 4. Entrambi valgono 100 kPa·L.'),
+            text('Se conosci invece 25 kPa, isola il volume e dividi 100 kPa·L per 25 kPa. Ritrovi 4 L. Raddoppiare il volume da 2 a 4 L dimezza la pressione pur lasciando la temperatura invariata. Usa una pressione assoluta nella legge del gas ideale.'),
+        ],
+    },
+    'SIM-C3-L07-03': {
+        'points': [250, 400],
+        'transferPrompt': 'Nel cilindro rigido chiuso il gas ideale era a 150 kPa e 300 K. A {x}, quale pressione assoluta prevedi?',
+        'blocks': [
+            text('Blocca il pistone e disegna due punti sopra la stessa tacca di volume. Per una quantità fissa di gas ideale, a volume costante il rapporto p/T rimane uguale fra gli equilibri. La temperatura è assoluta, perché i rapporti fra temperature in gradi Celsius sposterebbero lo zero fisico.'),
+            formula(r'\frac{p_2}{T_2}=\frac{p_1}{T_1}=\frac{150\ \mathrm{kPa}}{300\ \mathrm K}=\frac12\ \mathrm{kPa/K}'),
+            text('Prendi metà di 250 e leggi 125 kPa. Poi prendi metà di 400 e leggi 200 kPa. Segna i due punti su una retta nel piano p–T. Nella rappresentazione p–V restano sulla stessa verticale, quindi la variazione di volume è zero e il pistone non compie lavoro di espansione.'),
+            text('Se il manometro assoluto legge 200 kPa, dividi per mezzo kPa/K. Dividere per un mezzo raddoppia la lettura numerica e dà 400 K. L’aumento di pressione avviene a volume fisso perché il gas si scalda, senza spostare il pistone.'),
+        ],
+    },
+    'SIM-C3-L07-04': {
+        'points': [250, 450],
+        'transferPrompt': 'Un gas ideale chiuso occupa 3 L a 300 K. Si porta a {x} mantenendo la stessa pressione assoluta mediante un pistone libero. Quale volume misura?',
+        'blocks': [
+            text('Mantieni lo stesso carico sul pistone e aspetta l’equilibrio dopo ogni cambio di temperatura. Se il pistone scorre senza attrito apprezzabile e la quantità di gas resta fissa, la pressione resta quella imposta dal carico e dall’atmosfera. Nella legge del gas ideale rimane costante il rapporto fra volume e temperatura.'),
+            formula(r'\frac{V_2}{T_2}=\frac{V_1}{T_1}=\frac{3\ \mathrm L}{300\ \mathrm K}=\frac{1}{100}\ \mathrm{L/K}'),
+            text('Disegna sullo stesso cilindro tre tacche per il pistone a 250, 300 e 450 K. Dividendo 250 per 100 ottieni 2,5 L. La tacca centrale è 3 L e a 450 K ottieni 4,5 L. Sul piano p–V i tre equilibri stanno sulla stessa orizzontale perché la pressione è fissata.'),
+            text('Per tornare da 4,5 L alla temperatura, moltiplica per 100 K/L e ottieni 450 K. In questo modello il gas più caldo occupa più volume, quindi durante l’espansione il pistone compie lavoro sul carico. Il rapporto va calcolato usando kelvin.'),
+        ],
+    },
+}
+CYCLES = {
+    'SIM-C3-L08-01': {
+        'points': [1, 2.5],
+        'formula': 'W per ciclo orario = (p alta − p bassa) ΔV, con p alta − p bassa = 60 kPa',
+        'transferPrompt': 'Il ciclo rettangolare orario ha isobare distanti 60 kPa e varia di volume di {x} fra i rami verticali. Quanto lavoro produce in un giro?',
+        'blocks': [
+            text('Traccia il lato alto verso destra e quello basso verso sinistra. Sul ramo alto il gas si espande e dà un lavoro positivo. Sul ramo basso si comprime a una pressione minore e il lavoro ha segno negativo. Nei lati verticali il volume resta uguale e il lavoro di volume è zero.'),
+            formula(r'W=p_{\rm alta}\Delta V-p_{\rm bassa}\Delta V=(60\ \mathrm{kPa})\Delta V'),
+            text('Il rettangolo rimasto ha altezza 60 kPa. Se la larghezza è 1 L, l’area orientata vale 60 kPa·L = 60 J. Se è 2,5 L, fai 60 × (2 + 1/2) = 120 + 30 = 150 J. La conversione usa 1 kPa·L = 1 J.'),
+            text('Se conosci 150 J e l’altezza è 60 kPa, dividi 150 per 60 e trovi 5/2 L. Invertendo il giro scambi le pressioni a cui avvengono espansione e compressione. Il rettangolo ha la stessa area geometrica e il lavoro netto cambia segno.'),
+        ],
+    },
+    'SIM-C3-L08-02': {
+        'points': [40, 85],
+        'formula': 'ΔU per ciclo = 0. W = Q entrante − Q ceduto, con Q entrante = 100 J',
+        'transferPrompt': 'Il fluido di un motore assorbe 100 J e cede {x} alla sorgente fredda in un giro completo. Qual è il lavoro netto erogato?',
+        'blocks': [
+            text('Disegna la sorgente calda, il motore e la sorgente fredda. In un giro completo il fluido torna allo stesso stato. L’energia interna è una funzione di stato, quindi la differenza fra fine e inizio è zero. Il lavoro ottenuto equivale al calore netto entrato nel fluido.'),
+            formula(r'0=Q_{\rm caldo}-Q_{\rm freddo}-W,\qquad W=(100\ \mathrm J)-Q_{\rm freddo}'),
+            text('Traccia 100 J in entrata e 40 J in uscita verso il serbatoio freddo. Rimangono 60 J di lavoro. Nel secondo giro esemplificato escono 85 J come calore e il lavoro utile è 100 − 85 = 15 J. Nei due disegni le due frecce in uscita riportano insieme a 100 J.'),
+            text('Se misuri 15 J all’albero, ricavi che 85 J sono stati ceduti. Questo bilancio ricostruisce il trasferimento di energia. La realizzazione fisica del rendimento richiede anche temperature delle sorgenti compatibili con il secondo principio.'),
+        ],
+    },
+    'SIM-C3-L08-03': {
+        'points': [2, 6],
+        'transferPrompt': 'Il contatore indica {x} giri completi e identici. In ciascun giro il motore eroga 20 J. Quanto lavoro ha trasferito all’esterno?',
+        'blocks': [
+            text('Segui la freccia lungo un giro chiuso e segna una tacca dopo il ritorno allo stato iniziale. L’energia interna del fluido torna al valore di partenza. L’albero però ha già ricevuto 20 J dall’intero giro. Se il percorso e le condizioni si ripetono, il contributo al lavoro resta lo stesso.'),
+            formula(r'W_{\rm totale}=N W_{\rm giro}=N(20\ \mathrm J)'),
+            text('Per due giri aggiungi 20 + 20 = 40 J. Per sei giri puoi raggruppare tre coppie di giri da 40 J ciascuna e trovare 120 J. Segna le tacche a 20 J di distanza su una scala del lavoro cumulato. Il contatore è un numero puro.'),
+            text('Se il totale è 120 J, dividi per i 20 J per giro e ritrovi sei giri completi. Per ricavare una potenza media servirebbe anche il tempo trascorso. Qui il contatore misura direttamente quanta energia è stata trasferita come lavoro.'),
+        ],
+    },
+}
+
+
 def write(path, payload):
     path.write_text(json.dumps(payload, ensure_ascii=False, sort_keys=True, indent=2) + '\n', encoding='utf-8')
 
@@ -128,7 +210,17 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('original', type=Path)
     parser.add_argument('directory', type=Path)
-    parser.add_argument('--first-law', action='store_true')
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--first-law', action='store_true')
+    mode.add_argument('--paths', action='store_true')
+    mode.add_argument('--cycles', action='store_true')
     args = parser.parse_args()
-    scope = (FIRST_LAW_BATCH, FIRST_LAW, 'C3-L06') if args.first_law else (BATCH, EDITIONS, 'C3-L05')
+    if args.first_law:
+        scope = FIRST_LAW_BATCH, FIRST_LAW, 'C3-L06'
+    elif args.paths:
+        scope = PATHS_BATCH, PATHS, 'C3-L07'
+    elif args.cycles:
+        scope = CYCLES_BATCH, CYCLES, 'C3-L08'
+    else:
+        scope = BATCH, EDITIONS, 'C3-L05'
     assemble(args.original, args.directory, *scope)

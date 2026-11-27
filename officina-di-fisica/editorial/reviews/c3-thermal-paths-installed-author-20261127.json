@@ -1,0 +1,78 @@
+{
+  "scope": "AUTHOR_ACTUAL_INSTALLED_TASKS",
+  "activityCredit": 0,
+  "rows": [
+    {
+      "id": "SIM-C3-L07-01",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Numero di espansioni a gradini» su 1. Quale valore ottieni per «Lavoro del gas»?",
+          "value": 50,
+          "unit": "J",
+          "worked": "W = Σ pₑ,ᵢ ΔVᵢ, con pₑ,ᵢ = (100 kPa·L)/Vᵢ al termine di ciascun tratto. 100 / 2 × 1 ≈ 50 J."
+        },
+        {
+          "prompt": "Il pistone passa da 1 L a 2 L in 2 espansioni uguali. In ogni tratto mantieni la pressione esterna pari a (100 kPa·L) diviso per il volume finale del tratto. Quanti joule di lavoro ottieni? Per un decimale periodico arrotonda al centesimo.",
+          "value": 58.333333333333336,
+          "unit": "J",
+          "worked": "W = Σ pₑ,ᵢ ΔVᵢ, con pₑ,ᵢ = (100 kPa·L)/Vᵢ al termine di ciascun tratto. 100 / 1,5 × 0,5 + 100 / 2 × 0,5 ≈ 58,33 J."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C3-L07-02",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Volume dopo l’espansione» su 2 L. Quale valore ottieni per «Pressione finale»?",
+          "value": 50,
+          "unit": "kPa",
+          "worked": "p₂ = p₁V₁/V₂, con p₁V₁ = 100 kPa·L. 100 / 2 = 50 kPa."
+        },
+        {
+          "prompt": "Una quantità fissa di gas ideale resta in equilibrio termico alla stessa temperatura, con pV = 100 kPa·L. Se il volume finale è 4 L, quale pressione assoluta ottieni?",
+          "value": 25,
+          "unit": "kPa",
+          "worked": "p₂ = p₁V₁/V₂, con p₁V₁ = 100 kPa·L. 100 / 4 = 25 kPa."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C3-L07-03",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Temperatura del gas» su 250 K. Quale valore ottieni per «Pressione a volume fisso»?",
+          "value": 125,
+          "unit": "kPa",
+          "worked": "p₂ = p₁ T₂/T₁, con p₁ = 150 kPa a 300 K. 0,5 × 250 = 125 kPa."
+        },
+        {
+          "prompt": "Nel cilindro rigido chiuso il gas ideale era a 150 kPa e 300 K. A 400 K, quale pressione assoluta prevedi?",
+          "value": 200,
+          "unit": "kPa",
+          "worked": "p₂ = p₁ T₂/T₁, con p₁ = 150 kPa a 300 K. 0,5 × 400 = 200 kPa."
+        }
+      ]
+    },
+    {
+      "id": "SIM-C3-L07-04",
+      "draftVersion": 2,
+      "tasks": [
+        {
+          "prompt": "Imposta «Temperatura del gas» su 250 K. Quale valore ottieni per «Volume a pressione fissa»?",
+          "value": 2.5,
+          "unit": "L",
+          "worked": "V₂ = V₁T₂/T₁, con V₁ = 3 L a 300 K. 250 / 100 = 2,5 L."
+        },
+        {
+          "prompt": "Un gas ideale chiuso occupa 3 L a 300 K. Si porta a 450 K mantenendo la stessa pressione assoluta mediante un pistone libero. Quale volume misura?",
+          "value": 4.5,
+          "unit": "L",
+          "worked": "V₂ = V₁T₂/T₁, con V₁ = 3 L a 300 K. 450 / 100 = 4,5 L."
+        }
+      ]
+    }
+  ]
+}

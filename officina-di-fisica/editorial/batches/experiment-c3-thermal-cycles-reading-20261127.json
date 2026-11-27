@@ -1,0 +1,214 @@
+{
+  "assets": [],
+  "records": [
+    {
+      "anchor": "Un apparato torna periodicamente allo stesso stato",
+      "apparatus": "ciclo",
+      "assessmentSelection": {
+        "points": [
+          1,
+          2.5
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Traccia il lato alto verso destra e quello basso verso sinistra. Sul ramo alto il gas si espande e dà un lavoro positivo. Sul ramo basso si comprime a una pressione minore e il lavoro ha segno negativo. Nei lati verticali il volume resta uguale e il lavoro di volume è zero.",
+          "type": "text"
+        },
+        {
+          "text": "W=p_{\\rm alta}\\Delta V-p_{\\rm bassa}\\Delta V=(60\\ \\mathrm{kPa})\\Delta V",
+          "type": "formula"
+        },
+        {
+          "text": "Il rettangolo rimasto ha altezza 60 kPa. Se la larghezza è 1 L, l’area orientata vale 60 kPa·L = 60 J. Se è 2,5 L, fai 60 × (2 + 1/2) = 120 + 30 = 150 J. La conversione usa 1 kPa·L = 1 J.",
+          "type": "text"
+        },
+        {
+          "text": "Se conosci 150 J e l’altezza è 60 kPa, dividi 150 per 60 e trovi 5/2 L. Invertendo il giro scambi le pressioni a cui avvengono espansione e compressione. Il rettangolo ha la stessa area geometrica e il lavoro netto cambia segno.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Ampiezza del ciclo in volume",
+        "max": 3.0,
+        "min": 0.0,
+        "step": 0.25,
+        "unit": "L"
+      },
+      "course": "C3",
+      "formula": "W per ciclo orario = (p alta − p bassa) ΔV, con p alta − p bassa = 60 kPa",
+      "id": "SIM-C3-L08-01",
+      "interpretation": "Il rettangolo è percorso in senso orario. L’espansione avviene alla pressione maggiore. Sottrai il lavoro restituito nella compressione e osserva l’area rimasta.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Lavoro netto per giro",
+        "unit": "J"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C3-L08"
+      ],
+      "references": [
+        [
+          1.0,
+          60.0
+        ],
+        [
+          2.0,
+          120.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Leggere il lavoro di un ciclo",
+      "skill": "C3-L08",
+      "substitution": "60 × {x}",
+      "summary": "Cosa misura l’area racchiusa da un giro sul piano p–V?",
+      "title": "Ciclo termodinamico",
+      "topic": "5.5 Ciclo termodinamico",
+      "transferPrompt": "Il ciclo rettangolare orario ha isobare distanti 60 kPa e varia di volume di {x} fra i rami verticali. Quanto lavoro produce in un giro?",
+      "version": 2
+    },
+    {
+      "anchor": "Per un rettangolo, il lavoro sull’espansione è",
+      "apparatus": "motore",
+      "assessmentSelection": {
+        "points": [
+          40,
+          85
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Disegna la sorgente calda, il motore e la sorgente fredda. In un giro completo il fluido torna allo stesso stato. L’energia interna è una funzione di stato, quindi la differenza fra fine e inizio è zero. Il lavoro ottenuto equivale al calore netto entrato nel fluido.",
+          "type": "text"
+        },
+        {
+          "text": "0=Q_{\\rm caldo}-Q_{\\rm freddo}-W,\\qquad W=(100\\ \\mathrm J)-Q_{\\rm freddo}",
+          "type": "formula"
+        },
+        {
+          "text": "Traccia 100 J in entrata e 40 J in uscita verso il serbatoio freddo. Rimangono 60 J di lavoro. Nel secondo giro esemplificato escono 85 J come calore e il lavoro utile è 100 − 85 = 15 J. Nei due disegni le due frecce in uscita riportano insieme a 100 J.",
+          "type": "text"
+        },
+        {
+          "text": "Se misuri 15 J all’albero, ricavi che 85 J sono stati ceduti. Questo bilancio ricostruisce il trasferimento di energia. La realizzazione fisica del rendimento richiede anche temperature delle sorgenti compatibili con il secondo principio.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Calore ceduto alla sorgente fredda",
+        "max": 100.0,
+        "min": 20.0,
+        "step": 5.0,
+        "unit": "J"
+      },
+      "course": "C3",
+      "formula": "ΔU per ciclo = 0. W = Q entrante − Q ceduto, con Q entrante = 100 J",
+      "id": "SIM-C3-L08-02",
+      "interpretation": "Il fluido ritorna allo stato iniziale, quindi non conserva energia interna aggiuntiva. Leggi separatamente il calore ceduto e il lavoro erogato e controlla la somma.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Lavoro in un ciclo",
+        "unit": "J"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C3-L08"
+      ],
+      "references": [
+        [
+          40.0,
+          60.0
+        ],
+        [
+          80.0,
+          20.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Leggere il lavoro di un ciclo",
+      "skill": "C3-L08",
+      "substitution": "100 − {x}",
+      "summary": "Dopo un giro completo che fine fanno i 100 J ricevuti?",
+      "title": "Bilancio energetico di un ciclo",
+      "topic": "5.5 Bilancio energetico di un ciclo",
+      "transferPrompt": "Il fluido di un motore assorbe 100 J e cede {x} alla sorgente fredda in un giro completo. Qual è il lavoro netto erogato?",
+      "version": 2
+    },
+    {
+      "anchor": "Il lavoro è legato alla forma del",
+      "apparatus": "ciclo",
+      "assessmentSelection": {
+        "points": [
+          2,
+          6
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Segui la freccia lungo un giro chiuso e segna una tacca dopo il ritorno allo stato iniziale. L’energia interna del fluido torna al valore di partenza. L’albero però ha già ricevuto 20 J dall’intero giro. Se il percorso e le condizioni si ripetono, il contributo al lavoro resta lo stesso.",
+          "type": "text"
+        },
+        {
+          "text": "W_{\\rm totale}=N W_{\\rm giro}=N(20\\ \\mathrm J)",
+          "type": "formula"
+        },
+        {
+          "text": "Per due giri aggiungi 20 + 20 = 40 J. Per sei giri puoi raggruppare tre coppie di giri da 40 J ciascuna e trovare 120 J. Segna le tacche a 20 J di distanza su una scala del lavoro cumulato. Il contatore è un numero puro.",
+          "type": "text"
+        },
+        {
+          "text": "Se il totale è 120 J, dividi per i 20 J per giro e ritrovi sei giri completi. Per ricavare una potenza media servirebbe anche il tempo trascorso. Qui il contatore misura direttamente quanta energia è stata trasferita come lavoro.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Numero di giri",
+        "max": 6.0,
+        "min": 1.0,
+        "step": 1.0,
+        "unit": "1"
+      },
+      "course": "C3",
+      "discrete": true,
+      "formula": "W totale = N W ciclo, con W ciclo = 20 J",
+      "id": "SIM-C3-L08-03",
+      "interpretation": "Ogni giro riporta il fluido allo stesso stato. Il contatore conserva però i 20 J trasferiti all’esterno per ciascun giro. Confronta i segni sul contatore con l’area di un ciclo.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Lavoro totale",
+        "unit": "J"
+      },
+      "order": 3,
+      "prerequisites": [
+        "C3-L08"
+      ],
+      "references": [
+        [
+          2.0,
+          40.0
+        ],
+        [
+          5.0,
+          100.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Leggere il lavoro di un ciclo",
+      "skill": "C3-L08",
+      "substitution": "20 × {x}",
+      "summary": "Tornare allo stesso punto nel diagramma annulla anche il lavoro accumulato?",
+      "title": "Funzionamento ciclico",
+      "topic": "5.5 Funzionamento ciclico",
+      "transferPrompt": "Il contatore indica {x} giri completi e identici. In ciascun giro il motore eroga 20 J. Quanto lavoro ha trasferito all’esterno?",
+      "version": 2
+    }
+  ],
+  "schema": "astra/1"
+}
