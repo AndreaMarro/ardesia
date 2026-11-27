@@ -36,6 +36,7 @@ EDITIONS = {
     },
     'SIM-C2-L007-02': {
         'points': [1, 2],
+        'formula': 'v(R/2) = (8 cm/s)[1 − (1/2)²] = 6 cm/s',
         'transferPrompt': 'La sonda resta a metà raggio in un flusso laminare stazionario. Il profilo è parabolico e al centro l’acqua scorre a 8 cm/s. Al tempo {x}, quale velocità locale misuri?',
         'blocks': [
             text('Tieni fermo un punto nello spazio e confronta le sue letture in istanti diversi. Nel moto stazionario la velocità a quel punto resta costante nel tempo. In un profilo parabolico la velocità cambia da un raggio a un altro, quindi occorre fissare la sonda prima del confronto.'),
