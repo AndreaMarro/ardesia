@@ -1,0 +1,191 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "INDEPENDENT_CPU_AND_TEXT_REVIEW",
+  "author": "Root",
+  "reviewer": "B",
+  "candidateCommit": "4690ac2e82670bdc19aa37eaeb3fabd6b729801d",
+  "rawPackageSha256": "c54a02b832d1a54e7401180e917ed550e5b483329e11599d65149f4b469cdfa5",
+  "bindingsSha256": "728e87d7ca4b8ba0b725b69a657150784d243211b45fd5a9d4b0b88aff82fd3c",
+  "manualActuallyReadSha256": "9215159d95e20b4e3e9c13314d6403e2a176178996ec35b874192a568bc4c759",
+  "primaryBeforeExplanations": {
+    "commit": "5114b5439eff1daaa143c674459fc470018a126d",
+    "path": "officina-di-fisica/editorial/reviews/c2-flow-continuity-draft-independent-b-20261127/prompt-only-primary.md",
+    "sha256": "fa50a2ceeb39798796e28345c82631c669b8aad88f9f7a8dddfcddc8441b2907",
+    "exposureDisclosure": "B had reviewed the original C2 mathematical models and the earlier L001 manual. For these five new drafts B first extracted only prompt/data/assessment input points, derived ten results, and committed the primary before opening blocks, references or the new manual."
+  },
+  "perId": [
+    {
+      "id": "SIM-C2-L005-01",
+      "candidateSha256": "06eb0924b44574ea48b9e2211fa87c7ba6126c8905884184ae5c929ecf40ae9f",
+      "sourceSha256": "2c1385b566f8fc10f826b0885738205ac0e1c02bc1e4d56265169433bfde8d06",
+      "newTaskInputs": [
+        6,
+        7
+      ],
+      "independentExactResults": [
+        "24",
+        "28"
+      ],
+      "unit": "mL/s",
+      "installedAnswerDisplays": [
+        "24",
+        "28"
+      ],
+      "legalInputsCompared": 13,
+      "mathematicalReading": "PASS",
+      "pedagogicalReading": "PASS",
+      "notes": "Q = A v media; 4 cm² × 6/7 cm/s = 24/28 cm³/s = 24/28 mL/s. La definizione usa la media areale, quindi non richiede un profilo uniforme. Zero riferito alla velocità nel manuale finale.",
+      "UI": "NOT_RUN",
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L005-02",
+      "candidateSha256": "b620af3890f22a88e39ddf5ee1b52dbead254e31f2a0d9b6b803005e8f212827",
+      "sourceSha256": "c5e314679d7b705bb65c6dea69abfbcdb56e0588b2723328890314dd91e806de",
+      "newTaskInputs": [
+        3,
+        2.5
+      ],
+      "independentExactResults": [
+        "12/5",
+        "2"
+      ],
+      "unit": "kg/s",
+      "installedAnswerDisplays": [
+        "2,4",
+        "2"
+      ],
+      "legalInputsCompared": 21,
+      "mathematicalReading": "PASS",
+      "pedagogicalReading": "PASS",
+      "notes": "Bilancio massico stazionario senza perdite o aggiunte. 0,8 kg/L = 4/5 kg/L; 3 e 5/2 L/s danno 12/5 e 2 kg/s. Inversa corretta Q = massa al secondo / densità.",
+      "UI": "NOT_RUN",
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L005-03",
+      "candidateSha256": "9aac83d33d0563bbea9788ca699c36e02baf845d25e0583957f6b112feb2e3da",
+      "sourceSha256": "fd13a8fe629571a0f27076fd812c706b5339129227ae2468e7cf4ea09f68680f",
+      "newTaskInputs": [
+        6,
+        5
+      ],
+      "independentExactResults": [
+        "4",
+        "24/5"
+      ],
+      "unit": "cm/s",
+      "installedAnswerDisplays": [
+        "4",
+        "4,8"
+      ],
+      "legalInputsCompared": 8,
+      "mathematicalReading": "PASS",
+      "pedagogicalReading": "PASS",
+      "notes": "Continuità con acqua incomprimibile, nessun accumulo e nessun ramo fra le sezioni: 24/6 = 4 e 24/5 = 4,8 cm/s. Inversa richiede velocità positiva; diminuzione area 1/6 e aumento velocità 1/5 corretti.",
+      "UI": "NOT_RUN",
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L005-04",
+      "candidateSha256": "d4a17bc7b397063f9d58861114431643dfa5fc5e035fb9733c758d81ffd895d2",
+      "sourceSha256": "7088898e6f138971991dfde43178ea1ed50ffa1b7dd7e91a1c01a1a40d1fe10e",
+      "newTaskInputs": [
+        10,
+        6
+      ],
+      "independentExactResults": [
+        "5",
+        "3"
+      ],
+      "unit": "cm/s",
+      "installedAnswerDisplays": [
+        "5",
+        "3"
+      ],
+      "legalInputsCompared": 13,
+      "mathematicalReading": "PASS",
+      "pedagogicalReading": "PASS",
+      "notes": "Profilo parabolico esplicito con fluido newtoniano, parete aderente e sezione circolare. Pesi uguali per aree uguali, non per intervalli radiali. La sostituzione a = πr² rende il profilo lineare e dà media metà del massimo: 5 e 3 cm/s. La formula è legata al profilo fornito, non alla sola parola laminare.",
+      "UI": "NOT_RUN",
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L005-05",
+      "candidateSha256": "8192ef87952001eca0e5826253b16c75e70295f427275b4030663079aa8b4a3c",
+      "sourceSha256": "32c452afc5a7c3b8570e77d9ac0bafb12d51f6d61d2f80226a4ff823926d5b95",
+      "newTaskInputs": [
+        8,
+        6
+      ],
+      "independentExactResults": [
+        "4",
+        "6"
+      ],
+      "unit": "mL/s",
+      "installedAnswerDisplays": [
+        "4",
+        "6"
+      ],
+      "legalInputsCompared": 13,
+      "mathematicalReading": "PASS",
+      "pedagogicalReading": "PASS",
+      "notes": "Nodo pieno con acqua incomprimibile e flusso stazionario: Q inferiore = 12 − Q superiore, quindi 4 e 6 mL/s. Ai bordi 0/12 il bilancio resta valido; il caso di divisione a metà è qualificato.",
+      "UI": "NOT_RUN",
+      "humanApproval": "NOT_RUN"
+    }
+  ],
+  "resolvedFinding": {
+    "id": "SIM-C2-L005-01",
+    "location": "manual only",
+    "before": "Con il tubo fermo al livello zero il volume attraversato deve essere zero.",
+    "after": "Con la velocità media impostata a zero, il volume che attraversa la sezione in un secondo è zero.",
+    "packageAndBindingsUnchanged": true,
+    "status": "RESOLVED_AFTER_READING_FINAL_BYTES"
+  },
+  "installedRepresentationLimitation": {
+    "id": "SIM-C2-L005-02",
+    "input": 3,
+    "exact": "12/5",
+    "rawBinaryNumber": 2.4000000000000004,
+    "display": "2,4",
+    "workedLineApproximationMarker": "present in existing calculation formatter and explicitly disclosed in manual",
+    "notChangedByDraft": true,
+    "scope": "Manual arithmetic is exact. Automated display comparisons use the existing four-significant-digit reading format. No new physical tolerance or claim of exact binary arithmetic."
+  },
+  "realTerminal": {
+    "nodeExitCode": 0,
+    "testExitCode": 0,
+    "signal": null,
+    "elapsedSeconds": 0.4396368750021793,
+    "runtimeSha256": "3ed5bc77d8320230b62e1c3e6ca3bdd00f240cc64ec236b10fe55a306ca79251",
+    "runtimeFileCount": 421,
+    "runtimeUnchanged": true,
+    "collectorSha256": "aa37af6217dcfe46e3dc22e0c8abc12ff64a2572aa94b262b17cdf9bda750ba5",
+    "testsSha256": "cb62d09d7149b2f589d299188b34afb9aaf7d7ad6a99e5276fa24b7a4e681b63",
+    "UI": "NOT_RUN",
+    "activityCredit": 0,
+    "humanApproval": "NOT_RUN",
+    "publicationAction": "NONE"
+  },
+  "resourceRefusalBeforeRealRun": {
+    "wrapper": "/private/tmp/cric-bounded-local.py",
+    "wrapperExitCode": 1,
+    "childStarted": false,
+    "observation": "wrapper returned REFUSED: free disk below 2 GiB before child; no Node/test receipt exists",
+    "freeBytesMeasuredAfterRefusal": 2292400128,
+    "node": "NOT_RUN",
+    "tests": "NOT_RUN",
+    "UI": "NOT_RUN",
+    "publicationAction": "NONE"
+  },
+  "totalRecords": 5,
+  "totalTasks": 10,
+  "legalInputsCompared": 68,
+  "activityCredit": 0,
+  "UI": "NOT_RUN",
+  "scientificApproval": false,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "independentReading": "COMPLETE_CPU_AND_TEXT_ONLY"
+}
