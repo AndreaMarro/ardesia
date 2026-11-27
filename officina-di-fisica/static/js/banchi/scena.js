@@ -106,6 +106,26 @@ function instruments(root) {
     parent.add(g);
     return g;
   }
+  function annotate(draw, parent = root) {
+    const layer = group(parent);
+    draw(layer);
+    // A schematic vector belongs in front of the solid model and behind its labels.
+    const palette = new Map();
+    layer.traverse((object) => {
+      if (!object.isMesh) return;
+      const original = object.material;
+      if (!palette.has(original)) {
+        const overlay = original.clone();
+        overlay.transparent = true;
+        overlay.depthTest = false;
+        overlay.depthWrite = false;
+        overlay.side = T.FrontSide;
+        palette.set(original, overlay);
+      }
+      object.material = palette.get(original);
+      object.renderOrder = 4;
+    });
+  }
   function ring(center, r, plane, color, parent = root) {
     const pts = Array.from({ length: 65 }, (_, i) => {
       const a = (i * Math.PI) / 32,
@@ -151,7 +171,7 @@ function instruments(root) {
     }
     return obj;
   }
-  return { T, box, ball, rod, line, arrow, label, group, ring, base, surface, material, materials, labels };
+  return { T, box, ball, rod, line, arrow, label, group, annotate, ring, base, surface, material, materials, labels };
 }
 function release(group, palette) {
   const geometries = new Set(),

@@ -423,8 +423,10 @@ export async function benchPage(id, origin, topicIndex) {
   get('[data-reference]').ontoggle = references;
   function draw() {
     if (available && view !== 'diagram') gpu.rebuild(world.build, p, s, sceneLevel());
-    const sectionLegend = pilot === 'onde' && view === 'section'
+    const nativeLegend = pilot === 'onde' && view === 'section'
       ? ' · Linea scura · spostamento istantaneo lungo la sezione passante per P'
+      : view !== 'diagram' && (pilot === 'piano' || r.model === 'campo')
+        ? ' · Le frecce in primo piano rappresentano vettori; la loro lunghezza segue la scala indicata nella guida.'
       : '';
     get('[data-legend]').textContent =
       pilot === 'induzione'
@@ -433,7 +435,7 @@ export async function benchPage(id, origin, topicIndex) {
           ? activity.legend(stage, view)
           : stage < 0
             ? 'Apparato iniziale'
-            : legends[r.model].slice(0, Math.min(sceneLevel() + 1, 3)).join(' · ') + sectionLegend;
+            : legends[r.model].slice(0, Math.min(sceneLevel() + 1, 3)).join(' · ') + nativeLegend;
     root.dataset.moment = momenti[stage + 1];
     segnaMomento(root, stage + 1, !answered);
     const caption = get('[data-caption]');

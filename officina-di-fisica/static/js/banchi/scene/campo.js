@@ -97,10 +97,12 @@ export function build(b, p, s, stage) {
   b.label([x, y + 0.29, z + 0.12], 'P', ink);
   if (s.reading) {
     const scale = 1.25 / Math.max(1, s.reading.magnitude, ...s.reading.contributions.map(norm));
-    s.reading.contributions.forEach((a, i) =>
-      b.arrow(s.probe, sum(s.probe, mul(a, scale)), i ? violet : brass),
-    );
-    if (stage >= 1) b.arrow(s.probe, sum(s.probe, mul(s.reading.E, scale)), teal, undefined, 0.044);
+    b.annotate((layer) => {
+      s.reading.contributions.forEach((a, i) =>
+        b.arrow(s.probe, sum(s.probe, mul(a, scale)), i ? violet : brass, layer),
+      );
+      if (stage >= 1) b.arrow(s.probe, sum(s.probe, mul(s.reading.E, scale)), teal, layer, 0.044);
+    });
   }
   if (stage >= 2) {
     equipotential(b, s);

@@ -29,19 +29,21 @@ export function build(b, p, s, stage) {
     // Local axes rotate with the plane. A global downward vector has both components negative.
     const P = [0, 0.62, 0.48],
       scale = 1.05 / Math.max(s.weight, Math.abs(p.F), 1);
-    const vec = (origin, dx, dy, color) =>
-      b.arrow(origin, [origin[0] + dx * scale, origin[1] + dy * scale, origin[2]], color, block, 0.033);
-    vec(P, s.parallel, -s.normal, red);
-    vec(P, 0, s.normal, teal);
-    if (stage >= 1) {
-      vec([0, 0.78, 0.4], s.parallel, 0, violet);
-      vec([0, 0.78, 0.4], 0, -s.normal, brass);
-    }
-    if (stage >= 2) {
-      vec([0, 0.37, 0.44], s.friction, 0, ink);
-      vec([0, 0.84, -0.19], p.F, 0, teal);
-      if (!s.rest) b.arrow([0, 1.18, 0], [Math.sign(s.a) * 0.9, 1.18, 0], lime, block);
-    }
+    b.annotate((layer) => {
+      const vec = (origin, dx, dy, color) =>
+        b.arrow(origin, [origin[0] + dx * scale, origin[1] + dy * scale, origin[2]], color, layer, 0.033);
+      vec(P, s.parallel, -s.normal, red);
+      vec(P, 0, s.normal, teal);
+      if (stage >= 1) {
+        vec([0, 0.78, 0.4], s.parallel, 0, violet);
+        vec([0, 0.78, 0.4], 0, -s.normal, brass);
+      }
+      if (stage >= 2) {
+        vec([0, 0.37, 0.44], s.friction, 0, ink);
+        vec([0, 0.84, -0.19], p.F, 0, teal);
+        if (!s.rest) b.arrow([0, 1.18, 0], [Math.sign(s.a) * 0.9, 1.18, 0], lime, layer);
+      }
+    }, block);
     b.label([-1.95, 0.45, 0.99], '0', ink);
     b.label([-0.1, 0.12, 1.02], 'monte →', ink);
   }
