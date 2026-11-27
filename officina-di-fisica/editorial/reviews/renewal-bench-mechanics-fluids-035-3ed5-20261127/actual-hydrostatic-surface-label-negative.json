@@ -1,0 +1,83 @@
+{
+  "sourceCandidateCommit": "375faa7a90f5f643840aabb8cc3076f9a2d5f5de",
+  "runtimeSha256": "3ed5bc77d8320230b62e1c3e6ca3bdd00f240cc64ec236b10fe55a306ca79251",
+  "actualRows": [
+    {
+      "actualCase": {
+        "id": "LAB3D-03",
+        "width": 320,
+        "view": "diagram",
+        "boundary": 0,
+        "changes": {
+          "rho": 1000,
+          "p0": 100,
+          "h": 0
+        },
+        "inputs": {
+          "h": "0",
+          "rho": "1000",
+          "p0": "100"
+        },
+        "readings": "Sonda A\n100 kPa\nSonda B, stessa quota\n100 kPa\nFondo, h = 2 m\n119,6 kPa",
+        "warning": "",
+        "screenshot": "/private/tmp/cric-bench035-3ed5-actual-120/LAB3D-03-320-diagram-boundary0.png"
+      },
+      "committedImage": "editorial/reviews/renewal-bench-mechanics-fluids-035-3ed5-20261127/actual-ui-120/LAB3D-03-320-diagram-boundary0.png",
+      "imageSha256": "097c5c37cbaa4fe77ad69cc4b95e0653d81dfa5760b230fc3cf3770697fba8c2",
+      "observed": "A glyph overlaps superficie near letteri in actualPNG. Not claiming opaque probe/arrow concealment, pressure error or grader failure."
+    },
+    {
+      "actualCase": {
+        "id": "LAB3D-03",
+        "width": 1280,
+        "view": "diagram",
+        "boundary": 0,
+        "changes": {
+          "rho": 1000,
+          "p0": 100,
+          "h": 0
+        },
+        "inputs": {
+          "h": "0",
+          "rho": "1000",
+          "p0": "100"
+        },
+        "readings": "Sonda A\n100 kPa\nSonda B, stessa quota\n100 kPa\nFondo, h = 2 m\n119,6 kPa",
+        "warning": "",
+        "screenshot": "/private/tmp/cric-bench035-3ed5-actual-120/LAB3D-03-1280-diagram-boundary0.png"
+      },
+      "committedImage": "editorial/reviews/renewal-bench-mechanics-fluids-035-3ed5-20261127/actual-ui-120/LAB3D-03-1280-diagram-boundary0.png",
+      "imageSha256": "d61835eeaefec4a65a8da220133c18f3fb8a23ec5d93a1cb68e1b0c7f4cda88c",
+      "observed": "A glyph overlaps superficie near letteri in actualPNG. Not claiming opaque probe/arrow concealment, pressure error or grader failure."
+    }
+  ],
+  "codeLocation": "static/js/banchi/tavola.js129-139",
+  "svgCoordinates": {
+    "surfaceText": [
+      84,
+      34
+    ],
+    "probeATextAtH0": [
+      132,
+      38
+    ],
+    "probeA": [
+      151,
+      45
+    ],
+    "probeB": [
+      279,
+      45
+    ]
+  },
+  "sourceMathOk": true,
+  "actualPressureAKPa": 100,
+  "actualPressureBKPa": 100,
+  "actualBottomKPa": 119.6,
+  "technicalMatrixTerminal0": true,
+  "consumerVisualOk": false,
+  "sourceScientificFailureInferredFromUI": false,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
