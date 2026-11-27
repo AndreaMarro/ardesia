@@ -1,0 +1,31 @@
+{
+  "caseKey": "SIM-C5-L05-02|draft|320|fixed_projection|grid|1",
+  "currentSha256": "64a9eb40cf67030c237fa486a34f046ea9408d38ab1f17a14832650f28fb85af",
+  "previousSha256": "8c4d2225753d243fa4707b0c9a2480811edd9cbcaa601cdfad8f3c496707f840",
+  "verdict": "PASS_BOUNDED",
+  "reviewer": "review_corpus_increment",
+  "observations": "Sorgente/Sonda labels, wavefronts, purple receiver and green level marks have the same visible shapes/positions. Difference is one pixel withtwoRGBchannels decreasedby1. No new occlusion, clip or direction discrepancy observed. Causeofpixelvariationnotproved.",
+  "runtimeSha256": "f357b970906cb827c8e8046a42e45b35d8745179752f2a756b2affdf56bbe5f4",
+  "peerCommit": "e01f9a993402d6d65115908e7ced5682a8ce0228",
+  "peerJudgmentSha256": "045ad524811122f0e5561a04507b833835bbf9aeb58b8c9949fe11079b6f5965",
+  "pixelDifferences": [
+    {
+      "x": 158,
+      "y": 153,
+      "newRGBA": [
+        236,
+        232,
+        223,
+        255
+      ],
+      "oldRGBA": [
+        236,
+        233,
+        224,
+        255
+      ]
+    }
+  ],
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
