@@ -1,0 +1,1301 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "C6-Q044",
+      "sourceSha256": "5301add8174b05a6ae9b490d68671636354f978343ba270b5b984465c522f6e7",
+      "candidateSha256": "cd737c304bb26e672e752a4bad2c97feb01938b6ab66a9d239d3f7a5dc652804",
+      "reviewedSignature": "f3bc6ae6e815df89cb7988a4fdce5d30933251e966503642d6a95e2c0c708421",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {},
+      "manualArithmetic": "Le densità sono 12/8=3/2 g/cm³ e 18/12=3/2 g/cm³: i due rapporti coincidono. Non si può dedurre che sia lo stesso materiale, perché materiali differenti possono avere la stessa densità e il primo campione non è neppure dichiarato omogeneo. Si confrontano densità medie, non identità chimiche.",
+      "physicalAssumptions": "Le due densità medie sono entrambe 3/2 g/cm³; questo non identifica una sostanza né garantisce galleggiamento in acqua. Il primo campione non richiede omogeneità per definire la media.",
+      "distractors": "Le due densità medie sono entrambe 3/2 g/cm³; questo non identifica una sostanza né garantisce galleggiamento in acqua. Il primo campione non richiede omogeneità per definire la media.",
+      "pedagogicalReview": "Le due densità medie sono entrambe 3/2 g/cm³; questo non identifica una sostanza né garantisce galleggiamento in acqua. Il primo campione non richiede omogeneità per definire la media.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C2-L001",
+        "title": "Distribuire massa e forza",
+        "sourcePath": "officina-di-fisica/content/C2.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "9f40cad727f6e4532a5c05eb73182493b739ba4c052d2c59aedecc710f1a157a",
+        "actualPrerequisites": []
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q045",
+      "sourceSha256": "74a3cde1eea550183444f162bc73935f244e1f9438db3a311618bfdd84aeda95",
+      "candidateSha256": "c3362e6818c67526be9fdcbc0f01c680ca6983956a7f5ed4f83ca3fd03916553",
+      "reviewedSignature": "37bd45554211b6df90e40ff36968d787dfeffa1e7e1a62506f993577172ab618",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Con medesima resistività, R=ρL/A. R uguali e L₂=4 L₁ richiedono A₂=4 A₁. Per una sezione circolare A è proporzionale al diametro al quadrato, quindi d₂/d₁=2, con diametri positivi. Non confondere fattore dell’area e fattore della lunghezza del diametro.",
+      "physicalAssumptions": "Fili preparati separatamente: resistività positiva comune e R uguali impongono area quadrupla e diametro doppio. Un diametro dimezzato aumenterebbe R di sedici, non conserva il volume di uno stiramento.",
+      "distractors": "Fili preparati separatamente: resistività positiva comune e R uguali impongono area quadrupla e diametro doppio. Un diametro dimezzato aumenterebbe R di sedici, non conserva il volume di uno stiramento.",
+      "pedagogicalReview": "Fili preparati separatamente: resistività positiva comune e R uguali impongono area quadrupla e diametro doppio. Un diametro dimezzato aumenterebbe R di sedici, non conserva il volume di uno stiramento.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C4-L05",
+        "title": "Quanto vale una corrente",
+        "sourcePath": "officina-di-fisica/content/C4.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "d03d7d1a35419ae2029664d6625e7bb2d32760c08e01c4f93362c33b8513697d",
+        "actualPrerequisites": [
+          "C4-L01",
+          "C4-L03"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q046",
+      "sourceSha256": "da022084275543eda87d07d83f04cbe3b93f463681acdb1e56d5389496eb8412",
+      "candidateSha256": "8b82e15d3bce9134edaf0ec5493735e54cbbf51c95678f601dfab679325d56cf",
+      "reviewedSignature": "66bb9436e2fd23fc219e8b7f932d1f6a7a83d875e5a79cbb57f020288dd5979b",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "90",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Con moli conservate e stessa temperatura iniziale e finale, p_i V_i=p_f(V_i+V_vuoto). I due volumi sono uguali, dunque p_f=180/2=90 kPa assoluti. L’eventuale evoluzione intermedia della temperatura non deve essere supposta isoterma: basta il ritorno finale alla temperatura iniziale dichiarato.",
+      "physicalAssumptions": "Numero di moli conservato e temperatura finale uguale all’iniziale: il volume accessibile raddoppia, p assoluta si dimezza. Non viene attribuito un percorso isotermo o reversibile al transitorio.",
+      "distractors": "Numero di moli conservato e temperatura finale uguale all’iniziale: il volume accessibile raddoppia, p assoluta si dimezza. Non viene attribuito un percorso isotermo o reversibile al transitorio.",
+      "pedagogicalReview": "Numero di moli conservato e temperatura finale uguale all’iniziale: il volume accessibile raddoppia, p assoluta si dimezza. Non viene attribuito un percorso isotermo o reversibile al transitorio.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C3-L02",
+        "title": "Contare le moli con il gas perfetto",
+        "sourcePath": "officina-di-fisica/content/C3.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "a5e5291a81721079a6c08422baca89b59539532f3a11211ea339353799e95a67",
+        "actualPrerequisites": [
+          "C3-L01"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q047",
+      "sourceSha256": "9d6fa14522d809cb2484bb1cda824c2da58cdfaafe619dbc654fc92a370ada59",
+      "candidateSha256": "0d5ea39998ea091db1e1aec120aea26f5bf47559f54df59a99003f3e0e8f778c",
+      "reviewedSignature": "df15af277772edb577cda8eabe32a298c94480cb2d5291250abcee781bcb327f",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "7",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Scelgo positivo verso il basso: s=v₀t+gt²/2. Nel primo secondo si percorrono 2+5=7 m; velocità iniziale e gravità hanno lo stesso verso, quindi non ci sono inversioni. La legge dello spazio non coincide con la sola variazione della velocità.",
+      "physicalAssumptions": "Verso positivo in basso: 2 m dal termine iniziale e 5 m dal termine accelerato danno 7 m; non ci sono inversioni. Dodici omette il fattore un mezzo.",
+      "distractors": "Verso positivo in basso: 2 m dal termine iniziale e 5 m dal termine accelerato danno 7 m; non ci sono inversioni. Dodici omette il fattore un mezzo.",
+      "pedagogicalReview": "Verso positivo in basso: 2 m dal termine iniziale e 5 m dal termine accelerato danno 7 m; non ci sono inversioni. Dodici omette il fattore un mezzo.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C1-L004",
+        "title": "Accelerare in linea retta e in curva",
+        "sourcePath": "officina-di-fisica/content/C1.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "964bdc7021fe5466d3a86cf18356fe1708bb9441d184414cb88587fa4bb00584",
+        "actualPrerequisites": [
+          "C1-L002",
+          "C1-L003"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q048",
+      "sourceSha256": "7335f060e8ca85856060488e6f221119ea82b51627f224e6dd754e7afa826df0",
+      "candidateSha256": "6366e8cf6bd0acecc8c1e18f9da576096f9e28383791148d76415157f3f0e08a",
+      "reviewedSignature": "0b873b31039f992d52362373d8c8ebfe35f042d46b21ebf9fa9428ae088129cd",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Entrambi si dimezzano",
+      "dimension": {},
+      "manualArithmetic": "La frequenza raddoppia e il suono è più acuto. Nella stessa aria con velocità costante λ=c/f si dimezza. Non segue un aumento necessario dell’intensità o della velocità di propagazione dal solo aumento della frequenza.",
+      "physicalAssumptions": "La primaria codificava frequenza doppia e lunghezza dimezzata. Il finale chiede T e λ: dalle due leggi inverse entrambi si dimezzano, a velocità del suono invariata. Nessun vincolo sull’intensità segue.",
+      "distractors": "La primaria codificava frequenza doppia e lunghezza dimezzata. Il finale chiede T e λ: dalle due leggi inverse entrambi si dimezzano, a velocità del suono invariata. Nessun vincolo sull’intensità segue.",
+      "pedagogicalReview": "La primaria codificava frequenza doppia e lunghezza dimezzata. Il finale chiede T e λ: dalle due leggi inverse entrambi si dimezzano, a velocità del suono invariata. Nessun vincolo sull’intensità segue.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C5-L05",
+        "title": "Ascoltare il mezzo, la sorgente e il ricevitore",
+        "sourcePath": "officina-di-fisica/content/C5.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "56b3e565fcbec34b37288328ba4d66ab30f532e639dfd995d6a25b82122ee49e",
+        "actualPrerequisites": [
+          "C5-L02",
+          "C5-L04"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q049",
+      "sourceSha256": "5e756f0e024fbafaec6ee1c0c9522194daa561ac9fc99b87000087d132e4e9ea",
+      "candidateSha256": "2e079db533694d62f9091712a9cefabf783fc723547907c5ec7cd9ce172282e8",
+      "reviewedSignature": "9d951b979cdb2077f0a6efb105576a4e475618ccadf03c77406e8970f4d8e841",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c6-protected-exam-02-progressive.svg": "b5e528a19cd41392fb81522e826780255efdfc50078abdb4e4bc11dcee6e5120"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "200",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Alla stessa quota l’incremento di pressione si trasmette: ΔF_grande=ΔF_piccolo·A_grande/A_piccolo=8·100/4=200 N. Non si deve aggiungere una correzione di quota e non si pretende un’uguaglianza dei lavori da questa sola relazione istantanea.",
+      "physicalAssumptions": "Quiete fra stati, pistoni alla stessa quota e incremento di pressione comune: 100/4=25 e 8 N per 25 dà 200 N. Nessuna uguaglianza di lavori finiti è dedotta da questo dato.",
+      "distractors": "Quiete fra stati, pistoni alla stessa quota e incremento di pressione comune: 100/4=25 e 8 N per 25 dà 200 N. Nessuna uguaglianza di lavori finiti è dedotta da questo dato.",
+      "pedagogicalReview": "Quiete fra stati, pistoni alla stessa quota e incremento di pressione comune: 100/4=25 e 8 N per 25 dà 200 N. Nessuna uguaglianza di lavori finiti è dedotta da questo dato.",
+      "assetReview": "Nuovo SVG indipendente 640 × 2200 realmente exit 0 e letto integralmente. Le barre di aree 16/400 rappresentano 4/100 cm² e quelle di forze 16/400 rappresentano 8/200 N, con origine comune e scale distinte. Nella lente x=320, oggetto x=160 e immagine x=480: p=q, fuochi a240 e400, altezze opposte 40; raggio parallelo rifratto attraverso F′ e raggio centrale verificati. Il triangolo a tre tratti procede da basso sinistra a destra, poi alto sinistra e ritorna: antiorario nel piano p–V, W negativo. Assi dichiarati privi di scala numerica; non si deducono 12 J dalla geometria. Nella spira i punti uscenti e la croce entrante sono distinti; arco sul lato destro da alto a basso indica corrente oraria. Nessun testo tagliato o sovrapposto.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C2-L003",
+        "title": "Trasmettere una pressione",
+        "sourcePath": "officina-di-fisica/content/C2.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "c4f7f2f1b18364a7c7f385dedc37be5edae78d97ce759454461f33c4be3fea61",
+        "actualPrerequisites": [
+          "C2-L001",
+          "C2-L002"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q050",
+      "sourceSha256": "2eac268b3d07521c6ab5b667fd055b0d4ec1032b43cbb19d9fc25735d7018d56",
+      "candidateSha256": "21a0a40eaf24959ba5f76a53977e25f5b981b821994901d620571d534181a2e4",
+      "reviewedSignature": "ae9c9534a748cb12afdc032ebd65dcbe8562d56c4093717161a0ae29fda03b78",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La forza totale sulla carica centrale è nulla",
+      "dimension": {},
+      "manualArithmetic": "Al punto medio i due campi delle cariche positive sono uguali e opposti: E=0 e la forza qE sulla piccola carica negativa è zero. Il potenziale con zero all’infinito è invece la somma positiva 2 kQ/d, non zero, e l’energia della carica negativa è negativa. Il campo nullo non prova stabilità: l’equilibrio è instabile per spostamenti lungo la congiungente.",
+      "physicalAssumptions": "Le due singole attrazioni sulla carica centrale sono opposte e non nulle. La risultante è zero; il potenziale delle sole sorgenti positive è invece 2kQ/d. Stabilità non dedotta dalla sola risultante nulla.",
+      "distractors": "Le due singole attrazioni sulla carica centrale sono opposte e non nulle. La risultante è zero; il potenziale delle sole sorgenti positive è invece 2kQ/d. Stabilità non dedotta dalla sola risultante nulla.",
+      "pedagogicalReview": "Le due singole attrazioni sulla carica centrale sono opposte e non nulle. La risultante è zero; il potenziale delle sole sorgenti positive è invece 2kQ/d. Stabilità non dedotta dalla sola risultante nulla.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C4-L01",
+        "title": "Cariche che si attraggono e si respingono",
+        "sourcePath": "officina-di-fisica/content/C4.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "88ce847b979b22e207220620773da83adf54178cca93e65d8f6f5fdca4da2464",
+        "actualPrerequisites": []
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q051",
+      "sourceSha256": "da10ead57b083c4c59d0e0566670fb5829716ee60571b156cbab7a47b95a65be",
+      "candidateSha256": "94a015de19fa0c4101bcb52fa3112e562b579f4f909b286e91cec4c101df7803",
+      "reviewedSignature": "45412d4b9fb5636038672164afa9debe7335a7d7317e48a3dca1a46cd1a8de2c",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "(1, 4)",
+      "dimension": {},
+      "manualArithmetic": "Stesso peso, stesso dislivello e uguale energia cinetica agli estremi danno uguale lavoro utile mgh. Il rapporto lavoro secondo/primo è 1; la potenza media è lavoro/durata, quindi il rapporto è 8/2=4. Il lavoro non quadruplica solo perché la stessa azione avviene più rapidamente.",
+      "physicalAssumptions": "Massa e dislivello positivi fissano lo stesso lavoro mgh. Il rapporto dei lavori è 1; dividere per durate 8 e 2 s dà rapporto di potenze 4. Avvio e arresto esclusi.",
+      "distractors": "Massa e dislivello positivi fissano lo stesso lavoro mgh. Il rapporto dei lavori è 1; dividere per durate 8 e 2 s dà rapporto di potenze 4. Avvio e arresto esclusi.",
+      "pedagogicalReview": "Massa e dislivello positivi fissano lo stesso lavoro mgh. Il rapporto dei lavori è 1; dividere per durate 8 e 2 s dà rapporto di potenze 4. Avvio e arresto esclusi.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C1-L007",
+        "title": "Trasferire energia con una forza",
+        "sourcePath": "officina-di-fisica/content/C1.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "3c1635ae6031ba25c8ed8e4467d54c759b107e0ea4fe4ab1c3d3503908081ede",
+        "actualPrerequisites": [
+          "C1-L002",
+          "C1-L005"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q052",
+      "sourceSha256": "77c6e61e922a68db37abe773cf735bd065bbbf62859ab45878dcea25344d0fb0",
+      "candidateSha256": "db8b57b7021c7ab3d9a3e3477a0e66be44718d40dfb65eca669bb223373b7dec",
+      "reviewedSignature": "ad1543ddd5b1a8d10cd0aa7b8649936c8e1dc90e2480c5c1ae11eb75cb3b1373",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Irraggiamento",
+      "dimension": {},
+      "manualArithmetic": "Attraverso il vuoto passa radiazione elettromagnetica: irraggiamento. Conduzione e convezione richiedono un mezzo materiale nel varco. Nel modello dichiarato non esistono supporti che offrano un percorso conduttivo alternativo.",
+      "physicalAssumptions": "Irraggiamento è un canale possibile attraverso il vuoto; conduzione e convezione attraverso materiale assente non lo sono. La domanda non pretende un flusso numerico o emissività universale.",
+      "distractors": "Irraggiamento è un canale possibile attraverso il vuoto; conduzione e convezione attraverso materiale assente non lo sono. La domanda non pretende un flusso numerico o emissività universale.",
+      "pedagogicalReview": "Irraggiamento è un canale possibile attraverso il vuoto; conduzione e convezione attraverso materiale assente non lo sono. La domanda non pretende un flusso numerico o emissività universale.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C3-L05",
+        "title": "Tre vie per trasferire energia",
+        "sourcePath": "officina-di-fisica/content/C3.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "e5d6023249016be7b946a4f39d56500a074b24c91a52f6dc83ff270eb593ee8b",
+        "actualPrerequisites": [
+          "C3-L03"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q053",
+      "sourceSha256": "73487011e500177f687cb3cf7793845d012aa3d8cb91fba750ee29fc9440b7e9",
+      "candidateSha256": "d3be147317522f0a9af0d2579c62382f756a92157cd61dad7ba82a09d2c0e591",
+      "reviewedSignature": "cbb2fe975927edc6e90fc0c6b628cd43f5769402197d7b142314e34733d37bda",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c6-protected-exam-02-progressive.svg": "b5e528a19cd41392fb81522e826780255efdfc50078abdb4e4bc11dcee6e5120"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "16",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Immagine reale sullo schermo e uguale modulo di altezza implicano q/p=1. Con p+q=64 cm si ha p=q=32 cm. Dalla lente sottile 1/f=1/p+1/q segue f=16 cm. L’ingrandimento orientato è−1, non+1: l’immagine è invertita.",
+      "physicalAssumptions": "Immagine reale, modulo delle altezze uguale e non nullo: p=q=32 cm, quindi f=16 cm. L’immagine è capovolta; il confronto riguarda una singola configurazione parassiale.",
+      "distractors": "Immagine reale, modulo delle altezze uguale e non nullo: p=q=32 cm, quindi f=16 cm. L’immagine è capovolta; il confronto riguarda una singola configurazione parassiale.",
+      "pedagogicalReview": "Immagine reale, modulo delle altezze uguale e non nullo: p=q=32 cm, quindi f=16 cm. L’immagine è capovolta; il confronto riguarda una singola configurazione parassiale.",
+      "assetReview": "Nuovo SVG indipendente 640 × 2200 realmente exit 0 e letto integralmente. Le barre di aree 16/400 rappresentano 4/100 cm² e quelle di forze 16/400 rappresentano 8/200 N, con origine comune e scale distinte. Nella lente x=320, oggetto x=160 e immagine x=480: p=q, fuochi a240 e400, altezze opposte 40; raggio parallelo rifratto attraverso F′ e raggio centrale verificati. Il triangolo a tre tratti procede da basso sinistra a destra, poi alto sinistra e ritorna: antiorario nel piano p–V, W negativo. Assi dichiarati privi di scala numerica; non si deducono 12 J dalla geometria. Nella spira i punti uscenti e la croce entrante sono distinti; arco sul lato destro da alto a basso indica corrente oraria. Nessun testo tagliato o sovrapposto.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C5-L10",
+        "title": "Costruire l’immagine di una lente sottile",
+        "sourcePath": "officina-di-fisica/content/C5.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "8e567bbf648e9e46dd73cf8f47fbe5ee82b40cdd2356599caa4fbbdaea7c51db",
+        "actualPrerequisites": [
+          "C5-L09"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q054",
+      "sourceSha256": "0ab1126a849a172c3231ab39b2f59bc78bcd44c08531b826f8806b276e3007e5",
+      "candidateSha256": "17b0a55eb2283fe9afd587fc5e63d337fe569ea1145d00d34f545d2add316ff4",
+      "reviewedSignature": "a78ab7356a207290804d809c1f991ddd87deecd6ced313967db1dc7656370c91",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Velocità tangente e accelerazione verso il centro",
+      "dimension": {},
+      "manualArithmetic": "La velocità è tangente alla circonferenza e cambia direzione pur avendo modulo costante. L’accelerazione è centripeta, perpendicolare alla velocità e di modulo v²/R costante per R e v costanti. I vettori non sono costanti lungo mezza circonferenza, anche se i loro moduli lo sono.",
+      "physicalAssumptions": "Rapidità e raggio positivi: v tangente, a verso il centro e a·v=0. Direzioni variabili anche con moduli costanti; non attribuire accelerazione nulla a v di modulo costante.",
+      "distractors": "Rapidità e raggio positivi: v tangente, a verso il centro e a·v=0. Direzioni variabili anche con moduli costanti; non attribuire accelerazione nulla a v di modulo costante.",
+      "pedagogicalReview": "Rapidità e raggio positivi: v tangente, a verso il centro e a·v=0. Direzioni variabili anche con moduli costanti; non attribuire accelerazione nulla a v di modulo costante.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C1-L004",
+        "title": "Accelerare in linea retta e in curva",
+        "sourcePath": "officina-di-fisica/content/C1.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "964bdc7021fe5466d3a86cf18356fe1708bb9441d184414cb88587fa4bb00584",
+        "actualPrerequisites": [
+          "C1-L002",
+          "C1-L003"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q055",
+      "sourceSha256": "98b46d0ae6d64d9faec677df5a0a1328bbcf1304a1753b0bda8f3b2be2ac5f1a",
+      "candidateSha256": "0bcd8fe52985e6be3db62bf283785e2e4b2f0cae09364a067aaffbe4885a5af7",
+      "reviewedSignature": "53ce6c879fe0f928ffadaa2e1b12f38d37ee47060af000b8da91b79a9cdd2a3f",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Sull’asse del tubo",
+      "dimension": {},
+      "manualArithmetic": "Nel modello di Poiseuille il profilo è parabolico e il massimo del modulo si trova sull’asse, r=0, mentre l’aderenza rende la velocità nulla alla parete. Per un confronto stretto serve un flusso non nullo: con portata nulla tutti i punti avrebbero lo stesso massimo zero. Il modello include pareti ferme e regime sviluppato, già dichiarati.",
+      "physicalAssumptions": "Fluido newtoniano, aderenza e portata positiva rendono il profilo parabolico non nullo. La velocità è massima sull’asse, nulla alla parete; a R/2 è 3/4 del massimo.",
+      "distractors": "Fluido newtoniano, aderenza e portata positiva rendono il profilo parabolico non nullo. La velocità è massima sull’asse, nulla alla parete; a R/2 è 3/4 del massimo.",
+      "pedagogicalReview": "Fluido newtoniano, aderenza e portata positiva rendono il profilo parabolico non nullo. La velocità è massima sull’asse, nulla alla parete; a R/2 è 3/4 del massimo.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C2-L007",
+        "title": "Dal movimento degli strati alla viscosità",
+        "sourcePath": "officina-di-fisica/content/C2.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "f0382da70dabd853ad1d8d6a1f8d006063f7b2f4d12327f390305169a70e3670",
+        "actualPrerequisites": [
+          "C2-L005",
+          "C2-L006"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q056",
+      "sourceSha256": "b9b8bf5f180807142314f93eb3c3279d98e32b11ee0f1335e25750dd0c338986",
+      "candidateSha256": "be714573707504acec668ce8212cabe14ed006b07e6564a451e61eec1a726b23",
+      "reviewedSignature": "6b525ffa1932d66ca195c64f3197ab712a0ee4da27cd2a208619fe3588d30cc7",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Rettilineo a velocità costante",
+      "dimension": {},
+      "manualArithmetic": "Con velocità esattamente parallela a B il prodotto vettoriale v×B è nullo. Non agiscono altre forze, quindi la traiettoria è rettilinea uniforme lungo il campo, indipendentemente dal segno della carica. Non si deve imporre un moto circolare senza componente trasversale.",
+      "physicalAssumptions": "Velocità parallela al campo: v×B=0, nessun’altra forza, moto rettilineo uniforme nel modello classico. Un raggio non nullo richiederebbe componente trasversale.",
+      "distractors": "Velocità parallela al campo: v×B=0, nessun’altra forza, moto rettilineo uniforme nel modello classico. Un raggio non nullo richiederebbe componente trasversale.",
+      "pedagogicalReview": "Velocità parallela al campo: v×B=0, nessun’altra forza, moto rettilineo uniforme nel modello classico. Un raggio non nullo richiederebbe componente trasversale.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C4-L09",
+        "title": "Correnti, bussole e traiettorie curve",
+        "sourcePath": "officina-di-fisica/content/C4.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "8af1d9413a5af7c22200cc7f4b68ecb036ee98ce80bb3357c33dfa61f4eb0cea",
+        "actualPrerequisites": [
+          "C4-L02",
+          "C4-L05"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q057",
+      "sourceSha256": "a19c9cea0843d2c98aa933d88cbdb80aed6763353ee7024944e99a5ca312a017",
+      "candidateSha256": "ed6ff59153ecf8699337dbd4e495244384d31053ec1592fe7e02341809d2daf3",
+      "reviewedSignature": "7598a5e2c10bb67975807ee123584e73862f973847449d2926f8ebdf9403248e",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c6-protected-exam-02-progressive.svg": "b5e528a19cd41392fb81522e826780255efdfc50078abdb4e4bc11dcee6e5120"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "-37",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Il ciclo antiorario ha lavoro compiuto dal gas W=−12 J, perché 1 kPa·L=1 J. In un ciclo ΔU=0 e il calore netto ricevuto è W. I primi due contributi sommano 40−15=25 J; il terzo deve essere−12−25=−37 J. Il sistema cede 37 J in quel tratto, pur essendo la domanda formulata come calore ricevuto con segno.",
+      "physicalAssumptions": "Nel ciclo antiorario W_gas=−12 J e Q1+Q2=25 J, dunque Q3=−37 J. Il feedback finale riletto confuta +13 J con Q_netto=38 J. La precedente falsa attribuzione è archiviata dall’autore.",
+      "distractors": "Nel ciclo antiorario W_gas=−12 J e Q1+Q2=25 J, dunque Q3=−37 J. Il feedback finale riletto confuta +13 J con Q_netto=38 J. La precedente falsa attribuzione è archiviata dall’autore.",
+      "pedagogicalReview": "Nel ciclo antiorario W_gas=−12 J e Q1+Q2=25 J, dunque Q3=−37 J. Il feedback finale riletto confuta +13 J con Q_netto=38 J. La precedente falsa attribuzione è archiviata dall’autore.",
+      "assetReview": "Nuovo SVG indipendente 640 × 2200 realmente exit 0 e letto integralmente. Le barre di aree 16/400 rappresentano 4/100 cm² e quelle di forze 16/400 rappresentano 8/200 N, con origine comune e scale distinte. Nella lente x=320, oggetto x=160 e immagine x=480: p=q, fuochi a240 e400, altezze opposte 40; raggio parallelo rifratto attraverso F′ e raggio centrale verificati. Il triangolo a tre tratti procede da basso sinistra a destra, poi alto sinistra e ritorna: antiorario nel piano p–V, W negativo. Assi dichiarati privi di scala numerica; non si deducono 12 J dalla geometria. Nella spira i punti uscenti e la croce entrante sono distinti; arco sul lato destro da alto a basso indica corrente oraria. Nessun testo tagliato o sovrapposto.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C3-L08",
+        "title": "Leggere il lavoro di un ciclo",
+        "sourcePath": "officina-di-fisica/content/C3.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "ba1507cbec7061182e0c2e2c8c4a33a3f33cc9293200870a8a0aa017b6761b14",
+        "actualPrerequisites": [
+          "C3-L06",
+          "C3-L07"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q058",
+      "sourceSha256": "45d8ed813789cabc77abf517e6b1851c3de0373d14972888752617439dc73f3a",
+      "candidateSha256": "75e23737283b563aa92740de5e521a50cbb5823fa79aca4f744bff5ee2f3de2c",
+      "reviewedSignature": "77c55ff242d48a1ebecda82c200bae848dffa009113ffea4f3234855f8cc69a3",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {},
+      "manualArithmetic": "Per sorgente isotropa e rivelatore piccolo normale, P_raccolta è proporzionale ad A/r². Area quadrupla e distanza doppia danno fattore 4/4=1: la potenza resta uguale. Nessun assorbimento e nessuna variazione della potenza sorgente sono introdotti.",
+      "physicalAssumptions": "Area positiva quadrupla e distanza positiva doppia: il prodotto 4/2² conserva la potenza intercettata. L’intensità locale invece si riduce a un quarto.",
+      "distractors": "Area positiva quadrupla e distanza positiva doppia: il prodotto 4/2² conserva la potenza intercettata. L’intensità locale invece si riduce a un quarto.",
+      "pedagogicalReview": "Area positiva quadrupla e distanza positiva doppia: il prodotto 4/2² conserva la potenza intercettata. L’intensità locale invece si riduce a un quarto.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C5-L04",
+        "title": "Dalla potenza della sorgente all’energia raccolta",
+        "sourcePath": "officina-di-fisica/content/C5.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "b9e9282f1cf77070efbb56d249067db327c7dbdd2edaec955d0482daac40cc20",
+        "actualPrerequisites": [
+          "C5-L02"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q059",
+      "sourceSha256": "52e4d8d6beeffd25481146f44fa85af3b6a7b1e8383b0e936344408c1488385b",
+      "candidateSha256": "51638c5979741e3bf83a49616367c993841737cb9b3435abd8b4b2011b11c4bb",
+      "reviewedSignature": "cd179ca50aa94b7bae0f7868c543bc1f7fa2af81fd6887a95391a25a42319ece",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/50",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "La portata del terzo ramo è 12−2−7=3 mL/s=3 cm³/s. Dividendo per 0,50 cm² si ha velocità media 6 cm/s=3/50 m/s. Le sezioni dei due rami noti non servono, e questa è una media sulla sezione del terzo, non il suo massimo locale.",
+      "physicalAssumptions": "Continuità stazionaria: il ramo residuo riceve 3 mL/s=3 cm³/s. Dividere per 1/2 cm² dà 6 cm/s, cioè 3/50 m/s nel modello SI congelato. La media non impone profilo uniforme.",
+      "distractors": "Continuità stazionaria: il ramo residuo riceve 3 mL/s=3 cm³/s. Dividere per 1/2 cm² dà 6 cm/s, cioè 3/50 m/s nel modello SI congelato. La media non impone profilo uniforme.",
+      "pedagogicalReview": "Continuità stazionaria: il ramo residuo riceve 3 mL/s=3 cm³/s. Dividere per 1/2 cm² dà 6 cm/s, cioè 3/50 m/s nel modello SI congelato. La media non impone profilo uniforme.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C2-L005",
+        "title": "Contare ciò che attraversa una sezione",
+        "sourcePath": "officina-di-fisica/content/C2.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "74d33cc6dcc108f2ec81b20ab8335768bab52aa834b78e718f8a3f6840cc101b",
+        "actualPrerequisites": [
+          "C2-L001"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q060",
+      "sourceSha256": "b14c529daab6672068084723bdf145162a8c6991c0fbfc6a7cc1f6dbfe5a23d1",
+      "candidateSha256": "9a248562a8527c232a1d5e25fcd773576f701b51d1bf28fa1b1fb8b9b5a33a88",
+      "reviewedSignature": "39e5d632d0edb90fab5328a5fcae344afcf906ad4589eaa5dfa0c459e43a8bfa",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5",
+      "dimension": {
+        "[time]": "1"
+      },
+      "manualArithmetic": "La potenza continua sul resistore fisso è V²/R=64/4=16 W. L’energia 80 J richiede t=E/P=5 s. Non si usa V²R, che non ha unità di potenza e contraddice la legge di Ohm a tensione fissata.",
+      "physicalAssumptions": "Resistore ohmico con V e R costanti: P=64/4=16 W, t=80/16=5 s. Joule, watt e secondi restano distinti; la verifica E=Pt restituisce 80 J.",
+      "distractors": "Resistore ohmico con V e R costanti: P=64/4=16 W, t=80/16=5 s. Joule, watt e secondi restano distinti; la verifica E=Pt restituisce 80 J.",
+      "pedagogicalReview": "Resistore ohmico con V e R costanti: P=64/4=16 W, t=80/16=5 s. Joule, watt e secondi restano distinti; la verifica E=Pt restituisce 80 J.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C4-L05",
+        "title": "Quanto vale una corrente",
+        "sourcePath": "officina-di-fisica/content/C4.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "d03d7d1a35419ae2029664d6625e7bb2d32760c08e01c4f93362c33b8513697d",
+        "actualPrerequisites": [
+          "C4-L01",
+          "C4-L03"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q061",
+      "sourceSha256": "50f1cca930f9d96601eea68c7dd29fe1b5d909e7299f26b59fa8f7163b1e1807",
+      "candidateSha256": "be8906f70d89c0bd0a91b29dffbe41b5bf6d00b5daab26f69c86c87e3fea1c55",
+      "reviewedSignature": "0fa51cb1305ccd81e0a43c18655a4474c72a89e060599f5e1eef04d2f42abf34",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "-3",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "La quantità di moto orizzontale totale iniziale è zero e le forze esterne orizzontali sono trascurabili.60·2+40 v₂=0, dunque v₂=−3 m/s. Il corpo più leggero ha modulo maggiore; la somma delle velocità non deve essere zero quando le masse differiscono.",
+      "physicalAssumptions": "Impulso esterno orizzontale trascurabile: quantità di moto 120 e −120 kg·m/s, seconda velocità −3 m/s. Masse differenti non danno rapidità uguali.",
+      "distractors": "Impulso esterno orizzontale trascurabile: quantità di moto 120 e −120 kg·m/s, seconda velocità −3 m/s. Masse differenti non danno rapidità uguali.",
+      "pedagogicalReview": "Impulso esterno orizzontale trascurabile: quantità di moto 120 e −120 kg·m/s, seconda velocità −3 m/s. Masse differenti non danno rapidità uguali.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C1-L009",
+        "title": "Impulso, urti e quantità di moto",
+        "sourcePath": "officina-di-fisica/content/C1.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "6da3e8d798cea99aedcdd24660d192e25a13ff20a0777a2394f88b67ac7c378c",
+        "actualPrerequisites": [
+          "C1-L005",
+          "C1-L007"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q062",
+      "sourceSha256": "8a8181a166502df179f12d22a65086aa43a7b26aec9ed486b68676d7720ee8bd",
+      "candidateSha256": "e32f6896f99f3a2c48cdcc2a93944ec0c97351da5e19e9a05708dd58cb20d40d",
+      "reviewedSignature": "9f31a8f3a05065462286b30317d1ae59d561f8316bb26f40bd5cc0055e059dd9",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "-1/2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2",
+        "[temperature]": "-1"
+      },
+      "manualArithmetic": "L’entropia è funzione di stato. Sul cammino reversibile A→B, ΔS=60/300+120/400=1/5+3/10=1/2 J/K; gli altri tratti reversibili adiabatici contribuiscono zero. Il ritorno B→A ha quindi ΔS_sistema=−1/2 J/K anche se è irreversibile. Non si impone un aumento dell’entropia del solo sistema in qualunque processo: la produzione riguarda il bilancio completo con gli scambi.",
+      "physicalAssumptions": "Due scambi reversibili noti: ΔS_AB=1/5+3/10=1/2 J/K. Il ritorno fra gli stessi stati dà −1/2 J/K anche se irreversibile; non è la variazione totale con ambiente.",
+      "distractors": "Due scambi reversibili noti: ΔS_AB=1/5+3/10=1/2 J/K. Il ritorno fra gli stessi stati dà −1/2 J/K anche se irreversibile; non è la variazione totale con ambiente.",
+      "pedagogicalReview": "Due scambi reversibili noti: ΔS_AB=1/5+3/10=1/2 J/K. Il ritorno fra gli stessi stati dà −1/2 J/K anche se irreversibile; non è la variazione totale con ambiente.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C3-L10",
+        "title": "Seguire il verso dei processi",
+        "sourcePath": "officina-di-fisica/content/C3.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "d129e867749b91c95d0d0f7af9daa0179ccc38ba033dd3d1a7cad66bb011ab74",
+        "actualPrerequisites": [
+          "C3-L06",
+          "C3-L09"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q063",
+      "sourceSha256": "c4055f059a13ca948752894628d86707f896ad4aef53e7585192f5461ceb774b",
+      "candidateSha256": "13341c2e6741315ba302c70b37430fd4734f508a4b86f1d9ae181092a986dcd1",
+      "reviewedSignature": "8fd41f99b8f0307d3ad938026a85898a966ca3201c8d12f8028a399c246324ab",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Aumenta il numero medio di fotoni emessi al secondo",
+      "dimension": {},
+      "manualArithmetic": "Frequenza f invariata significa energia per fotone hf invariata. La potenza monocromatica maggiore richiede un maggiore tasso di fotoni emessi P/(hf). Nel regime a singolo fotone non aumenta per questo l’energia del singolo evento. Un maggiore tasso rilevato richiederebbe inoltre geometria ed efficienza di raccolta invariati.",
+      "physicalAssumptions": "Frequenza positiva invariata fissa hf: maggiore potenza emessa impone maggiore tasso medio di fotoni. Non implica maggiore energia unitaria, carica del fotone o ionizzazione automatica.",
+      "distractors": "Frequenza positiva invariata fissa hf: maggiore potenza emessa impone maggiore tasso medio di fotoni. Non implica maggiore energia unitaria, carica del fotone o ionizzazione automatica.",
+      "pedagogicalReview": "Frequenza positiva invariata fissa hf: maggiore potenza emessa impone maggiore tasso medio di fotoni. Non implica maggiore energia unitaria, carica del fotone o ionizzazione automatica.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C5-L07",
+        "title": "Quanti di energia e frazione trasmessa",
+        "sourcePath": "officina-di-fisica/content/C5.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "993eb56b10a1ac8d3eec606291fc00cd5c11dc5e035f853efeb225710612aae9",
+        "actualPrerequisites": [
+          "C5-L06"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q064",
+      "sourceSha256": "b48ece771570cbef006e20260de08cdb1aa5200c746743d98193091f1c3946fe",
+      "candidateSha256": "fa77c77fff2f453c008dc7bef6907f52f21c9dd6b3372dedc00c68d2b7c41d85",
+      "reviewedSignature": "3736c1c886dda666037a5e556a106a6b77fc99b27d7f344d6b6ae8e4ace42180",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Verso sinistra",
+      "dimension": {},
+      "manualArithmetic": "L’attrito dinamico sulla cassa è diretto verso sinistra, opposto allo scorrimento relativo verso destra rispetto al piano fermo. Non è la direzione dell’accelerazione o della forza applicata a fissare il verso dell’attrito di scorrimento.",
+      "physicalAssumptions": "Il contatto scorre a destra rispetto al piano fermo: la forza tangenziale sulla cassa è a sinistra. Il riferimento è lo scorrimento relativo, non un’accelerazione dedotta.",
+      "distractors": "Il contatto scorre a destra rispetto al piano fermo: la forza tangenziale sulla cassa è a sinistra. Il riferimento è lo scorrimento relativo, non un’accelerazione dedotta.",
+      "pedagogicalReview": "Il contatto scorre a destra rispetto al piano fermo: la forza tangenziale sulla cassa è a sinistra. Il riferimento è lo scorrimento relativo, non un’accelerazione dedotta.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C1-L006",
+        "title": "Contatto, elasticità e gravitazione",
+        "sourcePath": "officina-di-fisica/content/C1.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "980579f3788f171777b116945d26043a5f8a0ed6322a91ed9a28c7931b23e6b2",
+        "actualPrerequisites": [
+          "C1-L005"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q065",
+      "sourceSha256": "96945d5204113dc59debb35030f75f78e7ba2db5d049ebde91d807a27544e8ba",
+      "candidateSha256": "46cc314e68e4284a74749b33295dd06134a3e1f3f5c5f97a7bf2c864b71e09c8",
+      "reviewedSignature": "6ad732990e67328135386ed2a749d1e4032e4fbdd716f6f00209556fbb057cef",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Scalare",
+      "dimension": {},
+      "manualArithmetic": "È il prodotto scalare. Il risultato è uno scalare ab cosθ e può essere positivo, nullo o negativo. Il modulo del prodotto vettoriale contiene invece sinθ ed è un’altra operazione.",
+      "physicalAssumptions": "Il prodotto con coseno è scalare, con segno dipendente dall’angolo; il prodotto vettoriale ha natura e modulo differenti. Nessuna delle altre definizioni descrive il prodotto chiesto.",
+      "distractors": "Il prodotto con coseno è scalare, con segno dipendente dall’angolo; il prodotto vettoriale ha natura e modulo differenti. Nessuna delle altre definizioni descrive il prodotto chiesto.",
+      "pedagogicalReview": "Il prodotto con coseno è scalare, con segno dipendente dall’angolo; il prodotto vettoriale ha natura e modulo differenti. Nessuna delle altre definizioni descrive il prodotto chiesto.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C1-L002",
+        "title": "Costruire e proiettare un vettore",
+        "sourcePath": "officina-di-fisica/content/C1.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "99819e1718415a1562dda30d5475ac988421423a5e1746ca3328d0f5b6419b28",
+        "actualPrerequisites": [
+          "C1-L001"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q066",
+      "sourceSha256": "4ef04afbbc9cedd6ff7c9353306e9e190a3a1ed94adc844d7509db5c7b2a9279",
+      "candidateSha256": "50cead4f3e8af48ca3b9032464f4f46d210ef4735783ece5bc3319fbf8c2837e",
+      "reviewedSignature": "ea40426899023ddef33d0aa024d6fda6520f75a93d1d0ab8fc50da5fb933bf6d",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Archimede",
+      "dimension": {},
+      "manualArithmetic": "È il principio di Archimede. Nel modello idrostatico la risultante delle pressioni sul volume immerso equivale al peso del fluido spostato, verso l’alto in gravità uniforme. La massa totale dell’oggetto non è direttamente il volume spostato.",
+      "physicalAssumptions": "Principio di Archimede, risultante idrostatica pari al peso del fluido spostato. Conta volume immerso e densità del fluido, non il peso del corpo in ogni condizione.",
+      "distractors": "Principio di Archimede, risultante idrostatica pari al peso del fluido spostato. Conta volume immerso e densità del fluido, non il peso del corpo in ogni condizione.",
+      "pedagogicalReview": "Principio di Archimede, risultante idrostatica pari al peso del fluido spostato. Conta volume immerso e densità del fluido, non il peso del corpo in ogni condizione.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C2-L004",
+        "title": "Guardare il volume spostato",
+        "sourcePath": "officina-di-fisica/content/C2.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "f11680573b89e237ea222e1274184768269363e6fe62b5d3884ede4dd855a2ca",
+        "actualPrerequisites": [
+          "C2-L001",
+          "C2-L002"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q067",
+      "sourceSha256": "c9dc3317c1a5739caaa24a78423b3bde8c9cb5a33a056ff0b277f7ed7f8d83d3",
+      "candidateSha256": "6616c2505eac4c951761e4749e65841cb068070093e1e7f3cf0d7c82de8ea358",
+      "reviewedSignature": "ff09fb72574a166e7bdf365056c9da4190db3f92017955540e528953df6f05f8",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Specifico",
+      "dimension": {},
+      "manualArithmetic": "Il nome richiesto è calore specifico: capacità termica totale divisa per la massa, con unità SI J/(kg·K). Per un gas occorre specificare il vincolo del processo per distinguere, ad esempio, c_p e c_v. Non è il calore latente in J/kg.",
+      "physicalAssumptions": "Il calore specifico è C/m riferito al medesimo processo: J/(kg K), distinto dal latente J/kg. Q=mcΔT richiede c costante e assenza di transizione.",
+      "distractors": "Il calore specifico è C/m riferito al medesimo processo: J/(kg K), distinto dal latente J/kg. Q=mcΔT richiede c costante e assenza di transizione.",
+      "pedagogicalReview": "Il calore specifico è C/m riferito al medesimo processo: J/(kg K), distinto dal latente J/kg. Q=mcΔT richiede c costante e assenza di transizione.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C3-L03",
+        "title": "Pesare il riscaldamento",
+        "sourcePath": "officina-di-fisica/content/C3.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "1201fe443d15dbdc0b64d6a62d1376f68d429812aa29e76530c6b56324e1e5c3",
+        "actualPrerequisites": [
+          "C3-L01",
+          "C3-L02"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q068",
+      "sourceSha256": "c6d09d888f5397fae53af9327f894f6330ebba3b960bc828f8c31c9f0cf94b8a",
+      "candidateSha256": "b06460ff77b29d15b896d6f10f7e9e316e5f0c14aa5039b9f95ae8396495afbf",
+      "reviewedSignature": "cdf936b6ce07a3644257706fd3b9290ce2ef01b022b650dbbae9fbbf3b7dca91",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Polarizzazione elettrica",
+      "dimension": {},
+      "manualArithmetic": "È polarizzazione elettrica: orientamento parziale di dipoli e/o separazione delle cariche legate. Non coincide con una corrente di conduzione continua di cariche libere attraverso il materiale ideale isolante.",
+      "physicalAssumptions": "Polarizzazione elettrica del dielettrico: spostamenti locali di cariche legate o orientamento di dipoli; non una corrente metallica attraverso tutto il materiale. Vettore dipolo orientato dalla carica negativa alla positiva.",
+      "distractors": "Polarizzazione elettrica del dielettrico: spostamenti locali di cariche legate o orientamento di dipoli; non una corrente metallica attraverso tutto il materiale. Vettore dipolo orientato dalla carica negativa alla positiva.",
+      "pedagogicalReview": "Polarizzazione elettrica del dielettrico: spostamenti locali di cariche legate o orientamento di dipoli; non una corrente metallica attraverso tutto il materiale. Vettore dipolo orientato dalla carica negativa alla positiva.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C4-L04",
+        "title": "Cariche mobili e cariche legate",
+        "sourcePath": "officina-di-fisica/content/C4.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "f02e6be80d89ace3468e4c4b16088f023570fbb537a4c0af086ed36bec0d07a6",
+        "actualPrerequisites": [
+          "C4-L01",
+          "C4-L02",
+          "C4-L03"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q069",
+      "sourceSha256": "4b95acf1d775508d1c804e67b84d51acbdddab4daf91ee601e7199d5a1b6aba4",
+      "candidateSha256": "f3f3d898b955303e326b0dfed4c7ada0f22415c54f3529d6cdf3f33c7f489578",
+      "reviewedSignature": "e1cb0ba1984bcbcac8a0167210a6daeb2f71778d9c182b03f124f99a53a73a8b",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Lunghezza d’onda",
+      "dimension": {},
+      "manualArithmetic": "La parola è lunghezza: la distanza fra due compressioni consecutive è la lunghezza d’onda λ. Compressione e rarefazione consecutive distano invece mezza lunghezza d’onda nel modello armonico. L’ampiezza descrive l’oscillazione locale, non questa periodicità spaziale.",
+      "physicalAssumptions": "Due compressioni consecutive allo stesso istante distano una lunghezza d’onda. Il periodo confronta istanti nello stesso punto; λ=vT mantiene distinte le dimensioni.",
+      "distractors": "Due compressioni consecutive allo stesso istante distano una lunghezza d’onda. Il periodo confronta istanti nello stesso punto; λ=vT mantiene distinte le dimensioni.",
+      "pedagogicalReview": "Due compressioni consecutive allo stesso istante distano una lunghezza d’onda. Il periodo confronta istanti nello stesso punto; λ=vT mantiene distinte le dimensioni.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C5-L02",
+        "title": "Una fotografia e un cronometro raccontano due cose diverse",
+        "sourcePath": "officina-di-fisica/content/C5.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "4d99b0757c171d2bdc1afffa5f961b415b0e8966ba32e4924c3ca5e35b088e57",
+        "actualPrerequisites": [
+          "C5-L01"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q070",
+      "sourceSha256": "f131ad56626dc854498d9452d6aaecaaa321feb57fe700d57f1f61bc385dab1d",
+      "candidateSha256": "61845ed59465db3b321c76c917881fc9176619aefdbe54f895b4c05675436d57",
+      "reviewedSignature": "324afc05b963aa8a74f27e07aaa2582ea6651d74553d8839fdb2b848cb8d2aed",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Potenza media",
+      "dimension": {},
+      "manualArithmetic": "È la potenza. Per un intervallo finito la potenza media è W/Δt; la potenza istantanea è dW/dt. La grandezza non è il lavoro stesso e ha unità watt, cioè joule al secondo.",
+      "physicalAssumptions": "Il lavoro per durata positiva definisce potenza media, J/s=W. Non coincide con energia o forza; il valore istantaneo richiederebbe una derivata.",
+      "distractors": "Il lavoro per durata positiva definisce potenza media, J/s=W. Non coincide con energia o forza; il valore istantaneo richiederebbe una derivata.",
+      "pedagogicalReview": "Il lavoro per durata positiva definisce potenza media, J/s=W. Non coincide con energia o forza; il valore istantaneo richiederebbe una derivata.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C1-L007",
+        "title": "Trasferire energia con una forza",
+        "sourcePath": "officina-di-fisica/content/C1.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "3c1635ae6031ba25c8ed8e4467d54c759b107e0ea4fe4ab1c3d3503908081ede",
+        "actualPrerequisites": [
+          "C1-L002",
+          "C1-L005"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q071",
+      "sourceSha256": "2cd7bfab78a5999fce197b34287e4da4e9db9615024bc6287a9a62d7b7b6dcee",
+      "candidateSha256": "8ddfbe600c36243b9400e139aa8b860462993ea0f63569aa48574b82083a2b9f",
+      "reviewedSignature": "8ac4745a25194b29fd69096c0782e3dab6d5555ed9ed018dd75332bce5df81ee",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Viscosità dinamica",
+      "dimension": {},
+      "manualArithmetic": "È viscosità dinamica μ oη. Per fluido newtoniano lega lo sforzo tangenziale al gradiente di velocità e ha unità Pa·s. La viscosità cinematica è invece μ/ρ e ha unità m²/s.",
+      "physicalAssumptions": "La viscosità dinamica moltiplica il gradiente di velocità: Pa s. Quella cinematica è η/ρ e non può sostituire il coefficiente senza densità. Mappatura C2-L007 effettiva verificata.",
+      "distractors": "La viscosità dinamica moltiplica il gradiente di velocità: Pa s. Quella cinematica è η/ρ e non può sostituire il coefficiente senza densità. Mappatura C2-L007 effettiva verificata.",
+      "pedagogicalReview": "La viscosità dinamica moltiplica il gradiente di velocità: Pa s. Quella cinematica è η/ρ e non può sostituire il coefficiente senza densità. Mappatura C2-L007 effettiva verificata.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C2-L007",
+        "title": "Dal movimento degli strati alla viscosità",
+        "sourcePath": "officina-di-fisica/content/C2.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "f0382da70dabd853ad1d8d6a1f8d006063f7b2f4d12327f390305169a70e3670",
+        "actualPrerequisites": [
+          "C2-L005",
+          "C2-L006"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q072",
+      "sourceSha256": "04e4326474dd7690ae0381019c1a399865519df167e6b73bcd44a4f65aa57515",
+      "candidateSha256": "0434ffe0a77e9f2278f32aacffc82184ac2f5a182fdb563d4b95c8b4fa7f174d",
+      "reviewedSignature": "1762a9968011470274ff8bd4c73cc539d572efb1328b682acc31667cce30ffd3",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Adiabatica",
+      "dimension": {},
+      "manualArithmetic": "È adiabatica: il trasferimento di energia come calore è zero. Può esserci lavoro e quindi variazione di energia interna e temperatura. Non confondere questa proprietà con isotermia o isolamento completo da ogni trasferimento energetico.",
+      "physicalAssumptions": "Assenza di qualsiasi trasferimento di calore durante il percorso definisce adiabatica. Non è una compensazione di calori netti; il lavoro può cambiare U e temperatura.",
+      "distractors": "Assenza di qualsiasi trasferimento di calore durante il percorso definisce adiabatica. Non è una compensazione di calori netti; il lavoro può cambiare U e temperatura.",
+      "pedagogicalReview": "Assenza di qualsiasi trasferimento di calore durante il percorso definisce adiabatica. Non è una compensazione di calori netti; il lavoro può cambiare U e temperatura.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C3-L06",
+        "title": "Fare i conti con il primo principio",
+        "sourcePath": "officina-di-fisica/content/C3.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "786a58a1fdd9690ef30134a8b61dc46dbe24afe66933bad555853c50c173c727",
+        "actualPrerequisites": [
+          "C3-L01",
+          "C3-L02",
+          "C3-L03"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q073",
+      "sourceSha256": "b3a53713804f3989bef26ef66d94ba449d08b487efda4f75202c262447ba1899",
+      "candidateSha256": "318e8cff552d4012b657b18e0b68760348950bb8dbc4246eea619777ebaf0999",
+      "reviewedSignature": "9d2dadcf122b377c20d08d7654ff68a8bf42de0412474711b6363290b9b739bc",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c6-protected-exam-02-progressive.svg": "b5e528a19cd41392fb81522e826780255efdfc50078abdb4e4bc11dcee6e5120"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Orario",
+      "dimension": {},
+      "manualArithmetic": "Il flusso esterno uscente aumenta; la risposta indotta deve produrre un contributo entrante. La mano destra dà corrente oraria vista dal lettore. Questa è la corrente indotta dalla variazione, con circuito chiuso e nessuna diversa sorgente o corrente iniziale imposta; non si sta classificando una corrente totale arbitraria già esistente.",
+      "physicalAssumptions": "Spira ferma resistiva, senza generatori e autoinduzione trascurabile: il flusso uscente cresce, la risposta è entrante e la corrente è oraria vista dal lettore. Il verso contrasta la variazione, non qualsiasi campo statico.",
+      "distractors": "Spira ferma resistiva, senza generatori e autoinduzione trascurabile: il flusso uscente cresce, la risposta è entrante e la corrente è oraria vista dal lettore. Il verso contrasta la variazione, non qualsiasi campo statico.",
+      "pedagogicalReview": "Spira ferma resistiva, senza generatori e autoinduzione trascurabile: il flusso uscente cresce, la risposta è entrante e la corrente è oraria vista dal lettore. Il verso contrasta la variazione, non qualsiasi campo statico.",
+      "assetReview": "Nuovo SVG indipendente 640 × 2200 realmente exit 0 e letto integralmente. Le barre di aree 16/400 rappresentano 4/100 cm² e quelle di forze 16/400 rappresentano 8/200 N, con origine comune e scale distinte. Nella lente x=320, oggetto x=160 e immagine x=480: p=q, fuochi a240 e400, altezze opposte 40; raggio parallelo rifratto attraverso F′ e raggio centrale verificati. Il triangolo a tre tratti procede da basso sinistra a destra, poi alto sinistra e ritorna: antiorario nel piano p–V, W negativo. Assi dichiarati privi di scala numerica; non si deducono 12 J dalla geometria. Nella spira i punti uscenti e la croce entrante sono distinti; arco sul lato destro da alto a basso indica corrente oraria. Nessun testo tagliato o sovrapposto.",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C4-L10",
+        "title": "Indurre una tensione cambiando il flusso",
+        "sourcePath": "officina-di-fisica/content/C4.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "f8265db8f5051d6fbbc61c112f25540379e4d5dcabfa5409217202faec7d6cc2",
+        "actualPrerequisites": [
+          "C4-L05",
+          "C4-L09"
+        ]
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C6-Q074",
+      "sourceSha256": "3f5cff2048c0f74b192632feadef1764d7b34177579b3b8ea08c269b6559f957",
+      "candidateSha256": "50af0b4ba4f5ff50e82b3b28acd2b12aff675ec815773193c653b64a60336b7d",
+      "reviewedSignature": "731c49f08786fb648e466175c797f2aaf9ba5aa0fdd236b8598c2531f7bf1846",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Becquerel",
+      "dimension": {},
+      "manualArithmetic": "È il becquerel, simbolo Bq, attività di un decadimento al secondo. Anche l’hertz ha dimensione s⁻¹ ma identifica una frequenza, non il nome dell’unità di attività nucleare richiesta.",
+      "physicalAssumptions": "Il becquerel nomina attività media, non frequenza periodica anche se entrambi hanno dimensione s⁻¹. Lettura del rivelatore e attività non sono identificate senza efficienza e fondo.",
+      "distractors": "Il becquerel nomina attività media, non frequenza periodica anche se entrambi hanno dimensione s⁻¹. Lettura del rivelatore e attività non sono identificate senza efficienza e fondo.",
+      "pedagogicalReview": "Il becquerel nomina attività media, non frequenza periodica anche se entrambi hanno dimensione s⁻¹. Lettura del rivelatore e attività non sono identificate senza efficienza e fondo.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "unchanged_frozen_prompt_only_model_AST",
+        "separate_SI_constitutive_witnesses_and_exact_Pint_Fraction",
+        "individual_manual_original_final_options_domains_lessons_and_SVG_reading"
+      ],
+      "lessonReference": {
+        "id": "C5-L08",
+        "title": "Una popolazione di nuclei che cambia nel tempo",
+        "sourcePath": "officina-di-fisica/content/C5.json",
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sha256": "9176ee6ab49e6213cf094c437c87e14ed1b52fdad7ed34751f85b4069d05dc09",
+        "actualPrerequisites": []
+      },
+      "protectedExam": 2,
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "95ff51149200eb2386aa8e6b2ff4aeff683790cea200d68e900cab16def0e057",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "protectedExam": "2; default-deny in application until independent publication gates",
+  "reviewedCandidateCommit": "6619b58f6d361b7367baaec7ee6e8d0a1a350eb3",
+  "packageSha256": "383031a14a1e1917058a493744571ebeaff1594f48e13b4d69770096edfab4f1",
+  "bindingsSha256": "595ce3b8befe7fd4e566b4fed989a102535fabd9282d09a05c19afe38bd7ca8a",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "pathsById": {
+      "C6-Q044": "officina-di-fisica/content/C6.json",
+      "C6-Q045": "officina-di-fisica/content/C6.json",
+      "C6-Q046": "officina-di-fisica/content/C6.json",
+      "C6-Q047": "officina-di-fisica/content/C6.json",
+      "C6-Q048": "officina-di-fisica/content/C6.json",
+      "C6-Q049": "officina-di-fisica/content/C6.json",
+      "C6-Q050": "officina-di-fisica/content/C6.json",
+      "C6-Q051": "officina-di-fisica/content/C6.json",
+      "C6-Q052": "officina-di-fisica/content/C6.json",
+      "C6-Q053": "officina-di-fisica/content/C6.json",
+      "C6-Q054": "officina-di-fisica/content/C6.json",
+      "C6-Q055": "officina-di-fisica/content/C6.json",
+      "C6-Q056": "officina-di-fisica/content/C6.json",
+      "C6-Q057": "officina-di-fisica/content/C6.json",
+      "C6-Q058": "officina-di-fisica/content/C6.json",
+      "C6-Q059": "officina-di-fisica/content/C6.json",
+      "C6-Q060": "officina-di-fisica/content/C6.json",
+      "C6-Q061": "officina-di-fisica/content/C6.json",
+      "C6-Q062": "officina-di-fisica/content/C6.json",
+      "C6-Q063": "officina-di-fisica/content/C6.json",
+      "C6-Q064": "officina-di-fisica/content/C6.json",
+      "C6-Q065": "officina-di-fisica/content/C6.json",
+      "C6-Q066": "officina-di-fisica/content/C6.json",
+      "C6-Q067": "officina-di-fisica/content/C6.json",
+      "C6-Q068": "officina-di-fisica/content/C6.json",
+      "C6-Q069": "officina-di-fisica/content/C6.json",
+      "C6-Q070": "officina-di-fisica/content/C6.json",
+      "C6-Q071": "officina-di-fisica/content/C6.json",
+      "C6-Q072": "officina-di-fisica/content/C6.json",
+      "C6-Q073": "officina-di-fisica/content/C6.json",
+      "C6-Q074": "officina-di-fisica/content/C6.json"
+    },
+    "sourceFileSha256": {
+      "officina-di-fisica/content/C6.json": "3f39318c261ec6ed7e68e06f2776dbfb6bce847ccd71cef6354cc5554699ac0c"
+    }
+  },
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/primary-cric-c6-protected-exam-02-partial-before-candidates-20261126.md",
+    "sha256": "d1a9fa5dc1d6e669e895d3ea56794755af9dbb6d36aa556ab9f0312aeb8934de"
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/cric-c6-protected-exam-02-partial-independent-models.py",
+    "sha256": "cb149b353b93383504904fb333a059e241fc9c290554380f2503baa9a7c8ce7b",
+    "commit": "3b428a11b7825cc4aaaefd4e244549a7e68d30eb"
+  },
+  "modelFunctionBodies": "All frozen source-only model function AST identical; separate physical witnesses added after candidate reading."
+}
