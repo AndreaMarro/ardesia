@@ -1,0 +1,36 @@
+from pathlib import Path
+import json,hashlib,shutil
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c2-fluid-label-candidate-independent-a-20261127';OLD=A/'editorial/reviews/c2-41-cb9-actual-ui-peer-a-20261127';h=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();write=lambda p,x:p.write_text(json.dumps(x,ensure_ascii=False,indent=2)+'\n')
+shutil.copyfile('/private/tmp/run_c2_candidate_target_a.py',D/'run-independent-target.py.txt');shutil.copyfile('/private/tmp/commit_c2_candidate_partial_proof_a.py',D/'freeze-handoff.py.txt');write(D/'non-browser-freeze-preparation-observations.json',{'scope':'Only lightweight local report construction, before independent target','observedFailures':[{'observedToolExit':1,'error':'ModuleNotFoundError: sympy','reason':'Wrong system Python for a script importing existing mathematical pipeline','resolution':'Use the existing recovery Python, no dependency contract changed'},{'observedToolExit':1,'error':'AssertionError: two planned control points collapsed for a witness at maximum','resolution':'Keep the original first witness rather than overwrite by last repeated observation'},{'observedToolExit':1,'error':'AssertionError: Q=L008-03 witness itself is maximum8','resolution':'Add distinct legal first positive control0.5 beside the observed maximum8; plan remains exactly two points'}],'doesNotModifyActualUiReceipts':True})
+(D/'README.md').write_text('''# Independent C2 fluid-label candidate review: residual finding
+
+Candidate6d6dd15ab1b7666c3c95becbc9a8c40149735b01, runtime1674db0b94546fd7859b728d200cde0f1c428a67865151c6020395713985a03f. This is a complete interpretation of the retained12-case canary and a partial candidate review, not the whole C2 renewal or macro acceptance. All12 original PNGs were actually opened and read, including keyboard-opened legends in both renderers at320/1280.
+
+## Actual current negative
+
+SIM-C2-L006-02, native Top320: `Presa frontale` still obscures the downstream violet arrow, element14. At0.25m/s and5m/s, all66 shaft vertices and all34 cone vertices are within its opaque rectangle. The lower input has a nonzero1.815px projected axis. The full original PNG confirms the missing arrow. At1280 a part of the shaft projects outside the rectangle: no full-arrow assertion is made there. Fallback is separately observed and does not have this white sprite rectangle.
+
+The first cb9 author input selected `Entrata` as the first responsible label for this ID and omitted this second label. That omission is disclosed; old61fcb9e9 evidence is unchanged. This new actual1674 canary confirms the residual. The candidate correctly removes Entrata and preserves its spatial name in a readable, keyboard-accessible legend, but cannot yet receive complete C2 approval.
+
+## Read-only source comparison
+
+A distinct Node comparison actually completed0 across all41 originals,555 controls,875 states,4375 full scene arrays on all five stages. Complete records, model results, readings, graphs, worked steps, measurement values and all remaining geometry are exact. Only the specified label is removed on each of20IDs. Names are present in every native/fallback legend. Candidate snapshots are bound to full immutable Git object IDs in git-inputs.json. CSS is included only as a fingerprint/source binding and is outside the C2 activity judgement; question-overflow previews are not counted here.
+
+## Acquisition and preparation provenance
+
+The canonical existing experiment_visibility_ui.mjs was used verbatim from Root, with private canonical imports and ephemeral database, no candidate/Root mutation. The actual12-case process completed0 in12.157s and closed browser/server; canonical report has no acquisition errors. Eight independent interpretation tests actually completed0, including strict distinction of native/fallback and whole occlusion vs1280 partial protrusion. The new proof reuses disclosed geometric instruments; no cb9 judgement is retagged to1674.
+
+Two initial preparations rejected package-transport hash mismatches before browser: the current and run-head Root support package contains a later unrelated C5 draft. The successful new canary explicitly freezes the current two Root packages and verifies all9 complete normalized owner records; those extra drafts are outside this review. The C2 original and Stevino records remain exact. Lightweight report-construction failures (wrong Python and duplicate planned endpoints) are separately declared, with no altered UI receipt.
+
+## Next targeted replay
+
+next-candidate-targeted-ui-plan.json lists26 editions:20label IDs, five historical observed UI regressions and the separate StevinoDRAFT. Two legal controls and eight real native/fallback profiles make624 setup+grid cases. It is NOT_RUN and requires a new immutable corrected candidate and actual fingerprint before preparing the request. The original Stevino source conflict remains separate from DRAFT2; no automatic replacement, activity credit or human approval is granted.
+
+No production, candidate, Root, registry or ledger file was changed. The read-only candidate can be corrected by its distinct author, followed by a genuinely new replay.
+''')
+old=json.loads((OLD/'handoff.json').read_bytes());files=dict(old['files']);files[str((OLD/'handoff.json').relative_to(A))]=h(OLD/'handoff.json')
+for q in D.rglob('*'):
+ if q.is_file()and q.name!='handoff.json':files[str(q.relative_to(A))]=h(q)
+for p in ['tools/corpus_engineering/c2_fluid_label_candidate_review_a.py','tests/corpus/test_c2_fluid_label_candidate_a.py']:files[p]=h(A/p)
+for p,sha in files.items():assert h(A/p)==sha,p
+write(D/'handoff.json',{'schemaVersion':'1.0.0','role':'DISTINCT_REVIEWER_A_CANDIDATE_PARTIAL_NEGATIVE','candidateCommit':'6d6dd15ab1b7666c3c95becbc9a8c40149735b01','runtimeSha256':'1674db0b94546fd7859b728d200cde0f1c428a67865151c6020395713985a03f','actualUiExit':0,'actualUiCases':12,'all12WholePNGsOpenedAndRead':True,'actualIndependentTests':8,'actualIndependentTestsExit':0,'sourceComparison':{'records':41,'controls':555,'states':875,'fiveStageScenes':4375,'actualExit':0},'residualFinding':'SIM-C2-L006-02 Presa frontale wholly covers downstream violet arrow atTop320','initialWitnessOmissionDisclosed':True,'nextTargetedPlanCases':624,'nextTargetedPlanStatus':'NOT_RUN_AWAITS_NEW_IMMUTABLE_CORRECTED_RUNTIME','completeC2Renewal':False,'scientificAcceptanceGranted':False,'activityCredit':0,'humanApproval':'NOT_RUN','productionChange':False,'files':files});print('handoff',h(D/'handoff.json'),'files',len(files))
