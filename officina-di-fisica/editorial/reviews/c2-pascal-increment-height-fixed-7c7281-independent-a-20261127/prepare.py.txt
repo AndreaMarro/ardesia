@@ -1,0 +1,58 @@
+from pathlib import Path
+import json,hashlib,subprocess,copy
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica')
+P=A/'editorial/reviews/c2-five-hydrostatic-drafts-7c7281-preflight-a-20261127'
+OLD=A/'editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/draft-l003-01'
+D=A/'editorial/reviews/c2-pascal-increment-height-fixed-7c7281-independent-a-20261127'
+D.mkdir(exist_ok=True)
+sha=lambda b:hashlib.sha256(b).hexdigest()
+ref='5474520353bc5919cdb17180872981a86f6b6991'
+inputs=[]
+for name,snap in [('editorial/batches/experiment-c2-hydrostatic-reading-20261127.json','new-four-drafts.verbatim.json'),('editorial/batches/experiment-c2-hydrostatic-reading-20261127-bindings.json','new-four-bindings.verbatim.json'),('editorial/reviews/c2-stevino-manometry-pascal-manual-20261127.md','manual-547452.verbatim.md')]:
+ path='officina-di-fisica/'+name
+ raw=subprocess.check_output(['git','show',ref+':'+path],cwd=A)
+ (D/snap).write_bytes(raw)
+ inputs.append(dict(commit=ref,path=path,snapshot=snap,sha256=sha(raw)))
+new=json.loads((D/'new-four-drafts.verbatim.json').read_bytes())
+old=json.loads((P/'four-drafts.verbatim.json').read_bytes())
+nb=json.loads((D/'new-four-bindings.verbatim.json').read_bytes())
+ob=json.loads((P/'four-bindings.verbatim.json').read_bytes())
+diff=[]
+for before,after,blink,alink in zip(old['records'],new['records'],ob,nb,strict=True):
+ if before['id']!='SIM-C2-L003-01':
+  assert before==after and blink==alink
+  continue
+ changed=[k for k in before if before[k]!=after[k]]
+ assert set(changed)=={'blocks','interpretation'}
+ assert len(before['blocks'])==len(after['blocks'])
+ assert [i for i,(x,y)in enumerate(zip(before['blocks'],after['blocks'],strict=True))if x!=y]==[0,len(before['blocks'])-1]
+ assert all(x==y for x,y in zip(before['blocks'],after['blocks'],strict=True)if x['type']=='formula')
+ assert {k:v for k,v in blink.items()if k!='candidateSha256'}=={k:v for k,v in alink.items()if k!='candidateSha256'}
+ assert alink['candidateSha256']=='cdbc3d74e2f7c19a9aea2b87171936ad34b5715393d9b21001ede15dbe69b5de'
+ diff.append(dict(id=after['id'],oldCandidateSha256=blink['candidateSha256'],newCandidateSha256=alink['candidateSha256'],changedFields=changed,changedBlocks=[0,len(before['blocks'])-1]))
+combined=json.loads((P/'draft047.verbatim.json').read_bytes())
+combined['records']+=new['records']
+bindings=json.loads((P/'binding047.verbatim.json').read_bytes())+nb
+F=D/'canonical-inputs';F.mkdir(exist_ok=True)
+package=F/'experiment-c2-five-hydrostatic-drafts.json'
+package.write_text(json.dumps(combined,ensure_ascii=False,indent=2)+'\n')
+(F/'experiment-c2-five-hydrostatic-drafts-bindings.json').write_text(json.dumps(bindings,ensure_ascii=False,indent=2)+'\n')
+(D/'strict-record-diff.json').write_text(json.dumps(dict(schemaVersion='1.0.0',records=diff,otherFourCombinedRecordsByteEquivalent=True,allFormulasDataKeysDomainsAndGeometryUnchanged=True,oldNegativeCommit='f4fb3b5704c5d08ada0232e56e50d416ec59024c'),indent=2)+'\n')
+p=json.loads((OLD/'prepared.json').read_bytes());m=json.loads((OLD/'metadata.json').read_bytes())
+record=next(r for r in combined['records']if r['id']=='SIM-C2-L003-01')
+p['records'][0]['record']=record
+p['records'][0]['candidateSha256']=diff[0]['newCandidateSha256']
+p['draftRecords']=combined['records']
+p['packageFiles']=[str(package)]
+p['inputFiles']={str(path):sha(path.read_bytes())for path in F.iterdir()}
+p['scope']='DISTINCT_A_SOLE_PASCAL_EMENDED_TEXT_SAME_PHYSICAL_7C7281_48CASES'
+m.update(scope=p['scope'],inputFiles=p['inputFiles'],executionAuthorization='ROOT_EXPLICIT_SOLE_PASCAL_REPLAY_AFTER_OLD_NEGATIVE_SEAL_20261127',browser='AUTHORIZED_NEW_REAL_EXECUTION_PENDING',candidateAuthorCommit=ref,oldNegativeCommit='f4fb3b5704c5d08ada0232e56e50d416ec59024c',oldNegativeRetained=True,manualFinalAnnouncedSha256='71622ee3ae11df3f55e2869fc23648fb8e77939ea2c78e8e21fd8552b718a5b5',manualFinalCommit='PENDING_ROOT_PUBLICATION_IN_SEPARATE_READING_NOTE')
+raw=(json.dumps(m,ensure_ascii=False,indent=2)+'\n').encode();(D/'metadata.json').write_bytes(raw)
+p['requestFile']=str(D/'metadata.json');p['requestSha256']=sha(raw)
+(D/'prepared.json').write_text(json.dumps(p,ensure_ascii=False,indent=2)+'\n')
+(D/'request.json').write_text(json.dumps(dict(candidateApp='/private/tmp/cric-midpoint-and-press-20261127/officina-di-fisica',prepared=str(D/'prepared.json'),output=str(D/'actual')),indent=2)+'\n')
+s=(OLD/'run-actual.py').read_text().replace(str(OLD.relative_to(A)),str(D.relative_to(A)))
+(D/'run-actual.py').write_text(s)
+(D/'git-inputs.json').write_text(json.dumps(dict(schemaVersion='1.0.0',inputs=inputs),indent=2)+'\n')
+(D/'prepare.py.txt').write_bytes(Path(__file__).read_bytes())
+print('OnlyPascal48 prepared: cdbc3 candidate; strict3prose-field changes; other4records/formulas/data/keys identical; no old output changed')

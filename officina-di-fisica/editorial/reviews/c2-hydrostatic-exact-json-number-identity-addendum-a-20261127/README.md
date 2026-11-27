@@ -1,0 +1,7 @@
+# Exact C2 prepared/canonical number identity addendum
+
+No prepared file, raw case, binding, old verdict or SHA was rewritten. The addendum records both identities and compares the complete record trees. Differences are permitted only for exact finite safe-integer JSON representations in controlmin/max/step or numeric reference cells, such as2.0versus2. ExactDecimalcomparison is used; noepsilon. Boolean/numeric coercion, noninteger changes(including9.81→10and14.715→15), unsafe-integer precision loss, version changes, strings, units, formulas and object/array structure changes are rejected.
+
+The prepared rows passed through JavaScript JSON number serialization; draftRecords and canonicalbindings retain the original Python JSON numeric representation. Full normalized owner payloads were actually compared by Node's deep identity check. The six bridges are independently recomputed from frozen prepared files. Manometrov3has prepared52fde465… versus canonicalbindingb7e17d59… with6exact integer-representation paths. FinalPascalhascdbc3d74… in both, with0differences. Other047/quota/Torricelli/oldPascalpairs are included explicitly. This is a record-specific proof, not acceptance of arbitrary alternateSHA values or new scientific content.
+
+Nine actual tests passed(0.007s unittest time), including the exact six pairs and adverse string/unit/field/version/boolean/nonfinite/noninteger/precision-loss mutations. Source/model review, graphics and approval remain independent. This identity addendum grants no activity credit or human approval.

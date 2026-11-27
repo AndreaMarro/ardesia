@@ -1,0 +1,455 @@
+{
+  "assets": [],
+  "records": [
+    {
+      "anchor": "Più scendi in acqua, maggiore è la",
+      "apparatus": "vasca",
+      "assessmentSelection": {
+        "points": [
+          2,
+          1.5
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "La vasca contiene acqua ferma e omogenea, di densità ρ=1000 kg/m³. Usiamo in tutta questa esperienza la stessa gravità g=981/100 m/s², cioè 9,81 m/s². Il manometro è azzerato al pelo libero: misura la pressione in più rispetto alla superficie, non la pressione assoluta. Immagina di confrontare due quote nella stessa acqua: la differenza nasce dal peso della colonna liquida fra le due quote.",
+          "type": "text"
+        },
+        {
+          "text": "Per capire quale legge scegliere, isola idealmente una colonna verticale di area A e altezza h. Il suo volume è Ah, la sua massa è ρAh e il suo peso è ρAhg. In equilibrio, la forza di pressione alla base supera quella alla sommità proprio di questo peso. Dividendo per la medesima area A, questa area si semplifica: conta la profondità verticale, non la larghezza della colonna. Questa costruzione assume acqua in quiete, densità uniforme e gravità costante; non descrive getti o differenze di velocità.",
+          "type": "text"
+        },
+        {
+          "text": "(p_{\\rm base}-p_{\\rm superficie})A=\\rho Ahg",
+          "type": "formula"
+        },
+        {
+          "text": "\\Delta p=\\rho gh",
+          "type": "formula"
+        },
+        {
+          "text": "Controlla le unità prima di moltiplicare: (kg/m³)(m/s²)m=kg/(m s²)=Pa. Mille pascal fanno un kilopascal. La densità 1000 introduce quindi un fattore 1000 e la conversione da Pa a kPa lo elimina. Per l’acqua del modello, ogni metro di profondità aggiunge esattamente 981/100 kPa. Le letture decimali del banco sono osservazioni; i due calcoli assegnati usano soltanto raddoppio, dimezzamento e frazioni.",
+          "type": "text"
+        },
+        {
+          "text": "\\Delta p=\\frac{981}{100}\\,\\frac{\\mathrm{kPa}}{\\mathrm m}\\,h",
+          "type": "formula"
+        },
+        {
+          "text": "Nel primo controllo porta la sonda a h=2 m. Raddoppia 981: ottieni 1962. Dividi per 100 spostando la virgola di due posizioni: 19,62 kPa. La pressione cresce andando verso il basso. Non devi aggiungere la pressione atmosferica perché lo strumento è già azzerato alla superficie.",
+          "type": "text"
+        },
+        {
+          "text": "\\Delta p(2\\,\\mathrm m)=\\frac{981\\cdot2}{100}\\,\\mathrm{kPa}",
+          "type": "formula"
+        },
+        {
+          "text": "\\Delta p(2\\,\\mathrm m)=\\frac{1962}{100}\\,\\mathrm{kPa}",
+          "type": "formula"
+        },
+        {
+          "text": "\\frac{1962}{100}\\,\\mathrm{kPa}=19{,}62\\,\\mathrm{kPa}",
+          "type": "formula"
+        },
+        {
+          "text": "Per il trasferimento h=1,5 m è 3/2 m. Moltiplica 981 per 3: 981+981+981=2943. Il denominatore diventa 100·2=200, quindi la risposta esatta è 2943/200 kPa. Se vuoi inserirla in forma decimale, moltiplica numeratore e denominatore per 5: 14715/1000=14,715 kPa. Un controllo mentale alternativo è sommare la lettura a 1 m, 9,81 kPa, e la sua metà, 4,905 kPa.",
+          "type": "text"
+        },
+        {
+          "text": "\\Delta p\\left(\\frac32\\,\\mathrm m\\right)=\\frac{981}{100}\\cdot\\frac32\\,\\mathrm{kPa}",
+          "type": "formula"
+        },
+        {
+          "text": "\\Delta p\\left(\\frac32\\,\\mathrm m\\right)=\\frac{2943}{200}\\,\\mathrm{kPa}",
+          "type": "formula"
+        },
+        {
+          "text": "\\frac{2943}{200}\\,\\mathrm{kPa}=14{,}715\\,\\mathrm{kPa}",
+          "type": "formula"
+        },
+        {
+          "text": "Puoi invertire la legge per ricavare la profondità: prima sottrai la pressione di superficie, poi dividi per ρg. Se usi i pascal, h=Δp/(ρg). Con la sovrapressione 19,62 kPa trasformata in 19620 Pa, il denominatore è 1000·981/100=9810 Pa/m; 19620/9810=2 m. Dividere la pressione assoluta senza sottrarre quella di superficie aggiungerebbe una colonna d’acqua inesistente.",
+          "type": "text"
+        },
+        {
+          "text": "h=\\frac{\\Delta p}{\\rho g}\\quad(\\rho>0,\\ g>0)",
+          "type": "formula"
+        },
+        {
+          "text": "A h=0 la sovrapressione è nulla; raddoppiare h raddoppia Δp nella stessa acqua. Due sonde alla stessa quota nello stesso liquido collegato devono dare la medesima pressione anche se la vasca cambia forma. Usare 10 al posto di 9,81 darebbe 20 kPa nel primo controllo e 15 kPa nel trasferimento: sono risultati di un modello con una gravità diversa, non arrotondamenti delle risposte richieste qui. Confrontare 15 con 14,715 aiuta a riconoscere proprio questo scambio di ipotesi.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Profondità della sonda",
+        "max": 3.0,
+        "min": 0.0,
+        "step": 0.25,
+        "unit": "m"
+      },
+      "course": "C2",
+      "formula": "Δp = ρgh, con ρ = 1000 kg/m³ e g = 981/100 m/s²",
+      "id": "SIM-C2-L002-01",
+      "interpretation": "Abbassa la sonda a partire dal pelo libero. L’altezza verticale determina il peso sovrastante per unità di superficie. Il manometro è azzerato alla superficie.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Sovrapressione dell’acqua",
+        "unit": "kPa"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "references": [
+        [
+          1.0,
+          9.81
+        ],
+        [
+          2.0,
+          19.62
+        ]
+      ],
+      "review": "Candidata DRAFT; verifica scientifica distinta NOT_RUN; approvazione umana NOT_RUN.",
+      "section": "Fluidi in quiete",
+      "skill": "C2-L002",
+      "substitution": "9,81 × {x}",
+      "summary": "Quanto vale il peso della colonna per unità di area alla profondità scelta?",
+      "title": "Legge di Stevino",
+      "topic": "Legge di Stevino",
+      "transferPrompt": "Un sensore azzerato in superficie viene immerso a {x} nell’acqua. Di quanti kPa sale la lettura usando g = 981/100 m/s²? Mantieni esatte le frazioni durante il conto.",
+      "version": 2
+    },
+    {
+      "anchor": "Usa densità uniforme e g quasi costante,",
+      "apparatus": "vasca",
+      "assessmentSelection": {
+        "points": [
+          2,
+          1.5
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Segna due origini nel banco. Il fondo è lo zero della quota z e il pelo libero a 3 m è lo zero della profondità h. Segui i due segmenti verticali mentre alzi la sonda. Quota e profondità cambiano in versi opposti.",
+          "type": "text"
+        },
+        {
+          "text": "h = 3\\,\\mathrm{m} - z",
+          "type": "formula"
+        },
+        {
+          "text": "L’acqua è in quiete e ha densità uniforme. Nel modello il suo peso specifico è 10 kPa per metro, ottenuto da 1000 kg/m³ per 10 m/s² e dalla conversione con 1000 Pa per kPa. Le prese alla stessa quota stanno sotto la stessa altezza d’acqua e hanno la stessa pressione relativa alla superficie.",
+          "type": "text"
+        },
+        {
+          "text": "\\Delta p=\\left(10\\,\\frac{\\mathrm{kPa}}{\\mathrm m}\\right)h",
+          "type": "formula"
+        },
+        {
+          "text": "Alla quota 2 m rimane un metro d’acqua sopra la sonda e il sensore legge 10 kPa. Alla quota 1,5 m, togli 3/2 m da 3 m e rimangono 3/2 m. Moltiplica per 10 e ottieni 15 kPa.",
+          "type": "text"
+        },
+        {
+          "text": "\\Delta p\\left(z=\\frac32\\,\\mathrm m\\right)=15\\,\\mathrm{kPa}",
+          "type": "formula"
+        },
+        {
+          "text": "Per risalire alla quota, dividi la sovrapressione per 10 kPa per metro e sottrai la profondità da 3 m. Al fondo la lettura vale 30 kPa e in superficie zero. Usare la quota al posto della profondità invertirebbe questi estremi.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Quota della sonda sopra il fondo",
+        "max": 3.0,
+        "min": 0.0,
+        "step": 0.25,
+        "unit": "m"
+      },
+      "course": "C2",
+      "formula": "h = 3−z; Δp = 10(3−z) kPa",
+      "id": "SIM-C2-L002-02",
+      "interpretation": "La vasca contiene 3 m d’acqua. La quota cresce verso l’alto, la profondità verso il basso. Le due prese alla stessa quota hanno la stessa pressione, qualunque sia la parete.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Pressione relativa",
+        "unit": "kPa"
+      },
+      "order": 2,
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "references": [
+        [
+          0.0,
+          30.0
+        ],
+        [
+          2.0,
+          10.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in quiete",
+      "skill": "C2-L002",
+      "substitution": "10 × (3 − {x})",
+      "summary": "Alzando una sonda dal fondo, leggi quota o profondità?",
+      "title": "Pressione con la profondità",
+      "topic": "Pressione con la profondità",
+      "transferPrompt": "L’acqua raggiunge quota 3 m rispetto al fondo. Installi la sonda alla quota {x}. Quale pressione relativa devi aspettarti?",
+      "version": 2
+    },
+    {
+      "anchor": "Più scendi in acqua, maggiore è la",
+      "apparatus": "manometro",
+      "assessmentSelection": {
+        "points": [
+          102,
+          88.4
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Nel barometro il serbatoio è esposto all’aria e in alto il tubo è chiuso. Segui una linea orizzontale dal pelo del serbatoio all’interno del tubo. Alla stessa quota il mercurio connesso e in quiete ha la stessa pressione. In verticale, dal pelo libero al menisco, la pressione si riduce del peso della colonna per unità di area.",
+          "type": "text"
+        },
+        {
+          "text": "p_{\\mathrm{aria}}=\\rho g h",
+          "type": "formula"
+        },
+        {
+          "text": "Il modello trascura la pressione del vapore nel tubo. Con densità 13 600 kg/m³ e gravità 10 m/s², il gradiente è 136 000 Pa/m. Per un centimetro dividi per 100 e ottieni 1360 Pa, ossia 1,36 kPa. Per trovare l’altezza in centimetri, dividi la pressione per 1,36 kPa/cm.",
+          "type": "text"
+        },
+        {
+          "text": "h=\\frac{p_{\\mathrm{aria}}}{1{,}36\\,\\mathrm{kPa/cm}}",
+          "type": "formula"
+        },
+        {
+          "text": "Con 102 kPa, prova 75 cm. Moltiplicare 1,36 per 100 dà 136. Un quarto di 136 vale 34, così per 75 ottieni 136 − 34 = 102. Con 88,4 kPa prova 65 cm. Cinquanta centimetri corrispondono a 68 kPa e quindici ne aggiungono 20,4, per un totale di 88,4 kPa.",
+          "type": "text"
+        },
+        {
+          "text": "h(102\\,\\mathrm{kPa})=75\\,\\mathrm{cm}",
+          "type": "formula"
+        },
+        {
+          "text": "h(88{,}4\\,\\mathrm{kPa})=65\\,\\mathrm{cm}",
+          "type": "formula"
+        },
+        {
+          "text": "A pressione maggiore corrisponde una colonna più alta. Leggi la differenza verticale tra il menisco e il pelo libero. Prendere come zero il fondo del recipiente aggiungerebbe alla misura un tratto di mercurio estraneo all’equilibrio tra aria e colonna.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Pressione dell’aria",
+        "max": 108.8,
+        "min": 68.0,
+        "step": 1.36,
+        "unit": "kPa"
+      },
+      "course": "C2",
+      "formula": "h = p/(ρg); ρ = 13600 kg/m³, g = 10 m/s²",
+      "id": "SIM-C2-L002-03",
+      "interpretation": "Il tubo chiuso contiene vuoto sopra il mercurio. La superficie del serbatoio è esposta all’aria. Il dislivello dà la pressione atmosferica, trascurando la pressione del vapore.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Altezza della colonna di mercurio",
+        "unit": "cm"
+      },
+      "order": 3,
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "references": [
+        [
+          68.0,
+          50.0
+        ],
+        [
+          102.0,
+          75.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in quiete",
+      "skill": "C2-L002",
+      "substitution": "{x} / 1,36",
+      "summary": "Che cosa sostiene la colonna del barometro di Torricelli?",
+      "title": "Esperimento di Torricelli",
+      "topic": "Esperimento di Torricelli",
+      "transferPrompt": "Un barometro a mercurio è esposto alla pressione {x}. Quale altezza della colonna prevedi con ρ = 13 600 kg/m³ e g = 10 m/s²?",
+      "version": 2
+    },
+    {
+      "anchor": "Un manometro a U traduce una differenza",
+      "apparatus": "manometro",
+      "assessmentSelection": {
+        "points": [
+          2,
+          0
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 2,
+      "blocks": [
+        {
+          "text": "Traccia una retta orizzontale che attraversa entrambi i rami sotto i due menischi. Nel liquido in quiete la pressione lungo quella retta è uguale. Indica con S e D il ramo sinistro e quello destro, e misura le loro altezze dalla retta.",
+          "type": "text"
+        },
+        {
+          "text": "p_S+\\rho g h_S=p_D+\\rho g h_D",
+          "type": "formula"
+        },
+        {
+          "text": "Sposta le pressioni a sinistra e i termini delle altezze a destra. Un dislivello positivo indica quindi che il menisco destro è più alto. Per l’acqua di densità 1000 kg/m³ con gravità 10 m/s², 1 kPa sostiene 10 cm di dislivello.",
+          "type": "text"
+        },
+        {
+          "text": "p_S-p_D=\\rho g(h_D-h_S)",
+          "type": "formula"
+        },
+        {
+          "text": "Se a sinistra ci sono 2 kPa in più, il dislivello vale +20 cm. Con sezioni uguali e acqua incomprimibile, rispetto al livello comune a differenza nulla il ramo sinistro scende di 10 cm e il destro sale di 10 cm. I due spostamenti in versi opposti accrescono la distanza di 20 cm. A pressioni uguali la differenza vale 0 kPa e i menischi sono alla stessa quota.",
+          "type": "text"
+        },
+        {
+          "text": "\\Delta h(+2\\,\\mathrm{kPa})=+20\\,\\mathrm{cm}",
+          "type": "formula"
+        },
+        {
+          "text": "\\Delta h(0\\,\\mathrm{kPa})=0\\,\\mathrm{cm}",
+          "type": "formula"
+        },
+        {
+          "text": "Per ricavare la differenza di pressione, moltiplica il dislivello per 10 kPa/m dopo averlo convertito in metri. Un dislivello di −10 cm equivale a −0,1 m e dà −1 kPa. In quel caso la pressione è maggiore nel ramo destro.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Differenza di pressione",
+        "max": 2.0,
+        "min": -2.0,
+        "step": 0.2,
+        "unit": "kPa"
+      },
+      "course": "C2",
+      "formula": "Δp = p sinistra − p destra. Δh = h destra − h sinistra = Δp/(ρg), con acqua e g = 10 m/s².",
+      "id": "SIM-C2-L002-04",
+      "interpretation": "Alla stessa quota la pressione nell’acqua in quiete è uguale nei due rami. Se premi a sinistra il livello sinistro scende e quello destro sale. Definisci il dislivello come altezza destra meno altezza sinistra. Con +1 kPa leggi +10 cm. Con −1 kPa il ramo destro è più basso di 10 cm. A pressione uguale i livelli coincidono. Le sezioni dei rami sono uguali, quindi ciascuna superficie si sposta di metà del dislivello.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Dislivello con segno",
+        "unit": "cm"
+      },
+      "order": 4,
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "references": [
+        [
+          -1.0,
+          -10.0
+        ],
+        [
+          2.0,
+          20.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in quiete",
+      "skill": "C2-L002",
+      "substitution": "10 × {x}",
+      "summary": "In quale ramo del manometro a U sale il liquido quando premi a sinistra?",
+      "title": "Manometro a U",
+      "topic": "Manometro a U",
+      "transferPrompt": "La pressione a sinistra meno la pressione a destra vale {x}. Quanto misura, in centimetri e con segno, il livello destro meno quello sinistro?",
+      "version": 3
+    },
+    {
+      "anchor": "Due pistoni di area diversa chiudono un",
+      "apparatus": "pressa",
+      "assessmentSelection": {
+        "points": [
+          6,
+          5
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Segui nel disegno le facce dei due pistoni, che possono essere a quote diverse. Nel liquido fermo e collegato, a quote e densità fissate, la differenza di pressione statica dipende dalla quota e rimane costante. La pressione aggiunta si trasmette come lo stesso incremento a entrambe le facce.",
+          "type": "text"
+        },
+        {
+          "text": "\\Delta F=\\Delta p\\,A",
+          "type": "formula"
+        },
+        {
+          "text": "Converti il quadrato dell’unità di lunghezza. Poiché un centimetro è un centesimo di metro, un centimetro quadrato è un decimillesimo di metro quadrato. Per la faccia di 20 cm² risulta A = 20/10 000 m², cioè 1/500 m². Un kilopascal vale 1000 N/m², quindi ogni kilopascal aggiunge 1000/500 = 2 N.",
+          "type": "text"
+        },
+        {
+          "text": "\\Delta F(6\\,\\mathrm{kPa})=6\\cdot2\\,\\mathrm N=12\\,\\mathrm N",
+          "type": "formula"
+        },
+        {
+          "text": "\\Delta F(5\\,\\mathrm{kPa})=5\\cdot2\\,\\mathrm N=10\\,\\mathrm N",
+          "type": "formula"
+        },
+        {
+          "text": "Se misuri l’incremento di forza, dividilo per l’area per risalire all’incremento di pressione. A parità di pressione aggiunta, una faccia con raggio doppio ha area quattro volte maggiore e riceve quattro volte l’incremento di forza. Le frecce nel disegno indicano il verso. Il confronto dei moduli usa la pressione aggiunta e le aree assegnate.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Pressione aggiunta",
+        "max": 10.0,
+        "min": 0.0,
+        "step": 1.0,
+        "unit": "kPa"
+      },
+      "course": "C2",
+      "formula": "ΔF = Δp A; A = 20 cm²",
+      "id": "SIM-C2-L003-01",
+      "interpretation": "Il liquido collegato è in quiete. A quote e densità fissate, lo stesso incremento di pressione raggiunge entrambi i pistoni. Il contributo statico dovuto alla quota resta costante. A parità di incremento di pressione, una faccia di area maggiore riceve un incremento di forza maggiore.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Incremento di forza sul pistone grande",
+        "unit": "N"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C2-L002"
+      ],
+      "references": [
+        [
+          2.0,
+          4.0
+        ],
+        [
+          6.0,
+          12.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in quiete",
+      "skill": "C2-L003",
+      "substitution": "2 × {x}",
+      "summary": "Che cosa si trasmette identico ai due pistoni?",
+      "title": "Principio di Pascal",
+      "topic": "Principio di Pascal",
+      "transferPrompt": "Aumenti di {x} la pressione idraulica. Il pistone di uscita ha area 20 cm². Di quanto aumenta la forza che può esercitare?",
+      "version": 2
+    }
+  ],
+  "schema": "astra/1"
+}

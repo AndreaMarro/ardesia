@@ -1,0 +1,1109 @@
+{
+  "schemaVersion": "1.0.0",
+  "sourceCommit": "b9994b9116e87478905191d85cca8037d17ae4bd",
+  "runtimeSha256": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6",
+  "records": [
+    {
+      "id": "SIM-C2-L002-01",
+      "variant": "draft",
+      "sourceVersion": 1,
+      "draftVersion": 2,
+      "visualReview": "PASS",
+      "sourceScientificReview": "PASS_DISTINCT_FROZEN_EXACT_MANUAL_AND_CURRENT_DRAFT",
+      "scope": {
+        "profiles": [
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "gridValues": [
+          0,
+          1,
+          1.5,
+          2,
+          3
+        ],
+        "actualCaseCount": 48,
+        "setupCount": 8,
+        "submittedAnswerEvents": 16,
+        "expectedAcceptedEvents": 16,
+        "expectedRejectedEvents": 0,
+        "readWholePngCount": 8,
+        "readState": 3,
+        "fullObservedCaseKeys": [
+          "SIM-C2-L002-01|draft|320|orbit|setup",
+          "SIM-C2-L002-01|draft|320|orbit|grid|0",
+          "SIM-C2-L002-01|draft|320|orbit|grid|1",
+          "SIM-C2-L002-01|draft|320|orbit|grid|2",
+          "SIM-C2-L002-01|draft|320|orbit|grid|3",
+          "SIM-C2-L002-01|draft|320|orbit|grid|4",
+          "SIM-C2-L002-01|draft|320|side|setup",
+          "SIM-C2-L002-01|draft|320|side|grid|0",
+          "SIM-C2-L002-01|draft|320|side|grid|1",
+          "SIM-C2-L002-01|draft|320|side|grid|2",
+          "SIM-C2-L002-01|draft|320|side|grid|3",
+          "SIM-C2-L002-01|draft|320|side|grid|4",
+          "SIM-C2-L002-01|draft|320|top|setup",
+          "SIM-C2-L002-01|draft|320|top|grid|0",
+          "SIM-C2-L002-01|draft|320|top|grid|1",
+          "SIM-C2-L002-01|draft|320|top|grid|2",
+          "SIM-C2-L002-01|draft|320|top|grid|3",
+          "SIM-C2-L002-01|draft|320|top|grid|4",
+          "SIM-C2-L002-01|draft|320|fixed_projection|setup",
+          "SIM-C2-L002-01|draft|320|fixed_projection|grid|0",
+          "SIM-C2-L002-01|draft|320|fixed_projection|grid|1",
+          "SIM-C2-L002-01|draft|320|fixed_projection|grid|2",
+          "SIM-C2-L002-01|draft|320|fixed_projection|grid|3",
+          "SIM-C2-L002-01|draft|320|fixed_projection|grid|4",
+          "SIM-C2-L002-01|draft|1280|orbit|setup",
+          "SIM-C2-L002-01|draft|1280|orbit|grid|0",
+          "SIM-C2-L002-01|draft|1280|orbit|grid|1",
+          "SIM-C2-L002-01|draft|1280|orbit|grid|2",
+          "SIM-C2-L002-01|draft|1280|orbit|grid|3",
+          "SIM-C2-L002-01|draft|1280|orbit|grid|4",
+          "SIM-C2-L002-01|draft|1280|side|setup",
+          "SIM-C2-L002-01|draft|1280|side|grid|0",
+          "SIM-C2-L002-01|draft|1280|side|grid|1",
+          "SIM-C2-L002-01|draft|1280|side|grid|2",
+          "SIM-C2-L002-01|draft|1280|side|grid|3",
+          "SIM-C2-L002-01|draft|1280|side|grid|4",
+          "SIM-C2-L002-01|draft|1280|top|setup",
+          "SIM-C2-L002-01|draft|1280|top|grid|0",
+          "SIM-C2-L002-01|draft|1280|top|grid|1",
+          "SIM-C2-L002-01|draft|1280|top|grid|2",
+          "SIM-C2-L002-01|draft|1280|top|grid|3",
+          "SIM-C2-L002-01|draft|1280|top|grid|4",
+          "SIM-C2-L002-01|draft|1280|fixed_projection|setup",
+          "SIM-C2-L002-01|draft|1280|fixed_projection|grid|0",
+          "SIM-C2-L002-01|draft|1280|fixed_projection|grid|1",
+          "SIM-C2-L002-01|draft|1280|fixed_projection|grid|2",
+          "SIM-C2-L002-01|draft|1280|fixed_projection|grid|3",
+          "SIM-C2-L002-01|draft|1280|fixed_projection|grid|4"
+        ]
+      },
+      "reason": "Fresh eight-profile maximum-depth rasters show both probes and their equal-height association unobscured; previous Sonda/Superficie sprites are absent. The source/manual and two actual draft answers use the same assignedg981/100. Surface zero and references1/1.5/2/3m are acquired as actual states. NativeTop cannot show vertical depth; no depth length is inferred there. Other state rasters are preserved but not all manually read. Authored formulas are checked by actual DOM metrics, not separately claimed as formula rasters. This verdict belongs only to owner DRAFTv2, not originalv1.",
+      "readPngSha256": [
+        "46035fa0917f0847b9e112734eca5f307235803610b59b309b7ba2b8e03ce0e2",
+        "3ac2d56cd90c8b38e9e06e06a2477606c9f5e2adab38c2b3086f9a51059bbbb9",
+        "892f50730d42f5d4de66c7935d5dace99be5927e0f9d2228afdc2cff06fa63dc",
+        "720e991b59c1d536c6c93c988160b2bb0c88dbd1a80915aa1309a12281ddb79b",
+        "093531482420b59229dd69e95ecb2522b7f30c8734c3516f16590bf35504a0b3",
+        "a4a6ad8f8a439eabb88abcfed3f7925a45da0f60a79ba1cdf010fa09bc78737f",
+        "8f5cb76bb3278ea222178610d00fee6cab785783477caf785a5a5fe8a27db00f",
+        "dc56f045a5404d9a3337e247baf5b38e81380734080934000363ef87fb392b8e"
+      ],
+      "perIdFile": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/draft-l002-01/visual-review-per-id.json",
+      "perIdSha256": "f9c260cc1a066f8780265f0401202c79719788f185afea8a489abf3ae5b84acc",
+      "artifactPins": {
+        "actual/report.json": {
+          "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/draft-l002-01/actual/report.json",
+          "sha256": "f7481c83ec24e28e591bb1f6c3ca37d1f215e984c25b3356bf1cd927beb90322"
+        },
+        "prepared.json": {
+          "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/draft-l002-01/prepared.json",
+          "sha256": "25d317f6dd839e8ba0a9eeb5e05327d428263134eff62bdc834d4204fcbeb93b"
+        },
+        "actual-terminal.json": {
+          "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/draft-l002-01/actual-terminal.json",
+          "sha256": "2f1556486ffe9090a9c07ee4b6dbff3d51ab87734623f4b924528a90506c0a91"
+        }
+      },
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L002-02",
+      "variant": "draft",
+      "sourceVersion": 1,
+      "draftVersion": 2,
+      "visualReview": "PASS",
+      "sourceScientificReview": "PASS_DISTINCT_FROZEN_EXACT_MANUAL_AND_CURRENT_DRAFT",
+      "scope": {
+        "profiles": [
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "gridValues": [
+          0,
+          1,
+          1.5,
+          2,
+          3
+        ],
+        "actualCaseCount": 48,
+        "setupCount": 8,
+        "submittedAnswerEvents": 16,
+        "expectedAcceptedEvents": 16,
+        "expectedRejectedEvents": 0,
+        "readWholePngCount": 8,
+        "readState": 3,
+        "fullObservedCaseKeys": [
+          "SIM-C2-L002-02|draft|320|orbit|setup",
+          "SIM-C2-L002-02|draft|320|orbit|grid|0",
+          "SIM-C2-L002-02|draft|320|orbit|grid|1",
+          "SIM-C2-L002-02|draft|320|orbit|grid|2",
+          "SIM-C2-L002-02|draft|320|orbit|grid|3",
+          "SIM-C2-L002-02|draft|320|orbit|grid|4",
+          "SIM-C2-L002-02|draft|320|side|setup",
+          "SIM-C2-L002-02|draft|320|side|grid|0",
+          "SIM-C2-L002-02|draft|320|side|grid|1",
+          "SIM-C2-L002-02|draft|320|side|grid|2",
+          "SIM-C2-L002-02|draft|320|side|grid|3",
+          "SIM-C2-L002-02|draft|320|side|grid|4",
+          "SIM-C2-L002-02|draft|320|top|setup",
+          "SIM-C2-L002-02|draft|320|top|grid|0",
+          "SIM-C2-L002-02|draft|320|top|grid|1",
+          "SIM-C2-L002-02|draft|320|top|grid|2",
+          "SIM-C2-L002-02|draft|320|top|grid|3",
+          "SIM-C2-L002-02|draft|320|top|grid|4",
+          "SIM-C2-L002-02|draft|320|fixed_projection|setup",
+          "SIM-C2-L002-02|draft|320|fixed_projection|grid|0",
+          "SIM-C2-L002-02|draft|320|fixed_projection|grid|1",
+          "SIM-C2-L002-02|draft|320|fixed_projection|grid|2",
+          "SIM-C2-L002-02|draft|320|fixed_projection|grid|3",
+          "SIM-C2-L002-02|draft|320|fixed_projection|grid|4",
+          "SIM-C2-L002-02|draft|1280|orbit|setup",
+          "SIM-C2-L002-02|draft|1280|orbit|grid|0",
+          "SIM-C2-L002-02|draft|1280|orbit|grid|1",
+          "SIM-C2-L002-02|draft|1280|orbit|grid|2",
+          "SIM-C2-L002-02|draft|1280|orbit|grid|3",
+          "SIM-C2-L002-02|draft|1280|orbit|grid|4",
+          "SIM-C2-L002-02|draft|1280|side|setup",
+          "SIM-C2-L002-02|draft|1280|side|grid|0",
+          "SIM-C2-L002-02|draft|1280|side|grid|1",
+          "SIM-C2-L002-02|draft|1280|side|grid|2",
+          "SIM-C2-L002-02|draft|1280|side|grid|3",
+          "SIM-C2-L002-02|draft|1280|side|grid|4",
+          "SIM-C2-L002-02|draft|1280|top|setup",
+          "SIM-C2-L002-02|draft|1280|top|grid|0",
+          "SIM-C2-L002-02|draft|1280|top|grid|1",
+          "SIM-C2-L002-02|draft|1280|top|grid|2",
+          "SIM-C2-L002-02|draft|1280|top|grid|3",
+          "SIM-C2-L002-02|draft|1280|top|grid|4",
+          "SIM-C2-L002-02|draft|1280|fixed_projection|setup",
+          "SIM-C2-L002-02|draft|1280|fixed_projection|grid|0",
+          "SIM-C2-L002-02|draft|1280|fixed_projection|grid|1",
+          "SIM-C2-L002-02|draft|1280|fixed_projection|grid|2",
+          "SIM-C2-L002-02|draft|1280|fixed_projection|grid|3",
+          "SIM-C2-L002-02|draft|1280|fixed_projection|grid|4"
+        ]
+      },
+      "reason": "Both probes are unobscured at maximum upward quota3m: their centres lie at the free-surface level and the numerical relative pressure is0. Original reference/assessment values are actual acquisitions. The authored text explicitly distinguishes upward quota from downward depth and the two tasks10/15kPa are accepted. Top collapses height; no vertical distance is inferred there. Eight whole maximum-state rasters were read, not every state raster.",
+      "readPngSha256": [
+        "85010d58a796a38ee5023fffe997ecd58ad065917c0b45a33f97b41c80be2fdb",
+        "93f003edfa4256c33cab16ca3d77d0b12a867dd76027b72b67dbdc638bcc666c",
+        "b2134f995afc69f4b832a12eb6ee8151d1f930b452024076a28ddc259ae8287b",
+        "a086c86097f793b88162a9e91d52eaa94051d81aa4c0602cf9f3c0e7561b8fad",
+        "a790ec08a66c3535ff06a365bcb7343a660b594966789149335da8217836b6b0",
+        "54ad46aa0a563812709db0b41a0d85a5940aaa23d37151a0bac5a7c5c206358a",
+        "38832a023f4f94a6b829d84ffdc971a413bccd80f37074465d053b73e0d9b787",
+        "78338718d800ae9f1aec102d5049653d44ec09c8a73f7b8b502c4da11a395fe9"
+      ],
+      "perIdFile": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/draft-l002-02/visual-review-per-id.json",
+      "perIdSha256": "8ba8a4bc4b531fecf2785167c6c5c0830fecb53f4f608db9acced858b5f29ac0",
+      "artifactPins": {
+        "actual/report.json": {
+          "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/draft-l002-02/actual/report.json",
+          "sha256": "07b41e7ade9fcbf4ae6f15bcf8c7c153cb07627ee9b614625ae885b15f9e9e71"
+        },
+        "prepared.json": {
+          "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/draft-l002-02/prepared.json",
+          "sha256": "57a8986b095838c4c55fae2c91078a7e716659d6106f26596421c5ec538ff877"
+        },
+        "actual-terminal.json": {
+          "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/draft-l002-02/actual-terminal.json",
+          "sha256": "70de1fc6c4246eddb77fa43509f290a288b983848b14fc4a2332ba547e35df20"
+        }
+      },
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L002-03",
+      "variant": "draft",
+      "sourceVersion": 1,
+      "draftVersion": 2,
+      "visualReview": "PASS",
+      "sourceScientificReview": "PASS_DISTINCT_FROZEN_EXACT_MANUAL_AND_CURRENT_DRAFT",
+      "scope": {
+        "profiles": [
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "gridValues": [
+          68,
+          81.6,
+          88.4,
+          102,
+          108.8
+        ],
+        "actualCaseCount": 48,
+        "setupCount": 8,
+        "submittedAnswerEvents": 16,
+        "expectedAcceptedEvents": 16,
+        "expectedRejectedEvents": 0,
+        "readWholePngCount": 8,
+        "readState": 108.8,
+        "fullObservedCaseKeys": [
+          "SIM-C2-L002-03|draft|320|orbit|setup",
+          "SIM-C2-L002-03|draft|320|orbit|grid|0",
+          "SIM-C2-L002-03|draft|320|orbit|grid|1",
+          "SIM-C2-L002-03|draft|320|orbit|grid|2",
+          "SIM-C2-L002-03|draft|320|orbit|grid|3",
+          "SIM-C2-L002-03|draft|320|orbit|grid|4",
+          "SIM-C2-L002-03|draft|320|side|setup",
+          "SIM-C2-L002-03|draft|320|side|grid|0",
+          "SIM-C2-L002-03|draft|320|side|grid|1",
+          "SIM-C2-L002-03|draft|320|side|grid|2",
+          "SIM-C2-L002-03|draft|320|side|grid|3",
+          "SIM-C2-L002-03|draft|320|side|grid|4",
+          "SIM-C2-L002-03|draft|320|top|setup",
+          "SIM-C2-L002-03|draft|320|top|grid|0",
+          "SIM-C2-L002-03|draft|320|top|grid|1",
+          "SIM-C2-L002-03|draft|320|top|grid|2",
+          "SIM-C2-L002-03|draft|320|top|grid|3",
+          "SIM-C2-L002-03|draft|320|top|grid|4",
+          "SIM-C2-L002-03|draft|320|fixed_projection|setup",
+          "SIM-C2-L002-03|draft|320|fixed_projection|grid|0",
+          "SIM-C2-L002-03|draft|320|fixed_projection|grid|1",
+          "SIM-C2-L002-03|draft|320|fixed_projection|grid|2",
+          "SIM-C2-L002-03|draft|320|fixed_projection|grid|3",
+          "SIM-C2-L002-03|draft|320|fixed_projection|grid|4",
+          "SIM-C2-L002-03|draft|1280|orbit|setup",
+          "SIM-C2-L002-03|draft|1280|orbit|grid|0",
+          "SIM-C2-L002-03|draft|1280|orbit|grid|1",
+          "SIM-C2-L002-03|draft|1280|orbit|grid|2",
+          "SIM-C2-L002-03|draft|1280|orbit|grid|3",
+          "SIM-C2-L002-03|draft|1280|orbit|grid|4",
+          "SIM-C2-L002-03|draft|1280|side|setup",
+          "SIM-C2-L002-03|draft|1280|side|grid|0",
+          "SIM-C2-L002-03|draft|1280|side|grid|1",
+          "SIM-C2-L002-03|draft|1280|side|grid|2",
+          "SIM-C2-L002-03|draft|1280|side|grid|3",
+          "SIM-C2-L002-03|draft|1280|side|grid|4",
+          "SIM-C2-L002-03|draft|1280|top|setup",
+          "SIM-C2-L002-03|draft|1280|top|grid|0",
+          "SIM-C2-L002-03|draft|1280|top|grid|1",
+          "SIM-C2-L002-03|draft|1280|top|grid|2",
+          "SIM-C2-L002-03|draft|1280|top|grid|3",
+          "SIM-C2-L002-03|draft|1280|top|grid|4",
+          "SIM-C2-L002-03|draft|1280|fixed_projection|setup",
+          "SIM-C2-L002-03|draft|1280|fixed_projection|grid|0",
+          "SIM-C2-L002-03|draft|1280|fixed_projection|grid|1",
+          "SIM-C2-L002-03|draft|1280|fixed_projection|grid|2",
+          "SIM-C2-L002-03|draft|1280|fixed_projection|grid|3",
+          "SIM-C2-L002-03|draft|1280|fixed_projection|grid|4"
+        ]
+      },
+      "reason": "The mercury column remains inside its transparent tube with a visible upper vacuum space at the80cm maximum. Hg/Vuoto labels are readable and do not obscure the column in the reviewed transverse and fallback rasters. The reservoir free surface is the physical height origin in the text; assignedrho13600/g10 gives75/65cm in both accepted tasks. NativeTop is axial and cannot display column height. All8maximum-state rasters were read; other states are actual DOM/model observations.",
+      "readPngSha256": [
+        "cd13547f713e0b67c40ebfa4fdec961d0b788191b6d36961aa67d54346bbb800",
+        "91da8584dd6678811a2f72f571c598e71fb42edb3a28f82995f6705245fdb222",
+        "bcd00d6e63019e52a5b69fc5145b1e0b7d38c5d1a4ab613ee30dc8adf4db2f71",
+        "0d5e107afd3f8b85007f130fd4962143e78ab34b12ee716440805f540f050cd9",
+        "88ef661addb69a69f1ef516ab7cd00bb1b89b1e056837610678c6e4853a118f9",
+        "faa7162bd7e9bb4fe4f5c2c9480fe2d9513be36b0828128a1219e1a0354e14c1",
+        "ca04aac499213457ca19387c3f75ca12f2d1750532105aebeff8f08e04db2be6",
+        "743ecf36a95538d53c6f88c9a822f94f9ccb773ef73436d6ad6312ff960ad3fc"
+      ],
+      "perIdFile": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/draft-l002-03/visual-review-per-id.json",
+      "perIdSha256": "e023f7052aeb5333087b0792b91d033a8ca0f36157da6bc5ab13b293e9d05c23",
+      "artifactPins": {
+        "actual/report.json": {
+          "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/draft-l002-03/actual/report.json",
+          "sha256": "40104a562047e809bb2e484c5f584d4045b74c50a3212315f79cc1d8a5d6815f"
+        },
+        "prepared.json": {
+          "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/draft-l002-03/prepared.json",
+          "sha256": "1ca9a18026de26fe6313a93416a0e0424417855274b3461bc37895b5a7f94d3f"
+        },
+        "actual-terminal.json": {
+          "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/draft-l002-03/actual-terminal.json",
+          "sha256": "99b49e6468c018cd14c05b37fa8d68e5fdf315c55dc902fbd2a344fe62ba9f72"
+        }
+      },
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L003-01",
+      "variant": "draft",
+      "sourceVersion": 1,
+      "draftVersion": 2,
+      "candidateSha256": "cdbc3d74e2f7c19a9aea2b87171936ad34b5715393d9b21001ede15dbe69b5de",
+      "visualReview": "PASS",
+      "sourceScientificReview": "PASS_INCREMENTAL_PRESSURE_THEORY_ALIGNED_WITH_DIFFERENT_DRAWING_HEIGHTS",
+      "scope": {
+        "profiles": [
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "gridValues": [
+          0,
+          2,
+          5,
+          6,
+          10
+        ],
+        "actualCaseCount": 48,
+        "setupCount": 8,
+        "acceptedAnswerEvents": 16,
+        "readWholePngCount": 8,
+        "formulaRasterScope": "ActualDOMfit_not_separate_formula_raster",
+        "fullObservedCaseKeys": [
+          "SIM-C2-L003-01|draft|320|orbit|setup",
+          "SIM-C2-L003-01|draft|320|orbit|grid|0",
+          "SIM-C2-L003-01|draft|320|orbit|grid|1",
+          "SIM-C2-L003-01|draft|320|orbit|grid|2",
+          "SIM-C2-L003-01|draft|320|orbit|grid|3",
+          "SIM-C2-L003-01|draft|320|orbit|grid|4",
+          "SIM-C2-L003-01|draft|320|side|setup",
+          "SIM-C2-L003-01|draft|320|side|grid|0",
+          "SIM-C2-L003-01|draft|320|side|grid|1",
+          "SIM-C2-L003-01|draft|320|side|grid|2",
+          "SIM-C2-L003-01|draft|320|side|grid|3",
+          "SIM-C2-L003-01|draft|320|side|grid|4",
+          "SIM-C2-L003-01|draft|320|top|setup",
+          "SIM-C2-L003-01|draft|320|top|grid|0",
+          "SIM-C2-L003-01|draft|320|top|grid|1",
+          "SIM-C2-L003-01|draft|320|top|grid|2",
+          "SIM-C2-L003-01|draft|320|top|grid|3",
+          "SIM-C2-L003-01|draft|320|top|grid|4",
+          "SIM-C2-L003-01|draft|320|fixed_projection|setup",
+          "SIM-C2-L003-01|draft|320|fixed_projection|grid|0",
+          "SIM-C2-L003-01|draft|320|fixed_projection|grid|1",
+          "SIM-C2-L003-01|draft|320|fixed_projection|grid|2",
+          "SIM-C2-L003-01|draft|320|fixed_projection|grid|3",
+          "SIM-C2-L003-01|draft|320|fixed_projection|grid|4",
+          "SIM-C2-L003-01|draft|1280|orbit|setup",
+          "SIM-C2-L003-01|draft|1280|orbit|grid|0",
+          "SIM-C2-L003-01|draft|1280|orbit|grid|1",
+          "SIM-C2-L003-01|draft|1280|orbit|grid|2",
+          "SIM-C2-L003-01|draft|1280|orbit|grid|3",
+          "SIM-C2-L003-01|draft|1280|orbit|grid|4",
+          "SIM-C2-L003-01|draft|1280|side|setup",
+          "SIM-C2-L003-01|draft|1280|side|grid|0",
+          "SIM-C2-L003-01|draft|1280|side|grid|1",
+          "SIM-C2-L003-01|draft|1280|side|grid|2",
+          "SIM-C2-L003-01|draft|1280|side|grid|3",
+          "SIM-C2-L003-01|draft|1280|side|grid|4",
+          "SIM-C2-L003-01|draft|1280|top|setup",
+          "SIM-C2-L003-01|draft|1280|top|grid|0",
+          "SIM-C2-L003-01|draft|1280|top|grid|1",
+          "SIM-C2-L003-01|draft|1280|top|grid|2",
+          "SIM-C2-L003-01|draft|1280|top|grid|3",
+          "SIM-C2-L003-01|draft|1280|top|grid|4",
+          "SIM-C2-L003-01|draft|1280|fixed_projection|setup",
+          "SIM-C2-L003-01|draft|1280|fixed_projection|grid|0",
+          "SIM-C2-L003-01|draft|1280|fixed_projection|grid|1",
+          "SIM-C2-L003-01|draft|1280|fixed_projection|grid|2",
+          "SIM-C2-L003-01|draft|1280|fixed_projection|grid|3",
+          "SIM-C2-L003-01|draft|1280|fixed_projection|grid|4"
+        ]
+      },
+      "reason": "New owner prose and actual Observe phase correctly permit different piston heights and separate constant hydrostatic contributions from the common added pressure. DeltaF=DeltaP*A and12/10Nanswers remain unchanged. Atfixed positions/density the same increment is transmitted even when absolute pressures differ; force increments scale with areas. The eight whole current rasters are SHA-identical to the already-read old7cgeometry, not retagged: each belongs to a new actual case with the correctedcdbc3candidate. NativeTop remains axial and does not show height or vector length. The former false same-height claim is absent, so the unchanged drawing now agrees with the text. Original f4fb3b57negative remains intact.",
+      "readPngSha256": [
+        "24934080cd9b7d8c39971a5f74118e0d43064dcadba6fae914ca559af2b75a5d",
+        "1105bcc6683d35b30679ef33b654cb0b9f865047434b01e9725b340e542b5a07",
+        "a9d33b5ab66758c660c8b173d3a2980797b4d48b01d94ae86880d8890ba4bf79",
+        "fd1d8eba7868864b688749c382f9f8a1ea3051418af1708068580ed61ee56acc",
+        "12eca032e2bb29231d6e5a543343d0f3afbe9f7c5d2fa6cfd2101a33a4c8b6a2",
+        "e60c429f17590b823353fc2aed814b4967e4a11fe036dd095bb6397adc337100",
+        "d8f5dc486724d830e776c47c5f7c169366a6c94c317340f86ebe9dd9b3ab47be",
+        "96fd2ae7e86be6b12529ea6bc475fbd0575654fa09a71f3bc9156e57b50592e4"
+      ],
+      "readFiles": [
+        {
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          "caseKey": "SIM-C2-L003-01|draft|320|orbit|grid|4",
+          "path": "editorial/reviews/c2-pascal-increment-height-fixed-7c7281-independent-a-20261127/actual/screens/24934080cd9b7d8c39971a5f74118e0d43064dcadba6fae914ca559af2b75a5d.png",
+          "sha256": "24934080cd9b7d8c39971a5f74118e0d43064dcadba6fae914ca559af2b75a5d",
+          "sameEpochNegativePixelsUnchanged": true,
+          "readingMethod": "Current acquired whole PNG pixel bytes match the already-read old7cPascal rasters; interpretation rechecked against corrected owner text"
+        },
+        {
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          "caseKey": "SIM-C2-L003-01|draft|320|side|grid|4",
+          "path": "editorial/reviews/c2-pascal-increment-height-fixed-7c7281-independent-a-20261127/actual/screens/1105bcc6683d35b30679ef33b654cb0b9f865047434b01e9725b340e542b5a07.png",
+          "sha256": "1105bcc6683d35b30679ef33b654cb0b9f865047434b01e9725b340e542b5a07",
+          "sameEpochNegativePixelsUnchanged": true,
+          "readingMethod": "Current acquired whole PNG pixel bytes match the already-read old7cPascal rasters; interpretation rechecked against corrected owner text"
+        },
+        {
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          "caseKey": "SIM-C2-L003-01|draft|320|top|grid|4",
+          "path": "editorial/reviews/c2-pascal-increment-height-fixed-7c7281-independent-a-20261127/actual/screens/a9d33b5ab66758c660c8b173d3a2980797b4d48b01d94ae86880d8890ba4bf79.png",
+          "sha256": "a9d33b5ab66758c660c8b173d3a2980797b4d48b01d94ae86880d8890ba4bf79",
+          "sameEpochNegativePixelsUnchanged": true,
+          "readingMethod": "Current acquired whole PNG pixel bytes match the already-read old7cPascal rasters; interpretation rechecked against corrected owner text"
+        },
+        {
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          "caseKey": "SIM-C2-L003-01|draft|320|fixed_projection|grid|4",
+          "path": "editorial/reviews/c2-pascal-increment-height-fixed-7c7281-independent-a-20261127/actual/screens/fd1d8eba7868864b688749c382f9f8a1ea3051418af1708068580ed61ee56acc.png",
+          "sha256": "fd1d8eba7868864b688749c382f9f8a1ea3051418af1708068580ed61ee56acc",
+          "sameEpochNegativePixelsUnchanged": true,
+          "readingMethod": "Current acquired whole PNG pixel bytes match the already-read old7cPascal rasters; interpretation rechecked against corrected owner text"
+        },
+        {
+          "profile": {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          "caseKey": "SIM-C2-L003-01|draft|1280|orbit|grid|4",
+          "path": "editorial/reviews/c2-pascal-increment-height-fixed-7c7281-independent-a-20261127/actual/screens/12eca032e2bb29231d6e5a543343d0f3afbe9f7c5d2fa6cfd2101a33a4c8b6a2.png",
+          "sha256": "12eca032e2bb29231d6e5a543343d0f3afbe9f7c5d2fa6cfd2101a33a4c8b6a2",
+          "sameEpochNegativePixelsUnchanged": true,
+          "readingMethod": "Current acquired whole PNG pixel bytes match the already-read old7cPascal rasters; interpretation rechecked against corrected owner text"
+        },
+        {
+          "profile": {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          "caseKey": "SIM-C2-L003-01|draft|1280|side|grid|4",
+          "path": "editorial/reviews/c2-pascal-increment-height-fixed-7c7281-independent-a-20261127/actual/screens/e60c429f17590b823353fc2aed814b4967e4a11fe036dd095bb6397adc337100.png",
+          "sha256": "e60c429f17590b823353fc2aed814b4967e4a11fe036dd095bb6397adc337100",
+          "sameEpochNegativePixelsUnchanged": true,
+          "readingMethod": "Current acquired whole PNG pixel bytes match the already-read old7cPascal rasters; interpretation rechecked against corrected owner text"
+        },
+        {
+          "profile": {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          "caseKey": "SIM-C2-L003-01|draft|1280|top|grid|4",
+          "path": "editorial/reviews/c2-pascal-increment-height-fixed-7c7281-independent-a-20261127/actual/screens/d8f5dc486724d830e776c47c5f7c169366a6c94c317340f86ebe9dd9b3ab47be.png",
+          "sha256": "d8f5dc486724d830e776c47c5f7c169366a6c94c317340f86ebe9dd9b3ab47be",
+          "sameEpochNegativePixelsUnchanged": true,
+          "readingMethod": "Current acquired whole PNG pixel bytes match the already-read old7cPascal rasters; interpretation rechecked against corrected owner text"
+        },
+        {
+          "profile": {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          },
+          "caseKey": "SIM-C2-L003-01|draft|1280|fixed_projection|grid|4",
+          "path": "editorial/reviews/c2-pascal-increment-height-fixed-7c7281-independent-a-20261127/actual/screens/96fd2ae7e86be6b12529ea6bc475fbd0575654fa09a71f3bc9156e57b50592e4.png",
+          "sha256": "96fd2ae7e86be6b12529ea6bc475fbd0575654fa09a71f3bc9156e57b50592e4",
+          "sameEpochNegativePixelsUnchanged": true,
+          "readingMethod": "Current acquired whole PNG pixel bytes match the already-read old7cPascal rasters; interpretation rechecked against corrected owner text"
+        }
+      ],
+      "previousNegativeCommit": "f4fb3b5704c5d08ada0232e56e50d416ec59024c",
+      "manualFinalSha256": "71622ee3ae11df3f55e2869fc23648fb8e77939ea2c78e8e21fd8552b718a5b5",
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "perIdFile": "editorial/reviews/c2-pascal-increment-height-fixed-7c7281-independent-a-20261127/visual-review-per-id.json",
+      "perIdSha256": "250e71a56213b85b39d021c8d7b2e57f50384dadf5ce5a667608b5415ec04736",
+      "artifactPins": {
+        "actual/report.json": {
+          "path": "editorial/reviews/c2-pascal-increment-height-fixed-7c7281-independent-a-20261127/actual/report.json",
+          "sha256": "fc50a54e1086804a9b5842a53292b958c57d4404c13a8d003c35974e44b2c848"
+        },
+        "prepared.json": {
+          "path": "editorial/reviews/c2-pascal-increment-height-fixed-7c7281-independent-a-20261127/prepared.json",
+          "sha256": "d8bdfa53c14cadf20a5d562793745cc064b6bf35ab6bc6405ef9d32d3021b177"
+        },
+        "actual-terminal.json": {
+          "path": "editorial/reviews/c2-pascal-increment-height-fixed-7c7281-independent-a-20261127/actual-terminal.json",
+          "sha256": "93478438a1c9cf78d9d9bd7b6cac559fa349a373a48cd2faa858ef2e57de04a5"
+        }
+      }
+    },
+    {
+      "id": "SIM-C2-L002-04",
+      "variant": "draft",
+      "sourceVersion": 2,
+      "draftVersion": 3,
+      "visualReview": "PASS",
+      "sourceScientificReview": "PASS_DISTINCT_FROZEN_EXACT_MANUAL_AND_CURRENT_DRAFT",
+      "scope": {
+        "profiles": [
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "gridValues": [
+          -2,
+          -1,
+          0,
+          1,
+          2
+        ],
+        "actualCaseCount": 48,
+        "setupCount": 8,
+        "acceptedAnswerEvents": 16,
+        "readWholeRawPngCount": 8,
+        "readState": 2,
+        "fullObservedCaseKeys": [
+          "SIM-C2-L002-04|draft|320|orbit|setup",
+          "SIM-C2-L002-04|draft|320|orbit|grid|0",
+          "SIM-C2-L002-04|draft|320|orbit|grid|1",
+          "SIM-C2-L002-04|draft|320|orbit|grid|2",
+          "SIM-C2-L002-04|draft|320|orbit|grid|3",
+          "SIM-C2-L002-04|draft|320|orbit|grid|4",
+          "SIM-C2-L002-04|draft|320|side|setup",
+          "SIM-C2-L002-04|draft|320|side|grid|0",
+          "SIM-C2-L002-04|draft|320|side|grid|1",
+          "SIM-C2-L002-04|draft|320|side|grid|2",
+          "SIM-C2-L002-04|draft|320|side|grid|3",
+          "SIM-C2-L002-04|draft|320|side|grid|4",
+          "SIM-C2-L002-04|draft|320|top|setup",
+          "SIM-C2-L002-04|draft|320|top|grid|0",
+          "SIM-C2-L002-04|draft|320|top|grid|1",
+          "SIM-C2-L002-04|draft|320|top|grid|2",
+          "SIM-C2-L002-04|draft|320|top|grid|3",
+          "SIM-C2-L002-04|draft|320|top|grid|4",
+          "SIM-C2-L002-04|draft|320|fixed_projection|setup",
+          "SIM-C2-L002-04|draft|320|fixed_projection|grid|0",
+          "SIM-C2-L002-04|draft|320|fixed_projection|grid|1",
+          "SIM-C2-L002-04|draft|320|fixed_projection|grid|2",
+          "SIM-C2-L002-04|draft|320|fixed_projection|grid|3",
+          "SIM-C2-L002-04|draft|320|fixed_projection|grid|4",
+          "SIM-C2-L002-04|draft|1280|orbit|setup",
+          "SIM-C2-L002-04|draft|1280|orbit|grid|0",
+          "SIM-C2-L002-04|draft|1280|orbit|grid|1",
+          "SIM-C2-L002-04|draft|1280|orbit|grid|2",
+          "SIM-C2-L002-04|draft|1280|orbit|grid|3",
+          "SIM-C2-L002-04|draft|1280|orbit|grid|4",
+          "SIM-C2-L002-04|draft|1280|side|setup",
+          "SIM-C2-L002-04|draft|1280|side|grid|0",
+          "SIM-C2-L002-04|draft|1280|side|grid|1",
+          "SIM-C2-L002-04|draft|1280|side|grid|2",
+          "SIM-C2-L002-04|draft|1280|side|grid|3",
+          "SIM-C2-L002-04|draft|1280|side|grid|4",
+          "SIM-C2-L002-04|draft|1280|top|setup",
+          "SIM-C2-L002-04|draft|1280|top|grid|0",
+          "SIM-C2-L002-04|draft|1280|top|grid|1",
+          "SIM-C2-L002-04|draft|1280|top|grid|2",
+          "SIM-C2-L002-04|draft|1280|top|grid|3",
+          "SIM-C2-L002-04|draft|1280|top|grid|4",
+          "SIM-C2-L002-04|draft|1280|fixed_projection|setup",
+          "SIM-C2-L002-04|draft|1280|fixed_projection|grid|0",
+          "SIM-C2-L002-04|draft|1280|fixed_projection|grid|1",
+          "SIM-C2-L002-04|draft|1280|fixed_projection|grid|2",
+          "SIM-C2-L002-04|draft|1280|fixed_projection|grid|3",
+          "SIM-C2-L002-04|draft|1280|fixed_projection|grid|4"
+        ]
+      },
+      "reason": "At+2kPa the right meniscus is higher, the left lower, and the signed difference is+20cm. Orbit/Side/fallback show the whole height marker clear of the liquid body and its Delta-h label. Top is axial and collapses vertical separation; no height or marker length is inferred there. All signed/zero/extreme controls are actual acquisitions; only the eight maximum-state whole rasters are manually read. Four authored formulas per setup fit by actual DOM metrics at320/1280; no separate authored-formula raster is claimed. Source/manual/units were independently reviewed in39b82327. No new finding in this bounded sample.",
+      "readPngSha256": [
+        "7225cb4a6e73a76b4cd456993bc082870439029264d9b766505069c3e11a4bf9",
+        "ced1f2b157933a865baeb73f5131017e7f37d93d52f5c99b5918ca95a5c6885d",
+        "38a8a535b2fd124995e54964b37f48fd9836b38fe84b5f466e3ba6d1f112e3c8",
+        "02a5dfb9a9c99259c9b8cd71eedaecf2788bed89e3d06e03e1dcdd2d8bc18f7a",
+        "f42f2e8f1e0c7c93ba2c0ea5330359c5e32540190ad478b19fa2f6b067b48a64",
+        "634d113cc08384e370bd93f90f4cd8a4fc2cbb0c78cdb1895b748f40a1c19610",
+        "50a8a7933c14607e19be33597977892070f544b8852360b2d83a47902113a926",
+        "52dbc6de70f33994ad283d19ec6b34f52c1fb9b84593db102dd66e9682a7f06f"
+      ],
+      "perIdFile": "editorial/reviews/c2-manometro-v3-7c7281-independent-a-20261127/visual-review-per-id.json",
+      "perIdSha256": "9fa69689950fc9f83ca882133268f11f63b15cd18712a139e8476e1d0debc14b",
+      "artifactPins": {
+        "actual/report.json": {
+          "path": "editorial/reviews/c2-manometro-v3-7c7281-independent-a-20261127/actual/report.json",
+          "sha256": "0efb47bdb7b135a738e65303c3f524a78c83aeb30c2e4134cb38b96b51165303"
+        },
+        "prepared.json": {
+          "path": "editorial/reviews/c2-manometro-v3-7c7281-independent-a-20261127/prepared.json",
+          "sha256": "27892b3b76d2bd713e0ef1ce7662562ef5fa5839d4a82ae343d3a277c69d12b2"
+        },
+        "actual-terminal.json": {
+          "path": "editorial/reviews/c2-manometro-v3-7c7281-independent-a-20261127/actual-terminal.json",
+          "sha256": "7ee8cbb00a8cd1dbc19ce0f07736d43eeb0213403730398c419561e319ebeb89"
+        }
+      },
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    }
+  ],
+  "originalStevinoContrasts": [
+    {
+      "id": "SIM-C2-L002-01",
+      "variant": "published",
+      "sourceVersion": 1,
+      "draftVersion": null,
+      "visualReview": "PASS",
+      "sourceScientificReview": "FAIL_ORIGINAL_TRANSFER_G10_VS_G9_81_GRADER_REPRODUCED;GRAPHICS_SEPARATE",
+      "scope": {
+        "profiles": [
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "gridValues": [
+          0,
+          1,
+          1.5,
+          2,
+          3
+        ],
+        "actualCaseCount": 48,
+        "setupCount": 8,
+        "submittedAnswerEvents": 16,
+        "expectedAcceptedEvents": 8,
+        "expectedRejectedEvents": 8,
+        "readWholePngCount": 8,
+        "readState": 3,
+        "fullObservedCaseKeys": [
+          "SIM-C2-L002-01|published|320|orbit|setup",
+          "SIM-C2-L002-01|published|320|orbit|grid|0",
+          "SIM-C2-L002-01|published|320|orbit|grid|1",
+          "SIM-C2-L002-01|published|320|orbit|grid|2",
+          "SIM-C2-L002-01|published|320|orbit|grid|3",
+          "SIM-C2-L002-01|published|320|orbit|grid|4",
+          "SIM-C2-L002-01|published|320|side|setup",
+          "SIM-C2-L002-01|published|320|side|grid|0",
+          "SIM-C2-L002-01|published|320|side|grid|1",
+          "SIM-C2-L002-01|published|320|side|grid|2",
+          "SIM-C2-L002-01|published|320|side|grid|3",
+          "SIM-C2-L002-01|published|320|side|grid|4",
+          "SIM-C2-L002-01|published|320|top|setup",
+          "SIM-C2-L002-01|published|320|top|grid|0",
+          "SIM-C2-L002-01|published|320|top|grid|1",
+          "SIM-C2-L002-01|published|320|top|grid|2",
+          "SIM-C2-L002-01|published|320|top|grid|3",
+          "SIM-C2-L002-01|published|320|top|grid|4",
+          "SIM-C2-L002-01|published|320|fixed_projection|setup",
+          "SIM-C2-L002-01|published|320|fixed_projection|grid|0",
+          "SIM-C2-L002-01|published|320|fixed_projection|grid|1",
+          "SIM-C2-L002-01|published|320|fixed_projection|grid|2",
+          "SIM-C2-L002-01|published|320|fixed_projection|grid|3",
+          "SIM-C2-L002-01|published|320|fixed_projection|grid|4",
+          "SIM-C2-L002-01|published|1280|orbit|setup",
+          "SIM-C2-L002-01|published|1280|orbit|grid|0",
+          "SIM-C2-L002-01|published|1280|orbit|grid|1",
+          "SIM-C2-L002-01|published|1280|orbit|grid|2",
+          "SIM-C2-L002-01|published|1280|orbit|grid|3",
+          "SIM-C2-L002-01|published|1280|orbit|grid|4",
+          "SIM-C2-L002-01|published|1280|side|setup",
+          "SIM-C2-L002-01|published|1280|side|grid|0",
+          "SIM-C2-L002-01|published|1280|side|grid|1",
+          "SIM-C2-L002-01|published|1280|side|grid|2",
+          "SIM-C2-L002-01|published|1280|side|grid|3",
+          "SIM-C2-L002-01|published|1280|side|grid|4",
+          "SIM-C2-L002-01|published|1280|top|setup",
+          "SIM-C2-L002-01|published|1280|top|grid|0",
+          "SIM-C2-L002-01|published|1280|top|grid|1",
+          "SIM-C2-L002-01|published|1280|top|grid|2",
+          "SIM-C2-L002-01|published|1280|top|grid|3",
+          "SIM-C2-L002-01|published|1280|top|grid|4",
+          "SIM-C2-L002-01|published|1280|fixed_projection|setup",
+          "SIM-C2-L002-01|published|1280|fixed_projection|grid|0",
+          "SIM-C2-L002-01|published|1280|fixed_projection|grid|1",
+          "SIM-C2-L002-01|published|1280|fixed_projection|grid|2",
+          "SIM-C2-L002-01|published|1280|fixed_projection|grid|3",
+          "SIM-C2-L002-01|published|1280|fixed_projection|grid|4"
+        ]
+      },
+      "reason": "Graphical sample is unobscured and matches8current-epoch draft rasters byte-for-byte; those whole PNG contents were already read on thissame7c7281, with separate current original acquisitions pinned here. This is not a retag of historical UI. The original secondtask explicitly demandsg10, so15kPa is scientifically required and is actually rejected in all8profiles. Source science remainsFAIL despite positive graphics/technicalexpected-rejection results. Firsttask19.62 is separately accepted; no falsebroadenedfinding. NativeTop does not show depth.",
+      "readPngSha256": [
+        "46035fa0917f0847b9e112734eca5f307235803610b59b309b7ba2b8e03ce0e2",
+        "3ac2d56cd90c8b38e9e06e06a2477606c9f5e2adab38c2b3086f9a51059bbbb9",
+        "892f50730d42f5d4de66c7935d5dace99be5927e0f9d2228afdc2cff06fa63dc",
+        "720e991b59c1d536c6c93c988160b2bb0c88dbd1a80915aa1309a12281ddb79b",
+        "093531482420b59229dd69e95ecb2522b7f30c8734c3516f16590bf35504a0b3",
+        "a4a6ad8f8a439eabb88abcfed3f7925a45da0f60a79ba1cdf010fa09bc78737f",
+        "8f5cb76bb3278ea222178610d00fee6cab785783477caf785a5a5fe8a27db00f",
+        "dc56f045a5404d9a3337e247baf5b38e81380734080934000363ef87fb392b8e"
+      ],
+      "perIdFile": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/original-stevino-correct-physics-rejected/visual-review-per-id.json",
+      "perIdSha256": "df2c2e9a9166aa93b9454d0c4bd5832dd6a5d7dc5f01f1d62b09b4eec742df17",
+      "artifactPins": {
+        "actual/report.json": {
+          "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/original-stevino-correct-physics-rejected/actual/report.json",
+          "sha256": "e2587ce965be884c49d175c7656dc0c4ce974cf188edfe741514aecd2ea4acdc"
+        },
+        "prepared.json": {
+          "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/original-stevino-correct-physics-rejected/prepared.json",
+          "sha256": "4f122b05bd05faebf418dc5a0a5bd1eb1def8d7eff559bc6ce193eebcd0f3b46"
+        },
+        "actual-terminal.json": {
+          "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/original-stevino-correct-physics-rejected/actual-terminal.json",
+          "sha256": "24b0ff764f84da45a5ef313b462566b809d0d50cc5871565dce14599aab5a17c"
+        }
+      },
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L002-01",
+      "variant": "published",
+      "sourceVersion": 1,
+      "draftVersion": null,
+      "visualReview": "PASS",
+      "sourceScientificReview": "FAIL_ORIGINAL_TRANSFER_G10_VS_G9_81_GRADER_REPRODUCED;GRAPHICS_SEPARATE",
+      "scope": {
+        "profiles": [
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 320
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 320
+          },
+          {
+            "fallback": false,
+            "view": "orbit",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "side",
+            "width": 1280
+          },
+          {
+            "fallback": false,
+            "view": "top",
+            "width": 1280
+          },
+          {
+            "fallback": true,
+            "view": "fixed_projection",
+            "width": 1280
+          }
+        ],
+        "gridValues": [
+          1.5,
+          2
+        ],
+        "actualCaseCount": 24,
+        "setupCount": 8,
+        "submittedAnswerEvents": 16,
+        "expectedAcceptedEvents": 16,
+        "expectedRejectedEvents": 0,
+        "readWholePngCount": 8,
+        "readState": 2,
+        "fullObservedCaseKeys": [
+          "SIM-C2-L002-01|published|320|orbit|setup",
+          "SIM-C2-L002-01|published|320|orbit|grid|0",
+          "SIM-C2-L002-01|published|320|orbit|grid|1",
+          "SIM-C2-L002-01|published|320|side|setup",
+          "SIM-C2-L002-01|published|320|side|grid|0",
+          "SIM-C2-L002-01|published|320|side|grid|1",
+          "SIM-C2-L002-01|published|320|top|setup",
+          "SIM-C2-L002-01|published|320|top|grid|0",
+          "SIM-C2-L002-01|published|320|top|grid|1",
+          "SIM-C2-L002-01|published|320|fixed_projection|setup",
+          "SIM-C2-L002-01|published|320|fixed_projection|grid|0",
+          "SIM-C2-L002-01|published|320|fixed_projection|grid|1",
+          "SIM-C2-L002-01|published|1280|orbit|setup",
+          "SIM-C2-L002-01|published|1280|orbit|grid|0",
+          "SIM-C2-L002-01|published|1280|orbit|grid|1",
+          "SIM-C2-L002-01|published|1280|side|setup",
+          "SIM-C2-L002-01|published|1280|side|grid|0",
+          "SIM-C2-L002-01|published|1280|side|grid|1",
+          "SIM-C2-L002-01|published|1280|top|setup",
+          "SIM-C2-L002-01|published|1280|top|grid|0",
+          "SIM-C2-L002-01|published|1280|top|grid|1",
+          "SIM-C2-L002-01|published|1280|fixed_projection|setup",
+          "SIM-C2-L002-01|published|1280|fixed_projection|grid|0",
+          "SIM-C2-L002-01|published|1280|fixed_projection|grid|1"
+        ]
+      },
+      "reason": "Eight current whole rasters at2m are clear; nativeTop does not show verticaldepth. Current original firsttask19.62 and installed secondkey14.715 are actually accepted in all8profiles. This reproduces the conflicting grader, not scientific correctness of14.715underexplicitg10. The original transfer would require15 and remainsFAIL. Its graphical sample and grading reproduction are separated from source acceptance.",
+      "readPngSha256": [
+        "8d9b528f17432aa7765b698e6899b99a5f3e492ad59043c3b1b7cccc9810d1b7",
+        "3dc1773e5a42114d8a8a1e189c4039e398e845ad5cecd983e7181b2e85f10056",
+        "892f50730d42f5d4de66c7935d5dace99be5927e0f9d2228afdc2cff06fa63dc",
+        "8e7af05a53e87cc8a2af9dda75328e6d4739a13c5004711315e59713c78ec764",
+        "a6ebe033717751f5d951aadb087922571b54c233d640459f8346139364e2dc72",
+        "23f0a7fd540f9010392931cfbc6c1a0439c0e40beb2509d407f59edf99d187d0",
+        "b4d5ee967f3c33b1bdc68395a80f5c5770a1d9963735df643365cd8c305bf62f",
+        "4f9088612122213733533e5eccc7c37151124746026572c3933f4af810c63261"
+      ],
+      "perIdFile": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/original-stevino-installed-grader-accepted/visual-review-per-id.json",
+      "perIdSha256": "eea1a04c9f9ff92765d56438e216af9315f13945bdc02ad7b538fecea880c156",
+      "artifactPins": {
+        "actual/report.json": {
+          "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/original-stevino-installed-grader-accepted/actual/report.json",
+          "sha256": "3c16b466e151904f8650b0755a9be49605c69b7d2bfc9814debd5f7fa2abac3b"
+        },
+        "prepared.json": {
+          "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/original-stevino-installed-grader-accepted/prepared.json",
+          "sha256": "a1d2b331eacf29a3e391024867d31e0acfd9c6fce220be6e055b22048c7f7547"
+        },
+        "actual-terminal.json": {
+          "path": "editorial/reviews/c2-hydrostatic-six-remaining-7c7281-independent-a-20261127/groups/original-stevino-installed-grader-accepted/actual-terminal.json",
+          "sha256": "214fbe6110838e57f9e91db88716fb76e2cd5aef4838532e7500eeead3b58e52"
+        }
+      },
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN"
+    }
+  ],
+  "positiveDraftIds": [
+    "SIM-C2-L002-01",
+    "SIM-C2-L002-02",
+    "SIM-C2-L002-03",
+    "SIM-C2-L003-01",
+    "SIM-C2-L002-04"
+  ],
+  "failedDraftIds": [],
+  "originalStevinoScientificFailureRetained": true,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "previousNegativeFamilyCommit": "f4fb3b5704c5d08ada0232e56e50d416ec59024c",
+  "onlyPascalNewCandidateAndReplay": true,
+  "jsonNumberIdentityAddendum": "editorial/reviews/c2-hydrostatic-exact-json-number-identity-addendum-a-20261127/identity-addendum.json",
+  "jsonNumberIdentityAddendumSha256": "b5fae08087a09667cad390d4211634da9012ab5c22d7fbc29f76273c93b2f614"
+}
