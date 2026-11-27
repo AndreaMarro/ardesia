@@ -1,0 +1,163 @@
+{
+  "phase": "INDEPENDENT_OLD_EDITION_TEXT_NEGATIVE_BEFORE_AUTHOR_FIX",
+  "authorCommit": "636bc27321c6fa8c75ac1d8ecaaeabf6e486d24d",
+  "reviewerRole": "AI_DISTINCT_FROM_ROOT_AUTHOR",
+  "sourcePrimaryCommit": "fa8e94bd8e69842712b97dd8e3ada63c2cf6776a",
+  "sourcePrimarySha256": "582d7987da9640695396f371ee48e9b076be9a8b89e445f94a1285a14893107d",
+  "actualCPU": {
+    "records": 3,
+    "scalarControls": 67,
+    "stagePairs": 268,
+    "katexFormulas": 3,
+    "independentTests": 7,
+    "exitCodes": [
+      0,
+      0
+    ]
+  },
+  "selectedAnswers": [
+    "10W",
+    "2.5W",
+    "84W",
+    "147W",
+    "-368.55W/m2",
+    "992.25W/m2"
+  ],
+  "perID": [
+    {
+      "id": "SIM-C3-L05-01",
+      "textMathManual": "PASS",
+      "productUI": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C3-L05-02",
+      "textMathManual": "PASS",
+      "productUI": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C3-L05-03",
+      "mathAndManual": "PASS",
+      "textPrecisionAndApparatusAttribution": "FAIL_REQUIRES_AUTHOR_CORRECTION",
+      "productUI": "NOT_RUN"
+    }
+  ],
+  "findings": [
+    {
+      "id": "SIM-C3-L05-03",
+      "quote": "100⁴ = 10⁸ K⁴",
+      "issue": "Unit is attached only to right-hand side; dimensionally explicit factor should be(100K)^4=10^8K^4."
+    },
+    {
+      "id": "SIM-C3-L05-03",
+      "quote": "Nella figura prevale la freccia entrante; A300K le due frecce hanno uguale modulo",
+      "issue": "Must explicitly identify the student-constructed two-gross-exchange drawing. Installed apparatus depicts3copies of NETflux arrow and no nonzero netarrow at300K, not two opposinggrossflux arrows.",
+      "codeWitness": [
+        {
+          "x": 200,
+          "y": -368.55,
+          "arrows": [
+            {
+              "a": [
+                0.10888977272727272,
+                1.55,
+                -0.48
+              ],
+              "b": [
+                -0.10888977272727272,
+                1.55,
+                -0.48
+              ],
+              "color": 7557296
+            },
+            {
+              "a": [
+                0.10888977272727272,
+                1.55,
+                0
+              ],
+              "b": [
+                -0.10888977272727272,
+                1.55,
+                0
+              ],
+              "color": 7557296
+            },
+            {
+              "a": [
+                0.10888977272727272,
+                1.55,
+                0.48
+              ],
+              "b": [
+                -0.10888977272727272,
+                1.55,
+                0.48
+              ],
+              "color": 7557296
+            }
+          ],
+          "scope": "SOURCE_CODE_PRIMITIVES_NOT_ACTUAL_UI"
+        },
+        {
+          "x": 300,
+          "y": 0,
+          "arrows": [],
+          "scope": "SOURCE_CODE_PRIMITIVES_NOT_ACTUAL_UI"
+        },
+        {
+          "x": 400,
+          "y": 992.25,
+          "arrows": [
+            {
+              "a": [
+                -0.29316477272727276,
+                1.55,
+                -0.48
+              ],
+              "b": [
+                0.29316477272727276,
+                1.55,
+                -0.48
+              ],
+              "color": 7557296
+            },
+            {
+              "a": [
+                -0.29316477272727276,
+                1.55,
+                0
+              ],
+              "b": [
+                0.29316477272727276,
+                1.55,
+                0
+              ],
+              "color": 7557296
+            },
+            {
+              "a": [
+                -0.29316477272727276,
+                1.55,
+                0.48
+              ],
+              "b": [
+                0.29316477272727276,
+                1.55,
+                0.48
+              ],
+              "color": 7557296
+            }
+          ],
+          "scope": "SOURCE_CODE_PRIMITIVES_NOT_ACTUAL_UI"
+        }
+      ],
+      "UIObserved": false
+    }
+  ],
+  "rootAuthorAcceptedBoth": true,
+  "noCandidateEditsByReviewer": true,
+  "overallAccepted": false,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
