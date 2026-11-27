@@ -52,3 +52,19 @@ test('both midpoint extrema keep the displayed arrowhead clear of the charged sp
   assert.equal(bench.model.solve({x:1}).y, 0);
   assert.equal(bench.elements(1, 2).filter(item => item.kind === 'arrow').length, 0);
 });
+
+test('the primary field arrow keeps a visible point where no magnified detail is shown', async () => {
+  const row = source('SIM-C4-L02-01');
+  const bench = await esperienza(row);
+  for (let at = row.control.min; at <= row.control.max; at += row.control.step) {
+    const arrows = bench.elements(at, 2).filter(item => item.kind === 'arrow');
+    if (arrows.some(item => item.c === colore.ocra)) continue;
+    const primary = arrows.find(item => item.c === colore.viola);
+    assert.ok(primary, `primary arrow at ${at} cm`);
+    for (const width of [320, 1280]) {
+      const [tip, upper, lower] = arrowhead(primary, width);
+      assert.ok(tip[0] > upper[0] && upper[0] === lower[0]);
+      assert.ok(Math.abs(upper[1] - lower[1]) / 2 >= 1.9, `head at ${at} cm and ${width}px`);
+    }
+  }
+});

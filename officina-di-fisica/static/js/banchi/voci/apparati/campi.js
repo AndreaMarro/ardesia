@@ -32,9 +32,10 @@ export const campi = {
         b.line([o, [o[0] + 1.4 * Math.cos(a), y, 1.4 * Math.sin(a)]], c.ocra);
       }
       b.ball([px, y, 0], 0.09, c.verde);
-      // Preserve the true common field gain outside the opaque probe.
-      b.arrow([px, y, 0.3], [px + s.campo, y, 0.3], c.viola);
-      if (Math.abs(s.campo) > 0 && Math.abs(s.campo) < 0.1) {
+      const mostraDettaglio = Math.abs(s.campo) > 0 && Math.abs(s.campo) < 0.1;
+      // Where it stands alone, keep the 2D arrowhead visible beyond the shaft.
+      b.arrow([px, y, 0.3], [px + s.campo, y, 0.3], c.viola, !mostraDettaglio);
+      if (mostraDettaglio) {
         // A labelled second representation makes the small field legible;
         // the original arrow, inverse-square law and numeric reading remain.
         // Separate in z as well: height separation collapses in the top view.
