@@ -7,6 +7,7 @@ import {esperienza} from '../static/js/banchi/voci/esperimento.js';
 const sources = JSON.parse(readFileSync(new URL('../content/esperienze-C2.json',import.meta.url)));
 const transfers = {
   'Entrata': ['L005-01','L005-02','L005-03','L006-01','L006-02','L006-03','L006-04','L008-01','L008-02','L008-04'],
+  'Presa frontale': ['L006-02'],
   'Sezione di misura': ['L005-04','L007-01','L007-02','L007-05'],
   'Sforzo sulla lastra': ['L007-03'],
   'Presa intermedia': ['L008-03','L009-03'],

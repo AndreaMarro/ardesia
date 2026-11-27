@@ -40,7 +40,7 @@ export async function esperienza(record) {
   const calc = (x) => stabile(law.measure(x));
   const clock = record.engine ? null : orologioVoce(record, law);
   const nativeVectorAxes = !record.engine && record.apparatus === 'vettori';
-  const etichettaFuoriScena = nativeVectorAxes ? 'y' : !record.engine && annotazioneFluido(record)?.etichetta;
+  const etichetteFuoriScena = nativeVectorAxes ? ['y'] : !record.engine && annotazioneFluido(record)?.etichette;
   function elements(x, stage, time) {
     if (clock?.input && time !== undefined) x = time;
     const board = tavolo(Math.max(stage, 0));
@@ -78,8 +78,8 @@ export async function esperienza(record) {
       }
     } else instrument(board, state);
     // The accessible legend locates labels whose opaque sprites hide a measured glyph.
-    return etichettaFuoriScena
-      ? board.elementi.filter(elemento => elemento.kind !== 'label' || elemento.text !== etichettaFuoriScena)
+    return etichetteFuoriScena
+      ? board.elementi.filter(elemento => elemento.kind !== 'label' || !etichetteFuoriScena.includes(elemento.text))
       : board.elementi;
   }
   const levels = ['Diminuisce', 'Resta uguale', 'Aumenta'];

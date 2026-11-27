@@ -3,12 +3,19 @@ import {readFileSync} from 'node:fs';
 import path from 'node:path';
 import {pathToFileURL} from 'node:url';
 
-const [originalApp,candidateApp,reviewInput] = process.argv.slice(2);
+const [originalApp,candidateApp,reviewInput,canaryInput] = process.argv.slice(2);
 const openExperiment = app => import(pathToFileURL(path.join(app,'static/js/banchi/voci/esperimento.js')).href);
 const [original,candidate] = await Promise.all([openExperiment(originalApp),openExperiment(candidateApp)]);
 const review = JSON.parse(readFileSync(reviewInput));
-const authorized = new Map(review.observations.map(witness => [witness.id,witness.labelText]));
+const canary = JSON.parse(readFileSync(canaryInput));
+const authorized = new Map();
+for (const {id,labelText} of [...review.observations,...canary.observations]) {
+  const labels = authorized.get(id) ?? new Set();
+  labels.add(labelText);
+  authorized.set(id,labels);
+}
 assert.equal(authorized.size,20);
+assert.equal([...authorized.values()].reduce((count,labels) => count+labels.size,0),21);
 const originalSource = readFileSync(path.join(originalApp,'content/esperienze-C2.json'));
 assert.ok(originalSource.equals(readFileSync(path.join(candidateApp,'content/esperienze-C2.json'))));
 
@@ -16,16 +23,18 @@ const results = [];
 for (const row of JSON.parse(originalSource)) {
   const [before,after] = await Promise.all([original.esperienza(row),candidate.esperienza(row)]);
   assert.deepEqual(after.record,before.record);
-  const label = authorized.get(row.id);
+  const labels = authorized.get(row.id) ?? new Set();
   let scenes = 0, removed = 0, controls = 0;
   for (const view of ['orbit','side','top','diagram']) {
     const legend = after.legend(2,view);
-    if (label) assert.ok(legend.toLowerCase().includes(label.toLowerCase()));
+    if (labels.size) {
+      for (const label of labels) assert.ok(legend.toLowerCase().includes(label.toLowerCase()));
+    }
     else assert.equal(legend,before.legend(2,view));
   }
   function verifyScene(x,instant) {
     const old = before.elements(x,2,instant);
-    const expected = old.filter(item => item.kind !== 'label' || item.text !== label);
+    const expected = old.filter(item => item.kind !== 'label' || !labels.has(item.text));
     assert.deepEqual(after.elements(x,2,instant),expected);
     scenes += 1;
     removed += old.length-expected.length;
@@ -46,8 +55,8 @@ for (const row of JSON.parse(originalSource)) {
       for (const fraction of [0,0.25,0.5,0.75,1]) verifyScene(x,duration*fraction);
     }
   }
-  assert.equal(removed>0, Boolean(label));
-  results.push({id:row.id,controls,scenes,removed,label:label??null});
+  assert.equal(removed>0, Boolean(labels.size));
+  results.push({id:row.id,controls,scenes,removed,labels:[...labels]});
 }
 assert.equal(results.length,41);
 console.log(JSON.stringify({records:results,controls:results.reduce((n,r)=>n+r.controls,0),
