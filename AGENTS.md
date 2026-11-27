@@ -1,5 +1,9 @@
 # ARDESIA monorepo — AGENTS (root)
 
+## Stato operativo aggiornato
+
+Per il mandato Cric, partire dal [registro e dalle ricevute correnti](officina-di-fisica/editorial/reviews/handoff-4606-20261127.json). Lo snapshot più recente attesta 4.606 quesiti registrati come bozze, 240 altre attività registrate e 145 da chiudere. Gli stati cronologici seguenti documentano passaggi precedenti.
+
 ## Stato verificato del 27 novembre — mandato incompleto
 
 Il registro contiene **4.500/4.606 quesiti DRAFT verificati**, pari al 97,7% del corpus sorgente. Restano i **106 quesiti C6**. Il primo ID mancante è `C6-AQ01`. Il registro delle attività conta **232/385 accettazioni** e **153 aperte**, con 14 riaperture esplicite. Le 385 attività restano soggette alla rivalidazione sul runtime finale. Il precedente checkpoint compilato 3.632/246 resta uno snapshot storico.

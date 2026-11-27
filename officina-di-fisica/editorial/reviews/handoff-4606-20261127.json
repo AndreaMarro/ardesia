@@ -14,22 +14,47 @@
     "nextQuestionId": null,
     "protectedExamQuestions": 93,
     "registrationCommit": "90ac066dcd8fdb6db1fe3b4d89d5e46eb94ffe46",
-    "registrySha256": "9e6293d1a9ad840c3eb539570f7dfb49c0394ef6c6735a9c97acc65bbae2dc2d",
+    "registrySha256": "a5228a2319967fa84e1c8cb379eb5c5d0f8bf2d13373abcd73e89cee770f5b68",
     "perIdStatus": "editorial/reviews/full-corpus-work-status-20261126.json",
-    "sectionReconciliationPending": {
-      "affectedDrafts": 250,
-      "audit": "editorial/reviews/cric-source-section-audit-20261127.json"
+    "scientificReplay": {
+      "commit": "f72cfcf016c4e7d9cf28c331fcbccea3b6b22e5a",
+      "sourceIds": 4606,
+      "batches": 303,
+      "findings": 0
+    },
+    "sectionReconciliation": {
+      "correctedStagingDrafts": 250,
+      "commit": "876daa847c2f2fcc3be605b13f63e33ce9203ca9",
+      "historicalReportsReplayed": 25,
+      "fullyValidatedOnCurrentRuntime": 10,
+      "requiringNewBrowserProof": 240,
+      "validatedBatch": "cric-c1-l006",
+      "validatedCommit": "3668b784a6828de594b0ddb00c669e93b41a0859",
+      "existingMaterializedDraftHandling": "NATIVE_NEW_EDITION_REQUIRED"
     }
   },
   "otherActivities": {
     "total": 385,
-    "registered": 232,
-    "open": 153,
+    "registered": 240,
+    "open": 145,
     "newReviewsOpen": 139,
-    "explicitlyReopened": 14,
+    "explicitlyReopened": 6,
     "historicalClosuresNeedingCurrentRuntime": 6,
     "overlapBetweenHistoricalClosuresAndExplicitReopenings": 1,
-    "independentFiveReplayCommit": "1ed3c13cebb8fe8b80dc997f8b6c9a6b0646f1e8"
+    "independentFiveReplayCommit": "1ed3c13cebb8fe8b80dc997f8b6c9a6b0646f1e8",
+    "nextReopenedId": "SIM-C1-L001-06",
+    "methodsClosureCommit": "6b3eb8ba422ca76548021d557d1d54da22d8c098",
+    "currentC4ToC6ModelReplay": {
+      "commit": "52b5a65b0b46d9b8603dacf1e702dbf92bff7c6b",
+      "records": 62,
+      "newActivityCredit": 0,
+      "originalManualityFailureIds": [
+        "SIM-C4-L09-02",
+        "SIM-C5-L01-01",
+        "SIM-C5-L03-02",
+        "SIM-C5-L09-02"
+      ]
+    }
   },
   "coexistence": {
     "commit": "9c0eb3f59945321d4409d47485d9c92714d86775",
@@ -42,8 +67,14 @@
     "receipt": "editorial/reviews/registry4606-history-fixture-20261127/receipt.json"
   },
   "ongoingRuns": {
-    "privateQuestionPreviews": {"id": 45919159272, "inputCommit": "bfb62aacef6fab6d374b5b6a5fdc5eb37aceb6fc"},
-    "actualVisibility139Activities": {"id": 45917299096, "plannedCases": 45576}
+    "privateQuestionPreviews": {
+      "id": 45919159272,
+      "inputCommit": "bfb62aacef6fab6d374b5b6a5fdc5eb37aceb6fc"
+    },
+    "actualVisibility139Activities": {
+      "id": 45917299096,
+      "plannedCases": 45576
+    }
   },
   "canonicalIntegration": "PENDING",
   "finalCIOnCanonicalSHA": "PENDING",

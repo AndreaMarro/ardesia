@@ -1,4 +1,4 @@
-## Checkpoint corrente — 1.728 quesiti e 204 attività, 25 novembre 2026
+## Checkpoint storico — 1.728 quesiti e 204 attività, 25 novembre 2026
 
 Generazione `98e03e39c8eef3963bb2c4e71da88a486601332574c0f9a908ac89cc5b9677fb`, manifest `2445ee1f9604a6b6a13ecd62305e83b42f1af4a0143a6e110cca857479b7f454`.
 Contabilizzati tutti i 4.606 quesiti e le 385 attività. Revisioni complete: **1.728 quesiti DRAFT e 204 attività**; restano **2.878 quesiti e 181 attività**, tutte esperienze. U1, U2 e U3-01..04 revisionati in bozza. Prossimo ID del checkpoint: `u3-network-stages-01`, batch `network-stages-120`.
