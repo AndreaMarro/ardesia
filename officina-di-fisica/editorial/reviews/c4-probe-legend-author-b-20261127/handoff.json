@@ -1,0 +1,185 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "ISOLATED_AUTHOR_PATCH_HANDOFF",
+  "author": "B",
+  "codeCommit": "0387b946e225dd20c7d11c28e2af002bd9c94993",
+  "baselineCommit": "375faa7a90f5f643840aabb8cc3076f9a2d5f5de",
+  "baselineRuntimeSha256": "3ed5bc77d8320230b62e1c3e6ca3bdd00f240cc64ec236b10fe55a306ca79251",
+  "candidateRuntimeSha256": "44028b3bef28e9d7323b97f59890a184c0bb964a8afa68ab796624cd0f754895",
+  "changedRuntimeFiles": [
+    "static/js/banchi/voci/legende.js"
+  ],
+  "affectedIds": [
+    "SIM-C4-L02-03",
+    "SIM-C4-L03-02",
+    "SIM-C4-L03-03"
+  ],
+  "sourceOnlyChecks": {
+    "realRed": {
+      "tests": 7,
+      "pass": 2,
+      "fail": 5,
+      "exitCode": 1
+    },
+    "realGreen": {
+      "tests": 7,
+      "pass": 7,
+      "fail": 0,
+      "exitCode": 0
+    },
+    "realRegression": {
+      "tests": 24,
+      "pass": 24,
+      "fail": 0,
+      "exitCode": 0
+    },
+    "allC4Records": 29,
+    "legalControlInputs": 438,
+    "affectedLegalInputs": 51,
+    "affectedClockFrames": 85,
+    "observedRasterPositions": 8
+  },
+  "diagnosticDependency": {
+    "commit": "a5462a49273508ec5f603fe51f1615c56b8ee372",
+    "path": "officina-di-fisica/editorial/reviews/C4-probe-labels-diagnostic-b-20261127/handoff.json",
+    "sha256": "fe166090b21aa3d159b63c77ebdb7aa2c38f9b729f4c317ba878a6517168ced9"
+  },
+  "scientificApproval": false,
+  "activityCredit": 0,
+  "UI": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "requiredNextReview": "Distinct review of this author patch; fresh canonical browser observations after Root authorizes queue/capacity and supplies frozen collector. B recused from new-raster acceptance for these three IDs. No former full448 adoption.",
+  "ownedRepositoryFiles": [
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-probe-legend-author-b-20261127/author-note.md",
+      "sha256": "75d6fa5a1c1d5ff2a7aa976858ee6b634f383871892d75f4e329d46d7bbffd81",
+      "bytes": 3636
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-probe-legend-author-b-20261127/author-result.json",
+      "sha256": "9a35385fcc4978e6c551508f3c00d94bc0f274ad31625bd87433dcf713b6ab87",
+      "bytes": 2757
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-probe-legend-author-b-20261127/baseline-legende.js.txt",
+      "sha256": "5ebc1aced5b68f2a279324fda01ba7c447b84af3fbfc571bb05c588e661cbc27",
+      "bytes": 16143
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-probe-legend-author-b-20261127/baseline-runtime.json",
+      "sha256": "36e7e5e24800099cd73898800cf2f96a5d3ec5e826bd9bac3f43573074004a69",
+      "bytes": 45543
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-probe-legend-author-b-20261127/candidate-runtime.json",
+      "sha256": "3cfc249139175a4105c19f7c8ec984eff0079223e2f585392068c9a7880f5040",
+      "bytes": 45543
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-probe-legend-author-b-20261127/git-inputs.json",
+      "sha256": "5c03dfb8614438df00f34138326b9b01b0e0e2f233b45adb49f2422c7644c977",
+      "bytes": 319
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-probe-legend-author-b-20261127/green-terminal.json",
+      "sha256": "67d960ad2d278e520f8c46ef045a9e965fca273a3f741b5eaa6f057c558bde79",
+      "bytes": 381
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-probe-legend-author-b-20261127/green.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-probe-legend-author-b-20261127/green.stdout.txt",
+      "sha256": "e5845c770d86c049df4ade9df8315c512ec1701f98c0fe1b5ea2f5b0cb4213d4",
+      "bytes": 1672
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-probe-legend-author-b-20261127/initial-red-test.js.txt",
+      "sha256": "0f8d463a854f0b7b1593e127d03a1c47d7d93c4520c7e23af1ff0b5881e41a85",
+      "bytes": 3042
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-probe-legend-author-b-20261127/red-final-terminal.json",
+      "sha256": "7b45c6caf5e128db5d9ccdbd70c5c1795285f351159a955787b45e6fe86ac52e",
+      "bytes": 385
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-probe-legend-author-b-20261127/red-final.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-probe-legend-author-b-20261127/red-final.stdout.txt",
+      "sha256": "dde6cd34247462d6d1767f719fd9913a2f0465eb8e3662c2c8f22c41026a7c9a",
+      "bytes": 7598
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-probe-legend-author-b-20261127/red-terminal.json",
+      "sha256": "fe27ce25cf446902d8e9ba6fbae43fcd2a9b82077b3a4037902378ea147d5f15",
+      "bytes": 378
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-probe-legend-author-b-20261127/red.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-probe-legend-author-b-20261127/red.stdout.txt",
+      "sha256": "e4b6be58112e91cea45a286784dffffe0d4aa721c3e592363627d97e515dd835",
+      "bytes": 7602
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-probe-legend-author-b-20261127/regression-terminal.json",
+      "sha256": "a130bfb7157c4998860e11b822084dd2ceb88069fc5a002fe775034699be2c68",
+      "bytes": 544
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-probe-legend-author-b-20261127/regression.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-probe-legend-author-b-20261127/regression.stdout.txt",
+      "sha256": "c22663bf9f7a94cccf9ea3e10c562306d44b085be001b2580ee598c13e092956",
+      "bytes": 5049
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-probe-legend-author-b-20261127/run-regression.py",
+      "sha256": "d762e566d52a918e9eb2addc815320ab63a1c790a14473eb48e7a52b08d2646c",
+      "bytes": 1746
+    },
+    {
+      "path": "officina-di-fisica/editorial/reviews/c4-probe-legend-author-b-20261127/run-target.py",
+      "sha256": "6cc92320311f4072b05b9f377a1da36cd9bee004505a693135ba2a0293bfa166",
+      "bytes": 1750
+    },
+    {
+      "path": "officina-di-fisica/static/js/banchi/voci/legende.js",
+      "sha256": "aea90bcaf11d972a1f8c99ae6d443c9e3493ca9b4f4698630f486bd7fe6b96b5",
+      "bytes": 16623
+    },
+    {
+      "path": "officina-di-fisica/tests/c4-probe-legend.test.js",
+      "sha256": "523b36376254411c18a365c05ae1fa8b2f49b3627570cf08a6b11d0d8454d63f",
+      "bytes": 3450
+    },
+    {
+      "path": "officina-di-fisica/tests/fixtures/c4-probe-labels/baseline-contract.json",
+      "sha256": "199398b70403126abdaeb48e5ec3dd4c34ebb7c977025ff5953be964f7307d98",
+      "bytes": 26368
+    },
+    {
+      "path": "officina-di-fisica/tests/fixtures/c4-probe-labels/observed-eight.json",
+      "sha256": "9d08c23f08585f5a14fc256170d47869b4941f0a019a0e40f8c336362f634f00",
+      "bytes": 22398
+    },
+    {
+      "path": "officina-di-fisica/tests/helpers/c4-probe-contract.mjs",
+      "sha256": "13cda5d5aff2fd293f2ae26dbb1a237e8db428ff4f9efd26b50c5032dc21fe81",
+      "bytes": 2104
+    }
+  ]
+}
