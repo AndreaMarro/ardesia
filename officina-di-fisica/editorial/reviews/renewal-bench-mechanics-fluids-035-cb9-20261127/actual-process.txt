@@ -1,0 +1,9 @@
+{"outdir":"/private/tmp/cric-bench035-cb9-diagnostic-120","cases":120,"errors":[]}
+file:///private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-cb9-20261127/browser-bench-mechanics-fluids-cb9.mjs:76
+ if(report.errors.length)throw Error(report.errors.join('\n'));if(report.consumerUiFailures?.length)throw Error('Completed diagnostic matrix preserves'+report.consumerUiFailures.length+' actual consumerUI failures');
+                                                                                                          ^
+
+Error: Completed diagnostic matrix preserves2 actual consumerUI failures
+    at file:///private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-cb9-20261127/browser-bench-mechanics-fluids-cb9.mjs:76:107
+
+Node.js v22.14.0

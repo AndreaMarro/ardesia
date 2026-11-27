@@ -1,0 +1,8 @@
+file:///private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-cb9-20261127/browser-bench-mechanics-fluids-cb9.mjs:65
+   await page.addScriptTag({path:root+'/node_modules/axe-core/axe.min.js'});const layout=await page.locator('.bench-room').evaluate(async el=>({axe:(await axe.run(el,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']}})).violations.map(v=>({id:v.id,targets:v.nodes.map(n=>n.target)})),documentWidth:document.documentElement.scrollWidth,viewport:innerWidth}));if(layout.axe.length||layout.documentWidth>layout.viewport+1)throw Error('Actual bench layout/axe failed '+JSON.stringify(layout));
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ^
+
+Error: Actual bench layout/axe failed {"axe":[{"id":"aria-prohibited-attr","targets":[["g[aria-label=\"Pareti del capillare\"]"],["g[aria-label=\"Tracciante della sonda\"]"]]}],"documentWidth":320,"viewport":320}
+    at file:///private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/renewal-bench-mechanics-fluids-035-cb9-20261127/browser-bench-mechanics-fluids-cb9.mjs:65:457
+
+Node.js v22.14.0
