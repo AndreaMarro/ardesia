@@ -1,0 +1,49 @@
+from pathlib import Path
+from fractions import Fraction as Q
+import json,hashlib
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c2-fluid-labels-final-independent-a-20261127';P=D/'canary-actual';report=json.loads((P/'report.json').read_bytes());h=lambda b:hashlib.sha256(b).hexdigest()
+def cross(o,a,b):return(a[0]-o[0])*(b[1]-o[1])-(a[1]-o[1])*(b[0]-o[0])
+def hull(points):
+ p=sorted(set(map(tuple,points)))
+ if len(p)<3:return p
+ lo=[];up=[]
+ for v in p:
+  while len(lo)>=2 and cross(lo[-2],lo[-1],v)<=0:lo.pop()
+  lo.append(v)
+ for v in reversed(p):
+  while len(up)>=2 and cross(up[-2],up[-1],v)<=0:up.pop()
+  up.append(v)
+ return lo[:-1]+up[:-1]
+def project(p,c):
+ m=c['sourceDerivedCamera']['matrixWorld'];q=c['sourceDerivedCamera']['projectionMatrix'];v=[p[i]-m[12+i]for i in range(3)];return[(1+q[0]*sum(m[i]*v[i]for i in range(3)))*c['canvas']['width']/2,(1-q[5]*sum(m[4+i]*v[i]for i in range(3)))*c['canvas']['height']/2]
+def clip(poly,box):
+ for axis,bound,sign in [(0,box['x']-box['w']/2,1),(0,box['x']+box['w']/2,-1),(1,box['y']-box['h']/2,1),(1,box['y']+box['h']/2,-1)]:
+  if not poly:break
+  previous=poly[-1];inside=lambda p:sign*(p[axis]-bound)>=0;out=[]
+  for point in poly:
+   if inside(point)!=inside(previous):
+    t=(bound-previous[axis])/(point[axis]-previous[axis]);out.append(tuple(previous[i]+t*(point[i]-previous[i])for i in range(2)))
+   if inside(point):out.append(tuple(point))
+   previous=point
+  poly=out
+ return poly
+def area(poly):return abs(sum(a[0]*b[1]-b[0]*a[1]for a,b in zip(poly,poly[1:]+poly[:1])))/2 if poly else Q(0)
+def rational_json(v):return{'exactFraction':str(v),'decimal':float(v)}
+def analyze(c,source_file,source_sha):
+ out=[]
+ for glyph in c['nativeGlyphs']:
+  for label in c['labels']:
+   for part_index,part in enumerate(glyph['parts']):
+    points=[project(v,c)for v in part['vertices']];p=hull(points);a=area(p);intersection=clip(p,label['box']);b=area(intersection)
+    if b>0:
+     out.append({'elementIndex':glyph['elementIndex'],'partIndex':part_index,'label':label['text'],'projectedPolygonHullVertices':[[str(v)for v in x]for x in p],'intersectionPolygonVertices':[[str(v)for v in x]for x in intersection],'totalAreaPixelsSquared':rational_json(a),'coveredAreaPixelsSquared':rational_json(b),'coveredFraction':rational_json(b/a),'coveredPercent':float(100*b/a),'insideStoredVertexCount':sum(label['box']['x']-label['box']['w']/2<=x<=label['box']['x']+label['box']['w']/2 and label['box']['y']-label['box']['h']/2<=y<=label['box']['y']+label['box']['h']/2 for x,y in points),'totalStoredVertices':len(points)})
+ return{'caseKey':c['caseKey'],'caseFile':source_file,'caseSha256':source_sha,'labels':[{'text':l['text'],'position':[str(x)for x in l['p']],'rectangle':{k:str(v)for k,v in l['box'].items()}}for l in c['labels']],'intersections':out}
+results=[]
+for item in report['cases']:
+ raw=(P/item['file']).read_bytes();assert h(raw)==item['sha256'];c=json.loads(raw,parse_float=Q)
+ if 'interaction'in c and not c['profile']['fallback']:results.append(analyze(c,str((P/item['file']).relative_to(A)),item['sha256']))
+old=A/'editorial/reviews/c2-41-cb9-actual-ui-peer-a-20261127/additional-full-frame-witnesses/03-SIM-C2-L009-03.json';raw=old.read_bytes();old_result=analyze(json.loads(raw,parse_float=Q),str(old.relative_to(A)),h(raw))
+result={'method':'Convex projected32-facet part silhouette, Sutherland-Hodgman rectangle clipping and shoelace area. All decimal numerical lexemes in the recorded Float32-world-vertex/camera/label fields parsed as exact rationals; no roundtrip through binary floats for the proof. The recorded source-derived matrices themselves remain a source replay, not a GPU depth buffer.','canaryCases':results,'priorSingleVertexInterpretationAddendum':old_result,'qualification':'Counting vertices inside a label is not its covered projected area: most cone vertices are on the base circle, one at the apex. Existing raw records unchanged.','activityCredit':0};(D/'exact-label-intersection-inventory.json').write_text(json.dumps(result,indent=2)+'\n')
+for c in results:
+ print(c['caseKey'],'labels',[x['text']for x in c['labels']],[(x['elementIndex'],x['partIndex'],x['label'],x['insideStoredVertexCount'],x['totalStoredVertices'],x['coveredPercent'])for x in c['intersections']])
+print('OLD_Q00903',[(x['elementIndex'],x['partIndex'],x['label'],x['coveredPercent'])for x in old_result['intersections']])
