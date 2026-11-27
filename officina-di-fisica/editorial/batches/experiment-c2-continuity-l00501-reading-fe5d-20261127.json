@@ -1,0 +1,79 @@
+{
+  "assets": [],
+  "records": [
+    {
+      "anchor": "Segna un piano immaginario di traverso a",
+      "apparatus": "condotto",
+      "assessmentSelection": {
+        "points": [
+          6,
+          7
+        ],
+        "schemaVersion": "1.0.0"
+      },
+      "baseVersion": 1,
+      "blocks": [
+        {
+          "text": "Segna una sezione del tubo perpendicolare al suo asse. In un secondo una velocità media di 6 cm/s equivale al passaggio di uno strato lungo 6 cm che occupa tutta la sezione. La costruzione usa la velocità media sulla sezione e vale anche quando alcune parti del liquido scorrono più rapide di altre.",
+          "type": "text"
+        },
+        {
+          "text": "Q=A\\bar v",
+          "type": "formula"
+        },
+        {
+          "text": "Moltiplica i 4 cm² della sezione per 6 cm/s. Le unità danno centimetri cubi al secondo e il prodotto vale 24. Un centimetro cubo è un millilitro, così la portata è 24 mL/s. A 7 cm/s, moltiplica 4 per 7 e ottieni 28 mL/s.",
+          "type": "text"
+        },
+        {
+          "text": "Q(7\\,\\mathrm{cm/s})=28\\,\\mathrm{mL/s}",
+          "type": "formula"
+        },
+        {
+          "text": "In senso inverso, per ricavare la velocità dividi la portata per l’area. Dalla portata di 28 cm³/s e dalla sezione di 4 cm² ritrovi 7 cm/s. A sezione fissa, raddoppiare la velocità raddoppia la portata. A velocità nulla il volume attraversato è zero.",
+          "type": "text"
+        }
+      ],
+      "control": {
+        "label": "Velocità media",
+        "max": 12.0,
+        "min": 0.0,
+        "step": 1.0,
+        "unit": "cm/s"
+      },
+      "course": "C2",
+      "formula": "Q = A v media; A = 4 cm²",
+      "id": "SIM-C2-L005-01",
+      "interpretation": "Immagina il cilindro che attraversa il piano durante un secondo. Ha volume area per distanza. Un centimetro cubo corrisponde a un millilitro.",
+      "kind": "experiment",
+      "measure": {
+        "label": "Portata volumetrica",
+        "unit": "mL/s"
+      },
+      "order": 1,
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "references": [
+        [
+          2.0,
+          8.0
+        ],
+        [
+          6.0,
+          24.0
+        ]
+      ],
+      "review": "Candidata DRAFT. Revisione distinta e approvazione umana in attesa.",
+      "section": "Fluidi in movimento",
+      "skill": "C2-L005",
+      "substitution": "4 × {x}",
+      "summary": "Quanto liquido varca la sezione colorata in un secondo?",
+      "title": "Flusso e portata volumetrica",
+      "topic": "Flusso e portata volumetrica",
+      "transferPrompt": "Un tubo di area 4 cm² porta un liquido a velocità media {x}. Quanti millilitri entrano nel recipiente ogni secondo?",
+      "version": 2
+    }
+  ],
+  "schema": "astra/1"
+}

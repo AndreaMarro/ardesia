@@ -74,10 +74,13 @@ def register(spec, source_file, receipt_file, expected_runtime, expected_registr
     new_registry = encode(registry)
     status['registrySha256'] = sha(new_registry)
     new_status = encode(status)
-    case_counts = [
-        row.get('actualBrowserCases', row.get('visualScope', {}).get('actualCases'))
-        for row in proof['records']
-    ]
+    case_counts = []
+    for record in proof['records']:
+        count = record.get('actualBrowserCases')
+        scope = record.get('visualScope')
+        if count is None and isinstance(scope, dict):
+            count = scope.get('actualCases')
+        case_counts.append(count)
     actual_cases = sum(case_counts) if all(type(count) is int for count in case_counts) else None
     result = {
         'schemaVersion': '1.0.0', 'spec': spec, 'specSha256': sha(canonical(spec).encode()),

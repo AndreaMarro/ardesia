@@ -1,0 +1,61 @@
+{
+  "acceptedCount": 1,
+  "activityCredit": 0,
+  "archiveSha256": "8ab943ba7d40d847aa05c205268980ea32a72d5c188932d3c6b20bb51a3ef072",
+  "captureGuardSha256": "a7d591eb3b4129591c245269ed68d7d0a861f269ab10eaa48e2fc502d13d3db6",
+  "evidenceManifestSha256": "9e4b83da7a396479da7b87156018d0a80cfba16b360482acb1c35897567aab28",
+  "humanApproval": "NOT_RUN",
+  "independentModelSha256": "78f00383f6de706742c28a9ef49e76c240da37e5477a41d67b829f1c986fe1a1",
+  "installedExactFlowChecks": 26,
+  "publicationAction": "NONE",
+  "records": [
+    {
+      "actualAnswerSubmissions": 32,
+      "actualBrowserCases": 160,
+      "baseVersion": 1,
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "06eb0924b44574ea48b9e2211fa87c7ba6126c8905884184ae5c929ecf40ae9f",
+      "candidateVersion": 2,
+      "currentVisualReadIdentity": "01ced3fea06b5550c3357c1585ff0dab8fdf46b429aa67299a16ad5da5f30aac",
+      "failedPublishedEdition": false,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C2-L005-01",
+      "manualArithmetic": "Area 4 cm² and mean speed 6 cm/s give 24 cm³/s = 24 mL/s; at 7 cm/s the result is 28 mL/s. Exact clock distances for (v,t)=(0,6),(1,3),(7,3),(12,6) are 0,3,21,72 cm; derived volumes are 0,12,84,288 mL. Zero speed transports nothing. Integrated volumes are independent calculations, not asserted DOM fields.",
+      "ok": true,
+      "originalEditionRetained": true,
+      "pedagogicalReview": "Frozen independent mathematical primary and current instrument rubric precede this raw reading. All 160 current cases, both editions and 66 complete PNGs read; 8 fallback and 16 native historical witnesses resolved only on FE5D. Canonical eight-profile examples per edition are explicit subsets. Side projection can touch rear tracers; ray/draw-order/raster evidence establishes visible tips, not silhouette separation. Private author preview remains separate.",
+      "physicalAssumptions": "Stationary incompressible flow through equal fixed cross-sections of 4 cm². The displayed speed is the section mean; schematic tracers follow this mean and are not a resolved viscous velocity profile. Speed is held constant during each clock trial. Both directional arrows are offset in depth only for legibility; their x/y displacement, direction and common speed scale are unchanged. A periodic tracer pattern after 72 cm does not imply zero transport.",
+      "publicationAction": "DRAFT",
+      "publishedEditionReview": {
+        "actualAssignedTasks": [
+          {
+            "prompt": "Imposta «Velocità media» su 6 cm/s. Quale valore ottieni per «Portata volumetrica»?",
+            "unit": "mL/s",
+            "value": 24,
+            "worked": "Q = A v media; A = 4 cm². 4 × 6 = 24 mL/s."
+          },
+          {
+            "prompt": "Un tubo di area 4 cm² porta un liquido a velocità media 7 cm/s. Quanti millilitri entrano nel recipiente ogni secondo?",
+            "unit": "mL/s",
+            "value": 28,
+            "worked": "Q = A v media; A = 4 cm². 4 × 7 = 28 mL/s."
+          }
+        ],
+        "actualBrowserCases": 80,
+        "humanApproval": "NOT_RUN",
+        "judgmentScope": "Actual current original-edition readouts, 80 bounded cases and complete raster reading; no extension to unsampled states",
+        "ok": true,
+        "publicationAction": "NONE",
+        "sourceSha256": "2c1385b566f8fc10f826b0885738205ac0e1c02bc1e4d56265169433bfde8d06"
+      },
+      "reviewedSignature": "15f77f790aeeec6a3b879eded5fd58c878915a0d853df13cf4072f92fe5a374e",
+      "sourceSha256": "2c1385b566f8fc10f826b0885738205ac0e1c02bc1e4d56265169433bfde8d06",
+      "sourceVersion": 1,
+      "visualScope": "CURRENT_160_CASES_BOTH_EDITIONS_66_WHOLE_PNG_READ"
+    }
+  ],
+  "runtimeSha256": "fe5d26413e1aeb59987cc3fd6040adde3b01952b6e5e5c3951695b2e64d9166b",
+  "schemaVersion": "1.0.0",
+  "sourceCommit": "8de7bd774c71841c4b744485b012abd6506f3645",
+  "verifierSha256": "46f0cb295e808b124b3f4d7d8abee8f47b0036a1954eaf7d09b57199144794bf"
+}
