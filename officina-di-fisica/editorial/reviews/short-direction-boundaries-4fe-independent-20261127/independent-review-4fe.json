@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.0.0",
+  "reviewer": "author_vectors_b",
+  "author": "Root",
+  "candidateCommit": "25151fb1c38b4b859d49e02a9255fdd83bcf4341",
+  "runtimeSha256": "4fe3c31ff0762c3e9038639320d60d4b8b9a49fe73175e44415c4160b61c1f41",
+  "preparationCommits": [
+    "f5a3abd4a01b59a89e8aa1e2f046fd0cfd6de50b",
+    "3e962ff12d963eea11fa6148d4ab7bf0e906d814"
+  ],
+  "result": "BOUNDED_RECHECK_COMPLETE_NO_RESIDUAL_ON_ASSIGNED_CHANGED_CUES",
+  "scope": "Five changed families only; not full activity-grid, canonical139, editorial or human acceptance.",
+  "actualBrowser": {
+    "observedExit": 0,
+    "signal": null,
+    "durationSeconds": 65.47102229099255,
+    "protocolSha256": "a82b3284599ce3cb722ea51bebe4bce56aa4b7e0e39d7f57b34073bfbf4335ad",
+    "reportSha256": "14d4904e2c00fb89a82c6bb7dd783d9d4ee217d3c9a8c8360a7cfdac053785f7",
+    "activityCredit": 0,
+    "humanApproval": "NOT_RUN",
+    "publicationAction": "NONE"
+  },
+  "plannedCases": 98,
+  "actuallyOpenedUniquePNG": 90,
+  "independentTests": {
+    "methods": 7,
+    "observedExitCode": 0,
+    "durationSeconds": 0.24079120901296847,
+    "testModuleSha256": "65e51bfd75bfeb1a04bf3e9e1bc94c9fb1a1b94b3a259134ad71c579b0678b1b",
+    "rawSha256": "c02415a117915968918d343016539fffe043ff44642ae292a45fd8fde109edba",
+    "activityCredit": 0,
+    "humanApproval": "NOT_RUN",
+    "publicationAction": "NONE"
+  },
+  "sourceDifferential": {
+    "models": 7,
+    "controls": 133,
+    "scenes": 303,
+    "exactDetailArrowsChecked": 70,
+    "sourceCommitCompared": "03f9634d7d6a8dcfe9161990c4d5dbc62e3773f5",
+    "primaryPrimitivesMathReadingsAndGuidesUnchanged": true,
+    "newDetailsCheckedByIndependentExplicitOperators": true
+  },
+  "nativeOpaqueLabelCensus": {
+    "whole": 0,
+    "headOrTip": 0,
+    "rasterIndependentlyOpened": true
+  },
+  "perId": [
+    {
+      "id": "SIM-C1-L006-03",
+      "observed": "Native and fallback detail band is clear at r1.5,2,4. Dark-ochre pair uses fixed symmetric anchors, has inward opposite directions and5x original length. r1.25 correctly has no detail. Former r2 marginal is now separately represented.",
+      "nonCrossingProof": "For0<L<0.38, inset tip magnitude2.1-5L exceeds0.2; the two tips cannot cross the origin or each other. Source grid and actual observed endpoints were checked.",
+      "scaleScope": "Inset length only, not a relocation of the original physical force application points; original green pair remains unchanged."
+    },
+    {
+      "id": "SIM-C1-L007-02",
+      "observed": "Dark6x velocity detail is clear at t.25,1,1.75s, including the observed clock1.75s. t2s retains the original primary alone. At t0 no primary or detail is drawn. Former t1 marginal has a separate clear cue."
+    },
+    {
+      "id": "SIM-C1-L007-03",
+      "observed": "New dark6x velocity detail is clear at W1/2/3J; W4J retains the original primary alone. At W0 both are absent. The factor refers to the original velocity arrow, not to a new physical energy law."
+    },
+    {
+      "id": "SIM-C4-L01-02",
+      "observed": "At r2,2.5,6cm the dark8x pair is separate, outward and not clipped by bodies/board. r1.5cm keeps the primary alone. Former r2 marginal now has a clearly headed detail."
+    },
+    {
+      "id": "SIM-C5-L07-03",
+      "observed": "The4x geometry/gain is unchanged; dark detail at E15/E17eV is visible and separate. E14 has no kinetic-energy arrow, E18 returns to the original small green primary. No new opaque-label or detail loss was observed. The green arrow follows kinetic energy, as stated in the actual legend."
+    }
+  ],
+  "legendReview": "All five actual legends read: dark ochre is distinguished;5x/6x/8x/4x phrases agree with the drawn length operators and directions.",
+  "historicalNegatives": "C1 cb9/03f label and short-head REDs,52c Doppler and4e/91f marginal observations remain unchanged. This review has new actual case and runtime identities; no old report was retagged.",
+  "exposure": "Assigned author freezes and earlier reported failures were known. Source operators, thresholds and glyphs were recalculated/read independently. No claim of blind discovery of assigned fixes.",
+  "c6Recusal": "Reviewer authored the C6 overlay; no C6 UI acceptance here.",
+  "scientificApproval": false,
+  "fullMacroAcceptance": false,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

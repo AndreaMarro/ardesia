@@ -1,0 +1,7 @@
+# Bounded independent review on 4fe
+
+One actual Chrome run ended 0 with null signal in 65.471 s. All 98 cases were identity-checked and all 90 unique PNGs opened in full. Seven independent tests passed (0.162 s). The independent source differential checked seven models, 133 legal inputs, 303 scenes and 70 exact detail arrows; original physical primary primitives, model outputs and guides were identical. Nine relevant source snapshots match both the actual runtime manifest and the immutable candidate Git bytes.
+
+The changed cues are clear in the checked native/fallback profiles and widths. The new gravity inset is symmetric and uncrossed, with fivefold length; the rail models use sixfold velocity details, Coulomb eightfold and the photon-energy cue fourfold. Dark ochre is stated in the actual legends. Former r=2 and t=1 s marginals now have separate, headed cues. Zero velocity/work states and the E=14 eV threshold keep the appropriate absence of arrows. No replacement label occlusion was found in these cases.
+
+The unmodified physical primaries may remain small where a detail supplies the readable direction. This is a bounded positive recheck of the assigned changes, not an assurance for every possible profile/input or a full canonical campaign. Old negative epochs remain immutable. C6 is excluded because this reviewer authored its overlay. No activity count, human approval or publication action.
