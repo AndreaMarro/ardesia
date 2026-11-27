@@ -1,0 +1,122 @@
+[
+  {
+    "id": "SIM-C2-L002-02",
+    "version": 1,
+    "title": "Pressione con la profondità",
+    "apparatus": "vasca",
+    "control": {
+      "label": "Quota della sonda sopra il fondo",
+      "unit": "m",
+      "min": 0.0,
+      "max": 3.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Pressione relativa",
+      "unit": "kPa"
+    },
+    "references": [
+      [
+        0.0,
+        30.0
+      ],
+      [
+        2.0,
+        10.0
+      ]
+    ],
+    "anchor": "Usa densità uniforme e g quasi costante,",
+    "summary": "Alzando una sonda dal fondo, leggi quota o profondità?",
+    "skill": "C2-L002"
+  },
+  {
+    "id": "SIM-C2-L002-03",
+    "version": 1,
+    "title": "Esperimento di Torricelli",
+    "apparatus": "manometro",
+    "control": {
+      "label": "Pressione dell’aria",
+      "unit": "kPa",
+      "min": 68.0,
+      "max": 108.8,
+      "step": 1.36
+    },
+    "measure": {
+      "label": "Altezza della colonna di mercurio",
+      "unit": "cm"
+    },
+    "references": [
+      [
+        68.0,
+        50.0
+      ],
+      [
+        102.0,
+        75.0
+      ]
+    ],
+    "anchor": "Più scendi in acqua, maggiore è la",
+    "summary": "Che cosa sostiene la colonna del barometro di Torricelli?",
+    "skill": "C2-L002"
+  },
+  {
+    "id": "SIM-C2-L002-04",
+    "version": 2,
+    "title": "Manometro a U",
+    "apparatus": "manometro",
+    "control": {
+      "label": "Differenza di pressione",
+      "unit": "kPa",
+      "min": -2.0,
+      "max": 2.0,
+      "step": 0.2
+    },
+    "measure": {
+      "label": "Dislivello con segno",
+      "unit": "cm"
+    },
+    "references": [
+      [
+        -1.0,
+        -10.0
+      ],
+      [
+        2.0,
+        20.0
+      ]
+    ],
+    "anchor": "Un manometro a U traduce una differenza",
+    "summary": "In quale ramo del manometro a U sale il liquido quando premi a sinistra?",
+    "skill": "C2-L002"
+  },
+  {
+    "id": "SIM-C2-L003-01",
+    "version": 1,
+    "title": "Principio di Pascal",
+    "apparatus": "pressa",
+    "control": {
+      "label": "Pressione aggiunta",
+      "unit": "kPa",
+      "min": 0.0,
+      "max": 10.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Incremento di forza sul pistone grande",
+      "unit": "N"
+    },
+    "references": [
+      [
+        2.0,
+        4.0
+      ],
+      [
+        6.0,
+        12.0
+      ]
+    ],
+    "anchor": "Due pistoni di area diversa chiudono un",
+    "summary": "Che cosa si trasmette identico ai due pistoni?",
+    "skill": "C2-L003"
+  }
+]
