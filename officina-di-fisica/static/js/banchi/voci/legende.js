@@ -114,6 +114,7 @@ const annotazioni = {
   C6: [
     ['Entrata', 'L’entrata è a sinistra e l’uscita a destra.', ['L02-01']],
     ['Uscita', '', ['L02-01']],
+    ['Rivelatore', 'Il fascio entra da sinistra. Il rivelatore è la piastra grigia a destra. Cerca fra la lastra e il rivelatore il fascio trasmesso. Ogni strato dimezza il segnale indicato nella lettura.', ['L04-01']],
     ['Carrello', 'Il carrello è il blocco verde sulla guida graduata.', ['L05-01']],
     ['Oggetto', 'La freccia viola a sinistra è l’oggetto. Quando visibile nella tavola, l’immagine è la freccia rossa. L’immagine virtuale è diritta sul lato dell’oggetto e più distante dalla lente. L’immagine reale è capovolta sul lato opposto. Al fuoco i raggi emergono paralleli.', ['L06-01']],
   ],

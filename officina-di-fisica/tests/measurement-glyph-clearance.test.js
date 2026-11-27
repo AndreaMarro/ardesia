@@ -137,3 +137,17 @@ test('the virtual image stays clear of the object label in the C6 lens', async (
     assert.match(activity.legend(2, view), /oggetto.*immagine virtuale.*immagine reale/i);
   }
 });
+
+test('the C6 attenuation detector label leaves the transmitted beam unobstructed', async () => {
+  const activity = await experience('SIM-C6-L04-01');
+  for (let layers = 0; layers <= 5; layers++) {
+    const elements = activity.elements(layers, 2);
+    assert.ok(!elements.some(e => e.kind === 'label' && e.text === 'Rivelatore'));
+    assert.ok(elements.some(e => e.kind === 'label' && e.text === 'Fascio'));
+    const transmitted = elements.filter(e => e.kind === 'rod' && e.c === colore.ocra && e.b[0] === 2.26);
+    assert.equal(transmitted.length, 12);
+    for (const segment of transmitted) assert.equal(segment.alpha, 1 / 2 ** layers);
+    assert.equal(activity.model.solve({ x: layers }).y, 120 / 2 ** layers);
+  }
+  assert.match(activity.legend(2, 'top'), /rivelatore è la piastra grigia a destra/i);
+});
