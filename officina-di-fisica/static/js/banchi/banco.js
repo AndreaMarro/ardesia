@@ -423,6 +423,9 @@ export async function benchPage(id, origin, topicIndex) {
   get('[data-reference]').ontoggle = references;
   function draw() {
     if (available && view !== 'diagram') gpu.rebuild(world.build, p, s, sceneLevel());
+    const sectionLegend = pilot === 'onde' && view === 'section'
+      ? ' · Linea scura · spostamento istantaneo lungo la sezione passante per P'
+      : '';
     get('[data-legend]').textContent =
       pilot === 'induzione'
         ? 'Viola · campo imposto / n · normale positiva / rosso · corrente nel circuito chiuso'
@@ -430,7 +433,7 @@ export async function benchPage(id, origin, topicIndex) {
           ? activity.legend(stage, view)
           : stage < 0
             ? 'Apparato iniziale'
-            : legends[r.model].slice(0, Math.min(sceneLevel() + 1, 3)).join(' · ');
+            : legends[r.model].slice(0, Math.min(sceneLevel() + 1, 3)).join(' · ') + sectionLegend;
     root.dataset.moment = momenti[stage + 1];
     segnaMomento(root, stage + 1, !answered);
     const caption = get('[data-caption]');
