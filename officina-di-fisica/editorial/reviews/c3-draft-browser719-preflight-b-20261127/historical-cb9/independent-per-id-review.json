@@ -1,0 +1,1211 @@
+{
+  "schemaVersion": "1.0.0",
+  "reviewer": "author_vectors_b",
+  "sourceOnlyPrimarySha256": "c87e8e0db9b84ae2fe58cd1bf0bb81185806521b3e8953aff63d7dd6dc7cbcf2",
+  "recusal": {
+    "authoredTheseRuntimeCorrections": false,
+    "authoredOriginal36Records": false,
+    "priorExposure": "Frozen primary disclosed prior thermal lessons/examples and shared clock; full blinding is not claimed."
+  },
+  "candidateRef": "cf3d8774ea4eb2f5287b7d7b890d9be0bf8bc8bc",
+  "runtimeSha256": "cb9fc66d96ecced2addff3df4dfbeb0b5834e73a13719a78ea964bc28a5ada49",
+  "runId": 45917299096,
+  "runHead": "0dbfa07c4d8abe6d80bc827d0f08a40b62075059",
+  "archiveSha256": "99b4b78118a753b464453169a3c6c9cc93142320b1580a24db7b5278647258cf",
+  "technicalPlanCases": 11808,
+  "selectedCaseJsonsVerified": 225,
+  "selectedPngsVerified": 200,
+  "selectedIndependentMathChecks": 151,
+  "prioritySourceReplayCaseJsons": 56,
+  "actualSetupQuestionsAccepted": [
+    {
+      "caseKey": "SIM-C3-L01-01|published|320|side|setup",
+      "input": "80",
+      "status": "Corretto. V = V₀ + As; V₀ = 20 cm³, A = 10 cm². 20 + 10 × 6 = 80 cm³."
+    },
+    {
+      "caseKey": "SIM-C3-L01-01|published|320|side|setup",
+      "input": "60",
+      "status": "Corretto. V = V₀ + As; V₀ = 20 cm³, A = 10 cm². 20 + 10 × 4 = 60 cm³."
+    },
+    {
+      "caseKey": "SIM-C3-L01-02|published|320|side|setup",
+      "input": "160",
+      "status": "Corretto. p = (nR/V)T; nR/V = 0,4 kPa/K. 0,4 × 400 = 160 kPa."
+    },
+    {
+      "caseKey": "SIM-C3-L01-02|published|320|side|setup",
+      "input": "140",
+      "status": "Corretto. p = (nR/V)T; nR/V = 0,4 kPa/K. 0,4 × 350 = 140 kPa."
+    },
+    {
+      "caseKey": "SIM-C3-L01-03|published|320|side|setup",
+      "input": "30",
+      "status": "Corretto. p finale = nRT/V = (120 kPa·L)/V. 120 / 4 = 30 kPa."
+    },
+    {
+      "caseKey": "SIM-C3-L01-03|published|320|side|setup",
+      "input": "40",
+      "status": "Corretto. p finale = nRT/V = (120 kPa·L)/V. 120 / 3 = 40 kPa."
+    },
+    {
+      "caseKey": "SIM-C3-L01-04|published|320|side|setup",
+      "input": "323.15",
+      "status": "Corretto. T/K = t/°C + 273,15. 50 + 273,15 ≈ 323,2 K."
+    },
+    {
+      "caseKey": "SIM-C3-L01-04|published|320|side|setup",
+      "input": "298.15",
+      "status": "Corretto. T/K = t/°C + 273,15. 25 + 273,15 ≈ 298,2 K."
+    },
+    {
+      "caseKey": "SIM-C3-L02-01|published|320|side|setup",
+      "input": "40",
+      "status": "Corretto. pV = nRT = 240 kPa·L. 240 / 6 = 40 kPa."
+    },
+    {
+      "caseKey": "SIM-C3-L02-01|published|320|side|setup",
+      "input": "53.33",
+      "status": "Corretto. pV = nRT = 240 kPa·L. 240 / 4,5 ≈ 53,33 kPa."
+    },
+    {
+      "caseKey": "SIM-C3-L02-02|published|320|side|setup",
+      "input": "400",
+      "status": "Corretto. T = pV/(nR); V/(nR) = 2,5 K/kPa. 2,5 × 160 = 400 K."
+    },
+    {
+      "caseKey": "SIM-C3-L02-02|published|320|side|setup",
+      "input": "325",
+      "status": "Corretto. T = pV/(nR); V/(nR) = 2,5 K/kPa. 2,5 × 130 = 325 K."
+    },
+    {
+      "caseKey": "SIM-C3-L03-01|published|320|side|setup",
+      "input": "400",
+      "status": "Corretto. Q = CΔT, con C = 50 J/K. 50 × 8 = 400 J."
+    },
+    {
+      "caseKey": "SIM-C3-L03-01|published|320|side|setup",
+      "input": "300",
+      "status": "Corretto. Q = CΔT, con C = 50 J/K. 50 × 6 = 300 J."
+    },
+    {
+      "caseKey": "SIM-C3-L03-02|published|320|side|setup",
+      "input": "100",
+      "status": "Corretto. C = mc, con c = 0,4 J/(g·K). 0,4 × 250 = 100 J/K."
+    },
+    {
+      "caseKey": "SIM-C3-L03-02|published|320|side|setup",
+      "input": "70",
+      "status": "Corretto. C = mc, con c = 0,4 J/(g·K). 0,4 × 175 = 70 J/K."
+    },
+    {
+      "caseKey": "SIM-C3-L03-03|published|320|side|setup",
+      "input": "83.14",
+      "status": "Corretto. Qₚ − Qᵥ = n(Cₚ−Cᵥ)ΔT = nRΔT. 8,314 × 10 = 83,14 J."
+    },
+    {
+      "caseKey": "SIM-C3-L03-03|published|320|side|setup",
+      "input": "91.454",
+      "status": "Corretto. Qₚ − Qᵥ = n(Cₚ−Cᵥ)ΔT = nRΔT. 8,314 × 11 ≈ 91,45 J."
+    },
+    {
+      "caseKey": "SIM-C3-L03-04|published|320|side|setup",
+      "input": "50",
+      "status": "Corretto. T finale = (80m + 20×200)/(m+200). (80 × 200 + 4000) / (200 + 200) = 50 °C."
+    },
+    {
+      "caseKey": "SIM-C3-L03-04|published|320|side|setup",
+      "input": "48",
+      "status": "Corretto. T finale = (80m + 20×200)/(m+200). (80 × 175 + 4000) / (175 + 200) = 48 °C."
+    },
+    {
+      "caseKey": "SIM-C3-L04-01|published|320|side|setup",
+      "input": "50",
+      "status": "Corretto. m fusa = Q/Lf; Lf = 334 J/g. 1000 × 16,7 / 334 = 50 g."
+    },
+    {
+      "caseKey": "SIM-C3-L04-01|published|320|side|setup",
+      "input": "55",
+      "status": "Corretto. m fusa = Q/Lf; Lf = 334 J/g. 1000 × 18,37 / 334 ≈ 55 g."
+    },
+    {
+      "caseKey": "SIM-C3-L04-02|published|320|side|setup",
+      "input": "6.78",
+      "status": "Corretto. Q = m con segno × Lᵥ; Lᵥ ≈ 2,26 kJ/g. 2,26 × 3 ≈ 6,78 kJ."
+    },
+    {
+      "caseKey": "SIM-C3-L04-02|published|320|side|setup",
+      "input": "0",
+      "status": "Corretto. Q = m con segno × Lᵥ; Lᵥ ≈ 2,26 kJ/g. 2,26 × 0 ≈ 0 kJ."
+    },
+    {
+      "caseKey": "SIM-C3-L04-03|published|320|side|setup",
+      "input": "50",
+      "status": "Corretto. Prima 2 kJ scaldano il ghiaccio; poi m fusa = min(100,1000(Q−2)/340). min(100; max(0; (19 − 2) × 1000 / 340)) = 50 g."
+    },
+    {
+      "caseKey": "SIM-C3-L04-03|published|320|side|setup",
+      "input": "76.47",
+      "status": "Corretto. Prima 2 kJ scaldano il ghiaccio; poi m fusa = min(100,1000(Q−2)/340). min(100; max(0; (28 − 2) × 1000 / 340)) ≈ 76,47 g."
+    },
+    {
+      "caseKey": "SIM-C3-L05-01|published|320|side|setup",
+      "input": "4",
+      "status": "Corretto. P = kAΔT/L; k = 1 W/(m·K), A = 0,01 m², ΔT = 20 K. 20 / 5 = 4 W."
+    },
+    {
+      "caseKey": "SIM-C3-L05-01|published|320|side|setup",
+      "input": "4.444",
+      "status": "Corretto. P = kAΔT/L; k = 1 W/(m·K), A = 0,01 m², ΔT = 20 K. 20 / 4,5 ≈ 4,444 W."
+    },
+    {
+      "caseKey": "SIM-C3-L05-02|published|320|side|setup",
+      "input": "126",
+      "status": "Corretto. P = ṁcΔT; c = 4,2 J/(g·K), ΔT = 10 K. 42 × 3 = 126 W."
+    },
+    {
+      "caseKey": "SIM-C3-L05-02|published|320|side|setup",
+      "input": "105",
+      "status": "Corretto. P = ṁcΔT; c = 4,2 J/(g·K), ΔT = 10 K. 42 × 2,5 = 105 W."
+    },
+    {
+      "caseKey": "SIM-C3-L05-03|published|320|side|setup",
+      "input": "992.25",
+      "status": "Corretto. P/A = εσ(T⁴−Tₐ⁴); ε = 1, Tₐ = 300 K, σ ≈ 5,67×10⁻⁸. 5,67 × 10⁻⁸ × (400⁴ − 300⁴) ≈ 992,3 W/m²."
+    },
+    {
+      "caseKey": "SIM-C3-L05-03|published|320|side|setup",
+      "input": "391.6",
+      "status": "Corretto. P/A = εσ(T⁴−Tₐ⁴); ε = 1, Tₐ = 300 K, σ ≈ 5,67×10⁻⁸. 5,67 × 10⁻⁸ × (350⁴ − 300⁴) ≈ 391,6 W/m²."
+    },
+    {
+      "caseKey": "SIM-C3-L06-01|published|320|side|setup",
+      "input": "20",
+      "status": "Corretto. ΔU = Q−W, con W dal gas = 10 J. 30 − 10 = 20 J."
+    },
+    {
+      "caseKey": "SIM-C3-L06-01|published|320|side|setup",
+      "input": "5",
+      "status": "Corretto. ΔU = Q−W, con W dal gas = 10 J. 15 − 10 = 5 J."
+    },
+    {
+      "caseKey": "SIM-C3-L06-02|published|320|side|setup",
+      "input": "240",
+      "status": "Corretto. ΔU = nCᵥΔT; nCᵥ = 12 J/K. 12 × 20 = 240 J."
+    },
+    {
+      "caseKey": "SIM-C3-L06-02|published|320|side|setup",
+      "input": "72",
+      "status": "Corretto. ΔU = nCᵥΔT; nCᵥ = 12 J/K. 12 × 6 = 72 J."
+    },
+    {
+      "caseKey": "SIM-C3-L06-03|published|320|side|setup",
+      "input": "30",
+      "status": "Corretto. Q = ΔU + W = 10 J + W. 10 + 20 = 30 J."
+    },
+    {
+      "caseKey": "SIM-C3-L06-03|published|320|side|setup",
+      "input": "15",
+      "status": "Corretto. Q = ΔU + W = 10 J + W. 10 + 5 = 15 J."
+    },
+    {
+      "caseKey": "SIM-C3-L06-04|published|320|side|setup",
+      "input": "150",
+      "status": "Corretto. W = ∫p dV = (100 kPa)ΔV. 100 × 1,5 = 150 J."
+    },
+    {
+      "caseKey": "SIM-C3-L06-04|published|320|side|setup",
+      "input": "50",
+      "status": "Corretto. W = ∫p dV = (100 kPa)ΔV. 100 × 0,5 = 50 J."
+    },
+    {
+      "caseKey": "SIM-C3-L07-01|published|320|side|setup",
+      "input": "58.33",
+      "status": "Corretto. W = Σ p esterna ΔV, con p esterna = 100/V finale di ogni tratto. 100 / 1,5 × 0,5 + 100 / 2 × 0,5 ≈ 58,33 J."
+    },
+    {
+      "caseKey": "SIM-C3-L07-01|published|320|side|setup",
+      "input": "65.32",
+      "status": "Corretto. W = Σ p esterna ΔV, con p esterna = 100/V finale di ogni tratto. 100 / 1,167 × 0,1667 + 100 / 1,333 × 0,1667 + 100 / 1,5 × 0,1667 + 100 / 1,667 × 0,1667 + 100 / 1,833 × 0,1667 + 100 / 2 × 0,1667 ≈ 65,32 J."
+    },
+    {
+      "caseKey": "SIM-C3-L07-02|published|320|side|setup",
+      "input": "50",
+      "status": "Corretto. p₂ = p₁V₁/V₂, con p₁V₁ = 100 kPa·L. 100 / 2 = 50 kPa."
+    },
+    {
+      "caseKey": "SIM-C3-L07-02|published|320|side|setup",
+      "input": "36.36",
+      "status": "Corretto. p₂ = p₁V₁/V₂, con p₁V₁ = 100 kPa·L. 100 / 2,75 ≈ 36,36 kPa."
+    },
+    {
+      "caseKey": "SIM-C3-L07-03|published|320|side|setup",
+      "input": "200",
+      "status": "Corretto. p₂ = p₁ T₂/T₁, con p₁ = 150 kPa a 300 K. 0,5 × 400 = 200 kPa."
+    },
+    {
+      "caseKey": "SIM-C3-L07-03|published|320|side|setup",
+      "input": "175",
+      "status": "Corretto. p₂ = p₁ T₂/T₁, con p₁ = 150 kPa a 300 K. 0,5 × 350 = 175 kPa."
+    },
+    {
+      "caseKey": "SIM-C3-L07-04|published|320|side|setup",
+      "input": "4",
+      "status": "Corretto. V₂ = V₁T₂/T₁, con V₁ = 3 L a 300 K. 400 / 100 = 4 L."
+    },
+    {
+      "caseKey": "SIM-C3-L07-04|published|320|side|setup",
+      "input": "3.5",
+      "status": "Corretto. V₂ = V₁T₂/T₁, con V₁ = 3 L a 300 K. 350 / 100 = 3,5 L."
+    },
+    {
+      "caseKey": "SIM-C3-L07-05|draft|320|side|setup",
+      "input": "29.63",
+      "status": "Corretto. p = 100(V₀/V)ᵞ, qui γ = 1,5. 100 / (2,25^(1,5)) ≈ 29,63 kPa."
+    },
+    {
+      "caseKey": "SIM-C3-L07-05|draft|320|side|setup",
+      "input": "12.5",
+      "status": "Corretto. p = 100(V₀/V)ᵞ, qui γ = 1,5. 100 / (4^(1,5)) = 12,5 kPa."
+    },
+    {
+      "caseKey": "SIM-C3-L07-05|published|320|side|setup",
+      "input": "12.5",
+      "status": "Corretto. p = 100(V₀/V)ᵞ, qui γ = 1,5. 100 / (4^(1,5)) = 12,5 kPa."
+    },
+    {
+      "caseKey": "SIM-C3-L07-05|published|320|side|setup",
+      "input": "25.3",
+      "status": "Corretto. p = 100(V₀/V)ᵞ, qui γ = 1,5. 100 / (2,5^(1,5)) ≈ 25,3 kPa."
+    },
+    {
+      "caseKey": "SIM-C3-L08-01|published|320|side|setup",
+      "input": "120",
+      "status": "Corretto. W ciclo = (p alta−p bassa)ΔV = 60ΔV. 60 × 2 = 120 J."
+    },
+    {
+      "caseKey": "SIM-C3-L08-01|published|320|side|setup",
+      "input": "90",
+      "status": "Corretto. W ciclo = (p alta−p bassa)ΔV = 60ΔV. 60 × 1,5 = 90 J."
+    },
+    {
+      "caseKey": "SIM-C3-L08-02|published|320|side|setup",
+      "input": "20",
+      "status": "Corretto. ΔU ciclo = 0 ⇒ W = Q caldo − Q freddo = 100 − Q freddo. 100 − 80 = 20 J."
+    },
+    {
+      "caseKey": "SIM-C3-L08-02|published|320|side|setup",
+      "input": "40",
+      "status": "Corretto. ΔU ciclo = 0 ⇒ W = Q caldo − Q freddo = 100 − Q freddo. 100 − 60 = 40 J."
+    },
+    {
+      "caseKey": "SIM-C3-L08-03|published|320|side|setup",
+      "input": "100",
+      "status": "Corretto. W totale = N W ciclo, con W ciclo = 20 J. 20 × 5 = 100 J."
+    },
+    {
+      "caseKey": "SIM-C3-L08-03|published|320|side|setup",
+      "input": "80",
+      "status": "Corretto. W totale = N W ciclo, con W ciclo = 20 J. 20 × 4 = 80 J."
+    },
+    {
+      "caseKey": "SIM-C3-L09-01|published|320|side|setup",
+      "input": "90",
+      "status": "Corretto. Q caldo/T caldo = Q freddo/T freddo; T caldo/T freddo = 1,5. 1,5 × 60 = 90 J."
+    },
+    {
+      "caseKey": "SIM-C3-L09-01|published|320|side|setup",
+      "input": "60",
+      "status": "Corretto. Q caldo/T caldo = Q freddo/T freddo; T caldo/T freddo = 1,5. 1,5 × 40 = 60 J."
+    },
+    {
+      "caseKey": "SIM-C3-L09-02|published|320|side|setup",
+      "input": "45",
+      "status": "Corretto. W = ηQ caldo, con η = 0,30. 0,3 × 150 = 45 J."
+    },
+    {
+      "caseKey": "SIM-C3-L09-02|published|320|side|setup",
+      "input": "30",
+      "status": "Corretto. W = ηQ caldo, con η = 0,30. 0,3 × 100 = 30 J."
+    },
+    {
+      "caseKey": "SIM-C3-L09-03|published|320|side|setup",
+      "input": "40",
+      "status": "Corretto. η = 100 W/Q caldo; Q caldo = 100 J. 40 = 40 %."
+    },
+    {
+      "caseKey": "SIM-C3-L09-03|published|320|side|setup",
+      "input": "25",
+      "status": "Corretto. η = 100 W/Q caldo; Q caldo = 100 J. 25 = 25 %."
+    },
+    {
+      "caseKey": "SIM-C3-L09-04|published|320|side|setup",
+      "input": "20",
+      "status": "Corretto. η Carnot = 100(1−T fredda/500 K). 100 × (1 − (400 / 500)) ≈ 20 %."
+    },
+    {
+      "caseKey": "SIM-C3-L09-04|published|320|side|setup",
+      "input": "25",
+      "status": "Corretto. η Carnot = 100(1−T fredda/500 K). 100 × (1 − (375 / 500)) = 25 %."
+    },
+    {
+      "caseKey": "SIM-C3-L10-01|published|320|side|setup",
+      "input": ".2",
+      "status": "Corretto. ΔS = Q reversibile/T, con T = 300 K. 60 / 300 = 0,2 J/K."
+    },
+    {
+      "caseKey": "SIM-C3-L10-01|published|320|side|setup",
+      "input": "0",
+      "status": "Corretto. ΔS = Q reversibile/T, con T = 300 K. 0 / 300 = 0 J/K."
+    },
+    {
+      "caseKey": "SIM-C3-L10-02|published|320|side|setup",
+      "input": ".15",
+      "status": "Corretto. ΔS totale = Q(1/300−1/600). 90 / 600 = 0,15 J/K."
+    },
+    {
+      "caseKey": "SIM-C3-L10-02|published|320|side|setup",
+      "input": ".1",
+      "status": "Corretto. ΔS totale = Q(1/300−1/600). 60 / 600 = 0,1 J/K."
+    },
+    {
+      "caseKey": "SIM-C3-L10-03|published|320|side|setup",
+      "input": "6",
+      "status": "Corretto. Ω = 4!/[k!(4−k)!]; S = kB ln Ω. 4! / (2! × (4 − 2)!) = 6."
+    },
+    {
+      "caseKey": "SIM-C3-L10-03|published|320|side|setup",
+      "input": "4",
+      "status": "Corretto. Ω = 4!/[k!(4−k)!]; S = kB ln Ω. 4! / (3! × (4 − 3)!) = 4."
+    },
+    {
+      "caseKey": "SIM-C3-L10-04|published|320|side|setup",
+      "input": ".05",
+      "status": "Corretto. ΔS totale = Q(1/300−1/600) = Q/600. 30 / 600 = 0,05 J/K."
+    },
+    {
+      "caseKey": "SIM-C3-L10-04|published|320|side|setup",
+      "input": "0",
+      "status": "Corretto. ΔS totale = Q(1/300−1/600) = Q/600. 0 / 600 = 0 J/K."
+    }
+  ],
+  "rasterImagesActuallyRead": [
+    {
+      "caseKey": "SIM-C3-L01-01|published|320|side|grid|4",
+      "screenshots": [
+        {
+          "file": "screens/cffe2b9038fa2b1a0c16b634cff52b94a4d605bb4785cf68ae085dcc1a4dbcd8.png",
+          "sha256": "cffe2b9038fa2b1a0c16b634cff52b94a4d605bb4785cf68ae085dcc1a4dbcd8"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L01-02|published|320|side|grid|5",
+      "screenshots": [
+        {
+          "file": "screens/37dffa17ca67543d0ba474018b2b88e3ab9942b386837f6d7ccae0d4e02818b8.png",
+          "sha256": "37dffa17ca67543d0ba474018b2b88e3ab9942b386837f6d7ccae0d4e02818b8"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L01-03|published|320|side|grid|4",
+      "screenshots": [
+        {
+          "file": "screens/9ba2e134bafa6fa072fc116ac1c3e925b7c0987c4fe24c5788f78b7346d5d8d7.png",
+          "sha256": "9ba2e134bafa6fa072fc116ac1c3e925b7c0987c4fe24c5788f78b7346d5d8d7"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L01-04|published|320|side|grid|10",
+      "screenshots": [
+        {
+          "file": "screens/a9e20cea5a5b7b1baf87b984ed3c534d0910340feebbd52a5faa93374183feda.png",
+          "sha256": "a9e20cea5a5b7b1baf87b984ed3c534d0910340feebbd52a5faa93374183feda"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L02-01|published|320|side|grid|2",
+      "screenshots": [
+        {
+          "file": "screens/00a4b4dd085995b04b8d7a0f986101fcee401c941833309c0948bd91f9e73138.png",
+          "sha256": "00a4b4dd085995b04b8d7a0f986101fcee401c941833309c0948bd91f9e73138"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L02-02|published|320|side|grid|5",
+      "screenshots": [
+        {
+          "file": "screens/d667f395f3569980eefcf378310a99c3ae55af2f64f8faa357642721f574f071.png",
+          "sha256": "d667f395f3569980eefcf378310a99c3ae55af2f64f8faa357642721f574f071"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L03-01|published|320|side|grid|2",
+      "screenshots": [
+        {
+          "file": "screens/328ef297e413f3238603a98a2984cc063282ff7e40f6f97f0047a1e463434b1d.png",
+          "sha256": "328ef297e413f3238603a98a2984cc063282ff7e40f6f97f0047a1e463434b1d"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L03-02|published|320|side|grid|2",
+      "screenshots": [
+        {
+          "file": "screens/6415184bb9a18bef686edf88eaa5873816f893d2f61d8a3b539a0b18562aff17.png",
+          "sha256": "6415184bb9a18bef686edf88eaa5873816f893d2f61d8a3b539a0b18562aff17"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L03-03|published|320|side|grid|2",
+      "screenshots": [
+        {
+          "file": "screens/893b19e7326ba124962efc084d8619b16d939eb24627a3cab87b1e22d0ccee0b.png",
+          "sha256": "893b19e7326ba124962efc084d8619b16d939eb24627a3cab87b1e22d0ccee0b"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L03-04|published|320|side|grid|2",
+      "screenshots": [
+        {
+          "file": "screens/654beb23536891fe4384ac1415210dde44415352e10191c0f04063192b30ead1.png",
+          "sha256": "654beb23536891fe4384ac1415210dde44415352e10191c0f04063192b30ead1"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L04-01|published|320|side|grid|5",
+      "screenshots": [
+        {
+          "file": "screens/62fc6c6a7a8dd5741ecd6b3480234cc4685365701f644b9754621f69bf86a904.png",
+          "sha256": "62fc6c6a7a8dd5741ecd6b3480234cc4685365701f644b9754621f69bf86a904"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L04-02|published|320|side|grid|6",
+      "screenshots": [
+        {
+          "file": "screens/80dd22b448801aef4151325b06bb457869e14231d6d98d89f39ac2c71502d286.png",
+          "sha256": "80dd22b448801aef4151325b06bb457869e14231d6d98d89f39ac2c71502d286"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L04-03|published|320|side|grid|1",
+      "screenshots": [
+        {
+          "file": "screens/d098984a577b2005bf9e250078314cfa1ac0ca4ac89fd2f2f722bafdc90d2c42.png",
+          "sha256": "d098984a577b2005bf9e250078314cfa1ac0ca4ac89fd2f2f722bafdc90d2c42"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L05-01|published|320|side|grid|2",
+      "screenshots": [
+        {
+          "file": "screens/79081b0f258b025ce3e4b6637348a3a3b9fd10d6328133c9ef3677fcb93a7775.png",
+          "sha256": "79081b0f258b025ce3e4b6637348a3a3b9fd10d6328133c9ef3677fcb93a7775"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L05-02|published|320|side|grid|4",
+      "screenshots": [
+        {
+          "file": "screens/19989c24866d542c77f277e507529914204592bbbc94a18a22a81accde6fd6b6.png",
+          "sha256": "19989c24866d542c77f277e507529914204592bbbc94a18a22a81accde6fd6b6"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L05-03|published|320|side|grid|10",
+      "screenshots": [
+        {
+          "file": "screens/be7c63d7518bd064c016964918da33e09f7f82db6234cd8c155c63f7606146d6.png",
+          "sha256": "be7c63d7518bd064c016964918da33e09f7f82db6234cd8c155c63f7606146d6"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L06-01|published|320|side|grid|6",
+      "screenshots": [
+        {
+          "file": "screens/3b56dd78a85608d14cd731348dfce8414c30a8cf3fe9d5a89ec8935ea40f35fa.png",
+          "sha256": "3b56dd78a85608d14cd731348dfce8414c30a8cf3fe9d5a89ec8935ea40f35fa"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L06-02|published|320|side|grid|5",
+      "screenshots": [
+        {
+          "file": "screens/23fef522ecc57e055895a3beb5d9b458afdad02103e8012087176c10227e0085.png",
+          "sha256": "23fef522ecc57e055895a3beb5d9b458afdad02103e8012087176c10227e0085"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L06-03|published|320|side|grid|2",
+      "screenshots": [
+        {
+          "file": "screens/52ebb2dd5e74209ffdd52e0c08d2933baa33d82fc9607f35f6d7f015053f44a6.png",
+          "sha256": "52ebb2dd5e74209ffdd52e0c08d2933baa33d82fc9607f35f6d7f015053f44a6"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L06-04|published|320|side|grid|2",
+      "screenshots": [
+        {
+          "file": "screens/caad94e8284eda8fafc30dde96c809b58083f9560dfee2d1e060c4177daa8d3a.png",
+          "sha256": "caad94e8284eda8fafc30dde96c809b58083f9560dfee2d1e060c4177daa8d3a"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L07-01|published|320|side|grid|0",
+      "screenshots": [
+        {
+          "file": "screens/5ade3edd376e7112d76560feb6d2dd68b92987bb90df3e6e595c76cc18ffebf8.png",
+          "sha256": "5ade3edd376e7112d76560feb6d2dd68b92987bb90df3e6e595c76cc18ffebf8"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L07-02|published|320|side|grid|0",
+      "screenshots": [
+        {
+          "file": "screens/7622e168c7b091b27e2392135f76c35005d7ec88cd236140010841b563a171f7.png",
+          "sha256": "7622e168c7b091b27e2392135f76c35005d7ec88cd236140010841b563a171f7"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L07-03|published|320|side|grid|2",
+      "screenshots": [
+        {
+          "file": "screens/71b9cf3e09459c9bf28f8f50524b4ccb5e77b5d1e957e452925bd24f21a67bad.png",
+          "sha256": "71b9cf3e09459c9bf28f8f50524b4ccb5e77b5d1e957e452925bd24f21a67bad"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L07-04|published|320|side|grid|2",
+      "screenshots": [
+        {
+          "file": "screens/cd69e0b4f5be44aeeca9371814874c78aad137dc9169c11509c39924d8f88e3c.png",
+          "sha256": "cd69e0b4f5be44aeeca9371814874c78aad137dc9169c11509c39924d8f88e3c"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L07-05|published|320|side|grid|0",
+      "screenshots": [
+        {
+          "file": "screens/48776c5fc01355e99bb57d6f9c6e3ffb841af0a9919e04c1504f7a3158739632.png",
+          "sha256": "48776c5fc01355e99bb57d6f9c6e3ffb841af0a9919e04c1504f7a3158739632"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L08-01|published|320|side|grid|4",
+      "screenshots": [
+        {
+          "file": "screens/c5c40cf6f51dab59d5c0f1376d63a92e9b911bffa1f84afd2d997ddd3a989bc5.png",
+          "sha256": "c5c40cf6f51dab59d5c0f1376d63a92e9b911bffa1f84afd2d997ddd3a989bc5"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L08-02|published|320|side|grid|4",
+      "screenshots": [
+        {
+          "file": "screens/da22155c505183b179aa24a5b27d3c7aa9fb5ae4a7369f883f35976a812d35c0.png",
+          "sha256": "da22155c505183b179aa24a5b27d3c7aa9fb5ae4a7369f883f35976a812d35c0"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L08-03|published|320|side|grid|1",
+      "screenshots": [
+        {
+          "file": "screens/5e24271e0a98471e1ea28e94b09918dfbb1cd0b0f057b39788b12a19310d8e16.png",
+          "sha256": "5e24271e0a98471e1ea28e94b09918dfbb1cd0b0f057b39788b12a19310d8e16"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L09-01|published|320|side|grid|4",
+      "screenshots": [
+        {
+          "file": "screens/82eb19b6337e9e282c9dc220c6c171c9453f8a3311c2c61eb7cdb546280fb494.png",
+          "sha256": "82eb19b6337e9e282c9dc220c6c171c9453f8a3311c2c61eb7cdb546280fb494"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L09-02|published|320|side|grid|5",
+      "screenshots": [
+        {
+          "file": "screens/5a5c7d03cb6064ba370a071f09312d8cff0ccf60ad9e0ed70ec4cffe5c4d12f1.png",
+          "sha256": "5a5c7d03cb6064ba370a071f09312d8cff0ccf60ad9e0ed70ec4cffe5c4d12f1"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L09-03|published|320|side|grid|2",
+      "screenshots": [
+        {
+          "file": "screens/cba0db1c68e50555f5a42d0d25163d9f80d956744c85a60052ba2a5d698bc29a.png",
+          "sha256": "cba0db1c68e50555f5a42d0d25163d9f80d956744c85a60052ba2a5d698bc29a"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L09-04|published|320|side|grid|0",
+      "screenshots": [
+        {
+          "file": "screens/71e834d2e40b26d5832206bcfb2845bc6e2fb5fca99c8bb94753de47568f2821.png",
+          "sha256": "71e834d2e40b26d5832206bcfb2845bc6e2fb5fca99c8bb94753de47568f2821"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L10-01|published|320|side|grid|6",
+      "screenshots": [
+        {
+          "file": "screens/1e268e04de751619b9a2d0d375d3553529173cda2b9d4b21c686323d7651a601.png",
+          "sha256": "1e268e04de751619b9a2d0d375d3553529173cda2b9d4b21c686323d7651a601"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L10-02|published|320|side|grid|3",
+      "screenshots": [
+        {
+          "file": "screens/c0f4aca46c9ec112c9fba8201dea44163312219b89dcd0c3e7a7abf4455b8baa.png",
+          "sha256": "c0f4aca46c9ec112c9fba8201dea44163312219b89dcd0c3e7a7abf4455b8baa"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L10-03|published|320|side|grid|1",
+      "screenshots": [
+        {
+          "file": "screens/07220265fbb260398ed0dcdc131dcf4aa2fc539fdd88e422154919d5e23bbda6.png",
+          "sha256": "07220265fbb260398ed0dcdc131dcf4aa2fc539fdd88e422154919d5e23bbda6"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L10-04|published|320|side|grid|0",
+      "screenshots": [
+        {
+          "file": "screens/4e46b57cebdf6fc1fcce2a06d5e3cef7a17c126fbc26a7764745dbc5b7e80bfc.png",
+          "sha256": "4e46b57cebdf6fc1fcce2a06d5e3cef7a17c126fbc26a7764745dbc5b7e80bfc"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L01-04|published|320|side|grid|0",
+      "screenshots": [
+        {
+          "file": "screens/3ea71cb0afe7d4ba7181cbe19f3d65e8fe4915f7ff2b7676168134c9c12477ae.png",
+          "sha256": "3ea71cb0afe7d4ba7181cbe19f3d65e8fe4915f7ff2b7676168134c9c12477ae"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L01-04|published|320|side|grid|1",
+      "screenshots": [
+        {
+          "file": "screens/69a4d04e21ce3f35aa4d64176e30c642be97af252f9d7d39346e377cb8c6e071.png",
+          "sha256": "69a4d04e21ce3f35aa4d64176e30c642be97af252f9d7d39346e377cb8c6e071"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L01-04|published|320|side|grid|30",
+      "screenshots": [
+        {
+          "file": "screens/349216f874ae707b74bf37081ac6c3d1244a2f1bbc978c042a27fc2c59e960a2.png",
+          "sha256": "349216f874ae707b74bf37081ac6c3d1244a2f1bbc978c042a27fc2c59e960a2"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L09-01|published|320|side|grid|1",
+      "screenshots": [
+        {
+          "file": "screens/04a06cbabf14b723361652c1467cbb81aad85388dd49740632df2ba71c710046.png",
+          "sha256": "04a06cbabf14b723361652c1467cbb81aad85388dd49740632df2ba71c710046"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L09-02|published|320|side|grid|1",
+      "screenshots": [
+        {
+          "file": "screens/563f54c3225ab876fd95382cf2ef7b57198d4946abc547b98392481633c332e4.png",
+          "sha256": "563f54c3225ab876fd95382cf2ef7b57198d4946abc547b98392481633c332e4"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L04-03|published|320|side|clock|2",
+      "screenshots": [
+        {
+          "file": "screens/143f7b84478f1a33d37105f92b2d8ba27b3b1a352f2f608017f287dd46d1cd90.png",
+          "sha256": "143f7b84478f1a33d37105f92b2d8ba27b3b1a352f2f608017f287dd46d1cd90"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L04-03|published|320|side|clock|3",
+      "screenshots": [
+        {
+          "file": "screens/d761a1b50897cc3720a507a1327060a92a4e0b76b1e33ce0c414e75514bf9bbc.png",
+          "sha256": "d761a1b50897cc3720a507a1327060a92a4e0b76b1e33ce0c414e75514bf9bbc"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L04-03|published|320|side|clock|4",
+      "screenshots": [
+        {
+          "file": "screens/a18a1ca639b87de146ee4891ef9a0e2e76732ebdd9991c15ddffa129a0a7e5f3.png",
+          "sha256": "a18a1ca639b87de146ee4891ef9a0e2e76732ebdd9991c15ddffa129a0a7e5f3"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L04-03|published|320|side|clock|7",
+      "screenshots": [
+        {
+          "file": "screens/d761a1b50897cc3720a507a1327060a92a4e0b76b1e33ce0c414e75514bf9bbc.png",
+          "sha256": "d761a1b50897cc3720a507a1327060a92a4e0b76b1e33ce0c414e75514bf9bbc"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L04-03|published|320|side|clock|12",
+      "screenshots": [
+        {
+          "file": "screens/a18a1ca639b87de146ee4891ef9a0e2e76732ebdd9991c15ddffa129a0a7e5f3.png",
+          "sha256": "a18a1ca639b87de146ee4891ef9a0e2e76732ebdd9991c15ddffa129a0a7e5f3"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L09-01|published|320|fixed_projection|grid|1",
+      "screenshots": [
+        {
+          "file": "screens/8965335b0b8c0fa57fb2036b6deb19e94759b4f9b1cdfb1daabb3ebf45e487e3.png",
+          "sha256": "8965335b0b8c0fa57fb2036b6deb19e94759b4f9b1cdfb1daabb3ebf45e487e3"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L09-02|published|320|fixed_projection|grid|1",
+      "screenshots": [
+        {
+          "file": "screens/9ca29c27e2ce225772eebbd3615a1f51832de83b3ca0f1f4b148431df7e5717b.png",
+          "sha256": "9ca29c27e2ce225772eebbd3615a1f51832de83b3ca0f1f4b148431df7e5717b"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L07-05|published|320|side|setup",
+      "screenshots": [
+        {
+          "file": "screens/d312289965ae16188d8ebdbf1c8bf179a8a8bf74e6e67ffab455436225a9a4e4.png",
+          "sha256": "d312289965ae16188d8ebdbf1c8bf179a8a8bf74e6e67ffab455436225a9a4e4"
+        }
+      ]
+    },
+    {
+      "caseKey": "SIM-C3-L07-05|draft|320|side|setup",
+      "screenshots": [
+        {
+          "file": "screens/d312289965ae16188d8ebdbf1c8bf179a8a8bf74e6e67ffab455436225a9a4e4.png",
+          "sha256": "d312289965ae16188d8ebdbf1c8bf179a8a8bf74e6e67ffab455436225a9a4e4"
+        }
+      ]
+    }
+  ],
+  "records": [
+    {
+      "id": "SIM-C3-L01-01",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L01-01|published|320|side|grid|4",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L01-02",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L01-02|published|320|side|grid|5",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L01-03",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L01-03|published|320|side|grid|4",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L01-04",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L01-04|published|320|side|grid|10",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L02-01",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L02-01|published|320|side|grid|2",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L02-02",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L02-02|published|320|side|grid|5",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L03-01",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L03-01|published|320|side|grid|2",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L03-02",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L03-02|published|320|side|grid|2",
+      "findings": [
+        "ORIGINAL_PROSE_FACTOR_TWO_INSTEAD_OF_FIVE_HALVES"
+      ],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L03-03",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L03-03|published|320|side|grid|2",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L03-04",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L03-04|published|320|side|grid|2",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L04-01",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L04-01|published|320|side|grid|5",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L04-02",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L04-02|published|320|side|grid|6",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L04-03",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L04-03|published|320|side|grid|1",
+      "findings": [
+        "NONZERO_TRANSFER_PRIMARY_ARROW_ABSENT_IN_CENSUSED_STATES"
+      ],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L05-01",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L05-01|published|320|side|grid|2",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L05-02",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L05-02|published|320|side|grid|4",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L05-03",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L05-03|published|320|side|grid|10",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L06-01",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L06-01|published|320|side|grid|6",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L06-02",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L06-02|published|320|side|grid|5",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L06-03",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L06-03|published|320|side|grid|2",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L06-04",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L06-04|published|320|side|grid|2",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L07-01",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L07-01|published|320|side|grid|0",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L07-02",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L07-02|published|320|side|grid|0",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L07-03",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L07-03|published|320|side|grid|2",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L07-04",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L07-04|published|320|side|grid|2",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L07-05",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L07-05|published|320|side|grid|0",
+      "findings": [
+        "ORIGINAL_MANUAL_SUPPORT_GAP_RETAINED_SEPARATE_DRAFT263"
+      ],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L08-01",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L08-01|published|320|side|grid|4",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L08-02",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L08-02|published|320|side|grid|4",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L08-03",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L08-03|published|320|side|grid|1",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L09-01",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L09-01|published|320|side|grid|4",
+      "findings": [
+        "NONZERO_TRANSFER_PRIMARY_ARROW_ABSENT_IN_CENSUSED_STATES"
+      ],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L09-02",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L09-02|published|320|side|grid|5",
+      "findings": [
+        "NONZERO_TRANSFER_PRIMARY_ARROW_ABSENT_IN_CENSUSED_STATES"
+      ],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L09-03",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L09-03|published|320|side|grid|2",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L09-04",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L09-04|published|320|side|grid|0",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L10-01",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L10-01|published|320|side|grid|6",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L10-02",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L10-02|published|320|side|grid|3",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L10-03",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L10-03|published|320|side|grid|1",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C3-L10-04",
+      "variant": "published",
+      "mathematicsAndActualGeneratedTasks": "VERIFIED_IN_FRESH_CB9_OBSERVATIONS",
+      "currentRunReferenceSide320ImageRead": "SIM-C3-L10-04|published|320|side|grid|0",
+      "findings": [],
+      "scope": "Reference raster read plus exact code/grid/clock census; no claim all viewport pixels manually reviewed",
+      "activityCredit": 0
+    }
+  ],
+  "thermometer": "At -50, -45, 0 and 100 degrees C, actual side320 PNG exposes the column above the bulb; no covered-cap failure observed in these four rasters. Full code census covers all legal31 values.",
+  "thermalNegative": "The seven nonzero transfer omissions remain on cb9. All56 profile case JSONs have no source replay glyph for that role. Side320 minimum rasters and two fixed_projection minimum work rasters confirm absence; technical macro PASS does not resolve the semantic omission.",
+  "originalRadicalJudgment": {
+    "id": "SIM-C3-L07-05",
+    "sourceScientificFailure": false,
+    "sourceManualityFailure": false,
+    "manualSupportGap": true,
+    "reviewerExactValue": "8*sqrt(10)",
+    "reviewerBound": "3.16^2 < 10 < 3.17^2; 25.28 < p < 25.36",
+    "reviewerBoundIsNotOriginalLearnerSupport": true,
+    "actualInputs": [
+      "12.5",
+      "25.3"
+    ]
+  },
+  "separateDraft263": {
+    "candidateTextMathReviewHistorical": "RETAINED",
+    "actualInputs": [
+      "29.63",
+      "12.5"
+    ],
+    "bothActualAccepted": true,
+    "allEightReadingFormulasWithin260At320": true,
+    "oldOriginalGapNotErased": true
+  },
+  "separateDraft264": "Content/math/manual review e00cf800 remains separate; no UI evidence was created for264 in this run.",
+  "newChromeStartedByReviewer": false,
+  "overallAcceptanceGranted": false,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

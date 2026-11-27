@@ -1,0 +1,97 @@
+"""CPU-only bounded inputs for unchanged canonical collector719. Never launches a browser."""
+from pathlib import Path
+from fractions import Fraction as F
+import hashlib,json,subprocess,importlib.util,shutil,time,sys
+D=Path(__file__).resolve().parent;APP=Path('/private/tmp/cric-midpoint-and-press-20261127/officina-di-fisica');REVIEWS=D.parent
+REF='b9994b9116e87478905191d85cca8037d17ae4bd';FP='7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6';PROTOCOL_REF='d43240f5c5a3b37018248cf756454cd6841f46ef';PROTO='719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15'
+H=lambda b:hashlib.sha256(b).hexdigest();J=lambda p:json.loads(p.read_bytes());C=lambda d:json.dumps(d,ensure_ascii=False,sort_keys=True,separators=(',',':'),allow_nan=False).encode()+b'\n'
+def module(name,path):
+ spec=importlib.util.spec_from_file_location(name,path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+
+def exact(id,x):
+ x=F(str(x))
+ if id.startswith('SIM-C2-'):
+  return {'SIM-C2-L005-01':lambda:4*x,'SIM-C2-L005-02':lambda:F(4,5)*x,'SIM-C2-L005-03':lambda:24/x,'SIM-C2-L005-04':lambda:x/2,'SIM-C2-L005-05':lambda:12-x}[id]()
+ return {'SIM-C3-L01-01':lambda:20+10*x,'SIM-C3-L01-02':lambda:F(2,5)*x,'SIM-C3-L01-03':lambda:120/x,'SIM-C3-L01-04':lambda:x+F(27315,100),'SIM-C3-L02-01':lambda:240/x,'SIM-C3-L02-02':lambda:F(5,2)*x}[id]()
+
+def raw_expected(id,x):
+ # These two input literals have a known binary representation; do not use
+ # limit_denominator or an epsilon to turn the installed output into a rational.
+ if id=='SIM-C2-L005-02':return .8*x
+ if id=='SIM-C3-L01-02':return .4*x
+ if id=='SIM-C3-L01-04':return x+273.15
+ return float(exact(id,x))
+
+def main():
+ started=time.monotonic();assert shutil.disk_usage(D).free>=2*1024**3
+ assert subprocess.check_output(['git','rev-parse','HEAD'],cwd=APP,text=True).strip()==REF
+ runtime=module('actual_fp719',APP/'tools/corpus_engineering/runtime_fingerprint.py');before=runtime.runtime_fingerprint(APP);assert before['sha256']==FP
+ assert H((D/'experiment_visibility_ui.mjs').read_bytes())==PROTO
+ for i in J(D/'git-inputs.json')['inputs']:assert H((D/i['snapshot']).read_bytes())==i['sha256']
+ assert (D.parents[2]/'node_modules/playwright/package.json').read_bytes()==(APP/'node_modules/playwright/package.json').read_bytes()
+ validator=module('canonical_request719',D/'experiment_visibility_request.py')
+ tests=subprocess.run(['node','--test',str(D/'contract.test.mjs')],capture_output=True);(D/'contract.stdout.txt').write_bytes(tests.stdout);(D/'contract.stderr.txt').write_bytes(tests.stderr);tests.check_returncode()
+ allplans=[];codeinfo=[]
+ for course,count in [('C2',5),('C3',6)]:
+  OUT=REVIEWS/(course.lower()+'-draft-browser719-preflight-b-20261127');packages=list((OUT/'inputs').glob('*.json'));package=next(p for p in packages if not p.name.endswith('-bindings.json'));binding=package.with_name(package.stem+'-bindings.json');assert set(packages)=={package,binding}
+  drafts=J(package)['records'];assert len(drafts)==count and len({r['id']for r in drafts})==count
+  assert not(OUT/'actual-code.json').exists(),'No overwrite of previous producer output'
+  child=subprocess.run(['node',str(D/'collect-code.mjs'),str(APP),str(package)],capture_output=True);(OUT/'actual-code.stdout.txt').write_bytes(child.stdout);(OUT/'actual-code.stderr.txt').write_bytes(child.stderr);child.check_returncode();(OUT/'actual-code.json').write_bytes(child.stdout);code=J(OUT/'actual-code.json')['results']
+  assert len(code)==2*count
+  authoritative={r['id']:r for r in J(APP/('content/esperienze-'+course+'.json'))}
+  draft_by_id={r['id']:r for r in drafts}
+  for r in code:
+   canonical_record=authoritative[r['id']] if r['variant']=='published' else draft_by_id[r['id']]
+   assert r['record']==canonical_record
+   # Prepared identities bind the original JSON record, not Node's normalized
+   # numeric serialization. The actual-code bytes above remain untouched.
+   r['record']=canonical_record
+  bindings={r['id']:r for r in J(binding)}
+  for draft in drafts:
+   assert validator.digest(draft)==bindings[draft['id']]['candidateSha256']
+   original=next(r['record']for r in code if r['id']==draft['id']and r['variant']=='published');assert validator.digest(original)==bindings[draft['id']]['sourceSha256']
+  for row in code:
+   for s in row['states']:assert s['solve']['y']==raw_expected(row['id'],s['x'])
+   if course=='C3':assert row['clock']is None
+  packagefiles=[str(package.resolve())];inputfiles={str(p.resolve()):H(p.read_bytes())for p in packages}
+  codeinfo.append({'course':course,'nodeExitCode':child.returncode,'records':len(code),'legalControlStates':sum(len(r['states'])for r in code),'clockFrames':sum(len(s['clock'])for r in code for s in r['states'])})
+  if course=='C2':
+   old=REVIEWS/'c2-flow-continuity-browser-preflight-b-20261127';plans=[]
+   for previous in sorted((old/'blocks').iterdir()):
+    request=J(previous/'bounded-request.json');prepared=J(previous/'prepared.json');request.update({'collectorSha256':PROTO,'collectorCommit':PROTOCOL_REF,'parentE24RequestSha256':H((previous/'bounded-request.json').read_bytes()),'scope':'BOUNDED_C2_FLOW_BOTH_EDITIONS_719_EXECUTION_PREFLIGHT'})
+    folder=OUT/'blocks'/previous.name;folder.mkdir(parents=True);(folder/'bounded-request.json').write_bytes(C(request))
+    prepared.update({'scope':request['scope'],'requestSha256':H((folder/'bounded-request.json').read_bytes()),'inputFiles':inputfiles,'packageFiles':packagefiles,'draftRecords':drafts})
+    for row in prepared['records']:
+     fresh=next(v for v in code if v['id']==row['id']and v['variant']==row['variant']);states={s['x']:s for s in fresh['states']};assert row['expectedValues']==[states[x]['solve']['y']for x in row['grid']]
+     assert row['record']==fresh['record']
+    plans.append((folder,request,prepared,{'e24PreparedSha256':H((previous/'prepared.json').read_bytes()),'e24CollectorSha256':'e24c46b4c11403821b026c304875f68edc76b679aa6928b1716bd597c5d15e55'}))
+  else:
+   ids=[r['id']for r in drafts];grids=[[0,.5,2,4,6,8],[200,250,350,400,500],[1,2,3,4,5],[-50,-45,-40,0,25,50,100],[1,2,4,4.5,6,8],[50,100,130,160,200]]
+   literals=[['80','60'],['160','140'],['30','40'],['323.15','298.15'],['40','53.33'],['400','325']];plans=[]
+   for i,id in enumerate(ids):
+    for width in [320,1280]:
+     profiles=[{'width':width,'fallback':f,'view':v}for f,v in [(False,'orbit'),(False,'side'),(False,'top'),(True,'fixed_projection')]]
+     request={'schemaVersion':'1.0.0','scope':'BOUNDED_C3_SIX_STATE_GAS_BOTH_EDITIONS_719_PREFLIGHT','sourceCommit':REF,'runtimeSha256':FP,'collectorSha256':PROTO,'collectorCommit':PROTOCOL_REF,'id':id,'width':width,'grid':grids[i],'clock':[],'profiles':profiles,'activityCredit':0,'humanApproval':'NOT_RUN','publicationAction':'NONE'}
+     rows=[]
+     for variant in ['published','draft']:
+      fresh=next(r for r in code if r['id']==id and r['variant']==variant);states={s['x']:s for s in fresh['states']};original=next(r['record']for r in code if r['id']==id and r['variant']=='published')
+      rows.append({'id':id,'course':'C3','variant':variant,'record':fresh['record'],'sourceSha256':validator.digest(original),'candidateSha256':validator.digest(fresh['record'])if variant=='draft'else None,'grid':grids[i],'expectedValues':[states[x]['solve']['y']for x in grids[i]],'independentExactValues':[str(exact(id,x))for x in grids[i]],'clockCases':[],'auxiliaryCases':[],'clockInput':False,'hasClock':False,'sourcePrediction':fresh['prediction'],'questions':[{'input':value,'expectedAccepted':True,'sourceManualReadiness':'FROZEN_INDEPENDENT_REVIEW_21432B5A','prompt':q['prompt']}for value,q in zip(literals[i],fresh['questions'],strict=True)],'originalJudgment':{'mathematicalPrimaryCommit':'73c3ab766e0d5253ad1a0a1e9f89a9f0ef16d287','newDraftReadingCommit':'21432b5a8cd8494adc3c56f8c0c72672d957ff19','scope':'No current browser or inherited visual closure; piston normalization and Celsius rounding require current raster checks.'}})
+     keys=[]
+     for row in rows:
+      for profile in profiles:
+       stem='|'.join((id,row['variant'],str(width),profile['view']));keys.append(stem+'|setup');keys.extend(stem+'|grid|'+str(j)for j in range(len(grids[i])))
+     folder=OUT/'blocks'/(id.removeprefix('SIM-C3-')+'-'+str(width));folder.mkdir(parents=True);(folder/'bounded-request.json').write_bytes(C(request))
+     prepared={'schemaVersion':'1.0.0','scope':request['scope'],'sourceCommit':REF,'originalRef':'5d1dc8dc7b601aef959d10d564c75462be74708d','requestSha256':H((folder/'bounded-request.json').read_bytes()),'runtimeFingerprint':before,'course':'C3','records':rows,'profiles':profiles,'expectedCaseKeys':keys,'inputFiles':inputfiles,'packageFiles':packagefiles,'draftRecords':drafts,'activityCredit':0,'humanApproval':'NOT_RUN','publicationAction':'NONE'}
+     plans.append((folder,request,prepared,{}))
+  keysall=[];blockrecords=[]
+  for folder,request,prepared,parent in plans:
+   assert len(validator.planned_interactions(prepared))==len(set(prepared['expectedCaseKeys']))
+   (folder/'prepared.json').write_bytes(C(prepared));info={'candidateApp':str(APP),'prepared':str(folder/'prepared.json'),'output':str(folder/'actual-browser-NOT-RUN'),'collectorPath':str(D/'experiment_visibility_ui.mjs'),'collectorSha256':PROTO,'preparedSha256':H((folder/'prepared.json').read_bytes()),'executionAuthorized':False}
+   (folder/'collector-input.json').write_bytes(C(info));keysall+=prepared['expectedCaseKeys'];blockrecords.append({'block':folder.name,'cases':len(prepared['expectedCaseKeys']),'preparedSha256':info['preparedSha256'],'requestSha256':prepared['requestSha256'],'collectorInput':str(folder/'collector-input.json'),**parent})
+  expected=592 if course == 'C2' else 640;assert len(keysall)==len(set(keysall))==expected
+  (OUT/'block-plan.json').write_bytes(C({'sourceCommit':REF,'runtimeSha256':FP,'collectorCommit':PROTOCOL_REF,'collectorSha256':PROTO,'blocks':blockrecords,'expectedCaseKeys':keysall,'totalCases':expected,'maximumBlockCases':max(b['cases']for b in blockrecords),'Chrome':'NOT_RUN','activityCredit':0}))
+  allplans.append({'course':course,'blocks':len(plans),'cases':expected,'maxCases':max(b['cases']for b in blockrecords)})
+ assert runtime.runtime_fingerprint(APP)==before
+ (D/'candidate-runtime.json').write_bytes(C(before));result={'phase':'CPU_ONLY_PREFLIGHT','sourceCommit':REF,'runtimeSha256':FP,'collectorCommit':PROTOCOL_REF,'collectorSha256':PROTO,'protocolTestsExitCode':tests.returncode,'protocolTestCount':3,'codeCollections':codeinfo,'plans':allplans,'runtimeBeforeAfterIdentical':True,'elapsedSeconds':time.monotonic()-started,'Chrome':'NOT_RUN','canonicalDBImport':'NOT_RUN','ownerGuest':'REQUIREMENTS_ONLY_NOT_OBSERVED','activityCredit':0,'humanApproval':'NOT_RUN','publicationAction':'NONE'}
+ (D/'preflight-result.json').write_bytes(C(result));print(json.dumps(result))
+if __name__=='__main__':main()

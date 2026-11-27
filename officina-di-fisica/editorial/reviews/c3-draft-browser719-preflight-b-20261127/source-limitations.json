@@ -1,0 +1,243 @@
+{
+  "phase": "CPU_SOURCE_LIMITATIONS_NOT_UI_VERDICTS",
+  "pistons": {
+    "quantitativeScale": "Each activity normalizes cylinder height separately. Do not infer physical area10cm², absolute volume or moles from renderer coordinates or15 schematic particles.",
+    "volumeNormalization": {
+      "SIM-C3-L01-01": "V/(100cm³)",
+      "SIM-C3-L01-03": "V/(5L)",
+      "SIM-C3-L02-01": "V/(8L)",
+      "SIM-C3-L01-02": "fixed drawing fraction0.62; absolute V is not supplied by this ratio-only task",
+      "SIM-C3-L02-02": "fixed drawing fraction0.62; absolute V is not supplied by this ratio-only task"
+    },
+    "atZeroDisplacement": "L01-01 s0cm means V20cm³, not empty chamber.",
+    "fixedVolumeIds": [
+      "SIM-C3-L01-02",
+      "SIM-C3-L02-02"
+    ],
+    "fixedVolumeMeaning": "Piston height must remain fixed while pressure/temperature or tint changes. Do not mark lack of motion as a failure here.",
+    "projection": "The Top view is end-on to piston travel and the vertical pressure arrow. Use Side/Orbit to compare their lengths; scalar readings remain primary.",
+    "codeBounds": [
+      {
+        "id": "SIM-C3-L01-01",
+        "gasTopMin": 0.556,
+        "gasTopMax": 2.22,
+        "pressureArrowCountRange": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "SIM-C3-L01-02",
+        "gasTopMin": 1.4296000000000002,
+        "gasTopMax": 1.4296000000000002,
+        "pressureArrowCountRange": [
+          1,
+          1
+        ]
+      },
+      {
+        "id": "SIM-C3-L01-03",
+        "gasTopMin": 0.556,
+        "gasTopMax": 2.22,
+        "pressureArrowCountRange": [
+          1,
+          1
+        ]
+      },
+      {
+        "id": "SIM-C3-L02-01",
+        "gasTopMin": 0.4,
+        "gasTopMax": 2.22,
+        "pressureArrowCountRange": [
+          1,
+          1
+        ]
+      },
+      {
+        "id": "SIM-C3-L02-02",
+        "gasTopMin": 1.4296000000000002,
+        "gasTopMax": 1.4296000000000002,
+        "pressureArrowCountRange": [
+          1,
+          1
+        ]
+      }
+    ]
+  },
+  "celsius": {
+    "exactLaw": "T/K=theta/°C+273.15; increments have equal numerical size but absolute readings and ratios differ.",
+    "noAbsoluteZeroInControlDomain": true,
+    "zeroCelsius": "0°C=273.15K; do not call the zeroCelsius control an absolute-temperature zero.",
+    "readingPrecision": "Existing Intl formatter has four significant digits. At negative controls the binary sum may print223.1/228.1 rather than exact223.15/228.15. At the assigned50/25°C it prints323.2/298.2 while the manual gives exact323.15/298.15. Observe these as rendering/precision limits without changing keys or tolerance.",
+    "scaleLimit": "Scene has ticks and°C/K headings, not two fully numbered numeric scales. Do not certify direct independent numeric scale readings from unlabeled ticks.",
+    "topViewLimit": "Column length is end-on from Top; a visible cap alone is not a measurement of temperature height.",
+    "sourceOnlySamples": [
+      {
+        "x": -50,
+        "solve": {
+          "x": -50,
+          "y": 223.14999999999998
+        },
+        "measurement": {
+          "x": -50,
+          "value": 223.14999999999998,
+          "input": "-50 °C",
+          "reading": "223,1 K",
+          "calculation": "(-50) + 273,15 ≈ 223,1 K"
+        },
+        "elementsSha256": "14a40e4d20660ff51941d07dbab8d464941e0f0a7249ef0e396b4702c99f4b6e",
+        "clock": [],
+        "arrows": [],
+        "piston": null,
+        "thermometer": {
+          "columnTop": 0.55,
+          "bulbTop": 0.52
+        }
+      },
+      {
+        "x": -45,
+        "solve": {
+          "x": -45,
+          "y": 228.14999999999998
+        },
+        "measurement": {
+          "x": -45,
+          "value": 228.14999999999998,
+          "input": "-45 °C",
+          "reading": "228,1 K",
+          "calculation": "(-45) + 273,15 ≈ 228,1 K"
+        },
+        "elementsSha256": "69a458b095fcbf321c184af313c8fddca365b386f0d28d2931225d8c17ea53d4",
+        "clock": [],
+        "arrows": [],
+        "piston": null,
+        "thermometer": {
+          "columnTop": 0.6073333333333334,
+          "bulbTop": 0.52
+        }
+      },
+      {
+        "x": -40,
+        "solve": {
+          "x": -40,
+          "y": 233.14999999999998
+        },
+        "measurement": {
+          "x": -40,
+          "value": 233.14999999999998,
+          "input": "-40 °C",
+          "reading": "233,1 K",
+          "calculation": "(-40) + 273,15 ≈ 233,1 K"
+        },
+        "elementsSha256": "d3d280c91466f84d92adb64662da9bf397fc74dc72a699f5bb7ecd8167c42290",
+        "clock": [],
+        "arrows": [],
+        "piston": null,
+        "thermometer": {
+          "columnTop": 0.6646666666666667,
+          "bulbTop": 0.52
+        }
+      },
+      {
+        "x": 0,
+        "solve": {
+          "x": 0,
+          "y": 273.15
+        },
+        "measurement": {
+          "x": 0,
+          "value": 273.15,
+          "input": "0 °C",
+          "reading": "273,2 K",
+          "calculation": "0 + 273,15 ≈ 273,2 K"
+        },
+        "elementsSha256": "731e26a2f5e89ef4fa9c13ae1ee6e96b45faa9362f476993cc31b34d6a5c47bb",
+        "clock": [],
+        "arrows": [],
+        "piston": null,
+        "thermometer": {
+          "columnTop": 1.1233333333333333,
+          "bulbTop": 0.52
+        }
+      },
+      {
+        "x": 25,
+        "solve": {
+          "x": 25,
+          "y": 298.15
+        },
+        "measurement": {
+          "x": 25,
+          "value": 298.15,
+          "input": "25 °C",
+          "reading": "298,2 K",
+          "calculation": "25 + 273,15 ≈ 298,2 K"
+        },
+        "elementsSha256": "653e81f609628185069bf5d468dc0510ef10fd1aa3b3e64324619e9d53279b08",
+        "clock": [],
+        "arrows": [],
+        "piston": null,
+        "thermometer": {
+          "columnTop": 1.4100000000000001,
+          "bulbTop": 0.52
+        }
+      },
+      {
+        "x": 50,
+        "solve": {
+          "x": 50,
+          "y": 323.15
+        },
+        "measurement": {
+          "x": 50,
+          "value": 323.15,
+          "input": "50 °C",
+          "reading": "323,2 K",
+          "calculation": "50 + 273,15 ≈ 323,2 K"
+        },
+        "elementsSha256": "233aa47bc4482e178fc4013b009d18f0ce406c84c3b4636d858b2f2585653447",
+        "clock": [],
+        "arrows": [],
+        "piston": null,
+        "thermometer": {
+          "columnTop": 1.6966666666666665,
+          "bulbTop": 0.52
+        }
+      },
+      {
+        "x": 100,
+        "solve": {
+          "x": 100,
+          "y": 373.15
+        },
+        "measurement": {
+          "x": 100,
+          "value": 373.15,
+          "input": "100 °C",
+          "reading": "373,2 K",
+          "calculation": "100 + 273,15 ≈ 373,2 K"
+        },
+        "elementsSha256": "57de39f2ddab97c49e1f17ebd07268d723a744449e6bdb7805f1dd4e4eb8cf3f",
+        "clock": [],
+        "arrows": [],
+        "piston": null,
+        "thermometer": {
+          "columnTop": 2.27,
+          "bulbTop": 0.52
+        }
+      }
+    ],
+    "historicalScope": "At -50, -45, 0 and 100 degrees C, actual side320 PNG exposes the column above the bulb; no covered-cap failure observed in these four rasters. Full code census covers all legal31 values."
+  },
+  "clock": "All six actual compiled activities have clocknull. No invented time cases; C2 retains its two secondary clocks in separate blocks.",
+  "manualNonterminatingResult": {
+    "id": "SIM-C3-L02-01",
+    "exact": "160/3kPa",
+    "finiteInput": "53.33",
+    "relativeTruncationError": "1/16000",
+    "status": "Manual approximation explicitly supported and accepted by the unchanged source grader; not a new exact equality."
+  },
+  "newChrome": "NOT_RUN",
+  "scientificApproval": false,
+  "activityCredit": 0
+}

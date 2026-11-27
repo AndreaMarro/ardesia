@@ -1,0 +1,173 @@
+{
+  "phase": "CPU_ONLY_PREFLIGHT",
+  "candidateCommit": "b9994b9116e87478905191d85cca8037d17ae4bd",
+  "runtimeSha256": "7c7281e363c1d723ec005f4d04b2f54b88bc7b660c18b6adb548053816dcbad6",
+  "collectorCommit": "d43240f5c5a3b37018248cf756454cd6841f46ef",
+  "collectorSha256": "719beb3abc01cbf7607dc1d5d1710732cbc59c2aae91112fb6b680dbfbd22d15",
+  "Chrome": "NOT_RUN",
+  "canonicalDBImport": "NOT_RUN",
+  "ownerGuest": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "activityCredit": 0,
+  "blocks": 10,
+  "plannedCases": 592,
+  "maxCasesPerBlock": 88,
+  "caseArtifactBudgetBytesPerCase": 393216,
+  "maximumCaseArtifactsBytes": 34603008,
+  "budgetExcludes": [
+    "browser profile",
+    "temporary database"
+  ],
+  "sharedProtocolFolder": "visibility-protocol719-b-preflight-20261127",
+  "files": [
+    {
+      "path": "actual-code.json",
+      "sha256": "0fe3b868ae5f2e9bdd3e3dd6107f3b4f73e3084ddd377168074a5bfbe9ebf94b"
+    },
+    {
+      "path": "actual-code.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "actual-code.stdout.txt",
+      "sha256": "0fe3b868ae5f2e9bdd3e3dd6107f3b4f73e3084ddd377168074a5bfbe9ebf94b"
+    },
+    {
+      "path": "block-plan.json",
+      "sha256": "9afbbb257f711e5519eb36fb7855dd25a1d02beb4dabc80cba9d1c4d3752b7f7"
+    },
+    {
+      "path": "blocks/01-1280/bounded-request.json",
+      "sha256": "622c0f5623251fefe96bda55d3e159ba9b36cd15a19e776d85117a2c47312c0e"
+    },
+    {
+      "path": "blocks/01-1280/collector-input.json",
+      "sha256": "38a6cdb7b0ca5159e00bf7157011b1b077ea8549deb7e335fe77434862a6baa8"
+    },
+    {
+      "path": "blocks/01-1280/prepared.json",
+      "sha256": "b0b206809259c8bde1a33d1fa11784ff995f63c9ed63fbdb1d14b7897117d75b"
+    },
+    {
+      "path": "blocks/01-320/bounded-request.json",
+      "sha256": "7e26bb309f86346c9efa30f1db5c991fbda472eaa9c76e4ed4970690fa574f92"
+    },
+    {
+      "path": "blocks/01-320/collector-input.json",
+      "sha256": "8ccc9eb89a9039cd4266907e6102ad9445a02fb2c5f189e5ce134020169e1b39"
+    },
+    {
+      "path": "blocks/01-320/prepared.json",
+      "sha256": "7c7766186511e7f8eb3a5a1337b1151b18b2948aab1045edd7c89cb75968a6af"
+    },
+    {
+      "path": "blocks/02-1280/bounded-request.json",
+      "sha256": "533ac35e316bb54c4febf1632fe769ef563efcecf5961601c5b346dd7da1c573"
+    },
+    {
+      "path": "blocks/02-1280/collector-input.json",
+      "sha256": "9b51ec783fb090741c01c7da2bfbd6cf03713bf71a330b92a690213a433e25c7"
+    },
+    {
+      "path": "blocks/02-1280/prepared.json",
+      "sha256": "64563e2f42563472abdafa77530e2772d0c31e21c8c3088e198ee6956538c252"
+    },
+    {
+      "path": "blocks/02-320/bounded-request.json",
+      "sha256": "9de830ef41c6ecea5fa4b9c89cd0c1ce59a0e52a9f18ed6a2a40e34f215b748f"
+    },
+    {
+      "path": "blocks/02-320/collector-input.json",
+      "sha256": "106ee3d4215aba4fa0e8d2cb893a35a23e38b901cfac0cad4f65cce3dda9b123"
+    },
+    {
+      "path": "blocks/02-320/prepared.json",
+      "sha256": "b16a2c3b2688307b259d03de71d8a49a3078d55dec7cda4715dd9d0333303c36"
+    },
+    {
+      "path": "blocks/03-1280/bounded-request.json",
+      "sha256": "0449287560656084bb5f222a81cde15a7163b902176f85bf901959df7c3f9296"
+    },
+    {
+      "path": "blocks/03-1280/collector-input.json",
+      "sha256": "876dc7478b7bd6cf88e57c5346ea16b3452b434f684b5351f01880004eaeed0e"
+    },
+    {
+      "path": "blocks/03-1280/prepared.json",
+      "sha256": "cee9d13004356303b20a680185dc288dbede1d04e763d1be0e42058e55bb97c2"
+    },
+    {
+      "path": "blocks/03-320/bounded-request.json",
+      "sha256": "134631a8edf700e1faba8580486a5e47baf937a7b8cd70f1c5891fa83b6dd20e"
+    },
+    {
+      "path": "blocks/03-320/collector-input.json",
+      "sha256": "1f6bcea43eba116be2e30edf58154429eef4042882fec45c88ed0cfce1466380"
+    },
+    {
+      "path": "blocks/03-320/prepared.json",
+      "sha256": "f7c7551e23123c7f87b8b7fac2e0c345429f934fca319ff697d1f1eb362a3b7d"
+    },
+    {
+      "path": "blocks/04-1280/bounded-request.json",
+      "sha256": "d01371152b911612be0da27e07b116a3a891858c548415a3897b739886eb0322"
+    },
+    {
+      "path": "blocks/04-1280/collector-input.json",
+      "sha256": "5138f2918100a836f35a97ff509610d1fdf850338914593e2243f96772a72a24"
+    },
+    {
+      "path": "blocks/04-1280/prepared.json",
+      "sha256": "893261be1d6e89061dd3de70128743a8a76da14e5389e129a0936eaafc22a6b5"
+    },
+    {
+      "path": "blocks/04-320/bounded-request.json",
+      "sha256": "7cdc74292093ab4a109a5962be15d8cc3ee66a729b018fbe5b48b2e399cedb94"
+    },
+    {
+      "path": "blocks/04-320/collector-input.json",
+      "sha256": "a93da388655171bdef25921f29bb33fb43855f87a4eed11402597de0371aa7bb"
+    },
+    {
+      "path": "blocks/04-320/prepared.json",
+      "sha256": "cbbe6a74ec394eb906b066cb4fb4d1d067a59fd99fa32494daef2de461ed78fe"
+    },
+    {
+      "path": "blocks/05-1280/bounded-request.json",
+      "sha256": "4e9feabcb3db362feeed501f69bdb6740521c4502ce7797b3cac0bd04612ac32"
+    },
+    {
+      "path": "blocks/05-1280/collector-input.json",
+      "sha256": "773f9cf8564a91a018e823069c5e506876e6b5b97208468ade3ccf2571e2ef35"
+    },
+    {
+      "path": "blocks/05-1280/prepared.json",
+      "sha256": "e2e5f7a055a4e89c68e1d9807723aea29cd82a97e1152d7da965da9c2cac52ac"
+    },
+    {
+      "path": "blocks/05-320/bounded-request.json",
+      "sha256": "a191207cb84be0c9c896daf1a43180c99bf1f23d4b0358a391ae975ae6afaccc"
+    },
+    {
+      "path": "blocks/05-320/collector-input.json",
+      "sha256": "e16f25e66866fe3960d01e4263a9340d8838f5d0f6aa3d6c9b501d99c4593704"
+    },
+    {
+      "path": "blocks/05-320/prepared.json",
+      "sha256": "184bd33aa55defdb26d68cc13699b75b421b735aadf918879f8656876c05f8b7"
+    },
+    {
+      "path": "inputs/experiment-c2-flow-continuity-reading-20261127-bindings.json",
+      "sha256": "728e87d7ca4b8ba0b725b69a657150784d243211b45fd5a9d4b0b88aff82fd3c"
+    },
+    {
+      "path": "inputs/experiment-c2-flow-continuity-reading-20261127.json",
+      "sha256": "c54a02b832d1a54e7401180e917ed550e5b483329e11599d65149f4b469cdfa5"
+    },
+    {
+      "path": "reading-notes.md",
+      "sha256": "033e281276339a99ea9213ecd16a85a6885a43736eee1ddb3c4d34eb38f22bd4"
+    }
+  ]
+}
