@@ -1,0 +1,19 @@
+from pathlib import Path
+import json,zipfile,io,hashlib,math
+from PIL import Image,ImageDraw,ImageFont
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c2-41-cb9-actual-ui-peer-a-20261127';O=D/'per-edition-overviews';O.mkdir(exist_ok=True);index=json.loads((D/'case-index.json').read_bytes());plan=json.loads((D/'actual-remote-prepared.json').read_bytes());allrows=[]
+font=ImageFont.truetype('/System/Library/Fonts/Monaco.ttf',12)
+with zipfile.ZipFile('/private/tmp/cric-cb9-45917299096-C2-original.zip')as z:
+ for r in plan['records']:
+  rows=[x for x in index if x['id']==r['id']and x['variant']==r['variant']and x['kind']=='grid'];indices=sorted(set([0,len(r['grid'])//2,len(r['grid'])-1]));chosen=[x for x in rows if x['interactionIndex']in indices]
+  # Explicit profiles are all represented; no screenshot is cropped.
+  chosen.sort(key=lambda x:(x['profile']['width'],x['profile']['fallback'],x['profile']['view'],x['interactionIndex']))
+  if r['clockCases']:
+   for profile in [p for p in plan['profiles']if p['view']in ['orbit','fixed_projection']]:
+    clocks=[x for x in index if x['id']==r['id']and x['variant']==r['variant']and x['kind']=='clock'and x['profile']==profile]
+    chosen.extend([clocks[0],clocks[-1]])
+  cols=6;tw=300;th=340;sheet=Image.new('RGB',(cols*tw,math.ceil(len(chosen)/cols)*th+40),'#f1f0eb');draw=ImageDraw.Draw(sheet);draw.text((8,7),r['id']+' '+r['variant']+' — whole frame, uniform reduction; selected controls + clock endpoints',font=font,fill='black');maps=[]
+  for i,x in enumerate(chosen):
+   png=x['screenshots'][0];raw=z.read('_temp/experiment-C2/evidence/'+png['file']);assert hashlib.sha256(raw).hexdigest()==png['sha256'];im=Image.open(io.BytesIO(raw)).convert('RGB');im.thumbnail((294,300),Image.Resampling.LANCZOS);xx=(i%cols)*tw;yy=(i//cols)*th+40;sheet.paste(im,(xx+(tw-im.width)//2,yy+30));draw.text((xx+3,yy+2),('2D'if x['profile']['fallback']else x['profile']['view'])+' '+str(x['profile']['width'])+' '+x['kind']+' x='+str(x['x'])+(' t='+str(x['time'])if x['kind']=='clock'else''),font=font,fill='black');maps.append({'tile':i,'caseKey':x['caseKey'],'sourcePng':png['file'],'sourceSha256':png['sha256'],'sourceDimensions':list(Image.open(io.BytesIO(raw)).size),'displayDimensions':list(im.size)})
+  p=O/(r['id']+'-'+r['variant']+'.png');sheet.save(p,optimize=True);allrows.append({'id':r['id'],'variant':r['variant'],'file':str(p.relative_to(A)),'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'dimensions':list(sheet.size),'tiles':maps,'readStatus':'NOT_YET_READ'})
+(D/'overview-index.json').write_text(json.dumps(allrows,ensure_ascii=False,indent=2)+'\n');print('PREPARED_OVERVIEWS',len(allrows),'TILES',sum(len(x['tiles'])for x in allrows))

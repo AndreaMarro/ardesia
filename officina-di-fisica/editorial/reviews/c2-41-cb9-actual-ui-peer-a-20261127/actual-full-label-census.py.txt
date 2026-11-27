@@ -1,0 +1,26 @@
+from pathlib import Path
+import zipfile,json,math,hashlib,collections
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c2-41-cb9-actual-ui-peer-a-20261127';index=json.loads((D/'case-index.json').read_bytes());rows=[]
+def xy(p,c):
+ m=c['sourceDerivedCamera']['matrixWorld'];q=c['sourceDerivedCamera']['projectionMatrix'];v=[p[i]-m[12+i]for i in range(3)];return[(1+q[0]*sum(m[i]*v[i]for i in range(3)))*c['canvas']['width']/2,(1-q[5]*sum(m[4+i]*v[i]for i in range(3)))*c['canvas']['height']/2]
+def contains(pts,b):return all(b['x']-b['w']/2<=x<=b['x']+b['w']/2 and b['y']-b['h']/2<=y<=b['y']+b['h']/2 for x,y in pts)
+with zipfile.ZipFile('/private/tmp/cric-cb9-45917299096-C2-original.zip')as z:
+ for info in index:
+  if info['kind']=='setup'or info['profile']['fallback']:continue
+  c=json.loads(z.read('_temp/experiment-C2/evidence/'+info['caseFile']));camera=c['sourceDerivedCamera'];scale=abs(camera['projectionMatrix'][0])*c['canvas']['width']/2
+  for g in c.get('nativeGlyphs',[]):
+   pts=[xy(v,c)for part in g['parts']for v in part['vertices']];axis=math.dist(xy(g['tail'],c),xy(g['tip'],c))
+   for label in c['labels']:
+    if contains(pts,label['box']):rows.append({'caseKey':c['caseKey'],'id':c['id'],'kind':'FULL_ARROW_UNDER_OPAQUE_LABEL','label':label['text'],'elementIndex':g['elementIndex'],'vertices':len(pts),'projectedAxisLengthPixels':axis,'endOnProjection':axis<1e-4,'labelBox':label['box'],'model':c['model'],'profile':c['profile'],'sourceMember':info['caseFile'],'png':c['screenshots'][0]})
+  for ei,e in enumerate(c['elements']):
+   if e.get('kind')!='ball':continue
+   center=xy(e['p'],c);radius=scale*e['r'];bounds=[(center[0]-radius,center[1]-radius),(center[0]+radius,center[1]+radius)]
+   for label in c['labels']:
+    if contains(bounds,label['box']):rows.append({'caseKey':c['caseKey'],'id':c['id'],'kind':'FULL_SPHERE_UNDER_OPAQUE_LABEL','label':label['text'],'elementIndex':ei,'projectedRadiusPixels':radius,'labelBox':label['box'],'model':c['model'],'profile':c['profile'],'sourceMember':info['caseFile'],'png':c['screenshots'][0]})
+ (D/'full-label-containment-census.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n')
+ groups=collections.defaultdict(list)
+ for r in rows:groups[(r['id'],r['kind'],r['label'],r['profile']['view'],r['profile']['width'],r.get('endOnProjection',False))].append(r)
+ summary=[]
+ for key,value in groups.items():summary.append({'id':key[0],'kind':key[1],'label':key[2],'view':key[3],'width':key[4],'endOn':key[5],'count':len(value),'firstCase':value[0]['caseKey']})
+ (D/'full-label-containment-summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n');print('CONTAINMENTS',len(rows),'GROUPS',len(groups))
+ for r in summary:print(r)

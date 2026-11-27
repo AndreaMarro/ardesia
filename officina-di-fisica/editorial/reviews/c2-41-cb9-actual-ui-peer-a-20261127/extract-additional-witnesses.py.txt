@@ -1,0 +1,7 @@
+from pathlib import Path
+import json,zipfile,hashlib
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c2-41-cb9-actual-ui-peer-a-20261127';idx={r['caseKey']:r for r in json.loads((D/'case-index.json').read_bytes())};out=D/'additional-full-frame-witnesses';out.mkdir(exist_ok=True);h=lambda b:hashlib.sha256(b).hexdigest();keys=['SIM-C2-L008-03|published|320|top|grid|16','SIM-C2-L009-01|published|320|top|grid|0','SIM-C2-L009-03|published|320|top|grid|0','SIM-C2-L010-02|published|1280|top|grid|0','SIM-C2-L010-05|published|1280|top|grid|0'];manifest=[]
+with zipfile.ZipFile('/private/tmp/cric-cb9-45917299096-C2-original.zip')as z:
+ for n,key in enumerate(keys):
+  r=idx[key];raw=z.read('_temp/experiment-C2/evidence/'+r['caseFile']);assert h(raw)==r['caseSha256'];c=json.loads(raw);p=c['screenshots'][0];png=z.read('_temp/experiment-C2/evidence/'+p['file']);assert h(png)==p['sha256'];stem=f'{n+1:02d}-{r["id"]}';(out/(stem+'.json')).write_bytes(raw);(out/(stem+'.png')).write_bytes(png);manifest.append({'caseKey':key,'caseFile':str((out/(stem+'.json')).relative_to(A)),'caseSha256':h(raw),'fullFramePng':str((out/(stem+'.png')).relative_to(A)),'fullFramePngSha256':h(png),'actualFullFrameManuallyRead':False})
+(D/'additional-full-frame-selection.json').write_text(json.dumps(manifest,indent=2)+'\n');print('extracted',len(keys))

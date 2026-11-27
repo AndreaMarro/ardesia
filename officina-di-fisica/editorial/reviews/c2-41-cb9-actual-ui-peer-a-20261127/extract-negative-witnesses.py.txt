@@ -1,0 +1,18 @@
+from pathlib import Path
+import json,zipfile,hashlib,math
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');D=A/'editorial/reviews/c2-41-cb9-actual-ui-peer-a-20261127';h=lambda b:hashlib.sha256(b).hexdigest();rows=json.loads((D/'full-label-containment-census.json').read_bytes());idx={r['caseKey']:r for r in json.loads((D/'case-index.json').read_bytes())};out=D/'negative-witnesses';out.mkdir(exist_ok=True)
+ids=['L005-01','L005-02','L005-03','L005-04','L006-01','L006-02','L006-03','L006-04','L007-01','L007-02','L007-05','L008-01','L008-02','L008-04','L010-02','L010-05']
+selected=[]
+for short in ids:
+ candidates=[r for r in rows if r['id']=='SIM-C2-'+short and r['profile']['width']==320 and r['profile']['view']=='top' and ((r['kind']=='FULL_ARROW_UNDER_OPAQUE_LABEL' and r['projectedAxisLengthPixels']>1)if short not in ['L010-02','L010-05']else r['kind']=='FULL_SPHERE_UNDER_OPAQUE_LABEL')]
+ assert candidates,short
+ selected.append(candidates[0])
+selected += [next(r for r in rows if r['caseKey']==f'SIM-C2-L007-03|published|320|orbit|grid|{i}' and r['kind']=='FULL_ARROW_UNDER_OPAQUE_LABEL')for i in [0,19]]
+with zipfile.ZipFile('/private/tmp/cric-cb9-45917299096-C2-original.zip')as z:
+ manifest=[]
+ for num,r in enumerate(selected):
+  info=idx[r['caseKey']];raw=z.read('_temp/experiment-C2/evidence/'+info['caseFile']);assert h(raw)==info['caseSha256'];c=json.loads(raw);png=z.read('_temp/experiment-C2/evidence/'+r['png']['file']);assert h(png)==r['png']['sha256'];stem=f'{num+1:02d}-{r["id"]}'
+  (out/(stem+'.json')).write_bytes(raw);(out/(stem+'.png')).write_bytes(png)
+  manifest.append({**r,'caseFile':str((out/(stem+'.json')).relative_to(A)),'caseSha256':h(raw),'fullFramePng':str((out/(stem+'.png')).relative_to(A)),'fullFramePngSha256':h(png),'actualFullFrameManuallyRead':False})
+ (D/'negative-witness-selection.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
+read=json.loads((D/'manual-overview-reading.json').read_bytes());read.extend([{'id':'SIM-C2-L010-04','variant':'published','overviewWholeOpenedAndRead':True,'note':'Tutti24 stati: interfaccia piana/curva leggibile; in Top la forza verticale è lungo la vista, limite geometrico esplicito senza dedurre forza nulla.'},{'id':'SIM-C2-L010-05','variant':'published','overviewWholeOpenedAndRead':True,'note':'Tutti24 stati: Top al raggio minimo mostra soltanto Film a due facce, sfera e freccia coperte; nei raggi maggiori resta visibile la sfera attorno alla fascia di etichetta. Orbit/Side/2D distinguono le forme.'}]);assert len(read)==42;assert len({(x['id'],x['variant'])for x in read})==42;(D/'manual-overview-reading.json').write_text(json.dumps(read,ensure_ascii=False,indent=2)+'\n');print('extracted',len(manifest),'full-frame witnesses; overview readings',len(read))
