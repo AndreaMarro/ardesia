@@ -84,22 +84,48 @@
         "id": "LAB3D-07",
         "status": "OPEN_CONSUMER_FINDING",
         "scope": "Charged sphere occludes vector bases",
-        "independentCommit": "fddf75aa382b477f163b30e8d7108de89d9fd2af"
+        "independentCommit": "fddf75aa382b477f163b30e8d7108de89d9fd2af",
+        "currentAuthorCandidate": "6a8dc478ca9fac73da82c77935aca369c6753297"
       },
       {
         "id": "LAB3D-10",
         "status": "AUTHOR_FIX_INDEPENDENT_UI_PENDING",
         "scope": "Wave section projected triangles collapse",
         "authorCommit": "af9230f67887eb7cb16223e55b1ae5154629e992",
-        "independentBaselineCommit": "fddf75aa382b477f163b30e8d7108de89d9fd2af"
+        "independentBaselineCommit": "fddf75aa382b477f163b30e8d7108de89d9fd2af",
+        "currentAuthorCandidate": "6a8dc478ca9fac73da82c77935aca369c6753297"
       },
       {
         "id": "LAB3D-04",
         "status": "AUTHOR_CORRECTION_PENDING_INDEPENDENT_UI",
-        "scope": "Browser axe flagged named SVG groups in the capillary fallback"
+        "scope": "Browser axe flagged named SVG groups in the capillary fallback",
+        "currentAuthorCandidate": "6a8dc478ca9fac73da82c77935aca369c6753297"
       }
     ],
-    "newAcceptanceCreditFromBrowserCampaign": 0
+    "newAcceptanceCreditFromBrowserCampaign": 0,
+    "benchAuthorCandidate": {
+      "authorCommit": "6a8dc478ca9fac73da82c77935aca369c6753297",
+      "runtimeSha256": "7102f71ee21f1c0908adf9b2830f0d6859e4a8271f74b8e020821203a25d4263",
+      "authorNodeTests": 290,
+      "independentBrowser": "PENDING",
+      "coveredIds": [
+        "LAB3D-01",
+        "LAB3D-02",
+        "LAB3D-04",
+        "LAB3D-07",
+        "LAB3D-10"
+      ]
+    },
+    "observedOverlayFindings": {
+      "receipt": "editorial/reviews/geometry-candidates-45917299096-20261127/root-actual-image-read.json",
+      "receiptSha256": "268d312f5dc49885f9d44200acd3b003917575fd20de63a47eff6599639b70df",
+      "independentCorrectionPending": [
+        "SIM-C6-L02-01",
+        "SIM-C6-L05-01",
+        "SIM-C5-L01-02",
+        "SIM-C5-L05-03"
+      ]
+    }
   },
   "coexistence": {
     "commit": "9c0eb3f59945321d4409d47485d9c92714d86775",
@@ -139,21 +165,24 @@
     "actualVisibility139Activities": {
       "id": 45917299096,
       "plannedCases": 45576,
-      "status": "ALL_FIVE_GITHUB_JOBS_SUCCESS_TECHNICAL_ONLY",
+      "status": "COMPLETE_TECHNICAL_EVIDENCE_REQUIRES_SCI_REVIEW",
       "sourceIds": 139,
       "upstreamHead": "0dbfa07c4d8abe6d80bc827d0f08a40b62075059",
       "verifiedLocalArchives": {
         "C2": 7440,
         "C3": 11808,
         "C4": 7872,
+        "C5": 14464,
         "C6": 3992
       },
-      "remainingArchive": "C5",
-      "activityCredit": 0
+      "activityCredit": 0,
+      "archiveCommit": "573a3eeb48b1a58c6b05524bb514f40f1165dce7",
+      "actualCases": 45576,
+      "summarySha256": "a246931d816c3d2a0975ea82bca6b3b470b118550f31cc48a58e7f22e3dd4d6a"
     }
   },
   "nextAction": [
-    "Complete exact C5 archive and validate all 139 observed IDs",
+    "Use five verified upstream archives to complete the individual visual assessments and verify the targeted corrections",
     "Close six C1 reopenings beginning SIM-C1-L001-06 and 139 other open IDs via independent canonical reviews",
     "Validate all groups on the exact integration runtime and rerun final previews and coexistence",
     "Open and validate canonical integration and document CI on the integrated SHA"
