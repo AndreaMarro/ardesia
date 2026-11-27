@@ -1,0 +1,9 @@
+SHARED_LOCK_ACQUIRED; free bytes 3897606144; one child
+Traceback (most recent call last):
+  File "/private/tmp/run_c2_41_static_a.py", line 4, in <module>
+    report=v.report();(v.BASE/'current-static-source-math-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tools/corpus_engineering/c2_41_static_cb9_verifier_a.py", line 95, in report
+    records.append({'id':key,'version':sources[key]['version'],'sourceSha256':digest(sources[key]),'exactChecks':entry['checks'],'sourceMathOk':science,'sourceIssue':issue,'installedCode':code,'codeGeometryOk':geometry_ok,'manualArithmeticRecovered':m.MANUAL[key],'physicalAssumptionsRecovered':m.ASSUMPTIONS[key],'freshSourceReading':True,'currentRuntimeSha256':RUNTIME,'UI':'PENDING_ACTUAL_REMOTE_REPORT','visualReview':'PENDING','ok':False,'overallComplete':False,'activityCredit':0,'humanApproval':'NOT_RUN'})
+                                                                                                                                                                                                                                                          ^^^^^^^^
+AttributeError: module 'tools.corpus_engineering._c2_41_frozen_a.experiments_hydraulics_buoyancy_code_verifier' has no attribute 'MANUAL'
+CHILD_EXIT 1; free bytes 3897303040

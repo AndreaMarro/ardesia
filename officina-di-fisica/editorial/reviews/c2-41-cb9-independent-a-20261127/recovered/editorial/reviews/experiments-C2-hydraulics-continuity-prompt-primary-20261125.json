@@ -1,0 +1,311 @@
+{
+  "phase": "PROMPT_ONLY_PRIMARY_NOT_REGISTRABLE",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+  "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+  "projectionFileSha256": "12f608d49c4588aaf0e17d20d4b9cb1ac09d4ef9f8c0204df1e1e0c37c97e0d3",
+  "priorKnowledgeDisclosure": "Whole shared consumer C2.js was incidentally read during047; its laws were therefore previously visible. No remaining source reference ordinate/formula/interpretation/substitution/answer field is exposed here. This projection is prompt-only, not claimed as fully blind independent reading.",
+  "reviewer": "AI independent of historical source author; not human approval",
+  "records": [
+    {
+      "id": "SIM-C2-L003-02",
+      "title": "Pressa idraulica",
+      "promptOnlySha256": "c52d7e7c2bbe8953db124f0ed1523e7f5e86a38a1425488a06718431e698fa80",
+      "independentDerivation": "A1*d1=A2*d2; A2=4*A1 => d2=d1/4",
+      "assumptionsAndDomain": "Incompressible volume balance; ideal press force gain4 and reciprocal stroke; losses/height corrections excluded for force/work claim.",
+      "referenceInputCalculations": [
+        {
+          "x": "2",
+          "derivedY": "1/2",
+          "unit": "cm",
+          "conditional": false,
+          "note": ""
+        },
+        {
+          "x": "6",
+          "derivedY": "3/2",
+          "unit": "cm",
+          "conditional": false,
+          "note": ""
+        }
+      ],
+      "manualProcedure": "Divide stroke by4; multiply back by4 to check.",
+      "adversarialInterpretation": "At zero stroke output0; no negative stroke in control domain.",
+      "sourceFormulaAndInterpretationRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L003-03",
+      "title": "Trasmissione dell’incremento di pressione in un liquido confinato",
+      "promptOnlySha256": "cfaa941de74423c762d354f80f691a7e8dcb2f07759a62fc2df0bc81c2855c39",
+      "independentDerivation": "p_relative_deep=20kPa+delta_p_surface",
+      "assumptionsAndDomain": "Static confined liquid; unchanged density and depth. Added pressure is transmitted without attenuation, while original hydrostatic baseline remains.",
+      "referenceInputCalculations": [
+        {
+          "x": "0",
+          "derivedY": "20",
+          "unit": "kPa",
+          "conditional": false,
+          "note": ""
+        },
+        {
+          "x": "8",
+          "derivedY": "28",
+          "unit": "kPa",
+          "conditional": false,
+          "note": ""
+        }
+      ],
+      "manualProcedure": "Add the two pressure increments in the same kPa unit.",
+      "adversarialInterpretation": "Differentiate total relative pressure from only the increment; zero addition still leaves20kPa.",
+      "sourceFormulaAndInterpretationRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L004-01",
+      "title": "Principio di Archimede",
+      "promptOnlySha256": "01e9e7603958a8b37fb60beeb2ab475bcd36a0ab6fb900d607bcc105838fdde2",
+      "independentDerivation": "F_b=rho_f*g*V_displaced; assigned water weight per litre about10N/L => F_b about10V",
+      "assumptionsAndDomain": "Object immersed without bottom contact. Working10N/L is explicitly approximate rather than universal exact SI gravity.",
+      "referenceInputCalculations": [
+        {
+          "x": "1",
+          "derivedY": "10",
+          "unit": "N",
+          "conditional": false,
+          "note": "approximately with assigned10N/L"
+        },
+        {
+          "x": "3",
+          "derivedY": "30",
+          "unit": "N",
+          "conditional": false,
+          "note": "approximately with assigned10N/L"
+        }
+      ],
+      "manualProcedure": "Multiply litres by assigned10N/L; 1L=10^-3m3.",
+      "adversarialInterpretation": "Buoyancy increases with displaced volume, not object material; zero immersed volume gives0.",
+      "sourceFormulaAndInterpretationRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L004-02",
+      "title": "Spinta idrostatica",
+      "promptOnlySha256": "a66e18dc7dfa19eceede3151c3c8731c245a48655e94b584c118d37b6a7aeab7",
+      "independentDerivation": "F_b=(2/1000)m3*rho_f*g",
+      "assumptionsAndDomain": "Fully immersed2L object held as necessary without support contact. g is not assigned in prompt projection; keep result conditional until full source.",
+      "referenceInputCalculations": [
+        {
+          "x": "800",
+          "derivedY": "8/5",
+          "unit": "N",
+          "conditional": true,
+          "note": "coefficient multiplying g in m/s2"
+        },
+        {
+          "x": "1000",
+          "derivedY": "2",
+          "unit": "N",
+          "conditional": true,
+          "note": "coefficient multiplying g in m/s2"
+        }
+      ],
+      "manualProcedure": "2L=1/500m3; multiply density by1/500 then by assigned g.",
+      "adversarialInterpretation": "Without g no unique force number. Probe difference is buoyancy, not weight or absolute dynamometer reading.",
+      "sourceFormulaAndInterpretationRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L004-03",
+      "title": "Condizioni di galleggiamento e immersione",
+      "promptOnlySha256": "375c5bc47295eb2f662907a9abac70fce30c6ef0ee95233f1c2e2e8a7ca3627f",
+      "independentDerivation": "rho_f*g*V_immersed=rho_b*g*V_total => percent=100*rho_b/1000",
+      "assumptionsAndDomain": "Homogeneous freely floating body, stationary fluid of density1000kg/m3. No surface-tension/support force. At equal density100% is immersed but depth need not be unique.",
+      "referenceInputCalculations": [
+        {
+          "x": "250",
+          "derivedY": "25",
+          "unit": "%",
+          "conditional": false,
+          "note": ""
+        },
+        {
+          "x": "800",
+          "derivedY": "80",
+          "unit": "%",
+          "conditional": false,
+          "note": ""
+        }
+      ],
+      "manualProcedure": "Divide block density by water density; convert fraction to percent.",
+      "adversarialInterpretation": "g cancels; density above fluid would sink, outside current control range.",
+      "sourceFormulaAndInterpretationRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L005-01",
+      "title": "Flusso e portata volumetrica",
+      "promptOnlySha256": "3764b3ba75b324ab3012d10698fedd5e075b1fcfbf33919e3e6ed29990573ca8",
+      "independentDerivation": "Q=A*v_mean=4cm2*v_mean; 1cm3=1mL",
+      "assumptionsAndDomain": "Section mean velocity, fixed4cm2 area, no unmentioned profile factor.",
+      "referenceInputCalculations": [
+        {
+          "x": "2",
+          "derivedY": "8",
+          "unit": "mL/s",
+          "conditional": false,
+          "note": ""
+        },
+        {
+          "x": "6",
+          "derivedY": "24",
+          "unit": "mL/s",
+          "conditional": false,
+          "note": ""
+        }
+      ],
+      "manualProcedure": "Multiply4 by velocity in cm/s to get cm3/s then same numerical mL/s.",
+      "adversarialInterpretation": "Do not divide by2: given velocity is already section mean. Zero velocity gives zero flow.",
+      "sourceFormulaAndInterpretationRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L005-02",
+      "title": "Conservazione della massa",
+      "promptOnlySha256": "9a29aba846b62be76e3819b90cc08468e0ab453ed64f8e9f906505a112988ca4",
+      "independentDerivation": "mass_flow_out=mass_flow_in=rho*Q=(4/5)kg/L*Q",
+      "assumptionsAndDomain": "Steady one-inlet/outlet liquid without leakage or accumulation. Density0.8kg/L is given.",
+      "referenceInputCalculations": [
+        {
+          "x": "1",
+          "derivedY": "4/5",
+          "unit": "kg/s",
+          "conditional": false,
+          "note": ""
+        },
+        {
+          "x": "3",
+          "derivedY": "12/5",
+          "unit": "kg/s",
+          "conditional": false,
+          "note": ""
+        }
+      ],
+      "manualProcedure": "0.8=4/5; multiply flow by4 then divide5.",
+      "adversarialInterpretation": "Conservation applies to mass; volume equality requires same density, supplied by same liquid model.",
+      "sourceFormulaAndInterpretationRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L005-03",
+      "title": "Equazione di continuità",
+      "promptOnlySha256": "8f999aa0e253ec1cefa834875da1f61e29b229da2e4c1d90e3675fd6cae45abf",
+      "independentDerivation": "Q=A*v_mean => v_mean=24cm3/s/A",
+      "assumptionsAndDomain": "Steady incompressible flow; positive local cross-sectional area. Control area1..8cm2 excludes singular zero.",
+      "referenceInputCalculations": [
+        {
+          "x": "2",
+          "derivedY": "12",
+          "unit": "cm/s",
+          "conditional": false,
+          "note": ""
+        },
+        {
+          "x": "6",
+          "derivedY": "4",
+          "unit": "cm/s",
+          "conditional": false,
+          "note": ""
+        }
+      ],
+      "manualProcedure": "Divide24 by section area; check multiplication A*v returns24.",
+      "adversarialInterpretation": "Area doubling halves speed; no claim about pressure without an energy model.",
+      "sourceFormulaAndInterpretationRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L005-04",
+      "title": "Velocità media di sezione",
+      "promptOnlySha256": "0b1399d8c75629d39bf15bf9bcd269e8287315a44cc2de1d08f1c3aa8add7e72",
+      "independentDerivation": "IF circular Newtonian fully-developed no-slip Poiseuille profile v(r)=vmax(1-r2/R2), area average gives vmean=vmax/2",
+      "assumptionsAndDomain": "Laminar alone does not uniquely establish this factor. Full source/profile must supply circular parabolic assumptions; primary result is conditional.",
+      "referenceInputCalculations": [
+        {
+          "x": "4",
+          "derivedY": "2",
+          "unit": "cm/s",
+          "conditional": true,
+          "note": ""
+        },
+        {
+          "x": "10",
+          "derivedY": "5",
+          "unit": "cm/s",
+          "conditional": true,
+          "note": ""
+        }
+      ],
+      "manualProcedure": "Integrate annuli: (2/R2) integral_0^R vmax(1-r2/R2)r dr=vmax/2. Divide supplied axis speed by2 only under this profile.",
+      "adversarialInterpretation": "Uniform plug profile is a counterexample to inferring half from stationary/laminar alone; radius-line arithmetic mean is not area mean.",
+      "sourceFormulaAndInterpretationRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L005-05",
+      "title": "Biforcazioni",
+      "promptOnlySha256": "c1f8c73090c74e3995faa23aa407ff8af16a20dc8d1d1b228e0d42015d9b0ec9",
+      "independentDerivation": "Q_lower=Q_in-Q_upper=12mL/s-Q_upper",
+      "assumptionsAndDomain": "Steady incompressible junction with exactly two outlets, no leakage/storage, fixed12mL/s inflow.",
+      "referenceInputCalculations": [
+        {
+          "x": "2",
+          "derivedY": "10",
+          "unit": "mL/s",
+          "conditional": false,
+          "note": ""
+        },
+        {
+          "x": "8",
+          "derivedY": "4",
+          "unit": "mL/s",
+          "conditional": false,
+          "note": ""
+        }
+      ],
+      "manualProcedure": "Subtract upper branch from12; sum both outputs to check12.",
+      "adversarialInterpretation": "Domain0..12 keeps both outputs nonnegative; at either endpoint one outlet carries zero.",
+      "sourceFormulaAndInterpretationRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    }
+  ],
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "credit": 0,
+  "limits": [
+    "No formula/reference-ordinate/interpretation/substitution fields read for these records before saving this primary.",
+    "Previously exposed shared implementation laws are disclosed; this is not claimed blind.",
+    "No actual assessment transfer selection inferred here; selected inputs and delivered prompts require later consumer review.",
+    "Conditional quantities remain conditional until full source context is read.",
+    "No browser, DB, installed-engine or SymPy/Pint execution; exact arithmetic here is stdlib Fraction."
+  ]
+}

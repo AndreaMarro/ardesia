@@ -1,0 +1,19 @@
+SHARED_LOCK_ACQUIRED; free bytes 3894657024; one child
+Traceback (most recent call last):
+  File "/private/tmp/run_c2_41_static_a.py", line 4, in <module>
+    report=v.report();(v.BASE/'current-static-source-math-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tools/corpus_engineering/c2_41_static_cb9_verifier_a.py", line 96, in report
+    return {'schemaVersion':'1.0.0','phase':'NEW_DISTINCT_CURRENT_SOURCE_MATH_CODE_PARTIAL_NOT_REGISTRABLE','runtimeSha256':RUNTIME,'records':records,'separateStevinoDraft':draft_review(proof),'UI':'PENDING_ACTUAL_REMOTE_REPORT','acceptedActivityCount':0,'humanApproval':'NOT_RUN','publicationAction':'NONE','originalHistoricalReportsUnchanged':True}
+                                                                                                                                                                             ~~~~~~~~~~~~^^^^^^^
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tools/corpus_engineering/c2_41_static_cb9_verifier_a.py", line 83, in draft_review
+    actual=next(x for x in proof['records']if x['variant']=='draft');m=load('experiment_stevino_revision_047_math_verifier.py');checks=m.independent_checks();tasks=[]
+                                                                       ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tools/corpus_engineering/c2_41_static_cb9_verifier_a.py", line 24, in load
+    loader.exec_module(m);MODELS[name]=m;return m
+    ~~~~~~~~~~~~~~~~~~^^^
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/editorial/reviews/c2-41-cb9-independent-a-20261127/recovered/experiment_stevino_revision_047_math_verifier.py", line 8, in <module>
+    from .review_contract import reviewed_rows
+ModuleNotFoundError: No module named 'tools.corpus_engineering._c2_41_frozen_a.review_contract'
+CHILD_EXIT 1; free bytes 3894882304

@@ -1,0 +1,82 @@
+"""Bounded distinct current-code tests, no browser/complete activity approval."""
+from pathlib import Path
+import copy,json,unittest
+from fractions import Fraction
+from unittest import mock
+import sympy as sp
+from hypothesis import given,settings,strategies as st
+from tools.corpus_engineering import c2_41_static_cb9_verifier_a as v
+class C2FortyOneStatic(unittest.TestCase):
+ @classmethod
+ def setUpClass(cls):cls.proof=v.collected();cls.result=v.report(cls.proof)
+ def test01_exact_scope_and_pending_ui(self):
+  r=self.result;self.assertEqual(len(r['records']),41);self.assertEqual(sum(x['sourceMathOk']for x in r['records']),40);self.assertEqual(r['acceptedActivityCount'],0);self.assertTrue(all(not x['ok']and x['UI'].startswith('PENDING')for x in r['records']));self.assertTrue(all(x['codeGeometryOk']for x in r['records']))
+ def test02_source_conflict_and_separate_draft(self):
+  original=next(x for x in self.result['records']if x['id']=='SIM-C2-L002-01');self.assertFalse(original['sourceMathOk']);self.assertIn('15kPa',original['sourceIssue']);draft=self.result['separateStevinoDraft'];self.assertTrue(draft['textMathOk']);self.assertFalse(draft['ok']);self.assertEqual(draft['tasks'][1]['requiredExact'],'2943/200')
+ def test03_all_scalar_faults_rejected_by_models(self):
+  p=copy.deepcopy(self.proof)
+  for r in p['records']:r['cases'][0]['solve']['y']+=1
+  wrong=v.compare(p)
+  for key,r in wrong.items():self.assertTrue(r['codeComparison'].get('errors'),key)
+ def test04_original_and_draft_versions_and_identity(self):
+  for val in [True,1.0,0,999]:
+   p=copy.deepcopy(self.proof);p['records'][0]['sourceVersion']=val
+   with self.assertRaises(ValueError):v.compare(p)
+  p=copy.deepcopy(self.proof);p['records'][-1]=copy.deepcopy(p['records'][0])
+  with self.assertRaises(ValueError):v.compare(p)
+ def test05_finite_exact_guards_before_cast(self):
+  for key in v.frozen_sources():
+   for x in [True,False,1.0,'1',None,sp.oo,-sp.oo,sp.nan,sp.I,sp.Symbol('x')]:
+    with self.assertRaises(ValueError):v.exact_value(key,x)
+ def test06_legal_domains_and_selectors(self):
+  for key in v.frozen_sources():
+   s=v.model_for(key).SPECS[key]
+   for x in [Fraction(str(s[0]))-1,Fraction(str(s[1]))+1]:
+    with self.assertRaises(ValueError):v.exact_value(key,x)
+  for key in ['SIM-C2-L001-01','SIM-C2-L008-02']:
+   with self.assertRaises(ValueError):v.exact_value(key,Fraction(3,2))
+ def test07_missing_inlet_fails_current_geometry(self):
+  p=copy.deepcopy(self.proof);r=next(r for r in p['records']if r['id']=='SIM-C2-L005-05')
+  for c in r['cases']:c['elements']=[e for e in c['elements']if not(e.get('kind')=='arrow'and e.get('c')==0xd49332)]
+  self.assertFalse(v.current_geometry(p)[r['editionKey']]['ok'])
+ def test08_each_geometric_fix_has_an_actual_counterexample(self):
+  changes=[('SIM-C2-L001-02','plate'),('SIM-C2-L001-05','probe'),('SIM-C2-L003-01','piston'),('SIM-C2-L006-02','pitot'),('SIM-C2-L008-02','speed')]
+  for key,kind in changes:
+   p=copy.deepcopy(self.proof);r=next(r for r in p['records']if r['id']==key)
+   if kind=='probe':r['cases'][0]['elements'].append({'kind':'label','text':'Sonda'})
+   elif kind=='piston':r['cases'][0]['elements'].append({'kind':'label','text':'A₁'})
+   elif kind=='plate':
+    for c in r['cases']:
+     for e in c['elements']:
+      if e.get('kind')=='arrow'and e.get('c')==0x147979:e['a'][2]=e['b'][2]=.78
+   elif kind=='pitot':
+    c=r['cases'][-1];e=next(e for e in c['elements']if e.get('kind')=='rod'and e.get('r')==.062 and e['a'][0]==1.4);e['b'][1]=4
+   else:
+    c=next(c for c in r['cases']if c['x']==1);e=next(e for e in c['elements']if e.get('kind')=='arrow'and e.get('c')==0x147979);e['b'][0]=e['a'][0]+1.2
+   self.assertFalse(v.current_geometry(p)[r['editionKey']]['ok'],key)
+ def test09_constitutive_mutants_do_not_pass_by_hash(self):
+  for name in ['experiments_pressure_hydrostatics_047_verifier.py','experiments_hydraulics_buoyancy_code_verifier.py','experiments_flow_continuity_code_verifier.py','experiments_C2_flows_interfaces_code_verifier.py']:
+   m=v.load(name);old=m.exact_value
+   checks_fn=m.independent_checks if hasattr(m,'independent_checks')else m.all_exact_checks if hasattr(m,'all_exact_checks')else m.exact_checks
+   if hasattr(m,'all_exact_checks'):m.all_exact_checks.cache_clear()
+   baseline=checks_fn()
+   if hasattr(m,'all_exact_checks'):m.all_exact_checks.cache_clear()
+   try:
+    with mock.patch.object(m,'exact_value',lambda key,x,old=old:old(key,x)+1):
+     try:checks=checks_fn()
+     except ValueError as e:self.assertIn('Inverse outside physical control domain',str(e))
+     else:self.assertTrue(any(c['ok']and not changed['ok']for key in baseline for c,changed in zip(baseline[key],checks[key],strict=True)))
+   finally:
+    if hasattr(m,'all_exact_checks'):m.all_exact_checks.cache_clear()
+ def test10_no_unearned_ui_claim(self):
+  p=copy.deepcopy(self.proof);p['UI']='PASS'
+  with self.assertRaises(ValueError):v.report(p)
+ def test12_fresh_saved_code_reports_identical(self):
+  saved=json.loads((v.BASE/'current-static-source-math-report.json').read_bytes());self.assertEqual(self.result,saved)
+ @settings(max_examples=120,deadline=None)
+ @given(st.integers(0,40),st.integers(0,100))
+ def test11_exact_legal_interpolation_and_known_reference(self,i,j):
+  key=list(v.frozen_sources())[i];s=v.model_for(key).SPECS[key];lo,hi=Fraction(str(s[0])),Fraction(str(s[1]));x=lo+(hi-lo)*Fraction(j,100)
+  if key in ['SIM-C2-L001-01','SIM-C2-L008-02']:x=lo+int(j)%(int(hi-lo)+1)
+  y=v.exact_value(key,x);self.assertTrue(sp.sympify(y).is_finite);self.assertTrue(sp.sympify(y).is_real)
+if __name__=='__main__':unittest.main(verbosity=2)
